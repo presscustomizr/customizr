@@ -1,0 +1,4 @@
+customizr
+=========
+
+Wordpress theme {customizable}
