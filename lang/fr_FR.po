@@ -1,0 +1,1204 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Customizr 1.0\n"
+"POT-Creation-Date: 2013-04-14 12:49+0100\n"
+"PO-Revision-Date: 2013-04-14 12:50+0100\n"
+"Last-Translator: Nico <nguillaume@gmail.com>\n"
+"Language-Team: Nicolas G. <nicolas@themesandco.com>\n"
+"Language: Français\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../comments.php:29
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgstr "Un commentaire sur &ldquo;%2$s&rdquo;"
+
+#: ../comments.php:42
+msgid "Comment navigation"
+msgstr "Comment navigation"
+
+#: ../comments.php:43
+msgid "&larr; Older Comments"
+msgstr "&larr; Commentaires plus anciens"
+
+#: ../comments.php:44
+msgid "Newer Comments &rarr;"
+msgstr "Commentaires plus récents &rarr;"
+
+#: ../comments.php:53
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: ../footer.php:21
+msgid "Powered by "
+msgstr "Propulsé par "
+
+#: ../footer.php:21
+msgid "Designed by "
+msgstr "Créé par "
+
+#: ../footer.php:29
+msgid "Back to top"
+msgstr "Retour haut de page"
+
+#: ../header.php:42
+#, php-format
+msgid "Page %s"
+msgstr "Page %s"
+
+#: ../header.php:98
+msgid "Back Home"
+msgstr "Retour Accueil"
+
+#: ../inc/tc_dudy_widgets.php:14
+msgid "Right Sidebar"
+msgstr "Barre latérale droite"
+
+#: ../inc/tc_dudy_widgets.php:16 ../inc/tc_dudy_widgets.php:26
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr ""
+"Affichée dans les billets, les pages statiques, les archives et les pages de "
+"recherche"
+
+#: ../inc/tc_dudy_widgets.php:24
+msgid "Left Sidebar"
+msgstr "Barre latérale gauche"
+
+#: ../inc/tc_dudy_widgets.php:36
+msgid "Footer Widget Area One"
+msgstr "Première zone de widgets du pied de page"
+
+#: ../inc/tc_dudy_widgets.php:38 ../inc/tc_dudy_widgets.php:47
+#: ../inc/tc_dudy_widgets.php:56
+msgid "Just use it as you want !"
+msgstr "Glissez-deposez les widgets de votre choix ici!"
+
+#: ../inc/tc_dudy_widgets.php:45
+msgid "Footer Widget Area Two"
+msgstr "Deuxième zone de widgets du pied de page"
+
+#: ../inc/tc_dudy_widgets.php:54
+msgid "Footer Widget Area Three"
+msgstr "Troisième zone de widgets du pied de page"
+
+#: ../inc/tc_handy_helpers.php:137
+msgid "Read more..."
+msgstr "En lire davantage..."
+
+#: ../inc/tc_handy_helpers.php:341
+msgid "Customizer screen"
+msgstr "Customizer"
+
+#: ../inc/tc_handy_helpers.php:341
+msgid " here"
+msgstr " ici"
+
+#: ../inc/tc_handy_helpers.php:346
+msgid "Featured page"
+msgstr "Page en avant"
+
+#: ../inc/tc_handy_helpers.php:347
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"Texte descriptif de la page en une : utilisez l'extrait de page ou écrivez "
+"votre propre texte dans la page d'options Customizer %s."
+
+#: ../inc/tc_handy_helpers.php:434
+msgid "Read more &raquo;"
+msgstr "Lire la suite &raquo;"
+
+#: ../inc/tc_handy_helpers.php:498 ../parts/post-header.php:42
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalien vers %s"
+
+#: ../inc/tc_handy_helpers.php:532
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: ../inc/tc_handy_helpers.php:532
+msgid "(Edit)"
+msgstr "(Modifier)"
+
+#: ../inc/tc_handy_helpers.php:549
+msgid "Reply"
+msgstr "Répondre"
+
+#: ../inc/tc_handy_helpers.php:557
+msgid "Post author"
+msgstr "Auteur du billet"
+
+#: ../inc/tc_handy_helpers.php:558 ../inc/tc_hot_crumble.php:540
+#: ../inc/tc_hot_crumble.php:573 ../inc/tc_hot_crumble.php:588
+#: ../inc/tc_hot_crumble.php:616 ../inc/admin/tc_slider_bo.php:652
+#: ../parts/content-page.php:13 ../parts/post-header.php:56
+msgid "Edit"
+msgstr "Modifier"
+
+#: ../inc/tc_handy_helpers.php:564
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s à %2$s"
+
+#: ../inc/tc_handy_helpers.php:570
+msgid "Your comment is awaiting moderation."
+msgstr "Votre commentaire est en attente de modération."
+
+#: ../inc/tc_handy_helpers.php:602 ../inc/tc_handy_helpers.php:630
+#, php-format
+msgid "View all posts in %s"
+msgstr "Voir tous les billets dans %s"
+
+#: ../inc/tc_handy_helpers.php:660 ../inc/tc_hot_crumble.php:47
+msgid "Home"
+msgstr "Accueil"
+
+#: ../inc/tc_handy_helpers.php:697
+msgid "feed"
+msgstr "flux"
+
+#: ../inc/tc_handy_helpers.php:698
+msgid "twitter"
+msgstr "twitter"
+
+#: ../inc/tc_handy_helpers.php:699
+msgid "facebook"
+msgstr "facebook"
+
+#: ../inc/tc_handy_helpers.php:700
+msgid "google"
+msgstr "google"
+
+#: ../inc/tc_handy_helpers.php:701
+msgid "youtube"
+msgstr "youtube"
+
+#: ../inc/tc_handy_helpers.php:702
+msgid "pinterest"
+msgstr "pinterest"
+
+#: ../inc/tc_handy_helpers.php:703
+msgid "github"
+msgstr "github"
+
+#: ../inc/tc_handy_helpers.php:704
+msgid "dribbble"
+msgstr "dribbble"
+
+#: ../inc/tc_handy_helpers.php:705
+msgid "linkedin"
+msgstr "linkedin"
+
+#: ../inc/tc_handy_helpers.php:711 ../inc/admin/tc_customize.php:543
+msgid "Social links"
+msgstr "Liens sociaux"
+
+#: ../inc/tc_handy_helpers.php:716
+msgid "Follow me on "
+msgstr "Suivez-moi sur"
+
+#: ../inc/tc_handy_helpers.php:720
+msgid "Suscribe to my rss feed"
+msgstr "Aboonez-vous au flux rss"
+
+#: ../inc/tc_hot_crumble.php:44
+msgid "Browse:"
+msgstr "Naviguer:"
+
+#: ../inc/tc_hot_crumble.php:424
+msgid "g:i a"
+msgstr "g:i a"
+
+#: ../inc/tc_hot_crumble.php:427
+#, php-format
+msgid "Minute %1$s"
+msgstr "Minute %1$s"
+
+#: ../inc/tc_hot_crumble.php:427
+msgid "i"
+msgstr "i"
+
+#: ../inc/tc_hot_crumble.php:430
+msgid "g a"
+msgstr "g a"
+
+#: ../inc/tc_hot_crumble.php:441 ../inc/tc_hot_crumble.php:451
+#: ../inc/tc_hot_crumble.php:460 ../inc/tc_hot_crumble.php:471
+#: ../inc/tc_hot_crumble.php:473 ../inc/tc_hot_crumble.php:672
+msgid "Y"
+msgstr "Y"
+
+#: ../inc/tc_hot_crumble.php:442 ../inc/tc_hot_crumble.php:463
+#: ../inc/tc_hot_crumble.php:465 ../inc/tc_hot_crumble.php:676
+msgid "F"
+msgstr "F"
+
+#: ../inc/tc_hot_crumble.php:445 ../inc/tc_hot_crumble.php:447
+#: ../inc/tc_hot_crumble.php:680
+msgid "d"
+msgstr "d"
+
+#: ../inc/tc_hot_crumble.php:454 ../inc/tc_hot_crumble.php:456
+#, php-format
+msgid "Week %1$s"
+msgstr "Semaine %1$s"
+
+#: ../inc/tc_hot_crumble.php:482 ../inc/tc_hot_crumble.php:484
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Résultats de recherche pour &quot;%1$s&quot;"
+
+#: ../inc/tc_hot_crumble.php:489
+msgid "404 Not Found"
+msgstr "Page non trouvées (erreur 404)"
+
+#: ../inc/tc_hot_crumble.php:494 ../inc/tc_hot_crumble.php:496
+#, php-format
+msgid "Page %d"
+msgstr "Page %d"
+
+#: ../inc/tc_hot_crumble.php:565
+msgid "Split"
+msgstr "Dissocier"
+
+#: ../inc/tc_hot_crumble.php:569
+msgid "Merge"
+msgstr "Fusionner"
+
+#: ../inc/tc_unleash_customizr.php:183
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: ../inc/tc_voila_slider.php:49 ../inc/tc_voila_slider.php:52
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr est un thème élégant et simple"
+
+#: ../inc/tc_voila_slider.php:53
+msgid "Let your creativity speak and easily customiz'it the way you want!"
+msgstr "Soyez créatifs et customisez en quelques clics!"
+
+#: ../inc/tc_voila_slider.php:54
+msgid "Learn more"
+msgstr "En savoir plus"
+
+#: ../inc/tc_voila_slider.php:59 ../inc/tc_voila_slider.php:62
+msgid "Style your WordPress site in live!"
+msgstr "Modifiez votre site WordPress en live!"
+
+#: ../inc/tc_voila_slider.php:63
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes in live !"
+msgstr ""
+"De nombreuses options de design et structures sont disponibles dans l'écran "
+"de customization Wordpress : vos modifications s'affichent en live !"
+
+#: ../inc/tc_voila_slider.php:64
+msgid "Just try it!"
+msgstr "Essayez le!"
+
+#: ../inc/tc_voila_slider.php:69 ../inc/tc_voila_slider.php:72
+msgid "Create beautiful sliders"
+msgstr "Créez de superbes diaporamas"
+
+#: ../inc/tc_voila_slider.php:73
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr inclut un générateur de diaporama très pratique : ajoutez un "
+"diaporama à n'importe quel billet ou page !"
+
+#: ../inc/tc_voila_slider.php:74
+msgid "Discover the features"
+msgstr "Découvrez les fonctionnalités"
+
+#: ../inc/admin/tc_customize.php:12 ../inc/admin/tc_customize.php:13
+#: ../inc/admin/tc_customize.php:36
+msgid "Customiz'it!"
+msgstr "Customiz'it!"
+
+#: ../inc/admin/tc_customize.php:88
+msgid "Manage menus"
+msgstr "Gérer les menus"
+
+#: ../inc/admin/tc_customize.php:93
+msgid "Skin"
+msgstr "Thème"
+
+#: ../inc/admin/tc_customize.php:95
+msgid "Select a skin for Customizr"
+msgstr "Choisir un thème pour Customizr"
+
+#: ../inc/admin/tc_customize.php:105
+msgid "Choose a predefined skin"
+msgstr "Choisir un thème prédéfini"
+
+#: ../inc/admin/tc_customize.php:109
+msgid "Blue"
+msgstr "Bleu"
+
+#: ../inc/admin/tc_customize.php:110
+msgid "Green"
+msgstr "Vert"
+
+#: ../inc/admin/tc_customize.php:111
+msgid "Yellow"
+msgstr "Jaune"
+
+#: ../inc/admin/tc_customize.php:112
+msgid "Red"
+msgstr "Rouge"
+
+#: ../inc/admin/tc_customize.php:113
+msgid "Purple"
+msgstr "Violet"
+
+#: ../inc/admin/tc_customize.php:114
+msgid "Grey"
+msgstr "Gris"
+
+#: ../inc/admin/tc_customize.php:121
+msgid "Logo &amp; Favicon"
+msgstr "Logo &amp; Favicon"
+
+#: ../inc/admin/tc_customize.php:123
+msgid "Set up logo and favicon options"
+msgstr "Réglages du logo et du favicon"
+
+#: ../inc/admin/tc_customize.php:135
+msgid "Logo Upload"
+msgstr "Charger un logo"
+
+#: ../inc/admin/tc_customize.php:148
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr ""
+"Forcer les dimensions du logo à : largeur max. 250px et hauteur max.  100px"
+
+#: ../inc/admin/tc_customize.php:173
+msgid "Favicon Upload"
+msgstr "Charger un favicon"
+
+#: ../inc/admin/tc_customize.php:182
+msgid "Front Page"
+msgstr "Page d'accueil"
+
+#: ../inc/admin/tc_customize.php:184
+msgid "Set up front page options"
+msgstr "Régler les options de la page d'accueil du site"
+
+#: ../inc/admin/tc_customize.php:196
+msgid "Front page displays"
+msgstr "Affichages de la page d'accueil"
+
+#: ../inc/admin/tc_customize.php:201
+msgid "Your latest posts"
+msgstr "Vos derniers billets"
+
+#: ../inc/admin/tc_customize.php:202
+msgid "A static page"
+msgstr "Une page statique"
+
+#: ../inc/admin/tc_customize.php:213
+msgid "Front page"
+msgstr "Page d'accueil"
+
+#: ../inc/admin/tc_customize.php:226
+msgid "Posts page"
+msgstr "Page des billets"
+
+#: ../inc/admin/tc_customize.php:240
+msgid "Set up the front page layout"
+msgstr "Régler la structure de la page d'accueil"
+
+#: ../inc/admin/tc_customize.php:244 ../inc/admin/tc_customize.php:459
+#: ../inc/admin/tc_customize.php:495 ../inc/admin/tc_customize.php:532
+#: ../inc/admin/tc_post_meta_box.php:47
+msgid "Right sidebar"
+msgstr "Barre latérale droite"
+
+#: ../inc/admin/tc_customize.php:245 ../inc/admin/tc_customize.php:460
+#: ../inc/admin/tc_customize.php:496 ../inc/admin/tc_customize.php:533
+#: ../inc/admin/tc_post_meta_box.php:48
+msgid "Left sidebar"
+msgstr "Barre latérale gauche"
+
+#: ../inc/admin/tc_customize.php:246 ../inc/admin/tc_customize.php:461
+#: ../inc/admin/tc_customize.php:497 ../inc/admin/tc_customize.php:534
+msgid "2 sidebars : Right and Left"
+msgstr "2 barres : droite et gauche"
+
+#: ../inc/admin/tc_customize.php:247 ../inc/admin/tc_customize.php:462
+#: ../inc/admin/tc_customize.php:498 ../inc/admin/tc_customize.php:535
+msgid "No sidebars : full width layout"
+msgstr "Pas de barres latérales : pleine largeur"
+
+#: ../inc/admin/tc_customize.php:257
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Pas de diaporama &mdash;"
+
+#: ../inc/admin/tc_customize.php:258
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Diaporama démo &mdash;"
+
+#: ../inc/admin/tc_customize.php:286
+msgid "Select front page slider"
+msgstr "Choisir un diaporama pour la page d'accueil"
+
+#: ../inc/admin/tc_customize.php:302
+msgid "Full width slider"
+msgstr "Diaporama en pleine largeur"
+
+#: ../inc/admin/tc_customize.php:327
+msgid "Delay between each slides"
+msgstr "Délai entre les diapos"
+
+#: ../inc/admin/tc_customize.php:332
+msgid "in ms : 1000ms = 1s"
+msgstr "en ms : 1000ms = 1s"
+
+#: ../inc/admin/tc_customize.php:345
+msgid "Manage sliders"
+msgstr "Gérer les diaporamas"
+
+#: ../inc/admin/tc_customize.php:361
+msgid "Display home featured pages area"
+msgstr "Afficher des pages en avant sur la page d'accueil"
+
+#: ../inc/admin/tc_customize.php:365
+msgid "Show"
+msgstr "Afficher"
+
+#: ../inc/admin/tc_customize.php:366
+msgid "Hide"
+msgstr "Cacher"
+
+#: ../inc/admin/tc_customize.php:374
+msgid "one"
+msgstr "un"
+
+#: ../inc/admin/tc_customize.php:375
+msgid "two"
+msgstr "deux"
+
+#: ../inc/admin/tc_customize.php:376
+msgid "three"
+msgstr "trois"
+
+#: ../inc/admin/tc_customize.php:390
+#, php-format
+msgid "Home featured page %s"
+msgstr "Page en avant %s sur la page d'accueil"
+
+#: ../inc/admin/tc_customize.php:412
+#, php-format
+msgid "Featured text %s (200 car. max)"
+msgstr "Texte de la page en avant %s (200 car. max):"
+
+#: ../inc/admin/tc_customize.php:415
+msgid "Leave this field empty if you want to use the selected page excerpt."
+msgstr "Laissez ce champ vide si vous souhaitez utiliser l'extrait de la page."
+
+#: ../inc/admin/tc_customize.php:424
+msgid "Pages & Posts Layout"
+msgstr "Structure des pages et billets"
+
+#: ../inc/admin/tc_customize.php:426
+msgid "Set up layout options"
+msgstr "Choisir les options de structure de la page"
+
+#: ../inc/admin/tc_customize.php:439
+msgid "Display Breadcrumb"
+msgstr "Afficher le fil d'Ariane"
+
+#: ../inc/admin/tc_customize.php:455
+msgid "Choose the global default layout"
+msgstr "Choisir la structure globale par défaut"
+
+#: ../inc/admin/tc_customize.php:475
+msgid "Force default layout everywhere"
+msgstr "Forcer la structure par défaut sur tout le site"
+
+#: ../inc/admin/tc_customize.php:478
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"Cette option remplacera les paramétrages de structures sur les pages/"
+"billets, page d'accueil comprise."
+
+#: ../inc/admin/tc_customize.php:491
+msgid "Choose the posts default layout"
+msgstr "Choisir la structure par défaut des billets"
+
+#: ../inc/admin/tc_customize.php:511
+msgid "Maximum number of posts per page"
+msgstr "Nombre de billets max. par page"
+
+#: ../inc/admin/tc_customize.php:528
+msgid "Choose the pages default layout"
+msgstr "Choisir la structure par défaut des pages"
+
+#: ../inc/admin/tc_customize.php:545
+msgid "Set up your social links"
+msgstr "Réglages des liens vers les réseaux sociaux"
+
+#: ../inc/admin/tc_customize.php:550
+msgid "header"
+msgstr "le haut de page"
+
+#: ../inc/admin/tc_customize.php:551
+msgid "right-sidebar"
+msgstr "la barre latérale droite"
+
+#: ../inc/admin/tc_customize.php:552
+msgid "left-sidebar"
+msgstr "la barre latérale gauche"
+
+#: ../inc/admin/tc_customize.php:553
+msgid "footer"
+msgstr "le pied de page"
+
+#: ../inc/admin/tc_customize.php:567
+#, php-format
+msgid "Social links in %s"
+msgstr "Liens sociaux dans %s"
+
+#: ../inc/admin/tc_customize.php:577
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "Flux RSS (Par défaut, flux WordPress du site)"
+
+#: ../inc/admin/tc_customize.php:578
+msgid "Twitter profile url"
+msgstr "Url du compte Twitter"
+
+#: ../inc/admin/tc_customize.php:579
+msgid "Facebook profile url"
+msgstr "Url du compte Facebook"
+
+#: ../inc/admin/tc_customize.php:580
+msgid "Google+ profile url"
+msgstr "Url du compte Google+"
+
+#: ../inc/admin/tc_customize.php:581
+msgid "Youtube profile url"
+msgstr "Url du compte Youtube"
+
+#: ../inc/admin/tc_customize.php:582
+msgid "Pinterest profile url"
+msgstr "Url du compte Pinterest"
+
+#: ../inc/admin/tc_customize.php:583
+msgid "Github profile url"
+msgstr "Url du compte Github"
+
+#: ../inc/admin/tc_customize.php:584
+msgid "Dribbble profile url"
+msgstr "Url du compte Dribbble"
+
+#: ../inc/admin/tc_customize.php:585
+msgid "LinkedIn profile url"
+msgstr "Url du compte LinkedIn"
+
+#: ../inc/admin/tc_customizr_control_class.php:107
+msgid ""
+"You haven't created any slider yet. Click on the button to add you first "
+"slider. Once created, just add any slides you need to it."
+msgstr ""
+"Aucun diaporama n'a encore été créé : cliquez sur le bouton pour ajouter "
+"votre premier diaporama. Une fois créé, ajoutez-y simplement autant de "
+"diapos que vous souhaitez!"
+
+#: ../inc/admin/tc_customizr_control_class.php:107
+#: ../inc/admin/tc_slider_bo.php:320 ../inc/admin/tc_slider_bo.php:632
+msgid "Create a slider"
+msgstr "Créer un diaporama"
+
+#: ../inc/admin/tc_post_meta_box.php:14
+msgid "Layout Options"
+msgstr "Options de structure"
+
+#: ../inc/admin/tc_post_meta_box.php:49
+msgid "Two sidebars"
+msgstr "Deux barres latérales"
+
+#: ../inc/admin/tc_post_meta_box.php:50
+msgid "Full Width"
+msgstr "Pleine largeur"
+
+#: ../inc/admin/tc_post_meta_box.php:66
+#, php-format
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "La structure par défaut des %1$s est : %2$s"
+
+#: ../inc/admin/tc_post_meta_box.php:66
+msgid "pages"
+msgstr "pages"
+
+#: ../inc/admin/tc_post_meta_box.php:66
+msgid "posts"
+msgstr "billets"
+
+#: ../inc/admin/tc_post_meta_box.php:71
+msgid ""
+"You have checked the <i>\"Force global default layout for all posts and pages"
+"\"</i>, you must unchecked this option to enable a specific layout for this "
+"post."
+msgstr ""
+"Vous avez coché l'option <i>\"Forcer la structure globale par défaut pour "
+"toutes les pages\"</i>. Vous devez décocher cette option pour choisir une "
+"structure spécifique pour ce billet."
+
+#: ../inc/admin/tc_post_meta_box.php:72
+msgid "Change layout options"
+msgstr "Modifier les options de structure"
+
+#: ../inc/admin/tc_post_meta_box.php:76
+#, php-format
+msgid ""
+"You can define a specific layout for %1$s by using the pre-defined left and "
+"right sidebars. The default layouts can be defined in the WordPress "
+"customizer screen %2$s.<br />"
+msgstr ""
+"Vous pouvez définir une structure spécifique pour les %1$s en utilisant les "
+"barres latérales. La structure par défaut peut être modifiée dans les "
+"options du thème %2$s.<br />"
+
+#: ../inc/admin/tc_post_meta_box.php:77 ../inc/admin/tc_post_meta_box.php:82
+msgid "this page"
+msgstr "cette page"
+
+#: ../inc/admin/tc_post_meta_box.php:77 ../inc/admin/tc_post_meta_box.php:82
+msgid "this post"
+msgstr "ce billet"
+
+#: ../inc/admin/tc_post_meta_box.php:78
+msgid "here"
+msgstr "ici"
+
+#: ../inc/admin/tc_post_meta_box.php:81
+#, php-format
+msgid "Select a specific layout for %1$s"
+msgstr "Choisir une structure spécifique pour %1$s"
+
+#: ../inc/admin/tc_post_meta_box.php:85
+#, php-format
+msgid "Default layout %1s"
+msgstr "Structure par défaut %1s"
+
+#: ../inc/admin/tc_slider_bo.php:13
+msgid "Slides"
+msgstr "Diapositives"
+
+#: ../inc/admin/tc_slider_bo.php:14
+msgid "Slide"
+msgstr "Diapositive"
+
+#: ../inc/admin/tc_slider_bo.php:15
+msgid "Add New"
+msgstr "Ajouter nouveau"
+
+#: ../inc/admin/tc_slider_bo.php:16
+msgid "Add New Slide"
+msgstr "Ajouter une nouvelle diapositive"
+
+#: ../inc/admin/tc_slider_bo.php:17
+msgid "Edit Slide"
+msgstr "Modifier la diapositive"
+
+#: ../inc/admin/tc_slider_bo.php:18
+msgid "New Slide"
+msgstr "Nouvelle diapositive"
+
+#: ../inc/admin/tc_slider_bo.php:19
+msgid "View Slide"
+msgstr "Voir la diapositive"
+
+#: ../inc/admin/tc_slider_bo.php:20
+msgid "Search Slides"
+msgstr "Rechercher dans les diapositives"
+
+#: ../inc/admin/tc_slider_bo.php:21
+msgid "No Slides found"
+msgstr "Aucunes diapositives trouvées"
+
+#: ../inc/admin/tc_slider_bo.php:22
+msgid "No Slides found in Trash"
+msgstr "Aucune diapositives trouvées dans la corbeille"
+
+#: ../inc/admin/tc_slider_bo.php:44 ../inc/admin/tc_slider_bo.php:45
+#: ../inc/admin/tc_slider_bo.php:54
+msgid "Slider"
+msgstr "Diaporama"
+
+#: ../inc/admin/tc_slider_bo.php:46
+msgid "Search Slider"
+msgstr "Rechercher dans les diaporamas"
+
+#: ../inc/admin/tc_slider_bo.php:47
+msgid "All Slider"
+msgstr "Tous les diaporamas"
+
+#: ../inc/admin/tc_slider_bo.php:48
+msgid "Parent Slider"
+msgstr "Diaporama parent"
+
+#: ../inc/admin/tc_slider_bo.php:49
+msgid "Parent Slider:"
+msgstr "Nom du diaporama parent:"
+
+#: ../inc/admin/tc_slider_bo.php:50
+msgid "Edit Slider"
+msgstr "Modifier le diaporama :"
+
+#: ../inc/admin/tc_slider_bo.php:51
+msgid "Update Slider"
+msgstr "Mettre à jour"
+
+#: ../inc/admin/tc_slider_bo.php:52
+msgid "Add New Slider"
+msgstr "Ajouter un diaporama"
+
+#: ../inc/admin/tc_slider_bo.php:53
+msgid "New Slider"
+msgstr "Nouveau diaporama"
+
+#: ../inc/admin/tc_slider_bo.php:82 ../inc/admin/tc_slider_bo.php:647
+msgid "Slide Image"
+msgstr "Image de diapositive"
+
+#: ../inc/admin/tc_slider_bo.php:83 ../inc/admin/tc_slider_bo.php:649
+msgid "Slide Text"
+msgstr "Texte de la diapositive"
+
+#: ../inc/admin/tc_slider_bo.php:84 ../inc/admin/tc_slider_bo.php:650
+msgid "Button Text"
+msgstr "Texte du bouton"
+
+#: ../inc/admin/tc_slider_bo.php:85 ../inc/admin/tc_slider_bo.php:651
+msgid "Button Link"
+msgstr "Lien du bouton"
+
+#: ../inc/admin/tc_slider_bo.php:126 ../inc/admin/tc_slider_bo.php:292
+msgid "No link"
+msgstr "Aucun lien"
+
+#: ../inc/admin/tc_slider_bo.php:149
+msgid "Slide Help"
+msgstr "Comment créer une diapositive?"
+
+#: ../inc/admin/tc_slider_bo.php:155
+msgid "Slide Options"
+msgstr "Options de la diapositive"
+
+#: ../inc/admin/tc_slider_bo.php:175
+msgid "1 - Choose a featured image"
+msgstr "1 - Choisir une image à la une"
+
+#: ../inc/admin/tc_slider_bo.php:176
+msgid "Recommended minimum height : 500 px."
+msgstr "Hauteur minimale recommandée : 500px."
+
+#: ../inc/admin/tc_slider_bo.php:178
+msgid "2 - Set the options"
+msgstr "2 - Paramétrer les options"
+
+#: ../inc/admin/tc_slider_bo.php:179
+msgid ""
+"All slide options are optional. Please note that you can hide the title if "
+"you only want to display an image."
+msgstr ""
+"Toutes les options de la diapositive sont facultatives. Note : vous pouvez "
+"masquer le titre si vous ne souhaitez afficher qu'une image seule."
+
+#: ../inc/admin/tc_slider_bo.php:181
+msgid "3 - Attach the slide to a slider"
+msgstr "3 - Attachez la diapositive à un diaporama"
+
+#: ../inc/admin/tc_slider_bo.php:182
+msgid ""
+"Check a slider (create one if needed). To be displayed on front office, a "
+"slide must be attached to a slider. Once created, the slider list is then "
+"available in all your posts or pages, and in the customizer screen for the "
+"home page.<br />"
+msgstr ""
+"Cochez un diaporama (créez en un si besoin). Pour être affiché sur le site, "
+"une diapositive doit être rattachée à un diaporama. Une fois créée, la liste "
+"des diaporamas est disponible dans vos pages/billets, ainsi que dans les "
+"options du customizer pour la page d'accueil. <br />"
+
+#: ../inc/admin/tc_slider_bo.php:255
+msgid "Show title"
+msgstr "Afficher le titre"
+
+#: ../inc/admin/tc_slider_bo.php:257
+msgid ""
+"The title displayed on front office is the main slide title above. You can "
+"choose to hide it here if you just need an image slide."
+msgstr ""
+"Le titre affiché sur la dispositive est celui ci-dessus. Vous pouvez choisir "
+"de ne pas l'afficher si vous souhaitez afficher l'image seule."
+
+#: ../inc/admin/tc_slider_bo.php:265
+msgid "Description text (below the title, 250 car. max length)"
+msgstr "Texte complémentaire (sous le titre, 250 car. maximum)"
+
+#: ../inc/admin/tc_slider_bo.php:272
+msgid "Title and text color"
+msgstr "Couleur du titre et du texte"
+
+#: ../inc/admin/tc_slider_bo.php:280
+msgid "Button text (80 car. max length)"
+msgstr "Texte du bouton (80 car. max)"
+
+#: ../inc/admin/tc_slider_bo.php:287
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Choisir une page/un billet lié (parmi les 100 derniers)"
+
+#: ../inc/admin/tc_slider_bo.php:320 ../inc/admin/tc_slider_bo.php:632
+msgid ""
+"You haven't create any slider yet. Click on the button to add you first "
+"slider. Once created, just add any slides you need to it."
+msgstr ""
+"Aucun diaporama n'a encore été créé : cliquez sur le bouton pour ajouter "
+"votre premier diaporama. Une fois créé, ajoutez-y simplement autant de "
+"diapos que vous souhaitez!"
+
+#: ../inc/admin/tc_slider_bo.php:325
+msgid ""
+"This slide has not yet been attached to any slider. Check at least one "
+"slider in the right sidebar of this screen and refresh page."
+msgstr ""
+"Cette diapositive n'a pas encore été attachée à un diaporama : cocher un ou "
+"plusieurs diaporamas dans la barre de droite de cet écran puis rafraîchir la "
+"page."
+
+#: ../inc/admin/tc_slider_bo.php:421
+msgid ""
+"This slide has not been attached to any slider! You must check a slider name "
+"(create one if needed) in the \"Slider Names\" box of this screen, and "
+"update the slide."
+msgstr ""
+"Cette diapositive n'a pas encore été rattachée à un diaporama! Cochez un "
+"diaporama dans la barre de droite (créez en un si besoin) puis rafraîchissez "
+"la page."
+
+#: ../inc/admin/tc_slider_bo.php:426
+msgid ""
+"This slide has no image! Choose a featured image in the dedicated box of "
+"this screen."
+msgstr ""
+"Cette diapositive n'a pas d'image! Sélectionnez une image à la une dans le "
+"champ dédié de cet écran."
+
+#: ../inc/admin/tc_slider_bo.php:447
+msgid "Slider Options"
+msgstr "Options du diaporama"
+
+#: ../inc/admin/tc_slider_bo.php:486
+msgid "Choose a slider"
+msgstr "Choisir un diaporama"
+
+#: ../inc/admin/tc_slider_bo.php:491
+msgid "No slider selected"
+msgstr "Aucun diaporama sélectionné"
+
+#: ../inc/admin/tc_slider_bo.php:502
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr ""
+"Délai entre chaque diapositive en millisecondes : par défaut 5000ms (= "
+"5secondes)."
+
+#: ../inc/admin/tc_slider_bo.php:509
+msgid "Slider Layout : set the slider in full width"
+msgstr "Mettre le diaporama en pleine largeur"
+
+#: ../inc/admin/tc_slider_bo.php:637
+msgid ""
+"This slider has no slides attached. Click on the button to attach slides to "
+"it."
+msgstr ""
+"Ce diaporama n'a pas de diapositives attachées. Cliquer sur le bouton pour "
+"le modifier."
+
+#: ../inc/admin/tc_slider_bo.php:637
+msgid "Attach slides"
+msgstr "Attacher des diapositives"
+
+#: ../inc/admin/tc_slider_bo.php:648
+msgid "Title"
+msgstr "Titre"
+
+#: ../inc/admin/tc_slider_bo.php:682
+msgid "No Image Selected"
+msgstr "Aucune image sélectionnée"
+
+#: ../inc/admin/tc_slider_bo.php:707
+msgid "Edit this slide"
+msgstr "Modifier"
+
+#: ../inc/admin/tc_slider_bo.php:716
+msgid "Edit Slider :"
+msgstr "Modifier le diaporama :"
+
+#: ../inc/admin/tc_slider_bo.php:716
+msgid "Edit Slider : "
+msgstr "Modifier le diaporama :"
+
+#: ../parts/content-404.php:14
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr ""
+"En ces temps d'imposture universelle, dire la vérité est un acte "
+"révolutionnaire."
+
+#: ../parts/content-404.php:15
+msgid "George Orwell"
+msgstr "Geroge Orwell"
+
+#: ../parts/content-404.php:17
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"La page demandée n'a pas été trouvée. Essayez une recherche sur le site ci-"
+"dessous."
+
+#: ../parts/content-no-results.php:14
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr "Le succès c'est d'aller d'échec en échec sans perdre son enthousiasme."
+
+#: ../parts/content-no-results.php:15
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: ../parts/content-no-results.php:17
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"La recherche n'a donné aucuns résultats...Vous pourriez essayer avec des "
+"mots clés différents?"
+
+#: ../parts/content-page.php:18 ../parts/content.php:40
+#: ../parts/content.php:48
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Poursuivre la lecture <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/content-page.php:20 ../parts/content.php:41
+#: ../parts/content.php:49
+msgid "Pages:"
+msgstr "Pages:"
+
+#: ../parts/metas.php:23
+#, php-format
+msgid "View all posts by %s"
+msgstr "Voir tous les billets de %s"
+
+#: ../parts/metas.php:29
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"Ce billet a été publié dans %1$s et taggé avec %2$s le %3$s<span class=\"by-"
+"author\"> par %4$s</span>."
+
+#: ../parts/metas.php:31
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Ce billet a été publié dans %1$s le %3$s<span class=\"by-author\"> par %4$s</"
+"span>."
+
+#: ../parts/metas.php:33
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+"Ce billet a été publié le %3$s<span class=\"by-author\"> par %4$s</span>."
+
+#: ../parts/nav.php:17 ../parts/nav.php:31
+msgid "Post navigation"
+msgstr "Parcourir les billets"
+
+#: ../parts/nav.php:35
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Billets plus anciens"
+
+#: ../parts/nav.php:40
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Billets plus récents <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/post-footer.php:17
+#, php-format
+msgid "About %s"
+msgstr "A propos %s"
+
+#: ../parts/post-footer.php:21
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Voir tous les billets de %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/post-header.php:25
+msgid "Comment(s) on "
+msgstr "Commentaire(s) sur"
+
+#: ../parts/post-header.php:42
+msgid "{no title} Read the post &raquo;"
+msgstr "{Pas de titre} Voir le billet &raquo;"
+
+#: ../parts/post-list-header.php:11
+msgid "Ooops, page not found"
+msgstr "Ooops, page non trouvée"
+
+#: ../parts/post-list-header.php:19
+#, php-format
+msgid "%1sSearch Results for: %2s"
+msgstr "%1s Résultats de recherche pour: %2s"
+
+#: ../parts/post-list-header.php:32
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Billets de l'auteur: %s"
+
+#: ../parts/post-list-header.php:38
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Billets de la catégorie: %s"
+
+#: ../parts/post-list-header.php:48
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Billets taggés avec: %s"
+
+#: ../parts/post-list-header.php:60
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Billets du jour: %s"
+
+#: ../parts/post-list-header.php:62
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Billets du mois: %s"
+
+#: ../parts/post-list-header.php:64
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Billets de l'année: %s"
+
+#: ../parts/post-list-header.php:66
+msgid "Archives"
+msgstr "Archives"
+
+#~ msgid "Slide Entry"
+#~ msgstr "Diapositive"
+
+#~ msgid "Edit Slide Entry"
+#~ msgstr "Modifier la diapositive"
+
+#~ msgid "Search Slide Entries"
+#~ msgstr "Rechercher dans les diapositives"
+
+#~ msgid "Slider Names"
+#~ msgstr "Diaporamas"
+
+#~ msgid "Edit Slider Name"
+#~ msgstr "Modifier le nom du diporama"
+
+#~ msgid "Front Page Widget Area One"
+#~ msgstr "Première zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Two"
+#~ msgstr "Deuxième zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Three"
+#~ msgstr "Troisième zone de widgets de page d'accueil"
+
+#~ msgid "{Customizr} Featured Page Block"
+#~ msgstr "{Customizr} Bloc page mise en avant"
+
+#~ msgid "Text (200 car. max):"
+#~ msgstr "Texte (200 car. max):"
+
+#~ msgid "If this field is empty, it will display an excerpt of the page."
+#~ msgstr "Si le champ est vide, un extrait de la page est affiché."
+
+#~ msgid "Link to page :"
+#~ msgstr "Lier à la page:"
+
+#~ msgid "Choose a page"
+#~ msgstr "Choisir une page"
+
+#~ msgid "Force logo to fit in the left header block"
+#~ msgstr "Forcer le redimensionnement du logo dans le bloc gauche du header"
+
+#~ msgid ""
+#~ "Force default layout for all posts and pages (including front page and "
+#~ "pages/posts with a specific layout)"
+#~ msgstr ""
+#~ "Forcer la structure par défaut pour toutes les pages du sites (y compris "
+#~ "la page d'accueil ainsi que les pages et billets qui ont une structure "
+#~ "spécifique)"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "%"
+#~ msgstr "%"
+
+#~ msgid "Manage widgets"
+#~ msgstr "Gérer les widgets"
+
+#~ msgid "Right"
+#~ msgstr "Droite"
+
+#~ msgid "Left"
+#~ msgstr "Gauche"
+
+#~ msgid "Edit the slide text"
+#~ msgstr "Texte de description (sous le titre) de la diapositive"
+
+#~ msgid "Edit the button text"
+#~ msgstr "Texte du bouton"
+
+#~ msgid "View details &raquo;"
+#~ msgstr "Voir les détails &raquo;"
+
+#~ msgid "Length of the excerpt (default 200)"
+#~ msgstr "Longueur de l'extrait (200 car. par défaut)"
+
+#~ msgid "Theme Options"
+#~ msgstr "Options du thème"
+
+#~ msgid "Front Page Settings"
+#~ msgstr "Réglages page d'accueil"
+
+#~ msgid "Layout Settings"
+#~ msgstr "Réglages de la structure de page"
+
+#~ msgid " checked=\"checked\""
+#~ msgstr " "
+
+#~ msgid "Sample Checkbox"
+#~ msgstr "Exemple"
+
+#~ msgid ""
+#~ "Appears on posts and pages except the optional Front Page template, which "
+#~ "has its own widgets"
+#~ msgstr "Affichée dans les posts et les pages, hormis l"
