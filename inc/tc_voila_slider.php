@@ -150,7 +150,7 @@ if ( ! function_exists( 'tc_get_slider' ) ) :
                        <div class="carousel-image">
                         <?php echo get_the_post_thumbnail( $id, $img_size, array('class' => 'slide', 'alt' => get_the_title( $id ) ) ); ?>
                        </div>
-                        <?php if (($title != null && $show_title) && $text != null && $button_text != null ) : ?>
+                        <?php if (($title != null && $show_title) || $text != null || $button_text != null ) : ?>
                           <div class="carousel-caption">
                             <?php if($title != null && $show_title) : ?>
                               <h1 <?php echo $color_style ?>><?php echo $title ?></h1>

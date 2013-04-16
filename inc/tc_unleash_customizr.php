@@ -198,10 +198,114 @@ add_action( 'after_setup_theme', 'customizr_setup' );
       require_once( TC_BASE.'inc/tc_dudy_widgets.php');
 
     /* LOADS THE BACK END STUFFS */
-      require_once( TC_BASE.'inc/admin/tc_customize.php');
-      require_once( TC_BASE.'inc/admin/tc_post_meta_box.php');
-      require_once( TC_BASE.'inc/admin/tc_slider_bo.php');
+     if (is_user_logged_in()) {
+       global $wp_version;
+        //check WP version to include customizer functions, must be >= 3.4
+       if (version_compare($wp_version, '3.4', '>=') ) {
+            require_once( TC_BASE.'inc/admin/tc_customize.php');
+        }
+        else {
+            //redirect to an upgrade message page on activation if version < 3.4
+            add_action ('admin_menu', 'tc_add_fallback_page');
+            add_action ('admin_init','tc_theme_activation_fallback');
+        }
+        require_once( TC_BASE.'inc/admin/tc_post_meta_box.php');
+        require_once( TC_BASE.'inc/admin/tc_slider_bo.php');
+      }
     }
+endif;
+
+
+
+
+if(!function_exists('tc_theme_activation_fallback')) :
+
+/**
+*  On activation, redirect on the customization page, set the frontpage option to "posts" with 10 posts per page
+* @package Customizr
+* @since Customizr 1.1
+*/
+  function tc_theme_activation_fallback()
+  {
+    global $pagenow;
+    if ( is_admin() && 'themes.php' == $pagenow && isset( $_GET['activated'] ) ) 
+    {
+      #redirect to options page
+      header( 'Location: '.admin_url().'themes.php?page=upgrade_wp.php' ) ;
+    }
+  }
+endif;
+
+
+
+if(!function_exists('tc_add_fallback_page')) :
+/**
+ * Add fallback admin page.
+ * @package Customizr
+ * @since Customizr 1.1
+ */
+  function tc_add_fallback_page() {
+      $theme_page = add_theme_page(
+          __( 'Upgrade WP', 'customizr' ),   // Name of page
+          __( 'Upgrade WP', 'customizr' ),   // Label in menu
+          'edit_theme_options',          // Capability required
+          'upgrade_wp.php',             // Menu slug, used to uniquely identify the page
+          'fallback_admin_page'         //function to be called to output the content of this page
+      );
+  }
+endif;
+
+
+
+
+if(!function_exists('fallback_admin_page')) :
+  /**
+ * Render fallback admin page.
+ * @package Customizr
+ * @since Customizr 1.1
+ */
+  function fallback_admin_page() {
+    ?>
+    <div class="wrap upgrade_wordpress">
+      <div id="icon-options-general" class="icon32"><br></div>
+      <h2><?php _e( 'This theme requires WordPress 3.4+', 'customizr' ) ?> </h2>
+      <br />
+      <p style="text-align:center">
+        <a style="padding: 8px" class="button-primary" href="<?php echo admin_url().'update-core.php' ?>" title="<?php _e( 'Upgrade Wordpress Now','customizr' ) ?>">
+        <?php _e( 'Upgrade Wordpress Now','customizr' ) ?></a>
+        <br /><br />
+      <img src="<?php echo TC_BASE_URL . 'screenshot.png' ?>" alt="Customizr" />
+      </p>
+    </div>
+    <?php
+  }
+endif;
+
+
+
+
+
+if(!function_exists('customizer_styles')) :
+/**
+ * Registers and enqueues Customizr stylesheets
+ * @package Customizr
+ * @since Customizr 1.1
+ */
+add_action('wp_enqueue_scripts', 'customizer_styles');
+  function customizer_styles() {
+    wp_register_style( 
+      'customizr-skin', 
+      TC_BASE_URL.'inc/css/'.tc_get_options('tc_skin'), 
+      array(), 
+      CUSTOMIZR_VER, 
+      $media = 'all' 
+      );
+    //enqueue skin
+    wp_enqueue_style( 'customizr-skin');
+
+    //enqueue WP style sheet
+    wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER,$media = 'all'  );
+}
 endif;
 
 
@@ -210,7 +314,7 @@ endif;
 if(!function_exists('tc_scripts')) :
 add_action('wp_enqueue_scripts', 'tc_scripts');
 /**
- * Loads Customizr stylesheeet and JS script in footer for better time load.
+ * Loads Customizr and JS script in footer for better time load.
  * 
  * @uses wp_enqueue_script() to manage script dependencies
  * @package Customizr

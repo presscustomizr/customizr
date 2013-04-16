@@ -9,8 +9,10 @@
  * @copyright Copyright (c) Nicolas Guillaume
  * @link    http://themesandco.com
  */
+/* CUSTOMIZR_VER is the Version */
+if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '1.1' ); }
 
 /* INIT THE THEME */
-require_once( 'inc/tc_unleash_customizr.php');
+require_once( get_template_directory().'/inc/tc_unleash_customizr.php');
 
 /* Your smart functions here ! */

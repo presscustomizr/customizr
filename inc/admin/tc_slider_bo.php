@@ -85,7 +85,7 @@ add_filter("manage_edit-slide_columns", "slide_edit_columns");
       "button_link"   => __("Button Link", 'customizr' ),
     );
     
-    $columns= array_merge($newcolumns, $columns);
+    $columns= array_merge($columns, $newcolumns);
     
     return $columns;
   }
@@ -251,6 +251,7 @@ if (!function_exists( 'slide_inner_custom_box' ) ) :
               }
             };
           ?>
+          <input type="hidden" name="tc_hidden_flag" value="true" />
           <div class="meta-box-item-title">
               <h4><?php _e('Show title', 'customizr' ); ?></h4>
                 <label for="<?php echo $title_id; ?>">
@@ -347,6 +348,10 @@ add_action( 'save_post', 'slide_save_postdata' );
       // If it is our form has not been submitted, so we dont want to do anything
       
       if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+          return;
+
+      //handle the case when the custom post is quick edited => otherwise, all custom metas fields are cleared out
+      if (wp_verify_nonce($_POST['_inline_edit'], 'inlineeditnonce'))
           return;
 
       // verify this came from the our screen and with proper authorization,
