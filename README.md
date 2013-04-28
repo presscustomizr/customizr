@@ -73,7 +73,7 @@ This action will delete the slider but not the images.
 ### Post Formats
 You can choose up to 10 post formats for your posts.  
 Posts with the aside, status, quote and link post formats are displayed with no title.  
-Posts with the link post format will link out to the first <a> tag in the post.
+Posts with the link post format will link out to the first a tag in the post.
 
 
 
@@ -115,7 +115,6 @@ The exceptions to this license are as follows:
 
 = 1.1.7 =
 * file structure simplification : one core loop in index.php
-* 
 
 = 1.1.6 =
 * Removal of add_editor_style()
