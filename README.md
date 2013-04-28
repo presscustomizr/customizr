@@ -1,4 +1,5 @@
 ![Customizr - Free Wordpress Theme](/screenshot.png)
+
 # Installation
 1. Upload the `customizr` folder to the `/wp-content/themes/` directory
 Activation and Use
@@ -136,9 +137,8 @@ The exceptions to this license are as follows:
 = 1.0 =
 * Initial Release
 
-# Copyright
-Customizr is a free WordPress theme designed by Nicolas Guillaume in Nice, France. (www.themesandco.com)
+_*Customizr* is a free WordPress theme designed by Nicolas Guillaume in Nice, France. (<www.themesandco.com>)
 Feel free to use, modify and redistribute this theme as you like.
-You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.
-Customizr is distributed under the terms of the GNU GPL
+You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.  
+Customizr is distributed under the terms of the GNU GPL    _
 Enjoy it!
