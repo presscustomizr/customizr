@@ -1,0 +1,23 @@
+#tc_slides_table {
+	position:relative;
+}
+#sortable { list-style-type: none; margin: 0; padding: 0; }
+  /* #sortable tr {height: 150px; }
+  html>body #sortable tr { height: 150px; line-height: 120px; } */
+  .ui-state-highlight { height: 150px; line-height: 120px;border: 1px solid #FCEFA1;background: #FBF9EE }
+  .ui-state-highlight tr td {line-height:1;}
+  .ui-state-default:hover{cursor:move;}
+  .ui-sortable-helper {cursor: move}
+#update-status {
+	position: absolute;
+	width: 80%;
+	top: -40px;
+}
+#post_slider_infos #update-status {
+	top:0px;
+}
+#update-status .message {
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+}

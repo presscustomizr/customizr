@@ -56,11 +56,11 @@ if ( ! function_exists( 'tc_get_slider' ) ) :
                 </div>
               <div class="item">
                  <div class="carousel-image">
-                      <img width="1170" height="500" src="<?php echo TC_BASE_URL ?>inc/img/architecture.jpg" class="slide wp-post-image" alt="<?php _e( 'Style your WordPress site in live!','customizr') ?>">
+                      <img width="1170" height="500" src="<?php echo TC_BASE_URL ?>inc/img/architecture.jpg" class="slide wp-post-image" alt="<?php _e( 'Style your WordPress site live!','customizr') ?>">
                   </div>
                   <div class="carousel-caption">
-                      <h1><?php _e( 'Style your WordPress site in live!','customizr') ?></h1>
-                        <p class="lead"><?php _e( 'Many layout and design options are available from the WordPress customizer screen : see your changes in live !','customizr') ?></p>
+                      <h1><?php _e( 'Style your WordPress site live!','customizr') ?></h1>
+                        <p class="lead"><?php _e( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !','customizr') ?></p>
                        <a class="btn btn-large btn-primary" href="<?php echo $admin_link; ?>"><?php _e( 'Just try it!','customizr') ?></a>
                     </div>
                 </div>
@@ -92,33 +92,13 @@ if ( ! function_exists( 'tc_get_slider' ) ) :
             *'true' value if we test it with is_home(). Even if it is not the home page of the website!
             *to solve this problem, we check with is_front_page().
             */
-            global $post;
-            //Post type must be 'post'.
-            $post_type = get_post_type(tc_get_the_ID());
             
+            //do we have a slider?
+            if(empty($slider_name_id))
+              return;
 
-            //define the slide list. 
-            /* If we are in the preview mode (condition is post_type = 'slide' && is_single()), showing only one slide. */
-            $slides = array();
-            if($post_type == 'slide' && is_single()) {
-              $slides[0] = get_post( tc_get_the_ID());
-            }
-            else {
-              $slides = get_posts(  array(
-                'numberposts'    =>  -1,
-                'tax_query' => array(
-                                  array(
-                                    'taxonomy' => 'slider',
-                                    'field' => 'id',
-                                    'terms' => $slider_name_id
-                                  )
-                                ),
-                'orderby'      =>  'post_date',
-                'order'        =>  'DESC',
-                'post_type'      =>  'slide',
-                'post_status'    =>  'publish' )
-              );
-            }
+            $slides = $tc_theme_options['sliders'][$slider_name_id];
+
             //init slide index
             $i = 0;
             ?>
@@ -126,14 +106,15 @@ if ( ! function_exists( 'tc_get_slider' ) ) :
               <div id="customizr-slider" class="<?php echo $layout_class ?> carousel slide">
                   <div class="carousel-inner">
                     <?php foreach ($slides as $s) { 
+                        $slide_object = get_post($s);
                         //set up variables
-                        $id           = $s -> ID;
-                        $title        = get_the_title( $id );
-                        $show_title   = get_post_meta( $id, $key = 'slide_title_key', $single = true );
-                        $text         = get_post_meta( $id, $key = 'slide_text_key', $single = true );
-                        $text_color   = get_post_meta( $id, $key = 'slide_color_key', $single = true );
-                        $button_text  = get_post_meta( $id, $key = 'slide_button_key', $single = true );
-                        $button_link  = get_post_meta( $id, $key = 'slide_link_key', $single = true );
+                        $id           = $slide_object -> ID;
+                        $alt          = trim(strip_tags(get_post_meta($id, '_wp_attachment_image_alt', true)));
+                        $title        = esc_attr(get_post_meta( $id, $key = 'slide_title_key', $single = true ));
+                        $text         = esc_textarea(get_post_meta( $id, $key = 'slide_text_key', $single = true ));
+                        $text_color   = esc_attr(get_post_meta( $id, $key = 'slide_color_key', $single = true ));
+                        $button_text  = esc_attr(get_post_meta( $id, $key = 'slide_button_key', $single = true ));
+                        $button_link  = esc_attr(get_post_meta( $id, $key = 'slide_link_key', $single = true ));
 
                         //set the first slide active
                         $active       = '';
@@ -148,11 +129,11 @@ if ( ! function_exists( 'tc_get_slider' ) ) :
                       ?>
                     <div class="item <?php echo $active; ?>">
                        <div class="carousel-image">
-                        <?php echo get_the_post_thumbnail( $id, $img_size, array('class' => 'slide', 'alt' => get_the_title( $id ) ) ); ?>
+                        <?php echo wp_get_attachment_image( $id, $img_size, array('class' => 'slide', 'alt' => $alt ) ); ?>
                        </div>
-                        <?php if (($title != null && $show_title) || $text != null || $button_text != null ) : ?>
+                        <?php if ($title != null || $text != null || $button_text != null ) : ?>
                           <div class="carousel-caption">
-                            <?php if($title != null && $show_title) : ?>
+                            <?php if($title != null) : ?>
                               <h1 <?php echo $color_style ?>><?php echo $title ?></h1>
                             <?php endif; ?>
                             <?php if($text != null) : ?>
@@ -195,7 +176,7 @@ add_action('wp_footer', 'tc_slider_footer_options', 20);
 **/
     function tc_slider_footer_options() {
       //get slider options if any
-      $name_value       = get_post_meta( get_the_ID(), $key = 'slider_name_key', $single = true );
+      $name_value       = get_post_meta( get_the_ID(), $key = 'post_slider_key', $single = true );
       $delay_value      = get_post_meta( get_the_ID(), $key = 'slider_delay_key', $single = true );
       
       //get the slider id and delay if we display home/front page
@@ -229,24 +210,3 @@ add_action('wp_footer', 'tc_slider_footer_options', 20);
       }//end if slider defined
     }
 endif;
-
-
-
-
-if ( ! function_exists( 'tc_slider_redirect' ) ) :
-/**
- * Redirect to the home page when displaying a single slide post if user is not logged in.
- * @package Customizr
- * @since Customizr 1.0
- *
-**/
- function tc_slider_redirect() {
-    $object = get_queried_object(); 
-    if(is_single() && $object->post_type = 'slide') {
-      if (!is_admin() && !is_user_logged_in()) {
-        wp_redirect( home_url(), 301 ); 
-      exit;
-      }
-    }
- }
- endif;

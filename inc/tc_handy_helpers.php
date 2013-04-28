@@ -72,18 +72,18 @@ if(!function_exists('tc_get_current_screen_layout')) :
 
       /* DEFAULT LAYOUTS */
       //get the global default layout
-      $tc_sidebar_global_layout = $tc_theme_options['tc_sidebar_global_layout'];
+      $tc_sidebar_global_layout     = $tc_theme_options['tc_sidebar_global_layout'];
       //get the post default layout
-      $tc_sidebar_post_layout = $tc_theme_options['tc_sidebar_post_layout'];
+      $tc_sidebar_post_layout       = $tc_theme_options['tc_sidebar_post_layout'];
       //get the page default layout
-      $tc_sidebar_page_layout = $tc_theme_options['tc_sidebar_page_layout'];
+      $tc_sidebar_page_layout       = $tc_theme_options['tc_sidebar_page_layout'];
 
       //what is the default layout we want to apply? By default we apply the global default layout
-      $tc_sidebar_default_layout = $tc_sidebar_global_layout;
+      $tc_sidebar_default_layout    = $tc_sidebar_global_layout;
       if (is_single())
-        $tc_sidebar_default_layout = $tc_sidebar_post_layout;
+        $tc_sidebar_default_layout  = $tc_sidebar_post_layout;
       if (is_page())
-        $tc_sidebar_default_layout = $tc_sidebar_page_layout;
+        $tc_sidebar_default_layout  = $tc_sidebar_page_layout;
 
       //build the default layout option array including layout and article class
       $tc_screen_layout = array(
@@ -109,7 +109,7 @@ if(!function_exists('tc_get_current_screen_layout')) :
 
 
       //get the post specific layout if any, and if we don't apply the default layout
-      $tc_specific_post_layout = get_post_meta( $post_id, $key = 'layout_key', $single = true );
+      $tc_specific_post_layout = esc_attr(get_post_meta( $post_id, $key = 'layout_key', $single = true ));
       
       if((is_home() && $tc_what_on_front == 'posts') || is_front_page())
          $tc_specific_post_layout = $tc_front_layout;

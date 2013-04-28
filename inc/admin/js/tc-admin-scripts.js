@@ -1,10 +1,12 @@
-/* ==========================================================
- * 
- * ========================================================== */
+/**
+ * Some admin scripts
+ *
+ * @package Customizr
+ * @since Customizr 1.0
+ */
 
 jQuery(document).ready(function($) {
 !function ($) {
-
 
  /* Add hover class on front widgets
   * ============== */

@@ -33,6 +33,12 @@
 	    <?php get_template_part( 'parts/content', 'page' ); ?>
 	</article><!-- #page -->
 
+<?php elseif (is_attachment()) : ?>
+
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<?php get_template_part( 'parts/content', 'attachment' ); ?>
+	</article><!-- #post -->
+
 <?php elseif (is_404()) : ?>
 
 	<article id="post-0" class="post error404 no-results not-found row-fluid">

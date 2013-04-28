@@ -126,9 +126,9 @@ function breadcrumb_trail_get_items( $args = array() ) {
 
 		if ( is_multisite() && true === $args['network'] ) {
 			$trail[] = '<a href="' . network_home_url() . '">' . $args['show_home'] . '</a>';
-			$trail[] = '<a href="' . home_url() . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . get_bloginfo( 'name' ) . '</a>';
+			$trail[] = '<a href="' . esc_url(home_url()) . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . get_bloginfo( 'name' ) . '</a>';
 		} else {
-			$trail[] = '<a href="' . home_url() . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . $args['show_home'] . '</a>';
+			$trail[] = '<a href="' . esc_url(home_url()) . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . $args['show_home'] . '</a>';
 		}
 	}
 
@@ -154,9 +154,9 @@ function breadcrumb_trail_get_items( $args = array() ) {
 
 			if ( is_multisite() && true === $args['network'] ) {
 				$trail[] = '<a href="' . network_home_url() . '">' . $args['show_home'] . '</a>';
-				$trail[] = '<a href="' . home_url() . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . get_bloginfo( 'name' ) . '</a>';
+				$trail[] = '<a href="' . esc_url(home_url()) . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . get_bloginfo( 'name' ) . '</a>';
 			} else {
-				$trail[] = '<a href="' . home_url() . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . $args['show_home'] . '</a>';
+				$trail[] = '<a href="' . esc_url(home_url()) . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . $args['show_home'] . '</a>';
 			}
 		}
 	}
@@ -258,7 +258,7 @@ function breadcrumb_trail_get_items( $args = array() ) {
 		elseif ( 'page' !== $post_type ) {
 
 			/* If $front has been set, add it to the $path. */
-			if ( $post_type_object->rewrite['with_front'] && $wp_rewrite->front )
+			if ( isset($post_type_object) && $post_type_object->rewrite['with_front'] && $wp_rewrite->front )
 				$path .= trailingslashit( $wp_rewrite->front );
 
 			/* If there's a slug, add it to the $path. */
@@ -451,7 +451,7 @@ function breadcrumb_trail_get_items( $args = array() ) {
 				$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . get_the_time( esc_attr__( 'Y', 'breadcrumb-trail' ) ) . '">' . get_the_time( __( 'Y', 'breadcrumb-trail' ) ) . '</a>';
 
 				if ( is_paged() )
-					$trail[] = get_archives_link( add_query_arg( array( 'm' => get_the_time( 'Y' ), 'w' => get_the_time( 'W' ) ), home_url() ), sprintf( __( 'Week %1$s', 'breadcrumb-trail' ), get_the_time( esc_attr__( 'W', 'breadcrumb-trail' ) ) ), false );
+					$trail[] = get_archives_link( add_query_arg( array( 'm' => get_the_time( 'Y' ), 'w' => get_the_time( 'W' ) ), esc_url(home_url()) ), sprintf( __( 'Week %1$s', 'breadcrumb-trail' ), get_the_time( esc_attr__( 'W', 'breadcrumb-trail' ) ) ), false );
 				else
 					$trail[] = sprintf( __( 'Week %1$s', 'breadcrumb-trail' ), get_the_time( esc_attr__( 'W', 'breadcrumb-trail' ) ) );
 			}

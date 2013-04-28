@@ -99,7 +99,7 @@ The exceptions to this license are as follows:
 * The script holder.js v1.9 is licensed under the Apache License
 * The script modernizr.js is dual licensed under the BSD and MIT licenses
 * The script jquery.iphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
-* Icon Set:  IcoMoon - Free -- http://keyamoon.com/icomoon/ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
+* Icon Set:	IcoMoon - Free -- http://keyamoon.com/icomoon/ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 * Icon Set:	Broccolidry -- http://dribbble.com/shots/587469-Free-16px-Broccolidryiconsaniconsetitisfullof-icons License: Aribitrary -- http://licence.visualidiot.com/
 * Icon Set:	Iconic -- http://somerandomdude.com/work/iconic/ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/us/
 * The image architecture.jpg is free for personal and commercial use. http://www.sxc.hu/photo/1415205
@@ -140,9 +140,9 @@ The exceptions to this license are as follows:
 * Initial Release
 
 # Copyright
-**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>))
+**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>))  
 Feel free to use, modify and redistribute this theme as you like.
 You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.  
-Customizr is distributed under the terms of the GNU GPL  
+Customizr is distributed under the terms of the GNU GPL.  
 
 Enjoy it!

@@ -61,13 +61,8 @@
      global $tc_theme_options ;
      
     ?>
-
   <!-- Favicon -->
     <?php tc_get_favicon(); ?>
-  <!-- skin -->
-  <?php //wp_enqueue_style( 'customizr-skin', TC_BASE_URL.'inc/css/'.$tc_theme_options['tc_skin'] ) ?>
-  <!-- WP stylesheet -->
-  <?php //wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ) ) ?>
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
    
    <!-- Icons font support for IE6-7 -->

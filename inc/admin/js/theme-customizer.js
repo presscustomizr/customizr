@@ -2,8 +2,11 @@
  * Theme Customizer enhancements for a better user experience.
  *
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
- * Things like site title, description, and background color changes.
+ * Things like site title, description, and background color changes
+ * @package Customizr
+ * @since Customizr 1.0
  */
+
 
 ( function( $ ) {
 	// Site title and description.
@@ -17,12 +20,7 @@
 			$( 'h2.site-description' ).html( to );
 		} );
 	} );
-	/*wp.customize( 'blogdescription', function( value ) {
-		value.bind( function( to ) {
-			$( 'a[title].site-title' ).html( to );
-		} );
-	} );*/
-
+	
 	// Hook into background color change and adjust body class value as needed.
 	wp.customize( 'background_color', function( value ) {
 		value.bind( function( to ) {
