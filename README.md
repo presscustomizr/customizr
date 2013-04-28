@@ -1,6 +1,7 @@
 ![Customizr - Free Wordpress Theme](/screenshot.png)  
 
-*A 100% responsive WordPress theme, easy to customize and built with HTML5 & CSS3 upon the Twitter Bootstrap framework.The clean design can be used for any type of website : corporate, portfolio, business, blog, etc. Choose a skin, upload your logo, set up your social network profiles and you are done! It also includes a handy responsive slider generator (with call to action text and button) that can be embedded in any pages or posts. The theme supports five widgetized areas (two in the sidebars,  three in the footer), up to three columns, nine post formats with special styles. It also comes with seven elegant skins and three handy featured page blocks for the front page.*
+*A 100% responsive WordPress theme, easy to customize and built with HTML5 & CSS3 upon the Twitter Bootstrap framework. The clean design can be used for any type of website : corporate, portfolio, business, blog, etc. Choose a skin, upload your logo, set up your social network profiles and you are done!*  
+*It also includes a handy responsive slider generator (with call to action text and button) that can be embedded in any pages or posts. The theme supports five widgetized areas (two in the sidebars,  three in the footer), up to three columns, nine post formats with special styles. It also comes with seven elegant skins and three handy featured page blocks for the front page.*
 
 # Installation
 1. Upload the `customizr` folder to the `/wp-content/themes/` directory
