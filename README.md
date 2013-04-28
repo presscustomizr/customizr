@@ -12,7 +12,7 @@ Please make sure your WP version is at least 3.4.
 ## Choosing a skin 
 The theme comes with seven skins. The default skin is the blue one. Open the customizer screen to select your prefered skin.
 
-## Upload a logo and a favicon 
+## Uploading a logo and a favicon 
 Go to the customizer screen in the logo and favicon section and upload your images.
 For best results, try uploading a logo with the following maximum dimensions => max-height :100px, max-width ; 250px
 
@@ -35,24 +35,25 @@ With Customizr, you can define your page and post layout at two levels :
 You can set up to nine social network profile in the customizer option screen. Write the url of your social profile in the fields.
 The social icons can be displayed in four predefined location of your website : header, footer, top of right sidebar, top of left sidebar.
 
-## Slider creation 
+## Slider management
+### Creation
 1. Go to the edit screen of any image
 2. Find the Slider options box
 3. Check "Add to a slider"
 4. Set the optional call to action fields : title, description, text of the button and link to page/post
 5. Write a name and click on the "Add a slider" button : this will automatically add the current media to your slider (no need to refresh)
 
-## Adding images to a slider 
+### Adding images to a slider 
 1. Go to the edit screen of any image
 2. Find the Slider options box
 3. Check "Add to a slider"
 4. Set the optional call to action fields : title, description, text of the button and link to page/post
 5. Select a slider in the list
 
-## Reordering the slides
+### Reordering the slides
 The slides can be manually reorder with a drag and drop feature.
 
-## Adding a slider to a post/page 
+### Adding a slider to a post/page 
 1. Go to the edit screen of any page/post
 2. Find the slider options box
 3. Check "Add a slider"
@@ -60,11 +61,11 @@ The slides can be manually reorder with a drag and drop feature.
 5. Change the delay and layout field if needed
 6. Update the page
 
-## Deleting a slider 
+### Deleting a slider 
 In the Slider options box, at the top of the slides table, click on "Delete this slider".
 This action will delete the slider but not the images.
 
-## Post Formats
+### Post Formats
 You can choose up to 10 post formats for your posts.  
 Posts with the aside, status, quote and link post formats are displayed with no title.  
 Posts with the link post format will link out to the first <a> tag in the post.
@@ -75,9 +76,8 @@ Posts with the link post format will link out to the first <a> tag in the post.
 ## Customizr loop 
 For the development of this theme, I created only one loop for all kind of content. It is located in index.php.
 I also made the choice to use template parts instead of using the template hierarchy.
-
-1 - The loop calls the main template : article-content.php
-2 - The templates parts are then called in article-content.php, depending on the post type or context.
+1. The loop calls the main template : article-content.php
+2. The templates parts are then called in article-content.php, depending on the post type or context.
 
 ## Translation
 The themes is ready for translation and already translated in french. Translation files are in /lang.
