@@ -1,5 +1,6 @@
-![Customizr - Free Wordpress Theme](/screenshot.png)
-*A 100% responsive theme, easy to customize and built with HTML5 & CSS3 upon the Twitter Bootstrap framework.The clean design can be used for any type of website : corporate, portfolio, business, blog, etc. Choose a skin, upload your logo, set up your social network profiles and you are done! It also includes a handy responsive slider generator (with call to action text and button) that can be embedded in any pages or posts. The theme supports five widgetized areas (two in the sidebars,  three in the footer), up to three columns, nine post formats with special styles. It also comes with seven elegant skins and three handy featured page blocks for the front page.*
+![Customizr - Free Wordpress Theme](/screenshot.png)  
+
+*A 100% responsive WordPress theme, easy to customize and built with HTML5 & CSS3 upon the Twitter Bootstrap framework.The clean design can be used for any type of website : corporate, portfolio, business, blog, etc. Choose a skin, upload your logo, set up your social network profiles and you are done! It also includes a handy responsive slider generator (with call to action text and button) that can be embedded in any pages or posts. The theme supports five widgetized areas (two in the sidebars,  three in the footer), up to three columns, nine post formats with special styles. It also comes with seven elegant skins and three handy featured page blocks for the front page.*
 
 # Installation
 1. Upload the `customizr` folder to the `/wp-content/themes/` directory
@@ -139,7 +140,7 @@ The exceptions to this license are as follows:
 * Initial Release
 
 # Copyright
-**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([Themes and Co](http://www.themesandco.com>)
+**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>))
 Feel free to use, modify and redistribute this theme as you like.
 You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.  
 Customizr is distributed under the terms of the GNU GPL  
