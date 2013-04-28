@@ -1,3 +1,4 @@
+![Customizr - Free Wordpress Theme](/screenshot.png)
 # Installation
 1. Upload the `customizr` folder to the `/wp-content/themes/` directory
 Activation and Use
