@@ -21,7 +21,7 @@ As this theme uses the WordPress customizer feature for most options, it require
 Please make sure your WP version is at least 3.4.
 
 === Choose a skin ===
-The theme comes whith seven skins. The default skin is the blue one. Open the customizer screen to select your prefered skin.
+The theme comes with seven skins. The default skin is the blue one. Open the customizer screen to select your prefered skin.
 
 === Upload a logo and a favicon ===
 Go to the customizer screen in the logo and favicon section and upload your images.
@@ -116,6 +116,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 2.0.1 =
+* Removal of meta description (plugin territory)
+* Page edit button is only visible for users logged in and with edit_post capabilities
+
 = 2.0 =
 * Replace the previous custom post type slider feature (was plugin territory) with a custom fields and options slider generator
 * Addition of ajax powered meta boxes in post/page/attachment for the sliders
