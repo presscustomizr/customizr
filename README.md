@@ -11,7 +11,7 @@ Activation and Use
 
 # User Guide and Main Features
 ## WP Version
-As this theme uses the WordPress customizer feature for most options, it requires at least version 3.4 to work properly.
+Since this theme uses the WordPress customizer feature for most options, it requires at least version 3.4 to work properly.
 Please make sure your WP version is at least 3.4.
 
 ## Choosing a skin 
@@ -89,7 +89,6 @@ The themes is ready for translation and already translated in french. Translatio
 
 
 
-
 # License
 Unless otherwise specified, all the theme files, scripts and images
 are licensed under GNU General Public License version 2, see file license.txt.
@@ -109,6 +108,18 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 2.0.2 =
+* fixed : CSS image gallery navigation arrows
+* removed : the_content() in attachment templates
+* fixed : bullet list in content now visible
+* added : hover effect on widget lists
+* fixed : skin colors when hovering and focusing form fields
+* fixed : skin colors when hovering social icons
+
+= 2.0.1 =
+* Removal of meta description (plugin territory)
+* Page edit button is only visible for users logged in and with edit_post capabilities
+
 = 2.0 =
 * Replacement of the previous custom post type slider feature (was plugin territory) with a custom fields and options slider generator  
 * Addition of ajax powered meta boxes in post/page/attachment for the sliders

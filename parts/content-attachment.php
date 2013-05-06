@@ -76,10 +76,4 @@
 		</div><!-- .attachment -->
 
 	</div><!-- .entry-attachment -->
-
-	<div class="entry-description">
-		<?php the_content(); ?>
-		<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'customizr' ), 'after' => '</div>' ) ); ?>
-	</div><!-- .entry-description -->
-
 </div><!-- .entry-content -->

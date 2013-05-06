@@ -40,7 +40,14 @@ jQuery(document).ready(function($) {
          // Bind event listener
         $(window).resize(checkWidth);
 
+        //arrows bullet list effect
+        $('.widget li').hover(function() {
+          $(this).addClass("on");
+        }, function() {
+        $(this).removeClass("on");
+      });
     })
+    
 
 }(window.jQuery);
 

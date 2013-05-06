@@ -10,7 +10,7 @@
  * @link    http://themesandco.com
  */
 /* CUSTOMIZR_VER is the Version */
-if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.1' ); }
+if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.2' ); }
 
 
 
@@ -335,6 +335,9 @@ add_action('wp_enqueue_scripts', 'tc_scripts');
   function tc_scripts() {
       //SCRIPTS the true boolean parameter means it's loaded in the footer
       wp_enqueue_script('jquery');
+
+      wp_enqueue_script( 'jquery-ui-core' );
+
       wp_enqueue_script('bootstrap',TC_BASE_URL . 'inc/js/bootstrap.min.js',array('jquery'),null,true);
      
       //tc scripts
@@ -345,6 +348,7 @@ add_action('wp_enqueue_scripts', 'tc_scripts');
 
       //modernizr (must be loaded in wp_head())
       wp_enqueue_script('modernizr',TC_BASE_URL . 'inc/js/modernizr.js',array('jquery'),null,false);
+
    }
 endif;
 

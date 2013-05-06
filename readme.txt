@@ -116,6 +116,14 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 2.0.2 =
+* fixed : CSS image gallery navigation arrows
+* removed : the_content() in attachment templates
+* fixed : bullet list in content now visible
+* added : hover effect on widget lists
+* fixed : skin colors when hovering and focusing form fields
+* fixed : skin colors when hovering social icons
+
 = 2.0.1 =
 * Removal of meta description (plugin territory)
 * Page edit button is only visible for users logged in and with edit_post capabilities
