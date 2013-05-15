@@ -253,7 +253,7 @@ function tc_customize_register( $wp_customize ) {
 
 	//Slider
 		//retrieve slider names and generate the select list
-	    $slider_names = tc_get_options( 'sliders');
+	    $slider_names = tc_get_options( 'tc_sliders');
 		$choices = array( 
 			0 		=> 	__( '&mdash; No slider &mdash;','customizr' ),
 			'demo' 	=>	__( '&mdash; Demo Slider &mdash;','customizr' )
@@ -367,12 +367,12 @@ function tc_customize_register( $wp_customize ) {
 				
 				//widget page
 				foreach ($front_widget_areas as $key => $area) {
-					$wp_customize->add_setting( 'tc_theme_options[featured_page_'.$key.']', array(
+					$wp_customize->add_setting( 'tc_theme_options[tc_featured_page_'.$key.']', array(
 						'capability'     => 'manage_options',
 						'type'           => 'option',
 					) );
 
-					$wp_customize->add_control( 'tc_theme_options[featured_page_'.$key.']', array(
+					$wp_customize->add_control( 'tc_theme_options[tc_featured_page_'.$key.']', array(
 						'label'   		=> sprintf(__( 'Home featured page %s','customizr' ),$area),
 						'section' 		=> 'tc_frontpage_settings',
 						'type'      	=> 'dropdown-pages',

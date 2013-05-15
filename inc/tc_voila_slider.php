@@ -97,7 +97,7 @@ if ( ! function_exists( 'tc_get_slider' ) ) :
             if(empty($slider_name_id))
               return;
 
-            $slides = $tc_theme_options['sliders'][$slider_name_id];
+            $slides = $tc_theme_options['tc_sliders'][$slider_name_id];
 
             //init slide index
             $i = 0;

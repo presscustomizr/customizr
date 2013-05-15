@@ -76,8 +76,11 @@ class TC_Controls extends WP_Customize_Control
 	        	
 	        	case 'slider-check':
 		        	//retrieve all sliders in option array
-			        $options                   = get_option('tc_theme_options');
-			        $sliders                   = $options['sliders'];
+			        $options                   	= get_option('tc_theme_options');
+			        $sliders 					= array();
+			        if(isset($options['tc_sliders'])) {
+			        	$sliders                = $options['tc_sliders'];
+			    	}
 	        	
 		            if(empty($sliders )) {
 		               echo '<div style="width:99%; padding: 5px;">';

@@ -176,7 +176,7 @@ if ( ! function_exists( 'tc_get_post_slider_infos' ) ) :
 
        //retrieve all sliders in option array
         $options                   = get_option('tc_theme_options');
-        $sliders                   = $options['sliders'];
+        $sliders                   = $options['tc_sliders'];
 
         //post slider fields setup
         $post_slider_id            = 'post_slider_field';
@@ -448,7 +448,10 @@ if ( ! function_exists( 'tc_get_attachment_slider_infos' ) ) :
 
         //retrieve all sliders in option array
         $options                = get_option('tc_theme_options');
-        $sliders                = $options['sliders'];
+        $sliders                = array();
+        if(isset($options['tc_sliders'])) {
+          $sliders              = $options['tc_sliders'];
+        }
 
         //get_attachment details for default slide values
         $attachment             = get_post( $postid);
@@ -901,7 +904,7 @@ function tc_slider_ajax_save( $post_id ) {
               }
 
               //in all cases, delete DB option
-              unset($tc_options['sliders'][$current_post_slider]);
+              unset($tc_options['tc_sliders'][$current_post_slider]);
               //update DB with new slider array
               update_option( 'tc_theme_options', $tc_options );
             break;
@@ -915,9 +918,9 @@ function tc_slider_ajax_save( $post_id ) {
                 //initialize the newslider array
                 $newslider = array();
                 foreach ($neworder as $new_key => $new_index) {
-                    $newslider[$new_index] =  $tc_options['sliders'][$current_post_slider][$new_index];
+                    $newslider[$new_index] =  $tc_options['tc_sliders'][$current_post_slider][$new_index];
                   }
-                $tc_options['sliders'][$current_post_slider] = $newslider;
+                $tc_options['tc_sliders'][$current_post_slider] = $newslider;
                  
                  //update DB with new slider array
                 update_option( 'tc_theme_options', $tc_options );
@@ -937,22 +940,22 @@ function tc_slider_ajax_save( $post_id ) {
                     //remove spaces and special char
                     $new_slider_name                              = strtolower(preg_replace("![^a-z0-9]+!i", "-", $new_slider_name));
 
-                    $tc_options['sliders'][$new_slider_name]      = array($post_ID);
+                    $tc_options['tc_sliders'][$new_slider_name]      = array($post_ID);
                     //adds the new slider name in DB options
                     update_option( 'tc_theme_options', $tc_options );
                   //associate the current post with the new saved slider
                   
                   //looks for a previous slider entry and delete it
-                  foreach ($tc_options['sliders'] as $slider_name => $slider) {
+                  foreach ($tc_options['tc_sliders'] as $slider_name => $slider) {
                     
                     foreach ($slider as $key => $tc_post) {
                        //clean empty values if necessary
-                       if(is_null($tc_options['sliders'][$slider_name][$key]))
-                          unset($tc_options['sliders'][$slider_name][$key]);
+                       if(is_null($tc_options['tc_sliders'][$slider_name][$key]))
+                          unset($tc_options['tc_sliders'][$slider_name][$key]);
                        
                        //delete previous slider entries for this post
                        if ($tc_post == $post_ID )
-                          unset($tc_options['sliders'][$slider_name][$key]);
+                          unset($tc_options['tc_sliders'][$slider_name][$key]);
                       }
                     }
                     
@@ -960,7 +963,7 @@ function tc_slider_ajax_save( $post_id ) {
                     update_option( 'tc_theme_options', $tc_options );
 
                     //push new post value for the new slider and write in DB
-                    array_push($tc_options['sliders'][$new_slider_name], $post_ID);
+                    array_push($tc_options['tc_sliders'][$new_slider_name], $post_ID);
                     update_option( 'tc_theme_options', $tc_options );
 
                   }
@@ -991,42 +994,40 @@ function tc_slider_ajax_save( $post_id ) {
                      $post_slider_name                = wp_filter_nohtml_kses( $post_slider_name );
                       //looks for a previous slider entry and delete it. 
                      //Important : we check if the slider has slides first!
-                      //if( !empty($tc_options['sliders'][$post_slider_name]) ) {
-                        foreach ($tc_options['sliders'] as $slider_name => $slider) {
+                        foreach ($tc_options['tc_sliders'] as $slider_name => $slider) {
                           foreach ($slider as $key => $tc_post) {
                              //clean empty values if necessary
-                             if(is_null($tc_options['sliders'][$slider_name][$key]))
-                                unset($tc_options['sliders'][$slider_name][$key]);
+                             if(is_null($tc_options['tc_sliders'][$slider_name][$key]))
+                                unset($tc_options['tc_sliders'][$slider_name][$key]);
                              //delete previous slider entries for this post
                              if ($tc_post == $post_ID )
-                                unset($tc_options['sliders'][$slider_name][$key]);
+                                unset($tc_options['tc_sliders'][$slider_name][$key]);
                           }
                         }
                         //update DB with clean option table
                         update_option( 'tc_theme_options', $tc_options );
-                      //}
 
                       //check if the selected slider is empty and set it as array
-                      if( empty($tc_options['sliders'][$post_slider_name]) ) {
-                        $tc_options['sliders'][$post_slider_name] = array();
+                      if( empty($tc_options['tc_sliders'][$post_slider_name]) ) {
+                        $tc_options['tc_sliders'][$post_slider_name] = array();
                       }
 
                       //push new post value for the slider and write in DB 
-                        array_push($tc_options['sliders'][$post_slider_name], $post_ID);
+                        array_push($tc_options['tc_sliders'][$post_slider_name], $post_ID);
                         update_option( 'tc_theme_options', $tc_options );
                   }//end if !empty($post_slider_name)
 
                   //No slider selected
                   else {
                     //looks for a previous slider entry and delete it
-                      foreach ($tc_options['sliders'] as $slider_name => $slider) {
+                      foreach ($tc_options['tc_sliders'] as $slider_name => $slider) {
                         foreach ($slider as $key => $tc_post) {
                            //clean empty values if necessary
-                           if(is_null($tc_options['sliders'][$slider_name][$key]))
-                              unset($tc_options['sliders'][$slider_name][$key]);
+                           if(is_null($tc_options['tc_sliders'][$slider_name][$key]))
+                              unset($tc_options['tc_sliders'][$slider_name][$key]);
                            //delete previous slider entries for this post
                            if ($tc_post == $post_ID )
-                              unset($tc_options['sliders'][$slider_name][$key]);
+                              unset($tc_options['tc_sliders'][$slider_name][$key]);
                         }
                       }
                       //update DB with clean option table
@@ -1060,7 +1061,7 @@ function tc_slider_ajax_save( $post_id ) {
                     case 'post_slider_key' :
                        $mydata = esc_attr( $_POST[$tcid] );
                        //Does the selected slider still exists in options? (we first check if the selected slider is not empty)
-                       if(!empty($mydata) && !isset($tc_options['sliders'][$mydata]))
+                       if(!empty($mydata) && !isset($tc_options['tc_sliders'][$mydata]))
                           break;
 
                        //write in DB

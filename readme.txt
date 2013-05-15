@@ -116,6 +116,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 2.0.3 =
+* fixed : same unique slug as prefix for all custom function names, classes, public/global variables, database entries.
+
 = 2.0.2 =
 * fixed : CSS image gallery navigation arrows
 * removed : the_content() in attachment templates

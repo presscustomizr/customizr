@@ -110,7 +110,7 @@
                   <h2 class="span7 inside site-description"><?php bloginfo( 'description' ); ?></h2>
                 </div>
                 <div class="nav-collapse collapse">
-                  <?php wp_nav_menu( array( 'theme_location' => 'main', 'menu_class' => 'nav', 'fallback_cb' => 'link_to_menu_editor', 'walker' => new TC_Nav_Walker()) );  ?>
+                  <?php wp_nav_menu( array( 'theme_location' => 'main', 'menu_class' => 'nav', 'fallback_cb' => 'tc_link_to_menu_editor', 'walker' => new TC_Nav_Walker()) );  ?>
                 </div><!-- /.nav-collapse collapse -->
             </div><!-- /.navbar-inner -->
           </div><!-- /.navbar notresp -->
@@ -124,7 +124,7 @@
                         <span class="icon-bar"></span>
                       </button>
                 <div class="nav-collapse collapse">
-                  <?php wp_nav_menu( array( 'theme_location' => 'main', 'menu_class' => 'nav', 'fallback_cb' => 'link_to_menu_editor','walker' => new TC_Nav_Walker()) );  ?>
+                  <?php wp_nav_menu( array( 'theme_location' => 'main', 'menu_class' => 'nav', 'fallback_cb' => 'tc_link_to_menu_editor','walker' => new TC_Nav_Walker()) );  ?>
                 </div><!-- /.nav-collapse collapse -->
             </div><!-- /.navbar-inner -->
           </div><!-- /.navbar resp -->
@@ -133,5 +133,4 @@
 	</header>
 <?php  tc_get_slider(); ?>
 <div id="main-wrapper" class="container">
-   
 

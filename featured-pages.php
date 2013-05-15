@@ -20,7 +20,7 @@ $areas = array ('one','two','three');
 			<?php foreach ($areas as $area) : ?>
 				<div class="span4">
 					<?php 
-						if ( !empty( $tc_theme_options['featured_page_'.$area] ) )  {
+						if ( !empty( $tc_theme_options['tc_featured_page_'.$area] ) )  {
 							tc_get_featured_pages($area);
 						}
 						else {

@@ -10,7 +10,7 @@
  * @link    http://themesandco.com
  */
 /* CUSTOMIZR_VER is the Version */
-if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.2' ); }
+if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.3' ); }
 
 
 
@@ -80,7 +80,7 @@ if(!function_exists('tc_get_default_options')) :
     
       $defaults = array(
           //sliders
-          'sliders'                       => array(),
+          'tc_sliders'                    => array(),
           //skin
           'tc_skin'                       => 'blue.css',
           //logo and favicon
@@ -93,12 +93,12 @@ if(!function_exists('tc_get_default_options')) :
           'tc_slider_delay'               => 5000,
           'tc_front_layout'               => 'f',
           'tc_show_featured_pages'        => 1,
-          'featured_page_one'             => null,
-          'featured_page_two'             => null,
-          'featured_page_three'           => null,
-          'featured_text_one'             => null,
-          'featured_text_two'             => null,
-          'featured_text_three'           => null,
+          'tc_featured_page_one'             => null,
+          'tc_featured_page_two'             => null,
+          'tc_featured_page_three'           => null,
+          'tc_featured_text_one'             => null,
+          'tc_featured_text_two'             => null,
+          'tc_featured_text_three'           => null,
           //layout options
           'tc_sidebar_global_layout'      => 'r',
           'tc_sidebar_force_layout'       =>  0,
@@ -128,8 +128,8 @@ if(!function_exists('tc_get_default_options')) :
 endif;
 
 
-if(!function_exists('customizr_setup')) :
-add_action( 'after_setup_theme', 'customizr_setup' );
+if(!function_exists('tc_customizr_setup')) :
+add_action( 'after_setup_theme', 'tc_customizr_setup' );
 /**
  * Sets up theme defaults and registers the various WordPress features
  * 
@@ -138,7 +138,7 @@ add_action( 'after_setup_theme', 'customizr_setup' );
  * @since Customizr 1.0
  */
 
-  function customizr_setup() {
+  function tc_customizr_setup() {
   
   
     /* Set default content width for post images and media. */
@@ -262,7 +262,7 @@ if(!function_exists('tc_add_fallback_page')) :
           __( 'Upgrade WP', 'customizr' ),   // Label in menu
           'edit_theme_options',          // Capability required
           'upgrade_wp.php',             // Menu slug, used to uniquely identify the page
-          'fallback_admin_page'         //function to be called to output the content of this page
+          'tc_fallback_admin_page'         //function to be called to output the content of this page
       );
   }
 endif;
@@ -270,13 +270,13 @@ endif;
 
 
 
-if(!function_exists('fallback_admin_page')) :
+if(!function_exists('tc_fallback_admin_page')) :
   /**
  * Render fallback admin page.
  * @package Customizr
  * @since Customizr 1.1
  */
-  function fallback_admin_page() {
+  function tc_fallback_admin_page() {
     ?>
     <div class="wrap upgrade_wordpress">
       <div id="icon-options-general" class="icon32"><br></div>
@@ -297,14 +297,14 @@ endif;
 
 
 
-if(!function_exists('customizer_styles')) :
+if(!function_exists('tc_customizer_styles')) :
 /**
  * Registers and enqueues Customizr stylesheets
  * @package Customizr
  * @since Customizr 1.1
  */
-add_action('wp_enqueue_scripts', 'customizer_styles');
-  function customizer_styles() {
+add_action('wp_enqueue_scripts', 'tc_customizer_styles');
+  function tc_customizer_styles() {
     wp_register_style( 
       'customizr-skin', 
       TC_BASE_URL.'inc/css/'.tc_get_options('tc_skin'), 

@@ -126,19 +126,6 @@ endif;
 
 
 
-if(!function_exists('new_excerpt_more')) :
-  /**
-  *
-  * @package Customizr
-  * @since Customizr 1.0
-  */
-  function new_excerpt_more($more) {
-         global $post;
-    return ' <a href="'. get_permalink($post->ID) . '">'.__('Read more...','customizr').'</a>';
-  }
-  add_filter('excerpt_more', 'new_excerpt_more');
-endif;
-
 
 
 if(!function_exists('tc_post_thumbnail')) :
@@ -277,7 +264,7 @@ class TC_Nav_Walker extends Walker_Nav_Menu {
 
 
 
-if(!function_exists('link_to_menu_editor')) :
+if(!function_exists('tc_link_to_menu_editor')) :
 /**
   * Menu fallback. Link to the menu editor.
   * Thanks to tosho (http://wordpress.stackexchange.com/users/73/toscho)
@@ -286,7 +273,7 @@ if(!function_exists('link_to_menu_editor')) :
   * @package Customizr
   * @since Customizr 1.0
  */
-  function link_to_menu_editor( $args )
+  function tc_link_to_menu_editor( $args )
   {
       if ( ! current_user_can( 'manage_options' ) )
       {
@@ -356,10 +343,10 @@ if(!function_exists('tc_get_featured_pages')) :
       default://for areas one, two, three
           //get saved options
           global $tc_theme_options;
-          $featured_page_id     = $tc_theme_options['featured_page_'.$area];
+          $featured_page_id     = $tc_theme_options['tc_featured_page_'.$area];
           $featured_page_link   = get_permalink( $featured_page_id );
           $featured_page_title  = get_the_title( $featured_page_id );
-          $featured_text        = esc_attr( $tc_theme_options['featured_text_'.$area] );
+          $featured_text        = esc_attr( $tc_theme_options['tc_featured_text_'.$area] );
 
           //get the page/post object
           $page                 =  get_post($featured_page_id);
@@ -669,7 +656,7 @@ if ( ! function_exists( 'tc_get_breadcrumb' ) ) :
         <div class="tc-hot-crumble container" role="navigation">
           <div class="row">
             <div class="span12">
-            <?php breadcrumb_trail($args); ?>
+            <?php tc_breadcrumb_trail($args); ?>
             </div>
           </div>
         </div>
