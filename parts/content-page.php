@@ -11,7 +11,7 @@
      <?php 
      	printf('<h1 class="entry-title format-icon">%1$s %2$s</h1>',
 			get_the_title(),
-			(is_user_logged_in() && current_user_can( 'edit_post' )) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page', 'customizr' ).'">'.__( 'Edit page', 'customizr' ).'</a></span>' : ''
+			(is_user_logged_in()) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page', 'customizr' ).'">'.__( 'Edit page', 'customizr' ).'</a></span>' : ''
 		); 
 	?>
 </header>
