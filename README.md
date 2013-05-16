@@ -108,6 +108,13 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 2.0.5 =
+* fixed : printf php syntax in footer.php
+
+= 2.0.4 =
+* fixed : test on current_user_can( 'edit_post' ) in template part content-page.php was generating a Notice: Undefined offset: 0 in ~/wp-includes/capabilities.php on line 1067
+* added : copyright and license declaration in style.css
+
 = 2.0.3 =
 * fixed : same unique slug as prefix for all custom function names, classes, public/global variables, database entries.
 
