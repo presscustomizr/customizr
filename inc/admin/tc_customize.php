@@ -526,6 +526,30 @@ function tc_customize_register( $wp_customize ) {
 		) );
 
 
+	// COMMENTS SETTINGS //
+	$wp_customize->add_section( 'tc_page_comments', array(
+		'title'          => __( 'Comments','customizr' ),
+		'priority'       => 170,
+		'description'    => __( 'Set up comments options','customizr' ),
+	) );
+
+		//force default layout on every posts
+		$wp_customize->add_setting( 'tc_theme_options[tc_page_comments]', array(
+			'default'        => 0,
+			'capability'     => 'manage_options',
+			'type'           => 'option',
+		) );
+		$wp_customize->add_control( new TC_Controls($wp_customize, 'tc_theme_options[tc_page_comments]', array(
+			'settings' 	=> 'tc_theme_options[tc_page_comments]',
+			'label'    	=> __( 'Enable comments on pages','customizr' ),
+			'section'  	=> 'tc_page_comments',
+			'tc'     	=> 'checkbox',
+			'notice'	=> __('This option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen.','customizr'),
+			'priority'       => 3,
+		) ));
+
+
+
 	// SOCIAL LINKS //
 	$wp_customize->add_section( 'tc_social_settings', array(
 		'title'          => __( 'Social links','customizr' ),

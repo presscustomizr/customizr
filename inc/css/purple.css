@@ -7492,11 +7492,7 @@ tr:nth-child(even) td,
 tr:nth-child(even) th {
   background-color: white;
 }
-tr th:first-child,
-tr td:first-child {
-  border-left-style: solid;
-  border-left-width: 1px;
-}
+
 #wp-calendar tfoot td {
   text-align: left;
 }

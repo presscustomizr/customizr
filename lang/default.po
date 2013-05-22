@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customizr 1.1.5\n"
-"POT-Creation-Date: 2013-04-27 18:11+0100\n"
-"PO-Revision-Date: 2013-04-27 18:11+0100\n"
+"POT-Creation-Date: 2013-05-22 19:56+0100\n"
+"PO-Revision-Date: 2013-05-22 19:56+0100\n"
+"Last-Translator: Nicolas G. <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
 "MIME-Version: 1.0\n"
@@ -44,19 +45,19 @@ msgstr ""
 msgid "Back to top"
 msgstr ""
 
-#: ../functions.php:184
+#: ../functions.php:186
 msgid "Main Menu"
 msgstr ""
 
-#: ../functions.php:261 ../functions.php:262
+#: ../functions.php:263 ../functions.php:264
 msgid "Upgrade WP"
 msgstr ""
 
-#: ../functions.php:283
+#: ../functions.php:285
 msgid "This theme requires WordPress 3.4+"
 msgstr ""
 
-#: ../functions.php:286 ../functions.php:287
+#: ../functions.php:288 ../functions.php:289
 msgid "Upgrade Wordpress Now"
 msgstr ""
 
@@ -65,7 +66,7 @@ msgstr ""
 msgid "Page %s"
 msgstr ""
 
-#: ../header.php:95
+#: ../header.php:94
 msgid "Back Home"
 msgstr ""
 
@@ -98,188 +99,184 @@ msgstr ""
 msgid "Footer Widget Area Three"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:137
-msgid "Read more..."
-msgstr ""
-
-#: ../inc/tc_handy_helpers.php:341
+#: ../inc/tc_handy_helpers.php:328
 msgid "Customizer screen"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:341
+#: ../inc/tc_handy_helpers.php:328
 msgid " here"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:346
+#: ../inc/tc_handy_helpers.php:333
 msgid "Featured page"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:347
+#: ../inc/tc_handy_helpers.php:334
 #, php-format
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the Customizr screen%s."
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:434
+#: ../inc/tc_handy_helpers.php:421
 msgid "Read more &raquo;"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:498 ../parts/post-header.php:42
+#: ../inc/tc_handy_helpers.php:485 ../parts/post-header.php:42
 #, php-format
 msgid "Permalink to %s"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:532
+#: ../inc/tc_handy_helpers.php:519
 msgid "Pingback:"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:532
+#: ../inc/tc_handy_helpers.php:519
 msgid "(Edit)"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:549
+#: ../inc/tc_handy_helpers.php:536
 msgid "Reply"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:557
+#: ../inc/tc_handy_helpers.php:544
 msgid "Post author"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:558 ../inc/tc_hot_crumble.php:540
-#: ../inc/tc_hot_crumble.php:573 ../inc/tc_hot_crumble.php:588
-#: ../inc/tc_hot_crumble.php:616 ../inc/admin/tc_meta_boxes.php:752
+#: ../inc/tc_handy_helpers.php:545 ../inc/tc_hot_crumble.php:534
+#: ../inc/tc_hot_crumble.php:567 ../inc/tc_hot_crumble.php:582
+#: ../inc/tc_hot_crumble.php:610 ../inc/admin/tc_meta_boxes.php:756
 #: ../parts/content-attachment.php:27 ../parts/post-header.php:56
 msgid "Edit"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:564
+#: ../inc/tc_handy_helpers.php:551
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:570
+#: ../inc/tc_handy_helpers.php:557
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:602 ../inc/tc_handy_helpers.php:630
+#: ../inc/tc_handy_helpers.php:589 ../inc/tc_handy_helpers.php:617
 #, php-format
 msgid "View all posts in %s"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:660 ../inc/tc_hot_crumble.php:47
+#: ../inc/tc_handy_helpers.php:647 ../inc/tc_hot_crumble.php:41
 msgid "Home"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:697
+#: ../inc/tc_handy_helpers.php:684
 msgid "feed"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:698
+#: ../inc/tc_handy_helpers.php:685
 msgid "twitter"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:699
+#: ../inc/tc_handy_helpers.php:686
 msgid "facebook"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:700
+#: ../inc/tc_handy_helpers.php:687
 msgid "google"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:701
+#: ../inc/tc_handy_helpers.php:688
 msgid "youtube"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:702
+#: ../inc/tc_handy_helpers.php:689
 msgid "pinterest"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:703
+#: ../inc/tc_handy_helpers.php:690
 msgid "github"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:704
+#: ../inc/tc_handy_helpers.php:691
 msgid "dribbble"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:705
+#: ../inc/tc_handy_helpers.php:692
 msgid "linkedin"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:711 ../inc/admin/tc_customize.php:531
+#: ../inc/tc_handy_helpers.php:698 ../inc/admin/tc_customize.php:555
 msgid "Social links"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:716
+#: ../inc/tc_handy_helpers.php:703
 msgid "Follow me on "
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:720
+#: ../inc/tc_handy_helpers.php:707
 msgid "Suscribe to my rss feed"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:44
+#: ../inc/tc_hot_crumble.php:38
 msgid "Browse:"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:424
+#: ../inc/tc_hot_crumble.php:418
 msgid "g:i a"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:427
+#: ../inc/tc_hot_crumble.php:421
 #, php-format
 msgid "Minute %1$s"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:427
+#: ../inc/tc_hot_crumble.php:421
 msgid "i"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:430
+#: ../inc/tc_hot_crumble.php:424
 msgid "g a"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:441 ../inc/tc_hot_crumble.php:451
-#: ../inc/tc_hot_crumble.php:460 ../inc/tc_hot_crumble.php:471
-#: ../inc/tc_hot_crumble.php:473 ../inc/tc_hot_crumble.php:672
+#: ../inc/tc_hot_crumble.php:435 ../inc/tc_hot_crumble.php:445
+#: ../inc/tc_hot_crumble.php:454 ../inc/tc_hot_crumble.php:465
+#: ../inc/tc_hot_crumble.php:467 ../inc/tc_hot_crumble.php:666
 msgid "Y"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:442 ../inc/tc_hot_crumble.php:463
-#: ../inc/tc_hot_crumble.php:465 ../inc/tc_hot_crumble.php:676
+#: ../inc/tc_hot_crumble.php:436 ../inc/tc_hot_crumble.php:457
+#: ../inc/tc_hot_crumble.php:459 ../inc/tc_hot_crumble.php:670
 msgid "F"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:445 ../inc/tc_hot_crumble.php:447
-#: ../inc/tc_hot_crumble.php:680
+#: ../inc/tc_hot_crumble.php:439 ../inc/tc_hot_crumble.php:441
+#: ../inc/tc_hot_crumble.php:674
 msgid "d"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:454 ../inc/tc_hot_crumble.php:456
+#: ../inc/tc_hot_crumble.php:448 ../inc/tc_hot_crumble.php:450
 #, php-format
 msgid "Week %1$s"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:482 ../inc/tc_hot_crumble.php:484
+#: ../inc/tc_hot_crumble.php:476 ../inc/tc_hot_crumble.php:478
 #, php-format
 msgid "Search results for &quot;%1$s&quot;"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:489
+#: ../inc/tc_hot_crumble.php:483
 msgid "404 Not Found"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:494 ../inc/tc_hot_crumble.php:496
+#: ../inc/tc_hot_crumble.php:488 ../inc/tc_hot_crumble.php:490
 #, php-format
 msgid "Page %d"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:565
+#: ../inc/tc_hot_crumble.php:559
 msgid "Split"
 msgstr ""
 
-#: ../inc/tc_hot_crumble.php:569
+#: ../inc/tc_hot_crumble.php:563
 msgid "Merge"
 msgstr ""
 
@@ -546,75 +543,93 @@ msgstr ""
 msgid "Choose the pages default layout"
 msgstr ""
 
+#: ../inc/admin/tc_customize.php:531
+msgid "Comments"
+msgstr ""
+
 #: ../inc/admin/tc_customize.php:533
+msgid "Set up comments options"
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:544
+msgid "Enable comments on pages"
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:547
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:557
 msgid "Set up your social links"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:538
+#: ../inc/admin/tc_customize.php:562
 msgid "header"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:539
+#: ../inc/admin/tc_customize.php:563
 msgid "right-sidebar"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:540
+#: ../inc/admin/tc_customize.php:564
 msgid "left-sidebar"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:541
+#: ../inc/admin/tc_customize.php:565
 msgid "footer"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:555
+#: ../inc/admin/tc_customize.php:579
 #, php-format
 msgid "Social links in %s"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:565
+#: ../inc/admin/tc_customize.php:589
 msgid "RSS feed (default is the wordpress feed)"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:566
+#: ../inc/admin/tc_customize.php:590
 msgid "Twitter profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:567
+#: ../inc/admin/tc_customize.php:591
 msgid "Facebook profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:568
+#: ../inc/admin/tc_customize.php:592
 msgid "Google+ profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:569
+#: ../inc/admin/tc_customize.php:593
 msgid "Youtube profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:570
+#: ../inc/admin/tc_customize.php:594
 msgid "Pinterest profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:571
+#: ../inc/admin/tc_customize.php:595
 msgid "Github profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:572
+#: ../inc/admin/tc_customize.php:596
 msgid "Dribbble profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:573
+#: ../inc/admin/tc_customize.php:597
 msgid "LinkedIn profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customizr_control_class.php:84
+#: ../inc/admin/tc_customizr_control_class.php:87
 #: ../inc/admin/tc_meta_boxes.php:252
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
 msgstr ""
 
-#: ../inc/admin/tc_customizr_control_class.php:84
+#: ../inc/admin/tc_customizr_control_class.php:87
 msgid "Create a slider"
 msgstr ""
 
@@ -688,19 +703,19 @@ msgstr ""
 msgid "Default layout %1s"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:141 ../inc/admin/tc_meta_boxes.php:407
+#: ../inc/admin/tc_meta_boxes.php:141 ../inc/admin/tc_meta_boxes.php:406
 msgid "Add to a slider"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:143 ../inc/admin/tc_meta_boxes.php:409
+#: ../inc/admin/tc_meta_boxes.php:143 ../inc/admin/tc_meta_boxes.php:408
 msgid "Add to a slider (create one if needed)"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:205 ../inc/admin/tc_meta_boxes.php:573
+#: ../inc/admin/tc_meta_boxes.php:205 ../inc/admin/tc_meta_boxes.php:575
 msgid "Choose a slider"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:212 ../inc/admin/tc_meta_boxes.php:588
+#: ../inc/admin/tc_meta_boxes.php:212 ../inc/admin/tc_meta_boxes.php:590
 msgid "&mdash; Select a slider &mdash; "
 msgstr ""
 
@@ -712,90 +727,90 @@ msgstr ""
 msgid "Slider Layout : set the slider in full width"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:236 ../inc/admin/tc_meta_boxes.php:597
+#: ../inc/admin/tc_meta_boxes.php:236 ../inc/admin/tc_meta_boxes.php:599
 msgid "Delete this slider"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:241 ../inc/admin/tc_meta_boxes.php:601
+#: ../inc/admin/tc_meta_boxes.php:241 ../inc/admin/tc_meta_boxes.php:603
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:244 ../inc/admin/tc_meta_boxes.php:604
+#: ../inc/admin/tc_meta_boxes.php:244 ../inc/admin/tc_meta_boxes.php:606
 msgid "Delete slider"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:530
+#: ../inc/admin/tc_meta_boxes.php:532
 #, fuzzy
 msgid "Title text (80 car. max length)"
 msgstr "Texte (200 car. max):"
 
-#: ../inc/admin/tc_meta_boxes.php:537
+#: ../inc/admin/tc_meta_boxes.php:539
 msgid "Description text (below the title, 250 car. max length)"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:544
+#: ../inc/admin/tc_meta_boxes.php:546
 msgid "Title and text color"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:552
+#: ../inc/admin/tc_meta_boxes.php:554
 msgid "Button text (80 car. max length)"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:559
+#: ../inc/admin/tc_meta_boxes.php:561
 msgid "Choose a linked page or post (among the last 100)."
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:564
+#: ../inc/admin/tc_meta_boxes.php:566
 msgid "No link"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:594 ../inc/admin/tc_meta_boxes.php:623
+#: ../inc/admin/tc_meta_boxes.php:596 ../inc/admin/tc_meta_boxes.php:625
 msgid "Add a slider"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:621
+#: ../inc/admin/tc_meta_boxes.php:623
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:737
+#: ../inc/admin/tc_meta_boxes.php:741
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:747
+#: ../inc/admin/tc_meta_boxes.php:751
 msgid "Slide Image"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:748
+#: ../inc/admin/tc_meta_boxes.php:752
 msgid "Title"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:749
+#: ../inc/admin/tc_meta_boxes.php:753
 msgid "Slide Text"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:750
+#: ../inc/admin/tc_meta_boxes.php:754
 msgid "Button Text"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:751
+#: ../inc/admin/tc_meta_boxes.php:755
 msgid "Button Link"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:789
+#: ../inc/admin/tc_meta_boxes.php:793
 msgid "No Image Selected"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:815
+#: ../inc/admin/tc_meta_boxes.php:819
 msgid "Edit this slide"
 msgstr ""
 
-#: ../inc/admin/tc_meta_boxes.php:817
+#: ../inc/admin/tc_meta_boxes.php:821
 msgid "Current slide"
 msgstr ""
 
@@ -830,11 +845,6 @@ msgstr ""
 msgid "Next &rarr;"
 msgstr ""
 
-#: ../parts/content-attachment.php:82 ../parts/content-page.php:22
-#: ../parts/content.php:41 ../parts/content.php:49
-msgid "Pages:"
-msgstr ""
-
 #: ../parts/content-no-results.php:14
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
@@ -859,6 +869,11 @@ msgstr "Lier à la page:"
 #: ../parts/content-page.php:20 ../parts/content.php:40
 #: ../parts/content.php:48
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../parts/content-page.php:22 ../parts/content.php:41
+#: ../parts/content.php:49
+msgid "Pages:"
 msgstr ""
 
 #: ../parts/metas.php:23

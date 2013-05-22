@@ -38,11 +38,14 @@ get_header();
 				                while ( have_posts() ) {
 				                    the_post();
 				                    
-				                      get_template_part( 'article', 'content');         
+				                    get_template_part( 'article', 'content');         
 				                    
-				                    comments_template( '', true );
-				                    
-				                    $tc_i++;
+				                   	//if we display a page, check if comments are enabled in options. If it is a post, no conditions.
+				                    if ((is_page() && $tc_theme_options['tc_page_comments'] == 1) || is_single()) {
+				                    	comments_template( '', true );
+				                    }
+
+				                $tc_i++;
 				                }
 				              }
 				              //no loop if error 404 or no search results

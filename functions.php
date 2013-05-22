@@ -10,7 +10,7 @@
  * @link    http://themesandco.com
  */
 /* CUSTOMIZR_VER is the Version */
-if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.5' ); }
+if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.6' ); }
 
 
 
@@ -93,18 +93,20 @@ if(!function_exists('tc_get_default_options')) :
           'tc_slider_delay'               => 5000,
           'tc_front_layout'               => 'f',
           'tc_show_featured_pages'        => 1,
-          'tc_featured_page_one'             => null,
-          'tc_featured_page_two'             => null,
-          'tc_featured_page_three'           => null,
-          'tc_featured_text_one'             => null,
-          'tc_featured_text_two'             => null,
-          'tc_featured_text_three'           => null,
+          'tc_featured_page_one'          => null,
+          'tc_featured_page_two'          => null,
+          'tc_featured_page_three'        => null,
+          'tc_featured_text_one'          => null,
+          'tc_featured_text_two'          => null,
+          'tc_featured_text_three'        => null,
           //layout options
           'tc_sidebar_global_layout'      => 'r',
           'tc_sidebar_force_layout'       =>  0,
           'tc_sidebar_post_layout'        => 'r',
           'tc_sidebar_page_layout'        => 'r',
           'tc_breadcrumb'                 => 1,
+          //comments
+          'tc_page_comments'              =>  0,
           //social options
           'tc_social_in_header'           => 1,
           'tc_social_in_right-sidebar'    => 0,

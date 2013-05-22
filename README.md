@@ -108,6 +108,10 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 2.0.6 =
+* added : new customizer option to enable/disable comments in page. Option is tested in index.php before rendering comment_templates for pages
+* fixed : in the stylesheets, the right border of tables was unnecessary
+
 = 2.0.5 =
 * fixed : printf php syntax in footer.php
 
