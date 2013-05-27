@@ -128,7 +128,7 @@ if ( ! function_exists( 'tc_get_slider' ) ) :
 
                       ?>
                     <div class="item <?php echo $active; ?>">
-                       <div class="carousel-image">
+                       <div class="carousel-image <?php echo $img_size ?>">
                         <?php echo wp_get_attachment_image( $id, $img_size, array('class' => 'slide', 'alt' => $alt ) ); ?>
                        </div>
                         <?php if ($title != null || $text != null || $button_text != null ) : ?>

@@ -88,7 +88,7 @@ function tc_customize_register( $wp_customize ) {
 		'buttontext'	=> __('Manage menus','customizr'),
 	)));
 
-	//Skins
+	//SKINS
  	$wp_customize->add_section( 'tc_skins_settings', array(
         'title'          => __('Skin','customizr'),
         'priority'       => 10,

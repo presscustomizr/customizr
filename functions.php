@@ -10,7 +10,7 @@
  * @link    http://themesandco.com
  */
 /* CUSTOMIZR_VER is the Version */
-if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.7' ); }
+if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.8' ); }
 
 
 
@@ -230,6 +230,12 @@ add_action( 'after_setup_theme', 'tc_customizr_setup' );
           add_action ('admin_init','tc_theme_activation_fallback');
       }
       require_once( TC_BASE.'inc/admin/tc_meta_boxes.php');
+
+      /* LOADS PRO FEATURES */
+      /*if (file_exists(TC_BASE.'inc/pro')) {
+        require_once( TC_BASE.'inc/pro/tc_pro.php');
+      }*/
+
     }
 endif;
 
@@ -323,6 +329,7 @@ add_action('wp_enqueue_scripts', 'tc_customizer_styles');
 
     //enqueue WP style sheet
     wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER,$media = 'all'  );
+
 }
 endif;
 
@@ -358,9 +365,9 @@ add_action('wp_enqueue_scripts', 'tc_scripts');
       //fancybox script and style
       $tc_fancybox = esc_attr(tc_get_options('tc_fancybox'));
       if ($tc_fancybox == 1) {
-        wp_enqueue_script('fancyboxjs',TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox.js',array('jquery'),null,true);
+        wp_enqueue_script('fancyboxjs',TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.js',array('jquery'),null,true);
         wp_enqueue_script('activate-fancybox',TC_BASE_URL . 'inc/js/tc-fancybox.js',array('fancyboxjs'),null,true);
-        wp_enqueue_style( 'fancyboxcss', TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox.css');
+        wp_enqueue_style( 'fancyboxcss', TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.css');
       }
    }
 endif;
@@ -370,22 +377,20 @@ endif;
 
 if(!function_exists('tc_write_custom_css')) :
 /**
- * Get the sanitized custom CSS from options array and echoes the stylesheet
+ * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
  * 
  * @package Customizr
  * @since Customizr 2.0.7
  */
-
+add_action( 'wp_head', 'tc_write_custom_css', 20 );
 function tc_write_custom_css() {
-    global $tc_theme_options ;
-
-    if(isset($tc_theme_options['tc_custom_css']) && !empty($tc_theme_options['tc_custom_css'])) {
-
-      $tc_custom_css    = esc_textarea( $tc_theme_options['tc_custom_css'] );
+    $tc_custom_css      = esc_textarea(tc_get_options('tc_custom_css'));
+    
+    if(isset($tc_custom_css) && !empty($tc_custom_css)) {
       $tc_custom_style  = '<style type="text/css">'.$tc_custom_css.'</style>';
-
       echo $tc_custom_style;
     }
+
   }
 endif;
 
@@ -404,7 +409,7 @@ function tc_fancybox($content) {
     if ($tc_fancybox == 1) {
          global $post;
          $pattern ="/<a(.*?)href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")(.*?)>/i";
-         $replacement = '<a$1href=$2$3.$4$5 rel="tc-fancybox['.$post -> ID.']" title="'.$post->post_title.'"$6>';
+         $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'" title="'.$post->post_title.'"$6>';
          $content = preg_replace($pattern, $replacement, $content);
     }
     

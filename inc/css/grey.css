@@ -6372,14 +6372,21 @@ section {
   -------------------------------------------------- */
 
 @font-face {
-  font-family: 'tcicons';
-  src: url('fonts/fonts/tcicons.eot');
-  src: url('fonts/fonts/tcicons.eot?#iefix') format('embedded-opentype'), url('fonts/fonts/tcicons.woff') format('woff'), url('fonts/fonts/tcicons.ttf') format('truetype'), url('fonts/fonts/tcicons.svg#tcicons') format('svg');
+  font-family: 'genericons';
+  src: url('fonts/fonts/genericons-regular-webfont.eot');
+  src: url('fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/fonts/genericons-regular-webfont.woff') format('woff'), url('fonts/fonts/genericons-regular-webfont.ttf') format('truetype'), url('fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'entypo';
+  src: url('fonts/fonts/entypo.eot');
+  src: url('fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'), url('fonts/fonts/entypo.woff') format('woff'), url('fonts/fonts/entypo.ttf') format('truetype'), url('fonts/fonts/entypo.svg#genericonsregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 [data-icon]:before {
-  font-family: 'tcicons';
+  font-family: 'genericons';
   content: attr(data-icon);
   speak: none;
   font-weight: normal;
@@ -6389,7 +6396,7 @@ section {
   -webkit-font-smoothing: antialiased;
 }
 .icon-bubble:before {
-  font-family: 'tcicons';
+  font-family: 'genericons';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -6399,12 +6406,12 @@ section {
   -webkit-font-smoothing: antialiased;
 }
 .icon-bubble:before {
-  content: "\e000";
+  content: "\f300";
 }
 /*SOCIAL ICONS*/
 
 .social-block a:before {
-  font-family: 'tcicons';
+  font-family: 'genericons';
   speak: none;
   font-weight: normal;
   font-variant: normal;
@@ -6413,39 +6420,39 @@ section {
   -webkit-font-smoothing: antialiased;
 }
 .icon-google:before {
-  content: "\e018";
+  content: "\f206";
 }
 .icon-facebook:before {
-  content: "\e019";
+  content: "\f204";
 }
 .icon-twitter:before {
-  content: "\e01a";
+  content: "\f202";
 }
 .icon-feed:before {
-  content: "\e01b";
+  content: "\f413";
 }
 .icon-flux:before {
-  content: "\e01b";
+  content: "\f413";
 }
 .icon-github:before {
-  content: "\e01c";
+  content: "\f200";
 }
 .icon-dribbble:before {
-  content: "\e01d";
+  content: "\f201";
 }
 .icon-pinterest:before {
-  content: "\e01e";
+  content: "\f209";
 }
 .icon-youtube:before {
-  content: "\e01f";
+  content: "\f213";
 }
 .icon-linkedin:before {
-  content: "\e020";
+  content: "\f208";
 }
 /*ICONS FOR WIDGETS*/
 
 .widget h3:before {
-  font-family: 'tcicons';
+  font-family: 'genericons';
   color: #5a5a5a;
   speak: none;
   font-weight: normal;
@@ -6454,46 +6461,67 @@ section {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   padding-right: 5px;
-  font-size: 0.9em;
+  top: 8px;
+  font-size: 1.5em;
+  position: relative;
+  line-height: 0px;
 }
 .widget_social h3:before {
-  content: "\e022";
+  font-family: 'entypo';
+  top: 2px;
+  font-size: 2em;
+  content: "";
 }
 .widget_categories h3:before {
-  content: "\e00b";
+  font-family: 'entypo';
+  top: 2px;
+  font-size: 2em;
+  content: "📁";
 }
 .widget_archive h3:before {
-  content: "\e006";
+  font-family: 'entypo';
+  top: 2px;
+  font-size: 2em;
+  content: "📁";
 }
 .widget_tag_cloud h3:before {
-  content: "\e003";
+  content: "\f302";
 }
 .widget_recent_entries h3:before {
-  content: "\e007";
+  font-family: 'entypo';
+  top: 2px;
+  font-size: 2em;
+  content: "📣";
 }
 .widget_meta h3:before {
-  content: "\e004";
+  content: "\f442";
 }
 .widget_calendar h3:before {
-  content: "\e002";
+  content: "\f307";
 }
 .widget_pages h3:before {
-  content: "\e001";
+  font-family: 'entypo';
+  top: 2px;
+  font-size: 2em;
+  content: "🕪";
 }
 .widget_recent_comments h3:before {
-  content: "\e00d";
+  content: "\f108";
 }
 .widget_search h3:before {
-  content: "\e005";
+  content: "\f400";
 }
 .widget_nav_menu h3:before {
-  content: "\e00c";
+  content: "\f419";
+  top: 4px;
+  font-size: 1em;
+  padding-right: 10px;
 }
 /* Post Formats Icons */
 
 .format-icon:before {
-  font-family: 'tcicons';
-  font-size: 30px;
+  font-family: 'entypo';
+  font-size: 2.5em;
   speak: none;
   font-weight: normal;
   font-variant: normal;
@@ -6504,11 +6532,11 @@ section {
   font-size: 1.2em;
   opacity: 0.2;
   position: relative;
-  top: 3px;
+  top: 8px;
 }
 .entry-summary.format-icon:before,
 .entry-content.format-icon:before {
-  font-family: 'tcicons';
+  font-family: 'entypo';
   speak: none;
   font-weight: normal;
   font-variant: normal;
@@ -6516,54 +6544,71 @@ section {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   padding-right: 13px;
-  font-size: 3.5em;
+  font-size: 6.0em;
   opacity: 0.3;
   position: relative;
-  top: -8px;
+  top: -54px;
   display: block;
   float: left;
 }
 article.page .format-icon:before {
-  content: "\e023";
+  content: "📄";
+  font-size: 3em;
+  line-height: 0px;
+  position: relative;
+  top: 14px;
 }
 article.format-standard .format-icon:before {
-  content: "\e017";
+  font-family: 'genericons';
+  content: "\f411";
+  font-size: 1.5em;
+  top: 12px;
+  line-height: 25px;
 }
 article.format-gallery .format-icon:before {
-  content: "\e00f";
+  content: "🌄";
+  font-size: 3em;
 }
 article.format-aside .format-icon:before {
-  content: "\e00e";
+  content: "🔄";
 }
 article.format-chat .format-icon:before {
-  content: "\e016";
+  font-family: 'genericons';
+  content: "\f108";
 }
 article.format-audio .format-icon:before {
-  content: "\e014";
+  font-family: 'genericons';
+  content: "\f109";
+  font-size: 1.5em;
+  top: 10px;
 }
 article.format-video .format-icon:before {
-  content: "\e015";
+  content: "🎬";
+  font-size: 3em;
+  top: 9px;
 }
 article.format-status .format-icon:before {
-  content: "\e013";
+  content: "⚡";
 }
 article.format-quote .format-icon:before,
 article.error404 .format-icon:before {
-  content: "\e012";
+  content: "❞";
 }
 article.format-image .format-icon:before {
-  content: "\e011";
+  content: "🌄";
+  font-size: 3em;
 }
 article.format-link .format-icon:before {
-  content: "\e010";
+  content: "🔗";
+  top: -46px;
 }
 /*--------OTHER ICONS-----------*/
 
 /*comments*/
 
 h3#reply-title:before {
-  font-family: 'tcicons';
-  content: "\e008";
+  font-family: 'entypo';
+  content: "✒";
   speak: none;
   font-weight: normal;
   font-variant: normal;
@@ -6571,11 +6616,11 @@ h3#reply-title:before {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   padding-right: 5px;
-  font-size: 0.9em;
+  font-size: 2em;
 }
 h2.comments-title:before {
-  font-family: 'tcicons';
-  content: "\e00d";
+  font-family: 'genericons';
+  content: "\f108";
   speak: none;
   font-weight: normal;
   font-variant: normal;
@@ -6933,6 +6978,10 @@ h2.site-description {
   /* max-height: 100%; */
 
 }
+.carousel-image.slider-full img {
+  width: auto;
+  max-width: none;
+}
 .carousel-caption {
   background-color: transparent\9;
   /* IE8 and below */
@@ -7149,30 +7198,29 @@ article.format-link a {
   text-decoration: none;
 }
 article.format-link a:after {
-  font-family: 'tcicons';
   speak: none;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  line-height: 1;
+  line-height: 0px;
   -webkit-font-smoothing: antialiased;
   padding-left: 6px;
   font-size: 1.5em;
   opacity: 0.3;
   position: relative;
-  top: 8px;
-  content: "\e009";
+  content: "\00bb";
+  top: 6px;
 }
 article.format-status .entry-content {
   padding: 24px 24px 0;
   padding: 1.714285714rem;
   background: #a3eda3;
-  border-left: 18px solid #62C462;
+  border-left: 18px solid #62c462;
 }
 article.format-gallery p.format-icon,
 article.format-image p.format-icon {
   text-align: center;
-  font-size: 8em;
+  font-size: 6em;
 }
 /* Comments */
 
@@ -7187,21 +7235,22 @@ article.format-image p.format-icon {
   bottom: 10px;
 }
 .comments-link .fs1 {
-  font-size: 29px;
+  font-size: 40px;
   /*float: left;*/
   z-index: 1;
   color: red;
-  width: 31px;
+  width: 34px;
+  opacity: 0.8;
 }
 .comments-link .inner {
   color: white;
   display: inline-block;
   font-size: 11px;
   font-weight: bold;
-  height: 33px;
+  height: 51px;
   line-height: 26px;
   position: relative;
-  left: -30px;
+  left: -35px;
   text-align: center;
   text-shadow: 0 1px 0 #141313;
   vertical-align: middle;
@@ -7492,6 +7541,11 @@ tr:nth-child(even) td,
 tr:nth-child(even) th {
   background-color: white;
 }
+/*tr th:first-child,
+tr td:first-child {
+  border-left-style: solid;
+  border-left-width: 1px;
+}*/
 
 #wp-calendar tfoot td {
   text-align: left;

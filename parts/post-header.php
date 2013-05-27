@@ -22,7 +22,7 @@
 					printf('<h1 class="entry-title format-icon">%1$s %2$s</h1>',
 					get_the_title(),
 					'<span class="comments-link">
-		  				<a href="'.get_permalink().'#comments" title="'.__('Comment(s) on ','customizr').get_the_title().'"><span '.$style.' class="fs1" aria-hidden="true" data-icon="&#xe000;"></span><span class="inner">'.get_comments_number().'</span></a>
+		  				<a href="'.get_permalink().'#comments" title="'.__('Comment(s) on ','customizr').get_the_title().'"><span '.$style.' class="fs1 icon-bubble"></span><span class="inner">'.get_comments_number().'</span></a>
 		  			</span>'
 		  			);
 		  		}
