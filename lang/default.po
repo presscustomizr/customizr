@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customizr 1.1.5\n"
-"POT-Creation-Date: 2013-05-22 19:56+0100\n"
-"PO-Revision-Date: 2013-05-22 19:56+0100\n"
+"POT-Creation-Date: 2013-05-25 21:02+0100\n"
+"PO-Revision-Date: 2013-05-25 21:02+0100\n"
 "Last-Translator: Nicolas G. <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -45,19 +45,19 @@ msgstr ""
 msgid "Back to top"
 msgstr ""
 
-#: ../functions.php:186
+#: ../functions.php:190
 msgid "Main Menu"
 msgstr ""
 
-#: ../functions.php:263 ../functions.php:264
+#: ../functions.php:267 ../functions.php:268
 msgid "Upgrade WP"
 msgstr ""
 
-#: ../functions.php:285
+#: ../functions.php:289
 msgid "This theme requires WordPress 3.4+"
 msgstr ""
 
-#: ../functions.php:288 ../functions.php:289
+#: ../functions.php:292 ../functions.php:293
 msgid "Upgrade Wordpress Now"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Page %s"
 msgstr ""
 
-#: ../header.php:94
+#: ../header.php:97
 msgid "Back Home"
 msgstr ""
 
@@ -204,7 +204,7 @@ msgstr ""
 msgid "linkedin"
 msgstr ""
 
-#: ../inc/tc_handy_helpers.php:698 ../inc/admin/tc_customize.php:555
+#: ../inc/tc_handy_helpers.php:698 ../inc/admin/tc_customize.php:553
 msgid "Social links"
 msgstr ""
 
@@ -551,75 +551,107 @@ msgstr ""
 msgid "Set up comments options"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:544
+#: ../inc/admin/tc_customize.php:543
 msgid "Enable comments on pages"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:547
+#: ../inc/admin/tc_customize.php:546
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:557
+#: ../inc/admin/tc_customize.php:555
 msgid "Set up your social links"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:562
+#: ../inc/admin/tc_customize.php:560
 msgid "header"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:563
+#: ../inc/admin/tc_customize.php:561
 msgid "right-sidebar"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:564
+#: ../inc/admin/tc_customize.php:562
 msgid "left-sidebar"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:565
+#: ../inc/admin/tc_customize.php:563
 msgid "footer"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:579
+#: ../inc/admin/tc_customize.php:577
 #, php-format
 msgid "Social links in %s"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:589
+#: ../inc/admin/tc_customize.php:587
 msgid "RSS feed (default is the wordpress feed)"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:590
+#: ../inc/admin/tc_customize.php:588
 msgid "Twitter profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:591
+#: ../inc/admin/tc_customize.php:589
 msgid "Facebook profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:592
+#: ../inc/admin/tc_customize.php:590
 msgid "Google+ profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:593
+#: ../inc/admin/tc_customize.php:591
 msgid "Youtube profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:594
+#: ../inc/admin/tc_customize.php:592
 msgid "Pinterest profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:595
+#: ../inc/admin/tc_customize.php:593
 msgid "Github profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:596
+#: ../inc/admin/tc_customize.php:594
 msgid "Dribbble profile url"
 msgstr ""
 
-#: ../inc/admin/tc_customize.php:597
+#: ../inc/admin/tc_customize.php:595
 msgid "LinkedIn profile url"
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:619
+msgid "Images"
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:621 ../inc/admin/tc_customize.php:631
+msgid "Enable/disable lightbox effect on images"
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:634
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:640
+msgid "Custom CSS"
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:642
+msgid "Add your own CSS"
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:654
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr ""
+
+#: ../inc/admin/tc_customize.php:657
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates."
 msgstr ""
 
 #: ../inc/admin/tc_customizr_control_class.php:87
@@ -861,17 +893,17 @@ msgid ""
 "different keywords."
 msgstr ""
 
-#: ../parts/content-page.php:14
+#: ../parts/content-page.php:15
 #, fuzzy
 msgid "Edit page"
 msgstr "Lier à la page:"
 
-#: ../parts/content-page.php:20 ../parts/content.php:40
+#: ../parts/content-page.php:23 ../parts/content.php:40
 #: ../parts/content.php:48
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: ../parts/content-page.php:22 ../parts/content.php:41
+#: ../parts/content-page.php:25 ../parts/content.php:41
 #: ../parts/content.php:49
 msgid "Pages:"
 msgstr ""

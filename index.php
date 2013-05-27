@@ -41,7 +41,7 @@ get_header();
 				                    get_template_part( 'article', 'content');         
 				                    
 				                   	//if we display a page, check if comments are enabled in options. If it is a post, no conditions.
-				                    if ((is_page() && $tc_theme_options['tc_page_comments'] == 1) || is_single()) {
+				                    if ((is_page() && esc_attr($tc_theme_options['tc_page_comments']) == 1) || is_single()) {
 				                    	comments_template( '', true );
 				                    }
 

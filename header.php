@@ -58,6 +58,9 @@
        */
       wp_head();
      global $tc_theme_options ;
+
+     //write the custom css if any
+     tc_write_custom_css();
      
     ?>
   <!-- Favicon -->
@@ -133,4 +136,4 @@
 	</header>
 <?php  tc_get_slider(); ?>
 <div id="main-wrapper" class="container">
-
+<?php tc_write_custom_css(); ?>

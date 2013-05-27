@@ -387,15 +387,15 @@ function tc_customize_register( $wp_customize ) {
 				
 				//widget text
 				foreach ($front_widget_areas as $key => $area) {
-					$wp_customize->add_setting( 'tc_theme_options[featured_text_'.$key.']', array(
+					$wp_customize->add_setting( 'tc_theme_options[tc_featured_text_'.$key.']', array(
 						//'default'		 	=> 
 						'capability'     	=> 'manage_options',
 						'type'           	=> 'option',
 						'sanitize_callback' => 'tc_sanitize_textarea',
 					) );
 
-					$wp_customize->add_control( new TC_Controls($wp_customize, 'tc_theme_options[featured_text_'.$key.']', array(
-						'settings' 		=> 'tc_theme_options[featured_text_'.$key.']',
+					$wp_customize->add_control( new TC_Controls($wp_customize, 'tc_theme_options[tc_featured_text_'.$key.']', array(
+						'settings' 		=> 'tc_theme_options[tc_featured_text_'.$key.']',
 						'label'    		=> sprintf(__( 'Featured text %s (200 car. max)','customizr' ),$area),
 						'section'  		=> 'tc_frontpage_settings',
 						'tc'     		=> 'textarea',
@@ -432,7 +432,7 @@ function tc_customize_register( $wp_customize ) {
 
 		//Global sidebar layout
 		$wp_customize->add_setting( 'tc_theme_options[tc_sidebar_global_layout]', array(
-			'default'        => 'r',//Default sidebar layout is on the right
+			'default'        => 'l',//Default sidebar layout is on the left
 			'capability'     => 'manage_options',
 			'type'           => 'option',
 		) );
@@ -469,7 +469,7 @@ function tc_customize_register( $wp_customize ) {
 
 		//Post sidebar layout
 		$wp_customize->add_setting( 'tc_theme_options[tc_sidebar_post_layout]', array(
-			'default'        => 'r',//Default sidebar layout is on the right
+			'default'        => 'l',//Default sidebar layout is on the left
 			'capability'     => 'manage_options',
 			'type'           => 'option',
 		) );
@@ -507,7 +507,7 @@ function tc_customize_register( $wp_customize ) {
 
 		//Page sidebar layout
 		$wp_customize->add_setting( 'tc_theme_options[tc_sidebar_page_layout]', array(
-			'default'        => 'r',//Default sidebar layout is on the right
+			'default'        => 'l',//Default sidebar layout is on the left
 			'capability'     => 'manage_options',
 			'type'           => 'option',
 		) );
@@ -533,7 +533,6 @@ function tc_customize_register( $wp_customize ) {
 		'description'    => __( 'Set up comments options','customizr' ),
 	) );
 
-		//force default layout on every posts
 		$wp_customize->add_setting( 'tc_theme_options[tc_page_comments]', array(
 			'default'        => 0,
 			'capability'     => 'manage_options',
@@ -545,7 +544,6 @@ function tc_customize_register( $wp_customize ) {
 			'section'  	=> 'tc_page_comments',
 			'tc'     	=> 'checkbox',
 			'notice'	=> __('This option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen.','customizr'),
-			'priority'       => 3,
 		) ));
 
 
@@ -614,6 +612,51 @@ function tc_customize_register( $wp_customize ) {
 				'tc'     		=> 'url',
 			)));
 		}
+
+
+		// IMAGE SETTINGS //
+		$wp_customize->add_section( 'tc_image_settings', array(
+			'title'          => __( 'Images','customizr' ),
+			'priority'       => 210,
+			'description'    => __( 'Enable/disable lightbox effect on images','customizr' ),
+		) );
+
+			$wp_customize->add_setting( 'tc_theme_options[tc_fancybox]', array(
+				'default'        => 1,
+				'capability'     => 'manage_options',
+				'type'           => 'option',
+			) );
+			$wp_customize->add_control( new TC_Controls($wp_customize, 'tc_theme_options[tc_fancybox]', array(
+				'settings' 	=> 'tc_theme_options[tc_fancybox]',
+				'label'    	=> __( 'Enable/disable lightbox effect on images' ),
+				'section'  	=> 'tc_image_settings',
+				'tc'     	=> 'checkbox',
+				'notice'	=> __('If enabled, this option activate a popin window whith a zoom effect when an image is clicked. This will not apply to image gallery.','customizr'),
+			) ));
+
+
+		// CUSTOM CSS //
+		$wp_customize->add_section( 'tc_custom_css', array(
+			'title'          => __( 'Custom CSS','customizr' ),
+			'priority'       => 220,
+			'description'    => __( 'Add your own CSS','customizr' ),
+		) );
+
+			$wp_customize->add_setting( 'tc_theme_options[tc_custom_css]', array(
+				//'default'		 	=> 
+				'capability'     	=> 'manage_options',
+				'type'           	=> 'option',
+				'sanitize_callback' => 'tc_sanitize_textarea',
+			) );
+
+			$wp_customize->add_control( new TC_Controls($wp_customize, 'tc_theme_options[tc_custom_css]', array(
+				'settings' 		=> 'tc_theme_options[tc_custom_css]',
+				'label'    		=> __( 'Add your custom css here and design live! (for advanced users)','customizr' ),
+				'section'  		=> 'tc_custom_css',
+				'tc'     		=> 'textarea',
+				'notice'		=> __('Always use this field to add your custom css instead of editing directly the style.css file : it will not be deleted during theme updates.','customizr')
+			)));
+
 	}
 endif;
 

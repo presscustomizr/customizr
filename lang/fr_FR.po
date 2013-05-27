@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customizr 1.1.5\n"
-"POT-Creation-Date: 2013-05-22 19:57+0100\n"
-"PO-Revision-Date: 2013-05-22 20:01+0100\n"
+"POT-Creation-Date: 2013-05-25 20:58+0100\n"
+"PO-Revision-Date: 2013-05-25 21:01+0100\n"
 "Last-Translator: Nicolas G. <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -45,19 +45,19 @@ msgstr "Design par "
 msgid "Back to top"
 msgstr "Retour haut de page"
 
-#: ../functions.php:186
+#: ../functions.php:190
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: ../functions.php:263 ../functions.php:264
+#: ../functions.php:267 ../functions.php:268
 msgid "Upgrade WP"
 msgstr "Mise à jour de WordPress"
 
-#: ../functions.php:285
+#: ../functions.php:289
 msgid "This theme requires WordPress 3.4+"
 msgstr "Ce thème nécessite WordPress versions 3.4+"
 
-#: ../functions.php:288 ../functions.php:289
+#: ../functions.php:292 ../functions.php:293
 msgid "Upgrade Wordpress Now"
 msgstr "Mettre à jour WordPress"
 
@@ -66,7 +66,7 @@ msgstr "Mettre à jour WordPress"
 msgid "Page %s"
 msgstr "Page %s"
 
-#: ../header.php:94
+#: ../header.php:97
 msgid "Back Home"
 msgstr "Retour Accueil"
 
@@ -208,7 +208,7 @@ msgstr "dribbble"
 msgid "linkedin"
 msgstr "linkedin"
 
-#: ../inc/tc_handy_helpers.php:698 ../inc/admin/tc_customize.php:555
+#: ../inc/tc_handy_helpers.php:698 ../inc/admin/tc_customize.php:553
 msgid "Social links"
 msgstr "Liens sociaux"
 
@@ -562,11 +562,11 @@ msgstr "Commentaires"
 msgid "Set up comments options"
 msgstr "Choisir les options de commentaires"
 
-#: ../inc/admin/tc_customize.php:544
+#: ../inc/admin/tc_customize.php:543
 msgid "Enable comments on pages"
 msgstr "Autoriser les commentaires sur les pages"
 
-#: ../inc/admin/tc_customize.php:547
+#: ../inc/admin/tc_customize.php:546
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -575,66 +575,103 @@ msgstr ""
 "désactiver les commentaires page par page dans les options de modifications "
 "rapides de la liste des pages."
 
-#: ../inc/admin/tc_customize.php:557
+#: ../inc/admin/tc_customize.php:555
 msgid "Set up your social links"
 msgstr "Réglages des liens vers les réseaux sociaux"
 
-#: ../inc/admin/tc_customize.php:562
+#: ../inc/admin/tc_customize.php:560
 msgid "header"
 msgstr "le haut de page"
 
-#: ../inc/admin/tc_customize.php:563
+#: ../inc/admin/tc_customize.php:561
 msgid "right-sidebar"
 msgstr "la barre latérale droite"
 
-#: ../inc/admin/tc_customize.php:564
+#: ../inc/admin/tc_customize.php:562
 msgid "left-sidebar"
 msgstr "la barre latérale gauche"
 
-#: ../inc/admin/tc_customize.php:565
+#: ../inc/admin/tc_customize.php:563
 msgid "footer"
 msgstr "le pied de page"
 
-#: ../inc/admin/tc_customize.php:579
+#: ../inc/admin/tc_customize.php:577
 #, php-format
 msgid "Social links in %s"
 msgstr "Liens sociaux dans %s"
 
-#: ../inc/admin/tc_customize.php:589
+#: ../inc/admin/tc_customize.php:587
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "Flux RSS (Par défaut, flux WordPress du site)"
 
-#: ../inc/admin/tc_customize.php:590
+#: ../inc/admin/tc_customize.php:588
 msgid "Twitter profile url"
 msgstr "Url du compte Twitter"
 
-#: ../inc/admin/tc_customize.php:591
+#: ../inc/admin/tc_customize.php:589
 msgid "Facebook profile url"
 msgstr "Url du compte Facebook"
 
-#: ../inc/admin/tc_customize.php:592
+#: ../inc/admin/tc_customize.php:590
 msgid "Google+ profile url"
 msgstr "Url du compte Google+"
 
-#: ../inc/admin/tc_customize.php:593
+#: ../inc/admin/tc_customize.php:591
 msgid "Youtube profile url"
 msgstr "Url du compte Youtube"
 
-#: ../inc/admin/tc_customize.php:594
+#: ../inc/admin/tc_customize.php:592
 msgid "Pinterest profile url"
 msgstr "Url du compte Pinterest"
 
-#: ../inc/admin/tc_customize.php:595
+#: ../inc/admin/tc_customize.php:593
 msgid "Github profile url"
 msgstr "Url du compte Github"
 
-#: ../inc/admin/tc_customize.php:596
+#: ../inc/admin/tc_customize.php:594
 msgid "Dribbble profile url"
 msgstr "Url du compte Dribbble"
 
-#: ../inc/admin/tc_customize.php:597
+#: ../inc/admin/tc_customize.php:595
 msgid "LinkedIn profile url"
 msgstr "Url du compte LinkedIn"
+
+#: ../inc/admin/tc_customize.php:619
+msgid "Images"
+msgstr "Images"
+
+#: ../inc/admin/tc_customize.php:621 ../inc/admin/tc_customize.php:631
+msgid "Enable/disable lightbox effect on images"
+msgstr "Activer/desactiver l'effet lightbox sur les images"
+
+#: ../inc/admin/tc_customize.php:634
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"Si elle est activée, cette option affiche une fenêtre popin avec effet de "
+"zoom lorsque l'image est cliquée. Cela ne s'applique pas aux galeries."
+
+#: ../inc/admin/tc_customize.php:640
+msgid "Custom CSS"
+msgstr "Custom CSS"
+
+#: ../inc/admin/tc_customize.php:642
+msgid "Add your own CSS"
+msgstr "Ajoutez votre CSS"
+
+#: ../inc/admin/tc_customize.php:654
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr "Ajoutez votre CSS ici pour un design live! (utilisateurs avancés)"
+
+#: ../inc/admin/tc_customize.php:657
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates."
+msgstr ""
+"Utilisez toujours ce champ pour ajouter votre CSS plutôt que d'éditer "
+"directement le fichier style.css : votre css sera ainsi conservé pendant les "
+"mises à jour."
 
 #: ../inc/admin/tc_customizr_control_class.php:87
 #: ../inc/admin/tc_meta_boxes.php:252
@@ -900,16 +937,16 @@ msgstr ""
 "La recherche n'a donné aucuns résultats...Vous pourriez essayer avec des "
 "mots clés différents?"
 
-#: ../parts/content-page.php:14
+#: ../parts/content-page.php:15
 msgid "Edit page"
 msgstr "Modifier cette page"
 
-#: ../parts/content-page.php:20 ../parts/content.php:40
+#: ../parts/content-page.php:23 ../parts/content.php:40
 #: ../parts/content.php:48
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Poursuivre la lecture <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/content-page.php:22 ../parts/content.php:41
+#: ../parts/content-page.php:25 ../parts/content.php:41
 #: ../parts/content.php:49
 msgid "Pages:"
 msgstr "Pages:"

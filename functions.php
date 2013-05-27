@@ -10,7 +10,7 @@
  * @link    http://themesandco.com
  */
 /* CUSTOMIZR_VER is the Version */
-if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.6' ); }
+if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.7' ); }
 
 
 
@@ -100,10 +100,10 @@ if(!function_exists('tc_get_default_options')) :
           'tc_featured_text_two'          => null,
           'tc_featured_text_three'        => null,
           //layout options
-          'tc_sidebar_global_layout'      => 'r',
+          'tc_sidebar_global_layout'      => 'l',
           'tc_sidebar_force_layout'       =>  0,
-          'tc_sidebar_post_layout'        => 'r',
-          'tc_sidebar_page_layout'        => 'r',
+          'tc_sidebar_post_layout'        => 'l',
+          'tc_sidebar_page_layout'        => 'l',
           'tc_breadcrumb'                 => 1,
           //comments
           'tc_page_comments'              =>  0,
@@ -121,6 +121,10 @@ if(!function_exists('tc_get_default_options')) :
           'tc_github'                     => null,
           'tc_dribbble'                   => null,
           'tc_linkedin'                   => null,
+           //images
+          'tc_fancybox'                   =>  1,
+          //custom CSS
+          'tc_custom_css'                 => null,
       );
 
       $defaults = apply_filters( 'tc_default_theme_options', $defaults );
@@ -345,13 +349,68 @@ add_action('wp_enqueue_scripts', 'tc_scripts');
       //tc scripts
       wp_enqueue_script('tc-scripts',TC_BASE_URL . 'inc/js/tc-scripts.js',array('jquery'),null,true);
 
-      //tc scripts
+      //holder image
       wp_enqueue_script('holder',TC_BASE_URL . 'inc/js/holder.js',array('jquery'),null,true);
 
       //modernizr (must be loaded in wp_head())
       wp_enqueue_script('modernizr',TC_BASE_URL . 'inc/js/modernizr.js',array('jquery'),null,false);
 
+      //fancybox script and style
+      $tc_fancybox = esc_attr(tc_get_options('tc_fancybox'));
+      if ($tc_fancybox == 1) {
+        wp_enqueue_script('fancyboxjs',TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox.js',array('jquery'),null,true);
+        wp_enqueue_script('activate-fancybox',TC_BASE_URL . 'inc/js/tc-fancybox.js',array('fancyboxjs'),null,true);
+        wp_enqueue_style( 'fancyboxcss', TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox.css');
+      }
    }
 endif;
+
+
+
+
+if(!function_exists('tc_write_custom_css')) :
+/**
+ * Get the sanitized custom CSS from options array and echoes the stylesheet
+ * 
+ * @package Customizr
+ * @since Customizr 2.0.7
+ */
+
+function tc_write_custom_css() {
+    global $tc_theme_options ;
+
+    if(isset($tc_theme_options['tc_custom_css']) && !empty($tc_theme_options['tc_custom_css'])) {
+
+      $tc_custom_css    = esc_textarea( $tc_theme_options['tc_custom_css'] );
+      $tc_custom_style  = '<style type="text/css">'.$tc_custom_css.'</style>';
+
+      echo $tc_custom_style;
+    }
+  }
+endif;
+
+
+if(!function_exists('tc_fancybox')) :
+/**
+ * Add an optional rel="tc-fancybox[]" attribute to all images embedded in a post.
+ * @package Customizr
+ * @since Customizr 2.0.7
+ *
+ */
+add_filter('the_content', 'tc_fancybox');
+function tc_fancybox($content) {
+    $tc_fancybox = esc_attr(tc_get_options('tc_fancybox'));
+
+    if ($tc_fancybox == 1) {
+         global $post;
+         $pattern ="/<a(.*?)href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")(.*?)>/i";
+         $replacement = '<a$1href=$2$3.$4$5 rel="tc-fancybox['.$post -> ID.']" title="'.$post->post_title.'"$6>';
+         $content = preg_replace($pattern, $replacement, $content);
+    }
+    
+    return $content;
+}
+endif;
+
 
 /* Your smart functions here ! */

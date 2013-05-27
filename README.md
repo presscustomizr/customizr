@@ -1,7 +1,9 @@
 ![Customizr - Free Wordpress Theme](/screenshot.png)  
 
-*A fully responsive WordPress theme, easy to customize and built with HTML5 & CSS3 upon the Twitter Bootstrap framework. The clean design can be used for any type of website : corporate, portfolio, business, blog, etc. Choose a skin, upload your logo, set up your social network profiles and you are done!*  
-*It also includes a handy responsive slider generator (with call to action text and button) that can be embedded in any pages or posts. The theme supports five widgetized areas (two in the sidebars,  three in the footer), up to three columns, nine post formats with special styles. It also comes with seven elegant skins and three handy featured page blocks for the front page.*
+*Customize your website live from the admin customizer screen : choose a color skin (among seven elegant skins), upload your logo, set up your social network profiles and you are done!*
+*The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. It supports five widgetized areas (two in the sidebars, three in the footer), up to three columns, nine post formats with special styles, and comes with seven elegant skins and three handy featured page blocks for the front page.*
+*Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework.*
+
 
 # Installation
 1. Upload the `customizr` folder to the `/wp-content/themes/` directory
@@ -108,6 +110,13 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 2.0.7 =
+* fixed : custom featured text (for featured pages) on front page was not updated when updated from customizer screen
+* fixed : title of page was displayed when selected as static page for front page
+* fixed : border-width of the status post-type box
+* added : custom css field in customizer option screen
+* added : lightbox checkbox option in customizer option screen
+
 = 2.0.6 =
 * added : new customizer option to enable/disable comments in page. Option is tested in index.php before rendering comment_templates for pages
 * fixed : in the stylesheets, the right border of tables was unnecessary

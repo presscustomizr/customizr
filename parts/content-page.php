@@ -8,14 +8,17 @@
 ?>
 
 <header>
-     <?php 
-     	printf('<h1 class="entry-title format-icon">%1$s %2$s</h1>',
-			get_the_title(),
-			(is_user_logged_in()) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page', 'customizr' ).'">'.__( 'Edit page', 'customizr' ).'</a></span>' : ''
-		); 
-	?>
+     <?php if(!is_front_page()) : ?>
+	     <?php 
+	     	printf('<h1 class="entry-title format-icon">%1$s %2$s</h1>',
+				get_the_title(),
+				(is_user_logged_in()) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page', 'customizr' ).'">'.__( 'Edit page', 'customizr' ).'</a></span>' : ''
+			); 
+		?>
+		<hr class="featurette-divider">
+	 <?php endif; ?>
 </header>
-<hr class="featurette-divider">
+
 <div class="entry-content">
 	<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'customizr' ) ); ?>
 </div>

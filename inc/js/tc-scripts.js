@@ -47,7 +47,6 @@ jQuery(document).ready(function($) {
         $(this).removeClass("on");
       });
     })
-    
 
 }(window.jQuery);
 
