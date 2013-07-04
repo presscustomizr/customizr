@@ -10,19 +10,19 @@
 
 ( function( $ ) {
 	// Site title and description.
-	wp.customize( 'blogname', function( value ) {
+	wp.customize( 'blogname' , function( value ) {
 		value.bind( function( to ) {
 			$( 'a.site-title' ).html( to );
 		} );
 	} );
-	wp.customize( 'blogdescription', function( value ) {
+	wp.customize( 'blogdescription' , function( value ) {
 		value.bind( function( to ) {
 			$( 'h2.site-description' ).html( to );
 		} );
 	} );
 	
 	// Hook into background color change and adjust body class value as needed.
-	wp.customize( 'background_color', function( value ) {
+	wp.customize( 'background_color' , function( value ) {
 		value.bind( function( to ) {
 			if ( '#ffffff' == to || '#fff' == to )
 				$( 'body' ).addClass( 'custom-background-white' );

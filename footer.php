@@ -1,37 +1,26 @@
 <?php
-/**
+ /**
  * The template for displaying the footer.
  *
- * Contains footer content and the closing of the
- * #main-wrapper element.
  *
  * @package Customizr
- * @since Customizr 1.0
+ * @since Customizr 3.0
  */
 ?>
- </div><!--/#main-wrapper"-->
- 	<!-- FOOTER -->
-      <footer id="footer">
-		    <?php get_sidebar('footer'); ?>
-		 <div class="colophon">
-		 	<div class="container">
-		 		<div class="row-fluid">
-				     <div class="span4 social-block pull-left"><?php echo tc_get_social('tc_social_in_footer'); ?></div>
-			        <?php
-			        printf( '<div class="span4 credits"><p> &middot; &copy; %1$s <a href="%2$s" title="%3$s" rel="bookmark">%3$s</a> &middot; '.__('Designed by ','customizr').'<a href="http://www.themesandco.com" title="Themes WordPress">Themes &amp; Co</a> &middot;</p></div>',
-							    esc_attr( date('Y') ),
-							    esc_url( home_url() ),
-							    esc_attr(get_bloginfo()),
-							    esc_html( get_the_date() )
-							  );
-			        //printf($credits);
-			        ?>
-			        <div class="span4 backtop"><p class="pull-right"><a href="#"><?php _e('Back to top','customizr') ?></a></p></div>
-      			</div>
-      		</div>
-      	</div>
-      </footer>
+		 </div><!--/#main-wrapper"-->
 
-<?php wp_footer(); ?>
-</body>
+		 <!-- FOOTER -->
+		<footer id="footer">
+
+		 	<?php 
+				do_action( '__sidebar' , 'footer' );
+
+		 		do_action( '__footer' );//display template, you can hook here
+		 	?>
+		 </footer>
+
+		<?php wp_footer(); ?>
+
+	</body>
+
 </html>

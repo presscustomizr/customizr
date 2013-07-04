@@ -1,8 +1,6 @@
 ![Customizr - Free Wordpress Theme](/screenshot.png)  
 
-*Customize your website live from the admin customizer screen : choose a color skin (among seven elegant skins), upload your logo, set up your social network profiles and you are done!*
-*The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. It supports five widgetized areas (two in the sidebars, three in the footer), up to three columns, nine post formats with special styles, and comes with seven elegant skins and three handy featured page blocks for the front page.*
-*Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework.*
+*Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework.*
 
 
 # Installation
@@ -80,11 +78,21 @@ Posts with the link post format will link out to the first a tag in the post.
 
 
 # Notes for developers
-## Customizr loop 
-For the development of this theme, I created only one loop for all kind of content. It is located in index.php.
-I also made the choice to use template parts instead of using the template hierarchy.
-1. The loop calls the main template : article-content.php
-2. The templates parts are then called in article-content.php, depending on the post type or context.
+## Code logic
+The theme is built on a classes framework. The classes are identified by their group and name like this : class-[group]-[name].php.
+
+The function tc__( $group, $classname), where the group parameter is required :
+1) scans the theme folder to find the appropriate group / class 
+2) and then instanciates the class(es) only once through a singleton factory.
+
+A class typically includes a constructor which is mainly used to add the methods to WP actions and filters. 
+Actions are used to render HTML or execute some code in predefined WP action, while filters are used to get values.
+
+For simplification purposes, the theme uses few WP templates : index.php, header.php, footer.php, comments.php, sidebar(s).php. 
+Those templates only includes some structural HTML markup, the rest is rendered with the actions defined in the classes of the parts/ folder.
+
+Customizr uses one single loop for all kind of content. It is located in class-main-loop.php.
+
 
 ## Translation
 The themes is ready for translation and already translated in french. Translation files are in /lang.
@@ -101,20 +109,95 @@ The exceptions to this license are as follows:
 * The script modernizr.js is dual licensed under the BSD and MIT licenses
 * The script jquery.iphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
 * The script jquery.fancybox-1.3.4.js is dual licensed under the MIT and GPL licenses
-* Icon Set:	IcoMoon - Free -- http://keyamoon.com/icomoon/ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
-* Icon Set:	Broccolidry -- http://dribbble.com/shots/587469-Free-16px-Broccolidryiconsaniconsetitisfullof-icons License: Aribitrary -- http://licence.visualidiot.com/
-* Icon Set:	Iconic -- http://somerandomdude.com/work/iconic/ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/us/
+* Icon Set:	Entypo is licensed under SIL Open-Font License
+* The image phare.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:Ca_1941_DAF_%27Rijdende_regenjas%27_pic7.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+* The image chevrolet.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:%2755_Chevrolet_ornament.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+* The image ampoules.jpg is a free public picture from Wikimedia, copyright 2010 Medvedev (http://commons.wikimedia.org/wiki/File:E24_E14_E10.jpg) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 
-
-
-# Image credits
-The image architecture.jpg is free for personal and commercial use. credits : Anita Berghoef, www.anitaberghoef.nl
-The image columns.jpg is free for personal and commercial use. credits : Miguel Saavedra
-The image laverie.jpg is free for personal and commercial use. credits : Philip MacKenzie, http://www.phillmackenzie.co.uk
 
 
 
 # Changelog
+= 3.0.1 =
+* fixed : "header already sent" error fixed (space before php opening markup in an admin class) was generating an error on log out  
+
+= 3.0 =
+* changed : global code structure has changed. Classes are instanciated by a singleton factory, html is rendered with actions, values are called through filters
+* fixed : favicon rendering, $__options was not defined in head
+* fixed : sidebars reordering on responsive display, tc_script.js file
+
+
+= 2.1.8 =
+* changed : activation options are disable for posts_per_page and show_on_front
+* changed : redirect to customizr screen on first theme activation only
+
+
+= 2.1.7 =
+* fixed : home page slider was checking a $slider_active variable not correctly defined
+* fixed : slider name for page and post was only ajax saved. Now also regular save on post update.
+
+
+= 2.1.6 =
+* improved : Menu title padding
+* fixed : front office : page and post sliders could not be disable once created
+* removed : some unnecessary favicon settings
+* fixed : function wp_head() moved just before the closing <head> tag
+* added : filter on wp_filter function
+* added : russion translation, thanks to Evgeny Sudakov!
+* improved : thumbnail and content layout for posts lists
+* fixed : ajax saving was not working properly for page/page slider, a switch case was not breaked.
+
+
+
+= 2.1.5 =
+* fixed 	: When deleted from a slider, the first slide was not cleared out from option array
+* added 	: Titles in customizer sections
+* added 	: checkbox to enable/disable featured pages images
+* added 	: Optional colored top border in customizer options
+* added 	: new black skin
+* removed 	: text-rendering: optimizelegibility for hx, in conflict with icon fonts in chrome version 27.0.1453.94
+* improved 	: blockquote styling
+* fixed 	: in tc_script.js insertbefore() target is more precise
+* improved 	: font icons are now coded in CSS Value (Hex)
+* added 	: add_action hooks in the templates index and sidebars
+
+
+= 2.1.4 =
+* fixed : in tc_meta_boxes.php, line 766, a check on the existence of $slide object has been added
+* fixed : iframe content was dissapearing when reordering divs on resize. Now  handled properly in tc_scripts.js
+* fixed : breadcrumb menu was getting covered (not clickable) in pages. fixed in css with z-index.
+* fixed : thumbnails whith no-effect class are now having property min-height:initial => prevents stretching effect
+* fixed : revelead images of featured page were stretched when displayed with @media (max-width: 979px) query
+* fixed : better vertical alignment of the responsive menu
+* changed : color of slider arrows on hover
+* changed : text shadow of titles
+* changed : color and shadow of site description
+
+= 2.1.3 =
+* fixed : in tc_voila_slider, jump to next loop if attachment has been deleted
+* removed : title text in footer credit
+* fixed : image in full width slider are displayed with CSS properties max-width: 100%, like before v2.0.9
+
+= 2.1.2 =
+* fixed : new screenshot.png
+
+= 2.1.1 =
+* fixed : new set of images licensed under Creative Commons CC0 1.0 Universal Public Domain Dedication (GPL Compatible)
+
+
+= 2.1.0 =
+* fixed : slide was still showing up when 'add to a slider' button was unchecked and a slider selected
+* fixed : new set of images with compliant licenses
+
+
+= 2.0.9 =
+* replaced : jquery fancybox with a GPL compatible version
+* removed : icon set non GPL compatible
+* added : icon sets Genericons and Entypo GPL compatible
+* fixed : image in full width slider are now displayed with CSS properties height:100% et width: auto
+* added : function hooked on wp_head to render the custom CSS
+
+
 = 2.0.8 =
 * removed : minor issue, the function tc_write_custom_css() was written twice in header.php
 

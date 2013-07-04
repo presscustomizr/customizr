@@ -15,7 +15,7 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-;(function($) {
+;(function( $) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
 
 		selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
@@ -24,7 +24,7 @@
 
 		loadingTimer, loadingFrame = 1,
 
-		titleHeight = 0, titleStr = '', start_pos, final_pos, busy = false, fx = $.extend($('<div/>')[0], { prop: 0 }),
+		titleHeight = 0, titleStr = '' , start_pos, final_pos, busy = false, fx = $.extend( $( '<div/>' )[0], { prop: 0 }),
 
 		isIE6 = $.browser.msie && $.browser.version < 7 && !window.XMLHttpRequest,
 
@@ -72,30 +72,30 @@
 
 			_abort();
 
-			selectedOpts = $.extend({}, $.fn.fancybox.defaults, (typeof $(obj).data('fancybox') == 'undefined' ? selectedOpts : $(obj).data('fancybox')));
+			selectedOpts = $.extend({}, $.fn.fancybox.defaults, (typeof $(obj).data( 'fancybox' ) == 'undefined' ? selectedOpts : $(obj).data( 'fancybox' )));
 
 			ret = selectedOpts.onStart(selectedArray, selectedIndex, selectedOpts);
 
 			if (ret === false) {
 				busy = false;
 				return;
-			} else if (typeof ret == 'object') {
+			} else if (typeof ret == 'object' ) {
 				selectedOpts = $.extend(selectedOpts, ret);
 			}
 
-			title = selectedOpts.title || (obj.nodeName ? $(obj).attr('title') : obj.title) || '';
+			title = selectedOpts.title || (obj.nodeName ? $(obj).attr( 'title' ) : obj.title) || '';
 
 			if (obj.nodeName && !selectedOpts.orig) {
 				selectedOpts.orig = $(obj).children("img:first").length ? $(obj).children("img:first") : $(obj);
 			}
 
 			if (title === '' && selectedOpts.orig && selectedOpts.titleFromAlt) {
-				title = selectedOpts.orig.attr('alt');
+				title = selectedOpts.orig.attr( 'alt' );
 			}
 
-			href = selectedOpts.href || (obj.nodeName ? $(obj).attr('href') : obj.href) || null;
+			href = selectedOpts.href || (obj.nodeName ? $(obj).attr( 'href' ) : obj.href) || null;
 
-			if ((/^(?:javascript)/i).test(href) || href == '#') {
+			if ((/^(?:javascript)/i).test(href) || href == '#' ) {
 				href = null;
 			}
 
@@ -116,7 +116,7 @@
 				} else if (href.match(swfRegExp)) {
 					type = 'swf';
 
-				} else if ($(obj).hasClass("iframe")) {
+				} else if ( $(obj).hasClass("iframe")) {
 					type = 'iframe';
 
 				} else if (href.indexOf("#") === 0) {
@@ -132,7 +132,7 @@
 				return;
 			}
 
-			if (type == 'inline') {
+			if (type == 'inline' ) {
 				obj	= href.substr(href.indexOf("#"));
 				type = $(obj).length > 0 ? 'inline' : 'ajax';
 			}
@@ -142,7 +142,7 @@
 			selectedOpts.title = title;
 
 			if (selectedOpts.autoDimensions) {
-				if (selectedOpts.type == 'html' || selectedOpts.type == 'inline' || selectedOpts.type == 'ajax') {
+				if (selectedOpts.type == 'html' || selectedOpts.type == 'inline' || selectedOpts.type == 'ajax' ) {
 					selectedOpts.width = 'auto';
 					selectedOpts.height = 'auto';
 				} else {
@@ -161,9 +161,9 @@
 			selectedOpts.padding = parseInt(selectedOpts.padding, 10);
 			selectedOpts.margin = parseInt(selectedOpts.margin, 10);
 
-			tmp.css('padding', (selectedOpts.padding + selectedOpts.margin));
+			tmp.css( 'padding' , (selectedOpts.padding + selectedOpts.margin));
 
-			$('.fancybox-inline-tmp').unbind('fancybox-cancel').bind('fancybox-change', function() {
+			$( '.fancybox-inline-tmp' ).unbind( 'fancybox-cancel' ).bind( 'fancybox-change' , function() {
 				$(this).replaceWith(content.children());				
 			});
 
@@ -174,17 +174,17 @@
 				break;
 
 				case 'inline' :
-					if ( $(obj).parent().is('#fancybox-content') === true) {
+					if ( $(obj).parent().is( '#fancybox-content' ) === true) {
 						busy = false;
 						return;
 					}
 
-					$('<div class="fancybox-inline-tmp" />')
+					$( '<div class="fancybox-inline-tmp" />' )
 						.hide()
 						.insertBefore( $(obj) )
-						.bind('fancybox-cleanup', function() {
+						.bind( 'fancybox-cleanup' , function() {
 							$(this).replaceWith(content.children());
-						}).bind('fancybox-cancel', function() {
+						}).bind( 'fancybox-cancel' , function() {
 							$(this).replaceWith(tmp.children());
 						});
 
@@ -240,7 +240,7 @@
 
 					selectedOpts.ajax.win = selectedOpts.ajax.success;
 
-					ajaxLoader = $.ajax($.extend({}, selectedOpts.ajax, {
+					ajaxLoader = $.ajax( $.extend({}, selectedOpts.ajax, {
 						url	: href,
 						data : selectedOpts.ajax.data || {},
 						error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -257,7 +257,7 @@
 									if (ret === false) {
 										loading.hide();
 										return;
-									} else if (typeof ret == 'string' || typeof ret == 'object') {
+									} else if (typeof ret == 'string' || typeof ret == 'object' ) {
 										data = ret;
 									}
 								}
@@ -281,21 +281,21 @@
 				w = selectedOpts.width,
 				h = selectedOpts.height;
 
-			if (w.toString().indexOf('%') > -1) {
-				w = parseInt( ($(window).width() - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
+			if (w.toString().indexOf( '%' ) > -1) {
+				w = parseInt( ( $(window).width() - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
 
 			} else {
 				w = w == 'auto' ? 'auto' : w + 'px';	
 			}
 
-			if (h.toString().indexOf('%') > -1) {
-				h = parseInt( ($(window).height() - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
+			if (h.toString().indexOf( '%' ) > -1) {
+				h = parseInt( ( $(window).height() - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
 
 			} else {
 				h = h == 'auto' ? 'auto' : h + 'px';	
 			}
 
-			tmp.wrapInner('<div style="width:' + w + ';height:' + h + ';overflow: ' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + ';position:relative;"></div>');
+			tmp.wrapInner( '<div style="width:' + w + ';height:' + h + ';overflow: ' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden' )) + ';position:relative;"></div>' );
 
 			selectedOpts.width = tmp.width();
 			selectedOpts.height = tmp.height();
@@ -308,7 +308,7 @@
 			selectedOpts.height = imgPreloader.height;
 
 			$("<img />").attr({
-				'id' : 'fancybox-img',
+				'id' : 'fancybox-img' ,
 				'src' : imgPreloader.src,
 				'alt' : selectedOpts.title
 			}).appendTo( tmp );
@@ -322,7 +322,7 @@
 			loading.hide();
 
 			if (wrap.is(":visible") && false === currentOpts.onCleanup(currentArray, currentIndex, currentOpts)) {
-				$.event.trigger('fancybox-cancel');
+				$.event.trigger( 'fancybox-cancel' );
 
 				busy = false;
 				return;
@@ -333,10 +333,10 @@
 			$(content.add( overlay )).unbind();
 
 			$(window).unbind("resize.fb scroll.fb");
-			$(document).unbind('keydown.fb');
+			$(document).unbind( 'keydown.fb' );
 
-			if (wrap.is(":visible") && currentOpts.titlePosition !== 'outside') {
-				wrap.css('height', wrap.height());
+			if (wrap.is(":visible") && currentOpts.titlePosition !== 'outside' ) {
+				wrap.css( 'height' , wrap.height());
 			}
 
 			currentArray = selectedArray;
@@ -347,15 +347,15 @@
 				overlay.css({
 					'background-color' : currentOpts.overlayColor,
 					'opacity' : currentOpts.overlayOpacity,
-					'cursor' : currentOpts.hideOnOverlayClick ? 'pointer' : 'auto',
+					'cursor' : currentOpts.hideOnOverlayClick ? 'pointer' : 'auto' ,
 					'height' : $(document).height()
 				});
 
-				if (!overlay.is(':visible')) {
+				if (!overlay.is( ':visible' )) {
 					if (isIE6) {
-						$('select:not(#fancybox-tmp select)').filter(function() {
+						$( 'select:not(#fancybox-tmp select)' ).filter(function() {
 							return this.style.visibility !== 'hidden';
-						}).css({'visibility' : 'hidden'}).one('fancybox-cleanup', function() {
+						}).css({'visibility' : 'hidden'}).one( 'fancybox-cleanup' , function() {
 							this.style.visibility = 'inherit';
 						});
 					}
@@ -389,11 +389,11 @@
 						content.html( tmp.contents() ).fadeTo(currentOpts.changeFade, 1, _finish);
 					};
 
-					$.event.trigger('fancybox-change');
+					$.event.trigger( 'fancybox-change' );
 
 					content
 						.empty()
-						.removeAttr('filter')
+						.removeAttr( 'filter' )
 						.css({
 							'border-width' : currentOpts.padding,
 							'width'	: final_pos.width - currentOpts.padding * 2,
@@ -420,9 +420,9 @@
 
 			wrap.removeAttr("style");
 
-			content.css('border-width', currentOpts.padding);
+			content.css( 'border-width' , currentOpts.padding);
 
-			if (currentOpts.transitionIn == 'elastic') {
+			if (currentOpts.transitionIn == 'elastic' ) {
 				start_pos = _get_zoom_from();
 
 				content.html( tmp.contents() );
@@ -463,7 +463,7 @@
 
 		_format_title = function(title) {
 			if (title && title.length) {
-				if (currentOpts.titlePosition == 'float') {
+				if (currentOpts.titlePosition == 'float' ) {
 					return '<table id="fancybox-title-float-wrap" cellpadding="0" cellspacing="0"><tr><td id="fancybox-title-float-left"></td><td id="fancybox-title-float-main">' + title + '</td><td id="fancybox-title-float-right"></td></tr></table>';
 				}
 
@@ -479,7 +479,7 @@
 
 			title
 				.empty()
-				.removeAttr('style')
+				.removeAttr( 'style' )
 				.removeClass();
 
 			if (currentOpts.titleShow === false) {
@@ -489,13 +489,13 @@
 
 			titleStr = $.isFunction(currentOpts.titleFormat) ? currentOpts.titleFormat(titleStr, currentArray, currentIndex, currentOpts) : _format_title(titleStr);
 
-			if (!titleStr || titleStr === '') {
+			if (!titleStr || titleStr === '' ) {
 				title.hide();
 				return;
 			}
 
 			title
-				.addClass('fancybox-title-' + currentOpts.titlePosition)
+				.addClass( 'fancybox-title-' + currentOpts.titlePosition)
 				.html( titleStr )
 				.appendTo( 'body' )
 				.show();
@@ -528,7 +528,7 @@
 
 				case 'float':
 					title
-						.css('left', parseInt((title.width() - final_pos.width - 40)/ 2, 10) * -1)
+						.css( 'left' , parseInt((title.width() - final_pos.width - 40)/ 2, 10) * -1)
 						.appendTo( wrap );
 				break;
 
@@ -548,12 +548,12 @@
 
 		_set_navigation = function() {
 			if (currentOpts.enableEscapeButton || currentOpts.enableKeyboardNav) {
-				$(document).bind('keydown.fb', function(e) {
+				$(document).bind( 'keydown.fb' , function(e) {
 					if (e.keyCode == 27 && currentOpts.enableEscapeButton) {
 						e.preventDefault();
 						$.fancybox.close();
 
-					} else if ((e.keyCode == 37 || e.keyCode == 39) && currentOpts.enableKeyboardNav && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'SELECT') {
+					} else if ((e.keyCode == 37 || e.keyCode == 39) && currentOpts.enableKeyboardNav && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'SELECT' ) {
 						e.preventDefault();
 						$.fancybox[ e.keyCode == 37 ? 'prev' : 'next']();
 					}
@@ -577,15 +577,15 @@
 
 		_finish = function () {
 			if (!$.support.opacity) {
-				content.get(0).style.removeAttribute('filter');
-				wrap.get(0).style.removeAttribute('filter');
+				content.get(0).style.removeAttribute( 'filter' );
+				wrap.get(0).style.removeAttribute( 'filter' );
 			}
 
 			if (selectedOpts.autoDimensions) {
-				content.css('height', 'auto');
+				content.css( 'height' , 'auto' );
 			}
 
-			wrap.css('height', 'auto');
+			wrap.css( 'height' , 'auto' );
 
 			if (titleStr && titleStr.length) {
 				title.show();
@@ -598,11 +598,11 @@
 			_set_navigation();
 	
 			if (currentOpts.hideOnContentClick)	{
-				content.bind('click', $.fancybox.close);
+				content.bind( 'click' , $.fancybox.close);
 			}
 
 			if (currentOpts.hideOnOverlayClick)	{
-				overlay.bind('click', $.fancybox.close);
+				overlay.bind( 'click' , $.fancybox.close);
 			}
 
 			$(window).bind("resize.fb", $.fancybox.resize);
@@ -611,8 +611,8 @@
 				$(window).bind("scroll.fb", $.fancybox.center);
 			}
 
-			if (currentOpts.type == 'iframe') {
-				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" ' + ($.browser.msie ? 'allowtransparency="true""' : '') + ' scrolling="' + selectedOpts.scrolling + '" src="' + currentOpts.href + '"></iframe>').appendTo(content);
+			if (currentOpts.type == 'iframe' ) {
+				$( '<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" ' + ( $.browser.msie ? 'allowtransparency="true""' : '' ) + ' scrolling="' + selectedOpts.scrolling + '" src="' + currentOpts.href + '"></iframe>' ).appendTo(content);
 			}
 
 			wrap.show();
@@ -658,7 +658,7 @@
 				left : parseInt(start_pos.left + (final_pos.left - start_pos.left) * pos, 10)
 			};
 
-			if (typeof final_pos.opacity !== 'undefined') {
+			if (typeof final_pos.opacity !== 'undefined' ) {
 				dim.opacity = pos < 0.5 ? 0.5 : pos;
 			}
 
@@ -686,20 +686,20 @@
 				double_padding = currentOpts.padding * 2,
 				ratio;
 
-			if (currentOpts.width.toString().indexOf('%') > -1) {
+			if (currentOpts.width.toString().indexOf( '%' ) > -1) {
 				to.width = parseInt((view[0] * parseFloat(currentOpts.width)) / 100, 10);
 			} else {
 				to.width = currentOpts.width + double_padding;
 			}
 
-			if (currentOpts.height.toString().indexOf('%') > -1) {
+			if (currentOpts.height.toString().indexOf( '%' ) > -1) {
 				to.height = parseInt((view[1] * parseFloat(currentOpts.height)) / 100, 10);
 			} else {
 				to.height = currentOpts.height + double_padding;
 			}
 
 			if (resize && (to.width > view[0] || to.height > view[1])) {
-				if (selectedOpts.type == 'image' || selectedOpts.type == 'swf') {
+				if (selectedOpts.type == 'image' || selectedOpts.type == 'swf' ) {
 					ratio = (currentOpts.width ) / (currentOpts.height );
 
 					if ((to.width ) > view[0]) {
@@ -727,11 +727,11 @@
 		_get_obj_pos = function(obj) {
 			var pos = obj.offset();
 
-			pos.top += parseInt( obj.css('paddingTop'), 10 ) || 0;
-			pos.left += parseInt( obj.css('paddingLeft'), 10 ) || 0;
+			pos.top += parseInt( obj.css( 'paddingTop' ), 10 ) || 0;
+			pos.left += parseInt( obj.css( 'paddingLeft' ), 10 ) || 0;
 
-			pos.top += parseInt( obj.css('border-top-width'), 10 ) || 0;
-			pos.left += parseInt( obj.css('border-left-width'), 10 ) || 0;
+			pos.top += parseInt( obj.css( 'border-top-width' ), 10 ) || 0;
+			pos.left += parseInt( obj.css( 'border-left-width' ), 10 ) || 0;
 
 			pos.width = obj.width();
 			pos.height = obj.height();
@@ -770,12 +770,12 @@
 		},
 
 		_animate_loading = function() {
-			if (!loading.is(':visible')){
+			if (!loading.is( ':visible' )){
 				clearInterval(loadingTimer);
 				return;
 			}
 
-			$('div', loading).css('top', (loadingFrame * -40) + 'px');
+			$( 'div' , loading).css( 'top' , (loadingFrame * -40) + 'px' );
 
 			loadingFrame = (loadingFrame + 1) % 12;
 		};
@@ -790,9 +790,9 @@
 		}
 
 		$(this)
-			.data('fancybox', $.extend({}, options, ($.metadata ? $(this).metadata() : {})))
-			.unbind('click.fb')
-			.bind('click.fb', function(e) {
+			.data( 'fancybox' , $.extend({}, options, ( $.metadata ? $(this).metadata() : {})))
+			.unbind( 'click.fb' )
+			.bind( 'click.fb' , function(e) {
 				e.preventDefault();
 
 				if (busy) {
@@ -806,9 +806,9 @@
 				selectedArray = [];
 				selectedIndex = 0;
 
-				var rel = $(this).attr('rel') || '';
+				var rel = $(this).attr( 'rel' ) || '';
 
-				if (!rel || rel == '' || rel === 'nofollow') {
+				if (!rel || rel == '' || rel === 'nofollow' ) {
 					selectedArray.push(this);
 
 				} else {
@@ -837,22 +837,22 @@
 		selectedArray = [];
 		selectedIndex = parseInt(opts.index, 10) || 0;
 
-		if ($.isArray(obj)) {
+		if ( $.isArray(obj)) {
 			for (var i = 0, j = obj.length; i < j; i++) {
-				if (typeof obj[i] == 'object') {
-					$(obj[i]).data('fancybox', $.extend({}, opts, obj[i]));
+				if (typeof obj[i] == 'object' ) {
+					$(obj[i]).data( 'fancybox' , $.extend({}, opts, obj[i]));
 				} else {
-					obj[i] = $({}).data('fancybox', $.extend({content : obj[i]}, opts));
+					obj[i] = $({}).data( 'fancybox' , $.extend({content : obj[i]}, opts));
 				}
 			}
 
 			selectedArray = jQuery.merge(selectedArray, obj);
 
 		} else {
-			if (typeof obj == 'object') {
-				$(obj).data('fancybox', $.extend({}, opts, obj));
+			if (typeof obj == 'object' ) {
+				$(obj).data( 'fancybox' , $.extend({}, opts, obj));
 			} else {
-				obj = $({}).data('fancybox', $.extend({content : obj}, opts));
+				obj = $({}).data( 'fancybox' , $.extend({content : obj}, opts));
 			}
 
 			selectedArray.push(obj);
@@ -912,7 +912,7 @@
 
 		busy = true;
 
-		$.event.trigger('fancybox-cancel');
+		$.event.trigger( 'fancybox-cancel' );
 
 		_abort();
 
@@ -923,7 +923,7 @@
 
 	// Note: within an iframe use - parent.$.fancybox.close();
 	$.fancybox.close = function() {
-		if (busy || wrap.is(':hidden')) {
+		if (busy || wrap.is( ':hidden' )) {
 			return;
 		}
 
@@ -941,23 +941,23 @@
 		$(content.add( overlay )).unbind();
 
 		$(window).unbind("resize.fb scroll.fb");
-		$(document).unbind('keydown.fb');
+		$(document).unbind( 'keydown.fb' );
 
-		content.find('iframe').attr('src', isIE6 && /^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank');
+		content.find( 'iframe' ).attr( 'src' , isIE6 && /^https/i.test(window.location.href || '' ) ? 'javascript:void(false)' : 'about:blank' );
 
-		if (currentOpts.titlePosition !== 'inside') {
+		if (currentOpts.titlePosition !== 'inside' ) {
 			title.empty();
 		}
 
 		wrap.stop();
 
 		function _cleanup() {
-			overlay.fadeOut('fast');
+			overlay.fadeOut( 'fast' );
 
 			title.empty().hide();
 			wrap.hide();
 
-			$.event.trigger('fancybox-cleanup');
+			$.event.trigger( 'fancybox-cleanup' );
 
 			content.empty();
 
@@ -970,7 +970,7 @@
 			busy = false;
 		}
 
-		if (currentOpts.transitionOut == 'elastic') {
+		if (currentOpts.transitionOut == 'elastic' ) {
 			start_pos = _get_zoom_from();
 
 			var pos = wrap.position();
@@ -1003,8 +1003,8 @@
 	};
 
 	$.fancybox.resize = function() {
-		if (overlay.is(':visible')) {
-			overlay.css('height', $(document).height());
+		if (overlay.is( ':visible' )) {
+			overlay.css( 'height' , $(document).height());
 		}
 
 		$.fancybox.center(true);
@@ -1033,32 +1033,32 @@
 	};
 
 	$.fancybox.init = function() {
-		if ($("#fancybox-wrap").length) {
+		if ( $("#fancybox-wrap").length) {
 			return;
 		}
 
-		$('body').append(
-			tmp	= $('<div id="fancybox-tmp"></div>'),
-			loading	= $('<div id="fancybox-loading"><div></div></div>'),
-			overlay	= $('<div id="fancybox-overlay"></div>'),
-			wrap = $('<div id="fancybox-wrap"></div>')
+		$( 'body' ).append(
+			tmp	= $( '<div id="fancybox-tmp"></div>' ),
+			loading	= $( '<div id="fancybox-loading"><div></div></div>' ),
+			overlay	= $( '<div id="fancybox-overlay"></div>' ),
+			wrap = $( '<div id="fancybox-wrap"></div>' )
 		);
 
-		outer = $('<div id="fancybox-outer"></div>')
-			.append('<div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div>')
+		outer = $( '<div id="fancybox-outer"></div>' )
+			.append( '<div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div>' )
 			.appendTo( wrap );
 
 		outer.append(
-			content = $('<div id="fancybox-content"></div>'),
-			close = $('<a id="fancybox-close"></a>'),
-			title = $('<div id="fancybox-title"></div>'),
+			content = $( '<div id="fancybox-content"></div>' ),
+			close = $( '<a id="fancybox-close"></a>' ),
+			title = $( '<div id="fancybox-title"></div>' ),
 
-			nav_left = $('<a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a>'),
-			nav_right = $('<a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a>')
+			nav_left = $( '<a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a>' ),
+			nav_right = $( '<a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a>' )
 		);
 
-		close.click($.fancybox.close);
-		loading.click($.fancybox.cancel);
+		close.click( $.fancybox.close);
+		loading.click( $.fancybox.cancel);
 
 		nav_left.click(function(e) {
 			e.preventDefault();
@@ -1070,12 +1070,12 @@
 			$.fancybox.next();
 		});
 
-		if ($.fn.mousewheel) {
-			wrap.bind('mousewheel.fb', function(e, delta) {
+		if ( $.fn.mousewheel) {
+			wrap.bind( 'mousewheel.fb' , function(e, delta) {
 				if (busy) {
 					e.preventDefault();
 
-				} else if ($(e.target).get(0).clientHeight == 0 || $(e.target).get(0).scrollHeight === $(e.target).get(0).clientHeight) {
+				} else if ( $(e.target).get(0).clientHeight == 0 || $(e.target).get(0).scrollHeight === $(e.target).get(0).clientHeight) {
 					e.preventDefault();
 					$.fancybox[ delta > 0 ? 'prev' : 'next']();
 				}
@@ -1083,14 +1083,14 @@
 		}
 
 		if (!$.support.opacity) {
-			wrap.addClass('fancybox-ie');
+			wrap.addClass( 'fancybox-ie' );
 		}
 
 		if (isIE6) {
-			loading.addClass('fancybox-ie6');
-			wrap.addClass('fancybox-ie6');
+			loading.addClass( 'fancybox-ie6' );
+			wrap.addClass( 'fancybox-ie6' );
 
-			$('<iframe id="fancybox-hide-sel-frame" src="' + (/^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank' ) + '" scrolling="no" border="0" frameborder="0" tabindex="-1"></iframe>').prependTo(outer);
+			$( '<iframe id="fancybox-hide-sel-frame" src="' + (/^https/i.test(window.location.href || '' ) ? 'javascript:void(false)' : 'about:blank' ) + '" scrolling="no" border="0" frameborder="0" tabindex="-1"></iframe>' ).prependTo(outer);
 		}
 	};
 
@@ -1100,7 +1100,7 @@
 		opacity : false,
 		modal : false,
 		cyclic : false,
-		scrolling : 'auto',	// 'auto', 'yes' or 'no'
+		scrolling : 'auto' ,	// 'auto' , 'yes' or 'no'
 
 		width : 560,
 		height : 340,
@@ -1117,24 +1117,24 @@
 
 		overlayShow : true,
 		overlayOpacity : 0.7,
-		overlayColor : '#777',
+		overlayColor : '#777' ,
 
 		titleShow : true,
-		titlePosition : 'float', // 'float', 'outside', 'inside' or 'over'
+		titlePosition : 'float' , // 'float' , 'outside' , 'inside' or 'over'
 		titleFormat : null,
 		titleFromAlt : false,
 
-		transitionIn : 'fade', // 'elastic', 'fade' or 'none'
-		transitionOut : 'fade', // 'elastic', 'fade' or 'none'
+		transitionIn : 'fade' , // 'elastic' , 'fade' or 'none'
+		transitionOut : 'fade' , // 'elastic' , 'fade' or 'none'
 
 		speedIn : 300,
 		speedOut : 300,
 
 		changeSpeed : 300,
-		changeFade : 'fast',
+		changeFade : 'fast' ,
 
-		easingIn : 'swing',
-		easingOut : 'swing',
+		easingIn : 'swing' ,
+		easingOut : 'swing' ,
 
 		showCloseButton	 : true,
 		showNavArrows : true,

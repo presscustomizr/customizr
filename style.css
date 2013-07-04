@@ -1,23 +1,23 @@
 /*
 Theme Name: Customizr
 Theme URI: http://www.themesandco.com/customizr
-Description: Customize your website live from the admin customizer screen : choose a color skin (among seven elegant skins), upload your logo, set up your social network profiles and you are done!  The clean and fully responsive design can be used for any type of site: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. It supports five widgetized areas (two in the sidebars, three in the footer), up to three columns, nine post formats with special styles, and comes with seven elegant skins and three handy featured page blocks for the front page. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework.
+Description:  Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in french and russian.
 Author: nikeo
 Author URI: http://www.themesandco.com/
-Version: 2.0.8
+Version: 3.0.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: gray, white, light, blue, red, yellow, green, purple, orange, one-column, two-columns, three-columns, left-sidebar, right-sidebar, flexible-width, custom-menu, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats
+Tags: gray, white, light, blue, red, yellow, green, purple, orange, black, one-column, two-columns, three-columns, left-sidebar, right-sidebar, flexible-width, custom-menu, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats
 Text Domain: customizr
 
-Customizr WordPress Theme, Copyright 2013 N. GUILLAUME
+Customizr WordPress Theme, Copyright 2013 Nicolas GUILLAUME, Nice, France.
 Customizr is distributed under the terms of the GNU General Public License v2.0
 License URI: license.txt
 */
 
 
 /* 
-IMPORTANT : if you want to personnalize the css of Customizr, add your CSS in the Custom CSS section of the Customizer screen. 
-Otherwise it will be deleted if you update the theme.
+IMPORTANT : If you write your CSS code below, it will be deleted when you update the theme.
+If you want to personnalize the css of Customizr, use the Custom CSS section in the Customizer screen (special characters are not handled for security reasons) OR create a child theme a add your css code in the style.css file.
 */
  

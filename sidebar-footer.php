@@ -10,7 +10,7 @@
 ?>
 
 <?php
-if ( !is_active_sidebar( 'footer_one' ) && !is_active_sidebar( 'footer_two') && !is_active_sidebar( 'footer_three'))
+if ( !is_active_sidebar( 'footer_one' ) && !is_active_sidebar( 'footer_two' ) && !is_active_sidebar( 'footer_three' ))
 	return;
 ?>
 <div class="container footer-widgets">

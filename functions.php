@@ -1,421 +1,188 @@
 <?php
-
 /**
- * Customizer functions and definitions.
- *
- * @package Customizr
- * @since Customizr 2.0.1
- * @author nikeo
- * @copyright Copyright (c) Nicolas Guillaume
- * @link    http://themesandco.com
- */
-/* CUSTOMIZR_VER is the Version */
-if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '2.0.8' ); }
-
-
-
-
-if(!function_exists('tc_get_all_options')) :
-add_action( 'wp_head', 'tc_get_all_options');
-/**
- * Init the customizr options array
- * @package Customizr
- * @since Customizr 1.0
- *
- */
-  function tc_get_all_options () {
-      global $tc_theme_options;
-      $tc_theme_options = tc_get_theme_options();
-      global $wp_query;
-       
-      //Add the dynamic options to the main option array
-      $tc_theme_options['tc_current_screen_layout']  = tc_get_current_screen_layout($post_id = tc_get_the_ID());
-      $tc_theme_options['tc_current_screen_slider']  = esc_attr(get_post_meta( tc_get_the_ID(), $key = 'post_slider_key', $single = true ));
-      
-     /*  //Add the post page parameter
-      $tc_is_posts_page = $wp_query -> is_posts_page;
-      $tc_theme_options['tc_is_posts_page']  = $tc_is_posts_page;*/
-      return $tc_theme_options;
-    }
-endif;
-
-
-
-
-if(!function_exists('tc_get_theme_options')) :
-/**
- * Get the saved options in Customizer Screen, merge them with the default theme options array and return the updated global options array
- * @package Customizr
- * @since Customizr 1.0
- *
- */
-  function tc_get_theme_options () {
-      global $tc_theme_options;
-      
-      //Customizer options
-      $saved = (array) get_option( 'tc_theme_options' );
-  
-      $defaults = tc_get_default_options();
-
-      $defaults = apply_filters( 'tc_default_theme_options', $defaults );
-
-      $tc_theme_options = wp_parse_args( $saved, $defaults );
-
-      $tc_theme_options = array_intersect_key( $tc_theme_options, $defaults );
-      
-      return $tc_theme_options;
-    }
-endif;
-
-
-
-if(!function_exists('tc_get_default_options')) :
- /**
- * Returns the options array for the theme.
- *
- * @package Customizr
- * @since Customizr 1.0
- */
-  function tc_get_default_options() {
-    
-      $defaults = array(
-          //sliders
-          'tc_sliders'                    => array(),
-          //skin
-          'tc_skin'                       => 'blue.css',
-          //logo and favicon
-          'tc_logo_upload'                => null,
-          'tc_logo_resize'                => 1,
-          'tc_fav_upload'                 => null,
-          //front page options
-          'tc_front_slider'               => 'demo',
-          'tc_slider_width'               => 1,
-          'tc_slider_delay'               => 5000,
-          'tc_front_layout'               => 'f',
-          'tc_show_featured_pages'        => 1,
-          'tc_featured_page_one'          => null,
-          'tc_featured_page_two'          => null,
-          'tc_featured_page_three'        => null,
-          'tc_featured_text_one'          => null,
-          'tc_featured_text_two'          => null,
-          'tc_featured_text_three'        => null,
-          //layout options
-          'tc_sidebar_global_layout'      => 'l',
-          'tc_sidebar_force_layout'       =>  0,
-          'tc_sidebar_post_layout'        => 'l',
-          'tc_sidebar_page_layout'        => 'l',
-          'tc_breadcrumb'                 => 1,
-          //comments
-          'tc_page_comments'              =>  0,
-          //social options
-          'tc_social_in_header'           => 1,
-          'tc_social_in_right-sidebar'    => 0,
-          'tc_social_in_left-sidebar'     => 0,
-          'tc_social_in_footer'           => 1,
-          'tc_rss'                        => get_bloginfo('rss_url'),
-          'tc_twitter'                    => null,
-          'tc_facebook'                   => null,
-          'tc_google'                     => null,
-          'tc_youtube'                    => null,
-          'tc_pinterest'                  => null,
-          'tc_github'                     => null,
-          'tc_dribbble'                   => null,
-          'tc_linkedin'                   => null,
-           //images
-          'tc_fancybox'                   =>  1,
-          //custom CSS
-          'tc_custom_css'                 => null,
-      );
-
-      $defaults = apply_filters( 'tc_default_theme_options', $defaults );
-
-      return $defaults;
-  }
-endif;
-
-
-if(!function_exists('tc_customizr_setup')) :
-add_action( 'after_setup_theme', 'tc_customizr_setup' );
-/**
- * Sets up theme defaults and registers the various WordPress features
- * 
- *
- * @package Customizr
- * @since Customizr 1.0
+* Customizr functions
+* 
+* The best way to add your own functions to Customizr is to create a child theme
+* http://codex.wordpress.org/Child_Themes
+*
+* This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
+* General Public License as published by the Free Software Foundation; either version 2 of the License, 
+* or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+* even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*
+* You should have received a copy of the GNU General Public License along with this program; if not, write 
+* to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+*
+* @package   	Customizr
+* @subpackage 	functions
+* @since     	3.0
+* @author    	Nicolas GUILLAUME <nicolas@themesandco.com>
+* @copyright 	Copyright (c) 2013, Nicolas GUILLAUME
+* @link      	http://themesandco.com/customizr
+* @license   	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-  function tc_customizr_setup() {
-  
-  
-    /* Set default content width for post images and media. */
-      global $content_width;
-      if( ! isset( $content_width ) ) $content_width = 1170;
 
-    /* TC_BASE is the root server path */
-      if( ! defined('TC_BASE' ) )    {  define( 'TC_BASE', get_template_directory().'/' ); }
-
-    /* TC_BASE_URL http url of the loaded template */
-      if( ! defined('TC_BASE_URL' ) ){  define( 'TC_BASE_URL', get_template_directory_uri() . '/'); }
-
-        // get themedata version wp 3.4+
-        if(function_exists('wp_get_theme'))
-        {
-          $wp_theme_obj = wp_get_theme();
-          $tc_base_data['prefix'] = $tc_base_data['Title'] = $wp_theme_obj->get('Name');
-        }
-        // get themedata lower versions
-        else
-        {
-           $tc_base_data = get_theme_data( TC_BASE . 'style.css' );
-           $tc_base_data['prefix'] =  $tc_base_data['Title'];
-        }
-
-    /* THEMENAME contains the Name of the currently loaded theme */
-      if( ! defined('THEMENAME' ) ) { define( 'THEMENAME', $tc_base_data['Title'] ); }
-
-    /*
-  	 * Makes Customizr available for translation.
-  	 *
-  	 * Translations can be added to the /lang/ directory.
-  	 */
-  	load_theme_textdomain( 'customizr', TC_BASE . 'lang' );
-
-  	/* Adds RSS feed links to <head> for posts and comments. */
-  	add_theme_support( 'automatic-feed-links' );
-
-  	/*  This theme supports nine post formats. */
-  	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link','image', 'quote', 'status','video','audio', 'chat' ) );
-
-  	/* This theme uses wp_nav_menu() in one location. */
-  	register_nav_menu( 'main', __( 'Main Menu', 'customizr' ) );
-
-  	/* adds a specific class to the ul wrapper */
-  	function add_menuclass($ulclass) {
-  	   return preg_replace('/<ul>/', '<ul class="nav">', $ulclass, 1);
-  	}
-  	add_filter('wp_page_menu','add_menuclass');
-
-
-    /* This theme uses a custom image size for featured images, displayed on "standard" posts. */
-    add_theme_support( 'post-thumbnails' );
-    	//set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
-
-    //remove theme support => generates notice in admin @todo fix-it!
-     /* remove_theme_support('custom-background');
-      remove_theme_support('custom-header');*/
-      //post thumbnails for dudy widget and post lists (archive, search, ...)
-      add_image_size( 'tc-thumb', $width = 270, $height = 250, $crop = true );
-
-      //slider full width
-      add_image_size('slider-full', $width = 99999 , $height = 500, $crop = true);
-
-      //slider boxed
-      add_image_size('slider', $width = 1170, $height = 500, $crop = true);
-
-    /* LOADS THE FRONT END FUNCTIONS */
-      require_once( TC_BASE.'inc/tc_handy_helpers.php');
-      require_once( TC_BASE.'inc/tc_hot_crumble.php');
-      require_once( TC_BASE.'inc/tc_voila_slider.php' );
-      require_once( TC_BASE.'inc/tc_dudy_widgets.php');
-
-    /* LOADS THE BACK END STUFFS */
-     global $wp_version;
-      //check WP version to include customizer functions, must be >= 3.4
-     if (version_compare($wp_version, '3.4', '>=') ) {
-          require_once( TC_BASE.'inc/admin/tc_customize.php');
-      }
-      else {
-          //redirect to an upgrade message page on activation if version < 3.4
-          add_action ('admin_menu', 'tc_add_fallback_page');
-          add_action ('admin_init','tc_theme_activation_fallback');
-      }
-      require_once( TC_BASE.'inc/admin/tc_meta_boxes.php');
-
-      /* LOADS PRO FEATURES */
-      /*if (file_exists(TC_BASE.'inc/pro')) {
-        require_once( TC_BASE.'inc/pro/tc_pro.php');
-      }*/
-
-    }
-endif;
-
-
-
-
-if(!function_exists('tc_theme_activation_fallback')) :
 
 /**
-*  On activation, redirect on the customization page, set the frontpage option to "posts" with 10 posts per page
-* @package Customizr
-* @since Customizr 1.1
+* Singleton factory : on demand classes instanciation
+* Thanks to Ben Doherty (https://github.com/bendoh) for the great programming approach
+* 
+*
+* @since     Customizr 3.0
 */
-  function tc_theme_activation_fallback()
-  {
-    global $pagenow;
-    if ( is_admin() && 'themes.php' == $pagenow && isset( $_GET['activated'] ) ) 
-    {
-      #redirect to options page
-      header( 'Location: '.admin_url().'themes.php?page=upgrade_wp.php' ) ;
+if ( !function_exists( 'tc__' ) ) :
+    function tc__ ( $group, $class = null ) {
+
+        static $instances;
+
+        //get the class file(s) array by group and name (if defined)
+        $files = tc_get_classes ( $group, $path = null ,$class);
+
+       foreach ( $files as $f ) 
+       {
+            //load class files
+            locate_template ( $f , true , true );//name, load, require_once
+
+            $classname      = 'TC_'.tc_get_file_class( $f );
+
+            //instanciation
+            if( !isset( $instances[ $classname ] ) ) 
+            {
+                $instances[ $classname ] = new $classname;
+            }
+        }//end foreach
+
+    return $instances[ $classname ];
+
     }
-  }
 endif;
 
 
 
-if(!function_exists('tc_add_fallback_page')) :
+
+
 /**
- * Add fallback admin page.
- * @package Customizr
- * @since Customizr 1.1
- */
-  function tc_add_fallback_page() {
-      $theme_page = add_theme_page(
-          __( 'Upgrade WP', 'customizr' ),   // Name of page
-          __( 'Upgrade WP', 'customizr' ),   // Label in menu
-          'edit_theme_options',          // Capability required
-          'upgrade_wp.php',             // Menu slug, used to uniquely identify the page
-          'tc_fallback_admin_page'         //function to be called to output the content of this page
-      );
-  }
+* Recursive function, takes 2 parameters ( $group is required, $class is optional)
+* Scans the theme folder and returns an array of class file names according to their group/name
+* 
+* @since Customizr 3.0
+*/
+if ( !function_exists( 'tc_get_classes' ) ) :
+	function tc_get_classes( $group , $path = null , $class = null ) {
+
+	     /* TC_BASE is the root server path */
+	    if ( ! defined( 'TC_BASE' ) )       { define( 'TC_BASE' , get_template_directory().'/' ); }
+
+	    $classes    = array();
+
+	    $files      =  scandir(TC_BASE.$path);
+	    
+	    foreach ( $files as $file) 
+	    {
+	        if ( $file[0] != '.' ) 
+	        {
+	            if ( is_dir(TC_BASE.$path.$file) ) 
+	            {
+	                $classes = array_merge( $classes, tc_get_classes( $group, $path.$file.'/' , $class));
+	            }
+
+	            else if ( substr( $file, -4) == '.php' ) 
+	            {
+	                switch ( $class) 
+	                {
+	                    //if the class is not defined
+	                    case null:
+	                       if ( tc_get_file_group( $file) == $group) 
+	                       {
+	                            $classes[] = $path.$file;
+	                        }
+	                    break;
+	                    
+	                    default:
+	                       if ( tc_get_file_class( $file) == $class) 
+	                       {
+	                            $classes[] = $path.$file;
+	                        }
+	                    break;
+	                }//end switch
+	            }//end if
+	        } //end if
+	    }//end for each
+
+	    return $classes;
+	}
 endif;
 
 
 
 
-if(!function_exists('tc_fallback_admin_page')) :
-  /**
- * Render fallback admin page.
- * @package Customizr
- * @since Customizr 1.1
- */
-  function tc_fallback_admin_page() {
-    ?>
-    <div class="wrap upgrade_wordpress">
-      <div id="icon-options-general" class="icon32"><br></div>
-      <h2><?php _e( 'This theme requires WordPress 3.4+', 'customizr' ) ?> </h2>
-      <br />
-      <p style="text-align:center">
-        <a style="padding: 8px" class="button-primary" href="<?php echo admin_url().'update-core.php' ?>" title="<?php _e( 'Upgrade Wordpress Now','customizr' ) ?>">
-        <?php _e( 'Upgrade Wordpress Now','customizr' ) ?></a>
-        <br /><br />
-      <img src="<?php echo TC_BASE_URL . 'screenshot.png' ?>" alt="Customizr" />
-      </p>
-    </div>
-    <?php
-  }
-endif;
 
-
-
-
-
-if(!function_exists('tc_customizer_styles')) :
 /**
- * Registers and enqueues Customizr stylesheets
- * @package Customizr
- * @since Customizr 1.1
- */
-add_action('wp_enqueue_scripts', 'tc_customizer_styles');
-  function tc_customizer_styles() {
-    wp_register_style( 
-      'customizr-skin', 
-      TC_BASE_URL.'inc/css/'.tc_get_options('tc_skin'), 
-      array(), 
-      CUSTOMIZR_VER, 
-      $media = 'all' 
-      );
-    //enqueue skin
-    wp_enqueue_style( 'customizr-skin');
+* Returns the class group from the file name
+* 
+*
+* @since Customizr 3.0
+*/
+if ( !function_exists( 'tc_get_file_group' ) ) :
+	function tc_get_file_group( $file) {
 
-    //enqueue WP style sheet
-    wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER,$media = 'all'  );
+	    $group = preg_match_all( '/\-(.*?)\-/' , $file , $match );
 
-}
+	    if ( isset( $match[1][0] ) ) 
+	    {
+	        return $match[1][0];
+	    }
+	}
 endif;
 
 
 
 
-if(!function_exists('tc_scripts')) :
-add_action('wp_enqueue_scripts', 'tc_scripts');
+
 /**
- * Loads Customizr and JS script in footer for better time load.
- * 
- * @uses wp_enqueue_script() to manage script dependencies
- * @package Customizr
- * @since Customizr 1.0
- */
-  function tc_scripts() {
-      //SCRIPTS the true boolean parameter means it's loaded in the footer
-      wp_enqueue_script('jquery');
+* Returns the class name from the file name
+* 
+*
+* @since Customizr 3.0
+*/
+if ( !function_exists( 'tc_get_file_class' ) ) :
+	function tc_get_file_class( $file) {
+	     //find the name of the class=>after last occurence of '-' and remove .php
+	    $pos            = strripos( $haystack = $file , $needle = '-' );
+	    //get the part of the string containing the class name
+	    $classname      = substr( $file , $pos + 1);
+	    //get rid of '.php'
+	    $classname      = substr_replace( $classname , '' , -4 , 4);
 
-      wp_enqueue_script( 'jquery-ui-core' );
-
-      wp_enqueue_script('bootstrap',TC_BASE_URL . 'inc/js/bootstrap.min.js',array('jquery'),null,true);
-     
-      //tc scripts
-      wp_enqueue_script('tc-scripts',TC_BASE_URL . 'inc/js/tc-scripts.js',array('jquery'),null,true);
-
-      //holder image
-      wp_enqueue_script('holder',TC_BASE_URL . 'inc/js/holder.js',array('jquery'),null,true);
-
-      //modernizr (must be loaded in wp_head())
-      wp_enqueue_script('modernizr',TC_BASE_URL . 'inc/js/modernizr.js',array('jquery'),null,false);
-
-      //fancybox script and style
-      $tc_fancybox = esc_attr(tc_get_options('tc_fancybox'));
-      if ($tc_fancybox == 1) {
-        wp_enqueue_script('fancyboxjs',TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.js',array('jquery'),null,true);
-        wp_enqueue_script('activate-fancybox',TC_BASE_URL . 'inc/js/tc-fancybox.js',array('fancyboxjs'),null,true);
-        wp_enqueue_style( 'fancyboxcss', TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.css');
-      }
-   }
+	    return $classname;
+	}
 endif;
 
 
 
 
-if(!function_exists('tc_write_custom_css')) :
+
 /**
- * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
- * 
- * @package Customizr
- * @since Customizr 2.0.7
- */
-add_action( 'wp_head', 'tc_write_custom_css', 20 );
-function tc_write_custom_css() {
-    $tc_custom_css      = esc_textarea(tc_get_options('tc_custom_css'));
-    
-    if(isset($tc_custom_css) && !empty($tc_custom_css)) {
-      $tc_custom_style  = '<style type="text/css">'.$tc_custom_css.'</style>';
-      echo $tc_custom_style;
+* Allows WP apply_filter() function to accept up to 3 optional arguments
+* 
+*
+* @since Customizr 3.0
+*/
+if( !function_exists( 'tc__f' )) :
+    function tc__f ( $filter , $arg1 = null , $arg2 = null , $arg3 = null) {
+
+       return apply_filters( $filter , $arg1 , $arg2 , $arg3 );
+
     }
-
-  }
 endif;
 
 
-if(!function_exists('tc_fancybox')) :
-/**
- * Add an optional rel="tc-fancybox[]" attribute to all images embedded in a post.
- * @package Customizr
- * @since Customizr 2.0.7
- *
- */
-add_filter('the_content', 'tc_fancybox');
-function tc_fancybox($content) {
-    $tc_fancybox = esc_attr(tc_get_options('tc_fancybox'));
-
-    if ($tc_fancybox == 1) {
-         global $post;
-         $pattern ="/<a(.*?)href=('|\")(.*?).(bmp|gif|jpeg|jpg|png)('|\")(.*?)>/i";
-         $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'" title="'.$post->post_title.'"$6>';
-         $content = preg_replace($pattern, $replacement, $content);
-    }
-    
-    return $content;
-}
-endif;
 
 
-/* Your smart functions here ! */
+
+/* Loads the theme classes framework */
+locate_template( 'inc/class-customizr-__.php' ,true,true);
+tc__( 'customizr' );//fire the theme
