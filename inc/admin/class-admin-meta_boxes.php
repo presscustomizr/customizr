@@ -220,7 +220,9 @@ class TC_meta_boxes {
 
        //retrieve all sliders in option array
         $options                   = get_option( 'tc_theme_options' );
-        $sliders                   = $options['tc_sliders'];
+        if ( isset($options['tc_sliders']) ) {
+          $sliders                   = $options['tc_sliders'];
+        }
 
         //post slider fields setup
         $post_slider_id            = 'post_slider_field';
@@ -248,7 +250,7 @@ class TC_meta_boxes {
             <div class="meta-box-item-title">
               <h4><?php _e("Choose a slider", 'customizr' ); ?></h4>
             </div>
-            <?php if (!empty( $sliders)) : ?>
+            <?php if (isset($sliders) && !empty( $sliders)) : ?>
               <div class="meta-box-item-content">
                 <span class="spinner" style="float: left;"></span>
                 <select name="<?php echo $post_slider_id; ?>" id="<?php echo $post_slider_id; ?>">

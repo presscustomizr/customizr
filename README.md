@@ -118,8 +118,11 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.0.2 =
+* fixed : problem fixed on theme zipping and upload in repository 
+
 = 3.0.1 =
-* fixed : "header already sent" error fixed (space before php opening markup in an admin class) was generating an error on log out  
+* fixed : 'header already sent' error fixed (space before php opening markup in an admin class) was generating an error on log out  
 
 = 3.0 =
 * changed : global code structure has changed. Classes are instanciated by a singleton factory, html is rendered with actions, values are called through filters

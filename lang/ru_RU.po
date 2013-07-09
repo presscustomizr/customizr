@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customizr 1.1.5\n"
-"POT-Creation-Date: 2013-07-04 23:05+0100\n"
-"PO-Revision-Date: 2013-07-04 23:05+0100\n"
+"POT-Creation-Date: 2013-06-13 19:54+0100\n"
+"PO-Revision-Date: 2013-06-14 20:24+0400\n"
 "Last-Translator: Evgeny Sudakov <flounder-1@yandex.ru>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -16,332 +16,505 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../inc/class-fire-init.php:53
+#: ../comments.php:29
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgstr "Мысль на тему &ldquo;%2$s&rdquo;"
+
+#: ../comments.php:42
+msgid "Comment navigation"
+msgstr "Навигация по комментариям"
+
+#: ../comments.php:43
+msgid "&larr; Older Comments"
+msgstr "&larr; Старые комментарии"
+
+#: ../comments.php:44
+msgid "Newer Comments &rarr;"
+msgstr "Новые комментарии &rarr;"
+
+#: ../comments.php:53
+msgid "Comments are closed."
+msgstr "Комментарии закрыты"
+
+#: ../footer.php:21
+msgid "Designed by "
+msgstr "Разработано: "
+
+#: ../footer.php:29
+msgid "Back to top"
+msgstr "На верх"
+
+#: ../functions.php:192
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: ../inc/class-fire-utils.php:89
+#: ../functions.php:275 ../functions.php:276
+msgid "Upgrade WP"
+msgstr "Обновить ВордПресс"
+
+#: ../functions.php:297
+msgid "This theme requires WordPress 3.4+"
+msgstr "Для этой темы нужен ВордПресс 3.4+"
+
+#: ../functions.php:300 ../functions.php:301
+msgid "Upgrade Wordpress Now"
+msgstr "Обновите ВордПресс сейчас"
+
+#: ../header.php:43
 #, php-format
 msgid "Page %s"
 msgstr "Страница %s"
 
-#: ../inc/class-fire-utils.php:244 ../parts/class-content-content.php:236
+#: ../header.php:95
+msgid "Back Home"
+msgstr "Назад на главную"
+
+#: ../inc/tc_dudy_widgets.php:14
+msgid "Right Sidebar"
+msgstr "Правый сайдбар"
+
+#: ../inc/tc_dudy_widgets.php:16 ../inc/tc_dudy_widgets.php:26
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "Появляется в постах, статических страницах, архивах и страницах поиска"
+
+#: ../inc/tc_dudy_widgets.php:24
+msgid "Left Sidebar"
+msgstr "Левый сайдбар"
+
+#: ../inc/tc_dudy_widgets.php:36
+msgid "Footer Widget Area One"
+msgstr "Место для виджета в футере №1"
+
+#: ../inc/tc_dudy_widgets.php:38 ../inc/tc_dudy_widgets.php:47
+#: ../inc/tc_dudy_widgets.php:56
+msgid "Just use it as you want !"
+msgstr "Вставляй сюда что угодно!"
+
+#: ../inc/tc_dudy_widgets.php:45
+msgid "Footer Widget Area Two"
+msgstr "Место для виджета в футере №2"
+
+#: ../inc/tc_dudy_widgets.php:54
+msgid "Footer Widget Area Three"
+msgstr "Место для виджета в футере №3"
+
+#: ../inc/tc_handy_helpers.php:330
+msgid "Customizer screen"
+msgstr "Панель Костомайзера"
+
+#: ../inc/tc_handy_helpers.php:330
+msgid " here"
+msgstr "здесь"
+
+#: ../inc/tc_handy_helpers.php:335
+msgid "Featured page"
+msgstr "Страница под слайдером"
+
+#: ../inc/tc_handy_helpers.php:336
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"Текст описания страницы под слайдером: используйте выдержку из существующего "
+"текста или наберите свой собственный в панели Костомайзера%s."
+
+#: ../inc/tc_handy_helpers.php:425
+msgid "Read more &raquo;"
+msgstr "Читать &raquo;"
+
+#: ../inc/tc_handy_helpers.php:489 ../parts/post-header.php:42
 #, php-format
 msgid "Permalink to %s"
 msgstr "Пермалинк к %s"
 
-#: ../inc/class-fire-utils.php:273
+#: ../inc/tc_handy_helpers.php:523
+msgid "Pingback:"
+msgstr "Пингбак:"
+
+#: ../inc/tc_handy_helpers.php:523
+msgid "(Edit)"
+msgstr "(Править)"
+
+#: ../inc/tc_handy_helpers.php:540
+msgid "Reply"
+msgstr "Ответить"
+
+#: ../inc/tc_handy_helpers.php:548
+msgid "Post author"
+msgstr "От автора"
+
+#: ../inc/tc_handy_helpers.php:549 ../inc/tc_hot_crumble.php:534
+#: ../inc/tc_hot_crumble.php:567 ../inc/tc_hot_crumble.php:582
+#: ../inc/tc_hot_crumble.php:610 ../inc/admin/tc_meta_boxes.php:756
+#: ../parts/content-attachment.php:27 ../parts/post-header.php:56
+msgid "Edit"
+msgstr "Править"
+
+#: ../inc/tc_handy_helpers.php:555
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s  в %2$s"
+
+#: ../inc/tc_handy_helpers.php:561
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш комментарий на модерации."
+
+#: ../inc/tc_handy_helpers.php:593 ../inc/tc_handy_helpers.php:621
+#, php-format
+msgid "View all posts in %s"
+msgstr "Смотреть все посты в %s"
+
+#: ../inc/tc_handy_helpers.php:651 ../inc/tc_hot_crumble.php:41
+msgid "Home"
+msgstr "На главную"
+
+#: ../inc/tc_handy_helpers.php:688
 msgid "feed"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:274
+#: ../inc/tc_handy_helpers.php:689
 msgid "twitter"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:275
+#: ../inc/tc_handy_helpers.php:690
 msgid "facebook"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:276
+#: ../inc/tc_handy_helpers.php:691
 msgid "google"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:277
+#: ../inc/tc_handy_helpers.php:692
 msgid "youtube"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:278
+#: ../inc/tc_handy_helpers.php:693
 msgid "pinterest"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:279
+#: ../inc/tc_handy_helpers.php:694
 msgid "github"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:280
+#: ../inc/tc_handy_helpers.php:695
 msgid "dribbble"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:281
+#: ../inc/tc_handy_helpers.php:696
 msgid "linkedin"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:287 ../inc/admin/class-admin-customize.php:171
+#: ../inc/tc_handy_helpers.php:702 ../inc/admin/tc_customize.php:592
 msgid "Social links"
 msgstr "Линки соцсетей"
 
-#: ../inc/class-fire-utils.php:292
+#: ../inc/tc_handy_helpers.php:707
 msgid "Follow me on "
 msgstr "Следи за мной на"
 
-#: ../inc/class-fire-utils.php:296
+#: ../inc/tc_handy_helpers.php:711
 msgid "Suscribe to my rss feed"
 msgstr "Подписывайся на rss ленту"
 
-#: ../inc/class-fire-widgets.php:31
-msgid "Right Sidebar"
-msgstr "Правый сайдбар"
+#: ../inc/tc_hot_crumble.php:38
+msgid "Browse:"
+msgstr "Искать:"
 
-#: ../inc/class-fire-widgets.php:32 ../inc/class-fire-widgets.php:36
-msgid "Appears on posts, static pages, archives and search pages"
-msgstr "Появляется в постах, статических страницах, архивах и страницах поиска"
+#: ../inc/tc_hot_crumble.php:418
+msgid "g:i a"
+msgstr ""
 
-#: ../inc/class-fire-widgets.php:35
-msgid "Left Sidebar"
-msgstr "Левый сайдбар"
+#: ../inc/tc_hot_crumble.php:421
+#, php-format
+msgid "Minute %1$s"
+msgstr "Минута %1$s"
 
-#: ../inc/class-fire-widgets.php:39
-msgid "Footer Widget Area One"
-msgstr "Место для виджета в футере №1"
+#: ../inc/tc_hot_crumble.php:421
+msgid "i"
+msgstr ""
 
-#: ../inc/class-fire-widgets.php:40 ../inc/class-fire-widgets.php:44
-#: ../inc/class-fire-widgets.php:48
-msgid "Just use it as you want !"
-msgstr "Вставляй сюда что угодно!"
+#: ../inc/tc_hot_crumble.php:424
+msgid "g a"
+msgstr ""
 
-#: ../inc/class-fire-widgets.php:43
-msgid "Footer Widget Area Two"
-msgstr "Место для виджета в футере №2"
+#: ../inc/tc_hot_crumble.php:435 ../inc/tc_hot_crumble.php:445
+#: ../inc/tc_hot_crumble.php:454 ../inc/tc_hot_crumble.php:465
+#: ../inc/tc_hot_crumble.php:467 ../inc/tc_hot_crumble.php:666
+msgid "Y"
+msgstr ""
 
-#: ../inc/class-fire-widgets.php:47
-msgid "Footer Widget Area Three"
-msgstr "Место для виджета в футере №3"
+#: ../inc/tc_hot_crumble.php:436 ../inc/tc_hot_crumble.php:457
+#: ../inc/tc_hot_crumble.php:459 ../inc/tc_hot_crumble.php:670
+msgid "F"
+msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:56
-#: ../inc/admin/class-admin-customize.php:57
-#: ../inc/admin/class-admin-customize.php:78
+#: ../inc/tc_hot_crumble.php:439 ../inc/tc_hot_crumble.php:441
+#: ../inc/tc_hot_crumble.php:674
+msgid "d"
+msgstr ""
+
+#: ../inc/tc_hot_crumble.php:448 ../inc/tc_hot_crumble.php:450
+#, php-format
+msgid "Week %1$s"
+msgstr "Неделя %1$s"
+
+#: ../inc/tc_hot_crumble.php:476 ../inc/tc_hot_crumble.php:478
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Результаты на тему &quot;%1$s&quot;"
+
+#: ../inc/tc_hot_crumble.php:483
+msgid "404 Not Found"
+msgstr "404 Не найден"
+
+#: ../inc/tc_hot_crumble.php:488 ../inc/tc_hot_crumble.php:490
+#, php-format
+msgid "Page %d"
+msgstr "Страница %d"
+
+#: ../inc/tc_hot_crumble.php:559
+msgid "Split"
+msgstr "Разделить"
+
+#: ../inc/tc_hot_crumble.php:563
+msgid "Merge"
+msgstr "Соединить"
+
+#: ../inc/tc_voila_slider.php:49 ../inc/tc_voila_slider.php:52
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr это удобная тема хорошо выглядящая на любых девайсов"
+
+#: ../inc/tc_voila_slider.php:53
+msgid "Let your creativity speak and easily customiz'it the way you want!"
+msgstr ""
+"Дай волю своему воображению! Вместе с customiz'it у тебя всё получется!"
+
+#: ../inc/tc_voila_slider.php:54
+msgid "Learn more"
+msgstr "Узнать больше"
+
+#: ../inc/tc_voila_slider.php:59 ../inc/tc_voila_slider.php:62
+msgid "Style your WordPress site live!"
+msgstr "Стилизуйте ваш ВордПресс быстрее!"
+
+#: ../inc/tc_voila_slider.php:63
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"Многие изменения в расположении объектов и опцый доступны в панели "
+"Костомайзера в ВордПресс: наблюдайте за изменениями в реальном времени!"
+
+#: ../inc/tc_voila_slider.php:64
+msgid "Just try it!"
+msgstr "Просто попробуй!"
+
+#: ../inc/tc_voila_slider.php:69 ../inc/tc_voila_slider.php:72
+msgid "Create beautiful sliders"
+msgstr "Создай красивейший слайдер!"
+
+#: ../inc/tc_voila_slider.php:73
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr  идёт с крутым генератором слайдеров: добавь слайдер в любой пост "
+"и на любую страницу!"
+
+#: ../inc/tc_voila_slider.php:74
+msgid "Discover the features"
+msgstr "Узнай больше!"
+
+#: ../inc/admin/tc_customize.php:12 ../inc/admin/tc_customize.php:13
+#: ../inc/admin/tc_customize.php:36
 msgid "Customiz'it!"
 msgstr "Customiz'it!"
 
-#: ../inc/admin/class-admin-customize.php:119
-msgid "&mdash; No slider &mdash;"
-msgstr "&mdash; Без слайдера &mdash;"
-
-#: ../inc/admin/class-admin-customize.php:120
-msgid "&mdash; Demo Slider &mdash;"
-msgstr "&mdash; Демо слайдера &mdash;"
-
-#: ../inc/admin/class-admin-customize.php:141
-msgid "Skin"
-msgstr "Внешний вид"
-
-#: ../inc/admin/class-admin-customize.php:143
-msgid "Select a skin for Customizr"
-msgstr "Выбери внешний вид для Customizr"
-
-#: ../inc/admin/class-admin-customize.php:147
-msgid "Logo &amp; Favicon"
-msgstr "Лого  &amp; Фавикон"
-
-#: ../inc/admin/class-admin-customize.php:149
-msgid "Set up logo and favicon options"
-msgstr "Параметры ваших Лого и Фавикона"
-
-#: ../inc/admin/class-admin-customize.php:153
-msgid "Front Page"
-msgstr "Главная страница"
-
-#: ../inc/admin/class-admin-customize.php:155
-msgid "Set up front page options"
-msgstr "Параметры главной страницы"
-
-#: ../inc/admin/class-admin-customize.php:159
-#, fuzzy
-msgid "Pages &amp; Posts Layout"
-msgstr "Расположение страниц и постов"
-
-#: ../inc/admin/class-admin-customize.php:161
-msgid "Set up layout options"
-msgstr "Установите опции расположения"
-
-#: ../inc/admin/class-admin-customize.php:165
-msgid "Comments"
-msgstr "Комментарии"
-
-#: ../inc/admin/class-admin-customize.php:167
-msgid "Set up comments options"
-msgstr "Опции комментариев"
-
-#: ../inc/admin/class-admin-customize.php:173
-msgid "Set up your social links"
-msgstr "Добавить соцсети"
-
-#: ../inc/admin/class-admin-customize.php:177
-msgid "Images"
-msgstr "Изображения"
-
-#: ../inc/admin/class-admin-customize.php:179
-#: ../inc/admin/class-admin-customize.php:588
-msgid "Enable/disable lightbox effect on images"
-msgstr "Вкл./Выкл. эффект лайтбокса на изображениях"
-
-#: ../inc/admin/class-admin-customize.php:183
-msgid "Custom CSS"
-msgstr "Собственная CSS"
-
-#: ../inc/admin/class-admin-customize.php:185
-msgid "Add your own CSS"
-msgstr "Добавить свои стили"
-
-#: ../inc/admin/class-admin-customize.php:211
+#: ../inc/admin/tc_customize.php:88
 msgid "Manage menus"
 msgstr "Управляйте блоком Меню"
 
-#: ../inc/admin/class-admin-customize.php:222
+#: ../inc/admin/tc_customize.php:93
+msgid "Skin"
+msgstr "Внешний вид"
+
+#: ../inc/admin/tc_customize.php:95
+msgid "Select a skin for Customizr"
+msgstr "Выбери внешний вид для Customizr"
+
+#: ../inc/admin/tc_customize.php:105
 msgid "Choose a predefined skin"
 msgstr "Выберите предустановленый вид"
 
-#: ../inc/admin/class-admin-customize.php:226
+#: ../inc/admin/tc_customize.php:109
 msgid "Blue"
 msgstr "Голубой"
 
-#: ../inc/admin/class-admin-customize.php:227
+#: ../inc/admin/tc_customize.php:110
 msgid "Green"
 msgstr "Зелёный"
 
-#: ../inc/admin/class-admin-customize.php:228
+#: ../inc/admin/tc_customize.php:111
 msgid "Yellow"
 msgstr "Жёлтый"
 
-#: ../inc/admin/class-admin-customize.php:229
+#: ../inc/admin/tc_customize.php:112
 msgid "Orange"
 msgstr "Ораньжевый"
 
-#: ../inc/admin/class-admin-customize.php:230
+#: ../inc/admin/tc_customize.php:113
 msgid "Red"
 msgstr "Красный"
 
-#: ../inc/admin/class-admin-customize.php:231
+#: ../inc/admin/tc_customize.php:114
 msgid "Purple"
 msgstr "Пурпурный"
 
-#: ../inc/admin/class-admin-customize.php:232
+#: ../inc/admin/tc_customize.php:115
 msgid "Grey"
 msgstr "Серый"
 
-#: ../inc/admin/class-admin-customize.php:233
+#: ../inc/admin/tc_customize.php:116
 msgid "Black"
 msgstr "Чёрный"
 
-#: ../inc/admin/class-admin-customize.php:240
+#: ../inc/admin/tc_customize.php:131
 msgid "Display top border"
 msgstr " Показать верхний бордер"
 
-#: ../inc/admin/class-admin-customize.php:244
+#: ../inc/admin/tc_customize.php:134
 msgid "Uncheck this option to remove the colored top border."
 msgstr "Исключите данную опцию для отмены цветного бордера сверху сайта."
 
-#: ../inc/admin/class-admin-customize.php:254
+#: ../inc/admin/tc_customize.php:142
+msgid "Logo &amp; Favicon"
+msgstr "Лого  &amp; Фавикон"
+
+#: ../inc/admin/tc_customize.php:144
+msgid "Set up logo and favicon options"
+msgstr "Параметры ваших Лого и Фавикона"
+
+#: ../inc/admin/tc_customize.php:156
 msgid "Logo Upload"
 msgstr "Загрузка Лого"
 
-#: ../inc/admin/class-admin-customize.php:261
+#: ../inc/admin/tc_customize.php:169
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Оптимальные размеры Лого: max-width:250px and max-height:100px"
 
-#: ../inc/admin/class-admin-customize.php:276
+#: ../inc/admin/tc_customize.php:194
 msgid "Favicon Upload"
 msgstr "Загрузка Фавикона"
 
-#: ../inc/admin/class-admin-customize.php:288
+#: ../inc/admin/tc_customize.php:203
+msgid "Front Page"
+msgstr "Главная страница"
+
+#: ../inc/admin/tc_customize.php:205
+msgid "Set up front page options"
+msgstr "Параметры главной страницы"
+
+#: ../inc/admin/tc_customize.php:215
 msgid "Choose content and layout"
 msgstr "Выбрать контент и расположение "
 
-#: ../inc/admin/class-admin-customize.php:296
+#: ../inc/admin/tc_customize.php:230
 msgid "Front page displays"
 msgstr "Отображение Главной страницы"
 
-#: ../inc/admin/class-admin-customize.php:301
+#: ../inc/admin/tc_customize.php:235
 msgid "Your latest posts"
 msgstr "Ваши последние посты"
 
-#: ../inc/admin/class-admin-customize.php:302
+#: ../inc/admin/tc_customize.php:236
 msgid "A static page"
 msgstr "Статическая страница"
 
-#: ../inc/admin/class-admin-customize.php:308
+#: ../inc/admin/tc_customize.php:247
 msgid "Front page"
 msgstr "Главная страница"
 
-#: ../inc/admin/class-admin-customize.php:316
+#: ../inc/admin/tc_customize.php:260
 msgid "Posts page"
 msgstr "Страница с записями"
 
-#: ../inc/admin/class-admin-customize.php:325
+#: ../inc/admin/tc_customize.php:274
 msgid "Set up the front page layout"
 msgstr "Конструкция главной страницы"
 
-#: ../inc/admin/class-admin-customize.php:329
-#: ../inc/admin/class-admin-customize.php:483
-#: ../inc/admin/class-admin-customize.php:509
-#: ../inc/admin/class-admin-customize.php:537
-#: ../inc/admin/class-admin-meta_boxes.php:107
+#: ../inc/admin/tc_customize.php:278 ../inc/admin/tc_customize.php:485
+#: ../inc/admin/tc_customize.php:521 ../inc/admin/tc_customize.php:559
+#: ../inc/admin/tc_meta_boxes.php:61
 msgid "Right sidebar"
 msgstr "Правый сайдбар"
 
-#: ../inc/admin/class-admin-customize.php:330
-#: ../inc/admin/class-admin-customize.php:484
-#: ../inc/admin/class-admin-customize.php:510
-#: ../inc/admin/class-admin-customize.php:538
-#: ../inc/admin/class-admin-meta_boxes.php:108
+#: ../inc/admin/tc_customize.php:279 ../inc/admin/tc_customize.php:486
+#: ../inc/admin/tc_customize.php:522 ../inc/admin/tc_customize.php:560
+#: ../inc/admin/tc_meta_boxes.php:62
 msgid "Left sidebar"
 msgstr "Левый сайдбар"
 
-#: ../inc/admin/class-admin-customize.php:331
-#: ../inc/admin/class-admin-customize.php:485
-#: ../inc/admin/class-admin-customize.php:511
-#: ../inc/admin/class-admin-customize.php:539
+#: ../inc/admin/tc_customize.php:280 ../inc/admin/tc_customize.php:487
+#: ../inc/admin/tc_customize.php:523 ../inc/admin/tc_customize.php:561
 msgid "2 sidebars : Right and Left"
 msgstr "2 сайдбара: слева и справа"
 
-#: ../inc/admin/class-admin-customize.php:332
-#: ../inc/admin/class-admin-customize.php:486
-#: ../inc/admin/class-admin-customize.php:512
-#: ../inc/admin/class-admin-customize.php:540
+#: ../inc/admin/tc_customize.php:281 ../inc/admin/tc_customize.php:488
+#: ../inc/admin/tc_customize.php:524 ../inc/admin/tc_customize.php:562
 msgid "No sidebars : full width layout"
 msgstr "Без сайдбаров: во всю ширину"
 
-#: ../inc/admin/class-admin-customize.php:341
+#: ../inc/admin/tc_customize.php:291
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Без слайдера &mdash;"
+
+#: ../inc/admin/tc_customize.php:292
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Демо слайдера &mdash;"
+
+#: ../inc/admin/tc_customize.php:308
 msgid "Slider options"
 msgstr "Опции слайдера"
 
-#: ../inc/admin/class-admin-customize.php:342
+#: ../inc/admin/tc_customize.php:309
 msgid "Select front page slider"
 msgstr "Выберите слайдер для главной страницы"
 
-#: ../inc/admin/class-admin-customize.php:353
+#: ../inc/admin/tc_customize.php:325
 msgid "Full width slider"
 msgstr "Слайдер во всю ширину"
 
-#: ../inc/admin/class-admin-customize.php:372
+#: ../inc/admin/tc_customize.php:351
 msgid "Delay between each slides"
 msgstr "Задержка между слайдерами"
 
-#: ../inc/admin/class-admin-customize.php:377
+#: ../inc/admin/tc_customize.php:356
 msgid "in ms : 1000ms = 1s"
 msgstr "В мс: 1000мс = 1сек."
 
-#: ../inc/admin/class-admin-customize.php:385
+#: ../inc/admin/tc_customize.php:369
 msgid "Featured pages options"
 msgstr "Опции страниц под слайдером"
 
-#: ../inc/admin/class-admin-customize.php:386
+#: ../inc/admin/tc_customize.php:370
 msgid "Display home featured pages area"
 msgstr "Показать место для нижних страниц на главной"
 
-#: ../inc/admin/class-admin-customize.php:390
+#: ../inc/admin/tc_customize.php:374
 msgid "Enable"
 msgstr "Применить"
 
-#: ../inc/admin/class-admin-customize.php:391
+#: ../inc/admin/tc_customize.php:375
 msgid "Disable"
 msgstr "Отменить"
 
-#: ../inc/admin/class-admin-customize.php:400
+#: ../inc/admin/tc_customize.php:388
 msgid "Show images"
 msgstr "Показать изображения"
 
-#: ../inc/admin/class-admin-customize.php:403
+#: ../inc/admin/tc_customize.php:391
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -350,56 +523,54 @@ msgstr ""
 "панели редактирования страниц.  Для того чтобы убрать изображения снимите "
 "галочку сверху."
 
-#: ../inc/admin/class-admin-customize.php:409
-#, fuzzy
-msgid "Home featured page one"
+#: ../inc/admin/tc_customize.php:399
+msgid "one"
+msgstr "Один"
+
+#: ../inc/admin/tc_customize.php:400
+msgid "two"
+msgstr "Два"
+
+#: ../inc/admin/tc_customize.php:401
+msgid "three"
+msgstr "Три"
+
+#: ../inc/admin/tc_customize.php:415
+#, php-format
+msgid "Home featured page %s"
 msgstr "Страница на главной  %s"
 
-#: ../inc/admin/class-admin-customize.php:417
-#, fuzzy
-msgid "Home featured page two"
-msgstr "Страница на главной  %s"
-
-#: ../inc/admin/class-admin-customize.php:425
-#, fuzzy
-msgid "Home featured page three"
-msgstr "Страница на главной  %s"
-
-#: ../inc/admin/class-admin-customize.php:435
-#, fuzzy
-msgid "Featured text one (200 car. max)"
+#: ../inc/admin/tc_customize.php:438
+#, php-format
+msgid "Featured text %s (200 car. max)"
 msgstr "Текст  %s (200 знаков макс.)"
 
-#: ../inc/admin/class-admin-customize.php:438
-#: ../inc/admin/class-admin-customize.php:449
-#: ../inc/admin/class-admin-customize.php:460
+#: ../inc/admin/tc_customize.php:441
 msgid "Leave this field empty if you want to use the selected page excerpt."
 msgstr ""
 "Оставьте поле пустым если хотите видеть здесь выдержку из текста страницы."
 
-#: ../inc/admin/class-admin-customize.php:446
-#, fuzzy
-msgid "Featured text two (200 car. max)"
-msgstr "Текст  %s (200 знаков макс.)"
+#: ../inc/admin/tc_customize.php:450
+msgid "Pages & Posts Layout"
+msgstr "Расположение страниц и постов"
 
-#: ../inc/admin/class-admin-customize.php:457
-#, fuzzy
-msgid "Featured text three (200 car. max)"
-msgstr "Текст  %s (200 знаков макс.)"
+#: ../inc/admin/tc_customize.php:452
+msgid "Set up layout options"
+msgstr "Установите опции расположения"
 
-#: ../inc/admin/class-admin-customize.php:470
+#: ../inc/admin/tc_customize.php:465
 msgid "Display Breadcrumb"
 msgstr "Применить Breadcrumb"
 
-#: ../inc/admin/class-admin-customize.php:479
+#: ../inc/admin/tc_customize.php:481
 msgid "Choose the global default layout"
 msgstr "Выбрать структуру по умолчанию"
 
-#: ../inc/admin/class-admin-customize.php:495
+#: ../inc/admin/tc_customize.php:501
 msgid "Force default layout everywhere"
 msgstr "Выбрать структуру по умолчанию везде"
 
-#: ../inc/admin/class-admin-customize.php:498
+#: ../inc/admin/tc_customize.php:504
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -407,23 +578,31 @@ msgstr ""
 "Эта опция перекроет отдельные настройки во всех постах и страницах включая "
 "главную."
 
-#: ../inc/admin/class-admin-customize.php:505
+#: ../inc/admin/tc_customize.php:517
 msgid "Choose the posts default layout"
 msgstr "Выбрать расположение постов"
 
-#: ../inc/admin/class-admin-customize.php:522
+#: ../inc/admin/tc_customize.php:538
 msgid "Maximum number of posts per page"
 msgstr "Максимальное число постов на странице"
 
-#: ../inc/admin/class-admin-customize.php:533
+#: ../inc/admin/tc_customize.php:555
 msgid "Choose the pages default layout"
 msgstr "Выбрать расположение страниц по умолчанию"
 
-#: ../inc/admin/class-admin-customize.php:551
+#: ../inc/admin/tc_customize.php:570
+msgid "Comments"
+msgstr "Комментарии"
+
+#: ../inc/admin/tc_customize.php:572
+msgid "Set up comments options"
+msgstr "Опции комментариев"
+
+#: ../inc/admin/tc_customize.php:582
 msgid "Enable comments on pages"
 msgstr "Разрешить комментарии на страницах"
 
-#: ../inc/admin/class-admin-customize.php:554
+#: ../inc/admin/tc_customize.php:585
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -431,59 +610,76 @@ msgstr ""
 "Эта опция разрешит комментарии на страницах. Вы можете запретить комментарии "
 "на любой странице в панели правки страници."
 
-#: ../inc/admin/class-admin-customize.php:563
-msgid "footer"
-msgstr "футер"
+#: ../inc/admin/tc_customize.php:594
+msgid "Set up your social links"
+msgstr "Добавить соцсети"
 
-#: ../inc/admin/class-admin-customize.php:564
-msgid "right-sidebar"
-msgstr "правый-сайдбар"
-
-#: ../inc/admin/class-admin-customize.php:565
-msgid "left-sidebar"
-msgstr "левый-сайдбар"
-
-#: ../inc/admin/class-admin-customize.php:566
+#: ../inc/admin/tc_customize.php:599
 msgid "header"
 msgstr "Хедер"
 
-#: ../inc/admin/class-admin-customize.php:571
+#: ../inc/admin/tc_customize.php:600
+msgid "right-sidebar"
+msgstr "правый-сайдбар"
+
+#: ../inc/admin/tc_customize.php:601
+msgid "left-sidebar"
+msgstr "левый-сайдбар"
+
+#: ../inc/admin/tc_customize.php:602
+msgid "footer"
+msgstr "футер"
+
+#: ../inc/admin/tc_customize.php:616
+#, php-format
+msgid "Social links in %s"
+msgstr "Соцсети в %s"
+
+#: ../inc/admin/tc_customize.php:626
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "RSS лента ( по умолчанию wordpress feed )"
 
-#: ../inc/admin/class-admin-customize.php:572
+#: ../inc/admin/tc_customize.php:627
 msgid "Twitter profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:573
+#: ../inc/admin/tc_customize.php:628
 msgid "Facebook profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:574
+#: ../inc/admin/tc_customize.php:629
 msgid "Google+ profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:575
+#: ../inc/admin/tc_customize.php:630
 msgid "Youtube profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:576
+#: ../inc/admin/tc_customize.php:631
 msgid "Pinterest profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:577
+#: ../inc/admin/tc_customize.php:632
 msgid "Github profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:578
+#: ../inc/admin/tc_customize.php:633
 msgid "Dribbble profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:579
+#: ../inc/admin/tc_customize.php:634
 msgid "LinkedIn profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:591
+#: ../inc/admin/tc_customize.php:658
+msgid "Images"
+msgstr "Изображения"
+
+#: ../inc/admin/tc_customize.php:660 ../inc/admin/tc_customize.php:670
+msgid "Enable/disable lightbox effect on images"
+msgstr "Вкл./Выкл. эффект лайтбокса на изображениях"
+
+#: ../inc/admin/tc_customize.php:673
 msgid ""
 "If enabled, this option activate a popin window whith a zoom effect when an "
 "image is clicked. This will not apply to image gallery."
@@ -491,12 +687,20 @@ msgstr ""
 "Если включено то это активирует всплывание окна с зум-эффектом если кликнуть "
 "на изображение. Не действует на галерею."
 
-#: ../inc/admin/class-admin-customize.php:600
+#: ../inc/admin/tc_customize.php:679
+msgid "Custom CSS"
+msgstr "Собственная CSS"
+
+#: ../inc/admin/tc_customize.php:681
+msgid "Add your own CSS"
+msgstr "Добавить свои стили"
+
+#: ../inc/admin/tc_customize.php:693
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Добавь сюда свои стили и смотри результат! ( для продвинутых пользователей)"
 
-#: ../inc/admin/class-admin-customize.php:603
+#: ../inc/admin/tc_customize.php:696
 msgid ""
 "Always use this field to add your custom css instead of editing directly the "
 "style.css file : it will not be deleted during theme updates. Special "
@@ -511,42 +715,49 @@ msgstr ""
 "в этом поле из за угрозы вредоносного кода. Если в вашем CSS есть такие "
 "знаки то просто сделайте дочернюю тему и внесите её в файл style.css. "
 
-#: ../inc/admin/class-admin-customize.php:764
-#, php-format
-msgid "Social links in %s"
-msgstr "Соцсети в %s"
+#: ../inc/admin/tc_customizr_control_class.php:128
+#: ../inc/admin/tc_meta_boxes.php:252
+msgid ""
+"You haven't create any slider yet. Go to the media library, edit your images "
+"and add them to your sliders."
+msgstr ""
+"Вы ещё не сделали ни одного слайдера. Перейдите в медиа-библиотеку, "
+"отредактируйте ваши изображения и добавте их в слайдеры."
 
-#: ../inc/admin/class-admin-meta_boxes.php:66
+#: ../inc/admin/tc_customizr_control_class.php:128
+msgid "Create a slider"
+msgstr "Сделать слайдер"
+
+#: ../inc/admin/tc_meta_boxes.php:20
 msgid "Layout Options"
 msgstr "Опции расположения"
 
-#: ../inc/admin/class-admin-meta_boxes.php:74
-#: ../inc/admin/class-admin-meta_boxes.php:420
+#: ../inc/admin/tc_meta_boxes.php:28 ../inc/admin/tc_meta_boxes.php:377
 msgid "Slider Options"
 msgstr "Опции слайдера"
 
-#: ../inc/admin/class-admin-meta_boxes.php:109
+#: ../inc/admin/tc_meta_boxes.php:63
 msgid "Two sidebars"
 msgstr "Два сайдбара"
 
-#: ../inc/admin/class-admin-meta_boxes.php:110
+#: ../inc/admin/tc_meta_boxes.php:64
 msgid "Full Width"
 msgstr "Во всю ширину"
 
-#: ../inc/admin/class-admin-meta_boxes.php:126
+#: ../inc/admin/tc_meta_boxes.php:80
 #, php-format
 msgid "Default %1$s layout is set to : %2$s"
 msgstr "По умолчанию %1$s расположены как:  %2$s"
 
-#: ../inc/admin/class-admin-meta_boxes.php:126
+#: ../inc/admin/tc_meta_boxes.php:80
 msgid "pages"
 msgstr "страницы"
 
-#: ../inc/admin/class-admin-meta_boxes.php:126
+#: ../inc/admin/tc_meta_boxes.php:80
 msgid "posts"
 msgstr "посты"
 
-#: ../inc/admin/class-admin-meta_boxes.php:131
+#: ../inc/admin/tc_meta_boxes.php:85
 msgid ""
 "You have checked the <i>\"Force global default layout for all posts and pages"
 "\"</i>, you must unchecked this option to enable a specific layout for this "
@@ -556,11 +767,11 @@ msgstr ""
 "\"</i>, вы должны отменить это действие для того чтобы применить нужное вам "
 "расположение для этого поста."
 
-#: ../inc/admin/class-admin-meta_boxes.php:132
+#: ../inc/admin/tc_meta_boxes.php:86
 msgid "Change layout options"
 msgstr "Изменить опции расположения"
 
-#: ../inc/admin/class-admin-meta_boxes.php:136
+#: ../inc/admin/tc_meta_boxes.php:90
 #, php-format
 msgid ""
 "You can define a specific layout for %1$s by using the pre-defined left and "
@@ -571,126 +782,96 @@ msgstr ""
 "правый сайдбары. Расположения по умолчанию можно включить в WordPress панели "
 "Костомайзера %2$s.<br />"
 
-#: ../inc/admin/class-admin-meta_boxes.php:137
-#: ../inc/admin/class-admin-meta_boxes.php:142
+#: ../inc/admin/tc_meta_boxes.php:91 ../inc/admin/tc_meta_boxes.php:96
 msgid "this page"
 msgstr "данной страницы"
 
-#: ../inc/admin/class-admin-meta_boxes.php:137
-#: ../inc/admin/class-admin-meta_boxes.php:142
+#: ../inc/admin/tc_meta_boxes.php:91 ../inc/admin/tc_meta_boxes.php:96
 msgid "this post"
 msgstr "данного поста"
 
-#: ../inc/admin/class-admin-meta_boxes.php:138
+#: ../inc/admin/tc_meta_boxes.php:92
 msgid "here"
 msgstr "здесь"
 
-#: ../inc/admin/class-admin-meta_boxes.php:141
+#: ../inc/admin/tc_meta_boxes.php:95
 #, php-format
 msgid "Select a specific layout for %1$s"
 msgstr "Выберите нужное расположение для %1$s"
 
-#: ../inc/admin/class-admin-meta_boxes.php:145
+#: ../inc/admin/tc_meta_boxes.php:99
 #, php-format
 msgid "Default layout %1s"
 msgstr "Расположение по умолчанию %1s"
 
-#: ../inc/admin/class-admin-meta_boxes.php:187
-msgid "Add a slider to this post/page"
-msgstr ""
+#: ../inc/admin/tc_meta_boxes.php:141 ../inc/admin/tc_meta_boxes.php:406
+msgid "Add to a slider"
+msgstr "Добавить в слайдер"
 
-#: ../inc/admin/class-admin-meta_boxes.php:249
-#: ../inc/admin/class-admin-meta_boxes.php:618
+#: ../inc/admin/tc_meta_boxes.php:143 ../inc/admin/tc_meta_boxes.php:408
+msgid "Add to a slider (create one if needed)"
+msgstr "Добавить в слайдер ( создайте один если нужно)"
+
+#: ../inc/admin/tc_meta_boxes.php:205 ../inc/admin/tc_meta_boxes.php:575
 msgid "Choose a slider"
 msgstr "Выберите слайдер"
 
-#: ../inc/admin/class-admin-meta_boxes.php:256
-#: ../inc/admin/class-admin-meta_boxes.php:633
+#: ../inc/admin/tc_meta_boxes.php:212 ../inc/admin/tc_meta_boxes.php:590
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; Выберите слайдер &mdash;"
 
-#: ../inc/admin/class-admin-meta_boxes.php:261
-#, fuzzy
-msgid ""
-"To create a new slider : open the media library, edit your images and add "
-"them to your new slider."
-msgstr ""
-"Вы ещё не сделали ни одного слайдера. Перейдите в медиа-библиотеку, "
-"отредактируйте ваши изображения и добавте их в слайдеры."
-
-#: ../inc/admin/class-admin-meta_boxes.php:265
+#: ../inc/admin/tc_meta_boxes.php:220
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
 msgstr "Задержка между слайдерами в миллисекундах (по умолчанию: 5000 мс)"
 
-#: ../inc/admin/class-admin-meta_boxes.php:272
+#: ../inc/admin/tc_meta_boxes.php:227
 msgid "Slider Layout : set the slider in full width"
 msgstr "Расположение слайдера: во всю ширину"
 
-#: ../inc/admin/class-admin-meta_boxes.php:281
-#: ../inc/admin/class-admin-meta_boxes.php:642
+#: ../inc/admin/tc_meta_boxes.php:236 ../inc/admin/tc_meta_boxes.php:599
 msgid "Delete this slider"
 msgstr "Удалить данный слайдер"
 
-#: ../inc/admin/class-admin-meta_boxes.php:286
-#: ../inc/admin/class-admin-meta_boxes.php:646
+#: ../inc/admin/tc_meta_boxes.php:241 ../inc/admin/tc_meta_boxes.php:603
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
 msgstr ""
 "Данный слайдер будет удалён ( изображения и др. настройки будут сохранены)."
 
-#: ../inc/admin/class-admin-meta_boxes.php:289
-#: ../inc/admin/class-admin-meta_boxes.php:649
+#: ../inc/admin/tc_meta_boxes.php:244 ../inc/admin/tc_meta_boxes.php:606
 msgid "Delete slider"
 msgstr "Удалить слайдер"
 
-#: ../inc/admin/class-admin-meta_boxes.php:297
-#: ../inc/admin/class-controls.php:136
-msgid ""
-"You haven't create any slider yet. Go to the media library, edit your images "
-"and add them to your sliders."
-msgstr ""
-"Вы ещё не сделали ни одного слайдера. Перейдите в медиа-библиотеку, "
-"отредактируйте ваши изображения и добавте их в слайдеры."
-
-#: ../inc/admin/class-admin-meta_boxes.php:449
-msgid "Add to a slider"
-msgstr "Добавить в слайдер"
-
-#: ../inc/admin/class-admin-meta_boxes.php:451
-msgid "Add to a slider (create one if needed)"
-msgstr "Добавить в слайдер ( создайте один если нужно)"
-
-#: ../inc/admin/class-admin-meta_boxes.php:575
+#: ../inc/admin/tc_meta_boxes.php:532
 msgid "Title text (80 car. max length)"
 msgstr "Заголовок (200 знаков макс.)"
 
-#: ../inc/admin/class-admin-meta_boxes.php:582
+#: ../inc/admin/tc_meta_boxes.php:539
 msgid "Description text (below the title, 250 car. max length)"
 msgstr "Текст описания ( под оглавлением, 250 знаков макс. длина)"
 
-#: ../inc/admin/class-admin-meta_boxes.php:589
+#: ../inc/admin/tc_meta_boxes.php:546
 msgid "Title and text color"
 msgstr "Цвет текста и оглавления"
 
-#: ../inc/admin/class-admin-meta_boxes.php:597
+#: ../inc/admin/tc_meta_boxes.php:554
 msgid "Button text (80 car. max length)"
 msgstr "Текст кнопки ( 80 знаков макс. длина)"
 
-#: ../inc/admin/class-admin-meta_boxes.php:604
+#: ../inc/admin/tc_meta_boxes.php:561
 msgid "Choose a linked page or post (among the last 100)."
 msgstr "Выбрать связанную страницу или пост ( из последних 100). "
 
-#: ../inc/admin/class-admin-meta_boxes.php:609
+#: ../inc/admin/tc_meta_boxes.php:566
 msgid "No link"
 msgstr "Нет похожих"
 
-#: ../inc/admin/class-admin-meta_boxes.php:639
-#: ../inc/admin/class-admin-meta_boxes.php:670
+#: ../inc/admin/tc_meta_boxes.php:596 ../inc/admin/tc_meta_boxes.php:625
 msgid "Add a slider"
 msgstr "Добавить слайдер"
 
-#: ../inc/admin/class-admin-meta_boxes.php:668
+#: ../inc/admin/tc_meta_boxes.php:623
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
@@ -698,7 +879,7 @@ msgstr ""
 "Вы не создали ещё ни одного слайдера. Напишите имя слайдера и нажмите на "
 "кнопку для создания."
 
-#: ../inc/admin/class-admin-meta_boxes.php:783
+#: ../inc/admin/tc_meta_boxes.php:741
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
@@ -706,328 +887,66 @@ msgstr ""
 "Этот слайдер не садержит слайдов для показа. Отправляйтесь в медиа-"
 "библиотеку и добавьте сюда изображений."
 
-#: ../inc/admin/class-admin-meta_boxes.php:793
+#: ../inc/admin/tc_meta_boxes.php:751
 msgid "Slide Image"
 msgstr "Изображение слайда"
 
-#: ../inc/admin/class-admin-meta_boxes.php:794
+#: ../inc/admin/tc_meta_boxes.php:752
 msgid "Title"
 msgstr "Название"
 
-#: ../inc/admin/class-admin-meta_boxes.php:795
+#: ../inc/admin/tc_meta_boxes.php:753
 msgid "Slide Text"
 msgstr "Текст слайда"
 
-#: ../inc/admin/class-admin-meta_boxes.php:796
+#: ../inc/admin/tc_meta_boxes.php:754
 msgid "Button Text"
 msgstr "Текст кнопки"
 
-#: ../inc/admin/class-admin-meta_boxes.php:797
+#: ../inc/admin/tc_meta_boxes.php:755
 msgid "Button Link"
 msgstr "Линк кнопки"
 
-#: ../inc/admin/class-admin-meta_boxes.php:798
-#: ../parts/class-content-breadcrumb.php:598
-#: ../parts/class-content-breadcrumb.php:631
-#: ../parts/class-content-breadcrumb.php:646
-#: ../parts/class-content-breadcrumb.php:674
-#: ../parts/class-content-comments.php:103
-#: ../parts/class-content-content.php:252
-#: ../parts/class-content-content.php:710
-msgid "Edit"
-msgstr "Править"
-
-#: ../inc/admin/class-admin-meta_boxes.php:839
+#: ../inc/admin/tc_meta_boxes.php:797
 msgid "No Image Selected"
 msgstr "Не выбрано ни одного изображения"
 
-#: ../inc/admin/class-admin-meta_boxes.php:865
+#: ../inc/admin/tc_meta_boxes.php:823
 msgid "Edit this slide"
 msgstr "Редактировать слайд"
 
-#: ../inc/admin/class-admin-meta_boxes.php:867
+#: ../inc/admin/tc_meta_boxes.php:825
 msgid "Current slide"
 msgstr "Текущий слайд"
 
-#: ../inc/admin/class-controls.php:136
-msgid "Create a slider"
-msgstr "Сделать слайдер"
+#: ../inc/pro/tc_pro.php:90
+msgid "Choose a font for your website title"
+msgstr "Выпрать шрифт заголовка сайта"
 
-#: ../inc/admin/class-fire-admin_init.php:64
-#: ../inc/admin/class-fire-admin_init.php:65
-msgid "Upgrade WP"
-msgstr "Обновить ВордПресс"
+#: ../inc/pro/tc_pro.php:107
+msgid "Ajust the title size"
+msgstr "Настроить размер заголовка"
 
-#: ../inc/admin/class-fire-admin_init.php:84
-msgid "This theme requires WordPress 3.4+"
-msgstr "Для этой темы нужен ВордПресс 3.4+"
+#: ../inc/pro/tc_pro.php:125
+msgid "Color"
+msgstr "Цвет"
 
-#: ../inc/admin/class-fire-admin_init.php:87
-#: ../inc/admin/class-fire-admin_init.php:88
-msgid "Upgrade Wordpress Now"
-msgstr "Обновите ВордПресс сейчас"
+#: ../parts/content-404.php:14
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Говоря правду во времена всеобщего обмана вы делаете революцию."
 
-#: ../parts/class-content-breadcrumb.php:43
-#: ../parts/class-content-breadcrumb.php:105
-msgid "Home"
-msgstr "На главную"
+#: ../parts/content-404.php:15
+msgid "George Orwell"
+msgstr "Джордж Орвелл"
 
-#: ../parts/class-content-breadcrumb.php:102
-msgid "Browse:"
-msgstr "Искать:"
-
-#: ../parts/class-content-breadcrumb.php:482
-msgid "g:i a"
-msgstr ""
-
-#: ../parts/class-content-breadcrumb.php:485
-#, php-format
-msgid "Minute %1$s"
-msgstr "Минута %1$s"
-
-#: ../parts/class-content-breadcrumb.php:485
-msgid "i"
-msgstr ""
-
-#: ../parts/class-content-breadcrumb.php:488
-msgid "g a"
-msgstr ""
-
-#: ../parts/class-content-breadcrumb.php:499
-#: ../parts/class-content-breadcrumb.php:509
-#: ../parts/class-content-breadcrumb.php:518
-#: ../parts/class-content-breadcrumb.php:529
-#: ../parts/class-content-breadcrumb.php:531
-#: ../parts/class-content-breadcrumb.php:730
-msgid "Y"
-msgstr ""
-
-#: ../parts/class-content-breadcrumb.php:500
-#: ../parts/class-content-breadcrumb.php:521
-#: ../parts/class-content-breadcrumb.php:523
-#: ../parts/class-content-breadcrumb.php:734
-msgid "F"
-msgstr ""
-
-#: ../parts/class-content-breadcrumb.php:503
-#: ../parts/class-content-breadcrumb.php:505
-#: ../parts/class-content-breadcrumb.php:738
-msgid "d"
-msgstr ""
-
-#: ../parts/class-content-breadcrumb.php:512
-#: ../parts/class-content-breadcrumb.php:514
-#, php-format
-msgid "Week %1$s"
-msgstr "Неделя %1$s"
-
-#: ../parts/class-content-breadcrumb.php:540
-#: ../parts/class-content-breadcrumb.php:542
-#, php-format
-msgid "Search results for &quot;%1$s&quot;"
-msgstr "Результаты на тему &quot;%1$s&quot;"
-
-#: ../parts/class-content-breadcrumb.php:547
-msgid "404 Not Found"
-msgstr "404 Не найден"
-
-#: ../parts/class-content-breadcrumb.php:552
-#: ../parts/class-content-breadcrumb.php:554
-#, php-format
-msgid "Page %d"
-msgstr "Страница %d"
-
-#: ../parts/class-content-breadcrumb.php:623
-msgid "Split"
-msgstr "Разделить"
-
-#: ../parts/class-content-breadcrumb.php:627
-msgid "Merge"
-msgstr "Соединить"
-
-#: ../parts/class-content-comments.php:32
-#, php-format
-msgid "One thought on &ldquo;%2$s&rdquo;"
-msgstr "Мысль на тему &ldquo;%2$s&rdquo;"
-
-#: ../parts/class-content-comments.php:77
-msgid "Pingback:"
-msgstr "Пингбак:"
-
-#: ../parts/class-content-comments.php:77
-msgid "(Edit)"
-msgstr "(Править)"
-
-#: ../parts/class-content-comments.php:94
-msgid "Reply"
-msgstr "Ответить"
-
-#: ../parts/class-content-comments.php:102
-msgid "Post author"
-msgstr "От автора"
-
-#: ../parts/class-content-comments.php:109
-#, php-format
-msgid "%1$s at %2$s"
-msgstr "%1$s  в %2$s"
-
-#: ../parts/class-content-comments.php:115
-msgid "Your comment is awaiting moderation."
-msgstr "Ваш комментарий на модерации."
-
-#: ../parts/class-content-comments.php:142
-msgid "Comment navigation"
-msgstr "Навигация по комментариям"
-
-#: ../parts/class-content-comments.php:143
-msgid "&larr; Older Comments"
-msgstr "&larr; Старые комментарии"
-
-#: ../parts/class-content-comments.php:144
-msgid "Newer Comments &rarr;"
-msgstr "Новые комментарии &rarr;"
-
-#: ../parts/class-content-comments.php:164
-msgid "Comments are closed."
-msgstr "Комментарии закрыты"
-
-#: ../parts/class-content-content.php:170
-#: ../parts/class-content-content.php:179
-#: ../parts/class-content-content.php:639
-msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Продолжить чтение <span class=\"meta-nav\">&rarr;</span>"
-
-#: ../parts/class-content-content.php:171
-#: ../parts/class-content-content.php:180
-#: ../parts/class-content-content.php:642
-msgid "Pages:"
-msgstr "Страницы:"
-
-#: ../parts/class-content-content.php:218
-msgid "Comment(s) on "
-msgstr "Комментарий (ии) к"
-
-#: ../parts/class-content-content.php:236
-msgid "{no title} Read the post &raquo;"
-msgstr "{no title}  Читать пост &raquo;"
-
-#: ../parts/class-content-content.php:280
-msgid "Ooops, page not found"
-msgstr "Упс, страница не найдена"
-
-#: ../parts/class-content-content.php:290
-#, php-format
-msgid "%1sSearch Results for: %2s"
-msgstr "%1sНашлось для: %2s"
-
-#: ../parts/class-content-content.php:291
-msgid "No"
-msgstr "Ничего не"
-
-#: ../parts/class-content-content.php:306
-#, php-format
-msgid "Author Archives: %s"
-msgstr "Архивы по авторам: %s"
-
-#: ../parts/class-content-content.php:314
-#, php-format
-msgid "Category Archives: %s"
-msgstr "Архивы по катигориям: %s"
-
-#: ../parts/class-content-content.php:326
-#, php-format
-msgid "Tag Archives: %s"
-msgstr "Архивы по тегам: %s"
-
-#: ../parts/class-content-content.php:340
-#, php-format
-msgid "Daily Archives: %s"
-msgstr "Архивы по дням: %s"
-
-#: ../parts/class-content-content.php:342
-#, php-format
-msgid "Monthly Archives: %s"
-msgstr "Архивы по месяцам: %s"
-
-#: ../parts/class-content-content.php:344
-#, php-format
-msgid "Yearly Archives: %s"
-msgstr "Архивы по годам: %s"
-
-#: ../parts/class-content-content.php:346
-msgid "Archives"
-msgstr "Архивы"
-
-#: ../parts/class-content-content.php:386
-#, php-format
-msgid "View all posts by %s"
-msgstr "Посмотреть все посты автора:  %s"
-
-#: ../parts/class-content-content.php:392
-#, php-format
+#: ../parts/content-404.php:17
 msgid ""
-"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
-"\"> by %4$s</span>."
+"Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
-"Эта запись была сделана в %1$s и помечена %2$s в %3$s<span class=\"автором"
-"\"> автором %4$s</span>."
+"Очень жаль, но запрашиваемая вами страница не найдена. Вы можете попробывать "
+"ниже."
 
-#: ../parts/class-content-content.php:394
-#, php-format
-msgid ""
-"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
-"span>."
-msgstr ""
-"Эта запись была сделана в  %1$s в %3$s<span class=\"автором\"> автором %4$s</"
-"span>."
-
-#: ../parts/class-content-content.php:396
-#, php-format
-msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
-msgstr ""
-"Эта запись была сделана на %3$s<span class=\"автором\"> автором %4$s</span>."
-
-#: ../parts/class-content-content.php:425
-#: ../parts/class-content-content.php:451
-#, php-format
-msgid "View all posts in %s"
-msgstr "Смотреть все посты в %s"
-
-#: ../parts/class-content-content.php:483
-#, php-format
-msgid "About %s"
-msgstr "Про %s"
-
-#: ../parts/class-content-content.php:488
-#, php-format
-msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Смотреть все посты автора %s <span class=\"meta-nav\">&rarr;</span>"
-
-#: ../parts/class-content-content.php:631
-msgid "Edit page"
-msgstr "Править"
-
-#: ../parts/class-content-content.php:667
-msgid ""
-"Success is the ability to go from one failure to another with no loss of "
-"enthusiasm..."
-msgstr ""
-"Успех - это способность выдерживать одну неудачу за другой не теряя при этом "
-"энтузиазма..."
-
-#: ../parts/class-content-content.php:668
-msgid "Sir Winston Churchill"
-msgstr "Сэр Винстон Черчилль"
-
-#: ../parts/class-content-content.php:670
-msgid ""
-"Sorry, but nothing matched your search criteria. Please try again with some "
-"different keywords."
-msgstr ""
-"Очень жаль, но соответствий введённым вами критериям не нашлось. Попробуйте "
-"другие слова."
-
-#: ../parts/class-content-content.php:699
+#: ../parts/content-attachment.php:16
 #, php-format
 msgid ""
 "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
@@ -1042,140 +961,153 @@ msgstr ""
 "&times; %5$s</a> в <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">"
 "%8$s</a>."
 
-#: ../parts/class-content-content.php:715
+#: ../parts/content-attachment.php:31
 msgid "&larr; Previous"
 msgstr "&larr; Предыдущая"
 
-#: ../parts/class-content-content.php:716
+#: ../parts/content-attachment.php:32
 msgid "Next &rarr;"
 msgstr "Следующая &rarr;"
 
-#: ../parts/class-content-content.php:793
-msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
-msgstr "Говоря правду во времена всеобщего обмана вы делаете революцию."
-
-#: ../parts/class-content-content.php:794
-msgid "George Orwell"
-msgstr "Джордж Орвелл"
-
-#: ../parts/class-content-content.php:797
+#: ../parts/content-no-results.php:14
 msgid ""
-"Sorry, but the requested page is not found. You might try a search below."
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
 msgstr ""
-"Очень жаль, но запрашиваемая вами страница не найдена. Вы можете попробывать "
-"ниже."
+"Успех - это способность выдерживать одну неудачу за другой не теряя при этом "
+"энтузиазма..."
 
-#: ../parts/class-content-featured_pages.php:103
-msgid "Customizer screen"
-msgstr "Панель Костомайзера"
+#: ../parts/content-no-results.php:15
+msgid "Sir Winston Churchill"
+msgstr "Сэр Винстон Черчилль"
 
-#: ../parts/class-content-featured_pages.php:103
-msgid " here"
-msgstr "здесь"
+#: ../parts/content-no-results.php:17
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Очень жаль, но соответствий введённым вами критериям не нашлось. Попробуйте "
+"другие слова."
 
-#: ../parts/class-content-featured_pages.php:108
-msgid "Featured page"
-msgstr "Страница под слайдером"
+#: ../parts/content-page.php:15
+msgid "Edit page"
+msgstr "Править"
 
-#: ../parts/class-content-featured_pages.php:109
+#: ../parts/content-page.php:23 ../parts/content.php:40
+#: ../parts/content.php:48
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Продолжить чтение <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/content-page.php:25 ../parts/content.php:41
+#: ../parts/content.php:49
+msgid "Pages:"
+msgstr "Страницы:"
+
+#: ../parts/metas.php:23
+#, php-format
+msgid "View all posts by %s"
+msgstr "Посмотреть все посты автора:  %s"
+
+#: ../parts/metas.php:29
 #, php-format
 msgid ""
-"Featured page description text : use the page excerpt or set your own custom "
-"text in the Customizr screen%s."
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
 msgstr ""
-"Текст описания страницы под слайдером: используйте выдержку из существующего "
-"текста или наберите свой собственный в панели Костомайзера%s."
+"Эта запись была сделана в %1$s и помечена %2$s в %3$s<span class=\"автором"
+"\"> автором %4$s</span>."
 
-#: ../parts/class-content-featured_pages.php:209
-msgid "Read more &raquo;"
-msgstr "Читать &raquo;"
+#: ../parts/metas.php:31
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Эта запись была сделана в  %1$s в %3$s<span class=\"автором\"> автором %4$s</"
+"span>."
 
-#: ../parts/class-content-nav.php:40 ../parts/class-content-nav.php:62
+#: ../parts/metas.php:33
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+"Эта запись была сделана на %3$s<span class=\"автором\"> автором %4$s</span>."
+
+#: ../parts/nav.php:17 ../parts/nav.php:31
 msgid "Post navigation"
 msgstr "Навигация по постам"
 
-#: ../parts/class-content-nav.php:69
+#: ../parts/nav.php:35
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Старые посты"
 
-#: ../parts/class-content-nav.php:77
+#: ../parts/nav.php:40
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Новые посты  <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-header-slider.php:80 ../parts/class-header-slider.php:83
-msgid "Customizr is a clean responsive theme"
-msgstr "Customizr это удобная тема хорошо выглядящая на любых девайсов"
+#: ../parts/post-footer.php:17
+#, php-format
+msgid "About %s"
+msgstr "Про %s"
 
-#: ../parts/class-header-slider.php:84
-msgid "Let your creativity speak and easily customiz'it the way you want!"
-msgstr ""
-"Дай волю своему воображению! Вместе с customiz'it у тебя всё получется!"
+#: ../parts/post-footer.php:21
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Смотреть все посты автора %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-header-slider.php:85
-msgid "Learn more"
-msgstr "Узнать больше"
+#: ../parts/post-header.php:25
+msgid "Comment(s) on "
+msgstr "Комментарий (ии) к"
 
-#: ../parts/class-header-slider.php:90 ../parts/class-header-slider.php:93
-msgid "Style your WordPress site live!"
-msgstr "Стилизуйте ваш ВордПресс быстрее!"
+#: ../parts/post-header.php:42
+msgid "{no title} Read the post &raquo;"
+msgstr "{no title}  Читать пост &raquo;"
 
-#: ../parts/class-header-slider.php:94
-msgid ""
-"Many layout and design options are available from the WordPress customizer "
-"screen : see your changes live !"
-msgstr ""
-"Многие изменения в расположении объектов и опцый доступны в панели "
-"Костомайзера в ВордПресс: наблюдайте за изменениями в реальном времени!"
+#: ../parts/post-list-header.php:11
+msgid "Ooops, page not found"
+msgstr "Упс, страница не найдена"
 
-#: ../parts/class-header-slider.php:95
-msgid "Just try it!"
-msgstr "Просто попробуй!"
+#: ../parts/post-list-header.php:19
+#, php-format
+msgid "%1sSearch Results for: %2s"
+msgstr "%1sНашлось для: %2s"
 
-#: ../parts/class-header-slider.php:100 ../parts/class-header-slider.php:103
-msgid "Create beautiful sliders"
-msgstr "Создай красивейший слайдер!"
+#: ../parts/post-list-header.php:20
+msgid "No"
+msgstr "Ничего не"
 
-#: ../parts/class-header-slider.php:104
-msgid ""
-"Customizr comes with a cool slider generator : add a slider to any post or "
-"page!"
-msgstr ""
-"Customizr  идёт с крутым генератором слайдеров: добавь слайдер в любой пост "
-"и на любую страницу!"
+#: ../parts/post-list-header.php:32
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Архивы по авторам: %s"
 
-#: ../parts/class-header-slider.php:105
-msgid "Discover the features"
-msgstr "Узнай больше!"
+#: ../parts/post-list-header.php:38
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Архивы по катигориям: %s"
 
-#: ../parts/class-main-footer.php:45
-msgid "Designed by "
-msgstr "Разработано: "
+#: ../parts/post-list-header.php:48
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Архивы по тегам: %s"
 
-#: ../parts/class-main-footer.php:57
-msgid "Back to top"
-msgstr "На верх"
+#: ../parts/post-list-header.php:60
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Архивы по дням: %s"
 
-#: ../parts/class-main-header.php:151
-msgid "Back Home"
-msgstr "Назад на главную"
+#: ../parts/post-list-header.php:62
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Архивы по месяцам: %s"
 
-#~ msgid "one"
-#~ msgstr "Один"
+#: ../parts/post-list-header.php:64
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Архивы по годам: %s"
 
-#~ msgid "two"
-#~ msgstr "Два"
-
-#~ msgid "three"
-#~ msgstr "Три"
-
-#~ msgid "Choose a font for your website title"
-#~ msgstr "Выпрать шрифт заголовка сайта"
-
-#~ msgid "Ajust the title size"
-#~ msgstr "Настроить размер заголовка"
-
-#~ msgid "Color"
-#~ msgstr "Цвет"
+#: ../parts/post-list-header.php:66
+msgid "Archives"
+msgstr "Архивы"
 
 #~ msgid "Slide Entry"
 #~ msgstr "Diapositive"

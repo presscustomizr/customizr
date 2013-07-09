@@ -123,6 +123,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.0.2 =
+* fixed : problem fixed on theme zipping and upload in repository 
+
 = 3.0.1 =
 * fixed : 'header already sent' error fixed (space before php opening markup in an admin class) was generating an error on log out  
 
@@ -148,7 +151,7 @@ The exceptions to this license are as follows:
 * removed : some unnecessary favicon settings
 * fixed : function wp_head() moved just before the closing <head> tag
 * added : filter on wp_filter function
-* added : russion translation, thanks to Evgeny Sudakov <flounder-1@yandex.ru>!
+* added : russion translation, thanks to Evgeny Sudakov!
 * improved : thumbnail and content layout for posts lists
 * fixed : ajax saving was not working properly for page/page slider, a switch case was not breaked.
 
