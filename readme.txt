@@ -123,6 +123,11 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.0.3 =
+* added : german translation. Thanks to Martin Bangemann <design@humane-wirtschaft.de> !
+* changed : default option are now based on customizer settings
+* fixed : reordering slides was deleting the slides
+
 = 3.0.2 =
 * fixed : problem fixed on theme zipping and upload in repository 
 
@@ -151,7 +156,7 @@ The exceptions to this license are as follows:
 * removed : some unnecessary favicon settings
 * fixed : function wp_head() moved just before the closing <head> tag
 * added : filter on wp_filter function
-* added : russion translation, thanks to Evgeny Sudakov!
+* added : russion translation, thanks to Evgeny Sudakov <flounder-1@yandex.ru>!
 * improved : thumbnail and content layout for posts lists
 * fixed : ajax saving was not working properly for page/page slider, a switch case was not breaked.
 

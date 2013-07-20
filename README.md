@@ -1,6 +1,6 @@
 ![Customizr - Free Wordpress Theme](/screenshot.png)  
 
-*Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework.*
+*Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in french, german and russian.*
 
 
 # Installation
@@ -118,11 +118,18 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.0.3 =
+* added : german translation. Thanks to Martin Bangemann <design@humane-wirtschaft.de> !
+* changed : default option are now based on customizer settings
+* fixed : reordering slides was deleting the slides
+
+
 = 3.0.2 =
 * fixed : problem fixed on theme zipping and upload in repository 
 
+
 = 3.0.1 =
-* fixed : 'header already sent' error fixed (space before php opening markup in an admin class) was generating an error on log out  
+* fixed : "header already sent" error fixed (space before php opening markup in an admin class) was generating an error on log out  
 
 = 3.0 =
 * changed : global code structure has changed. Classes are instanciated by a singleton factory, html is rendered with actions, values are called through filters

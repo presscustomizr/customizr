@@ -31,7 +31,12 @@ class TC_admin_init {
               add_action ( 'admin_init'                      , array( $this , 'tc_theme_activation_fallback' ));
           }
           
+          //loads meta boxes
           tc__( 'admin' , 'meta_boxes' );
+
+          //Redirect on activation (first activation only)
+          add_action ( 'admin_init'                          , array( $this , 'tc_theme_activation' ));
+
     }
 
 
@@ -93,5 +98,33 @@ class TC_admin_init {
       <?php
     }
 
+
+
+
+  /**
+  *  On activation, redirect on the customizer panel page
+  * @package Customizr
+  * @since Customizr 1.0
+  */
+  function tc_theme_activation()
+  {
+    global $pagenow;
+    if ( is_admin() && 'themes.php' == $pagenow && isset( $_GET['activated'] ) ) 
+    {
+      #set frontpage to display_posts
+      //update_option( 'show_on_front' , 'posts' );
+
+      #set max number of posts to 10
+      //update_option( 'posts_per_page' , 10);
+
+      #redirect to Customizer page
+      //do we activate customizr for the first time? => tc_theme_options is not set in options table
+      $__options = get_option( 'tc_theme_options' );//return false if not defined
+      if (!$__options) {
+        header( 'Location: '.admin_url().'customize.php' ) ;
+      }
+
+    }
+  }
 
 }//end of class       

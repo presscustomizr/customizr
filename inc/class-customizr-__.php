@@ -47,7 +47,7 @@ class TC___ {
             'fire' ,
             'main' ,
             'header' ,
-            'content' 
+            'content' ,
         );
 
         foreach ( $groups as $g) 

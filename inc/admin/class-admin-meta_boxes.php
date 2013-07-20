@@ -110,14 +110,14 @@ class TC_meta_boxes {
               'f' => __( 'Full Width' , 'customizr' ),
             );
           //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_options' , 'tc_sidebar_global_layout' ));
+            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_option' , 'tc_sidebar_global_layout' ));
           if ( $post->post_type == 'post' )
-            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_options' , 'tc_sidebar_post_layout' ));
+            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_option' , 'tc_sidebar_post_layout' ));
           if ( $post->post_type == 'page' )
-            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_options' , 'tc_sidebar_page_layout' ));
+            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_option' , 'tc_sidebar_page_layout' ));
 
           //check if the 'force default layout' option is checked
-          $force_layout                 = esc_attr(tc__f ( '__get_options' , 'tc_sidebar_force_layout' ));
+          $force_layout                 = esc_attr(tc__f ( '__get_option' , 'tc_sidebar_force_layout' ));
 
 
           ?>
@@ -903,6 +903,7 @@ class TC_meta_boxes {
      * @since Customizr 2.0
      */
     function tc_slider_ajax_save( $post_id ) {
+          
           //We check the ajax nonce (common for post and attachment)
           if ( isset( $_POST['SliderCheckNonce']) && !wp_verify_nonce( $_POST['SliderCheckNonce'], 'tc-slider-check-nonce' ) )
               return;
@@ -963,23 +964,30 @@ class TC_meta_boxes {
                   update_option( 'tc_theme_options' , $tc_options );
                 break;
 
+                
                 //reorder slides
                 case 'newOrder':
                     //turn new order into array
                     if(!empty( $tcvalue))
-                      $neworder = explode( ' , ' , esc_attr( $tcvalue ));
+                      
+                    $neworder = explode( ',' , esc_attr( $tcvalue ));
 
                     //initialize the newslider array
                     $newslider = array();
+
                     foreach ( $neworder as $new_key => $new_index) {
                         $newslider[$new_index] =  $tc_options['tc_sliders'][$current_post_slider][$new_index];
-                      }
+                    }
+
                     $tc_options['tc_sliders'][$current_post_slider] = $newslider;
                      
                      //update DB with new slider array
                     update_option( 'tc_theme_options' , $tc_options );
                   break;
                 
+                
+
+
                 //sliders are added in options
                 case 'new_slider_name':
                     //check if we have something to save

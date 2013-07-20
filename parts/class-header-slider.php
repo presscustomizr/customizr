@@ -49,7 +49,7 @@ class TC_slider {
       //get slider options if any
       $layout_value                 = esc_attr(get_post_meta( get_the_ID(), $key = 'slider_layout_key' , $single = true ));
       if (is_home() || is_front_page()) {
-        $layout_value               = tc__f ( '__get_options' , 'tc_slider_width' );
+        $layout_value               = tc__f ( '__get_option' , 'tc_slider_width' );
       }
 
       $layout_class                 = '';
@@ -243,8 +243,8 @@ class TC_slider {
       
       //get the slider id and delay if we display home/front page
       if ( is_front_page() || is_home()) {
-        $name_value     = tc__f ( '__get_options' , 'tc_front_slider' );
-        $delay_value    = tc__f ( '__get_options' , 'tc_slider_delay' );
+        $name_value     = tc__f ( '__get_option' , 'tc_front_slider' );
+        $delay_value    = tc__f ( '__get_option' , 'tc_slider_delay' );
       }
 
       //render the delay script

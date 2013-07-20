@@ -16,82 +16,101 @@ class TC_utils {
 
     function __construct () {
         
-        add_filter  ( 'wp_page_menu'                        , array( $this , 'add_menuclass' ));
-        add_filter  ( 'the_content'                         , array( $this , 'tc_fancybox' ));
-        add_filter  ( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
-        add_filter  ( '__get_options'                       , array( $this , 'tc_get_options' ));
+        add_filter  ( '__get_default_options'               , array( $this , 'tc_get_default_options' ) , 10);
+        add_filter  ( '__options'                           , array( $this , 'tc_get_theme_options' ) ,10);
+        add_filter  ( '__default_options_from_customizer_map' , array( $this , 'tc_get_default_options_from_customizer_map' ));
+
+        //get single option
+        add_filter  ( '__get_option'                        , array( $this , 'tc_get_option' ));
+
         add_filter  ( '__ID'                                , array( $this , 'tc_get_the_ID' ));
         add_filter  ( '__screen_layout'                     , array( $this , 'tc_get_current_screen_layout' ));
         add_filter  ( '__screen_slider'                     , array( $this , 'tc_get_current_screen_slider' ));
 
         add_action  ( '__customizr_entry_date'              , array( $this , 'tc_customizr_entry_date' ));
         add_action  ( '__social'                            , array( $this , 'tc_display_social' ));
+
+        //WP filters
+        add_filter  ( 'wp_page_menu'                        , array( $this , 'add_menuclass' ));
+        add_filter  ( 'the_content'                         , array( $this , 'tc_fancybox' ));
+        add_filter  ( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
     }
-
-
-
-    /* adds a specific class to the ul wrapper */
-    function add_menuclass( $ulclass) {
-       return preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
-    }
-    
-
-
-
-    /**
-     * Add an optional rel="tc-fancybox[]" attribute to all images embedded in a post.
-     * @package Customizr
-     * @since Customizr 2.0.7
-     *
-     */
-
-    function tc_fancybox( $content) {
-        $tc_fancybox = esc_attr(tc__f ( '__get_options' , 'tc_fancybox' ));
-
-        if ( $tc_fancybox == 1 ) 
-        {
-             global $post;
-             $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
-             $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'" title="'.$post->post_title.'"$6>';
-             $content = preg_replace( $pattern, $replacement, $content);
-        }
-
-      return $content;
-    }
-
 
 
 
 
     /**
-     * Title element formating
-     *
-     * @since Customizr 2.1.6
-     *
-     */
-    
-      function tc_wp_title( $title, $sep ) {
-        global $paged, $page;
+    * Get the saved options in Customizer Screen, merge them with the default theme options array and return the updated global options array
+    * @package Customizr
+    * @since Customizr 1.0
+    *
+    */
+    function tc_get_theme_options () {
+          $saved                          = (array) get_option( 'tc_theme_options' );
 
-        if ( is_feed() )
-          return $title;
+          $defaults                       = tc__f('__get_default_options');
 
-        // Add the site name.
-        $title .= get_bloginfo( 'name' );
+          $__options                      = wp_parse_args( $saved, $defaults );
 
-        // Add the site description for the home/front page.
-        $site_description = get_bloginfo( 'description' , 'display' );
-        if ( $site_description && ( is_home() || is_front_page() ) )
-          $title = "$title $sep $site_description";
+          $__options                      = array_intersect_key( $__options, $defaults );
 
-        // Add a page number if necessary.
-        if ( $paged >= 2 || $page >= 2 )
-          $title = "$title $sep " . sprintf( __( 'Page %s' , 'customizr' ), max( $paged, $page ) );
-
-        return $title;
-      }
+        return $__options;
+    }
 
 
+
+    function tc_get_default_options() {
+      
+      $map = tc__f('__customize_map', $get_default = 'true' );
+
+      $customizer_defaults = $this -> tc_get_default_options_from_customizer_map($map);
+
+      return $customizer_defaults;
+    }
+
+
+
+
+
+   /**
+   * Return the default options array from a customizer map + add slider option
+   *
+   * @package Customizr
+   * @since Customizr 1.0
+   */
+    function tc_get_default_options_from_customizer_map($map) {
+      
+      $defaults = array(
+        //initialize the default array with the sliders options
+        'tc_sliders' => array(),
+      );
+
+      foreach ($map['add_setting_control'] as $key => $options) {
+
+        //check it is a customizr option
+        if(false !== strpos($haystack = $key  , $needle = 'tc_theme_options')) {
+
+          //isolate the option name between brackets [ ]
+          $option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
+          if ( isset( $match[1][0] ) ) 
+            {
+                $option_name = $match[1][0];
+            }
+
+          //write default option in array
+          if(isset($options['default'])) {
+            $defaults[$option_name] = $options['default'];
+          }
+          else {
+            $defaults[$option_name] = null;
+          }
+         
+        }//end if
+
+      }//end foreach
+
+    return $defaults;
+    }
 
 
 
@@ -102,15 +121,17 @@ class TC_utils {
      * @package Customizr
      * @since Customizr 1.0
      */
-      function tc_get_options( $option_name) {
-          $__options          = tc__f ( '__options' );
-          $saved              = (array) get_option( 'tc_theme_options' );
-          $defaults           = tc__f( '__get_default_options' ); //located TC_init.php
-          $options            = wp_parse_args( $saved, $defaults );
-          $options            = array_intersect_key( $options, $defaults );
+    function tc_get_option( $option_name) {
+        $saved              = (array) get_option( 'tc_theme_options' );
 
-        return $options[$option_name];
-      }
+        $defaults           = tc__f( '__get_default_options' );
+
+        $options            = wp_parse_args( $saved, $defaults );
+        
+        $options            = array_intersect_key( $options, $defaults );
+
+      return $options[$option_name];
+    }
 
 
 
@@ -147,69 +168,69 @@ class TC_utils {
       * @package Customizr
       * @since Customizr 1.0
       */
-        function tc_get_current_screen_layout ( $post_id) {
-          $__options              = tc__f ( '__options' );
-          
-          //Article wrapper class definition
-            $class_tab = array(
-              'r' => 'span9' ,
-              'l' => 'span9' ,
-              'b' => 'span6' ,
-              'f' => 'span12' ,
-              );
+      function tc_get_current_screen_layout ( $post_id) {
+        $__options              = tc__f ( '__options' );
+        
+        //Article wrapper class definition
+          $class_tab = array(
+            'r' => 'span9' ,
+            'l' => 'span9' ,
+            'b' => 'span6' ,
+            'f' => 'span12' ,
+            );
 
-          /* DEFAULT LAYOUTS */
-          //get the global default layout
-          $tc_sidebar_global_layout     = $__options['tc_sidebar_global_layout'];
-          //get the post default layout
-          $tc_sidebar_post_layout       = $__options['tc_sidebar_post_layout'];
-          //get the page default layout
-          $tc_sidebar_page_layout       = $__options['tc_sidebar_page_layout'];
+        /* DEFAULT LAYOUTS */
+        //get the global default layout
+        $tc_sidebar_global_layout     = $__options['tc_sidebar_global_layout'];
+        //get the post default layout
+        $tc_sidebar_post_layout       = $__options['tc_sidebar_post_layout'];
+        //get the page default layout
+        $tc_sidebar_page_layout       = $__options['tc_sidebar_page_layout'];
 
-          //what is the default layout we want to apply? By default we apply the global default layout
-          $tc_sidebar_default_layout    = $tc_sidebar_global_layout;
-          if (is_single())
-            $tc_sidebar_default_layout  = $tc_sidebar_post_layout;
-          if (is_page())
-            $tc_sidebar_default_layout  = $tc_sidebar_page_layout;
+        //what is the default layout we want to apply? By default we apply the global default layout
+        $tc_sidebar_default_layout    = $tc_sidebar_global_layout;
+        if (is_single())
+          $tc_sidebar_default_layout  = $tc_sidebar_post_layout;
+        if (is_page())
+          $tc_sidebar_default_layout  = $tc_sidebar_page_layout;
 
-          //build the default layout option array including layout and article class
+        //build the default layout option array including layout and article class
+        $tc_screen_layout = array(
+            'sidebar' => $tc_sidebar_default_layout,
+            'class'   => $class_tab[$tc_sidebar_default_layout]
+          );
+
+        //finally we check if the 'force default layout' option is checked and return the default layout before any specific layout
+        $force_layout = $__options['tc_sidebar_force_layout'];
+        if( $force_layout == 1) {
           $tc_screen_layout = array(
-              'sidebar' => $tc_sidebar_default_layout,
-              'class'   => $class_tab[$tc_sidebar_default_layout]
-            );
-
-          //finally we check if the 'force default layout' option is checked and return the default layout before any specific layout
-          $force_layout = $__options['tc_sidebar_force_layout'];
-          if( $force_layout == 1) {
-            $tc_screen_layout = array(
-              'sidebar' => $tc_sidebar_global_layout,
-              'class'   => $class_tab[$tc_sidebar_global_layout]
-            );
-            return $tc_screen_layout;
-          }
-
-          //get the front page layout
-          $tc_front_layout =  $__options['tc_front_layout'];
-
-          //get info whether the front page is a list of last posts or a page
-          $tc_what_on_front  = get_option( 'show_on_front' );
-
-
-          //get the post specific layout if any, and if we don't apply the default layout
-          $tc_specific_post_layout = esc_attr(get_post_meta( $post_id, $key = 'layout_key' , $single = true ));
-          
-          if((is_home() && $tc_what_on_front == 'posts' ) || is_front_page())
-             $tc_specific_post_layout = $tc_front_layout;
-
-          if( $tc_specific_post_layout) {
-              $tc_screen_layout = array(
-              'sidebar' => $tc_specific_post_layout,
-              'class'   => $class_tab[$tc_specific_post_layout]
-            );
-          }
+            'sidebar' => $tc_sidebar_global_layout,
+            'class'   => $class_tab[$tc_sidebar_global_layout]
+          );
           return $tc_screen_layout;
         }
+
+        //get the front page layout
+        $tc_front_layout =  $__options['tc_front_layout'];
+
+        //get info whether the front page is a list of last posts or a page
+        $tc_what_on_front  = get_option( 'show_on_front' );
+
+
+        //get the post specific layout if any, and if we don't apply the default layout
+        $tc_specific_post_layout = esc_attr(get_post_meta( $post_id, $key = 'layout_key' , $single = true ));
+        
+        if((is_home() && $tc_what_on_front == 'posts' ) || is_front_page())
+           $tc_specific_post_layout = $tc_front_layout;
+
+        if( $tc_specific_post_layout) {
+            $tc_screen_layout = array(
+            'sidebar' => $tc_specific_post_layout,
+            'class'   => $class_tab[$tc_specific_post_layout]
+          );
+        }
+        return $tc_screen_layout;
+      }
 
 
 
@@ -232,25 +253,25 @@ class TC_utils {
       
 
       /**
-        * Prints HTML with date information for current post.
-        * @package Customizr
-        * @since Customizr 1.0 
-       */
-        function tc_customizr_entry_date( $echo = true ) {
-          $format_prefix = ( has_post_format( 'chat' ) || has_post_format( 'status' ) ) ? _x( '%1$s on %2$s' , '1: post format name. 2: date' , 'customizr' ): '%2$s';
+      * Prints HTML with date information for current post.
+      * @package Customizr
+      * @since Customizr 1.0 
+      */
+      function tc_customizr_entry_date( $echo = true ) {
+        $format_prefix = ( has_post_format( 'chat' ) || has_post_format( 'status' ) ) ? _x( '%1$s on %2$s' , '1: post format name. 2: date' , 'customizr' ): '%2$s';
 
-          $date = sprintf( '<span class="date"><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a></span>' ,
-            esc_url( get_permalink() ),
-            esc_attr( sprintf( __( 'Permalink to %s' , 'customizr' ), the_title_attribute( 'echo=0' ) ) ),
-            esc_attr( get_the_date( 'c' ) ),
-            esc_html( sprintf( $format_prefix, get_post_format_string( get_post_format() ), get_the_date() ) )
-          );
+        $date = sprintf( '<span class="date"><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a></span>' ,
+          esc_url( get_permalink() ),
+          esc_attr( sprintf( __( 'Permalink to %s' , 'customizr' ), the_title_attribute( 'echo=0' ) ) ),
+          esc_attr( get_the_date( 'c' ) ),
+          esc_html( sprintf( $format_prefix, get_post_format_string( get_post_format() ), get_the_date() ) )
+        );
 
-          if ( $echo )
-            echo $date;
+        if ( $echo )
+          echo $date;
 
-          return $date;
-        }
+        return $date;
+      }
 
 
 
@@ -258,10 +279,10 @@ class TC_utils {
 
 
       /**
-        * 
-        * @package Customizr
-        * @since Customizr 1.0 
-       */
+      * 
+      * @package Customizr
+      * @since Customizr 1.0 
+      */
       function tc_display_social( $pos) {
 
         $__options          = tc__f( '__options' );
@@ -306,5 +327,69 @@ class TC_utils {
        
         echo $html;
       }
+
+
+
+      /* adds a specific class to the ul wrapper */
+    function add_menuclass( $ulclass) {
+       return preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
+    }
+    
+
+
+
+    /**
+     * Add an optional rel="tc-fancybox[]" attribute to all images embedded in a post.
+     * @package Customizr
+     * @since Customizr 2.0.7
+     *
+     */
+
+    function tc_fancybox( $content) {
+        $tc_fancybox = esc_attr(tc__f ( '__get_option' , 'tc_fancybox' ));
+
+        if ( $tc_fancybox == 1 ) 
+        {
+             global $post;
+             $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
+             $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'" title="'.$post->post_title.'"$6>';
+             $content = preg_replace( $pattern, $replacement, $content);
+        }
+
+      return $content;
+    }
+
+
+
+
+
+    /**
+     * Title element formating
+     *
+     * @since Customizr 2.1.6
+     *
+     */
+    
+      function tc_wp_title( $title, $sep ) {
+        global $paged, $page;
+
+        if ( is_feed() )
+          return $title;
+
+        // Add the site name.
+        $title .= get_bloginfo( 'name' );
+
+        // Add the site description for the home/front page.
+        $site_description = get_bloginfo( 'description' , 'display' );
+        if ( $site_description && ( is_home() || is_front_page() ) )
+          $title = "$title $sep $site_description";
+
+        // Add a page number if necessary.
+        if ( $paged >= 2 || $page >= 2 )
+          $title = "$title $sep " . sprintf( __( 'Page %s' , 'customizr' ), max( $paged, $page ) );
+
+        return $title;
+      }
+
 
 }//end of class

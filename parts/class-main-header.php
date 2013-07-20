@@ -84,7 +84,7 @@ class TC_header {
      */
       function tc_display_favicon() {
 
-        $url = esc_url(tc__f ( '__get_options' , 'tc_fav_upload' ));
+        $url = esc_url(tc__f ( '__get_option' , 'tc_fav_upload' ));
 
         if( $url != null)   {
           $type = "image/x-icon";
@@ -110,8 +110,8 @@ class TC_header {
      * @since Customizr 2.0.7
      */
     function tc_write_custom_css() {
-        $tc_custom_css      = esc_textarea(tc__f ( '__get_options' , 'tc_custom_css' ));
-        $tc_top_border      = esc_attr(tc__f ( '__get_options' , 'tc_top_border' ));
+        $tc_custom_css      = esc_textarea(tc__f ( '__get_option' , 'tc_custom_css' ));
+        $tc_top_border      = esc_attr(tc__f ( '__get_option' , 'tc_top_border' ));
         
         if ( isset( $tc_custom_css) && !empty( $tc_custom_css)) {
           $tc_custom_style  = '<style type="text/css">'.$tc_custom_css.'</style>';
@@ -136,8 +136,8 @@ class TC_header {
 	 * @since Customizr 3.0
 	 */
 	function tc_display_logo_title() {
-       $logo_src    			= esc_url ( tc__f ( '__get_options' , 'tc_logo_upload' )) ;
-       $logo_resize 			= esc_attr( tc__f ( '__get_options' , 'tc_logo_resize' ));
+       $logo_src    			= esc_url ( tc__f ( '__get_option' , 'tc_logo_upload' )) ;
+       $logo_resize 			= esc_attr( tc__f ( '__get_option' , 'tc_logo_resize' ));
        //logo styling option
        $logo_img_style			= '';
        if( $logo_resize == 1) {

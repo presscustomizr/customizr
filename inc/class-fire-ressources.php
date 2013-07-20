@@ -29,11 +29,12 @@ class TC_ressources {
 	  function tc_customizer_styles() {
 	    wp_register_style( 
 	      'customizr-skin' , 
-	      TC_BASE_URL.'inc/css/'.tc__f ( '__get_options' , 'tc_skin' ), 
+	      TC_BASE_URL.'inc/css/'.tc__f ( '__get_option' , 'tc_skin' ), 
 	      array(), 
 	      CUSTOMIZR_VER, 
 	      $media = 'all' 
 	      );
+
 
 	    //enqueue skin
 	    wp_enqueue_style( 'customizr-skin' );
@@ -76,7 +77,7 @@ class TC_ressources {
 	      wp_enqueue_script( 'modernizr' ,TC_BASE_URL . 'inc/js/modernizr.js' ,array( 'jquery' ),null, $in_footer = false);
 
 	      //fancybox script and style
-	      $tc_fancybox = tc__f ( '__get_options' , 'tc_fancybox' );
+	      $tc_fancybox = tc__f ( '__get_option' , 'tc_fancybox' );
 	      if ( $tc_fancybox == 1) {
 	        wp_enqueue_script( 'fancyboxjs' ,TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.js' ,array( 'jquery' ),null, $in_footer = true);
 	        wp_enqueue_script( 'activate-fancybox' ,TC_BASE_URL . 'inc/js/tc-fancybox.js' ,array( 'fancyboxjs' ),null, $in_footer = true);
