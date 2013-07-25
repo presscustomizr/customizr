@@ -1,5 +1,5 @@
 /*
- * Customizr v3.0.3
+ * Customizr v3.0.4
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -6848,7 +6848,7 @@ section {
 }
 article.page .format-icon:before {
   content: "\1F4C4";
-  font-size: 3em;
+    font-size: 3em;
   line-height: 0px;
   position: relative;
   top: 14px;
@@ -6862,7 +6862,8 @@ article.format-standard .format-icon:before {
 }
 article.format-gallery .format-icon:before {
   content: "\1F304";
-  font-size: 3em;
+    font-size: 3em;
+  line-height: 0px;
 }
 article.format-aside .format-icon:before {
   content: "\1F504";
@@ -6879,7 +6880,8 @@ article.format-audio .format-icon:before {
 }
 article.format-video .format-icon:before {
   content: "\1F3AC";
-  font-size: 3em;
+    font-size: 3em;
+  line-height: 0px;
   top: 9px;
 }
 article.format-status .format-icon:before {
@@ -6891,7 +6893,8 @@ article.error404 .format-icon:before {
 }
 article.format-image .format-icon:before {
   content: "\1F304";
-  font-size: 3em;
+    font-size: 3em;
+  line-height: 0px;
 }
 article.format-link .format-icon:before {
   content: "\1F517";
@@ -8004,7 +8007,7 @@ footer .widget_recent_entries li:after {
     height: 150px;
     border: 94px solid #fafafa;
     top: -49px;
-    left: -66px;
+    left: -67px;
   }
   /* one sidebar case (span9) */
   
@@ -8067,8 +8070,8 @@ footer .widget_recent_entries li:after {
   .span12.article-container .round-div {
     width: 125px;
     height: 125px;
-    top: -63px;
-    left: -65px;
+    top: -66px;
+    left: -66px;
   }
   .span6.article-container .thumb-wrapper img,
   .span9.article-container .thumb-wrapper img,

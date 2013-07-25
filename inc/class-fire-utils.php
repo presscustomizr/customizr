@@ -76,7 +76,7 @@ class TC_utils {
    * Return the default options array from a customizer map + add slider option
    *
    * @package Customizr
-   * @since Customizr 1.0
+   * @since Customizr 3.3.0
    */
     function tc_get_default_options_from_customizer_map($map) {
       
@@ -310,11 +310,11 @@ class TC_utils {
           //$html .= '<ul>';
             foreach ( $socials as $key => $nw) {
               //all cases except rss
-              $title = __( 'Follow me on ' , 'tc_boostrap' ).$nw;
+              $title = __( 'Follow me on ' , 'customizr' ).$nw;
               $target = 'target=_blank';
               //rss case
               if ( $key == 'tc_rss' ) {
-                $title = __( 'Suscribe to my rss feed' , 'tc_boostrap' );
+                $title = __( 'Suscribe to my rss feed' , 'customizr' );
                 $target = '';
               }
 

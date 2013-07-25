@@ -12,7 +12,10 @@ jQuery(document).ready(function( $) {
         'transitionOut' : 'elastic' ,
         'speedIn'   : 200, 
         'speedOut'    : 200, 
-        'overlayShow' : false
+        'overlayShow' : false,
+        'autoScale' : false,
+        'changeFade' : 'fast',
+        'enableEscapeButton' : true
       });
     })
 

@@ -118,6 +118,17 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.0.4 =
+* fixed : minor css correction on responsive thumbnail hover effect
+* fixed : minor syntaxic issue on comment title (printf)
+* fixed : translation domain was wrong for social networks
+* fixed : slider arrows where still showing if slides where deleted but not slider. Added a check if slides have attachment.
+* improved : image galleries : if fancybox active, lightbox navigation is now enabled
+* improved : better capability control of edit page button. Only appears if user_can edit_pages (like for posts)
+* added : Activation welcome screen
+* added : new action in admin_init hook to load the meta boxes class
+
+
 = 3.0.3 =
 * added : german translation. Thanks to Martin Bangemann <design@humane-wirtschaft.de> !
 * changed : default option are now based on customizer settings

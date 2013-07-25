@@ -97,7 +97,7 @@
 	position: absolute;
 	top: -15px;
 	right: -15px;
-	width: 30px;
+	width: 29px;
 	height: 30px;
 	background: transparent url( 'fancybox.png' ) -40px 0px;
 	cursor: pointer;
@@ -154,7 +154,7 @@
 	position: absolute;
 	top: 50%;
 	left: -9999px;
-	width: 30px;
+	width: 29px;
 	height: 30px;
 	margin-top: -15px;
 	cursor: pointer;

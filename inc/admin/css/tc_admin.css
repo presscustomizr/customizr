@@ -1,0 +1,22 @@
+.about-wrap h3 {
+	line-height: 26px;
+}
+
+.about-wrap .feature-section div {
+	text-align: center;
+}
+
+.about-text.tc-welcome {
+	margin: 1em 0;
+}
+
+.about-wrap .feature-section.three-col img.tc-donate {
+	background: none;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.tc-no-margin {
+	margin:0;
+}

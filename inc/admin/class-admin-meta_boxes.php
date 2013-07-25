@@ -1058,13 +1058,24 @@ class TC_meta_boxes {
                          //Important : we check if the slider has slides first!
                             foreach ( $tc_options['tc_sliders'] as $slider_name => $slider) {
                               foreach ( $slider as $key => $tc_post) {
-                                 //clean empty values if necessary
-                                 if ( is_null( $tc_options['tc_sliders'][$slider_name][$key]))
+
+                                //clean empty values if necessary
+                                if ( is_null( $tc_options['tc_sliders'][$slider_name][$key])) {
                                     unset( $tc_options['tc_sliders'][$slider_name][$key]);
-                                 //delete previous slider entries for this post
-                                 if ( $tc_post == $post_ID )
+                                }
+
+                                //clean slides with no images
+                                $slide_img = wp_get_attachment_image( $tc_options['tc_sliders'][$slider_name][$key]);
+                                if (isset($slide_img) && empty($slide_img)) {
                                     unset( $tc_options['tc_sliders'][$slider_name][$key]);
-                              }
+                                }
+                               
+                               //delete previous slider entries for this post
+                               if ( $tc_post == $post_ID ) {
+                                  unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                }
+
+                              }//end for each
                             }
                             //update DB with clean option table
                             update_option( 'tc_theme_options' , $tc_options );

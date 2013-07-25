@@ -134,12 +134,39 @@ class TC_slider {
               return;
             }
             
+            //get slides
             $slides = $__options['tc_sliders'][$slider_name_id];
+
+            //check if we have slides AND if they have an image!
+            $has_slides = array();
+
+            if ( $slides ) {
+
+              foreach ($slides as $attachment_id) {
+
+                 $slide_img = wp_get_attachment_image( $attachment_id);
+
+                 if (isset($slide_img) && !empty($slide_img)) {
+                    $has_slides[] = 1;
+                 }
+                 else {
+                    $has_slides[] = 0;
+                 }
+              }//end foreach
+            }//endif
+
+            if ( in_array(0, $has_slides) ) {
+              $has_slides = false;
+            }
+            else {
+              $has_slides = true;
+            }
 
             //init slide index
             $i = 0;
+
             ?>
-            <?php if( $slides) : ?>
+            <?php if( $slides && $has_slides ) : ?>
 
               <div id="customizr-slider" class="<?php echo $layout_class ?> carousel slide">
 
