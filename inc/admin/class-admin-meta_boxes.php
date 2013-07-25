@@ -1295,7 +1295,7 @@ class TC_meta_boxes {
           );
 
           //iphone like button style and script
-          wp_enqueue_style( 'admincss' , TC_BASE_URL.'inc/admin/css/iphonecheck.css' );
+          wp_enqueue_style( 'iphonecheckcss' , TC_BASE_URL.'inc/admin/css/iphonecheck.css' );
           wp_enqueue_script( 'iphonecheck' , TC_BASE_URL.'inc/admin/js/jquery.iphonecheck.js' );
 
           //thickbox
