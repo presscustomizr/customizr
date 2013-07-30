@@ -199,13 +199,13 @@ class TC_featured_pages {
           ?>
             <div class="widget-front">
               <?php if ( isset( $show_img) && $show_img == 1) : //check if image option is checked ?>
-                  <div class="thumb-wrapper <?php if(!has_post_thumbnail( $featured_page_id )) {echo 'tc-holder';} ?>">
+                  <div class="thumb-wrapper <?php if(!isset( $tc_thumb)) {echo 'tc-holder';} ?>">
                       <a class="round-div" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>"></a>
                         <?php echo $tc_thumb; ?>
                   </div>
               <?php endif; ?>
                 <h2><?php echo $featured_page_title ?></h2>
-                <p><?php echo $text;  ?></p>
+                <p class="fp-text-<?php echo $area ?>"><?php echo $text;  ?></p>
                 <p><a class="btn btn-primary" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>"><?php _e( 'Read more &raquo;' , 'customizr' ) ?></a></p>
             </div><!-- /.widget-front -->
           

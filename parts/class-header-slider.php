@@ -31,7 +31,7 @@ class TC_slider {
       if (is_404() || is_archive() || is_search())
         return;
 
-      $__options             = tc__f ( '__options' );
+      $__options                    = tc__f ( '__options' );
 
       //get the current slider id
       $slider_name_id               = tc__f ( '__screen_slider' );
@@ -155,11 +155,11 @@ class TC_slider {
               }//end foreach
             }//endif
 
-            if ( in_array(0, $has_slides) ) {
-              $has_slides = false;
+            if ( in_array(1, $has_slides) ) {
+              $has_slides = true;
             }
             else {
-              $has_slides = true;
+              $has_slides = false;
             }
 
             //init slide index
@@ -180,9 +180,11 @@ class TC_slider {
                           continue;
                         }
 
-                        //set up variables
                         $id                 = $slide_object -> ID;
+
+                        //check if slider enable of this attachment
                         $slider_checked     = esc_attr(get_post_meta( $id, $key = 'slider_check_key' , $single = true ));
+
                         $alt                = trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true)));
                         $title              = esc_attr(get_post_meta( $id, $key = 'slide_title_key' , $single = true ));
                         $text               = esc_textarea(get_post_meta( $id, $key = 'slide_text_key' , $single = true ));
@@ -200,14 +202,16 @@ class TC_slider {
                           $color_style      = 'style="color:'.$text_color.'"';
                         }
 
+                        //attachment image
+                        $slide_to_display   =  wp_get_attachment_image( $id, $img_size, array( 'class' => 'slide' , 'alt' => $alt ) );
                       ?>
 
-                      <?php if (isset( $slider_checked) && $slider_checked == 1) : ?>
+                      <?php if (isset( $slider_checked) && $slider_checked == 1 && isset($slide_to_display) && !empty($slide_to_display)) : ?>
 
                         <div class="item <?php echo $active; ?>">
 
                            <div class="carousel-image <?php echo $img_size ?>">
-                            <?php echo wp_get_attachment_image( $id, $img_size, array( 'class' => 'slide' , 'alt' => $alt ) ); ?>
+                            <?php echo $slide_to_display ?>
                            </div>
 
                             <?php if ( $title != null || $text != null || $button_text != null ) : ?>

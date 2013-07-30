@@ -1,6 +1,6 @@
 ![Customizr - Free Wordpress Theme](/screenshot.png)  
 
-*Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in french, german and russian.*
+*Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in english, french, german, russian and spanish.*
 
 
 # Installation
@@ -118,11 +118,25 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.0.5 =
+* fixed : breadcrumb translation domain was not right
+* fixed : domain translation for comment title was not set
+* fixed : in v3.0.4, a slider could disappeared only if some slides had been inserted at one time and then deleted or disabled afterward. Thanks to Dave http://wordpress.org/support/profile/rdellconsulting!
+* fixed : holder.js script bug in IE v8 and lower. Fixed by updating holder.js v1.9 to v2.0. Thanks to Joel (http://wordpress.org/support/profile/jrisberg) and Ivan (http://wordpress.org/support/profile/imsky).
+* improved : better handling of comment number bubble everywhere : check if comments are opened AND if there are comments to display
+* improved : welcome screen on update/activate : changelog automatic update, new tweet button
+* improved : lightbox navigation is now enabled for galleries with media link option choosen (new filters on post gallery and attachment_link)
+* improved : better code organization : split of content class in specific classes by content type
+* added : customizr option for images : enable/disable autoscale on lightbox zoom
+* added : jQuery fallback for CSS Transitions in carousel (ie. Internet Explorer) : https://github.com/twbs/bootstrap/pull/3052/files
+* added : spanish translation. Thanks to Maria del Mar
+
+
 = 3.0.4 =
 * fixed : minor css correction on responsive thumbnail hover effect
 * fixed : minor syntaxic issue on comment title (printf)
 * fixed : translation domain was wrong for social networks
-* fixed : slider arrows where still showing if slides where deleted but not slider. Added a check if slides have attachment.
+* fixed : slider arrows were still showing up if slides were deleted but not the slider itself. Added a routine to check if slides have attachment.
 * improved : image galleries : if fancybox active, lightbox navigation is now enabled
 * improved : better capability control of edit page button. Only appears if user_can edit_pages (like for posts)
 * added : Activation welcome screen

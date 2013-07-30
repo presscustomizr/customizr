@@ -43,6 +43,12 @@ class TC_admin_init {
           //enqueue additional styling for admin screens
           add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
 
+          add_filter('upgrader_post_install'                 , array( $this , 'tc_redirect_after_update' ), 1000);
+
+          remove_filter('upgrader_post_install'              , array( $this , 'tc_redirect_after_update' ), 1100);
+
+          //changelog
+          add_action ( 'changelog'                           , array( $this , 'tc_extract_changelog' ));
     }
 
 
@@ -168,19 +174,33 @@ class TC_admin_init {
    * @since Customizr 3.0.4
    */
     function tc_welcome_panel() {
+      
+      $is_upgrade = false;
 
-       $__options = get_option( 'tc_theme_options' );//return false if not defined
+      if ( isset($_GET['action']) ) {
+        if ( $_GET['action'] == 'customizr-update' ) {
+          $is_upgrade = true;
+        }
+      }
 
       ?>
       <div class="wrap about-wrap">
 
         <h1><?php printf( __( 'Welcome to Customizr %s','customizr' ), CUSTOMIZR_VER ); ?></h1>
 
-        <?php  if (!$__options) : //do we activate customizr for the first time? ?>
-          <div class="about-text tc-welcome"><?php printf( __( 'Thank you for updating to the latest version! Customizr %s is safer and more stable than ever to help you build an awesome website. Enjoy it!','customizr' ), CUSTOMIZR_VER ); ?></div>
+        <?php  if ($is_upgrade) : ?>
+
+          <div class="about-text tc-welcome"><?php printf( __( 'Thank you for updating to the latest version! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Enjoy it! ','customizr' ), CUSTOMIZR_VER   ); ?><a class="twitter-share-button" href="http://twitter.com/share" data-url="http://www.themesandco.com/customizr/" data-text="I just upgraded my WordPress site with the Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a></div>
+        
         <?php else: ?>
-          <div class="about-text tc-welcome"><?php printf( __( 'Thank you for using Customizr! Customizr %s is safer and more stable than ever to help you build an awesome website. Enjoy it!','customizr' ), CUSTOMIZR_VER ); ?></div>
+
+          <div class="about-text tc-welcome"><?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Enjoy it! ','customizr' ), CUSTOMIZR_VER ); ?><a class="twitter-share-button" href="http://twitter.com/share" data-url="http://www.themesandco.com/customizr/" data-text="My WordPress website is built with the Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
+        
         <?php endif; ?>
+
+        <div id="tweetBtn">
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
 
         <div class="changelog point-releases">
         </div>
@@ -197,13 +217,13 @@ class TC_admin_init {
 
             <div>
               <h3><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
-              <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review!','customizr' ) ?></br></br>
-              <a class="button-primary" title="Customizr WordPress Theme" href="http://wordpress.org/support/view/theme-reviews/customizr" target="_blank">Review Customizr &raquo;</a></p>
+              <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)','customizr' ) ?></br>
+              <a class="button-primary review-customizr" title="Customizr WordPress Theme" href="http://wordpress.org/support/view/theme-reviews/customizr" target="_blank">Review Customizr &raquo;</a></p>
             </div>
 
             <div class="last-feature">
               <h3><?php _e( 'Follow us','customizr' ); ?></h3>
-              <p class="tc-no-margin"><a href="http://www.themesandco.com" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Themes and co" /></a></p>
+              <p class="tc-follow"><a href="http://www.themesandco.com" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Themes and co" /></a></p>
               <!-- Place this tag where you want the widget to render. -->
               <div class="g-follow" data-annotation="bubble" data-height="24" data-href="//plus.google.com/102674909694270155854" data-rel="author"></div>
 
@@ -223,10 +243,21 @@ class TC_admin_init {
       <div class="changelog">
 
         <h3><?php _e( 'Discover Customizr : quick video introduction' , 'customizr' ); ?></h3>
+          
+          <div style="text-align:center">
+            <iframe width="853" height="480" src="//www.youtube.com/embed/Hj7lGnZgwQs" frameborder="0" allowfullscreen></iframe>
+          </div>
 
-          <iframe width="853" height="480" src="//www.youtube.com/embed/Hj7lGnZgwQs" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div id="customizr-changelog" class="changelog">
+        
+        <h3><?php printf( __( 'Changelog in version %1$s' , 'customizr' ) , CUSTOMIZR_VER ); ?></h3>
+
+          <p><?php do_action('changelog'); ?></p>
       
       </div>
+
 
       <div class="return-to-dashboard">
         <a href="<?php echo esc_url( self_admin_url() ); ?>"><?php
@@ -248,5 +279,73 @@ class TC_admin_init {
        wp_enqueue_style( 'admincss' , TC_BASE_URL.'inc/admin/css/tc_admin.css' );
     }
 
+
+
+
+  /**
+   * Redirect after update of Customizr
+   * @package Customizr
+   * @since Customizr 3.0.5
+   */
+    function tc_redirect_after_update() {
+      //check context
+      if ( !isset($_GET['action']) ) {
+        return false;
+      }
+      
+      if ( !isset($_GET['theme']) ) {
+        return false;
+      }
+
+      //is_customizr_upgrade ?
+      if ( $_GET['action'] == 'upgrade-theme' && $_GET['theme'] == 'customizr') {
+        show_message( '<span class="hide-if-no-js">' . sprintf( __( 'Welcome to the new version of Customizr. You will be redirected to the About WordPress screen. If not, click <a href="%1$s">here</a>.' ), esc_url( self_admin_url( 'themes.php?page=welcome.php&action=customizr-update' ) ) ) . '</span>' );
+        ?>
+          <script type="text/javascript">
+          window.location = '<?php echo self_admin_url( 'themes.php?page=welcome.php&action=customizr-update' ); ?>';
+          </script>
+        <?php
+      }
+
+    }
+
+
+
+
+    /**
+   * Extract changelog of latest version from readme.txt file
+   * @package Customizr
+   * @since Customizr 3.0.5
+   */
+    function tc_extract_changelog() {
+      
+      $stylelines = explode("\n", implode('', file(TC_BASE_URL."/readme.txt")));
+      $read = false;
+      $i = 0;
+
+      foreach ($stylelines as $line) {
+        //echo 'i = '.$i.'|read = '.$read.'pos = '.strpos($line, '= ').'|line :'.$line.'<br/>';
+        //we stop reading if we reach the next version change
+        if ($i == 1 && strpos($line, '= ') === 0 ) {
+          $read = false;
+          $i = 0;
+        }
+        //we write the line if between current and previous version
+        if ($read) {
+          echo $line.'<br/>';
+        }
+        //we skip all lines before the current version changelog
+        if ($line != strpos($line, '= '.CUSTOMIZR_VER.' =')) {
+          if ($i == 0) {
+            $read = false;
+          }
+        }
+        //we begin to read after current version title
+        else {
+          $read = true;
+          $i = 1;
+        }
+      }
+    }
 
 }//end of class       

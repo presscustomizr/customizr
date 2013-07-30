@@ -23,6 +23,8 @@
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
 	   	<header class="tc-header clearfix" role="banner">
+			
+			<?php do_action( 'before_menu' ); ?>
 
 	      	<div class="navbar-wrapper clearfix row-fluid">
           	

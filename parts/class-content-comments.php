@@ -30,7 +30,7 @@ class TC_comments {
       function tc_comment_title() {
         printf( '<h2 class="comments-title">%1$s</h2>' ,
               sprintf( _n( 'One thought on &ldquo;%2$s&rdquo;' , '%1$s thoughts on &ldquo;%2$s&rdquo;' , get_comments_number(), 'customizr' ),
-              number_format_i18n( get_comments_number() ), 
+              number_format_i18n( get_comments_number(), 'customizr' ), 
               '<span>' . get_the_title() . '</span>' 
             ));
       }

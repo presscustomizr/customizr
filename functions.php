@@ -78,7 +78,7 @@ if ( !function_exists( 'tc_get_classes' ) ) :
 
 	    $classes    = array();
 
-	    $files      =  scandir(TC_BASE.$path);
+	    $files      = scandir(TC_BASE.$path);
 	    
 	    foreach ( $files as $file) 
 	    {
@@ -178,7 +178,6 @@ if( !function_exists( 'tc__f' )) :
 
     }
 endif;
-
 
 
 

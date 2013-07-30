@@ -39,7 +39,7 @@ class TC_loop {
 
         <?php
             /* get additionnal header for archive, search, 404 */
-            do_action( '__list_header' );
+            do_action( '__post_list_header' );
 
               /* Start the Loop for all other case*/
               if ( have_posts() ) {

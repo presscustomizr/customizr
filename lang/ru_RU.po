@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customizr 1.1.5\n"
-"POT-Creation-Date: 2013-07-25 18:39+0100\n"
-"PO-Revision-Date: 2013-07-25 18:39+0100\n"
+"POT-Creation-Date: 2013-07-30 18:48+0100\n"
+"PO-Revision-Date: 2013-07-30 18:48+0100\n"
 "Last-Translator: Nicolas G. <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -16,64 +16,68 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../inc/class-fire-init.php:49
+#: ../inc/class-fire-init.php:48
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: ../inc/class-fire-utils.php:265 ../parts/class-content-content.php:236
+#: ../inc/class-fire-utils.php:266 ../parts/class-content-post.php:140
 #, php-format
 msgid "Permalink to %s"
 msgstr "Пермалинк к %s"
 
-#: ../inc/class-fire-utils.php:294
+#: ../inc/class-fire-utils.php:295
 msgid "feed"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:295
+#: ../inc/class-fire-utils.php:296
 msgid "twitter"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:296
+#: ../inc/class-fire-utils.php:297
 msgid "facebook"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:297
+#: ../inc/class-fire-utils.php:298
 msgid "google"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:298
+#: ../inc/class-fire-utils.php:299
 msgid "youtube"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:299
+#: ../inc/class-fire-utils.php:300
 msgid "pinterest"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:300
+#: ../inc/class-fire-utils.php:301
 msgid "github"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:301
+#: ../inc/class-fire-utils.php:302
 msgid "dribbble"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:302
+#: ../inc/class-fire-utils.php:303
 msgid "linkedin"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:308 ../inc/admin/class-admin-customize.php:185
+#: ../inc/class-fire-utils.php:309 ../inc/admin/class-admin-customize.php:185
 msgid "Social links"
 msgstr "Линки соцсетей"
 
-#: ../inc/class-fire-utils.php:313
+#: ../inc/class-fire-utils.php:314
 msgid "Follow me on "
 msgstr "Следи за мной на"
 
-#: ../inc/class-fire-utils.php:317
+#: ../inc/class-fire-utils.php:318
 msgid "Suscribe to my rss feed"
 msgstr "Подписывайся на rss ленту"
 
-#: ../inc/class-fire-utils.php:389
+#: ../inc/class-fire-utils.php:519
+msgid "Missing Attachment"
+msgstr ""
+
+#: ../inc/class-fire-utils.php:565
 #, php-format
 msgid "Page %s"
 msgstr "Страница %s"
@@ -373,7 +377,10 @@ msgstr "Текст  %s (200 знаков макс.)"
 #: ../inc/admin/class-admin-customize.php:453
 #: ../inc/admin/class-admin-customize.php:464
 #: ../inc/admin/class-admin-customize.php:475
-msgid "Leave this field empty if you want to use the selected page excerpt."
+#, fuzzy
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
 msgstr ""
 "Оставьте поле пустым если хотите видеть здесь выдержку из текста страницы."
 
@@ -495,12 +502,21 @@ msgstr ""
 "Если включено то это активирует всплывание окна с зум-эффектом если кликнуть "
 "на изображение. Не действует на галерею."
 
-#: ../inc/admin/class-admin-customize.php:713
+#: ../inc/admin/class-admin-customize.php:709
+msgid "Autoscale images on zoom"
+msgstr ""
+
+#: ../inc/admin/class-admin-customize.php:712
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr ""
+
+#: ../inc/admin/class-admin-customize.php:722
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Добавь сюда свои стили и смотри результат! ( для продвинутых пользователей)"
 
-#: ../inc/admin/class-admin-customize.php:716
+#: ../inc/admin/class-admin-customize.php:725
 msgid ""
 "Always use this field to add your custom css instead of editing directly the "
 "style.css file : it will not be deleted during theme updates. Special "
@@ -726,13 +742,12 @@ msgid "Button Link"
 msgstr "Линк кнопки"
 
 #: ../inc/admin/class-admin-meta_boxes.php:808
+#: ../parts/class-content-attachment.php:51
 #: ../parts/class-content-breadcrumb.php:598
 #: ../parts/class-content-breadcrumb.php:631
 #: ../parts/class-content-breadcrumb.php:646
 #: ../parts/class-content-breadcrumb.php:674
-#: ../parts/class-content-comments.php:103
-#: ../parts/class-content-content.php:252
-#: ../parts/class-content-content.php:712
+#: ../parts/class-content-comments.php:103 ../parts/class-content-post.php:157
 msgid "Edit"
 msgstr "Править"
 
@@ -752,91 +767,134 @@ msgstr "Текущий слайд"
 msgid "Create a slider"
 msgstr "Сделать слайдер"
 
-#: ../inc/admin/class-fire-admin_init.php:90
-#: ../inc/admin/class-fire-admin_init.php:91
+#: ../inc/admin/class-fire-admin_init.php:96
+#: ../inc/admin/class-fire-admin_init.php:97
 msgid "Upgrade WP"
 msgstr "Обновить ВордПресс"
 
-#: ../inc/admin/class-fire-admin_init.php:110
+#: ../inc/admin/class-fire-admin_init.php:116
 msgid "This theme requires WordPress 3.4+"
 msgstr "Для этой темы нужен ВордПресс 3.4+"
 
-#: ../inc/admin/class-fire-admin_init.php:113
-#: ../inc/admin/class-fire-admin_init.php:114
+#: ../inc/admin/class-fire-admin_init.php:119
+#: ../inc/admin/class-fire-admin_init.php:120
 msgid "Upgrade Wordpress Now"
 msgstr "Обновите ВордПресс сейчас"
 
-#: ../inc/admin/class-fire-admin_init.php:155
-#: ../inc/admin/class-fire-admin_init.php:156
+#: ../inc/admin/class-fire-admin_init.php:161
+#: ../inc/admin/class-fire-admin_init.php:162
 #, fuzzy
 msgid "About Customizr"
 msgstr "Про %s"
 
-#: ../inc/admin/class-fire-admin_init.php:177
+#: ../inc/admin/class-fire-admin_init.php:189
 #, fuzzy, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Выбери внешний вид для Customizr"
 
-#: ../inc/admin/class-fire-admin_init.php:180
+#: ../inc/admin/class-fire-admin_init.php:193
 #, php-format
 msgid ""
-"Thank you for updating to the latest version! Customizr %s is safer and more "
-"stable than ever to help you build an awesome website. Enjoy it!"
+"Thank you for updating to the latest version! Customizr %1$s has more "
+"features, is safer and more stable than ever <a href=\"#customizr-changelog"
+"\">(see changelog)</a> to help you build an awesome website. Enjoy it! "
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:182
+#: ../inc/admin/class-fire-admin_init.php:197
 #, php-format
 msgid ""
-"Thank you for using Customizr! Customizr %s is safer and more stable than "
-"ever to help you build an awesome website. Enjoy it!"
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see changelog)</"
+"a> to help you build an awesome website. Enjoy it! "
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:191
+#: ../inc/admin/class-fire-admin_init.php:211
 msgid "We need coffee..."
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:192
+#: ../inc/admin/class-fire-admin_init.php:212
 msgid ""
 "Either you are using Customizr for personal or business purposes, <strong>we "
 "do our best do make it the perfect free theme for you</strong>.<br /> Any "
 "kind of sponsorship will be appreciated!"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:199
+#: ../inc/admin/class-fire-admin_init.php:219
 msgid "Happy user of Customizr?"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:200
+#: ../inc/admin/class-fire-admin_init.php:220
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
-"a nice review!"
+"a nice review! <br />(We are addicted to your feedbacks...)"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:205
+#: ../inc/admin/class-fire-admin_init.php:225
 #, fuzzy
 msgid "Follow us"
 msgstr "Следи за мной на"
 
-#: ../inc/admin/class-fire-admin_init.php:225
+#: ../inc/admin/class-fire-admin_init.php:245
 msgid "Discover Customizr : quick video introduction"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:233
+#: ../inc/admin/class-fire-admin_init.php:255
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr ""
+
+#: ../inc/admin/class-fire-admin_init.php:264
 msgid "Go to Dashboard &rarr; Home"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:233
+#: ../inc/admin/class-fire-admin_init.php:264
 msgid "Go to Dashboard"
 msgstr ""
 
-#: ../inc/pro/admin/class-pro-customize_pro.php:108
-msgid "Ajust the title size"
-msgstr "Настроить размер заголовка"
+#: ../inc/admin/class-fire-admin_init.php:302
+#, php-format
+msgid ""
+"Welcome to the new version of Customizr. You will be redirected to the About "
+"WordPress screen. If not, click <a href=\"%1$s\">here</a>."
+msgstr ""
 
-#: ../inc/pro/admin/class-pro-customize_pro.php:132
-#, fuzzy
-msgid "Ajust the slider size"
-msgstr "Настроить размер заголовка"
+#: ../parts/class-content-404.php:38
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Говоря правду во времена всеобщего обмана вы делаете революцию."
+
+#: ../parts/class-content-404.php:39
+msgid "George Orwell"
+msgstr "Джордж Орвелл"
+
+#: ../parts/class-content-404.php:42
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"Очень жаль, но запрашиваемая вами страница не найдена. Вы можете попробывать "
+"ниже."
+
+#: ../parts/class-content-attachment.php:39
+#, php-format
+msgid ""
+"<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
+"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
+"span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; "
+"%5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</"
+"a>."
+msgstr ""
+"<span class=\"meta-prep meta-prep-entry-date\">Опубликовано</span> <span "
+"class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</"
+"time></span> в <a href=\"%3$s\" title=\"Link to full-size image\">%4$s "
+"&times; %5$s</a> в <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">"
+"%8$s</a>."
+
+#: ../parts/class-content-attachment.php:57
+msgid "&larr; Previous"
+msgstr "&larr; Предыдущая"
+
+#: ../parts/class-content-attachment.php:59
+msgid "Next &rarr;"
+msgstr "Следующая &rarr;"
 
 #: ../parts/class-content-breadcrumb.php:43
 #: ../parts/class-content-breadcrumb.php:105
@@ -962,180 +1020,6 @@ msgstr "Новые комментарии &rarr;"
 msgid "Comments are closed."
 msgstr "Комментарии закрыты"
 
-#: ../parts/class-content-content.php:170
-#: ../parts/class-content-content.php:179
-#: ../parts/class-content-content.php:639
-msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Продолжить чтение <span class=\"meta-nav\">&rarr;</span>"
-
-#: ../parts/class-content-content.php:171
-#: ../parts/class-content-content.php:180
-#: ../parts/class-content-content.php:642
-msgid "Pages:"
-msgstr "Страницы:"
-
-#: ../parts/class-content-content.php:218
-msgid "Comment(s) on "
-msgstr "Комментарий (ии) к"
-
-#: ../parts/class-content-content.php:236
-msgid "{no title} Read the post &raquo;"
-msgstr "{no title}  Читать пост &raquo;"
-
-#: ../parts/class-content-content.php:280
-msgid "Ooops, page not found"
-msgstr "Упс, страница не найдена"
-
-#: ../parts/class-content-content.php:290
-#, php-format
-msgid "%1sSearch Results for: %2s"
-msgstr "%1sНашлось для: %2s"
-
-#: ../parts/class-content-content.php:291
-msgid "No"
-msgstr "Ничего не"
-
-#: ../parts/class-content-content.php:306
-#, php-format
-msgid "Author Archives: %s"
-msgstr "Архивы по авторам: %s"
-
-#: ../parts/class-content-content.php:314
-#, php-format
-msgid "Category Archives: %s"
-msgstr "Архивы по катигориям: %s"
-
-#: ../parts/class-content-content.php:326
-#, php-format
-msgid "Tag Archives: %s"
-msgstr "Архивы по тегам: %s"
-
-#: ../parts/class-content-content.php:340
-#, php-format
-msgid "Daily Archives: %s"
-msgstr "Архивы по дням: %s"
-
-#: ../parts/class-content-content.php:342
-#, php-format
-msgid "Monthly Archives: %s"
-msgstr "Архивы по месяцам: %s"
-
-#: ../parts/class-content-content.php:344
-#, php-format
-msgid "Yearly Archives: %s"
-msgstr "Архивы по годам: %s"
-
-#: ../parts/class-content-content.php:346
-msgid "Archives"
-msgstr "Архивы"
-
-#: ../parts/class-content-content.php:386
-#, php-format
-msgid "View all posts by %s"
-msgstr "Посмотреть все посты автора:  %s"
-
-#: ../parts/class-content-content.php:392
-#, php-format
-msgid ""
-"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
-"\"> by %4$s</span>."
-msgstr ""
-"Эта запись была сделана в %1$s и помечена %2$s в %3$s<span class=\"автором"
-"\"> автором %4$s</span>."
-
-#: ../parts/class-content-content.php:394
-#, php-format
-msgid ""
-"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
-"span>."
-msgstr ""
-"Эта запись была сделана в  %1$s в %3$s<span class=\"автором\"> автором %4$s</"
-"span>."
-
-#: ../parts/class-content-content.php:396
-#, php-format
-msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
-msgstr ""
-"Эта запись была сделана на %3$s<span class=\"автором\"> автором %4$s</span>."
-
-#: ../parts/class-content-content.php:425
-#: ../parts/class-content-content.php:451
-#, php-format
-msgid "View all posts in %s"
-msgstr "Смотреть все посты в %s"
-
-#: ../parts/class-content-content.php:483
-#, php-format
-msgid "About %s"
-msgstr "Про %s"
-
-#: ../parts/class-content-content.php:488
-#, php-format
-msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Смотреть все посты автора %s <span class=\"meta-nav\">&rarr;</span>"
-
-#: ../parts/class-content-content.php:631
-msgid "Edit page"
-msgstr "Править"
-
-#: ../parts/class-content-content.php:667
-msgid ""
-"Success is the ability to go from one failure to another with no loss of "
-"enthusiasm..."
-msgstr ""
-"Успех - это способность выдерживать одну неудачу за другой не теряя при этом "
-"энтузиазма..."
-
-#: ../parts/class-content-content.php:668
-msgid "Sir Winston Churchill"
-msgstr "Сэр Винстон Черчилль"
-
-#: ../parts/class-content-content.php:670
-msgid ""
-"Sorry, but nothing matched your search criteria. Please try again with some "
-"different keywords."
-msgstr ""
-"Очень жаль, но соответствий введённым вами критериям не нашлось. Попробуйте "
-"другие слова."
-
-#: ../parts/class-content-content.php:700
-#, php-format
-msgid ""
-"<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
-"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
-"span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; "
-"%5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</"
-"a>."
-msgstr ""
-"<span class=\"meta-prep meta-prep-entry-date\">Опубликовано</span> <span "
-"class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</"
-"time></span> в <a href=\"%3$s\" title=\"Link to full-size image\">%4$s "
-"&times; %5$s</a> в <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">"
-"%8$s</a>."
-
-#: ../parts/class-content-content.php:718
-msgid "&larr; Previous"
-msgstr "&larr; Предыдущая"
-
-#: ../parts/class-content-content.php:720
-msgid "Next &rarr;"
-msgstr "Следующая &rarr;"
-
-#: ../parts/class-content-content.php:848
-msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
-msgstr "Говоря правду во времена всеобщего обмана вы делаете революцию."
-
-#: ../parts/class-content-content.php:849
-msgid "George Orwell"
-msgstr "Джордж Орвелл"
-
-#: ../parts/class-content-content.php:852
-msgid ""
-"Sorry, but the requested page is not found. You might try a search below."
-msgstr ""
-"Очень жаль, но запрашиваемая вами страница не найдена. Вы можете попробывать "
-"ниже."
-
 #: ../parts/class-content-featured_pages.php:103
 msgid "Customizer screen"
 msgstr "Панель Костомайзера"
@@ -1172,6 +1056,144 @@ msgstr "<span class=\"meta-nav\">&larr;</span> Старые посты"
 #: ../parts/class-content-nav.php:77
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Новые посты  <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-no_results.php:37
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr ""
+"Успех - это способность выдерживать одну неудачу за другой не теряя при этом "
+"энтузиазма..."
+
+#: ../parts/class-content-no_results.php:38
+msgid "Sir Winston Churchill"
+msgstr "Сэр Винстон Черчилль"
+
+#: ../parts/class-content-no_results.php:40
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Очень жаль, но соответствий введённым вами критериям не нашлось. Попробуйте "
+"другие слова."
+
+#: ../parts/class-content-page.php:38
+msgid "Edit page"
+msgstr "Править"
+
+#: ../parts/class-content-page.php:46 ../parts/class-content-post.php:73
+#: ../parts/class-content-post.php:82
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Продолжить чтение <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-page.php:49 ../parts/class-content-post.php:74
+#: ../parts/class-content-post.php:83
+msgid "Pages:"
+msgstr "Страницы:"
+
+#: ../parts/class-content-post.php:121
+msgid "Comment(s) on "
+msgstr "Комментарий (ии) к"
+
+#: ../parts/class-content-post.php:140
+msgid "{no title} Read the post &raquo;"
+msgstr "{no title}  Читать пост &raquo;"
+
+#: ../parts/class-content-post.php:185
+msgid "Ooops, page not found"
+msgstr "Упс, страница не найдена"
+
+#: ../parts/class-content-post.php:195
+#, php-format
+msgid "%1sSearch Results for: %2s"
+msgstr "%1sНашлось для: %2s"
+
+#: ../parts/class-content-post.php:196
+msgid "No"
+msgstr "Ничего не"
+
+#: ../parts/class-content-post.php:211
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Архивы по авторам: %s"
+
+#: ../parts/class-content-post.php:219
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Архивы по катигориям: %s"
+
+#: ../parts/class-content-post.php:231
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Архивы по тегам: %s"
+
+#: ../parts/class-content-post.php:245
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Архивы по дням: %s"
+
+#: ../parts/class-content-post.php:247
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Архивы по месяцам: %s"
+
+#: ../parts/class-content-post.php:249
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Архивы по годам: %s"
+
+#: ../parts/class-content-post.php:251
+msgid "Archives"
+msgstr "Архивы"
+
+#: ../parts/class-content-post.php:291
+#, php-format
+msgid "View all posts by %s"
+msgstr "Посмотреть все посты автора:  %s"
+
+#: ../parts/class-content-post.php:297
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"Эта запись была сделана в %1$s и помечена %2$s в %3$s<span class=\"автором"
+"\"> автором %4$s</span>."
+
+#: ../parts/class-content-post.php:299
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Эта запись была сделана в  %1$s в %3$s<span class=\"автором\"> автором %4$s</"
+"span>."
+
+#: ../parts/class-content-post.php:301
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+"Эта запись была сделана на %3$s<span class=\"автором\"> автором %4$s</span>."
+
+#: ../parts/class-content-post.php:330 ../parts/class-content-post.php:356
+#, php-format
+msgid "View all posts in %s"
+msgstr "Смотреть все посты в %s"
+
+#: ../parts/class-content-post.php:388
+#, php-format
+msgid "About %s"
+msgstr "Про %s"
+
+#: ../parts/class-content-post.php:393
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Смотреть все посты автора %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-header-menu.php:40
+#, fuzzy
+msgid "Add a menu"
+msgstr "Добавить слайдер"
 
 #: ../parts/class-header-slider.php:80 ../parts/class-header-slider.php:83
 msgid "Customizr is a clean responsive theme"
@@ -1229,6 +1251,13 @@ msgstr "На верх"
 #: ../parts/class-main-header.php:151
 msgid "Back Home"
 msgstr "Назад на главную"
+
+#~ msgid "Ajust the title size"
+#~ msgstr "Настроить размер заголовка"
+
+#, fuzzy
+#~ msgid "Ajust the slider size"
+#~ msgstr "Настроить размер заголовка"
 
 #~ msgid "one"
 #~ msgstr "Один"

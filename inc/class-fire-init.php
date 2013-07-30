@@ -1,7 +1,6 @@
 <?php
 /**
 * Adds theme supports using WP functions, 
-* Defines theme options and the functions to call them
 *
 * 
 * @package      Customizr

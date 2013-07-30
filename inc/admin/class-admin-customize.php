@@ -450,7 +450,7 @@ class TC_customize {
 																	'label'    		=> __( 'Featured text one (200 car. max)' , 'customizr' ),
 																	'section'  		=> 'tc_frontpage_settings' ,
 																	'type'     		=> 'textarea' ,
-																	'notice'		=> __( 'Leave this field empty if you want to use the selected page excerpt.' , 'customizr' ),
+																	'notice'		=> __( 'You need to select a page first. Leave this field empty if you want to use the page excerpt.' , 'customizr' ),
 																	'priority'      => 100,
 								),
 
@@ -461,7 +461,7 @@ class TC_customize {
 																	'label'    		=> __( 'Featured text two (200 car. max)' , 'customizr' ),
 																	'section'  		=> 'tc_frontpage_settings' ,
 																	'type'     		=> 'textarea' ,
-																	'notice'		=> __( 'Leave this field empty if you want to use the selected page excerpt.' , 'customizr' ),
+																	'notice'		=> __( 'You need to select a page first. Leave this field empty if you want to use the page excerpt.' , 'customizr' ),
 																	'priority'      => 110,
 								),
 
@@ -472,7 +472,7 @@ class TC_customize {
 																	'label'    		=> __( 'Featured text three (200 car. max)' , 'customizr' ),
 																	'section'  		=> 'tc_frontpage_settings' ,
 																	'type'     		=> 'textarea' ,
-																	'notice'		=> __( 'Leave this field empty if you want to use the selected page excerpt.' , 'customizr' ),
+																	'notice'		=> __( 'You need to select a page first. Leave this field empty if you want to use the page excerpt.' , 'customizr' ),
 																	'priority'      => 120,
 								),
 
@@ -701,6 +701,15 @@ class TC_customize {
 																	'section'  		=> 'tc_image_settings' ,
 																	'type'     		=> 'checkbox' ,
 																	'notice'		=> __( 'If enabled, this option activate a popin window whith a zoom effect when an image is clicked. This will not apply to image gallery.' , 'customizr' ),
+								),
+
+								'tc_theme_options[tc_fancybox_autoscale]'	=>	array(
+																	'default'       => 1,
+																	'control'		=> 'TC_controls' ,
+																	'label'    		=> __( 'Autoscale images on zoom' , 'customizr' ),
+																	'section'  		=> 'tc_image_settings' ,
+																	'type'     		=> 'checkbox' ,
+																	'notice'		=> __( 'If enabled, this option will force images to fit the screen on lightbox zoom.' , 'customizr' ),
 								),
 
 

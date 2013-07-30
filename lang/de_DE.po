@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customizr 1.1.5\n"
-"POT-Creation-Date: 2013-07-25 18:39+0100\n"
-"PO-Revision-Date: 2013-07-25 18:39+0100\n"
+"POT-Creation-Date: 2013-07-30 18:47+0100\n"
+"PO-Revision-Date: 2013-07-30 18:47+0100\n"
 "Last-Translator: Nicolas G. <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -16,64 +16,68 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../inc/class-fire-init.php:49
+#: ../inc/class-fire-init.php:48
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: ../inc/class-fire-utils.php:265 ../parts/class-content-content.php:236
+#: ../inc/class-fire-utils.php:266 ../parts/class-content-post.php:140
 #, php-format
 msgid "Permalink to %s"
 msgstr "Permalink zu %s"
 
-#: ../inc/class-fire-utils.php:294
+#: ../inc/class-fire-utils.php:295
 msgid "feed"
 msgstr "Feed"
 
-#: ../inc/class-fire-utils.php:295
+#: ../inc/class-fire-utils.php:296
 msgid "twitter"
 msgstr "Twitter"
 
-#: ../inc/class-fire-utils.php:296
+#: ../inc/class-fire-utils.php:297
 msgid "facebook"
 msgstr "Facebook"
 
-#: ../inc/class-fire-utils.php:297
+#: ../inc/class-fire-utils.php:298
 msgid "google"
 msgstr "Google"
 
-#: ../inc/class-fire-utils.php:298
+#: ../inc/class-fire-utils.php:299
 msgid "youtube"
 msgstr "Youtube"
 
-#: ../inc/class-fire-utils.php:299
+#: ../inc/class-fire-utils.php:300
 msgid "pinterest"
 msgstr "Pinterest"
 
-#: ../inc/class-fire-utils.php:300
+#: ../inc/class-fire-utils.php:301
 msgid "github"
 msgstr "Github"
 
-#: ../inc/class-fire-utils.php:301
+#: ../inc/class-fire-utils.php:302
 msgid "dribbble"
 msgstr "Dribbble"
 
-#: ../inc/class-fire-utils.php:302
+#: ../inc/class-fire-utils.php:303
 msgid "linkedin"
 msgstr "Linkedin"
 
-#: ../inc/class-fire-utils.php:308 ../inc/admin/class-admin-customize.php:185
+#: ../inc/class-fire-utils.php:309 ../inc/admin/class-admin-customize.php:185
 msgid "Social links"
 msgstr "Soziale Links"
 
-#: ../inc/class-fire-utils.php:313
+#: ../inc/class-fire-utils.php:314
 msgid "Follow me on "
 msgstr "Folgen Sie mir auf "
 
-#: ../inc/class-fire-utils.php:317
+#: ../inc/class-fire-utils.php:318
 msgid "Suscribe to my rss feed"
 msgstr "Abonnieren Sie meinen Rss-Feed"
 
-#: ../inc/class-fire-utils.php:389
+#: ../inc/class-fire-utils.php:519
+msgid "Missing Attachment"
+msgstr ""
+
+#: ../inc/class-fire-utils.php:565
 #, php-format
 msgid "Page %s"
 msgstr "Seite %s"
@@ -375,7 +379,10 @@ msgstr "Empfohlen-Text %s (Max. 200 Zeichen)"
 #: ../inc/admin/class-admin-customize.php:453
 #: ../inc/admin/class-admin-customize.php:464
 #: ../inc/admin/class-admin-customize.php:475
-msgid "Leave this field empty if you want to use the selected page excerpt."
+#, fuzzy
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
 msgstr ""
 "Lassen Sie dieses Feld leer, wenn Sie den Beitragsauszug der ausgewählten "
 "Seite verwenden möchten."
@@ -494,13 +501,22 @@ msgstr ""
 "Wenn aktiviert, erscheint ein Zoomeffekt, wenn ein Bild angeklickt wird. "
 "Dies gilt nicht für die Bildergalerie."
 
-#: ../inc/admin/class-admin-customize.php:713
+#: ../inc/admin/class-admin-customize.php:709
+msgid "Autoscale images on zoom"
+msgstr ""
+
+#: ../inc/admin/class-admin-customize.php:712
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr ""
+
+#: ../inc/admin/class-admin-customize.php:722
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Fügen Sie hier Ihr benutzerdefiniertes CSS hinzu und gestalten es live! (Nur "
 "für fortgeschrittene Benutzer!)"
 
-#: ../inc/admin/class-admin-customize.php:716
+#: ../inc/admin/class-admin-customize.php:725
 msgid ""
 "Always use this field to add your custom css instead of editing directly the "
 "style.css file : it will not be deleted during theme updates. Special "
@@ -734,13 +750,12 @@ msgid "Button Link"
 msgstr "Schaltflächenverknüpfung"
 
 #: ../inc/admin/class-admin-meta_boxes.php:808
+#: ../parts/class-content-attachment.php:51
 #: ../parts/class-content-breadcrumb.php:598
 #: ../parts/class-content-breadcrumb.php:631
 #: ../parts/class-content-breadcrumb.php:646
 #: ../parts/class-content-breadcrumb.php:674
-#: ../parts/class-content-comments.php:103
-#: ../parts/class-content-content.php:252
-#: ../parts/class-content-content.php:712
+#: ../parts/class-content-comments.php:103 ../parts/class-content-post.php:157
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -760,91 +775,135 @@ msgstr "Aktuelle Folie"
 msgid "Create a slider"
 msgstr "einen Slider erstellen "
 
-#: ../inc/admin/class-fire-admin_init.php:90
-#: ../inc/admin/class-fire-admin_init.php:91
+#: ../inc/admin/class-fire-admin_init.php:96
+#: ../inc/admin/class-fire-admin_init.php:97
 msgid "Upgrade WP"
 msgstr "Upgrade von WP"
 
-#: ../inc/admin/class-fire-admin_init.php:110
+#: ../inc/admin/class-fire-admin_init.php:116
 msgid "This theme requires WordPress 3.4+"
 msgstr "Das Theme erfordert WordPress 3.4 +"
 
-#: ../inc/admin/class-fire-admin_init.php:113
-#: ../inc/admin/class-fire-admin_init.php:114
+#: ../inc/admin/class-fire-admin_init.php:119
+#: ../inc/admin/class-fire-admin_init.php:120
 msgid "Upgrade Wordpress Now"
 msgstr "Wordpress jetzt upgraden"
 
-#: ../inc/admin/class-fire-admin_init.php:155
-#: ../inc/admin/class-fire-admin_init.php:156
+#: ../inc/admin/class-fire-admin_init.php:161
+#: ../inc/admin/class-fire-admin_init.php:162
 #, fuzzy
 msgid "About Customizr"
 msgstr "Über %s"
 
-#: ../inc/admin/class-fire-admin_init.php:177
+#: ../inc/admin/class-fire-admin_init.php:189
 #, fuzzy, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Wählen Sie ein Design für Customizr"
 
-#: ../inc/admin/class-fire-admin_init.php:180
+#: ../inc/admin/class-fire-admin_init.php:193
 #, php-format
 msgid ""
-"Thank you for updating to the latest version! Customizr %s is safer and more "
-"stable than ever to help you build an awesome website. Enjoy it!"
+"Thank you for updating to the latest version! Customizr %1$s has more "
+"features, is safer and more stable than ever <a href=\"#customizr-changelog"
+"\">(see changelog)</a> to help you build an awesome website. Enjoy it! "
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:182
+#: ../inc/admin/class-fire-admin_init.php:197
 #, php-format
 msgid ""
-"Thank you for using Customizr! Customizr %s is safer and more stable than "
-"ever to help you build an awesome website. Enjoy it!"
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see changelog)</"
+"a> to help you build an awesome website. Enjoy it! "
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:191
+#: ../inc/admin/class-fire-admin_init.php:211
 msgid "We need coffee..."
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:192
+#: ../inc/admin/class-fire-admin_init.php:212
 msgid ""
 "Either you are using Customizr for personal or business purposes, <strong>we "
 "do our best do make it the perfect free theme for you</strong>.<br /> Any "
 "kind of sponsorship will be appreciated!"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:199
+#: ../inc/admin/class-fire-admin_init.php:219
 msgid "Happy user of Customizr?"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:200
+#: ../inc/admin/class-fire-admin_init.php:220
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
-"a nice review!"
+"a nice review! <br />(We are addicted to your feedbacks...)"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:205
+#: ../inc/admin/class-fire-admin_init.php:225
 #, fuzzy
 msgid "Follow us"
 msgstr "Folgen Sie mir auf "
 
-#: ../inc/admin/class-fire-admin_init.php:225
+#: ../inc/admin/class-fire-admin_init.php:245
 msgid "Discover Customizr : quick video introduction"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:233
+#: ../inc/admin/class-fire-admin_init.php:255
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr ""
+
+#: ../inc/admin/class-fire-admin_init.php:264
 msgid "Go to Dashboard &rarr; Home"
 msgstr ""
 
-#: ../inc/admin/class-fire-admin_init.php:233
+#: ../inc/admin/class-fire-admin_init.php:264
 msgid "Go to Dashboard"
 msgstr ""
 
-#: ../inc/pro/admin/class-pro-customize_pro.php:108
-msgid "Ajust the title size"
-msgstr "Titel-Größe anpassen"
+#: ../inc/admin/class-fire-admin_init.php:302
+#, php-format
+msgid ""
+"Welcome to the new version of Customizr. You will be redirected to the About "
+"WordPress screen. If not, click <a href=\"%1$s\">here</a>."
+msgstr ""
 
-#: ../inc/pro/admin/class-pro-customize_pro.php:132
-#, fuzzy
-msgid "Ajust the slider size"
-msgstr "Titel-Größe anpassen"
+#: ../parts/class-content-404.php:38
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr ""
+"In Zeiten allgemeiner Täuschung die Wahrheit zu sagen ist eine revolutionäre "
+"Tat."
+
+#: ../parts/class-content-404.php:39
+msgid "George Orwell"
+msgstr "George Orwell"
+
+#: ../parts/class-content-404.php:42
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"Angeforderte Seite leider nicht gefunden. Bitte erneute Suche durchführen."
+
+#: ../parts/class-content-attachment.php:39
+#, php-format
+msgid ""
+"<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
+"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
+"span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; "
+"%5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</"
+"a>."
+msgstr ""
+"<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
+"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
+"span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; "
+"%5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</"
+"a>."
+
+#: ../parts/class-content-attachment.php:57
+msgid "&larr; Previous"
+msgstr "&larr; Vorheriger"
+
+#: ../parts/class-content-attachment.php:59
+msgid "Next &rarr;"
+msgstr "Nächster &rarr;"
 
 #: ../parts/class-content-breadcrumb.php:43
 #: ../parts/class-content-breadcrumb.php:105
@@ -970,180 +1029,6 @@ msgstr "Neuere Kommentare &rarr;"
 msgid "Comments are closed."
 msgstr "Kommentare sind geschlossen."
 
-#: ../parts/class-content-content.php:170
-#: ../parts/class-content-content.php:179
-#: ../parts/class-content-content.php:639
-msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Weiterlesen <span class=\"meta-nav\">&rarr;</span>"
-
-#: ../parts/class-content-content.php:171
-#: ../parts/class-content-content.php:180
-#: ../parts/class-content-content.php:642
-msgid "Pages:"
-msgstr "Seiten:"
-
-#: ../parts/class-content-content.php:218
-msgid "Comment(s) on "
-msgstr "Kommentar(e) zu "
-
-#: ../parts/class-content-content.php:236
-msgid "{no title} Read the post &raquo;"
-msgstr "{kein Titel} Beitrag lesen &raquo;"
-
-#: ../parts/class-content-content.php:280
-msgid "Ooops, page not found"
-msgstr "Hoppla, Seite nicht gefunden"
-
-#: ../parts/class-content-content.php:290
-#, php-format
-msgid "%1sSearch Results for: %2s"
-msgstr "%1sSuchergebnis(se) zu: %2s"
-
-#: ../parts/class-content-content.php:291
-msgid "No"
-msgstr "Nein"
-
-#: ../parts/class-content-content.php:306
-#, php-format
-msgid "Author Archives: %s"
-msgstr "Autorenarchive: %s"
-
-#: ../parts/class-content-content.php:314
-#, php-format
-msgid "Category Archives: %s"
-msgstr "Kategoriearchive: %s"
-
-#: ../parts/class-content-content.php:326
-#, php-format
-msgid "Tag Archives: %s"
-msgstr "Tagging-Archive: %s"
-
-#: ../parts/class-content-content.php:340
-#, php-format
-msgid "Daily Archives: %s"
-msgstr "Tägliche Archive: %s"
-
-#: ../parts/class-content-content.php:342
-#, php-format
-msgid "Monthly Archives: %s"
-msgstr "Monatliche Archive: %s"
-
-#: ../parts/class-content-content.php:344
-#, php-format
-msgid "Yearly Archives: %s"
-msgstr "Jährliche Archive: %s"
-
-#: ../parts/class-content-content.php:346
-msgid "Archives"
-msgstr "Archive"
-
-#: ../parts/class-content-content.php:386
-#, php-format
-msgid "View all posts by %s"
-msgstr "Alle Beiträge von %s anzeigen"
-
-#: ../parts/class-content-content.php:392
-#, php-format
-msgid ""
-"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
-"\"> by %4$s</span>."
-msgstr ""
-"Eintrag geposted in %1$s und getagged %2$s am %3$s<span class=\"by-author\"> "
-"von %4$s</span>"
-
-#: ../parts/class-content-content.php:394
-#, php-format
-msgid ""
-"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
-"span>."
-msgstr ""
-"Eintrag geposted in %1$s am %3$s<span class=\"by-author\"> von %4$s</span>."
-
-#: ../parts/class-content-content.php:396
-#, php-format
-msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
-msgstr "Eintrag erstellt am %3$s<span class=\"by-author\"> von %4$s</span>."
-
-#: ../parts/class-content-content.php:425
-#: ../parts/class-content-content.php:451
-#, php-format
-msgid "View all posts in %s"
-msgstr "Alle Beiträge in %s anzeigen"
-
-#: ../parts/class-content-content.php:483
-#, php-format
-msgid "About %s"
-msgstr "Über %s"
-
-#: ../parts/class-content-content.php:488
-#, php-format
-msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Alle Beiträge von %s ansehen <span class=\"meta-nav\">&rarr;</span>"
-
-#: ../parts/class-content-content.php:631
-#, fuzzy
-msgid "Edit page"
-msgstr "Seite bearbeiten:"
-
-#: ../parts/class-content-content.php:667
-msgid ""
-"Success is the ability to go from one failure to another with no loss of "
-"enthusiasm..."
-msgstr ""
-"Erfolg ist die Fähigkeit, einen Fehler nach dem anderen zu machen, ohne den "
-"Enthusiasmus zu verlieren..."
-
-#: ../parts/class-content-content.php:668
-msgid "Sir Winston Churchill"
-msgstr "Sir Winston Churchill"
-
-#: ../parts/class-content-content.php:670
-msgid ""
-"Sorry, but nothing matched your search criteria. Please try again with some "
-"different keywords."
-msgstr ""
-"Leider keine passenden Suchkriterien gefunden. Bitte mit neuen "
-"Schlüsselwörtern suchen."
-
-#: ../parts/class-content-content.php:700
-#, php-format
-msgid ""
-"<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
-"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
-"span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; "
-"%5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</"
-"a>."
-msgstr ""
-"<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
-"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
-"span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; "
-"%5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</"
-"a>."
-
-#: ../parts/class-content-content.php:718
-msgid "&larr; Previous"
-msgstr "&larr; Vorheriger"
-
-#: ../parts/class-content-content.php:720
-msgid "Next &rarr;"
-msgstr "Nächster &rarr;"
-
-#: ../parts/class-content-content.php:848
-msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
-msgstr ""
-"In Zeiten allgemeiner Täuschung die Wahrheit zu sagen ist eine revolutionäre "
-"Tat."
-
-#: ../parts/class-content-content.php:849
-msgid "George Orwell"
-msgstr "George Orwell"
-
-#: ../parts/class-content-content.php:852
-msgid ""
-"Sorry, but the requested page is not found. You might try a search below."
-msgstr ""
-"Angeforderte Seite leider nicht gefunden. Bitte erneute Suche durchführen."
-
 #: ../parts/class-content-featured_pages.php:103
 msgid "Customizer screen"
 msgstr "Customizer-Bildschirm"
@@ -1180,6 +1065,143 @@ msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Beiträge"
 #: ../parts/class-content-nav.php:77
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Neuere Beiträge <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-no_results.php:37
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr ""
+"Erfolg ist die Fähigkeit, einen Fehler nach dem anderen zu machen, ohne den "
+"Enthusiasmus zu verlieren..."
+
+#: ../parts/class-content-no_results.php:38
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: ../parts/class-content-no_results.php:40
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Leider keine passenden Suchkriterien gefunden. Bitte mit neuen "
+"Schlüsselwörtern suchen."
+
+#: ../parts/class-content-page.php:38
+#, fuzzy
+msgid "Edit page"
+msgstr "Seite bearbeiten:"
+
+#: ../parts/class-content-page.php:46 ../parts/class-content-post.php:73
+#: ../parts/class-content-post.php:82
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Weiterlesen <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-page.php:49 ../parts/class-content-post.php:74
+#: ../parts/class-content-post.php:83
+msgid "Pages:"
+msgstr "Seiten:"
+
+#: ../parts/class-content-post.php:121
+msgid "Comment(s) on "
+msgstr "Kommentar(e) zu "
+
+#: ../parts/class-content-post.php:140
+msgid "{no title} Read the post &raquo;"
+msgstr "{kein Titel} Beitrag lesen &raquo;"
+
+#: ../parts/class-content-post.php:185
+msgid "Ooops, page not found"
+msgstr "Hoppla, Seite nicht gefunden"
+
+#: ../parts/class-content-post.php:195
+#, php-format
+msgid "%1sSearch Results for: %2s"
+msgstr "%1sSuchergebnis(se) zu: %2s"
+
+#: ../parts/class-content-post.php:196
+msgid "No"
+msgstr "Nein"
+
+#: ../parts/class-content-post.php:211
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Autorenarchive: %s"
+
+#: ../parts/class-content-post.php:219
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Kategoriearchive: %s"
+
+#: ../parts/class-content-post.php:231
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Tagging-Archive: %s"
+
+#: ../parts/class-content-post.php:245
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Tägliche Archive: %s"
+
+#: ../parts/class-content-post.php:247
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Monatliche Archive: %s"
+
+#: ../parts/class-content-post.php:249
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Jährliche Archive: %s"
+
+#: ../parts/class-content-post.php:251
+msgid "Archives"
+msgstr "Archive"
+
+#: ../parts/class-content-post.php:291
+#, php-format
+msgid "View all posts by %s"
+msgstr "Alle Beiträge von %s anzeigen"
+
+#: ../parts/class-content-post.php:297
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"Eintrag geposted in %1$s und getagged %2$s am %3$s<span class=\"by-author\"> "
+"von %4$s</span>"
+
+#: ../parts/class-content-post.php:299
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Eintrag geposted in %1$s am %3$s<span class=\"by-author\"> von %4$s</span>."
+
+#: ../parts/class-content-post.php:301
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr "Eintrag erstellt am %3$s<span class=\"by-author\"> von %4$s</span>."
+
+#: ../parts/class-content-post.php:330 ../parts/class-content-post.php:356
+#, php-format
+msgid "View all posts in %s"
+msgstr "Alle Beiträge in %s anzeigen"
+
+#: ../parts/class-content-post.php:388
+#, php-format
+msgid "About %s"
+msgstr "Über %s"
+
+#: ../parts/class-content-post.php:393
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Alle Beiträge von %s ansehen <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-header-menu.php:40
+#, fuzzy
+msgid "Add a menu"
+msgstr "Slider hinzufügen"
 
 #: ../parts/class-header-slider.php:80 ../parts/class-header-slider.php:83
 msgid "Customizr is a clean responsive theme"
@@ -1236,6 +1258,13 @@ msgstr "Zurück zum Anfang"
 #: ../parts/class-main-header.php:151
 msgid "Back Home"
 msgstr "Zurück zu Home"
+
+#~ msgid "Ajust the title size"
+#~ msgstr "Titel-Größe anpassen"
+
+#, fuzzy
+#~ msgid "Ajust the slider size"
+#~ msgstr "Titel-Größe anpassen"
 
 #~ msgid "one"
 #~ msgstr "Eins"

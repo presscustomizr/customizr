@@ -40,7 +40,7 @@ class TC_breadcrumb {
 	      'before'     => false,
 	      'after'      => false,
 	      'front_page' => true,
-	      'show_home'  => __( 'Home' , 'breadcrumb-trail' ),
+	      'show_home'  => __( 'Home' , 'customizr' ),
 	      'network'    => false,
 	      'echo'       => true
 	      );
@@ -99,10 +99,10 @@ class TC_breadcrumb {
 		$defaults = array(
 			'container'  => 'div' , // div, nav, p, etc.
 			'separator'  => '/' ,
-			'before'     => __( 'Browse:' , 'breadcrumb-trail' ),
+			'before'     => __( 'Browse:' , 'customizr' ),
 			'after'      => false,
 			'front_page' => true,
-			'show_home'  => __( 'Home' , 'breadcrumb-trail' ),
+			'show_home'  => __( 'Home' , 'customizr' ),
 			'network'    => false,
 			'echo'       => true
 		);
@@ -479,13 +479,13 @@ class TC_breadcrumb {
 			elseif ( is_time() ) {
 
 				if ( get_query_var( 'minute' ) && get_query_var( 'hour' ) )
-					$trail[] = get_the_time( __( 'g:i a' , 'breadcrumb-trail' ) );
+					$trail[] = get_the_time( __( 'g:i a' , 'customizr' ) );
 
 				elseif ( get_query_var( 'minute' ) )
-					$trail[] = sprintf( __( 'Minute %1$s' , 'breadcrumb-trail' ), get_the_time( __( 'i' , 'breadcrumb-trail' ) ) );
+					$trail[] = sprintf( __( 'Minute %1$s' , 'customizr' ), get_the_time( __( 'i' , 'customizr' ) ) );
 
 				elseif ( get_query_var( 'hour' ) )
-					$trail[] = get_the_time( __( 'g a' , 'breadcrumb-trail' ) );
+					$trail[] = get_the_time( __( 'g a' , 'customizr' ) );
 			}
 
 			/* If viewing a date-based archive. */
@@ -496,39 +496,39 @@ class TC_breadcrumb {
 					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $wp_rewrite->front ) );
 
 				if ( is_day() ) {
-					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'breadcrumb-trail' ) ) . '">' . get_the_time( __( 'Y' , 'breadcrumb-trail' ) ) . '</a>';
-					$trail[] = '<a href="' . get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ) . '" title="' . get_the_time( esc_attr__( 'F' , 'breadcrumb-trail' ) ) . '">' . get_the_time( __( 'F' , 'breadcrumb-trail' ) ) . '</a>';
+					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'customizr' ) ) . '">' . get_the_time( __( 'Y' , 'customizr' ) ) . '</a>';
+					$trail[] = '<a href="' . get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ) . '" title="' . get_the_time( esc_attr__( 'F' , 'customizr' ) ) . '">' . get_the_time( __( 'F' , 'customizr' ) ) . '</a>';
 
 					if ( is_paged() )
-						$trail[] = '<a href="' . get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) . '" title="' . get_the_time( esc_attr__( 'd' , 'breadcrumb-trail' ) ) . '">' . get_the_time( __( 'd' , 'breadcrumb-trail' ) ) . '</a>';
+						$trail[] = '<a href="' . get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) . '" title="' . get_the_time( esc_attr__( 'd' , 'customizr' ) ) . '">' . get_the_time( __( 'd' , 'customizr' ) ) . '</a>';
 					else
-						$trail[] = get_the_time( __( 'd' , 'breadcrumb-trail' ) );
+						$trail[] = get_the_time( __( 'd' , 'customizr' ) );
 				}
 
 				elseif ( get_query_var( 'w' ) ) {
-					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'breadcrumb-trail' ) ) . '">' . get_the_time( __( 'Y' , 'breadcrumb-trail' ) ) . '</a>';
+					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'customizr' ) ) . '">' . get_the_time( __( 'Y' , 'customizr' ) ) . '</a>';
 
 					if ( is_paged() )
-						$trail[] = get_archives_link( add_query_arg( array( 'm' => get_the_time( 'Y' ), 'w' => get_the_time( 'W' ) ), esc_url(home_url()) ), sprintf( __( 'Week %1$s' , 'breadcrumb-trail' ), get_the_time( esc_attr__( 'W' , 'breadcrumb-trail' ) ) ), false );
+						$trail[] = get_archives_link( add_query_arg( array( 'm' => get_the_time( 'Y' ), 'w' => get_the_time( 'W' ) ), esc_url(home_url()) ), sprintf( __( 'Week %1$s' , 'customizr' ), get_the_time( esc_attr__( 'W' , 'customizr' ) ) ), false );
 					else
-						$trail[] = sprintf( __( 'Week %1$s' , 'breadcrumb-trail' ), get_the_time( esc_attr__( 'W' , 'breadcrumb-trail' ) ) );
+						$trail[] = sprintf( __( 'Week %1$s' , 'customizr' ), get_the_time( esc_attr__( 'W' , 'customizr' ) ) );
 				}
 
 				elseif ( is_month() ) {
-					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'breadcrumb-trail' ) ) . '">' . get_the_time( __( 'Y' , 'breadcrumb-trail' ) ) . '</a>';
+					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'customizr' ) ) . '">' . get_the_time( __( 'Y' , 'customizr' ) ) . '</a>';
 
 					if ( is_paged() )
-						$trail[] = '<a href="' . get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ) . '" title="' . get_the_time( esc_attr__( 'F' , 'breadcrumb-trail' ) ) . '">' . get_the_time( __( 'F' , 'breadcrumb-trail' ) ) . '</a>';
+						$trail[] = '<a href="' . get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ) . '" title="' . get_the_time( esc_attr__( 'F' , 'customizr' ) ) . '">' . get_the_time( __( 'F' , 'customizr' ) ) . '</a>';
 					else
-						$trail[] = get_the_time( __( 'F' , 'breadcrumb-trail' ) );
+						$trail[] = get_the_time( __( 'F' , 'customizr' ) );
 				}
 
 				elseif ( is_year() ) {
 
 					if ( is_paged() )
-						$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . esc_attr( get_the_time( __( 'Y' , 'breadcrumb-trail' ) ) ) . '">' . get_the_time( __( 'Y' , 'breadcrumb-trail' ) ) . '</a>';
+						$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . esc_attr( get_the_time( __( 'Y' , 'customizr' ) ) ) . '">' . get_the_time( __( 'Y' , 'customizr' ) ) . '</a>';
 					else
-						$trail[] = get_the_time( __( 'Y' , 'breadcrumb-trail' ) );
+						$trail[] = get_the_time( __( 'Y' , 'customizr' ) );
 				}
 			}
 		}
@@ -537,21 +537,21 @@ class TC_breadcrumb {
 		elseif ( is_search() ) {
 
 			if ( is_paged() )
-				$trail[] = '<a href="' . get_search_link() . '" title="' . sprintf( esc_attr__( 'Search results for &quot;%1$s&quot;' , 'breadcrumb-trail' ), esc_attr( get_search_query() ) ) . '">' . sprintf( __( 'Search results for &quot;%1$s&quot;' , 'breadcrumb-trail' ), esc_attr( get_search_query() ) ) . '</a>';
+				$trail[] = '<a href="' . get_search_link() . '" title="' . sprintf( esc_attr__( 'Search results for &quot;%1$s&quot;' , 'customizr' ), esc_attr( get_search_query() ) ) . '">' . sprintf( __( 'Search results for &quot;%1$s&quot;' , 'customizr' ), esc_attr( get_search_query() ) ) . '</a>';
 			else
-				$trail[] = sprintf( __( 'Search results for &quot;%1$s&quot;' , 'breadcrumb-trail' ), esc_attr( get_search_query() ) );
+				$trail[] = sprintf( __( 'Search results for &quot;%1$s&quot;' , 'customizr' ), esc_attr( get_search_query() ) );
 		}
 
 		/* If viewing a 404 error page. */
 		elseif ( is_404() ) {
-			$trail[] = __( '404 Not Found' , 'breadcrumb-trail' );
+			$trail[] = __( '404 Not Found' , 'customizr' );
 		}
 
 		/* Check for pagination. */
 		if ( is_paged() )
-			$trail[] = sprintf( __( 'Page %d' , 'breadcrumb-trail' ), absint( get_query_var( 'paged' ) ) );
+			$trail[] = sprintf( __( 'Page %d' , 'customizr' ), absint( get_query_var( 'paged' ) ) );
 		elseif ( is_singular() && 1 < get_query_var( 'page' ) )
-			$trail[] = sprintf( __( 'Page %d' , 'breadcrumb-trail' ), absint( get_query_var( 'page' ) ) );
+			$trail[] = sprintf( __( 'Page %d' , 'customizr' ), absint( get_query_var( 'page' ) ) );
 
 		/* Allow devs to step in and filter the $trail array. */
 		return apply_filters( 'breadcrumb_trail_items' , $trail, $args );
@@ -595,7 +595,7 @@ class TC_breadcrumb {
 		/* If viewing a topic tag edit page. */
 		elseif ( bbp_is_topic_tag_edit() ) {
 			$trail[] = '<a href="' . bbp_get_topic_tag_link() . '">' . bbp_get_topic_tag_name() . '</a>';
-			$trail[] = __( 'Edit' , 'breadcrumb-trail' );
+			$trail[] = __( 'Edit' , 'customizr' );
 		}
 
 		/* If viewing a "view" page. */
@@ -620,15 +620,15 @@ class TC_breadcrumb {
 
 			/* If viewing a topic split page. */
 			if ( bbp_is_topic_split() )
-				$trail[] = __( 'Split' , 'breadcrumb-trail' );
+				$trail[] = __( 'Split' , 'customizr' );
 
 			/* If viewing a topic merge page. */
 			elseif ( bbp_is_topic_merge() )
-				$trail[] = __( 'Merge' , 'breadcrumb-trail' );
+				$trail[] = __( 'Merge' , 'customizr' );
 
 			/* If viewing a topic edit page. */
 			elseif ( bbp_is_topic_edit() )
-				$trail[] = __( 'Edit' , 'breadcrumb-trail' );
+				$trail[] = __( 'Edit' , 'customizr' );
 		}
 
 		/* If viewing a single reply page. */
@@ -643,7 +643,7 @@ class TC_breadcrumb {
 			/* If viewing a reply edit page, link back to the reply. Else, display the reply title. */
 			if ( bbp_is_reply_edit() ) {
 				$trail[] = '<a href="' . bbp_get_reply_url( $reply_id ) . '">' . bbp_get_reply_title( $reply_id ) . '</a>';
-				$trail[] = __( 'Edit' , 'breadcrumb-trail' );
+				$trail[] = __( 'Edit' , 'customizr' );
 
 			} else {
 				$trail[] = bbp_get_reply_title( $reply_id );
@@ -671,7 +671,7 @@ class TC_breadcrumb {
 
 			if ( bbp_is_single_user_edit() ) {
 				$trail[] = '<a href="' . bbp_get_user_profile_url() . '">' . bbp_get_displayed_user_field( 'display_name' ) . '</a>';
-				$trail[] = __( 'Edit' , 'breadcrumb-trail' );
+				$trail[] = __( 'Edit' , 'customizr' );
 			} else {
 				$trail[] = bbp_get_displayed_user_field( 'display_name' );
 			}
@@ -727,15 +727,15 @@ class TC_breadcrumb {
 
 				/* If using the %year% tag, add a link to the yearly archive. */
 				if ( '%year%' == $tag )
-					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' , $post_id ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'breadcrumb-trail' ), $post_id ) . '">' . get_the_time( __( 'Y' , 'breadcrumb-trail' ), $post_id ) . '</a>';
+					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' , $post_id ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'customizr' ), $post_id ) . '">' . get_the_time( __( 'Y' , 'customizr' ), $post_id ) . '</a>';
 
 				/* If using the %monthnum% tag, add a link to the monthly archive. */
 				elseif ( '%monthnum%' == $tag )
-					$trail[] = '<a href="' . get_month_link( get_the_time( 'Y' , $post_id ), get_the_time( 'm' , $post_id ) ) . '" title="' . get_the_time( esc_attr__( 'F Y' , 'breadcrumb-trail' ), $post_id ) . '">' . get_the_time( __( 'F' , 'breadcrumb-trail' ), $post_id ) . '</a>';
+					$trail[] = '<a href="' . get_month_link( get_the_time( 'Y' , $post_id ), get_the_time( 'm' , $post_id ) ) . '" title="' . get_the_time( esc_attr__( 'F Y' , 'customizr' ), $post_id ) . '">' . get_the_time( __( 'F' , 'customizr' ), $post_id ) . '</a>';
 
 				/* If using the %day% tag, add a link to the daily archive. */
 				elseif ( '%day%' == $tag )
-					$trail[] = '<a href="' . get_day_link( get_the_time( 'Y' , $post_id ), get_the_time( 'm' , $post_id ), get_the_time( 'd' , $post_id ) ) . '" title="' . get_the_time( esc_attr__( 'F j, Y' , 'breadcrumb-trail' ), $post_id ) . '">' . get_the_time( __( 'd' , 'breadcrumb-trail' ), $post_id ) . '</a>';
+					$trail[] = '<a href="' . get_day_link( get_the_time( 'Y' , $post_id ), get_the_time( 'm' , $post_id ), get_the_time( 'd' , $post_id ) ) . '" title="' . get_the_time( esc_attr__( 'F j, Y' , 'customizr' ), $post_id ) . '">' . get_the_time( __( 'd' , 'customizr' ), $post_id ) . '</a>';
 
 				/* If using the %author% tag, add a link to the post author archive. */
 				elseif ( '%author%' == $tag )

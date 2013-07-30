@@ -37,7 +37,7 @@ class TC_menu {
           extract( $args );
 
           $link = $link_before
-              . '<a href="' .admin_url( 'nav-menus.php' ) . '">' . $before . 'Add a menu' . $after . '</a>'
+              . '<a href="' .admin_url( 'nav-menus.php' ) . '">' . $before . __('Add a menu','customizr') . $after . '</a>'
               . $link_after;
 
           // We have a list

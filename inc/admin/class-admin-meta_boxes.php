@@ -1235,8 +1235,9 @@ class TC_meta_boxes {
     
     $nonce = $_POST['SliderCheckNonce'];
     // check if the submitted nonce matches with the generated nonce we created earlier
-    if ( ! wp_verify_nonce( $nonce, 'tc-slider-check-nonce' ) )
+    if ( ! wp_verify_nonce( $nonce, 'tc-slider-check-nonce' ) ) {
       die();
+    }
       Try{
       //get the post_id with the hidden input field
       $tc_post_id         = $_POST['tc_post_id'];

@@ -17,6 +17,11 @@
 	box-shadow: none;
 }
 
-.tc-no-margin {
-	margin:0;
+.tc-follow {
+	margin-bottom: 11px;
 }
+
+.button-primary.review-customizr {
+	margin-top: 9px;
+}
+
