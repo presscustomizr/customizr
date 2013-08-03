@@ -1,6 +1,6 @@
 ![Customizr - Free Wordpress Theme](/screenshot.png)  
 
-*Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in english, french, german, russian and spanish.*
+*Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in english, french, german, russian, brazilian portugues, spanish.*
 
 
 # Installation
@@ -118,6 +118,14 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.0.6 =
+* fixed : Spanish translation has been fixed. Many thanks again to Maria del Mar for her great job!
+* fixed : Pages protected with password will not display any thumbnail or excerpt when used in a featured page home block (thanks to rocketpopgames http://wordpress.org/support/profile/rocketpopgames)
+* improved : performance : jquery.fancybox.1.3.4.js and modernizr have been minified
+* added : footer credits can now be filtered with add_filter( 'footer_credits') and hooked with add_action ('__credits' )
+* added : new customizer option to personnalize the featured page buttons
+
+
 = 3.0.5 =
 * fixed : breadcrumb translation domain was not right
 * fixed : domain translation for comment title was not set

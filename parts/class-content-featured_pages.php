@@ -41,7 +41,7 @@ class TC_featured_pages {
 
     		?>
 
-    		<?php if ( $tc_show_featured_pages  != 0 && (is_front_page())) : ?>
+    		<?php if ( $tc_show_featured_pages  != 0 && tc__f('__is_home')  ) : ?>
 
     			<div class="container marketing">
 
@@ -73,8 +73,9 @@ class TC_featured_pages {
     				</div><!-- .row widget-area -->
 
     			</div><!-- .container -->
-
-    			<hr class="featurette-divider">
+          <?php if ( !tc__f( '__is_home_empty')) : ?>
+    			   <hr class="featurette-divider">
+          <?php endif; ?>
 
     		<?php endif; ?>
     	<?php
@@ -124,17 +125,19 @@ class TC_featured_pages {
               $featured_text                = esc_attr( $__options['tc_featured_text_'.$area] );
 
               //get the page/post object
-              $page                         =  get_post( $featured_page_id);
+              $page                         =  get_post($featured_page_id);
               
               //limit text to 200 car
-              $text                         = strip_tags( $featured_text);
-              if (empty( $text)) {
-                $text                       = strip_tags( $page->post_content);
+              $text                         = strip_tags($featured_text );
+              if ( empty($text) && !post_password_required($featured_page_id) ) {
+                $text                       = strip_tags($page->post_content);
               }
-              if (strlen( $text) > 200) {
+
+              if ( strlen($text) > 200 ) {
                 $text                       = substr( $text,0,strpos( $text, ' ' ,200));
                 $text                       = esc_html( $text) . ' ...';
               }
+
               else {
                 $text                       = esc_textarea( $text );
               }
@@ -143,12 +146,12 @@ class TC_featured_pages {
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
             $tc_thumb_size                  = 'tc-thumb';
 
-             if (has_post_thumbnail( $featured_page_id)) {
+             if ( has_post_thumbnail( $featured_page_id) ) {
                   $tc_thumb_id              = get_post_thumbnail_id( $featured_page_id);
 
                   //check if tc-thumb size exists for attachment and return large if not
                   $image = wp_get_attachment_image_src( $tc_thumb_id, $tc_thumb_size);
-                  if (null == $image[3])
+                  if ( null == $image[3] )
                     $tc_thumb_size          = 'medium';
 
                   $tc_thumb                 = get_the_post_thumbnail( $featured_page_id,$tc_thumb_size);
@@ -188,7 +191,7 @@ class TC_featured_pages {
 
               }//end else
 
-              if (!isset( $tc_thumb)) {
+              if (!isset( $tc_thumb) || post_password_required($featured_page_id) ) {
                 $tc_thumb                   = '<img data-src="holder.js/270x250" alt="Holder Thumbnail" />';
               }
 
@@ -197,17 +200,27 @@ class TC_featured_pages {
 
           //Rendering
           ?>
-            <div class="widget-front">
-              <?php if ( isset( $show_img) && $show_img == 1) : //check if image option is checked ?>
-                  <div class="thumb-wrapper <?php if(!isset( $tc_thumb)) {echo 'tc-holder';} ?>">
-                      <a class="round-div" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>"></a>
-                        <?php echo $tc_thumb; ?>
-                  </div>
-              <?php endif; ?>
-                <h2><?php echo $featured_page_title ?></h2>
-                <p class="fp-text-<?php echo $area ?>"><?php echo $text;  ?></p>
-                <p><a class="btn btn-primary" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>"><?php _e( 'Read more &raquo;' , 'customizr' ) ?></a></p>
-            </div><!-- /.widget-front -->
+
+          <div class="widget-front">
+
+            <?php if ( isset( $show_img) && $show_img == 1 ) : //check if image option is checked ?>
+
+                <div class="thumb-wrapper <?php if(!isset( $tc_thumb)) {echo 'tc-holder';} ?>">
+                    <a class="round-div" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>"></a>
+                      <?php echo $tc_thumb; ?>
+                </div>
+
+            <?php endif; ?>
+
+              <h2><?php echo $featured_page_title ?></h2>
+              <p class="fp-text-<?php echo $area ?>"><?php echo $text;  ?></p>
+              <p>
+                <a class="btn btn-primary fp-button" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>">
+                  <?php echo esc_attr(tc__f('__get_option' , 'tc_featured_page_button_text')) ?>
+                </a>
+              </p>
+
+          </div><!-- /.widget-front -->
           
           <?php
       }//end of function

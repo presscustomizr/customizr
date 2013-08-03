@@ -312,8 +312,9 @@ class TC_customize {
 																	'type'			=> 'select' ,
 																	'priority'      => 1,
 																	'choices' 		=> array(
-																					'posts' => __( 'Your latest posts' , 'customizr'  ),
-																					'page'  => __( 'A static page' , 'customizr'  ),
+																					'nothing' 	=> __( 'Don\'t show any posts or page' , 'customizr'),
+																					'posts' 	=> __( 'Your latest posts' , 'customizr'  ),
+																					'page'  	=> __( 'A static page' , 'customizr'  ),
 																	),
 								),
 
@@ -417,6 +418,16 @@ class TC_customize {
 																	'type'     		=> 'checkbox' ,
 																	'notice'		=> __( 'The images are set with the "featured image" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images.' , 'customizr' ),
 																	'priority'      => 60,
+								),
+
+								//display featured page images
+								'tc_theme_options[tc_featured_page_button_text]' => array(
+																	'default'       => __( 'Read more &raquo;' , 'customizr' ),
+																	'transport'     =>  'postMessage',
+																	'label'    		=> __( 'Button text' , 'customizr' ),
+																	'section'  		=> 'tc_frontpage_settings' ,
+																	'type'     		=> 'text' ,
+																	'priority'      => 65,
 								),
 
 								//widget page one

@@ -299,7 +299,7 @@ class TC_admin_init {
 
       //is_customizr_upgrade ?
       if ( $_GET['action'] == 'upgrade-theme' && $_GET['theme'] == 'customizr') {
-        show_message( '<span class="hide-if-no-js">' . sprintf( __( 'Welcome to the new version of Customizr. You will be redirected to the About WordPress screen. If not, click <a href="%1$s">here</a>.' ), esc_url( self_admin_url( 'themes.php?page=welcome.php&action=customizr-update' ) ) ) . '</span>' );
+        show_message( '<span class="hide-if-no-js">' . sprintf( __( 'Welcome to the new version of Customizr. You will be redirected to the About screen. If not, click <a href="%1$s">here</a>.' ), esc_url( self_admin_url( 'themes.php?page=welcome.php&action=customizr-update' ) ) ) . '</span>' );
         ?>
           <script type="text/javascript">
           window.location = '<?php echo self_admin_url( 'themes.php?page=welcome.php&action=customizr-update' ); ?>';

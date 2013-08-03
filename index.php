@@ -16,13 +16,16 @@ get_header();
 
             <div class="row">
 
-                <?php
-                    do_action( '__sidebar' , 'left' );
+                <?php if ( !tc__f( '__is_home_empty')) : ?>
+                    <?php 
+                        do_action( '__sidebar' , 'left' );
 
-			        	do_action( '__loop' );
+			        	    do_action( '__loop' );
 
-                    do_action( '__sidebar' , 'right' );
-                ?>
+                        do_action( '__sidebar' , 'right' );
+                    ?>
+                <?php endif; ?>
+
             </div><!--#row -->
 
         </div><!-- #container -->

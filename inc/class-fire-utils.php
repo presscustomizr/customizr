@@ -23,10 +23,14 @@ class TC_utils {
         //get single option
         add_filter  ( '__get_option'                        , array( $this , 'tc_get_option' ));
 
+        //some useful filters
         add_filter  ( '__ID'                                , array( $this , 'tc_get_the_ID' ));
-        add_filter  ( '__screen_layout'                     , array( $this , 'tc_get_current_screen_layout' ));
+        add_filter  ( '__screen_layout'                     , array( $this , 'tc_get_current_screen_layout' ) , 10 , 2 );
         add_filter  ( '__screen_slider'                     , array( $this , 'tc_get_current_screen_slider' ));
+        add_filter  ( '__is_home'                           , array( $this , 'tc_is_home' ));
+        add_filter  ( '__is_home_empty'                     , array( $this , 'tc_is_home_empty' ));
 
+        //some useful actions
         add_action  ( '__customizr_entry_date'              , array( $this , 'tc_customizr_entry_date' ));
         add_action  ( '__social'                            , array( $this , 'tc_display_social' ));
 
@@ -169,7 +173,7 @@ class TC_utils {
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_get_current_screen_layout ( $post_id) {
+      function tc_get_current_screen_layout ( $post_id , $sidebar_or_class) {
         $__options              = tc__f ( '__options' );
         
         //Article wrapper class definition
@@ -230,7 +234,7 @@ class TC_utils {
             'class'   => $class_tab[$tc_specific_post_layout]
           );
         }
-        return $tc_screen_layout;
+        return $tc_screen_layout[$sidebar_or_class];
       }
 
 
@@ -292,15 +296,15 @@ class TC_utils {
           return;
 
         $socials = array (
-              'tc_rss'            => __( 'feed' , 'customizr' ),
-              'tc_twitter'        => __( 'twitter' , 'customizr' ),
-              'tc_facebook'       => __( 'facebook' , 'customizr' ),
-              'tc_google'         => __( 'google' , 'customizr' ),
-              'tc_youtube'        => __( 'youtube' , 'customizr' ),
-              'tc_pinterest'      => __( 'pinterest' , 'customizr' ),
-              'tc_github'         => __( 'github' , 'customizr' ),
-              'tc_dribbble'       => __( 'dribbble' , 'customizr' ),
-              'tc_linkedin'       => __( 'linkedin' , 'customizr' )
+              'tc_rss'            => 'feed',
+              'tc_twitter'        => 'twitter',
+              'tc_facebook'       => 'facebook',
+              'tc_google'         => 'google',
+              'tc_youtube'        => 'youtube',
+              'tc_pinterest'      => 'pinterest',
+              'tc_github'         => 'github',
+              'tc_dribbble'       => 'dribbble',
+              'tc_linkedin'       => 'linkedin'
               );
           
           $html = '';
@@ -516,7 +520,7 @@ class TC_utils {
             $_post = get_post( $id );
 
             if ( empty( $_post ) || ( 'attachment' != $_post->post_type ) || ! $url = wp_get_attachment_url( $_post->ID ) )
-              return __( 'Missing Attachment' , 'customizr' );
+              return __( 'Missing Attachment' , 'customizr');
 
             if ( $permalink )
               $url = get_attachment_link( $_post->ID );
@@ -539,33 +543,61 @@ class TC_utils {
     }
 
 
+
     /**
-     * Title element formating
-     *
-     * @since Customizr 2.1.6
-     *
-     */
-    
-      function tc_wp_title( $title, $sep ) {
-        global $paged, $page;
+   * Title element formating
+   *
+   * @since Customizr 2.1.6
+   *
+   */
 
-        if ( is_feed() )
-          return $title;
+    function tc_wp_title( $title, $sep ) {
+      global $paged, $page;
 
-        // Add the site name.
-        $title .= get_bloginfo( 'name' );
-
-        // Add the site description for the home/front page.
-        $site_description = get_bloginfo( 'description' , 'display' );
-        if ( $site_description && ( is_home() || is_front_page() ) )
-          $title = "$title $sep $site_description";
-
-        // Add a page number if necessary.
-        if ( $paged >= 2 || $page >= 2 )
-          $title = "$title $sep " . sprintf( __( 'Page %s' , 'customizr' ), max( $paged, $page ) );
-
+      if ( is_feed() )
         return $title;
-      }
 
+      // Add the site name.
+      $title .= get_bloginfo( 'name' );
+
+      // Add the site description for the home/front page.
+      $site_description = get_bloginfo( 'description' , 'display' );
+      if ( $site_description && tc__f('__is_home') )
+        $title = "$title $sep $site_description";
+
+      // Add a page number if necessary.
+      if ( $paged >= 2 || $page >= 2 )
+        $title = "$title $sep " . sprintf( __( 'Page %s' , 'customizr' ), max( $paged, $page ) );
+
+      return $title;
+    }
+
+
+
+
+  /**
+   * Check if we are displaying posts lists or front page
+   *
+   * @since Customizr 3.0.6
+   *
+   */
+    function tc_is_home() {
+      //check if the users has choosen the "no posts or page" option for home page
+      return ( is_home() || is_front_page()  ) ? true : false;
+    }
+
+    
+
+
+  /**
+   * Check if we show posts or page content on home page
+   *
+   * @since Customizr 3.0.6
+   *
+   */
+    function tc_is_home_empty() {
+      //check if the users has choosen the "no posts or page" option for home page
+      return ( (is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
+    }
 
 }//end of class

@@ -21,6 +21,14 @@
 		} );
 	} );
 	
+
+	//featured page button text
+	wp.customize( 'tc_theme_options[tc_featured_page_button_text]' , function( value ) {
+		value.bind( function( to ) {
+			$( '.fp-button' ).html( to );
+		} );
+	} );
+
 	// Hook into background color change and adjust body class value as needed.
 	wp.customize( 'background_color' , function( value ) {
 		value.bind( function( to ) {

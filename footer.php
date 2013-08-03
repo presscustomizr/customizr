@@ -19,7 +19,7 @@
 		 	?>
 		 </footer>
 
-		<?php wp_footer(); ?>
+		<?php wp_footer(); //do not remove, used by the theme and many plugins?>
 
 	</body>
 

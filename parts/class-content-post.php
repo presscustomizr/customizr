@@ -48,9 +48,8 @@ class TC_post {
                 $style                  = ( $nbr == 0) ? 'style="color:#AFAFAF" ':'';
             ?>
             
-                <?php if ( is_single() || is_page())
-                    echo '<hr class="featurette-divider">';
-                    ?>
+                <?php echo ( is_single() || is_page()) ? '<hr class="featurette-divider">' : '' ?>
+
                 <?php if ( !is_single()) : //for lists of posts?> 
                     <?php //display an icon for div if there is no title
                             $icon_class = in_array(get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' )) ? 'format-icon':'';
@@ -149,7 +148,7 @@ class TC_post {
             <div class="entry-meta">
 
                 <?php //meta not displayed on home page, only in archive or search pages
-                    if ( !is_home() || !is_front_page() ) { 
+                    if ( !tc__f('__is_home') ) { 
                         do_action( '__post_metas' );
                     }
 
@@ -256,7 +255,7 @@ class TC_post {
 
     <?php endif; ?>
 
-    <?php if(!is_single() && !is_page() && (!is_home() || !is_front_page())) : ?>
+    <?php if(!is_single() && !is_page() && !tc__f('__is_home') ) : ?>
       <hr class="featurette-divider">
     <?php endif; ?>
     

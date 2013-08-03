@@ -28,6 +28,11 @@ class TC_nav {
      */
     function tc_post_nav() {
       
+      //we don"t show post navigation for pages
+      if(is_page(tc__f ( '__ID' ))) {
+        return;
+      }
+
       global $wp_query;
 
       $html_id = 'nav-below';

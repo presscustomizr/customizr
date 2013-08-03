@@ -27,21 +27,20 @@ class TC_loop {
 	 * @since Customizr 3.0
 	 */
     function tc_loop() {
+      //initialize the thumbnail class alternative index
+      global $tc_i;
+      $tc_i = 1;
+      ?>
 
-    	 //initialize the thumbnail class alternative index
-        global $tc_i;
-        $tc_i = 1;
-
-        $tc_current_screen_layout = tc__f( '__screen_layout' , tc__f ( '__ID' ) );
-        ?>
-
-        <div class="<?php echo $tc_current_screen_layout['class'] ?> article-container">
+      <div class="<?php echo tc__f( '__screen_layout' , tc__f ( '__ID' ) , 'class' ) ?> article-container">
 
         <?php
             /* get additionnal header for archive, search, 404 */
             do_action( '__post_list_header' );
+        ?>
 
-              /* Start the Loop for all other case*/
+          <?php
+              /* Start the Loop for all other cases */
               if ( have_posts() ) {
 
                 while ( have_posts() ) {
@@ -64,16 +63,14 @@ class TC_loop {
               else { //(is_404() || (is_search() && !have_posts())) 
                  do_action( '__content' );
               }
-
-            /* include navigation for posts only */
-            if(!is_page(tc__f ( '__ID' ))) {
-               
-               do_action( '__post_nav' );
-
-             }
             ?>
 
-        </div><!--.article-container -->
+            <?php
+            /* include navigation (for posts only) */
+            do_action( '__post_nav' );
+            ?>
+
+      </div><!--.article-container -->
         
       <?php
     }

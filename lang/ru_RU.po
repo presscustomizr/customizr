@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customizr 1.1.5\n"
-"POT-Creation-Date: 2013-07-30 18:48+0100\n"
-"PO-Revision-Date: 2013-07-30 18:48+0100\n"
+"POT-Creation-Date: 2013-08-04 01:14+0100\n"
+"PO-Revision-Date: 2013-08-04 01:14+0100\n"
 "Last-Translator: Nicolas G. <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -20,64 +20,28 @@ msgstr ""
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: ../inc/class-fire-utils.php:266 ../parts/class-content-post.php:140
+#: ../inc/class-fire-utils.php:270 ../parts/class-content-post.php:139
 #, php-format
 msgid "Permalink to %s"
 msgstr "Пермалинк к %s"
 
-#: ../inc/class-fire-utils.php:295
-msgid "feed"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:296
-msgid "twitter"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:297
-msgid "facebook"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:298
-msgid "google"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:299
-msgid "youtube"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:300
-msgid "pinterest"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:301
-msgid "github"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:302
-msgid "dribbble"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:303
-msgid "linkedin"
-msgstr ""
-
-#: ../inc/class-fire-utils.php:309 ../inc/admin/class-admin-customize.php:185
+#: ../inc/class-fire-utils.php:313 ../inc/admin/class-admin-customize.php:185
 msgid "Social links"
 msgstr "Линки соцсетей"
 
-#: ../inc/class-fire-utils.php:314
+#: ../inc/class-fire-utils.php:318
 msgid "Follow me on "
 msgstr "Следи за мной на"
 
-#: ../inc/class-fire-utils.php:318
+#: ../inc/class-fire-utils.php:322
 msgid "Suscribe to my rss feed"
 msgstr "Подписывайся на rss ленту"
 
-#: ../inc/class-fire-utils.php:519
+#: ../inc/class-fire-utils.php:523
 msgid "Missing Attachment"
 msgstr ""
 
-#: ../inc/class-fire-utils.php:565
+#: ../inc/class-fire-utils.php:570
 #, php-format
 msgid "Page %s"
 msgstr "Страница %s"
@@ -175,7 +139,7 @@ msgid "Images"
 msgstr "Изображения"
 
 #: ../inc/admin/class-admin-customize.php:193
-#: ../inc/admin/class-admin-customize.php:700
+#: ../inc/admin/class-admin-customize.php:711
 msgid "Enable/disable lightbox effect on images"
 msgstr "Вкл./Выкл. эффект лайтбокса на изображениях"
 
@@ -256,96 +220,100 @@ msgid "Front page displays"
 msgstr "Отображение Главной страницы"
 
 #: ../inc/admin/class-admin-customize.php:315
+msgid "Don't show any posts or page"
+msgstr ""
+
+#: ../inc/admin/class-admin-customize.php:316
 msgid "Your latest posts"
 msgstr "Ваши последние посты"
 
-#: ../inc/admin/class-admin-customize.php:316
+#: ../inc/admin/class-admin-customize.php:317
 msgid "A static page"
 msgstr "Статическая страница"
 
-#: ../inc/admin/class-admin-customize.php:322
+#: ../inc/admin/class-admin-customize.php:323
 msgid "Front page"
 msgstr "Главная страница"
 
-#: ../inc/admin/class-admin-customize.php:330
+#: ../inc/admin/class-admin-customize.php:331
 msgid "Posts page"
 msgstr "Страница с записями"
 
-#: ../inc/admin/class-admin-customize.php:339
+#: ../inc/admin/class-admin-customize.php:340
 msgid "Set up the front page layout"
 msgstr "Конструкция главной страницы"
 
-#: ../inc/admin/class-admin-customize.php:343
-#: ../inc/admin/class-admin-customize.php:498
-#: ../inc/admin/class-admin-customize.php:524
-#: ../inc/admin/class-admin-customize.php:552
+#: ../inc/admin/class-admin-customize.php:344
+#: ../inc/admin/class-admin-customize.php:509
+#: ../inc/admin/class-admin-customize.php:535
+#: ../inc/admin/class-admin-customize.php:563
 #: ../inc/admin/class-admin-meta_boxes.php:107
 msgid "Right sidebar"
 msgstr "Правый сайдбар"
 
-#: ../inc/admin/class-admin-customize.php:344
-#: ../inc/admin/class-admin-customize.php:499
-#: ../inc/admin/class-admin-customize.php:525
-#: ../inc/admin/class-admin-customize.php:553
+#: ../inc/admin/class-admin-customize.php:345
+#: ../inc/admin/class-admin-customize.php:510
+#: ../inc/admin/class-admin-customize.php:536
+#: ../inc/admin/class-admin-customize.php:564
 #: ../inc/admin/class-admin-meta_boxes.php:108
 msgid "Left sidebar"
 msgstr "Левый сайдбар"
 
-#: ../inc/admin/class-admin-customize.php:345
-#: ../inc/admin/class-admin-customize.php:500
-#: ../inc/admin/class-admin-customize.php:526
-#: ../inc/admin/class-admin-customize.php:554
+#: ../inc/admin/class-admin-customize.php:346
+#: ../inc/admin/class-admin-customize.php:511
+#: ../inc/admin/class-admin-customize.php:537
+#: ../inc/admin/class-admin-customize.php:565
 msgid "2 sidebars : Right and Left"
 msgstr "2 сайдбара: слева и справа"
 
-#: ../inc/admin/class-admin-customize.php:346
-#: ../inc/admin/class-admin-customize.php:501
-#: ../inc/admin/class-admin-customize.php:527
-#: ../inc/admin/class-admin-customize.php:555
+#: ../inc/admin/class-admin-customize.php:347
+#: ../inc/admin/class-admin-customize.php:512
+#: ../inc/admin/class-admin-customize.php:538
+#: ../inc/admin/class-admin-customize.php:566
 msgid "No sidebars : full width layout"
 msgstr "Без сайдбаров: во всю ширину"
 
-#: ../inc/admin/class-admin-customize.php:355
+#: ../inc/admin/class-admin-customize.php:356
 msgid "Slider options"
 msgstr "Опции слайдера"
 
-#: ../inc/admin/class-admin-customize.php:356
+#: ../inc/admin/class-admin-customize.php:357
 msgid "Select front page slider"
 msgstr "Выберите слайдер для главной страницы"
 
-#: ../inc/admin/class-admin-customize.php:368
+#: ../inc/admin/class-admin-customize.php:369
 msgid "Full width slider"
 msgstr "Слайдер во всю ширину"
 
-#: ../inc/admin/class-admin-customize.php:387
+#: ../inc/admin/class-admin-customize.php:388
 msgid "Delay between each slides"
 msgstr "Задержка между слайдерами"
 
-#: ../inc/admin/class-admin-customize.php:392
+#: ../inc/admin/class-admin-customize.php:393
 msgid "in ms : 1000ms = 1s"
 msgstr "В мс: 1000мс = 1сек."
 
-#: ../inc/admin/class-admin-customize.php:400
+#: ../inc/admin/class-admin-customize.php:401
 msgid "Featured pages options"
 msgstr "Опции страниц под слайдером"
 
-#: ../inc/admin/class-admin-customize.php:401
+#: ../inc/admin/class-admin-customize.php:402
 msgid "Display home featured pages area"
 msgstr "Показать место для нижних страниц на главной"
 
-#: ../inc/admin/class-admin-customize.php:405
+#: ../inc/admin/class-admin-customize.php:406
 msgid "Enable"
 msgstr "Применить"
 
-#: ../inc/admin/class-admin-customize.php:406
+#: ../inc/admin/class-admin-customize.php:407
 msgid "Disable"
 msgstr "Отменить"
 
-#: ../inc/admin/class-admin-customize.php:415
+#: ../inc/admin/class-admin-customize.php:416
 msgid "Show images"
 msgstr "Показать изображения"
 
-#: ../inc/admin/class-admin-customize.php:418
+#: ../inc/admin/class-admin-customize.php:419
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -354,29 +322,38 @@ msgstr ""
 "панели редактирования страниц.  Для того чтобы убрать изображения снимите "
 "галочку сверху."
 
-#: ../inc/admin/class-admin-customize.php:424
+#: ../inc/admin/class-admin-customize.php:425
+msgid "Read more &raquo;"
+msgstr "Читать &raquo;"
+
+#: ../inc/admin/class-admin-customize.php:427
+#, fuzzy
+msgid "Button text"
+msgstr "Текст кнопки"
+
+#: ../inc/admin/class-admin-customize.php:435
 #, fuzzy
 msgid "Home featured page one"
 msgstr "Страница на главной  %s"
 
-#: ../inc/admin/class-admin-customize.php:432
+#: ../inc/admin/class-admin-customize.php:443
 #, fuzzy
 msgid "Home featured page two"
 msgstr "Страница на главной  %s"
 
-#: ../inc/admin/class-admin-customize.php:440
+#: ../inc/admin/class-admin-customize.php:451
 #, fuzzy
 msgid "Home featured page three"
 msgstr "Страница на главной  %s"
 
-#: ../inc/admin/class-admin-customize.php:450
+#: ../inc/admin/class-admin-customize.php:461
 #, fuzzy
 msgid "Featured text one (200 car. max)"
 msgstr "Текст  %s (200 знаков макс.)"
 
-#: ../inc/admin/class-admin-customize.php:453
 #: ../inc/admin/class-admin-customize.php:464
 #: ../inc/admin/class-admin-customize.php:475
+#: ../inc/admin/class-admin-customize.php:486
 #, fuzzy
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
@@ -384,29 +361,29 @@ msgid ""
 msgstr ""
 "Оставьте поле пустым если хотите видеть здесь выдержку из текста страницы."
 
-#: ../inc/admin/class-admin-customize.php:461
+#: ../inc/admin/class-admin-customize.php:472
 #, fuzzy
 msgid "Featured text two (200 car. max)"
 msgstr "Текст  %s (200 знаков макс.)"
 
-#: ../inc/admin/class-admin-customize.php:472
+#: ../inc/admin/class-admin-customize.php:483
 #, fuzzy
 msgid "Featured text three (200 car. max)"
 msgstr "Текст  %s (200 знаков макс.)"
 
-#: ../inc/admin/class-admin-customize.php:485
+#: ../inc/admin/class-admin-customize.php:496
 msgid "Display Breadcrumb"
 msgstr "Применить Breadcrumb"
 
-#: ../inc/admin/class-admin-customize.php:494
+#: ../inc/admin/class-admin-customize.php:505
 msgid "Choose the global default layout"
 msgstr "Выбрать структуру по умолчанию"
 
-#: ../inc/admin/class-admin-customize.php:510
+#: ../inc/admin/class-admin-customize.php:521
 msgid "Force default layout everywhere"
 msgstr "Выбрать структуру по умолчанию везде"
 
-#: ../inc/admin/class-admin-customize.php:513
+#: ../inc/admin/class-admin-customize.php:524
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -414,23 +391,23 @@ msgstr ""
 "Эта опция перекроет отдельные настройки во всех постах и страницах включая "
 "главную."
 
-#: ../inc/admin/class-admin-customize.php:520
+#: ../inc/admin/class-admin-customize.php:531
 msgid "Choose the posts default layout"
 msgstr "Выбрать расположение постов"
 
-#: ../inc/admin/class-admin-customize.php:537
+#: ../inc/admin/class-admin-customize.php:548
 msgid "Maximum number of posts per page"
 msgstr "Максимальное число постов на странице"
 
-#: ../inc/admin/class-admin-customize.php:548
+#: ../inc/admin/class-admin-customize.php:559
 msgid "Choose the pages default layout"
 msgstr "Выбрать расположение страниц по умолчанию"
 
-#: ../inc/admin/class-admin-customize.php:566
+#: ../inc/admin/class-admin-customize.php:577
 msgid "Enable comments on pages"
 msgstr "Разрешить комментарии на страницах"
 
-#: ../inc/admin/class-admin-customize.php:569
+#: ../inc/admin/class-admin-customize.php:580
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -438,63 +415,63 @@ msgstr ""
 "Эта опция разрешит комментарии на страницах. Вы можете запретить комментарии "
 "на любой странице в панели правки страници."
 
-#: ../inc/admin/class-admin-customize.php:579
+#: ../inc/admin/class-admin-customize.php:590
 #, fuzzy
 msgid "Social links in header"
 msgstr "Соцсети в %s"
 
-#: ../inc/admin/class-admin-customize.php:587
+#: ../inc/admin/class-admin-customize.php:598
 #, fuzzy
 msgid "Social links in left sidebar"
 msgstr "Соцсети в %s"
 
-#: ../inc/admin/class-admin-customize.php:595
+#: ../inc/admin/class-admin-customize.php:606
 #, fuzzy
 msgid "Social links in right sidebar"
 msgstr "Соцсети в %s"
 
-#: ../inc/admin/class-admin-customize.php:603
+#: ../inc/admin/class-admin-customize.php:614
 #, fuzzy
 msgid "Social links in footer"
 msgstr "Соцсети в %s"
 
-#: ../inc/admin/class-admin-customize.php:615
+#: ../inc/admin/class-admin-customize.php:626
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "RSS лента ( по умолчанию wordpress feed )"
 
-#: ../inc/admin/class-admin-customize.php:624
+#: ../inc/admin/class-admin-customize.php:635
 msgid "Twitter profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:633
+#: ../inc/admin/class-admin-customize.php:644
 msgid "Facebook profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:642
+#: ../inc/admin/class-admin-customize.php:653
 msgid "Google+ profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:651
+#: ../inc/admin/class-admin-customize.php:662
 msgid "Youtube profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:660
+#: ../inc/admin/class-admin-customize.php:671
 msgid "Pinterest profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:669
+#: ../inc/admin/class-admin-customize.php:680
 msgid "Github profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:678
+#: ../inc/admin/class-admin-customize.php:689
 msgid "Dribbble profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:687
+#: ../inc/admin/class-admin-customize.php:698
 msgid "LinkedIn profile url"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:703
+#: ../inc/admin/class-admin-customize.php:714
 msgid ""
 "If enabled, this option activate a popin window whith a zoom effect when an "
 "image is clicked. This will not apply to image gallery."
@@ -502,21 +479,21 @@ msgstr ""
 "Если включено то это активирует всплывание окна с зум-эффектом если кликнуть "
 "на изображение. Не действует на галерею."
 
-#: ../inc/admin/class-admin-customize.php:709
+#: ../inc/admin/class-admin-customize.php:720
 msgid "Autoscale images on zoom"
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:712
+#: ../inc/admin/class-admin-customize.php:723
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 
-#: ../inc/admin/class-admin-customize.php:722
+#: ../inc/admin/class-admin-customize.php:733
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Добавь сюда свои стили и смотри результат! ( для продвинутых пользователей)"
 
-#: ../inc/admin/class-admin-customize.php:725
+#: ../inc/admin/class-admin-customize.php:736
 msgid ""
 "Always use this field to add your custom css instead of editing directly the "
 "style.css file : it will not be deleted during theme updates. Special "
@@ -743,11 +720,11 @@ msgstr "Линк кнопки"
 
 #: ../inc/admin/class-admin-meta_boxes.php:808
 #: ../parts/class-content-attachment.php:51
-#: ../parts/class-content-breadcrumb.php:598
-#: ../parts/class-content-breadcrumb.php:631
-#: ../parts/class-content-breadcrumb.php:646
-#: ../parts/class-content-breadcrumb.php:674
-#: ../parts/class-content-comments.php:103 ../parts/class-content-post.php:157
+#: ../parts/class-content-breadcrumb.php:599
+#: ../parts/class-content-breadcrumb.php:632
+#: ../parts/class-content-breadcrumb.php:647
+#: ../parts/class-content-breadcrumb.php:675
+#: ../parts/class-content-comments.php:103 ../parts/class-content-post.php:156
 msgid "Edit"
 msgstr "Править"
 
@@ -855,7 +832,7 @@ msgstr ""
 #, php-format
 msgid ""
 "Welcome to the new version of Customizr. You will be redirected to the About "
-"WordPress screen. If not, click <a href=\"%1$s\">here</a>."
+"screen. If not, click <a href=\"%1$s\">here</a>."
 msgstr ""
 
 #: ../parts/class-content-404.php:38
@@ -897,80 +874,80 @@ msgid "Next &rarr;"
 msgstr "Следующая &rarr;"
 
 #: ../parts/class-content-breadcrumb.php:43
-#: ../parts/class-content-breadcrumb.php:105
+#: ../parts/class-content-breadcrumb.php:106
 msgid "Home"
 msgstr "На главную"
 
-#: ../parts/class-content-breadcrumb.php:102
+#: ../parts/class-content-breadcrumb.php:103
 msgid "Browse:"
 msgstr "Искать:"
 
-#: ../parts/class-content-breadcrumb.php:482
+#: ../parts/class-content-breadcrumb.php:483
 msgid "g:i a"
 msgstr ""
 
-#: ../parts/class-content-breadcrumb.php:485
+#: ../parts/class-content-breadcrumb.php:486
 #, php-format
 msgid "Minute %1$s"
 msgstr "Минута %1$s"
 
-#: ../parts/class-content-breadcrumb.php:485
+#: ../parts/class-content-breadcrumb.php:486
 msgid "i"
 msgstr ""
 
-#: ../parts/class-content-breadcrumb.php:488
+#: ../parts/class-content-breadcrumb.php:489
 msgid "g a"
 msgstr ""
 
-#: ../parts/class-content-breadcrumb.php:499
-#: ../parts/class-content-breadcrumb.php:509
-#: ../parts/class-content-breadcrumb.php:518
-#: ../parts/class-content-breadcrumb.php:529
-#: ../parts/class-content-breadcrumb.php:531
-#: ../parts/class-content-breadcrumb.php:730
+#: ../parts/class-content-breadcrumb.php:500
+#: ../parts/class-content-breadcrumb.php:510
+#: ../parts/class-content-breadcrumb.php:519
+#: ../parts/class-content-breadcrumb.php:530
+#: ../parts/class-content-breadcrumb.php:532
+#: ../parts/class-content-breadcrumb.php:731
 msgid "Y"
 msgstr ""
 
-#: ../parts/class-content-breadcrumb.php:500
-#: ../parts/class-content-breadcrumb.php:521
-#: ../parts/class-content-breadcrumb.php:523
-#: ../parts/class-content-breadcrumb.php:734
+#: ../parts/class-content-breadcrumb.php:501
+#: ../parts/class-content-breadcrumb.php:522
+#: ../parts/class-content-breadcrumb.php:524
+#: ../parts/class-content-breadcrumb.php:735
 msgid "F"
 msgstr ""
 
-#: ../parts/class-content-breadcrumb.php:503
-#: ../parts/class-content-breadcrumb.php:505
-#: ../parts/class-content-breadcrumb.php:738
+#: ../parts/class-content-breadcrumb.php:504
+#: ../parts/class-content-breadcrumb.php:506
+#: ../parts/class-content-breadcrumb.php:739
 msgid "d"
 msgstr ""
 
-#: ../parts/class-content-breadcrumb.php:512
-#: ../parts/class-content-breadcrumb.php:514
+#: ../parts/class-content-breadcrumb.php:513
+#: ../parts/class-content-breadcrumb.php:515
 #, php-format
 msgid "Week %1$s"
 msgstr "Неделя %1$s"
 
-#: ../parts/class-content-breadcrumb.php:540
-#: ../parts/class-content-breadcrumb.php:542
+#: ../parts/class-content-breadcrumb.php:541
+#: ../parts/class-content-breadcrumb.php:543
 #, php-format
 msgid "Search results for &quot;%1$s&quot;"
 msgstr "Результаты на тему &quot;%1$s&quot;"
 
-#: ../parts/class-content-breadcrumb.php:547
+#: ../parts/class-content-breadcrumb.php:548
 msgid "404 Not Found"
 msgstr "404 Не найден"
 
-#: ../parts/class-content-breadcrumb.php:552
-#: ../parts/class-content-breadcrumb.php:554
+#: ../parts/class-content-breadcrumb.php:553
+#: ../parts/class-content-breadcrumb.php:555
 #, php-format
 msgid "Page %d"
 msgstr "Страница %d"
 
-#: ../parts/class-content-breadcrumb.php:623
+#: ../parts/class-content-breadcrumb.php:624
 msgid "Split"
 msgstr "Разделить"
 
-#: ../parts/class-content-breadcrumb.php:627
+#: ../parts/class-content-breadcrumb.php:628
 msgid "Merge"
 msgstr "Соединить"
 
@@ -1020,19 +997,19 @@ msgstr "Новые комментарии &rarr;"
 msgid "Comments are closed."
 msgstr "Комментарии закрыты"
 
-#: ../parts/class-content-featured_pages.php:103
+#: ../parts/class-content-featured_pages.php:104
 msgid "Customizer screen"
 msgstr "Панель Костомайзера"
 
-#: ../parts/class-content-featured_pages.php:103
+#: ../parts/class-content-featured_pages.php:104
 msgid " here"
 msgstr "здесь"
 
-#: ../parts/class-content-featured_pages.php:108
+#: ../parts/class-content-featured_pages.php:109
 msgid "Featured page"
 msgstr "Страница под слайдером"
 
-#: ../parts/class-content-featured_pages.php:109
+#: ../parts/class-content-featured_pages.php:110
 #, php-format
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
@@ -1041,19 +1018,15 @@ msgstr ""
 "Текст описания страницы под слайдером: используйте выдержку из существующего "
 "текста или наберите свой собственный в панели Костомайзера%s."
 
-#: ../parts/class-content-featured_pages.php:209
-msgid "Read more &raquo;"
-msgstr "Читать &raquo;"
-
-#: ../parts/class-content-nav.php:40 ../parts/class-content-nav.php:62
+#: ../parts/class-content-nav.php:45 ../parts/class-content-nav.php:67
 msgid "Post navigation"
 msgstr "Навигация по постам"
 
-#: ../parts/class-content-nav.php:69
+#: ../parts/class-content-nav.php:74
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Старые посты"
 
-#: ../parts/class-content-nav.php:77
+#: ../parts/class-content-nav.php:82
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Новые посты  <span class=\"meta-nav\">&rarr;</span>"
 
@@ -1081,77 +1054,77 @@ msgstr ""
 msgid "Edit page"
 msgstr "Править"
 
-#: ../parts/class-content-page.php:46 ../parts/class-content-post.php:73
-#: ../parts/class-content-post.php:82
+#: ../parts/class-content-page.php:46 ../parts/class-content-post.php:72
+#: ../parts/class-content-post.php:81
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Продолжить чтение <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-page.php:49 ../parts/class-content-post.php:74
-#: ../parts/class-content-post.php:83
+#: ../parts/class-content-page.php:49 ../parts/class-content-post.php:73
+#: ../parts/class-content-post.php:82
 msgid "Pages:"
 msgstr "Страницы:"
 
-#: ../parts/class-content-post.php:121
+#: ../parts/class-content-post.php:120
 msgid "Comment(s) on "
 msgstr "Комментарий (ии) к"
 
-#: ../parts/class-content-post.php:140
+#: ../parts/class-content-post.php:139
 msgid "{no title} Read the post &raquo;"
 msgstr "{no title}  Читать пост &raquo;"
 
-#: ../parts/class-content-post.php:185
+#: ../parts/class-content-post.php:184
 msgid "Ooops, page not found"
 msgstr "Упс, страница не найдена"
 
-#: ../parts/class-content-post.php:195
+#: ../parts/class-content-post.php:194
 #, php-format
 msgid "%1sSearch Results for: %2s"
 msgstr "%1sНашлось для: %2s"
 
-#: ../parts/class-content-post.php:196
+#: ../parts/class-content-post.php:195
 msgid "No"
 msgstr "Ничего не"
 
-#: ../parts/class-content-post.php:211
+#: ../parts/class-content-post.php:210
 #, php-format
 msgid "Author Archives: %s"
 msgstr "Архивы по авторам: %s"
 
-#: ../parts/class-content-post.php:219
+#: ../parts/class-content-post.php:218
 #, php-format
 msgid "Category Archives: %s"
 msgstr "Архивы по катигориям: %s"
 
-#: ../parts/class-content-post.php:231
+#: ../parts/class-content-post.php:230
 #, php-format
 msgid "Tag Archives: %s"
 msgstr "Архивы по тегам: %s"
 
-#: ../parts/class-content-post.php:245
+#: ../parts/class-content-post.php:244
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Архивы по дням: %s"
 
-#: ../parts/class-content-post.php:247
+#: ../parts/class-content-post.php:246
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Архивы по месяцам: %s"
 
-#: ../parts/class-content-post.php:249
+#: ../parts/class-content-post.php:248
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Архивы по годам: %s"
 
-#: ../parts/class-content-post.php:251
+#: ../parts/class-content-post.php:250
 msgid "Archives"
 msgstr "Архивы"
 
-#: ../parts/class-content-post.php:291
+#: ../parts/class-content-post.php:290
 #, php-format
 msgid "View all posts by %s"
 msgstr "Посмотреть все посты автора:  %s"
 
-#: ../parts/class-content-post.php:297
+#: ../parts/class-content-post.php:296
 #, php-format
 msgid ""
 "This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
@@ -1160,7 +1133,7 @@ msgstr ""
 "Эта запись была сделана в %1$s и помечена %2$s в %3$s<span class=\"автором"
 "\"> автором %4$s</span>."
 
-#: ../parts/class-content-post.php:299
+#: ../parts/class-content-post.php:298
 #, php-format
 msgid ""
 "This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
@@ -1169,23 +1142,23 @@ msgstr ""
 "Эта запись была сделана в  %1$s в %3$s<span class=\"автором\"> автором %4$s</"
 "span>."
 
-#: ../parts/class-content-post.php:301
+#: ../parts/class-content-post.php:300
 #, php-format
 msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
 msgstr ""
 "Эта запись была сделана на %3$s<span class=\"автором\"> автором %4$s</span>."
 
-#: ../parts/class-content-post.php:330 ../parts/class-content-post.php:356
+#: ../parts/class-content-post.php:329 ../parts/class-content-post.php:355
 #, php-format
 msgid "View all posts in %s"
 msgstr "Смотреть все посты в %s"
 
-#: ../parts/class-content-post.php:388
+#: ../parts/class-content-post.php:387
 #, php-format
 msgid "About %s"
 msgstr "Про %s"
 
-#: ../parts/class-content-post.php:393
+#: ../parts/class-content-post.php:392
 #, php-format
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Смотреть все посты автора %s <span class=\"meta-nav\">&rarr;</span>"
@@ -1195,24 +1168,24 @@ msgstr "Смотреть все посты автора %s <span class=\"meta-na
 msgid "Add a menu"
 msgstr "Добавить слайдер"
 
-#: ../parts/class-header-slider.php:80 ../parts/class-header-slider.php:83
+#: ../parts/class-header-slider.php:82 ../parts/class-header-slider.php:85
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr это удобная тема хорошо выглядящая на любых девайсов"
 
-#: ../parts/class-header-slider.php:84
+#: ../parts/class-header-slider.php:86
 msgid "Let your creativity speak and easily customiz'it the way you want!"
 msgstr ""
 "Дай волю своему воображению! Вместе с customiz'it у тебя всё получется!"
 
-#: ../parts/class-header-slider.php:85
+#: ../parts/class-header-slider.php:87
 msgid "Learn more"
 msgstr "Узнать больше"
 
-#: ../parts/class-header-slider.php:90 ../parts/class-header-slider.php:93
+#: ../parts/class-header-slider.php:92 ../parts/class-header-slider.php:95
 msgid "Style your WordPress site live!"
 msgstr "Стилизуйте ваш ВордПресс быстрее!"
 
-#: ../parts/class-header-slider.php:94
+#: ../parts/class-header-slider.php:96
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -1220,15 +1193,15 @@ msgstr ""
 "Многие изменения в расположении объектов и опцый доступны в панели "
 "Костомайзера в ВордПресс: наблюдайте за изменениями в реальном времени!"
 
-#: ../parts/class-header-slider.php:95
+#: ../parts/class-header-slider.php:97
 msgid "Just try it!"
 msgstr "Просто попробуй!"
 
-#: ../parts/class-header-slider.php:100 ../parts/class-header-slider.php:103
+#: ../parts/class-header-slider.php:102 ../parts/class-header-slider.php:105
 msgid "Create beautiful sliders"
 msgstr "Создай красивейший слайдер!"
 
-#: ../parts/class-header-slider.php:104
+#: ../parts/class-header-slider.php:106
 msgid ""
 "Customizr comes with a cool slider generator : add a slider to any post or "
 "page!"
@@ -1236,13 +1209,9 @@ msgstr ""
 "Customizr  идёт с крутым генератором слайдеров: добавь слайдер в любой пост "
 "и на любую страницу!"
 
-#: ../parts/class-header-slider.php:105
+#: ../parts/class-header-slider.php:107
 msgid "Discover the features"
 msgstr "Узнай больше!"
-
-#: ../parts/class-main-footer.php:45
-msgid "Designed by "
-msgstr "Разработано: "
 
 #: ../parts/class-main-footer.php:57
 msgid "Back to top"
@@ -1251,6 +1220,9 @@ msgstr "На верх"
 #: ../parts/class-main-header.php:151
 msgid "Back Home"
 msgstr "Назад на главную"
+
+#~ msgid "Designed by "
+#~ msgstr "Разработано: "
 
 #~ msgid "Ajust the title size"
 #~ msgstr "Настроить размер заголовка"

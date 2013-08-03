@@ -34,7 +34,7 @@ class TC_ressources {
 	 	//fancybox script and style
 	      $tc_fancybox = tc__f ( '__get_option' , 'tc_fancybox' );
 	      if ( $tc_fancybox == 1) {
-	        wp_enqueue_script( 'fancyboxjs' ,TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.js' ,array( 'jquery' ),null, $in_footer = true);
+	        wp_enqueue_script( 'fancyboxjs' ,TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.min.js' ,array( 'jquery' ),null, $in_footer = true);
 	        wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.css' );
 	      }
 	 }
@@ -132,7 +132,7 @@ class TC_ressources {
 	      wp_enqueue_script( 'holder' ,TC_BASE_URL . 'inc/js/holder.js' ,array( 'jquery' ),null, $in_footer = true);
 
 	      //modernizr (must be loaded in wp_head())
-	      wp_enqueue_script( 'modernizr' ,TC_BASE_URL . 'inc/js/modernizr.js' ,array( 'jquery' ),null, $in_footer = false);
+	      wp_enqueue_script( 'modernizr' ,TC_BASE_URL . 'inc/js/modernizr.min.js' ,array( 'jquery' ),null, $in_footer = false);
 
 	   }
 }//end of TC_ressources

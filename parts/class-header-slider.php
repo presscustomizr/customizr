@@ -27,6 +27,8 @@ class TC_slider {
    *
    */
   function tc_display_slider() {
+      
+
       //prevent the main ID override when creating a new query. (only if it is included in the main loop but who knows...)
       if (is_404() || is_archive() || is_search())
         return;
@@ -36,19 +38,19 @@ class TC_slider {
       //get the current slider id
       $slider_name_id               = tc__f ( '__screen_slider' );
       
-        if ( is_front_page() && $__options['tc_front_slider'] !=null) {
+      if ( tc__f('__is_home') && $__options['tc_front_slider'] !=null ) {
           $slider_name_id           = $__options['tc_front_slider'];
-        }
+      }
 
       //is the slider on?
       $slider_active                = esc_attr(get_post_meta( get_the_ID(), $key = 'post_slider_check_key' , $single = true ));
-        if ( is_front_page() && $__options['tc_front_slider'] !=null) {
+        if ( tc__f('__is_home') && $__options['tc_front_slider'] !=null) {
           $slider_active            = true;
       }
 
       //get slider options if any
       $layout_value                 = esc_attr(get_post_meta( get_the_ID(), $key = 'slider_layout_key' , $single = true ));
-      if (is_home() || is_front_page()) {
+      if ( tc__f('__is_home') ) {
         $layout_value               = tc__f ( '__get_option' , 'tc_slider_width' );
       }
 
@@ -273,7 +275,7 @@ class TC_slider {
       $delay_value      = get_post_meta( get_the_ID(), $key = 'slider_delay_key' , $single = true );
       
       //get the slider id and delay if we display home/front page
-      if ( is_front_page() || is_home()) {
+      if ( tc__f('__is_home') ) {
         $name_value     = tc__f ( '__get_option' , 'tc_front_slider' );
         $delay_value    = tc__f ( '__get_option' , 'tc_slider_delay' );
       }

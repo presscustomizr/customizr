@@ -46,8 +46,9 @@ class TC_breadcrumb {
 	      );
 
 	      //do not display breadcrumb on home page
-	      if (is_home() || is_front_page())
+	      if ( tc__f('__is_home') ) {
 	        return;
+	       }
 	        ?>
 	        <div class="tc-hot-crumble container" role="navigation">
 	          <div class="row">
