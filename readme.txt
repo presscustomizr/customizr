@@ -123,6 +123,13 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.0.7 =
+* fixed : the "force default layout" option was returning an array instead of a string. Thanks to http://wordpress.org/support/profile/edwardwilliamson and http://wordpress.org/support/profile/henry12345 for pointing this out!
+* improved : get infos from parent theme if using a child theme in customizr-__ class constructor
+* improved : enhanced filter for footer credit
+* added : a notice about changelog if using a child theme
+* improved : use esc_html tags in featured page text and slider captions
+
 = 3.0.6 =
 * fixed : Spanish translation has been fixed. Many thanks again to Maria del Mar for her great job!
 * fixed : Pages protected with password will not display any thumbnail or excerpt when used in a featured page home block (thanks to rocketpopgames http://wordpress.org/support/profile/rocketpopgames)

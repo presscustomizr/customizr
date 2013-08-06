@@ -57,7 +57,7 @@ class TC_utils {
 
           $__options                      = wp_parse_args( $saved, $defaults );
 
-          $__options                      = array_intersect_key( $__options, $defaults );
+          //$__options                      = array_intersect_key( $__options, $defaults );
 
         return $__options;
     }
@@ -133,7 +133,7 @@ class TC_utils {
 
         $options            = wp_parse_args( $saved, $defaults );
         
-        $options            = array_intersect_key( $options, $defaults );
+        //$options            = array_intersect_key( $saved , $defaults);
 
       return $options[$option_name];
     }
@@ -149,17 +149,11 @@ class TC_utils {
       * @since Customizr 1.0
       */
       function tc_get_the_ID()  {
-          $__options          = tc__f ( '__options' );
-
-          if (is_404() || is_search())
+          if (is_404() || is_search()) {
             return null;
-          if (!isset( $__options['another_query_in_the_main_loop'])) 
-          {
-              $id             = get_the_ID();
           }
-          else 
-          {
-              $id             = $__options['original_ID'];
+          else {
+              $id  = get_the_ID();
           }
         return $id;
       }
@@ -212,7 +206,7 @@ class TC_utils {
             'sidebar' => $tc_sidebar_global_layout,
             'class'   => $class_tab[$tc_sidebar_global_layout]
           );
-          return $tc_screen_layout;
+          return $tc_screen_layout[$sidebar_or_class];
         }
 
         //get the front page layout

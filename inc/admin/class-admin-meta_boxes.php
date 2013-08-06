@@ -520,26 +520,26 @@ class TC_meta_boxes {
           $title_value = $default_title;
         if (strlen( $title_value) > 80) {
           $title_value = substr( $title_value,0,strpos( $title_value, ' ' ,80));
-          $title_value = esc_textarea( $title_value) . ' ...';
+          $title_value = esc_html( $title_value) . ' ...';
         }
         else {
-          $title_value = esc_textarea( $title_value);
+          $title_value = esc_html( $title_value);
         }
 
 
         //text_field setup : sanitize and limit length
         $text_id        = 'slide_text_field';
-        $text_value     = esc_attr(get_post_meta( $postid, $key = 'slide_text_key' , $single = true ));
+        $text_value     = esc_html(get_post_meta( $postid, $key = 'slide_text_key' , $single = true ));
          //check if we already have a custom key created for this field, if not apply default value
         if(!in_array( 'slide_text_key' ,get_post_custom_keys( $postid)))
           $text_value = $default_description;
 
         if (strlen( $text_value) > 250) {
           $text_value = substr( $text_value,0,strpos( $text_value, ' ' ,250));
-          $text_value = esc_textarea( $text_value) . ' ...';
+          $text_value = $text_value . ' ...';
         }
         else {
-          $text_value = esc_textarea( $text_value);
+          $text_value = $text_value;
         }
 
          //Color field setup
@@ -551,10 +551,10 @@ class TC_meta_boxes {
         $button_value   = esc_attr(get_post_meta( $postid, $key = 'slide_button_key' , $single = true ));
          if (strlen( $button_value) > 80) {
           $button_value = substr( $button_value,0,strpos( $button_value, ' ' ,80));
-          $button_value = esc_textarea( $button_value) . ' ...';
+          $button_value = $button_value . ' ...';
         }
         else {
-          $button_value = esc_textarea( $button_value);
+          $button_value = $button_value;
         }
 
         //link field setup
@@ -745,10 +745,10 @@ class TC_meta_boxes {
                     case 'slide_text_key':
                         if (strlen( $mydata) > 250) {
                         $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,250));
-                        $mydata = esc_textarea( $mydata) . ' ...';
+                        $mydata = esc_html( $mydata) . ' ...';
                         }
                         else {
-                          $mydata = esc_textarea( $mydata);
+                          $mydata = esc_html( $mydata);
                         }
                       break;
 
@@ -829,7 +829,7 @@ class TC_meta_boxes {
                       $slide_src              = wp_get_attachment_image_src( $id, 'thumbnail' );
                       $slide_url              = $slide_src[0];
                       $title                  = esc_attr(get_post_meta( $id, $key = 'slide_title_key' , $single = true ));
-                      $text                   = esc_textarea(get_post_meta( $id, $key = 'slide_text_key' , $single = true ));
+                      $text                   = esc_html(get_post_meta( $id, $key = 'slide_text_key' , $single = true ));
                       $text_color             = esc_attr(get_post_meta( $id, $key = 'slide_color_key' , $single = true ));
                       $button_text            = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
                       $button_link            = esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true ));
@@ -1181,10 +1181,10 @@ class TC_meta_boxes {
                               $mydata = sanitize_text_field( $_POST[$tcid] );
                               if (strlen( $mydata) > 250) {
                               $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,250));
-                              $mydata = esc_textarea( $mydata) . ' ...';
+                              $mydata = esc_html( $mydata) . ' ...';
                               }
                               else {
-                                $mydata = esc_textarea( $mydata);
+                                $mydata = esc_html( $mydata);
                               }
                                //write in DB
                               add_post_meta( $post_ID, $tckey, $mydata, true) or

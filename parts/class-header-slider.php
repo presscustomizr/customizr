@@ -117,9 +117,6 @@ class TC_slider {
         
 
         default:
-            $__options['another_query_in_the_main_loop'] = true;
-            $__options['original_ID'] = get_the_ID();
-
             //get the slider ID
             /*There is a tricky case with the blog page. If we choose to assign a page for the blog posts, then this page will return a 
             *'true' value if we test it with is_home(). Even if it is not the home page of the website!
@@ -189,7 +186,7 @@ class TC_slider {
 
                         $alt                = trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true)));
                         $title              = esc_attr(get_post_meta( $id, $key = 'slide_title_key' , $single = true ));
-                        $text               = esc_textarea(get_post_meta( $id, $key = 'slide_text_key' , $single = true ));
+                        $text               = esc_html(get_post_meta( $id, $key = 'slide_text_key' , $single = true ));
                         $text_color         = esc_attr(get_post_meta( $id, $key = 'slide_color_key' , $single = true ));
                         $button_text        = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
                         $button_link        = esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true ));

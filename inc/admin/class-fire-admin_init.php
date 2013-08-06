@@ -175,6 +175,7 @@ class TC_admin_init {
    */
     function tc_welcome_panel() {
       
+      //CHECK IF WE ARE UPGRADING
       $is_upgrade = false;
 
       if ( isset($_GET['action']) ) {
@@ -183,6 +184,12 @@ class TC_admin_init {
         }
       }
 
+      //CHECK IF WE ARE USING A CHILD THEME
+      //get WP_Theme object of customizr
+      $tc_theme                     = wp_get_theme();
+      //define a boolean if using a child theme
+      $is_child = $tc_theme -> parent();
+
       ?>
       <div class="wrap about-wrap">
 
@@ -190,11 +197,20 @@ class TC_admin_init {
 
         <?php  if ($is_upgrade) : ?>
 
-          <div class="about-text tc-welcome"><?php printf( __( 'Thank you for updating to the latest version! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Enjoy it! ','customizr' ), CUSTOMIZR_VER   ); ?><a class="twitter-share-button" href="http://twitter.com/share" data-url="http://www.themesandco.com/customizr/" data-text="I just upgraded my WordPress site with the Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a></div>
+          <div class="about-text tc-welcome">
+            <?php printf( __( 'Thank you for updating to the latest version! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Enjoy it! ','customizr' ), 
+            CUSTOMIZR_VER   
+            ); ?>
+            <a class="twitter-share-button" href="http://twitter.com/share" data-url="http://www.themesandco.com/customizr/" data-text="I just upgraded my WordPress site with the Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a>
+          </div>
         
         <?php else: ?>
-
-          <div class="about-text tc-welcome"><?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Enjoy it! ','customizr' ), CUSTOMIZR_VER ); ?><a class="twitter-share-button" href="http://twitter.com/share" data-url="http://www.themesandco.com/customizr/" data-text="My WordPress website is built with the Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
+        
+          <div class="about-text tc-welcome">
+            <?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Enjoy it! ','customizr' ),
+             CUSTOMIZR_VER 
+             ); ?>
+             <a class="twitter-share-button" href="http://twitter.com/share" data-url="http://www.themesandco.com/customizr/" data-text="My WordPress website is built with the Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
         
         <?php endif; ?>
 
@@ -202,8 +218,23 @@ class TC_admin_init {
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
 
-        <div class="changelog point-releases">
-        </div>
+        <?php if ($is_child) : ?>
+          <div class="changelog point-releases"></div>
+
+          <div class="tc-upgrade-notice">
+            <p>
+            <?php 
+              printf( __('You are using a child theme of Customizr %1$s : always check the %2$s after upgrading to see if a function or a template has been deprecated.' , 'customizr'),
+                'v'.CUSTOMIZR_VER,
+                '<strong><a href="#customizr-changelog">changelog</a></strong>'
+                ); 
+              ?>
+            </p>
+          </div>
+        <?php endif; ?>
+
+        <div class="changelog point-releases"></div>
+
        <div class="changelog">
          <div class="feature-section col three-col">
 

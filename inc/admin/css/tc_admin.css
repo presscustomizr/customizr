@@ -25,3 +25,14 @@
 	margin-top: 9px;
 }
 
+.tc-upgrade-notice {
+	background-color: #FFFFE0;
+	border: 1px solid #E6DB55;
+	padding: 0px;
+	margin: 5px 0px;
+	text-align: center;
+}
+
+.tc-upgrade-notice p {
+	line-height: 1em;
+}

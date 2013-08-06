@@ -193,9 +193,15 @@ class TC_customize {
 																	'description'	=>	__( 'Enable/disable lightbox effect on images' , 'customizr' ),
 								),
 
+								'tc_plugins_compatibility'			=> array(
+																	'title'			=>	__( 'Plugins compatibility' , 'customizr' ),
+																	'priority'		=>	190,
+																	'description'	=>	__( 'Ensure Customizr compatibilty with some plugins' , 'customizr' ),
+								),
+
 								'tc_custom_css'						=> array(
 																	'title'			=>	__( 'Custom CSS' , 'customizr' ),
-																	'priority'		=>	190,
+																	'priority'		=>	200,
 																	'description'	=>	__( 'Add your own CSS' , 'customizr' ),
 								),
 
@@ -457,6 +463,7 @@ class TC_customize {
 								//widget page text one
 								'tc_theme_options[tc_featured_text_one]' => array(
 																	'sanitize_callback' => array( $this , 'tc_sanitize_textarea' ),
+																	'transport' 	=> 'postMessage',
 																	'control'		=> 'TC_controls' ,
 																	'label'    		=> __( 'Featured text one (200 car. max)' , 'customizr' ),
 																	'section'  		=> 'tc_frontpage_settings' ,
@@ -468,6 +475,7 @@ class TC_customize {
 								//widget page text two
 								'tc_theme_options[tc_featured_text_two]' => array(
 																	'sanitize_callback' => array( $this , 'tc_sanitize_textarea' ),
+																	'transport' 	=> 'postMessage',
 																	'control'		=> 'TC_controls' ,
 																	'label'    		=> __( 'Featured text two (200 car. max)' , 'customizr' ),
 																	'section'  		=> 'tc_frontpage_settings' ,
@@ -479,6 +487,7 @@ class TC_customize {
 								//widget page text three
 								'tc_theme_options[tc_featured_text_three]' => array(
 																	'sanitize_callback' => array( $this , 'tc_sanitize_textarea' ),
+																	'transport' 	=> 'postMessage',
 																	'control'		=> 'TC_controls' ,
 																	'label'    		=> __( 'Featured text three (200 car. max)' , 'customizr' ),
 																	'section'  		=> 'tc_frontpage_settings' ,
@@ -723,6 +732,19 @@ class TC_customize {
 																	'notice'		=> __( 'If enabled, this option will force images to fit the screen on lightbox zoom.' , 'customizr' ),
 								),
 
+								/*-----------------------------------------------------------------------------------------------------
+														                   PLUGINS COMPATIBILITY
+								------------------------------------------------------------------------------------------------------*/
+								/*'tc_theme_options[tc_woocommerce_compatibility]'	=>	array(
+																	'default'       => 1,
+																	'control'		=> 'TC_controls' ,
+																	'label'    		=> __( 'Enable Woocommerce compatibility' , 'customizr' ),
+																	'section'  		=> 'tc_plugins_compatibility' ,
+																	'type'     		=> 'checkbox' ,
+																	'notice'		=> __( 'If enabled, Customizr will use Woommerce specific hooks to help you build your online shop.' , 'customizr' ),
+								),*/
+
+
 
 								/*-----------------------------------------------------------------------------------------------------
 														                   CUSTOM CSS
@@ -892,7 +914,7 @@ class TC_customize {
 	 * @since Customizr 1.1.4
 	 */
 	function tc_sanitize_textarea( $value) {
-		$value = esc_textarea( $value);
+		$value = esc_html( $value);
 		return $value;
 	}
 

@@ -78,13 +78,19 @@ class TC_footer {
 	 * @since Customizr 3.0.6
 	 */
     function tc_footer_credits( $site_credits = null, $tc_credits = null ) {
-    	$credits =  sprintf( '<div class="span4 credits"><p> &middot; &copy; %1$s <a href="%2$s" title="%3$s" rel="bookmark">%3$s</a> &middot; Designed by %4$s &middot;</p></div>',
-			    esc_attr( date( 'Y' ) ),
-			    esc_url( home_url() ),
-			    esc_attr(get_bloginfo()),
-			    '<a href="http://www.themesandco.com">Themes &amp; Co</a>'
-		);
-		echo apply_filters( 'footer_credits', $credits );
+    	?>
+    	<div class="span4 credits">
+	    	<?php
+		    	$credits =  sprintf( '<p> &middot; &copy; %1$s <a href="%2$s" title="%3$s" rel="bookmark">%3$s</a> &middot; Designed by %4$s &middot;</p>',
+					    esc_attr( date( 'Y' ) ),
+					    esc_url( home_url() ),
+					    esc_attr(get_bloginfo()),
+					    '<a href="http://www.themesandco.com">Themes &amp; Co</a>'
+				);
+				echo apply_filters( 'footer_credits', $credits );
+			?>
+		</div>
+		<?php
     }
 
  }//end of class

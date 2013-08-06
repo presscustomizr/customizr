@@ -110,7 +110,7 @@ class TC_header {
      * @since Customizr 2.0.7
      */
     function tc_write_custom_css() {
-        $tc_custom_css      = esc_textarea(tc__f ( '__get_option' , 'tc_custom_css' ));
+        $tc_custom_css      = esc_html(tc__f ( '__get_option' , 'tc_custom_css' ));
         $tc_top_border      = esc_attr(tc__f ( '__get_option' , 'tc_top_border' ));
         
         if ( isset( $tc_custom_css) && !empty( $tc_custom_css)) {

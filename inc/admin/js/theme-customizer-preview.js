@@ -21,6 +21,26 @@
 		} );
 	} );
 	
+	//featured page one text
+	wp.customize( 'tc_theme_options[tc_featured_text_one]' , function( value ) {
+		value.bind( function( to ) {
+			$( '.widget-front p.fp-text-one' ).html( to );
+		} );
+	} );
+
+	//featured page two text
+	wp.customize( 'tc_theme_options[tc_featured_text_two]' , function( value ) {
+		value.bind( function( to ) {
+			$( '.widget-front p.fp-text-two' ).html( to );
+		} );
+	} );
+
+	//featured page three text
+	wp.customize( 'tc_theme_options[tc_featured_text_three]' , function( value ) {
+		value.bind( function( to ) {
+			$( '.widget-front p.fp-text-three' ).html( to );
+		} );
+	} );
 
 	//featured page button text
 	wp.customize( 'tc_theme_options[tc_featured_page_button_text]' , function( value ) {
