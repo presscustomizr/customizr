@@ -576,8 +576,8 @@ class TC_utils {
    *
    */
     function tc_is_home() {
-      //check if the users has choosen the "no posts or page" option for home page
-      return ( is_home() || is_front_page()  ) ? true : false;
+      //get info whether the front page is a list of last posts or a page
+      return ( (is_home() && get_option( 'show_on_front' ) == 'posts' ) || is_front_page() ) ? true : false;
     }
 
     

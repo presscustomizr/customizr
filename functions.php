@@ -185,3 +185,10 @@ endif;
 /* Loads the theme classes framework */
 locate_template( 'inc/class-customizr-__.php' ,true,true);
 tc__( 'customizr' );//fire the theme
+
+
+
+/* 
+* The best and safest way to add your own functions to Customizr is to create a child theme
+* http://codex.wordpress.org/Child_Themes
+*/

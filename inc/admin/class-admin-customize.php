@@ -803,7 +803,9 @@ class TC_customize {
 							'step' ,//number specific
 							'min' ,//number specific
 							'range-input' ,
-							'max'
+							'max',
+							'cssid',
+							'slider_default'
 				)
 		);
 		return $args;
