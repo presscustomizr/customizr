@@ -17,13 +17,6 @@ class TC_footer {
     function __construct () {
         add_action( '__footer'					, array( $this , 'tc_display_footer' ));
         add_action( '__credits'					, array( $this , 'tc_footer_credits' ) , 10 , 2);
-
-        /*add_filter( '__credits_filter' 			, 
-        	array( $this , 'tc_footer_credits' ) , 
-        	$priority = 10, 
-        	$site_credits = esc_url( home_url() ),
-        	$tc_credits = '<a href="http://www.themesandco.com">Themes &amp; Co</a>'
-        );*/
     }
 
 
@@ -85,7 +78,7 @@ class TC_footer {
 					    esc_attr( date( 'Y' ) ),
 					    esc_url( home_url() ),
 					    esc_attr(get_bloginfo()),
-					    '<a href="http://www.themesandco.com">Themes &amp; Co</a>'
+					    '<a href="'.TC_WEBSITE.'">Themes &amp; Co</a>'
 				);
 				echo apply_filters( 'footer_credits', $credits );
 			?>

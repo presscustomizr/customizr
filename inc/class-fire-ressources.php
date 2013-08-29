@@ -19,67 +19,13 @@ class TC_ressources {
         add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_scripts' ));
         
         //Based on options
-        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_optional_scripts' ));
-        add_action( 'wp_footer'									, array( $this , 'tc_generated_scripts' ) , 20);
+        add_action ( 'wp_head'                 					, array( $this , 'tc_write_custom_css' ), 20 );
+        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_optional_scripts' ));
+        add_action ( 'wp_footer'								, array( $this , 'tc_generated_scripts' ) , 20);
     }
 
 
     /**
-	 * Enqueues Customizr scripts and style sheets based on user options
-	 * @package Customizr
-	 * @since Customizr 3.0.5
-	 */
-	 function tc_optional_scripts() {
-
-	 	//fancybox script and style
-	      $tc_fancybox = tc__f ( '__get_option' , 'tc_fancybox' );
-	      if ( $tc_fancybox == 1) {
-	        wp_enqueue_script( 'fancyboxjs' ,TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.min.js' ,array( 'jquery' ),null, $in_footer = true);
-	        wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.css' );
-	      }
-	 }
-
-
-
-	 /**
-	 * Writes additional scripts in wp_footer. Based on user options.
-	 * @package Customizr
-	 * @since Customizr 3.0.5
-	 */
-	 function tc_generated_scripts() {
-		//is fancy box option active?
-		$tc_fancybox = tc__f ( '__get_option' , 'tc_fancybox' );
-
-	 	if ( $tc_fancybox == 1) {
-			//get option from customizr
-			$autoscale = tc__f ( '__get_option' , 'tc_fancybox_autoscale' );
-			//($autoscale == 1) ? _e('true') : _e('false');
-
-		  	?>
-			<script type="text/javascript">
-				jQuery(document).ready(function( $) {
-			      // Fancybox
-			      $("a.grouped_elements").fancybox({
-			        'transitionIn'  : 'elastic' ,
-			        'transitionOut' : 'elastic' ,
-			        'speedIn'   : 200, 
-			        'speedOut'    : 200, 
-			        'overlayShow' : false,
-			        'autoScale' : <?php echo ($autoscale == 1) ? 'true' : 'false' ?>,
-			        'changeFade' : 'fast',
-			        'enableEscapeButton' : true
-			      });
-				});
-			</script>
-
-		  	<?php
-		}//end if
-	}
-
-
-
-
-	/**
 	 * Registers and enqueues Customizr stylesheets
 	 * @package Customizr
 	 * @since Customizr 1.1
@@ -135,4 +81,87 @@ class TC_ressources {
 	      wp_enqueue_script( 'modernizr' ,TC_BASE_URL . 'inc/js/modernizr.min.js' ,array( 'jquery' ),null, $in_footer = false);
 
 	   }
+
+
+
+    /**
+     * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
+     * 
+     * @package Customizr
+     * @since Customizr 2.0.7
+     */
+    function tc_write_custom_css() {
+        $tc_custom_css      = esc_html(tc__f ( '__get_option' , 'tc_custom_css' ));
+        $tc_top_border      = esc_attr(tc__f ( '__get_option' , 'tc_top_border' ));
+        
+        ?>
+
+        <?php if ( isset( $tc_custom_css) && !empty( $tc_custom_css) ) : ?>
+          <style type="text/css"><?php echo html_entity_decode($tc_custom_css) ?></style>
+        <?php endif; ?>
+        <?php if ( ( isset( $tc_top_border) && $tc_top_border == 0) ) :  //disable top border in customizer skin options?>
+          <style type="text/css">header.tc-header {border-top: none;}</style>
+        <?php endif; ?>
+        
+
+        <?php
+        }//end of function
+
+
+
+
+
+
+    /**
+	 * Enqueues Customizr scripts and style sheets based on user options
+	 * @package Customizr
+	 * @since Customizr 3.0.5
+	 */
+	 function tc_optional_scripts() {
+
+	 	//fancybox script and style
+	      $tc_fancybox = tc__f ( '__get_option' , 'tc_fancybox' );
+	      if ( $tc_fancybox == 1) {
+	        wp_enqueue_script( 'fancyboxjs' ,TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.min.js' ,array( 'jquery' ),null, $in_footer = true);
+	        wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.css' );
+	      }
+	 }
+
+
+
+	 /**
+	 * Writes additional scripts in wp_footer. Based on user options.
+	 * @package Customizr
+	 * @since Customizr 3.0.5
+	 */
+	 function tc_generated_scripts() {
+		//is fancy box option active?
+		$tc_fancybox = tc__f ( '__get_option' , 'tc_fancybox' );
+
+	 	if ( $tc_fancybox == 1) {
+			//get option from customizr
+			$autoscale = tc__f ( '__get_option' , 'tc_fancybox_autoscale' );
+			//($autoscale == 1) ? _e('true') : _e('false');
+
+		  	?>
+			<script type="text/javascript">
+				jQuery(document).ready(function( $) {
+			      // Fancybox
+			      $("a.grouped_elements").fancybox({
+			        'transitionIn'  : 'elastic' ,
+			        'transitionOut' : 'elastic' ,
+			        'speedIn'   : 200, 
+			        'speedOut'    : 200, 
+			        'overlayShow' : false,
+			        'autoScale' : <?php echo ($autoscale == 1) ? 'true' : 'false' ?>,
+			        'changeFade' : 'fast',
+			        'enableEscapeButton' : true
+			      });
+				});
+			</script>
+
+		  	<?php
+		}//end if
+	}
+
 }//end of TC_ressources

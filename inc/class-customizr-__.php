@@ -27,6 +27,7 @@ class TC___ {
 
             $tc_base_data['prefix']       = $tc_base_data['title'] = $tc_theme -> name;
             $tc_base_data['version']      = $tc_theme -> version;
+            $tc_base_data['authoruri']    = $tc_theme -> {'Author URI'};
           }
 
         // get themedata for lower versions
@@ -48,13 +49,19 @@ class TC___ {
         /* THEMENAME contains the Name of the currently loaded theme */
         if( ! defined( 'THEMENAME' ) )     { define( 'THEMENAME' , $tc_base_data['title'] ); }
 
+        /* TC_WEBSITE is the home website of Customizr */
+        if( ! defined( 'TC_WEBSITE' ) )     { define( 'TC_WEBSITE' , $tc_base_data['authoruri'] ); }
+
 
         /* theme class groups instanciation */
         $groups = array(
             'fire' ,
             'main' ,
             'header' ,
-            'content' 
+            'content' ,
+            ///important :always run firepro group before pro group
+            //'firepro',
+            //'pro' ,
         );
 
         foreach ( $groups as $g) 

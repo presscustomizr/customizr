@@ -40,7 +40,7 @@
         	</div><!-- /.navbar-wrapper -->
 
 		</header>
-
+		
 	  		<?php do_action ( '__slider' ) ?>
 
 		<div id="main-wrapper" class="container">

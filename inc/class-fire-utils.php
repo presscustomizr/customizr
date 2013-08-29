@@ -38,7 +38,11 @@ class TC_utils {
         add_filter  ( 'wp_page_menu'                        , array( $this , 'add_menuclass' ));
         add_filter  ( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ));
         add_filter  ( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
-        add_filter  ( 'post_gallery'                        , array( $this , 'tc_fancybox_gallery_filter' ), 20, 2);
+        
+        //We check if jetpack plugin is enabled (avoid conflict) before filtering post_gallery hook
+        if(!in_array('jetpack/jetpack.php', get_option('active_plugins'))) {
+          add_filter  ( 'post_gallery'                        , array( $this , 'tc_fancybox_gallery_filter' ), 20, 2);
+        }
     }
 
 
@@ -294,6 +298,8 @@ class TC_utils {
               'tc_twitter'        => 'twitter',
               'tc_facebook'       => 'facebook',
               'tc_google'         => 'google',
+              'tc_instagram'      => 'instagram',
+              'tc_wordpress'      => 'wordpress',
               'tc_youtube'        => 'youtube',
               'tc_pinterest'      => 'pinterest',
               'tc_github'         => 'github',
@@ -577,7 +583,7 @@ class TC_utils {
    */
     function tc_is_home() {
       //get info whether the front page is a list of last posts or a page
-      return ( (is_home() && get_option( 'show_on_front' ) == 'posts' ) || is_front_page() ) ? true : false;
+      return ( (is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) ) || is_front_page() ) ? true : false;
     }
 
     

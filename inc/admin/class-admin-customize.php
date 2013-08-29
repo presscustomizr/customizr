@@ -75,9 +75,12 @@ class TC_customize {
 	     global $wp_admin_bar;
 	     $wp_admin_bar->add_menu( array(
 	       'parent' => false,
-	       'id' => 'theme_editor_admin_bar' ,
+	       'id' => 'tc-customizr' ,
 	       'title' =>  __( 'Customiz\'it!' , 'customizr' ),
-	       'href' => admin_url( 'customize.php' )
+	       'href' => admin_url( 'customize.php' ),
+	       'meta'   => array(
+              'title'  => __( 'Customize your website at any time!', 'customizr' ),
+            ),
 	     ));
 	   }
 	}
@@ -193,11 +196,11 @@ class TC_customize {
 																	'description'	=>	__( 'Enable/disable lightbox effect on images' , 'customizr' ),
 								),
 
-								'tc_plugins_compatibility'			=> array(
+								/*'tc_plugins_compatibility'			=> array(
 																	'title'			=>	__( 'Plugins compatibility' , 'customizr' ),
 																	'priority'		=>	190,
 																	'description'	=>	__( 'Ensure Customizr compatibilty with some plugins' , 'customizr' ),
-								),
+								),*/
 
 								'tc_custom_css'						=> array(
 																	'title'			=>	__( 'Custom CSS' , 'customizr' ),
@@ -660,6 +663,24 @@ class TC_customize {
 																	'sanitize_callback' => array( $this , 'tc_sanitize_url' ),
 																	'control'		=> 'TC_controls' ,
 																	'label'    		=> __( 'Google+ profile url' , 'customizr' ), 
+																	'section'  		=> 'tc_social_settings' ,
+																	'type'     		=> 'url' ,
+																	'priority'       => 74 
+								),
+
+								'tc_theme_options[tc_instagram]'	=>	array(
+																	'sanitize_callback' => array( $this , 'tc_sanitize_url' ),
+																	'control'		=> 'TC_controls' ,
+																	'label'    		=> __( 'Instagram profile url' , 'customizr' ), 
+																	'section'  		=> 'tc_social_settings' ,
+																	'type'     		=> 'url' ,
+																	'priority'       => 78 
+								),
+
+								'tc_theme_options[tc_wordpress]'	=>	array(
+																	'sanitize_callback' => array( $this , 'tc_sanitize_url' ),
+																	'control'		=> 'TC_controls' ,
+																	'label'    		=> __( 'WordPress profile url' , 'customizr' ), 
 																	'section'  		=> 'tc_social_settings' ,
 																	'type'     		=> 'url' ,
 																	'priority'       => 80 

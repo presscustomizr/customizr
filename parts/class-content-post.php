@@ -352,7 +352,7 @@ class TC_post {
         if ( $posttags) {
           $html                 = '';
           foreach( $posttags as $tag) {
-            $html               .= '<a class="btn btn-mini btn-info" href="'.get_tag_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", 'customizr' ), $tag->name ) ) . '">';
+            $html               .= '<a class="btn btn-mini btn-tag" href="'.get_tag_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", 'customizr' ), $tag->name ) ) . '">';
                $html                .= ' '.$tag->name.' ';
             $html               .= '</a>';
           }

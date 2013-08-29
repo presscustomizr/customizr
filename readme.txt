@@ -123,6 +123,20 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.0.9 =
+* ! SAFE UPGRADE FOR CHILD THEME USERS (v3.0.8 => v3.0.9) ! *
+* fixed : function tc_is_home() was not checking the case where display nothing on home page. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/monten01">monten01</a>, <a href="http://wordpress.org/support/profile/rdellconsulting" target="_blank">rdellconsulting</a>
+* fixed : When the permalink structure was not set to default, conditional tags is_page() and is_attachement() stopped working. They are now replaced by tests on $post -> post_type in class-main-content.php
+* fixed : test if jet_pack is enabled before filtering post_gallery hook => avoid conflict
+* fixed : @media print modified to remove links thanks to <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* fixed : btn-info style is back to original Bootstrap style thanks to <a href="http://wordpress.org/support/profile/jo8192" target="_blank">jo8192</a>
+* fixed : featured pages text => html tags are removed from page excerpt
+* improved : custom css now allows special characters
+* improved : better css structure, media queries are grouped at the end of the css files
+* added : two new social networks in Customizer options : Instagram and WordPress
+* added : help button and page in admin with links to FAQ, documentation and forum
+* added : new constant TC_WEBSITE for author URI
+
 = 3.0.8 =
 * fixed : function tc_is_home() was missing a test. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/ldanielpour962gmailcom">http://wordpress.org/support/profile/ldanielpour962gmailcom</a>, <a href="http://wordpress.org/support/profile/rdellconsulting">http://wordpress.org/support/profile/rdellconsulting</a>, <a href="http://wordpress.org/support/profile/andyblackburn">http://wordpress.org/support/profile/andyblackburn</a>, <a href="http://wordpress.org/support/profile/chandlerleighcom">http://wordpress.org/support/profile/chandlerleighcom</a>
 

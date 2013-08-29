@@ -37,6 +37,9 @@ class TC_admin_init {
           //add welcome page in menu
           add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
 
+          //add help button to admin bar
+          add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
+
           //Redirect on activation (first activation only)
           add_action ( 'admin_init'                          , array( $this , 'tc_theme_activation' ));
 
@@ -169,6 +172,28 @@ class TC_admin_init {
 
 
     /**
+     * Add help button
+     * @package Customizr
+     * @since Customizr 1.0 
+     */
+    function tc_add_help_button() {
+       if ( current_user_can( 'edit_theme_options' ) ) {
+         global $wp_admin_bar;
+         $wp_admin_bar->add_menu( array(
+           'parent' => 'top-secondary', // Off on the right side
+           'id' => 'tc-customizr-help' ,
+           'title' =>  __( 'Customizr Help' , 'customizr' ),
+           'href' => admin_url( 'themes.php?page=welcome.php&help=true' ),
+           'meta'   => array(
+              'title'  => __( 'Need help with Customizr? Click here!', 'customizr' ),
+            ),
+         ));
+       }
+    }
+
+
+
+    /**
    * Render welcome admin page.
    * @package Customizr
    * @since Customizr 3.0.4
@@ -184,33 +209,63 @@ class TC_admin_init {
         }
       }
 
+      $is_help = isset($_GET['help'])  ?  true : false;
+
       //CHECK IF WE ARE USING A CHILD THEME
       //get WP_Theme object of customizr
       $tc_theme                     = wp_get_theme();
       //define a boolean if using a child theme
-      $is_child = $tc_theme -> parent();
+      $is_child                     = $tc_theme -> parent();
 
       ?>
       <div class="wrap about-wrap">
-
-        <h1><?php printf( __( 'Welcome to Customizr %s','customizr' ), CUSTOMIZR_VER ); ?></h1>
+        <?php  ?>
+        
+          <?php if ($is_help) : ?>
+            <h1 class="need-help-title"><?php _e( 'Need help with Customizr ?','customizr' ) ?></h1>
+          <?php else : ?>
+            <h1><?php printf( __( 'Welcome to Customizr %s','customizr' ), CUSTOMIZR_VER ); ?></h1>
+          <?php endif; ?>
 
         <?php  if ($is_upgrade) : ?>
 
           <div class="about-text tc-welcome">
-            <?php printf( __( 'Thank you for updating to the latest version! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Enjoy it! ','customizr' ), 
-            CUSTOMIZR_VER   
+            <?php printf( __( 'Thank you for updating to the latest version! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Watch the <a href="#introduction">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/> Enjoy it! ','customizr' ),
+            CUSTOMIZR_VER
             ); ?>
-            <a class="twitter-share-button" href="http://twitter.com/share" data-url="http://www.themesandco.com/customizr/" data-text="I just upgraded my WordPress site with the Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a>
+            <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="I just upgraded my WordPress site with the Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a>
           </div>
+        
+        <?php elseif ($is_help) : ?>
+          <div class="changelog">
+            <div class="about-text tc-welcome">
+            <?php printf( __( 'You can start by watching the <a href="#introduction">introduction video</a> or by reading <a href="%1$scustomizr" target="_blank">the documentation</a>.<br/> If you don\'t find an answer to your issue, don\'t panic! Since Customizr is used by a growing community of webmasters reporting bugs and making continuous improvements, you will probably find a solution to your problem either in the FAQ or in the user forum.','customizr' ),
+             TC_WEBSITE
+             ); ?>
+             </div>
+            <div class="feature-section col three-col">
+              <div>
+                 <br/>
+                  <a class="button-secondary customizr-help" title="documentation" href="<?php echo TC_WEBSITE ?>customizr" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
+              </div>
+              <div>
+                <br/>
+                  <a class="button-secondary customizr-help" title="faq" href="<?php echo TC_WEBSITE ?>customizr/faq" target="_blank"><?php _e( 'Check the FAQ','customizr' ); ?></a>
+               </div>
+               <div class="last-feature">
+                <br/>
+                  <a class="button-secondary customizr-help" title="faq" href="http://wordpress.org/support/theme/customizr" target="_blank"><?php _e( 'Discuss in the user forum','customizr' ); ?></a>
+               </div>
+            </div><!-- .two-col -->
+          </div><!-- .changelog -->
         
         <?php else: ?>
         
           <div class="about-text tc-welcome">
-            <?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Enjoy it! ','customizr' ),
+            <?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see the changelog)</a> to help you build an awesome website. Watch the <a href="#introduction">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/>Enjoy it! ','customizr' ),
              CUSTOMIZR_VER 
              ); ?>
-             <a class="twitter-share-button" href="http://twitter.com/share" data-url="http://www.themesandco.com/customizr/" data-text="My WordPress website is built with the Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
+             <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="My WordPress website is built with the Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
         
         <?php endif; ?>
 
@@ -254,7 +309,7 @@ class TC_admin_init {
 
             <div class="last-feature">
               <h3><?php _e( 'Follow us','customizr' ); ?></h3>
-              <p class="tc-follow"><a href="http://www.themesandco.com" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Themes and co" /></a></p>
+              <p class="tc-follow"><a href="<?php echo TC_WEBSITE ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Themes and co" /></a></p>
               <!-- Place this tag where you want the widget to render. -->
               <div class="g-follow" data-annotation="bubble" data-height="24" data-href="//plus.google.com/102674909694270155854" data-rel="author"></div>
 
@@ -271,7 +326,23 @@ class TC_admin_init {
         </div><!-- .feature-section -->
       </div><!-- .changelog -->
 
-      <div class="changelog">
+      <div id="showcase" class="changelog">
+        <h3><?php _e('New : Customizr showcase' ,'customizr') ?></h3>
+
+        <div class="feature-section images-stagger-right">
+           <a class="" title="Visit the showcase" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><img alt="Customizr Showcase" src="<?php echo TC_BASE_URL.'inc/admin/img/mu2.jpg' ?>" class=""></a>
+          <h4><?php _e('Find inspiration for your next Customizr based website!' ,'customizr') ?></h4>
+          <p><?php _e('This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their webdesign.' , 'customizr') ?>
+          </p>
+          <p><?php _e('Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do.' , 'customizr') ?></br>
+          </p>
+          <p style="text-align:center">    
+              <a class="button-primary review-customizr" title="Visit the showcase" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank">Visit the showcase &raquo;</a>
+          </p>
+        </div>
+      </div>
+
+      <div id="introduction" class="changelog">
 
         <h3><?php _e( 'Discover Customizr : quick video introduction' , 'customizr' ); ?></h3>
           

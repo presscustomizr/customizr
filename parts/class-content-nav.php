@@ -45,15 +45,16 @@ class TC_nav {
             <h3 class="assistive-text"><?php _e( 'Post navigation' , 'customizr' ); ?></h3>
 
             <ul class="pager">
-
+              <?php if ( get_previous_post() != null ) : ?>
                 <li class="previous">
                   <span class="nav-previous"><?php previous_post_link( '%link' , '<span class="meta-nav">' . _x( '&larr;' , 'Previous post link' , 'customizr' ) . '</span> %title' ); ?></span>
                 </li>
-
+              <?php endif; ?>
+              <?php if ( get_next_post() != null ) : ?>
                 <li class="next">
                   <span class="nav-next"><?php next_post_link( '%link' , '%title <span class="meta-nav">' . _x( '&rarr;' , 'Next post link' , 'customizr' ) . '</span>' ); ?></span>
                 </li>
-
+              <?php endif; ?>
             </ul>
 
         </nav><!-- #<?php echo $html_id; ?> .navigation -->

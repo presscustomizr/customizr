@@ -42,13 +42,13 @@ class TC_content {
 
 		?>
 
-		<?php if ( is_page()) : //pages ?>
+		<?php if ( 'page' == $post -> post_type) : //pages ?>
 			
 			<article id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
 			    <?php  	do_action( '__page' );   ?>
 			</article><!-- #page -->
 
-		<?php elseif (is_attachment()) : ?>
+		<?php elseif ('attachment' == $post -> post_type) : ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<?php do_action( '__attachment' ); ?>

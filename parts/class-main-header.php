@@ -18,7 +18,6 @@ class TC_header {
 
         //html > head actions
         add_action ( '__head'					, array( $this , 'tc_display_head' ));
-        add_action ( 'wp_head'                  , array( $this , 'tc_write_custom_css' ), 20 );
         add_action ( '__favicon'     			, array( $this , 'tc_display_favicon' ));
 
         //body > header actions
@@ -99,31 +98,6 @@ class TC_header {
       }
 
 
-
-
-
-
-     /**
-     * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
-     * 
-     * @package Customizr
-     * @since Customizr 2.0.7
-     */
-    function tc_write_custom_css() {
-        $tc_custom_css      = esc_html(tc__f ( '__get_option' , 'tc_custom_css' ));
-        $tc_top_border      = esc_attr(tc__f ( '__get_option' , 'tc_top_border' ));
-        
-        if ( isset( $tc_custom_css) && !empty( $tc_custom_css)) {
-          $tc_custom_style  = '<style type="text/css">'.$tc_custom_css.'</style>';
-          echo $tc_custom_style;
-        }
-        //disable top border in customizer skin options
-        if ( isset( $tc_top_border) && $tc_top_border == 0) {
-          $tc_custom_style  = '<style type="text/css">header.tc-header {border-top: none;}</style>';
-          echo $tc_custom_style;
-        }
-
-      }
 
 
 

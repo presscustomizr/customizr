@@ -81,20 +81,20 @@ class TC_featured_pages {
         //if not set
         if ( null == tc__f('__get_option' , 'tc_featured_page_'.$area) ) {
             //admin link if user logged in
-            $featured_page_link           = '';
-            $admin_link                   = '';
+            $featured_page_link             = '';
+            $admin_link                     = '';
             if (is_user_logged_in()) {
-            $featured_page_link           = admin_url().'customize.php';
-            $admin_link                   = '<a href="'.admin_url().'customize.php" title="'.__( 'Customizer screen' , 'customizr' ).'">'.__( ' here' , 'customizr' ).'</a>';
+            $featured_page_link             = admin_url().'customize.php';
+            $admin_link                     = '<a href="'.admin_url().'customize.php" title="'.__( 'Customizer screen' , 'customizr' ).'">'.__( ' here' , 'customizr' ).'</a>';
             }
 
             //rendering
-            $featured_page_id             =  null;
-            $featured_page_title          =  __( 'Featured page' , 'customizr' );
-            $text                         =  sprintf(__( 'Featured page description text : use the page excerpt or set your own custom text in the Customizr screen%s.' , 'customizr' ),
+            $featured_page_id               =  null;
+            $featured_page_title            =  __( 'Featured page' , 'customizr' );
+            $text                           =  sprintf(__( 'Featured page description text : use the page excerpt or set your own custom text in the Customizr screen%s.' , 'customizr' ),
             $admin_link 
               );
-            $tc_thumb                     =  '<img data-src="holder.js/270x250" alt="Holder Thumbnail">';
+            $tc_thumb                       =  '<img data-src="holder.js/270x250" alt="Holder Thumbnail">';
 
         }
           
@@ -104,7 +104,7 @@ class TC_featured_pages {
               $featured_page_id             = esc_attr( $__options['tc_featured_page_'.$area]);
               $featured_page_link           = get_permalink( $featured_page_id );
               $featured_page_title          = get_the_title( $featured_page_id );
-              $featured_text                = esc_html( $__options['tc_featured_text_'.$area] );
+              $featured_text                = strip_tags(html_entity_decode((esc_html( $__options['tc_featured_text_'.$area] ))));
 
               //get the page/post object
               $page                         =  get_post($featured_page_id);
@@ -112,7 +112,7 @@ class TC_featured_pages {
               //limit text to 200 car
               $text                         = $featured_text ;
               if ( empty($text) && !post_password_required($featured_page_id) ) {
-                $text                       = esc_html( $page->post_content );
+                $text                       = strip_tags(apply_filters( 'the_content' , $page->post_content ));
               }
 
               if ( strlen($text) > 200 ) {
