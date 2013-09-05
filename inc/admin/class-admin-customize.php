@@ -14,34 +14,39 @@
 
 class TC_customize {
 
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
     function __construct () {
-    		
-    		//add control class
-    		add_action ( 'customize_register'				, array( $this , 'tc_add_controls_class' ) ,10,1);
 
-    		//add the customizer built with the builder below
-    		add_action ( 'customize_register'				, array( $this , 'tc_customize_register' ) ,20,1 );
+        self::$instance =& $this;
 
-    		//ARGS : customizer section, settings and controls accepted arguments
-    		add_filter ( '__customize_args'					, array( $this , 'tc_customize_arguments' ));
+		//add control class
+		add_action ( 'customize_register'				, array( $this , 'tc_add_controls_class' ) ,10,1);
 
-    		//MAP  of the customizer : sections, settings, controls.
-    		add_filter ( '__customize_map'					, array( $this , 'tc_customizer_map' ));
+		//add the customizer built with the builder below
+		add_action ( 'customize_register'				, array( $this , 'tc_customize_register' ) ,20,1 );
 
-    		//BUILDER of the customizer using args + map
-    		add_filter ( '__customize_factory'				, array( $this , 'tc_customize_factory' ), 10, 3);
+		//ARGS : customizer section, settings and controls accepted arguments
+		add_filter ( '__customize_args'					, array( $this , 'tc_customize_arguments' ));
 
-    		//sanitazition filters
-    		add_filter ( '__sanitize_textarea'				, array( $this , 'tc_sanitize_textarea' ));
-    		add_filter ( '__sanitize_number'				, array( $this , 'tc_sanitize_number' ));
-			add_filter ( '__sanitize_url'					, array( $this , 'tc_sanitize_url' ));
+		//MAP  of the customizer : sections, settings, controls.
+		add_filter ( '__customize_map'					, array( $this , 'tc_customizer_map' ));
 
-			//preview script
-    		add_action ( 'customize_preview_init'			, array( $this , 'tc_customize_preview_js' ));
+		//BUILDER of the customizer using args + map
+		add_filter ( '__customize_factory'				, array( $this , 'tc_customize_factory' ), 10, 3);
 
-    		//add option to menus
-    		add_action ( 'admin_menu'						, array( $this , 'tc_add_options_menu' ));
-    		add_action ( 'wp_before_admin_bar_render'		, array( $this , 'tc_add_admin_bar_options_menu' ));
+		//sanitazition filters
+		add_filter ( '__sanitize_textarea'				, array( $this , 'tc_sanitize_textarea' ));
+		add_filter ( '__sanitize_number'				, array( $this , 'tc_sanitize_number' ));
+		add_filter ( '__sanitize_url'					, array( $this , 'tc_sanitize_url' ));
+
+		//preview script
+		add_action ( 'customize_preview_init'			, array( $this , 'tc_customize_preview_js' ));
+
+		//add option to menus
+		add_action ( 'admin_menu'						, array( $this , 'tc_add_options_menu' ));
+		add_action ( 'wp_before_admin_bar_render'		, array( $this , 'tc_add_admin_bar_options_menu' ));
 
 
     }
@@ -89,7 +94,7 @@ class TC_customize {
 
 
 	 /**
-	 * adds controls to customizer
+	 * Adds controls to customizer
 	 * @package Customizr
 	 * @since Customizr 1.0 
 	 */
@@ -112,12 +117,13 @@ class TC_customize {
 
 
 	/**
-	 * retrieve slider names and generate the select list
+	 * Retrieves slider names and generate the select list
 	 * @package Customizr
 	 * @since Customizr 3.0.1
 	 */
 	function tc_slider_choices() {
-	    $slider_names = tc__f ( '__get_option' , 'tc_sliders' );
+	    $__options		=  	get_option('tc_theme_options');
+	    $slider_names 	= 	$__options['tc_sliders'];
 
 		$slider_choices = array( 
 			0 		=> 	__( '&mdash; No slider &mdash;' , 'customizr' ),
@@ -206,6 +212,12 @@ class TC_customize {
 																	'title'			=>	__( 'Custom CSS' , 'customizr' ),
 																	'priority'		=>	200,
 																	'description'	=>	__( 'Add your own CSS' , 'customizr' ),
+								),
+
+								'tc_debug_section'					=> array(
+																	'title'			=>	__( 'Dev Tools (advanced users)' , 'customizr' ),
+																	'priority'		=>	210,
+																	'description'	=>	__( 'Enable/disable the Dev Tools' , 'customizr' ),
 								),
 
 		),//end of add_section array
@@ -776,8 +788,39 @@ class TC_customize {
 																	'label'    		=> __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
 																	'section'  		=> 'tc_custom_css' ,
 																	'type'     		=> 'textarea' ,
-																	'notice'		=> __( 'Always use this field to add your custom css instead of editing directly the style.css file : it will not be deleted during theme updates. Special characters like quotes or inferior/superior signs will not be accepted in this field as they might be used for malicious purposes. If your custom css includes some of these characters, just create a child theme and write it down in the style.css file.' , 'customizr' )
+																	'notice'		=> __( 'Always use this field to add your custom css instead of editing directly the style.css file : it will not be deleted during theme updates. You can also paste your custom css in the style.css file of a child theme.' , 'customizr' )
 								),
+
+								/*-----------------------------------------------------------------------------------------------------
+														                   DEVELOPER TOOLS
+								------------------------------------------------------------------------------------------------------*/
+								'tc_theme_options[tc_debug_box]'	=>	array(
+																	'default'       => 0,
+																	'control'		=> 'TC_controls' ,
+																	'label'    		=> __( 'Enable developer box' , 'customizr' ),
+																	'section'  		=> 'tc_debug_section' ,
+																	'type'     		=> 'checkbox' ,
+																	'notice'		=> __( 'If enabled, this option will display a draggable information box to help you develop or debug your Customizr based website. Only visible for a logged in admin profile.' , 'customizr' ),
+								),
+
+								'tc_theme_options[tc_debug_tips]'	=>	array(
+																	'default'       => 0,
+																	'control'		=> 'TC_controls' ,
+																	'label'    		=> __( 'Enable embedded tooltips' , 'customizr' ),
+																	'section'  		=> 'tc_debug_section' ,
+																	'type'     		=> 'checkbox' ,
+																	'notice'		=> __( 'If enabled, this option will display clickable contextual tooltips inside your website. Only visible for a logged in admin profile.' , 'customizr' ),
+								),
+
+								'tc_theme_options[tc_debug_tips_color]'  => array(
+																	'default'    	=> '#F00',
+																	'transport' 	=> 'postMessage' ,
+																	'sanitize_callback'    => array( $this, 'tc_sanitize_hex_color' ),
+																	//'sanitize_js_callback' => 'maybe_hash_hex_color' ,
+																	'control'		=> 'WP_Customize_Color_Control' ,
+																	'label'   		=> __( 'Tip icon color', 'customizr'),
+																	'section' 		=> 'tc_debug_section'
+								)
 			),//end of add_setting_control array
 
 		);//end of customize_array
@@ -967,6 +1010,19 @@ class TC_customize {
 		return $value;
 	}
 
+
+
+	/**
+	 * adds sanitization callback funtion : colors
+	 * @package Customizr
+	 * @since Customizr 1.1.4
+	 */
+	function tc_sanitize_hex_color( $color ) {
+	if ( $unhashed = sanitize_hex_color_no_hash( $color ) )
+		return '#' . $unhashed;
+
+	return $color;
+}
 
 
 

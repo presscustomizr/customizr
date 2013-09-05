@@ -14,9 +14,15 @@
 
 class TC_featured_pages {
 
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
     function __construct () {
-        add_action  ( '__fp_block'               , array( $this , 'tc_display_fp_block' ));
-        add_action  ( '__fp_single'              , array( $this , 'tc_display_fp_single' ), 10, 2);
+
+        self::$instance =& $this;
+
+        add_action  ( '__before_main_container'     , array( $this , 'tc_fp_block_display'), 10 );
+        add_action  ( '__fp_single'                 , array( $this , 'tc_fp_single_display' ), 10, 2);
     }
 
 
@@ -28,11 +34,11 @@ class TC_featured_pages {
 	 * @package Customizr
 	 * @since Customizr 3.0
 	 */
-    function tc_display_fp_block() {
+    function tc_fp_block_display() {
 
     		//get display options
-    		$tc_show_featured_pages 	     = esc_attr(tc__f('__get_option', 'tc_show_featured_pages'));
-    		$tc_show_featured_pages_img    = esc_attr(tc__f('__get_option', 'tc_show_featured_pages_img'));
+    		$tc_show_featured_pages 	     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
+    		$tc_show_featured_pages_img    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
 
     		//set the areas array
     		$areas = array ( 'one' , 'two' , 'three' );
@@ -41,7 +47,12 @@ class TC_featured_pages {
 
     		<?php if ( $tc_show_featured_pages  != 0 && tc__f('__is_home')  ) : ?>
 
+          <?php tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ ); ?>
+
+          <?php ob_start(); ?>
+
     			<div class="container marketing">
+            <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
 
     				<div class="row widget-area" role="complementary">
 
@@ -60,6 +71,12 @@ class TC_featured_pages {
     			   <hr class="featurette-divider">
           <?php endif; ?>
 
+           <?php
+            $html = ob_get_contents();
+            ob_end_clean();
+            echo apply_filters( 'tc_fp_block_display' , $html );
+            ?>
+
     		<?php endif; ?>
     	<?php
 	 }
@@ -68,7 +85,7 @@ class TC_featured_pages {
 
 
 
-	/**
+	     /**
       * The template displaying one single featured page
       *
       * @package Customizr
@@ -76,10 +93,10 @@ class TC_featured_pages {
       * @param area are defined in featured-pages templates,show_img is a customizer option
       * @todo better area definition : dynamic
       */
-      function tc_display_fp_single( $area,$show_img) {
+      function tc_fp_single_display( $area,$show_img) {
 
         //if not set
-        if ( null == tc__f('__get_option' , 'tc_featured_page_'.$area) ) {
+        if ( null == tc__f( '__get_option' , 'tc_featured_page_'.$area ) ) {
             //admin link if user logged in
             $featured_page_link             = '';
             $admin_link                     = '';
@@ -100,7 +117,7 @@ class TC_featured_pages {
           
         else {
               //get saved options
-              $__options                    = tc__f ( '__options' );
+              $__options                    = tc__f( '__options' );
               $featured_page_id             = esc_attr( $__options['tc_featured_page_'.$area]);
               $featured_page_link           = get_permalink( $featured_page_id );
               $featured_page_title          = get_the_title( $featured_page_id );
@@ -179,10 +196,10 @@ class TC_featured_pages {
           }//end if
 
           //Rendering
+          ob_start();
           ?>
 
           <div class="widget-front">
-
             <?php if ( isset( $show_img) && $show_img == 1 ) : //check if image option is checked ?>
 
                 <div class="thumb-wrapper <?php if(!isset( $tc_thumb)) {echo 'tc-holder';} ?>">
@@ -195,14 +212,18 @@ class TC_featured_pages {
               <h2><?php echo $featured_page_title ?></h2>
               <p class="fp-text-<?php echo $area ?>"><?php echo $text;  ?></p>
               <p>
+                 <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__, 'right'); ?>
                 <a class="btn btn-primary fp-button" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>">
-                  <?php echo esc_attr(tc__f('__get_option' , 'tc_featured_page_button_text')) ?>
+                  <?php echo esc_attr( tc__f( '__get_option' , 'tc_featured_page_button_text') ) ?>
                 </a>
               </p>
 
           </div><!-- /.widget-front -->
           
           <?php
+          $html = ob_get_contents();
+          ob_end_clean();
+          echo apply_filters( 'tc_fp_single_display' , $html );
       }//end of function
 
  }//end of class

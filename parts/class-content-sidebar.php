@@ -14,7 +14,13 @@
 
 class TC_sidebar {
 
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
     function __construct () {
+
+        self::$instance =& $this;
+
         add_action  ( '__sidebar'                      , array( $this , 'tc_get_sidebar' ));
     }
 
@@ -26,13 +32,23 @@ class TC_sidebar {
     * @since Customizr 1.0 
     */
     function tc_get_sidebar( $name) {
-    
+
+    tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+
     //get layout options
     $sidebar            		    = tc__f( '__screen_layout' , tc__f( '__ID' ) , 'sidebar'  );
     $class              		    = tc__f( '__screen_layout' , tc__f( '__ID' ) , 'class'  );;
-  
+    
+    ob_start();
+
+    tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ );
+    
       switch ( $name) {
         case 'left':
+          //first check if home and no content option is choosen
+          if (tc__f( '__is_home_empty')) {
+            return;
+          }
           if( $sidebar == 'l' || $sidebar == 'b' ) {
             ?>
             <div class="span3 left tc-sidebar">
@@ -46,6 +62,10 @@ class TC_sidebar {
 
 
         case 'right':
+         //first check if home and no content option is choosen
+          if (tc__f( '__is_home_empty')) {
+            return;
+          }
           if( $sidebar == 'r' || $sidebar == 'b' ) {
             ?>
             <div class="span3 right tc-sidebar">
@@ -62,6 +82,9 @@ class TC_sidebar {
         break;
 
       }
+      $html = ob_get_contents();
+      ob_end_clean();
+      echo apply_filters( 'tc_get_sidebar', $html );
     }
 
  }//end of class

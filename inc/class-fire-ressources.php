@@ -14,7 +14,13 @@
 
 class TC_ressources {
 
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
     function __construct () {
+
+        self::$instance =& $this;
+
         add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_customizer_styles' ));
         add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_scripts' ));
         
@@ -31,9 +37,14 @@ class TC_ressources {
 	 * @since Customizr 1.1
 	 */
 	  function tc_customizer_styles() {
+	  	 //record for debug
+      	tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+      	
+      	$skin = tc__f( '__get_option' , 'tc_skin' );
+      	
 	    wp_register_style( 
 	      'customizr-skin' , 
-	      TC_BASE_URL.'inc/css/'.tc__f ( '__get_option' , 'tc_skin' ), 
+	      TC_BASE_URL.'inc/css/'.$skin, 
 	      array(), 
 	      CUSTOMIZR_VER, 
 	      $media = 'all' 
@@ -47,7 +58,7 @@ class TC_ressources {
 	    wp_enqueue_style( 
 	    	'customizr-style' , 
 	    	get_stylesheet_uri() , 
-	    	array( 'customizr-skin' ) , 
+	    	array( 'customizr-skin' ),
 	    	CUSTOMIZR_VER , 
 	    	$media = 'all'  
 	    );
@@ -65,6 +76,9 @@ class TC_ressources {
 	 * @since Customizr 1.0
 	 */
 	  function tc_scripts() {
+	  	//record for debug
+	  	tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+
 	      wp_enqueue_script( 'jquery' );
 
 	      wp_enqueue_script( 'jquery-ui-core' );
@@ -91,18 +105,19 @@ class TC_ressources {
      * @since Customizr 2.0.7
      */
     function tc_write_custom_css() {
-        $tc_custom_css      = esc_html(tc__f ( '__get_option' , 'tc_custom_css' ));
-        $tc_top_border      = esc_attr(tc__f ( '__get_option' , 'tc_top_border' ));
-        
+    	//record for debug
+    	tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+        $tc_custom_css      	= esc_html( tc__f( '__get_option' , 'tc_custom_css') );
+        $tc_top_border      	= esc_attr( tc__f( '__get_option' , 'tc_top_border') );
         ?>
 
         <?php if ( isset( $tc_custom_css) && !empty( $tc_custom_css) ) : ?>
-          <style type="text/css"><?php echo html_entity_decode($tc_custom_css) ?></style>
+          <style id="option-custom-css" type="text/css"><?php echo html_entity_decode($tc_custom_css) ?></style>
         <?php endif; ?>
+
         <?php if ( ( isset( $tc_top_border) && $tc_top_border == 0) ) :  //disable top border in customizer skin options?>
-          <style type="text/css">header.tc-header {border-top: none;}</style>
+          <style id="option-top-border" type="text/css">header.tc-header {border-top: none;}</style>
         <?php endif; ?>
-        
 
         <?php
         }//end of function
@@ -118,9 +133,10 @@ class TC_ressources {
 	 * @since Customizr 3.0.5
 	 */
 	 function tc_optional_scripts() {
-
+	 	//record for debug
+	 	tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
 	 	//fancybox script and style
-	      $tc_fancybox = tc__f ( '__get_option' , 'tc_fancybox' );
+	      $tc_fancybox = tc__f( '__get_option' , 'tc_fancybox' );
 	      if ( $tc_fancybox == 1) {
 	        wp_enqueue_script( 'fancyboxjs' ,TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.min.js' ,array( 'jquery' ),null, $in_footer = true);
 	        wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/js/fancybox/jquery.fancybox-1.3.4.css' );
@@ -135,12 +151,14 @@ class TC_ressources {
 	 * @since Customizr 3.0.5
 	 */
 	 function tc_generated_scripts() {
+	 	//record for debug
+	 	tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
 		//is fancy box option active?
-		$tc_fancybox = tc__f ( '__get_option' , 'tc_fancybox' );
+		$tc_fancybox = tc__f( '__get_option' , 'tc_fancybox' );
 
 	 	if ( $tc_fancybox == 1) {
 			//get option from customizr
-			$autoscale = tc__f ( '__get_option' , 'tc_fancybox_autoscale' );
+			$autoscale = tc__f( '__get_option' , 'tc_fancybox_autoscale') ;
 			//($autoscale == 1) ? _e('true') : _e('false');
 
 		  	?>

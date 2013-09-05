@@ -25,7 +25,6 @@
  */
 
 
-
 /**
 * Singleton factory : on demand classes instanciation
 * Thanks to Ben Doherty (https://github.com/bendoh) for the great programming approach
@@ -34,12 +33,12 @@
 * @since     Customizr 3.0
 */
 if ( !function_exists( 'tc__' ) ) :
-    function tc__ ( $group, $class = null ) {
+    function tc__ ( $group = null, $class = null ) {
 
-        static $instances;
+       static $instances;
 
-        //get the class file(s) array by group and name (if defined)
-        $files = tc_get_classes ( $group, $path = null ,$class);
+       //get the class file(s) array by group and name (if defined)
+       $files = tc_get_classes ( $group, $path = null ,$class);
 
        foreach ( $files as $f ) 
        {
@@ -54,9 +53,8 @@ if ( !function_exists( 'tc__' ) ) :
                 $instances[ $classname ] = new $classname;
             }
         }//end foreach
-
+        
     return $instances[ $classname ];
-
     }
 endif;
 
@@ -166,29 +164,28 @@ endif;
 
 
 /**
-* Allows WP apply_filter() function to accept up to 3 optional arguments
+* Allows WP apply_filter() function to accept up to 4 optional arguments
 * 
 *
 * @since Customizr 3.0
 */
 if( !function_exists( 'tc__f' )) :
-    function tc__f ( $filter , $arg1 = null , $arg2 = null , $arg3 = null) {
+    function tc__f ( $filter , $arg1 = null , $arg2 = null , $arg3 = null, $arg4 = null) {
 
-       return apply_filters( $filter , $arg1 , $arg2 , $arg3 );
+       return apply_filters( $filter , $arg1 , $arg2 , $arg3, $arg4 );
 
     }
 endif;
 
 
-
-
 /* Loads the theme classes framework */
-locate_template( 'inc/class-customizr-__.php' ,true,true);
-tc__( 'customizr' );//fire the theme
-
+locate_template( 'inc/class-customizr-__.php' ,true,true );
+tc__( 'customizr' );//fires the theme
+tc__f( 'rec' , __FILE__ );//starts recording for server execution timeline
 
 
 /* 
 * The best and safest way to add your own functions to Customizr is to create a child theme
+* You can add functions here but it will be lost on upgrade. If you use a child theme, you are safe!
 * http://codex.wordpress.org/Child_Themes
 */

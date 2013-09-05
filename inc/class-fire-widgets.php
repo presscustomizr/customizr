@@ -14,18 +14,27 @@
 
 class TC_widgets {
   
+      //Access any method or var of the class with classname::$instance -> var or method():
+      static $instance;
+
       function __construct () {
+
+        self::$instance =& $this;
+
           add_action( 'widgets_init'                         , array( $this , 'tc_widgets_factory' ));
       }
 
 
       /**
-      * 
       * Registers the widget areas
+      * 
       * @package Customizr
       * @since Customizr 3.0 
       */
       function tc_widgets_factory() {
+
+         //record for debug
+          tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
           $tc_widgets = array(
                       'right'         => array(
                                       'name'                 => __( 'Right Sidebar' , 'customizr' ),

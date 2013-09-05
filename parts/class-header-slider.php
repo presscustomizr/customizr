@@ -14,29 +14,36 @@
 
 class TC_slider {
 
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
     function __construct () {
-        add_action( '__slider'                              , array( $this , 'tc_display_slider' ));
-        add_action( 'wp_footer'                             , array( $this , 'tc_slider_footer_options' ),20);
+
+        self::$instance =& $this;
+
+        add_action( '__after_header'                   , array( $this , 'tc_slider_display' ));
+        add_action( 'wp_footer'                        , array( $this , 'tc_slider_footer_options' ),20);
     }
 
   
   /**
-   *
+   * Displays the slider based on the context : home, post/page.
+   * 
    * @package Customizr
    * @since Customizr 1.0
    *
    */
-  function tc_display_slider() {
+  function tc_slider_display() {
       
 
       //prevent the main ID override when creating a new query. (only if it is included in the main loop but who knows...)
       if (is_404() || is_archive() || is_search())
         return;
 
-      $__options                    = tc__f ( '__options' );
+      $__options                    = tc__f( '__options' );
 
       //get the current slider id
-      $slider_name_id               = tc__f ( '__screen_slider' );
+      $slider_name_id               = esc_attr(get_post_meta( tc__f ( '__ID' ), $key = 'post_slider_key' , $single = true ));
       
       if ( tc__f('__is_home') && $__options['tc_front_slider'] !=null ) {
           $slider_name_id           = $__options['tc_front_slider'];
@@ -51,7 +58,7 @@ class TC_slider {
       //get slider options if any
       $layout_value                 = esc_attr(get_post_meta( get_the_ID(), $key = 'slider_layout_key' , $single = true ));
       if ( tc__f('__is_home') ) {
-        $layout_value               = tc__f ( '__get_option' , 'tc_slider_width' );
+        $layout_value               = $__options['tc_slider_width'];
       }
 
       $layout_class                 = '';
@@ -65,7 +72,9 @@ class TC_slider {
         $img_size                   = 'slider-full';
       }
 
-      //render the slider : two cases
+      ob_start();
+      
+      //render the slider : two cases demo or not demo (that is the ...)
       switch ( $slider_name_id) {
         case 'demo':
 
@@ -73,9 +82,10 @@ class TC_slider {
         $admin_link                 = '';   
         if (is_user_logged_in())
           $admin_link                = admin_url().'customize.php';
-
         ?>
+
           <div id="customizr-slider" class="<?php echo $layout_class ?> carousel slide">
+            <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
             <div class="carousel-inner">
                 <div class="item active">
                    <div class="carousel-image">
@@ -167,8 +177,10 @@ class TC_slider {
             ?>
             <?php if( $slides && $has_slides ) : ?>
 
-              <div id="customizr-slider" class="<?php echo $layout_class ?> carousel slide">
+              <?php  tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ ); ?>
 
+              <div id="customizr-slider" class="<?php echo $layout_class ?> carousel slide">
+                <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
                   <div class="carousel-inner">
 
                     <?php foreach ( $slides as $s) { 
@@ -255,6 +267,9 @@ class TC_slider {
             <?php
           break;
       }//end switch
+      $html = ob_get_contents();
+      ob_end_clean();
+      echo apply_filters( 'tc_slider_display', $html );
     }
 
 
@@ -273,8 +288,8 @@ class TC_slider {
       
       //get the slider id and delay if we display home/front page
       if ( tc__f('__is_home') ) {
-        $name_value     = tc__f ( '__get_option' , 'tc_front_slider' );
-        $delay_value    = tc__f ( '__get_option' , 'tc_slider_delay' );
+        $name_value     = tc__f( '__get_option' , 'tc_front_slider' );
+        $delay_value    = tc__f( '__get_option' , 'tc_slider_delay' );
       }
 
       //render the delay script
@@ -287,7 +302,9 @@ class TC_slider {
 
       //fire the slider with the optionnal delay parameter
       if( $name_value != null) {//check if a slider is defined
-       
+
+      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+
         ?>
           <script type="text/javascript">
             !function ( $) {

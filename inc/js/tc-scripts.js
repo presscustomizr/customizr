@@ -87,13 +87,22 @@ jQuery(document).ready(function( $) {
         });
 
 
-        //arrows bullet list effect
-        $( '.widget li' ).hover(function() {
-          $(this).addClass("on");
-        }, function() {
-        $(this).removeClass("on");
-      });
-    })
+    //arrows bullet list effect
+    $( '.widget li' ).hover(function() {
+        $(this).addClass("on");
+      }, function() {
+      $(this).removeClass("on");
+    });
+
+    //fadein effect for attachment display
+    $( "article.attachment img" ).delay(500).animate({ 
+      opacity: 1 
+    }, 
+    700, function() {
+      // Animation complete.
+    });
+
+  })//end on load
 
 }(window.jQuery);
 

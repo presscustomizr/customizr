@@ -13,6 +13,7 @@
 if ( !is_active_sidebar( 'footer_one' ) && !is_active_sidebar( 'footer_two' ) && !is_active_sidebar( 'footer_three' ))
 	return;
 ?>
+<?php tc__f('rec' , __FILE__ , __FUNCTION__ ); ?>
 <div class="container footer-widgets">
 	<div class="row widget-area" role="complementary">
 		<?php if ( is_active_sidebar( 'footer_one' ) ) : ?>
