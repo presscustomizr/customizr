@@ -47,7 +47,7 @@ class TC_footer {
 			        <div class="span4 backtop">
 
 			        	<p class="pull-right">
-			        		<a href="#"><?php _e( 'Back to top' , 'customizr' ) ?></a>
+			        		<a href="#" class="back-to-top"><?php _e( 'Back to top' , 'customizr' ) ?></a>
 			        	</p>
 
 			        </div>
