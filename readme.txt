@@ -123,22 +123,6 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
-= 3.0.10 =
-* added : support for custom post types layout and slider meta boxes for custom post type
-* added : new filter to get the post type
-* added : a debug box option in the Customizer panel class to easily display some contextual informations
-* added : polish translation. thanks to Marcin Sadowski from http://www.sadowski.edu.pl
-* added : attachments are now listed in the search results
-* added : comment navigation styling, similar to post navigation
-* added : author box styling (if bio field not empty)
-* added : comment bubble for pages
-* improved : simplier action hooks structure
-* improved : responsive behaviour : slider caption now visible for devices < 480px wide, thumbnail/content layout change for better display, body extra padding modified
-* fixed : CSS IE fix : Added z-index to active slide to fix slides falling below each other on transition (thanks to PMStanley https://github.com/PMStanley)
-* fixed : CSS IE fix : Added 'top: 25%' to center align slide caption on older versions of IE  (thanks to PMStanley https://github.com/PMStanley)
-* fixed : empty reply bytton in comment threads : now checks if we reach the max level of threaded comment to render the reply button
-* fixed : empty nav buttons in single posts are not displayed anymore
-
 = 3.0.9 =
 * ! SAFE UPGRADE FOR CHILD THEME USERS (v3.0.8 => v3.0.9) ! *
 * fixed : function tc_is_home() was not checking the case where display nothing on home page. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/monten01">monten01</a>, <a href="http://wordpress.org/support/profile/rdellconsulting" target="_blank">rdellconsulting</a>

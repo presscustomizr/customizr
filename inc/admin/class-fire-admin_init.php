@@ -14,50 +14,44 @@
 
 class TC_admin_init {
 
-    //Access any method or var of the class with classname::$instance -> var or method():
-    static $instance;
-
     function __construct () {
+         global $wp_version;
+          //check WP version to include customizer functions, must be >= 3.4
+         if (version_compare( $wp_version, '3.4' , '>=' ) ) {
 
-      self::$instance =& $this;
+              //require_once( TC_BASE.'inc/admin/tc_customize.php' );
 
-       global $wp_version;
-        //check WP version to include customizer functions, must be >= 3.4
-       if (version_compare( $wp_version, '3.4' , '>=' ) ) {
+            tc__( 'admin' , 'customize' );
 
-            //require_once( TC_BASE.'inc/admin/tc_customize.php' );
+          }
 
-          tc__( 'admin' , 'customize' );
+          else {
+              //redirect to an upgrade message page on activation if version < 3.4
+              add_action ( 'admin_menu'                      , array( $this , 'tc_add_fallback_page' ));
+              add_action ( 'admin_init'                      , array( $this , 'tc_theme_activation_fallback' ));
+          }
+          
+         //load the meta boxes
+          add_action ( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
 
-        }
+          //add welcome page in menu
+          add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
 
-        else {
-            //redirect to an upgrade message page on activation if version < 3.4
-            add_action ( 'admin_menu'                      , array( $this , 'tc_add_fallback_page' ));
-            add_action ( 'admin_init'                      , array( $this , 'tc_theme_activation_fallback' ));
-        }
-        
-       //load the meta boxes
-        add_action ( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
+          //add help button to admin bar
+          add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
 
-        //add welcome page in menu
-        add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
+          //Redirect on activation (first activation only)
+          add_action ( 'admin_init'                          , array( $this , 'tc_theme_activation' ));
 
-        //add help button to admin bar
-        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
+          //enqueue additional styling for admin screens
+          add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
 
-        //Redirect on activation (first activation only)
-        add_action ( 'admin_init'                          , array( $this , 'tc_theme_activation' ));
+          add_filter('upgrader_post_install'                 , array( $this , 'tc_redirect_after_update' ), 1000);
 
-        //enqueue additional styling for admin screens
-        add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
+          remove_filter('upgrader_post_install'              , array( $this , 'tc_redirect_after_update' ), 1100);
 
-        add_filter('upgrader_post_install'                 , array( $this , 'tc_redirect_after_update' ), 1000);
-
-        remove_filter('upgrader_post_install'              , array( $this , 'tc_redirect_after_update' ), 1100);
-
-        //changelog
-        add_action ( 'changelog'                           , array( $this , 'tc_extract_changelog' ));
+          //changelog
+          add_action ( 'changelog'                           , array( $this , 'tc_extract_changelog' ));
     }
 
 
@@ -188,7 +182,7 @@ class TC_admin_init {
          $wp_admin_bar->add_menu( array(
            'parent' => 'top-secondary', // Off on the right side
            'id' => 'tc-customizr-help' ,
-           'title' =>  __( 'Help' , 'customizr' ),
+           'title' =>  __( 'Customizr Help' , 'customizr' ),
            'href' => admin_url( 'themes.php?page=welcome.php&help=true' ),
            'meta'   => array(
               'title'  => __( 'Need help with Customizr? Click here!', 'customizr' ),
@@ -239,7 +233,7 @@ class TC_admin_init {
             <?php printf( __( 'Thank you for updating to the latest version! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Watch the <a href="#introduction">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/> Enjoy it! ','customizr' ),
             CUSTOMIZR_VER
             ); ?>
-            <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="I just upgraded my WordPress site with the #Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a>
+            <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="I just upgraded my WordPress site with the Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a>
           </div>
         
         <?php elseif ($is_help) : ?>
@@ -271,7 +265,7 @@ class TC_admin_init {
             <?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see the changelog)</a> to help you build an awesome website. Watch the <a href="#introduction">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/>Enjoy it! ','customizr' ),
              CUSTOMIZR_VER 
              ); ?>
-             <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="My WordPress website is built with the #Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
+             <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="My WordPress website is built with the Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
         
         <?php endif; ?>
 
@@ -335,7 +329,7 @@ class TC_admin_init {
       <div id="showcase" class="changelog">
         <h3><?php _e('New : Customizr showcase' ,'customizr') ?></h3>
 
-        <div class="feature-section images-stagger-left">
+        <div class="feature-section images-stagger-right">
            <a class="" title="Visit the showcase" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><img alt="Customizr Showcase" src="<?php echo TC_BASE_URL.'inc/admin/img/mu2.jpg' ?>" class=""></a>
           <h4><?php _e('Find inspiration for your next Customizr based website!' ,'customizr') ?></h4>
           <p><?php _e('This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their webdesign.' , 'customizr') ?>
@@ -427,15 +421,7 @@ class TC_admin_init {
    */
     function tc_extract_changelog() {
       
-      if( !file_exists(TC_BASE."readme.txt") ) {
-        return;
-      }
-      if( !is_readable(TC_BASE."readme.txt") ) {
-        echo '<p>The changelog in readme.txt is not readable.</p>';
-        return;
-      }
-      
-      $stylelines = explode("\n", implode('', file(TC_BASE."readme.txt")));
+      $stylelines = explode("\n", implode('', file(TC_BASE_URL."/readme.txt")));
       $read = false;
       $i = 0;
 

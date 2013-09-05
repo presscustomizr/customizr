@@ -23,7 +23,7 @@ jQuery(document).ready(function(){
            ajaxurl,
            {
               //ADD vars to $_POST
-              'action'              :'slider_action' ,
+              'action'              :'tc_slider_action' ,
               //get the post_id with an hidden input field
               'tc_post_id'          : jQuery( 'input#tc_post_id' ).val(),
               //add the check current state and inputs
@@ -64,7 +64,7 @@ jQuery(document).ready(function(){
                      ajaxurl,
                      {
                         //ADD vars to $_POST
-                        'action':'slider_action' ,
+                        'action':'tc_slider_action' ,
                         //get the post_id with an hidden input field
                         'tc_post_id': jQuery( 'input#tc_post_id' ).val(),
                          // send the nonce along with the request
@@ -114,7 +114,7 @@ jQuery(document).ready(function(){
            ajaxurl,
            {
              //ADD vars to $_POST
-              'action'              :'slider_action' ,
+              'action'              :'tc_slider_action' ,
               //get the post_id with an hidden input field
               'tc_post_id'          : jQuery( 'input#tc_post_id' ).val(),
               //add the check current state and inputs
@@ -164,7 +164,7 @@ jQuery(document).ready(function(){
                    ajaxurl,
                    {
                       //ADD vars to $_POST
-                      'action':'slider_action' ,
+                      'action':'tc_slider_action' ,
                       //get the post_id with an hidden input field
                       'tc_post_id': jQuery( 'input#tc_post_id' ).val(),
                        // send the nonce along with the request
@@ -203,7 +203,7 @@ jQuery(document).ready(function(){
            ajaxurl,
            {
              //ADD vars to $_POST
-              'action'              :'slider_action' ,
+              'action'              :'tc_slider_action' ,
               //get the post_id with an hidden input field
               'tc_post_id'          : jQuery( 'input#tc_post_id' ).val(),
               //add the check current state and inputs
@@ -266,7 +266,7 @@ jQuery(document).ready(function(){
            ajaxurl,
            {
               //ADD vars to $_POST
-              'action'                    :'slider_action' ,
+              'action'                    :'tc_slider_action' ,
               //get the post_id with an hidden input field
               'tc_post_id'                : jQuery( 'input#tc_post_id' ).val(),
               //add the check current state and inputs
@@ -294,7 +294,7 @@ jQuery(document).ready(function(){
                      ajaxurl,
                      {
                         //ADD vars to $_POST
-                        'action':'slider_action' ,
+                        'action':'tc_slider_action' ,
                         //get the post_id with an hidden input field
                         'tc_post_id': jQuery( 'input#tc_post_id' ).val(),
                          // send the nonce along with the request

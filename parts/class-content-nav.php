@@ -12,16 +12,10 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-class TC_post_navigation {
-
-    //Access any method or var of the class with classname::$instance -> var or method():
-    static $instance;
+class TC_nav {
 
     function __construct () {
-
-        self::$instance =& $this;
-
-        add_action  ( '__after_loop'                         , array( $this , 'tc_post_nav' ), 20 );
+        add_action  ( '__post_nav'                         , array( $this , 'tc_post_nav' ));
     }
 
 
@@ -35,23 +29,19 @@ class TC_post_navigation {
     function tc_post_nav() {
       
       //we don"t show post navigation for pages
-      if( is_page(tc__f ( '__ID' )) ) {
+      if(is_page(tc__f ( '__ID' ))) {
         return;
       }
 
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-      
       global $wp_query;
 
       $html_id = 'nav-below';
 
-      ob_start();
-      ?>
-      <?php if ( is_singular() ) : ?>
+      if ( is_single()) : ?>
         <hr class="featurette-divider">
 
         <nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
-          <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__); ?>
+
             <h3 class="assistive-text"><?php _e( 'Post navigation' , 'customizr' ); ?></h3>
 
             <ul class="pager">
@@ -71,10 +61,10 @@ class TC_post_navigation {
 
       <hr class="featurette-divider">
 
-      <?php elseif ( $wp_query->max_num_pages > 1 && !is_404() && !tc__f( '__is_home_empty') ) : ?>
+      <?php elseif ( $wp_query->max_num_pages > 1 ) : ?>
 
         <nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
-          <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__); ?>
+
           <h3 class="assistive-text"><?php _e( 'Post navigation' , 'customizr' ); ?></h3>
 
             <ul class="pager">
@@ -99,12 +89,7 @@ class TC_post_navigation {
             
         </nav><!-- #<?php echo $html_id; ?> .navigation -->
 
-      <?php endif; ?>
-
-      <?php
-      $html = ob_get_contents();
-      ob_end_clean();
-      echo apply_filters( 'tc_post_nav' , $html );
+      <?php endif;
     }
 
 }//end of class

@@ -2,11 +2,6 @@
 
 *Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in english, french, german, russian, brazilian portugues, spanish.*
 
-# Copyright
-**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>))  
-Feel free to use, modify and redistribute this theme as you like.
-You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.  
-Customizr is distributed under the terms of the GNU GPL. 
 
 # Installation
 1. Upload the `customizr` folder to the `/wp-content/themes/` directory
@@ -96,7 +91,7 @@ Actions are used to render HTML or execute some code in predefined WP action, wh
 For simplification purposes, the theme uses few WP templates : index.php, header.php, footer.php, comments.php, sidebar(s).php. 
 Those templates only includes some structural HTML markup, the rest is rendered with the actions defined in the classes of the parts/ folder.
 
-Customizr uses one single loop for all kind of content. It is located in index.php.
+Customizr uses one single loop for all kind of content. It is located in class-main-loop.php.
 
 
 ## Translation
@@ -123,23 +118,6 @@ The exceptions to this license are as follows:
 
 
 # Changelog
-= 3.0.10 =
-* added : support for custom post types layout and slider meta boxes for custom post type
-* added : new filter to get the post type
-* added : a debug box option in the Customizer panel class to easily display some contextual informations
-* added : polish translation. thanks to Marcin Sadowski from http://www.sadowski.edu.pl
-* added : attachments are now listed in the search results
-* added : comment navigation styling, similar to post navigation
-* added : author box styling (if bio field not empty)
-* added : comment bubble for pages
-* improved : simplier action hooks structure
-* improved : responsive behaviour : slider caption now visible for devices < 480px wide, thumbnail/content layout change for better display, body extra padding modified
-* fixed : CSS IE fix : Added z-index to active slide to fix slides falling below each other on transition (thanks to PMStanley https://github.com/PMStanley)
-* fixed : CSS IE fix : Added 'top: 25%' to center align slide caption on older versions of IE  (thanks to PMStanley https://github.com/PMStanley)
-* fixed : empty reply bytton in comment threads : now checks if we reach the max level of threaded comment to render the reply button
-* fixed : empty nav buttons in single posts are not displayed anymore
-
-
 = 3.0.9 =
 * ! SAFE UPGRADE FOR CHILD THEME USERS (v3.0.8 => v3.0.9) ! *
 * fixed : function tc_is_home() was not checking the case where display nothing on home page. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/monten01">monten01</a>, <a href="http://wordpress.org/support/profile/rdellconsulting" target="_blank">rdellconsulting</a>
@@ -355,6 +333,11 @@ The exceptions to this license are as follows:
 
 = 1.0 =
 * Initial Release
- 
+
+# Copyright
+**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>))  
+Feel free to use, modify and redistribute this theme as you like.
+You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.  
+Customizr is distributed under the terms of the GNU GPL.  
 
 Enjoy it!

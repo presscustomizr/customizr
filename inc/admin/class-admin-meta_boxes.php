@@ -14,13 +14,7 @@
 
 class TC_meta_boxes {
 
-    //Access any method or var of the class with classname::$instance -> var or method():
-    static $instance;
-
     function __construct () {
-
-        self::$instance =& $this;
-
         add_action( 'add_meta_boxes'                       , array( $this , 'tc_post_meta_boxes' ));
         add_action( '__post_slider_infos'                  , array( $this , 'tc_get_post_slider_infos' ));
         add_action( 'save_post'                            , array( $this , 'tc_post_fields_save' ));
@@ -31,7 +25,7 @@ class TC_meta_boxes {
 
         add_action( '__show_slides'                        , array( $this , 'tc_show_slides' ), 10, 2);
 
-        add_action( 'wp_ajax_slider_action'                , array( $this , 'tc_slider_cb' ));
+        add_action( 'wp_ajax_tc_slider_action'             , array( $this , 'tc_slider_cb' ));
 
         add_action( 'admin_enqueue_scripts'                , array( $this , 'tc_slider_admin_scripts' ));
 
@@ -65,42 +59,25 @@ class TC_meta_boxes {
    * @since Customizr 1.0
    */
     function tc_post_meta_boxes() {//id, title, callback, post_type, context, priority, callback_args
-         /***
-          Determines which screens we display the box
-        **/
-        //1 - retrieves the custom post types
-        $args                 = array(
-        //'public'   => true,
-        '_builtin' => false
-        );
-        $custom_post_types    = get_post_types($args);
-
-        //2 - Merging with the builtin post types, pages and posts
-        $builtin_post_types   = array( 
-          'page' => 'page', 
-          'post' => 'post'
-          );
-        $screens              = array_merge( $custom_post_types, $builtin_post_types );
-        
-        //3- Adding the meta-boxes to those screens
-        foreach ( $screens as $key => $screen) {
+        $screens = array( 'page' , 'post' );
+        foreach ( $screens as $screen) {
             add_meta_box(
                 'layout_sectionid' ,
                 __( 'Layout Options' , 'customizr' ),
                 array( $this , 'tc_post_layout_box' ),
                 $screen,
-                ( 'page' == $screen | 'post' == $screen ) ? 'side' : 'normal',//displays meta box below editor for custom post types
+                'side' ,
                 'high'
             );
             add_meta_box(
                 'slider_sectionid' ,
                 __( 'Slider Options' , 'customizr' ),
                 array( $this , 'tc_post_slider_box' ),
-                $screen,
-                'normal' ,
-                'high'
+                $screen
+                //'side' ,
+                //'high'
             );
-        }//end foreach
+        }
     }
 
 
@@ -133,31 +110,14 @@ class TC_meta_boxes {
               'f' => __( 'Full Width' , 'customizr' ),
             );
           //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr( tc__f( '__get_option' , 'tc_sidebar_global_layout' ) );
-          
-          //get the lists of eligible post types + normal posts (not pages!)
-          $args                 = array(
-          //'public'   => true,
-          '_builtin' => false
-          );
-          $custom_post_types    = get_post_types($args);
-          $add_normal_post      = array( 
-            'post' => 'post'
-            );
-          $eligible_posts       = array_merge( $custom_post_types, $add_normal_post );
-
-          //eligible posts (and custom posts types) default layout
-          if ( in_array($post->post_type , $eligible_posts ) ) {
-            $tc_sidebar_default_layout  = esc_attr( tc__f( '__get_option' , 'tc_sidebar_post_layout') );
-          }
-
-          //page default layout
-          if ( $post->post_type == 'page' ) {
-            $tc_sidebar_default_layout  = esc_attr( tc__f( '__get_option' , 'tc_sidebar_page_layout') );
-          }
+            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_option' , 'tc_sidebar_global_layout' ));
+          if ( $post->post_type == 'post' )
+            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_option' , 'tc_sidebar_post_layout' ));
+          if ( $post->post_type == 'page' )
+            $tc_sidebar_default_layout  = esc_attr(tc__f ( '__get_option' , 'tc_sidebar_page_layout' ));
 
           //check if the 'force default layout' option is checked
-          $force_layout                 = esc_attr( tc__f( '__get_option' , 'tc_sidebar_force_layout') );
+          $force_layout                 = esc_attr(tc__f ( '__get_option' , 'tc_sidebar_force_layout' ));
 
 
           ?>

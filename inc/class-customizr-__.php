@@ -13,21 +13,7 @@
 */
 class TC___ {
     
-    //Access any method or var of the class with classname::$instance -> var or method():
-    static $instance;
-
-    function __construct () {
-
-        self::$instance =& $this;
-
-        /* theme class groups instanciation */
-        global $groups;
-        $groups = array(
-            'fire' ,
-            'header' ,
-            'content',
-            'footer'
-        );
+    function __construct() {
 
         /* GET INFORMATIONS FROM STYLE.CSS */
         // get themedata version wp 3.4+
@@ -66,6 +52,18 @@ class TC___ {
         /* TC_WEBSITE is the home website of Customizr */
         if( ! defined( 'TC_WEBSITE' ) )     { define( 'TC_WEBSITE' , $tc_base_data['authoruri'] ); }
 
+
+        /* theme class groups instanciation */
+        $groups = array(
+            'fire' ,
+            'main' ,
+            'header' ,
+            'content' ,
+            ///important :always run firepro group before pro group
+            //'firepro',
+            //'pro' ,
+        );
+
         foreach ( $groups as $g) 
         {
              tc__ ( $g);
@@ -75,3 +73,8 @@ class TC___ {
 
 
 }//end of class
+
+
+
+
+

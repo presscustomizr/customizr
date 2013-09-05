@@ -8,7 +8,6 @@
  * @since Customizr 1.0
  */
 ?>
-<?php tc__f('rec' , __FILE__ , __FUNCTION__ ); ?>
 <?php if ( is_active_sidebar( 'right' ) ) : ?>
 
 	<div id="right" class="widget-area" role="complementary">

@@ -14,49 +14,37 @@
 
 class TC_utils {
 
-    //Access any method or var of the class with classname::$instance -> var or method():
-    static $instance;
-    public $default_options;
-    public $options;//not used in customizer context only
-
     function __construct () {
-
-        self::$instance =& $this;
-
-        //Get default options
-        $map = tc__f('__customize_map', $get_default = 'true' );
-        $this -> default_options  = $this -> tc_get_default_options_from_customizer_map($map);
+        
         add_filter  ( '__get_default_options'               , array( $this , 'tc_get_default_options' ) , 10);
+        add_filter  ( '__options'                           , array( $this , 'tc_get_theme_options' ) ,10);
         add_filter  ( '__default_options_from_customizer_map' , array( $this , 'tc_get_default_options_from_customizer_map' ));
 
-
-        //if we are NOT in a customization context
-        if ( !isset( $_REQUEST['wp_customize'] ) ) {
-          $this -> options = $this -> tc_get_theme_options();
-           //get all options
-          add_filter  ( '__options'                         , array( $this , 'tc_get_theme_options_fast' ) );
-           //get single option
-          add_filter  ( '__get_option'                      , array( $this , 'tc_get_option_fast' ) );
-        }
-        else {
-           //get all options
-          add_filter  ( '__options'                         , array( $this , 'tc_get_theme_options' ) );
-          //get single option
-          add_filter  ( '__get_option'                      , array( $this , 'tc_get_option' ) );
-        }
+        //get single option
+        add_filter  ( '__get_option'                        , array( $this , 'tc_get_option' ));
 
         //some useful filters
         add_filter  ( '__ID'                                , array( $this , 'tc_get_the_ID' ));
         add_filter  ( '__screen_layout'                     , array( $this , 'tc_get_current_screen_layout' ) , 10 , 2 );
+        add_filter  ( '__screen_slider'                     , array( $this , 'tc_get_current_screen_slider' ));
         add_filter  ( '__is_home'                           , array( $this , 'tc_is_home' ));
         add_filter  ( '__is_home_empty'                     , array( $this , 'tc_is_home_empty' ));
-        add_filter  ( '__post_type'                         , array( $this , 'tc_get_post_type' ));
-        add_filter  ( '__get_post_class'                    , array( $this , 'tc_get_post_class') , 10, 2 );
+
+        //some useful actions
+        add_action  ( '__customizr_entry_date'              , array( $this , 'tc_customizr_entry_date' ));
+        add_action  ( '__social'                            , array( $this , 'tc_display_social' ));
 
         //WP filters
+        add_filter  ( 'wp_page_menu'                        , array( $this , 'add_menuclass' ));
         add_filter  ( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ));
         add_filter  ( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
+        
+        //We check if jetpack plugin is enabled (avoid conflict) before filtering post_gallery hook
+        if(!in_array('jetpack/jetpack.php', get_option('active_plugins'))) {
+          add_filter  ( 'post_gallery'                        , array( $this , 'tc_fancybox_gallery_filter' ), 20, 2);
+        }
     }
+
 
 
 
@@ -67,50 +55,24 @@ class TC_utils {
     *
     */
     function tc_get_theme_options () {
-         
           $saved                          = (array) get_option( 'tc_theme_options' );
 
-          $defaults                       = $this -> default_options;
+          $defaults                       = tc__f('__get_default_options');
 
           $__options                      = wp_parse_args( $saved, $defaults );
-        
+
           //$__options                      = array_intersect_key( $__options, $defaults );
-          tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
 
         return $__options;
     }
 
 
 
-
-    /**
-    * Are we in a customization context? If yes, we must get the options dynamically from database
-    * 
-    * @package Customizr
-    * @since Customizr 3.0.10
-    *
-    */
-    function tc_get_theme_options_fast () {
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-      return  $__options                      = $this -> options;
-    }
-
-
-
-
-
-    /**
-   * Return the default options array from a customizer map + add slider option
-   *
-   * @package Customizr
-   * @since Customizr 3.3.0
-   */
     function tc_get_default_options() {
+      
       $map = tc__f('__customize_map', $get_default = 'true' );
 
       $customizer_defaults = $this -> tc_get_default_options_from_customizer_map($map);
-
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
 
       return $customizer_defaults;
     }
@@ -126,9 +88,6 @@ class TC_utils {
    * @since Customizr 3.3.0
    */
     function tc_get_default_options_from_customizer_map($map) {
-
-       //record for debug
-      //tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
       
       $defaults = array(
         //initialize the default array with the sliders options
@@ -166,48 +125,30 @@ class TC_utils {
 
 
      /**
-     * Returns an option from the options array of the theme.
+     * Returns the options array for the theme.
      *
      * @package Customizr
      * @since Customizr 1.0
      */
     function tc_get_option( $option_name) {
-        
         $saved              = (array) get_option( 'tc_theme_options' );
 
-        $defaults           = $this -> default_options;
+        $defaults           = tc__f( '__get_default_options' );
 
-        $__options          = wp_parse_args( $saved, $defaults );
-
+        $options            = wp_parse_args( $saved, $defaults );
+        
         //$options            = array_intersect_key( $saved , $defaults);
-       
-        tc__f( 'rec' , __FILE__ , __FUNCTION__, __CLASS__ );
 
-      return $__options[$option_name];
+      return $options[$option_name];
     }
 
 
-
-
-
-     /**
-     * Are we in a customization context? If yes, we must get the options dynamically from database
-     *
-     * @package Customizr
-     * @since Customizr 3.0.10
-     */
-    function tc_get_option_fast( $option_name) {
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-      $__options          = $this -> options;
-      return $__options[$option_name];
-    }
 
 
 
 
       /**
-      * This function is similiar to the wordpress function get_the_ID but add checks to some contextual booleans
-      * 
+      * This function is similiar to the wordpress function get_the_ID but takes into account the id of the page initially called
       * @package Customizr
       * @since Customizr 1.0
       */
@@ -218,7 +159,6 @@ class TC_utils {
           else {
               $id  = get_the_ID();
           }
-          tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
         return $id;
       }
 
@@ -227,8 +167,7 @@ class TC_utils {
 
 
       /**
-      * This function returns the layout (sidebars, or full width) to apply to a post or a context
-      * 
+      *
       * @package Customizr
       * @since Customizr 1.0
       */
@@ -293,40 +232,315 @@ class TC_utils {
             'class'   => $class_tab[$tc_specific_post_layout]
           );
         }
-
-        tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-
         return $tc_screen_layout[$sidebar_or_class];
       }
 
 
 
 
+      /**
+      *
+      * @package Customizr
+      * @since Customizr 3.0
+      */
+      function tc_get_current_screen_slider () {
 
+        $id = tc__f ( '__ID' );
 
-     
-    /**
-     * Add an optional rel="tc-fancybox[]" attribute to all images embedded in a post.
-     * 
-     * @package Customizr
-     * @since Customizr 2.0.7
-     */
-    function tc_fancybox_content_filter( $content) {
-      $tc_fancybox = esc_attr( tc__f( '__get_option' , 'tc_fancybox' ) );
-
-      if ( $tc_fancybox == 1 ) 
-      {
-           global $post;
-           $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
-           $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'" title="'.$post->post_title.'"$6>';
-           $content = preg_replace( $pattern, $replacement, $content);
+        return esc_attr(get_post_meta( $id, $key = 'post_slider_key' , $single = true ));
       }
 
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+
+
+      
+      
+
+      /**
+      * Prints HTML with date information for current post.
+      * @package Customizr
+      * @since Customizr 1.0 
+      */
+      function tc_customizr_entry_date( $echo = true ) {
+        $format_prefix = ( has_post_format( 'chat' ) || has_post_format( 'status' ) ) ? _x( '%1$s on %2$s' , '1: post format name. 2: date' , 'customizr' ): '%2$s';
+
+        $date = sprintf( '<span class="date"><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a></span>' ,
+          esc_url( get_permalink() ),
+          esc_attr( sprintf( __( 'Permalink to %s' , 'customizr' ), the_title_attribute( 'echo=0' ) ) ),
+          esc_attr( get_the_date( 'c' ) ),
+          esc_html( sprintf( $format_prefix, get_post_format_string( get_post_format() ), get_the_date() ) )
+        );
+
+        if ( $echo )
+          echo $date;
+
+        return $date;
+      }
+
+
+
+
+
+
+      /**
+      * 
+      * @package Customizr
+      * @since Customizr 1.0 
+      */
+      function tc_display_social( $pos) {
+
+        $__options          = tc__f( '__options' );
+
+        if( $__options[$pos] == 0)
+          return;
+
+        $socials = array (
+              'tc_rss'            => 'feed',
+              'tc_twitter'        => 'twitter',
+              'tc_facebook'       => 'facebook',
+              'tc_google'         => 'google',
+              'tc_instagram'      => 'instagram',
+              'tc_wordpress'      => 'wordpress',
+              'tc_youtube'        => 'youtube',
+              'tc_pinterest'      => 'pinterest',
+              'tc_github'         => 'github',
+              'tc_dribbble'       => 'dribbble',
+              'tc_linkedin'       => 'linkedin'
+              );
+          
+          $html = '';
+          //check if sidebar option is checked
+          if (preg_match( '/left|right/' , $pos)) {
+            $html = '<h3 class="widget-title">'.__( 'Social links' , 'customizr' ).'</h3>';
+          }
+          //$html .= '<ul>';
+            foreach ( $socials as $key => $nw) {
+              //all cases except rss
+              $title = __( 'Follow me on ' , 'customizr' ).$nw;
+              $target = 'target=_blank';
+              //rss case
+              if ( $key == 'tc_rss' ) {
+                $title = __( 'Suscribe to my rss feed' , 'customizr' );
+                $target = '';
+              }
+
+              if ( $__options[$key] != '' ) {
+                //$html .= '<li>';
+                  $html .= '<a class="social-icon icon-'.$nw.'" href="'.esc_url( $__options[$key]).'" title="'.$title.'" '.$target.'></a>';
+              }
+           }
+          //$html .= '</li></ul>';
+       
+        echo $html;
+      }
+
+
+
+      /* adds a specific class to the ul wrapper */
+    function add_menuclass( $ulclass) {
+       return preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
+    }
+    
+
+
+
+    /**
+     * Add an optional rel="tc-fancybox[]" attribute to all images embedded in a post.
+     * @package Customizr
+     * @since Customizr 2.0.7
+     *
+     */
+    function tc_fancybox_content_filter( $content) {
+        $tc_fancybox = esc_attr(tc__f ( '__get_option' , 'tc_fancybox' ));
+
+        if ( $tc_fancybox == 1 ) 
+        {
+             global $post;
+             $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
+             $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'" title="'.$post->post_title.'"$6>';
+             $content = preg_replace( $pattern, $replacement, $content);
+        }
 
       return $content;
     }
 
+
+
+    /**
+     * Gallery filter to enable lightbox navigation
+     * based on the WP oroginal gallery function
+     * @package Customizr
+     * @since Customizr 3.0.5
+     *
+     */
+    function tc_fancybox_gallery_filter( $output, $attr) {
+       
+        //add a filter for link markup 
+        add_filter( 'wp_get_attachment_link', array($this, 'tc_modify_attachment_link') , 20, 6 );
+
+        //COPY OF WP FUNCTION IN media.php
+        $post = get_post();
+
+        static $instance = 0;
+        $instance++;
+
+        // We're trusting author input, so let's at least make sure it looks like a valid orderby statement
+        if ( isset( $attr['orderby'] ) ) {
+          $attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
+          if ( !$attr['orderby'] )
+            unset( $attr['orderby'] );
+        }
+
+        extract(shortcode_atts(array(
+          'order'      => 'ASC',
+          'orderby'    => 'menu_order ID',
+          'id'         => $post->ID,
+          'itemtag'    => 'dl',
+          'icontag'    => 'dt',
+          'captiontag' => 'dd',
+          'columns'    => 3,
+          'size'       => 'thumbnail',
+          'include'    => '',
+          'exclude'    => ''
+        ), $attr));
+
+        $id = intval($id);
+        if ( 'RAND' == $order )
+          $orderby = 'none';
+
+        if ( !empty($include) ) {
+          $_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+
+          $attachments = array();
+          foreach ( $_attachments as $key => $val ) {
+            $attachments[$val->ID] = $_attachments[$key];
+          }
+        } elseif ( !empty($exclude) ) {
+          $attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+        } else {
+          $attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+        }
+
+        if ( empty($attachments) )
+          return '';
+
+        if ( is_feed() ) {
+          $output = "\n";
+          foreach ( $attachments as $att_id => $attachment )
+            $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+          return $output;
+        }
+
+        $itemtag = tag_escape($itemtag);
+        $captiontag = tag_escape($captiontag);
+        $icontag = tag_escape($icontag);
+        $valid_tags = wp_kses_allowed_html( 'post' );
+        if ( ! isset( $valid_tags[ $itemtag ] ) )
+          $itemtag = 'dl';
+        if ( ! isset( $valid_tags[ $captiontag ] ) )
+          $captiontag = 'dd';
+        if ( ! isset( $valid_tags[ $icontag ] ) )
+          $icontag = 'dt';
+
+        $columns = intval($columns);
+        $itemwidth = $columns > 0 ? floor(100/$columns) : 100;
+        $float = is_rtl() ? 'right' : 'left';
+
+        $selector = "gallery-{$instance}";
+
+        $gallery_style = $gallery_div = '';
+        if ( apply_filters( 'use_default_gallery_style', true ) )
+          $gallery_style = "
+          <style type='text/css'>
+            #{$selector} {
+              margin: auto;
+            }
+            #{$selector} .gallery-item {
+              float: {$float};
+              margin-top: 10px;
+              text-align: center;
+              width: {$itemwidth}%;
+            }
+            #{$selector} img {
+              border: 2px solid #cfcfcf;
+            }
+            #{$selector} .gallery-caption {
+              margin-left: 0;
+            }
+          </style>
+          <!-- see gallery_shortcode() in wp-includes/media.php -->";
+        $size_class = sanitize_html_class( $size );
+        $gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>";
+        $output = apply_filters( 'gallery_style', $gallery_style . "\n\t\t" . $gallery_div );
+
+        $i = 0;
+        foreach ( $attachments as $id => $attachment ) {
+
+          $link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+
+          $output .= "<{$itemtag} class='gallery-item'>";
+          $output .= "
+            <{$icontag} class='gallery-icon'>
+              $link
+            </{$icontag}>";
+          if ( $captiontag && trim($attachment->post_excerpt) ) {
+            $output .= "
+              <{$captiontag} class='wp-caption-text gallery-caption'>
+              " . wptexturize($attachment->post_excerpt) . "
+              </{$captiontag}>";
+          }
+          $output .= "</{$itemtag}>";
+          if ( $columns > 0 && ++$i % $columns == 0 )
+            $output .= '<br style="clear: both" />';
+        }
+
+        $output .= "
+            <br style='clear: both;' />
+          </div>\n";
+
+        //remove the filter for link markup 
+        remove_filter( 'wp_get_attachment_link', array($this, 'tc_modify_attachment_link') , 20, 6 );
+
+        return $output;
+    }
+
+
+    /**
+     * Add an optional rel="tc-fancybox[]" attribute to all images embedded in a post gallery
+     * Based on the original WP function
+     * @package Customizr
+     * @since Customizr 3.0.5
+     *
+     */
+    function tc_modify_attachment_link( $markup, $id, $size, $permalink, $icon, $text ) {
+      $tc_fancybox = esc_attr(tc__f ( '__get_option' , 'tc_fancybox' ));
+
+      if ( $tc_fancybox == 1 && $permalink == false ) //add the filter only if link to the attachment file/image
+        {
+            $id = intval( $id );
+            $_post = get_post( $id );
+
+            if ( empty( $_post ) || ( 'attachment' != $_post->post_type ) || ! $url = wp_get_attachment_url( $_post->ID ) )
+              return __( 'Missing Attachment' , 'customizr');
+
+            if ( $permalink )
+              $url = get_attachment_link( $_post->ID );
+
+            $post_title = esc_attr( $_post->post_title );
+
+            if ( $text )
+              $link_text = $text;
+            elseif ( $size && 'none' != $size )
+              $link_text = wp_get_attachment_image( $id, $size, $icon );
+            else
+              $link_text = '';
+
+            if ( trim( $link_text ) == '' )
+              $link_text = $_post->post_title;
+             $markup      = '<a class="grouped_elements" rel="tc-fancybox-group" href="'.$url.'" title="'.$post_title.'">'.$link_text.'</a>';
+        }
+
+      return $markup;
+    }
 
 
 
@@ -355,8 +569,6 @@ class TC_utils {
       if ( $paged >= 2 || $page >= 2 )
         $title = "$title $sep " . sprintf( __( 'Page %s' , 'customizr' ), max( $paged, $page ) );
 
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-
       return $title;
     }
 
@@ -370,7 +582,6 @@ class TC_utils {
    *
    */
     function tc_is_home() {
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
       //get info whether the front page is a list of last posts or a page
       return ( (is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) ) || is_front_page() ) ? true : false;
     }
@@ -385,44 +596,8 @@ class TC_utils {
    *
    */
     function tc_is_home_empty() {
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
       //check if the users has choosen the "no posts or page" option for home page
       return ( (is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
-    }
-
-
-
-
-  /**
-   * Return object post type
-   *
-   * @since Customizr 3.0.10
-   *
-   */
-    function tc_get_post_type() {
-      global $post;
-
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-
-      return $post -> post_type;
-    }
-
-
-
-    
-
-    
-      /**
-     * Returns the classes for the post div.
-     *
-     * @param string|array $class One or more classes to add to the class list.
-     * @param int $post_id An optional post ID.
-     * @package Customizr
-     * @since 3.0.10
-     */
-    function tc_get_post_class( $class = '', $post_id = null ) {
-      // Separates classes with a single space, collates classes for post DIV
-      return 'class="' . join( ' ', get_post_class( $class, $post_id ) ) . '"';
     }
 
 }//end of class

@@ -167,9 +167,3 @@ h1.need-help-title:before {
 	font-size: 20px;
 	font-family: 'georgia';
 }
-
-.about-wrap #showcase .feature-section img {
-	border: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
