@@ -7,6 +7,27 @@ jQuery(document).ready(function( $) {
 
   //"use strict"; // jshint ;_;
 
+  // Store the viewport for later use
+  var $viewport = $('html, body');
+  $('.back-to-top').on('click', function(e){
+    $viewport.on('scroll mousedown DOMMouseScroll mousewheel keyup', stop_body_scroll);
+    $viewport.animate({
+        scrollTop: 0
+      }, 700, function(){
+      $viewport.stop().off('scroll mousedown DOMMouseScroll mousewheel keyup', stop_body_scroll);
+    });
+    e.preventDefault();
+  })
+
+  /* Stop the viewport animation if user interaction is detected
+      * ============== */
+  function stop_body_scroll( e ) {
+    if ( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel") {
+      // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after
+      $viewport.stop().off('scroll mousedown DOMMouseScroll mousewheel keyup', stop_body_scroll);
+    }
+  }
+
   $(window).on( 'load' , function () {
      
      /* Detect layout and reorder content divs
