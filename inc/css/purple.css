@@ -4701,6 +4701,8 @@ input[type="submit"].btn.btn-mini {
 }
 .carousel-inner > .active {
   left: 0;
+  /* Fix slider in IE */
+  z-index: 9; 
 }
 .carousel-inner > .next,
 .carousel-inner > .prev {
@@ -5485,6 +5487,8 @@ h2.site-description {
   padding: 5%;
   line-height: 14px;
   vertical-align: middle;
+  /* fix for IE to align the grey box to center */
+  top: 25%;
   display: inline-block;
   position: relative;
   margin-left: 11%;
