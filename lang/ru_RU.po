@@ -905,7 +905,7 @@ msgstr "Джордж Орвелл"
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
-"Очень жаль, но запрашиваемая вами страница не найдена. Вы можете попробывать "
+"Очень жаль, но запрашиваемая вами страница не найдена. Вы можете попробовать "
 "ниже."
 
 #: ../parts/class-content-attachment.php:39
