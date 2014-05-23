@@ -16,8 +16,14 @@
 
 class TC_breadcrumb {
 
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
     function __construct () {
-        add_action( '__breadcrumb'					, array( $this , 'tc_get_breadcrumb' ));
+
+        self::$instance =& $this;
+
+        add_action( '__before_main_container'			, array( $this , 'tc_breadcrumb_display' ), 20 );
     }
 
     
@@ -26,9 +32,9 @@ class TC_breadcrumb {
       * @package Customizr
       * @since Customizr 1.0 
      */
-    function tc_get_breadcrumb() {
+    function tc_breadcrumb_display() {
 
-	      $__options         = tc__f ( '__options' );
+	      $__options         = tc__f( '__options' );
 
 	      //get the default layout
 	        $tc_breadcrumb 			= $__options['tc_breadcrumb'];
@@ -45,19 +51,28 @@ class TC_breadcrumb {
 	      'echo'       => true
 	      );
 
+	      ob_start();
+
 	      //do not display breadcrumb on home page
 	      if ( tc__f('__is_home') ) {
 	        return;
 	       }
+	      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
 	        ?>
+
 	        <div class="tc-hot-crumble container" role="navigation">
+	        <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
 	          <div class="row">
 	            <div class="span12">
 	            <?php $this -> tc_breadcrumb_trail( $args); ?>
 	            </div>
 	          </div>
 	        </div>
-	        <?php
+
+		    <?php
+	        $html = ob_get_contents();
+	        ob_end_clean();
+	        echo apply_filters( 'tc_breadcrumb_display' , $html );
     }
 
      /**

@@ -14,44 +14,50 @@
 
 class TC_admin_init {
 
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
     function __construct () {
-         global $wp_version;
-          //check WP version to include customizer functions, must be >= 3.4
-         if (version_compare( $wp_version, '3.4' , '>=' ) ) {
 
-              //require_once( TC_BASE.'inc/admin/tc_customize.php' );
+      self::$instance =& $this;
 
-            tc__( 'admin' , 'customize' );
+       global $wp_version;
+        //check WP version to include customizer functions, must be >= 3.4
+       if (version_compare( $wp_version, '3.4' , '>=' ) ) {
 
-          }
+            //require_once( TC_BASE.'inc/admin/tc_customize.php' );
 
-          else {
-              //redirect to an upgrade message page on activation if version < 3.4
-              add_action ( 'admin_menu'                      , array( $this , 'tc_add_fallback_page' ));
-              add_action ( 'admin_init'                      , array( $this , 'tc_theme_activation_fallback' ));
-          }
-          
-         //load the meta boxes
-          add_action ( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
+          tc__( 'admin' , 'customize' );
 
-          //add welcome page in menu
-          add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
+        }
 
-          //add help button to admin bar
-          add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
+        else {
+            //redirect to an upgrade message page on activation if version < 3.4
+            add_action ( 'admin_menu'                      , array( $this , 'tc_add_fallback_page' ));
+            add_action ( 'admin_init'                      , array( $this , 'tc_theme_activation_fallback' ));
+        }
+        
+       //load the meta boxes
+        add_action ( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
 
-          //Redirect on activation (first activation only)
-          add_action ( 'admin_init'                          , array( $this , 'tc_theme_activation' ));
+        //add welcome page in menu
+        add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
 
-          //enqueue additional styling for admin screens
-          add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
+        //add help button to admin bar
+        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
 
-          add_filter('upgrader_post_install'                 , array( $this , 'tc_redirect_after_update' ), 1000);
+        //Redirect on activation (first activation only)
+        add_action ( 'admin_init'                          , array( $this , 'tc_theme_activation' ));
 
-          remove_filter('upgrader_post_install'              , array( $this , 'tc_redirect_after_update' ), 1100);
+        //enqueue additional styling for admin screens
+        add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
 
-          //changelog
-          add_action ( 'changelog'                           , array( $this , 'tc_extract_changelog' ));
+        add_filter('upgrader_post_install'                 , array( $this , 'tc_redirect_after_update' ), 1000);
+
+        remove_filter('upgrader_post_install'              , array( $this , 'tc_redirect_after_update' ), 1100);
+
+        //changelog
+        add_action ( 'changelog'                           , array( $this , 'tc_extract_changelog' ));
     }
 
 
@@ -182,7 +188,7 @@ class TC_admin_init {
          $wp_admin_bar->add_menu( array(
            'parent' => 'top-secondary', // Off on the right side
            'id' => 'tc-customizr-help' ,
-           'title' =>  __( 'Customizr Help' , 'customizr' ),
+           'title' =>  __( 'Help' , 'customizr' ),
            'href' => admin_url( 'themes.php?page=welcome.php&help=true' ),
            'meta'   => array(
               'title'  => __( 'Need help with Customizr? Click here!', 'customizr' ),
@@ -212,10 +218,7 @@ class TC_admin_init {
       $is_help = isset($_GET['help'])  ?  true : false;
 
       //CHECK IF WE ARE USING A CHILD THEME
-      //get WP_Theme object of customizr
-      $tc_theme                     = wp_get_theme();
-      //define a boolean if using a child theme
-      $is_child                     = $tc_theme -> parent();
+      $is_child                     = tc_is_child();
 
       ?>
       <div class="wrap about-wrap">
@@ -233,7 +236,7 @@ class TC_admin_init {
             <?php printf( __( 'Thank you for updating to the latest version! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see changelog)</a> to help you build an awesome website. Watch the <a href="#introduction">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/> Enjoy it! ','customizr' ),
             CUSTOMIZR_VER
             ); ?>
-            <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="I just upgraded my WordPress site with the Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a>
+            <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="I just upgraded my WordPress site with the #Customizr Theme version <?php echo CUSTOMIZR_VER?>!">Tweet it!</a>
           </div>
         
         <?php elseif ($is_help) : ?>
@@ -254,7 +257,7 @@ class TC_admin_init {
                </div>
                <div class="last-feature">
                 <br/>
-                  <a class="button-secondary customizr-help" title="faq" href="http://wordpress.org/support/theme/customizr" target="_blank"><?php _e( 'Discuss in the user forum','customizr' ); ?></a>
+                  <a class="button-secondary customizr-help" title="forum" href="http://wordpress.org/support/theme/customizr" target="_blank"><?php _e( 'Discuss in the user forum','customizr' ); ?></a>
                </div>
             </div><!-- .two-col -->
           </div><!-- .changelog -->
@@ -265,7 +268,7 @@ class TC_admin_init {
             <?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see the changelog)</a> to help you build an awesome website. Watch the <a href="#introduction">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/>Enjoy it! ','customizr' ),
              CUSTOMIZR_VER 
              ); ?>
-             <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="My WordPress website is built with the Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
+             <a class="twitter-share-button" href="http://twitter.com/share" data-url="<?php echo TC_WEBSITE ?>customizr/" data-text="My WordPress website is built with the #Customizr Theme version <?php echo CUSTOMIZR_VER ?>!">Tweet it!</a></div>
         
         <?php endif; ?>
 
@@ -294,8 +297,8 @@ class TC_admin_init {
          <div class="feature-section col three-col">
 
             <div>
-              <h3><?php _e( 'We need coffee...','customizr' ); ?></h3>
-              <p><?php  _e( 'Either you are using Customizr for personal or business purposes, <strong>we do our best do make it the perfect free theme for you</strong>.<br /> Any kind of sponsorship will be appreciated!','customizr' ) ?></br>
+              <h3><?php _e( 'We need sponsors!','customizr' ); ?></h3>
+              <p><?php  _e( '<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it\'s continued development with a donation of $20, $50, or even $100.','customizr' ) ?></br>
 
                 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow"><img class="tc-donate" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr" /></a>
               </p>
@@ -326,18 +329,30 @@ class TC_admin_init {
         </div><!-- .feature-section -->
       </div><!-- .changelog -->
 
-      <div id="showcase" class="changelog">
-        <h3><?php _e('New : Customizr showcase' ,'customizr') ?></h3>
+      <div id="dev-box" class="changelog">
+        <h3 style=""><?php _e('New! Customizr Developer Tools' ,'customizr') ?></h3>
 
         <div class="feature-section images-stagger-right">
-           <a class="" title="Visit the showcase" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><img alt="Customizr Showcase" src="<?php echo TC_BASE_URL.'inc/admin/img/mu2.jpg' ?>" class=""></a>
-          <h4><?php _e('Find inspiration for your next Customizr based website!' ,'customizr') ?></h4>
-          <p><?php _e('This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their webdesign.' , 'customizr') ?>
+          <img alt="Customizr developer tools" src="<?php echo TC_BASE_URL.'inc/admin/img/dev-box.jpg' ?>" class="">
+          <h4><?php _e('Easily drill down into Customizr code with the dev tools!' ,'customizr') ?></h4>
+          <p><?php _e('A new section called "Dev Tools" has been added to the customizer options.<br/> There you will find two optional new features : <br/><strong>-The developer box</strong> : this draggable box is a developer dashboard allowing you to have an overview of your theme settings (plugins, custom post types, theme options,...) and providing useful informations for debug and development : a loading timeline of any pages, contextual data ( like conditional tags and query), the hook\'s structure of the theme and a note section about the code logic of Customizr.<br/><strong>-The embedded tooltips</strong> : this option displays clickable (and draggable) contextual tooltips right inside your website. They help you understand which part of the php code handles any front-end block or element. The informations provided are : class -> method, hook, file, function description and possible filter.<br/><br/><i>Those tools are only displayed to logged in users with an admin capability profile.</i>' , 'customizr') ?>
           </p>
-          <p><?php _e('Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do.' , 'customizr') ?></br>
+         
+        </div>
+      </div>
+
+      <div id="showcase" class="changelog">
+        <h3 style="text-align:right"><?php _e('Customizr Showcase' ,'customizr') ?></h3>
+
+        <div class="feature-section images-stagger-left">
+           <a class="" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><img alt="Customizr Showcase" src="<?php echo TC_BASE_URL.'inc/admin/img/mu2.jpg' ?>" class=""></a>
+          <h4 style="text-align: right"><?php _e('Find inspiration for your next Customizr based website!' ,'customizr') ?></h4>
+          <p style="text-align: right"><?php _e('This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their web design.' , 'customizr') ?>
+          </p>
+          <p style="text-align: right"><?php _e('Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do.' , 'customizr') ?></br>
           </p>
           <p style="text-align:center">    
-              <a class="button-primary review-customizr" title="Visit the showcase" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank">Visit the showcase &raquo;</a>
+              <a class="button-primary review-customizr" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><?php _e('Visit the showcase','customizr') ?> &raquo;</a>
           </p>
         </div>
       </div>
@@ -421,7 +436,15 @@ class TC_admin_init {
    */
     function tc_extract_changelog() {
       
-      $stylelines = explode("\n", implode('', file(TC_BASE_URL."/readme.txt")));
+      if( !file_exists(TC_BASE."readme.txt") ) {
+        return;
+      }
+      if( !is_readable(TC_BASE."readme.txt") ) {
+        echo '<p>The changelog in readme.txt is not readable.</p>';
+        return;
+      }
+      
+      $stylelines = explode("\n", implode('', file(TC_BASE."readme.txt")));
       $read = false;
       $i = 0;
 

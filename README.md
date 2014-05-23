@@ -2,6 +2,11 @@
 
 *Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in english, french, german, russian, brazilian portugues, spanish.*
 
+# Copyright
+**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>))  
+Feel free to use, modify and redistribute this theme as you like.
+You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.  
+Customizr is distributed under the terms of the GNU GPL. 
 
 # Installation
 1. Upload the `customizr` folder to the `/wp-content/themes/` directory
@@ -81,17 +86,17 @@ Posts with the link post format will link out to the first a tag in the post.
 ## Code logic
 The theme is built on a classes framework. The classes are identified by their group and name like this : class-[group]-[name].php.
 
-The function tc__( $group, $classname), where the group parameter is required :
+The function tc__( $group, $classname):
 1) scans the theme folder to find the appropriate group / class 
 2) and then instanciates the class(es) only once through a singleton factory.
 
 A class typically includes a constructor which is mainly used to add the methods to WP actions and filters. 
 Actions are used to render HTML or execute some code in predefined WP action, while filters are used to get values.
 
-For simplification purposes, the theme uses few WP templates : index.php, header.php, footer.php, comments.php, sidebar(s).php. 
+For simplification purposes, the theme uses few WP templates : index.php, header.php, footer.php, comments.php. 
 Those templates only includes some structural HTML markup, the rest is rendered with the actions defined in the classes of the parts/ folder.
 
-Customizr uses one single loop for all kind of content. It is located in class-main-loop.php.
+Customizr uses one single loop for all kind of content. It is located in index.php.
 
 
 ## Translation
@@ -118,6 +123,52 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.0.11 =
+* added : (php) filter to the skin choices (in customizer options class), allowing to add new skins in the drop down list
+* added : (php) filter for enqueuing the styles (in class ressources), allowing a better control for child theme
+* added : (css) current menu item or current menu ancestor is colored with the skin color
+* added : (php) function to check if we are using a child theme. Handles WP version <3.4.
+* improved : (css) new conditional stylesheets ie8-hacks : icon sizes for IE8
+* improved : (css) better table styling
+* improved : (php) logo dimensions are beeing rendered in the img tag
+* improved : (php) class group instanciation is faster, using the class group array instead of each singular group of class.
+* improved : (php) the search and archive headers are easier to filter now with dedicated functions
+* fixed : (css) archives and search icons color were all green for all skins
+* fixed : (php) 404 content was displayed several times in a nested url rewrite context thanks to <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* fixed : (php) attachment meta data dimensions : checks if are set $metadata['height'] && $metadata['width'] before rendering
+* fixed : (php) attachment post type : checks if $post is set before getting the type
+* fixed : (php) left and right sidebars are rendered even if they have no widgets hooked in thanks to <a href="http://wordpress.org/support/profile/pereznat" target="_blank">pereznat</a>.
+
+
+= 3.0.10 =
+* CHILD THEME USERS, templates have been modified : index.php, header.php, footer.php, comments.php *
+* added : (php) (css) (html) New option : Draggable help box and clickable tooltips to easily display some contextual information and help for developers
+* added : (php) support for custom post types for the slider meta boxes
+* added : (php) new filter to get the post type
+* added : polish translation. thanks to Marcin Sadowski from <a href="http://www.sadowski.edu.pl" target="_blank">http://www.sadowski.edu.pl</a>
+* added : (php) (html) attachments are now listed in the search results with their thumbnails and descriptions, just like posts or pages
+* added : (css) comment navigation styling, similar to post navigation
+* added : (php) (css) author box styling (if bio field not empty)
+* added : (css) comment bubble for pages
+* added : (js) smooth transition for "back to top" link. Thanks to Nikolov : <a href="https://github.com/nikolov-tmw" target="_blank">https://github.com/nikolov-tmw</a>
+* added : (js) smooth image loading on gallery attachment navigation
+* added : (lang) Dutch translation. Thanks to Joris Dutmer.
+* added : (css) icon to title of archive, search, 404
+* improved : (php) attachment screen layout based on the parent
+* improved : (php) simpler action hooks structure in the main templates : index, header, footer, comments, sidebars
+* improved : (css) responsive behaviour : slider caption now visible for devices < 480px wide, thumbnail/content layout change for better display, body extra padding modified
+* improved : (php) For better performances : options (single and full array) are now get from the TC_utils class instance instead of querying the database. (except for the customization context where they have to be retrieved dynamically from database on refresh)
+* improved : (js) performance : tc_scripts and ajax_slider have been minified
+* fixed : (css) IE fix : added z-index to active slide to fix slides falling below each other on transition. Thanks to PMStanley <a href="https://github.com/PMStanley">https://github.com/PMStanley</a>
+* fixed : (css) IE fix : added 'top: 25%' to center align slide caption on older versions of IE. Thanks to PMStanley <a href="https://github.com/PMStanley" target="_blank">https://github.com/PMStanley</a>
+* fixed : (php) empty reply button in comment threads : now checks if we reach the max level of threaded comment to render the reply button
+* fixed : (php) empty nav buttons in single posts are not displayed anymore
+* fixed : (css) font-icons compatibility with Safari is fixed for : page, formats (aside, link; image, video) and widgets (recent post, page menu, categories) thanks to <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* fixed : (css) ordered list margin were not consistent in the theme thanks to <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* fixed : (css) slider text overflow
+* removed : sidebars templates. Sidebar content is now rendered with the class-content-sidebar.php
+
+
 = 3.0.9 =
 * ! SAFE UPGRADE FOR CHILD THEME USERS (v3.0.8 => v3.0.9) ! *
 * fixed : function tc_is_home() was not checking the case where display nothing on home page. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/monten01">monten01</a>, <a href="http://wordpress.org/support/profile/rdellconsulting" target="_blank">rdellconsulting</a>
@@ -333,11 +384,6 @@ The exceptions to this license are as follows:
 
 = 1.0 =
 * Initial Release
-
-# Copyright
-**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>))  
-Feel free to use, modify and redistribute this theme as you like.
-You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.  
-Customizr is distributed under the terms of the GNU GPL.  
+ 
 
 Enjoy it!

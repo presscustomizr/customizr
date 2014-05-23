@@ -25,21 +25,27 @@
  */
 
 
-
 /**
-* Singleton factory : on demand classes instanciation
+* Singleton factory : on demand class single instanciation
 * Thanks to Ben Doherty (https://github.com/bendoh) for the great programming approach
 * 
 *
 * @since     Customizr 3.0
 */
 if ( !function_exists( 'tc__' ) ) :
-    function tc__ ( $group, $class = null ) {
+    function tc__ ( $instance_groups = null, $class = null ) {
 
-        static $instances;
+       static $instances;
+      
+       $classname = '';
 
-        //get the class file(s) array by group and name (if defined)
-        $files = tc_get_classes ( $group, $path = null ,$class);
+       $instance_groups = is_array($instance_groups) ? $instance_groups : array($instance_groups);
+
+       //get the class file(s) array by group and name (if defined)
+       $parent_files 	= tc_get_classes ( $instance_groups, $path = null ,$class );
+       //Do we have to include some child theme classes?
+       $child_files 	= tc_is_child() ? tc_get_classes ( $instance_groups, $path = null ,$class, $child=true) : array();
+       $files 			= array_merge($parent_files, $child_files);
 
        foreach ( $files as $f ) 
        {
@@ -51,69 +57,110 @@ if ( !function_exists( 'tc__' ) ) :
             //instanciation
             if( !isset( $instances[ $classname ] ) ) 
             {
-                $instances[ $classname ] = new $classname;
+                $instances[ $classname ] = class_exists($classname)  ? new $classname : '';
             }
         }//end foreach
-
     return $instances[ $classname ];
-
     }
 endif;
 
 
 
 
+/**
+* Checks if we use a child theme. Uses a deprecated WP functions (get_theme_data) for versions <3.4
+* @return boolean
+* 
+* @since     Customizr 3.0.11
+*/
+if ( !function_exists( 'tc_is_child' ) ) :
+	function tc_is_child() {
+		// get themedata version wp 3.4+
+		if( function_exists( 'wp_get_theme' ) ) {
+		 	//CHECK IF WE ARE USING A CHILD THEME
+			//get WP_Theme object of customizr
+			$tc_theme       = wp_get_theme();
+			//define a boolean if using a child theme
+			$is_child       = ( $tc_theme -> parent() ) ? true : false;
+		 }
+		 else {
+		 	$tc_theme 		= get_theme_data( get_stylesheet_directory() . '/style.css' );
+		 	$is_child 		= ( !empty($tc_theme['Template']) ) ? true : false;
+		}
+
+		return $is_child;
+	}
+endif;
+
+
+
 
 /**
-* Recursive function, takes 2 parameters ( $group is required, $class is optional)
+* Recursive function, takes 4 parameters ( $group is required, $class, $path and $child are optional)
 * Scans the theme folder and returns an array of class file names according to their group/name
 * 
 * @since Customizr 3.0
 */
 if ( !function_exists( 'tc_get_classes' ) ) :
-	function tc_get_classes( $group , $path = null , $class = null ) {
+	function tc_get_classes( $instance_groups , $path = null , $class = null, $child = null ) {
 
-	     /* TC_BASE is the root server path */
+	    /* TC_BASE is the root server path of parent theme */
 	    if ( ! defined( 'TC_BASE' ) )       { define( 'TC_BASE' , get_template_directory().'/' ); }
 
-	    $classes    = array();
+	    if ( ! defined( 'TC_BASE_CHILD' ) )       { define( 'TC_BASE_CHILD' , get_stylesheet_directory().'/' ); }
 
-	    $files      = scandir(TC_BASE.$path);
-	    
-	    foreach ( $files as $file) 
-	    {
-	        if ( $file[0] != '.' ) 
-	        {
-	            if ( is_dir(TC_BASE.$path.$file) ) 
-	            {
-	                $classes = array_merge( $classes, tc_get_classes( $group, $path.$file.'/' , $class));
-	            }
+	    //which folder are we scanning, parent or child?
+	    $tc_base      = ($child) ? TC_BASE_CHILD: TC_BASE ;
 
-	            else if ( substr( $file, -4) == '.php' ) 
-	            {
-	                switch ( $class) 
-	                {
-	                    //if the class is not defined
-	                    case null:
-	                       if ( tc_get_file_group( $file) == $group) 
-	                       {
-	                            $classes[] = $path.$file;
-	                        }
-	                    break;
-	                    
-	                    default:
-	                       if ( tc_get_file_class( $file) == $class) 
-	                       {
-	                            $classes[] = $path.$file;
-	                        }
-	                    break;
-	                }//end switch
-	            }//end if
-	        } //end if
-	    }//end for each
+	    //initializes the class files array
+	    $classes = array();
 
-	    return $classes;
-	}
+	    //root class instanciation : in this case we don't want to loop through all files
+	    if ( in_array('customizr', $instance_groups) ) {
+	    	$classes[] = '/inc/class-customizr-__.php';
+	    }
+
+	    //all other cases
+		else {
+
+		    $files      = scandir($tc_base.$path) ;
+		    		
+		    foreach ( $files as $file) 
+		    {
+		        if ( $file[0] != '.' ) 
+		        {
+		            if ( is_dir($tc_base.$path.$file) ) 
+		            {
+		                $classes = array_merge( $classes, tc_get_classes( $instance_groups, $path.$file.'/' , $class, $child));
+		            }
+
+		            else if ( substr( $file, -4) == '.php' ) 
+		            {
+		                switch ( $class) 
+		                {
+		                    //if the class is not defined
+		                    case null:
+		                       if ( in_array( tc_get_file_group($file), $instance_groups) ) 
+		                       {
+		                            $classes[] = $path.$file;
+		                        }
+		                    break;
+		                    
+		                    default:
+		                       if ( tc_get_file_class($file) == $class) 
+		                       {
+		                            $classes[] = $path.$file;
+		                        }
+		                    break;
+		                }//end switch
+		            }//end if
+		        } //end if
+		    }//end for each
+		}//end if
+
+		return $classes;
+
+	}//end of function
 endif;
 
 
@@ -164,31 +211,36 @@ endif;
 
 
 
-
 /**
-* Allows WP apply_filter() function to accept up to 3 optional arguments
+* Allows WP apply_filter() function to accept up to 4 optional arguments
 * 
 *
 * @since Customizr 3.0
 */
 if( !function_exists( 'tc__f' )) :
-    function tc__f ( $filter , $arg1 = null , $arg2 = null , $arg3 = null) {
+    function tc__f ( $filter , $arg1 = null , $arg2 = null , $arg3 = null, $arg4 = null) {
 
-       return apply_filters( $filter , $arg1 , $arg2 , $arg3 );
+       return apply_filters( $filter , $arg1 , $arg2 , $arg3, $arg4 );
 
     }
 endif;
 
 
 
+/* Gets the saved options array and make it global */
+$tc_saved_options = get_option( 'tc_theme_options');
+global $tc_saved_options;
 
 /* Loads the theme classes framework */
-locate_template( 'inc/class-customizr-__.php' ,true,true);
-tc__( 'customizr' );//fire the theme
+tc__( 'customizr' );//fires the theme
+
+/* Starts recording for server execution timeline in dev tools */
+tc__f( 'rec' , __FILE__ );
 
 
 
 /* 
 * The best and safest way to add your own functions to Customizr is to create a child theme
+* You can add functions here but it will be lost on upgrade. If you use a child theme, you are safe!
 * http://codex.wordpress.org/Child_Themes
 */

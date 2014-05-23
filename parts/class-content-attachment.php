@@ -14,9 +14,101 @@
 
 class TC_attachment {
 
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
     function __construct () {
-        add_action  ( '__attachment'			, array( $this , 'tc_content_attachment' ));
+
+        self::$instance =& $this;
+
+        add_action  ( '__before_content'              , array( $this , 'tc_attachment_header' ));
+        add_action  ( '__loop'			              , array( $this , 'tc_attachment_content' ));
+
+        //selector filter
+        add_filter ( '__article_selectors'            , array( $this , 'tc_attachment_selectors' ));
     }
+
+
+    
+
+     /**
+     * Displays the conditional selectors of the article
+     * 
+     * @package Customizr
+     * @since 3.0.10
+     */
+    function tc_attachment_selectors () {
+        //check conditional tags
+        global $post;
+        if ( !isset($post) )
+        return;
+        if ('attachment' != $post -> post_type || !is_singular() )
+            return;
+        
+        //check if attachement is image and add a selector
+        $format_image = wp_attachment_is_image() ? 'format-image' : '';
+
+        tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+
+        echo 'id="post-'.get_the_ID().'" '.tc__f('__get_post_class' , array('row-fluid', $format_image) );
+    }
+
+
+
+
+    /**
+     * The template part for displaying the attachment header
+     *
+     * @package Customizr
+     * @since Customizr 3.0.10
+     */
+    function tc_attachment_header() {
+    //check conditional tags
+        global $post;
+        if ('attachment' != $post -> post_type || !is_singular() )
+            return;
+
+        tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+
+        ob_start();
+
+        tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__); 
+        ?>
+
+        <header class="entry-header">
+
+            <?php 
+                $bubble_style                      = ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'';
+
+                printf( '<h1 class="entry-title format-icon">%1$s %2$s %3$s</h1>' ,
+                get_the_title(),
+                ( comments_open() && get_comments_number() != 0 && !post_password_required() ) ? '<span class="comments-link">
+                    <a href="'.get_permalink().'#tc-comment-title" title="'.__( 'Comment(s) on ' , 'customizr' ).get_the_title().'"><span '.$bubble_style.' class="fs1 icon-bubble"></span><span class="inner">'.get_comments_number().'</span></a>
+                </span>' : '',
+                ((is_user_logged_in()) && current_user_can('edit_posts')) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit' , 'customizr' ).'">'.__( 'Edit' , 'customizr' ).'</a></span>' : ''
+                );
+
+            ?>
+            <div class="entry-meta">
+                 
+                <?php //meta not displayed on home page, only in archive or search pages
+                    if ( !tc__f('__is_home') ) { 
+                        do_action( '__post_metas' );
+                    }
+                ?>
+
+            </div><!-- .entry-meta -->
+
+        </header><!-- .entry-header -->
+      <?php
+      $html = ob_get_contents();
+      ob_end_clean();
+
+      echo apply_filters( 'tc_attachment_header', $html);
+    }
+
+
+
 
 
     /**
@@ -25,44 +117,30 @@ class TC_attachment {
      * @package Customizr
      * @since Customizr 3.0
      */
-    function tc_content_attachment() {
+    function tc_attachment_content() {
+        //check conditional tags
         global $post;
+        if (isset($post) && 'attachment' != $post -> post_type || !is_singular() )
+            return;
+
+        tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
         ?>
-        <header class="entry-header">
+        <?php  ob_start(); ?>
 
-            <h1 class="entry-title"><?php the_title(); ?></h1>
+        <?php do_action( '__before_content' ); ?>
 
-            <footer class="entry-meta">
+        <?php echo '<hr class="featurette-divider">' ?>
 
-                <?php
-                    $metadata = wp_get_attachment_metadata();
-                    printf( __( '<span class="meta-prep meta-prep-entry-date">Published </span> <span class="entry-date"><time class="entry-date" datetime="%1$s">%2$s</time></span> at <a href="%3$s" title="Link to full-size image">%4$s &times; %5$s</a> in <a href="%6$s" title="Return to %7$s" rel="gallery">%8$s</a>.' , 'customizr' ),
-                        esc_attr( get_the_date( 'c' ) ),
-                        esc_html( get_the_date() ),
-                        esc_url( wp_get_attachment_url() ),
-                        $metadata['width'],
-                        $metadata['height'],
-                        esc_url( get_permalink( $post->post_parent ) ),
-                        esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
-                        get_the_title( $post->post_parent )
-                    );
-                ?>
+        <nav id="image-navigation" class="navigation" role="navigation">
 
-                <?php edit_post_link( __( 'Edit' , 'customizr' ), '<span class="edit-link">' , '</span>' ); ?>
+            <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous' , 'customizr' ) ); ?></span>
 
-            </footer><!-- .entry-meta -->
+            <span class="next-image"><?php next_image_link( false, __( 'Next &rarr;' , 'customizr' ) ); ?></span>
 
-            <nav id="image-navigation" class="navigation" role="navigation">
+        </nav><!-- #image-navigation -->
 
-                <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous' , 'customizr' ) ); ?></span>
-
-                <span class="next-image"><?php next_image_link( false, __( 'Next &rarr;' , 'customizr' ) ); ?></span>
-
-            </nav><!-- #image-navigation -->
-
-        </header><!-- .entry-header -->
-
-        <div class="entry-content">
+        <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>    
+        <section class="entry-content">
 
             <div class="entry-attachment">
 
@@ -72,7 +150,7 @@ class TC_attachment {
                     $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
                     //did we activate the fancy box in customizer?
-                    $tc_fancybox = esc_attr(tc__f ( '__get_option' , 'tc_fancybox' ));
+                    $tc_fancybox = esc_attr( tc__f( '__get_option' , 'tc_fancybox' ) );
 
                     ?>
                     
@@ -160,8 +238,15 @@ class TC_attachment {
 
             </div><!-- .entry-attachment -->
 
-        </div><!-- .entry-content -->
+        </section><!-- .entry-content -->
+
+        <?php do_action( '__after_content' ) ?>
+
         <?php
+        $html = ob_get_contents();
+        ob_end_clean();
+        echo apply_filters( 'tc_attachment_content', $html );
+
     }//end of function
 
 }//end of class

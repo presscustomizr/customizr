@@ -17,6 +17,14 @@
 */
 
 class TC_nav_walker extends Walker_Nav_Menu {
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+
+    function __construct () {
+
+        self::$instance =& $this;
+    }
+
     function check_current( $classes) {
       return preg_match( '/(current[-_])|active|dropdown/' , $classes);
     }
