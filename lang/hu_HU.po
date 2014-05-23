@@ -1,0 +1,1739 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Customizr v3.0.14\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-21 14:02+0100\n"
+"PO-Revision-Date: 2014-04-21 14:03+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ customizr
+#: comments.php:29
+msgid "Leave a Comment"
+msgstr "Hozzászólás"
+
+# @ customizr
+#: inc/class-fire-init.php:45 inc/class-fire-init.php:46
+msgid "Right sidebar"
+msgstr "Jobb oldalléc"
+
+# @ customizr
+#: inc/class-fire-init.php:51 inc/class-fire-init.php:52
+msgid "Left sidebar"
+msgstr "Bal oldalléc"
+
+# @ customizr
+#: inc/class-fire-init.php:57 inc/class-fire-init.php:58
+msgid "2 sidebars : Right and Left"
+msgstr "2 oldalléc: Jobb és Bal"
+
+# @ customizr
+#: inc/class-fire-init.php:63 inc/class-fire-init.php:64
+msgid "No sidebars : full width layout"
+msgstr "Oldalléc nélkül: teljes oldalszélesség"
+
+# @ customizr
+#: inc/class-fire-init.php:75
+msgid "Blue"
+msgstr "Kék"
+
+# @ customizr
+#: inc/class-fire-init.php:76
+msgid "Green"
+msgstr "Zöld"
+
+# @ customizr
+#: inc/class-fire-init.php:77
+msgid "Yellow"
+msgstr "Sárga"
+
+# @ customizr
+#: inc/class-fire-init.php:78
+msgid "Orange"
+msgstr "Narancs"
+
+# @ customizr
+#: inc/class-fire-init.php:79
+msgid "Red"
+msgstr "Vörös"
+
+# @ customizr
+#: inc/class-fire-init.php:80
+msgid "Purple"
+msgstr "Bíbor"
+
+# @ customizr
+#: inc/class-fire-init.php:81
+msgid "Grey"
+msgstr "Szürke"
+
+# @ customizr
+#: inc/class-fire-init.php:82
+msgid "Black"
+msgstr "Fekete"
+
+# @ customizr
+#: inc/class-fire-init.php:91
+msgid "Subscribe to my rss feed"
+msgstr "Iratkozz fel RSS csatornánkra"
+
+# @ customizr
+#: inc/class-fire-init.php:92
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "RSS csatorna (az alapcsatorna a Wordpress)"
+
+# @ customizr
+#: inc/class-fire-init.php:96
+msgid "Follow me on Twitter"
+msgstr "Kövess a Twitteren"
+
+# @ customizr
+#: inc/class-fire-init.php:97
+msgid "Twitter profile url"
+msgstr "Twitter profil"
+
+# @ customizr
+#: inc/class-fire-init.php:101
+msgid "Follow me on Facebook"
+msgstr "Kövess a Facebook-on"
+
+# @ customizr
+#: inc/class-fire-init.php:102
+msgid "Facebook profile url"
+msgstr "Facebook profil"
+
+# @ customizr
+#: inc/class-fire-init.php:106
+msgid "Follow me on Google+"
+msgstr "Kövess a Google+-on"
+
+# @ customizr
+#: inc/class-fire-init.php:107
+msgid "Google+ profile url"
+msgstr "Google+ profil"
+
+# @ customizr
+#: inc/class-fire-init.php:111
+msgid "Follow me on Instagram"
+msgstr "Kövess az Instagram-on"
+
+# @ customizr
+#: inc/class-fire-init.php:112
+msgid "Instagram profile url"
+msgstr "Instagram profil"
+
+# @ customizr
+#: inc/class-fire-init.php:116
+msgid "Follow me on WordPress"
+msgstr "Kövess a Wordpress-en"
+
+# @ customizr
+#: inc/class-fire-init.php:117
+msgid "WordPress profile url"
+msgstr "Wordpress profil"
+
+# @ customizr
+#: inc/class-fire-init.php:121
+msgid "Follow me on Youtube"
+msgstr "Kövess a Youtube-on"
+
+# @ customizr
+#: inc/class-fire-init.php:122
+msgid "Youtube profile url"
+msgstr "Youtube profil"
+
+#: inc/class-fire-init.php:126
+msgid "Pin me on Pinterest"
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-init.php:127
+msgid "Pinterest profile url"
+msgstr "Pinteres profil"
+
+# @ customizr
+#: inc/class-fire-init.php:131
+msgid "Follow me on Github"
+msgstr "Kövess a Github-on"
+
+# @ customizr
+#: inc/class-fire-init.php:132
+msgid "Github profile url"
+msgstr "Github profil"
+
+# @ customizr
+#: inc/class-fire-init.php:136
+msgid "Follow me on Dribbble"
+msgstr "Kövess a Dribbble-n"
+
+# @ customizr
+#: inc/class-fire-init.php:137
+msgid "Dribbble profile url"
+msgstr "Dribble profil"
+
+# @ customizr
+#: inc/class-fire-init.php:141
+msgid "Follow me on LinkedIn"
+msgstr "Kövess a LinkedIn-en"
+
+# @ customizr
+#: inc/class-fire-init.php:142
+msgid "LinkedIn profile url"
+msgstr "LinkedIn profil"
+
+# @ customizr
+#: inc/class-fire-init.php:151
+msgid "Right Sidebar"
+msgstr "Jobb oldalléc"
+
+# @ customizr
+#: inc/class-fire-init.php:152 inc/class-fire-init.php:156
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr ""
+"Megjelenik a bejegyzésekben, statikus oldalakon, archívumokban és a kereső "
+"oldalakon"
+
+# @ customizr
+#: inc/class-fire-init.php:155
+msgid "Left Sidebar"
+msgstr "Bal oldalléc"
+
+# @ customizr
+#: inc/class-fire-init.php:163
+msgid "Footer Widget Area One"
+msgstr "Lábléc widget - 1. zóna"
+
+# @ customizr
+#: inc/class-fire-init.php:164 inc/class-fire-init.php:168
+#: inc/class-fire-init.php:172
+msgid "Just use it as you want !"
+msgstr "Használd ízlés szerint!"
+
+# @ customizr
+#: inc/class-fire-init.php:167
+msgid "Footer Widget Area Two"
+msgstr "Lábléc widget - 2. zóna"
+
+# @ customizr
+#: inc/class-fire-init.php:171
+msgid "Footer Widget Area Three"
+msgstr "Lábléc widget - 3. zóna"
+
+# @ customizr
+#: inc/class-fire-init.php:189
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Mindig van két lehetőség, vagy nincs."
+
+# @ customizr
+#: inc/class-fire-init.php:190
+msgid "George Orwell"
+msgstr "Áron bá'"
+
+# @ customizr
+#: inc/class-fire-init.php:191
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr "Elnézést, de a keresett oldal nem található. Próbálja meg a keresést."
+
+# @ customizr
+#: inc/class-fire-init.php:196
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr "Egy seggel csak egy lovat lehet megülni..."
+
+# @ customizr
+#: inc/class-fire-init.php:197
+msgid "Sir Winston Churchill"
+msgstr "Mári néni"
+
+# @ customizr
+#: inc/class-fire-init.php:198
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Elnézést, a kereset kifejezésre nincs találat. Próbáljon más kifejezésre "
+"keresni."
+
+# @ customizr
+#: inc/class-fire-init.php:204 inc/class-fire-init.php:213
+msgid "Customizr is a clean responsive theme"
+msgstr "A Customizr egy egyszerű reszponzív téma"
+
+# @ customizr
+#: inc/class-fire-init.php:205
+msgid "Let your creativity speak and easily customiz'it the way you want!"
+msgstr "Enged szabadjára fantáziád"
+
+# @ customizr
+#: inc/class-fire-init.php:206
+msgid "Learn more"
+msgstr "További részletek"
+
+# @ customizr
+#: inc/class-fire-init.php:218 inc/class-fire-init.php:227
+msgid "Style your WordPress site live!"
+msgstr "Módosítsd élőben a Wordpress oldalad!"
+
+# @ customizr
+#: inc/class-fire-init.php:219
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr "A beállítások a Wordpress beállítási felületén érhetőek el."
+
+# @ customizr
+#: inc/class-fire-init.php:220
+msgid "Just try it!"
+msgstr "Próbáld ki!"
+
+# @ customizr
+#: inc/class-fire-init.php:232 inc/class-fire-init.php:241
+msgid "Create beautiful sliders"
+msgstr "Gyönyörű lapozóképek készítése"
+
+# @ customizr
+#: inc/class-fire-init.php:233
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"A Customizr egy lapozókép készítőt is tartalmaz, melyet bármilyen "
+"bejegyzéshez, vagy oldalhoz hozzáadhatsz!"
+
+# @ customizr
+#: inc/class-fire-init.php:234
+msgid "Discover the features"
+msgstr "Fedezd fel a funkciókat"
+
+# @ customizr
+#: inc/class-fire-init.php:295
+msgid "Main Menu"
+msgstr "Főmenü"
+
+# @ customizr
+#: inc/class-fire-init.php:658
+msgid "Customiz'it!"
+msgstr "Customiz'it!"
+
+# @ customizr
+#: inc/class-fire-init.php:661
+msgid "Customize your website at any time!"
+msgstr "Beállítások"
+
+# @ customizr
+#: inc/class-fire-init.php:680
+msgid "Help"
+msgstr "Sugó"
+
+# @ customizr
+#: inc/class-fire-init.php:683
+msgid "Need help with Customizr? Click here!"
+msgstr "Customizr segítségre van szükséged? Klikk ide!"
+
+# @ customizr
+#: inc/class-fire-utils.php:335
+#, php-format
+msgid "Page %s"
+msgstr "%s oldal"
+
+# @ customizr
+#: inc/class-fire-utils.php:532
+msgid "Home featured page one"
+msgstr "1. kiemelt oldal"
+
+# @ customizr
+#: inc/class-fire-utils.php:533
+msgid "Home featured page two"
+msgstr "2. kiemelt oldal"
+
+# @ customizr
+#: inc/class-fire-utils.php:534
+msgid "Home featured page three"
+msgstr "3. kiemelt oldal"
+
+# @ customizr
+#: inc/class-fire-utils.php:537
+msgid "Featured text one (200 car. max)"
+msgstr "1. kiemelt oldal szövege (max. 200 karakter)"
+
+# @ customizr
+#: inc/class-fire-utils.php:538
+msgid "Featured text two (200 car. max)"
+msgstr "2. kiemelt oldal szövege (max. 200 karakter)"
+
+# @ customizr
+#: inc/class-fire-utils.php:539
+msgid "Featured text three (200 car. max)"
+msgstr "3. kiemelt oldal szövege (max. 200 karakter)"
+
+# @ customizr
+#: inc/class-fire-utils.php:555
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:571
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:574
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr ""
+"Egyszer az oldalt kell kiválasztani. Hagyd ezt a mezőt üresen, ha az "
+"oldalnál beállított kivonatszöveget akarod megjeleníteni."
+
+# @ customizr
+#: inc/class-fire-utils.php:668
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Nincs lapozókép &mdash;"
+
+# @ customizr
+#: inc/class-fire-utils.php:669
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Demó lapozókép &mdash;"
+
+# @ customizr
+#: inc/class-fire-utils.php:722
+msgid "Skin"
+msgstr "Téma"
+
+# @ customizr
+#: inc/class-fire-utils.php:724
+msgid "Select a skin for Customizr"
+msgstr "Customizr téma kiválasztása"
+
+# @ customizr
+#: inc/class-fire-utils.php:728
+msgid "Logo &amp; Favicon"
+msgstr "Logo és Favicon"
+
+# @ customizr
+#: inc/class-fire-utils.php:730
+msgid "Set up logo and favicon options"
+msgstr "Logo és favicon beállításai"
+
+# @ customizr
+#: inc/class-fire-utils.php:734
+msgid "Front Page"
+msgstr "Főoldal"
+
+# @ customizr
+#: inc/class-fire-utils.php:736
+msgid "Set up front page options"
+msgstr "Főoldal beállításai"
+
+# @ customizr
+#: inc/class-fire-utils.php:740
+msgid "Pages &amp; Posts Layout"
+msgstr "Oldalak/bejegyzések oldalszerkezete"
+
+# @ customizr
+#: inc/class-fire-utils.php:742
+msgid "Set up layout options"
+msgstr "Oldalszerkezet beállítások"
+
+# @ customizr
+#: inc/class-fire-utils.php:746
+msgid "Comments"
+msgstr "Hozzászólások"
+
+# @ customizr
+#: inc/class-fire-utils.php:748
+msgid "Set up comments options"
+msgstr "Hozzászólások beállításai"
+
+# @ customizr
+#: inc/class-fire-utils.php:752 parts/class-content-sidebar.php:112
+msgid "Social links"
+msgstr "Közösségi linkek"
+
+# @ customizr
+#: inc/class-fire-utils.php:754
+msgid "Set up your social links"
+msgstr "Közösségi linkek beállítása"
+
+# @ customizr
+#: inc/class-fire-utils.php:758
+msgid "Images"
+msgstr "Képek"
+
+#: inc/class-fire-utils.php:760
+msgid "Various images settings"
+msgstr ""
+
+#: inc/class-fire-utils.php:764
+msgid "Links"
+msgstr ""
+
+#: inc/class-fire-utils.php:766
+msgid "Various links settings"
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:770
+msgid "Custom CSS"
+msgstr "Saját CSS"
+
+# @ customizr
+#: inc/class-fire-utils.php:772
+msgid "Add your own CSS"
+msgstr "Írj saját CSS-t"
+
+#: inc/class-fire-utils.php:776
+msgid "Responsive settings"
+msgstr ""
+
+#: inc/class-fire-utils.php:778
+msgid "Various settings for responsive display"
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:810
+msgid "Manage menus"
+msgstr "Menük beállítása"
+
+#: inc/class-fire-utils.php:816
+msgid "Select a submenu expansion option"
+msgstr ""
+
+#: inc/class-fire-utils.php:820
+msgid "Expand submenus on click"
+msgstr ""
+
+#: inc/class-fire-utils.php:821
+msgid "Expand submenus on hover"
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:836
+msgid "Choose a predefined skin"
+msgstr "Téma kiválaszása"
+
+#: inc/class-fire-utils.php:845
+msgid "Performance : use the minified CSS stylesheet"
+msgstr ""
+
+#: inc/class-fire-utils.php:848
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:854
+msgid "Display top border"
+msgstr "Felső szegély ki-/bekapcsolása"
+
+# @ customizr
+#: inc/class-fire-utils.php:858
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Fejléc felső színes szegélyének ki-/bekacsolása"
+
+# @ customizr
+#: inc/class-fire-utils.php:871
+msgid "Logo Upload (supported formats : .jpg, .png, .gif)"
+msgstr "Logó feltöltés (támogatott formátumok: .jpg, .png, .gif)"
+
+# @ customizr
+#: inc/class-fire-utils.php:879
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "Logó méret max-width:250px és max-height:100px kényszerítése"
+
+# @ customizr
+#: inc/class-fire-utils.php:895
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Favicon feltöltése (támogatott formátumok: .ico, .png, .gif)"
+
+# @ customizr
+#: inc/class-fire-utils.php:912
+msgid "Choose content and layout"
+msgstr "Tartalom és oldalszerkezet kiválasztása"
+
+# @ customizr
+#: inc/class-fire-utils.php:920
+msgid "Front page displays"
+msgstr "Főoldal beállításai"
+
+# @ customizr
+#: inc/class-fire-utils.php:925
+msgid "Don't show any posts or page"
+msgstr "Bejegyzések/oldalak elrejtése"
+
+# @ customizr
+#: inc/class-fire-utils.php:926
+msgid "Your latest posts"
+msgstr "Utolsó bejegyzés"
+
+# @ customizr
+#: inc/class-fire-utils.php:927
+msgid "A static page"
+msgstr "Statikus oldal"
+
+# @ customizr
+#: inc/class-fire-utils.php:933
+msgid "Front page"
+msgstr "Főoldal"
+
+# @ customizr
+#: inc/class-fire-utils.php:941
+msgid "Posts page"
+msgstr "Bejegyzések oldala"
+
+# @ customizr
+#: inc/class-fire-utils.php:950
+msgid "Set up the front page layout"
+msgstr "Főoldal oldalszerkezete"
+
+# @ customizr
+#: inc/class-fire-utils.php:961
+msgid "Slider options"
+msgstr "Lapozókép beállítások"
+
+# @ customizr
+#: inc/class-fire-utils.php:962
+msgid "Select front page slider"
+msgstr "Főoldal lapozóképe"
+
+# @ customizr
+#: inc/class-fire-utils.php:974
+msgid "Full width slider"
+msgstr "Teljes szélességű lapozókép"
+
+# @ customizr
+#: inc/class-fire-utils.php:993
+msgid "Delay between each slides"
+msgstr "Lapozóképek közötti késleltetés"
+
+# @ customizr
+#: inc/class-fire-utils.php:998
+msgid "in ms : 1000ms = 1s"
+msgstr "ezredmp.: 1000ms = 1s"
+
+# @ customizr
+#: inc/class-fire-utils.php:1006
+msgid "Featured pages options"
+msgstr "Kiemelt oldalak beállítása"
+
+# @ customizr
+#: inc/class-fire-utils.php:1007
+msgid "Display home featured pages area"
+msgstr "Kiemelt oldalak ki-/bekapcsolása"
+
+# @ customizr
+#: inc/class-fire-utils.php:1011
+msgid "Enable"
+msgstr "Bekapcsol"
+
+# @ customizr
+#: inc/class-fire-utils.php:1012
+msgid "Disable"
+msgstr "Kikapcsol"
+
+# @ customizr
+#: inc/class-fire-utils.php:1021
+msgid "Show images"
+msgstr "Képek mutatása"
+
+# @ customizr
+#: inc/class-fire-utils.php:1024
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"A kiemelt képek minden oldal „kiemelt kép\" részénél beállított képpel "
+"lesznek azonosak. Kapcsold ki ha nem akarod a kiemelt képeket megjeleníteni."
+
+# @ customizr
+#: inc/class-fire-utils.php:1030
+msgid "Read more &raquo;"
+msgstr "Részletek &raquo;"
+
+# @ customizr
+#: inc/class-fire-utils.php:1032
+msgid "Button text"
+msgstr "Nyomógomb szövege"
+
+# @ customizr
+#: inc/class-fire-utils.php:1053
+msgid "Display Breadcrumb"
+msgstr "Nyomvonal ki-/bekapcsolása"
+
+# @ customizr
+#: inc/class-fire-utils.php:1063
+msgid "Choose the global default layout"
+msgstr "Globális alap oldalszerkezet beállítása"
+
+# @ customizr
+#: inc/class-fire-utils.php:1074
+msgid "Force default layout everywhere"
+msgstr "Alap oldalszerkezet kikényszerítése mindenhol"
+
+# @ customizr
+#: inc/class-fire-utils.php:1077
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"Ez felülírja minden oldal/hozzászólás beállítását, beleértve a főoldalt is."
+
+# @ customizr
+#: inc/class-fire-utils.php:1084
+msgid "Choose the posts default layout"
+msgstr "Bejegyzés alap oldalszerkezete"
+
+# @ customizr
+#: inc/class-fire-utils.php:1096
+msgid "Maximum number of posts per page"
+msgstr "Maximum bejegyzés per oldal"
+
+# @ customizr
+#: inc/class-fire-utils.php:1107
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "Bejegyzéslista hossza (kezdőlap, keresés, archívum, ...)"
+
+# @ customizr
+#: inc/class-fire-utils.php:1111
+msgid "Display the excerpt"
+msgstr "Kivonatszöveg megjelenítése"
+
+# @ customizr
+#: inc/class-fire-utils.php:1112
+msgid "Display the full content"
+msgstr "Teljes tartalom megjelenítése"
+
+# @ customizr
+#: inc/class-fire-utils.php:1120
+msgid "Choose the pages default layout"
+msgstr "Oldal alap oldalszerkezetének beállítása"
+
+# @ customizr
+#: inc/class-fire-utils.php:1140
+msgid "Enable comments on pages"
+msgstr "Hozzászólások engedélyezése az oldalakon"
+
+# @ customizr
+#: inc/class-fire-utils.php:1143
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"Ez engedélyezi a hozzászólást minden oldalon. Oldalanként, a "
+"„Gyorsszerkesztés\"  módban ez felülbírálható."
+
+# @ customizr
+#: inc/class-fire-utils.php:1157
+msgid "Social links in header"
+msgstr "Közösségi linkek a fejlécben"
+
+# @ customizr
+#: inc/class-fire-utils.php:1166
+msgid "Social links in left sidebar"
+msgstr "Közösségi linkek a bal oldallécen"
+
+# @ customizr
+#: inc/class-fire-utils.php:1175
+msgid "Social links in right sidebar"
+msgstr "Közösségi linkek a jobb oldallécen"
+
+# @ customizr
+#: inc/class-fire-utils.php:1184
+msgid "Social links in footer"
+msgstr "Közösségi linkek a láblécen"
+
+# @ customizr
+#: inc/class-fire-utils.php:1205
+msgid "Enable/disable lightbox effect on images"
+msgstr "Lightbox effektus ki-/bekapcsolása"
+
+# @ customizr
+#: inc/class-fire-utils.php:1208
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"Ha engedélyezed, egy felugró zoom effektusos ablak jelenik meg a képre "
+"klikkeléskor. Galériáknál nem működik."
+
+# @ customizr
+#: inc/class-fire-utils.php:1214
+msgid "Autoscale images on zoom"
+msgstr "Képek automatikus skálázása zoomoláskor"
+
+# @ customizr
+#: inc/class-fire-utils.php:1217
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr ""
+"Ha engedélyezed, lightbox effektuskor a képek automatikusan a képernyőhöz "
+"skálázodnak"
+
+# @ customizr
+#: inc/class-fire-utils.php:1223
+msgid "Enable/disable retina support"
+msgstr "Retina képernyők támogatásának ki-/bekapcsolása"
+
+#: inc/class-fire-utils.php:1226
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:1239
+msgid "Enable/disable smooth scroll on click"
+msgstr " Finom görgetés ki-/bekapcsolása"
+
+#: inc/class-fire-utils.php:1242
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:1255
+msgid "Enable/disable blocks reordering on small devices"
+msgstr ""
+
+#: inc/class-fire-utils.php:1258
+msgid ""
+"On responsive mode, for smartphone viewport, the sidebars are moved after "
+"the main content block."
+msgstr ""
+
+#: inc/class-fire-utils.php:1264
+msgid "Enable/disable slider's slides centering on any devices"
+msgstr ""
+
+#: inc/class-fire-utils.php:1267
+msgid ""
+"This option centers your slider (carousel) pictures vertically and "
+"horizontally on any devices when displayed in full width mode"
+msgstr ""
+
+# @ customizr
+#: inc/class-fire-utils.php:1281
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr ""
+"Élő szerkesztéshez írd ide saját CSS kódjaidat (haladó felhasználóknak)"
+
+# @ customizr
+#: inc/class-fire-utils.php:1284
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates. You can also "
+"paste your custom css in the style.css file of a child theme."
+msgstr ""
+"Azért, hogy téma vagy Wordpress frissítéskor a beállításaid ne vesszenek el, "
+"mindig ide vagy egy child téma style.css fájljába írd a saját CSS kódjaidat."
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:92
+msgid "Layout Options"
+msgstr "Oldalszerkezet beállítások"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:100
+#: inc/admin/class-admin-meta_boxes.php:471
+msgid "Slider Options"
+msgstr "Lapozókép beállítások"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:169
+#, php-format
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "Az alap %1$s oldalszerkezet beállítva: %2$s"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:169
+msgid "pages"
+msgstr "oldalak"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:169
+msgid "posts"
+msgstr "bejegyzések"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:174
+msgid ""
+"You have checked the <i>\"Force global default layout for all posts and pages"
+"\"</i>, you must unchecked this option to enable a specific layout for this "
+"post."
+msgstr ""
+"Bekapcsoltad a <i>„Globális oldalszerkezet kikényszerítése minden oldalon/"
+"bejegyzésen\"</i> opciót. Ahhoz, hogy módosítani tudd az itteni "
+"beállításokat egyszer kapcsold ki azt."
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:175
+msgid "Change layout options"
+msgstr "Oldalszerkezet beállítások"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:179
+#, php-format
+msgid ""
+"You can define a specific layout for %1$s by using the pre-defined left and "
+"right sidebars. The default layouts can be defined in the WordPress "
+"customizer screen %2$s.<br />"
+msgstr ""
+"A %1$s oldalszerkezetét a jobb- és baloldali oldallécek kiválasztásával "
+"tudod megváltoztatni. Az alap oldalszerkezetet a Wordpress beállításainál a  "
+"%2$s definiálhatod."
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:180
+#: inc/admin/class-admin-meta_boxes.php:185
+msgid "this page"
+msgstr "jelen oldal"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:180
+#: inc/admin/class-admin-meta_boxes.php:185
+msgid "this post"
+msgstr "jelen bejegyzés"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:181
+msgid "here"
+msgstr "itt"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:184
+#, php-format
+msgid "Select a specific layout for %1$s"
+msgstr "Oldalszerkezet beállítás: %1$s"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:188
+#, php-format
+msgid "Default layout %1s"
+msgstr "Alap oldalszerkezet: %1s"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:230
+msgid "Add a slider to this post/page"
+msgstr "Lapozókép hozzáadása oldalhoz/bejegyszéshez"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:294
+#: inc/admin/class-admin-meta_boxes.php:678
+msgid "Choose a slider"
+msgstr "Lapozókép kiválasztása"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:301
+#: inc/admin/class-admin-meta_boxes.php:693
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Lapozókép kiválasztása &mdash; "
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:306
+msgid ""
+"To create a new slider : open the media library, edit your images and add "
+"them to your new slider."
+msgstr ""
+"Új lapozókép létrehozásához, nyisd meg a Médiatárat, válaszd ki a kívánt "
+"képet, majd állítsd be mint lapozókép (az oldal alján)"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:310
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Lapozóképek közötti váltás ezredmásodpercben (alap: 5000 ms)"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:317
+msgid "Slider Layout : set the slider in full width"
+msgstr "Lapozókép oldalszerkezete: teljes szélesség"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:334
+#: inc/admin/class-admin-meta_boxes.php:702
+msgid "Delete this slider"
+msgstr "Lapozókép törlése"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:339
+#: inc/admin/class-admin-meta_boxes.php:706
+msgid ""
+"The slider will be deleted permanently (images, call to actions and link "
+"will be kept)."
+msgstr "A lapozóképet véglegesen töröljük (a képek, linkek megmaradnak)"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:342
+#: inc/admin/class-admin-meta_boxes.php:709
+msgid "Delete slider"
+msgstr "Lapozókép törlése"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:350 inc/admin/class-controls.php:137
+msgid ""
+"You haven't create any slider yet. Go to the media library, edit your images "
+"and add them to your sliders."
+msgstr ""
+"Még nincs lapozókép kialakítva. Ugorj a Médiatárba és hozz létre egyet."
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:500
+msgid "Add to a slider"
+msgstr "Hozzáadás lapozóképhez"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:502
+msgid "Add to a slider (create one if needed)"
+msgstr "Hozzáadás lapozóképhez (szükség esetén csinálj új  lapozóképet)"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:635
+msgid "Title text (80 car. max length)"
+msgstr "Cím (max. 80 karakter hosszú)"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:642
+msgid "Description text (below the title, 250 car. max length)"
+msgstr "Leírás (cím alatt, max. 250 karakter)"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:649
+msgid "Title and text color"
+msgstr "Cím és leírás színe"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:657
+msgid "Button text (80 car. max length)"
+msgstr "Nyomógomb szöveg (max. 80 karakter)"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:664
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Linkelt oldal/bejegyzés kiválasztása (az utolsó 100 közül)"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:669
+msgid "No link"
+msgstr "Nincs link"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:699
+#: inc/admin/class-admin-meta_boxes.php:730
+msgid "Add a slider"
+msgstr "Lapozókép létrehozás"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:728
+msgid ""
+"You haven't create any slider yet. Write a slider name and click on the "
+"button to add you first slider."
+msgstr ""
+"Még nincs lapozókép. Írd be a lapozókép nevét és klikkelj a nyomógombra a "
+"létrehozásához."
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:845
+msgid ""
+"This slider has not slides to show. Go to the media library and start adding "
+"images to it."
+msgstr ""
+"A lapozókép több kép hiánya miatt nem mozog. Adjál hozzá még legalább egy "
+"képet."
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:855
+msgid "Slide Image"
+msgstr "Lapozókép"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:856
+msgid "Title"
+msgstr "Cím"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:857
+msgid "Slide Text"
+msgstr "Lapozókép szöveg"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:858
+msgid "Button Text"
+msgstr "Nyomógomb szöveg"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:859
+msgid "Button Link"
+msgstr "Nyomógomb link"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:860
+#: parts/class-content-breadcrumb.php:595
+#: parts/class-content-breadcrumb.php:628
+#: parts/class-content-breadcrumb.php:643
+#: parts/class-content-breadcrumb.php:671 parts/class-content-comments.php:157
+#: parts/class-content-headings.php:247 parts/class-content-slider.php:243
+msgid "Edit"
+msgstr "Szerkesztés"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:901
+msgid "No Image Selected"
+msgstr "Nincs kép kiválasztva"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:927
+msgid "Edit this slide"
+msgstr "Lapozókép szerkesztése"
+
+# @ customizr
+#: inc/admin/class-admin-meta_boxes.php:929
+msgid "Current slide"
+msgstr "Jelenlegi lapozókép"
+
+# @ customizr
+#: inc/admin/class-controls.php:137
+msgid "Create a slider"
+msgstr "Lapozókép létrehozása"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:67
+#: inc/admin/class-fire-admin_init.php:68
+msgid "Upgrade WP"
+msgstr "WP frissítése"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:87
+msgid "This theme requires WordPress 3.4+"
+msgstr "Téma követelmény: Wordpress 3.4+"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:90
+#: inc/admin/class-fire-admin_init.php:91
+msgid "Upgrade Wordpress Now"
+msgstr "Frissítsd a Wordpress-t most"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:108
+#: inc/admin/class-fire-admin_init.php:109
+msgid "About Customizr"
+msgstr "Customizr névjegy"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:131
+msgid "Need help with Customizr ?"
+msgstr "Customizr segítségre van szükséged?"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:133
+#, php-format
+msgid "Welcome to Customizr %s"
+msgstr "Üdvözlünk a Customizr %s világában"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:140
+#, php-format
+msgid ""
+"You can start by watching the <a href=\"%1$s\" target=\"_blank"
+"\">introduction video</a> or by reading <a href=\"%2$s\" target=\"_blank"
+"\">the documentation</a>.<br/> If you don't find an answer to your issue, "
+"don't panic! Since Customizr is used by a growing community of webmasters "
+"reporting bugs and making continuous improvements, you will probably find a "
+"solution to your problem either in the FAQ or in the user forum."
+msgstr ""
+"Induláshoz segítséget ebben a <a href=\"%1$s\" target=\"_blank\">bemutató "
+"videóban</a>, vagy a <a href=\"%2$s\" target=\"_blank\">dokumentációban</a> "
+"lehet találni.<br/>Ha kérdésedre mégsem találtál választ, ne pánikolj! A "
+"Customizr-t egyre több rendszerfejlesztő alkalmazza, hibajelentéseikből és "
+"fejlesztéseikből, sokat lehet tanulni. Több mint valószínű a GYIK között "
+"vagy a fórumokon megtalálod a megoldást."
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:148
+msgid "Read the documentation"
+msgstr "Olvasd el a dokumentációt"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:152
+msgid "Check the FAQ"
+msgstr "Olvasd el a GYIK"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:157
+msgid "Code snippets"
+msgstr "Kódrészletek"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:160
+msgid "Discuss in the user forum"
+msgstr "Dumcsizás a fórumban"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:168
+#, php-format
+msgid ""
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see the "
+"changelog)</a> to help you build an awesome website. Watch the <a href=\"%2$s"
+"\" target=\"_blank\">introduction video</a> and find inspiration in the <a "
+"href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
+msgstr ""
+"Köszönjük, hogy a Customizr választotta! A Customizr %1$s több új funkciót "
+"tartalmaz, biztonságosabb, és <a href=\"#customizr-changelog\">stabilabb "
+"(lásd változások)</a> mint valaha. Segítségével látványos és trendi oldalak "
+"hozhatók létre. Nézd meg a <a href=\"%2$s\" target=\"_blank\">referencia "
+"videót</a>, s inspirálód a <a href=\"#showcase\">bemutatóból</a>.<br/> "
+"Használd egészséggel! "
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:182
+#, php-format
+msgid ""
+"You are using a child theme of Customizr %1$s : always check the %2$s after "
+"upgrading to see if a function or a template has been deprecated."
+msgstr ""
+"A Customizr %1$s egyik gyerek (child) témáját használod. Frissítés után "
+"mindig ellenőrizd a %2$s , s győződj meg róla, hogy mely funkciók és "
+"sablonok lettek elavulttá nyilvánítva."
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:197
+msgid "We need sponsors!"
+msgstr "Szponzorokra lenne szükségünk!"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:198
+msgid ""
+"<strong>We do our best do make Customizr the perfect free theme for you!</"
+"strong><br/> Please help support it's continued development with a donation "
+"of $20, $50, or even $100."
+msgstr ""
+"<strong>Minden megteszünk azért, hogy a Customizr egy tökéletes ingyenes "
+"téma maradjon.</strong><br/> Kérjük segítsd erőfeszítéseinket és adományoz "
+"számunkra  $20, $50, vagy akár  $100."
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:205
+msgid "Happy user of Customizr?"
+msgstr "Elégedett Customizr felhasználó?"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:206
+msgid ""
+"If you are happy with the theme, say it on wordpress.org and give Customizr "
+"a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr ""
+"Akkor írjon egy pozitív véleményt a wordpress.org honlapjára. (Minden "
+"visszajelzésre ki vagyunk éhezve)"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:211
+msgid "Follow us"
+msgstr "Kövess minket"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:219
+msgid "Customizr's extensions"
+msgstr ""
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:222
+#: inc/admin/class-fire-admin_init.php:231
+msgid "Visit the extension's page"
+msgstr ""
+
+#: inc/admin/class-fire-admin_init.php:223
+msgid "Easily take your web design one step further"
+msgstr ""
+
+#: inc/admin/class-fire-admin_init.php:224
+msgid ""
+"The Customizr's extensions are plugins developed to extend the Customizr "
+"theme with great features. Nicely integrated with the theme's built-in "
+"options, they can be enabled/disabled safely with no side effects on your "
+"existing settings or customizations."
+msgstr ""
+
+#: inc/admin/class-fire-admin_init.php:226
+msgid ""
+"These modules are designed to be simple to use for everyone. They are a good "
+"solution to add some creative customizations whitout needing to dive into "
+"the code."
+msgstr ""
+
+#: inc/admin/class-fire-admin_init.php:228
+msgid ""
+"Customizr's extensions are installed and upgraded from your WordPress admin, "
+"like any other WordPress plugins. Well documented and easily extendable with "
+"hooks, they come with a dedicated support forum on themesandco.com."
+msgstr ""
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:237
+msgid "Customizr Showcase"
+msgstr "Customizr bemutató"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:240
+#: inc/admin/class-fire-admin_init.php:247
+msgid "Visit the showcase"
+msgstr "Látogasd meg a bemutatót"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:241
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "Inspirálódj a mások által létrehozott Customizr alapú honlapokból! "
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:242
+msgid ""
+"This showcase aims to show what can be done with Customizr and helping other "
+"users to find inspiration for their web design."
+msgstr ""
+"Ez a bemutató megmutatja, mit lehet létrehozni a Customizr-el, és inspiráció "
+"lehet a te munkádhoz"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:244
+msgid ""
+"Do you think you made an awesome website that can inspire people? Submitting "
+"a site for review is quick and easy to do."
+msgstr ""
+"Ha úgy találod, hogy egy érdekes honlapot hoztál létre, küld be hozzánk, "
+"hogy más is tanuljon belőle."
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:254
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr "Változások a %1$s verzióban"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:263
+msgid "Go to Dashboard &rarr; Home"
+msgstr "Ugorj a Vezérlőpult-hoz &rarr; Kezdőlap"
+
+# @ customizr
+#: inc/admin/class-fire-admin_init.php:263
+msgid "Go to Dashboard"
+msgstr "Ugorj a Vezérlőpult-hoz"
+
+# @ customizr
+#: parts/class-content-attachment.php:44
+msgid "&larr; Previous"
+msgstr "&larr; Előző"
+
+# @ customizr
+#: parts/class-content-attachment.php:45
+msgid "Next &rarr;"
+msgstr "Következő &rarr;"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:43
+#: parts/class-content-breadcrumb.php:102
+msgid "Home"
+msgstr "Kezdőlap"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:99
+msgid "Browse:"
+msgstr "Böngészés:"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:479
+msgid "g:i a"
+msgstr "g:i a"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:482
+#, php-format
+msgid "Minute %1$s"
+msgstr "Perc %1$s"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:482
+msgid "i"
+msgstr "i"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:485
+msgid "g a"
+msgstr "g a"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:496
+#: parts/class-content-breadcrumb.php:506
+#: parts/class-content-breadcrumb.php:515
+#: parts/class-content-breadcrumb.php:526
+#: parts/class-content-breadcrumb.php:528
+#: parts/class-content-breadcrumb.php:727
+msgid "Y"
+msgstr "Y"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:497
+#: parts/class-content-breadcrumb.php:518
+#: parts/class-content-breadcrumb.php:520
+#: parts/class-content-breadcrumb.php:731
+msgid "F"
+msgstr "F"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:500
+#: parts/class-content-breadcrumb.php:502
+#: parts/class-content-breadcrumb.php:735
+msgid "d"
+msgstr "d"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:509
+#: parts/class-content-breadcrumb.php:511
+#, php-format
+msgid "Week %1$s"
+msgstr "Week %1$s"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:537
+#: parts/class-content-breadcrumb.php:539
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Keresési eredmények a  &quot;%1$s&quot; kifejezéshez"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:544
+msgid "404 Not Found"
+msgstr "404 Elnyelte a Prikulics"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:549
+#: parts/class-content-breadcrumb.php:551
+#, php-format
+msgid "Page %d"
+msgstr "%d oldal"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:620
+msgid "Split"
+msgstr "Kettéoszt"
+
+# @ customizr
+#: parts/class-content-breadcrumb.php:624
+msgid "Merge"
+msgstr "Összefűz"
+
+# @ customizr
+#: parts/class-content-comments.php:63
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s  &ldquo;%2$s&rdquo;-ból"
+
+# @ customizr
+#: parts/class-content-comments.php:121
+msgid "Pingback:"
+msgstr "Visszapingelés"
+
+# @ customizr
+#: parts/class-content-comments.php:121
+msgid "(Edit)"
+msgstr "(Szerkesztés)"
+
+# @ customizr
+#: parts/class-content-comments.php:149
+msgid "Reply"
+msgstr "Válasz"
+
+# @ customizr
+#: parts/class-content-comments.php:156
+msgid "Post author"
+msgstr "Bejegyzés szerzője"
+
+# @ customizr
+#: parts/class-content-comments.php:163
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s : %2$s"
+
+# @ customizr
+#: parts/class-content-comments.php:168
+msgid "Your comment is awaiting moderation."
+msgstr "Hozzászólásod moderálásra vár."
+
+# @ customizr
+#: parts/class-content-comments.php:202
+msgid "Comment navigation"
+msgstr "Hozzászólás navigálás"
+
+# @ customizr
+#: parts/class-content-comments.php:208
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Régebbi bejegyzések"
+
+# @ customizr
+#: parts/class-content-comments.php:216
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Újabb bejegyzések <span class=\"meta-nav\">&rarr;</span>"
+
+# @ customizr
+#: parts/class-content-comments.php:248
+msgid "Comments are closed."
+msgstr "Hozzászólások lezárva"
+
+# @ customizr
+#: parts/class-content-featured_pages.php:123
+msgid "Customizer screen"
+msgstr "Beállítási képernyő"
+
+# @ customizr
+#: parts/class-content-featured_pages.php:123
+msgid " here"
+msgstr "itt"
+
+# @ customizr
+#: parts/class-content-featured_pages.php:127
+msgid "Featured page"
+msgstr "Kiemelt oldal"
+
+# @ customizr
+#: parts/class-content-featured_pages.php:130
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"Kiemelt oldal leíró szövege: használd az oldal kivonatszövegét, vagy írj egy "
+"sajátot a Beállítási képernyőn %s."
+
+# @ customizr
+#: parts/class-content-gallery.php:194
+msgid "Missing Attachment"
+msgstr "Hiányzó csatolmány"
+
+# @ customizr
+#: parts/class-content-headings.php:46
+msgid "Ooops, page not found"
+msgstr "Híjnye ez bésírült s ejsze ki se gyütt!"
+
+# @ customizr
+#: parts/class-content-headings.php:57
+msgid "No"
+msgstr "Nem"
+
+# @ customizr
+#: parts/class-content-headings.php:58
+msgid "Search Results for :"
+msgstr "Keresési eredmény:"
+
+# @ customizr
+#: parts/class-content-headings.php:73
+msgid "Author Archives :"
+msgstr "Szerző szerinti  archívum:"
+
+# @ customizr
+#: parts/class-content-headings.php:87 parts/class-content-post.php:98
+#, php-format
+msgid "About %s"
+msgstr "Névjegy: %s"
+
+# @ customizr
+#: parts/class-content-headings.php:100
+msgid "Category Archives :"
+msgstr "Kategória szerinti archívum:"
+
+# @ customizr
+#: parts/class-content-headings.php:116
+msgid "Tag Archives :"
+msgstr "Címke szerinti archívum:"
+
+# @ customizr
+#: parts/class-content-headings.php:129
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Nap szerinti archívum: %s"
+
+# @ customizr
+#: parts/class-content-headings.php:129
+msgid "Archives"
+msgstr "Archívum"
+
+# @ customizr
+#: parts/class-content-headings.php:130
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Hónap szerinti archívum: %s"
+
+# @ customizr
+#: parts/class-content-headings.php:130
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "Y F"
+
+# @ customizr
+#: parts/class-content-headings.php:131
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Év szerinti archívum: %s"
+
+# @ customizr
+#: parts/class-content-headings.php:131
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+# @ customizr
+#: parts/class-content-headings.php:217 parts/class-content-headings.php:223
+msgid "{no title} Read the post &raquo;"
+msgstr "{nincs cím} Olvasd el a bejegyzést &raquo;"
+
+# @ customizr
+#: parts/class-content-headings.php:222
+#, php-format
+msgid "Permalink to %s"
+msgstr "Közvetlen hivatkozás: %s"
+
+# @ customizr
+#: parts/class-content-headings.php:240
+msgid "Comment(s) on"
+msgstr "Hozzászólás(ok)"
+
+# @ customizr
+#: parts/class-content-page.php:48 parts/class-content-post.php:53
+#: parts/class-content-post_list.php:132
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Olvasás folytatása <span class=\"meta-nav\">&rarr;</span>"
+
+# @ customizr
+#: parts/class-content-page.php:50 parts/class-content-post.php:54
+#: parts/class-content-post_list.php:133
+msgid "Pages:"
+msgstr "Oldalak:"
+
+# @ customizr
+#: parts/class-content-post.php:102
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+"Minden bejegyzés megjelenítése: %s <span class=\"meta-nav\">&rarr;</span>"
+
+# @ customizr
+#: parts/class-content-post_metas.php:54
+msgid "Published"
+msgstr "Közzétéve"
+
+# @ customizr
+#: parts/class-content-post_metas.php:57
+msgid "at dimensions"
+msgstr "méretek"
+
+# @ customizr
+#: parts/class-content-post_metas.php:57
+msgid "Link to full-size image"
+msgstr "Link a teljes méretű képhez"
+
+# @ customizr
+#: parts/class-content-post_metas.php:58
+msgid "in"
+msgstr ":"
+
+# @ customizr
+#: parts/class-content-post_metas.php:58
+msgid "Return to "
+msgstr "Visszaküldés "
+
+# @ customizr
+#: parts/class-content-post_metas.php:80
+#, php-format
+msgid "View all posts by %s"
+msgstr "Minden bejegyzés megjelenítése: %s"
+
+# @ customizr
+#: parts/class-content-post_metas.php:87
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"Bejegyzés közölve: %1$s, címkézve:  %2$s, dátum: %3$s, szerző: <span class="
+"\"by-author\">%4$s</span>."
+
+# @ customizr
+#: parts/class-content-post_metas.php:89
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Bejegyzés közölve: %1$s, dátum: %3$s, szerző: <span class=\"by-author\">"
+"%4$s</span>."
+
+# @ customizr
+#: parts/class-content-post_metas.php:91
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+"Bejegyzés közölve: dátum: %3$s, szerző: <span class=\"by-author\">%4$s</"
+"span>."
+
+# @ customizr
+#: parts/class-content-post_metas.php:134
+#: parts/class-content-post_metas.php:166
+#, php-format
+msgid "View all posts in %s"
+msgstr "Minden bejegyzés megjelenítése: %s"
+
+# @ customizr
+#: parts/class-content-post_navigation.php:59
+#: parts/class-content-post_navigation.php:92
+msgid "Post navigation"
+msgstr "Navigálás a bejegyzések között"
+
+# @ customizr
+#: parts/class-content-post_navigation.php:67
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+# @ customizr
+#: parts/class-content-post_navigation.php:77
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+# @ customizr
+#: parts/class-content-post_navigation.php:102
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Régebbi bejegyzések"
+
+# @ customizr
+#: parts/class-content-post_navigation.php:115
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Újabb bejegyzések <span class=\"meta-nav\">&rarr;</span>"
+
+# @ customizr
+#: parts/class-footer-footer_main.php:179
+msgid "Back to top"
+msgstr "Ugrás az oldal tetejére"
+
+# @ customizr
+#: parts/class-header-header_main.php:167
+msgid "Back Home"
+msgstr "Ugrás a kezdőlapra"
+
+# @ customizr
+#: parts/class-header-menu.php:49
+msgid "Add a menu"
+msgstr "Menü hozzáadása"

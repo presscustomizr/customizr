@@ -20,60 +20,41 @@ class TC_breadcrumb {
     static $instance;
 
     function __construct () {
-
         self::$instance =& $this;
-
         add_action( '__before_main_container'			, array( $this , 'tc_breadcrumb_display' ), 20 );
     }
 
     
-	 /**
-      * 
-      * @package Customizr
-      * @since Customizr 1.0 
-     */
+	/**
+    * 
+    * @package Customizr
+    * @since Customizr 1.0 
+    */
     function tc_breadcrumb_display() {
+	  	if(  !apply_filters( 'tc_show_breadcrumb' , 1 == tc__f( '__get_option' , 'tc_breadcrumb') && !tc__f('__is_home') ) )
+	      return;
 
-	      $__options         = tc__f( '__options' );
+	  	$args = array(
+		  'container'  => 'div' , // div, nav, p, etc.
+		  'separator'  => '&raquo;' ,
+		  'before'     => false,
+		  'after'      => false,
+		  'front_page' => true,
+		  'show_home'  => __( 'Home' , 'customizr' ),
+		  'network'    => false,
+		  'echo'       => true
+	  	);
 
-	      //get the default layout
-	        $tc_breadcrumb 			= $__options['tc_breadcrumb'];
-	        if( $tc_breadcrumb != 1)
-	          return;
-	      $args = array(
-	      'container'  => 'div' , // div, nav, p, etc.
-	      'separator'  => '&raquo;' ,
-	      'before'     => false,
-	      'after'      => false,
-	      'front_page' => true,
-	      'show_home'  => __( 'Home' , 'customizr' ),
-	      'network'    => false,
-	      'echo'       => true
-	      );
-
-	      ob_start();
-
-	      //do not display breadcrumb on home page
-	      if ( tc__f('__is_home') ) {
-	        return;
-	       }
-	      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-	        ?>
-
-	        <div class="tc-hot-crumble container" role="navigation">
-	        <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
-	          <div class="row">
-	            <div class="span12">
-	            <?php $this -> tc_breadcrumb_trail( $args); ?>
-	            </div>
-	          </div>
-	        </div>
-
-		    <?php
-	        $html = ob_get_contents();
-	        ob_end_clean();
-	        echo apply_filters( 'tc_breadcrumb_display' , $html );
+	  	echo apply_filters( 
+	  			'tc_breadcrumb_display' , 
+				sprintf('<div class="tc-hot-crumble container" role="navigation"><div class="row"><div class="%1$s">%2$s</div></div></div>',
+					apply_filters( 'tc_breadcrumb_class', 'span12' ),
+					$this -> tc_breadcrumb_trail( $args)
+				)
+	  	);
     }
+
+
 
      /**
 	 * Breadcrumb Trail - A breadcrumb menu script for WordPress.
@@ -195,6 +176,9 @@ class TC_breadcrumb {
 		$trail = array();
 		$path = '';
 
+		/* tc addon */
+		$page_for_posts 				= ( 'posts' != get_option('show_on_front') ) ? get_option('page_for_posts') : false;
+
 		/* If $show_home is set and we're not on the front page of the site, link to the home page. */
 		if ( !is_front_page() && $args['show_home'] ) {
 
@@ -266,8 +250,10 @@ class TC_breadcrumb {
 				$path .= trailingslashit( $wp_rewrite->front );
 
 				/* If there's a path, check for parents. */
-				if ( !empty( $path ) )
+				if ( !empty( $path ) && !$page_for_posts )
 					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+				else if ( $page_for_posts )
+					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				/* Map the permalink structure tags to actual links. */
 				$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_map_rewrite_tags( $post_id, get_option( 'permalink_structure' ), $args ) );
@@ -332,7 +318,7 @@ class TC_breadcrumb {
 			elseif ( 'page' !== $post_type ) {
 
 				/* If $front has been set, add it to the $path. */
-				if ( isset( $post_type_object) && $post_type_object->rewrite['with_front'] && $wp_rewrite->front )
+				if ( isset( $post_type_object) && isset($post_type_object->rewrite['with_front']) && $post_type_object->rewrite['with_front'] && $wp_rewrite->front )
 					$path .= trailingslashit( $wp_rewrite->front );
 
 				/* If there's a slug, add it to the $path. */
@@ -397,8 +383,10 @@ class TC_breadcrumb {
 				}
 
 				/* Get parent pages by path if they exist. */
-				if ( $path )
+				if ( $path && ! $page_for_posts)
 					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+				else if ( $page_for_posts && ( is_category() || is_tag() ) )
+					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				/* Add post type archive if its 'has_archive' matches the taxonomy rewrite 'slug'. */
 				if ( $taxonomy->rewrite['slug'] ) {
@@ -448,7 +436,7 @@ class TC_breadcrumb {
 				$post_type_object = get_post_type_object( get_query_var( 'post_type' ) );
 
 				/* If $front has been set, add it to the $path. */
-				if ( $post_type_object->rewrite['with_front'] && $wp_rewrite->front )
+				if ( isset($post_type_object->rewrite['with_front']) && $post_type_object->rewrite['with_front'] && $wp_rewrite->front )
 					$path .= trailingslashit( $wp_rewrite->front );
 
 				/* If there's a slug, add it to the $path. */
@@ -480,9 +468,11 @@ class TC_breadcrumb {
 				if ( !empty( $wp_rewrite->author_base ) )
 					$path .= $wp_rewrite->author_base;
 
-				/* If $path exists, check for parent pages. */
-				if ( !empty( $path ) )
+				/* If there's a path, check for parents. */
+				if ( !empty( $path ) && !$page_for_posts )
 					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+				else if ( $page_for_posts )
+					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				/* Add the author's display name to the trail end. */
 				if ( is_paged() )
@@ -493,6 +483,12 @@ class TC_breadcrumb {
 
 			/* If viewing a time-based archive. */
 			elseif ( is_time() ) {
+
+				/* If there's a path, check for parents. */
+				if ( !empty( $path ) && !$page_for_posts )
+					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+				else if ( $page_for_posts )
+					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				if ( get_query_var( 'minute' ) && get_query_var( 'hour' ) )
 					$trail[] = get_the_time( __( 'g:i a' , 'customizr' ) );
@@ -506,6 +502,11 @@ class TC_breadcrumb {
 
 			/* If viewing a date-based archive. */
 			elseif ( is_date() ) {
+				/* If there's a path, check for parents. */
+				if ( !empty( $path ) && !$page_for_posts )
+					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+				else if ( $page_for_posts )
+					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				/* If $front has been set, check for parent pages. */
 				if ( $wp_rewrite->front )

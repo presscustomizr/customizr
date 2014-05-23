@@ -1,6 +1,6 @@
 <?php
 /**
-* Widgets factory
+* Widgets factory : registered the different widgetized areas
 *
 * 
 * @package      Customizr
@@ -18,10 +18,8 @@ class TC_widgets {
       static $instance;
 
       function __construct () {
-
         self::$instance =& $this;
-
-          add_action( 'widgets_init'                         , array( $this , 'tc_widgets_factory' ));
+        add_action( 'widgets_init'                          , array( $this , 'tc_widgets_factory' ));
       }
 
 
@@ -32,43 +30,44 @@ class TC_widgets {
       * @since Customizr 3.0 
       */
       function tc_widgets_factory() {
+        //default Customizr filtered args
+        $default                  = apply_filters( 'tc_default_widget_args' ,
+                                  array(
+                                    'name'                    => '',
+                                    'id'                      => '',
+                                    'description'             => '',
+                                    'class'                   => '',
+                                    'before_widget'           => '<aside id="%1$s" class="widget %2$s">',
+                                    'after_widget'            => '</aside>',
+                                    'before_title'            => '<h3 class="widget-title">',
+                                    'after_title'             => '</h3>',
+                                  )
+        );
 
-         //record for debug
-          tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-          $tc_widgets = array(
-                      'right'         => array(
-                                      'name'                 => __( 'Right Sidebar' , 'customizr' ),
-                                      'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
-                      ),
-                      'left'          => array(
-                                      'name'                 => __( 'Left Sidebar' , 'customizr' ),
-                                      'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
-                      ),
-                      'footer_one'    => array(
-                                      'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
-                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
-                      ),
-                      'footer_two'    => array(
-                                      'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
-                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
-                      ),
-                      'footer_three'   => array(
-                                      'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
-                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
-                      ),
-          );
+        //gets the filtered default values
+        $footer_widgets           = apply_filters( 'tc_footer_widgets'  , TC_init::$instance -> footer_widgets );
+        $sidebar_widgets          = apply_filters( 'tc_sidebar_widgets' , TC_init::$instance -> sidebar_widgets );
+        $widgets                  = apply_filters( 'tc_default_widgets' , array_merge( $sidebar_widgets , $footer_widgets ) );
 
-          foreach ( $tc_widgets as $id => $infos) {
-              register_sidebar(   array(
-                                  'name'                    => $infos['name'],
-                                  'id'                      => $id,
-                                  'description'             => $infos['description'],
-                                  'before_widget'           => '<aside id="%1$s" class="widget %2$s">' ,
-                                  'after_widget'            => '</aside>' ,
-                                  'before_title'            => '<h3 class="widget-title">' ,
-                                  'after_title'             => '</h3>' ,
-              ));
-          }
+        //declares the arguments array
+        $args                     = array();
+
+        //fills in the $args array and registers sidebars
+        foreach ( $widgets as $id => $infos) {
+            foreach ( $default as $key => $default_value ) {
+              if ('id' == $key ) {
+                $args[$key] = $id;
+              }
+              else if ( 'name' == $key || 'description' == $key) {
+                $args[$key] = !isset($infos[$key]) ? $default_value : call_user_func( '__' , $infos[$key] , 'customizr' );
+              }
+              else {
+                $args[$key] = !isset($infos[$key]) ? $default_value : $infos[$key];
+              }
+            }
+          //registers sidebars
+          register_sidebar( $args );
+        }
       }
 
 }//end of class

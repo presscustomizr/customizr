@@ -84,13 +84,16 @@ class TC_meta_boxes {
         
         //3- Adding the meta-boxes to those screens
         foreach ( $screens as $key => $screen) {
+            //skip if acf
+            if ('acf' == $screen )
+              continue;
             add_meta_box(
                 'layout_sectionid' ,
                 __( 'Layout Options' , 'customizr' ),
                 array( $this , 'tc_post_layout_box' ),
                 $screen,
                 ( 'page' == $screen | 'post' == $screen ) ? 'side' : 'normal',//displays meta box below editor for custom post types
-                'high'
+                apply_filters('tc_post_meta_boxes_priority' , 'high', $screen )
             );
             add_meta_box(
                 'slider_sectionid' ,
@@ -98,7 +101,7 @@ class TC_meta_boxes {
                 array( $this , 'tc_post_slider_box' ),
                 $screen,
                 'normal' ,
-                'high'
+                apply_filters('tc_post_meta_boxes_priority' , 'high', $screen)
             );
         }//end foreach
     }
@@ -121,19 +124,19 @@ class TC_meta_boxes {
           // The actual fields for data entry
           // Use get_post_meta to retrieve an existing value from the database and use the value for the form
           //Layout name setup
-          $layout_id        = 'layout_field';
+          $layout_id            = 'layout_field';
 
-          $layout_value     = esc_attr(get_post_meta( $post -> ID, $key = 'layout_key' , $single = true ));
+          $layout_value         = esc_attr(get_post_meta( $post -> ID, $key = 'layout_key' , $single = true ));
 
-          //Layouts select list array
-          $layouts = array (
-              'r' => __( 'Right sidebar' , 'customizr' ),
-              'l' => __( 'Left sidebar' , 'customizr' ),
-              'b' => __( 'Two sidebars' , 'customizr' ),
-              'f' => __( 'Full Width' , 'customizr' ),
-            );
+          //Generates layouts select list array
+          $layouts              = array();
+          $global_layout        = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
+          foreach ( $global_layout as $key => $value ) {
+            $layouts[$key]      = call_user_func( '__' , $value['metabox'] , 'customizr' );
+          }
+
           //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr( tc__f( '__get_option' , 'tc_sidebar_global_layout' ) );
+          $tc_sidebar_default_layout  = esc_attr( tc__f( '__get_option' , 'tc_sidebar_global_layout' ) );
           
           //get the lists of eligible post types + normal posts (not pages!)
           $args                 = array(
@@ -455,8 +458,6 @@ class TC_meta_boxes {
     ------------------ ATTACHMENT SLIDER META BOX ------------------
     ----------------------------------------------------------------
     */
-
-
     /**
      * Add a slider metabox to attachments
      * @package Customizr
@@ -552,14 +553,17 @@ class TC_meta_boxes {
         $default_description    = $attachment->post_excerpt;
         
         //title field setup
-        $title_id      = 'slide_title_field';
-        $title_value   = esc_attr(get_post_meta( $postid, $key = 'slide_title_key' , $single = true ));
+        $title_id               = 'slide_title_field';
+        $title_value            = esc_attr(get_post_meta( $postid, $key = 'slide_title_key' , $single = true ));
+        //we define a filter for the slide_text_length
+        $default_title_length   = apply_filters( 'tc_slide_title_length', 80 );
+
         //check if we already have a custom key created for this field, if not apply default value
-        
-        if(!in_array( 'slide_title_key' ,get_post_custom_keys( $postid)))
+        if(!in_array( 'slide_title_key' ,get_post_custom_keys( $postid))) {
           $title_value = $default_title;
-        if (strlen( $title_value) > 80) {
-          $title_value = substr( $title_value,0,strpos( $title_value, ' ' ,80));
+        }
+        if (strlen( $title_value) > $default_title_length) {
+          $title_value = substr( $title_value,0,strpos( $title_value, ' ' , $default_title_length));
           $title_value = esc_html( $title_value) . ' ...';
         }
         else {
@@ -570,12 +574,15 @@ class TC_meta_boxes {
         //text_field setup : sanitize and limit length
         $text_id        = 'slide_text_field';
         $text_value     = esc_html(get_post_meta( $postid, $key = 'slide_text_key' , $single = true ));
+         //we define a filter for the slide_title_length
+        $default_text_length   = apply_filters( 'tc_slide_text_length', 250 );
+
          //check if we already have a custom key created for this field, if not apply default value
         if(!in_array( 'slide_text_key' ,get_post_custom_keys( $postid)))
           $text_value = $default_description;
 
-        if (strlen( $text_value) > 250) {
-          $text_value = substr( $text_value,0,strpos( $text_value, ' ' ,250));
+        if (strlen( $text_value) > $default_text_length) {
+          $text_value = substr( $text_value,0,strpos( $text_value, ' ' ,$default_text_length));
           $text_value = $text_value . ' ...';
         }
         else {
@@ -589,8 +596,11 @@ class TC_meta_boxes {
         //button field setup
         $button_id      = 'slide_button_field';
         $button_value   = esc_attr(get_post_meta( $postid, $key = 'slide_button_key' , $single = true ));
-         if (strlen( $button_value) > 80) {
-          $button_value = substr( $button_value,0,strpos( $button_value, ' ' ,80));
+        //we define a filter for the slide text_button length
+        $default_button_length   = apply_filters( 'tc_slide_button_length', 80 );
+
+        if (strlen( $button_value) > $default_button_length) {
+          $button_value = substr( $button_value,0,strpos( $button_value, ' ' ,$default_button_length));
           $button_value = $button_value . ' ...';
         }
         else {
@@ -783,8 +793,9 @@ class TC_meta_boxes {
                     //different sanitizations
                    
                     case 'slide_text_key':
-                        if (strlen( $mydata) > 250) {
-                        $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,250));
+                        $default_text_length = apply_filters( 'tc_slide_text_length', 250 );
+                        if (strlen( $mydata) > $default_text_length) {
+                        $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,$default_text_length));
                         $mydata = esc_html( $mydata) . ' ...';
                         }
                         else {
@@ -793,7 +804,8 @@ class TC_meta_boxes {
                       break;
 
                     default://for button, color, title and post link field (actually not a link but an id)
-                       if (strlen( $mydata) > 80) {
+                        $default_title_length = apply_filters( 'tc_slide_title_length', 80 );
+                       if (strlen( $mydata) > $default_title_length) {
                         $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,80));
                         $mydata = esc_attr( $mydata) . ' ...';
                         }
@@ -1236,8 +1248,9 @@ class TC_meta_boxes {
                         //check if we add this attachment to a slider for the first time : do we have custom fields defined in DB and are the input fields existing in the DOM (sent by Ajax)?
 
                              $mydata = sanitize_text_field( $_POST[$tcid] );
-                             if (strlen( $mydata) > 80) {
-                              $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,80));
+                             $default_button_length = apply_filters( 'tc_slide_button_length', 80 );
+                             if (strlen( $mydata) > $default_button_length) {
+                              $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,$default_button_length));
                               $mydata = esc_attr( $mydata) . ' ...';
                               }
                               else {

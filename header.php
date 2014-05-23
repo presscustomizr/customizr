@@ -18,21 +18,26 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html <?php language_attributes(); ?>>                          
 <!--<![endif]-->
-<?php tc__f('rec' , __FILE__ , __FUNCTION__ ); ?>
 
-	<?php do_action( '__before_body' ); ?>
+	<?php 
+		//the '__before_body' hook is used by TC_header_main::$instance->tc_head_display()
+		do_action( '__before_body' ); 
+	?>
 
-	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
+	<body <?php body_class(); ?> <?php echo tc__f('tc_body_attributes' , 'itemscope itemtype="http://schema.org/WebPage"') ?>>
 		
 		<?php do_action( '__before_header' ); ?>
 
-	   	<header class="tc-header clearfix row-fluid" role="banner">
+	   	<header class="<?php echo tc__f('tc_header_classes', 'tc-header clearfix row-fluid') ?>" role="banner">
 			
-			<?php do_action( '__header' ); ?>
+			<?php 
+			//the '__header' hook is used by (ordered by priorities) : TC_header_main::$instance->tc_logo_title_display(), TC_header_main::$instance->tc_tagline_display(), TC_header_main::$instance->tc_navbar_display()
+				do_action( '__header' ); 
+			?>
 
 		</header>
 
 		<?php 
-		 //This hook is filtered with the slider
-		do_action ( '__after_header' )
+		 	//This hook is filtered with the slider : TC_slider::$instance->tc_slider_display()
+			do_action ( '__after_header' )
 		?>

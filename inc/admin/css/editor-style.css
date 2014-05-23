@@ -1,0 +1,167 @@
+/*
+Theme Name: customizr
+Description: Used to style the TinyMCE editor.
+*/
+
+
+/* Aside */
+.post-format-aside {
+	padding: 1.714285714rem;
+	background: #D2E0F9;
+	border-left: 18px solid #A8BFE8;
+}
+.post-format-aside p {
+	text-shadow: 0px 1px 0px #FFF;
+	color: #000;
+}
+.post-format-aside:before {
+	content: '\f308';
+	font-family: 'genericons';
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 7px;
+	top: -0px;
+	-webkit-font-smoothing: antialiased;
+	padding-right: 13px;
+	font-size: 3.5em;
+	opacity: 0.3;
+	position: relative;
+	display: block;
+	float: left;
+}
+
+
+/* Chat */
+.post-format-chat {
+	padding: 1.714285714rem;
+	background: #C9C9C9;
+	border-left: 18px solid #AFAFAF;
+}
+
+
+/* Link */
+.post-format-link {
+	padding: 1.714285714rem;
+	background: #F7CFAC;
+	border-left: 18px solid #E07211;
+}
+.post-format-link p {
+	text-shadow: 0px 1px 0px #FFF;
+	color: #000;
+}
+
+.post-format-link:before {
+	font-family: 'genericons';
+	content: "\f107";
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 7px;
+	top: -6px;
+	-webkit-font-smoothing: antialiased;
+	padding-right: 13px;
+	font-size: 6.0em;
+	opacity: 0.3;
+	position: relative;
+	display: block;
+	float: left;
+}
+
+
+/* Quote */
+.post-format-quote {
+	padding: 1.714285714rem;
+	background: #C9C9C9;
+	border-left: 18px solid #AFAFAF;
+}
+
+
+.post-format-quote:before {
+	font-family: 'entypo';
+	content: "\275E";
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 7px;
+	top: -26px;
+	-webkit-font-smoothing: antialiased;
+	padding-right: 13px;
+	font-size: 6.0em;
+	opacity: 0.3;
+	position: relative;
+	display: block;
+	float: left;
+}
+
+
+/* Status */
+.post-format-status {
+	padding: 1.714285714rem;
+	background: #A3EDA3;
+	border-left: 18px solid #62C462;
+}
+.post-format-status p {
+	text-shadow: 0px 1px 0px #FFF;
+	color: #000;
+}
+.post-format-status:before {
+	font-family: 'entypo';
+	content: "\26A1";
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 7px;
+	top: -26px;
+	-webkit-font-smoothing: antialiased;
+	padding-right: 13px;
+	font-size: 6.0em;
+	opacity: 0.3;
+	position: relative;
+	display: block;
+	float: left;
+}
+
+
+
+
+/**
+ * RTL
+ * ----------------------------------------------------------------------------
+ */
+
+html .mceContentBody.rtl {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+.rtl ol,
+.rtl ul {
+	padding: 0 40px 0 0;
+}
+
+.rtl .wp-caption,
+.rtl tr th {
+	text-align: right;
+}
+
+.rtl td {
+	padding: 6px 0 6px 10px;
+	text-align: right;
+}
+
+.rtl blockquote blockquote {
+	margin-left: 0;
+	margin-right: 24px;
+}
+
+.rtl.post-format-audio:before,
+.rtl.post-format-status:before,
+.rtl.post-format-status > p:first-child:before {
+	background: none;
+	content: none;
+}

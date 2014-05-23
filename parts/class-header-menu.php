@@ -37,34 +37,32 @@ class TC_menu {
      */
       function tc_link_to_menu_editor( $args ) {
         if ( ! current_user_can( 'manage_options' ) )
-        {
             return;
-        }
+
         // see wp-includes/nav-menu-template.php for available arguments
         extract( $args );
 
-        $link = $link_before
-            . '<a href="' .admin_url( 'nav-menus.php' ) . '">' . $before . __('Add a menu','customizr') . $after . '</a>'
-            . $link_after;
-
+        $link = sprintf('%1$s<a href="%2$s">%3$s%4$s%5$s</a>%6$s',
+          $link_before,
+          admin_url( 'nav-menus.php' ),
+          $before,
+          __('Add a menu','customizr'),
+          $after,
+          $link_after
+        );
+        
         // We have a list
-        if ( FALSE !== stripos( $items_wrap, '<ul' )
-            or FALSE !== stripos( $items_wrap, '<ol' )
-        )
-        {
-            $link = "<li>$link</li>";
-        }
-
+        $link = ( FALSE !== stripos( $items_wrap, '<ul' ) || FALSE !== stripos( $items_wrap, '<ol' ) ) ? '<li>' . $link . '</li>' : $link;
+       
         $output = sprintf( $items_wrap, $menu_id, $menu_class, $link );
-        if ( ! empty ( $container ) )
-        {
-            $output  = "<$container class='$container_class' id='$container_id'>$output</$container>";
-        }
+        $output = ( ! empty ( $container ) ) ? sprintf('<%1$s class="%2$s" id="%3$s">%4$s</%1$s>',
+                                                  $container,
+                                                  $container_class,
+                                                  $container_id,
+                                                  $output
+                                              ) : $output;
 
-        if ( $echo )
-        {
-            echo $output;
-        }
+        if ( $echo ) { echo $output; }
 
         return $output;
       }
@@ -77,28 +75,37 @@ class TC_menu {
     * @since Customizr 3.0
     */
     function tc_menu_display($resp = null) {
-
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-      ?>
-
-      <?php ob_start() ?>
+      
+        ob_start();
     
-      <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
-          <?php if ('resp' == $resp) : //resp is an argument of do_action ('__navbar' , 'resp') ?>
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-          <?php endif; ?>
-         <div class="nav-collapse collapse">
-              <?php wp_nav_menu( array( 'theme_location' => 'main' , 'menu_class' => 'nav' , 'fallback_cb' => array( $this , 'tc_link_to_menu_editor' ) , 'walker' => TC_nav_walker::$instance) );  ?>
-         </div><!-- /.nav-collapse collapse -->
+        //renders the responsive button
+        if ( 'resp' == $resp ) { //resp is an argument of do_action ('__navbar' , 'resp')
+          $button = sprintf('<button type="button" class="%1$s" data-toggle="collapse" data-target=".nav-collapse">%2$s%2$s%2$s</button>',
+            apply_filters( 'tc_menu_button_class', 'btn btn-navbar' ),
+            '<span class="icon-bar"></span>'
+          );
+          echo apply_filters( 'resp_menu_button', $button );
+        }
 
-      <?php
-      $html = ob_get_contents();
-      ob_end_clean();
-      echo apply_filters( 'tc_menu_display', $html );
+        //renders the menu
+        $menu_args = apply_filters( 'tc_menu_args', 
+                    array(
+                      'theme_location'  => 'main',
+                      'menu_class'      => ( 'hover' == esc_attr( tc__f( '__get_option' , 'tc_menu_type' ) ) ) ? 'nav tc-hover-menu' : 'nav', 
+                      'fallback_cb'     => array( $this , 'tc_link_to_menu_editor' ), 
+                      'walker'          => TC_nav_walker::$instance,
+                      'echo'            => false,
+                  )
+        );
+        $menu_wrapper_class   = ( 'hover' == esc_attr( tc__f( '__get_option' , 'tc_menu_type' ) ) ) ? 'nav-collapse collapse tc-hover-menu-wrapper' : 'nav-collapse collapse';
+        printf('<div class="%1$s">%2$s</div>',
+            apply_filters( 'menu_wrapper_class', $menu_wrapper_class ),
+            wp_nav_menu( $menu_args )
+        );
+
+        $html = ob_get_contents();
+        if ($html) ob_end_clean();
+        echo apply_filters( 'tc_menu_display', $html, $resp );
     } //end of funtion()
 
 
@@ -112,7 +119,7 @@ class TC_menu {
     * @since Customizr 3.0
     */
     function tc_add_menuclass( $ulclass) {
-      tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+      
       $html =  preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
       return apply_filters( 'tc_add_menuclass', $html );
     }

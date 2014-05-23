@@ -61,11 +61,5 @@
 		} );
 	} );
 
-	//debug tips color
-	wp.customize( 'tc_theme_options[tc_debug_tips_color]' , function( value ) {
-		value.bind( function( newval ) {
-			$( 'a.debug-tip' ).css( 'color' , newval );
-		} );
-	} );
 
 } )( jQuery );

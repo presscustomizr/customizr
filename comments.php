@@ -15,21 +15,10 @@
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
  */
-
-//if protected we don't display comments before password
-if ( post_password_required() )
-	return;
-
-//if displaying pages, we check if the customizer option is on
-if ( is_page() && 1 != esc_attr( tc__f( '__get_option' , 'tc_page_comments' ) ) )
-   return;
-
 ?>
-<?php tc__f('rec' , __FILE__ , __FUNCTION__ ); ?>
-
 <?php if ( have_comments() ) : ?>
 
-	<hr class="featurette-divider">
+	<?php echo apply_filters( 'comment_separator', '<hr class="featurette-divider '.current_filter().'">' ); ?>
 
 <?php endif; ?>
 

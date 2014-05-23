@@ -1,0 +1,1609 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Customizr 3.0.8\n"
+"POT-Creation-Date: 2014-05-05 19:57+0100\n"
+"PO-Revision-Date: 2014-05-05 19:57+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"Language-Team: Nicolas G. <contact@themesandco.com>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../comments.php:29
+msgid "Leave a Comment"
+msgstr "Læg en kommentar"
+
+#: ../inc/class-fire-init.php:45 ../inc/class-fire-init.php:46
+msgid "Right sidebar"
+msgstr "Højre sidebar"
+
+#: ../inc/class-fire-init.php:51 ../inc/class-fire-init.php:52
+msgid "Left sidebar"
+msgstr "Venstre sidebar"
+
+#: ../inc/class-fire-init.php:57 ../inc/class-fire-init.php:58
+msgid "2 sidebars : Right and Left"
+msgstr "To sidebars: højre og venstre"
+
+#: ../inc/class-fire-init.php:63 ../inc/class-fire-init.php:64
+msgid "No sidebars : full width layout"
+msgstr "Ingen sidebar: Layout i fuld bredde"
+
+#: ../inc/class-fire-init.php:75
+msgid "Blue"
+msgstr "Blå"
+
+#: ../inc/class-fire-init.php:76
+msgid "Green"
+msgstr "Grøn"
+
+#: ../inc/class-fire-init.php:77
+msgid "Yellow"
+msgstr "Gul"
+
+#: ../inc/class-fire-init.php:78
+msgid "Orange"
+msgstr "Orange"
+
+#: ../inc/class-fire-init.php:79
+msgid "Red"
+msgstr "Rød"
+
+#: ../inc/class-fire-init.php:80
+msgid "Purple"
+msgstr "Lilla"
+
+#: ../inc/class-fire-init.php:81
+msgid "Grey"
+msgstr "Grå"
+
+#: ../inc/class-fire-init.php:82
+msgid "Black"
+msgstr "Sort"
+
+#: ../inc/class-fire-init.php:91
+msgid "Subscribe to my rss feed"
+msgstr "Abonnér på mit rss feed"
+
+#: ../inc/class-fire-init.php:92
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "RSS feed (standard er Wordpress feed)"
+
+#: ../inc/class-fire-init.php:96
+msgid "Follow me on Twitter"
+msgstr "Følg på Twitter"
+
+#: ../inc/class-fire-init.php:97
+msgid "Twitter profile url"
+msgstr "Twitter profil url"
+
+#: ../inc/class-fire-init.php:101
+msgid "Follow me on Facebook"
+msgstr "Følg på Facebook"
+
+#: ../inc/class-fire-init.php:102
+msgid "Facebook profile url"
+msgstr "Facebook profil url"
+
+#: ../inc/class-fire-init.php:106
+msgid "Follow me on Google+"
+msgstr "Følg på Google+"
+
+#: ../inc/class-fire-init.php:107
+msgid "Google+ profile url"
+msgstr "Google+ profil url"
+
+#: ../inc/class-fire-init.php:111
+msgid "Follow me on Instagram"
+msgstr "Følg på Instagram"
+
+#: ../inc/class-fire-init.php:112
+msgid "Instagram profile url"
+msgstr "Instagram profil url"
+
+#: ../inc/class-fire-init.php:116
+msgid "Follow me on WordPress"
+msgstr "Følg på Wordpress"
+
+#: ../inc/class-fire-init.php:117
+msgid "WordPress profile url"
+msgstr "WordPress profil url"
+
+#: ../inc/class-fire-init.php:121
+msgid "Follow me on Youtube"
+msgstr "Følg på Youtube"
+
+#: ../inc/class-fire-init.php:122
+msgid "Youtube profile url"
+msgstr "Youtube profil url"
+
+#: ../inc/class-fire-init.php:126
+msgid "Pin me on Pinterest"
+msgstr "Følg på Pinterest"
+
+#: ../inc/class-fire-init.php:127
+msgid "Pinterest profile url"
+msgstr "Pinterest profil url"
+
+#: ../inc/class-fire-init.php:131
+msgid "Follow me on Github"
+msgstr "Følg på Github"
+
+#: ../inc/class-fire-init.php:132
+msgid "Github profile url"
+msgstr "Github profil url"
+
+#: ../inc/class-fire-init.php:136
+msgid "Follow me on Dribbble"
+msgstr "Følg på Dribbble"
+
+#: ../inc/class-fire-init.php:137
+msgid "Dribbble profile url"
+msgstr "Dribbble profil url"
+
+#: ../inc/class-fire-init.php:141
+msgid "Follow me on LinkedIn"
+msgstr "Følg på LinkedIn"
+
+#: ../inc/class-fire-init.php:142
+msgid "LinkedIn profile url"
+msgstr "LinkedIn profil url"
+
+#: ../inc/class-fire-init.php:151
+msgid "Right Sidebar"
+msgstr "Højre sidebar"
+
+#: ../inc/class-fire-init.php:152 ../inc/class-fire-init.php:156
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "Vises i indlæg, statiske sider, arkiver og søgesider"
+
+#: ../inc/class-fire-init.php:155
+msgid "Left Sidebar"
+msgstr "Venstre sidebar"
+
+#: ../inc/class-fire-init.php:163
+msgid "Footer Widget Area One"
+msgstr "Sidefod widget område et"
+
+#: ../inc/class-fire-init.php:164 ../inc/class-fire-init.php:168
+#: ../inc/class-fire-init.php:172
+msgid "Just use it as you want !"
+msgstr "Brug den som du vil!"
+
+#: ../inc/class-fire-init.php:167
+msgid "Footer Widget Area Two"
+msgstr "Sidfod widget område to"
+
+#: ../inc/class-fire-init.php:171
+msgid "Footer Widget Area Three"
+msgstr "Sidefod widget område tre"
+
+#: ../inc/class-fire-init.php:189
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "At sige sandheden i bedrageriske tider er en revolutionær handling."
+
+#: ../inc/class-fire-init.php:190
+msgid "George Orwell"
+msgstr "George Orwell"
+
+#: ../inc/class-fire-init.php:191
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr "Siden findes desværre ikke. Du kan prøve søgningen nederst."
+
+#: ../inc/class-fire-init.php:196
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr ""
+"Succes er evnen til at kunne gå fra den ene fiasko til den anden uden at "
+"miste modet..."
+
+#: ../inc/class-fire-init.php:197
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: ../inc/class-fire-init.php:198
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Din søgning lykkedes desværre ikke. Prøv venligst igen med andre søgeord."
+
+#: ../inc/class-fire-init.php:204 ../inc/class-fire-init.php:213
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr er et rent, responsivt tema"
+
+#: ../inc/class-fire-init.php:205
+msgid "Let your creativity speak and easily customiz'it the way you want!"
+msgstr "Lad din kreativitet tale og tilpas, som du vil!"
+
+#: ../inc/class-fire-init.php:206
+msgid "Learn more"
+msgstr "Læs mere"
+
+#: ../inc/class-fire-init.php:218 ../inc/class-fire-init.php:227
+msgid "Style your WordPress site live!"
+msgstr "Tilpas udseendet af dit WordPress-site live!"
+
+#: ../inc/class-fire-init.php:219
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"Mange tilpasninger kan ske fra WordPress' Tilpas-skærm: se din ændringer "
+"live!"
+
+#: ../inc/class-fire-init.php:220
+msgid "Just try it!"
+msgstr "Prøv det!"
+
+#: ../inc/class-fire-init.php:232 ../inc/class-fire-init.php:241
+msgid "Create beautiful sliders"
+msgstr "Skab flotte sliders"
+
+#: ../inc/class-fire-init.php:233
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr kommer med en fed slide-generator: tilføj en slider til ethvert "
+"indlæg og enhver side!"
+
+#: ../inc/class-fire-init.php:234
+msgid "Discover the features"
+msgstr "Opdag nye features"
+
+#: ../inc/class-fire-init.php:295
+msgid "Main Menu"
+msgstr "Hovedmenu"
+
+#: ../inc/class-fire-init.php:658
+msgid "Customiz'it!"
+msgstr "Customiz'it!"
+
+#: ../inc/class-fire-init.php:661
+msgid "Customize your website at any time!"
+msgstr "Tilpas dit website når som helst!"
+
+#: ../inc/class-fire-init.php:680
+msgid "Help"
+msgstr "Hjælp"
+
+#: ../inc/class-fire-init.php:683
+msgid "Need help with Customizr? Click here!"
+msgstr "Har du brug for hjælp med Customizr? Klik her!"
+
+#: ../inc/class-fire-utils.php:336
+#, php-format
+msgid "Page %s"
+msgstr "Side %s"
+
+#: ../inc/class-fire-utils.php:533
+msgid "Home featured page one"
+msgstr "Udvalgt side et"
+
+#: ../inc/class-fire-utils.php:534
+msgid "Home featured page two"
+msgstr "Udvalgt side to"
+
+#: ../inc/class-fire-utils.php:535
+msgid "Home featured page three"
+msgstr "Udvalgt side tre"
+
+#: ../inc/class-fire-utils.php:538
+msgid "Featured text one (200 car. max)"
+msgstr "Udvalgt tekst et (max. 200 tegn)"
+
+#: ../inc/class-fire-utils.php:539
+msgid "Featured text two (200 car. max)"
+msgstr "Udvalgt tekst to (max. 200 tegn)"
+
+#: ../inc/class-fire-utils.php:540
+msgid "Featured text three (200 car. max)"
+msgstr "Udvalgt tekst tre (max. 200 tegn)"
+
+#: ../inc/class-fire-utils.php:556
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr "Tilpasset udvalgt side %1$s"
+
+#: ../inc/class-fire-utils.php:572
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr "Udvalgt tekst %1$s (max. 200 tegn)"
+
+#: ../inc/class-fire-utils.php:575
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr ""
+"Du skal vælge en side først. lad feltet være tomt, hvis du vil bruge siden "
+"uddrag."
+
+#: ../inc/class-fire-utils.php:673
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Ingen slider &mdash;"
+
+#: ../inc/class-fire-utils.php:674
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Demo Slider &mdash;"
+
+#: ../inc/class-fire-utils.php:727
+msgid "Skin"
+msgstr "Skin"
+
+#: ../inc/class-fire-utils.php:729
+msgid "Select a skin for Customizr"
+msgstr "Vælg et skin til Customizr"
+
+#: ../inc/class-fire-utils.php:733
+msgid "Logo &amp; Favicon"
+msgstr "Logo &amp; Favicon"
+
+#: ../inc/class-fire-utils.php:735
+msgid "Set up logo and favicon options"
+msgstr "Indstil logo og favicon"
+
+#: ../inc/class-fire-utils.php:739
+msgid "Front Page"
+msgstr "Forside"
+
+#: ../inc/class-fire-utils.php:741
+msgid "Set up front page options"
+msgstr "Indstil forside options"
+
+#: ../inc/class-fire-utils.php:745
+msgid "Pages &amp; Posts Layout"
+msgstr "Sider &amp; indlægslayout"
+
+#: ../inc/class-fire-utils.php:747
+msgid "Set up layout options"
+msgstr "Indstil layout options"
+
+#: ../inc/class-fire-utils.php:751
+msgid "Comments"
+msgstr "Kommentarer"
+
+#: ../inc/class-fire-utils.php:753
+msgid "Set up comments options"
+msgstr "Indstil kommentar-options"
+
+#: ../inc/class-fire-utils.php:757 ../parts/class-content-sidebar.php:112
+msgid "Social links"
+msgstr "Sociale links"
+
+#: ../inc/class-fire-utils.php:759
+msgid "Set up your social links"
+msgstr "Indstil dine sociale links"
+
+#: ../inc/class-fire-utils.php:763
+msgid "Images"
+msgstr "Billeder"
+
+#: ../inc/class-fire-utils.php:765
+msgid "Various images settings"
+msgstr "Diverse billedindstillinger"
+
+#: ../inc/class-fire-utils.php:769
+msgid "Links"
+msgstr "Links"
+
+#: ../inc/class-fire-utils.php:771
+msgid "Various links settings"
+msgstr "Diverse linkindstillinger"
+
+#: ../inc/class-fire-utils.php:775
+msgid "Custom CSS"
+msgstr "Tilpasset CSS"
+
+#: ../inc/class-fire-utils.php:777
+msgid "Add your own CSS"
+msgstr "Tilføj din egen CSS"
+
+#: ../inc/class-fire-utils.php:781
+msgid "Responsive settings"
+msgstr "Responsive indstillinger"
+
+#: ../inc/class-fire-utils.php:783
+msgid "Various settings for responsive display"
+msgstr "Diverse indstillinger for responsive visning"
+
+#: ../inc/class-fire-utils.php:815
+msgid "Manage menus"
+msgstr "Håndtér menuer"
+
+#: ../inc/class-fire-utils.php:821
+msgid "Select a submenu expansion option"
+msgstr "Vælg option for undermenuudvidelse"
+
+#: ../inc/class-fire-utils.php:825
+msgid "Expand submenus on click"
+msgstr "Udvid undermenuer med klik"
+
+#: ../inc/class-fire-utils.php:826
+msgid "Expand submenus on hover"
+msgstr "Udvid undermenuer med hover"
+
+#: ../inc/class-fire-utils.php:841
+msgid "Choose a predefined skin"
+msgstr "Vælg et foruddefineret skin"
+
+#: ../inc/class-fire-utils.php:850
+msgid "Performance : use the minified CSS stylesheet"
+msgstr "Ydelse: bruge minified CSS stylesheet"
+
+#: ../inc/class-fire-utils.php:853
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr "Når minified stylesheet bruges loades websiderne hurtigere."
+
+#: ../inc/class-fire-utils.php:859
+msgid "Display top border"
+msgstr "Vis øverste kant (top border)"
+
+#: ../inc/class-fire-utils.php:863
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Fravælg for at fjerne øverste, farvede kant (top border)."
+
+#: ../inc/class-fire-utils.php:876
+msgid "Logo Upload (supported formats : .jpg, .png, .gif)"
+msgstr "Logo upload (understøtter: .jpg, .png, .gif)"
+
+#: ../inc/class-fire-utils.php:884
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "Tving logo til max-bredde:250px og max-højde:100px"
+
+#: ../inc/class-fire-utils.php:900
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Upload Favicon (understøtter: .ico, .png, .gif)"
+
+#: ../inc/class-fire-utils.php:917
+msgid "Choose content and layout"
+msgstr "Vælg indhold og layout"
+
+#: ../inc/class-fire-utils.php:925
+msgid "Front page displays"
+msgstr "Forsiden viser"
+
+#: ../inc/class-fire-utils.php:930
+msgid "Don't show any posts or page"
+msgstr "Vis hverken indlæg eller sider"
+
+#: ../inc/class-fire-utils.php:931
+msgid "Your latest posts"
+msgstr "Dine seneste indlæg"
+
+#: ../inc/class-fire-utils.php:932
+msgid "A static page"
+msgstr "En statisk side"
+
+#: ../inc/class-fire-utils.php:938
+msgid "Front page"
+msgstr "Forside"
+
+#: ../inc/class-fire-utils.php:946
+msgid "Posts page"
+msgstr "Indlægside"
+
+#: ../inc/class-fire-utils.php:955
+msgid "Set up the front page layout"
+msgstr "Indstil forsidens layout"
+
+#: ../inc/class-fire-utils.php:966
+msgid "Slider options"
+msgstr "Slider options"
+
+#: ../inc/class-fire-utils.php:967
+msgid "Select front page slider"
+msgstr "Vælg forside slider"
+
+#: ../inc/class-fire-utils.php:979
+msgid "Full width slider"
+msgstr "Fuld bredde slider"
+
+#: ../inc/class-fire-utils.php:998
+msgid "Delay between each slides"
+msgstr "Forsinkelse mellem slides"
+
+#: ../inc/class-fire-utils.php:1003
+msgid "in ms : 1000ms = 1s"
+msgstr "i ms : 1000ms = 1s"
+
+#: ../inc/class-fire-utils.php:1011
+msgid "Featured pages options"
+msgstr "Udvalgte sider options"
+
+#: ../inc/class-fire-utils.php:1012
+msgid "Display home featured pages area"
+msgstr "Vis området med forsidens udvalgte sider"
+
+#: ../inc/class-fire-utils.php:1016
+msgid "Enable"
+msgstr "Aktiver"
+
+#: ../inc/class-fire-utils.php:1017
+msgid "Disable"
+msgstr "Slå fra"
+
+#: ../inc/class-fire-utils.php:1026
+msgid "Show images"
+msgstr "Vis billeder"
+
+#: ../inc/class-fire-utils.php:1029
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"Billederne indstilles til \"Udvalgt billede \" på hver side (på "
+"sideredigeringssiden). Fravælg i boksen ovenfor for at fjerne billederne på "
+"udvalgte sider."
+
+#: ../inc/class-fire-utils.php:1035
+msgid "Read more &raquo;"
+msgstr "Læs mere &raquo;"
+
+#: ../inc/class-fire-utils.php:1037
+msgid "Button text"
+msgstr "Knaptekst"
+
+#: ../inc/class-fire-utils.php:1058
+msgid "Display Breadcrumb"
+msgstr "Vis navigation (breadcrumb)"
+
+#: ../inc/class-fire-utils.php:1068
+msgid "Choose the global default layout"
+msgstr "Vælg det globale standardlayout"
+
+#: ../inc/class-fire-utils.php:1079
+msgid "Force default layout everywhere"
+msgstr "Brug standardlayout overalt"
+
+#: ../inc/class-fire-utils.php:1082
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"Dette valg vil tilsidesætte det tilpassede layout på alle sider/indlæg – "
+"inklusive forsiden."
+
+#: ../inc/class-fire-utils.php:1089
+msgid "Choose the posts default layout"
+msgstr "Vælg standardlayout for indlæg"
+
+#: ../inc/class-fire-utils.php:1101
+msgid "Maximum number of posts per page"
+msgstr "Maximalt antal indlæg pr. side"
+
+#: ../inc/class-fire-utils.php:1112
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "Vælg længden af indlæg i lister (forside, søgning, arkiver, ...)"
+
+#: ../inc/class-fire-utils.php:1116
+msgid "Display the excerpt"
+msgstr "Vis uddraget"
+
+#: ../inc/class-fire-utils.php:1117
+msgid "Display the full content"
+msgstr "Vis hele indholdet"
+
+#: ../inc/class-fire-utils.php:1125
+msgid "Choose the pages default layout"
+msgstr "Vælg standard-layout for sider"
+
+#: ../inc/class-fire-utils.php:1145
+msgid "Enable comments on pages"
+msgstr "Tillad kommentarer på sider"
+
+#: ../inc/class-fire-utils.php:1148
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"Dette valg muliggør kommentarer på siderne. Du kan slå kommentarer fra på "
+"den enkelte sider via hurtigredigering på sideoversigten."
+
+#: ../inc/class-fire-utils.php:1162
+msgid "Social links in header"
+msgstr "Sociale links i sidehoved"
+
+#: ../inc/class-fire-utils.php:1171
+msgid "Social links in left sidebar"
+msgstr "Sociale links i venstre sidebar"
+
+#: ../inc/class-fire-utils.php:1180
+msgid "Social links in right sidebar"
+msgstr "Sociale links i højre sidebar"
+
+#: ../inc/class-fire-utils.php:1189
+msgid "Social links in footer"
+msgstr "Sociale links i sidefod"
+
+#: ../inc/class-fire-utils.php:1210
+msgid "Enable/disable lightbox effect on images"
+msgstr "Slå lightboxeffekt på billeder til og fra"
+
+#: ../inc/class-fire-utils.php:1213
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"Hvis dette er valgt, vises billedet med en zoom-effekt i et popup-vindue, "
+"når der klikkes på det. Dette valg gælder ikke gallerier."
+
+#: ../inc/class-fire-utils.php:1219
+msgid "Autoscale images on zoom"
+msgstr "Autoskalér billeder ved zoom"
+
+#: ../inc/class-fire-utils.php:1222
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr ""
+"Hvis dette er aktiveret, tilpasses billederne til skærmen ved lightbox zoom."
+
+#: ../inc/class-fire-utils.php:1228
+msgid "Enable/disable retina support"
+msgstr "Retina-understøttelser til/fra"
+
+#: ../inc/class-fire-utils.php:1231
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr ""
+"Når retina er valgt til, understøtter dit website enheder med høj opløsning."
+
+#: ../inc/class-fire-utils.php:1244
+msgid "Enable/disable smooth scroll on click"
+msgstr "Smooth scroll ved klik til/fra"
+
+#: ../inc/class-fire-utils.php:1247
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr "Klikkes der på et link på samme side scrolles der til dette link. "
+
+#: ../inc/class-fire-utils.php:1260
+msgid "Enable/disable blocks reordering on small devices"
+msgstr "Omorganisering af blokke på små enheder til/fra"
+
+#: ../inc/class-fire-utils.php:1263
+msgid ""
+"On responsive mode, for smartphone viewport, the sidebars are moved after "
+"the main content block."
+msgstr ""
+"I responsive mode flyttes sidebars ned under indholdssiden på små mobile "
+"enheder."
+
+#: ../inc/class-fire-utils.php:1269
+msgid "Enable/disable slider's slides centering on any devices"
+msgstr "Centrering af sliderens slides på alle enheder til/fra"
+
+#: ../inc/class-fire-utils.php:1272
+msgid ""
+"This option centers your slider (carousel) pictures vertically and "
+"horizontally on any devices when displayed in full width mode"
+msgstr ""
+"Dette valg centrerer dine slider-billeder både lodret og vandret på alle "
+"enheder i fuld bredde."
+
+#: ../inc/class-fire-utils.php:1286
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr ""
+"Tilføj din egen CSS her og tilpas designet live! (for avancerede brugere)"
+
+#: ../inc/class-fire-utils.php:1289
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates. You can also "
+"paste your custom css in the style.css file of a child theme."
+msgstr ""
+"Brug altid dette felt til at tilføje din egen CSS fremfor at rette direkte i "
+"style.css filen. På den måde bevares din CSS ved opdateringer af temaet. Du "
+"kan også indsætte din CSS i et børnetema (child theme)."
+
+#: ../inc/admin/class-admin-meta_boxes.php:92
+msgid "Layout Options"
+msgstr "Layout options"
+
+#: ../inc/admin/class-admin-meta_boxes.php:100
+#: ../inc/admin/class-admin-meta_boxes.php:471
+msgid "Slider Options"
+msgstr "Slider options"
+
+#: ../inc/admin/class-admin-meta_boxes.php:169
+#, php-format
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "Standard %1$s layout er sat til : %2$s"
+
+#: ../inc/admin/class-admin-meta_boxes.php:169
+msgid "pages"
+msgstr "sider"
+
+#: ../inc/admin/class-admin-meta_boxes.php:169
+msgid "posts"
+msgstr "indlæg"
+
+#: ../inc/admin/class-admin-meta_boxes.php:174
+msgid ""
+"You have checked the <i>\"Force global default layout for all posts and pages"
+"\"</i>, you must unchecked this option to enable a specific layout for this "
+"post."
+msgstr ""
+"Du har sat kryds ved <i>\"Brug standardlayout for alle indlæg og sider\"</ "
+"i>, du skal fjerne krydset for at tillade et specifikt layout for dette "
+"indlæg."
+
+#: ../inc/admin/class-admin-meta_boxes.php:175
+msgid "Change layout options"
+msgstr "Ændre layoutoptions"
+
+#: ../inc/admin/class-admin-meta_boxes.php:179
+#, php-format
+msgid ""
+"You can define a specific layout for %1$s by using the pre-defined left and "
+"right sidebars. The default layouts can be defined in the WordPress "
+"customizer screen %2$s.<br />"
+msgstr ""
+"Du kan definere et specifikt layout for %1$s ved hjælp af de foruddefinerede "
+"venstre og højre sidebars. Standard-layouts kan defineres i WordPress' "
+"tilpas-skærm %2$s.<br />"
+
+#: ../inc/admin/class-admin-meta_boxes.php:180
+#: ../inc/admin/class-admin-meta_boxes.php:185
+msgid "this page"
+msgstr "denne side"
+
+#: ../inc/admin/class-admin-meta_boxes.php:180
+#: ../inc/admin/class-admin-meta_boxes.php:185
+msgid "this post"
+msgstr "dette indlæg"
+
+#: ../inc/admin/class-admin-meta_boxes.php:181
+msgid "here"
+msgstr "her"
+
+#: ../inc/admin/class-admin-meta_boxes.php:184
+#, php-format
+msgid "Select a specific layout for %1$s"
+msgstr "Vælg et specifikt layout for %1$s"
+
+#: ../inc/admin/class-admin-meta_boxes.php:188
+#, php-format
+msgid "Default layout %1s"
+msgstr "Standard layout %1s"
+
+#: ../inc/admin/class-admin-meta_boxes.php:230
+msgid "Add a slider to this post/page"
+msgstr "Tilføj en slider til dette indlæg / denne side"
+
+#: ../inc/admin/class-admin-meta_boxes.php:294
+#: ../inc/admin/class-admin-meta_boxes.php:678
+msgid "Choose a slider"
+msgstr "Vælg en slider"
+
+#: ../inc/admin/class-admin-meta_boxes.php:301
+#: ../inc/admin/class-admin-meta_boxes.php:693
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Vælg en slider &mdash; "
+
+#: ../inc/admin/class-admin-meta_boxes.php:306
+msgid ""
+"To create a new slider : open the media library, edit your images and add "
+"them to your new slider."
+msgstr ""
+"For at lave en ny slider skal du åbne mediebiblioteket, redigere dine "
+"billeder og tilføje dem til din nye slider."
+
+#: ../inc/admin/class-admin-meta_boxes.php:310
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Forsinkelse mellem hvert slide i millisekunder (default: 5000 ms)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:317
+msgid "Slider Layout : set the slider in full width"
+msgstr "Slider layout: Sæt slider til fuld bredde"
+
+#: ../inc/admin/class-admin-meta_boxes.php:334
+#: ../inc/admin/class-admin-meta_boxes.php:702
+msgid "Delete this slider"
+msgstr "Slet denne slider"
+
+#: ../inc/admin/class-admin-meta_boxes.php:339
+#: ../inc/admin/class-admin-meta_boxes.php:706
+msgid ""
+"The slider will be deleted permanently (images, call to actions and link "
+"will be kept)."
+msgstr "Slider slettes permanent (billeder, call to actions og links bevares)."
+
+#: ../inc/admin/class-admin-meta_boxes.php:342
+#: ../inc/admin/class-admin-meta_boxes.php:709
+msgid "Delete slider"
+msgstr "Slet slider"
+
+#: ../inc/admin/class-admin-meta_boxes.php:350
+#: ../inc/admin/class-controls.php:136
+msgid ""
+"You haven't create any slider yet. Go to the media library, edit your images "
+"and add them to your sliders."
+msgstr ""
+"Du har ikke oprettet en slider endnu. Gå til mediebiblioteket, rediger dine "
+"billeder og tilføj dem til din slider."
+
+#: ../inc/admin/class-admin-meta_boxes.php:500
+msgid "Add to a slider"
+msgstr "Tilføj til slider"
+
+#: ../inc/admin/class-admin-meta_boxes.php:502
+msgid "Add to a slider (create one if needed)"
+msgstr "Tilføj til slider (opret om nødvendigt en)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:635
+msgid "Title text (80 car. max length)"
+msgstr "Titeltekst (max. 80 tegn)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:642
+msgid "Description text (below the title, 250 car. max length)"
+msgstr "Beskrivelse (under titlen, max. 250 tegn)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:649
+msgid "Title and text color"
+msgstr "Titel- og tekstfarve"
+
+#: ../inc/admin/class-admin-meta_boxes.php:657
+msgid "Button text (80 car. max length)"
+msgstr "Knaptekst (max. 80 tegn)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:664
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Vælg linket side eller indlæg (blandt de seneste 100)."
+
+#: ../inc/admin/class-admin-meta_boxes.php:669
+msgid "No link"
+msgstr "Intet link"
+
+#: ../inc/admin/class-admin-meta_boxes.php:699
+#: ../inc/admin/class-admin-meta_boxes.php:730
+msgid "Add a slider"
+msgstr "Tilføj en slider"
+
+#: ../inc/admin/class-admin-meta_boxes.php:728
+msgid ""
+"You haven't create any slider yet. Write a slider name and click on the "
+"button to add you first slider."
+msgstr ""
+"Du har ikek oprettet en slider endnu. Skriv et slidernavn og klik på knappen "
+"for at tilføje din første slider."
+
+#: ../inc/admin/class-admin-meta_boxes.php:845
+msgid ""
+"This slider has not slides to show. Go to the media library and start adding "
+"images to it."
+msgstr ""
+"Denne slider har ingen slides at vise. Gå til mediebiblioteket og tilføj "
+"billeder til den."
+
+#: ../inc/admin/class-admin-meta_boxes.php:855
+msgid "Slide Image"
+msgstr "Slide billede"
+
+#: ../inc/admin/class-admin-meta_boxes.php:856
+msgid "Title"
+msgstr "Titel"
+
+#: ../inc/admin/class-admin-meta_boxes.php:857
+msgid "Slide Text"
+msgstr "Slide tekst"
+
+#: ../inc/admin/class-admin-meta_boxes.php:858
+msgid "Button Text"
+msgstr "Knaptekst"
+
+#: ../inc/admin/class-admin-meta_boxes.php:859
+msgid "Button Link"
+msgstr "Knaplink"
+
+#: ../inc/admin/class-admin-meta_boxes.php:860
+#: ../parts/class-content-breadcrumb.php:615
+#: ../parts/class-content-breadcrumb.php:648
+#: ../parts/class-content-breadcrumb.php:663
+#: ../parts/class-content-breadcrumb.php:691
+#: ../parts/class-content-comments.php:162
+#: ../parts/class-content-headings.php:247
+#: ../parts/class-content-slider.php:243
+msgid "Edit"
+msgstr "Redigér"
+
+#: ../inc/admin/class-admin-meta_boxes.php:901
+msgid "No Image Selected"
+msgstr "Der er ikke valgt noget billede"
+
+#: ../inc/admin/class-admin-meta_boxes.php:927
+msgid "Edit this slide"
+msgstr "Redigér dette slide"
+
+#: ../inc/admin/class-admin-meta_boxes.php:929
+msgid "Current slide"
+msgstr "Nuværende slide"
+
+#: ../inc/admin/class-controls.php:136
+msgid "Create a slider"
+msgstr "Opret en slider"
+
+#: ../inc/admin/class-fire-admin_init.php:67
+#: ../inc/admin/class-fire-admin_init.php:68
+msgid "Upgrade WP"
+msgstr "Opgradér WP"
+
+#: ../inc/admin/class-fire-admin_init.php:87
+msgid "This theme requires WordPress 3.4+"
+msgstr "Detta tema kræver WordPress 3.4+"
+
+#: ../inc/admin/class-fire-admin_init.php:90
+#: ../inc/admin/class-fire-admin_init.php:91
+msgid "Upgrade Wordpress Now"
+msgstr "Opgradér WordPress nu"
+
+#: ../inc/admin/class-fire-admin_init.php:108
+#: ../inc/admin/class-fire-admin_init.php:109
+msgid "About Customizr"
+msgstr "Om Customizr"
+
+#: ../inc/admin/class-fire-admin_init.php:131
+msgid "Need help with Customizr ?"
+msgstr "Har du brug for hjælp med Customizr?"
+
+#: ../inc/admin/class-fire-admin_init.php:133
+#, php-format
+msgid "Welcome to Customizr %s"
+msgstr "Velkommen til Customizr %s"
+
+#: ../inc/admin/class-fire-admin_init.php:140
+#, php-format
+msgid ""
+"You can start by watching the <a href=\"%1$s\" target=\"_blank"
+"\">introduction video</a> or by reading <a href=\"%2$s\" target=\"_blank"
+"\">the documentation</a>.<br/> If you don't find an answer to your issue, "
+"don't panic! Since Customizr is used by a growing community of webmasters "
+"reporting bugs and making continuous improvements, you will probably find a "
+"solution to your problem either in the FAQ or in the user forum."
+msgstr ""
+"Til en start kan du se <a href=\"%1$s\" target=\"_blank"
+"\">introduktionsvideoen</a> eller læse <a href=\"%2$s\" target=\"_blank"
+"\">dokumentationen</a>.<br/> Får du ikke løst dit problem, så gå ikke i "
+"panik! Da Customizr bruges af et stort og stigende antal webmastere "
+"indrapporteres fejl og rettelser løbende, og du vil formentlig finde svar på "
+"dine spørgsmål i enten FAQ eller i brugerforumet."
+
+#: ../inc/admin/class-fire-admin_init.php:148
+msgid "Read the documentation"
+msgstr "Læs dokumentationen"
+
+#: ../inc/admin/class-fire-admin_init.php:152
+msgid "Check the FAQ"
+msgstr "Tjek FAQ"
+
+#: ../inc/admin/class-fire-admin_init.php:157
+msgid "Code snippets"
+msgstr "Kodestumper (code snippets)"
+
+#: ../inc/admin/class-fire-admin_init.php:160
+msgid "Discuss in the user forum"
+msgstr "Diskutér i brugerforumet"
+
+#: ../inc/admin/class-fire-admin_init.php:168
+#, php-format
+msgid ""
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see the "
+"changelog)</a> to help you build an awesome website. Watch the <a href=\"%2$s"
+"\" target=\"_blank\">introduction video</a> and find inspiration in the <a "
+"href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
+msgstr ""
+"Tak for at du bruger Customizr! Customizr %1$s har flere funktioner, er "
+"sikrere og mere stabilt end nogensinde <a href=\"#customizr-changelog\">(se "
+"ændringsloggen)</a> for at hjælp dig med at oprette en fantastisk "
+"hjemmeside. Se på <a href=\"%2$s\" target=\"_blank\">introduktionsvideoen</"
+"a> og find inspiration i  <a href=\"#showcase\">showcasen</a>.<br/>God "
+"fornøjelse! "
+
+#: ../inc/admin/class-fire-admin_init.php:182
+#, php-format
+msgid ""
+"You are using a child theme of Customizr %1$s : always check the %2$s after "
+"upgrading to see if a function or a template has been deprecated."
+msgstr ""
+"Du bruger et børnetema Customizr %1$s: kontrollér altid %2$s efter "
+"opgradering for at se, om en funktion eller en skabelon (template) ikke er "
+"understøttet længere."
+
+#: ../inc/admin/class-fire-admin_init.php:197
+msgid "We need sponsors!"
+msgstr "Vi har brug for sponsorer!"
+
+#: ../inc/admin/class-fire-admin_init.php:198
+msgid ""
+"<strong>We do our best do make Customizr the perfect free theme for you!</"
+"strong><br/> Please help support it's continued development with a donation "
+"of $20, $50, or even $100."
+msgstr ""
+"<strong> Vi gør vores bedste for at gøre Customizr til det perfekte "
+"gratistema for dig! </ strong> <br/> Støt venligst den fortsatte udvikling "
+"ved at donere €20, €50 eller måske endda €100."
+
+#: ../inc/admin/class-fire-admin_init.php:205
+msgid "Happy user of Customizr?"
+msgstr "Er du glad for at bruge Customizr?"
+
+#: ../inc/admin/class-fire-admin_init.php:206
+msgid ""
+"If you are happy with the theme, say it on wordpress.org and give Customizr "
+"a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr ""
+"Om du er tilfreds med temaet, så sig det på wordpress.org og giv Customizr "
+"en god anmeldelse! <br /> (Vi er afhængige af jeres feedback ...)"
+
+#: ../inc/admin/class-fire-admin_init.php:211
+msgid "Follow us"
+msgstr "Følg os"
+
+#: ../inc/admin/class-fire-admin_init.php:219
+msgid "Customizr's extensions"
+msgstr "Customizrs udvidelser (extensions)"
+
+#: ../inc/admin/class-fire-admin_init.php:222
+#: ../inc/admin/class-fire-admin_init.php:231
+msgid "Visit the extension's page"
+msgstr "Besøg siden med udvidelser (extensions)"
+
+#: ../inc/admin/class-fire-admin_init.php:223
+msgid "Easily take your web design one step further"
+msgstr "Bring nemt dit webdesign til trin videre"
+
+#: ../inc/admin/class-fire-admin_init.php:224
+msgid ""
+"The Customizr's extensions are plugins developed to extend the Customizr "
+"theme with great features. Nicely integrated with the theme's built-in "
+"options, they can be enabled/disabled safely with no side effects on your "
+"existing settings or customizations."
+msgstr ""
+"Customizrs udvidelser (extensions) er plugins, der er udviklet til at udvide "
+"Customizr-temaet med fede features. De er pænt integreret med temaets "
+"indbyggede options, og de kan slås til og fra uden at påvirke dine "
+"indstillinger og tilpasninger."
+
+#: ../inc/admin/class-fire-admin_init.php:226
+msgid ""
+"These modules are designed to be simple to use for everyone. They are a good "
+"solution to add some creative customizations whitout needing to dive into "
+"the code."
+msgstr ""
+"Disse moduler er udviklet, så de er nemme at bruge. Det er en god måde at "
+"tilføje forskellige kreative tilpasninger på – uden at man skal ned i selve "
+"koden."
+
+#: ../inc/admin/class-fire-admin_init.php:228
+msgid ""
+"Customizr's extensions are installed and upgraded from your WordPress admin, "
+"like any other WordPress plugins. Well documented and easily extendable with "
+"hooks, they come with a dedicated support forum on themesandco.com."
+msgstr ""
+"Customizrs udvidelser (extensions) installeres og opgraderes fra "
+"administrationspaneletare – ligesom alle andre WordPress plugins. De er "
+"veldokumenterede og nemme at udvide med hooks. Der er et dedikeret "
+"supportforum på themesandco.com."
+
+#: ../inc/admin/class-fire-admin_init.php:237
+msgid "Customizr Showcase"
+msgstr "Customizr Showcase"
+
+#: ../inc/admin/class-fire-admin_init.php:240
+#: ../inc/admin/class-fire-admin_init.php:247
+msgid "Visit the showcase"
+msgstr "Besøg præsentationen"
+
+#: ../inc/admin/class-fire-admin_init.php:241
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "Find inspiration til dit næste Customizr-baserede website!"
+
+#: ../inc/admin/class-fire-admin_init.php:242
+msgid ""
+"This showcase aims to show what can be done with Customizr and helping other "
+"users to find inspiration for their web design."
+msgstr ""
+"Formålet med denne presentation er at vise, hvad der kan gøres med Customizr "
+"og hjælpe andre brugere til at finde inspiration til deres  webbdesign."
+
+#: ../inc/admin/class-fire-admin_init.php:244
+msgid ""
+"Do you think you made an awesome website that can inspire people? Submitting "
+"a site for review is quick and easy to do."
+msgstr ""
+"Har du lavet et website, der kan inspirere andre? Det er nemt at tilmelde et "
+"site til bedømmelse."
+
+#: ../inc/admin/class-fire-admin_init.php:254
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr "Ændringslog for version %1$s"
+
+#: ../inc/admin/class-fire-admin_init.php:263
+msgid "Go to Dashboard &rarr; Home"
+msgstr "Gå til Administrationspanel &rarr; Hjem"
+
+#: ../inc/admin/class-fire-admin_init.php:263
+msgid "Go to Dashboard"
+msgstr "Gå til Administrationspanel"
+
+#: ../parts/class-content-attachment.php:44
+msgid "&larr; Previous"
+msgstr "&larr; Foregående"
+
+#: ../parts/class-content-attachment.php:45
+msgid "Next &rarr;"
+msgstr "Næste &rarr;"
+
+#: ../parts/class-content-breadcrumb.php:43
+#: ../parts/class-content-breadcrumb.php:102
+msgid "Home"
+msgstr "Hjem"
+
+#: ../parts/class-content-breadcrumb.php:99
+msgid "Browse:"
+msgstr "Bladre:"
+
+#: ../parts/class-content-breadcrumb.php:494
+msgid "g:i a"
+msgstr "g:i a"
+
+#: ../parts/class-content-breadcrumb.php:497
+#, php-format
+msgid "Minute %1$s"
+msgstr "Minut %1$s"
+
+#: ../parts/class-content-breadcrumb.php:497
+msgid "i"
+msgstr "i"
+
+#: ../parts/class-content-breadcrumb.php:500
+msgid "g a"
+msgstr "g a"
+
+#: ../parts/class-content-breadcrumb.php:516
+#: ../parts/class-content-breadcrumb.php:526
+#: ../parts/class-content-breadcrumb.php:535
+#: ../parts/class-content-breadcrumb.php:546
+#: ../parts/class-content-breadcrumb.php:548
+#: ../parts/class-content-breadcrumb.php:747
+msgid "Y"
+msgstr "Y"
+
+#: ../parts/class-content-breadcrumb.php:517
+#: ../parts/class-content-breadcrumb.php:538
+#: ../parts/class-content-breadcrumb.php:540
+#: ../parts/class-content-breadcrumb.php:751
+msgid "F"
+msgstr "F"
+
+#: ../parts/class-content-breadcrumb.php:520
+#: ../parts/class-content-breadcrumb.php:522
+#: ../parts/class-content-breadcrumb.php:755
+msgid "d"
+msgstr "d"
+
+#: ../parts/class-content-breadcrumb.php:529
+#: ../parts/class-content-breadcrumb.php:531
+#, php-format
+msgid "Week %1$s"
+msgstr "Uge %1$s"
+
+#: ../parts/class-content-breadcrumb.php:557
+#: ../parts/class-content-breadcrumb.php:559
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Søgersultat for &quot;%1$s&quot;"
+
+#: ../parts/class-content-breadcrumb.php:564
+msgid "404 Not Found"
+msgstr "404 Kunne ikke findes"
+
+#: ../parts/class-content-breadcrumb.php:569
+#: ../parts/class-content-breadcrumb.php:571
+#, php-format
+msgid "Page %d"
+msgstr "Side %d"
+
+#: ../parts/class-content-breadcrumb.php:640
+msgid "Split"
+msgstr "Del"
+
+#: ../parts/class-content-breadcrumb.php:644
+msgid "Merge"
+msgstr "Sammenflet"
+
+#: ../parts/class-content-comments.php:63
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgstr "En tanke om &ldquo;%2$s&rdquo;"
+
+#: ../parts/class-content-comments.php:121
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: ../parts/class-content-comments.php:121
+msgid "(Edit)"
+msgstr "(Redigér)"
+
+#: ../parts/class-content-comments.php:148
+msgid "Reply"
+msgstr "Svar"
+
+#: ../parts/class-content-comments.php:161
+msgid "Post author"
+msgstr "Indlægsforfatter"
+
+#: ../parts/class-content-comments.php:168
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s ved %2$s"
+
+#: ../parts/class-content-comments.php:173
+msgid "Your comment is awaiting moderation."
+msgstr "Din kommentar afventer bedømmelse."
+
+#: ../parts/class-content-comments.php:207
+msgid "Comment navigation"
+msgstr "Kommentarnavigering"
+
+#: ../parts/class-content-comments.php:213
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Ældre indlæg"
+
+#: ../parts/class-content-comments.php:221
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Nyere indlæg <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-comments.php:253
+msgid "Comments are closed."
+msgstr "Lukket for kommentarer."
+
+#: ../parts/class-content-featured_pages.php:123
+msgid "Customizer screen"
+msgstr "Customizr-skærm"
+
+#: ../parts/class-content-featured_pages.php:123
+msgid " here"
+msgstr " her"
+
+#: ../parts/class-content-featured_pages.php:127
+msgid "Featured page"
+msgstr "Udvalgt side"
+
+#: ../parts/class-content-featured_pages.php:130
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"Beskrivende tekst for udvalgt side: brug sideuddraget eller indsæt din egen "
+"tekst på Customizr-skærmen%s."
+
+#: ../parts/class-content-gallery.php:194
+msgid "Missing Attachment"
+msgstr "Vedhæftning mangler"
+
+#: ../parts/class-content-headings.php:46
+msgid "Ooops, page not found"
+msgstr "Ups, siden findes ikke"
+
+#: ../parts/class-content-headings.php:57
+msgid "No"
+msgstr "Ingen"
+
+#: ../parts/class-content-headings.php:58
+msgid "Search Results for :"
+msgstr "Søgeresultater for:"
+
+#: ../parts/class-content-headings.php:73
+msgid "Author Archives :"
+msgstr "Indlæg fra forfatter:"
+
+#: ../parts/class-content-headings.php:87 ../parts/class-content-post.php:98
+#, php-format
+msgid "About %s"
+msgstr "Om %s"
+
+#: ../parts/class-content-headings.php:100
+msgid "Category Archives :"
+msgstr "Indlæg i kategori:"
+
+#: ../parts/class-content-headings.php:116
+msgid "Tag Archives :"
+msgstr "Indlæg med tag:"
+
+#: ../parts/class-content-headings.php:129
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Dagsarkiv: %s"
+
+#: ../parts/class-content-headings.php:129
+msgid "Archives"
+msgstr "Arkiver"
+
+#: ../parts/class-content-headings.php:130
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Månadsarkiv: %s"
+
+#: ../parts/class-content-headings.php:131
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Årsarkiver: %s"
+
+#: ../parts/class-content-headings.php:217
+#: ../parts/class-content-headings.php:223
+msgid "{no title} Read the post &raquo;"
+msgstr "{no title} Læs indlægget &raquo;"
+
+#: ../parts/class-content-headings.php:222
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalink til %s"
+
+#: ../parts/class-content-headings.php:240
+msgid "Comment(s) on"
+msgstr "Kommentar(er) på"
+
+#: ../parts/class-content-page.php:46 ../parts/class-content-post.php:53
+#: ../parts/class-content-post_list.php:132
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Fortsæt læning <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-page.php:48 ../parts/class-content-post.php:54
+#: ../parts/class-content-post_list.php:133
+msgid "Pages:"
+msgstr "Sider:"
+
+#: ../parts/class-content-post.php:102
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Vis alle indlæg af %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-post_metas.php:54
+msgid "Published"
+msgstr "Udgivet"
+
+#: ../parts/class-content-post_metas.php:57
+msgid "at dimensions"
+msgstr "i dimensionerne"
+
+#: ../parts/class-content-post_metas.php:57
+msgid "Link to full-size image"
+msgstr "Link til billede i fuld størrelse"
+
+#: ../parts/class-content-post_metas.php:58
+msgid "in"
+msgstr "i"
+
+#: ../parts/class-content-post_metas.php:58
+msgid "Return to "
+msgstr "Vend tilbage til"
+
+#: ../parts/class-content-post_metas.php:80
+#, php-format
+msgid "View all posts by %s"
+msgstr "Vis alle indlæg af %s"
+
+#: ../parts/class-content-post_metas.php:87
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"Dette indlægget blev oprettet som %1$s og blev tagget %2$s den %3$s<span "
+"class=\"by-author\"> af %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:89
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Dette indlæg blev oprettet i %1$s den %3$s<span class=\"by-author\"> af "
+"%4$s</span>."
+
+#: ../parts/class-content-post_metas.php:91
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+"Dette indlæg blev oprettet d. %3$s<span class=\"by-author\"> af %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:134
+#: ../parts/class-content-post_metas.php:166
+#, php-format
+msgid "View all posts in %s"
+msgstr "Vis alle indlæg i %s"
+
+#: ../parts/class-content-post_navigation.php:59
+#: ../parts/class-content-post_navigation.php:92
+msgid "Post navigation"
+msgstr "Se flere indlæg"
+
+#: ../parts/class-content-post_navigation.php:102
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Ældre indlæg"
+
+#: ../parts/class-content-post_navigation.php:115
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Nyere indlæg <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-footer-footer_main.php:179
+msgid "Back to top"
+msgstr "Tilbage til toppen"
+
+#: ../parts/class-header-header_main.php:167
+msgid "Back Home"
+msgstr "Tilbage til forsiden"
+
+#: ../parts/class-header-menu.php:49
+msgid "Add a menu"
+msgstr "Tilføj en menu"
+
+#~ msgid "Dev Tools (advanced users)"
+#~ msgstr "Utvecklingsverktyg (avancerade användare)"
+
+#~ msgid "Enable/disable the Dev Tools"
+#~ msgstr "Slå på/slå av utvecklingsverktygen"
+
+#~ msgid "Two sidebars"
+#~ msgstr "Två sidofält"
+
+#~ msgid "Full Width"
+#~ msgstr "Full bredd"
+
+#~ msgid "Developer Box"
+#~ msgstr "Utvecklingsbox"
+
+#~ msgid "Only visible for logged in users with an admin profile."
+#~ msgstr "Endast synlig för inloggade användare med en admin profil."
+
+#~ msgid ""
+#~ "If enabled, this option displays a draggable information box to help you "
+#~ "develop or debug your Customizr based website."
+#~ msgstr ""
+#~ "Om aktiverad, visas detta alternativ en dragbar informationsruta som "
+#~ "hjälper dig att utveckla eller felsöka din Customizr-baserade webbplats."
+
+#~ msgid "Developer tooltips"
+#~ msgstr "Utvecklare verktygstips"
+
+#~ msgid ""
+#~ "If enabled, this option displays clickable contextual tooltips right "
+#~ "inside your website."
+#~ msgstr ""
+#~ "Om aktiverad, visas detta alternativ klickbara kontextuella verktygstips "
+#~ "direkt i din webbplats."
+
+#~ msgid "Tip icon color"
+#~ msgstr "Tip icon färg"
+
+#~ msgid "New! Customizr Developer Tools"
+#~ msgstr "Nytt! Customizr utvecklingsverktyg"
+
+#~ msgid "Easily drill down into Customizr code with the dev tools!"
+#~ msgstr "Borra enkelt ner dig i Customizr kod med utvecklingsverktyg!"
+
+#~ msgid ""
+#~ "A new section called \"Dev Tools\" has been added to the customizer "
+#~ "options.<br/> There you will find two optional new features : <br/"
+#~ "><strong>-The developer box</strong> : this draggable box is a developer "
+#~ "dashboard allowing you to have an overview of your theme settings "
+#~ "(plugins, custom post types, theme options,...) and providing useful "
+#~ "informations for debug and development : a loading timeline of any pages, "
+#~ "contextual data ( like conditional tags and query), the hook's structure "
+#~ "of the theme and a note section about the code logic of Customizr.<br/"
+#~ "><strong>-The embedded tooltips</strong> : this option displays clickable "
+#~ "(and draggable) contextual tooltips right inside your website. They help "
+#~ "you understand which part of the php code handles any front-end block or "
+#~ "element. The informations provided are : class -> method, hook, file, "
+#~ "function description and possible filter.<br/><br/><i>Those tools are "
+#~ "only displayed to logged in users with an admin capability profile.</i>"
+#~ msgstr ""
+#~ "Ett nytt avsnitt som heter  \"Utvecklingsverktyg \" har lagts till "
+#~ "Customizr alternativen <br/> Där hittar du två valfria nya funktioner:. "
+#~ "<br/> <strong>-Utvecklare box </ strong>: denna dragbara låda är en "
+#~ "utvecklaringsdashboard så att du kan få en överblick över ditt tema "
+#~ "inställningar (plugins, anpassade inlägg typer, tema alternativ, ...) och "
+#~ "ge användbara informationer för debug och utveckling: en "
+#~ "laddningstidslinje av några sidor, kontextuella uppgifter (som "
+#~ "villkorliga taggar och frågor), strukturen av temat och en anteckning i "
+#~ "avsnittet om kodlogiken i Customizr <br/> <strong>-Inbäddade verktygstips "
+#~ "</ strong>: detta alternativ visar klickbar (och flyttbara) kontextuella "
+#~ "verktygstips direkt i din hemsida. De hjälper dig att förstå vilken del "
+#~ "av PHP-koden som hanterar alla front-end block eller element. Den "
+#~ "medföljande information är: klass -> metod, krok, fil, "
+#~ "funktionsbeskrivning och eventuella filter <br/> <i> Dessa verktyg visas "
+#~ "bara för inloggade användare med en admin behörighetsprofil.</ i>"
+
+#~ msgid "Edit page"
+#~ msgstr "Redigera sida"
+
+#~ msgid ""
+#~ "Thank you for updating to the latest version! Customizr %1$s has more "
+#~ "features, is safer and more stable than ever <a href=\"#customizr-"
+#~ "changelog\">(see changelog)</a> to help you build an awesome website. "
+#~ "Watch the <a href=\"#introduction\">introduction video</a> and find "
+#~ "inspiration in the <a href=\"#showcase\">showcase</a>.<br/> Enjoy it! "
+#~ msgstr ""
+#~ "Tack för att uppdatera till den senaste versionen! Customizr %1$s har "
+#~ "fler funktioner, är säkrare och stabilare än någonsin <a href="
+#~ "\"#customizr-changelog\"> (se ändringslog) </ a> för att hjälpa dig att "
+#~ "bygga en fantastisk hemsida. Titta på <a href=\"#introduction"
+#~ "\">introduktionsvideon</a> och hitta inspiration i <a href=\"#showcase"
+#~ "\">showcasen</a>.<br/>Njut av det!"
+
+#~ msgid "Discover Customizr : quick video introduction"
+#~ msgstr "Upptäck Customizr: snabb videointroduktion"
+
+#~ msgid ""
+#~ "Welcome to the new version of Customizr. You will be redirected to the "
+#~ "About screen. If not, click <a href=\"%1$s\">here</a>."
+#~ msgstr ""
+#~ "Välkommen till den nya versionen av Customizr. Du kommer att omdirigeras "
+#~ "till skärmen Om. Om inte, klicka <a href=\"%1$s\"> här </ a>."
+
+#~ msgid ""
+#~ "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span "
+#~ "class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</"
+#~ "time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s "
+#~ "&times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel="
+#~ "\"gallery\">%8$s</a>."
+#~ msgstr ""
+#~ "<span class=\"meta-prep meta-prep-entry-date\">Publicerad </span> <span "
+#~ "class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</"
+#~ "time></span> på <a href=\"%3$s\" title=\"Länka till fullstor bild\">%4$s "
+#~ "&times; %5$s</a> in <a href=\"%6$s\" title=\"Åter till %7$s\" rel="
+#~ "\"gallery\">%8$s</a>."
+
+#~ msgid "Logo Upload"
+#~ msgstr "Ladda upp logotyp"
+
+#~ msgid "Favicon Upload"
+#~ msgstr "Ladda upp favicon"
+
+#~ msgid "We need coffee..."
+#~ msgstr "Vi behöver kaffe..."
+
+#~ msgid ""
+#~ "Either you are using Customizr for personal or business purposes, "
+#~ "<strong>we do our best do make it the perfect free theme for you</strong>."
+#~ "<br /> Any kind of sponsorship will be appreciated!"
+#~ msgstr ""
+#~ "Antingen du använder Customizr för personliga eller yrkesmässiga ändamål, "
+#~ "<strong> vi gör vårt bästa för att göra det till det perfekta gratistema "
+#~ "för dig</ strong>. <br /> Varje form av sponsring kommer att uppskattas!"
+
+#~ msgid "&larr; Older Comments"
+#~ msgstr "&larr; Äldre kommentarer"
+
+#~ msgid "Newer Comments &rarr;"
+#~ msgstr "Nyare kommentarer &rarr;"
+
+#, fuzzy
+#~ msgid "Learn more &raquo;"
+#~ msgstr "Läs mer &raquo;"
+
+#, fuzzy
+#~ msgid "Choose a font"
+#~ msgstr "Välj en slider"
+
+#~ msgid "Plugins compatibility"
+#~ msgstr "Plugins kompatibilitet"
+
+#~ msgid "Ensure Customizr compatibilty with some plugins"
+#~ msgstr "Säkerställ Customizr kompatibilitet med vissa plugins"

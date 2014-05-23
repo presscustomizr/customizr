@@ -18,35 +18,9 @@ class TC_no_results {
     static $instance;
 
     function __construct () {
-
         self::$instance =& $this;
-
         add_action  ( '__loop'                        , array( $this , 'tc_no_result_content' ));
-
-        //selector filter
-        add_filter  ( '__article_selectors'           , array( $this , 'tc_no_results_selectors' ));
     }
-
-
-
-
-     /**
-     * Displays the conditional selectors of the article
-     * 
-     * @package Customizr
-     * @since 3.0.10
-     */
-    function tc_no_results_selectors () {
-        //must be archive or not-null search result. Returns false if home is empty in option.
-        global $wp_query;
-        if ( !is_search() || (is_search() && 0 != $wp_query -> post_count) )
-            return;
-
-        tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-
-        echo 'id="post-0" class="post error404 no-results not-found row-fluid"';
-    }
-
 
 
 
@@ -57,38 +31,25 @@ class TC_no_results {
      * @since Customizr 3.0
      */
     function tc_no_result_content() {
-
         global $wp_query;
         if ( !is_search() || (is_search() && 0 != $wp_query -> post_count) )
             return;
-      
-        tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
-        ?>
+        
+        $content_no_results    = apply_filters( 'tc_no_results', TC_init::$instance -> content_no_results );
 
-        <?php ob_start(); ?>
-
-            <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
-            
-            <div class="tc-content span12 format-quote">
-
-                <div class="entry-content format-icon">
-
-                    <blockquote><p><?php _e( 'Success is the ability to go from one failure to another with no loss of enthusiasm...' , 'customizr' ) ?></p>
-                    <cite><?php _e( 'Sir Winston Churchill' , 'customizr' ) ?></cite>
-                    </blockquote>
-                    <p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.' , 'customizr' ); ?></p>
-                    <?php get_search_form(); ?>
-                </div>
-
-                <hr class="featurette-divider">
-
-            </div><!--content -->
-            
-
-        <?php
-        $html = ob_get_contents();
-        ob_end_clean();
-        echo apply_filters( 'tc_no_result_content' , $html );
+        echo apply_filters( 'tc_no_result_content',
+            sprintf('<div class="%1$s"><div class="entry-content %2$s">%3$s</div>%4$s</div>',
+                apply_filters( 'tc_no_results_wrapper_class', 'tc-content span12 format-quote' ),
+                apply_filters( 'tc_no_results_content_icon', 'format-icon' ),
+                sprintf('<blockquote><p>%1$s</p><cite>%2$s</cite></blockquote><p>%3$s</p>%4$s',
+                              call_user_func( '__' , $content_no_results['quote'] , 'customizr' ),
+                              call_user_func( '__' , $content_no_results['author'] , 'customizr' ),
+                              call_user_func( '__' , $content_no_results['text'] , 'customizr' ),
+                              get_search_form( $echo = false )
+                ),
+                apply_filters( 'tc_no_results_separator', '<hr class="featurette-divider '.current_filter().'">' ) 
+            )//end sprintf
+        );//end filter
     }
 
 }//end of class

@@ -1,0 +1,1529 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: * Customizr v3.1.7\n"
+"POT-Creation-Date: 2014-04-21 14:08+0100\n"
+"PO-Revision-Date: 2014-04-21 14:09+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"Language-Team: Nicolas G. <contact@themesandco.com>\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../comments.php:29
+msgid "Leave a Comment"
+msgstr "Zanechať komentár"
+
+#: ../inc/class-fire-init.php:45 ../inc/class-fire-init.php:46
+msgid "Right sidebar"
+msgstr "Pravý bočný panel"
+
+#: ../inc/class-fire-init.php:51 ../inc/class-fire-init.php:52
+msgid "Left sidebar"
+msgstr "Ľavý bočný panel"
+
+#: ../inc/class-fire-init.php:57 ../inc/class-fire-init.php:58
+msgid "2 sidebars : Right and Left"
+msgstr "2 bočné panely : Pravý a Ľavý "
+
+#: ../inc/class-fire-init.php:63 ../inc/class-fire-init.php:64
+msgid "No sidebars : full width layout"
+msgstr "Žiaden bočný panel : rozloženie na plnú šírku"
+
+#: ../inc/class-fire-init.php:75
+msgid "Blue"
+msgstr "Modrá"
+
+#: ../inc/class-fire-init.php:76
+msgid "Green"
+msgstr "Zelená"
+
+#: ../inc/class-fire-init.php:77
+msgid "Yellow"
+msgstr "Žltá"
+
+#: ../inc/class-fire-init.php:78
+msgid "Orange"
+msgstr "Oranžová"
+
+#: ../inc/class-fire-init.php:79
+msgid "Red"
+msgstr "Červená"
+
+#: ../inc/class-fire-init.php:80
+msgid "Purple"
+msgstr "Fialová"
+
+#: ../inc/class-fire-init.php:81
+msgid "Grey"
+msgstr "Sivá"
+
+#: ../inc/class-fire-init.php:82
+msgid "Black"
+msgstr "Čierna"
+
+#: ../inc/class-fire-init.php:91
+#, fuzzy
+msgid "Subscribe to my rss feed"
+msgstr "Prihlásiť sa k RSS odberom"
+
+#: ../inc/class-fire-init.php:92
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "RSS zdroj (prednastavené wordpress odbery)"
+
+#: ../inc/class-fire-init.php:96
+msgid "Follow me on Twitter"
+msgstr "Sledujte Twitter profil"
+
+#: ../inc/class-fire-init.php:97
+msgid "Twitter profile url"
+msgstr "url adresa profilu na Twitteri"
+
+#: ../inc/class-fire-init.php:101
+msgid "Follow me on Facebook"
+msgstr "Sledujte Facebook profil"
+
+#: ../inc/class-fire-init.php:102
+msgid "Facebook profile url"
+msgstr "url adresa profilu na Facebooku"
+
+#: ../inc/class-fire-init.php:106
+msgid "Follow me on Google+"
+msgstr "Sledujte Google+ profil"
+
+#: ../inc/class-fire-init.php:107
+msgid "Google+ profile url"
+msgstr "url adresa Google+ profilu"
+
+#: ../inc/class-fire-init.php:111
+msgid "Follow me on Instagram"
+msgstr "Sledujte Instagram profil"
+
+#: ../inc/class-fire-init.php:112
+msgid "Instagram profile url"
+msgstr "url adresa profilu na Instagrame"
+
+#: ../inc/class-fire-init.php:116
+msgid "Follow me on WordPress"
+msgstr "Sledujte WordPress profil"
+
+#: ../inc/class-fire-init.php:117
+msgid "WordPress profile url"
+msgstr "url adresa profilu vo WordPress"
+
+#: ../inc/class-fire-init.php:121
+msgid "Follow me on Youtube"
+msgstr "Sledujte Youtube profil"
+
+#: ../inc/class-fire-init.php:122
+msgid "Youtube profile url"
+msgstr "url adresa profilu na Youtube"
+
+#: ../inc/class-fire-init.php:126
+msgid "Pin me on Pinterest"
+msgstr "Sledujte Pinterest profil"
+
+#: ../inc/class-fire-init.php:127
+msgid "Pinterest profile url"
+msgstr "url adresa profilu na Pinterest"
+
+#: ../inc/class-fire-init.php:131
+msgid "Follow me on Github"
+msgstr "Sledujte Github profil"
+
+#: ../inc/class-fire-init.php:132
+msgid "Github profile url"
+msgstr "url adresa profilu na Github"
+
+#: ../inc/class-fire-init.php:136
+msgid "Follow me on Dribbble"
+msgstr "Sledujte Dribbble profil"
+
+#: ../inc/class-fire-init.php:137
+msgid "Dribbble profile url"
+msgstr "url adresa profilu na Dribbble"
+
+#: ../inc/class-fire-init.php:141
+msgid "Follow me on LinkedIn"
+msgstr "Sledujte LinkedIn profil"
+
+#: ../inc/class-fire-init.php:142
+msgid "LinkedIn profile url"
+msgstr "url adresa profilu na LinkedIn"
+
+#: ../inc/class-fire-init.php:151
+msgid "Right Sidebar"
+msgstr "Pravý bočný panel"
+
+#: ../inc/class-fire-init.php:152 ../inc/class-fire-init.php:156
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr ""
+"Zobrazí sa v príspevkoch, statických stránkach, archívoch a stránkach "
+"vyhľadávania"
+
+#: ../inc/class-fire-init.php:155
+msgid "Left Sidebar"
+msgstr "Ľavý bočný panel"
+
+#: ../inc/class-fire-init.php:163
+msgid "Footer Widget Area One"
+msgstr "Footer Widget Oblasť Jeden"
+
+#: ../inc/class-fire-init.php:164 ../inc/class-fire-init.php:168
+#: ../inc/class-fire-init.php:172
+msgid "Just use it as you want !"
+msgstr "Stačí to použiť tak, ako chcete !"
+
+#: ../inc/class-fire-init.php:167
+msgid "Footer Widget Area Two"
+msgstr "Footer Widget Oblasť Dva"
+
+#: ../inc/class-fire-init.php:171
+msgid "Footer Widget Area Three"
+msgstr "Footer Widget Oblasť Tri"
+
+#: ../inc/class-fire-init.php:189
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Hovoriť pravdu v čase všeobecného klamu je revolučný čin. "
+
+#: ../inc/class-fire-init.php:190
+msgid "George Orwell"
+msgstr "George Orwell"
+
+#: ../inc/class-fire-init.php:191
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"Je nám ľúto, ale požadovaná stránka nebola nájdená. Môžete skúsiť "
+"vyhľadávanie nižšie."
+
+#: ../inc/class-fire-init.php:196
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr ""
+"Úspech je schopnosť ísť od jedného neúspechu k ďalšiemu bez straty nadšenia."
+
+#: ../inc/class-fire-init.php:197
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: ../inc/class-fire-init.php:198
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Je nám ľúto, ale zadaným kritériám nič nezodpovedá. Skúste to prosím znova s "
+"inými kľúčovými slovami."
+
+#: ../inc/class-fire-init.php:204 ../inc/class-fire-init.php:213
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr je čistá prehľadná téma"
+
+#: ../inc/class-fire-init.php:205
+msgid "Let your creativity speak and easily customiz'it the way you want!"
+msgstr ""
+"Dajte voľnosť svojej kreativite a jednoducho si to upravte podľa seba !"
+
+#: ../inc/class-fire-init.php:206
+msgid "Learn more"
+msgstr "Dozvedieť sa viac"
+
+#: ../inc/class-fire-init.php:218 ../inc/class-fire-init.php:227
+msgid "Style your WordPress site live!"
+msgstr "Upravte si Vašu WordPress stránku !"
+
+#: ../inc/class-fire-init.php:219
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"Veľa nastavení rozloženia a vzhľadu je prístupných priamo z WordPress "
+"náhľadovej stránky : sledujte Vaše zmeny naživo !"
+
+#: ../inc/class-fire-init.php:220
+msgid "Just try it!"
+msgstr "Stačí to skúsiť !"
+
+#: ../inc/class-fire-init.php:232 ../inc/class-fire-init.php:241
+msgid "Create beautiful sliders"
+msgstr "Vytvorte nádherné slajdre"
+
+#: ../inc/class-fire-init.php:233
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr prichádza s úžasným generátorom slajdov : pridajte slajder na "
+"akýkoľvek príspevok alebo stránku !"
+
+#: ../inc/class-fire-init.php:234
+msgid "Discover the features"
+msgstr "Objavte funkcie"
+
+#: ../inc/class-fire-init.php:295
+msgid "Main Menu"
+msgstr "Hlavné Menu"
+
+#: ../inc/class-fire-init.php:658
+msgid "Customiz'it!"
+msgstr "Customiz'it!"
+
+#: ../inc/class-fire-init.php:661
+msgid "Customize your website at any time!"
+msgstr "Kedykoľvek upravte Vašu webovú stránku !"
+
+#: ../inc/class-fire-init.php:680
+msgid "Help"
+msgstr "Pomoc"
+
+#: ../inc/class-fire-init.php:683
+msgid "Need help with Customizr? Click here!"
+msgstr "Potrebujete pomoc s témou Customizr? Kliknite tu!"
+
+#: ../inc/class-fire-utils.php:335
+#, php-format
+msgid "Page %s"
+msgstr "Stránka %s"
+
+#: ../inc/class-fire-utils.php:532
+msgid "Home featured page one"
+msgstr "Úvodná stránka jeden"
+
+#: ../inc/class-fire-utils.php:533
+msgid "Home featured page two"
+msgstr "Úvodná stránka dva"
+
+#: ../inc/class-fire-utils.php:534
+msgid "Home featured page three"
+msgstr "Úvodná stránka tri"
+
+#: ../inc/class-fire-utils.php:537
+msgid "Featured text one (200 car. max)"
+msgstr "Úvodný text jeden (max. 200 znakov)"
+
+#: ../inc/class-fire-utils.php:538
+msgid "Featured text two (200 car. max)"
+msgstr "Úvodný text dva (max. 200 znakov)"
+
+#: ../inc/class-fire-utils.php:539
+msgid "Featured text three (200 car. max)"
+msgstr "Úvodný text tri (max. 200 znakov)"
+
+#: ../inc/class-fire-utils.php:555
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr "Vlastná úvodná stránka %1$s"
+
+#: ../inc/class-fire-utils.php:571
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr "Úvodný text %1$s (max. 200 znakov)"
+
+#: ../inc/class-fire-utils.php:574
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr ""
+"Potrebujete najprv vybrať stránku. Nechajte toto pole prázdne, ak chcete "
+"použiť ukážku stránky."
+
+#: ../inc/class-fire-utils.php:668
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Žiaden slajder &mdash;"
+
+#: ../inc/class-fire-utils.php:669
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Demo &mdash;"
+
+#: ../inc/class-fire-utils.php:722
+msgid "Skin"
+msgstr "Vzhľad"
+
+#: ../inc/class-fire-utils.php:724
+msgid "Select a skin for Customizr"
+msgstr "Vyberte vzhľad pre Customizr"
+
+#: ../inc/class-fire-utils.php:728
+msgid "Logo &amp; Favicon"
+msgstr "Logo a Ikona"
+
+#: ../inc/class-fire-utils.php:730
+msgid "Set up logo and favicon options"
+msgstr "Nastavenia loga a ikony"
+
+#: ../inc/class-fire-utils.php:734
+msgid "Front Page"
+msgstr "Predná stránka"
+
+#: ../inc/class-fire-utils.php:736
+msgid "Set up front page options"
+msgstr "Nastavenia prednej stránky"
+
+#: ../inc/class-fire-utils.php:740
+msgid "Pages &amp; Posts Layout"
+msgstr "Rozloženie stránok a príspevkov"
+
+#: ../inc/class-fire-utils.php:742
+msgid "Set up layout options"
+msgstr "Nastavenia rozloženia"
+
+#: ../inc/class-fire-utils.php:746
+msgid "Comments"
+msgstr "Komentáre"
+
+#: ../inc/class-fire-utils.php:748
+msgid "Set up comments options"
+msgstr "Nastavenia komentárov"
+
+#: ../inc/class-fire-utils.php:752 ../parts/class-content-sidebar.php:112
+msgid "Social links"
+msgstr "Sociálne siete"
+
+#: ../inc/class-fire-utils.php:754
+msgid "Set up your social links"
+msgstr "Nastavenia sociálnych sietí"
+
+#: ../inc/class-fire-utils.php:758
+msgid "Images"
+msgstr "Obrázky"
+
+#: ../inc/class-fire-utils.php:760
+msgid "Various images settings"
+msgstr "Nastavenia obrázkov"
+
+#: ../inc/class-fire-utils.php:764
+msgid "Links"
+msgstr "Odkazy"
+
+#: ../inc/class-fire-utils.php:766
+msgid "Various links settings"
+msgstr "Nastavenia odkazov"
+
+#: ../inc/class-fire-utils.php:770
+msgid "Custom CSS"
+msgstr "Vlastné CSS"
+
+#: ../inc/class-fire-utils.php:772
+msgid "Add your own CSS"
+msgstr "Pridať vlastné CSS"
+
+#: ../inc/class-fire-utils.php:776
+msgid "Responsive settings"
+msgstr ""
+
+#: ../inc/class-fire-utils.php:778
+msgid "Various settings for responsive display"
+msgstr ""
+
+#: ../inc/class-fire-utils.php:810
+msgid "Manage menus"
+msgstr "Spravovať Menu"
+
+#: ../inc/class-fire-utils.php:816
+msgid "Select a submenu expansion option"
+msgstr "Zvoľte nastavenie rozbalenia podmenu"
+
+#: ../inc/class-fire-utils.php:820
+msgid "Expand submenus on click"
+msgstr "Rozbaliť podmenu po kliknutí"
+
+#: ../inc/class-fire-utils.php:821
+msgid "Expand submenus on hover"
+msgstr "Rozbaliť podmenu po ukázaní "
+
+#: ../inc/class-fire-utils.php:836
+msgid "Choose a predefined skin"
+msgstr "Zvoľte preddefinovaný vzhľad"
+
+#: ../inc/class-fire-utils.php:845
+msgid "Performance : use the minified CSS stylesheet"
+msgstr ""
+
+#: ../inc/class-fire-utils.php:848
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr ""
+
+#: ../inc/class-fire-utils.php:854
+msgid "Display top border"
+msgstr "Zobraziť vrchné orámovanie"
+
+#: ../inc/class-fire-utils.php:858
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Odškrtnite túto možnosť pre odstránenie farebného vrchného orámovania."
+
+#: ../inc/class-fire-utils.php:871
+msgid "Logo Upload (supported formats : .jpg, .png, .gif)"
+msgstr "Nahrať Logo (podporované formáty : .jpg, .png, .gif)"
+
+#: ../inc/class-fire-utils.php:879
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "Nastaviť rozmery loga na max. šírku:250px a max. výšku:100px"
+
+#: ../inc/class-fire-utils.php:895
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Nahrať Ikonu (podporované formáty : .ico, .png, .gif)"
+
+#: ../inc/class-fire-utils.php:912
+msgid "Choose content and layout"
+msgstr "Zvoľte obsah a rozloženie"
+
+#: ../inc/class-fire-utils.php:920
+msgid "Front page displays"
+msgstr "Zobrazenia prednej stránky"
+
+#: ../inc/class-fire-utils.php:925
+msgid "Don't show any posts or page"
+msgstr "Nezobrazovať žiaden príspevok alebo stránku "
+
+#: ../inc/class-fire-utils.php:926
+msgid "Your latest posts"
+msgstr "Vaše posledné príspevky"
+
+#: ../inc/class-fire-utils.php:927
+msgid "A static page"
+msgstr "Statická stránka"
+
+#: ../inc/class-fire-utils.php:933
+msgid "Front page"
+msgstr "Predná stránka"
+
+#: ../inc/class-fire-utils.php:941
+msgid "Posts page"
+msgstr "Stránka príspevkov"
+
+#: ../inc/class-fire-utils.php:950
+msgid "Set up the front page layout"
+msgstr "Nastavte rozloženie prednej stránky"
+
+#: ../inc/class-fire-utils.php:961
+msgid "Slider options"
+msgstr "Nastavenia slajdra"
+
+#: ../inc/class-fire-utils.php:962
+msgid "Select front page slider"
+msgstr "Zvoľte slajder prednej stránky"
+
+#: ../inc/class-fire-utils.php:974
+msgid "Full width slider"
+msgstr "Plná šírka slajdra"
+
+#: ../inc/class-fire-utils.php:993
+msgid "Delay between each slides"
+msgstr "Oneskorenie medzi slajdami"
+
+#: ../inc/class-fire-utils.php:998
+msgid "in ms : 1000ms = 1s"
+msgstr "v ms : 1000ms = 1s"
+
+#: ../inc/class-fire-utils.php:1006
+msgid "Featured pages options"
+msgstr "Nastavenia úvodných predstavovacích stránok"
+
+#: ../inc/class-fire-utils.php:1007
+msgid "Display home featured pages area"
+msgstr "Zobraziť oblasť úvodných predstavovacích stránok"
+
+#: ../inc/class-fire-utils.php:1011
+msgid "Enable"
+msgstr "Povolené"
+
+#: ../inc/class-fire-utils.php:1012
+msgid "Disable"
+msgstr "Zakázané"
+
+#: ../inc/class-fire-utils.php:1021
+msgid "Show images"
+msgstr "Zobraziť obrázky"
+
+#: ../inc/class-fire-utils.php:1024
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"Priradenie obrázku za nastavuje pri editovaní každej stránky zvlášť. "
+"Odškrtnite túto možnosť pre zakázanie zobrazenia obrázkov."
+
+#: ../inc/class-fire-utils.php:1030
+msgid "Read more &raquo;"
+msgstr "Dozvedieť sa viac &raquo;"
+
+#: ../inc/class-fire-utils.php:1032
+msgid "Button text"
+msgstr "Text tlačidla"
+
+#: ../inc/class-fire-utils.php:1053
+msgid "Display Breadcrumb"
+msgstr "Zobraziť navigáciu"
+
+#: ../inc/class-fire-utils.php:1063
+msgid "Choose the global default layout"
+msgstr "Zvoľte globálne prednastavené rozloženie"
+
+#: ../inc/class-fire-utils.php:1074
+msgid "Force default layout everywhere"
+msgstr "Priradiť všade prednastavené rozloženie"
+
+#: ../inc/class-fire-utils.php:1077
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"Táto možnosť prepíše špecifické nastavenia rozloženia na každom príspevku "
+"alebo stránke."
+
+#: ../inc/class-fire-utils.php:1084
+msgid "Choose the posts default layout"
+msgstr "Zvoľte prednastavené rozloženie príspevkov"
+
+#: ../inc/class-fire-utils.php:1096
+msgid "Maximum number of posts per page"
+msgstr "Maximálny počet príspevkov na stránku"
+
+#: ../inc/class-fire-utils.php:1107
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "Zvoľte dľžku príspevku v zozname (vyhľadávanie, archív ... )"
+
+#: ../inc/class-fire-utils.php:1111
+msgid "Display the excerpt"
+msgstr "Zobraziť ukážku"
+
+#: ../inc/class-fire-utils.php:1112
+msgid "Display the full content"
+msgstr "Zobraziť celý obsah"
+
+#: ../inc/class-fire-utils.php:1120
+msgid "Choose the pages default layout"
+msgstr "Zvoľte prednastavené rozloženie stránok"
+
+#: ../inc/class-fire-utils.php:1140
+msgid "Enable comments on pages"
+msgstr "Povoliť na stránkach komentáre"
+
+#: ../inc/class-fire-utils.php:1143
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"Táto možnosť povolí komentovanie na stránkach. Komentovanie pre jednotlivé "
+"stránky môžte zakázať pri editovaní stránok. "
+
+#: ../inc/class-fire-utils.php:1157
+msgid "Social links in header"
+msgstr "Sociálne siete v hlavičke"
+
+#: ../inc/class-fire-utils.php:1166
+msgid "Social links in left sidebar"
+msgstr "Sociálne siete v ľavom bočnom paneli"
+
+#: ../inc/class-fire-utils.php:1175
+msgid "Social links in right sidebar"
+msgstr "Sociálne siete v pravom bočnom paneli"
+
+#: ../inc/class-fire-utils.php:1184
+msgid "Social links in footer"
+msgstr "Sociálne siete v päte"
+
+#: ../inc/class-fire-utils.php:1205
+msgid "Enable/disable lightbox effect on images"
+msgstr "Povoliť / zakázať lightbox efekt pre obrázky"
+
+#: ../inc/class-fire-utils.php:1208
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"Táto možnosť aktivuje po kliknutí na obrázok okno s približovacím efektom. "
+"Neplatí pre galériu obrázkov."
+
+#: ../inc/class-fire-utils.php:1214
+msgid "Autoscale images on zoom"
+msgstr "Automaticky nastaviť veľkosť obrázku po priblížení"
+
+#: ../inc/class-fire-utils.php:1217
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr "Táto možnosť zarovná obrázky do veľkosti okna lightbox efektu."
+
+#: ../inc/class-fire-utils.php:1223
+msgid "Enable/disable retina support"
+msgstr "Povoliť / zakázať retina podporu"
+
+#: ../inc/class-fire-utils.php:1226
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr "Táto možnosť zahŕňa podporu pre zariadenia s vysokým rozlíšením."
+
+#: ../inc/class-fire-utils.php:1239
+msgid "Enable/disable smooth scroll on click"
+msgstr "Povoliť / zakázať plynulý prechod po kliknutí"
+
+#: ../inc/class-fire-utils.php:1242
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr ""
+"Táto možnosť aktivuje plynulý prechod po kliknutí na link kotvy na rovnakej "
+"stránke."
+
+#: ../inc/class-fire-utils.php:1255
+msgid "Enable/disable blocks reordering on small devices"
+msgstr ""
+
+#: ../inc/class-fire-utils.php:1258
+msgid ""
+"On responsive mode, for smartphone viewport, the sidebars are moved after "
+"the main content block."
+msgstr ""
+
+#: ../inc/class-fire-utils.php:1264
+msgid "Enable/disable slider's slides centering on any devices"
+msgstr ""
+
+#: ../inc/class-fire-utils.php:1267
+msgid ""
+"This option centers your slider (carousel) pictures vertically and "
+"horizontally on any devices when displayed in full width mode"
+msgstr ""
+
+#: ../inc/class-fire-utils.php:1281
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr "Pridajte sem vlastné CSS ! (pre pokročilých užívateľov)"
+
+#: ../inc/class-fire-utils.php:1284
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates. You can also "
+"paste your custom css in the style.css file of a child theme."
+msgstr ""
+"Vždy použite toto pole pre vkladanie vlastných CSS : nebudú zmazané počas "
+"aktualizácie témy. Môžete tiež vložiť vlastné CSS do style.css súboru témy "
+"potomka."
+
+#: ../inc/admin/class-admin-meta_boxes.php:92
+msgid "Layout Options"
+msgstr "Nastavenia rozloženia"
+
+#: ../inc/admin/class-admin-meta_boxes.php:100
+#: ../inc/admin/class-admin-meta_boxes.php:471
+msgid "Slider Options"
+msgstr "Nastavenia slajdra"
+
+#: ../inc/admin/class-admin-meta_boxes.php:169
+#, php-format
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "Prednastavené rozloženie pre %1$s je nastavené na: %2$s"
+
+#: ../inc/admin/class-admin-meta_boxes.php:169
+msgid "pages"
+msgstr "stránky"
+
+#: ../inc/admin/class-admin-meta_boxes.php:169
+msgid "posts"
+msgstr "príspevky"
+
+#: ../inc/admin/class-admin-meta_boxes.php:174
+msgid ""
+"You have checked the <i>\"Force global default layout for all posts and pages"
+"\"</i>, you must unchecked this option to enable a specific layout for this "
+"post."
+msgstr ""
+"Zvolili ste <i>\"Priradiť všade prednastavené rozloženie\"</i>, musíte "
+"najprv túto možnosť odškrtnút."
+
+#: ../inc/admin/class-admin-meta_boxes.php:175
+msgid "Change layout options"
+msgstr "Zmena nastavenia rozloženia"
+
+#: ../inc/admin/class-admin-meta_boxes.php:179
+#, php-format
+msgid ""
+"You can define a specific layout for %1$s by using the pre-defined left and "
+"right sidebars. The default layouts can be defined in the WordPress "
+"customizer screen %2$s.<br />"
+msgstr ""
+"Môžete definovať špecifické rozloženie pre  %1$s použitím preddefinovaného "
+"ľavého a pravého bočného panela. Prednastavené rozloženie môže byť "
+"zadefinované na WordPress stránke %2$s.<br />"
+
+#: ../inc/admin/class-admin-meta_boxes.php:180
+#: ../inc/admin/class-admin-meta_boxes.php:185
+msgid "this page"
+msgstr "túto stránku"
+
+#: ../inc/admin/class-admin-meta_boxes.php:180
+#: ../inc/admin/class-admin-meta_boxes.php:185
+msgid "this post"
+msgstr "tento príspevok"
+
+#: ../inc/admin/class-admin-meta_boxes.php:181
+msgid "here"
+msgstr "tu"
+
+#: ../inc/admin/class-admin-meta_boxes.php:184
+#, php-format
+msgid "Select a specific layout for %1$s"
+msgstr "Zvoľte špecifické rozloženie pre %1$s"
+
+#: ../inc/admin/class-admin-meta_boxes.php:188
+#, php-format
+msgid "Default layout %1s"
+msgstr "Prednastavené rozloženie %1s"
+
+#: ../inc/admin/class-admin-meta_boxes.php:230
+msgid "Add a slider to this post/page"
+msgstr "Pridať slajder na túto stránku/príspevok"
+
+#: ../inc/admin/class-admin-meta_boxes.php:294
+#: ../inc/admin/class-admin-meta_boxes.php:678
+msgid "Choose a slider"
+msgstr "Zvoľte slajder"
+
+#: ../inc/admin/class-admin-meta_boxes.php:301
+#: ../inc/admin/class-admin-meta_boxes.php:693
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Zvoľte slajder &mdash; "
+
+#: ../inc/admin/class-admin-meta_boxes.php:306
+msgid ""
+"To create a new slider : open the media library, edit your images and add "
+"them to your new slider."
+msgstr ""
+"Pre vytvorenie nového slajdera : otvorte knižnicu médii, vyberte obrázok a "
+"vložte ho do nového slajdera."
+
+#: ../inc/admin/class-admin-meta_boxes.php:310
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Oneskorenie medzi slajdami v ms (defaultne : 5000 ms)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:317
+msgid "Slider Layout : set the slider in full width"
+msgstr "Rozloženie slajdera : nastaviť plnú šírku slajdera"
+
+#: ../inc/admin/class-admin-meta_boxes.php:334
+#: ../inc/admin/class-admin-meta_boxes.php:702
+msgid "Delete this slider"
+msgstr "Odstrániť tento slajder"
+
+#: ../inc/admin/class-admin-meta_boxes.php:339
+#: ../inc/admin/class-admin-meta_boxes.php:706
+msgid ""
+"The slider will be deleted permanently (images, call to actions and link "
+"will be kept)."
+msgstr "Slajder bude natrvalo odstránený (obrázky ostanú zachované)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:342
+#: ../inc/admin/class-admin-meta_boxes.php:709
+msgid "Delete slider"
+msgstr "Odstrániť slajder"
+
+#: ../inc/admin/class-admin-meta_boxes.php:350
+#: ../inc/admin/class-controls.php:137
+msgid ""
+"You haven't create any slider yet. Go to the media library, edit your images "
+"and add them to your sliders."
+msgstr ""
+"Ešte ste nevytvorili žiaden slajder. Otvorte knižnicu médii, vyberte obrázok "
+"a vložte ho do slajdera."
+
+#: ../inc/admin/class-admin-meta_boxes.php:500
+msgid "Add to a slider"
+msgstr "Pridať do slajdera"
+
+#: ../inc/admin/class-admin-meta_boxes.php:502
+msgid "Add to a slider (create one if needed)"
+msgstr "Pridať do slajdera (vytvoriť ak je potrebné)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:635
+msgid "Title text (80 car. max length)"
+msgstr "Text nadpisu (max. 80 znakov)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:642
+msgid "Description text (below the title, 250 car. max length)"
+msgstr "Opisný text (pod nadpisom, max. 250 znakov)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:649
+msgid "Title and text color"
+msgstr "Farba nadpisu a textu"
+
+#: ../inc/admin/class-admin-meta_boxes.php:657
+msgid "Button text (80 car. max length)"
+msgstr "Text tlačidla (max. 80 znakov)"
+
+#: ../inc/admin/class-admin-meta_boxes.php:664
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Pripojte stránku alebo príspevok (z posledných 100)."
+
+#: ../inc/admin/class-admin-meta_boxes.php:669
+msgid "No link"
+msgstr "Žiaden odkaz"
+
+#: ../inc/admin/class-admin-meta_boxes.php:699
+#: ../inc/admin/class-admin-meta_boxes.php:730
+msgid "Add a slider"
+msgstr "Pridať slajder"
+
+#: ../inc/admin/class-admin-meta_boxes.php:728
+msgid ""
+"You haven't create any slider yet. Write a slider name and click on the "
+"button to add you first slider."
+msgstr ""
+"Ešte ste nevytvorili žiaden slajder. Zadajte meno a kliknite na tlačidlo pre "
+"pridanie Vášho prvého slajdera."
+
+#: ../inc/admin/class-admin-meta_boxes.php:845
+msgid ""
+"This slider has not slides to show. Go to the media library and start adding "
+"images to it."
+msgstr ""
+"Tento slajder nemá žiadne slajdy. Otvorte knižnicu médii a pridajte obrázky."
+
+#: ../inc/admin/class-admin-meta_boxes.php:855
+msgid "Slide Image"
+msgstr "Obrázok slajdu"
+
+#: ../inc/admin/class-admin-meta_boxes.php:856
+msgid "Title"
+msgstr "Nadpis"
+
+#: ../inc/admin/class-admin-meta_boxes.php:857
+msgid "Slide Text"
+msgstr "Text slajdu"
+
+#: ../inc/admin/class-admin-meta_boxes.php:858
+msgid "Button Text"
+msgstr "Text tlačidla"
+
+#: ../inc/admin/class-admin-meta_boxes.php:859
+msgid "Button Link"
+msgstr "Odkaz tlačidla"
+
+#: ../inc/admin/class-admin-meta_boxes.php:860
+#: ../parts/class-content-breadcrumb.php:595
+#: ../parts/class-content-breadcrumb.php:628
+#: ../parts/class-content-breadcrumb.php:643
+#: ../parts/class-content-breadcrumb.php:671
+#: ../parts/class-content-comments.php:157
+#: ../parts/class-content-headings.php:247
+#: ../parts/class-content-slider.php:243
+msgid "Edit"
+msgstr "Upraviť"
+
+#: ../inc/admin/class-admin-meta_boxes.php:901
+msgid "No Image Selected"
+msgstr "Nie je vybraný žiaden obrázok"
+
+#: ../inc/admin/class-admin-meta_boxes.php:927
+msgid "Edit this slide"
+msgstr "Upraviť tento slajd"
+
+#: ../inc/admin/class-admin-meta_boxes.php:929
+msgid "Current slide"
+msgstr "Súčasný slajd"
+
+#: ../inc/admin/class-controls.php:137
+msgid "Create a slider"
+msgstr "Vytvoriť slajder"
+
+#: ../inc/admin/class-fire-admin_init.php:67
+#: ../inc/admin/class-fire-admin_init.php:68
+msgid "Upgrade WP"
+msgstr "Aktualizovať WP"
+
+#: ../inc/admin/class-fire-admin_init.php:87
+msgid "This theme requires WordPress 3.4+"
+msgstr "Táto téma vyžaduje WordPress 3.4+"
+
+#: ../inc/admin/class-fire-admin_init.php:90
+#: ../inc/admin/class-fire-admin_init.php:91
+msgid "Upgrade Wordpress Now"
+msgstr "Aktualizovať Wordpress Teraz"
+
+#: ../inc/admin/class-fire-admin_init.php:108
+#: ../inc/admin/class-fire-admin_init.php:109
+msgid "About Customizr"
+msgstr "O téme Customizr"
+
+#: ../inc/admin/class-fire-admin_init.php:131
+msgid "Need help with Customizr ?"
+msgstr "Potrebujete pomoc s témou Customizr ?"
+
+#: ../inc/admin/class-fire-admin_init.php:133
+#, php-format
+msgid "Welcome to Customizr %s"
+msgstr "Vitajte v téme Customizr %s"
+
+#: ../inc/admin/class-fire-admin_init.php:140
+#, php-format
+msgid ""
+"You can start by watching the <a href=\"%1$s\" target=\"_blank"
+"\">introduction video</a> or by reading <a href=\"%2$s\" target=\"_blank"
+"\">the documentation</a>.<br/> If you don't find an answer to your issue, "
+"don't panic! Since Customizr is used by a growing community of webmasters "
+"reporting bugs and making continuous improvements, you will probably find a "
+"solution to your problem either in the FAQ or in the user forum."
+msgstr ""
+"Môžete začať sledovaním <a href=\"%1$s\" target=\"_blank\">introduction "
+"video</a> alebo čítaním <a href=\"%2$s\" target=\"_blank\">the "
+"documentation</a>.<br/>Ak nenájdete odpoveď na Váš problém, nepanikárte ! "
+"Customizr používa čoraz väčšia komunita vývojárov, Vaše riešenie "
+"pravdepodobne nájdete vo FAQ alebo vo fóre."
+
+#: ../inc/admin/class-fire-admin_init.php:148
+msgid "Read the documentation"
+msgstr "Čítať dokumentáciu"
+
+#: ../inc/admin/class-fire-admin_init.php:152
+msgid "Check the FAQ"
+msgstr "Pozrieť FAQ"
+
+#: ../inc/admin/class-fire-admin_init.php:157
+msgid "Code snippets"
+msgstr "Úryvky kódu"
+
+#: ../inc/admin/class-fire-admin_init.php:160
+msgid "Discuss in the user forum"
+msgstr "Diskusia"
+
+#: ../inc/admin/class-fire-admin_init.php:168
+#, php-format
+msgid ""
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see the "
+"changelog)</a> to help you build an awesome website. Watch the <a href=\"%2$s"
+"\" target=\"_blank\">introduction video</a> and find inspiration in the <a "
+"href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
+msgstr ""
+"Ďakujeme za používanie témy Customizr! Customizr %1$s má viac funkcii, je "
+"bezpečnejšá a stabilnejší <a href=\"#customizr-changelog\">(changelog)</a> . "
+"Sledujte <a href=\"%2$s\" target=\"_blank\">introduction video</a> a "
+"inšpirujte sa <a href=\"#showcase\">showcase</a>.<br/>Užite si to ! "
+
+#: ../inc/admin/class-fire-admin_init.php:182
+#, php-format
+msgid ""
+"You are using a child theme of Customizr %1$s : always check the %2$s after "
+"upgrading to see if a function or a template has been deprecated."
+msgstr ""
+"Používate tému potomka Customizr %1$s : vždy skontrolujte %2$s po "
+"aktualizácii, či boli funkcie zastaralé."
+
+#: ../inc/admin/class-fire-admin_init.php:197
+msgid "We need sponsors!"
+msgstr "Potrebujeme sponzorov !"
+
+#: ../inc/admin/class-fire-admin_init.php:198
+msgid ""
+"<strong>We do our best do make Customizr the perfect free theme for you!</"
+"strong><br/> Please help support it's continued development with a donation "
+"of $20, $50, or even $100."
+msgstr ""
+"<strong>Snažíme sa z plných síl aby bola Customizr perfektná téma!</"
+"strong><br/> Prosím, podporte náš vývoj príspevkom $20, $50 alebo $100."
+
+#: ../inc/admin/class-fire-admin_init.php:205
+msgid "Happy user of Customizr?"
+msgstr "Šťastný užívateľ témy Customizr?"
+
+#: ../inc/admin/class-fire-admin_init.php:206
+msgid ""
+"If you are happy with the theme, say it on wordpress.org and give Customizr "
+"a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr ""
+"Ak ste s témou spokojní, vyjadrite sa na wordpress.org ! <br />(Tešíme sa na "
+"Vaše ohlasy...)"
+
+#: ../inc/admin/class-fire-admin_init.php:211
+msgid "Follow us"
+msgstr "Sledujte nás"
+
+#: ../inc/admin/class-fire-admin_init.php:219
+msgid "Customizr's extensions"
+msgstr "Rozšírenia témy Customizr"
+
+#: ../inc/admin/class-fire-admin_init.php:222
+#: ../inc/admin/class-fire-admin_init.php:231
+msgid "Visit the extension's page"
+msgstr "Navštívte stránku rozšírení"
+
+#: ../inc/admin/class-fire-admin_init.php:223
+msgid "Easily take your web design one step further"
+msgstr "Jednoducho zvýšte dizajn Vášho webu o jeden stupeň."
+
+#: ../inc/admin/class-fire-admin_init.php:224
+msgid ""
+"The Customizr's extensions are plugins developed to extend the Customizr "
+"theme with great features. Nicely integrated with the theme's built-in "
+"options, they can be enabled/disabled safely with no side effects on your "
+"existing settings or customizations."
+msgstr ""
+"Rozšírenia témy Customizr sú pluginy obsahujúce ďalšie úžasné funkcie. "
+"Jednoduchá implementácia, môžu byž povolené/zakázané bezpečne, bez žiadneho "
+"vedľajšieho účinku."
+
+#: ../inc/admin/class-fire-admin_init.php:226
+msgid ""
+"These modules are designed to be simple to use for everyone. They are a good "
+"solution to add some creative customizations whitout needing to dive into "
+"the code."
+msgstr ""
+"Tieto moduly sú navrhnuté tak, aby boli ľahko ovládané. Sú dobrým riešením, "
+"ako pridať kreatívne funkcie bez nutnosti detailnej znalosti kódu."
+
+#: ../inc/admin/class-fire-admin_init.php:228
+msgid ""
+"Customizr's extensions are installed and upgraded from your WordPress admin, "
+"like any other WordPress plugins. Well documented and easily extendable with "
+"hooks, they come with a dedicated support forum on themesandco.com."
+msgstr ""
+"Rozšírenia sú inštalované a aktualizované priamo v administrátorskom paneli "
+"WordPress. Dobrú dokumentáciu k rozšíreniam nájdete vo fóre na stránke "
+"themesandco.com."
+
+#: ../inc/admin/class-fire-admin_init.php:237
+msgid "Customizr Showcase"
+msgstr "Predstavenie témy Customizr"
+
+#: ../inc/admin/class-fire-admin_init.php:240
+#: ../inc/admin/class-fire-admin_init.php:247
+msgid "Visit the showcase"
+msgstr "Navštívte prehliadku"
+
+#: ../inc/admin/class-fire-admin_init.php:241
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "Inšpirujte sa pre Váš ďalší web založený na téme Customizr !"
+
+#: ../inc/admin/class-fire-admin_init.php:242
+msgid ""
+"This showcase aims to show what can be done with Customizr and helping other "
+"users to find inspiration for their web design."
+msgstr ""
+"Táto prehliadka ukazuje, ako jednoducho používať a upravovať web založený na "
+"téme Customizr."
+
+#: ../inc/admin/class-fire-admin_init.php:244
+msgid ""
+"Do you think you made an awesome website that can inspire people? Submitting "
+"a site for review is quick and easy to do."
+msgstr ""
+"Myslíte si, že ste spravili úžasnú webstránku, ktorá môže inšpirovať ľudí ?  "
+"Odoslanie stránky pre nahliadnutie je rýchle a jednoduché."
+
+#: ../inc/admin/class-fire-admin_init.php:254
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr "Zoznam zmien vo verzii %1$s"
+
+#: ../inc/admin/class-fire-admin_init.php:263
+msgid "Go to Dashboard &rarr; Home"
+msgstr "Choď na Dashboard &rarr; Home"
+
+#: ../inc/admin/class-fire-admin_init.php:263
+msgid "Go to Dashboard"
+msgstr "Choď na Dashboard"
+
+#: ../parts/class-content-attachment.php:44
+msgid "&larr; Previous"
+msgstr "&larr; Predchádzajúca"
+
+#: ../parts/class-content-attachment.php:45
+msgid "Next &rarr;"
+msgstr "Ďalšia &rarr;"
+
+#: ../parts/class-content-breadcrumb.php:43
+#: ../parts/class-content-breadcrumb.php:102
+msgid "Home"
+msgstr "Úvod"
+
+#: ../parts/class-content-breadcrumb.php:99
+msgid "Browse:"
+msgstr "Hľadať:"
+
+#: ../parts/class-content-breadcrumb.php:479
+msgid "g:i a"
+msgstr "g:i a"
+
+#: ../parts/class-content-breadcrumb.php:482
+#, php-format
+msgid "Minute %1$s"
+msgstr "minúty %1$s"
+
+#: ../parts/class-content-breadcrumb.php:482
+msgid "i"
+msgstr "i"
+
+#: ../parts/class-content-breadcrumb.php:485
+msgid "g a"
+msgstr "g a"
+
+#: ../parts/class-content-breadcrumb.php:496
+#: ../parts/class-content-breadcrumb.php:506
+#: ../parts/class-content-breadcrumb.php:515
+#: ../parts/class-content-breadcrumb.php:526
+#: ../parts/class-content-breadcrumb.php:528
+#: ../parts/class-content-breadcrumb.php:727
+msgid "Y"
+msgstr "Y"
+
+#: ../parts/class-content-breadcrumb.php:497
+#: ../parts/class-content-breadcrumb.php:518
+#: ../parts/class-content-breadcrumb.php:520
+#: ../parts/class-content-breadcrumb.php:731
+msgid "F"
+msgstr "F"
+
+#: ../parts/class-content-breadcrumb.php:500
+#: ../parts/class-content-breadcrumb.php:502
+#: ../parts/class-content-breadcrumb.php:735
+msgid "d"
+msgstr "d"
+
+#: ../parts/class-content-breadcrumb.php:509
+#: ../parts/class-content-breadcrumb.php:511
+#, php-format
+msgid "Week %1$s"
+msgstr "Týždeň %1$s"
+
+#: ../parts/class-content-breadcrumb.php:537
+#: ../parts/class-content-breadcrumb.php:539
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Hľadanie výsledkov pre &quot;%1$s&quot;"
+
+#: ../parts/class-content-breadcrumb.php:544
+msgid "404 Not Found"
+msgstr "404 Not Found"
+
+#: ../parts/class-content-breadcrumb.php:549
+#: ../parts/class-content-breadcrumb.php:551
+#, php-format
+msgid "Page %d"
+msgstr "Strana %d"
+
+#: ../parts/class-content-breadcrumb.php:620
+msgid "Split"
+msgstr "Rozdeliť"
+
+#: ../parts/class-content-breadcrumb.php:624
+msgid "Merge"
+msgstr "Spojiť"
+
+#: ../parts/class-content-comments.php:63
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgstr "Jedno zamyslenie sa nad &ldquo;%2$s&rdquo;"
+
+#: ../parts/class-content-comments.php:121
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: ../parts/class-content-comments.php:121
+msgid "(Edit)"
+msgstr "(Upraviť)"
+
+#: ../parts/class-content-comments.php:149
+msgid "Reply"
+msgstr "Odpovedať"
+
+#: ../parts/class-content-comments.php:156
+msgid "Post author"
+msgstr "Autor príspevku"
+
+#: ../parts/class-content-comments.php:163
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s v %2$s"
+
+#: ../parts/class-content-comments.php:168
+msgid "Your comment is awaiting moderation."
+msgstr "Váš komentár čaká na schválenie."
+
+#: ../parts/class-content-comments.php:202
+msgid "Comment navigation"
+msgstr "Navigácia v komentároch"
+
+#: ../parts/class-content-comments.php:208
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Staršie komentáre"
+
+#: ../parts/class-content-comments.php:216
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Novšie komentáre <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-comments.php:248
+msgid "Comments are closed."
+msgstr "Komentáre sú uzavreté."
+
+#: ../parts/class-content-featured_pages.php:123
+msgid "Customizer screen"
+msgstr "Obrazovka témy Customizr"
+
+#: ../parts/class-content-featured_pages.php:123
+msgid " here"
+msgstr "tu"
+
+#: ../parts/class-content-featured_pages.php:127
+msgid "Featured page"
+msgstr "Úvodná predstavovacia stránka"
+
+#: ../parts/class-content-featured_pages.php:130
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"Text úvodnej predstavovacej stránky : použite ukážku stránky alebo nastavte "
+"vlastný text na obrazovke Customizr %s."
+
+#: ../parts/class-content-gallery.php:194
+msgid "Missing Attachment"
+msgstr "Chýbajúca príloha"
+
+#: ../parts/class-content-headings.php:46
+msgid "Ooops, page not found"
+msgstr "Ooops, stránka nenájdená"
+
+#: ../parts/class-content-headings.php:57
+msgid "No"
+msgstr "Nie"
+
+#: ../parts/class-content-headings.php:58
+msgid "Search Results for :"
+msgstr "Výsledky hľadania pre :"
+
+#: ../parts/class-content-headings.php:73
+msgid "Author Archives :"
+msgstr "Autor Archívu :"
+
+#: ../parts/class-content-headings.php:87 ../parts/class-content-post.php:98
+#, php-format
+msgid "About %s"
+msgstr "O %s"
+
+#: ../parts/class-content-headings.php:100
+msgid "Category Archives :"
+msgstr "Archív kategórii :"
+
+#: ../parts/class-content-headings.php:116
+msgid "Tag Archives :"
+msgstr "Archív Tagov :"
+
+#: ../parts/class-content-headings.php:129
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Denný archív: %s"
+
+#: ../parts/class-content-headings.php:129
+msgid "Archives"
+msgstr "Archívy"
+
+#: ../parts/class-content-headings.php:130
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Mesačný archív: %s"
+
+#: ../parts/class-content-headings.php:131
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Ročný archív: %s"
+
+#: ../parts/class-content-headings.php:217
+#: ../parts/class-content-headings.php:223
+msgid "{no title} Read the post &raquo;"
+msgstr "{žiaden nadpis} Čítať príspevok &raquo;"
+
+#: ../parts/class-content-headings.php:222
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalink na %s"
+
+#: ../parts/class-content-headings.php:240
+msgid "Comment(s) on"
+msgstr "Komentár(e) na"
+
+#: ../parts/class-content-page.php:48 ../parts/class-content-post.php:53
+#: ../parts/class-content-post_list.php:132
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Čítať ďalej <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-page.php:50 ../parts/class-content-post.php:54
+#: ../parts/class-content-post_list.php:133
+msgid "Pages:"
+msgstr "Strany:"
+
+#: ../parts/class-content-post.php:102
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Zobraziť všetky príspevky od %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-post_metas.php:54
+msgid "Published"
+msgstr "Publikované"
+
+#: ../parts/class-content-post_metas.php:57
+msgid "at dimensions"
+msgstr "v rozmeroch"
+
+#: ../parts/class-content-post_metas.php:57
+msgid "Link to full-size image"
+msgstr "Odkaz na obrázok plnej veľkosti"
+
+#: ../parts/class-content-post_metas.php:58
+msgid "in"
+msgstr "v"
+
+#: ../parts/class-content-post_metas.php:58
+msgid "Return to "
+msgstr "Vrátiť sa na"
+
+#: ../parts/class-content-post_metas.php:80
+#, php-format
+msgid "View all posts by %s"
+msgstr "Zobraziť všetky príspevky od %s"
+
+#: ../parts/class-content-post_metas.php:87
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:89
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+
+#: ../parts/class-content-post_metas.php:91
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+"This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:134
+#: ../parts/class-content-post_metas.php:166
+#, php-format
+msgid "View all posts in %s"
+msgstr "Zobraziť všetky príspevky v %s"
+
+#: ../parts/class-content-post_navigation.php:59
+#: ../parts/class-content-post_navigation.php:92
+msgid "Post navigation"
+msgstr "Navigácia v príspevkoch "
+
+#: ../parts/class-content-post_navigation.php:102
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Staršie príspevky"
+
+#: ../parts/class-content-post_navigation.php:115
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Novšie príspevky <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-footer-footer_main.php:179
+msgid "Back to top"
+msgstr "Späť hore"
+
+#: ../parts/class-header-header_main.php:167
+msgid "Back Home"
+msgstr "Späť na úvod"
+
+#: ../parts/class-header-menu.php:49
+msgid "Add a menu"
+msgstr "Pridať menu "
+
+#, fuzzy
+#~ msgid "Ajust the slider size"
+#~ msgstr "Texte de description (sous le titre) de la diapositive"
+
+#, fuzzy
+#~ msgid "Choose a font"
+#~ msgstr "Choisir une page"
+
+#~ msgid "Slide Entry"
+#~ msgstr "Diapositive"
+
+#~ msgid "Edit Slide Entry"
+#~ msgstr "Modifier la diapositive"
+
+#~ msgid "Search Slide Entries"
+#~ msgstr "Rechercher dans les diapositives"
+
+#~ msgid "Edit Slider Name"
+#~ msgstr "Modifier le nom du diporama"
+
+#~ msgid "Front Page Widget Area One"
+#~ msgstr "Première zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Two"
+#~ msgstr "Deuxième zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Three"
+#~ msgstr "Troisième zone de widgets de page d'accueil"
+
+#~ msgid "If this field is empty, it will display an excerpt of the page."
+#~ msgstr "Si le champ est vide, un extrait de la page est affiché."
+
+#~ msgid "Force logo to fit in the left header block"
+#~ msgstr "Forcer le redimensionnement du logo dans le bloc gauche du header"
+
+#~ msgid ""
+#~ "Force default layout for all posts and pages (including front page and "
+#~ "pages/posts with a specific layout)"
+#~ msgstr ""
+#~ "Forcer la structure par défaut pour toutes les pages du sites (y compris "
+#~ "la page d'accueil ainsi que les pages et billets qui ont une structure "
+#~ "spécifique)"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "%"
+#~ msgstr "%"
+
+#~ msgid "Manage widgets"
+#~ msgstr "Gérer les widgets"
+
+#~ msgid "Right"
+#~ msgstr "Droite"
+
+#~ msgid "Left"
+#~ msgstr "Gauche"
+
+#~ msgid "View details &raquo;"
+#~ msgstr "Voir les détails &raquo;"
+
+#~ msgid "Length of the excerpt (default 200)"
+#~ msgstr "Longueur de l'extrait (200 car. par défaut)"
+
+#~ msgid "Theme Options"
+#~ msgstr "Options du thème"
+
+#~ msgid "Layout Settings"
+#~ msgstr "Réglages de la structure de page"
+
+#~ msgid " checked=\"checked\""
+#~ msgstr " "
+
+#~ msgid "Sample Checkbox"
+#~ msgstr "Exemple"
+
+#~ msgid ""
+#~ "Appears on posts and pages except the optional Front Page template, which "
+#~ "has its own widgets"
+#~ msgstr "Affichée dans les posts et les pages, hormis l"

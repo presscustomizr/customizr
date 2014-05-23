@@ -12,7 +12,9 @@
 .about-wrap h3 {
 	line-height: 26px;
 }
-
+.about-wrap .feature-section {
+		margin-top: 0px;
+}
 .about-wrap .feature-section div {
 	text-align: center;
 }
@@ -26,6 +28,19 @@
 	border: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	max-width: none;
+	float: none;
+}
+
+
+.images-stagger-right img {
+	float: right;
+	padding-left: 20px;
+}
+
+.images-stagger-left img {
+	float: left;
+	padding-right: 20px;
 }
 
 .tc-follow {
@@ -50,36 +65,38 @@
 
 /* ADMIN BAR
     -------------------------------------------------- */
-li#wp-admin-bar-tc-customizr-help a:before {
- 	font-family: 'entypo';
-	content: "\E788";
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	padding-right: 5px;
-	top: 3px;
-	font-size: 2.5em;
-	position: relative;
-	line-height: 0px;
+#wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
+  font-family: 'entypo';
+  content: "\E788";
+  color: #FFF;
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 0px;
+  top: 5px;
+  font-size: 30px;
+  position: relative;
+  line-height: 0px;
 }
 
-li#wp-admin-bar-tc-customizr a:before {
+#wpadminbar #wp-admin-bar-tc-customizr .ab-item:before, li#wp-admin-bar-tc-customizr a:before {
   font-family: 'entypo';
-	content: "\E79A";
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	padding-right: 5px;
-	top: 3px;
-	font-size: 2.5em;
-	position: relative;
-	line-height: 0px;
+  content: "\E79A";
+  color: #FFF;
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 0px;
+  top: 4px;
+  font-size: 30px;
+  position: relative;
+  line-height: 0px;
 }
 
 li#wp-admin-bar-tc-customizr-help a {
@@ -164,10 +181,19 @@ h1.need-help-title:before {
 }
 
 .button-secondary.customizr-help {
-	line-height: 49px;
+	line-height: 25px;
+	padding-top: 11px;
 	height: 51px;
 	font-size: 20px;
 	font-family: 'georgia';
+	width: 95%;
+	white-space: normal;
+}
+
+.about-wrap .feature-section .tc-follow img {
+	background: none;
+	max-width: none;
+	float: none;
 }
 
 .about-wrap #showcase .feature-section img {
