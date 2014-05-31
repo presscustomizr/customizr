@@ -203,7 +203,7 @@ class TC_headings {
 
           //when are we displaying the edit link?
           $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page() ) ? true : false;
-          $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_posts') && !is_page() ) ? true : $edit_enabled;
+          $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;
           $edit_enabled                      = apply_filters( 'tc_edit_in_title', $edit_enabled );
 
           //declares vars

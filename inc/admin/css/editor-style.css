@@ -2,7 +2,9 @@
 Theme Name: customizr
 Description: Used to style the TinyMCE editor.
 */
-
+body{
+	background: #FAFAFA!important;
+}
 
 /* Aside */
 .post-format-aside {

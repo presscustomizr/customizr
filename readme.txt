@@ -33,8 +33,14 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.1.15 May 31st 2014 =
+* fixed : (css : editor-style.css) background default color flagged as !important
+* fixed : (php : class-content-headings.php) post edit button is displayed to author of the post and admin profiles Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/">Rocco</a>
+* fixed : (php : class-content-slider.php) slider edit button is displayed for users with the upload_files capability
+* fixed : (php : class-content-comments.php) class comment-{id} has been added to the article comment wrapper to ensure compatibility with the recent comment WP built-in widget
+
 = 3.1.14 =
-* added : (js : theme-customizer-control.js, css : theme-customizer-control.css, php : class-admin-customize.php) Donate block can now be disabled forever in admin.
+* added : (js : theme-customizer-control.js, css : theme-customizer-control.css, php : class-admin-customize.php) Donate block can be disable forever in admin.
 
 = 3.1.13 =
 * added : (lang) Danish translation. Thanks to <a href="http://teknikalt.dk">Peter Wiwe</a>

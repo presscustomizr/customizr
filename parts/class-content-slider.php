@@ -236,7 +236,8 @@ class TC_slider {
                 }//end if there content to show in caption
 
                 //display edit link for logged in users with edit posts capabilities
-                $show_edit_link         = apply_filters('tc_show_slider_edit_link' , is_user_logged_in() && current_user_can('edit_posts') && !is_null($data['link_id']) );
+                $show_edit_link         = ( is_user_logged_in() && current_user_can('upload_files') ) ? true : false;
+                $show_edit_link         = apply_filters('tc_show_slider_edit_link' , $show_edit_link && !is_null($data['link_id']) );
                 if ( $show_edit_link ) {
                   printf('<span class="slider edit-link btn btn-inverse"><a class="post-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
                     get_edit_post_link($id) . '#slider_sectionid',

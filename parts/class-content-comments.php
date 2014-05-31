@@ -135,7 +135,7 @@ class TC_comments {
             //gets the comment text => filter parameter!
             $comment_text = get_comment_text( $comment->comment_ID , $args );
 
-            printf('<article class="comment"><div class="%1$s"><div class="%2$s">%3$s</div><div class="%4$s">%5$s %6$s %7$s %8$s</div></div></article>',
+            printf('<article id="comment-%9$s" class="comment"><div class="%1$s"><div class="%2$s">%3$s</div><div class="%4$s">%5$s %6$s %7$s %8$s</div></div></article>',
                 apply_filters( 'tc_comment_wrapper_class', 'row-fluid' ),
                 apply_filters( 'tc_comment_avatar_class', 'comment-avatar span2' ),
                 get_avatar( $comment, apply_filters( 'tc_comment_avatar_size', 80 ) ),
@@ -175,7 +175,8 @@ class TC_comments {
                
                 sprintf('<section class="comment-content comment">%1$s</section>',
                   apply_filters( 'comment_text', $comment_text, $comment, $args )
-                  )
+                ),
+                $comment->comment_ID
               );//end printf
           ?>
         <!-- #comment-## -->
