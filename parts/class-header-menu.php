@@ -80,7 +80,7 @@ class TC_menu {
     
         //renders the responsive button
         if ( 'resp' == $resp ) { //resp is an argument of do_action ('__navbar' , 'resp')
-          $button = sprintf('<button type="button" class="%1$s" data-toggle="collapse" data-target=".nav-collapse">%2$s%2$s%2$s</button>',
+          $button = sprintf('<button type="button" class="%1$s" data-toggle="collapse" data-target=".nav-collapse" title="' . __('Menu','customizr') . '">%2$s%2$s%2$s</button>',
             apply_filters( 'tc_menu_button_class', 'btn btn-navbar' ),
             '<span class="icon-bar"></span>'
           );
