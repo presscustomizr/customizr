@@ -33,6 +33,38 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.1.23 August 31th 2014 =
+* added : (php, class-footer-footer_main.php#55) 2 new action hooks before and after the footer widgets row : '__before_footer_widgets' , '__after_footer_widgets'
+* added : (php, class-footer-footer_main.php#142) Colophon center block : 2 new filter hooks : tc_copyright_link, tc_credit_link
+* improved : (php, class-header-header_main.php#223) action hook 'before_navbar' renamed to '__before_navbar' for namespace consistency reasons
+* improved : (php, class-footer-footer_main.php#55) before and after footer widgets hooks have been moved out of the active_sidebar condition in order to be used even with widget free footer
+* changed : (php, class-content-breadcrumb.php#581 ) filter hook name has been changed from 'breadcrumb_trail_items' to 'tc_breadcrumb_trail_items'
+* changed : (php, class-content-featured_pages.php#112) filter name changed from 'fp_holder_img' to 'tc_fp_holder_img' for namespace consistency reasons
+* improved : (php, class-content-featured_pages.php) filter hooks missing parameters ( $fp_single_id and / or $featured_page_id) have been added to 'tc_fp_title', 'tc_fp_text_length', 'fp_img_src, 'tc_fp_img_size', 'tc_fp_round_div', 'tc_fp_title_tag', 'tc_fp_title_block', 'tc_fp_text_block', 'tc_fp_button_block', 'tc_fp_single_display'
+* improved : (php, class-fire-init.php#386) replace the disable_for_jetpack() callback by the built-in wp function __return_false()
+* improved : (php, class-content-post_list.php#240) use apply_filters_ref_array instead of apply_filters for some filters
+* improved : (php, class-content-post_list.php#240) 'tc_get_post_list_thumbnail' filter : the current post id has been included in the array of parameters
+* improved : (php, class-content-post_list.php#259) 'tc_post_thumb_img' filter : the current post id has been included in the parameters
+* improved : (php, class-content-post_metas.php#189) use apply_filters_ref_array instead of apply_filters
+* improved : (php, class-content-sidebar.php#115) current_filter() added as parameter of the 'tc_social_in_sidebar' filter hook
+* improved : (php, class-content-slider#193) $slider_name_id parameter added to the following filter hooks : tc_slide_background, tc_slide_title, tc_slide_text, tc_slide_color, tc_slide_link_id, tc_slide_link_url, tc_slide_button_text, tc_slide_title_tag, tc_slide_button_class
+* fixed : (php, class-fire-admin_init.php#312) Changelog was not displayed in ?page=welcome.php#customizr-changelog. Now look for '= '.CUSTOMIZR_VER to match the current version changelog
+* added : (php, class-header-header_main.php) added 'tc_head_display' filter
+* improved : (php, class-header-header_main.php) tc_favicon_display filter is now handled with a sprintf()
+* added : (php, class-header-header_main.php) new filters tc_logo_link_title , tc_site_title_link_title
+* changed : (php, class-header-header_main.php ) filter names : __max_logo_width => tc_logo_max_width and __max_logo_height => tc_logo_max_height
+* changed : (php, class-header-header_menu.php#97) filter menu_wrapper_class renamed in tc_menu_wrapper_class
+* changed : (php, class-header-nav_walker.php#41 ) filter menu_open_on_clicks renamed in tc_menu_open_on_click
+* added : (php, comments.php) new filter : tc_comments_wrapper_class inside div#comments
+* changed : (php, comments.php) filter comment_separator renamed to tc_comment_separator
+* improved : (php, comments.php) cleaner code
+* changed : (php, init.php#47) Class loading order. Utils are now loaded before resources.
+* changed : (php, class-fire-resources.php) localized params filter renamed 'tc_customizr_script_params'. Left and Right sidebars classes are now set dynamically form the global layout params.
+* changed : (php, class-fire-utils.php#497) added the $key parameter to tc_social_link_class
+* added : (php, class-controls.php) 2 new action hooks : __before_setting_control, __after_setting_control, using the setting id as additional parameter.
+* added : (php, class-content-post_metas.php) entry-date meta : new filter to use the modified date instead of the actual post date : 'tc_use_the_post_modified_date'. Default to false. Note : get_the_modified_date() == get_the_date() if the post has never been updated.
+
+
 = 3.1.22 August 16th 2014 =
 * added : (css, class-fire-init.php#75) 9 new minified css skins
 * fixed : (php, class-content-breadcrumb.php#443) added a check is_array(get_query_var( 'post_type' ) in archive context

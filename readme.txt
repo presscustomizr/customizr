@@ -34,7 +34,7 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
-= 3.1.23 August 27th 2014 =
+= 3.1.23 August 31th 2014 =
 * added : (php, class-footer-footer_main.php#55) 2 new action hooks before and after the footer widgets row : '__before_footer_widgets' , '__after_footer_widgets'
 * added : (php, class-footer-footer_main.php#142) Colophon center block : 2 new filter hooks : tc_copyright_link, tc_credit_link
 * improved : (php, class-header-header_main.php#223) action hook 'before_navbar' renamed to '__before_navbar' for namespace consistency reasons
