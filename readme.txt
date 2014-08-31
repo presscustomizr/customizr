@@ -1,9 +1,9 @@
 ###################### Copyright ######################
 Customizr is a free WordPress theme designed by Nicolas Guillaume in Nice, France. (www.themesandco.com)
 Feel free to use, modify and redistribute this theme as you like.
-You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.
+You may remove any copyright references (unless required by third party components) and crediting is not necessary, but much appreciated... ;-D.
 Customizr is distributed under the terms of the GNU GPL v2.0 or later
-Enjoy it!
+Most important : enjoy it!
 
 
 
@@ -12,6 +12,7 @@ DOCUMENTATION : http://themesandco.com/customizr
 FAQs : http://themesandco.com/customizr/faq
 SNIPPETS : http://themesandco.com/code-snippets/
 HOOKS API : http://www.themesandco.com/customizr/hooks-api/
+
 
 
 ####################### Licenses #######################
@@ -28,11 +29,89 @@ The exceptions to this license are as follows:
 * Icon Set:	Entypo is licensed under SIL Open-Font License
 * The image phare.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:Ca_1941_DAF_%27Rijdende_regenjas%27_pic7.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 * The image chevrolet.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:%2755_Chevrolet_ornament.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
-* The image ampoules.jpg is a free public picture from Wikimedia, copyright 2010 Medvedev (http://commons.wikimedia.org/wiki/File:E24_E14_E10.jpg) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+* The image customizr.jpg is a creation of Nicolas Guillaume licensed under GPL v2+.
 
 
 
 #######################  Changelog ######################
+= 3.1.23 August 27th 2014 =
+* added : (php, class-footer-footer_main.php#55) 2 new action hooks before and after the footer widgets row : '__before_footer_widgets' , '__after_footer_widgets'
+* added : (php, class-footer-footer_main.php#142) Colophon center block : 2 new filter hooks : tc_copyright_link, tc_credit_link
+* improved : (php, class-header-header_main.php#223) action hook 'before_navbar' renamed to '__before_navbar' for namespace consistency reasons
+* improved : (php, class-footer-footer_main.php#55) before and after footer widgets hooks have been moved out of the active_sidebar condition in order to be used even with widget free footer
+* changed : (php, class-content-breadcrumb.php#581 ) filter hook name has been changed from 'breadcrumb_trail_items' to 'tc_breadcrumb_trail_items'
+* changed : (php, class-content-featured_pages.php#112) filter name changed from 'fp_holder_img' to 'tc_fp_holder_img' for namespace consistency reasons
+* improved : (php, class-content-featured_pages.php) filter hooks missing parameters ( $fp_single_id and / or $featured_page_id) have been added to 'tc_fp_title', 'tc_fp_text_length', 'fp_img_src, 'tc_fp_img_size', 'tc_fp_round_div', 'tc_fp_title_tag', 'tc_fp_title_block', 'tc_fp_text_block', 'tc_fp_button_block', 'tc_fp_single_display'
+* improved : (php, class-fire-init.php#386) replace the disable_for_jetpack() callback by the built-in wp function __return_false()
+* improved : (php, class-content-post_list.php#240) use apply_filters_ref_array instead of apply_filters for some filters
+* improved : (php, class-content-post_list.php#240) 'tc_get_post_list_thumbnail' filter : the current post id has been included in the array of parameters
+* improved : (php, class-content-post_list.php#259) 'tc_post_thumb_img' filter : the current post id has been included in the parameters
+* improved : (php, class-content-post_metas.php#189) use apply_filters_ref_array instead of apply_filters
+* improved : (php, class-content-sidebar.php#115) current_filter() added as parameter of the 'tc_social_in_sidebar' filter hook
+* improved : (php, class-content-slider#193) $slider_name_id parameter added to the following filter hooks : tc_slide_background, tc_slide_title, tc_slide_text, tc_slide_color, tc_slide_link_id, tc_slide_link_url, tc_slide_button_text, tc_slide_title_tag, tc_slide_button_class
+* fixed : (php, class-fire-admin_init.php#312) Changelog was not displayed in ?page=welcome.php#customizr-changelog. Now look for '= '.CUSTOMIZR_VER to match the current version changelog
+* added : (php, class-header-header_main.php) added 'tc_head_display' filter
+* improved : (php, class-header-header_main.php) tc_favicon_display filter is now handled with a sprintf()
+* added : (php, class-header-header_main.php) new filters tc_logo_link_title , tc_site_title_link_title
+* changed : (php, class-header-header_main.php ) filter names : __max_logo_width => tc_logo_max_width and __max_logo_height => tc_logo_max_height
+* changed : (php, class-header-header_menu.php#97) filter menu_wrapper_class renamed in tc_menu_wrapper_class
+* changed : (php, class-header-nav_walker.php#41 ) filter menu_open_on_clicks renamed in tc_menu_open_on_click
+* added : (php, comments.php) new filter : tc_comments_wrapper_class inside div#comments
+* changed : (php, comments.php) filter comment_separator renamed to tc_comment_separator
+* improved : (php, comments.php) cleaner code
+* changed : (php, init.php#47) Class loading order. Utils are now loaded before resources.
+* changed : (php, class-fire-resources.php) localized params filter renamed 'tc_customizr_script_params'. Left and Right sidebars classes are now set dynamically form the global layout params.
+* changed : (php, class-fire-utils.php#497) added the $key parameter to tc_social_link_class
+* added : (php, class-controls.php) 2 new action hooks : __before_setting_control, __after_setting_control, using the setting id as additional parameter.
+* added : (php, class-content-post_metas.php) entry-date meta : new filter to use the modified date instead of the actual post date : 'tc_use_the_post_modified_date'. Default to false. Note : get_the_modified_date() == get_the_date() if the post has never been updated.
+ 
+= 3.1.22 August 16th 2014 =
+* added : (css, class-fire-init.php#75) 9 new minified css skins
+* fixed : (php, class-content-breadcrumb.php#443) added a check is_array(get_query_var( 'post_type' ) in archive context
+(bug reported here : https://wordpress.org/support/topic/illegal-offset-type-in-isset-or-empty-in-postphp-after-upgrade-to-custom3120)
+* improved : (php, class-content-headings.php#224) added a boolean filter named 'tc_display_link_for_post_titles' (default = true) to control whether the post list titles have to be a link or not
+
+= 3.1.21 August 11th 2014 =
+* fixed : (php, class-content-post_list.php) boolean filter 'tc_include_cpt_in_archives' is set to false. Following a bug reported here http://wordpress.org/support/topic/content-removedchanged-after-updating-to-3120?replies=8 Thanks to http://wordpress.org/support/profile/le-formateur for reporting it.
+
+= 3.1.20 August 9th 2014 =
+* added : (lang) Ukrainian translation. Many thanks to <a href="http://akceptor.org/">Aceptkor!</a>
+* added : (php, class-content-post_list.php) new filter to control if attachment have to be included in search results or not : tc_include_attachments_in_search_results. Default : true.
+* added : (php, class-content-post_list.php) Custom Post Types : new pre_get_posts action. Now includes Custom Posts Types (set to public and excluded_from_search_result = false) in archives and search results. In archives, it handles the case where a CPT has been registered and associated with an existing built-in taxonomy like category or post_tag
+* added : (php, class-content-post_metas.php) Now handles any custom or built-in taxonomies associated with built-in or custom post types. Displays the taxonomy terms like post category if hierarchical, and like post tags if not hierarchical. Uses a new helper (private method) : _get_terms_of_tax_type(). New filter created : tc_exclude_taxonomies_from_metas, with default value : array('post_format') => allows to filter which taxonomy to displays in metas with a customizable granularity since it accepts 2 parameters : post type and post id.
+* added : (php, class-fire-utils.php) added the social network key to the target filter : apply_filters( 'tc_socials_target', 'target=_blank', $key )
+* added : (php, class-header-header_main.php) favicon and logo src are ssl compliant => fixes the "insecure content" warning in url missing 'https' in an ssl context
+* added : (php, class-fire-utils.php) new placeholder image for the demo slider customizr.jpg
+* added : ( php, class-content-featured_pages.php ) add edit link to featured pages titles when user is logged in and has the capabilities to do so
+* improved : (php, class-content-breadcrumb.php) now displays all levels of any hierarchical taxinomies by default and for all types of post (including hierarchical CPT). This feature can be disabled with a the filter : tc_display_taxonomies_in_breadcrumb (set to true by default). In the case of hierarchical post types (like page or hierarchical CPT), the taxonomy trail is only displayed for the higher parent.
+* improved : (php, class-fire-utils.php and class-controls.php) moved the slider-check control message if no slider created yet to tc_theme_options[tc_front_slider] control
+
+
+= 3.1.19 July 14th 2014 =
+* improved : (php, class-admin-meta_boxes) code structure
+* improved : (js, meta boxes) better code structure
+* added : (php, class-fire-init.php) support for svg and svgz in media upload
+* added : (php, class-header-header_main.php) new filter 'tc_logo_img_formats'
+* fixed : (php, class-content-breadcrumb#291) check existence of rewrite['with_front']
+
+= 3.1.18 July 11th 2014 =
+* added : (lang) Czech translation. Many thanks to Martin Filák!
+* added : (php , class-content_slider.php) two new action hooks (filters) for a better control of the slider layout class (tc_slider_layout_class) and the slider image size (tc_slider_img_size)
+* added : (php, class-fire-resources.php) new filter named "tc_custom_css_priority" to take control over the custom css writing priority in head
+* added : (php) empty index.php added in all folders
+* improved : (php) Every class is now "pluggable" and can be overriden
+* improved : (php, class-content-post_list.php) the missing $layout parameter has been added to the "tc_post_list_thumbnail" filter
+* improved : (php, class-content-headings.php) headings of the page for post is now displayed by default (if not front page). Action hook (filter) : tc_page_for_post_header_content
+* improved : (php, class-content-sidebar.php) before and after sidebars hooks have been moved out of the active_sidebar condition in order to be used even with widget free sidebars
+
+= 3.1.17 July 6th 2014 =
+* fixed : back to previous screenshot
+
+= 3.1.16 July 3rd 2014 =
+* improved : (php, css, js) better file structure. Init and front end files have been moved in /inc folder
+* improved : new theme screenshot
+* fixed : (php, class-content-slider.php#102) missing icon parameter has been added to wp_get_attachment_image()
+
 = 3.1.15 May 31st 2014 =
 * fixed : (css : editor-style.css) background default color flagged as !important
 * fixed : (php : class-content-headings.php) post edit button is displayed to author of the post and admin profiles Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/">Rocco</a>

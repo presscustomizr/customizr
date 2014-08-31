@@ -10,4 +10,3 @@
 dynamic_sidebar( 'left' );
 
 ?>
-

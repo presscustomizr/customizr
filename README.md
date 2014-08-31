@@ -33,6 +33,59 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.1.22 August 16th 2014 =
+* added : (css, class-fire-init.php#75) 9 new minified css skins
+* fixed : (php, class-content-breadcrumb.php#443) added a check is_array(get_query_var( 'post_type' ) in archive context
+(bug reported here : https://wordpress.org/support/topic/illegal-offset-type-in-isset-or-empty-in-postphp-after-upgrade-to-custom3120)
+* improved : (php, class-content-headings.php#224) added a boolean filter named 'tc_display_link_for_post_titles' (default = true) to control whether the post list titles have to be a link or not
+
+
+= 3.1.21 August 11th 2014 =
+* fixed : (php, class-content-post_list.php) boolean filter 'tc_include_cpt_in_archives' is set to false. Following a bug reported here http://wordpress.org/support/topic/content-removedchanged-after-updating-to-3120?replies=8 Thanks to http://wordpress.org/support/profile/le-formateur for reporting it.
+
+
+= 3.1.20 August 9th 2014 =
+* added : (lang) Ukrainian translation. Many thanks to <a href="http://akceptor.org/">Aceptkor!</a>
+* added : (php, class-content-post_list.php) new filter to control if attachment have to be included in search results or not : tc_include_attachments_in_search_results. Default : true.
+* added : (php, class-content-post_list.php) Custom Post Types : new pre_get_posts action. Now includes Custom Posts Types (set to public and excluded_from_search_result = false) in archives and search results. In archives, it handles the case where a CPT has been registered and associated with an existing built-in taxonomy like category or post_tag
+* added : (php, class-content-post_metas.php) Now handles any custom or built-in taxonomies associated with built-in or custom post types. Displays the taxonomy terms like post category if hierarchical, and like post tags if not hierarchical. Uses a new helper (private method) : _get_terms_of_tax_type(). New filter created : tc_exclude_taxonomies_from_metas, with default value : array('post_format') => allows to filter which taxonomy to displays in metas with a customizable granularity since it accepts 2 parameters : post type and post id.
+* added : (php, class-fire-utils.php) added the social network key to the target filter : apply_filters( 'tc_socials_target', 'target=_blank', $key )
+* added : (php, class-header-header_main.php) favicon and logo src are ssl compliant => fixes the "insecure content" warning in url missing 'https' in an ssl context
+* added : (php, class-fire-utils.php) new placeholder image for the demo slider customizr.jpg
+* added : ( php, class-content-featured_pages.php ) add edit link to featured pages titles when user is logged in and has the capabilities to do so
+* improved : (php, class-content-breadcrumb.php) now displays all levels of any hierarchical taxinomies by default and for all types of post (including hierarchical CPT). This feature can be disabled with a the filter : tc_display_taxonomies_in_breadcrumb (set to true by default). In the case of hierarchical post types (like page or hierarchical CPT), the taxonomy trail is only displayed for the higher parent.
+* improved : (php, class-fire-utils.php and class-controls.php) moved the slider-check control message if no slider created yet to tc_theme_options[tc_front_slider] control
+
+
+= 3.1.19 July 18th 2014 =
+* added : (php, class-fire-init.php) support for svg and svgz in media upload
+* added : (php, class-header-header_main.php) new filter 'tc_logo_img_formats'
+* fixed : (php, class-content-breadcrumb#291) check existence of rewrite['with_front']
+* fixed : (php) closing tags php removed from all classes
+
+
+= 3.1.18 July 11rd 2014 =
+* added : (lang) Czech translation. Many thanks to Martin Filák!
+* added : (php , class-content_slider.php) two new action hooks (filters) for a better control of the slider layout class (tc_slider_layout_class) and the slider image size (tc_slider_img_size)
+* added : (php, class-fire-resources.php) new filter named "tc_custom_css_priority" to take control over the custom css writing priority in head
+* added : (php) empty index.php added in all folders
+* improved : (php) Every class is now "pluggable" and can be overriden
+* improved : (php, class-content-post_list.php) the missing $layout parameter has been added to the "tc_post_list_thumbnail" filter
+* improved : (php, class-content-headings.php) headings of the page for post is now displayed by default (if not front page). Action hook (filter) : tc_page_for_post_header_content
+* improved : (php, class-content-sidebar.php) before and after sidebars hooks have been moved out of the active_sidebar condition in order to be used even with widget free sidebars
+
+
+= 3.1.17 July 6rd 2014 =
+* fixed : back to previous screenshot
+
+
+= 3.1.16 July 3rd 2014 =
+* improved : (php, css, js) better file structure. Every front end has been move iin /inc folder
+* improved : (php) init class and functions have been moved in /inc/init.php
+* improved : new theme screenshot
+* fixed : (php, class-content-slider.php#102) missing icon parameter has been added to wp_get_attachment_image()
+
+
 = 3.1.15 May 31st 2014 =
 * fixed : (css : editor-style.css) background default color flagged as !important
 * fixed : (php : class-content-headings.php) post edit button is displayed to author of the post and admin profiles Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/">Rocco</a>

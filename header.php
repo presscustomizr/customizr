@@ -18,17 +18,16 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html <?php language_attributes(); ?>>                          
 <!--<![endif]-->
-
 	<?php 
 		//the '__before_body' hook is used by TC_header_main::$instance->tc_head_display()
 		do_action( '__before_body' ); 
 	?>
 
-	<body <?php body_class(); ?> <?php echo tc__f('tc_body_attributes' , 'itemscope itemtype="http://schema.org/WebPage"') ?>>
+	<body <?php body_class(); ?> <?php echo apply_filters('tc_body_attributes' , 'itemscope itemtype="http://schema.org/WebPage"') ?>>
 		
 		<?php do_action( '__before_header' ); ?>
 
-	   	<header class="<?php echo tc__f('tc_header_classes', 'tc-header clearfix row-fluid') ?>" role="banner">
+	   	<header class="<?php echo apply_filters('tc_header_classes', 'tc-header clearfix row-fluid') ?>" role="banner">
 			
 			<?php 
 			//the '__header' hook is used by (ordered by priorities) : TC_header_main::$instance->tc_logo_title_display(), TC_header_main::$instance->tc_tagline_display(), TC_header_main::$instance->tc_navbar_display()
