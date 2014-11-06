@@ -15,25 +15,28 @@
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
  */
-if ( post_password_required() )
-	return;
 ?>
 <?php if ( have_comments() ) : ?>
-	<hr class="featurette-divider">
+
+	<?php echo apply_filters( 'comment_separator', '<hr class="featurette-divider '.current_filter().'">' ); ?>
+
 <?php endif; ?>
+
 <div id="comments" class="comments-area">
+	
+	<?php 
+	$args = array(
+	  'title_reply'       => __( 'Leave a Comment' , 'customizr' ),
+	);
+
+	comment_form($args); 
+
+	?>
 
 	<?php if ( have_comments() ) : ?>
 
-		<?php 
-			do_action ('__comment_title');
-			do_action ('__comment_list');
-			do_action ('__comment_navigation');
-			do_action ('__comment_close');
-		?>
+		<?php do_action ( '__comment' );?>
 
 	<?php endif; // have_comments() ?>
-
-<?php comment_form(); ?>
 
 </div><!-- #comments .comments-area -->

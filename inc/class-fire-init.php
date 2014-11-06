@@ -1,14 +1,284 @@
 <?php
-
+/**
+* Declares Customizr default settings
+* Adds theme supports using WP functions
+* Adds plugins compatibilities
+*
+* 
+* @package      Customizr
+* @subpackage   classes
+* @since        3.0
+* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
+* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
+* @link         http://themesandco.com/customizr
+* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+*/
 class TC_init {
+    //declares the filtered default settings
+    public $global_layout;
+    public $tc_thumb_size;
+    public $slider_full_size;
+    public $slider_size;
+    public $skins;
+    public $fp_ids;
+    public $socials;
+    public $sidebar_widgets;
+    public $footer_widgets;
+    public $widgets;
+    public $post_list_layout;
+    public $post_formats_with_no_header;
+    public $content_404;
+    public $content_no_results;
+    public $default_slides;
+
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
 
     function __construct () {
-        add_action( 'after_setup_theme'                     , array( $this, 'tc_customizr_setup' ));
-        add_filter( '__get_default_options'                 , array( $this, 'tc_get_default_options'));
-        add_filter( '__options'                             , array( $this, 'tc_get_theme_options'));
+
+        self::$instance =& $this;
+        //Default layout settings
+        $this -> global_layout      = apply_filters( 
+                                      'tc_global_layout',
+                                      array(
+                                          'r' => array(
+                                              'content'       => 'span9',
+                                              'sidebar'       => 'span3',
+                                              'customizer'    => 'Right sidebar',
+                                              'metabox'       => __( 'Right sidebar' , 'customizr' ),
+                                          ),
+                                          'l' => array(
+                                              'content'       => 'span9',
+                                              'sidebar'       => 'span3',
+                                              'customizer'    => 'Left sidebar',
+                                              'metabox'       => __( 'Left sidebar' , 'customizr' ),
+                                          ),
+                                          'b' => array(
+                                              'content'       => 'span6',
+                                              'sidebar'       => 'span3',
+                                              'customizer'    => '2 sidebars : Right and Left',
+                                              'metabox'       => __( 'Two sidebars' , 'customizr' ),
+                                          ),
+                                          'f' => array(
+                                              'content'       => 'span12',
+                                              'sidebar'       => false,
+                                              'customizer'    => 'No sidebars : full width layout',
+                                              'metabox'       => __( 'Full Width' , 'customizr' ),
+                                          ),
+                                      )
+        );
+        
+        //Default images sizes
+        $this -> tc_thumb_size      = apply_filters( 'tc_thumb_size'       , array('width' => 270 , 'height' => 250, 'crop' => true ) );
+        $this -> slider_full_size   = apply_filters( 'tc_slider_full_size' , array('width' => 99999 , 'height' => 500, 'crop' => true ) );
+        $this -> slider_size        = apply_filters( 'tc_slider_size'      , array('width' => 1170 , 'height' => 500, 'crop' => true ) );
+
+        //Default skins array
+        $this -> skins              =  array( 
+                                    'blue.css'    =>  __( 'Blue' , 'customizr' ),
+                                    'green.css'   =>  __( 'Green' , 'customizr' ),
+                                    'yellow.css'  =>  __( 'Yellow' , 'customizr' ),
+                                    'orange.css'  =>  __( 'Orange' , 'customizr' ),
+                                    'red.css'     =>  __( 'Red' , 'customizr' ),
+                                    'purple.css'  =>  __( 'Purple' , 'customizr' ),
+                                    'grey.css'    =>  __( 'Grey' , 'customizr' ),
+                                    'black.css'   =>  __( 'Black' , 'customizr' )
+        );
+
+        //Default featured pages ids
+        $this -> fp_ids             = apply_filters( 'tc_featured_pages_ids' , array( 'one' , 'two' , 'three' ) );
+
+        //Default social networks
+        $default_socials            = apply_filters( 'tc_default_socials',
+                          array(
+                              'tc_rss'            => array(
+                                                      'link_title'    => __( 'Suscribe to my rss feed' , 'customizr' ),
+                                                      'option_label'  => __( 'RSS feed (default is the wordpress feed)' , 'customizr' ),
+                                                      'default'       => get_bloginfo( 'rss_url' )
+                                                    ),
+                              'tc_twitter'        => array(
+                                                      'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
+                                                      'option_label'  => __( 'Twitter profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_facebook'       => array(
+                                                      'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
+                                                      'option_label'  => __( 'Facebook profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_google'         => array(
+                                                      'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
+                                                      'option_label'  => __( 'Google+ profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_instagram'      => array(
+                                                      'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
+                                                      'option_label'  => __( 'Instagram profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_wordpress'      => array(
+                                                      'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
+                                                      'option_label'  => __( 'WordPress profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_youtube'        => array(
+                                                      'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
+                                                      'option_label'  => __( 'Youtube profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_pinterest'      => array(
+                                                      'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
+                                                      'option_label'  => __( 'Pinterest profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_github'         => array(
+                                                      'link_title'    => __( 'Follow me on Github' , 'customizr' ),
+                                                      'option_label'  => __( 'Github profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_dribbble'       => array(
+                                                      'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
+                                                      'option_label'  => __( 'Dribbble profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    ),
+                              'tc_linkedin'       => array(
+                                                      'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
+                                                      'option_label'  => __( 'LinkedIn profile url' , 'customizr' ),
+                                                      'default'       => null
+                                                    )
+                          )//end of social array
+        );//end of filter
+
+        //declares an empty filtered array to allow custom socials addition
+        $this -> socials            = array_merge( $default_socials , apply_filters('tc_custom_socials', array()) );
+
+        //Default sidebar widgets
+        $this -> sidebar_widgets    = apply_filters( 'tc_sidebar_widgets', 
+                                       array(   
+                                          'right'         => array(
+                                                          'name'                 => __( 'Right Sidebar' , 'customizr' ),
+                                                          'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
+                                          ),
+                                          'left'          => array(
+                                                          'name'                 => __( 'Left Sidebar' , 'customizr' ),
+                                                          'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
+                                          )
+                                      )//end of array
+        );//end of filter
+
+        //Default footer widgets
+        $this -> footer_widgets     = apply_filters( 'tc_footer_widgets', 
+                                      array(
+                                          'footer_one'    => array(
+                                                          'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
+                                                          'description'          => __( 'Just use it as you want !' , 'customizr' )
+                                          ),
+                                          'footer_two'    => array(
+                                                          'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
+                                                          'description'          => __( 'Just use it as you want !' , 'customizr' )
+                                          ),
+                                          'footer_three'   => array(
+                                                          'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
+                                                          'description'          => __( 'Just use it as you want !' , 'customizr' )
+                                          )
+                                      )//end of array
+        );//end of filter
+
+        //declares an empty filtered array to allow custom widgets addition
+        $this -> widgets            = array_merge( $this -> sidebar_widgets , $this -> footer_widgets , apply_filters( 'tc_custom_widgets', array() ) );
+
+        //Default post list layout
+        $this -> post_list_layout   = apply_filters( 'tc_post_list_layout',
+                                      array(
+                                        'content'           => 'span8',
+                                        'thumb'             => 'span4',
+                                        'show_thumb_first'  => false,
+                                        'alternate'         => true
+                                      )
+        );
+
+        //Defines post formats with no headers
+        $this -> post_formats_with_no_header   = apply_filters( 'tc_post_formats_with_no_header', array( 'aside' , 'status' , 'link' , 'quote' ) );
+
+        //Default 404 content
+        $this -> content_404        = apply_filters( 'tc_404',
+                                      sprintf('<blockquote><p>%1$s</p><cite>%2$s</cite></blockquote><p>%3$s</p>%4$s',
+                                          apply_filters( 'tc_404_quote'   , __( 'Speaking the Truth in times of universal deceit is a revolutionary act.' , 'customizr' ) ),
+                                          apply_filters( 'tc_404_author'  , __( 'George Orwell' , 'customizr' ) ),
+                                          apply_filters( 'tc_404_text'    , __( 'Sorry, but the requested page is not found. You might try a search below.' , 'customizr' ) ),
+                                          get_search_form( $echo = false )
+                                    )
+        );//end filter
+
+        //Default no search result content
+        $this -> content_no_results = apply_filters( 'tc_no_results',
+                                      sprintf('<blockquote><p>%1$s</p><cite>%2$s</cite></blockquote><p>%3$s</p>%4$s',
+                                          apply_filters( 'tc_no_results_quote'   , __( 'Success is the ability to go from one failure to another with no loss of enthusiasm...' , 'customizr' ) ),
+                                          apply_filters( 'tc_no_results_author'  , __( 'Sir Winston Churchill' , 'customizr' ) ),
+                                          apply_filters( 'tc_no_results_text'    , __( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.' , 'customizr' ) ),
+                                          get_search_form( $echo = false )
+                                    )
+        );//end filter
+
+
+        //Default slides content
+        $this -> default_slides     = apply_filters( 'tc_default_slides',
+                                      array(
+                                          1 => array(
+                                            'title'         =>  __( 'Customizr is a clean responsive theme' , 'customizr' ),
+                                            'text'          =>  __( 'Let your creativity speak and easily customiz\'it the way you want!' , 'customizr' ),
+                                            'button_text'   =>  __( 'Learn more' , 'customizr' ),
+                                            'link_id'       =>  null,
+                                            'link_url'      =>  null,
+                                            'active'        =>  'active',
+                                            'color_style'   =>  '',
+                                            'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="slide wp-post-image" alt="%2$s" />',
+                                                                        TC_BASE_URL.'inc/img/phare.jpg',
+                                                                        __( 'Customizr is a clean responsive theme' , 'customizr' )
+                                                                )
+                                          ),
+
+                                          2 => array(
+                                            'title'         =>  __( 'Style your WordPress site live!' , 'customizr' ),
+                                            'text'          =>  __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' ),
+                                            'button_text'   =>  __( 'Just try it!' , 'customizr' ),
+                                            'link_id'       =>  null,
+                                            'link_url'      =>  null,
+                                            'active'        =>  '',
+                                            'color_style'   =>  '',
+                                            'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="slide wp-post-image" alt="%2$s" />',
+                                                                        TC_BASE_URL.'inc/img/chevrolet.jpg',
+                                                                        __( 'Style your WordPress site live!' , 'customizr' )
+                                                                )
+                                          ),
+
+                                          3 => array(
+                                            'title'         =>  __( 'Create beautiful sliders' , 'customizr' ),
+                                            'text'          =>  __( 'Customizr comes with a cool slider generator : add a slider to any post or page!' , 'customizr' ),
+                                            'button_text'   =>  __( 'Discover the features' , 'customizr' ),
+                                            'link_id'       =>  null,
+                                            'link_url'      =>  null,
+                                            'active'        =>  '',
+                                            'color_style'   =>  '',
+                                            'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="slide wp-post-image" alt="%2$s" />',
+                                                                        TC_BASE_URL.'inc/img/ampoules.jpg',
+                                                                        __( 'Create beautiful sliders' , 'customizr' )
+                                                                )
+                                          ),
+                                      )//end of slides array
+        );//end of filter
+
+
+        //adds the text domain, various theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails
+        add_action ( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ) );
+
+        //adds various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, ...)
+        add_action ( 'after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 20 );
+        
+        //adds retina support for high resolution devices
+        add_filter ( 'wp_generate_attachment_metadata'        , array( $this , 'tc_add_retina_support') , 10 , 2 );
+        add_filter ( 'delete_attachment'                      , array( $this , 'tc_clean_retina_images') );
     }
-
-
 
 
     /**
@@ -20,123 +290,373 @@ class TC_init {
      */
 
     function tc_customizr_setup() {
-  
+      //record for debug
+      
+
       /* Set default content width for post images and media. */
-        global $content_width;
-        if( ! isset( $content_width ) )   { $content_width = 1170; }
+      global $content_width;
+      if( ! isset( $content_width ) )   { $content_width = 1170; }
 
       /*
        * Makes Customizr available for translation.
        * Translations can be added to the /lang/ directory.
        */
-       load_theme_textdomain( 'customizr', TC_BASE . 'lang' );
+      load_theme_textdomain( 'customizr' , TC_BASE . 'lang' );
+
+      /*
+      * Customizr styles the visual editor to resemble the theme style,
+      * Loads the editor-style specific (post formats and RTL), the active skin, the user style.css
+      */
+      add_editor_style( array( TC_BASE_URL.'inc/admin/css/editor-style.css', $this -> tc_active_skin() , get_stylesheet_uri() ) );
 
       /* Adds RSS feed links to <head> for posts and comments. */
-       add_theme_support( 'automatic-feed-links' );
+      add_theme_support( 'automatic-feed-links' );
 
       /*  This theme supports nine post formats. */
-       add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link','image', 'quote', 'status','video','audio', 'chat' ) );
+      $post_formats   = apply_filters( 'tc_post_formats', array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
+      add_theme_support( 'post-formats' , $post_formats );
+
+      /* support for page excerpt (added in v3.0.15) */
+      add_post_type_support( 'page', 'excerpt' );
 
       /* This theme uses wp_nav_menu() in one location. */
-       register_nav_menu( 'main', __( 'Main Menu', 'customizr' ) );
+      register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
 
       /* This theme uses a custom image size for featured images, displayed on "standard" posts. */
-       add_theme_support( 'post-thumbnails' );
+      add_theme_support( 'post-thumbnails' );
         //set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 
       //remove theme support => generates notice in admin @todo fix-it!
-       /* remove_theme_support('custom-background');
-        remove_theme_support('custom-header');*/
-        //post thumbnails for dudy widget and post lists (archive, search, ...)
-       add_image_size( 'tc-thumb', $width = 270, $height = 250, $crop = true );
+       /* remove_theme_support( 'custom-background' );
+        remove_theme_support( 'custom-header' );*/
+
+      //post thumbnails for featured pages and post lists (archive, search, ...)
+      $tc_thumb_size    = $this -> tc_thumb_size;
+      add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
 
       //slider full width
-       add_image_size('slider-full', $width = 99999 , $height = 500, $crop = true);
+      $slider_full_size = $this -> slider_full_size;
+      add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
 
       //slider boxed
-       add_image_size('slider', $width = 1170, $height = 500, $crop = true);
+      $slider_size      = $this -> slider_size;
+      add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
+
+      //add support for plugins (added in v3.1.0)
+      add_theme_support( 'jetpack' );
+      add_theme_support( 'bbpress' );
+      add_theme_support( 'qtranslate' );
+      add_theme_support( 'woocommerce' );
+    }
+
+
+
+    /**
+    * Returns the active path+skin.css
+    *
+    * @package Customizr
+    * @since Customizr 3.0.15
+    */
+    function tc_active_skin() {
+      $skin           = esc_attr( tc__f( '__get_option' , 'tc_skin' ) );
+
+      //Finds the good path : are we in a child theme and is there a skin to override?
+      $remote_path    = false;
+      $remote_path    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/css/' . $skin) ) ? TC_BASE_URL_CHILD .'inc/css/' : $remote_path ;
+      $remote_path    = ( !$remote_path && file_exists(TC_BASE .'inc/css/' . $skin) ) ? TC_BASE_URL .'inc/css/' : $remote_path ;
+      //Checks if there is a rtl version of the selected skin if needed
+      if ('ar' == WPLANG || 'he_IL' == WPLANG) {
+        $remote_path   = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/css/rtl/' . $skin) ) ? TC_BASE_URL_CHILD .'inc/css/rtl/' : $remote_path ;
+        $remote_path   = ( !TC___::$instance -> tc_is_child() && file_exists(TC_BASE .'inc/css/rtl/' . $skin) ) ? TC_BASE_URL .'inc/css/rtl/' : $remote_path ;
+      } 
+
+      //Defines the active skin and fallback to blue.css if needed
+      $tc_active_skin  = $remote_path ? $remote_path.$skin : TC_BASE_URL.'inc/css/blue.css';
+      return apply_filters ( 'tc_active_skin' , $tc_active_skin );
+    }
+
+
+
+
+    /**
+   * This function handles the following plugins compatibility : Jetpack (for the carousel addon), Bbpress, Qtranslate, Woocommerce
+   *
+   * @package Customizr
+   * @since Customizr 3.0.15
+   */
+    function tc_plugins_compatibility() {
+      
+      include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+      
+      /* JETPACK */
+      //adds compatibilty with the jetpack image carousel
+      if ( current_theme_supports( 'jetpack' ) && is_plugin_active('jetpack/jetpack.php') ) {
+        add_filter( 'tc_gallery_bool', 'disable_for_jetpack' );
+        function disable_for_jetpack() {
+          return false;
+        }
       }
 
 
+      /* BBPRESS */
+      //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
+      if ( current_theme_supports( 'bbpress' ) && is_plugin_active('bbpress/bbpress.php') ) {
+        //disables thumbnails and excerpt for post lists
+        add_filter( 'tc_show_post_list_thumb', 'tc_bbpress_disable_thumbnail' );
+        function tc_bbpress_disable_thumbnail($bool) {
+           return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+        }
+        add_filter( 'tc_show_post_list_excerpt', 'tc_bbpress_disable_excerpt' );
+        function tc_bbpress_disable_excerpt($bool) {
+           return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+        }
+
+        //disables Customizr author infos on forums
+        add_filter( 'tc_show_author_metas_in_post', 'tc_bbpress_disable_author_meta' );
+        function tc_bbpress_disable_author_meta($bool) {
+          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+        }
+
+        //disables post navigation
+        add_filter( 'tc_show_post_navigation', 'tc_bbpress_disable_post_navigation' );
+        function tc_bbpress_disable_post_navigation($bool) {
+           return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+        }
+        
+        //disables post metas
+        add_filter( 'tc_show_post_metas', 'tc_bbpress_disable_post_metas' );
+        function tc_bbpress_disable_post_metas($bool) {
+           return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+        }
+      
+      }//end if bbpress on
 
 
 
-      /**
-     * Get the saved options in Customizer Screen, merge them with the default theme options array and return the updated global options array
-     * @package Customizr
-     * @since Customizr 1.0
+      /* 
+      * QTranslate
+      * Credits : @acub, http://websiter.ro
+      */
+      if ( current_theme_supports( 'qtranslate' ) && is_plugin_active('qtranslate/qtranslate.php') ) {
+        //outputs correct urls for current language : in logo, slider
+        add_filter( 'tc_slide_link_url' , 'tc_url_lang' );
+        add_filter( 'tc_logo_link_url' , 'tc_url_lang');
+        add_filter( 'tc_fp_link_url' , 'tc_url_lang');
+        function tc_url_lang($url) {
+          return ( function_exists( 'qtrans_convertURL' ) ) ? qtrans_convertURL($url) : $url;
+        }
+
+        //outputs the qtranslate translation for slider, featured pages
+        add_filter( 'tc_slide_title', 'tc_apply_qtranslate' );
+        add_filter( 'tc_slide_text', 'tc_apply_qtranslate' );
+        add_filter( 'tc_slide_button_text', 'tc_apply_qtranslate' );
+        add_filter( 'tc_slide_background_alt', 'tc_apply_qtranslate' );
+        add_filter( 'tc_fp_text', 'tc_apply_qtranslate' );
+        add_filter( 'tc_fp_button_text', 'tc_apply_qtranslate' );
+        function tc_apply_qtranslate ($text) {
+          return call_user_func(  '__' , $text );
+        }
+
+
+        //sets no character limit for slider (title, lead text and button title) and featured pages (text) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
+        add_filter( 'tc_slide_title_length'  , 'tc_remove_char_limit');
+        add_filter( 'tc_slide_text_length'   , 'tc_remove_char_limit');
+        add_filter( 'tc_slide_button_length' , 'tc_remove_char_limit');
+        add_filter( 'tc_fp_text_length' , 'tc_remove_char_limit');
+        function tc_remove_char_limit() {
+          return 99999;
+        }
+
+        //modify the page excerpt=> uses the wp page excerpt instead of the generated excerpt with the_content
+        add_filter( 'tc_fp_text', 'tc_use_page_excerpt', 10, 3 );
+        function tc_use_page_excerpt( $featured_text , $fp_id , $page_id ) {
+          $page = get_post($page_id);
+          return ( empty($featured_text) && !post_password_required($page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_excerpt )) : $featured_text ;
+        }
+
+        //modify the customizer transport from post message to null for some options
+        add_filter( 'tc_featured_page_button_text_customizer_set' , 'tc_change_transport', 10, 2);
+        add_filter( 'tc_featured_text_one_customizer_set' , 'tc_change_transport', 10, 2);
+        add_filter( 'tc_featured_text_two_customizer_set' , 'tc_change_transport', 10, 2);
+        add_filter( 'tc_featured_text_three_customizer_set' , 'tc_change_transport', 10, 2);
+        function tc_change_transport( $value , $set ) {
+          return ('transport' == $set) ? null : $value;
+        }
+
+      }//end Qtranslate
+
+
+
+      /* Woocommerce */
+      if ( current_theme_supports( 'woocommerce' ) && is_plugin_active('woocommerce/woocommerce.php') ) {
+        
+        //unkooks the default woocommerce wrappersv and add customizr's content wrapper and action hooks
+        remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+        remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+        add_action('woocommerce_before_main_content', 'tc_woocommerce_wrappers', 10);
+        add_action('woocommerce_after_main_content', 'tc_woocommerce_wrappers', 10);
+
+        function tc_woocommerce_wrappers() {
+          switch ( current_filter() ) {
+            case 'woocommerce_before_main_content':
+
+            ?>
+              <div id="main-wrapper" class="<?php echo tc__f( 'tc_main_wrapper_classes' , 'container' ) ?>">
+
+              <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
+              
+              <div class="container" role="main">
+                  <div class="row">
+
+                      <?php do_action( '__before_article_container'); ##hook of left sidebar?>
+                          
+                          <div id="content" class="<?php echo tc__f( '__screen_layout' , tc__f ( '__ID' ) , 'class' ) ?> article-container">
+                              
+                              <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
+            <?php
+
+              break;
+            
+            case 'woocommerce_after_main_content':
+
+            ?>
+                              <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
+
+                          </div><!--.article-container -->
+
+                      <?php do_action( '__after_article_container'); ##hook of left sidebar?>
+
+                  </div><!--.row -->
+              </div><!-- .container role: main -->
+
+              <?php do_action( '__after_main_container' ); ?>
+
+            </div><!--#main-wrapper"-->
+            
+            <?php
+              break;
+          }//end of switch on hook
+          ?>
+          <?php
+        }//end of nested function
+
+
+        //handles the woocomerce sidebar : removes action if sidebars not active
+        if ( !is_active_sidebar( 'shop') ) {
+          remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+        }
+
+
+        //disables post navigation
+        add_filter( 'tc_show_post_navigation', 'tc_woocommerce_disable_post_navigation' );
+        function tc_woocommerce_disable_post_navigation($bool) {
+           return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
+        }
+
+
+        //removes post comment action on after_loop hook
+        add_filter( 'tc_show_comments', 'tc_woocommerce_disable_comments' );
+        function tc_woocommerce_disable_comments($bool) {
+           return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
+        }
+
+        //changes customizr meta boxes priority (slider and layout not on top) if displaying woocommerce products in admin
+        add_filter( 'tc_post_meta_boxes_priority', 'tc_woocommerce_change_meta_boxes_priority' , 2 , 10 );
+        function tc_woocommerce_change_meta_boxes_priority($priority , $screen) {
+           return ( 'product' == $screen ) ? 'default' : $priority ;
+        }
+
+      }//end if woocommerce
+
+    }//end of plugin compatibility function
+
+
+
+
+
+    /**
+   * This function handles the support for high resolution devices
+   * 
+   * @hook wp_generate_attachment_metadata (10 ,2)
+   * @package Customizr
+   * @since Customizr 3.0.15
+   * @credits http://wp.tutsplus.com/author/chrisbavota/
+   */
+    function tc_add_retina_support($metadata, $attachment_id) {
+      //checks if retina is enabled in options
+      if ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) )
+        return;
+     
+      foreach ( $metadata as $key => $value ) {
+          if ( is_array( $value ) ) {
+              foreach ( $value as $image => $attr ) {
+                  if ( is_array( $attr ) )
+                      $this -> tc_create_retina_images( get_attached_file( $attachment_id ), $attr['width'], $attr['height'], true );
+              }
+          }
+      }
+      return $metadata;
+    }//end of tc_retina_support
+
+
+
+    /**
+     * Creates retina-ready images
      *
-     */
-    function tc_get_theme_options () {
-          $saved                          = (array) get_option( 'tc_theme_options' );
-          $defaults                       = $this -> tc_get_default_options();
-          $__options                      = wp_parse_args( $saved, $defaults );
-          $__options                      = array_intersect_key( $__options, $defaults );
-        return $__options;
-    }
-
-
-
-
-
-     /**
-     * Returns the options array for the theme.
-     *
      * @package Customizr
-     * @since Customizr 1.0
+     * @since Customizr 3.0.15
+     * @credits http://wp.tutsplus.com/author/chrisbavota/
      */
-      function tc_get_default_options() {
-    
-      $defaults = array(
-          //sliders
-          'tc_sliders'                    => array(),
-          //skin
-          'tc_skin'                       => 'blue.css',
-          'tc_top_border'                 => 1,
-          //logo and favicon
-          'tc_logo_upload'                => null,
-          'tc_logo_resize'                => 1,
-          'tc_fav_upload'                 => null,
-          //front page options
-          'tc_front_slider'               => 'demo',
-          'tc_slider_width'               => 1,
-          'tc_slider_delay'               => 5000,
-          'tc_front_layout'               => 'f',
-          'tc_show_featured_pages'        => 1,
-          'tc_show_featured_pages_img'    => 1,
-          'tc_featured_page_one'          => null,
-          'tc_featured_page_two'          => null,
-          'tc_featured_page_three'        => null,
-          'tc_featured_text_one'          => null,
-          'tc_featured_text_two'          => null,
-          'tc_featured_text_three'        => null,
-          //layout options
-          'tc_sidebar_global_layout'      => 'l',
-          'tc_sidebar_force_layout'       =>  0,
-          'tc_sidebar_post_layout'        => 'l',
-          'tc_sidebar_page_layout'        => 'l',
-          'tc_breadcrumb'                 => 1,
-          //comments
-          'tc_page_comments'              =>  0,
-          //social options
-          'tc_social_in_header'           => 1,
-          'tc_social_in_right-sidebar'    => 0,
-          'tc_social_in_left-sidebar'     => 0,
-          'tc_social_in_footer'           => 1,
-          'tc_rss'                        => get_bloginfo('rss_url'),
-          'tc_twitter'                    => null,
-          'tc_facebook'                   => null,
-          'tc_google'                     => null,
-          'tc_youtube'                    => null,
-          'tc_pinterest'                  => null,
-          'tc_github'                     => null,
-          'tc_dribbble'                   => null,
-          'tc_linkedin'                   => null,
-           //images
-          'tc_fancybox'                   =>  1,
-          //custom CSS
-          'tc_custom_css'                 => null,
-      );
-      return $defaults;
-    }
+    function tc_create_retina_images( $file, $width, $height, $crop = false ) {
+        if ( $width || $height ) {
+            $resized_file = wp_get_image_editor( $file );
+            if ( ! is_wp_error( $resized_file ) ) {
+                $filename = $resized_file->generate_filename( $width . 'x' . $height . '@2x' );
+     
+                $resized_file->resize( $width * 2, $height * 2, $crop );
+                $resized_file->save( $filename );
+     
+                $info = $resized_file->get_size();
+     
+                return array(
+                    'file' => wp_basename( $filename ),
+                    'width' => $info['width'],
+                    'height' => $info['height'],
+                );
+            }
+        }
+        return false;
+    }//end of function
+
+
+
+
+    /**
+   * This function deletes the generated retina images if they exist
+   * 
+   * @hook delete_attachment
+   * @package Customizr
+   * @since Customizr 3.0.15
+   * @credits http://wp.tutsplus.com/author/chrisbavota/
+   */
+    function tc_clean_retina_images( $attachment_id ) {
+      //checks if retina is enabled in options
+      if ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) )
+        return;
+      $meta = wp_get_attachment_metadata( $attachment_id );
+      $upload_dir = wp_upload_dir();
+      $path = pathinfo( $meta['file'] );
+      foreach ( $meta as $key => $value ) {
+          if ( 'sizes' === $key ) {
+              foreach ( $value as $sizes => $size ) {
+                  $original_filename = $upload_dir['basedir'] . '/' . $path['dirname'] . '/' . $size['file'];
+                  $retina_filename = substr_replace( $original_filename, '@2x.', strrpos( $original_filename, '.' ), strlen( '.' ) );
+                  if ( file_exists( $retina_filename ) )
+                      unlink( $retina_filename );
+              }
+          }
+      }
+    }//end of function
+
+
 }//end of class

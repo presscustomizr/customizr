@@ -4,10 +4,10 @@
 #sortable { list-style-type: none; margin: 0; padding: 0; }
   /* #sortable tr {height: 150px; }
   html>body #sortable tr { height: 150px; line-height: 120px; } */
-  .ui-state-highlight { height: 150px; line-height: 120px;border: 1px solid #FCEFA1;background: #FBF9EE }
-  .ui-state-highlight tr td {line-height:1;}
-  .ui-state-default:hover{cursor:move;}
-  .ui-sortable-helper {cursor: move}
+#tc_slides_table .ui-state-highlight { height: 150px; line-height: 120px;border: 1px solid #FCEFA1;background: #FBF9EE; }
+#tc_slides_table .ui-state-highlight tr td {line-height:1;}
+#tc_slides_table .ui-state-default:hover{cursor:move;}
+#tc_slides_table .ui-sortable-helper {cursor: move}
 #update-status {
 	position: absolute;
 	width: 80%;

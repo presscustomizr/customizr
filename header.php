@@ -8,9 +8,6 @@
  * @since Customizr 1.0
  */
 ?>
-<?php 
-	//do_action( '__load_templates') //loads front end templates
-?>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
@@ -21,19 +18,26 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html <?php language_attributes(); ?>>                          
 <!--<![endif]-->
-	<?php do_action( '__head'); ?>
-	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
-	   	<header class="tc-header clearfix" role="banner">
-	      	<div class="navbar-wrapper clearfix row-fluid">
-          	<!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
-	            <?php 
-	            	do_action( '__logo_title');
-					
-					do_action( '__tagline');
-	            
-					do_action ('__menu');
-				?>
-        	</div><!-- /.navbar-wrapper -->
+
+	<?php 
+		//the '__before_body' hook is used by TC_header_main::$instance->tc_head_display()
+		do_action( '__before_body' ); 
+	?>
+
+	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage" <?php echo tc__f('tc_body_attributes' , '') ?>>
+		
+		<?php do_action( '__before_header' ); ?>
+
+	   	<header class="<?php echo tc__f('tc_header_classes', 'tc-header clearfix row-fluid') ?>" role="banner">
+			
+			<?php 
+			//the '__header' hook is used by (ordered by priorities) : TC_header_main::$instance->tc_logo_title_display(), TC_header_main::$instance->tc_tagline_display(), TC_header_main::$instance->tc_navbar_display()
+				do_action( '__header' ); 
+			?>
+
 		</header>
-	  		<?php do_action ('__slider') ?>
-		<div id="main-wrapper" class="container">
+
+		<?php 
+		 	//This hook is filtered with the slider : TC_slider::$instance->tc_slider_display()
+			do_action ( '__after_header' )
+		?>

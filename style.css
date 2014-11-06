@@ -1,23 +1,21 @@
-/*
-Theme Name: Customizr
-Theme URI: http://www.themesandco.com/customizr
-Description:  Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in french and russian.
-Author: nikeo
-Author URI: http://www.themesandco.com/
-Version: 3.0
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: gray, white, light, blue, red, yellow, green, purple, orange, black, one-column, two-columns, three-columns, left-sidebar, right-sidebar, flexible-width, custom-menu, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats
-Text Domain: customizr
-
-Customizr WordPress Theme, Copyright 2013 Nicolas GUILLAUME, Nice, France.
-Customizr is distributed under the terms of the GNU General Public License v2.0
-License URI: license.txt
-*/
+/**
+ * Theme Name: Customizr
+ * Theme URI: http://www.themesandco.com/customizr
+ * Description:  Enjoy designing your website live with the WP customizer : skin, logo, social profiles, slider, layout, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Engage your visitors with beautiful sliders and call to actions on any page or post. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 14 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.
+ * Version: 3.1.0
+ * Author: nikeo
+ * Author URI: http://www.themesandco.com/
+ * Tags: gray, white, light, blue, red, yellow, green, purple, orange, black, one-column, two-columns, three-columns, left-sidebar, right-sidebar, flexible-width, custom-menu, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
+ * Text Domain: customizr
+ * Copyright: (c) 2013 Nicolas GUILLAUME (nikeo), Nice, France
+ * License: GNU General Public License v2.0 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 
-/* 
-IMPORTANT : If you write your CSS code below, it will be deleted when you update the theme.
-If you want to personnalize the css of Customizr, use the Custom CSS section in the Customizer screen (special characters are not handled for security reasons) OR create a child theme a add your css code in the style.css file.
-*/
- 
+/**
+ * The styleheets of Customizr are located in inc/css. Each skin has its own stylesheet.
+ *
+ * IMPORTANT : If you write your CSS code below, it will be deleted when you update the theme.
+ * If you want to style the css of Customizr, you can either use the Custom CSS section in the customizer OR create a child theme (recommended if you do many customizations) and add your css code in the style.css file of it.
+ */

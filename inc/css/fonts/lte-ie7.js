@@ -6,22 +6,22 @@ window.onload = function() {
 		el.innerHTML = '<span style="font-family: \'genericons\'">' + entity + '</span>' + html;
 	}
 	var icons = {
-		'icon-bubble' : '&#xe000;',
-		'icon-facebook':'&#xe019;',
-		'icon-twitter':'&#xe01a;',
-		'icon-google': '&#xe018;',
-		'icon-feed': '&#xe01b;',
-		'icon-github': '&#xe01c;',
-		'icon-dribbble': '&#xe01d;',
-		'icon-pinterest': '&#xe01e;',
-		'icon-youtube': '&#xe01f;',
+		'icon-bubble' : '&#xe000;' ,
+		'icon-facebook':'&#xe019;' ,
+		'icon-twitter':'&#xe01a;' ,
+		'icon-google': '&#xe018;' ,
+		'icon-feed': '&#xe01b;' ,
+		'icon-github': '&#xe01c;' ,
+		'icon-dribbble': '&#xe01d;' ,
+		'icon-pinterest': '&#xe01e;' ,
+		'icon-youtube': '&#xe01f;' ,
 		'icon-linkedin': '&#xe020;'
 		},
-		els = document.getElementsByTagName('*'),
+		els = document.getElementsByTagName( '*' ),
 		i, attr, html, c, el;
 	for (i = 0; i < els.length; i += 1) {
 		el = els[i];
-		attr = el.getAttribute('data-icon');
+		attr = el.getAttribute( 'data-icon' );
 		if (attr) {
 			addIcon(el, attr);
 		}

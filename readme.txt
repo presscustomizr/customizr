@@ -2,110 +2,19 @@
 Customizr is a free WordPress theme designed by Nicolas Guillaume in Nice, France. (www.themesandco.com)
 Feel free to use, modify and redistribute this theme as you like.
 You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D.
-Customizr is distributed under the terms of the GNU GPL
+Customizr is distributed under the terms of the GNU GPL v2.0 or later
 Enjoy it!
 
 
 
-##################### Installation #####################
-1. Upload the `customizr` folder to the `/wp-content/themes/` directory
-Activation and Use
-1. Activate the Theme through the 'Themes' menu in WordPress
-2. See Appearance -> Customiz'it to change theme options
+################ DOCUMENTATION AND FAQS ################
+DOCUMENTATION : http://themesandco.com/customizr
+FAQs : http://themesandco.com/customizr/faq
+SNIPPETS : http://themesandco.com/code-snippets/
+HOOKS API : http://www.themesandco.com/customizr/hooks-api/
 
 
-
-############# User Guide and Main Features #############
-=== WP Version ===
-As this theme uses the WordPress customizer feature for most options, it requires at least version 3.4 to work properly.
-Please make sure your WP version is at least 3.4.
-
-=== Choose a skin ===
-The theme comes with seven skins. The default skin is the blue one. Open the customizer screen to select your prefered skin.
-
-=== Upload a logo and a favicon ===
-Go to the customizer screen in the logo and favicon section and upload your images.
-For best results, try uploading a logo with the following maximum dimensions => max-height :100px, max-width ; 250px
-
-=== Home page settings ===
-All settings for home page are available in the customizer screen. You can :
-- Select a static page/ your lasts posts (the number of posts per page can be changed in the page and post layout section),
-- Choose a layout for your sidebars : full-width, left, right, two sidebars,
-- Select a slider among the ones you have created (see below for slider creation) and choose the slider options : full-width or boxed, delay between slides. To remove the demo slider : select "No slider" in the dropdown list.
-- Set your home featured pages and text (you can also disable this feature). To remove the featured pages area : select "Hide" in the dropdown list.
-
-=== Select a menu ===
-Customizr comes with one menu location in the header. Select a menu in the customizr screen => menu section
-
-=== Pages and posts layout ===
-With Customizr, you can define your page and post layout at two levels :
-1- In the main option screen (Customizer screen) : you can define the global default layout for all your website, for all your posts and for all your pages. Four choices are available for the sidebars location : full-width (no sidebars), left, right, two sidebars.
-
-2- In each post or page editing screen, you can define a particular layout in a dedicated box: full-width (no sidebars), left, right, two sidebars.
-
-=== Social links ===
-You can set up to nine social network profile in the customizer option screen. Write the url of your social profile in the fields.
-The social icons can be displayed in four predefined location of your website : header, footer, top of right sidebar, top of left sidebar
-
-=== Slider creation ===
-1 - Go to the edit screen of any image
-2 - Find the Slider options box
-3 - Check "Add to a slider"
-4 - Set the optional call to action fields : title, description, text of the button and link to page/post
-5 - Write a name and click on the "Add a slider" button : this will automatically add the current media to your slider (no need to refresh)
-
-=== Add images to a slider ===
-1 - Go to the edit screen of any image
-2 - Find the Slider options box
-3 - Check "Add to a slider"
-4 - Set the optional call to action fields : title, description, text of the button and link to page/post
-5 - Select a slider in the list
-
-=== Reorder the slides ===
-The slides can be manually reorder with a drag and drop feature.
-
-=== Add a slider to a post/page ===
-1 - Go to the edit screen of any page/post
-2 - Find the slider options box
-3 - Check "Add a slider"
-4 - Select a slider
-5 - Change the delay and layout field if needed
-6 - Update the page
-
-=== Delete a slider ===
-In the Slider options box, at the top of the slides table, click on "Delete this slider".
-This action will delete the slider but not the images.
-
-=== Post Formats ===
-You can choose up to 10 post formats for your posts.
-Posts with the aside, status, quote and link post formats are displayed with no title.
-Posts with the link post format will link out to the first <a> tag in the post.
-
-
-
-################## Notes for developers ################
-=== Code logic ===
-The theme is built on a classes framework. The classes are identified by their group and name like this : class-[group]-[name].php.
-
-The function tc__($group, $classname), where the group parameter is required :
-1) scans the theme folder to find the appropriate group / class 
-2) and then instanciates the class(es) only once through a singleton factory.
-
-A class typically includes a constructor which is mainly used to add the methods to WP actions and filters. 
-Actions are used to render HTML while filters are used to get values.
-
-For simplification purposes, the theme uses few WP templates : index.php, header.php, footer.php, comments.php, sidebar(s).php. 
-Those templates only includes some structural HTML markup, the rest is rendered with the actions defined in the classes of the parts/ folder.
-
-Customizr uses one single loop for all kind of content. It is located in class-main-loop.php.
-
-
-=== Translation ===
-The themes is ready for translation and already translated in french. Translation files are in /lang.
-
-
-
-####################### Licenses ########################
+####################### Licenses #######################
 Unless otherwise specified, all the theme files, scripts and images
 are licensed under GNU General Public License version 2, see file license.txt.
 The exceptions to this license are as follows:
@@ -115,6 +24,7 @@ The exceptions to this license are as follows:
 * The script modernizr.js is dual licensed under the BSD and MIT licenses
 * The script jquery.iphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
 * The script jquery.fancybox-1.3.4.js is dual licensed under the MIT and GPL licenses
+* The script retina.min.js is copyrighted by Imulus, LLC, Ben Atkin, and other contributors and licensed under MIT
 * Icon Set:	Entypo is licensed under SIL Open-Font License
 * The image phare.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:Ca_1941_DAF_%27Rijdende_regenjas%27_pic7.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 * The image chevrolet.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:%2755_Chevrolet_ornament.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
@@ -123,6 +33,217 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.1.0 =
+* added : (language) Hungarian : thanks to Ferencz Székely
+* added : (php) Woocommerce : full compatibility
+* added : (php) BBpress : full compatibilty
+* added : (php) Qtranslate : full compatibilty. Thanks to <a href="http://websiter.ro" target="_blank">Andrei Gheorghiu</a>
+* added : (js)(php)(css) Retina new option : customizr now supports retina devices. Uses Ben Atkin's retina.js script.
+* added : (js)(php)(css) new option : Optional smooth scroll effect on anchor links in the same page
+* added : (php)(css) Menu : new option to select hover/click expansion mode of submenus
+* added : (css) Twitter Bootstrap : Glyphicons are now available
+* added : (php) site title : filter on the html tag
+* added : (php) archives (categories, tags, author, dates) and search results titles can be filtered
+* added : (php) posts : 2 new hooks before and after post titles. Used for post metas.
+* added : (php) logo and site title : new filter for link url (allowing to change the link on a per page basis)
+* added : (php) featured pages : filters for page link url and text length
+* added : (php) featured pages : new filter for the button text (allowing to change the title on a per page basis)
+* added : (php) slider : new filters allowing a full control of img, title, text, link, button, color
+* added : (php) slider : new function to easily get slides out of a slider
+* added : (php) Slider : New edit link on each slides
+* added : (php) comments : filter on the boolean controlling display
+* added : (php) comments : direct link from post lists to single post comments section
+* added : (php) comments : new filters allowing more control on the comment bubble
+* added : (php) metaboxes : filter on display priority below WYSIWYG editor
+* added : (php) footer : filters on widgets area : more controls on number of widgets and classes
+* added : (php) sidebars : filters on column width classes
+* added : (php) content : filters on the layout
+* added : (php) page : support for excerpt
+* added : (js)(php) slider : new filter for an easier control of the stop on hover
+* added : (php) Social Networks : possibility to easily add any social networks in option with a custom icon on front end
+* added : (php) Social Networks : filter allowing additional link attributes like rel="publisher" for a specific social network
+* added : (php) Posts/pages headings : new filters to enable/disable icons
+* added : (php) Post lists : edit link in post titles for admin and edit_posts allowed users
+* added : (php)(css) Intra post pagination : better styling with buttons
+* added : (php) sidebars : two sidebar templates are back. needed by some plugins
+* changed : (php) Featured page : name of the text filter is now 'fp_text'
+* improved : (css) Menu : style has been improved
+* improved : (php) slider : controls are not displayed if only on slide.
+* improved : (php) fancybox : checks if isset $post before filtering content
+* improved : (css) widgets : arrow next to widget's list is only displayed for default WP widgets
+* improved : (javascript) fancybox : now sets the image's title or alt as fancybox popin title (instead of page or post title)
+* fixed : (php) blog page layout : when blog was set to a page, the specific page layout was not active anymore
+* fixed : (php) menu : the tc_menu_display filter was missing a parameter
+* fixed : (php) comments : removed the useless permalink for the comments link in pages and posts
+* updated : (lang) pt_BR : Thanks to Roner Marcelo and Rodrigo Stuchi
+* updated : (lang) nl_NL : Thanks to Joris Dutmer
+* updated : (lang) es_ES : Thanks to María
+* updated : (lang) de_DE : Thanks to Martin Bangemann
+* updated : (lang) zh_CN : Thanks to Luckie Joy
+* updated : (lang) ar : Thanks to Ramez Bdiwi
+* updated : (lang) ca_ES : Thanks to Jaume Albaigès
+* updated : (lang) ru_RU : Thanks to <a href="http://bootwalksnews.com/" target="_blank">Evgeny Sudakov</a>
+
+
+= 3.0.15 =
+* added : (language) Catalan : thanks to <a href="https://twitter.com/jaume_albaiges" target="_blank">Jaume Albaig&egrave;s</a>
+* fixed : (js) Slider : ie7/ie8/ie9 hack (had to be re-implemented) : thanks to @barryvdh (https://github.com/twbs/bootstrap/pull/3052)
+
+
+= 3.0.14 =
+* added : (language) Arabic : thanks to Ramez Bdiwi
+* added : (language) RTL support : thanks to Ramez Bdiwi
+* added : (language) Romanian : thanks to <a href="http://websiter.ro" target="_blank">Andrei Gheorghiu</a>
+* added : (php) two hooks in index.php before article => allowing to add sections
+* added : (php) new customizer option : select the length of posts in lists : excerpt of full length
+* added : (php) add_size_images : new filters for image sizes
+* added : (php) rtl : check on WPLANG to register the appropriate skin
+* added : (php) featured pages : new filter for featured pages areas
+* added : (php) featured pages : new filter for featured page text
+* added : (php) slider : 3 filters have been added in class-admin-meta_boxes.php to modify the text, title and button length __slide_text_length, __slide_title_length, __slide_button_length
+* added : (php) logo : 2 new filters to control max width and max height values (if logo resize options is enabled) : '__max_logo_width' , '__max_logo_height'
+* added : (php) body tag : a new action hook '__body_attributes'
+* added : (php) header tag : new '__header_classes' filter
+* added : (php) #main-wrapper : new 'tc_main_wrapper_classes' filter
+* added : (php) footer : new '__footer_classes' filter
+* added : (js) scrollspy from Bootstrap
+* added : (js) Scrollspy : updated version from Bootstrap v3.0. handles submenu spy.
+* added : (css) back to top link colored with the skin color links
+* added : (css) bootstrap : alerts, thumbnails, labels-badges, progress-bars, accordion stylesheets
+* added : (css) Editor style support for skins, user style.css, specific post formats and rtl.
+* improved : (css) performance : Avoid AlphaImageLoader filter for IE and css minified for fancybox stylesheet
+* improved : (css) (php) logo : useless h1 tag has been removed if logo img. Better rendering function with printf. Better filters of logo function. 2 new actions have been added before and after logo : '__before_logo' , '__after_logo'
+* removed : (php) Post list content : removed the useless buble $style var
+* removed : (css) featured pages : useless p tag wrap for fp-button removed
+* removed : (php) User experience : redirection to welcome screen on activation/update
+* removed : (php) Security : Embedded video, Google+, and Twitter buttons
+* fixed : (php) breadcrumb class : add a check isset on the $post_type_object->rewrite['with_front'] for CPT
+* fixed : (php) a check on is_archive() has been added to tc_get_the_ID() function in class fire utils
+* fixed : (php) we used tc__f('__ID') instead of get_the_ID() in class-header-slider
+* fixed : (php) we add a hr separator after header only for search results and archives
+* fixed : (php) comments : 'tc_comment_callback' filter hook was missing parameters
+* fixed : (php) featured pages : filter  'tc_fp_single_display' was missing parameters
+* fixed : (css) comments avatar more responsive
+* fixed : (css) ie9 and less : hack to get rid of the gradient effect => was bugging the responsive menu.
+
+= 3.0.13 =
+* fixed : (php) Logo upload : we check if the getimagesize() function generates any warning (due to restrictions of use on some servers like 1&1) before using it. Thanks to <a href="http://wordpress.org/support/profile/svematec" target="_blank">svematec</a>, <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a> and <a href="http://wordpress.org/support/profile/heronswalk" target="_blank">heronswalk</a> for reporting this issue so quickly!
+
+= 3.0.12 =
+* fixed : (php) the slider is now also displayed on the blog page. Thanks to <a href="http://wordpress.org/support/profile/defttester" target="_blank">defttester</a> and <a href="http://wordpress.org/support/profile/rdellconsulting" target="_blank">rdellconsulting</a>
+
+= 3.0.11 =
+* added : (php) filter to the skin choices (in customizer options class), allowing to add new skins in the drop down list
+* added : (php) filter for enqueuing the styles (in class ressources), allowing a better control for child theme
+* added : (css) current menu item or current menu ancestor is colored with the skin color
+* added : (php) function to check if we are using a child theme. Handles WP version <3.4.
+* improved : (css) new conditional stylesheets ie8-hacks : icon sizes for IE8
+* improved : (css) better table styling
+* improved : (php) logo dimensions are beeing rendered in the img tag
+* improved : (php) class group instanciation is faster, using the class group array instead of each singular group of class.
+* improved : (php) the search and archive headers are easier to filter now with dedicated functions
+* fixed : (css) archives and search icons color were all green for all skins
+* fixed : (php) 404 content was displayed several times in a nested url rewrite context thanks to <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* fixed : (php) attachment meta data dimensions : checks if are set $metadata['height'] && $metadata['width'] before rendering
+* fixed : (php) attachment post type : checks if $post is set before getting the type
+* fixed : (php) left and right sidebars are rendered even if they have no widgets hooked in thanks to <a href="http://wordpress.org/support/profile/pereznat" target="_blank">pereznat</a>.
+
+= 3.0.10 =
+* CHILD THEME USERS, templates have been modified : index.php, header.php, footer.php, comments.php*
+* added : (php) (css) (html) New option : Draggable help box and clickable tooltips to easily display some contextual information and help for developers
+* added : (php) support for custom post types for the slider meta boxes
+* added : (php) new filter to get the post type
+* added : polish translation. thanks to Marcin Sadowski from <a href="http://www.sadowski.edu.pl" target="_blank">http://www.sadowski.edu.pl</a>
+* added : (php) (html) attachments are now listed in the search results with their thumbnails and descriptions, just like posts or pages
+* added : (css) comment navigation styling, similar to post navigation
+* added : (php) (css) author box styling (if bio field not empty)
+* added : (css) comment bubble for pages
+* added : (js) smooth transition for "back to top" link. Thanks to Nikolov : <a href="https://github.com/nikolov-tmw" target="_blank">https://github.com/nikolov-tmw</a>
+* added : (js) smooth image loading on gallery attachment navigation
+* added : (lang) Dutch translation. Thanks to Joris Dutmer.
+* added : (css) icon to title of archive, search, 404
+* improved : (js) (php) tc-scripts.js : now includes fancybox + carousel scripts with dynamic variables (localized)
+* improved : (php) attachment screen layout based on the parent
+* improved : (php) simpler action hooks structure in the main templates : index, header, footer, comments, sidebars
+* improved : (css) responsive behaviour : slider caption now visible for devices < 480px wide, thumbnail/content layout change for better display, body extra padding modified
+* improved : (php) For better performances : options (single and full array) are now get from the TC_utils class instance instead of querying the database. (except for the customization context where they have to be retrieved dynamically from database on refresh)
+* improved : (js) performance : tc_scripts and ajax_slider have been minified
+* fixed : (css) IE fix : added z-index to active slide to fix slides falling below each other on transition. Thanks to PMStanley <a href="https://github.com/PMStanley">https://github.com/PMStanley</a>
+* fixed : (css) IE fix : added 'top: 25%' to center align slide caption on older versions of IE. Thanks to PMStanley <a href="https://github.com/PMStanley" target="_blank">https://github.com/PMStanley</a>
+* fixed : (php) empty reply button in comment threads : now checks if we reach the max level of threaded comment to render the reply button
+* fixed : (php) empty nav buttons in single posts are not displayed anymore
+* fixed : (css) font-icons compatibility with Safari is fixed for : page, formats (aside, link; image, video) and widgets (recent post, page menu, categories) thanks to <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* fixed : (css) ordered list margin were not consistent in the theme thanks to <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* fixed : (css) slider text overflow
+* removed : sidebars templates. Sidebar content is now rendered with the class-content-sidebar.php
+
+= 3.0.9 =
+* ! SAFE UPGRADE FOR CHILD THEME USERS (v3.0.8 => v3.0.9) ! *
+* fixed : function tc_is_home() was not checking the case where display nothing on home page. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/monten01">monten01</a>, <a href="http://wordpress.org/support/profile/rdellconsulting" target="_blank">rdellconsulting</a>
+* fixed : When the permalink structure was not set to default, conditional tags is_page() and is_attachement() stopped working. They are now replaced by tests on $post -> post_type in class-main-content.php
+* fixed : test if jet_pack is enabled before filtering post_gallery hook => avoid conflict
+* fixed : @media print modified to remove links thanks to <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* fixed : btn-info style is back to original Bootstrap style thanks to <a href="http://wordpress.org/support/profile/jo8192" target="_blank">jo8192</a>
+* fixed : featured pages text => html tags are removed from page excerpt
+* improved : custom css now allows special characters
+* improved : better css structure, media queries are grouped at the end of the css files
+* added : two new social networks in Customizer options : Instagram and WordPress
+* added : help button and page in admin with links to FAQ, documentation and forum
+* added : new constant TC_WEBSITE for author URI
+* added :  Swedish translation : thanks to Johnny Nyström
+
+= 3.0.8 =
+* fixed : function tc_is_home() was missing a test. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/ldanielpour962gmailcom">http://wordpress.org/support/profile/ldanielpour962gmailcom</a>, <a href="http://wordpress.org/support/profile/rdellconsulting">http://wordpress.org/support/profile/rdellconsulting</a>, <a href="http://wordpress.org/support/profile/andyblackburn">http://wordpress.org/support/profile/andyblackburn</a>, <a href="http://wordpress.org/support/profile/chandlerleighcom">http://wordpress.org/support/profile/chandlerleighcom</a>
+
+= 3.0.7 =
+* fixed : the "force default layout" option was returning an array instead of a string. Thanks to http://wordpress.org/support/profile/edwardwilliamson and http://wordpress.org/support/profile/henry12345 for pointing this out!
+* improved : get infos from parent theme if using a child theme in customizr-__ class constructor
+* improved : enhanced filter for footer credit
+* added : a notice about changelog if using a child theme
+* improved : use esc_html tags in featured page text and slider captions
+
+= 3.0.6 =
+* fixed : Spanish translation has been fixed. Many thanks again to Maria del Mar for her great job!
+* fixed : Pages protected with password will not display any thumbnail or excerpt when used in a featured page home block (thanks to rocketpopgames http://wordpress.org/support/profile/rocketpopgames)
+* improved : performance : jquery.fancybox.1.3.4.js and modernizr have been minified
+* added : footer credits can now be filtered with add_filter( 'footer_credits') and hooked with add_action ('__credits' )
+* added : new customizer option to personnalize the featured page buttons
+* added : brazilian portugues translation! Many thanks to Roner Marcelo  (http://ligaht.com.br/)
+
+= 3.0.5 =
+* fixed : breadcrumb translation domain was not right
+* fixed : domain translation for comment title was not set
+* fixed : in v3.0.4, a slider could disappeared only if some slides had been inserted at one time and then deleted or disabled afterward. Thanks to Dave http://wordpress.org/support/profile/rdellconsulting!
+* fixed : holder.js script bug in IE v8 and lower. Fixed by updating holder.js v1.9 to v2.0. Thanks to Joel (http://wordpress.org/support/profile/jrisberg) and Ivan (http://wordpress.org/support/profile/imsky).
+* improved : better handling of comment number bubble everywhere : check if comments are opened AND if there are comments to display
+* improved : welcome screen on update/activate : changelog automatic update, new tweet button
+* improved : lightbox navigation is now enabled for galleries with media link option choosen (new filters on post gallery and attachment_link)
+* improved : better code organization : split of content class in specific classes by content type
+* added : customizr option for images : enable/disable autoscale on lightbox zoom
+* added : jQuery fallback for CSS Transitions in carousel (ie. Internet Explorer) : https://github.com/twbs/bootstrap/pull/3052/files
+* added : spanish translation. Thanks to Maria del Mar
+
+= 3.0.4 =
+* fixed : minor css correction on responsive thumbnail hover effect
+* fixed : minor syntaxic issue on comment title (printf)
+* fixed : translation domain was wrong for social networks
+* fixed : slider arrows were still showing up if slides were deleted but not the slider itself. Added a routine to check if slides have attachment.
+* improved : image galleries : if fancybox active, lightbox navigation is now enabled
+* improved : better capability control of edit page button. Only appears if user_can edit_pages (like for posts)
+* added : Activation welcome screen
+* added : new action in admin_init hook to load the meta boxes class
+
+= 3.0.3 =
+* added : german translation. Thanks to Martin Bangemann <design@humane-wirtschaft.de> !
+* changed : default option are now based on customizer settings
+* fixed : reordering slides was deleting the slides
+
+= 3.0.2 =
+* fixed : problem fixed on theme zipping and upload in repository 
+
+= 3.0.1 =
+* fixed : 'header already sent' error fixed (space before php opening markup in an admin class) was generating an error on log out  
+
 = 3.0 =
 * changed : global code structure has changed. Classes are instanciated by a singleton factory, html is rendered with actions, values are called through filters
 * fixed : favicon rendering, $__options was not defined in head
@@ -145,7 +266,7 @@ The exceptions to this license are as follows:
 * removed : some unnecessary favicon settings
 * fixed : function wp_head() moved just before the closing <head> tag
 * added : filter on wp_filter function
-* added : russion translation, thanks to Evgeny Sudakov!
+* added : russion translation, thanks to Evgeny Sudakov <flounder-1@yandex.ru>!
 * improved : thumbnail and content layout for posts lists
 * fixed : ajax saving was not working properly for page/page slider, a switch case was not breaked.
 

@@ -1,0 +1,61 @@
+.control-section .accordion-section-title {
+	padding: 6px 20px!important;
+}
+.control-section .accordion-section-title:after {
+	top: 7px;
+}
+.customize-control-checkbox label {
+	line-height: 16px;
+}
+.tc-customizr-title {
+	color: #21759B;
+	font-family: Georgia, Times, 'Times New Roman' , serif;
+	text-transform: uppercase;
+	text-shadow: 0 1px 0 #FFF;
+	margin: 1em 0em 0em 0em;
+}
+.tc-after-button {
+	border-color: white;
+	margin-top:15px;
+}
+.tc-emphasize {
+	line-height: 1em;
+}
+i.tc-notice {
+	display: block;
+	clear: both;
+}
+span.tc-notice {
+	color: #999;
+	font-size:12px;
+	font-style: italic;
+	clear: both;
+	display: block;
+}
+.tc-customizer-separator-invisible {
+	border:none;
+	margin-top:15px;
+}
+.tc-skin-gen-label {
+	float: left;
+}
+.tc-skin-gen-color-picker {
+	float: right;
+}
+.tc-number-label {
+	float: left;
+}
+.tc-number-input {
+	float: right;
+}
+.tc-check-label {
+	float: left;
+	max-width: 85%;
+}
+input.iphonecheck {
+	float: right;
+	min-height: 18px;
+}
+.tc-font-select {
+	float: left;
+}
