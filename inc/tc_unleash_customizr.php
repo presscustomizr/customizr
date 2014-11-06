@@ -198,20 +198,18 @@ add_action( 'after_setup_theme', 'customizr_setup' );
       require_once( TC_BASE.'inc/tc_dudy_widgets.php');
 
     /* LOADS THE BACK END STUFFS */
-     if (is_user_logged_in()) {
-       global $wp_version;
-        //check WP version to include customizer functions, must be >= 3.4
-       if (version_compare($wp_version, '3.4', '>=') ) {
-            require_once( TC_BASE.'inc/admin/tc_customize.php');
-        }
-        else {
-            //redirect to an upgrade message page on activation if version < 3.4
-            add_action ('admin_menu', 'tc_add_fallback_page');
-            add_action ('admin_init','tc_theme_activation_fallback');
-        }
-        require_once( TC_BASE.'inc/admin/tc_post_meta_box.php');
-        require_once( TC_BASE.'inc/admin/tc_slider_bo.php');
+     global $wp_version;
+      //check WP version to include customizer functions, must be >= 3.4
+     if (version_compare($wp_version, '3.4', '>=') ) {
+          require_once( TC_BASE.'inc/admin/tc_customize.php');
       }
+      else {
+          //redirect to an upgrade message page on activation if version < 3.4
+          add_action ('admin_menu', 'tc_add_fallback_page');
+          add_action ('admin_init','tc_theme_activation_fallback');
+      }
+      require_once( TC_BASE.'inc/admin/tc_post_meta_box.php');
+      require_once( TC_BASE.'inc/admin/tc_slider_bo.php');
     }
 endif;
 
