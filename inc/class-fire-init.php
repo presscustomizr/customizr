@@ -287,7 +287,7 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           //Set image options set by user @since v3.2.0
           //! must be included in utils to be available in admin for plugins like regenerate thumbnails
-          add_action  ( 'after_setup_theme'                     , array( $this, 'tc_set_user_defined_settings'), 10 );
+          add_action ( 'after_setup_theme'                      , array( $this, 'tc_set_user_defined_settings'), 10 );
 
           //adds the text domain, various theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails
           add_action ( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ), 20 );
@@ -395,7 +395,9 @@ if ( ! class_exists( 'TC_init' ) ) :
         /* This theme uses a custom image size for featured images, displayed on "standard" posts. */
         add_theme_support( 'post-thumbnails' );
           //set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
-
+        
+        /* @since v3.2.3 see : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/ */
+        add_theme_support( 'title-tag' );
         //remove theme support => generates notice in admin @todo fix-it!
          /* remove_theme_support( 'custom-background' );
           remove_theme_support( 'custom-header' );*/
@@ -448,7 +450,7 @@ if ( ! class_exists( 'TC_init' ) ) :
         } 
 
         //Defines the active skin and fallback to blue.css if needed
-        $tc_active_skin  = $remote_path ? $remote_path.$skin : TC_BASE_URL.'inc/assets/css/blue.css';
+        $tc_active_skin  = $remote_path ? $remote_path.$skin : TC_BASE_URL.'inc/assets/css/blue3.css';
         return apply_filters ( 'tc_active_skin' , $tc_active_skin );
       }
 
@@ -676,13 +678,21 @@ if ( ! class_exists( 'TC_init' ) ) :
         //checks if retina is enabled in options
         if ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) )
           return $metadata;
-       
-        foreach ( $metadata as $key => $value ) {
-            if ( is_array( $value ) ) {
-                foreach ( $value as $image => $attr ) {
-                    if ( is_array( $attr ) )
-                        $this -> tc_create_retina_images( get_attached_file( $attachment_id ), $attr['width'], $attr['height'], true );
-                }
+
+        if ( ! is_array($metadata) )
+          return $metadata;
+
+        //Create the retina image for the main file
+        if ( is_array($metadata) && isset($metadata['width']) && isset($metadata['height']) )
+          $this -> tc_create_retina_images( get_attached_file( $attachment_id ), $metadata['width'], $metadata['height'] , false, $_is_intermediate = false );
+
+        //Create the retina images for each WP sizes
+        foreach ( $metadata as $key => $data ) {
+            if ( 'sizes' != $key )
+              continue;
+            foreach ( $data as $_size_name => $_attr ) {
+                if ( is_array( $_attr ) && isset($_attr['width']) && isset($_attr['height']) )
+                    $this -> tc_create_retina_images( get_attached_file( $attachment_id ), $_attr['width'], $_attr['height'], true, $_is_intermediate = true );
             }
         }
         return $metadata;
@@ -691,31 +701,35 @@ if ( ! class_exists( 'TC_init' ) ) :
 
 
       /**
-       * Creates retina-ready images
-       *
-       * @package Customizr
-       * @since Customizr 3.0.15
-       * @credits http://wp.tutsplus.com/author/chrisbavota/
-       */
-      function tc_create_retina_images( $file, $width, $height, $crop = false ) {
+      * Creates retina-ready images
+      *
+      * @package Customizr
+      * @since Customizr 3.0.15
+      * @credits http://wp.tutsplus.com/author/chrisbavota/
+      */
+      function tc_create_retina_images( $file, $width, $height, $crop = false , $_is_intermediate = true) {
+          $resized_file = wp_get_image_editor( $file );
+          if ( is_wp_error( $resized_file ) )
+            return false;
+
           if ( $width || $height ) {
-              $resized_file = wp_get_image_editor( $file );
-              if ( ! is_wp_error( $resized_file ) ) {
-                  $filename = $resized_file->generate_filename( $width . 'x' . $height . '@2x' );
-       
-                  $resized_file->resize( $width * 2, $height * 2, $crop );
-                  $resized_file->save( $filename );
-       
-                  $info = $resized_file->get_size();
-       
-                  return array(
-                      'file' => wp_basename( $filename ),
-                      'width' => $info['width'],
-                      'height' => $info['height'],
-                  );
-              }
+            $_suffix    = $_is_intermediate ? $width . 'x' . $height . '@2x' : '@2x';
+            $filename   = $resized_file -> generate_filename( $_suffix );
+            // if is not intermediate (main file name) => removes the "-" added by the generate_filename method
+            $filename   = ! $_is_intermediate ? str_replace('-@2x', '@2x', $filename) : $filename;
+            
+            $resized_file -> resize( $width * 2, $height * 2, $crop );
+            $resized_file -> save( $filename );
+ 
+            $info = $resized_file -> get_size();
+ 
+            /*return array(
+                'file' => wp_basename( $filename ),
+                'width' => $info['width'],
+                'height' => $info['height'],
+            );*/
           }
-          return false;
+          //return false;
       }//end of function
 
 

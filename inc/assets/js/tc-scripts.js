@@ -1,3 +1,24 @@
+TCParams = TCParams || {
+	CenterSlides: 1,
+	FancyBoxAutoscale: 1,
+	FancyBoxState: 1,
+	HasComments: "",
+	LeftSidebarClass: ".span3.left.tc-sidebar",
+	LoadBootstrap: 1,
+	LoadCustomizrScript: 1,
+	LoadModernizr: 1,
+	ReorderBlocks: 1,
+	RightSidebarClass: ".span3.right.tc-sidebar",
+	SliderDelay: +5000,
+	SliderHover: 1,
+	SliderName: "demo",
+	SmoothScroll: "linear",
+	stickyCustomOffset: 0,
+	stickyHeader: 1,
+	dropdowntoViewport: 1,
+	timerOnScrollAllBrowsers:1
+};
+
 /* ! ===================================================
  * bootstrap-transition.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#transitions
@@ -103,7 +124,7 @@ if ( 1 == TCParams.FancyBoxState ) {
     var SmoothScroll = TCParams.SmoothScroll;
 
     if ('easeOutExpo' == SmoothScroll) {
-        $('a[href^="#"]').not('[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"]').click(function () {
+        $('a[href^="#"]', '#content').not('[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"]').click(function () {
             var anchor_id = $(this).attr("href");
             if ('#' != anchor_id) {
                 $('html, body').animate({
@@ -436,7 +457,9 @@ jQuery(function ($) {
 	}
 
 	//SCROLLING ACTIONS
-	var timer;  
+	var timer,
+		increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
+
 	//var windowHeight = $(window).height();  
 	var triggerHeight = 20; //0.5 * windowHeight;
 
@@ -458,16 +481,20 @@ jQuery(function ($) {
 	$(window).scroll(function() {
 		if ( ! _is_sticky_enabled() )
 			return;
-		//use a timer for ie
+		//use a timer
 		if ( timer) {
+			increment++;
 	        window.clearTimeout(timer);
 	    }
-	    if ( $('body').hasClass('ie') ) {
+	    
+	    if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+	    	timer = window.setTimeout(function() {
+		    	_scrolling_actions()
+		    }, increment > 5 ? 50 : 0 );
+	    } else if ( $('body').hasClass('ie') ) {
 		    timer = window.setTimeout(function() {
 		    	_scrolling_actions()
-		    }, 50);
-		} else {
-			_scrolling_actions()
+		    }, increment > 5 ? 50 : 0 );
 		}
 	});//end of window.scroll()
 });

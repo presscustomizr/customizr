@@ -255,7 +255,7 @@ class TC_breadcrumb {
 			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $home_page->post_parent, '' ) );
 
 			if ( is_paged() )
-				$trail[]  = '<a href="' . get_permalink( $home_page->ID ) . '" title="' . esc_attr( get_the_title( $home_page->ID ) ) . '">' . get_the_title( $home_page->ID ) . '</a>';
+				$trail[]  = '<a href="' . get_permalink( $home_page->ID ) . '" title="' . esc_attr( strip_tags( get_the_title( $home_page->ID ) ) ). '">' . get_the_title( $home_page->ID ) . '</a>';
 			else
 				$trail[] = get_the_title( $home_page->ID );
 		}
@@ -874,7 +874,7 @@ class TC_breadcrumb {
 			$page = get_page( $post_id );
 
 			/* Add the formatted post link to the array of parents. */
-			$parents[$post_id]  = '<a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( get_the_title( $post_id ) ) . '">' . get_the_title( $post_id ) . '</a>';
+			$parents[$post_id]  = '<a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( strip_tags( get_the_title( $post_id ) ) ) . '">' . get_the_title( $post_id ) . '</a>';
 
 			/* Set the parent post's parent to the post ID. */
 			$post_id = $page->post_parent;

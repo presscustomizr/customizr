@@ -22,7 +22,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 	        //html > header actions
 	        add_action ( '__before_main_wrapper'	, 'get_header');
-	        add_action ( '__header' 				, array( $this , 'tc_logo_title_display' ) , 10 );
+	        add_action ( '__header' 				, array( $this , 'tc_prepare_logo_title_display' ) , 10 );
 	        add_action ( '__header' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
 	        add_action ( '__header' 				, array( $this , 'tc_navbar_display' ) , 30 );
 	        //New menu view (since 3.2.0)
@@ -122,13 +122,13 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 
 	    /**
-		* The template for displaying the logo (text or img)
+		* Prepare the logo / title view
 		*
 		*
 		* @package Customizr
-		* @since Customizr 3.0
+		* @since Customizr 3.2.3
 		*/
-		function tc_logo_title_display() {
+		function tc_prepare_logo_title_display() {
 	       	//check if the logo is a path or is numeric
 	       	//get src for both cases
 	       	$_logo_src 				= '';
@@ -155,60 +155,40 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 	       	
 	       	$logo_resize 			= esc_attr( tc__f( '__get_option' , 'tc_logo_resize') );
 	      	$accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
-	       	$filetype 				= wp_check_filetype ($_logo_src);
+	       	$filetype 				= TC_utils::$instance -> tc_check_filetype ($_logo_src);
 	       	$logo_classes 			= array( 'brand', 'span3');
-			?>
 
-			<?php if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) ) :?>
-				
-				<?php
-				//filter args
-		   		$filter_args 		= array( 
-			       		'logo_src' 			=>	$_logo_src, 
-			       		'logo_resize' 		=>	$logo_resize,
-			       		'logo_class'		=> 	implode( " ", apply_filters( 'tc_logo_class', $logo_classes ) )
+			if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) ) {
+		   		$_args 		= array( 
+			       		'logo_src' 				=> $_logo_src, 
+			       		'logo_resize' 			=> $logo_resize,
+			       		'logo_class'			=> $logo_classes,
+			       		'logo_width' 			=> $_width,
+			       		'logo_height' 			=> $_height,
+			       		'logo_attachment_id' 	=> $_attachement_id
 		   		);
+		   		//render
+				$this -> tc_logo_view($_args);
+			} else {
+				$this -> tc_title_view($logo_classes);
+			}
+		}
 
-				ob_start();
-				?>
 
-		        <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', $logo_classes ) ) ?>">
-		        <?php 
-		        	do_action( '__before_logo' );
 
-		          	printf( '<a class="site-logo %8$s" href="%1$s" title="%2$s"><img src="%3$s" alt="%4$s" %5$s %6$s %7$s %9$s/></a>',
-		          		apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
-		          		apply_filters( 'tc_logo_link_title', sprintf( '%1$s | %2$s' , __( esc_attr( get_bloginfo( 'name' ) ) ) , __( esc_attr( get_bloginfo( 'description' ) ) ) ) ),
-		          		$_logo_src,	
-		          		__( 'Back Home' , 'customizr' ),
-						$_width ? sprintf( 'width="%1$s"', $_width ) : '',
-						$_height ? sprintf( 'height="%1$s"', $_height ) : '',
-						( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
-												apply_filters( 'tc_logo_max_width', 250 ),
-												apply_filters( 'tc_logo_max_height', 100 )
-												) : '',
-						$_attachement_id ? sprintf( 'attachment-%1$s', $_attachement_id ) : '',
-						implode(' ' , apply_filters('tc_logo_other_attributes' , array('data-no-retina') ) )
-		          	); 
 
-		           	do_action( '__after_logo' );
-		         ?>
-		        </div> <!-- brand span3 -->
+		/**
+		* Title view
+		*
+		* @package Customizr
+		* @since Customizr 3.2.3
+		*/
+		function tc_title_view( $logo_classes ) {
+			ob_start(); 
+			?>
+	        <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', array_merge($logo_classes , array('pull-left') ) ) ) ?> ">
 
-		        <?php 
-			   	$html = ob_get_contents();
-		       	if ($html) ob_end_clean();
-		       	echo apply_filters( 'tc_logo_img_display', $html, $filter_args );
-		       	?>
-
-		    
-		    <?php else : ?>
-
-		    	<?php ob_start(); ?>
-
-		        <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', array_merge($logo_classes , array('pull-left') ) ) ) ?> ">
-
-		        	<?php
+	        	<?php
 		        	do_action( '__before_logo' );
 
 			          	printf('<%1$s><a class="site-title" href="%2$s" title="%3$s">%4$s</a></%1$s>',
@@ -219,19 +199,58 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 			          	);
 
 				 	do_action( '__after_logo' ) 
-				 	?>
+			 	?>
 
-		        </div> <!-- brand span3 pull-left -->
+	        </div> <!-- brand span3 pull-left -->
+	        <?php 
+		   	$html = ob_get_contents();
+	       	if ($html) ob_end_clean();
+	       	echo apply_filters( 'tc_logo_text_display', $html, $logo_classes);
+		}
 
-		        <?php 
-			   	$html = ob_get_contents();
-		       	if ($html) ob_end_clean();
-		       	echo apply_filters( 'tc_logo_text_display', $html, $logo_classes);
-		       	?>
 
-		   <?php endif; ?>
 
-		   <?php 
+
+		/**
+		* Logo view
+		*
+		* @package Customizr
+		* @since Customizr 3.2.3
+		*/
+		function tc_logo_view( $_args ) {
+			//Exctracts $args : logo_src, logo_resize, logo_class, logo_attachment_id, logo_width, logo_height
+			extract($_args);
+
+			ob_start();
+			?>
+
+	        <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', $logo_class ) ) ?>">
+	        <?php 
+	        	do_action( '__before_logo' );
+
+	          	printf( '<a class="site-logo %8$s" href="%1$s" title="%2$s"><img src="%3$s" alt="%4$s" %5$s %6$s %7$s %9$s/></a>',
+	          		apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
+	          		apply_filters( 'tc_logo_link_title', sprintf( '%1$s | %2$s' , __( esc_attr( get_bloginfo( 'name' ) ) ) , __( esc_attr( get_bloginfo( 'description' ) ) ) ) ),
+	          		$logo_src,	
+	          		__( 'Back Home' , 'customizr' ),
+					$logo_width ? sprintf( 'width="%1$s"', $logo_width ) : '',
+					$logo_height ? sprintf( 'height="%1$s"', $logo_height ) : '',
+					( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
+											apply_filters( 'tc_logo_max_width', 250 ),
+											apply_filters( 'tc_logo_max_height', 100 )
+											) : '',
+					$logo_attachment_id ? sprintf( 'attachment-%1$s', $logo_attachment_id ) : '',
+					implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
+	          	); 
+
+	           	do_action( '__after_logo' );
+	         ?>
+	        </div> <!-- brand span3 -->
+
+	        <?php 
+		   	$html = ob_get_contents();
+	       	if ($html) ob_end_clean();
+	       	echo apply_filters( 'tc_logo_img_display', $html, $_args );
 		}
 
 
@@ -355,7 +374,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 				$html = sprintf('<div class="container outside"><%1$s class="site-description">%2$s</%1$s></div>',
 						apply_filters( 'tc_tagline_tag', 'h2' ),
-						apply_filters( 'tc_tagline_text ', __( esc_attr( get_bloginfo( 'description' ) ) ) )
+						apply_filters( 'tc_tagline_text', __( esc_attr( get_bloginfo( 'description' ) ) ) )
 				);
 
 				
@@ -363,7 +382,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 				$html = sprintf('<%1$s class="%2$s inside site-description">%3$s</%1$s>',
 						apply_filters( 'tc_tagline_tag', 'h2' ),
 						apply_filters( 'tc_tagline_class', 'span7' ),
-						apply_filters( 'tc_tagline_text ', __( esc_attr( get_bloginfo( 'description' ) ) ) )
+						apply_filters( 'tc_tagline_text', __( esc_attr( get_bloginfo( 'description' ) ) ) )
 				);
 
 			}
@@ -400,10 +419,18 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 	    */
 	    function tc_add_body_classes($_classes) {
 	    	//STICKY HEADER
-	    	if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ) )
+	    	if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ) ) {
 	       		$_classes = array_merge( $_classes, array('tc-sticky-header') );
-	       	else
+	       		//STICKY TRANSPARENT ON SCROLL
+		       	if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_transparent_on_scroll' ) ) )
+		       		$_classes = array_merge( $_classes, array('tc-transparent-on-scroll') );
+		       	else
+		       		$_classes = array_merge( $_classes, array('tc-solid-color-on-scroll') );
+		       }
+	       	else {
 	       		$_classes = array_merge( $_classes, array('tc-no-sticky-header') );
+	       	}
+
 	       	return $_classes;
 	    }
 

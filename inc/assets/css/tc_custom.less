@@ -37,6 +37,25 @@ body {
   transition-timing-function: ease-in-out;
 }
 
+.tc-fade-hover-links a:not([class*=round-div]), .tc-fade-hover-links a:visited, .tc-fade-hover-links button, .tc-fade-hover-links input[type="button"], .tc-fade-hover-links input[type="submit"] {
+  -webkit-transition-property: border, background, color;
+  transition-property: border, background, color;
+  -webkit-transition-duration: .15s;
+  transition-duration: .15s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+
+.tc-fade-hover-links a.btn:focus, .tc-fade-hover-links a.btn:hover {
+  text-decoration: none;
+  background-position: 0 -15px;
+  -webkit-transition: background-position .1s linear;
+  -moz-transition: background-position .1s linear;
+  -o-transition: background-position .1s linear;
+  transition: background-position .1s linear;
+}
+
+
 ul, ol {
   padding: 0px 5px;
 }
@@ -81,7 +100,7 @@ td {
 
 /* ICONS
   -------------------------------------------------- */
-@font-face {
+/*@font-face {
     font-family: 'genericons';
     src: url( 'fonts/fonts/genericons-regular-webfont.eot' );
     src: url( 'fonts/fonts/genericons-regular-webfont.eot?#iefix' ) format( 'embedded-opentype' ),
@@ -98,7 +117,7 @@ td {
          url( 'fonts/fonts/entypo.ttf' ) format( 'truetype' ),
          url( 'fonts/fonts/entypo.svg#genericonsregular' ) format( 'svg' );
 }
-
+*/
 
 [data-icon]:before {
   font-family: 'genericons';
@@ -511,8 +530,14 @@ h2.comments-title:before {
   display: block;
   float: left;
 }*/
+/* HEADER ALWAYS VISIBLE => z-index high */
+.tc-no-sticky-header .tc-header {
+  z-index: 10000;
+  position: relative;
+}
 .tc-sticky-header .tc-header {
   position: fixed;
+  z-index: 10000;
   /*height: 126px;*/
   -webkit-transition: all 0.15s;
     -moz-transition: all 0.15s;
@@ -532,6 +557,10 @@ h2.comments-title:before {
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF)";
   border-bottom: 2px solid #E9EAEE;
   border-top: 0px;
+}
+/* DISABLE SEMI-TRANSPARENCY FOR STICKY HEADER ON SCROLL*/
+.tc-solid-color-on-scroll.sticky-enabled .tc-header, .tc-solid-color-on-scroll.sticky-enabled .navbar-inner {
+  background-color: #FAFAFA;
 }
 
 /* SHOW HIDE ELEMENTS IN HEADER */
@@ -618,7 +647,10 @@ h2.comments-title:before {
 .tc-header .outside {
   display:none;
 }
-
+/* IE9- hack */
+.ie8 body > .container.outside, .ie7 body > .container.outside {
+    display:none!important;
+}
 /* NAVBAR
     -------------------------------------------------- */
 
@@ -1980,8 +2012,6 @@ footer ul, footer ol {
 .tc-btt-wrapper:hover {
   background: rgb(119, 119, 119) transparent;
   background: rgba(119, 119, 119, 0.5);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#BBB, endColorstr=#BBB);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#777, endColorstr=#777)";
 }
 .tc-btt-wrapper {
   position: fixed;
@@ -1992,8 +2022,6 @@ footer ul, footer ol {
   z-index: 99999999;
   background: rgb(119, 119, 119) transparent;
   background: rgba(119, 119, 119, 0.2);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#777, endColorstr=#777);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#777, endColorstr=#777)";
   color: #EEE;
   width: 45px;
   height: 43px;

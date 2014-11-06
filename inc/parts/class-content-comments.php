@@ -48,16 +48,21 @@ if ( ! class_exists( 'TC_comments' ) ) :
       /**
         * Comment title rendering
         *
+        * 
         * @package Customizr
         * @since Customizr 3.0
        */
         function tc_comment_title() {
+          if ( 1 == get_comments_number() ) {
+            $_title = __( 'One thought on', 'customizr' );
+          } else {
+            $_title = sprintf( '%1$s %2$s', number_format_i18n( get_comments_number(), 'customizr' ) , __( 'thoughts on', 'customizr' ) );
+          }
 
           echo apply_filters( 'tc_comment_title' ,
-                sprintf( '<h2 id="tc-comment-title" class="comments-title">%1$s</h2>' ,
-                      sprintf( _n( 'One thought on &ldquo;%2$s&rdquo;' , '%1$s thoughts on &ldquo;%2$s&rdquo;' , get_comments_number(), 'customizr' ),
-                      number_format_i18n( get_comments_number(), 'customizr' ), 
-                      '<span>' . get_the_title() . '</span>' )
+                sprintf( '<h2 id="tc-comment-title" class="comments-title">%1$s &ldquo;%2$s&rdquo;</h2>' ,
+                  $_title, 
+                  '<span>' . get_the_title() . '</span>'
                 )
           );
         }
@@ -71,15 +76,13 @@ if ( ! class_exists( 'TC_comments' ) ) :
         * @since Customizr 3.0
        */
         function tc_comment_list() {
+          $_args = apply_filters( 'tc_list_comments_args' , array( 'callback' => array ( $this , 'tc_comment_callback' ) , 'style' => 'ul' ) );
           ob_start();
             ?>
-      
               <ul class="commentlist">
-                <?php wp_list_comments( array( 'callback' => array ( $this , 'tc_comment_callback' ) , 'style' => 'ul' ) ); ?>
+                <?php wp_list_comments( $_args ); ?>
               </ul><!-- .commentlist -->
-
             <?php
-
           $html = ob_get_contents();
           if ($html) ob_end_clean();
           echo apply_filters( 'tc_comment_list' , $html );

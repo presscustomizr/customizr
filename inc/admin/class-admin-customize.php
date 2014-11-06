@@ -206,7 +206,6 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 				}//end for each
 			}//end if isset
-
 		}//end of customize generator function
 
 
@@ -218,13 +217,15 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		 * @package Customizr
 		 * @since Customizr 1.0 
 		 */
+		 
 		function tc_customize_preview_js() {
 			wp_enqueue_script( 
 				'tc-customizer-preview' ,
-				get_template_directory_uri() . '/inc/admin/js/theme-customizer-preview.min.js' ,
+				sprintf('%1$s/inc/admin/js/theme-customizer-preview%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-preview' , 'underscore' ),
 				'20120827' ,
-				true );
+				true
+			);
 		}
 
 
@@ -239,16 +240,16 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		function tc_customize_controls_js_css() {
 
 			wp_register_style( 
-				'tc-customizer-controls-style' ,
-				get_template_directory_uri() . '/inc/admin/css/theme-customizer-control.min.css' ,
+				'tc-customizer-controls-style',
+				sprintf('%1$s/inc/admin/css/theme-customizer-control%2$s.css' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER,
 				$media = 'all'
 			);
 			wp_enqueue_style('tc-customizer-controls-style');
 			wp_enqueue_script( 
-				'tc-customizer-controls' ,
-				get_template_directory_uri() . '/inc/admin/js/theme-customizer-control.min.js' ,
+				'tc-customizer-controls',
+				sprintf('%1$s/inc/admin/js/theme-customizer-control%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER ,
 				true

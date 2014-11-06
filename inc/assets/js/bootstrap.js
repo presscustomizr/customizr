@@ -16,7 +16,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ========================================================== */
-
+//@tc addon
+TCParams = TCParams || {};
 
 !function ($) {
 
@@ -1650,10 +1651,27 @@
 
       //@tc adddon
       //give the revealed sub menu the height of the visible viewport
-      var tcVisible = $('body').hasClass('sticky-enabled') ? $(window).height() : ($(window).height() - $('.navbar-wrapper').offset().top);
-      tcVisible = ( tcVisible - 90 ) > 80 ? tcVisible - 90 : 300;
-      this.$element.css('max-height' , tcVisible + 'px');
-    }
+      if ( 1 == TCParams.dropdowntoViewport ) 
+      {
+        var tcVisible = $('body').hasClass('sticky-enabled') ? $(window).height() : ($(window).height() - $('.navbar-wrapper').offset().top);
+        tcVisible = ( tcVisible - 90 ) > 80 ? tcVisible - 90 : 300;
+        this.$element.css('max-height' , tcVisible + 'px');
+      } 
+      else if ( 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader ) 
+      {
+        //trigger click on back to top if sticky enabled
+        if ( 0 != $('.back-to-top').length ) {
+          $('.back-to-top').trigger('click');
+        }
+        else {
+          ('html, body').animate({
+                  scrollTop: $(anchor_id).offset().top
+              }, 700);
+        }
+        $('body').removeClass('sticky-enabled').removeClass('tc-sticky-header');
+      }
+
+    }//end of show:
 
   , hide: function () {
       var dimension
@@ -1662,6 +1680,11 @@
       this.reset(this.$element[dimension]())
       this.transition('removeClass', $.Event('hide'), 'hidden')
       this.$element[dimension](0)
+      
+      //@tc adddon
+      if ( 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader ) {
+        $('body').addClass('tc-sticky-header');
+      }
     }
 
   , reset: function (size) {

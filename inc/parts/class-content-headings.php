@@ -231,7 +231,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
               else {
                 $tc_heading_title = sprintf('<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
                                 get_permalink(),
-                                esc_attr( sprintf( apply_filters( 'tc_post_link_title' ,__( 'Permalink to %s' , 'customizr' ) ) , the_title_attribute( 'echo=0' ) ) ),
+                                sprintf( apply_filters( 'tc_post_link_title' , __( 'Permalink to %s' , 'customizr' ) ) , esc_attr( strip_tags( get_the_title() ) ) ),
                                 ( get_the_title() == null ) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : get_the_title()
                               );//end sprintf
               }

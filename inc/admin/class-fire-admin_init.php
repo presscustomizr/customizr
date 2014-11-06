@@ -256,17 +256,19 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       }
 
 
-
       /**
      * enqueue additional styling for admin screens
      * @package Customizr
      * @since Customizr 3.0.4
      */
       function tc_admin_style() {
-         wp_enqueue_style( 'admincss' , TC_BASE_URL.'inc/admin/css/tc_admin.css' );
+        wp_enqueue_style( 
+          'tc-admincss',
+          sprintf('%1$sinc/admin/css/tc_admin%2$s.css' , TC_BASE_URL, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+          array(), 
+          CUSTOMIZR_VER
+        );
       }
-
-
 
 
 

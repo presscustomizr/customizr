@@ -50,36 +50,54 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
         //define the default thumnail if has thumbnail
         if (has_post_thumbnail()) {
             $tc_thumb_id                = get_post_thumbnail_id();
+            $_filtered_thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size );
 
             //check if tc-thumb size exists and has not been filtered
             $image                      = wp_get_attachment_image_src( $tc_thumb_id, $tc_thumb_size);
 
-            //check if the size exists
-            if ( false == $image[3] && 'tc-thumb' == $tc_thumb_size ) {
+            //check also if this array value isset. (=> JetPack photon bug)
+            if ( isset($image[3]) && false == $image[3] && 'tc-thumb' == $tc_thumb_size ) {
               $tc_thumb_size            = 'large';
-              $_filtered_thumb_size     = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size );
 
-              //IMPORTANT : si pas de taille tc-thumb définie, utiliser un style dynamique
-              //width: auto;max-width: none;
-              //calculer automatiquement
-              $_width                   = $_filtered_thumb_size['width'];
-              $_height                  = $_filtered_thumb_size['height'];
               $_class_attr              = array( 
                 'class' => "attachment-{$tc_thumb_size} no-tc-thumb-size wp-post-image" , 
-                'style' => "min-width:{$_width}px;min-height:{$_height}px"
               );
             }
 
+            //IMAGE INLINE STYLE IF CORRECTIONS NEEDED
+            //calculer automatiquement
+            $_width                   = $_filtered_thumb_size['width'];
+            $_height                  = $_filtered_thumb_size['height'];
+            $_img_style               = '';
+
+            //if we have a width and a height and at least on dimension is < to default thumb
+            if ( ! empty($image[1]) 
+              && ! empty($image[2]) 
+              && ( $image[1] < $_width || $image[2] < $_height )
+              ) {
+                $_img_style           = sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width: auto;max-height: none;', $_width, $_height );
+            }
+            if ( empty($image[1]) || empty($image[2]) ) {
+              $_img_style             = sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width: auto;max-height: none;', $_width, $_height );
+            }
+
+            //Add the style value
+            $_class_attr['style'] = $_img_style;
+
+            $_class_attr =  apply_filters( 'tc_post_thumbnail_img_attributes' , $_class_attr ); 
+
             //check if the size exists
-            if ( false == $image[3] && 'tc_rectangular_size' == $tc_thumb_size ) {
+            if ( isset($image[3]) && false == $image[3] && 'tc_rectangular_size' == $tc_thumb_size ) {
               $tc_thumb_size            = 'slider';
             }
 
             $tc_thumb                   = get_the_post_thumbnail( get_the_ID(), $tc_thumb_size , $_class_attr);
 
-            //get height and width
-            $tc_thumb_height            = $image[2];
-            $tc_thumb_width             = $image[1];
+            //get height and width if not empty
+            if ( ! empty($image[1]) && ! empty($image[2]) ) {
+              $tc_thumb_height            = $image[2];
+              $tc_thumb_width             = $image[1];
+            }
         }
 
         //check if no thumbnail then uses the first attached image if any
@@ -111,17 +129,19 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
             foreach ( $attachments as $attachment) {
                //check if tc-thumb size exists for attachment and return large if not
               $image                    = wp_get_attachment_image_src( $attachment->ID, $tc_thumb_size);
-              $tc_thumb_size            = (false == $image[3] && 'tc-thumb' == $tc_thumb_size) ? 'medium' : $tc_thumb_size;
-              $_class_attr              = (false == $image[3] && 'tc-thumb' == $tc_thumb_size) ? array( 'class' => "attachment-{$tc_thumb_size} no-tc-thumb-size wp-post-image" ) : $_class_attr ;
+              $tc_thumb_size            = ( isset($image[3]) && false == $image[3] && 'tc-thumb' == $tc_thumb_size) ? 'medium' : $tc_thumb_size;
+              $_class_attr              = ( isset($image[3]) && false == $image[3] && 'tc-thumb' == $tc_thumb_size) ? array( 'class' => "attachment-{$tc_thumb_size} no-tc-thumb-size wp-post-image" ) : $_class_attr ;
               //check if the size exists
-              if ( false == $image[3] && 'tc_rectangular_size' == $tc_thumb_size ) {
+              if ( isset($image[3]) && false == $image[3] && 'tc_rectangular_size' == $tc_thumb_size ) {
                 $tc_thumb_size            = 'slider';
               }
               $tc_thumb                 = wp_get_attachment_image( $attachment->ID, $tc_thumb_size, $_class_attr );
 
-              //get height and width
-              $tc_thumb_height          = $image[2];
-              $tc_thumb_width           = $image[1];
+              //get height and width if not empty
+              if ( ! empty($image[1]) && ! empty($image[2]) ) {
+                $tc_thumb_height            = $image[2];
+                $tc_thumb_width             = $image[1];
+              }
             }
           }
         }
@@ -150,13 +170,13 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
         //handles the case when the image dimensions are too small
         $thumb_size                 = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size, tc__f('__ID')  );
         $no_effect_class            = ( isset($thumb_data[0]) && isset($thumb_data[1]) && ( $thumb_data[1] < $thumb_size['width']) ) ? 'no-effect' : '';
-        $no_effect_class            = apply_filters( 'tc_no_round_thumb', $no_effect_class, tc__f('__ID') );
+        $no_effect_class            = ( ! isset($thumb_data[0]) || empty($thumb_data[1]) || empty($thumb_data[2]) ) ? '' : $no_effect_class;
 
         //default hover effect
         $thumb_wrapper              = sprintf('<div class="%5$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s" title="%3$s"></a>%4$s</div>',
-                                      $no_effect_class,
+                                      implode( " ", apply_filters( 'tc_thumbnail_link_class', array( $no_effect_class ) ) ),
                                       get_permalink( get_the_ID() ),
-                                      get_the_title( get_the_ID() ),
+                                      esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
                                       $thumb_img,
                                       implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('thumb-wrapper') ) )
         );
@@ -200,7 +220,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
           $_position = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
           return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
                 get_permalink( get_the_ID() ),
-                get_the_title( get_the_ID() ),
+                esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
                 $thumb_img,
                 ( 'top' == $_position || 'bottom' == $_position ) ? '' : implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('thumb-wrapper') ) )
           );
@@ -208,7 +228,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
         if ( TC_post::$instance -> tc_single_post_display_controller() ) {
           return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
                 get_permalink( get_the_ID() ),
-                get_the_title( get_the_ID() ),
+                esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
                 $thumb_img,
                 implode( " ", apply_filters( 'tc_thumb_wrapper_class', array() ) )
           );

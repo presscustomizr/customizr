@@ -192,21 +192,10 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
 
 
-      /**
-     * enqueue additional styling for admin screens
-     * @package Customizr
-     * @since Customizr 3.0.4
-     */
-      function tc_admin_style() {
-         wp_enqueue_style( 'admincss' , TC_BASE_URL.'inc/admin/css/tc_admin.css' );
-      }
-
-
-
-
 
       /**
      * Extract changelog of latest version from readme.txt file
+     * 
      * @package Customizr
      * @since Customizr 3.0.5
      */
@@ -259,6 +248,11 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
       }
 
 
+
+      /*
+      * Inspired by Easy Digital Download plugin by Pippin Williamson
+      * @since 3.2.1
+      */
       function tc_config_infos() {
         global $wpdb;
 
@@ -267,7 +261,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 <h3><?php _e( 'System Informations', 'customizr' ); ?></h3>
 <h4 style="text-align: left"><?php _e( 'Please include the following informations when posting support requests' , 'customizr' ) ?></h4>
 <textarea readonly="readonly" onclick="this.focus();this.select()" id="system-info-textarea" name="tc-sysinfo" title="<?php _e( 'To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'customizr' ); ?>" style="width: 800px;min-height: 800px;font-family: Menlo,Monaco,monospace;background: 0 0;white-space: pre;overflow: auto;display:block;">
-<?php do_action( 'tc_system_config_before' ); ?>
+<?php do_action( '__system_config_before' ); ?>
 # SITE_URL:                 <?php echo site_url() . "\n"; ?>
 # HOME_URL:                 <?php echo home_url() . "\n"; ?>
 # IS MULTISITE :            <?php echo is_multisite() ? 'Yes' . "\n" : 'No' . "\n" ?>
@@ -331,7 +325,7 @@ WP_DEBUG:                 <?php echo defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled
 Show On Front:            <?php echo get_option( 'show_on_front' ) . "\n" ?>
 Page On Front:            <?php $id = get_option( 'page_on_front' ); echo get_the_title( $id ) . ' (#' . $id . ')' . "\n" ?>
 Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_the_title( $id ) . ' (#' . $id . ')' . "\n" ?>
-<?php do_action( 'tc_system_config_after' ); ?>
+<?php do_action( '__system_config_after' ); ?>
 </textarea>
 </div>
 </div>
@@ -339,32 +333,13 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
       }//end of function
 
 
-
-      /**
-       * Generates the System Info Download File
-       *
-       * @since 1.4
-       * @return void
-       */
-      /*function tc_generate_sysinfo_download() {
-        nocache_headers();
-
-        header( "Content-type: text/plain" );
-        header( 'Content-Disposition: attachment; filename="tc-system-info.txt"' );
-
-        echo wp_strip_all_tags( $_POST['tc-sysinfo'] );
-        edd_die();
-      }
-      add_action( 'tc_download_sysinfo', 'tc_generate_sysinfo_download' );*/
-
-
-
       /**
        * TC Let To Num
        *
        * Does Size Conversions
+       * 
        *
-       * @since 1.12
+       * @since 3.2.2
        */
       function tc_let_to_num( $v ) {
         $l   = substr( $v, -1 );

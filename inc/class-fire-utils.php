@@ -47,9 +47,23 @@ if ( ! class_exists( 'TC_utils' ) ) :
           add_filter  ( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
 
           //init properties
-          $this -> is_customizing   = $this -> tc_is_customizing();
-          $this -> default_options  = $this -> tc_get_default_options();
-          $this -> db_options       = array();
+          add_action ( 'after_setup_theme'                    , array( $this , 'tc_init_properties') );
+      }
+
+
+
+      /**
+      * Init TC_utils class properties after_setup_theme 
+      * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
+      * tc_get_default_options uses is_user_logged_in() => was causing the bug
+      *  
+      * @package Customizr
+      * @since Customizr 3.2.3
+      */
+      function tc_init_properties() {
+        $this -> is_customizing   = $this -> tc_is_customizing();
+        $this -> default_options  = $this -> tc_get_default_options();
+        $this -> db_options       = array();
       }
 
 
@@ -63,8 +77,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_get_skin_color() {
           $_skin_map    = TC_init::$instance -> skin_color_map;
           $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_active_skin() ) );
-          //falls back to blue ( default #08c ) if not defined
-        return ( false != $_active_skin && isset($_skin_map[$_active_skin]) ) ? $_skin_map[$_active_skin] : '#08c';
+          //falls back to blue3 ( default #27CDA5 ) if not defined
+        return ( false != $_active_skin && isset($_skin_map[$_active_skin]) ) ? $_skin_map[$_active_skin] : '#27CDA5';
       }
 
 
@@ -557,6 +571,36 @@ if ( ! class_exists( 'TC_utils' ) ) :
         }
         return $html;
       }
+
+
+    /**
+    * Retrieve the file type from the file name
+    * Even when it's not at the end of the file
+    * copy of wp_check_filetype() in wp-includes/functions.php
+    *
+    * @since 3.2.3
+    *
+    * @param string $filename File name or path.
+    * @param array  $mimes    Optional. Key is the file extension with value as the mime type.
+    * @return array Values with extension first and mime type.
+    */
+    function tc_check_filetype( $filename, $mimes = null ) {
+      if ( empty($mimes) )
+        $mimes = get_allowed_mime_types();
+      $type = false;
+      $ext = false;
+      foreach ( $mimes as $ext_preg => $mime_match ) {
+        $ext_preg = '!\.(' . $ext_preg . ')!i';
+        //was ext_preg = '!\.(' . $ext_preg . ')$!i';
+        if ( preg_match( $ext_preg, $filename, $ext_matches ) ) {
+          $type = $mime_match;
+          $ext = $ext_matches[1];
+          break;
+        }
+      }
+
+      return compact( 'ext', 'type' );
+    }
 
 
   }//end of class

@@ -19,12 +19,12 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        self::$instance =& $this;
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
-	        
+	        //Write font icon
+	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
 	        //Custom CSS
 	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
-
 	        //Customizer user defined style options
-	        add_action( 'wp_enqueue_scripts'						, array( $this ,  'tc_customizer_user_options_style' ) );
+	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_customizer_user_options_style' ) );
 	    }
 
 
@@ -62,8 +62,28 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    //1) Twitter Bootstrap scripts
 		    //2) Holder.js
 		    //3) FancyBox - jQuery Plugin
-		    //4) Customizr scripts
-		    wp_enqueue_script( 'tc-scripts' , TC_BASE_URL . 'inc/assets/js/tc-scripts.min.js' ,array( 'jquery' ), CUSTOMIZR_VER, $in_footer = apply_filters('tc_load_script_in_footer' , false) );
+		    //4) Customizr scripts (loaded unminified on DEBUG)
+		    wp_enqueue_script( 
+		    	'tc-scripts' , 
+		    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
+		    	array( 'jquery' ), 
+		    	CUSTOMIZR_VER, 
+		    	$in_footer = apply_filters('tc_load_script_in_footer' , false) 
+		    );
+
+		    //Load Bootstrap separetely and not minified on DEBUG mode
+		    $_load_bootstrap 	= apply_filters( 'tc_load_bootstrap' , true );
+		    if ( defined('WP_DEBUG') && true === WP_DEBUG ) {
+		    	$_load_bootstrap = false;
+		    	wp_enqueue_script( 
+			    	'tc-bootstrap',
+			    	sprintf( '%1$sinc/assets/js/bootstrap.js' , TC_BASE_URL ),
+			    	array( 'jquery' ),
+			    	CUSTOMIZR_VER,
+			    	false
+			    );
+		    }
+
 
 		    //fancybox options
 			$tc_fancybox 		= ( 1 == tc__f( '__get_option' , 'tc_fancybox' ) ) ? true : false;
@@ -107,11 +127,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			          	'HasComments' 			=> $has_post_comments,
 			          	'LeftSidebarClass' 		=> $left_sb_class,
 			          	'RightSidebarClass' 	=> $right_sb_class,
-			          	'LoadBootstrap' 		=> apply_filters( 'tc_load_bootstrap' , true ),
+			          	'LoadBootstrap' 		=> $_load_bootstrap,
 			          	'LoadModernizr' 		=> apply_filters( 'tc_load_modernizr' , true ),
 			          	'LoadCustomizrScript' 	=> apply_filters( 'tc_load_customizr_script' , true ),
 			          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , 0 ),
-			          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) )
+			          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ),
+			          	'dropdowntoViewport' 	=> esc_attr( tc__f( '__get_option' , 'tc_menu_resp_dropdown_limit_to_viewport') ),
+			          	'timerOnScrollAllBrowsers' => apply_filters('tc_timer_on_scroll_for_all_browser' , true) //<= if false, for ie only
 		        	),
 		        	tc__f('__ID')
 		       	)//end of filter
@@ -140,6 +162,23 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 
 
+		/**
+	    * Write the font icon in head
+	    * 
+	    * @package Customizr
+	    * @since Customizr 3.2.3
+	    */
+		function tc_write_inline_font_icons_css() {
+			$_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+			echo apply_filters(
+				'tc_inline_font_icons' ,
+				sprintf('<style type="text/css" id="customizr-inline-fonts">%1$s</style>',
+					"@font-face{font-family:genericons;src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot');src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.woff') format('woff'),url('{$_path}/fonts/fonts/genericons-regular-webfont.ttf') format('truetype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg')}@font-face{font-family:entypo;src:url('{$_path}/fonts/fonts/entypo.eot);src:url({$_path}/fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/entypo.woff') format('woff'),url('{$_path}/fonts/fonts/entypo.ttf') format('truetype'),url('{$_path}/fonts/fonts/entypo.svg#genericonsregular') format('svg')}"
+				)
+			);
+		}
+
+
 
 	    /**
 	    * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
@@ -154,6 +193,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        		html_entity_decode($tc_custom_css)
 	        	);
 	    }//end of function
+
 
 
 

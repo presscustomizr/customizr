@@ -383,7 +383,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $skin_option_map    = array(
               //skin select
               'tc_theme_options[tc_skin]'     => array(
-                                'default'   =>  'blue.css' ,
+                                'default'   =>  'blue3.css' ,
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                                 'section'   =>  'tc_skins_settings' ,
                                 'type'      =>  'select' ,
@@ -766,7 +766,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Enable/disable retina support' , 'customizr' ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'If enabled, your website will include support for high resolution devices.' , 'customizr' ),
+                                'notice'    => sprintf('%1$s <strong>%2$s</strong> : <a href="%4$splugin-install.php?tab=plugin-information&plugin=regenerate-thumbnails" title="%5$s" target="_blank">%3$s</a>.',
+                                    __( 'If enabled, your website will include support for high resolution devices.' , 'customizr' ),
+                                    __( "It is strongly recommended to regenerate your media library images in high definition with this free plugin" , 'customizr'),
+                                    __( "regenerate thumbnails" , 'customizr'),
+                                    admin_url(),
+                                    __( "Open the description page of the Regenerate thumbnails plugin" , 'customizr')
+                                )
               ),
                'tc_theme_options[tc_display_slide_loader]'  =>  array(
                                 'default'       => 0,
@@ -1301,6 +1307,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 60,
                                 'transport'     => 'postMessage',
               ),
+              'tc_theme_options[tc_sticky_transparent_on_scroll]'  =>  array(
+                                'default'       => 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Sticky header : semi-transparent on scroll" , "customizr" ),
+                                'section'       => 'tc_header_layout' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 67,
+                                'transport'     => 'postMessage',
+              ),
 
               /* Menu */
               'tc_theme_options[tc_menu_position]'  =>  array(
@@ -1333,6 +1348,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40,
                                 'transport'     => 'postMessage',
+              ),
+              'tc_theme_options[tc_menu_resp_dropdown_limit_to_viewport]'  =>  array(
+                                'default'       => 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "In responsive mode, limit the height of the dropdown menu block to the visible viewport" , "customizr" ),
+                                'section'       => 'nav' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 50,
+                                //'transport'     => 'postMessage',
               ),
               /* Links */
               'tc_theme_options[tc_link_hover_effect]'  =>  array(

@@ -391,4 +391,16 @@
 			$('.tc-slider-controls').css('line-height' , to + 'px').css('max-height', to + 'px').trigger('resize');
 		} );
 	});
+	wp.customize( 'tc_theme_options[tc_sticky_transparent_on_scroll]' , function( value ) {
+		value.bind( function( to ) {
+			if ( false !== to ) {
+				$('body').addClass('tc-transparent-on-scroll')
+				$('body').removeClass('tc-solid-color-on-scroll')
+			}
+			else {
+				$('body').removeClass('tc-transparent-on-scroll')
+				$('body').addClass('tc-solid-color-on-scroll')
+			}
+		} );
+	});
 } )( jQuery );
