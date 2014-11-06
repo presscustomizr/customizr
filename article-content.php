@@ -8,7 +8,7 @@
 ?>
 
 <?php
-	//get the post objects
+	//get the post object
 	global $post;
 	//initialize the class alternative index
 	global $tc_i;
