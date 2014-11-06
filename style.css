@@ -1,16 +1,23 @@
 /*
 Theme Name: Customizr
 Theme URI: http://www.themesandco.com/customizr
-Description: A fully responsive theme, easy to customize and built with HTML5 & CSS3 upon the Twitter Bootstrap framework.The clean design can be used for any type of website : corporate, portfolio, business, blog, etc. Choose a skin, upload your logo, set up your social network profiles and you are done! It also includes a handy responsive slider generator (with call to action text and button) that can be embedded in any pages or posts. The theme supports five widgetized areas (two in the sidebars,  three in the footer), up to three columns, nine post formats with special styles. It also comes with seven elegant skins and three handy featured page blocks for the front page.
+Description:  Just enjoy designing your website live from the WP customizer screen. Choose your options  : skin, logo, social profiles, slider, layout, home featured blocks... you can even customize your css live. And this is it! The clean and fully responsive design can be used for any type of website: corporate, portfolio, business, blog, landing page, etc. The theme also includes a responsive slider generator (with call to action text and button) to make your pages or posts look beautiful. Customizr is built with HTML5 and CSS3 upon the Twitter Bootstrap framework. Customizr is translation ready and available in french and russian.
 Author: nikeo
 Author URI: http://www.themesandco.com/
-Version: 2.0.1
+Version: 3.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: gray, white, light, blue, red, yellow, green, purple, orange, one-column, two-columns, three-columns, left-sidebar, right-sidebar, flexible-width, custom-menu, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats
+Tags: gray, white, light, blue, red, yellow, green, purple, orange, black, one-column, two-columns, three-columns, left-sidebar, right-sidebar, flexible-width, custom-menu, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats
 Text Domain: customizr
+
+Customizr WordPress Theme, Copyright 2013 Nicolas GUILLAUME, Nice, France.
+Customizr is distributed under the terms of the GNU General Public License v2.0
+License URI: license.txt
 */
 
 
-/* Include your own css below to override the theme stylesheet */
+/* 
+IMPORTANT : If you write your CSS code below, it will be deleted when you update the theme.
+If you want to personnalize the css of Customizr, use the Custom CSS section in the Customizer screen (special characters are not handled for security reasons) OR create a child theme a add your css code in the style.css file.
+*/
  

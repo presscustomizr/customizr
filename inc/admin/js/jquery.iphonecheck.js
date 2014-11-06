@@ -210,7 +210,7 @@ $.fn[iphoneStyle] = function(options) {
 }; // End of $.fn[iphoneStyle]
 
 $[iphoneStyle].defaults = {
-  duration:          200,                       // Time spent during slide animation
+  duration:          150,                       // Time spent during slide animation
   checkedLabel:      'ON',                      // Text content of "on" state
   uncheckedLabel:    'OFF',                     // Text content of "off" state
   resizeHandle:      true,                      // Automatically resize the handle to cover either label

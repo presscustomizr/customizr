@@ -1,0 +1,875 @@
+<?php
+
+class TC_customize {
+
+    function __construct () {
+    		add_action ( 'admin_menu'						, array($this,'tc_add_options_menu'));
+    		add_action ( 'wp_before_admin_bar_render'		, array($this,'tc_add_admin_bar_options_menu'));
+
+    		//add controls
+    		add_action ( 'customize_register'				, array($this,'tc_add_controls_class') ,10,1);
+
+    		//
+    		add_action ( 'customize_register'				, array($this,'tc_customize_register') ,20,1 );
+    		add_action ( 'customize_preview_init'			, array($this,'tc_customize_preview_js'));
+    		add_action ( 'admin_init'						, array($this,'tc_theme_activation'));
+
+    		//customizer section, settings and controls arguments
+    		add_filter ( '__customize_args'					, array($this,'tc_customize_arguments'));
+
+    		//customizer factory filter
+    		add_filter ( '__customize_factory'				, array($this,'tc_customize_factory'), 10, 3);
+
+    		//list of accepted arguments for customizer
+    		add_filter ( '__customize_setup'				, array($this,'tc_customize_setup'));
+
+    		//sanitazition filters
+    		add_filter ( '__sanitize_textarea'				, array($this,'tc_sanitize_textarea'));
+    		add_filter ( '__sanitize_number'				, array($this,'tc_sanitize_number'));
+			add_filter ( '__sanitize_url'					, array($this,'tc_sanitize_url'));
+    }
+
+
+	/**
+	 * Add WordPress customizer page to the admin menu.
+	 * @package Customizr
+	 * @since Customizr 1.0 
+	 */
+	function tc_add_options_menu() {
+	    $theme_page = add_theme_page(
+	        __( 'Customiz\'it!', 'customizr' ),   // Name of page
+	        __( 'Customiz\'it!', 'customizr' ),   // Label in menu
+	        'edit_theme_options',          // Capability required
+	        'customize.php'             // Menu slug, used to uniquely identify the page
+	    );
+	}
+
+
+
+
+
+	 /**
+	 * Add WordPress customizer page to the admin bar menu.
+	 * @package Customizr
+	 * @since Customizr 1.0 
+	 */
+	function tc_add_admin_bar_options_menu() {
+	   if ( current_user_can( 'edit_theme_options' ) ) {
+	     global $wp_admin_bar;
+	     $wp_admin_bar->add_menu( array(
+	       'parent' => false,
+	       'id' => 'theme_editor_admin_bar',
+	       'title' =>  __( 'Customiz\'it!', 'customizr' ),
+	       'href' => admin_url( 'customize.php')
+	     ));
+	   }
+	}
+
+
+
+
+	 /**
+	 * adds controls to customizer
+	 * @package Customizr
+	 * @since Customizr 1.0 
+	 */
+	function tc_add_controls_class($type) {
+		locate_template( 'inc/admin/class-controls.php', $load = true, $require_once = true );
+	}
+
+
+
+	/**
+	 * Generates customizer sections, settings and controls
+	 * @package Customizr
+	 * @since Customizr 3.0 
+	 */
+	function tc_customize_register($wp_customize) {
+		return $this -> tc_customize_factory ($wp_customize , $args = $this -> tc_customize_arguments(), $setup = $this -> tc_customize_setup() );
+	}
+
+
+
+	/**
+	 * Defines sections, settings and function of customizer and return and array
+	 * @package Customizr
+	 * @since Customizr 3.0 
+	 */
+	function tc_customize_setup() {
+		//retrieve slider names and generate the select list
+	    $slider_names = tc__f ( '__get_options','tc_sliders');
+
+		$slider_choices = array( 
+			0 		=> 	__( '&mdash; No slider &mdash;','customizr' ),
+			'demo' 	=>	__( '&mdash; Demo Slider &mdash;','customizr' )
+			);
+		if ( $slider_names ) {
+			foreach($slider_names as $tc_name => $slides) {
+				$slider_choices[$tc_name] = $tc_name;
+			}
+		}
+
+
+		//customizer option array
+		$customize_array = array (
+		'remove_section'  		 =>   array(
+								'background_image',
+								'static_front_page',
+								'colors'
+		),//end of remove_section array
+
+
+
+		'add_section'   		=>   array(
+								'tc_skins_settings'					=> array(
+																	'title'			=>	__('Skin','customizr'),
+																	'priority'		=>	10,
+																	'description'	=>	__( 'Select a skin for Customizr','customizr' )
+								),
+
+								'tc_logo_settings'					=> array(
+																	'title'			=>	__('Logo &amp; Favicon','customizr'),
+																	'priority'		=>	20,
+																	'description'	=>	__( 'Set up logo and favicon options','customizr' )
+								),
+
+								'tc_frontpage_settings'				=> array(
+																	'title'			=>	__( 'Front Page','customizr' ),
+																	'priority'		=>	30,
+																	'description'	=>	__( 'Set up front page options','customizr' )
+								),
+
+								'tc_layout_settings'				=> array(
+																	'title'			=>	__( 'Pages &amp; Posts Layout','customizr' ),
+																	'priority'		=>	150,
+																	'description'	=>	__( 'Set up layout options','customizr' )
+								),
+
+								'tc_page_comments'					=> array(
+																	'title'			=>	__( 'Comments','customizr' ),
+																	'priority'		=>	160,
+																	'description'	=> 	__( 'Set up comments options','customizr' ),	
+								),
+
+								'tc_social_settings'				=> array(
+																	'title'			=>	__( 'Social links','customizr' ),	
+																	'priority'		=>	170,
+																	'description'	=>	__( 'Set up your social links','customizr' ),
+								),
+
+								'tc_image_settings'					=> array(
+																	'title'			=>	__( 'Images','customizr' ),
+																	'priority'		=>	180,
+																	'description'	=>	__( 'Enable/disable lightbox effect on images','customizr' ),
+								),
+
+								'tc_custom_css'						=> array(
+																	'title'			=>	__( 'Custom CSS','customizr' ),
+																	'priority'		=>	190,
+																	'description'	=>	__( 'Add your own CSS','customizr' ),
+								),
+
+		),//end of add_section array
+
+
+		//specifies the transport for some options
+		'get_setting'   		=>   array(
+								'blogname',
+								'blogdescription'
+		),//end of get_setting array
+
+
+
+
+		'add_setting_control'   =>   array(
+
+								/*-----------------------------------------------------------------------------------------------------
+														                  	NAVIGATION SECTION
+								------------------------------------------------------------------------------------------------------*/							
+								'menu_button'						=> array(
+																	'setting_type'	=> 	null,
+																	'control'		=>	'TC_controls',
+																	'section'		=>	'nav',
+																	'type'			=>	'button',
+																	'link'			=>	'nav-menus.php',
+																	'buttontext'	=> __('Manage menus','customizr'),
+								),
+
+
+								/*-----------------------------------------------------------------------------------------------------
+														                  		SKIN SECTION
+								------------------------------------------------------------------------------------------------------*/
+
+								//skin select
+								'tc_theme_options[tc_skin]'			=> array(
+																	'default'		=>	'blue.css',
+																	'label'			=>	__( 'Choose a predefined skin','customizr' ),
+																	'section'		=>	'tc_skins_settings',
+																	'type'			=>	'select',
+																	'choices'		=>	array( 
+																					'blue.css' 		=> 	__( 'Blue','customizr' ),
+																					'green.css'  	=> 	__( 'Green','customizr' ),
+																					'yellow.css' 	=> 	__( 'Yellow','customizr' ),
+																					'orange.css' 	=> 	__( 'Orange','customizr' ),
+																					'red.css'		=> 	__( 'Red','customizr' ),
+																					'purple.css'	=> 	__( 'Purple','customizr' ),
+																					'grey.css'		=>	__( 'Grey','customizr' ),
+																					'black.css' 	=> 	__( 'Black','customizr' )
+																	),
+								),
+
+								//enable/disable top border
+								'tc_theme_options[tc_top_border]'	=> array(
+																	'default'		=>	1,//top border on by default
+																	'label'			=>	__( 'Display top border','customizr' ),
+																	'control'		=>	'TC_controls',
+																	'section'		=>	'tc_skins_settings',
+																	'type'			=>	'checkbox',
+																	'notice'		=>	__( 'Uncheck this option to remove the colored top border.','customizr' ),
+								),
+
+								/*-----------------------------------------------------------------------------------------------------
+														                   LOGO & FAVICON SECTION
+								------------------------------------------------------------------------------------------------------*/
+
+								//logo upload
+								'tc_theme_options[tc_logo_upload]'	=> array(
+																	'control'		=>	'WP_Customize_Upload_Control',
+																	'label'			=>	__('Logo Upload', 'customizr'),
+																	'section'		=>	'tc_logo_settings',
+								),
+
+								//force logo resize 250 * 85
+								'tc_theme_options[tc_logo_resize]'	=> array(
+																	'default'		=>	1,
+																	'label'			=>	__( 'Force logo dimensions to max-width:250px and max-height:100px','customizr' ),
+																	'section'		=>	'tc_logo_settings',
+																	'type'     		=> 'checkbox',
+								),
+
+								//hr
+								'hr_logo'							=> array(
+																	'control'		=>	'TC_controls',
+																	'section'		=>	'tc_logo_settings',
+																	'type'     		=> 	'hr',
+								),
+
+								//favicon
+								'tc_theme_options[tc_fav_upload]'	=> array(
+																	'control'		=>	'WP_Customize_Upload_Control',
+																	'label'    		=> __('Favicon Upload', 'customizr'),
+																	'section'		=>	'tc_logo_settings',
+								),
+
+
+								/*-----------------------------------------------------------------------------------------------------
+														                   FRONT PAGE SETTINGS
+								------------------------------------------------------------------------------------------------------*/
+								//title
+								'homecontent_title'					=> array(
+																	'setting_type'	=> 	null,
+																	'control'		=>	'TC_controls',
+																	'title'   		=> __( 'Choose content and layout','customizr' ),
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'			=> 'title',
+																	'priority'      => 0,
+								),
+
+								//show on front
+								'show_on_front'						=> array(
+																	'label'			=>	__( 'Front page displays','customizr' ),
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'			=> 'select',
+																	'priority'      => 1,
+																	'choices' 		=> array(
+																					'posts' => __( 'Your latest posts','customizr'  ),
+																					'page'  => __( 'A static page','customizr'  ),
+																	),
+								),
+
+								//page on front
+								'page_on_front'						=> array(
+																	'label'			=>	__( 'Front page','customizr'  ),
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'       	=> 'dropdown-pages',
+																	'priority'      => 1,
+								),
+
+								//page for posts
+								'page_for_posts'					=> array(
+																	'label'			=>	__( 'Posts page','customizr'  ),
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'       	=> 'dropdown-pages',
+																	'priority'      => 1,
+								),
+
+								//layout
+								'tc_theme_options[tc_front_layout]'	=> array(
+																	'default'       => 'f',//Default layout for home page is full width
+																	'label'			=>	__( 'Set up the front page layout','customizr' ),
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'       	=> 'select',
+																	'choices'		=> array( //Same fields as in the tc_post_layout.php files
+																					'r' 	=> __( 'Right sidebar','customizr' ),
+																					'l'  	=> __( 'Left sidebar','customizr' ),
+																					'b' 	=> __( '2 sidebars : Right and Left','customizr' ),
+																					'f'		=> __( 'No sidebars : full width layout','customizr' )
+																	),
+																	'priority'       => 2,
+								),
+
+								//select slider
+								'tc_theme_options[tc_front_slider]'	=> array(
+																	'default'       => 'demo',
+																	'control'		=> 'TC_controls',
+																	'title'   		=> __( 'Slider options','customizr' ),
+																	'label'   		=> __( 'Select front page slider','customizr' ),
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'    		=> 'select',
+																	'choices' 		=> $slider_choices,
+																	'priority'      => 20,
+								),
+
+								//select slider
+								'tc_theme_options[tc_slider_width]'	=> array(
+																	'default'       => 1,
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Full width slider','customizr' ),
+																	'section'  		=> 'tc_frontpage_settings',
+																	'type'     		=> 'checkbox',
+																	'priority'      => 30,
+								),
+
+								//slider check message
+								'slider_check'						=> array(
+																	'setting_type'	=> 	null,
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'			=> 'slider-check',
+																	'priority'      => 40,
+								),
+
+								//Delay between each slides
+								'tc_theme_options[tc_slider_delay]'	=> array(
+																	'default'       => 5000,
+																	'sanitize_callback' => array($this,'tc_sanitize_number'),
+																	'control'		=> 'TC_controls',
+																	'label'   		=> __( 'Delay between each slides','customizr' ),
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'    		=> 'number',
+																	'step'			=> 500,
+																	'min'			=> 1000,
+																	'notice'		=> __( 'in ms : 1000ms = 1s','customizr' ),
+																	'priority'      => 50,
+								),
+
+								//Front page widget area
+								'tc_theme_options[tc_show_featured_pages]'	=> array(
+																	'default'       => 1,
+																	'control'		=> 'TC_controls',
+																	'title'   		=> __( 'Featured pages options','customizr' ),
+																	'label'   		=> __( 'Display home featured pages area','customizr' ),
+																	'section' 		=> 'tc_frontpage_settings',
+																	'type'    		=> 'select',	
+																	'choices' 		=> array(
+																					1 => __( 'Enable','customizr' ),
+																					0 => __( 'Disable','customizr' ),
+																	),
+																	'priority'      	=> 50,
+								),
+
+								//display featured page images
+								'tc_theme_options[tc_show_featured_pages_img]' => array(
+																	'default'       => 1,
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Show images','customizr' ),
+																	'section'  		=> 'tc_frontpage_settings',
+																	'type'     		=> 'checkbox',
+																	'notice'		=> __('The images are set with the "featured image" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images.','customizr'),
+																	'priority'      => 60,
+								),
+
+								//widget page one
+								'tc_theme_options[tc_featured_page_one]' => array(
+																	'label'    		=> __( 'Home featured page one','customizr' ),
+																	'section'  		=> 'tc_frontpage_settings',
+																	'type'      	=> 'dropdown-pages',
+																	'priority'      => 70,
+								),
+
+								//widget page two
+								'tc_theme_options[tc_featured_page_two]' => array(
+																	'label'    		=> __( 'Home featured page two','customizr' ),
+																	'section'  		=> 'tc_frontpage_settings',
+																	'type'      	=> 'dropdown-pages',
+																	'priority'      => 80,
+								),
+
+								//widget page three
+								'tc_theme_options[tc_featured_page_three]' => array(
+																	'label'    		=> __( 'Home featured page three','customizr' ),
+																	'section'  		=> 'tc_frontpage_settings',
+																	'type'      	=> 'dropdown-pages',
+																	'priority'      => 90,
+								),
+
+								//widget page text one
+								'tc_theme_options[tc_featured_text_one]' => array(
+																	'sanitize_callback' => array($this,'tc_sanitize_textarea'),
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Featured text one (200 car. max)','customizr' ),
+																	'section'  		=> 'tc_frontpage_settings',
+																	'type'     		=> 'textarea',
+																	'notice'		=> __('Leave this field empty if you want to use the selected page excerpt.','customizr'),
+																	'priority'      => 100,
+								),
+
+								//widget page text two
+								'tc_theme_options[tc_featured_text_two]' => array(
+																	'sanitize_callback' => array($this,'tc_sanitize_textarea'),
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Featured text two (200 car. max)','customizr' ),
+																	'section'  		=> 'tc_frontpage_settings',
+																	'type'     		=> 'textarea',
+																	'notice'		=> __('Leave this field empty if you want to use the selected page excerpt.','customizr'),
+																	'priority'      => 110,
+								),
+
+								//widget page text three
+								'tc_theme_options[tc_featured_text_three]' => array(
+																	'sanitize_callback' => array($this,'tc_sanitize_textarea'),
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Featured text three (200 car. max)','customizr' ),
+																	'section'  		=> 'tc_frontpage_settings',
+																	'type'     		=> 'textarea',
+																	'notice'		=> __('Leave this field empty if you want to use the selected page excerpt.','customizr'),
+																	'priority'      => 120,
+								),
+
+								/*-----------------------------------------------------------------------------------------------------
+														                   SITE LAYOUT
+								------------------------------------------------------------------------------------------------------*/
+								//Breadcrumb
+								'tc_theme_options[tc_breadcrumb]' => array(
+																	'default'       => 1,//Breadcrumb is checked by default
+																	'label'    		=> __( 'Display Breadcrumb','customizr' ),
+																	'section'  		=> 'tc_layout_settings',
+																	'type'     		=> 'checkbox',
+																	'priority'      => 1,
+								),
+
+								//Global sidebar layout
+								'tc_theme_options[tc_sidebar_global_layout]' => array(
+																	'default'       => 'l',//Default sidebar layout is on the left
+																	'label'   		=> __( 'Choose the global default layout','customizr' ),
+																	'section' 		=> 'tc_layout_settings',
+																	'type'    		=> 'select',
+																	'choices'		=> array( //Same fields as in the tc_post_layout.php files
+																					'r' 	=> __( 'Right sidebar','customizr' ),
+																					'l'  	=> __( 'Left sidebar','customizr' ),
+																					'b' 	=> __( '2 sidebars : Right and Left','customizr' ),
+																					'f'		=> __( 'No sidebars : full width layout','customizr' )
+																	),
+																	'priority'      => 2,
+								),
+
+								//force default layout on every posts
+								'tc_theme_options[tc_sidebar_force_layout]'	=>	array(
+																	'default'       => 0,
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Force default layout everywhere','customizr' ),
+																	'section'  		=> 'tc_layout_settings',
+																	'type'     		=> 'checkbox',
+																	'notice'		=> __('This option will override the specific layouts on all posts/pages, including the front page.','customizr'),
+																	'priority'      => 3,
+								),
+
+								//Post sidebar layout
+								'tc_theme_options[tc_sidebar_post_layout]'	=>	array(
+																	'default'       => 'l',//Default sidebar layout is on the left
+																	'label'   		=> __( 'Choose the posts default layout','customizr' ),
+																	'section' 		=> 'tc_layout_settings',
+																	'type'    		=> 'select',
+																	'choices'		=> array( //Same fields as in the tc_post_layout.php files
+																					'r' 	=> __( 'Right sidebar','customizr' ),
+																					'l'  	=> __( 'Left sidebar','customizr' ),
+																					'b' 	=> __( '2 sidebars : Right and Left','customizr' ),
+																					'f'		=> __( 'No sidebars : full width layout','customizr' )
+																					),
+																	'priority'      => 4,
+								),
+
+								//Post per page
+								'posts_per_page'	=>	array(
+																	'default'    	=> get_option( 'posts_per_page' ),
+																	'sanitize_callback' => array($this,'tc_sanitize_number'),
+																	'control'		=> 'TC_controls',
+																	'label'   		=> __( 'Maximum number of posts per page','customizr' ),
+																	'section' 		=> 'tc_layout_settings',
+																	'type'    		=> 'number',
+																	'step'			=> 1,
+																	'min'			=> 1,
+																	//'priority'       => 8,
+								),
+
+								//Page sidebar layout
+								'tc_theme_options[tc_sidebar_page_layout]'	=>	array(
+																	'default'       => 'l',//Default sidebar layout is on the left
+																	'label'   		=> __( 'Choose the pages default layout','customizr' ),
+																	'section' 		=> 'tc_layout_settings',
+																	'type'    		=> 'select',
+																	'choices'		=> array( //Same fields as in the tc_post_layout.php files
+																					'r' 	=> __( 'Right sidebar','customizr' ),
+																					'l'  	=> __( 'Left sidebar','customizr' ),
+																					'b' 	=> __( '2 sidebars : Right and Left','customizr' ),
+																					'f'		=> __( 'No sidebars : full width layout','customizr' )
+																	//'priority'       => 6,
+																	),
+								),
+
+								/*-----------------------------------------------------------------------------------------------------
+														                   COMMENTS SETTINGS
+								------------------------------------------------------------------------------------------------------*/
+								'tc_theme_options[tc_page_comments]'	=>	array(
+																	'default'       => 0,
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Enable comments on pages','customizr' ),
+																	'section'  		=> 'tc_page_comments',
+																	'type'     		=> 'checkbox',
+																	'notice'		=> __('This option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen.','customizr'),
+								),
+
+
+								/*-----------------------------------------------------------------------------------------------------
+														                   SOCIAL LINKS
+								------------------------------------------------------------------------------------------------------*/						
+								//Position checkboxes
+								'social_positions'	=>	array(
+													'footer'		=> __('footer','customizr'),
+													'right-sidebar' => __('right-sidebar','customizr'),
+													'left-sidebar' 	=> __('left-sidebar','customizr'),
+													'header' 		=> __('header','customizr')									
+								),
+
+								//Social networks
+								'social_networks'	=>	array(
+													'tc_rss'    	=> __( 'RSS feed (default is the wordpress feed)','customizr' ),
+											        'tc_twitter'  	=> __( 'Twitter profile url','customizr' ),
+											        'tc_facebook' 	=> __( 'Facebook profile url','customizr' ),
+											        'tc_google'   	=> __( 'Google+ profile url','customizr' ), 
+											        'tc_youtube'  	=> __( 'Youtube profile url','customizr' ),
+											        'tc_pinterest'	=> __( 'Pinterest profile url','customizr' ),
+											        'tc_github'   	=> __( 'Github profile url','customizr' ),
+											        'tc_dribbble' 	=> __( 'Dribbble profile url','customizr' ),
+											        'tc_linkedin' 	=> __( 'LinkedIn profile url','customizr' )
+								),
+
+								/*-----------------------------------------------------------------------------------------------------
+														                   IMAGE SETTINGS
+								------------------------------------------------------------------------------------------------------*/
+								'tc_theme_options[tc_fancybox]'	=>	array(
+																	'default'       => 1,
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Enable/disable lightbox effect on images','customizr' ),
+																	'section'  		=> 'tc_image_settings',
+																	'type'     		=> 'checkbox',
+																	'notice'		=> __('If enabled, this option activate a popin window whith a zoom effect when an image is clicked. This will not apply to image gallery.','customizr'),
+								),
+
+								/*-----------------------------------------------------------------------------------------------------
+														                   CUSTOM CSS
+								------------------------------------------------------------------------------------------------------*/
+								'tc_theme_options[tc_custom_css]'	=>	array(
+																	'sanitize_callback' => array($this,'tc_sanitize_textarea'),
+																	'control'		=> 'TC_controls',
+																	'label'    		=> __( 'Add your custom css here and design live! (for advanced users)','customizr' ),
+																	'section'  		=> 'tc_custom_css',
+																	'type'     		=> 'textarea',
+																	'notice'		=> __('Always use this field to add your custom css instead of editing directly the style.css file : it will not be deleted during theme updates. Special characters like quotes or inferior/superior signs will not be accepted in this field as they might be used for malicious purposes. If your custom css includes some of these characters, just create a child theme and write it down in the style.css file.','customizr')
+								),
+			),//end of add_setting_control array
+
+		);//end of customize_array
+
+	return $customize_array;
+
+	}//end of customize_setup function
+
+
+
+
+
+	/**
+	 * Defines arguments for sections, settings and controls
+	 * @package Customizr
+	 * @since Customizr 3.0 
+	 */
+	function tc_customize_arguments() {
+		$args = array(
+				'sections' => array(
+							'title',
+							'priority',
+							'description'
+				),
+				'settings' => array(
+							'default'			=>	null,
+							'capability'		=>	'manage_options',
+							'setting_type'		=>	'option',
+							'sanitize_callback'	=>	null,
+							'transport'			=>	null
+				),
+				'controls' => array(
+							'title',
+							'label',
+							'section',
+							'settings',
+							'type',
+							'choices',
+							'priority',
+							'sanitize_callback',
+							'notice',
+							'buttontext',//button specific
+							'link',//button specific
+							'step',//number specific
+							'min',//number specific
+							'range-input',
+							'max'
+				)
+		);
+		return $args;
+	}
+
+
+
+
+
+	/**
+	 * Generates customizer
+	 * @package Customizr
+	 * @since Customizr 3.0 
+	 */
+	function tc_customize_factory ($wp_customize , $args, $setup ) {
+
+		//remove sections
+		if(isset($setup['remove_section'])) {
+			foreach ($setup['remove_section'] as $section) {
+				$wp_customize	-> remove_section($section);
+			}
+		}
+
+
+
+		//add sections
+		if(isset($setup['add_section'])) {
+			foreach ($setup['add_section'] as  $key => $options) {
+				//generate section array
+				$option_section = array();
+
+				foreach($args['sections'] as $sec) {
+					$option_section[$sec] = isset($options[$sec]) ?  $options[$sec] : null;
+				}
+
+				//add section
+				$wp_customize	-> add_section($key,$option_section);
+			}//end foreach
+		}//end if
+
+
+		//get_settings
+		if(isset($setup['get_setting'])) {
+			foreach ($setup['get_setting'] as $setting) {
+				$wp_customize	-> get_setting( $setting )->transport = 'postMessage';
+			}
+		}
+
+
+
+		//add settings and controls
+		if(isset($setup['add_setting_control'])) {
+
+			foreach ($setup['add_setting_control'] as $key => $options) {
+				
+				//SETTINGS
+				switch ($key) {
+					case 'social_positions':
+
+						foreach ($options as $cle => $pos) {
+							$pos_option_name = 'tc_social_in_'.$cle;
+							$wp_customize->add_setting( 'tc_theme_options['.$pos_option_name.']', array(
+								'default'        => tc__f ( '__get_options',$pos_option_name),
+								'capability'     => 'manage_options',
+								'type'           => 'option',
+							) );
+						}
+
+						break;
+					
+
+					case 'social_networks':
+						foreach ($options as $cle => $nw) {
+
+							$nw_option_name = 'tc_theme_options['.$cle.']';
+							$wp_customize->add_setting( $nw_option_name, array(
+								'default'        => ($cle == 'tc_rss') ? get_bloginfo('rss_url') : tc__f ( '__get_options',$cle),
+								'capability'     => 'manage_options',
+								'type'           => 'option',
+								'sanitize_callback' => array($this,'tc_sanitize_url'),
+							) );
+						}
+
+						break;
+
+
+					default:
+						//generate settings array
+						$option_settings = array();
+						foreach($args['settings'] as $set => $set_value) {
+							if ($set == 'setting_type') {
+								$option_settings['type'] = isset($options['setting_type']) ?  $options['setting_type'] : $args['settings'][$set];
+							}
+							else {
+								$option_settings[$set] = isset($options[$set]) ?  $options[$set] : $args['settings'][$set];
+							}
+						}
+
+						//add setting
+						$wp_customize	-> add_setting( $key, $option_settings);
+
+						break;
+				}//end switch settings
+
+
+				//CONTROLS
+				switch ($key) {
+					case 'social_positions':
+						foreach ($options as $cle => $pos) {
+							$pos_option_name = 'tc_social_in_'.$cle;
+							$wp_customize->add_control( 'tc_theme_options['.$pos_option_name.']', array(
+								'settings' 		=> 'tc_theme_options['.$pos_option_name.']',
+								'label'    		=> 	sprintf(__( 'Social links in %s','customizr' ) , $pos ),
+								'priority' 		=> 0,
+								'section'  		=> 'tc_social_settings',
+								'type'     		=> 'checkbox',
+							) );
+						}
+						break;
+					
+					case 'social_networks':
+						foreach ($options as $cle => $nw) {
+							$nw_option_name = 'tc_theme_options['.$cle.']';
+							$wp_customize->add_control( new TC_controls($wp_customize, $nw_option_name, array(
+								'settings' 		=> $nw_option_name,
+								'label'    		=> $nw,
+								'section'  		=> 'tc_social_settings',
+								'type'     		=> 'url',
+							)));
+						}
+						break;
+
+					default:
+						//generate controls array
+						$option_controls = array();
+						foreach($args['controls'] as $con) {
+							$option_controls[$con] = isset($options[$con]) ?  $options[$con] : null;
+						}
+
+						//add control with a dynamic class instanciation if not default
+						if(!isset($options['control'])) {
+								$wp_customize	-> add_control( $key,$option_controls );
+						}
+						else {
+								$wp_customize	-> add_control( new $options['control']($wp_customize, $key, $option_controls ));
+						}
+
+					break;
+				}//end switch
+			}//end for each
+		}//end if isset
+
+	}//end of customize generator function
+
+
+
+
+
+	/**
+	 *  Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+	 * @package Customizr
+	 * @since Customizr 1.0 
+	 */
+	function tc_customize_preview_js() {
+		wp_enqueue_script( 'tc-customizer', get_template_directory_uri() . '/inc/admin/js/theme-customizer.js', array( 'customize-preview' ), '20120827', true );
+	}
+
+
+
+
+
+
+
+	/**
+	*  On the first activation, redirect on the customization page, set the frontpage option to "posts" with 10 posts per page
+	* @package Customizr
+	* @since Customizr 1.0 
+	*/
+	function tc_theme_activation()
+	{
+		global $pagenow;
+		if ( is_admin() && 'themes.php' == $pagenow && isset( $_GET['activated'] ) ) 
+		{
+			#set frontpage to display_posts
+			//update_option('show_on_front', 'posts');
+
+			#set max number of posts to 10
+			//update_option('posts_per_page', 10);
+
+			#redirect to Customizer page
+			//do we activate customizr for the first time? => tc_theme_options is not set in options table
+			$__options = get_option('tc_theme_options');//return false if not defined
+			if (!$__options) {
+				header( 'Location: '.admin_url().'customize.php' ) ;
+			}
+		}
+	}
+
+
+
+	/**
+	 * adds sanitization callback funtion : textarea
+	 * @package Customizr
+	 * @since Customizr 1.1.4
+	 */
+	function tc_sanitize_textarea($value) {
+		$value = esc_textarea( $value);
+		return $value;
+	}
+
+
+
+	/**
+	 * adds sanitization callback funtion : number
+	 * @package Customizr
+	 * @since Customizr 1.1.4
+	 */
+	function tc_sanitize_number($value) {
+		$value = esc_attr( $value); // clean input
+		$value = (int) $value; // Force the value into integer type.
+   		return ( 0 < $value ) ? $value : null;
+	}
+
+
+
+
+	/**
+	 * adds sanitization callback funtion : url
+	 * @package Customizr
+	 * @since Customizr 1.1.4
+	 */
+	function tc_sanitize_url($value) {
+		$value = esc_url( $value);
+		return $value;
+	}
+
+
+
+
+}//end of class

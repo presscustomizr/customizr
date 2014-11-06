@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customizr 1.1.5\n"
-"POT-Creation-Date: 2013-04-27 17:56+0100\n"
-"PO-Revision-Date: 2013-04-27 18:04+0100\n"
+"POT-Creation-Date: 2013-06-24 19:12+0100\n"
+"PO-Revision-Date: 2013-06-24 19:12+0100\n"
+"Last-Translator: Nicolas G. <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
 "MIME-Version: 1.0\n"
@@ -15,611 +16,112 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../comments.php:29
-#, php-format
-msgid "One thought on &ldquo;%2$s&rdquo;"
-msgstr "Un commentaire sur &ldquo;%2$s&rdquo;"
-
-#: ../comments.php:42
-msgid "Comment navigation"
-msgstr "Comment navigation"
-
-#: ../comments.php:43
-msgid "&larr; Older Comments"
-msgstr "&larr; Commentaires plus anciens"
-
-#: ../comments.php:44
-msgid "Newer Comments &rarr;"
-msgstr "Commentaires plus récents &rarr;"
-
-#: ../comments.php:53
-msgid "Comments are closed."
-msgstr "Les commentaires sont fermés."
-
-#: ../footer.php:21
-msgid "Designed by "
-msgstr "Design par "
-
-#: ../footer.php:29
-msgid "Back to top"
-msgstr "Retour haut de page"
-
-#: ../functions.php:184
+#: ../inc/class-init.php:146
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: ../functions.php:261 ../functions.php:262
-msgid "Upgrade WP"
-msgstr "Mise à jour de WordPress"
-
-#: ../functions.php:283
-msgid "This theme requires WordPress 3.4+"
-msgstr "Ce thème nécessite WordPress versions 3.4+"
-
-#: ../functions.php:286 ../functions.php:287
-msgid "Upgrade Wordpress Now"
-msgstr "Mettre à jour WordPress"
-
-#: ../header.php:42
+#: ../inc/class-utils.php:79
 #, php-format
 msgid "Page %s"
 msgstr "Page %s"
 
-#: ../header.php:95
-msgid "Back Home"
-msgstr "Retour Accueil"
+#: ../inc/class-utils.php:231 ../parts/class-content.php:218
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalien vers %s"
 
-#: ../inc/tc_dudy_widgets.php:14
+#: ../inc/class-utils.php:260
+msgid "feed"
+msgstr "flux"
+
+#: ../inc/class-utils.php:261
+msgid "twitter"
+msgstr "twitter"
+
+#: ../inc/class-utils.php:262
+msgid "facebook"
+msgstr "facebook"
+
+#: ../inc/class-utils.php:263
+msgid "google"
+msgstr "google"
+
+#: ../inc/class-utils.php:264
+msgid "youtube"
+msgstr "youtube"
+
+#: ../inc/class-utils.php:265
+msgid "pinterest"
+msgstr "pinterest"
+
+#: ../inc/class-utils.php:266
+msgid "github"
+msgstr "github"
+
+#: ../inc/class-utils.php:267
+msgid "dribbble"
+msgstr "dribbble"
+
+#: ../inc/class-utils.php:268
+msgid "linkedin"
+msgstr "linkedin"
+
+#: ../inc/class-utils.php:274 ../inc/admin/class-customizr.php:128
+msgid "Social links"
+msgstr "Liens sociaux"
+
+#: ../inc/class-utils.php:279
+msgid "Follow me on "
+msgstr "Suivez-moi sur"
+
+#: ../inc/class-utils.php:283
+msgid "Suscribe to my rss feed"
+msgstr "Aboonez-vous au flux rss"
+
+#: ../inc/class-widgets.php:18
 msgid "Right Sidebar"
 msgstr "Barre latérale droite"
 
-#: ../inc/tc_dudy_widgets.php:16 ../inc/tc_dudy_widgets.php:26
+#: ../inc/class-widgets.php:20 ../inc/class-widgets.php:30
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr ""
 "Affichée dans les billets, les pages statiques, les archives et les pages de "
 "recherche"
 
-#: ../inc/tc_dudy_widgets.php:24
+#: ../inc/class-widgets.php:28
 msgid "Left Sidebar"
 msgstr "Barre latérale gauche"
 
-#: ../inc/tc_dudy_widgets.php:36
+#: ../inc/class-widgets.php:40
 msgid "Footer Widget Area One"
 msgstr "Première zone de widgets du pied de page"
 
-#: ../inc/tc_dudy_widgets.php:38 ../inc/tc_dudy_widgets.php:47
-#: ../inc/tc_dudy_widgets.php:56
+#: ../inc/class-widgets.php:42 ../inc/class-widgets.php:51
+#: ../inc/class-widgets.php:60
 msgid "Just use it as you want !"
 msgstr "Glissez-deposez les widgets de votre choix ici!"
 
-#: ../inc/tc_dudy_widgets.php:45
+#: ../inc/class-widgets.php:49
 msgid "Footer Widget Area Two"
 msgstr "Deuxième zone de widgets du pied de page"
 
-#: ../inc/tc_dudy_widgets.php:54
+#: ../inc/class-widgets.php:58
 msgid "Footer Widget Area Three"
 msgstr "Troisième zone de widgets du pied de page"
 
-#: ../inc/tc_handy_helpers.php:137
-msgid "Read more..."
-msgstr "En lire davantage..."
-
-#: ../inc/tc_handy_helpers.php:341
-msgid "Customizer screen"
-msgstr "Customizer"
-
-#: ../inc/tc_handy_helpers.php:341
-msgid " here"
-msgstr " ici"
-
-#: ../inc/tc_handy_helpers.php:346
-msgid "Featured page"
-msgstr "Page en avant"
-
-#: ../inc/tc_handy_helpers.php:347
-#, php-format
-msgid ""
-"Featured page description text : use the page excerpt or set your own custom "
-"text in the Customizr screen%s."
-msgstr ""
-"Texte descriptif de la page en une : utilisez l'extrait de page ou écrivez "
-"votre propre texte dans la page d'options Customizer %s."
-
-#: ../inc/tc_handy_helpers.php:434
-msgid "Read more &raquo;"
-msgstr "Lire la suite &raquo;"
-
-#: ../inc/tc_handy_helpers.php:498 ../parts/post-header.php:42
-#, php-format
-msgid "Permalink to %s"
-msgstr "Permalien vers %s"
-
-#: ../inc/tc_handy_helpers.php:532
-msgid "Pingback:"
-msgstr "Pingback:"
-
-#: ../inc/tc_handy_helpers.php:532
-msgid "(Edit)"
-msgstr "(Modifier)"
-
-#: ../inc/tc_handy_helpers.php:549
-msgid "Reply"
-msgstr "Répondre"
-
-#: ../inc/tc_handy_helpers.php:557
-msgid "Post author"
-msgstr "Auteur du billet"
-
-#: ../inc/tc_handy_helpers.php:558 ../inc/tc_hot_crumble.php:540
-#: ../inc/tc_hot_crumble.php:573 ../inc/tc_hot_crumble.php:588
-#: ../inc/tc_hot_crumble.php:616 ../inc/admin/tc_meta_boxes.php:752
-#: ../parts/content-attachment.php:27 ../parts/post-header.php:56
-msgid "Edit"
-msgstr "Modifier"
-
-#: ../inc/tc_handy_helpers.php:564
-#, php-format
-msgid "%1$s at %2$s"
-msgstr "%1$s à %2$s"
-
-#: ../inc/tc_handy_helpers.php:570
-msgid "Your comment is awaiting moderation."
-msgstr "Votre commentaire est en attente de modération."
-
-#: ../inc/tc_handy_helpers.php:602 ../inc/tc_handy_helpers.php:630
-#, php-format
-msgid "View all posts in %s"
-msgstr "Voir tous les billets dans %s"
-
-#: ../inc/tc_handy_helpers.php:660 ../inc/tc_hot_crumble.php:47
-msgid "Home"
-msgstr "Accueil"
-
-#: ../inc/tc_handy_helpers.php:697
-msgid "feed"
-msgstr "flux"
-
-#: ../inc/tc_handy_helpers.php:698
-msgid "twitter"
-msgstr "twitter"
-
-#: ../inc/tc_handy_helpers.php:699
-msgid "facebook"
-msgstr "facebook"
-
-#: ../inc/tc_handy_helpers.php:700
-msgid "google"
-msgstr "google"
-
-#: ../inc/tc_handy_helpers.php:701
-msgid "youtube"
-msgstr "youtube"
-
-#: ../inc/tc_handy_helpers.php:702
-msgid "pinterest"
-msgstr "pinterest"
-
-#: ../inc/tc_handy_helpers.php:703
-msgid "github"
-msgstr "github"
-
-#: ../inc/tc_handy_helpers.php:704
-msgid "dribbble"
-msgstr "dribbble"
-
-#: ../inc/tc_handy_helpers.php:705
-msgid "linkedin"
-msgstr "linkedin"
-
-#: ../inc/tc_handy_helpers.php:711 ../inc/admin/tc_customize.php:531
-msgid "Social links"
-msgstr "Liens sociaux"
-
-#: ../inc/tc_handy_helpers.php:716
-msgid "Follow me on "
-msgstr "Suivez-moi sur"
-
-#: ../inc/tc_handy_helpers.php:720
-msgid "Suscribe to my rss feed"
-msgstr "Aboonez-vous au flux rss"
-
-#: ../inc/tc_hot_crumble.php:44
-msgid "Browse:"
-msgstr "Naviguer:"
-
-#: ../inc/tc_hot_crumble.php:424
-msgid "g:i a"
-msgstr "g:i a"
-
-#: ../inc/tc_hot_crumble.php:427
-#, php-format
-msgid "Minute %1$s"
-msgstr "Minute %1$s"
-
-#: ../inc/tc_hot_crumble.php:427
-msgid "i"
-msgstr "i"
-
-#: ../inc/tc_hot_crumble.php:430
-msgid "g a"
-msgstr "g a"
-
-#: ../inc/tc_hot_crumble.php:441 ../inc/tc_hot_crumble.php:451
-#: ../inc/tc_hot_crumble.php:460 ../inc/tc_hot_crumble.php:471
-#: ../inc/tc_hot_crumble.php:473 ../inc/tc_hot_crumble.php:672
-msgid "Y"
-msgstr "Y"
-
-#: ../inc/tc_hot_crumble.php:442 ../inc/tc_hot_crumble.php:463
-#: ../inc/tc_hot_crumble.php:465 ../inc/tc_hot_crumble.php:676
-msgid "F"
-msgstr "F"
-
-#: ../inc/tc_hot_crumble.php:445 ../inc/tc_hot_crumble.php:447
-#: ../inc/tc_hot_crumble.php:680
-msgid "d"
-msgstr "d"
-
-#: ../inc/tc_hot_crumble.php:454 ../inc/tc_hot_crumble.php:456
-#, php-format
-msgid "Week %1$s"
-msgstr "Semaine %1$s"
-
-#: ../inc/tc_hot_crumble.php:482 ../inc/tc_hot_crumble.php:484
-#, php-format
-msgid "Search results for &quot;%1$s&quot;"
-msgstr "Résultats de recherche pour &quot;%1$s&quot;"
-
-#: ../inc/tc_hot_crumble.php:489
-msgid "404 Not Found"
-msgstr "Page non trouvées (erreur 404)"
-
-#: ../inc/tc_hot_crumble.php:494 ../inc/tc_hot_crumble.php:496
-#, php-format
-msgid "Page %d"
-msgstr "Page %d"
-
-#: ../inc/tc_hot_crumble.php:565
-msgid "Split"
-msgstr "Dissocier"
-
-#: ../inc/tc_hot_crumble.php:569
-msgid "Merge"
-msgstr "Fusionner"
-
-#: ../inc/tc_voila_slider.php:49 ../inc/tc_voila_slider.php:52
-msgid "Customizr is a clean responsive theme"
-msgstr "Customizr est un thème élégant et simple"
-
-#: ../inc/tc_voila_slider.php:53
-msgid "Let your creativity speak and easily customiz'it the way you want!"
-msgstr "Soyez créatifs et customisez en quelques clics!"
-
-#: ../inc/tc_voila_slider.php:54
-msgid "Learn more"
-msgstr "En savoir plus"
-
-#: ../inc/tc_voila_slider.php:59 ../inc/tc_voila_slider.php:62
-msgid "Style your WordPress site live!"
-msgstr "Modifiez votre site WordPress en live!"
-
-#: ../inc/tc_voila_slider.php:63
-msgid ""
-"Many layout and design options are available from the WordPress customizer "
-"screen : see your changes live !"
-msgstr ""
-"De nombreuses options de design et structures sont disponibles dans l'écran "
-"de customization Wordpress : vos modifications s'affichent en live !"
-
-#: ../inc/tc_voila_slider.php:64
-msgid "Just try it!"
-msgstr "Essayez le!"
-
-#: ../inc/tc_voila_slider.php:69 ../inc/tc_voila_slider.php:72
-msgid "Create beautiful sliders"
-msgstr "Créez de superbes diaporamas"
-
-#: ../inc/tc_voila_slider.php:73
-msgid ""
-"Customizr comes with a cool slider generator : add a slider to any post or "
-"page!"
-msgstr ""
-"Customizr inclut un générateur de diaporama très pratique : ajoutez un "
-"diaporama à n'importe quel billet ou page !"
-
-#: ../inc/tc_voila_slider.php:74
-msgid "Discover the features"
-msgstr "Découvrez les fonctionnalités"
-
-#: ../inc/admin/tc_customize.php:12 ../inc/admin/tc_customize.php:13
-#: ../inc/admin/tc_customize.php:36
-msgid "Customiz'it!"
-msgstr "Customiz'it!"
-
-#: ../inc/admin/tc_customize.php:88
-msgid "Manage menus"
-msgstr "Gérer les menus"
-
-#: ../inc/admin/tc_customize.php:93
-msgid "Skin"
-msgstr "Thème"
-
-#: ../inc/admin/tc_customize.php:95
-msgid "Select a skin for Customizr"
-msgstr "Choisir un thème pour Customizr"
-
-#: ../inc/admin/tc_customize.php:105
-msgid "Choose a predefined skin"
-msgstr "Choisir un thème prédéfini"
-
-#: ../inc/admin/tc_customize.php:109
-msgid "Blue"
-msgstr "Bleu"
-
-#: ../inc/admin/tc_customize.php:110
-msgid "Green"
-msgstr "Vert"
-
-#: ../inc/admin/tc_customize.php:111
-msgid "Yellow"
-msgstr "Jaune"
-
-#: ../inc/admin/tc_customize.php:112
-msgid "Orange"
-msgstr "Orange"
-
-#: ../inc/admin/tc_customize.php:113
-msgid "Red"
-msgstr "Rouge"
-
-#: ../inc/admin/tc_customize.php:114
-msgid "Purple"
-msgstr "Violet"
-
-#: ../inc/admin/tc_customize.php:115
-msgid "Grey"
-msgstr "Gris"
-
-#: ../inc/admin/tc_customize.php:122
-msgid "Logo &amp; Favicon"
-msgstr "Logo &amp; Favicon"
-
-#: ../inc/admin/tc_customize.php:124
-msgid "Set up logo and favicon options"
-msgstr "Réglages du logo et du favicon"
-
-#: ../inc/admin/tc_customize.php:136
-msgid "Logo Upload"
-msgstr "Charger un logo"
-
-#: ../inc/admin/tc_customize.php:149
-msgid "Force logo dimensions to max-width:250px and max-height:100px"
-msgstr ""
-"Forcer les dimensions du logo à : largeur max. 250px et hauteur max.  100px"
-
-#: ../inc/admin/tc_customize.php:174
-msgid "Favicon Upload"
-msgstr "Charger un favicon"
-
-#: ../inc/admin/tc_customize.php:183
-msgid "Front Page"
-msgstr "Page d'accueil"
-
-#: ../inc/admin/tc_customize.php:185
-msgid "Set up front page options"
-msgstr "Régler les options de la page d'accueil du site"
-
-#: ../inc/admin/tc_customize.php:197
-msgid "Front page displays"
-msgstr "Affichages de la page d'accueil"
-
-#: ../inc/admin/tc_customize.php:202
-msgid "Your latest posts"
-msgstr "Vos derniers billets"
-
-#: ../inc/admin/tc_customize.php:203
-msgid "A static page"
-msgstr "Une page statique"
-
-#: ../inc/admin/tc_customize.php:214
-msgid "Front page"
-msgstr "Page d'accueil"
-
-#: ../inc/admin/tc_customize.php:227
-msgid "Posts page"
-msgstr "Page des billets"
-
-#: ../inc/admin/tc_customize.php:241
-msgid "Set up the front page layout"
-msgstr "Régler la structure de la page d'accueil"
-
-#: ../inc/admin/tc_customize.php:245 ../inc/admin/tc_customize.php:446
-#: ../inc/admin/tc_customize.php:482 ../inc/admin/tc_customize.php:520
-#: ../inc/admin/tc_meta_boxes.php:61
-msgid "Right sidebar"
-msgstr "Barre latérale droite"
-
-#: ../inc/admin/tc_customize.php:246 ../inc/admin/tc_customize.php:447
-#: ../inc/admin/tc_customize.php:483 ../inc/admin/tc_customize.php:521
-#: ../inc/admin/tc_meta_boxes.php:62
-msgid "Left sidebar"
-msgstr "Barre latérale gauche"
-
-#: ../inc/admin/tc_customize.php:247 ../inc/admin/tc_customize.php:448
-#: ../inc/admin/tc_customize.php:484 ../inc/admin/tc_customize.php:522
-msgid "2 sidebars : Right and Left"
-msgstr "2 barres : droite et gauche"
-
-#: ../inc/admin/tc_customize.php:248 ../inc/admin/tc_customize.php:449
-#: ../inc/admin/tc_customize.php:485 ../inc/admin/tc_customize.php:523
-msgid "No sidebars : full width layout"
-msgstr "Pas de barres latérales : pleine largeur"
-
-#: ../inc/admin/tc_customize.php:258
-msgid "&mdash; No slider &mdash;"
-msgstr "&mdash; Pas de diaporama &mdash;"
-
-#: ../inc/admin/tc_customize.php:259
-msgid "&mdash; Demo Slider &mdash;"
-msgstr "&mdash; Diaporama démo &mdash;"
-
-#: ../inc/admin/tc_customize.php:287
-msgid "Select front page slider"
-msgstr "Choisir un diaporama pour la page d'accueil"
-
-#: ../inc/admin/tc_customize.php:303
-msgid "Full width slider"
-msgstr "Diaporama en pleine largeur"
-
-#: ../inc/admin/tc_customize.php:329
-msgid "Delay between each slides"
-msgstr "Délai entre les diapos"
-
-#: ../inc/admin/tc_customize.php:334
-msgid "in ms : 1000ms = 1s"
-msgstr "en ms : 1000ms = 1s"
-
-#: ../inc/admin/tc_customize.php:347
-msgid "Display home featured pages area"
-msgstr "Afficher des pages en avant sur la page d'accueil"
-
-#: ../inc/admin/tc_customize.php:351
-msgid "Show"
-msgstr "Afficher"
-
-#: ../inc/admin/tc_customize.php:352
-msgid "Hide"
-msgstr "Cacher"
-
-#: ../inc/admin/tc_customize.php:360
-msgid "one"
-msgstr "un"
-
-#: ../inc/admin/tc_customize.php:361
-msgid "two"
-msgstr "deux"
-
-#: ../inc/admin/tc_customize.php:362
-msgid "three"
-msgstr "trois"
-
-#: ../inc/admin/tc_customize.php:376
-#, php-format
-msgid "Home featured page %s"
-msgstr "Page en avant %s sur la page d'accueil"
-
-#: ../inc/admin/tc_customize.php:399
-#, php-format
-msgid "Featured text %s (200 car. max)"
-msgstr "Texte de la page en avant %s (200 car. max):"
-
-#: ../inc/admin/tc_customize.php:402
-msgid "Leave this field empty if you want to use the selected page excerpt."
-msgstr "Laissez ce champ vide si vous souhaitez utiliser l'extrait de la page."
-
-#: ../inc/admin/tc_customize.php:411
-msgid "Pages & Posts Layout"
-msgstr "Structure des pages et billets"
-
-#: ../inc/admin/tc_customize.php:413
-msgid "Set up layout options"
-msgstr "Choisir les options de structure de la page"
-
-#: ../inc/admin/tc_customize.php:426
-msgid "Display Breadcrumb"
-msgstr "Afficher le fil d'Ariane"
-
-#: ../inc/admin/tc_customize.php:442
-msgid "Choose the global default layout"
-msgstr "Choisir la structure globale par défaut"
-
-#: ../inc/admin/tc_customize.php:462
-msgid "Force default layout everywhere"
-msgstr "Forcer la structure par défaut sur tout le site"
-
-#: ../inc/admin/tc_customize.php:465
-msgid ""
-"This option will override the specific layouts on all posts/pages, including "
-"the front page."
-msgstr ""
-"Cette option remplacera les paramétrages de structures sur les pages/"
-"billets, page d'accueil comprise."
-
-#: ../inc/admin/tc_customize.php:478
-msgid "Choose the posts default layout"
-msgstr "Choisir la structure par défaut des billets"
-
-#: ../inc/admin/tc_customize.php:499
-msgid "Maximum number of posts per page"
-msgstr "Nombre de billets max. par page"
-
-#: ../inc/admin/tc_customize.php:516
-msgid "Choose the pages default layout"
-msgstr "Choisir la structure par défaut des pages"
-
-#: ../inc/admin/tc_customize.php:533
-msgid "Set up your social links"
-msgstr "Réglages des liens vers les réseaux sociaux"
-
-#: ../inc/admin/tc_customize.php:538
-msgid "header"
-msgstr "le haut de page"
-
-#: ../inc/admin/tc_customize.php:539
-msgid "right-sidebar"
-msgstr "la barre latérale droite"
-
-#: ../inc/admin/tc_customize.php:540
-msgid "left-sidebar"
-msgstr "la barre latérale gauche"
-
-#: ../inc/admin/tc_customize.php:541
-msgid "footer"
-msgstr "le pied de page"
-
-#: ../inc/admin/tc_customize.php:555
-#, php-format
-msgid "Social links in %s"
-msgstr "Liens sociaux dans %s"
-
-#: ../inc/admin/tc_customize.php:565
-msgid "RSS feed (default is the wordpress feed)"
-msgstr "Flux RSS (Par défaut, flux WordPress du site)"
-
-#: ../inc/admin/tc_customize.php:566
-msgid "Twitter profile url"
-msgstr "Url du compte Twitter"
-
-#: ../inc/admin/tc_customize.php:567
-msgid "Facebook profile url"
-msgstr "Url du compte Facebook"
-
-#: ../inc/admin/tc_customize.php:568
-msgid "Google+ profile url"
-msgstr "Url du compte Google+"
-
-#: ../inc/admin/tc_customize.php:569
-msgid "Youtube profile url"
-msgstr "Url du compte Youtube"
-
-#: ../inc/admin/tc_customize.php:570
-msgid "Pinterest profile url"
-msgstr "Url du compte Pinterest"
-
-#: ../inc/admin/tc_customize.php:571
-msgid "Github profile url"
-msgstr "Url du compte Github"
-
-#: ../inc/admin/tc_customize.php:572
-msgid "Dribbble profile url"
-msgstr "Url du compte Dribbble"
-
-#: ../inc/admin/tc_customize.php:573
-msgid "LinkedIn profile url"
-msgstr "Url du compte LinkedIn"
-
-#: ../inc/admin/tc_customizr_control_class.php:84
-#: ../inc/admin/tc_meta_boxes.php:252
+#: ../inc/admin/class-admin_init.php:56 ../inc/admin/class-admin_init.php:57
+msgid "Upgrade WP"
+msgstr "Mise à jour de WordPress"
+
+#: ../inc/admin/class-admin_init.php:76
+msgid "This theme requires WordPress 3.4+"
+msgstr "Ce thème nécessite WordPress versions 3.4+"
+
+#: ../inc/admin/class-admin_init.php:79 ../inc/admin/class-admin_init.php:80
+msgid "Upgrade Wordpress Now"
+msgstr "Mettre à jour WordPress"
+
+#: ../inc/admin/class-controls.php:128 ../inc/admin/class-meta_boxes.php:284
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -627,40 +129,430 @@ msgstr ""
 "Il n'y a pas encore de diaporamas disponibles. Editez les images de votre "
 "librairie média pour les ajouter aux diaporamas."
 
-#: ../inc/admin/tc_customizr_control_class.php:84
+#: ../inc/admin/class-controls.php:128
 msgid "Create a slider"
 msgstr "Créer un diaporama"
 
-#: ../inc/admin/tc_meta_boxes.php:20
+#: ../inc/admin/class-customizr.php:26 ../inc/admin/class-customizr.php:27
+#: ../inc/admin/class-customizr.php:48
+msgid "Customiz'it!"
+msgstr "Customiz'it!"
+
+#: ../inc/admin/class-customizr.php:76
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Pas de diaporama &mdash;"
+
+#: ../inc/admin/class-customizr.php:77
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Diaporama démo &mdash;"
+
+#: ../inc/admin/class-customizr.php:98
+msgid "Skin"
+msgstr "Thème"
+
+#: ../inc/admin/class-customizr.php:100
+msgid "Select a skin for Customizr"
+msgstr "Choisir un thème pour Customizr"
+
+#: ../inc/admin/class-customizr.php:104
+msgid "Logo &amp; Favicon"
+msgstr "Logo &amp; Favicon"
+
+#: ../inc/admin/class-customizr.php:106
+msgid "Set up logo and favicon options"
+msgstr "Réglages du logo et du favicon"
+
+#: ../inc/admin/class-customizr.php:110
+msgid "Front Page"
+msgstr "Page d'accueil"
+
+#: ../inc/admin/class-customizr.php:112
+msgid "Set up front page options"
+msgstr "Régler les options de la page d'accueil du site"
+
+#: ../inc/admin/class-customizr.php:116
+msgid "Pages &amp; Posts Layout"
+msgstr "Disposition des pages &amp; billets"
+
+#: ../inc/admin/class-customizr.php:118
+msgid "Set up layout options"
+msgstr "Choisir les options de structure de la page"
+
+#: ../inc/admin/class-customizr.php:122
+msgid "Comments"
+msgstr "Commentaires"
+
+#: ../inc/admin/class-customizr.php:124
+msgid "Set up comments options"
+msgstr "Choisir les options de commentaires"
+
+#: ../inc/admin/class-customizr.php:130
+msgid "Set up your social links"
+msgstr "Réglages des liens vers les réseaux sociaux"
+
+#: ../inc/admin/class-customizr.php:134
+msgid "Images"
+msgstr "Images"
+
+#: ../inc/admin/class-customizr.php:136 ../inc/admin/class-customizr.php:545
+msgid "Enable/disable lightbox effect on images"
+msgstr "Activer/desactiver l'effet lightbox sur les images"
+
+#: ../inc/admin/class-customizr.php:140
+msgid "Custom CSS"
+msgstr "Custom CSS"
+
+#: ../inc/admin/class-customizr.php:142
+msgid "Add your own CSS"
+msgstr "Ajoutez votre CSS"
+
+#: ../inc/admin/class-customizr.php:168
+msgid "Manage menus"
+msgstr "Gérer les menus"
+
+#: ../inc/admin/class-customizr.php:179
+msgid "Choose a predefined skin"
+msgstr "Choisir un thème prédéfini"
+
+#: ../inc/admin/class-customizr.php:183
+msgid "Blue"
+msgstr "Bleu"
+
+#: ../inc/admin/class-customizr.php:184
+msgid "Green"
+msgstr "Vert"
+
+#: ../inc/admin/class-customizr.php:185
+msgid "Yellow"
+msgstr "Jaune"
+
+#: ../inc/admin/class-customizr.php:186
+msgid "Orange"
+msgstr "Orange"
+
+#: ../inc/admin/class-customizr.php:187
+msgid "Red"
+msgstr "Rouge"
+
+#: ../inc/admin/class-customizr.php:188
+msgid "Purple"
+msgstr "Violet"
+
+#: ../inc/admin/class-customizr.php:189
+msgid "Grey"
+msgstr "Gris"
+
+#: ../inc/admin/class-customizr.php:190
+msgid "Black"
+msgstr "Noir"
+
+#: ../inc/admin/class-customizr.php:197
+msgid "Display top border"
+msgstr "Afficher la bordure en haut de page"
+
+#: ../inc/admin/class-customizr.php:201
+msgid "Uncheck this option to remove the colored top border."
+msgstr ""
+"Décocher cette option pour supprimer la bordure colorée en haut de page."
+
+#: ../inc/admin/class-customizr.php:211
+msgid "Logo Upload"
+msgstr "Charger un logo"
+
+#: ../inc/admin/class-customizr.php:218
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr ""
+"Forcer les dimensions du logo à : largeur max. 250px et hauteur max.  100px"
+
+#: ../inc/admin/class-customizr.php:233
+msgid "Favicon Upload"
+msgstr "Charger un favicon"
+
+#: ../inc/admin/class-customizr.php:245
+msgid "Choose content and layout"
+msgstr "Choisir le contenu et sa disposition"
+
+#: ../inc/admin/class-customizr.php:253
+msgid "Front page displays"
+msgstr "Affichages de la page d'accueil"
+
+#: ../inc/admin/class-customizr.php:258
+msgid "Your latest posts"
+msgstr "Vos derniers billets"
+
+#: ../inc/admin/class-customizr.php:259
+msgid "A static page"
+msgstr "Une page statique"
+
+#: ../inc/admin/class-customizr.php:265
+msgid "Front page"
+msgstr "Page d'accueil"
+
+#: ../inc/admin/class-customizr.php:273
+msgid "Posts page"
+msgstr "Page des billets"
+
+#: ../inc/admin/class-customizr.php:282
+msgid "Set up the front page layout"
+msgstr "Régler la structure de la page d'accueil"
+
+#: ../inc/admin/class-customizr.php:286 ../inc/admin/class-customizr.php:440
+#: ../inc/admin/class-customizr.php:466 ../inc/admin/class-customizr.php:494
+#: ../inc/admin/class-meta_boxes.php:94
+msgid "Right sidebar"
+msgstr "Barre latérale droite"
+
+#: ../inc/admin/class-customizr.php:287 ../inc/admin/class-customizr.php:441
+#: ../inc/admin/class-customizr.php:467 ../inc/admin/class-customizr.php:495
+#: ../inc/admin/class-meta_boxes.php:95
+msgid "Left sidebar"
+msgstr "Barre latérale gauche"
+
+#: ../inc/admin/class-customizr.php:288 ../inc/admin/class-customizr.php:442
+#: ../inc/admin/class-customizr.php:468 ../inc/admin/class-customizr.php:496
+msgid "2 sidebars : Right and Left"
+msgstr "2 barres : droite et gauche"
+
+#: ../inc/admin/class-customizr.php:289 ../inc/admin/class-customizr.php:443
+#: ../inc/admin/class-customizr.php:469 ../inc/admin/class-customizr.php:497
+msgid "No sidebars : full width layout"
+msgstr "Pas de barres latérales : pleine largeur"
+
+#: ../inc/admin/class-customizr.php:298
+msgid "Slider options"
+msgstr "Options du diaporama"
+
+#: ../inc/admin/class-customizr.php:299
+msgid "Select front page slider"
+msgstr "Choisir un diaporama pour la page d'accueil"
+
+#: ../inc/admin/class-customizr.php:310
+msgid "Full width slider"
+msgstr "Diaporama en pleine largeur"
+
+#: ../inc/admin/class-customizr.php:329
+msgid "Delay between each slides"
+msgstr "Délai entre les diapos"
+
+#: ../inc/admin/class-customizr.php:334
+msgid "in ms : 1000ms = 1s"
+msgstr "en ms : 1000ms = 1s"
+
+#: ../inc/admin/class-customizr.php:342
+msgid "Featured pages options"
+msgstr "Options des pages en avant"
+
+#: ../inc/admin/class-customizr.php:343
+msgid "Display home featured pages area"
+msgstr "Afficher des pages en avant sur la page d'accueil"
+
+#: ../inc/admin/class-customizr.php:347
+msgid "Enable"
+msgstr "Activer"
+
+#: ../inc/admin/class-customizr.php:348
+msgid "Disable"
+msgstr "Désactiver"
+
+#: ../inc/admin/class-customizr.php:357
+msgid "Show images"
+msgstr "Afficher les images"
+
+#: ../inc/admin/class-customizr.php:360
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"Les images sont gérées avec les \"images à la une\" de chaques pages. "
+"Décocher l'option ci-dessus pour désactiver les images des pages en avant."
+
+#: ../inc/admin/class-customizr.php:366
+msgid "Home featured page one"
+msgstr "Page à la une N° 1"
+
+#: ../inc/admin/class-customizr.php:374
+msgid "Home featured page two"
+msgstr "Page à la une N° 2"
+
+#: ../inc/admin/class-customizr.php:382
+msgid "Home featured page three"
+msgstr "Page à la une N° 3"
+
+#: ../inc/admin/class-customizr.php:392
+msgid "Featured text one (200 car. max)"
+msgstr "Texte de la page à la une N°1 (200 car. max)"
+
+#: ../inc/admin/class-customizr.php:395 ../inc/admin/class-customizr.php:406
+#: ../inc/admin/class-customizr.php:417
+msgid "Leave this field empty if you want to use the selected page excerpt."
+msgstr "Laissez ce champ vide si vous souhaitez utiliser l'extrait de la page."
+
+#: ../inc/admin/class-customizr.php:403
+msgid "Featured text two (200 car. max)"
+msgstr "Texte de la page à la une N°2 (200 car. max)"
+
+#: ../inc/admin/class-customizr.php:414
+msgid "Featured text three (200 car. max)"
+msgstr "Texte de la page à la une N°3 (200 car. max)"
+
+#: ../inc/admin/class-customizr.php:427
+msgid "Display Breadcrumb"
+msgstr "Afficher le fil d'Ariane"
+
+#: ../inc/admin/class-customizr.php:436
+msgid "Choose the global default layout"
+msgstr "Choisir la structure globale par défaut"
+
+#: ../inc/admin/class-customizr.php:452
+msgid "Force default layout everywhere"
+msgstr "Forcer la structure par défaut sur tout le site"
+
+#: ../inc/admin/class-customizr.php:455
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"Cette option remplacera les paramétrages de structures sur les pages/"
+"billets, page d'accueil comprise."
+
+#: ../inc/admin/class-customizr.php:462
+msgid "Choose the posts default layout"
+msgstr "Choisir la structure par défaut des billets"
+
+#: ../inc/admin/class-customizr.php:479
+msgid "Maximum number of posts per page"
+msgstr "Nombre de billets max. par page"
+
+#: ../inc/admin/class-customizr.php:490
+msgid "Choose the pages default layout"
+msgstr "Choisir la structure par défaut des pages"
+
+#: ../inc/admin/class-customizr.php:508
+msgid "Enable comments on pages"
+msgstr "Autoriser les commentaires sur les pages"
+
+#: ../inc/admin/class-customizr.php:511
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"Cette option active les commentaires sur les pages. Vous pouvez ensuite "
+"désactiver les commentaires page par page dans les options de modifications "
+"rapides de la liste des pages."
+
+#: ../inc/admin/class-customizr.php:520
+msgid "footer"
+msgstr "le pied de page"
+
+#: ../inc/admin/class-customizr.php:521
+msgid "right-sidebar"
+msgstr "la barre latérale droite"
+
+#: ../inc/admin/class-customizr.php:522
+msgid "left-sidebar"
+msgstr "la barre latérale gauche"
+
+#: ../inc/admin/class-customizr.php:523
+msgid "header"
+msgstr "le haut de page"
+
+#: ../inc/admin/class-customizr.php:528
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "Flux RSS (Par défaut, flux WordPress du site)"
+
+#: ../inc/admin/class-customizr.php:529
+msgid "Twitter profile url"
+msgstr "Url du compte Twitter"
+
+#: ../inc/admin/class-customizr.php:530
+msgid "Facebook profile url"
+msgstr "Url du compte Facebook"
+
+#: ../inc/admin/class-customizr.php:531
+msgid "Google+ profile url"
+msgstr "Url du compte Google+"
+
+#: ../inc/admin/class-customizr.php:532
+msgid "Youtube profile url"
+msgstr "Url du compte Youtube"
+
+#: ../inc/admin/class-customizr.php:533
+msgid "Pinterest profile url"
+msgstr "Url du compte Pinterest"
+
+#: ../inc/admin/class-customizr.php:534
+msgid "Github profile url"
+msgstr "Url du compte Github"
+
+#: ../inc/admin/class-customizr.php:535
+msgid "Dribbble profile url"
+msgstr "Url du compte Dribbble"
+
+#: ../inc/admin/class-customizr.php:536
+msgid "LinkedIn profile url"
+msgstr "Url du compte LinkedIn"
+
+#: ../inc/admin/class-customizr.php:548
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"Si elle est activée, cette option affiche une fenêtre popin avec effet de "
+"zoom lorsque l'image est cliquée. Cela ne s'applique pas aux galeries."
+
+#: ../inc/admin/class-customizr.php:557
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr "Ajoutez votre CSS ici pour un design live! (utilisateurs avancés)"
+
+#: ../inc/admin/class-customizr.php:560
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates. Special "
+"characters like quotes or inferior/superior signs will not be accepted in "
+"this field as they might be used for malicious purposes. If your custom css "
+"includes some of these characters, just create a child theme and write it "
+"down in the style.css file."
+msgstr ""
+"Pour des raisons de sécurité, ce champ ne supporte pas les caratères "
+"spéciaux tels que supérieur/inférieur, guillemets...Si votre code CSS inclut "
+"ce type de caractères, insérez le plutôt dans le fichier style.css d'un "
+"thème enfant."
+
+#: ../inc/admin/class-customizr.php:690
+#, php-format
+msgid "Social links in %s"
+msgstr "Liens sociaux dans %s"
+
+#: ../inc/admin/class-meta_boxes.php:53
 msgid "Layout Options"
 msgstr "Options de structure"
 
-#: ../inc/admin/tc_meta_boxes.php:28 ../inc/admin/tc_meta_boxes.php:377
+#: ../inc/admin/class-meta_boxes.php:61 ../inc/admin/class-meta_boxes.php:407
 msgid "Slider Options"
 msgstr "Options du diaporama"
 
-#: ../inc/admin/tc_meta_boxes.php:63
+#: ../inc/admin/class-meta_boxes.php:96
 msgid "Two sidebars"
 msgstr "Deux barres latérales"
 
-#: ../inc/admin/tc_meta_boxes.php:64
+#: ../inc/admin/class-meta_boxes.php:97
 msgid "Full Width"
 msgstr "Pleine largeur"
 
-#: ../inc/admin/tc_meta_boxes.php:80
+#: ../inc/admin/class-meta_boxes.php:113
 #, php-format
 msgid "Default %1$s layout is set to : %2$s"
 msgstr "La structure par défaut des %1$s est : %2$s"
 
-#: ../inc/admin/tc_meta_boxes.php:80
+#: ../inc/admin/class-meta_boxes.php:113
 msgid "pages"
 msgstr "pages"
 
-#: ../inc/admin/tc_meta_boxes.php:80
+#: ../inc/admin/class-meta_boxes.php:113
 msgid "posts"
 msgstr "billets"
 
-#: ../inc/admin/tc_meta_boxes.php:85
+#: ../inc/admin/class-meta_boxes.php:118
 msgid ""
 "You have checked the <i>\"Force global default layout for all posts and pages"
 "\"</i>, you must unchecked this option to enable a specific layout for this "
@@ -670,11 +562,11 @@ msgstr ""
 "toutes les pages\"</i>. Vous devez décocher cette option pour choisir une "
 "structure spécifique pour ce billet."
 
-#: ../inc/admin/tc_meta_boxes.php:86
+#: ../inc/admin/class-meta_boxes.php:119
 msgid "Change layout options"
 msgstr "Modifier les options de structure"
 
-#: ../inc/admin/tc_meta_boxes.php:90
+#: ../inc/admin/class-meta_boxes.php:123
 #, php-format
 msgid ""
 "You can define a specific layout for %1$s by using the pre-defined left and "
@@ -685,98 +577,110 @@ msgstr ""
 "barres latérales. La structure par défaut peut être modifiée dans les "
 "options du thème %2$s.<br />"
 
-#: ../inc/admin/tc_meta_boxes.php:91 ../inc/admin/tc_meta_boxes.php:96
+#: ../inc/admin/class-meta_boxes.php:124 ../inc/admin/class-meta_boxes.php:129
 msgid "this page"
 msgstr "cette page"
 
-#: ../inc/admin/tc_meta_boxes.php:91 ../inc/admin/tc_meta_boxes.php:96
+#: ../inc/admin/class-meta_boxes.php:124 ../inc/admin/class-meta_boxes.php:129
 msgid "this post"
 msgstr "ce billet"
 
-#: ../inc/admin/tc_meta_boxes.php:92
+#: ../inc/admin/class-meta_boxes.php:125
 msgid "here"
 msgstr "ici"
 
-#: ../inc/admin/tc_meta_boxes.php:95
+#: ../inc/admin/class-meta_boxes.php:128
 #, php-format
 msgid "Select a specific layout for %1$s"
 msgstr "Choisir une structure spécifique pour %1$s"
 
-#: ../inc/admin/tc_meta_boxes.php:99
+#: ../inc/admin/class-meta_boxes.php:132
 #, php-format
 msgid "Default layout %1s"
 msgstr "Structure par défaut %1s"
 
-#: ../inc/admin/tc_meta_boxes.php:141 ../inc/admin/tc_meta_boxes.php:407
-msgid "Add to a slider"
-msgstr "Ajouter à un diaporama"
+#: ../inc/admin/class-meta_boxes.php:174
+msgid "Add a slider to this post/page"
+msgstr "Ajouter un diaporama à ce billet/cette page"
 
-#: ../inc/admin/tc_meta_boxes.php:143 ../inc/admin/tc_meta_boxes.php:409
-msgid "Add to a slider (create one if needed)"
-msgstr "Ajouter à un diaporama (créer un nouveau si besoin)"
-
-#: ../inc/admin/tc_meta_boxes.php:205 ../inc/admin/tc_meta_boxes.php:573
+#: ../inc/admin/class-meta_boxes.php:236 ../inc/admin/class-meta_boxes.php:605
 msgid "Choose a slider"
 msgstr "Choisir un diaporama"
 
-#: ../inc/admin/tc_meta_boxes.php:212 ../inc/admin/tc_meta_boxes.php:588
+#: ../inc/admin/class-meta_boxes.php:243 ../inc/admin/class-meta_boxes.php:620
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; Sélectionner un diaporama &mdash;"
 
-#: ../inc/admin/tc_meta_boxes.php:220
+#: ../inc/admin/class-meta_boxes.php:248
+msgid ""
+"To create a new slider : open the media library, edit your images and add "
+"them to your new slider."
+msgstr ""
+"Pour créer un nouveau diaporama : éditez les images de votre librairie média "
+"et ajoutez les à un nouveau diaporama."
+
+#: ../inc/admin/class-meta_boxes.php:252
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
 msgstr ""
 "Délai entre chaque diapositive en millisecondes : par défaut 5000ms (= "
 "5secondes)."
 
-#: ../inc/admin/tc_meta_boxes.php:227
+#: ../inc/admin/class-meta_boxes.php:259
 msgid "Slider Layout : set the slider in full width"
 msgstr "Mettre le diaporama en pleine largeur"
 
-#: ../inc/admin/tc_meta_boxes.php:236 ../inc/admin/tc_meta_boxes.php:597
+#: ../inc/admin/class-meta_boxes.php:268 ../inc/admin/class-meta_boxes.php:629
 msgid "Delete this slider"
 msgstr "Supprimer ce diaporama"
 
-#: ../inc/admin/tc_meta_boxes.php:241 ../inc/admin/tc_meta_boxes.php:601
+#: ../inc/admin/class-meta_boxes.php:273 ../inc/admin/class-meta_boxes.php:633
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
 msgstr ""
 "Le diaporama sera effacé définitivement (les images seront conservées!)."
 
-#: ../inc/admin/tc_meta_boxes.php:244 ../inc/admin/tc_meta_boxes.php:604
+#: ../inc/admin/class-meta_boxes.php:276 ../inc/admin/class-meta_boxes.php:636
 msgid "Delete slider"
 msgstr "Supprimer ce diaporama"
 
-#: ../inc/admin/tc_meta_boxes.php:530
+#: ../inc/admin/class-meta_boxes.php:436
+msgid "Add to a slider"
+msgstr "Ajouter à un diaporama"
+
+#: ../inc/admin/class-meta_boxes.php:438
+msgid "Add to a slider (create one if needed)"
+msgstr "Ajouter à un diaporama (créer un nouveau si besoin)"
+
+#: ../inc/admin/class-meta_boxes.php:562
 msgid "Title text (80 car. max length)"
 msgstr "Texte du titre (80 car. max)"
 
-#: ../inc/admin/tc_meta_boxes.php:537
+#: ../inc/admin/class-meta_boxes.php:569
 msgid "Description text (below the title, 250 car. max length)"
 msgstr "Texte complémentaire (sous le titre, 250 car. maximum)"
 
-#: ../inc/admin/tc_meta_boxes.php:544
+#: ../inc/admin/class-meta_boxes.php:576
 msgid "Title and text color"
 msgstr "Couleur du titre et du texte"
 
-#: ../inc/admin/tc_meta_boxes.php:552
+#: ../inc/admin/class-meta_boxes.php:584
 msgid "Button text (80 car. max length)"
 msgstr "Texte du bouton (80 car. max)"
 
-#: ../inc/admin/tc_meta_boxes.php:559
+#: ../inc/admin/class-meta_boxes.php:591
 msgid "Choose a linked page or post (among the last 100)."
 msgstr "Choisir une page/un billet lié (parmi les 100 derniers)"
 
-#: ../inc/admin/tc_meta_boxes.php:564
+#: ../inc/admin/class-meta_boxes.php:596
 msgid "No link"
 msgstr "Aucun lien"
 
-#: ../inc/admin/tc_meta_boxes.php:594 ../inc/admin/tc_meta_boxes.php:623
+#: ../inc/admin/class-meta_boxes.php:626 ../inc/admin/class-meta_boxes.php:657
 msgid "Add a slider"
 msgstr "Ajouter un diaporama"
 
-#: ../inc/admin/tc_meta_boxes.php:621
+#: ../inc/admin/class-meta_boxes.php:655
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
@@ -784,7 +688,7 @@ msgstr ""
 "Il n'y a pas encore de diaporamas disponibles. Choisissez un nom et cliquez "
 "sur le bouton pour créer votre premier diaporama."
 
-#: ../inc/admin/tc_meta_boxes.php:737
+#: ../inc/admin/class-meta_boxes.php:770
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
@@ -792,56 +696,303 @@ msgstr ""
 "Ce diaporama n'a pas de diapositives. Editez les images de votre librairie "
 "média pour les ajouter aux diaporamas."
 
-#: ../inc/admin/tc_meta_boxes.php:747
+#: ../inc/admin/class-meta_boxes.php:780
 msgid "Slide Image"
 msgstr "Image de diapositive"
 
-#: ../inc/admin/tc_meta_boxes.php:748
+#: ../inc/admin/class-meta_boxes.php:781
 msgid "Title"
 msgstr "Titre"
 
-#: ../inc/admin/tc_meta_boxes.php:749
+#: ../inc/admin/class-meta_boxes.php:782
 msgid "Slide Text"
 msgstr "Texte de la diapositive"
 
-#: ../inc/admin/tc_meta_boxes.php:750
+#: ../inc/admin/class-meta_boxes.php:783
 msgid "Button Text"
 msgstr "Texte du bouton"
 
-#: ../inc/admin/tc_meta_boxes.php:751
+#: ../inc/admin/class-meta_boxes.php:784
 msgid "Button Link"
 msgstr "Lien du bouton"
 
-#: ../inc/admin/tc_meta_boxes.php:789
+#: ../inc/admin/class-meta_boxes.php:785 ../parts/class-breadcrumb.php:583
+#: ../parts/class-breadcrumb.php:616 ../parts/class-breadcrumb.php:631
+#: ../parts/class-breadcrumb.php:659 ../parts/class-comments.php:90
+#: ../parts/class-content.php:232 ../parts/class-content.php:654
+msgid "Edit"
+msgstr "Modifier"
+
+#: ../inc/admin/class-meta_boxes.php:826
 msgid "No Image Selected"
 msgstr "Aucune image sélectionnée"
 
-#: ../inc/admin/tc_meta_boxes.php:815
+#: ../inc/admin/class-meta_boxes.php:852
 msgid "Edit this slide"
 msgstr "Modifier"
 
-#: ../inc/admin/tc_meta_boxes.php:817
+#: ../inc/admin/class-meta_boxes.php:854
 msgid "Current slide"
 msgstr "Diapositive actuelle"
 
-#: ../parts/content-404.php:14
-msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
-msgstr ""
-"En ces temps d'imposture universelle, dire la vérité est un acte "
-"révolutionnaire."
+#: ../inc/pro/admin/tc_customize_pro.php:35
+msgid "Choose a font for your website title"
+msgstr "Choisir une police pour le titre du site"
 
-#: ../parts/content-404.php:15
-msgid "George Orwell"
-msgstr "Geroge Orwell"
+#: ../inc/pro/admin/tc_customize_pro.php:52
+msgid "Ajust the title size"
+msgstr "Ajuster la taille du titre"
 
-#: ../parts/content-404.php:17
+#: ../inc/pro/admin/tc_customize_pro.php:70
+msgid "Color"
+msgstr "Couleur"
+
+#: ../parts/class-breadcrumb.php:28 ../parts/class-breadcrumb.php:90
+msgid "Home"
+msgstr "Accueil"
+
+#: ../parts/class-breadcrumb.php:87
+msgid "Browse:"
+msgstr "Naviguer:"
+
+#: ../parts/class-breadcrumb.php:467
+msgid "g:i a"
+msgstr "g:i a"
+
+#: ../parts/class-breadcrumb.php:470
+#, php-format
+msgid "Minute %1$s"
+msgstr "Minute %1$s"
+
+#: ../parts/class-breadcrumb.php:470
+msgid "i"
+msgstr "i"
+
+#: ../parts/class-breadcrumb.php:473
+msgid "g a"
+msgstr "g a"
+
+#: ../parts/class-breadcrumb.php:484 ../parts/class-breadcrumb.php:494
+#: ../parts/class-breadcrumb.php:503 ../parts/class-breadcrumb.php:514
+#: ../parts/class-breadcrumb.php:516 ../parts/class-breadcrumb.php:715
+msgid "Y"
+msgstr "Y"
+
+#: ../parts/class-breadcrumb.php:485 ../parts/class-breadcrumb.php:506
+#: ../parts/class-breadcrumb.php:508 ../parts/class-breadcrumb.php:719
+msgid "F"
+msgstr "F"
+
+#: ../parts/class-breadcrumb.php:488 ../parts/class-breadcrumb.php:490
+#: ../parts/class-breadcrumb.php:723
+msgid "d"
+msgstr "d"
+
+#: ../parts/class-breadcrumb.php:497 ../parts/class-breadcrumb.php:499
+#, php-format
+msgid "Week %1$s"
+msgstr "Semaine %1$s"
+
+#: ../parts/class-breadcrumb.php:525 ../parts/class-breadcrumb.php:527
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Résultats de recherche pour &quot;%1$s&quot;"
+
+#: ../parts/class-breadcrumb.php:532
+msgid "404 Not Found"
+msgstr "Page non trouvées (erreur 404)"
+
+#: ../parts/class-breadcrumb.php:537 ../parts/class-breadcrumb.php:539
+#, php-format
+msgid "Page %d"
+msgstr "Page %d"
+
+#: ../parts/class-breadcrumb.php:608
+msgid "Split"
+msgstr "Dissocier"
+
+#: ../parts/class-breadcrumb.php:612
+msgid "Merge"
+msgstr "Fusionner"
+
+#: ../parts/class-comments.php:19
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgstr "Un commentaire sur &ldquo;%2$s&rdquo;"
+
+#: ../parts/class-comments.php:64
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: ../parts/class-comments.php:64
+msgid "(Edit)"
+msgstr "(Modifier)"
+
+#: ../parts/class-comments.php:81
+msgid "Reply"
+msgstr "Répondre"
+
+#: ../parts/class-comments.php:89
+msgid "Post author"
+msgstr "Auteur du billet"
+
+#: ../parts/class-comments.php:96
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s à %2$s"
+
+#: ../parts/class-comments.php:102
+msgid "Your comment is awaiting moderation."
+msgstr "Votre commentaire est en attente de modération."
+
+#: ../parts/class-comments.php:129
+msgid "Comment navigation"
+msgstr "Comment navigation"
+
+#: ../parts/class-comments.php:130
+msgid "&larr; Older Comments"
+msgstr "&larr; Commentaires plus anciens"
+
+#: ../parts/class-comments.php:131
+msgid "Newer Comments &rarr;"
+msgstr "Commentaires plus récents &rarr;"
+
+#: ../parts/class-comments.php:151
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: ../parts/class-content.php:154 ../parts/class-content.php:162
+#: ../parts/class-content.php:591
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Poursuivre la lecture <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content.php:155 ../parts/class-content.php:163
+#: ../parts/class-content.php:593
+msgid "Pages:"
+msgstr "Pages:"
+
+#: ../parts/class-content.php:201
+msgid "Comment(s) on "
+msgstr "Commentaire(s) sur"
+
+#: ../parts/class-content.php:218
+msgid "{no title} Read the post &raquo;"
+msgstr "{Pas de titre} Voir le billet &raquo;"
+
+#: ../parts/class-content.php:256
+msgid "Ooops, page not found"
+msgstr "Ooops, page non trouvée"
+
+#: ../parts/class-content.php:264
+#, php-format
+msgid "%1sSearch Results for: %2s"
+msgstr "%1s Résultats de recherche pour: %2s"
+
+#: ../parts/class-content.php:265
+msgid "No"
+msgstr "Aucun"
+
+#: ../parts/class-content.php:277
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Billets de l'auteur: %s"
+
+#: ../parts/class-content.php:283
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Billets de la catégorie: %s"
+
+#: ../parts/class-content.php:293
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Billets taggés avec: %s"
+
+#: ../parts/class-content.php:305
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Billets du jour: %s"
+
+#: ../parts/class-content.php:307
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Billets du mois: %s"
+
+#: ../parts/class-content.php:309
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Billets de l'année: %s"
+
+#: ../parts/class-content.php:311
+msgid "Archives"
+msgstr "Archives"
+
+#: ../parts/class-content.php:351
+#, php-format
+msgid "View all posts by %s"
+msgstr "Voir tous les billets de %s"
+
+#: ../parts/class-content.php:357
+#, php-format
 msgid ""
-"Sorry, but the requested page is not found. You might try a search below."
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
 msgstr ""
-"La page demandée n'a pas été trouvée. Essayez une recherche sur le site ci-"
-"dessous."
+"Ce billet a été publié dans %1$s et taggé avec %2$s le %3$s<span class=\"by-"
+"author\"> par %4$s</span>."
 
-#: ../parts/content-attachment.php:16
+#: ../parts/class-content.php:359
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Ce billet a été publié dans %1$s le %3$s<span class=\"by-author\"> par %4$s</"
+"span>."
+
+#: ../parts/class-content.php:361
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+"Ce billet a été publié le %3$s<span class=\"by-author\"> par %4$s</span>."
+
+#: ../parts/class-content.php:390 ../parts/class-content.php:416
+#, php-format
+msgid "View all posts in %s"
+msgstr "Voir tous les billets dans %s"
+
+#: ../parts/class-content.php:443
+#, php-format
+msgid "About %s"
+msgstr "A propos %s"
+
+#: ../parts/class-content.php:447
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Voir tous les billets de %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content.php:583
+msgid "Edit page"
+msgstr "Modifier cette page"
+
+#: ../parts/class-content.php:614
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr "Le succès c'est d'aller d'échec en échec sans perdre son enthousiasme."
+
+#: ../parts/class-content.php:615
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: ../parts/class-content.php:617
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"La recherche n'a donné aucuns résultats...Vous pourriez essayer avec des "
+"mots clés différents?"
+
+#: ../parts/class-content.php:643
 #, php-format
 msgid ""
 "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
@@ -856,147 +1007,149 @@ msgstr ""
 "&times; %5$s</a> dans <a href=\"%6$s\" title=\"Retour %7$s\" rel=\"gallery\">"
 "%8$s</a>"
 
-#: ../parts/content-attachment.php:31
+#: ../parts/class-content.php:658
 msgid "&larr; Previous"
 msgstr "&larr; Précédent"
 
-#: ../parts/content-attachment.php:32
+#: ../parts/class-content.php:659
 msgid "Next &rarr;"
 msgstr "Suivant &rarr;"
 
-#: ../parts/content-attachment.php:82 ../parts/content-page.php:22
-#: ../parts/content.php:41 ../parts/content.php:49
-msgid "Pages:"
-msgstr "Pages:"
-
-#: ../parts/content-no-results.php:14
-msgid ""
-"Success is the ability to go from one failure to another with no loss of "
-"enthusiasm..."
-msgstr "Le succès c'est d'aller d'échec en échec sans perdre son enthousiasme."
-
-#: ../parts/content-no-results.php:15
-msgid "Sir Winston Churchill"
-msgstr "Sir Winston Churchill"
-
-#: ../parts/content-no-results.php:17
-msgid ""
-"Sorry, but nothing matched your search criteria. Please try again with some "
-"different keywords."
+#: ../parts/class-content.php:728
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr ""
-"La recherche n'a donné aucuns résultats...Vous pourriez essayer avec des "
-"mots clés différents?"
+"En ces temps d'imposture universelle, dire la vérité est un acte "
+"révolutionnaire."
 
-#: ../parts/content-page.php:14
-msgid "Edit page"
-msgstr "Modifier cette page"
+#: ../parts/class-content.php:729
+msgid "George Orwell"
+msgstr "Geroge Orwell"
 
-#: ../parts/content-page.php:20 ../parts/content.php:40
-#: ../parts/content.php:48
-msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Poursuivre la lecture <span class=\"meta-nav\">&rarr;</span>"
+#: ../parts/class-content.php:731
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"La page demandée n'a pas été trouvée. Essayez une recherche sur le site ci-"
+"dessous."
 
-#: ../parts/metas.php:23
-#, php-format
-msgid "View all posts by %s"
-msgstr "Voir tous les billets de %s"
+#: ../parts/class-featured_pages.php:81
+msgid "Customizer screen"
+msgstr "Customizer"
 
-#: ../parts/metas.php:29
+#: ../parts/class-featured_pages.php:81
+msgid " here"
+msgstr " ici"
+
+#: ../parts/class-featured_pages.php:86
+msgid "Featured page"
+msgstr "Page à la une"
+
+#: ../parts/class-featured_pages.php:87
 #, php-format
 msgid ""
-"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
-"\"> by %4$s</span>."
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
 msgstr ""
-"Ce billet a été publié dans %1$s et taggé avec %2$s le %3$s<span class=\"by-"
-"author\"> par %4$s</span>."
+"Texte descriptif de la page en une : utilisez l'extrait de page ou écrivez "
+"votre propre texte dans la page d'options Customizer %s."
 
-#: ../parts/metas.php:31
-#, php-format
-msgid ""
-"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
-"span>."
-msgstr ""
-"Ce billet a été publié dans %1$s le %3$s<span class=\"by-author\"> par %4$s</"
-"span>."
+#: ../parts/class-featured_pages.php:176
+msgid "Read more &raquo;"
+msgstr "Lire la suite &raquo;"
 
-#: ../parts/metas.php:33
-#, php-format
-msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
-msgstr ""
-"Ce billet a été publié le %3$s<span class=\"by-author\"> par %4$s</span>."
+#: ../parts/class-footer.php:28
+msgid "Designed by "
+msgstr "Design par "
 
-#: ../parts/nav.php:17 ../parts/nav.php:31
+#: ../parts/class-footer.php:38
+msgid "Back to top"
+msgstr "Retour haut de page"
+
+#: ../parts/class-header.php:171
+msgid "Back Home"
+msgstr "Retour Accueil"
+
+#: ../parts/class-nav.php:25 ../parts/class-nav.php:39
 msgid "Post navigation"
 msgstr "Parcourir les billets"
 
-#: ../parts/nav.php:35
+#: ../parts/class-nav.php:43
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Billets plus anciens"
 
-#: ../parts/nav.php:40
+#: ../parts/class-nav.php:48
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Billets plus récents <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/post-footer.php:17
-#, php-format
-msgid "About %s"
-msgstr "A propos %s"
+#: ../parts/class-slider.php:67 ../parts/class-slider.php:70
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr est un thème élégant et simple"
 
-#: ../parts/post-footer.php:21
-#, php-format
-msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
-msgstr "Voir tous les billets de %s <span class=\"meta-nav\">&rarr;</span>"
+#: ../parts/class-slider.php:71
+msgid "Let your creativity speak and easily customiz'it the way you want!"
+msgstr "Soyez créatifs et customisez en quelques clics!"
 
-#: ../parts/post-header.php:25
-msgid "Comment(s) on "
-msgstr "Commentaire(s) sur"
+#: ../parts/class-slider.php:72
+msgid "Learn more"
+msgstr "En savoir plus"
 
-#: ../parts/post-header.php:42
-msgid "{no title} Read the post &raquo;"
-msgstr "{Pas de titre} Voir le billet &raquo;"
+#: ../parts/class-slider.php:77 ../parts/class-slider.php:80
+msgid "Style your WordPress site live!"
+msgstr "Modifiez votre site WordPress en live!"
 
-#: ../parts/post-list-header.php:11
-msgid "Ooops, page not found"
-msgstr "Ooops, page non trouvée"
+#: ../parts/class-slider.php:81
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"De nombreuses options de design et structures sont disponibles dans l'écran "
+"de customization Wordpress : vos modifications s'affichent en live !"
 
-#: ../parts/post-list-header.php:19
-#, php-format
-msgid "%1sSearch Results for: %2s"
-msgstr "%1s Résultats de recherche pour: %2s"
+#: ../parts/class-slider.php:82
+msgid "Just try it!"
+msgstr "Essayez le!"
 
-#: ../parts/post-list-header.php:32
-#, php-format
-msgid "Author Archives: %s"
-msgstr "Billets de l'auteur: %s"
+#: ../parts/class-slider.php:87 ../parts/class-slider.php:90
+msgid "Create beautiful sliders"
+msgstr "Créez de superbes diaporamas"
 
-#: ../parts/post-list-header.php:38
-#, php-format
-msgid "Category Archives: %s"
-msgstr "Billets de la catégorie: %s"
+#: ../parts/class-slider.php:91
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr inclut un générateur de diaporama très pratique : ajoutez un "
+"diaporama à n'importe quel billet ou page !"
 
-#: ../parts/post-list-header.php:48
-#, php-format
-msgid "Tag Archives: %s"
-msgstr "Billets taggés avec: %s"
+#: ../parts/class-slider.php:92
+msgid "Discover the features"
+msgstr "Découvrez les fonctionnalités"
 
-#: ../parts/post-list-header.php:60
-#, php-format
-msgid "Daily Archives: %s"
-msgstr "Billets du jour: %s"
+#~ msgid "one"
+#~ msgstr "un"
 
-#: ../parts/post-list-header.php:62
-#, php-format
-msgid "Monthly Archives: %s"
-msgstr "Billets du mois: %s"
+#~ msgid "two"
+#~ msgstr "deux"
 
-#: ../parts/post-list-header.php:64
-#, php-format
-msgid "Yearly Archives: %s"
-msgstr "Billets de l'année: %s"
+#~ msgid "three"
+#~ msgstr "trois"
 
-#: ../parts/post-list-header.php:66
-msgid "Archives"
-msgstr "Archives"
+#~ msgid "Show"
+#~ msgstr "Afficher"
+
+#~ msgid "Hide"
+#~ msgstr "Cacher"
+
+#~ msgid ""
+#~ "Always use this field to add your custom css instead of editing directly "
+#~ "the style.css file : it will not be deleted during theme updates."
+#~ msgstr ""
+#~ "Utilisez toujours ce champ pour ajouter votre CSS plutôt que d'éditer "
+#~ "directement le fichier style.css : votre css sera ainsi conservé pendant "
+#~ "les mises à jour."
+
+#~ msgid "Read more..."
+#~ msgstr "En lire davantage..."
 
 #~ msgid "Manage sliders"
 #~ msgstr "Gérer les diaporamas"
@@ -1098,9 +1251,6 @@ msgstr "Archives"
 #~ "site, une diapositive doit être rattachée à un diaporama. Une fois créée, "
 #~ "la liste des diaporamas est disponible dans vos pages/billets, ainsi que "
 #~ "dans les options du customizer pour la page d'accueil. <br />"
-
-#~ msgid "Show title"
-#~ msgstr "Afficher le titre"
 
 #~ msgid ""
 #~ "The title displayed on front office is the main slide title above. You "

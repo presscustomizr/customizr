@@ -8,7 +8,14 @@ table.options-table tbody th{ width:150px; }
   margin: 5px 0px;
   height: 27px;
   cursor: pointer;
-  overflow: hidden; }
+  overflow: hidden; 
+}
+/* nk addon for customize controls*/
+.customize-control .iPhoneCheckContainer {
+  width:88px;
+  float:right;
+}
+
   .iPhoneCheckContainer input {
     position: absolute;
     top: 5px;
