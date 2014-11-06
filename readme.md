@@ -39,6 +39,25 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.2.2 October 30th 2014 =
+* fixed (js, tc-script.js) the 'touchstart' event don't trigger the responsive menu toggle anymore => was generating a major bug on responsive devices reported here : https://wordpress.org/support/topic/321-responsive-menu-wont-stay-open?replies=18, and here : https://wordpress.org/support/topic/bug-report-44?replies=4
+* added (php, class-fire-admin_page.php) New hooks in admin : '__before_welcome_panel' '__after_welcome_panel
+* added (php) new class TC_admin_page handling the welcome panel including the changelog and user system infos.
+* updated (lang) ru_RU : thanks to <a href="http://bootwalksnews.com/" target="_blank">Evgeny Sudakov</a>
+* updated (lang) es_ES : thanks to María Digo
+* updated (lang) zh_CN : thanks to Luckue Joy
+* updated (lang) hu_HU : thanks to Ferencz Székely
+* updated (lang) ca_ES : thanks to Jaume Albaigès
+* updated (lang) sk_SK : thanks to <a href="http://www.pcipservis.eu/" target="_blank">Tomáš Lojek</a>
+* updated (lang) de_DE : thanks to <a href="http://foerde-mentor.de" target="_blank">Bernd Troba</a>
+
+
+= 3.2.1 October 20th 2014 =
+* fixed (css) Featured pages recentering for max-width 979px
+* fixed (css) Sticky header menu background
+* improved (js, tc-scripts.js) Scroll event timer only for ie
+
+
 = 3.2.0 October 20th 2014 =
 * added (php, class-content-slider.php) New action hooked : __after_carousel_inner. Used to render the slider controls.
 * added (js) slider swipe support with hammer.js. Controls not renderd for mobile devices.

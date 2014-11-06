@@ -56,7 +56,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			    wp_enqueue_script( 'comment-reply' );
 		    wp_enqueue_script( 'jquery' );
 		    wp_enqueue_script( 'jquery-ui-core' );
-		    //load retina.js in footer if enabled
+		    //load modernizr.js in footer
 		    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 		    //tc-scripts.js includes :
 		    //1) Twitter Bootstrap scripts
@@ -129,11 +129,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    }
 
 		    //load retina.js in footer if enabled
-		    if ( 1 == tc__f( '__get_option' , 'tc_retina_support' ) )
+		    if ( apply_filters('tc_load_retinajs', 1 == tc__f( '__get_option' , 'tc_retina_support' ) ) )
 		    	wp_enqueue_script( 'retinajs' ,TC_BASE_URL . 'inc/assets/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
 		    //Load hammer.js for mobile
-		    if ( apply_filters('tc_load_hammer', wp_is_mobile() ) )
+		    if ( apply_filters('tc_load_hammerjs', wp_is_mobile() ) )
 		    	wp_enqueue_script( 'hammer' ,TC_BASE_URL . 'inc/assets/js/hammer.min.js', array('jquery'), CUSTOMIZR_VER );
 
 		}

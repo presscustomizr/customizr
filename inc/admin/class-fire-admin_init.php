@@ -21,7 +21,6 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         if (version_compare( $wp_version, '3.4' , '>=' ) ) {
             //require_once( TC_BASE.'inc/admin/tc_customize.php' );
             TC___::$instance -> tc__( array ('admin' => array( array( 'inc/admin' , 'customize'))) );
-
         }
         else {
               //adds an information page if version < 3.4
@@ -29,19 +28,14 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         }
         //load the meta boxes
         add_action ( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
-        //add welcome page in menu
-        add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
         //enqueue additional styling for admin screens
         add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
-        //changelog
-        add_action ( '__changelog'                           , array( $this , 'tc_extract_changelog' ));
       }
 
 
-
-
       /**
-       *  load the meta boxes for pages, posts and attachment
+      *  load the meta boxes for pages, posts and attachment
+      * 
       * @package Customizr
       * @since Customizr 3.0.4
       */
@@ -49,8 +43,6 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
          //loads meta boxes
             TC___::$instance -> tc__( array ('admin' => array( array( 'inc/admin' , 'meta_boxes'))) );
       }
-
-
 
 
       /**

@@ -1738,8 +1738,7 @@
 
  /* COLLAPSE DATA-API
   * ================= */
-  //@tc addon add touch events
-  $(document).on('click.collapse.data-api touchstart.collapse.data-api', '[data-toggle=collapse]', function (e) {
+  $(document).on('click.collapse.data-api', '[data-toggle=collapse]', function (e) {
     var $this = $(this), href
       , target = $this.attr('data-target')
         || e.preventDefault()

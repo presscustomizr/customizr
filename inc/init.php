@@ -49,6 +49,7 @@ if ( ! class_exists( 'TC___' ) ) :
                                     array('inc' , 'resources'),//loads style (skins) and scripts
                                     array('inc' , 'widgets'),//widget factory
                                     array('inc/admin' , 'admin_init'),//fires the customizer and the metaboxes for slider and layout options
+                                    array('inc/admin' , 'admin_page'),//creates the welcome/help panel including changelog and system config
                                 ),
                     //the following files/classes define the action hooks for front end rendering : header, main content, footer
                     'header'    =>   array(

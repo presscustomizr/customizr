@@ -423,9 +423,6 @@ if ( ! class_exists( 'TC_init' ) ) :
 
         //add help button to admin bar
         add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
-        
-        //add options link to admin bar
-        //add_action ( 'wp_before_admin_bar_render'   , array( $this , 'tc_add_admin_bar_options_menu' ));
       }
 
 
@@ -755,28 +752,6 @@ if ( ! class_exists( 'TC_init' ) ) :
         }
       }//end of function
 
-
-
-
-      /**
-      * Add WordPress customizer page to the admin bar menu.
-      * @package Customizr
-      * @since Customizr 1.0 
-      */
-      function tc_add_admin_bar_options_menu() {
-         if ( current_user_can( 'edit_theme_options' ) ) {
-           global $wp_admin_bar;
-           $wp_admin_bar->add_menu( array(
-               'parent'   => false,
-               'id'     => 'tc-customizr' ,
-               'title'    =>  __( 'Customiz\'it!' , 'customizr' ),
-               'href'     => admin_url( 'customize.php' ),
-               'meta'     => array(
-                 'title'    => __( 'Customize your website at any time!', 'customizr' ),
-                ),
-           ));
-         }
-      }
 
 
       /**

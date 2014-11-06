@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.2.0\n"
-"POT-Creation-Date: 2014-10-20 18:15+0100\n"
-"PO-Revision-Date: 2014-10-20 18:15+0100\n"
+"Project-Id-Version: * Customizr v3.2.2\n"
+"POT-Creation-Date: 2014-10-30 19:15+0100\n"
+"PO-Revision-Date: 2014-10-30 19:16+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Jaume Albaigès <jaumealbaiges@hotmail.com>\n"
 "Language: Català\n"
@@ -38,12 +38,11 @@ msgstr "Blau"
 
 #: ../class-fire-init.php:78
 msgid "Light blue "
-msgstr ""
+msgstr "Blau cel"
 
 #: ../class-fire-init.php:79
-#, fuzzy
 msgid "Green blue"
-msgstr "Verd"
+msgstr "Verd turquesa"
 
 #: ../class-fire-init.php:80
 msgid "Green"
@@ -51,7 +50,7 @@ msgstr "Verd"
 
 #: ../class-fire-init.php:81
 msgid "Light green"
-msgstr ""
+msgstr "Verd clar"
 
 #: ../class-fire-init.php:82
 msgid "Yellow"
@@ -59,7 +58,7 @@ msgstr "Groc"
 
 #: ../class-fire-init.php:83
 msgid "Flat yellow"
-msgstr ""
+msgstr "Groc pla"
 
 #: ../class-fire-init.php:84
 msgid "Orange"
@@ -67,7 +66,7 @@ msgstr "Taronja"
 
 #: ../class-fire-init.php:85
 msgid "Flat orange"
-msgstr ""
+msgstr "Taronja pla"
 
 #: ../class-fire-init.php:86
 msgid "Red"
@@ -75,7 +74,7 @@ msgstr "Vermell"
 
 #: ../class-fire-init.php:87
 msgid "Flat red"
-msgstr ""
+msgstr "Vermell pla"
 
 #: ../class-fire-init.php:88
 msgid "Purple"
@@ -83,7 +82,7 @@ msgstr "Lila"
 
 #: ../class-fire-init.php:89
 msgid "Flat purple"
-msgstr ""
+msgstr "Lila pla"
 
 #: ../class-fire-init.php:90
 msgid "Grey"
@@ -91,7 +90,7 @@ msgstr "Gris"
 
 #: ../class-fire-init.php:91
 msgid "Ligth grey"
-msgstr ""
+msgstr "Gris clar"
 
 #: ../class-fire-init.php:92
 msgid "Black"
@@ -99,7 +98,7 @@ msgstr "Negre"
 
 #: ../class-fire-init.php:93
 msgid "Flat black"
-msgstr ""
+msgstr "Negre pla"
 
 #: ../class-fire-init.php:123
 msgid "Subscribe to my rss feed"
@@ -147,7 +146,7 @@ msgstr "Segueix-me a Tumblr"
 
 #: ../class-fire-init.php:149
 msgid "Tumblr url"
-msgstr ""
+msgstr "Url de Tumblr"
 
 #: ../class-fire-init.php:153
 msgid "Follow me on Flickr"
@@ -155,7 +154,7 @@ msgstr "Segueix-me a Flickr"
 
 #: ../class-fire-init.php:154
 msgid "Flickr url"
-msgstr ""
+msgstr "Url de Flickr"
 
 #: ../class-fire-init.php:158
 msgid "Follow me on WordPress"
@@ -309,19 +308,11 @@ msgstr "Descobriu-ne la funcionalitat"
 msgid "Main Menu"
 msgstr "Men&uacute; Principal"
 
-#: ../class-fire-init.php:772
-msgid "Customiz'it!"
-msgstr "Personalitza el tema"
-
-#: ../class-fire-init.php:775
-msgid "Customize your website at any time!"
-msgstr "Personalitza el teu web en qualsevol moment!"
-
-#: ../class-fire-init.php:793
+#: ../class-fire-init.php:768
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../class-fire-init.php:796
+#: ../class-fire-init.php:771
 msgid "Need help with Customizr? Click here!"
 msgstr "Necessiteu ajuda amb Customizr? Feu clic aquí!"
 
@@ -357,12 +348,12 @@ msgstr "Text destacat 3 (200 car. m&agrave;x):"
 #: ../class-fire-utils_settings_map.php:66
 #, php-format
 msgid "Custom featured page %1$s"
-msgstr ""
+msgstr "Pàgina destacada personalitzada %1$s"
 
 #: ../class-fire-utils_settings_map.php:82
 #, php-format
 msgid "Featured text %1$s (200 car. max)"
-msgstr ""
+msgstr "Text destacat %1$s (200 car. màx.)"
 
 #: ../class-fire-utils_settings_map.php:85
 msgid ""
@@ -381,47 +372,46 @@ msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Slider Demo &mdash;"
 
 #: ../class-fire-utils_settings_map.php:227
-#, fuzzy
 msgid "Global settings"
-msgstr "Configuraci&oacute;n de la estructura  de la p&agrave;gina"
+msgstr "Configuració global "
 
 #: ../class-fire-utils_settings_map.php:228
 msgid "Global settings for the Customizr theme :skin, socials, links..."
 msgstr ""
+"Configuració global per al tema Customizr: aspecte, xarxes socials, "
+"enllaços..."
 
 #: ../class-fire-utils_settings_map.php:233
 msgid "Header : title, logo, menu, ..."
-msgstr ""
+msgstr "Capçalera: títol, logo, menú..."
 
 #: ../class-fire-utils_settings_map.php:234
 msgid "Header settings for the Customizr theme."
-msgstr ""
+msgstr "Configuració de la capçalera de Customizr."
 
 #: ../class-fire-utils_settings_map.php:239
 msgid "Content : home, posts, ..."
-msgstr ""
+msgstr "Contingut: pàgina d'inici, entrades..."
 
 #: ../class-fire-utils_settings_map.php:240
 msgid "Content settings for the Customizr theme."
-msgstr ""
+msgstr "Configuració del contingut de Customizr."
 
 #: ../class-fire-utils_settings_map.php:245
-#, fuzzy
 msgid "Footer"
-msgstr "pie de p&agrave;gina"
+msgstr "Peu de pàgina"
 
 #: ../class-fire-utils_settings_map.php:246
 msgid "Footer settings for the Customizr theme."
-msgstr ""
+msgstr "Configuració del peu de pàgina de Customizr."
 
 #: ../class-fire-utils_settings_map.php:251
-#, fuzzy
 msgid "Advanced options"
-msgstr "Opcions d'slider"
+msgstr "Opcions avançades"
 
 #: ../class-fire-utils_settings_map.php:252
 msgid "Advanced settings for the Customizr theme."
-msgstr ""
+msgstr "Configuració avançada de Customizr."
 
 #: ../class-fire-utils_settings_map.php:273
 #: ../class-fire-utils_settings_map.php:975
@@ -515,12 +505,13 @@ msgstr "Afegiu el vostre propi CSS"
 #: ../class-fire-utils_settings_map.php:327
 #: ../class-fire-utils_settings_map.php:1005
 msgid "Responsive settings"
-msgstr ""
+msgstr "Configuració adaptativa"
 
 #: ../class-fire-utils_settings_map.php:329
 #: ../class-fire-utils_settings_map.php:1007
 msgid "Various settings for responsive display"
 msgstr ""
+"Diverses opcions de configuració per al disseny adaptat al tipus de pantalla"
 
 #: ../class-fire-utils_settings_map.php:361
 msgid "Manage menus"
@@ -544,13 +535,15 @@ msgstr "Escull un estil predefinit"
 
 #: ../class-fire-utils_settings_map.php:396
 msgid "Performance : use the minified CSS stylesheet"
-msgstr ""
+msgstr "Rendiment: fes servir el full d'estils CSS minimitzat"
 
 #: ../class-fire-utils_settings_map.php:399
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
 msgstr ""
+"Fent servir la versió minimitzada del full d'estils, el vostre lloc web "
+"carregarà més de pressa."
 
 #: ../class-fire-utils_settings_map.php:405
 #: ../class-fire-utils_settings_map.php:1217
@@ -669,7 +662,7 @@ msgstr "Text del bot&oacute;"
 #: ../class-fire-utils_settings_map.php:597
 #: ../class-fire-utils_settings_map.php:1139
 msgid "Display Breadcrumb"
-msgstr "Mostra la ruta (molles de p&agrave;)"
+msgstr "Mostra les molles de pa"
 
 #: ../class-fire-utils_settings_map.php:607
 #: ../class-fire-utils_settings_map.php:1149
@@ -792,12 +785,15 @@ msgstr ""
 #: ../class-fire-utils_settings_map.php:774
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr ""
+"Sliders: mostra la icona \"carregant\" abans de presentar les diapositives"
 
 #: ../class-fire-utils_settings_map.php:777
 msgid ""
 "When checked, this option displays a loading icon when the slides are beeing "
 "setup."
 msgstr ""
+"Si activeu aquesta opció es mostrarà una icona \"carregant\" mentre les "
+"diapositives s'estan preparant."
 
 #: ../class-fire-utils_settings_map.php:790
 msgid "Enable/disable smooth scroll on click"
@@ -813,23 +809,30 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:806
 msgid "Enable/disable blocks reordering on small devices"
-msgstr ""
+msgstr "Activa/desactiva la reordenació de blocs en dispositius petits"
 
 #: ../class-fire-utils_settings_map.php:809
 msgid ""
 "On responsive mode, for smartphone viewport, the sidebars are moved after "
 "the main content block."
 msgstr ""
+"En mode adaptatiu, pel viewport de telèfons intel·ligents, les barres "
+"laterals se situen després del bloc de contingut principal."
 
 #: ../class-fire-utils_settings_map.php:815
 msgid "Enable/disable slider's slides centering on any devices"
 msgstr ""
+"Activa/desactiva que les diapositives dels sliders quedin centrades a "
+"qualsevol dispositiu"
 
 #: ../class-fire-utils_settings_map.php:818
 msgid ""
 "This option centers your slider (carousel) pictures vertically and "
 "horizontally on any devices when displayed in full width mode"
 msgstr ""
+"Aquesta opció centra les imatges del vostre slider verticalment i "
+"horitzontal a qualsevol dispositiu quan es mostrin en mode de pantalla "
+"completa"
 
 #: ../class-fire-utils_settings_map.php:833
 #: ../class-fire-utils_settings_map.php:1665
@@ -852,221 +855,219 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:987
 msgid "Links style and effects"
-msgstr ""
+msgstr "Estils i efectes dels enllaços"
 
 #: ../class-fire-utils_settings_map.php:993
-#, fuzzy
 msgid "Titles icons settings"
-msgstr "Configuració d'enllaços"
+msgstr "Configuració de les icones dels títols"
 
 #: ../class-fire-utils_settings_map.php:995
-#, fuzzy
 msgid "Set up the titles icons options"
-msgstr "Configura les opcions dels comentaris"
+msgstr "Configura les opcions de les icones dels títols"
 
 #: ../class-fire-utils_settings_map.php:999
-#, fuzzy
 msgid "Image settings"
 msgstr "Configuració de les imatges"
 
 #: ../class-fire-utils_settings_map.php:1011
-#, fuzzy
 msgid "Design and layout"
-msgstr "Selecciona el contingut i la disposició"
+msgstr "Disseny i disposició"
 
 #: ../class-fire-utils_settings_map.php:1016
 msgid "Site Title & Tagline"
-msgstr ""
+msgstr "Títol i subtítol del lloc web"
 
 #: ../class-fire-utils_settings_map.php:1027
-#, fuzzy
 msgid "Navigation"
-msgstr "Navegació de les entrades"
+msgstr "Navegació"
 
 #: ../class-fire-utils_settings_map.php:1030
 #, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgstr ""
+"El vostre tema suporta %s menú(s). Seleccioneu quin menu voleu fer servir."
 
 #: ../class-fire-utils_settings_map.php:1030
 msgid ""
 "You can edit your menu content on the Menus screen in the Appearance section."
 msgstr ""
+"Podeu editar el contingut del menú a la pantalla Menús dins de la secció "
+"Aparença."
 
 #: ../class-fire-utils_settings_map.php:1049
 msgid "Post lists : blog, archives, ..."
-msgstr ""
+msgstr "Llistes d'entrades: blogs, arxius..."
 
 #: ../class-fire-utils_settings_map.php:1051
-#, fuzzy
 msgid "Set up post lists options"
-msgstr "Configura les opcions dels comentaris"
+msgstr "Configura les opcions de les llistes d'entrades"
 
 #: ../class-fire-utils_settings_map.php:1055
 msgid "Single posts"
-msgstr ""
+msgstr "Entrada individual"
 
 #: ../class-fire-utils_settings_map.php:1057
-#, fuzzy
 msgid "Set up single posts options"
-msgstr "Configura les opcions de disposició"
+msgstr "Configura les opcions de les entrades individuals"
 
 #: ../class-fire-utils_settings_map.php:1061
-#, fuzzy
 msgid "Breadcrumb"
-msgstr "Mostra la ruta (molles de p&agrave;)"
+msgstr "Molles de pa"
 
 #: ../class-fire-utils_settings_map.php:1063
-#, fuzzy
 msgid "Set up breadcrumb options"
-msgstr "Configura les opcions de disposició"
+msgstr "Configura les opcions de les molles de pa"
 
 #: ../class-fire-utils_settings_map.php:1075
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr ""
+"Metadades de les entrades (categories, etiquetes, taxonomies personalitzades)"
 
 #: ../class-fire-utils_settings_map.php:1077
-#, fuzzy
 msgid "Set up post metas options"
-msgstr "Configura les opcions dels comentaris"
+msgstr "Configura les opcions de les metadades"
 
 #: ../class-fire-utils_settings_map.php:1087
 msgid "Footer global settings"
-msgstr ""
+msgstr "Configuració global del peu de pàgina"
 
 #: ../class-fire-utils_settings_map.php:1089
-#, fuzzy
 msgid "Set up footer global options"
-msgstr "Configura les opcions de la p&agrave;gina principal"
+msgstr "Configura les opcions globals del peu de pàgina"
 
 #: ../class-fire-utils_settings_map.php:1153
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr ""
+"Nota: l'estructura de la pàgina d'inici s'ha de configurar a la secció de la "
+"pàgina d'inici"
 
 #: ../class-fire-utils_settings_map.php:1227
-#, fuzzy
 msgid "Layout"
-msgstr "youtube"
+msgstr "Disposició"
 
 #: ../class-fire-utils_settings_map.php:1231
 msgid "Logo / title on the left"
-msgstr ""
+msgstr "Logo / títol a l'esquerra"
 
 #: ../class-fire-utils_settings_map.php:1232
 msgid "Logo / title centered"
-msgstr ""
+msgstr "Logo / títol centrats"
 
 #: ../class-fire-utils_settings_map.php:1233
 msgid "Logo / title on the right"
-msgstr ""
+msgstr "Logo / títol a la dreta"
 
 #: ../class-fire-utils_settings_map.php:1242
-#, fuzzy
 msgid "Display the tagline"
-msgstr "Mostra el contingut sencer"
+msgstr "Mostra el subtítol"
 
 #: ../class-fire-utils_settings_map.php:1251
 msgid "Display menu in a box"
-msgstr ""
+msgstr "Mostra el menú dins d'una caixa"
 
 #: ../class-fire-utils_settings_map.php:1256
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
 msgstr ""
+"Si activeu aquesta opció, tancareu la capçalera (menú / subtítol / icones "
+"socials) dins d'una caixa gris clar."
 
 #: ../class-fire-utils_settings_map.php:1261
 msgid "Sticky on scroll"
-msgstr ""
+msgstr "Fixa la capçalera en desplaçament"
 
 #: ../class-fire-utils_settings_map.php:1266
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr ""
+"Si activeu aquesta opció, la capçalera quedarà fixada a la part de dalt de "
+"la pantalla mentre us desplaceu cap avall."
 
 #: ../class-fire-utils_settings_map.php:1271
 msgid "Sticky header : display the tagline"
-msgstr ""
+msgstr "Capçalera fixada: mostra el subtítol"
 
 #: ../class-fire-utils_settings_map.php:1280
 msgid "Sticky header : display the title / logo"
-msgstr ""
+msgstr "Capçalera fixada: mostra el títol / logo"
 
 #: ../class-fire-utils_settings_map.php:1289
 msgid "Sticky header : shrink title / logo"
-msgstr ""
+msgstr "Capçalera fixada: encongeix el títol / logo"
 
 #: ../class-fire-utils_settings_map.php:1298
 msgid "Sticky header : display the menu"
-msgstr ""
+msgstr "Capçalera fixada: mostra el menú"
 
 #: ../class-fire-utils_settings_map.php:1309
 msgid "Menu position"
-msgstr ""
+msgstr "Posició del menú"
 
 #: ../class-fire-utils_settings_map.php:1313
 msgid "Menu on the left"
-msgstr ""
+msgstr "Menú a l'esquerra"
 
 #: ../class-fire-utils_settings_map.php:1314
 msgid "Menu on the right"
-msgstr ""
+msgstr "Menú a la dreta"
 
 #: ../class-fire-utils_settings_map.php:1322
 msgid "Reveal the sub-menus blocks with a fade effect"
-msgstr ""
+msgstr "Mostra els submenús amb un efecte de fusió"
 
 #: ../class-fire-utils_settings_map.php:1331
 msgid "Hover move effect for the sub menu items"
-msgstr ""
+msgstr "Efecte al moure el ratolí per sobre dels elements dels submenús"
 
 #: ../class-fire-utils_settings_map.php:1341
 msgid "Fade effect on link hover"
-msgstr ""
+msgstr "Efecte de fusió al moure el ratolí per sobre dels enllaços"
 
 #: ../class-fire-utils_settings_map.php:1352
-#, fuzzy
 msgid "Display the breadcrumb on home page"
-msgstr "Mostra la ruta (molles de p&agrave;)"
+msgstr "Mostra les molles de pa a la pàgina d'inici"
 
 #: ../class-fire-utils_settings_map.php:1360
-#, fuzzy
 msgid "Display the breadcrumb in pages"
-msgstr "Mostra la ruta (molles de p&agrave;)"
+msgstr "Mostra les molles de pa a les pàgines"
 
 #: ../class-fire-utils_settings_map.php:1369
-#, fuzzy
 msgid "Display the breadcrumb in single posts"
-msgstr "Mostra la ruta (molles de p&agrave;)"
+msgstr "Mostra les molles de pa a les entrades individuals"
 
 #: ../class-fire-utils_settings_map.php:1378
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
 msgstr ""
+"Mostra les molles de pa a les llistes d'entrades: blog, arxius, resultats de "
+"cerca..."
 
 #: ../class-fire-utils_settings_map.php:1389
 msgid "Display icons next to titles"
-msgstr ""
+msgstr "Mostra les icones al costat dels títols"
 
 #: ../class-fire-utils_settings_map.php:1393
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
 msgstr ""
+"Si activeu aquesta opció una icona al·lusiva es mostrarà al costat dels "
+"títols de pàgines, entrades, arxius i ginys propis de WP."
 
 #: ../class-fire-utils_settings_map.php:1399
 msgid "Display a page icon next to the page title"
-msgstr ""
+msgstr "Mostra una icona de pàgina al costat del títol de la pàgina"
 
 #: ../class-fire-utils_settings_map.php:1408
 msgid "Display a post icon next to the single post title"
-msgstr ""
+msgstr "Mostra una icona d'entrada al costat del títol de l'entrada"
 
 #: ../class-fire-utils_settings_map.php:1417
 msgid "Display an icon next to the archive title"
-msgstr ""
+msgstr "Mostra una icona al costat del títol de l'arxiu"
 
 #: ../class-fire-utils_settings_map.php:1420
 msgid ""
@@ -1075,10 +1076,14 @@ msgid ""
 "page can be : category, tag, author, date archive, custom taxonomies, search "
 "results."
 msgstr ""
+"Si activeu aquesta opció es mostrarà una icon d'arxiu a la capçalera de tots "
+"els tipus d'arxiu (categoria, etiqueta, autor, data, resultats de cerca...) "
+"a l'esquerra del títol."
 
 #: ../class-fire-utils_settings_map.php:1427
 msgid "Display an icon next to each post title in an archive page"
 msgstr ""
+"Mostra una icona al costat de cada títol d'entrada en una pàgina d'arxiu"
 
 #: ../class-fire-utils_settings_map.php:1430
 msgid ""
@@ -1086,106 +1091,116 @@ msgid ""
 "each post titles in an archive page. An archive page can be : category, tag, "
 "author, date archive, custom taxonomies, search results."
 msgstr ""
+"Si activeu aquesta copió una icona d'entrada es mostrarà a l'esquerra de "
+"cada títol d'entrada en una pàgina d'arxiu (categoria, etiqueta, autor, "
+"data, resultats de cerca...)."
 
 #: ../class-fire-utils_settings_map.php:1437
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr ""
+"Mostra una icona al costat dels títols dels ginys de les barres laterals de "
+"WP"
 
 #: ../class-fire-utils_settings_map.php:1446
 msgid "WP footer widgets : display icons next to titles"
 msgstr ""
+"Mostra una icona al costat dels títols dels ginys del peu de pàgina de WP"
 
 #: ../class-fire-utils_settings_map.php:1458
-#, fuzzy
 msgid "Display posts metas"
-msgstr "Mostra l'extracte"
+msgstr "Mostra les metadades de les entrades"
 
 #: ../class-fire-utils_settings_map.php:1461
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
 msgstr ""
+"Si activeu aquesta opció, les metadades d'una entrada (com ara taxonomies, "
+"data i autor) es mostraran sota del seu títol."
 
 #: ../class-fire-utils_settings_map.php:1468
 msgid "Display posts metas on home"
-msgstr ""
+msgstr "Mostra metadades de les entrades a la pàgina d'inici"
 
 #: ../class-fire-utils_settings_map.php:1477
 msgid "Display posts metas for single posts"
-msgstr ""
+msgstr "Mostra metadades de les entrades per a les entrades individuals"
 
 #: ../class-fire-utils_settings_map.php:1486
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr ""
+"Mostra metadades de les entrades a les llistes d'entrades (blog, arxius)"
 
 #: ../class-fire-utils_settings_map.php:1498
 msgid "Set the excerpt length (in number of words) "
-msgstr ""
+msgstr "Indica la longitud de l'extracte (en nombre de paraules)"
 
 #: ../class-fire-utils_settings_map.php:1508
-#, fuzzy
 msgid "Thumbnails options"
-msgstr "Opciones del tema"
+msgstr "Opcions de les miniatures"
 
 #: ../class-fire-utils_settings_map.php:1509
-#, fuzzy
 msgid "Display the post thumbnails"
-msgstr "Mostra l'extracte"
+msgstr "Mostra les miniatures de les entrades"
 
 #: ../class-fire-utils_settings_map.php:1513
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
 msgstr ""
+"Si activeu aquesta opció les miniatures de les entrades es mostren a les "
+"llistes d'entrades: blog, arxius, cerques..."
 
 #: ../class-fire-utils_settings_map.php:1518
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
+"Si no hi ha imatge destacada, fes servir la darrera imatge vinculada a "
+"aquesta entrada."
 
 #: ../class-fire-utils_settings_map.php:1526
 msgid "Thumbnails shape"
-msgstr ""
+msgstr "Forma de les miniatures"
 
 #: ../class-fire-utils_settings_map.php:1530
 msgid "Rounded, expand on hover"
-msgstr ""
+msgstr "Arrodonida, i expandida al passar-hi per sobre"
 
 #: ../class-fire-utils_settings_map.php:1531
 msgid "Rounded, no expansion"
-msgstr ""
+msgstr "Arrodonida, sense expansió"
 
 #: ../class-fire-utils_settings_map.php:1532
 msgid "Squared, expand on hover"
-msgstr ""
+msgstr "Quadrada, i expandida al passar-hi per sobre"
 
 #: ../class-fire-utils_settings_map.php:1533
 msgid "Squared, no expansion"
-msgstr ""
+msgstr "Quadrada, sense expansió"
 
 #: ../class-fire-utils_settings_map.php:1534
 msgid "Rectangular with no effect"
-msgstr ""
+msgstr "Rectangular sense efectes"
 
 #: ../class-fire-utils_settings_map.php:1535
 msgid "Rectangular with blur effect on hover"
-msgstr ""
+msgstr "Rectangular amb efecte borrós al passar-hi per sobre"
 
 #: ../class-fire-utils_settings_map.php:1536
 msgid "Rectangular with unblur effect on hover"
-msgstr ""
+msgstr "Rectangular amb efecte \"unblur\" al passar-hi per sobre"
 
 #: ../class-fire-utils_settings_map.php:1544
 #: ../class-fire-utils_settings_map.php:1594
 msgid "Set the thumbnail's max height in pixels"
-msgstr ""
+msgstr "Indica l'alçada màxima en píxels de la miniatura"
 
 #: ../class-fire-utils_settings_map.php:1555
 msgid "Thumbnails position"
-msgstr ""
+msgstr "Posició de la miniatura"
 
 #: ../class-fire-utils_settings_map.php:1559
 msgid "Top"
-msgstr ""
+msgstr "Dalt"
 
 #: ../class-fire-utils_settings_map.php:1560
 msgid "Right"
@@ -1193,7 +1208,7 @@ msgstr "Derecha"
 
 #: ../class-fire-utils_settings_map.php:1561
 msgid "Bottom"
-msgstr ""
+msgstr "Baix"
 
 #: ../class-fire-utils_settings_map.php:1562
 msgid "Left"
@@ -1201,66 +1216,64 @@ msgstr "Izquierdo"
 
 #: ../class-fire-utils_settings_map.php:1570
 msgid "Alternate thumbnail/content"
-msgstr ""
+msgstr "Miniatura / contingut alternatiu"
 
 #: ../class-fire-utils_settings_map.php:1579
-#, fuzzy
 msgid "Post thumbnail position"
-msgstr "Navegació de les entrades"
+msgstr "Posició de les miniatures de les entrades"
 
 #: ../class-fire-utils_settings_map.php:1583
-#, fuzzy
 msgid "Don't display"
-msgstr "La p&agrave;gina principal mostra"
+msgstr "No ho mostris"
 
 #: ../class-fire-utils_settings_map.php:1584
-#, fuzzy
 msgid "Before the title in full width"
-msgstr "Disposició de l'slider: col·loca l'slider amb amplada completa"
+msgstr "Abans del títol amb amplada completa"
 
 #: ../class-fire-utils_settings_map.php:1585
 msgid "Before the title boxed"
-msgstr ""
+msgstr "Abans del títol encapsat"
 
 #: ../class-fire-utils_settings_map.php:1586
-#, fuzzy
 msgid "After the title"
-msgstr "Ajuste el tama&ntilde;o del t&iacute;tulo"
+msgstr "Després del títol"
 
 #: ../class-fire-utils_settings_map.php:1607
 msgid "Display a back to top arrow on scroll"
-msgstr ""
+msgstr "Durant el desplaçament, mostra una fletxa de tornar a dalt"
 
 #: ../class-fire-utils_settings_map.php:1654
-#, fuzzy
 msgid "Social link title in sidebars"
-msgstr "Enllaços socials a la barra lateral esquerra"
+msgstr "Títol dels enllaços socials a les barres laterals"
 
 #: ../class-fire-utils_settings_map.php:1660
 msgid "Will be hidden if empty"
-msgstr ""
+msgstr "S'amagarà si està buit"
 
 #: ../class-fire-utils_settings_map.php:1676
 msgid "Set slider's height in pixels"
-msgstr ""
+msgstr "Indica l'alçada en píxels de l'slider"
 
 #: ../class-fire-utils_settings_map.php:1686
 msgid "Apply this height to all sliders"
-msgstr ""
+msgstr "Aplica aquesta alçada a tots els sliders"
 
 #: ../class-fire-utils_settings_map.php:1694
 msgid "Replace the default image slider's height"
-msgstr ""
+msgstr "Substitueix l'alçada de la imatge per defecte de l'slider"
 
 #: ../class-fire-utils_settings_map.php:1700
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
 msgstr ""
+"Si activeu aquesta opció, les vostres imatges seran modificades durant la "
+"càrrega d'acord amb l'alçada personalitzada. Això és millor per afavorir el "
+"rendiment durant la càrrega del web."
 
 #: ../class-fire-utils_settings_map.php:1701
 msgid "You might want to regenerate your thumbnails."
-msgstr ""
+msgstr "Probablement voldreu regenerar les vostres miniatures."
 
 #: ../admin/class-admin-meta_boxes.php:87
 msgid "Layout Options"
@@ -1495,41 +1508,43 @@ msgid "Create a slider"
 msgstr "Crea un slider"
 
 #: ../admin/class-controls.php:226
-#, fuzzy
 msgid "Upload"
-msgstr "Subir Logo"
+msgstr "Carrega"
 
 #: ../admin/class-controls.php:227
 msgid "Remove"
-msgstr ""
+msgstr "Elimina"
 
-#: ../admin/class-fire-admin_init.php:63 ../admin/class-fire-admin_init.php:64
+#: ../admin/class-fire-admin_init.php:55 ../admin/class-fire-admin_init.php:56
 msgid "Upgrade WP"
 msgstr "Actualizeu WP"
 
-#: ../admin/class-fire-admin_init.php:83
+#: ../admin/class-fire-admin_init.php:75
 msgid "This theme requires WordPress 3.4+"
 msgstr "Aquest tema requereix WordPress 3.4 o superior"
 
-#: ../admin/class-fire-admin_init.php:86 ../admin/class-fire-admin_init.php:87
+#: ../admin/class-fire-admin_init.php:78 ../admin/class-fire-admin_init.php:79
 msgid "Upgrade Wordpress Now"
 msgstr "Actualitzeu Wordpress ara"
 
-#: ../admin/class-fire-admin_init.php:104
-#: ../admin/class-fire-admin_init.php:105
+#: ../admin/class-fire-admin_init.php:96 ../admin/class-fire-admin_init.php:97
+#: ../admin/class-fire-admin_page.php:37 ../admin/class-fire-admin_page.php:38
 msgid "About Customizr"
 msgstr "Quant a Customizr"
 
-#: ../admin/class-fire-admin_init.php:127
+#: ../admin/class-fire-admin_init.php:119
+#: ../admin/class-fire-admin_page.php:61
 msgid "Need help with Customizr ?"
 msgstr "Necessiteu ajuda amb Customizr?"
 
-#: ../admin/class-fire-admin_init.php:129
+#: ../admin/class-fire-admin_init.php:121
+#: ../admin/class-fire-admin_page.php:63
 #, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Benvingut a Customizr %s"
 
-#: ../admin/class-fire-admin_init.php:136
+#: ../admin/class-fire-admin_init.php:128
+#: ../admin/class-fire-admin_page.php:70
 #, php-format
 msgid ""
 "You can start by watching the <a href=\"%1$s\" target=\"_blank"
@@ -1547,23 +1562,28 @@ msgstr ""
 "trobareu una solució al vostre problema a les preguntes freqüents o al fòrum "
 "d'usuaris."
 
-#: ../admin/class-fire-admin_init.php:144
+#: ../admin/class-fire-admin_init.php:136
+#: ../admin/class-fire-admin_page.php:78
 msgid "Read the documentation"
 msgstr "Llegiu la documentació"
 
-#: ../admin/class-fire-admin_init.php:148
+#: ../admin/class-fire-admin_init.php:140
+#: ../admin/class-fire-admin_page.php:82
 msgid "Check the FAQ"
 msgstr "Consulteu les preguntes més freqüents"
 
-#: ../admin/class-fire-admin_init.php:153
+#: ../admin/class-fire-admin_init.php:145
+#: ../admin/class-fire-admin_page.php:87
 msgid "Code snippets"
 msgstr "Retalls de codi"
 
-#: ../admin/class-fire-admin_init.php:156
+#: ../admin/class-fire-admin_init.php:148
+#: ../admin/class-fire-admin_page.php:90
 msgid "Discuss in the user forum"
 msgstr "Debateu-ho al fòrum d'usuaris"
 
-#: ../admin/class-fire-admin_init.php:164
+#: ../admin/class-fire-admin_init.php:156
+#: ../admin/class-fire-admin_page.php:98
 #, php-format
 msgid ""
 "Thank you for using Customizr! Customizr %1$s has more features, is safer "
@@ -1578,7 +1598,8 @@ msgstr ""
 "\" target=\"_blank\">vídeo d'introducció</a> i busqueu inspiració al nostre "
 "<a href=\"#showcase\"> catàleg de webs</a>.<br/> Gaudiu-lo!"
 
-#: ../admin/class-fire-admin_init.php:178
+#: ../admin/class-fire-admin_init.php:170
+#: ../admin/class-fire-admin_page.php:112
 #, php-format
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
@@ -1588,11 +1609,13 @@ msgstr ""
 "després de l'actualizació per veure si alguna funció o alguna plantilla ha "
 "quedat obsoleta."
 
-#: ../admin/class-fire-admin_init.php:193
+#: ../admin/class-fire-admin_init.php:185
+#: ../admin/class-fire-admin_page.php:127
 msgid "We need sponsors!"
 msgstr "Necessitem patrocinadors!"
 
-#: ../admin/class-fire-admin_init.php:194
+#: ../admin/class-fire-admin_init.php:186
+#: ../admin/class-fire-admin_page.php:128
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
 "strong><br/> Please help support it's continued development with a donation "
@@ -1602,11 +1625,13 @@ msgstr ""
 "perfecte per a vosaltres.</strong><br /> Si us plau, ajudeu-nos a mantenir i "
 "continuar el desenvolupament amb una donació de $20, $50 o fins i tot $100."
 
-#: ../admin/class-fire-admin_init.php:201
+#: ../admin/class-fire-admin_init.php:193
+#: ../admin/class-fire-admin_page.php:135
 msgid "Happy user of Customizr?"
 msgstr "Sou un usuari feliç de Customizr?"
 
-#: ../admin/class-fire-admin_init.php:202
+#: ../admin/class-fire-admin_init.php:194
+#: ../admin/class-fire-admin_page.php:136
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
@@ -1614,59 +1639,83 @@ msgstr ""
 "Si esteu satisfet amb el tema, comenteu-ho a wordpress.org i escriviu una "
 "bona crítica de Customizr!.<br />(Som addictes a les vostres opinions...)"
 
-#: ../admin/class-fire-admin_init.php:207
+#: ../admin/class-fire-admin_init.php:199
+#: ../admin/class-fire-admin_page.php:141
 msgid "Follow us"
 msgstr "Seguiu-nos"
 
-#: ../admin/class-fire-admin_init.php:215
+#: ../admin/class-fire-admin_init.php:207
+#: ../admin/class-fire-admin_page.php:149
 msgid "Customizr's extensions"
-msgstr ""
+msgstr "Extensions de Customizr"
 
-#: ../admin/class-fire-admin_init.php:218
-#: ../admin/class-fire-admin_init.php:227
-msgid "Visit the extension's page"
-msgstr ""
-
+#: ../admin/class-fire-admin_init.php:210
 #: ../admin/class-fire-admin_init.php:219
-msgid "Easily take your web design one step further"
-msgstr ""
+#: ../admin/class-fire-admin_page.php:152
+#: ../admin/class-fire-admin_page.php:161
+msgid "Visit the extension's page"
+msgstr "Visiteu la pàgina d'extensions"
 
-#: ../admin/class-fire-admin_init.php:220
+#: ../admin/class-fire-admin_init.php:211
+#: ../admin/class-fire-admin_page.php:153
+msgid "Easily take your web design one step further"
+msgstr "Porteu fàcilment el vostre disseny un pas més enllà"
+
+#: ../admin/class-fire-admin_init.php:212
+#: ../admin/class-fire-admin_page.php:154
 msgid ""
 "The Customizr's extensions are plugins developed to extend the Customizr "
 "theme with great features. Nicely integrated with the theme's built-in "
 "options, they can be enabled/disabled safely with no side effects on your "
 "existing settings or customizations."
 msgstr ""
+"Les extensions de Customizr són extensions desenvolupades per incorporar al "
+"tema característiques addicionals. S'integren adequadament amb les opcions "
+"bàsiques del tema i poden ser activades i desactivades amb seguretat sense "
+"cap efecte secundari sobre la vostra actual configuració."
 
-#: ../admin/class-fire-admin_init.php:222
+#: ../admin/class-fire-admin_init.php:214
+#: ../admin/class-fire-admin_page.php:156
 msgid ""
 "These modules are designed to be simple to use for everyone. They are a good "
 "solution to add some creative customizations whitout needing to dive into "
 "the code."
 msgstr ""
+"Aquests mòduls estan dissenyats per ser fàcils d'utilitzar per part de "
+"qualsevol persona. Són una bona solució per afegir personalitzacions "
+"creatives sense haver de tocar codi."
 
-#: ../admin/class-fire-admin_init.php:224
+#: ../admin/class-fire-admin_init.php:216
+#: ../admin/class-fire-admin_page.php:158
 msgid ""
 "Customizr's extensions are installed and upgraded from your WordPress admin, "
 "like any other WordPress plugins. Well documented and easily extendable with "
 "hooks, they come with a dedicated support forum on themesandco.com."
 msgstr ""
+"Les extensions de Customizr s'instal·len i actualitzen des de "
+"l'administrador de Wordpress com qualsevol altra extensió. Estan ben "
+"documentades i són fàcilment extensibles a través de hooks. Disposen d'un "
+"fòrum de suport específic a themesandco.com."
 
-#: ../admin/class-fire-admin_init.php:233
+#: ../admin/class-fire-admin_init.php:225
+#: ../admin/class-fire-admin_page.php:167
 msgid "Customizr Showcase"
 msgstr "Catàleg de webs Customizr"
 
-#: ../admin/class-fire-admin_init.php:236
-#: ../admin/class-fire-admin_init.php:243
+#: ../admin/class-fire-admin_init.php:228
+#: ../admin/class-fire-admin_init.php:235
+#: ../admin/class-fire-admin_page.php:170
+#: ../admin/class-fire-admin_page.php:177
 msgid "Visit the showcase"
 msgstr "Visiteu el catàleg de webs"
 
-#: ../admin/class-fire-admin_init.php:237
+#: ../admin/class-fire-admin_init.php:229
+#: ../admin/class-fire-admin_page.php:171
 msgid "Find inspiration for your next Customizr based website!"
 msgstr "Trobeu inspiració per al vostre proper web basat en Customizr!"
 
-#: ../admin/class-fire-admin_init.php:238
+#: ../admin/class-fire-admin_init.php:230
+#: ../admin/class-fire-admin_page.php:172
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
@@ -1674,7 +1723,8 @@ msgstr ""
 "Aquest catàleg de webs pretén mostratr el que es pot fer amb Customizr i "
 "ajudar altres usuaris a trobar inspiració per al seu disseny."
 
-#: ../admin/class-fire-admin_init.php:240
+#: ../admin/class-fire-admin_init.php:232
+#: ../admin/class-fire-admin_page.php:174
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
@@ -1682,18 +1732,35 @@ msgstr ""
 "Creieu que heu fet un web impressionant que pot inspirar altra gent? "
 "Presentar-lo per tal que sigui revisat és ràpid i fàcil de fer."
 
-#: ../admin/class-fire-admin_init.php:250
+#: ../admin/class-fire-admin_init.php:242
+#: ../admin/class-fire-admin_page.php:255
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Registre de canvis de la versió %1$s"
 
-#: ../admin/class-fire-admin_init.php:259
+#: ../admin/class-fire-admin_init.php:251
+#: ../admin/class-fire-admin_page.php:186
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Vés al Tauler &rarr; Pàgina d'inici"
 
-#: ../admin/class-fire-admin_init.php:259
+#: ../admin/class-fire-admin_init.php:251
+#: ../admin/class-fire-admin_page.php:186
 msgid "Go to Dashboard"
 msgstr "Vés al Tauler"
+
+#: ../admin/class-fire-admin_page.php:267
+msgid "System Informations"
+msgstr ""
+
+#: ../admin/class-fire-admin_page.php:268
+msgid "Please include the following informations when posting support requests"
+msgstr ""
+
+#: ../admin/class-fire-admin_page.php:270
+msgid ""
+"To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
+"(Mac)."
+msgstr ""
 
 #: ../parts/class-content-attachment.php:41
 msgid "&larr; Previous"
@@ -1828,9 +1895,8 @@ msgid "Comments are closed."
 msgstr "Comentaris tancats."
 
 #: ../parts/class-content-comments.php:264
-#, fuzzy
 msgid "Leave a comment"
-msgstr "Deixa un Comentari"
+msgstr "Deixa un comentari"
 
 #: ../parts/class-content-featured_pages.php:125
 msgid "Customizer screen"
@@ -2013,6 +2079,12 @@ msgstr "Torna a l'inici"
 #: ../parts/class-header-menu.php:126
 msgid "Add a menu"
 msgstr "Afegeix un menú"
+
+#~ msgid "Customiz'it!"
+#~ msgstr "Personalitza el tema"
+
+#~ msgid "Customize your website at any time!"
+#~ msgstr "Personalitza el teu web en qualsevol moment!"
 
 #~ msgid "Let your creativity speak and easily customiz'it the way you want!"
 #~ msgstr ""

@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.2.0
+ * Customizr v3.2.2
  *
  * Licensed under the GNU General Public License v2 or laters
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5575,7 +5575,7 @@ h2.comments-title:before {
 /* NO NAVBAR */
 .no-navbar .navbar .navbar-inner,
 .sticky-enabled .navbar .navbar-inner {
-  background-color: #FFF;
+  background: none;
   background-image: none;
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
@@ -8441,7 +8441,7 @@ li#wp-admin-bar-tc-customizr a {
     width: 150px;
     height: 150px;
     border: 94px solid #FAFAFA;
-    top: -32px;
+    top: -44px;
     left: -65px;
   }
   .thumb-wrapper {

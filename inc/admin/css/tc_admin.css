@@ -12,7 +12,7 @@
 .about-wrap h3 {
 	line-height: 26px;
 }
-.about-wrap .feature-section {
+#customizr-admin-panel.about-wrap .feature-section {
 		margin-top: 0px;
 }
 .about-wrap .feature-section div {
@@ -180,7 +180,7 @@ h1.need-help-title:before {
 	line-height: 0px;
 }
 
-.button-secondary.customizr-help {
+#customizr-admin-panel .button-secondary.customizr-help {
 	line-height: 25px;
 	padding-top: 11px;
 	height: 51px;

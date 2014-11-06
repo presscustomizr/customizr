@@ -29,6 +29,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 	    }
 
 
+
 		/**
 		* Adds controls to customizer
 		* @package Customizr
@@ -40,13 +41,11 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 
 
-
-
 		/**
-		 * Generates customizer sections, settings and controls
-		 * @package Customizr
-		 * @since Customizr 3.0 
-		 */
+		* Generates customizer sections, settings and controls
+		* @package Customizr
+		* @since Customizr 3.0 
+		*/
 		function tc_customize_register( $wp_customize) {
 			return $this -> tc_customize_factory ( $wp_customize , $args = $this -> tc_customize_arguments(), $setup = TC_utils_settings_map::$instance -> tc_customizer_map() );
 		}
