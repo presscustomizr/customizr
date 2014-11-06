@@ -1,0 +1,2056 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: * Customizr v3.1.24\n"
+"POT-Creation-Date: 2014-10-20 18:17+0100\n"
+"PO-Revision-Date: 2014-10-20 18:17+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"Language-Team: Yaacov Glezer <jakets69@gmail.com>\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../class-fire-init.php:47 ../class-fire-init.php:48
+msgid "Right sidebar"
+msgstr "סרגל צדדי ימני"
+
+#: ../class-fire-init.php:53 ../class-fire-init.php:54
+msgid "Left sidebar"
+msgstr "סרגל צדדי שמאלי"
+
+#: ../class-fire-init.php:59 ../class-fire-init.php:60
+msgid "2 sidebars : Right and Left"
+msgstr "שני סרגלים צדדיים : ימני ושמאלי"
+
+#: ../class-fire-init.php:65 ../class-fire-init.php:66
+msgid "No sidebars : full width layout"
+msgstr "ללא סרגל צדדי :  פריסה ברוחב מלא"
+
+#: ../class-fire-init.php:77
+msgid "Blue"
+msgstr "כחול"
+
+#: ../class-fire-init.php:78
+msgid "Light blue "
+msgstr "כחול בהיר"
+
+#: ../class-fire-init.php:79
+msgid "Green blue"
+msgstr "ירוק כחול"
+
+#: ../class-fire-init.php:80
+msgid "Green"
+msgstr "ירוק"
+
+#: ../class-fire-init.php:81
+msgid "Light green"
+msgstr "ירוק בהיר"
+
+#: ../class-fire-init.php:82
+msgid "Yellow"
+msgstr "צהוב"
+
+#: ../class-fire-init.php:83
+msgid "Flat yellow"
+msgstr "צהוב שטוח"
+
+#: ../class-fire-init.php:84
+msgid "Orange"
+msgstr "כתום"
+
+#: ../class-fire-init.php:85
+msgid "Flat orange"
+msgstr "כתום שטוח"
+
+#: ../class-fire-init.php:86
+msgid "Red"
+msgstr "אדום"
+
+#: ../class-fire-init.php:87
+msgid "Flat red"
+msgstr "אדום שטוח"
+
+#: ../class-fire-init.php:88
+msgid "Purple"
+msgstr "סגול"
+
+#: ../class-fire-init.php:89
+msgid "Flat purple"
+msgstr "סגול שטוח"
+
+#: ../class-fire-init.php:90
+msgid "Grey"
+msgstr "אפור"
+
+#: ../class-fire-init.php:91
+msgid "Ligth grey"
+msgstr "אפור בהיר"
+
+#: ../class-fire-init.php:92
+msgid "Black"
+msgstr "שחור"
+
+#: ../class-fire-init.php:93
+msgid "Flat black"
+msgstr "שחור שטוח"
+
+#: ../class-fire-init.php:123
+msgid "Subscribe to my rss feed"
+msgstr "הרשמו להזנות RSS שלי"
+
+#: ../class-fire-init.php:124
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "הזנת RSS (ברירת המחדל היא הזנה של וורדפרס)"
+
+#: ../class-fire-init.php:128
+msgid "Follow me on Twitter"
+msgstr "עקבו אחרי בטויטר"
+
+#: ../class-fire-init.php:129
+msgid "Twitter profile url"
+msgstr "קישור פרופיל טוויטר"
+
+#: ../class-fire-init.php:133
+msgid "Follow me on Facebook"
+msgstr "עקבו אחרי בפייסבוק"
+
+#: ../class-fire-init.php:134
+msgid "Facebook profile url"
+msgstr "קישור פרופיל פייסבוק"
+
+#: ../class-fire-init.php:138
+msgid "Follow me on Google+"
+msgstr "עקבו אחרי בגוגל+"
+
+#: ../class-fire-init.php:139
+msgid "Google+ profile url"
+msgstr "קישור פרופיל גוגל+"
+
+#: ../class-fire-init.php:143
+msgid "Follow me on Instagram"
+msgstr "עקבו אחרי באינסטגרם"
+
+#: ../class-fire-init.php:144
+msgid "Instagram profile url"
+msgstr "קישור פרופיל אינסטגרם"
+
+#: ../class-fire-init.php:148
+msgid "Follow me on Tumblr"
+msgstr "עקבו אחרי בטמבלר"
+
+#: ../class-fire-init.php:149
+msgid "Tumblr url"
+msgstr "קישור טאמבלר"
+
+#: ../class-fire-init.php:153
+msgid "Follow me on Flickr"
+msgstr "עקבו אחרי בפליקר"
+
+#: ../class-fire-init.php:154
+msgid "Flickr url"
+msgstr "קישור פליקר"
+
+#: ../class-fire-init.php:158
+msgid "Follow me on WordPress"
+msgstr "עקבו אחרי בוורדפרס"
+
+#: ../class-fire-init.php:159
+msgid "WordPress profile url"
+msgstr "קישור פרופיל וורדפרס"
+
+#: ../class-fire-init.php:163
+msgid "Follow me on Youtube"
+msgstr "עקבו אחרי ביו-טיוב"
+
+#: ../class-fire-init.php:164
+msgid "Youtube profile url"
+msgstr "קישור פרופיל יו-טיוב"
+
+#: ../class-fire-init.php:168
+msgid "Pin me on Pinterest"
+msgstr "Pin me on Pinterest"
+
+#: ../class-fire-init.php:169
+msgid "Pinterest profile url"
+msgstr "קישור פרופיל פינטרסט"
+
+#: ../class-fire-init.php:173
+msgid "Follow me on Github"
+msgstr "עקבו אחרי בגיטהב"
+
+#: ../class-fire-init.php:174
+msgid "Github profile url"
+msgstr "קישור פרופיל גיטהב"
+
+#: ../class-fire-init.php:178
+msgid "Follow me on Dribbble"
+msgstr "עקבו אחרי בדריבל"
+
+#: ../class-fire-init.php:179
+msgid "Dribbble profile url"
+msgstr "קישור לפרופיל Dribbble"
+
+#: ../class-fire-init.php:183
+msgid "Follow me on LinkedIn"
+msgstr "עקבו אחרי בלינקדאין"
+
+#: ../class-fire-init.php:184
+msgid "LinkedIn profile url"
+msgstr "כתובת פרופיל לינקדאין"
+
+#: ../class-fire-init.php:193
+msgid "Right Sidebar"
+msgstr "סרגל צדדי ימני"
+
+#: ../class-fire-init.php:194 ../class-fire-init.php:198
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "מופיע בפוסטים, עמודים סטאטיים, ארכיון ודפי חיפוש"
+
+#: ../class-fire-init.php:197
+msgid "Left Sidebar"
+msgstr "סרגל צדדי שמאלי"
+
+#: ../class-fire-init.php:205
+msgid "Footer Widget Area One"
+msgstr "ווידג'ט כותרת תחתונה - איזור ראשון"
+
+#: ../class-fire-init.php:206 ../class-fire-init.php:210
+#: ../class-fire-init.php:214
+msgid "Just use it as you want !"
+msgstr "השתמשו בו כרצונכם!"
+
+#: ../class-fire-init.php:209
+msgid "Footer Widget Area Two"
+msgstr "ווידג'ט כותרת תחתונה - איזור שני"
+
+#: ../class-fire-init.php:213
+msgid "Footer Widget Area Three"
+msgstr "ווידג'ט כותרת תחתונה - איזור שלישי"
+
+#: ../class-fire-init.php:231
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "אמירת האמת בתקופה של הונאה אוניברסלית היא מעשה מהפכני."
+
+#: ../class-fire-init.php:232
+msgid "George Orwell"
+msgstr "ג'ורג' אורוול"
+
+#: ../class-fire-init.php:233
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr "מצטערים, הדף המבוקש לא נמצא, אולי תנסו את החיפוש המופיע מטה"
+
+#: ../class-fire-init.php:238
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr "הצלחה היא היכולת לעבור מכשלון אחד לשני בלי לאבד את ההתלהבות..."
+
+#: ../class-fire-init.php:239
+msgid "Sir Winston Churchill"
+msgstr "סר וינסטון צ'רצ'יל"
+
+#: ../class-fire-init.php:240
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"מצטערים, אך שום דבר לא מתאים להגדרות החיפוש שלכם, אנא נסו שוב עם מילות חיפוש "
+"אחרות."
+
+#: ../class-fire-init.php:255
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr היא תבנית רספונסיבית נקיה"
+
+#: ../class-fire-init.php:260 ../class-fire-init.php:269
+msgid "Style your WordPress site live!"
+msgstr "עצבו את אתר הוורדפרס שלכם  ב\"חי\""
+
+#: ../class-fire-init.php:261
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"אפשריות רבות לפריסה ועיצוב זמינות ממסך ההתאמות של וורדפרס : תוכלו לראות את "
+"השינוי ב\"חי"
+
+#: ../class-fire-init.php:262
+msgid "Just try it!"
+msgstr "נסה את זה!"
+
+#: ../class-fire-init.php:274 ../class-fire-init.php:283
+msgid "Create beautiful sliders"
+msgstr "יצירת שקופיות יפהפיות"
+
+#: ../class-fire-init.php:275
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr מגיעה עם מחולל סליידרים מגניבים : הוסיפו סליידר לכל פוסט או עמוד "
+"שתרצו!"
+
+#: ../class-fire-init.php:276
+msgid "Discover the features"
+msgstr "גלו את האפשרויות"
+
+#: ../class-fire-init.php:393
+msgid "Main Menu"
+msgstr "תפריט ראשי"
+
+#: ../class-fire-init.php:772
+msgid "Customiz'it!"
+msgstr ""
+
+#: ../class-fire-init.php:775
+msgid "Customize your website at any time!"
+msgstr "התאם את האתר שלך בכל זמן!"
+
+#: ../class-fire-init.php:793
+msgid "Help"
+msgstr "עזרה"
+
+#: ../class-fire-init.php:796
+msgid "Need help with Customizr? Click here!"
+msgstr "זקוקים לעזרה עם Customizr? לחצו כאן!"
+
+#: ../class-fire-utils.php:378
+#, php-format
+msgid "Page %s"
+msgstr "עמוד %s"
+
+#: ../class-fire-utils_settings_map.php:43
+msgid "Home featured page one"
+msgstr "דף מובלט ראשון"
+
+#: ../class-fire-utils_settings_map.php:44
+msgid "Home featured page two"
+msgstr "דף מובלט שני"
+
+#: ../class-fire-utils_settings_map.php:45
+msgid "Home featured page three"
+msgstr "דף מובלט שלישי"
+
+#: ../class-fire-utils_settings_map.php:48
+msgid "Featured text one (200 car. max)"
+msgstr "מלל דף מובלט ראשון (מקס' 200 תווים)"
+
+#: ../class-fire-utils_settings_map.php:49
+msgid "Featured text two (200 car. max)"
+msgstr "מלל דף מובלט שני (מקס' 200 תווים)"
+
+#: ../class-fire-utils_settings_map.php:50
+msgid "Featured text three (200 car. max)"
+msgstr "מלל דף מובלט שלישי (מקס' 200 תווים)"
+
+#: ../class-fire-utils_settings_map.php:66
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr "דף מובלט מותאם אישי %1$s"
+
+#: ../class-fire-utils_settings_map.php:82
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr "מלל דף מובלט %1$s (200 תווים מקס')"
+
+#: ../class-fire-utils_settings_map.php:85
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr ""
+"ראשית עליך לבחור עמוד. יש להשאיר שדה זה ריק אם ברצונך להשתמש בתקציר העמוד."
+
+#: ../class-fire-utils_settings_map.php:184
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash;ללא סליידר &mdash;"
+
+#: ../class-fire-utils_settings_map.php:185
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; סליידר לדוגמא &mdash;"
+
+#: ../class-fire-utils_settings_map.php:227
+#, fuzzy
+msgid "Global settings"
+msgstr "Réglages de la structure de page"
+
+#: ../class-fire-utils_settings_map.php:228
+msgid "Global settings for the Customizr theme :skin, socials, links..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:233
+msgid "Header : title, logo, menu, ..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:234
+msgid "Header settings for the Customizr theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:239
+msgid "Content : home, posts, ..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:240
+msgid "Content settings for the Customizr theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:245
+msgid "Footer"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:246
+msgid "Footer settings for the Customizr theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:251
+#, fuzzy
+msgid "Advanced options"
+msgstr "אפשרויות סליידר"
+
+#: ../class-fire-utils_settings_map.php:252
+msgid "Advanced settings for the Customizr theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:273
+#: ../class-fire-utils_settings_map.php:975
+msgid "Skin"
+msgstr "מעטפת"
+
+#: ../class-fire-utils_settings_map.php:275
+#: ../class-fire-utils_settings_map.php:977
+msgid "Select a skin for Customizr"
+msgstr "בחר מעטפת עבור Customizr"
+
+#: ../class-fire-utils_settings_map.php:279
+#: ../class-fire-utils_settings_map.php:1021
+msgid "Logo &amp; Favicon"
+msgstr "לוגו וסמליל (favicon)"
+
+#: ../class-fire-utils_settings_map.php:281
+#: ../class-fire-utils_settings_map.php:1023
+msgid "Set up logo and favicon options"
+msgstr "הגדרות לוגו וסמליל (favicion)"
+
+#: ../class-fire-utils_settings_map.php:285
+#: ../class-fire-utils_settings_map.php:1035
+msgid "Front Page"
+msgstr "עמוד ראשי"
+
+#: ../class-fire-utils_settings_map.php:287
+#: ../class-fire-utils_settings_map.php:1037
+msgid "Set up front page options"
+msgstr "הגדרת אפשרויות דף ראשי"
+
+#: ../class-fire-utils_settings_map.php:291
+#: ../class-fire-utils_settings_map.php:1042
+msgid "Pages &amp; Posts Layout"
+msgstr "פריסת עמודים ופוסטים"
+
+#: ../class-fire-utils_settings_map.php:293
+#: ../class-fire-utils_settings_map.php:1044
+msgid "Set up layout options"
+msgstr "הגדרת אפשרויות פריסה"
+
+#: ../class-fire-utils_settings_map.php:297
+#: ../class-fire-utils_settings_map.php:1081
+msgid "Comments"
+msgstr "תגובות"
+
+#: ../class-fire-utils_settings_map.php:299
+#: ../class-fire-utils_settings_map.php:1083
+msgid "Set up comments options"
+msgstr "הגדרת אפשרויות לתגובות"
+
+#: ../class-fire-utils_settings_map.php:303
+#: ../class-fire-utils_settings_map.php:981
+#: ../class-fire-utils_settings_map.php:1653
+msgid "Social links"
+msgstr "קישורים חברתיים"
+
+#: ../class-fire-utils_settings_map.php:305
+#: ../class-fire-utils_settings_map.php:983
+msgid "Set up your social links"
+msgstr "הגדרת הקישורים החברתיים שלך"
+
+#: ../class-fire-utils_settings_map.php:309
+msgid "Images"
+msgstr "תמונות"
+
+#: ../class-fire-utils_settings_map.php:311
+#: ../class-fire-utils_settings_map.php:1001
+msgid "Various images settings"
+msgstr "הגדרות שונות לתמונות"
+
+#: ../class-fire-utils_settings_map.php:315
+msgid "Links"
+msgstr "קישורים"
+
+#: ../class-fire-utils_settings_map.php:317
+#: ../class-fire-utils_settings_map.php:989
+msgid "Various links settings"
+msgstr "הגדרות שונות לקישורים"
+
+#: ../class-fire-utils_settings_map.php:321
+#: ../class-fire-utils_settings_map.php:1093
+msgid "Custom CSS"
+msgstr "CSS מותאם אישית"
+
+#: ../class-fire-utils_settings_map.php:323
+#: ../class-fire-utils_settings_map.php:1095
+msgid "Add your own CSS"
+msgstr "הוסף את ה-CSS שלך"
+
+#: ../class-fire-utils_settings_map.php:327
+#: ../class-fire-utils_settings_map.php:1005
+msgid "Responsive settings"
+msgstr "הגדרות רספונסיביות"
+
+#: ../class-fire-utils_settings_map.php:329
+#: ../class-fire-utils_settings_map.php:1007
+msgid "Various settings for responsive display"
+msgstr "הגדרות שונות לתצוגה רספונסיבית"
+
+#: ../class-fire-utils_settings_map.php:361
+msgid "Manage menus"
+msgstr "ניהול תפריטים"
+
+#: ../class-fire-utils_settings_map.php:367
+msgid "Select a submenu expansion option"
+msgstr "בחר אפשרות הרחבה של תת-תפריט"
+
+#: ../class-fire-utils_settings_map.php:371
+msgid "Expand submenus on click"
+msgstr "הרחב תפריטים בלחיצה"
+
+#: ../class-fire-utils_settings_map.php:372
+msgid "Expand submenus on hover"
+msgstr "הרחב תפריטים בריחוף"
+
+#: ../class-fire-utils_settings_map.php:387
+msgid "Choose a predefined skin"
+msgstr "בחירת מעטפת מוגדרת מראש"
+
+#: ../class-fire-utils_settings_map.php:396
+msgid "Performance : use the minified CSS stylesheet"
+msgstr "ביצועים : השתמש ב-CSS מצומצם"
+
+#: ../class-fire-utils_settings_map.php:399
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr ""
+"שימוש בגרסה המצומצמת של קובץ עיצוב המעטפת יאיץ את טעינת דף האינטרנט שלך"
+
+#: ../class-fire-utils_settings_map.php:405
+#: ../class-fire-utils_settings_map.php:1217
+msgid "Display top border"
+msgstr "הצג גבול עליון"
+
+#: ../class-fire-utils_settings_map.php:409
+#: ../class-fire-utils_settings_map.php:1221
+msgid "Uncheck this option to remove the colored top border."
+msgstr "בטל סימון אפשרות זו כדי להסיר את הגבול העליון הצבעוני"
+
+#: ../class-fire-utils_settings_map.php:421
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "טעינת לוגו (פורמטים נתמכים: .jpg, .png, .gif. svg, svgz)"
+
+#: ../class-fire-utils_settings_map.php:430
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "כפיית מימדי לוגו לרוחב מירבי 250פיקסל, גובה מרבי 100פיקסל"
+
+#: ../class-fire-utils_settings_map.php:446
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "טעינת סמליל (פורמטים נתמכים :.ico, .png, .gif )"
+
+#: ../class-fire-utils_settings_map.php:464
+msgid "Choose content and layout"
+msgstr "בחירת תוכן ופריסה"
+
+#: ../class-fire-utils_settings_map.php:472
+msgid "Front page displays"
+msgstr "להציג בדף הראשי"
+
+#: ../class-fire-utils_settings_map.php:477
+msgid "Don't show any posts or page"
+msgstr "לא להציג שום פוסט או עמוד"
+
+#: ../class-fire-utils_settings_map.php:478
+msgid "Your latest posts"
+msgstr "הפוסטים האחרונים שלך"
+
+#: ../class-fire-utils_settings_map.php:479
+msgid "A static page"
+msgstr "עמוד סטאטי"
+
+#: ../class-fire-utils_settings_map.php:485
+msgid "Front page"
+msgstr "עמוד ראשי"
+
+#: ../class-fire-utils_settings_map.php:493
+msgid "Posts page"
+msgstr "עמוד פוסטים"
+
+#: ../class-fire-utils_settings_map.php:502
+msgid "Set up the front page layout"
+msgstr "הגדרת פריסת הדף הראשי"
+
+#: ../class-fire-utils_settings_map.php:513
+msgid "Slider options"
+msgstr "אפשרויות סליידר"
+
+#: ../class-fire-utils_settings_map.php:514
+msgid "Select front page slider"
+msgstr "הגדרת סליידר הדף הראשי"
+
+#: ../class-fire-utils_settings_map.php:526
+msgid "Full width slider"
+msgstr "סליידר ברוחב מלא"
+
+#: ../class-fire-utils_settings_map.php:537
+msgid "Delay between each slides"
+msgstr "השהייה בין שקופיות"
+
+#: ../class-fire-utils_settings_map.php:542
+msgid "in ms : 1000ms = 1s"
+msgstr "במילישניות : 1000מילישניות = שניה אחת"
+
+#: ../class-fire-utils_settings_map.php:550
+msgid "Featured pages options"
+msgstr "אפשרויות עמודים מובלטים"
+
+#: ../class-fire-utils_settings_map.php:551
+msgid "Display home featured pages area"
+msgstr "הצג עמודים מומצלים בדף הבית"
+
+#: ../class-fire-utils_settings_map.php:555
+msgid "Enable"
+msgstr "אפשר"
+
+#: ../class-fire-utils_settings_map.php:556
+msgid "Disable"
+msgstr "השבת"
+
+#: ../class-fire-utils_settings_map.php:565
+msgid "Show images"
+msgstr "הצג תמונות"
+
+#: ../class-fire-utils_settings_map.php:568
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+" התמונות נקבעות באפשרות של \"תמונה מייצגת\" של כל עמוד (במסך עריכת העמוד). "
+"בטל את האפשרות הנ\"ל כדי להשבית את התמונה המייצגת"
+
+#: ../class-fire-utils_settings_map.php:574
+msgid "Read more &raquo;"
+msgstr "קרא עוד &raquo;"
+
+#: ../class-fire-utils_settings_map.php:576
+msgid "Button text"
+msgstr "מלל הלחצן"
+
+#: ../class-fire-utils_settings_map.php:597
+#: ../class-fire-utils_settings_map.php:1139
+msgid "Display Breadcrumb"
+msgstr "הצג פירורי לחם (breadcrumb)"
+
+#: ../class-fire-utils_settings_map.php:607
+#: ../class-fire-utils_settings_map.php:1149
+msgid "Choose the global default layout"
+msgstr "בחירת פריסת ברירת מחדל כללית"
+
+#: ../class-fire-utils_settings_map.php:618
+#: ../class-fire-utils_settings_map.php:1161
+msgid "Force default layout everywhere"
+msgstr "כפיית פריסת ברירת מחדל בכל מקום"
+
+#: ../class-fire-utils_settings_map.php:621
+#: ../class-fire-utils_settings_map.php:1164
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"אפשרות זו תדרוס כל פריסה ספציפית שתוגדר לעמודים/פוסטים, כולל הדף הראשי."
+
+#: ../class-fire-utils_settings_map.php:628
+#: ../class-fire-utils_settings_map.php:1170
+msgid "Choose the posts default layout"
+msgstr "בחירת פריסת ברירת המחדל עבור פוסטים"
+
+#: ../class-fire-utils_settings_map.php:640
+#: ../class-fire-utils_settings_map.php:1192
+msgid "Maximum number of posts per page"
+msgstr "מקסימום פוסטים לעמוד"
+
+#: ../class-fire-utils_settings_map.php:651
+#: ../class-fire-utils_settings_map.php:1202
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "בחירת אורך פוסטים ברשימות (ראשי, חיפוש, ארכיון,...)"
+
+#: ../class-fire-utils_settings_map.php:655
+#: ../class-fire-utils_settings_map.php:1206
+msgid "Display the excerpt"
+msgstr "הצג את המובאה (תקציר)"
+
+#: ../class-fire-utils_settings_map.php:656
+#: ../class-fire-utils_settings_map.php:1207
+msgid "Display the full content"
+msgstr "הצג את כל התוכן"
+
+#: ../class-fire-utils_settings_map.php:664
+#: ../class-fire-utils_settings_map.php:1179
+msgid "Choose the pages default layout"
+msgstr "בחירת פריסת ברירת מחדל עבור עמודים"
+
+#: ../class-fire-utils_settings_map.php:684
+msgid "Enable comments on pages"
+msgstr "אפשר תגובות על עמודים"
+
+#: ../class-fire-utils_settings_map.php:687
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"אפשרות זו תאפשר  הערות על עמודים. תוכלו להשבית הערות לעמוד בודד במצב עריכה "
+"מהירה במסך רשימת העמודים."
+
+#: ../class-fire-utils_settings_map.php:701
+#: ../class-fire-utils_settings_map.php:1617
+msgid "Social links in header"
+msgstr "קישורים חברתיים בכותרת עליונה"
+
+#: ../class-fire-utils_settings_map.php:710
+#: ../class-fire-utils_settings_map.php:1635
+msgid "Social links in left sidebar"
+msgstr "קישורים חברתיים בסרגל צדדי שמאלי"
+
+#: ../class-fire-utils_settings_map.php:719
+#: ../class-fire-utils_settings_map.php:1645
+msgid "Social links in right sidebar"
+msgstr "קישורים חברתיים בסרגל צדדי ימני"
+
+#: ../class-fire-utils_settings_map.php:727
+#: ../class-fire-utils_settings_map.php:1626
+msgid "Social links in footer"
+msgstr "קישורים חברתיים בכותרת תחתית"
+
+#: ../class-fire-utils_settings_map.php:748
+msgid "Enable/disable lightbox effect on images"
+msgstr "אפשר/השבת אפקטי לייטבוקס על תמונות"
+
+#: ../class-fire-utils_settings_map.php:751
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"אפשרות זו תפעיל חלון עם אפקט זום כשמקליקים על תמונה. לא יחול על גלריית תמונות"
+
+#: ../class-fire-utils_settings_map.php:757
+msgid "Autoscale images on zoom"
+msgstr "התאמה אוטומטית של תמונות בעת זום"
+
+#: ../class-fire-utils_settings_map.php:760
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr "אפשרות זו תכפה התאמת תמונות לגדול המסך בלייטבוקס זום"
+
+#: ../class-fire-utils_settings_map.php:766
+msgid "Enable/disable retina support"
+msgstr "אפשר/השבת תמיכה במסכי רטינה"
+
+#: ../class-fire-utils_settings_map.php:769
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr "אפשרות זו תכלול תמיכה במכשירים בעלי רזולוציית מסך גבוהה"
+
+#: ../class-fire-utils_settings_map.php:774
+msgid "Sliders : display on loading icon before rendering the slides"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:777
+msgid ""
+"When checked, this option displays a loading icon when the slides are beeing "
+"setup."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:790
+msgid "Enable/disable smooth scroll on click"
+msgstr "אפשר/השבת גלילה חלקה בקליק"
+
+#: ../class-fire-utils_settings_map.php:793
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr ""
+"אפשרות זו תפעיל גלילת מסך חלקה כאשר מקליקים על קישור למיקום אחר באותו דף"
+
+#: ../class-fire-utils_settings_map.php:806
+msgid "Enable/disable blocks reordering on small devices"
+msgstr "הפעל/השבת סידור בלוקים במכשירים קטנים"
+
+#: ../class-fire-utils_settings_map.php:809
+msgid ""
+"On responsive mode, for smartphone viewport, the sidebars are moved after "
+"the main content block."
+msgstr ""
+"במצב רספונסיבי, עבור תצוגה של סמארטפונים, הסרגל הצדדי יועבר לאחר גוש התוכן "
+"העיקרי"
+
+#: ../class-fire-utils_settings_map.php:815
+msgid "Enable/disable slider's slides centering on any devices"
+msgstr "הפעל/השבת מרכוז שקופיות בסליידר לכל המכשירים"
+
+#: ../class-fire-utils_settings_map.php:818
+msgid ""
+"This option centers your slider (carousel) pictures vertically and "
+"horizontally on any devices when displayed in full width mode"
+msgstr ""
+"אפשרות זו תמרכז את תמונות הסליידר(קרוסלה) שלך, במאוזן ובמאונך בכל המכישים "
+"כשמוצגת ברוחב מלא"
+
+#: ../class-fire-utils_settings_map.php:833
+#: ../class-fire-utils_settings_map.php:1665
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr "הוסף כאן את ה-CSS שלך ותעצב ב\"חי\"! (עבור משתמשים מתקדמים)"
+
+#: ../class-fire-utils_settings_map.php:836
+#: ../class-fire-utils_settings_map.php:1668
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates. You can also "
+"paste your custom css in the style.css file of a child theme."
+msgstr ""
+"השתמשו תמיד בשדה זה כדי להוסיף CSS מותאם אישית במקום לעדכן ישירות את הקובץ "
+"style.css : השינויים לא יימחקו בעת שדרוג התבנית. ניתן גם להדבפיק את ה-CSS "
+"שלך בקובץ style.css של תבנית-הבת."
+
+#: ../class-fire-utils_settings_map.php:987
+msgid "Links style and effects"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:993
+#, fuzzy
+msgid "Titles icons settings"
+msgstr "הגדרות רספונסיביות"
+
+#: ../class-fire-utils_settings_map.php:995
+#, fuzzy
+msgid "Set up the titles icons options"
+msgstr "הגדרת אפשרויות לתגובות"
+
+#: ../class-fire-utils_settings_map.php:999
+#, fuzzy
+msgid "Image settings"
+msgstr "הגדרות שונות לתמונות"
+
+#: ../class-fire-utils_settings_map.php:1011
+#, fuzzy
+msgid "Design and layout"
+msgstr "בחירת תוכן ופריסה"
+
+#: ../class-fire-utils_settings_map.php:1016
+msgid "Site Title & Tagline"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1027
+#, fuzzy
+msgid "Navigation"
+msgstr "ניווט בפוסטים"
+
+#: ../class-fire-utils_settings_map.php:1030
+#, php-format
+msgid "Your theme supports %s menu. Select which menu you would like to use."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1030
+msgid ""
+"You can edit your menu content on the Menus screen in the Appearance section."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1049
+msgid "Post lists : blog, archives, ..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1051
+#, fuzzy
+msgid "Set up post lists options"
+msgstr "הגדרת אפשרויות לתגובות"
+
+#: ../class-fire-utils_settings_map.php:1055
+msgid "Single posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1057
+#, fuzzy
+msgid "Set up single posts options"
+msgstr "הגדרת אפשרויות פריסה"
+
+#: ../class-fire-utils_settings_map.php:1061
+#, fuzzy
+msgid "Breadcrumb"
+msgstr "הצג פירורי לחם (breadcrumb)"
+
+#: ../class-fire-utils_settings_map.php:1063
+#, fuzzy
+msgid "Set up breadcrumb options"
+msgstr "הגדרת אפשרויות פריסה"
+
+#: ../class-fire-utils_settings_map.php:1075
+msgid "Post metas (category, tags, custom taxonomies)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1077
+#, fuzzy
+msgid "Set up post metas options"
+msgstr "הגדרת אפשרויות לתגובות"
+
+#: ../class-fire-utils_settings_map.php:1087
+msgid "Footer global settings"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1089
+#, fuzzy
+msgid "Set up footer global options"
+msgstr "הגדרת אפשרויות דף ראשי"
+
+#: ../class-fire-utils_settings_map.php:1153
+msgid "Note : the home page layout has to be set in the home page section"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1227
+#, fuzzy
+msgid "Layout"
+msgstr "אפשרויות פריסה"
+
+#: ../class-fire-utils_settings_map.php:1231
+msgid "Logo / title on the left"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1232
+msgid "Logo / title centered"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1233
+msgid "Logo / title on the right"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1242
+#, fuzzy
+msgid "Display the tagline"
+msgstr "הצג את כל התוכן"
+
+#: ../class-fire-utils_settings_map.php:1251
+msgid "Display menu in a box"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1256
+msgid ""
+"If checked, this option wraps the header menu/tagline/social in a light grey "
+"box."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1261
+msgid "Sticky on scroll"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1266
+msgid ""
+"If checked, this option makes the header stick to the top of the page on "
+"scroll down."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1271
+msgid "Sticky header : display the tagline"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1280
+msgid "Sticky header : display the title / logo"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1289
+msgid "Sticky header : shrink title / logo"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1298
+msgid "Sticky header : display the menu"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1309
+msgid "Menu position"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1313
+msgid "Menu on the left"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1314
+msgid "Menu on the right"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1322
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1331
+msgid "Hover move effect for the sub menu items"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1341
+msgid "Fade effect on link hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1352
+#, fuzzy
+msgid "Display the breadcrumb on home page"
+msgstr "הצג פירורי לחם (breadcrumb)"
+
+#: ../class-fire-utils_settings_map.php:1360
+#, fuzzy
+msgid "Display the breadcrumb in pages"
+msgstr "הצג פירורי לחם (breadcrumb)"
+
+#: ../class-fire-utils_settings_map.php:1369
+#, fuzzy
+msgid "Display the breadcrumb in single posts"
+msgstr "הצג פירורי לחם (breadcrumb)"
+
+#: ../class-fire-utils_settings_map.php:1378
+msgid ""
+"Display the breadcrumb in posts lists : blog page, archives, search "
+"results..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1389
+msgid "Display icons next to titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1393
+msgid ""
+"When this option is checked, a contextual icon is displayed next to the "
+"titles of pages, posts, archives, and WP built-in widgets."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1399
+msgid "Display a page icon next to the page title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1408
+msgid "Display a post icon next to the single post title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1417
+msgid "Display an icon next to the archive title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1420
+msgid ""
+"When this option is checked, an archive type icon is displayed in the "
+"heading of every types of archives, on the left of the title. An archive "
+"page can be : category, tag, author, date archive, custom taxonomies, search "
+"results."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1427
+msgid "Display an icon next to each post title in an archive page"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1430
+msgid ""
+"When this option is checked, a post type icon is displayed on the left of "
+"each post titles in an archive page. An archive page can be : category, tag, "
+"author, date archive, custom taxonomies, search results."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1437
+msgid "WP sidebar widgets : display icons next to titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1446
+msgid "WP footer widgets : display icons next to titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1458
+#, fuzzy
+msgid "Display posts metas"
+msgstr "הצג את המובאה (תקציר)"
+
+#: ../class-fire-utils_settings_map.php:1461
+msgid ""
+"When this option is checked, the post metas (like taxonomies, date and "
+"author) are displayed below the post titles."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1468
+msgid "Display posts metas on home"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1477
+msgid "Display posts metas for single posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1486
+msgid "Display posts metas in post lists (archives, blog page)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1498
+msgid "Set the excerpt length (in number of words) "
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1508
+#, fuzzy
+msgid "Thumbnails options"
+msgstr "Options du thème"
+
+#: ../class-fire-utils_settings_map.php:1509
+#, fuzzy
+msgid "Display the post thumbnails"
+msgstr "הצג את המובאה (תקציר)"
+
+#: ../class-fire-utils_settings_map.php:1513
+msgid ""
+"When this option is checked, the post thumbnails are displayed in all post "
+"lists : blog, archives, author page, search pages, ..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1518
+msgid "If no featured image is set, use the last image attached to this post."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1526
+msgid "Thumbnails shape"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1530
+msgid "Rounded, expand on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1531
+msgid "Rounded, no expansion"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1532
+msgid "Squared, expand on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1533
+msgid "Squared, no expansion"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1534
+msgid "Rectangular with no effect"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1535
+msgid "Rectangular with blur effect on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1536
+msgid "Rectangular with unblur effect on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1544
+#: ../class-fire-utils_settings_map.php:1594
+msgid "Set the thumbnail's max height in pixels"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1555
+msgid "Thumbnails position"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1559
+msgid "Top"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1560
+msgid "Right"
+msgstr "Droite"
+
+#: ../class-fire-utils_settings_map.php:1561
+msgid "Bottom"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1562
+msgid "Left"
+msgstr "Gauche"
+
+#: ../class-fire-utils_settings_map.php:1570
+msgid "Alternate thumbnail/content"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1579
+#, fuzzy
+msgid "Post thumbnail position"
+msgstr "ניווט בפוסטים"
+
+#: ../class-fire-utils_settings_map.php:1583
+#, fuzzy
+msgid "Don't display"
+msgstr "להציג בדף הראשי"
+
+#: ../class-fire-utils_settings_map.php:1584
+#, fuzzy
+msgid "Before the title in full width"
+msgstr "פריסת סליידר : הגדר את הסליידר ברוחב מלא"
+
+#: ../class-fire-utils_settings_map.php:1585
+msgid "Before the title boxed"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1586
+msgid "After the title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1607
+msgid "Display a back to top arrow on scroll"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1654
+#, fuzzy
+msgid "Social link title in sidebars"
+msgstr "קישורים חברתיים בסרגל צדדי שמאלי"
+
+#: ../class-fire-utils_settings_map.php:1660
+msgid "Will be hidden if empty"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1676
+msgid "Set slider's height in pixels"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1686
+msgid "Apply this height to all sliders"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1694
+msgid "Replace the default image slider's height"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1700
+msgid ""
+"If this option is checked, your images will be resized with your custom "
+"height on upload. This is better for your overall loading performance."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1701
+msgid "You might want to regenerate your thumbnails."
+msgstr ""
+
+#: ../admin/class-admin-meta_boxes.php:87
+msgid "Layout Options"
+msgstr "אפשרויות פריסה"
+
+#: ../admin/class-admin-meta_boxes.php:95
+#: ../admin/class-admin-meta_boxes.php:466
+msgid "Slider Options"
+msgstr "אפשריות סליידר"
+
+#: ../admin/class-admin-meta_boxes.php:164
+#, php-format
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "פריסת ברירת מחדל עבור %1$s נקבעה כ-%2$s"
+
+#: ../admin/class-admin-meta_boxes.php:164
+msgid "pages"
+msgstr "עמודים"
+
+#: ../admin/class-admin-meta_boxes.php:164
+msgid "posts"
+msgstr "פוסטים"
+
+#: ../admin/class-admin-meta_boxes.php:169
+msgid ""
+"You have checked the <i>\"Force global default layout for all posts and pages"
+"\"</i>, you must unchecked this option to enable a specific layout for this "
+"post."
+msgstr ""
+"סימנת את האפשרות <i>\"כפיית פריסת ברירת מחדל על כל העמודים והפוסטים \"</i>, "
+"עליך לבטל את הסימון כדי לאפשר פריסה ספציפית עבור פוסט/עמוד זה."
+
+#: ../admin/class-admin-meta_boxes.php:170
+msgid "Change layout options"
+msgstr "שינוי אפשרויות פריסה"
+
+#: ../admin/class-admin-meta_boxes.php:174
+#, php-format
+msgid ""
+"You can define a specific layout for %1$s by using the pre-defined left and "
+"right sidebars. The default layouts can be defined in the WordPress "
+"customizer screen %2$s.<br />"
+msgstr ""
+"תוכלו להגדיר פריסה ספציפית עבור %1$s על-ידי שימוש בסרגל-צדדי ימני או שמאלי "
+"מוגדר מראש. פריסות ברירת המחדל ניתנות להגדרה במסך ההתאמה של וורדפרס %2$s"
+
+#: ../admin/class-admin-meta_boxes.php:175
+#: ../admin/class-admin-meta_boxes.php:180
+msgid "this page"
+msgstr "עמוד נוכחי"
+
+#: ../admin/class-admin-meta_boxes.php:175
+#: ../admin/class-admin-meta_boxes.php:180
+msgid "this post"
+msgstr "פוסט נוכחי"
+
+#: ../admin/class-admin-meta_boxes.php:176
+msgid "here"
+msgstr "כאן"
+
+#: ../admin/class-admin-meta_boxes.php:179
+#, php-format
+msgid "Select a specific layout for %1$s"
+msgstr "בחר פריסה ספציפית עבור %1$s"
+
+#: ../admin/class-admin-meta_boxes.php:183
+#, php-format
+msgid "Default layout %1s"
+msgstr "פריסה ברירת מחדל %1s"
+
+#: ../admin/class-admin-meta_boxes.php:225
+msgid "Add a slider to this post/page"
+msgstr "הוספת סליידר לפוסט/עמוד זה"
+
+#: ../admin/class-admin-meta_boxes.php:289
+#: ../admin/class-admin-meta_boxes.php:673
+msgid "Choose a slider"
+msgstr "בחירת סליידר"
+
+#: ../admin/class-admin-meta_boxes.php:296
+#: ../admin/class-admin-meta_boxes.php:688
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; בחר סליידר &mdash; "
+
+#: ../admin/class-admin-meta_boxes.php:301
+msgid ""
+"To create a new slider : open the media library, edit your images and add "
+"them to your new slider."
+msgstr ""
+"ליצירת סליידר חדש : פתח את ספריית המדיה, ערוך את התמונות והוסף אותן לסליידר "
+"החדש שלך."
+
+#: ../admin/class-admin-meta_boxes.php:305
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "השהייה בין שקופיות במילישניות (ברירת מחדל: 5000מילישניות)"
+
+#: ../admin/class-admin-meta_boxes.php:312
+msgid "Slider Layout : set the slider in full width"
+msgstr "פריסת סליידר : הגדר את הסליידר ברוחב מלא"
+
+#: ../admin/class-admin-meta_boxes.php:329
+#: ../admin/class-admin-meta_boxes.php:697
+msgid "Delete this slider"
+msgstr "מחק סליידר זו"
+
+#: ../admin/class-admin-meta_boxes.php:334
+#: ../admin/class-admin-meta_boxes.php:701
+msgid ""
+"The slider will be deleted permanently (images, call to actions and link "
+"will be kept)."
+msgstr "סליידר זה יימחק לצמיתות (תמונות, קריאות לפעולה וקישורים יישמרו)"
+
+#: ../admin/class-admin-meta_boxes.php:337
+#: ../admin/class-admin-meta_boxes.php:704
+msgid "Delete slider"
+msgstr "מחק סליידר"
+
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:88
+msgid ""
+"You haven't create any slider yet. Go to the media library, edit your images "
+"and add them to your sliders."
+msgstr ""
+
+#: ../admin/class-admin-meta_boxes.php:495
+msgid "Add to a slider"
+msgstr "הוסף למצגת שקופיות (סליידר)"
+
+#: ../admin/class-admin-meta_boxes.php:497
+msgid "Add to a slider (create one if needed)"
+msgstr "הוסף לסליידר (צור חדש אם יש צורך)"
+
+#: ../admin/class-admin-meta_boxes.php:630
+msgid "Title text (80 car. max length)"
+msgstr "מלל כותרת (אורך מירבי 80 תווים)"
+
+#: ../admin/class-admin-meta_boxes.php:637
+msgid "Description text (below the title, 250 car. max length)"
+msgstr "מלל תיאור (מתחת לכותרת, 250 תוים לכל היותר)"
+
+#: ../admin/class-admin-meta_boxes.php:644
+msgid "Title and text color"
+msgstr "צבע כותרת ומלל"
+
+#: ../admin/class-admin-meta_boxes.php:652
+msgid "Button text (80 car. max length)"
+msgstr "מלל לחצן (80 תוים לכל היותר)"
+
+#: ../admin/class-admin-meta_boxes.php:659
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "בחר עמוד או פוסט מקושר (מתוך ה-100 האחרונים)"
+
+#: ../admin/class-admin-meta_boxes.php:664
+msgid "No link"
+msgstr "אין קישור"
+
+#: ../admin/class-admin-meta_boxes.php:694
+#: ../admin/class-admin-meta_boxes.php:723
+msgid "Add a slider"
+msgstr "הוספת סליידר"
+
+#: ../admin/class-admin-meta_boxes.php:721
+msgid ""
+"You haven't create any slider yet. Write a slider name and click on the "
+"button to add you first slider."
+msgstr ""
+
+#: ../admin/class-admin-meta_boxes.php:838
+msgid ""
+"This slider has not slides to show. Go to the media library and start adding "
+"images to it."
+msgstr ""
+"סליידר זה אינו מכיל שקופיות, עבור לספריית המדיה והתחל להוסיף אליו תמונות."
+
+#: ../admin/class-admin-meta_boxes.php:848
+msgid "Slide Image"
+msgstr "תמונת שקופית"
+
+#: ../admin/class-admin-meta_boxes.php:849
+msgid "Title"
+msgstr "כותרת"
+
+#: ../admin/class-admin-meta_boxes.php:850
+msgid "Slide Text"
+msgstr "מלל שקופית"
+
+#: ../admin/class-admin-meta_boxes.php:851
+msgid "Button Text"
+msgstr "מלל הלחצן"
+
+#: ../admin/class-admin-meta_boxes.php:852
+msgid "Button Link"
+msgstr "קישור הלחצן"
+
+#: ../admin/class-admin-meta_boxes.php:853
+#: ../parts/class-content-breadcrumb.php:645
+#: ../parts/class-content-breadcrumb.php:678
+#: ../parts/class-content-breadcrumb.php:693
+#: ../parts/class-content-breadcrumb.php:721
+#: ../parts/class-content-comments.php:157
+#: ../parts/class-content-featured_pages.php:245
+#: ../parts/class-content-headings.php:257
+#: ../parts/class-content-slider.php:286
+msgid "Edit"
+msgstr "עריכה"
+
+#: ../admin/class-admin-meta_boxes.php:894
+msgid "No Image Selected"
+msgstr "לא נבחרה שום תמונה"
+
+#: ../admin/class-admin-meta_boxes.php:920
+msgid "Edit this slide"
+msgstr "ערוך שקופית זו"
+
+#: ../admin/class-admin-meta_boxes.php:922
+msgid "Current slide"
+msgstr "שקופית נוכחית"
+
+#: ../admin/class-controls.php:88
+msgid "Create a slider"
+msgstr "יצירת סליידר"
+
+#: ../admin/class-controls.php:226
+msgid "Upload"
+msgstr ""
+
+#: ../admin/class-controls.php:227
+msgid "Remove"
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:63 ../admin/class-fire-admin_init.php:64
+msgid "Upgrade WP"
+msgstr "שדרוג WP"
+
+#: ../admin/class-fire-admin_init.php:83
+msgid "This theme requires WordPress 3.4+"
+msgstr "תבנית זו דורשת גרסת וורדפרס 3.4 ומעלה"
+
+#: ../admin/class-fire-admin_init.php:86 ../admin/class-fire-admin_init.php:87
+msgid "Upgrade Wordpress Now"
+msgstr "שדרגו וורדפרס כעת"
+
+#: ../admin/class-fire-admin_init.php:104
+#: ../admin/class-fire-admin_init.php:105
+msgid "About Customizr"
+msgstr "אודות Customizr"
+
+#: ../admin/class-fire-admin_init.php:127
+msgid "Need help with Customizr ?"
+msgstr "זקוקים לעזרה עם Customizr ?"
+
+#: ../admin/class-fire-admin_init.php:129
+#, php-format
+msgid "Welcome to Customizr %s"
+msgstr "ברוכים הבאים ל-Customizr %s"
+
+#: ../admin/class-fire-admin_init.php:136
+#, php-format
+msgid ""
+"You can start by watching the <a href=\"%1$s\" target=\"_blank"
+"\">introduction video</a> or by reading <a href=\"%2$s\" target=\"_blank"
+"\">the documentation</a>.<br/> If you don't find an answer to your issue, "
+"don't panic! Since Customizr is used by a growing community of webmasters "
+"reporting bugs and making continuous improvements, you will probably find a "
+"solution to your problem either in the FAQ or in the user forum."
+msgstr ""
+"תוכלו להתחיל בצפיה ב<a href=\"%1$s\" target=\"_blank\">סרטון ההיכרות</a> או "
+"בקריאת <a href=\"%2$s\" target=\"_blank\">מסמכי התיעוד</a>.<br/>אם לא תמצאו "
+"תשובה לבעיה שלכם, לא להיבהל!, Customizr נמצאת בשימוש על-ידי קהילת משתמשים "
+"הולכת וגדלה, המדווחת על באגים ומבצעת שיפורים רבים, ולכן סביר שתמצאו פתרון "
+"לבעיה שלכם בשאלות ותשובות נפוצות או בפורום המשתמשים."
+
+#: ../admin/class-fire-admin_init.php:144
+msgid "Read the documentation"
+msgstr "קראו את התיעוד"
+
+#: ../admin/class-fire-admin_init.php:148
+msgid "Check the FAQ"
+msgstr "בדקו בשאלות ותשובות נפוצות (FAQ)"
+
+#: ../admin/class-fire-admin_init.php:153
+msgid "Code snippets"
+msgstr "קטעי קוד"
+
+#: ../admin/class-fire-admin_init.php:156
+msgid "Discuss in the user forum"
+msgstr "דונו בפורום המשתמשים"
+
+#: ../admin/class-fire-admin_init.php:164
+#, php-format
+msgid ""
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see the "
+"changelog)</a> to help you build an awesome website. Watch the <a href=\"%2$s"
+"\" target=\"_blank\">introduction video</a> and find inspiration in the <a "
+"href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
+msgstr ""
+"תודה על בחירתך ב- Customizr! ב-Customizr %1$s יש יותר אפשרויות, היא יותר "
+"בטוחה ויותר יציבה מאי-פעם <a href=\"#customizr-changelog\">(ראו את יומן "
+"השינויים)</a> כדי לעזור לך לבנות אתר מדהים. צפו ב<a href=\"%2$s\" target="
+"\"_blank\">סרטון ההיכרות</a> ותוכלו למצוא השראה ב<a href=\"#showcase\">תצוגה "
+"שלנו</a>.<br/>תהנו!"
+
+#: ../admin/class-fire-admin_init.php:178
+#, php-format
+msgid ""
+"You are using a child theme of Customizr %1$s : always check the %2$s after "
+"upgrading to see if a function or a template has been deprecated."
+msgstr ""
+"אתה משתמש בתבנית-בת של Customizr %1$s : בדוק תמיד את %2$s לאחר שדרוג כדי "
+"לבדוק אם פונקציה או תבנית התישנו וכבר לא בשימוש."
+
+#: ../admin/class-fire-admin_init.php:193
+msgid "We need sponsors!"
+msgstr "אנו זקוקים לתומכים!"
+
+#: ../admin/class-fire-admin_init.php:194
+msgid ""
+"<strong>We do our best do make Customizr the perfect free theme for you!</"
+"strong><br/> Please help support it's continued development with a donation "
+"of $20, $50, or even $100."
+msgstr ""
+"<strong>אנו עושים כמיטב יכולתנו כדי להפוך את Customizr לתבנית החינמית "
+"המושלמת עבורכם! </strong><br/> אנא סייעו להמשך הפיתוח בעזרת בתרומה של 20$, "
+"50$ או אפילו 100$ ."
+
+#: ../admin/class-fire-admin_init.php:201
+msgid "Happy user of Customizr?"
+msgstr "משתמש מרוצה של Customizr?"
+
+#: ../admin/class-fire-admin_init.php:202
+msgid ""
+"If you are happy with the theme, say it on wordpress.org and give Customizr "
+"a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr ""
+"אם אתם מרוצים מהתבנית, אמרו זאת ב-wordpress.org ותנו ל-Customizr ביקורת "
+"טובה! <br />(אנחנו מכורים למשוב שלכם...)"
+
+#: ../admin/class-fire-admin_init.php:207
+msgid "Follow us"
+msgstr "עקבו אחרינו"
+
+#: ../admin/class-fire-admin_init.php:215
+msgid "Customizr's extensions"
+msgstr "ההרחבות של Customizr"
+
+#: ../admin/class-fire-admin_init.php:218
+#: ../admin/class-fire-admin_init.php:227
+msgid "Visit the extension's page"
+msgstr "בקרו בדף ההרחבות"
+
+#: ../admin/class-fire-admin_init.php:219
+msgid "Easily take your web design one step further"
+msgstr "קחו את עיצוב האתר שלכם בקלות צעד אחד קדימה"
+
+#: ../admin/class-fire-admin_init.php:220
+msgid ""
+"The Customizr's extensions are plugins developed to extend the Customizr "
+"theme with great features. Nicely integrated with the theme's built-in "
+"options, they can be enabled/disabled safely with no side effects on your "
+"existing settings or customizations."
+msgstr ""
+"ההרחבות של Custimizr הן תוספים שפותחו כדי להרחיב את תבנית Customizr עם "
+"אפשרויות נפלאות. הן מתחברות לאפשרויות המובנות של התבנית וניתנות להפעלה או "
+"השבתה בבטחה, ללא תופעות לוואי להגדרות או ההתאמות שלך."
+
+#: ../admin/class-fire-admin_init.php:222
+msgid ""
+"These modules are designed to be simple to use for everyone. They are a good "
+"solution to add some creative customizations whitout needing to dive into "
+"the code."
+msgstr ""
+"מודולים אלה עוצבו במיוחד כדי להיות פשוטים לכל אחד. הם מהווים פתרון להוספת "
+"התאמות יצירתיות ללא צורך לצלול לתוך הקוד."
+
+#: ../admin/class-fire-admin_init.php:224
+msgid ""
+"Customizr's extensions are installed and upgraded from your WordPress admin, "
+"like any other WordPress plugins. Well documented and easily extendable with "
+"hooks, they come with a dedicated support forum on themesandco.com."
+msgstr ""
+"ההרחבות של customizr מותקנות ומשודרגות דרך ניהול הוורדפרס, בדומה לכל תוסף "
+"וורדפרס אחר. הן מתועדות היטב, ניתנות להרחבה בקלות בעזרת hooks, וקיים להן "
+"פורום תמיכה יעודית ב-themesandco.com"
+
+#: ../admin/class-fire-admin_init.php:233
+msgid "Customizr Showcase"
+msgstr "תיבת התצוגה של Customizr"
+
+#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_init.php:243
+msgid "Visit the showcase"
+msgstr "בקרו בתצוגה"
+
+#: ../admin/class-fire-admin_init.php:237
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "מצאו השראה לאתר הבא שלכם המבוסס על Customizr !"
+
+#: ../admin/class-fire-admin_init.php:238
+msgid ""
+"This showcase aims to show what can be done with Customizr and helping other "
+"users to find inspiration for their web design."
+msgstr ""
+"מטרת תצוגה זו להראות מה ניתן לבצע עם Customizr ולסייע למשתמשים למצוא השראה "
+"לעיצוב האתר שלהם."
+
+#: ../admin/class-fire-admin_init.php:240
+msgid ""
+"Do you think you made an awesome website that can inspire people? Submitting "
+"a site for review is quick and easy to do."
+msgstr ""
+"האם אתם חושבים שיצרתם אתר מדהים שיכול לגרום להשראה לאנשים אחרים? שליחת האתר "
+"למשוב והצגה היא מהירה ופשוטה לביצוע"
+
+#: ../admin/class-fire-admin_init.php:250
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr "יומן שינויים לגרסה %1$s"
+
+#: ../admin/class-fire-admin_init.php:259
+msgid "Go to Dashboard &rarr; Home"
+msgstr "עבור ללוח מחוונים &larr; ראשי"
+
+#: ../admin/class-fire-admin_init.php:259
+msgid "Go to Dashboard"
+msgstr "עבור ללוח הבקרה"
+
+#: ../parts/class-content-attachment.php:41
+msgid "&larr; Previous"
+msgstr "&larr; הקודם"
+
+#: ../parts/class-content-attachment.php:42
+msgid "Next &rarr;"
+msgstr "הבא &rarr;"
+
+#: ../parts/class-content-breadcrumb.php:38
+#: ../parts/class-content-breadcrumb.php:50
+msgid "Home"
+msgstr "דף הבית"
+
+#: ../parts/class-content-breadcrumb.php:47
+msgid "Browse:"
+msgstr ""
+
+#: ../parts/class-content-breadcrumb.php:524
+msgid "g:i a"
+msgstr "g:i a"
+
+#: ../parts/class-content-breadcrumb.php:527
+#, php-format
+msgid "Minute %1$s"
+msgstr ""
+
+#: ../parts/class-content-breadcrumb.php:527
+msgid "i"
+msgstr "i"
+
+#: ../parts/class-content-breadcrumb.php:530
+msgid "g a"
+msgstr "g a"
+
+#: ../parts/class-content-breadcrumb.php:546
+#: ../parts/class-content-breadcrumb.php:556
+#: ../parts/class-content-breadcrumb.php:565
+#: ../parts/class-content-breadcrumb.php:576
+#: ../parts/class-content-breadcrumb.php:578
+#: ../parts/class-content-breadcrumb.php:777
+msgid "Y"
+msgstr "Y"
+
+#: ../parts/class-content-breadcrumb.php:547
+#: ../parts/class-content-breadcrumb.php:568
+#: ../parts/class-content-breadcrumb.php:570
+#: ../parts/class-content-breadcrumb.php:781
+msgid "F"
+msgstr "F"
+
+#: ../parts/class-content-breadcrumb.php:550
+#: ../parts/class-content-breadcrumb.php:552
+#: ../parts/class-content-breadcrumb.php:785
+msgid "d"
+msgstr "d"
+
+#: ../parts/class-content-breadcrumb.php:559
+#: ../parts/class-content-breadcrumb.php:561
+#, php-format
+msgid "Week %1$s"
+msgstr "שבוע %1$s"
+
+#: ../parts/class-content-breadcrumb.php:587
+#: ../parts/class-content-breadcrumb.php:589
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "תוצאות חיפוש של  &quot;%1$s&quot;"
+
+#: ../parts/class-content-breadcrumb.php:594
+msgid "404 Not Found"
+msgstr "404 לא נמצא"
+
+#: ../parts/class-content-breadcrumb.php:599
+#: ../parts/class-content-breadcrumb.php:601
+#, php-format
+msgid "Page %d"
+msgstr "עמוד %d"
+
+#: ../parts/class-content-breadcrumb.php:670
+msgid "Split"
+msgstr "פצל"
+
+#: ../parts/class-content-breadcrumb.php:674
+msgid "Merge"
+msgstr "מזג"
+
+#: ../parts/class-content-comments.php:58
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgstr "תגובה אחת על &ldquo;%2$s&rdquo;"
+
+#: ../parts/class-content-comments.php:116
+msgid "Pingback:"
+msgstr "פינגבק:"
+
+#: ../parts/class-content-comments.php:116
+msgid "(Edit)"
+msgstr "(עריכה)"
+
+#: ../parts/class-content-comments.php:143
+msgid "Reply"
+msgstr "להשיב"
+
+#: ../parts/class-content-comments.php:156
+msgid "Post author"
+msgstr "מחבר הפוסט"
+
+#: ../parts/class-content-comments.php:163
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s בשעה %2$s"
+
+#: ../parts/class-content-comments.php:168
+msgid "Your comment is awaiting moderation."
+msgstr "תגובתך ממתינה לאישור"
+
+#: ../parts/class-content-comments.php:203
+msgid "Comment navigation"
+msgstr "ניווט בתגובות"
+
+#: ../parts/class-content-comments.php:209
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr ""
+
+#: ../parts/class-content-comments.php:217
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../parts/class-content-comments.php:249
+msgid "Comments are closed."
+msgstr "סגור לתגובות."
+
+#: ../parts/class-content-comments.php:264
+msgid "Leave a comment"
+msgstr ""
+
+#: ../parts/class-content-featured_pages.php:125
+msgid "Customizer screen"
+msgstr ""
+
+#: ../parts/class-content-featured_pages.php:125
+msgid " here"
+msgstr " כאן"
+
+#: ../parts/class-content-featured_pages.php:129
+msgid "Featured page"
+msgstr "עמוד מובלט"
+
+#: ../parts/class-content-featured_pages.php:132
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"מלל תאור דף מובלט : השתמש בתקציר הדף או קבע את המלל המותאם שלך במסך ההגדרות "
+"של Customizr %s"
+
+#: ../parts/class-content-gallery.php:187
+msgid "Missing Attachment"
+msgstr "חסר הקובץ המצורף"
+
+#: ../parts/class-content-headings.php:58
+msgid "Ooops, page not found"
+msgstr "אופס, הדף לא נמצא"
+
+#: ../parts/class-content-headings.php:69
+msgid "No"
+msgstr "לא"
+
+#: ../parts/class-content-headings.php:70
+msgid "Search Results for :"
+msgstr "תוצאות חיפוש של:"
+
+#: ../parts/class-content-headings.php:85
+msgid "Author Archives :"
+msgstr "ארכיון מחבר:"
+
+#: ../parts/class-content-headings.php:99 ../parts/class-content-post.php:161
+#, php-format
+msgid "About %s"
+msgstr "אודות %s"
+
+#: ../parts/class-content-headings.php:112
+msgid "Category Archives :"
+msgstr "ארכיון הקטגוריה :"
+
+#: ../parts/class-content-headings.php:128
+msgid "Tag Archives :"
+msgstr "ארכיון התגית : "
+
+#: ../parts/class-content-headings.php:141
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "ארכיון יומי : %s"
+
+#: ../parts/class-content-headings.php:141
+msgid "Archives"
+msgstr "ארכיון"
+
+#: ../parts/class-content-headings.php:142
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "ארכיון חודשי : %s"
+
+#: ../parts/class-content-headings.php:143
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "ארכיון שנתי : %s"
+
+#: ../parts/class-content-headings.php:229
+#: ../parts/class-content-headings.php:235
+msgid "{no title} Read the post &raquo;"
+msgstr ""
+
+#: ../parts/class-content-headings.php:234
+#, php-format
+msgid "Permalink to %s"
+msgstr "קישור קבוע אל %s"
+
+#: ../parts/class-content-headings.php:250
+msgid "Comment(s) on"
+msgstr "תגובות על"
+
+#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:120
+#: ../parts/class-content-post_list.php:148
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "המשך קריאה <span class=\"meta-nav\">&larr;</span>"
+
+#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:121
+#: ../parts/class-content-post_list.php:149
+msgid "Pages:"
+msgstr "עמודים:"
+
+#: ../parts/class-content-post.php:165
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:49
+msgid "Published"
+msgstr "פורסם"
+
+#: ../parts/class-content-post_metas.php:52
+msgid "at dimensions"
+msgstr "כל המימדים"
+
+#: ../parts/class-content-post_metas.php:52
+msgid "Link to full-size image"
+msgstr "קישור לתמונה בגודל מלא"
+
+#: ../parts/class-content-post_metas.php:53
+msgid "in"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:53
+msgid "Return to "
+msgstr "לחזור אל"
+
+#: ../parts/class-content-post_metas.php:75
+#, php-format
+msgid "View all posts by %s"
+msgstr "צפיה בכל הפוסטים של %s"
+
+#: ../parts/class-content-post_metas.php:83
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"רשומה זו פורסמה בקטגוריה %1$s ,תויגה ב-%2$s ב-%3$s<span class=\"by-author\"> "
+"מאת %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:85
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"רשומה זו פורסמה תחת %1$s ב- %3$s<span class=\"by-author\"> מאת %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:87
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr "רשומה זו פורסמה ב- %3$s<span class=\"by-author\"> מאת %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:129
+#: ../parts/class-content-post_metas.php:159
+#, php-format
+msgid "View all posts in %s"
+msgstr "צפיה בכל הפוסטים ב-%s"
+
+#: ../parts/class-content-post_navigation.php:54
+#: ../parts/class-content-post_navigation.php:109
+msgid "Post navigation"
+msgstr "ניווט בפוסטים"
+
+#: ../parts/class-content-post_navigation.php:122
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&rarr;</span> פוסטים ישנים יותר"
+
+#: ../parts/class-content-post_navigation.php:142
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "פוסטים חדשים יותר <span class=\"meta-nav\">&larr;</span>"
+
+#: ../parts/class-footer-footer_main.php:177
+msgid "Back to top"
+msgstr "חזרה למעלה"
+
+#: ../parts/class-header-header_main.php:183
+msgid "Back Home"
+msgstr "חזרה לראשי"
+
+#: ../parts/class-header-menu.php:126
+msgid "Add a menu"
+msgstr "הוספת תפריט"
+
+#, fuzzy
+#~ msgid "Ajust the slider size"
+#~ msgstr "Texte de description (sous le titre) de la diapositive"
+
+#, fuzzy
+#~ msgid "Choose a font"
+#~ msgstr "Choisir une page"
+
+#~ msgid "Slide Entry"
+#~ msgstr "Diapositive"
+
+#~ msgid "Edit Slide Entry"
+#~ msgstr "Modifier la diapositive"
+
+#~ msgid "Search Slide Entries"
+#~ msgstr "Rechercher dans les diapositives"
+
+#~ msgid "Edit Slider Name"
+#~ msgstr "Modifier le nom du diporama"
+
+#~ msgid "Front Page Widget Area One"
+#~ msgstr "Première zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Two"
+#~ msgstr "Deuxième zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Three"
+#~ msgstr "Troisième zone de widgets de page d'accueil"
+
+#~ msgid "If this field is empty, it will display an excerpt of the page."
+#~ msgstr "Si le champ est vide, un extrait de la page est affiché."
+
+#~ msgid "Force logo to fit in the left header block"
+#~ msgstr "Forcer le redimensionnement du logo dans le bloc gauche du header"
+
+#~ msgid ""
+#~ "Force default layout for all posts and pages (including front page and "
+#~ "pages/posts with a specific layout)"
+#~ msgstr ""
+#~ "Forcer la structure par défaut pour toutes les pages du sites (y compris "
+#~ "la page d'accueil ainsi que les pages et billets qui ont une structure "
+#~ "spécifique)"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "%"
+#~ msgstr "%"
+
+#~ msgid "Manage widgets"
+#~ msgstr "Gérer les widgets"
+
+#~ msgid "View details &raquo;"
+#~ msgstr "Voir les détails &raquo;"
+
+#~ msgid "Length of the excerpt (default 200)"
+#~ msgstr "Longueur de l'extrait (200 car. par défaut)"
+
+#~ msgid " checked=\"checked\""
+#~ msgstr " "
+
+#~ msgid "Sample Checkbox"
+#~ msgstr "Exemple"
+
+#~ msgid ""
+#~ "Appears on posts and pages except the optional Front Page template, which "
+#~ "has its own widgets"
+#~ msgstr "Affichée dans les posts et les pages, hormis l"

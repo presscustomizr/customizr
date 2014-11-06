@@ -1,0 +1,74 @@
+.widget_social h3:before {
+  font-size: 3em;
+}
+.widget_categories h3:before {
+  font-size: 3em;
+}
+.widget_archive h3:before {
+  font-size: 3em;
+}
+.widget_tag_cloud h3:before {
+  font-size: 3em;
+}
+.widget_recent_entries h3:before {
+  font-size: 3em;
+}
+.widget_meta h3:before {
+  font-size: 3em;
+}
+.widget_calendar h3:before {
+  font-size: 3em;
+}
+.widget_pages h3:before {
+  font-size: 3em;
+}
+.widget_recent_comments h3:before {
+  font-size: 3em;
+}
+.widget_search h3:before {
+  font-size: 3em;
+}
+.widget_nav_menu h3:before {
+  font-size: 2.5em;
+}
+/* POST FORMATS AND POST TYPES */
+
+article.page .format-icon:before {
+  font-size: 8em;
+}
+article.format-standard .format-icon:before {
+  font-size: 3em;
+}
+article.format-gallery .format-icon:before,
+article.attachment .format-icon:before {
+  font-size: 5em;
+}
+article.format-chat .format-icon:before {
+  font-size: 3em;
+}
+article.format-audio .format-icon:before {
+  font-size: 3em;
+}
+article.format-video .format-icon:before {
+  font-size: 5em;
+}
+article.format-image .format-icon:before {
+  font-size: 5em;
+}
+/*ARCHIVES ICONS*/
+
+.search .search-header .format-icon:before {
+  font-size: 3.5em;
+}
+.archive.date .archive-header .format-icon:before {
+  font-size: 3.5em;
+}
+.archive.category .archive-header .format-icon:before {
+  font-size: 3.5em;
+}
+.archive.tag .archive-header .format-icon:before {
+  font-size: 3.5em;
+}
+.archive.author .archive-header .format-icon:before {
+  font-size: 3.5em;
+}
