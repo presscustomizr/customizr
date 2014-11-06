@@ -21,6 +21,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
           add_action ( '__comment'                          , array( $this , 'tc_comment_list' ), 20 );
           add_action ( '__comment'                          , array( $this , 'tc_comment_navigation' ), 30 );
           add_action ( '__comment'                          , array( $this , 'tc_comment_close' ), 40 );
+          add_filter ('comment_form_defaults'               , array( $this , 'tc_set_comment_title') );
       }
 
 
@@ -250,6 +251,18 @@ if ( ! class_exists( 'TC_comments' ) ) :
             );
 
           endif;
+        }
+
+
+        /**
+        * Comment title override (comment_form_defaults filter)
+        *
+        * @package Customizr
+        * @since Customizr 3.2.0
+        */
+        function tc_set_comment_title($_defaults) {
+          $_defaults['title_reply'] =  __( 'Leave a comment' , 'customizr' );
+          return $_defaults;
         }
   }//end class
 endif;

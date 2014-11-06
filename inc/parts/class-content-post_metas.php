@@ -16,9 +16,10 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         static $instance;
         function __construct () {
             self::$instance =& $this;
-            add_action  ( '__after_content_title'                , array( $this , 'tc_post_metas' ));
+            add_action  ( '__after_content_title'           , array( $this , 'tc_post_metas' ));
+            //Set post metas with customizer options (since 3.2.0)
+            add_action( 'template_redirect'                 , array( $this , 'tc_set_post_metas' ));
         }
-
 
         /**
          * The template part for displaying entry metas
@@ -214,9 +215,74 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             return empty($_tax_type_terms_list) ? false : $_tax_type_terms_list;
         }
 
+
+
+
+        /**
+        * Set the post metas based on Customizer options
+        *
+        * @package Customizr
+        * @since Customizr 3.2.0
+        */
+        function tc_set_post_metas() {
+            //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
+            if ( is_singular() && ! is_page() && ! tc__f('__is_home') ) {
+                if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_single_post' ) ) ) {
+                    add_filter( 'tc_show_post_metas' , '__return_true' );
+                    return;
+                }
+                
+                if ( TC_utils::$instance -> tc_is_customizing() ) {
+                    add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
+                    add_filter( 'tc_show_post_metas' , '__return_true' );
+                }
+                else
+                    add_filter( 'tc_show_post_metas' , '__return_false' );
+
+            }
+            if ( ! is_singular() && ! tc__f('__is_home') && ! is_page() ) {
+                if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_post_lists' ) ) ) {
+                    add_filter( 'tc_show_post_metas' , '__return_true' );
+                    return;
+                }
+
+                    if ( TC_utils::$instance -> tc_is_customizing() ) {
+                        add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
+                        add_filter( 'tc_show_post_metas' , '__return_true' );
+                    }
+                    else
+                        add_filter( 'tc_show_post_metas' , '__return_false' );
+            }
+            if ( tc__f('__is_home') ) {
+                if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_home' ) ) ) {
+                    add_filter( 'tc_show_post_metas' , '__return_true' );
+                    return;
+                }
+                if ( TC_utils::$instance -> tc_is_customizing() ) {
+                    add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
+                    add_filter( 'tc_show_post_metas' , '__return_true' );
+                }
+                else
+                    add_filter( 'tc_show_post_metas' , '__return_false' );
+            }
+        }
+
+
+
+
+        /**
+        * Callback of the body_class filter
+        *
+        * @package Customizr
+        * @since Customizr 3.2.0
+        */
+        function tc_hide_post_metas( $_classes ) {
+            return array_merge($_classes , array('hide-post-metas') );
+        }
     }//end of class
 endif;
-//this only purpose of this function is to use the_tags() wp function.
+
+//the only purpose of this function is to use the_tags() wp function in the theme...
 function tc_get_the_tags() {
     return the_tags();
 }

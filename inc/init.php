@@ -44,6 +44,7 @@ if ( ! class_exists( 'TC___' ) ) :
                 array(
                     'fire'      =>   array(
                                     array('inc' , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
+                                    array('inc' , 'utils_settings_map'),//customizer setting map
                                     array('inc' , 'utils'),//helpers used everywhere
                                     array('inc' , 'resources'),//loads style (skins) and scripts
                                     array('inc' , 'widgets'),//widget factory
@@ -65,6 +66,7 @@ if ( ! class_exists( 'TC___' ) ) :
                                     array('inc/parts', 'headings'),
                                     array('inc/parts', 'no_results'),
                                     array('inc/parts', 'page'),
+                                    array('inc/parts', 'post_thumbnails'),
                                     array('inc/parts', 'post'),
                                     array('inc/parts', 'post_list'),
                                     array('inc/parts', 'post_metas'),
@@ -97,7 +99,7 @@ if ( ! class_exists( 'TC___' ) ) :
             // get themedata for lower versions (get_stylesheet_directory() points to the current theme root, child or parent)
             else
               {
-                 $tc_base_data                = get_theme_data( get_stylesheet_directory().'/style.css' );
+                 $tc_base_data                = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
                  $tc_base_data['prefix']      = $tc_base_data['title'];
               }
 
@@ -173,7 +175,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
         /**
-        * Checks if we use a child theme. Uses a deprecated WP functions (get_theme_data) for versions <3.4
+        * Checks if we use a child theme. Uses a deprecated WP functions (get _theme_data) for versions <3.4
         * @return boolean
         * 
         * @since  Customizr 3.0.11
@@ -187,7 +189,7 @@ if ( ! class_exists( 'TC___' ) ) :
                 $is_child       = ( $tc_theme -> parent() ) ? true : false;
              }
              else {
-                $tc_theme       = get_theme_data( get_stylesheet_directory() . '/style.css' );
+                $tc_theme       = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
                 $is_child       = ( ! empty($tc_theme['Template']) ) ? true : false;
             }
             return $is_child;

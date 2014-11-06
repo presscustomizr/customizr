@@ -20,7 +20,80 @@ if ( ! class_exists( 'TC_post' ) ) :
           add_action  ( '__loop'                        , array( $this , 'tc_post_content' ));
           //posts parts actions
           add_action  ( '__after_content'               , array( $this , 'tc_post_footer' ));
+          //Set single post thumbnail with customizer options (since 3.2.0)
+          add_action  ( 'template_redirect'             , array( $this , 'tc_set_single_post_thumbnail_hooks' ));
       }
+
+
+      /**
+      * Single post view controller
+      *
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_single_post_display_controller() {
+        //check conditional tags : we want to show single post or single custom post types
+        global $post;
+        $tc_show_single_post_content = isset($post) 
+        && 'page' != $post -> post_type 
+        && 'attachment' != $post -> post_type 
+        && is_singular() 
+        && !tc__f( '__is_home_empty');
+        return apply_filters( 'tc_show_single_post_content', $tc_show_single_post_content );
+      }
+
+
+
+      /**
+       * Callback hooked on template_redirect.
+       *
+       * @package Customizr
+       * @since Customizr 3.2.0
+       */
+      function tc_set_single_post_thumbnail_hooks() {
+        //__before_main_wrapper, 200
+        //__before_content 0
+        //__before_content 20
+        if ( ! $this -> tc_single_post_display_controller() 
+          || ! esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) ) 
+          || 'hide' == esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) )
+          )
+          return;
+       
+        $_exploded_location   = explode('|', esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' )) );
+        $_hook                = isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content';
+        $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
+       
+        add_action( $_hook, array($this , 'tc_single_post_thumbnail_view') , $_priority );
+      }
+
+
+
+      /**
+      * Single post thumbnail view
+      *
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_single_post_thumbnail_view() {
+        $_exploded_location   = explode('|', esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' )) );
+        $_hook                = isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content';
+        $_size_to_request     = ( '__before_main_wrapper' == $_hook ) ? 'slider-full' : 'slider';
+
+        //get the thumbnail data (src, width, height) if any
+        $thumb_data                     = TC_post_thumbnails::$instance -> tc_get_thumbnail_data( $_size_to_request ) ;
+        $_single_thumbnail_wrap_class   = implode(" " , apply_filters('tc_single_post_thumb_class' , array('row-fluid','tc-single-post-thumbnail-wrapper', current_filter() ) ) );
+        ob_start();
+          ?>
+            <div class="<?php echo $_single_thumbnail_wrap_class ?>">
+              <?php TC_post_thumbnails::$instance -> tc_display_post_thumbnail( $thumb_data, 'span12' ); ?>
+            </div>
+          <?php
+        $html = ob_get_contents();
+        if ($html) ob_end_clean();
+        echo apply_filters( 'tc_single_post_thumbnail_view', $html );
+      }
+
 
 
       /**
@@ -31,10 +104,7 @@ if ( ! class_exists( 'TC_post' ) ) :
        */
       function tc_post_content() {
         //check conditional tags : we want to show single post or single custom post types
-        global $post;
-        $tc_show_single_post_content = isset($post) && 'page' != $post -> post_type && 'attachment' != $post -> post_type && is_singular() && !tc__f( '__is_home_empty');
-
-        if ( ! apply_filters( 'tc_show_single_post_content', $tc_show_single_post_content ) )
+        if ( ! $this -> tc_single_post_display_controller() )
             return;
 
         //display an icon for div if there is no title
@@ -61,20 +131,18 @@ if ( ! class_exists( 'TC_post' ) ) :
       }
 
 
+
       /**
-       * The template part for displaying the single post footer
-       *
-       * @package Customizr
-       * @since Customizr 3.0
-       */
+      * Single post footer view
+      *
+      * @package Customizr
+      * @since Customizr 3.0
+      */
       function tc_post_footer() {
         //check conditional tags : we want to show single post or single custom post types
-        global $post;
-        $tc_show_single_post_footer =  'page' != $post -> post_type && 'attachment' != $post -> post_type && is_singular();
-        
-        if ( ! apply_filters( 'tc_show_single_post_footer', $tc_show_single_post_footer ) )
+        if ( ! $this -> tc_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
             return;
-
+        //@todo check if some conditions below not redundant?
         if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) )
           return;
 

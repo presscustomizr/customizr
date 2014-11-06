@@ -20,8 +20,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
 	        
-	        //Custom CSS based on options
+	        //Custom CSS
 	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
+
+	        //Customizer user defined style options
+	        add_action( 'wp_enqueue_scripts'						, array( $this ,  'tc_customizer_user_options_style' ) );
 	    }
 
 
@@ -39,6 +42,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		}
 
 
+
 		/**
 		* Loads Customizr and JS script in footer for better time load.
 		* 
@@ -52,14 +56,14 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			    wp_enqueue_script( 'comment-reply' );
 		    wp_enqueue_script( 'jquery' );
 		    wp_enqueue_script( 'jquery-ui-core' );
-
+		    //load retina.js in footer if enabled
+		    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 		    //tc-scripts.js includes :
 		    //1) Twitter Bootstrap scripts
 		    //2) Holder.js
 		    //3) FancyBox - jQuery Plugin
-		    //4) Retina.js
-		    //5) Customizr scripts
-		    wp_enqueue_script( 'tc-scripts' ,TC_BASE_URL . 'inc/assets/js/tc-scripts.min.js' ,array( 'jquery' ),null, $in_footer = apply_filters('tc_load_script_in_footer' , false) );
+		    //4) Customizr scripts
+		    wp_enqueue_script( 'tc-scripts' , TC_BASE_URL . 'inc/assets/js/tc-scripts.min.js' ,array( 'jquery' ), CUSTOMIZR_VER, $in_footer = apply_filters('tc_load_script_in_footer' , false) );
 
 		    //fancybox options
 			$tc_fancybox 		= ( 1 == tc__f( '__get_option' , 'tc_fancybox' ) ) ? true : false;
@@ -105,8 +109,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			          	'RightSidebarClass' 	=> $right_sb_class,
 			          	'LoadBootstrap' 		=> apply_filters( 'tc_load_bootstrap' , true ),
 			          	'LoadModernizr' 		=> apply_filters( 'tc_load_modernizr' , true ),
-			          	'LoadRetina' 			=> ( 1 == tc__f( '__get_option' , 'tc_retina_support' ) ) ? true : false,
-			          	'LoadCustomizrScript' 	=> apply_filters( 'tc_load_customizr_script' , true )
+			          	'LoadCustomizrScript' 	=> apply_filters( 'tc_load_customizr_script' , true ),
+			          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , 0 ),
+			          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) )
 		        	),
 		        	tc__f('__ID')
 		       	)//end of filter
@@ -120,8 +125,17 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    $tc_show_featured_pages 	    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
       		$tc_show_featured_pages_img     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
       		if ( 0 != $tc_show_featured_pages && 0 != $tc_show_featured_pages_img ) {
-		    	wp_enqueue_script( 'holder' ,TC_BASE_URL . 'inc/assets/js/holder.min.js' ,array( 'jquery' ),null, $in_footer = true);
+		    	wp_enqueue_script( 'holder' ,TC_BASE_URL . 'inc/assets/js/holder.min.js' ,array( 'jquery' ), CUSTOMIZR_VER, $in_footer = true);
 		    }
+
+		    //load retina.js in footer if enabled
+		    if ( 1 == tc__f( '__get_option' , 'tc_retina_support' ) )
+		    	wp_enqueue_script( 'retinajs' ,TC_BASE_URL . 'inc/assets/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+
+		    //Load hammer.js for mobile
+		    if ( apply_filters('tc_load_hammer', wp_is_mobile() ) )
+		    	wp_enqueue_script( 'hammer' ,TC_BASE_URL . 'inc/assets/js/hammer.min.js', array('jquery'), CUSTOMIZR_VER );
+
 		}
 
 
@@ -135,13 +149,112 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    */
 	    function tc_write_custom_css() {
 	        $tc_custom_css      	= esc_html( tc__f( '__get_option' , 'tc_custom_css') );
-	        $tc_top_border      	= esc_attr( tc__f( '__get_option' , 'tc_top_border') );
 	        if ( isset($tc_custom_css) && ! empty($tc_custom_css) )
 	        	printf( '<style id="option-custom-css" type="text/css">%1$s</style>',
 	        		html_entity_decode($tc_custom_css)
 	        	);
-	        if ( ( isset($tc_top_border) && 0 == $tc_top_border) )
-	        	echo '<style id="option-top-border" type="text/css">header.tc-header {border-top: none;}</style>';
 	    }//end of function
+
+
+
+
+	    /**
+	    * Style from customizer options
+	    * 
+	    * @package Customizr
+	    * @since Customizr 3.2.0
+	    */
+	    function tc_customizer_user_options_style() {
+		  	$_css = '';
+	        //TOP BORDER
+	        if ( 1 != esc_attr( tc__f( '__get_option' , 'tc_top_border') ) )
+	       		$_css .= "
+	       			header.tc-header {border-top: none;}
+	       		";
+
+	       	//THUMBNAIL SETTINGS
+		  	$_list_thumb_height 	= esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_height' ) );
+		  	$_list_thumb_height 	= (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
+
+		  	$_single_thumb_height 	= esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_height' ) );
+		  	$_single_thumb_height 	= (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
+		  	$_css .= "
+		          .tc-rectangular-thumb {
+		            max-height: {$_list_thumb_height}px;
+		            height :{$_list_thumb_height}px
+		          }
+		          .single .tc-rectangular-thumb {
+		            max-height: {$_single_thumb_height}px;
+		            height :{$_single_thumb_height}px
+		          }";
+
+		    //STICKY HEADER
+		    if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_shrink_title_logo') ) || TC_utils::$instance -> tc_is_customizing() ) {
+		    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
+
+		    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
+
+			    $_css .= "
+			    		.sticky-enabled .tc-shrink-on .site-logo img {
+							{$_logo_shrink}
+						}
+						.sticky-enabled .tc-shrink-on .brand .site-title {
+							{$_title_font}
+						}";
+			}
+
+			//CUSTOM SLIDER HEIGHT
+			// 1) Do we have a custom height ?
+			// 2) check if the setting must be applied to all context
+			$_custom_height = esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') );
+			if ( 500 != $_custom_height
+				&& ( tc__f('__is_home')
+						|| 0 != esc_attr( tc__f( '__get_option' , 'tc_slider_default_height_apply_all') )
+				) ) {
+				$_resp_shrink_ratios = apply_filters( 'tc_slider_resp_shrink_ratios',
+					array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )
+				);
+
+				$_css .= "
+					.carousel .item {
+						line-height: {$_custom_height}px;
+						min-height:{$_custom_height}px;
+						max-height:{$_custom_height}px;
+					}
+					.tc-slider-loader-wrapper {
+						line-height: {$_custom_height}px;
+						height:{$_custom_height}px;
+					}
+					.carousel .tc-slider-controls {
+						line-height: {$_custom_height}px;
+						max-height:{$_custom_height}px;
+					}";
+
+				foreach ( $_resp_shrink_ratios as $_w => $_ratio) {
+					if ( ! is_numeric($_ratio) )
+						continue;
+					$_item_dyn_height 		= $_custom_height * $_ratio;
+					$_caption_dyn_height 	= $_custom_height * ( $_ratio - 0.1 );
+					$_css .= "
+						@media (max-width: {$_w}px) {
+							.carousel .item {
+								line-height: {$_item_dyn_height}px;
+								max-height:{$_item_dyn_height}px;
+								min-height:{$_item_dyn_height}px;
+							}
+							.item .carousel-caption {
+								max-height: {$_caption_dyn_height}px;
+								overflow: hidden;
+							}
+							.carousel .tc-slider-loader-wrapper {
+								line-height: {$_item_dyn_height}px;
+								height:{$_item_dyn_height}px;
+							}
+						}";
+				}
+			}
+		  	wp_add_inline_style( 'customizr-skin', $_css );
+		}
+
 	}//end of TC_ressources
 endif;

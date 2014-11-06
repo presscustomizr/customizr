@@ -68,9 +68,9 @@ if ( ! class_exists( 'TC_init' ) ) :
           );
           
           //Default images sizes
-          $this -> tc_thumb_size      = array('width' => 270 , 'height' => 250, 'crop' => true );
-          $this -> slider_full_size   = array('width' => 9999 , 'height' => 500, 'crop' => true );
-          $this -> slider_size        = array('width' => 1170 , 'height' => 500, 'crop' => true );
+          $this -> tc_thumb_size      = array('width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
+          $this -> slider_full_size   = array('width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
+          $this -> slider_size        = array('width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
 
           //Default skins array
           $this -> skins              =  array( 
@@ -285,17 +285,72 @@ if ( ! class_exists( 'TC_init' ) ) :
                                             )
           );///end of slides array
 
+          //Set image options set by user @since v3.2.0
+          //! must be included in utils to be available in admin for plugins like regenerate thumbnails
+          add_action  ( 'after_setup_theme'                     , array( $this, 'tc_set_user_defined_settings'), 10 );
 
           //adds the text domain, various theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails
-          add_action ( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ) );
+          add_action ( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ), 20 );
 
           //adds various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, ...)
-          add_action ( 'after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 20 );
+          add_action ( 'after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 30 );
           
           //adds retina support for high resolution devices
           add_filter ( 'wp_generate_attachment_metadata'        , array( $this , 'tc_add_retina_support') , 10 , 2 );
           add_filter ( 'delete_attachment'                      , array( $this , 'tc_clean_retina_images') );
+
+          //adds classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
+          add_filter ('body_class'                              , array( $this , 'tc_set_body_classes') );
+      
+      }//end of constructor
+
+
+
+      /**
+      * Set user defined options for images
+      * Thumbnail's height
+      * Slider's height
+      *
+      * @package Customizr
+      * @since Customizr 3.1.23
+      */
+      function tc_set_user_defined_settings() {
+        $_options = get_option('tc_theme_options');
+        //add "rectangular" image size
+        if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
+          $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : esc_attr( $_options['tc_post_list_thumb_height'] );
+          $_rectangular_size    = apply_filters(
+            'tc_rectangular_size' , 
+            array( 'width' => '1170' , 'height' => $_user_height , 'crop' => true )
+          );
+          add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
+        }
+
+        if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) ) {
+            add_filter( 'tc_slider_full_size'    , array($this,  'tc_set_slider_img_height') );
+            add_filter( 'tc_slider_size'         , array($this,  'tc_set_slider_img_height') );
+        }
       }
+
+
+
+      /**
+      * Set slider new image sizes
+      * Callback of slider_full_size and slider_size filters
+      * 
+      * @package Customizr
+      * @since Customizr 3.2.0
+      *
+      */
+      function tc_set_slider_img_height( $_default_size ) {
+        $_options = get_option('tc_theme_options');
+        if ( 0 == $_options['tc_slider_default_height'] )
+          return $_default_size;
+
+        $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
+        return $_default_size;
+      }
+
 
 
       /**
@@ -724,7 +779,6 @@ if ( ! class_exists( 'TC_init' ) ) :
       }
 
 
-
       /**
       * Add help button
       * @package Customizr
@@ -744,5 +798,22 @@ if ( ! class_exists( 'TC_init' ) ) :
            ));
          }
       }
+
+
+
+      /**
+      * Add a class on the body element.
+      * 
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_set_body_classes( $_classes ) {
+        if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_link_hover_effect' ) ) )
+          $_classes = array_merge( $_classes , array('tc-fade-hover-links') );
+        if ( TC_utils::$instance -> tc_is_customizing() )
+          $_classes = array_merge( $_classes , array('is-customizing') );
+        return $_classes;
+      }
+
   }//end of class
 endif;

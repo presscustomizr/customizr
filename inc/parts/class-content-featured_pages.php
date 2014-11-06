@@ -111,7 +111,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
           $_skin_color                        = TC_utils::$instance -> tc_get_skin_color();
           $fp_holder_img                      = apply_filters (
             'tc_fp_holder_img' , 
-            sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" alt="Holder Thumbnail" />',
+            sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" />',
               ( '#E4E4E4' != $_skin_color ) ? '#EEE' : '#5A5A5A',
               $_skin_color
             ) 

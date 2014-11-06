@@ -24,6 +24,10 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	        add_action ( '__colophon'				, array( $this , 'tc_colophon_left_block' ), 10 );
 	        add_action ( '__colophon'				, array( $this , 'tc_colophon_center_block' ), 20 );
 	        add_action ( '__colophon'				, array( $this , 'tc_colophon_right_block' ), 30 );
+	        //since v3.2.0, Show back to top from the Customizer option panel
+	        add_action ( '__after_footer' 			, array( $this , 'tc_render_back_to_top') );
+	        //since v3.2.0, set no widget icons from the Customizer option panel
+	        add_filter ( 'tc_footer_widget_wrapper_class' , array( $this , 'tc_set_widget_wrapper_class') );
 	    }
 
 
@@ -45,11 +49,11 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 				return;
 			
 			//hack to render white color icons if skin is grey or black
-			$skin_class 	= ( in_array( tc__f('__get_option' , 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
-
+			$skin_class 					= ( in_array( tc__f('__get_option' , 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
+			$footer_widgets_wrapper_classes = implode(" ", apply_filters( 'tc_footer_widget_wrapper_class' , array('container' , 'footer-widgets', $skin_class) ) );
 			ob_start();
 			?>
-				<div class="container footer-widgets <?php echo $skin_class ?>">
+				<div class="<?php echo $footer_widgets_wrapper_classes; ?>">
 					<div class="row widget-area" role="complementary">
 						<?php do_action("__before_footer_widgets") ?>
 						<?php foreach ( $footer_widgets as $key => $area )  : ?>
@@ -118,12 +122,17 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		 * @since Customizr 3.0.10
 		 */
 	    function tc_colophon_left_block() {
-
+	    	//when do we display this block ?
+	        //1) if customizing always. (is hidden if empty of disabled)
+	        //2) if not customizing : must be enabled and have social networks.
 	      	echo apply_filters( 
 	      		'tc_colophon_left_block', 
 	      		sprintf('<div class="%1$s">%2$s</div>',
 	      			apply_filters( 'tc_colophon_left_block_class', 'span4 social-block pull-left' ),
-	      			0 != tc__f( '__get_option', 'tc_social_in_footer') ? tc__f( '__get_socials' ) : ''
+	      			sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
+	      				( TC_utils::$instance -> tc_is_customizing() && 0 == tc__f( '__get_option', 'tc_social_in_footer') ) ? 'style="display:none"' : '',
+	      				tc__f( '__get_socials' )
+	      			)
 	      		)
 	      	);
 	    }
@@ -154,12 +163,12 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 
 
 	    /**
-		 * Displays the back to top block
-		 *
-		 *
-		 * @package Customizr
-		 * @since Customizr 3.0.10
-		 */
+		* Displays the back to top fixed text block in the colophon
+		*
+		*
+		* @package Customizr
+		* @since Customizr 3.0.10
+		*/
 		function tc_colophon_right_block() {
 	    	echo apply_filters(
 	    		'tc_colophon_right_block',
@@ -168,6 +177,39 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	    			__( 'Back to top' , 'customizr' )
 	    		)
 	    	);
+		}
+
+
+		/**
+		* Displays the back to top on scroll
+		* Has to be enabled in the customizer
+		*
+		* @package Customizr
+		* @since Customizr 3.2.0
+		*/
+		function tc_render_back_to_top() {
+			if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_back_to_top' ) ) )
+				return;
+			printf( '<div class="tc-btt-wrapper"><i class="btt-arrow" style="color:%1$s"></i></div>',
+				TC_utils::$instance -> tc_get_skin_color()
+			);
+		}
+
+
+		/**
+		* Displays the widget icons if option is enabled in customizer
+		* @uses filter tc_footer_widget_wrapper_class
+		*
+		* @package Customizr
+		* @since Customizr 3.2.0
+		*/
+		function tc_set_widget_wrapper_class( $_original_classes ) {
+			$_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
+
+			if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_show_footer_widget_icon' ) ) )
+				return ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+			 //last condition
+          	return $_no_icons_classes;
 		}
 	}//end of class
 endif;

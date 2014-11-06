@@ -1,4 +1,4 @@
-![Customizr - Free Wordpress Theme](/screenshot.png)  
+![Customizr - Free Wordpress Theme - v3.2.0](/screenshot.png)  
 
 *Enjoy designing your website live from the WP customizer : skin, logo, social profiles, slider, layout, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Engage your visitors with beautiful sliders and call to actions on any page or post. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 14 languages. Ready for WooCommerce, bbPress, qTranslate (and others), the code is easily extensible with a comprehensive API hooks.*
 
@@ -21,19 +21,61 @@ Unless otherwise specified, all the theme files, scripts and images
 are licensed under GNU General Public License version 2, see file license.txt.
 The exceptions to this license are as follows:
 * Bootstrap by Twitter and the Glyphicon set are licensed under the GPL-compatible [http://www.apache.org/licenses/LICENSE-2.0 Apache License v2.0]
-* The script bootstrap-carousel.js v2.3.0 is licensed under the Apache License
-* The script holder.js v1.9 is licensed under the Apache License
-* The script modernizr.js is dual licensed under the BSD and MIT licenses
-* The script jquery.iphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
-* The script jquery.fancybox-1.3.4.js is dual licensed under the MIT and GPL licenses
+* bootstrap-carousel.js v2.3.0 is licensed under the Apache License
+* holder.js v1.9 is licensed under the Apache License
+* modernizr.js is dual licensed under the BSD and MIT licenses
+* jquery.iphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
+* jquery.fancybox-1.3.4.js is dual licensed under the MIT and GPL licenses
+* retina.min.js is copyrighted by Imulus, LLC, Ben Atkin, and other contributors and licensed under MIT
+* iCheck v1.0.1 by Damir Sultanov, http://git.io/arlzeA, MIT Licensed
+* selecter v3.0.9 - 2014-02-10, Copyright 2014 Ben Plum, MIT Licensed
+* stepper v3.0.5 - 2014-02-06, Copyright 2014 Ben Plum, MIT Licensed
+* Hammer.JS - v2.0.4 - Copyright (c) 2014 Jorik Tangelder, MIT license
 * Icon Set:	Entypo is licensed under SIL Open-Font License
 * The image phare.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:Ca_1941_DAF_%27Rijdende_regenjas%27_pic7.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 * The image chevrolet.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:%2755_Chevrolet_ornament.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
-* The image ampoules.jpg is a free public picture from Wikimedia, copyright 2010 Medvedev (http://commons.wikimedia.org/wiki/File:E24_E14_E10.jpg) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+* The image customizr.jpg is a creation of Nicolas Guillaume licensed under GPL v2+.
 * The image slider-loader.gif is released under the WTFPL license (http://www.wtfpl.net/, GPL compatible), generated on http://ajaxload.info/.
 
 
 # Changelog
+= 3.2.0 October 20th 2014 =
+* added (php, class-content-slider.php) New action hooked : __after_carousel_inner. Used to render the slider controls.
+* added (js) slider swipe support with hammer.js. Controls not renderd for mobile devices.
+* fixed (php, class-content-comments.php, comments.php) Comment title was not included in the translation strings (out of the poedit source paths). New filter on comment_form_defaults filter 
+* added (css, php : class-fire-init.php) css : class 'is-customizing' is added to the body tag in a customization context
+* changed (css) transition: width 0.2s ease-in-out, left 0.25s ease-in-out, right 0.25s ease-in-out; is only applied in a customization context.
+* changed : (php, class-header-header_main.php) tc_logo_class filter is now handled as an array of css classes instead of a string : implode( " ", apply_filters( 'tc_logo_class', array( 'brand', 'span3') ) )
+* added : (php, class-fire-utils.php, class-header-header_main.php) Navbar new customizer option tc_header_layout
+* added : (php, class-fire-utils.php, class-header-header_main.php) Navbar new customizer option tc_display_boxed_navbar
+* added : (php, class-fire-utils.php, class-header-header_main.php) Tagline ew customizer option tc_show_tagline
+* added : (php, class-fire-utils.php, class-content-post4
+4141.p14hp) Single post view : new filter tc_single_post_thumbnail_view
+* added : (php, class-content-post_thumbnail.php) new class dedicated to the thumbnail view and control : TC_post_thumbnails
+* changed : (php, class-content-post_thumbnails.php) thumbnails : filter name tc_post_list_thumbnail changed to tc_display_post_thumbnail. tc_get_post_list_thumbnail changed to tc_get_thumbnail_data
+* added : (php, class-fire-utils.php, class-content-post.php) Thumbnails : new option in the customizer tc_single_post_show_thumb
+* added : (php, class-content-post_list.php) New filter : tc_attachment_as_thumb_query_args.
+* added : (php, class-fire-utils.php, class-content-post_list.php) Thumbnails : new option in the customizer tc_post_list_show_thumb, tc_post_list_use_attachment_as_thumb, tc_post_list_thumb_shape, tc_post_list_thumb_height, tc_post_list_thumb_position, tc_post_list_thumb_alternate
+* added : (php, class-fire-utils.php, class-content-footer_main.php) Back to top link : new option in the customizer tc_show_back_to_top
+* added : (php, class-fire-utils.php, class-fire-init.php ) Links : new option in the customizer tc_link_hover_effect.
+* added : (php, class-content-post_list.php) New filter : tc_thumb_size_name. Default value : 'tc-thumb'
+* added : (php, class-fire-utils_settings_map.php) Creation of class-fire-utils_settings_map.php for the customizer settings. Instanciated before TC_utils().
+* added : (php, class-content-post_metas.php, class-fire-utils.php ) Post metas : 3 new options in the customizer : tc_show_post_metas_home, tc_show_post_metas_single_post, tc_show_post_metas_post_lists. View implemented with a new callback : add_action( 'template_redirect', array( $this , 'tc_set_post_metas' ));
+* added : (php, class-content-headings.php, class-fire-utils.php ) Icons in title : new options in the customizer : tc_show_page_title_icon, tc_show_post_title_icon, tc_show_archive_title_icon, tc_show_post_list_title_icon, tc_show_sidebar_widget_icon, tc_show_footer_widget_icon. View implemented with 2 new callbacks  : add_filter ( 'tc_content_title_icon' , array( $this , 'tc_set_post_page_icon' )), add_filter ( 'tc_archive_icon', array( $this , 'tc_set_archive_icon' ))
+* added : (php, class-content-breadcrumb.php, class-fire-utils.php ) Breadcrumb : 4 new optionw in the customizer : tc_show_breadcrumb_home, tc_show_breadcrumb_in_pages, tc_show_breadcrumb_in_single_posts, tc_show_breadcrumb_in_post_lists. Implemented with a new filter and callback :  add_filter( 'tc_show_breadcrumb_in_context' 	, array( $this , 'tc_set_breadcrumb_display_in_context' ) )
+* added : (lang) Hebrew (he_IL) translation added. Thanks to <a href="http://www.glezer.co.il/">Yaacov Glezer</a>.
+* updated : (lang) Russian translation, thanks to <a href="http://webmotya.com/">Evgeny</a>.
+* added : (php, class-content-slider.php) new hooks before and after each slides : __before_all_slides, __after_all_slides, __before_slide_{$id}, __after_slide_{$id}
+* added : (php, class-content-sidebar.php) new hook for the social links title : tc_sidebar_socials_title
+* improvement : (php, class-header_main.php) remove getimagesize() responsible for many bug reports. The logo width and height are now get directly from the WP attachement object which is way more reliable. New filters : 'tc_logo_attachment_img', 'tc_fav_attachment_img'. Backward compatibility is ensured by testing if the option is numeric (id) and falls back to the path src type if not.
+* improvement : (php, class-fire-utils.php) logo and favicon upload options are now handled with a specific type of control tc_upload, which has its own rendering class (extension of WP_Customize_Control)
+* improvement : (js, theme-customizer-control.js) new constructor added to wp.customize object. Inspired from the WP built-in UploadControl constructor. It uses the id instead of the url attribute of the attachement backbone model.
+* fixed : (css) replaced .tc-hover-menu.nav.nav li:hover > ul by .tc-hover-menu.nav li:hover > ul
+* improved (css) footer top border changed to 12px to 10px, same as header bottom border
+* improved (js, bootstrap) for mobile viewports, apply max-height = viewport to the revealed submenus+ make it scrollable
+* improved (php, class-content-post_list.php) round thumb : if size is not set for media, then falls back to medium and force max-width and max-height.
+
+
 = 3.1.24 Septembre 21th 2014 =
 * fixed : (php, class-fire-init.php#393 ) check if defined( 'WPLANG'). WPLANG has to be defined in wp-config.php, but it might not be defined sometimes.
 * fixed : (php, class-content-slider.php) the slider loader block has been taken out of the carousel inner wrapper. Fixes the issue reported here : http://www.themesandco.com/customizr-theme-v3-1-23-tested-wordpress-v4-0/#li-comment-235017. The slider loader is diplayed by default for the demo slider.

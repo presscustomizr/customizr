@@ -48,23 +48,32 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		 * @since Customizr 3.0 
 		 */
 		function tc_customize_register( $wp_customize) {
-			return $this -> tc_customize_factory ( $wp_customize , $args = $this -> tc_customize_arguments(), $setup = TC_utils::$instance -> tc_customizer_map() );
+			return $this -> tc_customize_factory ( $wp_customize , $args = $this -> tc_customize_arguments(), $setup = TC_utils_settings_map::$instance -> tc_customizer_map() );
 		}
 
 
 
 
 		/**
-		 * Defines arguments for sections, settings and controls
+		 * Defines authorized arguments for panels, sections, settings and controls
 		 * @package Customizr
 		 * @since Customizr 3.0 
 		 */
 		function tc_customize_arguments() {
 			$args = array(
+					'panels' => array(
+								'title' ,
+								'description',
+								'priority' ,
+								'theme_supports',
+								'capability'
+					),
 					'sections' => array(
 								'title' ,
 								'priority' ,
-								'description'
+								'description',
+								'panel',
+								'theme_supports'
 					),
 					'settings' => array(
 								'default'			=>	null,
@@ -77,7 +86,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'title' ,
 								'label' ,
 								'section' ,
-								'settings' ,
+								'settings',
 								'type' ,
 								'choices' ,
 								'priority' ,
@@ -91,6 +100,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'max',
 								'cssid',
 								'slider_default',
+								'active_callback',
+								'content_after',
+								'content_before',
+								'icon'
 					)
 			);
 			return apply_filters( 'tc_customizer_arguments', $args );
@@ -106,6 +119,20 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		 * @since Customizr 3.0 
 		 */
 		function tc_customize_factory ( $wp_customize , $args, $setup ) {
+			global $wp_version;
+			//add panels if current WP version >= 4.0
+			if ( isset( $setup['add_panel']) && version_compare( $wp_version, '4.0', '>=' ) ) {
+				foreach ( $setup['add_panel'] as $p_key => $p_options ) {
+					//declares the clean section option array
+					$panel_options = array();
+					//checks authorized panel args
+					foreach( $args['panels'] as $p_set) {
+						$panel_options[$p_set] = isset( $p_options[$p_set]) ?  $p_options[$p_set] : null;
+					}
+					$wp_customize -> add_panel( $p_key, $panel_options );
+				}
+			}
+
 
 			//remove sections
 			if ( isset( $setup['remove_section'])) {
@@ -173,12 +200,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
 					}
 
 					//add control with a dynamic class instanciation if not default
-					if(!isset( $options['control'])) {
-							$wp_customize	-> add_control( $key,$option_controls );
-					}
-					else {
-							$wp_customize	-> add_control( new $options['control']( $wp_customize, $key, $option_controls ));
-					}
+					if( ! isset( $options['control']) )
+						$wp_customize	-> add_control( $key,$option_controls );
+					else
+						$wp_customize	-> add_control( new $options['control']( $wp_customize, $key, $option_controls ));
 
 				}//end for each
 			}//end if isset
@@ -197,8 +222,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		function tc_customize_preview_js() {
 			wp_enqueue_script( 
 				'tc-customizer-preview' ,
-				get_template_directory_uri() . '/inc/admin/js/theme-customizer-preview.js' ,
-				array( 'customize-preview' ),
+				get_template_directory_uri() . '/inc/admin/js/theme-customizer-preview.min.js' ,
+				array( 'customize-preview' , 'underscore' ),
 				'20120827' ,
 				true );
 		}
@@ -216,15 +241,15 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 			wp_register_style( 
 				'tc-customizer-controls-style' ,
-				get_template_directory_uri() . '/inc/admin/css/theme-customizer-control.css' ,
+				get_template_directory_uri() . '/inc/admin/css/theme-customizer-control.min.css' ,
 				array( 'customize-controls' ),
-				null,
+				CUSTOMIZR_VER,
 				$media = 'all'
 			);
 			wp_enqueue_style('tc-customizer-controls-style');
 			wp_enqueue_script( 
 				'tc-customizer-controls' ,
-				get_template_directory_uri() . '/inc/admin/js/theme-customizer-control.js' ,
+				get_template_directory_uri() . '/inc/admin/js/theme-customizer-control.min.js' ,
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER ,
 				true
@@ -261,37 +286,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			    )
 	        );
 
-			//adds some nice google fonts to the customizer
-	        wp_enqueue_style(
-	          'customizer-google-fonts', 
-	          $this-> tc_customizer_gfonts_url(), 
-	          array(), 
-	          null 
-	        );
 		}
-
-
-
-
-		/**
-		* Builds Google Fonts url
-		* @package Customizr
-		* @since Customizr 3.1.1
-		*/
-		function tc_customizer_gfonts_url() {
-	      //declares the google font vars
-	      $fonts_url          = '';
-	      $font_families      = apply_filters( 'tc_customizer_google_fonts' , array('Raleway') );
-
-	      $query_args         = array(
-	          'family' => implode( '|', $font_families ),
-	          //'subset' => urlencode( 'latin,latin-ext' ),
-	      );
-
-	      $fonts_url          = add_query_arg( $query_args, "//fonts.googleapis.com/css" );
-
-	      return $fonts_url;
-	    }
 
 
 
@@ -306,5 +301,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
 	    	$options['tc_hide_donate'] = true;
 	    	update_option( 'tc_theme_options', $options );
 	    }
+
+
+	    
+
 	}//end of class
 endif;

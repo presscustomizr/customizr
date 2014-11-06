@@ -1636,7 +1636,7 @@
       dimension = this.dimension()
       scroll = $.camelCase(['scroll', dimension].join('-'))
       actives = this.$parent && this.$parent.find('> .accordion-group > .in')
-
+      
       if (actives && actives.length) {
         hasData = actives.data('collapse')
         if (hasData && hasData.transitioning) return
@@ -1647,6 +1647,12 @@
       this.$element[dimension](0)
       this.transition('addClass', $.Event('show'), 'shown')
       $.support.transition && this.$element[dimension](this.$element[0][scroll])
+
+      //@tc adddon
+      //give the revealed sub menu the height of the visible viewport
+      var tcVisible = $('body').hasClass('sticky-enabled') ? $(window).height() : ($(window).height() - $('.navbar-wrapper').offset().top);
+      tcVisible = ( tcVisible - 90 ) > 80 ? tcVisible - 90 : 300;
+      this.$element.css('max-height' , tcVisible + 'px');
     }
 
   , hide: function () {
@@ -1732,8 +1738,8 @@
 
  /* COLLAPSE DATA-API
   * ================= */
-
-  $(document).on('click.collapse.data-api', '[data-toggle=collapse]', function (e) {
+  //@tc addon add touch events
+  $(document).on('click.collapse.data-api touchstart.collapse.data-api', '[data-toggle=collapse]', function (e) {
     var $this = $(this), href
       , target = $this.attr('data-target')
         || e.preventDefault()

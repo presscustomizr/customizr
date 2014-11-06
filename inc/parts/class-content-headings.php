@@ -20,6 +20,10 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_action  ( '__before_loop'                 , array( $this , 'tc_archives_headings' ));
         //Headings for post, page, attachment
         add_action  ( '__before_content'              , array( $this , 'tc_content_headings' ));
+        //Set single post/page icon with customizer options (since 3.2.0)
+        add_filter ( 'tc_content_title_icon'          , array( $this , 'tc_set_post_page_icon' ));
+        //Set single post/page icon with customizer options (since 3.2.0)
+        add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ));
       }
 
 
@@ -266,5 +270,39 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
         <?php
       }//end of function
+
+
+      /**
+      * Filter tc_content_title_icon
+      * @return  boolean
+      *
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_set_post_page_icon( $_bool ) {
+          if ( is_page() )
+            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
+          if ( is_single() && ! is_page() )
+            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
+          if ( ! is_single() )
+            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
+          //last condition
+          return ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_title_icon' ) ) ) ? false : $_bool;
+      }
+
+
+      /**
+      * Filter tc_archive_icon
+      * @return  boolean
+      * 
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_set_archive_icon( $_bool ) {
+          $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_archive_title_icon' ) ) ) ? false : $_bool;
+          //last condition
+          return ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_title_icon' ) ) ) ? false : $_bool;
+      }
+
   }//end of class
 endif;

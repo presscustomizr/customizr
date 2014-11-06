@@ -21,7 +21,7 @@ if ( have_comments() )
 
 <div id="comments" class="<?php echo apply_filters( 'tc_comments_wrapper_class' , 'comments-area' ) ?>" >
 	<?php 
-		comment_form( array( 'title_reply' => __( 'Leave a Comment' , 'customizr' ) ) );
+		comment_form();
 		if ( have_comments() )
 			do_action ( '__comment' );
 	?>

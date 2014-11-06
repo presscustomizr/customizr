@@ -1,7 +1,10 @@
 <?php
 /**
 * Widgets factory : registered the different widgetized areas
-*
+* The default widget areas are defined as properties of the TC_utils class in class-fire-utils.php
+* TC_utils::$instance -> sidebar_widgets for left and right sidebars
+* TC_utils::$instance -> footer_widgets for the footer
+* The widget area are then fired in the class below
 * 
 * @package      Customizr
 * @subpackage   classes

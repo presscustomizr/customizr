@@ -20,12 +20,16 @@ Unless otherwise specified, all the theme files, scripts and images
 are licensed under GNU General Public License version 2, see file license.txt.
 The exceptions to this license are as follows:
 * Bootstrap by Twitter and the Glyphicon set are licensed under the GPL-compatible [http://www.apache.org/licenses/LICENSE-2.0 Apache License v2.0]
-* The script bootstrap-carousel.js v2.3.0 is licensed under the Apache License
-* The script holder.js v1.9 is licensed under the Apache License
-* The script modernizr.js is dual licensed under the BSD and MIT licenses
-* The script jquery.iphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
-* The script jquery.fancybox-1.3.4.js is dual licensed under the MIT and GPL licenses
-* The script retina.min.js is copyrighted by Imulus, LLC, Ben Atkin, and other contributors and licensed under MIT
+* bootstrap-carousel.js v2.3.0 is licensed under the Apache License
+* holder.js v1.9 is licensed under the Apache License
+* modernizr.js is dual licensed under the BSD and MIT licenses
+* jquery.iphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
+* jquery.fancybox-1.3.4.js is dual licensed under the MIT and GPL licenses
+* retina.min.js is copyrighted by Imulus, LLC, Ben Atkin, and other contributors and licensed under MIT
+* iCheck v1.0.1 by Damir Sultanov, http://git.io/arlzeA, MIT Licensed
+* selecter v3.0.9 - 2014-02-10, Copyright 2014 Ben Plum, MIT Licensed
+* stepper v3.0.5 - 2014-02-06, Copyright 2014 Ben Plum, MIT Licensed
+* Hammer.JS - v2.0.4 - Copyright (c) 2014 Jorik Tangelder, MIT license
 * Icon Set:	Entypo is licensed under SIL Open-Font License
 * The image phare.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:Ca_1941_DAF_%27Rijdende_regenjas%27_pic7.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 * The image chevrolet.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:%2755_Chevrolet_ornament.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
@@ -35,6 +39,42 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.2.0 October 20th 2014 =
+* added (php, class-content-slider.php) New action hooked : __after_carousel_inner. Used to render the slider controls.
+* added (js) slider swipe support with hammer.js. Controls not renderd for mobile devices.
+* fixed (php, class-content-comments.php, comments.php) Comment title was not included in the translation strings (out of the poedit source paths). New filter on comment_form_defaults filter 
+* added (css, php : class-fire-init.php) css : class 'is-customizing' is added to the body tag in a customization context
+* changed (css) transition: width 0.2s ease-in-out, left 0.25s ease-in-out, right 0.25s ease-in-out; is only applied in a customization context.
+* changed : (php, class-header-header_main.php) tc_logo_class filter is now handled as an array of css classes instead of a string : implode( " ", apply_filters( 'tc_logo_class', array( 'brand', 'span3') ) )
+* added : (php, class-fire-utils.php, class-header-header_main.php) Navbar new customizer option tc_header_layout
+* added : (php, class-fire-utils.php, class-header-header_main.php) Navbar new customizer option tc_display_boxed_navbar
+* added : (php, class-fire-utils.php, class-header-header_main.php) Tagline ew customizer option tc_show_tagline
+* added : (php, class-fire-utils.php, class-content-post4
+4141.p14hp) Single post view : new filter tc_single_post_thumbnail_view
+* added : (php, class-content-post_thumbnail.php) new class dedicated to the thumbnail view and control : TC_post_thumbnails
+* changed : (php, class-content-post_thumbnails.php) thumbnails : filter name tc_post_list_thumbnail changed to tc_display_post_thumbnail. tc_get_post_list_thumbnail changed to tc_get_thumbnail_data
+* added : (php, class-fire-utils.php, class-content-post.php) Thumbnails : new option in the customizer tc_single_post_show_thumb
+* added : (php, class-content-post_list.php) New filter : tc_attachment_as_thumb_query_args.
+* added : (php, class-fire-utils.php, class-content-post_list.php) Thumbnails : new option in the customizer tc_post_list_show_thumb, tc_post_list_use_attachment_as_thumb, tc_post_list_thumb_shape, tc_post_list_thumb_height, tc_post_list_thumb_position, tc_post_list_thumb_alternate
+* added : (php, class-fire-utils.php, class-content-footer_main.php) Back to top link : new option in the customizer tc_show_back_to_top
+* added : (php, class-fire-utils.php, class-fire-init.php ) Links : new option in the customizer tc_link_hover_effect.
+* added : (php, class-content-post_list.php) New filter : tc_thumb_size_name. Default value : 'tc-thumb'
+* added : (php, class-fire-utils_settings_map.php) Creation of class-fire-utils_settings_map.php for the customizer settings. Instanciated before TC_utils().
+* added : (php, class-content-post_metas.php, class-fire-utils.php ) Post metas : 3 new options in the customizer : tc_show_post_metas_home, tc_show_post_metas_single_post, tc_show_post_metas_post_lists. View implemented with a new callback : add_action( 'template_redirect', array( $this , 'tc_set_post_metas' ));
+* added : (php, class-content-headings.php, class-fire-utils.php ) Icons in title : new options in the customizer : tc_show_page_title_icon, tc_show_post_title_icon, tc_show_archive_title_icon, tc_show_post_list_title_icon, tc_show_sidebar_widget_icon, tc_show_footer_widget_icon. View implemented with 2 new callbacks  : add_filter ( 'tc_content_title_icon' , array( $this , 'tc_set_post_page_icon' )), add_filter ( 'tc_archive_icon', array( $this , 'tc_set_archive_icon' ))
+* added : (php, class-content-breadcrumb.php, class-fire-utils.php ) Breadcrumb : 4 new optionw in the customizer : tc_show_breadcrumb_home, tc_show_breadcrumb_in_pages, tc_show_breadcrumb_in_single_posts, tc_show_breadcrumb_in_post_lists. Implemented with a new filter and callback :  add_filter( 'tc_show_breadcrumb_in_context' 	, array( $this , 'tc_set_breadcrumb_display_in_context' ) )
+* added : (lang) Hebrew (he_IL) translation added. Thanks to <a href="http://www.glezer.co.il/">Yaacov Glezer</a>.
+* updated : (lang) Russian translation, thanks to <a href="http://webmotya.com/">Evgeny</a>.
+* added : (php, class-content-slider.php) new hooks before and after each slides : __before_all_slides, __after_all_slides, __before_slide_{$id}, __after_slide_{$id}
+* added : (php, class-content-sidebar.php) new hook for the social links title : tc_sidebar_socials_title
+* improvement : (php, class-header_main.php) remove getimagesize() responsible for many bug reports. The logo width and height are now get directly from the WP attachement object which is way more reliable. New filters : 'tc_logo_attachment_img', 'tc_fav_attachment_img'. Backward compatibility is ensured by testing if the option is numeric (id) and falls back to the path src type if not.
+* improvement : (php, class-fire-utils.php) logo and favicon upload options are now handled with a specific type of control tc_upload, which has its own rendering class (extension of WP_Customize_Control)
+* improvement : (js, theme-customizer-control.js) new constructor added to wp.customize object. Inspired from the WP built-in UploadControl constructor. It uses the id instead of the url attribute of the attachement backbone model.
+* fixed : (css) replaced .tc-hover-menu.nav.nav li:hover > ul by .tc-hover-menu.nav li:hover > ul
+* improved (css) footer top border changed to 12px to 10px, same as header bottom border
+* improved (js, bootstrap) for mobile viewports, apply max-height = viewport to the revealed submenus+ make it scrollable
+* improved (php, class-content-post_list.php) round thumb : if size is not set for media, then falls back to medium and force max-width and max-height.
+
 = 3.1.24 Septembre 21th 2014 =
 * fixed : (php, class-fire-init.php#393 ) check if defined( 'WPLANG'). WPLANG has to be defined in wp-config.php, but it might not be defined sometimes.
 * fixed : (php, class-content-slider.php) the slider loader block has been taken out of the carousel inner wrapper. Fixes the issue reported here : http://www.themesandco.com/customizr-theme-v3-1-23-tested-wordpress-v4-0/#li-comment-235017. The slider loader is diplayed by default for the demo slider.
@@ -81,7 +121,6 @@ The exceptions to this license are as follows:
 * improved : (php , class-fire-utils.php#207)tc_get_the_ID() : now check the wp_version global to avoid the get_post() whitout parameter issue. ( $post parameter became optional after v3.4.1 )
 * added : (php, class-controls.php) 2 new action hooks : __before_setting_control, __after_setting_control, using the setting id as additional parameter.
 * fixed : (css) .navbar-inner .nav li : 1px hack for chrome to not loose the focus on menu item hovering
-
  
 = 3.1.22 August 16th 2014 =
 * added : (css, class-fire-init.php#75) 9 new minified css skins
@@ -103,7 +142,6 @@ The exceptions to this license are as follows:
 * added : ( php, class-content-featured_pages.php ) add edit link to featured pages titles when user is logged in and has the capabilities to do so
 * improved : (php, class-content-breadcrumb.php) now displays all levels of any hierarchical taxinomies by default and for all types of post (including hierarchical CPT). This feature can be disabled with a the filter : tc_display_taxonomies_in_breadcrumb (set to true by default). In the case of hierarchical post types (like page or hierarchical CPT), the taxonomy trail is only displayed for the higher parent.
 * improved : (php, class-fire-utils.php and class-controls.php) moved the slider-check control message if no slider created yet to tc_theme_options[tc_front_slider] control
-
 
 = 3.1.19 July 14th 2014 =
 * improved : (php, class-admin-meta_boxes) code structure

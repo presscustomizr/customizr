@@ -13,23 +13,62 @@
 */
 if ( ! class_exists( 'TC_slider' ) ) :
   class TC_slider {
-      static $instance;
-      function __construct () {
+    static $instance;
+    function __construct () {
           self::$instance =& $this;
-          add_action( '__after_header'                   , array( $this , 'tc_slider_display' ));
-      }//end of construct
+          add_action( '__after_header'            , array( $this , 'tc_slider_display' ));
+          add_action( '__after_carousel_inner'    , array( $this , 'tc_slider_control_view') );
+
+          //set customizer options. @since v3.2.0
+          add_action ('init'                      , array($this, 'tc_set_slider_options') );
+    }//end of construct
 
 
 
 
     /**
-     * Get slides from option or default
-     * Returns and array of slides with data
-     * 
-     * @package Customizr
-     * @since Customizr 3.0.15
-     *
-     */
+    * Get slides from option or default
+    * Returns and array of slides with data
+    * 
+    * @package Customizr
+    * @since Customizr 3.2.0
+    *
+    */
+    function tc_set_slider_options() {
+      add_filter('tc_slider_layout_class' , array($this, 'tc_set_slider_wrapper_class') );
+      
+      if ( 500 == esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') ) )
+        return;
+    }
+
+
+
+    /**
+    * Set slider wrapper class
+    * Callback of tc_slider_layout_class filter
+    * 
+    * @package Customizr
+    * @since Customizr 3.2.0
+    *
+    */
+    function tc_set_slider_wrapper_class($_classes) {
+      if ( !is_array($_classes) )
+        return $_classes;
+
+      $_is_custom_height = ( 500 != esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') ) ) ? true : false;
+      return $_is_custom_height ? array_merge( $_classes , array('custom-slider-height') ) : $_classes;
+    }
+
+
+
+    /**
+    * Get slides from option or default
+    * Returns and array of slides with data
+    * 
+    * @package Customizr
+    * @since Customizr 3.0.15
+    *
+    */
     function tc_get_slides( $slider_name_id, $img_size ) {
 
       //returns the default slider if requested
@@ -161,7 +200,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
       $layout_value                 = apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
       
       //declares the layout vars
-      $layout_class                 = apply_filters( 'tc_slider_layout_class' , ( 0 == $layout_value ) ? 'container' : '' );
+      $layout_class                 = implode( " " , apply_filters( 'tc_slider_layout_class' , ( 0 == $layout_value ) ? array('container', 'carousel', 'slide') : array('carousel', 'slide') ) );
       $img_size                     = apply_filters( 'tc_slider_img_size' , ( 0 == $layout_value ) ? 'slider' : 'slider-full');
 
       //get slides
@@ -173,7 +212,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
       
       ob_start();
       ?>
-      <div id="customizr-slider" class="<?php echo $layout_class ?> carousel slide">
+      <div id="customizr-slider" class="<?php echo $layout_class ?> ">
           <?php if ( 'demo' == $slider_name_id || ( 1 == esc_attr( tc__f( '__get_option' , 'tc_display_slide_loader') ) && apply_filters( 'tc_display_slider_loader' , true ) ) ) : ?>
             <div class="tc-slider-loader-wrapper">
               <div class="tc-img-gif-loader">
@@ -191,14 +230,17 @@ if ( ! class_exists( 'TC_slider' ) ) :
                 ?>
               <div class="item <?php echo $slide_class; ?>">
 
-                <?php
-                  printf('<div class="%1$s %2$s">%3$s</div>',
-                    apply_filters( 'tc_slide_content_class', 'carousel-image' ),
-                    $img_size,
-                    apply_filters( 'tc_slide_background', $data['slide_background'], $data['link_url'], $id, $slider_name_id )
-                  );
-                ?>
+                <div class="<?php echo apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) ); ?>">
+                  <?php
+                    do_action('__before_all_slides');
+                    do_action_ref_array ("__before_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id ) );
 
+                      echo apply_filters( 'tc_slide_background', $data['slide_background'], $data['link_url'], $id, $slider_name_id );
+                      
+                    do_action_ref_array ("__after_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id ) );
+                    do_action('__after_all_slides');
+                  ?>
+                </div> <!-- .carousel-image -->
                 <?php 
                   if ( $data['title'] != null || $data['text'] != null || $data['button_text'] != null ) {
                     //apply filters first
@@ -252,15 +294,8 @@ if ( ! class_exists( 'TC_slider' ) ) :
 
           </div><!-- /.carousel-inner -->
 
-          <?php if ( count($slides) > 1 ) : ?>
-            <a class="left carousel-control" href="#customizr-slider" data-slide="prev">
-              <?php echo apply_filters( 'tc_slide_left_control', '&lsaquo;' ) ?>
-            </a>
-            <a class="right carousel-control" href="#customizr-slider" data-slide="next">
-              <?php echo apply_filters( 'tc_slide_right_control', '&rsaquo;' ) ?>
-            </a>
-          <?php endif; ?>
-          
+          <?php  do_action( '__after_carousel_inner' , $slides )  ?>
+
         </div><!-- /#customizr-slider -->
               
         <?php
@@ -268,5 +303,38 @@ if ( ! class_exists( 'TC_slider' ) ) :
         if ($html) ob_end_clean();
         echo apply_filters( 'tc_slider_display', $html, $slider_name_id );
       }
+
+
+
+      /*
+      * Slider controls view
+      * @param slides
+      * @hook : __after_carousel_inner
+      * @since v3.2.0
+      * 
+      */
+      function tc_slider_control_view( $_slides ) {
+        if ( count( $_slides ) <= 1 )
+          return;
+
+        if ( ! apply_filters('tc_show_slider_controls' , ! wp_is_mobile() ) )
+          return;
+
+        $_html = '';
+        $_html .= sprintf('<div class="tc-slider-controls left">%1$s</div>',
+          sprintf('<a class="tc-carousel-control" href="#customizr-slider" data-slide="prev">%1$s</a>',
+            apply_filters( 'tc_slide_left_control', '&lsaquo;' )
+          )
+        );
+        $_html .= sprintf('<div class="tc-slider-controls right">%1$s</div>',
+          sprintf('<a class="tc-carousel-control" href="#customizr-slider" data-slide="next">%1$s</a>',
+            apply_filters( 'tc_slide_right_control', '&rsaquo;' )
+          )
+        );
+        echo apply_filters( 'tc_slider_control_view', $_html );
+    }
+
+
+
   } //end of class
 endif;
