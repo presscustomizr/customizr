@@ -18,9 +18,32 @@
 * @copyright 	Copyright (c) 2013, Nicolas GUILLAUME
 * @link      	http://themesandco.com/customizr
 * @license   	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- */
+*/
 
-locate_template( 'inc/class__.php' , 1 , 1 );
+
+
+/**
+* This is where Customizr starts. This file defines and loads the theme's components :
+* 1) A function tc__f() used everywhere in the theme, extension of WP built-in apply_filters()
+* 2) Constants : CUSTOMIZR_VER, TC_BASE, TC_BASE_CHILD, TC_BASE_URL, TC_BASE_URL_CHILD, THEMENAME, TC_WEBSITE
+* 3) Default filtered values : images sizes, skins, featured pages, social networks, widgets, post list layout
+* 4) Text Domain
+* 5) Theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails, retina support
+* 6) Plugins compatibility : jetpack, bbpress, qtranslate, woocommerce and more to come
+* 7) Default filtered options for the customizer
+* 8) Customizr theme's hooks API : front end components are rendered with action and filter hooks
+* 
+* The method TC__::tc__() loads the php files and instanciates all theme's classes.
+* All classes files (except the class__.php file which loads the other) are named with the following convention : class-[group]-[class_name].php
+* 
+* The theme is entirely built on an extensible filter and action hooks API, which makes customizations easy as breeze, without ever needing to modify the core structure.
+* Customizr's code acts like a collection of plugins that can be enabled, disabled or extended. More here : http://themesandco.com/customizr/hooks-api
+* 
+*/
+
+
+//Fire Customizr
+require_once( get_template_directory() . '/inc/init.php' );
 
 /**
 * The best and safest way to extend Customizr with your own custom functions is to create a child theme.

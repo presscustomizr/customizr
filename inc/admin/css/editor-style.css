@@ -2,7 +2,9 @@
 Theme Name: customizr
 Description: Used to style the TinyMCE editor.
 */
-
+body{
+	background: #FAFAFA!important;
+}
 
 /* Aside */
 .post-format-aside {
@@ -15,17 +17,17 @@ Description: Used to style the TinyMCE editor.
 	color: #000;
 }
 .post-format-aside:before {
-	content: "\1F504";
-	font-family: 'entypo';
+	content: '\f308';
+	font-family: 'genericons';
 	speak: none;
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
 	line-height: 7px;
-	top: -26px;
+	top: -0px;
 	-webkit-font-smoothing: antialiased;
 	padding-right: 13px;
-	font-size: 6.0em;
+	font-size: 3.5em;
 	opacity: 0.3;
 	position: relative;
 	display: block;
@@ -53,14 +55,14 @@ Description: Used to style the TinyMCE editor.
 }
 
 .post-format-link:before {
-	font-family: 'entypo';
-	content: "\1F517";
+	font-family: 'genericons';
+	content: "\f107";
 	speak: none;
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
 	line-height: 7px;
-	top: -26px;
+	top: -6px;
 	-webkit-font-smoothing: antialiased;
 	padding-right: 13px;
 	font-size: 6.0em;

@@ -4,13 +4,12 @@ Template Name: Custom Page Example
 */
 ?>
 <?php do_action( '__before_main_wrapper' ); ##hook of the header with get_header ?>
-<?php  ?>
 <div id="main-wrapper" class="<?php echo tc__f( 'tc_main_wrapper_classes' , 'container' ) ?>">
 
     <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
     
     <div class="container" role="main">
-        <div class="row">
+        <div class="<?php echo tc__f( 'tc_column_content_wrapper_classes' , 'row column-content-wrapper' ) ?>">
 
             <?php do_action( '__before_article_container'); ##hook of left sidebar?>
                 

@@ -16,7 +16,7 @@ Customizr is distributed under the terms of the GNU GPL v2.0 or later
 * HOOKS API : http://www.themesandco.com/customizr/hooks-api/
 
 
-# License
+# Licenses
 Unless otherwise specified, all the theme files, scripts and images
 are licensed under GNU General Public License version 2, see file license.txt.
 The exceptions to this license are as follows:
@@ -30,9 +30,215 @@ The exceptions to this license are as follows:
 * The image phare.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:Ca_1941_DAF_%27Rijdende_regenjas%27_pic7.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 * The image chevrolet.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:%2755_Chevrolet_ornament.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 * The image ampoules.jpg is a free public picture from Wikimedia, copyright 2010 Medvedev (http://commons.wikimedia.org/wiki/File:E24_E14_E10.jpg) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+* The image slider-loader.gif is released under the WTFPL license (http://www.wtfpl.net/, GPL compatible), generated on http://ajaxload.info/.
 
 
 # Changelog
+= 3.1.24 Septembre 21th 2014 =
+* fixed : (php, class-fire-init.php#393 ) check if defined( 'WPLANG'). WPLANG has to be defined in wp-config.php, but it might not be defined sometimes.
+* fixed : (php, class-content-slider.php) the slider loader block has been taken out of the carousel inner wrapper. Fixes the issue reported here : http://www.themesandco.com/customizr-theme-v3-1-23-tested-wordpress-v4-0/#li-comment-235017. The slider loader is diplayed by default for the demo slider.
+* added : (php, class-fire-init.php) new option in Customizer > Images => checkbox to display a gif loader on slides setup. Default == false.
+* added : (php, class-content-post_navigation.php) 4 new filters to get control on all the options of the single and archive post navigation links : tc_previous_single_post_link_args, tc_next_single_post_link_args, tc_next_posts_link_args, tc_previous_posts_link_args
+* improved : (php, class-fire-utils.php#315 ) cleaner code for the fancybox filter on 'the_content'
+* improved : (php, class-fire-ressources.php) performance : holder.min.js is now loaded when featured pages are enabled AND FP are set to show images
+
+
+= 3.1.23 Septembre 6th 2014 =
+* improved : (php, class-fire-ressources.php, js : tc-scripts.js ) Performances : tc-scripts.js now includes all front end scripts in one file. 1) Twitter Bootstrap scripts, 2) Holder.js , 3) FancyBox - jQuery Plugin, 4) Retina.js, 5) Customizr scripts. New boolean filters to control each scripts load : tc_load_bootstrap, tc_load_modernizr, tc_load_holderjs, tc_load_customizr_script.
+* added : (php, class-footer-footer_main.php#55) 2 new action hooks before and after the footer widgets row : '__before_footer_widgets' , '__after_footer_widgets'
+* added : (php, class-footer-footer_main.php#142) Colophon center block : 2 new filter hooks : tc_copyright_link, tc_credit_link
+* improved : (php, class-footer-footer_main.php#55) before and after footer widgets hooks have been moved out of the active_sidebar condition in order to be used even with widget free footer
+* changed : (php, class-content-breadcrumb.php#581 ) filter hook name has been changed from 'breadcrumb_trail_items' to 'tc_breadcrumb_trail_items'
+* changed : (php, class-content-featured_pages.php#112) filter name changed from 'fp_holder_img' to 'tc_fp_holder_img' for namespace consistency reasons
+* improved : (php, class-content-featured_pages.php) filter hooks missing parameters ( $fp_single_id and / or $featured_page_id) have been added to 'tc_fp_title', 'tc_fp_text_length', 'fp_img_src, 'tc_fp_img_size', 'tc_fp_round_div', 'tc_fp_title_tag', 'tc_fp_title_block', 'tc_fp_text_block', 'tc_fp_button_block', 'tc_fp_single_display'
+* improved : (php, class-content-featured_pages.php) new holder image style. Foreground color is the main skin color.
+* updated (js, holder.js) version 2.4 of the script.
+* improved : (php, class-fire-init.php#386) replace the disable_for_jetpack() callback by the built-in wp function __return_false()
+* added : (php : class-fire-init.php, css) 2 new social networks :  tumblr and flickr.
+* added : (php : class-fire-init.php, css) new skin_color_map property
+* improved : (php, class-content-post_list.php#240) use apply_filters_ref_array instead of apply_filters for some filters
+* improved : (php, class-content-post_list.php#240) 'tc_get_post_list_thumbnail' filter : the current post id has been included in the array of parameters
+* improved : (php, class-content-post_list.php#259) 'tc_post_thumb_img' filter : the current post id has been included in the parameters
+* improved : (php, class-content-post_metas.php#189) use apply_filters_ref_array instead of apply_filters
+* added : (php, class-content-post_metas.php) entry-date meta : new filter to use the modified date instead of the actual post date : 'tc_use_the_post_modified_date'. Default to false. Note : get_the_modified_date() == get_the_date() if the post has never been updated.
+* improved : (php, class-content-sidebar.php#115) current_filter() added as parameter of the 'tc_social_in_sidebar' filter hook
+* improved : (php, class-content-slider#193) $slider_name_id parameter added to the following filter hooks : tc_slide_background, tc_slide_title, tc_slide_text, tc_slide_color, tc_slide_link_id, tc_slide_link_url, tc_slide_button_text, tc_slide_title_tag, tc_slide_button_class
+* added : (php : class-content-slider.php, js : tc-scripts.js, css) Slider : for a better experience, when the re-center option is checked in Appearance > Customizer > Responsive settings, a gif loader is displayed while recentering.
+* fixed : (php, class-fire-admin_init.php#312) Changelog was not displayed in ?page=welcome.php#customizr-changelog. Now look for '= '.CUSTOMIZR_VER to match the current version changelog
+* improved : (php, class-header-header_main.php#223) action hook 'before_navbar' renamed to '__before_navbar' for namespace consistency reasons
+* added : (php, class-header-header_main.php) added 'tc_head_display' filter
+* improved : (php, class-header-header_main.php) tc_favicon_display filter is now handled with a sprintf()
+* added : (php, class-header-header_main.php) new filters tc_logo_link_title , tc_site_title_link_title
+* changed : (php, class-header-header_main.php ) filter names : __max_logo_width => tc_logo_max_width and __max_logo_height => tc_logo_max_height
+* changed : (php, class-header-header_menu.php#97) filter menu_wrapper_class renamed in tc_menu_wrapper_class
+* changed : (php, class-header-nav_walker.php#41 ) filter menu_open_on_clicks renamed in tc_menu_open_on_click
+* added : (php, comments.php) new filter : tc_comments_wrapper_class inside div#comments
+* changed : (php, comments.php) filter comment_separator renamed to tc_comment_separator
+* improved : (php, comments.php) cleaner code
+* changed : (php, init.php#47) Class loading order. Utils are now loaded before resources.
+* changed : (php, class-fire-resources.php) localized params filter renamed 'tc_customizr_script_params'. Left and Right sidebars classes are now set dynamically form the global layout params.
+* changed : (php, class-fire-utils.php#497) added the $key parameter to tc_social_link_class
+* improved : (php , class-fire-utils.php#207)tc_get_the_ID() : now check the wp_version global to avoid the get_post() whitout parameter issue. ( $post parameter became optional after v3.4.1 )
+* added : (php, class-controls.php) 2 new action hooks : __before_setting_control, __after_setting_control, using the setting id as additional parameter.
+* fixed : (css) .navbar-inner .nav li : 1px hack for chrome to not loose the focus on menu item hovering
+
+
+= 3.1.22 August 16th 2014 =
+* added : (css, class-fire-init.php#75) 9 new minified css skins
+* fixed : (php, class-content-breadcrumb.php#443) added a check is_array(get_query_var( 'post_type' ) in archive context
+(bug reported here : https://wordpress.org/support/topic/illegal-offset-type-in-isset-or-empty-in-postphp-after-upgrade-to-custom3120)
+* improved : (php, class-content-headings.php#224) added a boolean filter named 'tc_display_link_for_post_titles' (default = true) to control whether the post list titles have to be a link or not
+
+
+= 3.1.21 August 11th 2014 =
+* fixed : (php, class-content-post_list.php) boolean filter 'tc_include_cpt_in_archives' is set to false. Following a bug reported here http://wordpress.org/support/topic/content-removedchanged-after-updating-to-3120?replies=8 Thanks to http://wordpress.org/support/profile/le-formateur for reporting it.
+
+
+= 3.1.20 August 9th 2014 =
+* added : (lang) Ukrainian translation. Many thanks to <a href="http://akceptor.org/">Aceptkor!</a>
+* added : (php, class-content-post_list.php) new filter to control if attachment have to be included in search results or not : tc_include_attachments_in_search_results. Default : true.
+* added : (php, class-content-post_list.php) Custom Post Types : new pre_get_posts action. Now includes Custom Posts Types (set to public and excluded_from_search_result = false) in archives and search results. In archives, it handles the case where a CPT has been registered and associated with an existing built-in taxonomy like category or post_tag
+* added : (php, class-content-post_metas.php) Now handles any custom or built-in taxonomies associated with built-in or custom post types. Displays the taxonomy terms like post category if hierarchical, and like post tags if not hierarchical. Uses a new helper (private method) : _get_terms_of_tax_type(). New filter created : tc_exclude_taxonomies_from_metas, with default value : array('post_format') => allows to filter which taxonomy to displays in metas with a customizable granularity since it accepts 2 parameters : post type and post id.
+* added : (php, class-fire-utils.php) added the social network key to the target filter : apply_filters( 'tc_socials_target', 'target=_blank', $key )
+* added : (php, class-header-header_main.php) favicon and logo src are ssl compliant => fixes the "insecure content" warning in url missing 'https' in an ssl context
+* added : (php, class-fire-utils.php) new placeholder image for the demo slider customizr.jpg
+* added : ( php, class-content-featured_pages.php ) add edit link to featured pages titles when user is logged in and has the capabilities to do so
+* improved : (php, class-content-breadcrumb.php) now displays all levels of any hierarchical taxinomies by default and for all types of post (including hierarchical CPT). This feature can be disabled with a the filter : tc_display_taxonomies_in_breadcrumb (set to true by default). In the case of hierarchical post types (like page or hierarchical CPT), the taxonomy trail is only displayed for the higher parent.
+* improved : (php, class-fire-utils.php and class-controls.php) moved the slider-check control message if no slider created yet to tc_theme_options[tc_front_slider] control
+
+
+= 3.1.19 July 18th 2014 =
+* added : (php, class-fire-init.php) support for svg and svgz in media upload
+* added : (php, class-header-header_main.php) new filter 'tc_logo_img_formats'
+* fixed : (php, class-content-breadcrumb#291) check existence of rewrite['with_front']
+* fixed : (php) closing tags php removed from all classes
+
+
+= 3.1.18 July 11rd 2014 =
+* added : (lang) Czech translation. Many thanks to Martin Filák!
+* added : (php , class-content_slider.php) two new action hooks (filters) for a better control of the slider layout class (tc_slider_layout_class) and the slider image size (tc_slider_img_size)
+* added : (php, class-fire-resources.php) new filter named "tc_custom_css_priority" to take control over the custom css writing priority in head
+* added : (php) empty index.php added in all folders
+* improved : (php) Every class is now "pluggable" and can be overriden
+* improved : (php, class-content-post_list.php) the missing $layout parameter has been added to the "tc_post_list_thumbnail" filter
+* improved : (php, class-content-headings.php) headings of the page for post is now displayed by default (if not front page). Action hook (filter) : tc_page_for_post_header_content
+* improved : (php, class-content-sidebar.php) before and after sidebars hooks have been moved out of the active_sidebar condition in order to be used even with widget free sidebars
+
+
+= 3.1.17 July 6rd 2014 =
+* fixed : back to previous screenshot
+
+
+= 3.1.16 July 3rd 2014 =
+* improved : (php, css, js) better file structure. Every front end has been move iin /inc folder
+* improved : (php) init class and functions have been moved in /inc/init.php
+* improved : new theme screenshot
+* fixed : (php, class-content-slider.php#102) missing icon parameter has been added to wp_get_attachment_image()
+
+
+= 3.1.15 May 31st 2014 =
+* fixed : (css : editor-style.css) background default color flagged as !important
+* fixed : (php : class-content-headings.php) post edit button is displayed to author of the post and admin profiles Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/">Rocco</a>
+* fixed : (php : class-content-slider.php) slider edit button is displayed for users with the upload_files capability
+* fixed : (php : class-content-comments.php) class comment-{id} has been added to the article comment wrapper to ensure compatibility with the recent comment WP built-in widget
+
+
+= 3.1.14 =
+* added : (js : theme-customizer-control.js, css : theme-customizer-control.css, php : class-admin-customize.php) Donate block can be disable forever in admin.
+
+
+= 3.1.13 =
+* added : (lang) Danish translation. Thanks to <a href="http://teknikalt.dk">Peter Wiwe</a>
+* added : (css, js) Donate link in admin
+
+= 3.1.12 =
+* fixed : (css) category archive icon now displayed again in chrome
+* fixed : (php : TC_init::tc_add_retina_support) retina bug fixed by <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
+* improved : (php : TC_breadcrumb ) breadcrumb trail for single posts, category and tag archive now includes the page_for_posts rewrited if defined.
+* improved : (php) Better handling of the comment reply with the add_below parameter. Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/">Rocco</a>.
+* improved : (php) TC_Utils::tc_get_option() returns false if option not set
+* removed : (php) Customiz'it button has been taken off
+
+
+= 3.1.11 =
+* added : (php , css) customizer : new option in the Skin Settings, enable/disable the minified version of skin
+* added : (php) customizer : new option in the Responsive Settings, enable/disable the automatic centering of slides
+* added : (js, php) automatic centering of the slider's slides on any devices. Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/">Rocco</a>.
+* improved : (css) skins have been minified to speed up load time (~ saved 80Ko)
+* improved : (php) logo and favicon are now saved as relative path => avoid server change issues.
+* improved : (php) better class loading. Check the context and loads only the necessary classes.
+* improved : (php) customizer map has been moved into the class-fire-utils.php
+* improved : (php) performance improvement for options. Default options are now generated once from the customizer map and saved into database as default_options
+* improved : (js) block repositioning is only triggered on load for responsive devices
+* updated : (translation) Slovak translation has been updated. Thanks to <a href="www.pcipservis.eu">Michal Hranicky</a>.
+
+
+= 3.1.10 =
+* fixed : (php : TC_init::tc_plugins_compatibility() , custom-page.php) WooCommerce compatibility issue fixed.
+* added : (TC_customize::tc_customize_register() , TC_resources::tc_enqueue_customizr_scripts() , tc_script.js ) New option in customizer : Enable/Disable block reordering for smartphone viewport.
+
+
+= 3.1.9 =
+* fixed : (js  : tc_scripts.js , php : index.php ) responsive : dynamic content block position bug fixed in tc_script.js, the wrapper had to be more specific to avoid block duplication when inserting other .row inside main content. Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/" target="_blank">Rocco Aliberti</a>.
+* fixed : (php : TC_resources::tc_enqueue_customizr_scripts() ) comment : notice on empty archives due to the function comments_open(). A test on  0 != $wp_query -> post_count has been added in TC_resources::tc_enqueue_customizr_scripts(). Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/" target="_blank">Rocco Aliberti</a>.
+* improved : (js  : tc_scripts.js) responsive : the sidebar classes are set dynamically with a js localized var using the tc_{$position}_sidebar_class filter
+
+
+= 3.1.8 =
+* fixed : (js) responsive : dynamic content block position bug fixed in tc_script.js
+
+
+= 3.1.7 =
+* fixed : (css) : icons rendering for chrome
+* improved : (css) : footer white icons also for black skin
+* added : (php) utils : new filter with 2 parameters to tc_get_option
+* added : (php) featured pages : new filter tc_fp_id for the featured pages
+* added : (php) featured pages : new parameters added to the fp_img_src filter
+* improved : (php) metaboxes : no metaboxes for acf post types
+* improved : (js) responsive : dynamic content block position on resize hase been improved in tc_script.js
+* fixed : (php) Image size : slider full size sets to 9999 instead of 99999 => was no compatible with Google App engine
+* improved : (php) slider : make it easier to target individual slides with a unique class/or id
+* added : (php) footer : dynamic actions added inside the widget wrapper
+* improved : (php) footer : additional parameter for the tc_widgets_footer filter
+* improved : (php)(js) comments : Comment reply link the whole button is now clickable
+* fixed : (html) Google Structured Data : addition of the "updated" class in entry-date
+
+
+= 3.1.6 =
+* added : (php)(js) customizer controls : new filter for localized params
+* added : (php) featured pages : new filters for title, excerpt and button blocks
+* added : (php) search : form in the header if any results are found
+* improved : (php) body tag : "itemscope itemtype="http://schema.org/WebPage" included in the 'tc_body_attributes' filter hook
+* improved : (php) overall code : check added on ob_end_clean()
+* improved : (php) headings : new filters by conditional tags
+* improved : (php) comments : 'comment_text' WP built-in filter has been added in the comment callback function
+* fixed : (js) submenu opening on click problem : [data-toggle="dropdown"] links are excluded from smoothscroll function
+* fixed : (php) compatibility with NEXTGEN plugin : fixed ob_start() in class-content-headings::tc_content_headings()
+
+
+= 3.1.5 =
+* fixed : (php) child themes bug : child theme users can now override the Customizr files with same path/name.php.
+
+
+= 3.1.4 =
+* fixed : (css) featured pages : another responsive thumbnails alignment for max-width: 979px
+
+
+= 3.1.3 =
+* fixed : (css) featured pages : responsive thumbnails alignment
+
+
+= 3.1.2 =
+* improved : (php) minor file change : the class__.php content has been moved in functions.php
+
+
+= 3.1.1 =
+* added : (language) Turkish : thanks to <a href="http://www.ahmethakanergun.com/">Ahmet Hakan Ergün</a>
+* added : (css) customizer : some styling
+* fixed : (css) post thumbnails : minor alignment issues
+* fixed : (php) translations in customizer for dropdown lists
+
+
 = 3.1.0 =
 * added : (language) Hungarian : thanks to Ferencz Székely
 * added : (php) Site title : filter on the tag

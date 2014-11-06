@@ -1,0 +1,1728 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: * Customizr v3.1.24\n"
+"POT-Creation-Date: 2014-09-05 10:31+0100\n"
+"PO-Revision-Date: 2014-09-05 10:31+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"Language-Team: websiter.ro <mail@websiter.ro>\n"
+"Language: Romanian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../class-fire-init.php:46 ../class-fire-init.php:47
+msgid "Right sidebar"
+msgstr "Bara laterală dreaptă"
+
+#: ../class-fire-init.php:52 ../class-fire-init.php:53
+msgid "Left sidebar"
+msgstr "Bara laterală stângă"
+
+#: ../class-fire-init.php:58 ../class-fire-init.php:59
+msgid "2 sidebars : Right and Left"
+msgstr "Ambele bare laterale"
+
+#: ../class-fire-init.php:64 ../class-fire-init.php:65
+msgid "No sidebars : full width layout"
+msgstr "Fără bare laterale: toată lăţimea"
+
+#: ../class-fire-init.php:76
+msgid "Blue"
+msgstr "Albastru"
+
+#: ../class-fire-init.php:77
+msgid "Light blue "
+msgstr ""
+
+#: ../class-fire-init.php:78
+#, fuzzy
+msgid "Green blue"
+msgstr "Verde"
+
+#: ../class-fire-init.php:79
+msgid "Green"
+msgstr "Verde"
+
+#: ../class-fire-init.php:80
+msgid "Light green"
+msgstr ""
+
+#: ../class-fire-init.php:81
+msgid "Yellow"
+msgstr "Galben"
+
+#: ../class-fire-init.php:82
+msgid "Flat yellow"
+msgstr ""
+
+#: ../class-fire-init.php:83
+msgid "Orange"
+msgstr "Portocaliu"
+
+#: ../class-fire-init.php:84
+msgid "Flat orange"
+msgstr ""
+
+#: ../class-fire-init.php:85
+msgid "Red"
+msgstr "Roşu"
+
+#: ../class-fire-init.php:86
+msgid "Flat red"
+msgstr ""
+
+#: ../class-fire-init.php:87
+msgid "Purple"
+msgstr "Mov"
+
+#: ../class-fire-init.php:88
+msgid "Flat purple"
+msgstr ""
+
+#: ../class-fire-init.php:89
+msgid "Grey"
+msgstr "Gri"
+
+#: ../class-fire-init.php:90
+msgid "Ligth grey"
+msgstr ""
+
+#: ../class-fire-init.php:91
+msgid "Black"
+msgstr "Negru"
+
+#: ../class-fire-init.php:92
+msgid "Flat black"
+msgstr ""
+
+#: ../class-fire-init.php:101
+msgid "Subscribe to my rss feed"
+msgstr "Subscrie la sursa rss"
+
+#: ../class-fire-init.php:102
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "Sursă RSS"
+
+#: ../class-fire-init.php:106
+msgid "Follow me on Twitter"
+msgstr "Twitter"
+
+#: ../class-fire-init.php:107
+msgid "Twitter profile url"
+msgstr "Link cont Twitter"
+
+#: ../class-fire-init.php:111
+msgid "Follow me on Facebook"
+msgstr "Facebook"
+
+#: ../class-fire-init.php:112
+msgid "Facebook profile url"
+msgstr "Link cont Facebook"
+
+#: ../class-fire-init.php:116
+msgid "Follow me on Google+"
+msgstr "Google+"
+
+#: ../class-fire-init.php:117
+msgid "Google+ profile url"
+msgstr "Link cont Google+"
+
+#: ../class-fire-init.php:121
+msgid "Follow me on Instagram"
+msgstr "Instagram"
+
+#: ../class-fire-init.php:122
+msgid "Instagram profile url"
+msgstr "Cont Instagram"
+
+#: ../class-fire-init.php:126
+msgid "Follow me on Tumblr"
+msgstr "Tumblr"
+
+#: ../class-fire-init.php:127
+msgid "Tumblr url"
+msgstr ""
+
+#: ../class-fire-init.php:131
+msgid "Follow me on Flickr"
+msgstr "Flickr"
+
+#: ../class-fire-init.php:132
+msgid "Flickr url"
+msgstr ""
+
+#: ../class-fire-init.php:136
+msgid "Follow me on WordPress"
+msgstr "WordPress"
+
+#: ../class-fire-init.php:137
+msgid "WordPress profile url"
+msgstr "Cont WordPress"
+
+#: ../class-fire-init.php:141
+msgid "Follow me on Youtube"
+msgstr "Youtube"
+
+#: ../class-fire-init.php:142
+msgid "Youtube profile url"
+msgstr "Link cont Youtube"
+
+#: ../class-fire-init.php:146
+msgid "Pin me on Pinterest"
+msgstr "Cont Pintrest"
+
+#: ../class-fire-init.php:147
+msgid "Pinterest profile url"
+msgstr "Link cont Pintrest"
+
+#: ../class-fire-init.php:151
+msgid "Follow me on Github"
+msgstr "Github"
+
+#: ../class-fire-init.php:152
+msgid "Github profile url"
+msgstr "Link cont Github"
+
+#: ../class-fire-init.php:156
+msgid "Follow me on Dribbble"
+msgstr "Dribble"
+
+#: ../class-fire-init.php:157
+msgid "Dribbble profile url"
+msgstr "Link cont Dribble"
+
+#: ../class-fire-init.php:161
+msgid "Follow me on LinkedIn"
+msgstr "LinkedIn"
+
+#: ../class-fire-init.php:162
+msgid "LinkedIn profile url"
+msgstr "Link cont LinkedIn"
+
+#: ../class-fire-init.php:171
+msgid "Right Sidebar"
+msgstr "Bară în dreapta"
+
+#: ../class-fire-init.php:172 ../class-fire-init.php:176
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "Apare în articole, pagini statice, arhive şi rezultatele căutărilor"
+
+#: ../class-fire-init.php:175
+msgid "Left Sidebar"
+msgstr "Bară în stânga"
+
+#: ../class-fire-init.php:183
+msgid "Footer Widget Area One"
+msgstr "Prima zonă de widget-uri din subsol"
+
+#: ../class-fire-init.php:184 ../class-fire-init.php:188
+#: ../class-fire-init.php:192
+msgid "Just use it as you want !"
+msgstr "Folosește-o cum dorești!"
+
+#: ../class-fire-init.php:187
+msgid "Footer Widget Area Two"
+msgstr "A doua zonă de widget-uri din subsol"
+
+#: ../class-fire-init.php:191
+msgid "Footer Widget Area Three"
+msgstr "A treia zonă de widget-uri din subsol"
+
+#: ../class-fire-init.php:209
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Să spui adevărul în timpuri mincinoase este un act revoluţionar."
+
+#: ../class-fire-init.php:210
+msgid "George Orwell"
+msgstr "George Orwell"
+
+#: ../class-fire-init.php:211
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr "Pagina solicitată nu a putut fi găsită. Încearcă căutarea de mai jos."
+
+#: ../class-fire-init.php:216
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr ""
+"Succesul este abilitatea de a trece de la un eşec la altul fără a-ţi pierde "
+"entuziasmul..."
+
+#: ../class-fire-init.php:217
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: ../class-fire-init.php:218
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Nu am găsit nimic după aceste criterii de căutare. Încearcă din nou folosind "
+"alţi termeni."
+
+#: ../class-fire-init.php:233
+msgid "Customizr is a clean responsive theme"
+msgstr "Temă responsivă cu un look simplu, curat, proaspăt"
+
+#: ../class-fire-init.php:238 ../class-fire-init.php:247
+msgid "Style your WordPress site live!"
+msgstr "Modifică CSS-ul în timp real!"
+
+#: ../class-fire-init.php:239
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"Din ecranul de modificări al temei se pot schimba multe aspecte ale "
+"acesteia, iar schimbările pot fi vizualizate în timp real!"
+
+#: ../class-fire-init.php:240
+msgid "Just try it!"
+msgstr "Încearcă!"
+
+#: ../class-fire-init.php:252 ../class-fire-init.php:261
+msgid "Create beautiful sliders"
+msgstr "Crează slidere deosebite"
+
+#: ../class-fire-init.php:253
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Tema conţine un generator de slidere, iar acestea pot fi adăugate în orice "
+"pagină sau articol!"
+
+#: ../class-fire-init.php:254
+msgid "Discover the features"
+msgstr "Descoperă opţiunile"
+
+#: ../class-fire-init.php:316
+msgid "Main Menu"
+msgstr "Meniu principal"
+
+#: ../class-fire-init.php:695
+msgid "Customiz'it!"
+msgstr "Setări temă"
+
+#: ../class-fire-init.php:698
+msgid "Customize your website at any time!"
+msgstr "Modifică site-ul oricând!"
+
+#: ../class-fire-init.php:717
+msgid "Help"
+msgstr "Asistență"
+
+#: ../class-fire-init.php:720
+msgid "Need help with Customizr? Click here!"
+msgstr "Ai nevoie de ajutor cu Customizr? Click aici!"
+
+#: ../class-fire-utils.php:337
+#, php-format
+msgid "Page %s"
+msgstr "Pagina %s"
+
+#: ../class-fire-utils.php:532
+msgid "Home featured page one"
+msgstr "Prima pagină evidenţiată"
+
+#: ../class-fire-utils.php:533
+msgid "Home featured page two"
+msgstr "A doua pagină evidenţiată"
+
+#: ../class-fire-utils.php:534
+msgid "Home featured page three"
+msgstr "A treia pagină evidenţiată"
+
+#: ../class-fire-utils.php:537
+msgid "Featured text one (200 car. max)"
+msgstr "Primul text pagini evidenţiate (max. 200 caractere)"
+
+#: ../class-fire-utils.php:538
+msgid "Featured text two (200 car. max)"
+msgstr "Al doilea text pagini evidenţiate (max. 200 caractere)"
+
+#: ../class-fire-utils.php:539
+msgid "Featured text three (200 car. max)"
+msgstr "Al treilea text pagini evidenţiate (max. 200 caractere)"
+
+#: ../class-fire-utils.php:555
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr ""
+
+#: ../class-fire-utils.php:571
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr ""
+
+#: ../class-fire-utils.php:574
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr ""
+"Trebuie să selectezi o pagină mai întâi. Nu completa dacă foloseşti extrasul "
+"paginii."
+
+#: ../class-fire-utils.php:672
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Fără slider &mdash;"
+
+#: ../class-fire-utils.php:673
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Slider demonstrativ &mdash;"
+
+#: ../class-fire-utils.php:726
+msgid "Skin"
+msgstr "Culoare"
+
+#: ../class-fire-utils.php:728
+msgid "Select a skin for Customizr"
+msgstr "Selectează culoarea temei"
+
+#: ../class-fire-utils.php:732
+msgid "Logo &amp; Favicon"
+msgstr "Logo &amp; Favicon"
+
+#: ../class-fire-utils.php:734
+msgid "Set up logo and favicon options"
+msgstr "Setează opţiunile pentru favicon"
+
+#: ../class-fire-utils.php:738
+msgid "Front Page"
+msgstr "Prima pagină"
+
+#: ../class-fire-utils.php:740
+msgid "Set up front page options"
+msgstr "Setează optţiunile pentru prima pagină"
+
+#: ../class-fire-utils.php:744
+msgid "Pages &amp; Posts Layout"
+msgstr "Layout Pagini &amp; Articole"
+
+#: ../class-fire-utils.php:746
+msgid "Set up layout options"
+msgstr "Setează opţiunile pentru layout"
+
+#: ../class-fire-utils.php:750
+msgid "Comments"
+msgstr "Comentarii"
+
+#: ../class-fire-utils.php:752
+msgid "Set up comments options"
+msgstr "Setează opţiunile pentru comentarii"
+
+#: ../class-fire-utils.php:756 ../parts/class-content-sidebar.php:108
+msgid "Social links"
+msgstr "Linkuri sociale"
+
+#: ../class-fire-utils.php:758
+msgid "Set up your social links"
+msgstr "Setează linkurile sociale"
+
+#: ../class-fire-utils.php:762
+msgid "Images"
+msgstr "Imagini"
+
+#: ../class-fire-utils.php:764
+msgid "Various images settings"
+msgstr "Setări imagini"
+
+#: ../class-fire-utils.php:768
+msgid "Links"
+msgstr "Link-uri"
+
+#: ../class-fire-utils.php:770
+msgid "Various links settings"
+msgstr "Setări linkuri"
+
+#: ../class-fire-utils.php:774
+msgid "Custom CSS"
+msgstr "CSS personalizat"
+
+#: ../class-fire-utils.php:776
+msgid "Add your own CSS"
+msgstr "Adaugă propriul CSS"
+
+#: ../class-fire-utils.php:780
+msgid "Responsive settings"
+msgstr ""
+
+#: ../class-fire-utils.php:782
+msgid "Various settings for responsive display"
+msgstr ""
+
+#: ../class-fire-utils.php:814
+msgid "Manage menus"
+msgstr "Administrare meniuri"
+
+#: ../class-fire-utils.php:820
+msgid "Select a submenu expansion option"
+msgstr "Selectează tipul de submeniu"
+
+#: ../class-fire-utils.php:824
+msgid "Expand submenus on click"
+msgstr "Submeniu la click"
+
+#: ../class-fire-utils.php:825
+msgid "Expand submenus on hover"
+msgstr "Submeniu la hover"
+
+#: ../class-fire-utils.php:840
+msgid "Choose a predefined skin"
+msgstr "Alege o culoare predefinită"
+
+#: ../class-fire-utils.php:849
+msgid "Performance : use the minified CSS stylesheet"
+msgstr ""
+
+#: ../class-fire-utils.php:852
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr ""
+
+#: ../class-fire-utils.php:858
+msgid "Display top border"
+msgstr "Colorează marginea superioară"
+
+#: ../class-fire-utils.php:862
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Debifează pentru a elimina marginea superioară colorată a paginii."
+
+#: ../class-fire-utils.php:875
+#, fuzzy
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Încarcă logo (se admit fişiere: .jpg, .png, .gif)"
+
+#: ../class-fire-utils.php:883
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr ""
+"Impune dimensiunile maxime ale logo-ului; lăţime: 250px, înălţime: 100px"
+
+#: ../class-fire-utils.php:899
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Încarcă Favicon (se admit fişiere: .ico, .png, .gif)"
+
+#: ../class-fire-utils.php:916
+msgid "Choose content and layout"
+msgstr "Alege conţinutul şi layout-ul"
+
+#: ../class-fire-utils.php:924
+msgid "Front page displays"
+msgstr "Afişare pe prima pagină"
+
+#: ../class-fire-utils.php:929
+msgid "Don't show any posts or page"
+msgstr "Nu arăta niciun articol sau pagină"
+
+#: ../class-fire-utils.php:930
+msgid "Your latest posts"
+msgstr "Ultimele articole"
+
+#: ../class-fire-utils.php:931
+msgid "A static page"
+msgstr "O pagină statică"
+
+#: ../class-fire-utils.php:937
+msgid "Front page"
+msgstr "Prima pagină"
+
+#: ../class-fire-utils.php:945
+msgid "Posts page"
+msgstr "Pagină articole"
+
+#: ../class-fire-utils.php:954
+msgid "Set up the front page layout"
+msgstr "Setează layout-ul primei pagini"
+
+#: ../class-fire-utils.php:965
+msgid "Slider options"
+msgstr "Opţiuni slider"
+
+#: ../class-fire-utils.php:966
+msgid "Select front page slider"
+msgstr "Selectează slider-ul pentru prima pagină"
+
+#: ../class-fire-utils.php:978
+msgid "Full width slider"
+msgstr "Slider pe toată lăţimea paginii"
+
+#: ../class-fire-utils.php:989
+msgid "Delay between each slides"
+msgstr "Interval între slider-uri"
+
+#: ../class-fire-utils.php:994
+msgid "in ms : 1000ms = 1s"
+msgstr "în milisecunde: 1000ms = 1s"
+
+#: ../class-fire-utils.php:1002
+msgid "Featured pages options"
+msgstr "Opţiuni pagini evidenţiate"
+
+#: ../class-fire-utils.php:1003
+msgid "Display home featured pages area"
+msgstr "Afişează pagini evidenţiate pe prima pagină"
+
+#: ../class-fire-utils.php:1007
+msgid "Enable"
+msgstr "Activează"
+
+#: ../class-fire-utils.php:1008
+msgid "Disable"
+msgstr "Dezactivează"
+
+#: ../class-fire-utils.php:1017
+msgid "Show images"
+msgstr "Afişare imagini"
+
+#: ../class-fire-utils.php:1020
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"Imaginile sunt setate cu opţiunea \"imagine reprezentativă\" în fiecare "
+"dintre paginile folosite (în ecranul de editare a paginii, dreapta-jos). "
+"Pentru deactivare debifează \"Afişare imagini\"."
+
+#: ../class-fire-utils.php:1026
+msgid "Read more &raquo;"
+msgstr "Citeşte mai mult &raquo;"
+
+#: ../class-fire-utils.php:1028
+msgid "Button text"
+msgstr "Text buton"
+
+#: ../class-fire-utils.php:1049
+msgid "Display Breadcrumb"
+msgstr "Afişare breadcrumb (link structural)"
+
+#: ../class-fire-utils.php:1059
+msgid "Choose the global default layout"
+msgstr "Alege layout-ul general"
+
+#: ../class-fire-utils.php:1070
+msgid "Force default layout everywhere"
+msgstr "Impune layout-ul general peste tot"
+
+#: ../class-fire-utils.php:1073
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"Această opţiune va ignora setările specifice stabilite de layout din pagini/"
+"articole, inclusiv pe prima pagină."
+
+#: ../class-fire-utils.php:1080
+msgid "Choose the posts default layout"
+msgstr "Alege layout-ul implicit pentru articole"
+
+#: ../class-fire-utils.php:1092
+msgid "Maximum number of posts per page"
+msgstr "Număr maxim de articole pe pagină"
+
+#: ../class-fire-utils.php:1103
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr ""
+"Specifică lungimea articolelor în liste (prima pagină, rezultate căutări, "
+"arhive, ...)"
+
+#: ../class-fire-utils.php:1107
+msgid "Display the excerpt"
+msgstr "Afişare extrase"
+
+#: ../class-fire-utils.php:1108
+msgid "Display the full content"
+msgstr "Afişare articole integrale"
+
+#: ../class-fire-utils.php:1116
+msgid "Choose the pages default layout"
+msgstr "Alege layout-ul implicit pentru pagini"
+
+#: ../class-fire-utils.php:1136
+msgid "Enable comments on pages"
+msgstr "Permite comentarii pe pagini"
+
+#: ../class-fire-utils.php:1139
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"Această opţiune activează comentariile în pagini. Poţi dezactiva "
+"comentariile pentru pagini individuale în modul \"editare rapidă\" (link în "
+"lista paginilor, la mouse-hover)."
+
+#: ../class-fire-utils.php:1153
+msgid "Social links in header"
+msgstr "Linkuri sociale în antet"
+
+#: ../class-fire-utils.php:1162
+msgid "Social links in left sidebar"
+msgstr "Linkuri sociale în bara din stânga"
+
+#: ../class-fire-utils.php:1171
+msgid "Social links in right sidebar"
+msgstr "Linkuri sociale în bara din dreapta"
+
+#: ../class-fire-utils.php:1180
+msgid "Social links in footer"
+msgstr "Linkuri sociale în subsol"
+
+#: ../class-fire-utils.php:1201
+msgid "Enable/disable lightbox effect on images"
+msgstr "Permite sau nu efectul lightbox pe imagini"
+
+#: ../class-fire-utils.php:1204
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"Activată, această opţiune permite deschiderea imaginilor în faţa browser-"
+"ului prin click. Nu se aplică galeriilor de imagini."
+
+#: ../class-fire-utils.php:1210
+msgid "Autoscale images on zoom"
+msgstr "Redimensionare imagini odată cu pagina"
+
+#: ../class-fire-utils.php:1213
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr ""
+"Activată, această opţiune redimensionează imaginile la dimensiunea ferestrei "
+"lightbox."
+
+#: ../class-fire-utils.php:1219
+msgid "Enable/disable retina support"
+msgstr "Activare/dezactivare funcţie Retina"
+
+#: ../class-fire-utils.php:1222
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr ""
+"Activată, această opțiune adaugă suport pentru dispozitive cu rezoluții mari."
+
+#: ../class-fire-utils.php:1235
+msgid "Enable/disable smooth scroll on click"
+msgstr "Activare/dezactivare glisare lină"
+
+#: ../class-fire-utils.php:1238
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr ""
+"Activată, această opțiune permite glisarea lină către link-uri din aceeași "
+"pagină."
+
+#: ../class-fire-utils.php:1251
+msgid "Enable/disable blocks reordering on small devices"
+msgstr ""
+
+#: ../class-fire-utils.php:1254
+msgid ""
+"On responsive mode, for smartphone viewport, the sidebars are moved after "
+"the main content block."
+msgstr ""
+
+#: ../class-fire-utils.php:1260
+msgid "Enable/disable slider's slides centering on any devices"
+msgstr ""
+
+#: ../class-fire-utils.php:1263
+msgid ""
+"This option centers your slider (carousel) pictures vertically and "
+"horizontally on any devices when displayed in full width mode"
+msgstr ""
+
+#: ../class-fire-utils.php:1277
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr ""
+"Adaugă propriul CSS aici şi previzualizează schimbările în timp real (pentru "
+"avansaţi)"
+
+#: ../class-fire-utils.php:1280
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates. You can also "
+"paste your custom css in the style.css file of a child theme."
+msgstr ""
+"Aici poți introduce propriul cod CSS personalizat. Dacă modifici fișierul "
+"style.css (al temei părinte) modificările nu se vor păstra de la o "
+"actualizare la alta. Poți adăuga cod CSS și în fișierul style.css al sub-"
+"temei."
+
+#: ../admin/class-admin-meta_boxes.php:87
+msgid "Layout Options"
+msgstr "Opţiuni layout"
+
+#: ../admin/class-admin-meta_boxes.php:95
+#: ../admin/class-admin-meta_boxes.php:466
+msgid "Slider Options"
+msgstr "Opţiuni slider"
+
+#: ../admin/class-admin-meta_boxes.php:164
+#, php-format
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "Layout-ul implicit %1$s: %2$s"
+
+#: ../admin/class-admin-meta_boxes.php:164
+msgid "pages"
+msgstr "pagini"
+
+#: ../admin/class-admin-meta_boxes.php:164
+msgid "posts"
+msgstr "articole"
+
+#: ../admin/class-admin-meta_boxes.php:169
+msgid ""
+"You have checked the <i>\"Force global default layout for all posts and pages"
+"\"</i>, you must unchecked this option to enable a specific layout for this "
+"post."
+msgstr ""
+"Ai bifat opţiunea <i>\"Impune layout-ul implicit pe toate paginile şi "
+"articolele\"</i>, trebuie să o debifezi pentru a permite un alt layout "
+"pentru acest articol."
+
+#: ../admin/class-admin-meta_boxes.php:170
+msgid "Change layout options"
+msgstr "Schimbă opţiunile de layout"
+
+#: ../admin/class-admin-meta_boxes.php:174
+#, php-format
+msgid ""
+"You can define a specific layout for %1$s by using the pre-defined left and "
+"right sidebars. The default layouts can be defined in the WordPress "
+"customizer screen %2$s.<br />"
+msgstr ""
+"Poţi defini un layout specific pentru %1$s folosind barele laterale pre-"
+"definite. Layout-urile implicite pot fi definite din panouri de setări "
+"pentru temă %2$s al WordPress-ului.<br />"
+
+#: ../admin/class-admin-meta_boxes.php:175
+#: ../admin/class-admin-meta_boxes.php:180
+msgid "this page"
+msgstr "această pagină"
+
+#: ../admin/class-admin-meta_boxes.php:175
+#: ../admin/class-admin-meta_boxes.php:180
+msgid "this post"
+msgstr "acest articol"
+
+#: ../admin/class-admin-meta_boxes.php:176
+msgid "here"
+msgstr "aici"
+
+#: ../admin/class-admin-meta_boxes.php:179
+#, php-format
+msgid "Select a specific layout for %1$s"
+msgstr "Selectează un layout specific pentru %1$s"
+
+#: ../admin/class-admin-meta_boxes.php:183
+#, php-format
+msgid "Default layout %1s"
+msgstr "Layount implicit %1s"
+
+#: ../admin/class-admin-meta_boxes.php:225
+msgid "Add a slider to this post/page"
+msgstr "Adaug slider?"
+
+#: ../admin/class-admin-meta_boxes.php:289
+#: ../admin/class-admin-meta_boxes.php:673
+msgid "Choose a slider"
+msgstr "Alege un slider"
+
+#: ../admin/class-admin-meta_boxes.php:296
+#: ../admin/class-admin-meta_boxes.php:688
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Selectează un slider &mdash; "
+
+#: ../admin/class-admin-meta_boxes.php:301
+msgid ""
+"To create a new slider : open the media library, edit your images and add "
+"them to your new slider."
+msgstr ""
+"Pentru a crea un slider nou: deschide librăria media, editează imaginile şi "
+"adaugă-le la un slider nou."
+
+#: ../admin/class-admin-meta_boxes.php:305
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Timpul în milisecunde între imaginile slider-ului (implicit: 5000 ms)"
+
+#: ../admin/class-admin-meta_boxes.php:312
+msgid "Slider Layout : set the slider in full width"
+msgstr "Layout slider: extinde slider-ul pe toată lăţimea"
+
+#: ../admin/class-admin-meta_boxes.php:329
+#: ../admin/class-admin-meta_boxes.php:697
+msgid "Delete this slider"
+msgstr "Şterge acest slider"
+
+#: ../admin/class-admin-meta_boxes.php:334
+#: ../admin/class-admin-meta_boxes.php:701
+msgid ""
+"The slider will be deleted permanently (images, call to actions and link "
+"will be kept)."
+msgstr ""
+"Slider-ul va fi şters permanent (imaginile, acţiunile şi link-urile vor fi "
+"păstrate)."
+
+#: ../admin/class-admin-meta_boxes.php:337
+#: ../admin/class-admin-meta_boxes.php:704
+msgid "Delete slider"
+msgstr "Şterge slider"
+
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:87
+msgid ""
+"You haven't create any slider yet. Go to the media library, edit your images "
+"and add them to your sliders."
+msgstr ""
+"Nu ai creat încă niciun slider. Du-te la librăria media, încarcă/editează "
+"imagini şi adaugă-le la slidere."
+
+#: ../admin/class-admin-meta_boxes.php:495
+msgid "Add to a slider"
+msgstr "Adaugă într-un slider"
+
+#: ../admin/class-admin-meta_boxes.php:497
+msgid "Add to a slider (create one if needed)"
+msgstr "Adaugă într-un slider (crează unul nou dacă este nevoie)"
+
+#: ../admin/class-admin-meta_boxes.php:630
+msgid "Title text (80 car. max length)"
+msgstr "Text titlu (maxim 80 caractere)"
+
+#: ../admin/class-admin-meta_boxes.php:637
+msgid "Description text (below the title, 250 car. max length)"
+msgstr "Text descriere (afişat sub titlu, maxim 250 caractere)"
+
+#: ../admin/class-admin-meta_boxes.php:644
+msgid "Title and text color"
+msgstr "Culoare titlu şi text"
+
+#: ../admin/class-admin-meta_boxes.php:652
+msgid "Button text (80 car. max length)"
+msgstr "Text buton (maxim 80 caractere)"
+
+#: ../admin/class-admin-meta_boxes.php:659
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Alege o pagină sau un articol (din ultimele 100)."
+
+#: ../admin/class-admin-meta_boxes.php:664
+msgid "No link"
+msgstr "Fără link"
+
+#: ../admin/class-admin-meta_boxes.php:694
+#: ../admin/class-admin-meta_boxes.php:723
+msgid "Add a slider"
+msgstr "Adaugă slider"
+
+#: ../admin/class-admin-meta_boxes.php:721
+msgid ""
+"You haven't create any slider yet. Write a slider name and click on the "
+"button to add you first slider."
+msgstr ""
+"Nu ai creat încă niciun slider. Scrie numele slider-ului şi apasă butonul "
+"pentru a crea primul slider."
+
+#: ../admin/class-admin-meta_boxes.php:838
+msgid ""
+"This slider has not slides to show. Go to the media library and start adding "
+"images to it."
+msgstr ""
+"Acest slider nu are încă nicio imagine. Mergi în librăria media şi adaugă-i "
+"imagini."
+
+#: ../admin/class-admin-meta_boxes.php:848
+msgid "Slide Image"
+msgstr "Imagine slider"
+
+#: ../admin/class-admin-meta_boxes.php:849
+msgid "Title"
+msgstr "Titlu"
+
+#: ../admin/class-admin-meta_boxes.php:850
+msgid "Slide Text"
+msgstr "Text descriere"
+
+#: ../admin/class-admin-meta_boxes.php:851
+msgid "Button Text"
+msgstr "Text buton"
+
+#: ../admin/class-admin-meta_boxes.php:852
+msgid "Button Link"
+msgstr "Link buton"
+
+#: ../admin/class-admin-meta_boxes.php:853
+#: ../parts/class-content-breadcrumb.php:622
+#: ../parts/class-content-breadcrumb.php:655
+#: ../parts/class-content-breadcrumb.php:670
+#: ../parts/class-content-breadcrumb.php:698
+#: ../parts/class-content-comments.php:156
+#: ../parts/class-content-featured_pages.php:238
+#: ../parts/class-content-headings.php:253
+#: ../parts/class-content-slider.php:247
+msgid "Edit"
+msgstr "Editare"
+
+#: ../admin/class-admin-meta_boxes.php:894
+msgid "No Image Selected"
+msgstr "Nicio imagine selectată"
+
+#: ../admin/class-admin-meta_boxes.php:920
+msgid "Edit this slide"
+msgstr "Editare slide"
+
+#: ../admin/class-admin-meta_boxes.php:922
+msgid "Current slide"
+msgstr "Slide curent"
+
+#: ../admin/class-controls.php:87
+msgid "Create a slider"
+msgstr "Crează un slider"
+
+#: ../admin/class-fire-admin_init.php:63 ../admin/class-fire-admin_init.php:64
+msgid "Upgrade WP"
+msgstr "Update WP"
+
+#: ../admin/class-fire-admin_init.php:83
+msgid "This theme requires WordPress 3.4+"
+msgstr "Această temă necesită WordPress 3.4+"
+
+#: ../admin/class-fire-admin_init.php:86 ../admin/class-fire-admin_init.php:87
+msgid "Upgrade Wordpress Now"
+msgstr "Actualizează WordPress acum"
+
+#: ../admin/class-fire-admin_init.php:104
+#: ../admin/class-fire-admin_init.php:105
+msgid "About Customizr"
+msgstr "Despre temă"
+
+#: ../admin/class-fire-admin_init.php:127
+msgid "Need help with Customizr ?"
+msgstr "Ai nevoie de ajutor cu Customizr?"
+
+#: ../admin/class-fire-admin_init.php:129
+#, php-format
+msgid "Welcome to Customizr %s"
+msgstr "Bun venit la Customizr %s"
+
+#: ../admin/class-fire-admin_init.php:136
+#, php-format
+msgid ""
+"You can start by watching the <a href=\"%1$s\" target=\"_blank"
+"\">introduction video</a> or by reading <a href=\"%2$s\" target=\"_blank"
+"\">the documentation</a>.<br/> If you don't find an answer to your issue, "
+"don't panic! Since Customizr is used by a growing community of webmasters "
+"reporting bugs and making continuous improvements, you will probably find a "
+"solution to your problem either in the FAQ or in the user forum."
+msgstr ""
+"Poți începe prin vizionarea unui<a href=\"%1$s\" target=\"_blank\">video "
+"introductiv</a> sau prin parcurgerea <a href=\"%2$s\" target=\"_blank"
+"\">documentaţiei</a>.<br/> Dacă nu găsești răspuns la întrebarea ta., nu-ți "
+"face griji! Customizr are în spate o comunitate de websiteri care "
+"îmbunătăţesc constant tema, raportând şi rezolvând probleme de orice natură, "
+"aşa că este posibil să găsești soluția fie în &#8222;Întrebări "
+"frecvente&#8221; (FAQ), fie pe forumul temei."
+
+#: ../admin/class-fire-admin_init.php:144
+msgid "Read the documentation"
+msgstr "Citește documentaţia"
+
+#: ../admin/class-fire-admin_init.php:148
+msgid "Check the FAQ"
+msgstr "Întrebări frecvente"
+
+#: ../admin/class-fire-admin_init.php:153
+msgid "Code snippets"
+msgstr "Ajustări temă"
+
+#: ../admin/class-fire-admin_init.php:156
+msgid "Discuss in the user forum"
+msgstr "Discută pe forumul temei"
+
+#: ../admin/class-fire-admin_init.php:164
+#, php-format
+msgid ""
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see the "
+"changelog)</a> to help you build an awesome website. Watch the <a href=\"%2$s"
+"\" target=\"_blank\">introduction video</a> and find inspiration in the <a "
+"href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
+msgstr ""
+"Mulţumim pentru că folosești Customizr! Customizr %1$s are mai multe "
+"opţiuni, este mai sigură şi mai stabilă ca niciodată <a href=\"#customizr-"
+"changelog\">(vezi modificările - în engleză)</a> pentru a te ajuta să "
+"construieşti un site extraordinar. Uită-te la <a href=\"%2$s\" target="
+"\"_blank\">video-ul introductiv</a> și inspiră-te din <a href=\"#showcase"
+"\">colecția de site-uri</a> Customizr. Spor!"
+
+#: ../admin/class-fire-admin_init.php:178
+#, php-format
+msgid ""
+"You are using a child theme of Customizr %1$s : always check the %2$s after "
+"upgrading to see if a function or a template has been deprecated."
+msgstr ""
+"Folosești o sub-temă a temei principale Customizr %1$s : verifică %2$s după "
+"fiecare actualizare pentru a afla ce funcţii sau şabloane au fost înlocuite."
+
+#: ../admin/class-fire-admin_init.php:193
+msgid "We need sponsors!"
+msgstr "Avem nevoie de susţinere!"
+
+#: ../admin/class-fire-admin_init.php:194
+msgid ""
+"<strong>We do our best do make Customizr the perfect free theme for you!</"
+"strong><br/> Please help support it's continued development with a donation "
+"of $20, $50, or even $100."
+msgstr ""
+"<strong>Depunem eforturi considerabile pentru a face din Customizr tema "
+"perfectă gratuită pentru tine!</strong><br/>Poţi sprijini dezvoltarea "
+"continuă a acestei teme printr-o donaţie de $20, $50 sau chiar $100."
+
+#: ../admin/class-fire-admin_init.php:201
+msgid "Happy user of Customizr?"
+msgstr "Utilizator Customizr mulţumit?"
+
+#: ../admin/class-fire-admin_init.php:202
+msgid ""
+"If you are happy with the theme, say it on wordpress.org and give Customizr "
+"a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr ""
+"Dacă eşti mulţumit de temă, spune-o pe wordpress.org şi eventual scrie o "
+"părere despre Customizr!<br />(Suntem dependenţi de feedback-ul "
+"utilizatorilor noştri...)"
+
+#: ../admin/class-fire-admin_init.php:207
+msgid "Follow us"
+msgstr "Urmăreşte-ne"
+
+#: ../admin/class-fire-admin_init.php:215
+msgid "Customizr's extensions"
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:218
+#: ../admin/class-fire-admin_init.php:227
+msgid "Visit the extension's page"
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:219
+msgid "Easily take your web design one step further"
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:220
+msgid ""
+"The Customizr's extensions are plugins developed to extend the Customizr "
+"theme with great features. Nicely integrated with the theme's built-in "
+"options, they can be enabled/disabled safely with no side effects on your "
+"existing settings or customizations."
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:222
+msgid ""
+"These modules are designed to be simple to use for everyone. They are a good "
+"solution to add some creative customizations whitout needing to dive into "
+"the code."
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:224
+msgid ""
+"Customizr's extensions are installed and upgraded from your WordPress admin, "
+"like any other WordPress plugins. Well documented and easily extendable with "
+"hooks, they come with a dedicated support forum on themesandco.com."
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:233
+msgid "Customizr Showcase"
+msgstr "Colecţia de site-uri Customizr"
+
+#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_init.php:243
+msgid "Visit the showcase"
+msgstr "Vizitează colecția de site-uri Customizr"
+
+#: ../admin/class-fire-admin_init.php:237
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "Inspiră-te pentru următorul site Customizr!"
+
+#: ../admin/class-fire-admin_init.php:238
+msgid ""
+"This showcase aims to show what can be done with Customizr and helping other "
+"users to find inspiration for their web design."
+msgstr ""
+"Această colecție își propune să arate ce se poate realiza folosind tema "
+"Customizr și să ofere inspirație pentru design web."
+
+#: ../admin/class-fire-admin_init.php:240
+msgid ""
+"Do you think you made an awesome website that can inspire people? Submitting "
+"a site for review is quick and easy to do."
+msgstr ""
+"Crezi că ai făcut un site nemaipomenit ce ar putea să-i inspire pe alții? E "
+"foarte ușor să trimiți o cerere de înscriere în colecție."
+
+#: ../admin/class-fire-admin_init.php:250
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr "Schimbări din versiunea %1$s"
+
+#: ../admin/class-fire-admin_init.php:259
+msgid "Go to Dashboard &rarr; Home"
+msgstr "Mergi în Panou de control &rarr; General"
+
+#: ../admin/class-fire-admin_init.php:259
+msgid "Go to Dashboard"
+msgstr "Mergi la Panou de control"
+
+#: ../parts/class-content-attachment.php:41
+msgid "&larr; Previous"
+msgstr "&larr; Înapoi"
+
+#: ../parts/class-content-attachment.php:42
+msgid "Next &rarr;"
+msgstr "Înainte &rarr;"
+
+#: ../parts/class-content-breadcrumb.php:36
+#: ../parts/class-content-breadcrumb.php:48
+msgid "Home"
+msgstr "Acasă"
+
+#: ../parts/class-content-breadcrumb.php:45
+msgid "Browse:"
+msgstr "Eşti în:"
+
+#: ../parts/class-content-breadcrumb.php:501
+msgid "g:i a"
+msgstr "g:i a"
+
+#: ../parts/class-content-breadcrumb.php:504
+#, php-format
+msgid "Minute %1$s"
+msgstr "Minutul %1$s"
+
+#: ../parts/class-content-breadcrumb.php:504
+msgid "i"
+msgstr "i"
+
+#: ../parts/class-content-breadcrumb.php:507
+msgid "g a"
+msgstr "g a"
+
+#: ../parts/class-content-breadcrumb.php:523
+#: ../parts/class-content-breadcrumb.php:533
+#: ../parts/class-content-breadcrumb.php:542
+#: ../parts/class-content-breadcrumb.php:553
+#: ../parts/class-content-breadcrumb.php:555
+#: ../parts/class-content-breadcrumb.php:754
+msgid "Y"
+msgstr "Y"
+
+#: ../parts/class-content-breadcrumb.php:524
+#: ../parts/class-content-breadcrumb.php:545
+#: ../parts/class-content-breadcrumb.php:547
+#: ../parts/class-content-breadcrumb.php:758
+msgid "F"
+msgstr "F"
+
+#: ../parts/class-content-breadcrumb.php:527
+#: ../parts/class-content-breadcrumb.php:529
+#: ../parts/class-content-breadcrumb.php:762
+msgid "d"
+msgstr "d"
+
+#: ../parts/class-content-breadcrumb.php:536
+#: ../parts/class-content-breadcrumb.php:538
+#, php-format
+msgid "Week %1$s"
+msgstr "Săptămâna %1$s"
+
+#: ../parts/class-content-breadcrumb.php:564
+#: ../parts/class-content-breadcrumb.php:566
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Rezultatele căutării după &quot;%1$s&quot;"
+
+#: ../parts/class-content-breadcrumb.php:571
+msgid "404 Not Found"
+msgstr "Eroare 404. Pagină inexistentă"
+
+#: ../parts/class-content-breadcrumb.php:576
+#: ../parts/class-content-breadcrumb.php:578
+#, php-format
+msgid "Page %d"
+msgstr "Pagina %d"
+
+#: ../parts/class-content-breadcrumb.php:647
+msgid "Split"
+msgstr "Separă"
+
+#: ../parts/class-content-breadcrumb.php:651
+msgid "Merge"
+msgstr "Uneşte"
+
+#: ../parts/class-content-comments.php:57
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgstr "Un comentariu la &ldquo;%2$s&rdquo;"
+
+#: ../parts/class-content-comments.php:115
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: ../parts/class-content-comments.php:115
+msgid "(Edit)"
+msgstr "(Modifică)"
+
+#: ../parts/class-content-comments.php:142
+msgid "Reply"
+msgstr "Adaugă o replică"
+
+#: ../parts/class-content-comments.php:155
+msgid "Post author"
+msgstr "Autor articol"
+
+#: ../parts/class-content-comments.php:162
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s la %2$s"
+
+#: ../parts/class-content-comments.php:167
+msgid "Your comment is awaiting moderation."
+msgstr "Comentariul tău aşteaptă aprobarea."
+
+#: ../parts/class-content-comments.php:202
+msgid "Comment navigation"
+msgstr "Navigare comentarii"
+
+#: ../parts/class-content-comments.php:208
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Articole mai vechi"
+
+#: ../parts/class-content-comments.php:216
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Articole mai noi <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-comments.php:248
+msgid "Comments are closed."
+msgstr "Comentariile sunt închise."
+
+#: ../parts/class-content-featured_pages.php:118
+msgid "Customizer screen"
+msgstr "ecran Customizr"
+
+#: ../parts/class-content-featured_pages.php:118
+msgid " here"
+msgstr "aici"
+
+#: ../parts/class-content-featured_pages.php:122
+msgid "Featured page"
+msgstr "Pagină evidenţiată"
+
+#: ../parts/class-content-featured_pages.php:125
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"Text descriere pagină evidenţiată: foloseşte exstrasul paginii sau scrie "
+"unul aici%s."
+
+#: ../parts/class-content-gallery.php:187
+msgid "Missing Attachment"
+msgstr "Ataşament lipsă"
+
+#: ../parts/class-content-headings.php:54
+msgid "Ooops, page not found"
+msgstr "Hopa, n-am găsit pagina"
+
+#: ../parts/class-content-headings.php:65
+msgid "No"
+msgstr "Nu"
+
+#: ../parts/class-content-headings.php:66
+msgid "Search Results for :"
+msgstr "%1s Rezultate pentru căutarea după: %2s"
+
+#: ../parts/class-content-headings.php:81
+msgid "Author Archives :"
+msgstr "Arhivă autor:"
+
+#: ../parts/class-content-headings.php:95 ../parts/class-content-post.php:93
+#, php-format
+msgid "About %s"
+msgstr "Despre %s"
+
+#: ../parts/class-content-headings.php:108
+msgid "Category Archives :"
+msgstr "Arhivă categorie:"
+
+#: ../parts/class-content-headings.php:124
+msgid "Tag Archives :"
+msgstr "Arhivă termen:"
+
+#: ../parts/class-content-headings.php:137
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Arhivă zilnică: %s"
+
+#: ../parts/class-content-headings.php:137
+msgid "Archives"
+msgstr "Arhivă"
+
+#: ../parts/class-content-headings.php:138
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Arhivă lunară: %s"
+
+#: ../parts/class-content-headings.php:139
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Arhivă anuală: %s"
+
+#: ../parts/class-content-headings.php:225
+#: ../parts/class-content-headings.php:231
+msgid "{no title} Read the post &raquo;"
+msgstr "{fără titlu} Citeşte articolul &raquo;"
+
+#: ../parts/class-content-headings.php:230
+#, php-format
+msgid "Permalink to %s"
+msgstr "Link permanent pentru %s"
+
+#: ../parts/class-content-headings.php:246
+msgid "Comment(s) on"
+msgstr "Comentari(u/i) la"
+
+#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:50
+#: ../parts/class-content-post_list.php:153
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Citeşte în continuare <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:51
+#: ../parts/class-content-post_list.php:154
+msgid "Pages:"
+msgstr "Pagini:"
+
+#: ../parts/class-content-post.php:97
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+"Vezi toate articolele publicate de %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-post_metas.php:48
+msgid "Published"
+msgstr "Publicat"
+
+#: ../parts/class-content-post_metas.php:51
+msgid "at dimensions"
+msgstr "la dimensiunile"
+
+#: ../parts/class-content-post_metas.php:51
+msgid "Link to full-size image"
+msgstr "Link către imaginea întreagă"
+
+#: ../parts/class-content-post_metas.php:52
+msgid "in"
+msgstr "în"
+
+#: ../parts/class-content-post_metas.php:52
+msgid "Return to "
+msgstr "Înapoi la"
+
+#: ../parts/class-content-post_metas.php:74
+#, php-format
+msgid "View all posts by %s"
+msgstr "Caută articole după %s"
+
+#: ../parts/class-content-post_metas.php:82
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"Publicat în %1$s şi etichetat %2$s pe %3$s<span class=\"by-author\"> de "
+"către %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:84
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Publicat în %1$s pe %3$s<span class=\"by-author\"> de către %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:86
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr "Publicat pe %3$s<span class=\"by-author\"> de către %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:128
+#: ../parts/class-content-post_metas.php:158
+#, php-format
+msgid "View all posts in %s"
+msgstr "Vezi toate articolele din %s"
+
+#: ../parts/class-content-post_navigation.php:54
+#: ../parts/class-content-post_navigation.php:87
+msgid "Post navigation"
+msgstr "Navigare articole"
+
+#: ../parts/class-content-post_navigation.php:97
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Articole mai vechi"
+
+#: ../parts/class-content-post_navigation.php:110
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Articole mai noi <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-footer-footer_main.php:168
+msgid "Back to top"
+msgstr "Înapoi sus"
+
+#: ../parts/class-header-header_main.php:162
+msgid "Back Home"
+msgstr "Înapoi la prima pagină"
+
+#: ../parts/class-header-menu.php:44
+msgid "Add a menu"
+msgstr "Adaugă un meniu"
+
+#~ msgid "Leave a Comment"
+#~ msgstr "Comentezi?"
+
+#~ msgid "Let your creativity speak and easily customiz'it the way you want!"
+#~ msgstr "Lasă-ţi creativitatea să zburde şi schimbă orice doreşti!"
+
+#~ msgid "Learn more"
+#~ msgstr "Află mai multe"
+
+#~ msgid "Dev Tools (advanced users)"
+#~ msgstr "Instrumente web (avansat)"
+
+#~ msgid "Enable/disable the Dev Tools"
+#~ msgstr "Activare/dezactivare instrumente web"
+
+#~ msgid "Two sidebars"
+#~ msgstr "Două bare laterale"
+
+#~ msgid "Full Width"
+#~ msgstr "Pe toată lăţimea"
+
+#~ msgid "Featured text two "
+#~ msgstr "A doua pagină evidențiată"
+
+#~ msgid "Developer Box"
+#~ msgstr "Casetă web-dev"
+
+#~ msgid "Only visible for logged in users with an admin profile."
+#~ msgstr "Vizibil[ doar administratorilor"
+
+#~ msgid ""
+#~ "If enabled, this option displays a draggable information box to help you "
+#~ "develop or debug your Customizr based website."
+#~ msgstr ""
+#~ "Activată, această opţiune afişează o casetă cu informaţii utile pentru "
+#~ "dezvoltarea sau depanarea site-ului."
+
+#~ msgid "Developer tooltips"
+#~ msgstr "Informaţii web-dev"
+
+#~ msgid ""
+#~ "If enabled, this option displays clickable contextual tooltips right "
+#~ "inside your website."
+#~ msgstr ""
+#~ "Activată, această opţiune afişează informaţii contextuale pentru "
+#~ "dezvoltatorea site-ului."
+
+#~ msgid "Tip icon color"
+#~ msgstr "Culoare buline"
+
+#~ msgid "New! Customizr Developer Tools"
+#~ msgstr "Nou! Instrumente dezvoltare web."
+
+#~ msgid "Easily drill down into Customizr code with the dev tools!"
+#~ msgstr ""
+#~ "Cu noile instrumente pentru webmasteri este uşor să modifici chiar şi "
+#~ "cele mai complexe aspecte ale temei!"
+
+#~ msgid ""
+#~ "A new section called \"Dev Tools\" has been added to the customizer "
+#~ "options.<br/> There you will find two optional new features : <br/"
+#~ "><strong>-The developer box</strong> : this draggable box is a developer "
+#~ "dashboard allowing you to have an overview of your theme settings "
+#~ "(plugins, custom post types, theme options,...) and providing useful "
+#~ "informations for debug and development : a loading timeline of any pages, "
+#~ "contextual data ( like conditional tags and query), the hook's structure "
+#~ "of the theme and a note section about the code logic of Customizr.<br/"
+#~ "><strong>-The embedded tooltips</strong> : this option displays clickable "
+#~ "(and draggable) contextual tooltips right inside your website. They help "
+#~ "you understand which part of the php code handles any front-end block or "
+#~ "element. The informations provided are : class -> method, hook, file, "
+#~ "function description and possible filter.<br/><br/><i>Those tools are "
+#~ "only displayed to logged in users with an admin capability profile.</i>"
+#~ msgstr ""
+#~ "O nouă secţiune, numită \"Instrumente webmasteri\" a fost adăugată în "
+#~ "opţiunile temei.<br/> Acolo vei găsi două opţiuni suplimentare: <br/"
+#~ "><strong>-Caseta web-dev</strong>: această casetă mobilă este un panou de "
+#~ "control pentru programatori ce permite o vedere de ansamblu asupra "
+#~ "setărilor temei (module, tipuri speciale de conţinut, opţiunile "
+#~ "temei, ...) şi oferă informaţii utile pentru depanare şi dezvoltare web: "
+#~ "informaţii despre timpii de încărcare a paginilor, informaţii contextuale "
+#~ "(precum condiţionări şi interogări), structura filtrelor temei şi "
+#~ "informaţii privind schema logică a temei.<br/><strong>-Info contextual "
+#~ "web-dev</strong>: Această opţiune afişează informații contextuale care, "
+#~ "la click, afişează date despre elementul respectiv. Astfel poți afla ce "
+#~ "parte din codul php controlează fiecare element al temei, fiind afișate: "
+#~ "clasa -> metoda, fișierul, descrierea funcției și eventualele filtre.<br/"
+#~ "><br/><i>Aceste informații sunt afișate doar administratorilor.</i>"
+
+#~ msgid "Edit page"
+#~ msgstr "Editare pagină"
+
+#, fuzzy
+#~ msgid ""
+#~ "Thank you for updating to the latest version! Customizr %1$s has more "
+#~ "features, is safer and more stable than ever <a href=\"#customizr-"
+#~ "changelog\">(see changelog)</a> to help you build an awesome website. "
+#~ "Watch the <a href=\"#introduction\">introduction video</a> and find "
+#~ "inspiration in the <a href=\"#showcase\">showcase</a>.<br/> Enjoy it! "
+#~ msgstr ""
+#~ "Mulţumim pentru actualizarea la cea mai recentă versiune! Customizr %1$s "
+#~ "are mai multe opţiuni, este mai sigur şi mai stabil ca niciodată <a href="
+#~ "\"#customizr-changelog\">(vezi modificările - în engleză)</a> pentru a te "
+#~ "ajuta să construieşti un site extraordinar. Spor!"
+
+#~ msgid "Discover Customizr : quick video introduction"
+#~ msgstr "Descoperă Customizr: introducere video rapidă (în engleză)"
+
+#~ msgid ""
+#~ "Welcome to the new version of Customizr. You will be redirected to the "
+#~ "About screen. If not, click <a href=\"%1$s\">here</a>."
+#~ msgstr ""
+#~ "Bun venit la noua versiune de Customizr. Vei fi redirecţionat în ecranul "
+#~ "\"Despre\". Dacă nu, apasă a href=\"%1$s\">aici</a>."
+
+#~ msgid "Logo Upload"
+#~ msgstr "Încarcă logo"
+
+#~ msgid "Favicon Upload"
+#~ msgstr "Încarcă favicon"
+
+#~ msgid "We need coffee..."
+#~ msgstr "Vrem cafea..."
+
+#~ msgid ""
+#~ "Either you are using Customizr for personal or business purposes, "
+#~ "<strong>we do our best do make it the perfect free theme for you</strong>."
+#~ "<br /> Any kind of sponsorship will be appreciated!"
+#~ msgstr ""
+#~ "Fie că foloseşti Customizr pentru un proiect personal sau în mediul de "
+#~ "afaceri, <strong>noi facem tot ce putem pentru a fi tema gratuită "
+#~ "perfectă pentru tine</strong>. <br />Orice tip de sponzorizare este "
+#~ "apreciată pe deplin!"
+
+#~ msgid ""
+#~ "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span "
+#~ "class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</"
+#~ "time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s "
+#~ "&times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel="
+#~ "\"gallery\">%8$s</a>."
+#~ msgstr ""
+#~ "<span class=\"meta-prep meta-prep-entry-date\">Publicat </span> <span "
+#~ "class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</"
+#~ "time></span> la <a href=\"%3$s\" title=\"Link către imaginea întreagă\">"
+#~ "%4$s &times; %5$s</a> în <a href=\"%6$s\" title=\"Înapoi la %7$s\" rel="
+#~ "\"gallery\">%8$s</a>."
+
+#~ msgid "&larr; Older Comments"
+#~ msgstr "&larr; Comentarii mai vechi"
+
+#~ msgid "Newer Comments &rarr;"
+#~ msgstr "Comentarii mai noi &rarr;"
+
+#~ msgid "Slide Entry"
+#~ msgstr "Diapositive"
+
+#~ msgid "Edit Slide Entry"
+#~ msgstr "Modifier la diapositive"
+
+#~ msgid "Search Slide Entries"
+#~ msgstr "Rechercher dans les diapositives"
+
+#~ msgid "Edit Slider Name"
+#~ msgstr "Modifier le nom du diporama"
+
+#~ msgid "Front Page Widget Area One"
+#~ msgstr "Première zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Two"
+#~ msgstr "Deuxième zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Three"
+#~ msgstr "Troisième zone de widgets de page d'accueil"
+
+#~ msgid "If this field is empty, it will display an excerpt of the page."
+#~ msgstr "Si le champ est vide, un extrait de la page est affiché."
+
+#~ msgid "Choose a page"
+#~ msgstr "Choisir une page"
+
+#~ msgid "Force logo to fit in the left header block"
+#~ msgstr "Forcer le redimensionnement du logo dans le bloc gauche du header"
+
+#~ msgid ""
+#~ "Force default layout for all posts and pages (including front page and "
+#~ "pages/posts with a specific layout)"
+#~ msgstr ""
+#~ "Forcer la structure par défaut pour toutes les pages du sites (y compris "
+#~ "la page d'accueil ainsi que les pages et billets qui ont une structure "
+#~ "spécifique)"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "%"
+#~ msgstr "%"
+
+#~ msgid "Manage widgets"
+#~ msgstr "Gérer les widgets"
+
+#~ msgid "Right"
+#~ msgstr "Droite"
+
+#~ msgid "Left"
+#~ msgstr "Gauche"
+
+#~ msgid "Edit the slide text"
+#~ msgstr "Texte de description (sous le titre) de la diapositive"
+
+#~ msgid "View details &raquo;"
+#~ msgstr "Voir les détails &raquo;"
+
+#~ msgid "Length of the excerpt (default 200)"
+#~ msgstr "Longueur de l'extrait (200 car. par défaut)"
+
+#~ msgid "Theme Options"
+#~ msgstr "Options du thème"
+
+#~ msgid "Layout Settings"
+#~ msgstr "Réglages de la structure de page"
+
+#~ msgid " checked=\"checked\""
+#~ msgstr " "
+
+#~ msgid "Sample Checkbox"
+#~ msgstr "Exemple"
+
+#~ msgid ""
+#~ "Appears on posts and pages except the optional Front Page template, which "
+#~ "has its own widgets"
+#~ msgstr "Affichée dans les posts et les pages, hormis l"

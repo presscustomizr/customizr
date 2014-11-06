@@ -1,0 +1,1800 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: * Customizr v3.1.24\n"
+"POT-Creation-Date: 2014-09-05 10:31+0100\n"
+"PO-Revision-Date: 2014-09-05 10:31+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"Language-Team: Nicolas G. <contact@themesandco.com>\n"
+"Language: Français\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../class-fire-init.php:46 ../class-fire-init.php:47
+msgid "Right sidebar"
+msgstr "Правый сайдбар"
+
+#: ../class-fire-init.php:52 ../class-fire-init.php:53
+msgid "Left sidebar"
+msgstr "Левый сайдбар"
+
+#: ../class-fire-init.php:58 ../class-fire-init.php:59
+msgid "2 sidebars : Right and Left"
+msgstr "2 сайдбара: слева и справа"
+
+#: ../class-fire-init.php:64 ../class-fire-init.php:65
+msgid "No sidebars : full width layout"
+msgstr "Без сайдбаров: во всю ширину"
+
+#: ../class-fire-init.php:76
+msgid "Blue"
+msgstr "Голубой"
+
+#: ../class-fire-init.php:77
+msgid "Light blue "
+msgstr ""
+
+#: ../class-fire-init.php:78
+#, fuzzy
+msgid "Green blue"
+msgstr "Зелёный"
+
+#: ../class-fire-init.php:79
+msgid "Green"
+msgstr "Зелёный"
+
+#: ../class-fire-init.php:80
+msgid "Light green"
+msgstr ""
+
+#: ../class-fire-init.php:81
+msgid "Yellow"
+msgstr "Жёлтый"
+
+#: ../class-fire-init.php:82
+msgid "Flat yellow"
+msgstr ""
+
+#: ../class-fire-init.php:83
+msgid "Orange"
+msgstr "Ораньжевый"
+
+#: ../class-fire-init.php:84
+msgid "Flat orange"
+msgstr ""
+
+#: ../class-fire-init.php:85
+msgid "Red"
+msgstr "Красный"
+
+#: ../class-fire-init.php:86
+msgid "Flat red"
+msgstr ""
+
+#: ../class-fire-init.php:87
+msgid "Purple"
+msgstr "Пурпурный"
+
+#: ../class-fire-init.php:88
+msgid "Flat purple"
+msgstr ""
+
+#: ../class-fire-init.php:89
+msgid "Grey"
+msgstr "Серый"
+
+#: ../class-fire-init.php:90
+msgid "Ligth grey"
+msgstr ""
+
+#: ../class-fire-init.php:91
+msgid "Black"
+msgstr "Чёрный"
+
+#: ../class-fire-init.php:92
+msgid "Flat black"
+msgstr ""
+
+#: ../class-fire-init.php:101
+msgid "Subscribe to my rss feed"
+msgstr "Подписывайся на rss ленту"
+
+#: ../class-fire-init.php:102
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "RSS лента ( по умолчанию wordpress feed )"
+
+#: ../class-fire-init.php:106
+msgid "Follow me on Twitter"
+msgstr "Моя жизнь в Twitter"
+
+#: ../class-fire-init.php:107
+msgid "Twitter profile url"
+msgstr "URL профиля в Twitter"
+
+#: ../class-fire-init.php:111
+msgid "Follow me on Facebook"
+msgstr "Моя жизнь на Facebook"
+
+#: ../class-fire-init.php:112
+msgid "Facebook profile url"
+msgstr "URL профиля в Facebook"
+
+#: ../class-fire-init.php:116
+msgid "Follow me on Google+"
+msgstr "Моя жизнь на Google+"
+
+#: ../class-fire-init.php:117
+msgid "Google+ profile url"
+msgstr "URL профиля в Google+"
+
+#: ../class-fire-init.php:121
+msgid "Follow me on Instagram"
+msgstr "Моя жизнь в Instagram"
+
+#: ../class-fire-init.php:122
+msgid "Instagram profile url"
+msgstr "URL профиля в Instagram"
+
+#: ../class-fire-init.php:126
+msgid "Follow me on Tumblr"
+msgstr "Моя жизнь на Tumblr"
+
+#: ../class-fire-init.php:127
+msgid "Tumblr url"
+msgstr ""
+
+#: ../class-fire-init.php:131
+msgid "Follow me on Flickr"
+msgstr "Моя жизнь на Flickr"
+
+#: ../class-fire-init.php:132
+msgid "Flickr url"
+msgstr ""
+
+#: ../class-fire-init.php:136
+msgid "Follow me on WordPress"
+msgstr "Моя жизнь на WordPress"
+
+#: ../class-fire-init.php:137
+msgid "WordPress profile url"
+msgstr "URL профиля в  WordPress"
+
+#: ../class-fire-init.php:141
+msgid "Follow me on Youtube"
+msgstr "Моя жизнь на Youtube"
+
+#: ../class-fire-init.php:142
+msgid "Youtube profile url"
+msgstr "URL профиля в Youtube"
+
+#: ../class-fire-init.php:146
+msgid "Pin me on Pinterest"
+msgstr "Приколи меня на Pinterest"
+
+#: ../class-fire-init.php:147
+msgid "Pinterest profile url"
+msgstr "URL профиля в Pinterest"
+
+#: ../class-fire-init.php:151
+msgid "Follow me on Github"
+msgstr "Моя жизнь на Github"
+
+#: ../class-fire-init.php:152
+msgid "Github profile url"
+msgstr "URL профиля в Github"
+
+#: ../class-fire-init.php:156
+msgid "Follow me on Dribbble"
+msgstr "Моя жизнь на Dribbble"
+
+#: ../class-fire-init.php:157
+msgid "Dribbble profile url"
+msgstr "URL профиля в Dribbble"
+
+#: ../class-fire-init.php:161
+msgid "Follow me on LinkedIn"
+msgstr "Моя жизнь на LinkedIn"
+
+#: ../class-fire-init.php:162
+msgid "LinkedIn profile url"
+msgstr "URL профиля в LinkedIn"
+
+#: ../class-fire-init.php:171
+msgid "Right Sidebar"
+msgstr "Правый сайдбар"
+
+#: ../class-fire-init.php:172 ../class-fire-init.php:176
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "Появляется в постах, статических страницах, архивах и страницах поиска"
+
+#: ../class-fire-init.php:175
+msgid "Left Sidebar"
+msgstr "Левый сайдбар"
+
+#: ../class-fire-init.php:183
+msgid "Footer Widget Area One"
+msgstr "Место для виджета в футере №1"
+
+#: ../class-fire-init.php:184 ../class-fire-init.php:188
+#: ../class-fire-init.php:192
+msgid "Just use it as you want !"
+msgstr "Вставляйте сюда что угодно!"
+
+#: ../class-fire-init.php:187
+msgid "Footer Widget Area Two"
+msgstr "Место для виджета в футере №2"
+
+#: ../class-fire-init.php:191
+msgid "Footer Widget Area Three"
+msgstr "Место для виджета в футере №3"
+
+#: ../class-fire-init.php:209
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Говоря правду во времена всеобщего обмана вы делаете революцию."
+
+#: ../class-fire-init.php:210
+msgid "George Orwell"
+msgstr "Джордж Орвелл"
+
+#: ../class-fire-init.php:211
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"Очень жаль, но запрашиваемая вами страница не найдена. Вы можете попробовать "
+"ниже."
+
+#: ../class-fire-init.php:216
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr ""
+"Успех - это способность выдерживать одну неудачу за другой не теряя при этом "
+"энтузиазма..."
+
+#: ../class-fire-init.php:217
+msgid "Sir Winston Churchill"
+msgstr "Сэр Винстон Черчилль"
+
+#: ../class-fire-init.php:218
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Очень жаль, но соответствий введённым вами критериям не нашлось. Попробуйте "
+"другие слова."
+
+#: ../class-fire-init.php:233
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr - это удобная тема хорошо выглядящая на любых девайсах!"
+
+#: ../class-fire-init.php:238 ../class-fire-init.php:247
+msgid "Style your WordPress site live!"
+msgstr "Стилизуйте Ваш WordPress сайт быстрее!"
+
+#: ../class-fire-init.php:239
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"Многие изменения в расположении объектов и опций доступны в панели "
+"Костомайзера в WordPress: наблюдайте за изменениями в реальном времени!"
+
+#: ../class-fire-init.php:240
+msgid "Just try it!"
+msgstr "Просто попробуй!"
+
+#: ../class-fire-init.php:252 ../class-fire-init.php:261
+msgid "Create beautiful sliders"
+msgstr "Создай красивейший слайдер!"
+
+#: ../class-fire-init.php:253
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr  идёт с крутым генератором слайдеров: добавь слайдер в любой пост "
+"и на любую страницу!"
+
+#: ../class-fire-init.php:254
+msgid "Discover the features"
+msgstr "Узнай больше!"
+
+#: ../class-fire-init.php:316
+msgid "Main Menu"
+msgstr "Главное Меню"
+
+#: ../class-fire-init.php:695
+msgid "Customiz'it!"
+msgstr "Customiz'it!"
+
+#: ../class-fire-init.php:698
+msgid "Customize your website at any time!"
+msgstr "Костомизируйте свой сайт в любое время!"
+
+#: ../class-fire-init.php:717
+msgid "Help"
+msgstr "Помощь"
+
+#: ../class-fire-init.php:720
+msgid "Need help with Customizr? Click here!"
+msgstr "Нужна помощь с Customizr? Кликните здесь!"
+
+#: ../class-fire-utils.php:337
+#, php-format
+msgid "Page %s"
+msgstr "Страница %s"
+
+#: ../class-fire-utils.php:532
+msgid "Home featured page one"
+msgstr "Страница на главной № один"
+
+#: ../class-fire-utils.php:533
+msgid "Home featured page two"
+msgstr "Страница на главной  № два"
+
+#: ../class-fire-utils.php:534
+msgid "Home featured page three"
+msgstr "Страница на главной № три"
+
+#: ../class-fire-utils.php:537
+msgid "Featured text one (200 car. max)"
+msgstr "Текст страницы снизу № 1 (200 знаков макс.)"
+
+#: ../class-fire-utils.php:538
+msgid "Featured text two (200 car. max)"
+msgstr "Текст страницы снизу № 2 (200 знаков макс.)"
+
+#: ../class-fire-utils.php:539
+msgid "Featured text three (200 car. max)"
+msgstr "Текст страницы снизу № 3 (200 знаков макс.)"
+
+#: ../class-fire-utils.php:555
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr ""
+
+#: ../class-fire-utils.php:571
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr ""
+
+#: ../class-fire-utils.php:574
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr ""
+"Сначала Вы должны выбрать страницу. Оставьте поле пустым если хотите видеть "
+"здесь выдержку из текста страницы."
+
+#: ../class-fire-utils.php:672
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Без слайдера &mdash;"
+
+#: ../class-fire-utils.php:673
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Демо слайдера &mdash;"
+
+#: ../class-fire-utils.php:726
+msgid "Skin"
+msgstr "Внешний вид"
+
+#: ../class-fire-utils.php:728
+msgid "Select a skin for Customizr"
+msgstr "Выберите внешний вид для Customizr"
+
+#: ../class-fire-utils.php:732
+msgid "Logo &amp; Favicon"
+msgstr "Лого  &amp; Фавикон"
+
+#: ../class-fire-utils.php:734
+msgid "Set up logo and favicon options"
+msgstr "Параметры ваших Лого и Фавикона"
+
+#: ../class-fire-utils.php:738
+msgid "Front Page"
+msgstr "Главная страница"
+
+#: ../class-fire-utils.php:740
+msgid "Set up front page options"
+msgstr "Параметры главной страницы"
+
+#: ../class-fire-utils.php:744
+msgid "Pages &amp; Posts Layout"
+msgstr "Страницы &amp;  Вид записей"
+
+#: ../class-fire-utils.php:746
+msgid "Set up layout options"
+msgstr "Установите опции расположения"
+
+#: ../class-fire-utils.php:750
+msgid "Comments"
+msgstr "Комментарии"
+
+#: ../class-fire-utils.php:752
+msgid "Set up comments options"
+msgstr "Опции комментариев"
+
+#: ../class-fire-utils.php:756 ../parts/class-content-sidebar.php:108
+msgid "Social links"
+msgstr "Линки соцсетей"
+
+#: ../class-fire-utils.php:758
+msgid "Set up your social links"
+msgstr "Добавить соцсети"
+
+#: ../class-fire-utils.php:762
+msgid "Images"
+msgstr "Изображения"
+
+#: ../class-fire-utils.php:764
+msgid "Various images settings"
+msgstr "Разные настройки изображений"
+
+#: ../class-fire-utils.php:768
+msgid "Links"
+msgstr "Ссылки"
+
+#: ../class-fire-utils.php:770
+msgid "Various links settings"
+msgstr "Настройки ссылок"
+
+#: ../class-fire-utils.php:774
+msgid "Custom CSS"
+msgstr "Собственная CSS"
+
+#: ../class-fire-utils.php:776
+msgid "Add your own CSS"
+msgstr "Добавить свои стили"
+
+#: ../class-fire-utils.php:780
+msgid "Responsive settings"
+msgstr ""
+
+#: ../class-fire-utils.php:782
+msgid "Various settings for responsive display"
+msgstr ""
+
+#: ../class-fire-utils.php:814
+msgid "Manage menus"
+msgstr "Управляйте блоком Меню"
+
+#: ../class-fire-utils.php:820
+msgid "Select a submenu expansion option"
+msgstr "Выбрать способ выпадения подменю"
+
+#: ../class-fire-utils.php:824
+msgid "Expand submenus on click"
+msgstr "Выпадение подменю по клику"
+
+#: ../class-fire-utils.php:825
+msgid "Expand submenus on hover"
+msgstr "Выпадение подменю при наведении"
+
+#: ../class-fire-utils.php:840
+msgid "Choose a predefined skin"
+msgstr "Выберите предустановленый вид"
+
+#: ../class-fire-utils.php:849
+msgid "Performance : use the minified CSS stylesheet"
+msgstr ""
+
+#: ../class-fire-utils.php:852
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr ""
+
+#: ../class-fire-utils.php:858
+msgid "Display top border"
+msgstr " Показать верхний бордер"
+
+#: ../class-fire-utils.php:862
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Исключите данную опцию для отмены цветного бордера сверху сайта."
+
+#: ../class-fire-utils.php:875
+#, fuzzy
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Загрузка лого (форматы только:  .jpg, .png, .gif)"
+
+#: ../class-fire-utils.php:883
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "Оптимальные размеры Лого: max-width:250px and max-height:100px"
+
+#: ../class-fire-utils.php:899
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Загрузка фавикона ( форматы только:  .ico, .png, .gif)"
+
+#: ../class-fire-utils.php:916
+msgid "Choose content and layout"
+msgstr "Выбрать контент и расположение "
+
+#: ../class-fire-utils.php:924
+msgid "Front page displays"
+msgstr "Отображение Главной страницы"
+
+#: ../class-fire-utils.php:929
+msgid "Don't show any posts or page"
+msgstr "Не показывать ни сообщения ни страницы"
+
+#: ../class-fire-utils.php:930
+msgid "Your latest posts"
+msgstr "Ваши последние посты"
+
+#: ../class-fire-utils.php:931
+msgid "A static page"
+msgstr "Статическая страница"
+
+#: ../class-fire-utils.php:937
+msgid "Front page"
+msgstr "Главная страница"
+
+#: ../class-fire-utils.php:945
+msgid "Posts page"
+msgstr "Страница с записями"
+
+#: ../class-fire-utils.php:954
+msgid "Set up the front page layout"
+msgstr "Конструкция главной страницы"
+
+#: ../class-fire-utils.php:965
+msgid "Slider options"
+msgstr "Опции слайдера"
+
+#: ../class-fire-utils.php:966
+msgid "Select front page slider"
+msgstr "Выберите слайдер для главной страницы"
+
+#: ../class-fire-utils.php:978
+msgid "Full width slider"
+msgstr "Слайдер во всю ширину"
+
+#: ../class-fire-utils.php:989
+msgid "Delay between each slides"
+msgstr "Задержка между слайдерами"
+
+#: ../class-fire-utils.php:994
+msgid "in ms : 1000ms = 1s"
+msgstr "В мс: 1000мс = 1сек."
+
+#: ../class-fire-utils.php:1002
+msgid "Featured pages options"
+msgstr "Опции страниц под слайдером"
+
+#: ../class-fire-utils.php:1003
+msgid "Display home featured pages area"
+msgstr "Показать место для нижних страниц на главной"
+
+#: ../class-fire-utils.php:1007
+msgid "Enable"
+msgstr "Применить"
+
+#: ../class-fire-utils.php:1008
+msgid "Disable"
+msgstr "Отменить"
+
+#: ../class-fire-utils.php:1017
+msgid "Show images"
+msgstr "Показать изображения"
+
+#: ../class-fire-utils.php:1020
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"Изображения страниц под слайдером снабжены опцией - Миниатюра записи - на "
+"панели редактирования страниц.  Для того чтобы убрать изображения снимите "
+"галочку сверху."
+
+#: ../class-fire-utils.php:1026
+msgid "Read more &raquo;"
+msgstr "Читать &raquo;"
+
+#: ../class-fire-utils.php:1028
+msgid "Button text"
+msgstr "Текст кнопки"
+
+#: ../class-fire-utils.php:1049
+msgid "Display Breadcrumb"
+msgstr "Применить Breadcrumb"
+
+#: ../class-fire-utils.php:1059
+msgid "Choose the global default layout"
+msgstr "Выбрать структуру по умолчанию"
+
+#: ../class-fire-utils.php:1070
+msgid "Force default layout everywhere"
+msgstr "Выбрать структуру по умолчанию везде"
+
+#: ../class-fire-utils.php:1073
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"Эта опция перекроет отдельные настройки во всех постах и страницах включая "
+"главную."
+
+#: ../class-fire-utils.php:1080
+msgid "Choose the posts default layout"
+msgstr "Выбрать расположение постов"
+
+#: ../class-fire-utils.php:1092
+msgid "Maximum number of posts per page"
+msgstr "Максимальное число постов на странице"
+
+#: ../class-fire-utils.php:1103
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "Выбрать длину постов в списках (домашняя, поиск, архивы, ...)"
+
+#: ../class-fire-utils.php:1107
+msgid "Display the excerpt"
+msgstr "Показать выдержку"
+
+#: ../class-fire-utils.php:1108
+msgid "Display the full content"
+msgstr "Показать контент целиком"
+
+#: ../class-fire-utils.php:1116
+msgid "Choose the pages default layout"
+msgstr "Выбрать расположение страниц по умолчанию"
+
+#: ../class-fire-utils.php:1136
+msgid "Enable comments on pages"
+msgstr "Разрешить комментарии на страницах"
+
+#: ../class-fire-utils.php:1139
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"Эта опция разрешит комментарии на страницах. Вы можете запретить комментарии "
+"на любой странице в панели правки страници."
+
+#: ../class-fire-utils.php:1153
+msgid "Social links in header"
+msgstr "Соцсети в хедере"
+
+#: ../class-fire-utils.php:1162
+msgid "Social links in left sidebar"
+msgstr "Соцсети в левом сайдбаре"
+
+#: ../class-fire-utils.php:1171
+msgid "Social links in right sidebar"
+msgstr "Соцсети в правом сайдбаре"
+
+#: ../class-fire-utils.php:1180
+msgid "Social links in footer"
+msgstr "Соцсети в футере"
+
+#: ../class-fire-utils.php:1201
+msgid "Enable/disable lightbox effect on images"
+msgstr "Вкл./Выкл. эффект лайтбокса на изображениях"
+
+#: ../class-fire-utils.php:1204
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"Если включено, то это активирует всплывание окна с зум-эффектом если "
+"кликнуть на изображение. Не действует на галерею."
+
+#: ../class-fire-utils.php:1210
+msgid "Autoscale images on zoom"
+msgstr "Подгонка размера изображения зумом"
+
+#: ../class-fire-utils.php:1213
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr ""
+"Если выбрана, эта опция подгонит размер изображения под экран в lightbox. "
+
+#: ../class-fire-utils.php:1219
+msgid "Enable/disable retina support"
+msgstr "Вкл./Выкл. поддержку ретины дисплея"
+
+#: ../class-fire-utils.php:1222
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr ""
+"Если активно, Ваш сайт будет поддерживать дивайсы с высоким разрешением."
+
+#: ../class-fire-utils.php:1235
+msgid "Enable/disable smooth scroll on click"
+msgstr "Вкл./Выкл. плавное прокруч. по клику"
+
+#: ../class-fire-utils.php:1238
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr ""
+"Если активно, данная опция активирует плавное прокручивание страницы при "
+"клике на ссылку с анкором на той же странице."
+
+#: ../class-fire-utils.php:1251
+msgid "Enable/disable blocks reordering on small devices"
+msgstr ""
+
+#: ../class-fire-utils.php:1254
+msgid ""
+"On responsive mode, for smartphone viewport, the sidebars are moved after "
+"the main content block."
+msgstr ""
+
+#: ../class-fire-utils.php:1260
+msgid "Enable/disable slider's slides centering on any devices"
+msgstr ""
+
+#: ../class-fire-utils.php:1263
+msgid ""
+"This option centers your slider (carousel) pictures vertically and "
+"horizontally on any devices when displayed in full width mode"
+msgstr ""
+
+#: ../class-fire-utils.php:1277
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr ""
+"Добавьте сюда свои стили и смотрите результат! ( для продвинутых "
+"пользователей)."
+
+#: ../class-fire-utils.php:1280
+msgid ""
+"Always use this field to add your custom css instead of editing directly the "
+"style.css file : it will not be deleted during theme updates. You can also "
+"paste your custom css in the style.css file of a child theme."
+msgstr ""
+"Всегда пользуйтесь этим полем для добавления своих стилей вместо "
+"редактирования файла style.css на прямую: Ваши изменения не потеряются после "
+"обновлений темы. Вы также можете добавить Ваши стили в style.css файл "
+"дочерней темы."
+
+#: ../admin/class-admin-meta_boxes.php:87
+msgid "Layout Options"
+msgstr "Опции расположения"
+
+#: ../admin/class-admin-meta_boxes.php:95
+#: ../admin/class-admin-meta_boxes.php:466
+msgid "Slider Options"
+msgstr "Опции слайдера"
+
+#: ../admin/class-admin-meta_boxes.php:164
+#, php-format
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "По умолчанию %1$s расположены как:  %2$s"
+
+#: ../admin/class-admin-meta_boxes.php:164
+msgid "pages"
+msgstr "страницы"
+
+#: ../admin/class-admin-meta_boxes.php:164
+msgid "posts"
+msgstr "посты"
+
+#: ../admin/class-admin-meta_boxes.php:169
+msgid ""
+"You have checked the <i>\"Force global default layout for all posts and pages"
+"\"</i>, you must unchecked this option to enable a specific layout for this "
+"post."
+msgstr ""
+"Вы выбрали <i>\" Выбрать структуру по умолчанию для всех постов и страниц   "
+"\"</i>, вы должны отменить это действие для того чтобы применить нужное вам "
+"расположение для этого поста."
+
+#: ../admin/class-admin-meta_boxes.php:170
+msgid "Change layout options"
+msgstr "Изменить опции расположения"
+
+#: ../admin/class-admin-meta_boxes.php:174
+#, php-format
+msgid ""
+"You can define a specific layout for %1$s by using the pre-defined left and "
+"right sidebars. The default layouts can be defined in the WordPress "
+"customizer screen %2$s.<br />"
+msgstr ""
+"Вы можете назначить нужное расположение для %1$s предустановив левый и "
+"правый сайдбары. Расположения по умолчанию можно включить в WordPress панели "
+"Customiz'it! %2$s.<br />"
+
+#: ../admin/class-admin-meta_boxes.php:175
+#: ../admin/class-admin-meta_boxes.php:180
+msgid "this page"
+msgstr "данной страницы"
+
+#: ../admin/class-admin-meta_boxes.php:175
+#: ../admin/class-admin-meta_boxes.php:180
+msgid "this post"
+msgstr "данного поста"
+
+#: ../admin/class-admin-meta_boxes.php:176
+msgid "here"
+msgstr "здесь"
+
+#: ../admin/class-admin-meta_boxes.php:179
+#, php-format
+msgid "Select a specific layout for %1$s"
+msgstr "Выберите нужное расположение для %1$s"
+
+#: ../admin/class-admin-meta_boxes.php:183
+#, php-format
+msgid "Default layout %1s"
+msgstr "Вид по умолчанию %1s"
+
+#: ../admin/class-admin-meta_boxes.php:225
+msgid "Add a slider to this post/page"
+msgstr "Добавть слайдер к сообщению/странице "
+
+#: ../admin/class-admin-meta_boxes.php:289
+#: ../admin/class-admin-meta_boxes.php:673
+msgid "Choose a slider"
+msgstr "Выберите слайдер"
+
+#: ../admin/class-admin-meta_boxes.php:296
+#: ../admin/class-admin-meta_boxes.php:688
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Выберите слайдер &mdash;"
+
+#: ../admin/class-admin-meta_boxes.php:301
+msgid ""
+"To create a new slider : open the media library, edit your images and add "
+"them to your new slider."
+msgstr ""
+"Для добавления нового слайдера перейдите в медиа-библиотеку, отредактируйте "
+"Ваши изображения и добавте их в Ваш новый слайдер."
+
+#: ../admin/class-admin-meta_boxes.php:305
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Задержка между слайдерами в миллисекундах (по умолчанию: 5000 мс)"
+
+#: ../admin/class-admin-meta_boxes.php:312
+msgid "Slider Layout : set the slider in full width"
+msgstr "Расположение слайдера: во всю ширину"
+
+#: ../admin/class-admin-meta_boxes.php:329
+#: ../admin/class-admin-meta_boxes.php:697
+msgid "Delete this slider"
+msgstr "Удалить данный слайдер"
+
+#: ../admin/class-admin-meta_boxes.php:334
+#: ../admin/class-admin-meta_boxes.php:701
+msgid ""
+"The slider will be deleted permanently (images, call to actions and link "
+"will be kept)."
+msgstr ""
+"Данный слайдер будет удалён ( изображения и др. настройки будут сохранены)."
+
+#: ../admin/class-admin-meta_boxes.php:337
+#: ../admin/class-admin-meta_boxes.php:704
+msgid "Delete slider"
+msgstr "Удалить слайдер"
+
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:87
+msgid ""
+"You haven't create any slider yet. Go to the media library, edit your images "
+"and add them to your sliders."
+msgstr ""
+"Вы ещё не сделали ни одного слайдера. Перейдите в медиа-библиотеку, "
+"отредактируйте ваши изображения и добавте их в слайдеры."
+
+#: ../admin/class-admin-meta_boxes.php:495
+msgid "Add to a slider"
+msgstr "Добавить в слайдер"
+
+#: ../admin/class-admin-meta_boxes.php:497
+msgid "Add to a slider (create one if needed)"
+msgstr "Добавить в слайдер ( создайте один если нужно)"
+
+#: ../admin/class-admin-meta_boxes.php:630
+msgid "Title text (80 car. max length)"
+msgstr "Заголовок (200 знаков макс.)"
+
+#: ../admin/class-admin-meta_boxes.php:637
+msgid "Description text (below the title, 250 car. max length)"
+msgstr "Текст описания ( под оглавлением, 250 знаков макс. длина)"
+
+#: ../admin/class-admin-meta_boxes.php:644
+msgid "Title and text color"
+msgstr "Цвет текста и оглавления"
+
+#: ../admin/class-admin-meta_boxes.php:652
+msgid "Button text (80 car. max length)"
+msgstr "Текст кнопки ( 80 знаков макс. длина)"
+
+#: ../admin/class-admin-meta_boxes.php:659
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Выбрать связанную страницу или пост ( из последних 100). "
+
+#: ../admin/class-admin-meta_boxes.php:664
+msgid "No link"
+msgstr "Нет похожих"
+
+#: ../admin/class-admin-meta_boxes.php:694
+#: ../admin/class-admin-meta_boxes.php:723
+msgid "Add a slider"
+msgstr "Добавить слайдер"
+
+#: ../admin/class-admin-meta_boxes.php:721
+msgid ""
+"You haven't create any slider yet. Write a slider name and click on the "
+"button to add you first slider."
+msgstr ""
+"Вы не создали ещё ни одного слайдера. Напишите имя слайдера и нажмите на "
+"кнопку для создания."
+
+#: ../admin/class-admin-meta_boxes.php:838
+msgid ""
+"This slider has not slides to show. Go to the media library and start adding "
+"images to it."
+msgstr ""
+"Этот слайдер не садержит слайдов для показа. Отправляйтесь в медиа-"
+"библиотеку и добавьте сюда изображений."
+
+#: ../admin/class-admin-meta_boxes.php:848
+msgid "Slide Image"
+msgstr "Изображение слайда"
+
+#: ../admin/class-admin-meta_boxes.php:849
+msgid "Title"
+msgstr "Название"
+
+#: ../admin/class-admin-meta_boxes.php:850
+msgid "Slide Text"
+msgstr "Текст слайда"
+
+#: ../admin/class-admin-meta_boxes.php:851
+msgid "Button Text"
+msgstr "Текст кнопки"
+
+#: ../admin/class-admin-meta_boxes.php:852
+msgid "Button Link"
+msgstr "Линк кнопки"
+
+#: ../admin/class-admin-meta_boxes.php:853
+#: ../parts/class-content-breadcrumb.php:622
+#: ../parts/class-content-breadcrumb.php:655
+#: ../parts/class-content-breadcrumb.php:670
+#: ../parts/class-content-breadcrumb.php:698
+#: ../parts/class-content-comments.php:156
+#: ../parts/class-content-featured_pages.php:238
+#: ../parts/class-content-headings.php:253
+#: ../parts/class-content-slider.php:247
+msgid "Edit"
+msgstr "Править"
+
+#: ../admin/class-admin-meta_boxes.php:894
+msgid "No Image Selected"
+msgstr "Не выбрано ни одного изображения"
+
+#: ../admin/class-admin-meta_boxes.php:920
+msgid "Edit this slide"
+msgstr "Редактировать слайд"
+
+#: ../admin/class-admin-meta_boxes.php:922
+msgid "Current slide"
+msgstr "Текущий слайд"
+
+#: ../admin/class-controls.php:87
+msgid "Create a slider"
+msgstr "Сделать слайдер"
+
+#: ../admin/class-fire-admin_init.php:63 ../admin/class-fire-admin_init.php:64
+msgid "Upgrade WP"
+msgstr "Обновить Wordpress"
+
+#: ../admin/class-fire-admin_init.php:83
+msgid "This theme requires WordPress 3.4+"
+msgstr "Для этой темы нужен WordPress 3.4+"
+
+#: ../admin/class-fire-admin_init.php:86 ../admin/class-fire-admin_init.php:87
+msgid "Upgrade Wordpress Now"
+msgstr "Обновите Wordpress сейчас"
+
+#: ../admin/class-fire-admin_init.php:104
+#: ../admin/class-fire-admin_init.php:105
+msgid "About Customizr"
+msgstr "Про Customizr"
+
+#: ../admin/class-fire-admin_init.php:127
+msgid "Need help with Customizr ?"
+msgstr "Нужна помощь с  Customizr ?"
+
+#: ../admin/class-fire-admin_init.php:129
+#, php-format
+msgid "Welcome to Customizr %s"
+msgstr "Добро пожаловать в  Customizr %s"
+
+#: ../admin/class-fire-admin_init.php:136
+#, php-format
+msgid ""
+"You can start by watching the <a href=\"%1$s\" target=\"_blank"
+"\">introduction video</a> or by reading <a href=\"%2$s\" target=\"_blank"
+"\">the documentation</a>.<br/> If you don't find an answer to your issue, "
+"don't panic! Since Customizr is used by a growing community of webmasters "
+"reporting bugs and making continuous improvements, you will probably find a "
+"solution to your problem either in the FAQ or in the user forum."
+msgstr ""
+"Начните с просмотра <a href=\"%1$s\" target=\"_blank\"> обучающего видео </"
+"a> или прочтите <a href=\"%2$s\" target=\"_blank\">документацию</a>.<br/> "
+"Если Вы не найдёте ответа на свой вопрос, без паники! Так как Customizr "
+"успользуется всё большим числом вебмастеров обсуждающих между собой разные "
+"проблемы и баги на пользовательском форуме, многие решения Вы сможете найти "
+"там или проверте FAQ.  "
+
+#: ../admin/class-fire-admin_init.php:144
+msgid "Read the documentation"
+msgstr "Читайте документацию"
+
+#: ../admin/class-fire-admin_init.php:148
+msgid "Check the FAQ"
+msgstr "Посмотрите FAQ"
+
+#: ../admin/class-fire-admin_init.php:153
+msgid "Code snippets"
+msgstr "Сниппеты кода"
+
+#: ../admin/class-fire-admin_init.php:156
+msgid "Discuss in the user forum"
+msgstr "Обсудите на форуме"
+
+#: ../admin/class-fire-admin_init.php:164
+#, php-format
+msgid ""
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see the "
+"changelog)</a> to help you build an awesome website. Watch the <a href=\"%2$s"
+"\" target=\"_blank\">introduction video</a> and find inspiration in the <a "
+"href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
+msgstr ""
+"Спасибо, что используете Customizr! У Customizr %1$s сейчас ещё больше "
+"возможностей, он надёжнее и стабильнее чем когда либо <a href=\"#customizr-"
+"changelog\">(смотрите журнал изменений)</a> для того чтобы Вы делали свои "
+"потрясающие сайты! Смотрите <a href=\"%2$s\" target=\"_blank\">обучающее "
+"видео</a> и находите вдохновение на <a href=\"#showcase\">шоукейсе</a>.<br/> "
+"Наслаждайтесь!"
+
+#: ../admin/class-fire-admin_init.php:178
+#, php-format
+msgid ""
+"You are using a child theme of Customizr %1$s : always check the %2$s after "
+"upgrading to see if a function or a template has been deprecated."
+msgstr ""
+"Вы используете дочернюю тему Customizr %1$s :  всегда проверяйте %2$s после "
+"обновления на предмет устаревания функции или файла шаблона."
+
+#: ../admin/class-fire-admin_init.php:193
+msgid "We need sponsors!"
+msgstr "Требуются спонсоры!"
+
+#: ../admin/class-fire-admin_init.php:194
+msgid ""
+"<strong>We do our best do make Customizr the perfect free theme for you!</"
+"strong><br/> Please help support it's continued development with a donation "
+"of $20, $50, or even $100."
+msgstr ""
+"<strong>Мы делаем всё возможное для того чтобы Customizr был идеальным "
+"бесплатным шаблоном для Вас!</strong><br/> Пожалуйста, помогите в разработке "
+"шаблона переводом в $20, $50  или даже в $100."
+
+#: ../admin/class-fire-admin_init.php:201
+msgid "Happy user of Customizr?"
+msgstr "Счастливый обладатель Customizr?"
+
+#: ../admin/class-fire-admin_init.php:202
+msgid ""
+"If you are happy with the theme, say it on wordpress.org and give Customizr "
+"a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr ""
+"Если Вы довольны данным шаблоном, скажите об этом на wordpress.org, опишите "
+"свой Customizr! <br /> (Мы любим фидбеки...) "
+
+#: ../admin/class-fire-admin_init.php:207
+msgid "Follow us"
+msgstr "Следите за нами"
+
+#: ../admin/class-fire-admin_init.php:215
+msgid "Customizr's extensions"
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:218
+#: ../admin/class-fire-admin_init.php:227
+msgid "Visit the extension's page"
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:219
+msgid "Easily take your web design one step further"
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:220
+msgid ""
+"The Customizr's extensions are plugins developed to extend the Customizr "
+"theme with great features. Nicely integrated with the theme's built-in "
+"options, they can be enabled/disabled safely with no side effects on your "
+"existing settings or customizations."
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:222
+msgid ""
+"These modules are designed to be simple to use for everyone. They are a good "
+"solution to add some creative customizations whitout needing to dive into "
+"the code."
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:224
+msgid ""
+"Customizr's extensions are installed and upgraded from your WordPress admin, "
+"like any other WordPress plugins. Well documented and easily extendable with "
+"hooks, they come with a dedicated support forum on themesandco.com."
+msgstr ""
+
+#: ../admin/class-fire-admin_init.php:233
+msgid "Customizr Showcase"
+msgstr "Customizer шоукейс"
+
+#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_init.php:243
+msgid "Visit the showcase"
+msgstr "Посмотрите шоукейс"
+
+#: ../admin/class-fire-admin_init.php:237
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "Найдите вдохновение для Вашего следующего Customizr сайта!"
+
+#: ../admin/class-fire-admin_init.php:238
+msgid ""
+"This showcase aims to show what can be done with Customizr and helping other "
+"users to find inspiration for their web design."
+msgstr ""
+"Эти примеры призваны показать, что можно делать с Customizr и вдохновить "
+"вебдизайнеров на новые свершения."
+
+#: ../admin/class-fire-admin_init.php:240
+msgid ""
+"Do you think you made an awesome website that can inspire people? Submitting "
+"a site for review is quick and easy to do."
+msgstr ""
+"Вы считаете, что Вы сделали потрясающий сайт, который сможет впечатлить "
+"всех? Предложить свой сайт для выставки примеров быстро и просто."
+
+#: ../admin/class-fire-admin_init.php:250
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr "Журнал изменений в версии %1$s"
+
+#: ../admin/class-fire-admin_init.php:259
+msgid "Go to Dashboard &rarr; Home"
+msgstr "В панель опций  &rarr; На главную"
+
+#: ../admin/class-fire-admin_init.php:259
+msgid "Go to Dashboard"
+msgstr "В панель опций"
+
+#: ../parts/class-content-attachment.php:41
+msgid "&larr; Previous"
+msgstr "&larr; Предыдущая"
+
+#: ../parts/class-content-attachment.php:42
+msgid "Next &rarr;"
+msgstr "Следующая &rarr;"
+
+#: ../parts/class-content-breadcrumb.php:36
+#: ../parts/class-content-breadcrumb.php:48
+msgid "Home"
+msgstr "На главную"
+
+#: ../parts/class-content-breadcrumb.php:45
+msgid "Browse:"
+msgstr "Искать:"
+
+#: ../parts/class-content-breadcrumb.php:501
+msgid "g:i a"
+msgstr ""
+
+#: ../parts/class-content-breadcrumb.php:504
+#, php-format
+msgid "Minute %1$s"
+msgstr "Минута %1$s"
+
+#: ../parts/class-content-breadcrumb.php:504
+msgid "i"
+msgstr ""
+
+#: ../parts/class-content-breadcrumb.php:507
+msgid "g a"
+msgstr ""
+
+#: ../parts/class-content-breadcrumb.php:523
+#: ../parts/class-content-breadcrumb.php:533
+#: ../parts/class-content-breadcrumb.php:542
+#: ../parts/class-content-breadcrumb.php:553
+#: ../parts/class-content-breadcrumb.php:555
+#: ../parts/class-content-breadcrumb.php:754
+msgid "Y"
+msgstr ""
+
+#: ../parts/class-content-breadcrumb.php:524
+#: ../parts/class-content-breadcrumb.php:545
+#: ../parts/class-content-breadcrumb.php:547
+#: ../parts/class-content-breadcrumb.php:758
+msgid "F"
+msgstr ""
+
+#: ../parts/class-content-breadcrumb.php:527
+#: ../parts/class-content-breadcrumb.php:529
+#: ../parts/class-content-breadcrumb.php:762
+msgid "d"
+msgstr ""
+
+#: ../parts/class-content-breadcrumb.php:536
+#: ../parts/class-content-breadcrumb.php:538
+#, php-format
+msgid "Week %1$s"
+msgstr "Неделя %1$s"
+
+#: ../parts/class-content-breadcrumb.php:564
+#: ../parts/class-content-breadcrumb.php:566
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Результаты на тему &quot;%1$s&quot;"
+
+#: ../parts/class-content-breadcrumb.php:571
+msgid "404 Not Found"
+msgstr "404 Не найден"
+
+#: ../parts/class-content-breadcrumb.php:576
+#: ../parts/class-content-breadcrumb.php:578
+#, php-format
+msgid "Page %d"
+msgstr "Страница %d"
+
+#: ../parts/class-content-breadcrumb.php:647
+msgid "Split"
+msgstr "Разделить"
+
+#: ../parts/class-content-breadcrumb.php:651
+msgid "Merge"
+msgstr "Соединить"
+
+#: ../parts/class-content-comments.php:57
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgstr "Мысль на тему &ldquo;%2$s&rdquo;"
+
+#: ../parts/class-content-comments.php:115
+msgid "Pingback:"
+msgstr "Пингбак:"
+
+#: ../parts/class-content-comments.php:115
+msgid "(Edit)"
+msgstr "(Править)"
+
+#: ../parts/class-content-comments.php:142
+msgid "Reply"
+msgstr "Ответить"
+
+#: ../parts/class-content-comments.php:155
+msgid "Post author"
+msgstr "От автора"
+
+#: ../parts/class-content-comments.php:162
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s  в %2$s"
+
+#: ../parts/class-content-comments.php:167
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш комментарий на модерации."
+
+#: ../parts/class-content-comments.php:202
+msgid "Comment navigation"
+msgstr "Навигация по комментариям"
+
+#: ../parts/class-content-comments.php:208
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Старые комментарии"
+
+#: ../parts/class-content-comments.php:216
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Новые комментарии  <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-comments.php:248
+msgid "Comments are closed."
+msgstr "Комментарии закрыты"
+
+#: ../parts/class-content-featured_pages.php:118
+msgid "Customizer screen"
+msgstr "Панель Customizer"
+
+#: ../parts/class-content-featured_pages.php:118
+msgid " here"
+msgstr "здесь"
+
+#: ../parts/class-content-featured_pages.php:122
+msgid "Featured page"
+msgstr "Страница под слайдером"
+
+#: ../parts/class-content-featured_pages.php:125
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"Текст описания страницы под слайдером: используйте выдержку из существующего "
+"текста или наберите свой собственный в панели Костомайзера%s."
+
+#: ../parts/class-content-gallery.php:187
+msgid "Missing Attachment"
+msgstr "Недостающее вложение"
+
+#: ../parts/class-content-headings.php:54
+msgid "Ooops, page not found"
+msgstr "Упс, страница не найдена"
+
+#: ../parts/class-content-headings.php:65
+msgid "No"
+msgstr "ничего не"
+
+#: ../parts/class-content-headings.php:66
+msgid "Search Results for :"
+msgstr "Результаты поиска для :"
+
+#: ../parts/class-content-headings.php:81
+msgid "Author Archives :"
+msgstr "Архивы по авторам: "
+
+#: ../parts/class-content-headings.php:95 ../parts/class-content-post.php:93
+#, php-format
+msgid "About %s"
+msgstr "Про %s"
+
+#: ../parts/class-content-headings.php:108
+msgid "Category Archives :"
+msgstr "Архивы по категориям: "
+
+#: ../parts/class-content-headings.php:124
+msgid "Tag Archives :"
+msgstr "Архивы по тегам: "
+
+#: ../parts/class-content-headings.php:137
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Архивы по дням: %s"
+
+#: ../parts/class-content-headings.php:137
+msgid "Archives"
+msgstr "Архивы"
+
+#: ../parts/class-content-headings.php:138
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Архивы по месяцам: %s"
+
+#: ../parts/class-content-headings.php:139
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Архивы по годам: %s"
+
+#: ../parts/class-content-headings.php:225
+#: ../parts/class-content-headings.php:231
+msgid "{no title} Read the post &raquo;"
+msgstr "{no title}  Читать пост &raquo;"
+
+#: ../parts/class-content-headings.php:230
+#, php-format
+msgid "Permalink to %s"
+msgstr "Пермалинк к %s"
+
+#: ../parts/class-content-headings.php:246
+msgid "Comment(s) on"
+msgstr "Комментарий (ии) к"
+
+#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:50
+#: ../parts/class-content-post_list.php:153
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Продолжить чтение <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:51
+#: ../parts/class-content-post_list.php:154
+msgid "Pages:"
+msgstr "Страницы:"
+
+#: ../parts/class-content-post.php:97
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Смотреть все посты автора %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-post_metas.php:48
+msgid "Published"
+msgstr "Опубликовано"
+
+#: ../parts/class-content-post_metas.php:51
+msgid "at dimensions"
+msgstr "размеров"
+
+#: ../parts/class-content-post_metas.php:51
+msgid "Link to full-size image"
+msgstr "Править"
+
+#: ../parts/class-content-post_metas.php:52
+msgid "in"
+msgstr "в"
+
+#: ../parts/class-content-post_metas.php:52
+msgid "Return to "
+msgstr "Назад к"
+
+#: ../parts/class-content-post_metas.php:74
+#, php-format
+msgid "View all posts by %s"
+msgstr "Посмотреть все посты автора:  %s"
+
+#: ../parts/class-content-post_metas.php:82
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+"Эта запись была сделана в %1$s и помечена %2$s в %3$s<span class=\"автором"
+"\"> автором %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:84
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+"Эта запись была сделана в  %1$s в %3$s<span class=\"автором\"> автором %4$s</"
+"span>."
+
+#: ../parts/class-content-post_metas.php:86
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+"Эта запись была сделана на %3$s<span class=\"автором\"> автором %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:128
+#: ../parts/class-content-post_metas.php:158
+#, php-format
+msgid "View all posts in %s"
+msgstr "Смотреть все посты в %s"
+
+#: ../parts/class-content-post_navigation.php:54
+#: ../parts/class-content-post_navigation.php:87
+msgid "Post navigation"
+msgstr "Навигация по постам"
+
+#: ../parts/class-content-post_navigation.php:97
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Старые посты"
+
+#: ../parts/class-content-post_navigation.php:110
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Новые посты  <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-footer-footer_main.php:168
+msgid "Back to top"
+msgstr "Наверх"
+
+#: ../parts/class-header-header_main.php:162
+msgid "Back Home"
+msgstr "Назад на главную"
+
+#: ../parts/class-header-menu.php:44
+msgid "Add a menu"
+msgstr "Добавить меню"
+
+#~ msgid "Leave a Comment"
+#~ msgstr "Оставьте комментарий"
+
+#~ msgid "Let your creativity speak and easily customiz'it the way you want!"
+#~ msgstr ""
+#~ "Дайте волю своему воображению! Вместе с customiz'it у тебя всё получится!"
+
+#~ msgid "Learn more"
+#~ msgstr "Узнать больше!"
+
+#~ msgid "Dev Tools (advanced users)"
+#~ msgstr "Dev Tools (разработчикам)"
+
+#~ msgid "Enable/disable the Dev Tools"
+#~ msgstr "Вкл./Выкл. Dev Tools"
+
+#~ msgid "Two sidebars"
+#~ msgstr "Два сайдбара"
+
+#~ msgid "Full Width"
+#~ msgstr "Во всю ширину"
+
+#~ msgid "Featured text two "
+#~ msgstr "Текст №2 страницы снизу "
+
+#~ msgid "Developer Box"
+#~ msgstr "Бокс разработчика"
+
+#~ msgid "Only visible for logged in users with an admin profile."
+#~ msgstr ""
+#~ "Видно только зарегистрированным участникам с профилем администратора."
+
+#~ msgid ""
+#~ "If enabled, this option displays a draggable information box to help you "
+#~ "develop or debug your Customizr based website."
+#~ msgstr ""
+#~ "Если включено, показывает информационный бокс который можно перетаскивать "
+#~ "для удобной разработки и исправлений в Вашем сайте на шаблоне Customizr."
+
+#~ msgid "Developer tooltips"
+#~ msgstr "Настройка tooltips"
+
+#~ msgid ""
+#~ "If enabled, this option displays clickable contextual tooltips right "
+#~ "inside your website."
+#~ msgstr ""
+#~ "Если включено, выводит контекстные, кликабельные подсказки tooltips прямо "
+#~ "в Вашем сайте."
+
+#~ msgid "Tip icon color"
+#~ msgstr "Цвет иконки"
+
+#~ msgid "New! Customizr Developer Tools"
+#~ msgstr "New! Инструменты Разработчика Customizr "
+
+#~ msgid "Easily drill down into Customizr code with the dev tools!"
+#~ msgstr ""
+#~ "Легко погрузитесь в код Customizr с инструментами разработчика (dev "
+#~ "tools)!"
+
+#~ msgid ""
+#~ "A new section called \"Dev Tools\" has been added to the customizer "
+#~ "options.<br/> There you will find two optional new features : <br/"
+#~ "><strong>-The developer box</strong> : this draggable box is a developer "
+#~ "dashboard allowing you to have an overview of your theme settings "
+#~ "(plugins, custom post types, theme options,...) and providing useful "
+#~ "informations for debug and development : a loading timeline of any pages, "
+#~ "contextual data ( like conditional tags and query), the hook's structure "
+#~ "of the theme and a note section about the code logic of Customizr.<br/"
+#~ "><strong>-The embedded tooltips</strong> : this option displays clickable "
+#~ "(and draggable) contextual tooltips right inside your website. They help "
+#~ "you understand which part of the php code handles any front-end block or "
+#~ "element. The informations provided are : class -> method, hook, file, "
+#~ "function description and possible filter.<br/><br/><i>Those tools are "
+#~ "only displayed to logged in users with an admin capability profile.</i>"
+#~ msgstr ""
+#~ "Новая секция  \"Dev Tools\" добавлена к опциям в customizer. <br/> Здесь "
+#~ "Вы найдёте две новые возможности: <br/><strong>- Бокс разработчика</"
+#~ "strong> : Этот перетаскиваемый бокс, панель разработчика даёт Вам "
+#~ "возможность контроля за настройками вашего сайта (плагинов, произвольных "
+#~ "типов записей (custom post types), опций шаблона,...) и показывает "
+#~ "полезную информацию для исправления (debug) и разработки : время загрузки "
+#~ "страницы, связанные данные (как условные теги и запросы), структура хуков "
+#~ "шаблона и пояснения логики кода Customizr.<br/><strong>- Встроенные  "
+#~ "tootips</strong> : данная опция выводит кликабельные и перемещаемые "
+#~ "контекстные подсказки tooltips прямо в Вашем сайте. Они помогают понять, "
+#~ "какая часть php кода отвечает за конкретный фронт-енд блок или элемент. "
+#~ "Данная информация состоит из : class -> метод, хук, файл, описание "
+#~ "функции и возможный фильтр.<br/><br/><i>Эти инструменты доступны только "
+#~ "для зарегистрированных пользователей с доступом администратора. </i>"
+
+#~ msgid "Edit page"
+#~ msgstr "Править"
+
+#~ msgid ""
+#~ "Thank you for updating to the latest version! Customizr %1$s has more "
+#~ "features, is safer and more stable than ever <a href=\"#customizr-"
+#~ "changelog\">(see changelog)</a> to help you build an awesome website. "
+#~ "Watch the <a href=\"#introduction\">introduction video</a> and find "
+#~ "inspiration in the <a href=\"#showcase\">showcase</a>.<br/> Enjoy it! "
+#~ msgstr ""
+#~ "Спасибо, что обновились до последней версиии! У Customizr %1$s сейчас ещё "
+#~ "больше возможностей, он надёжнее и стабильнее чем когда либо <a href="
+#~ "\"#customizr-changelog\">(смотрите журнал изменений)</a> для того чтобы "
+#~ "Вы делали свои потрясающие сайты! Смотрите <a href=\"#introduction"
+#~ "\">обучающее видео</a> и находите вдохновение на <a href=\"#showcase"
+#~ "\">шоукейсе</a>.<br/> Наслаждайтесь!"
+
+#~ msgid "Discover Customizr : quick video introduction"
+#~ msgstr "Откройте для себя Customizr : быстрая видео-презентация"
+
+#~ msgid ""
+#~ "Welcome to the new version of Customizr. You will be redirected to the "
+#~ "About screen. If not, click <a href=\"%1$s\">here</a>."
+#~ msgstr ""
+#~ "Добро пожаловать в новую версию Customizr. Вы будете перенаправлены на "
+#~ "страницу About. Если не получилось, то нажмите <a href=\"%1$s\">сюда</a>."
+
+#~ msgid ""
+#~ "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span "
+#~ "class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</"
+#~ "time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s "
+#~ "&times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel="
+#~ "\"gallery\">%8$s</a>."
+#~ msgstr ""
+#~ "<span class=\"meta-prep meta-prep-entry-date\">Опубликовано</span> <span "
+#~ "class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</"
+#~ "time></span> в <a href=\"%3$s\" title=\"Link to full-size image\">%4$s "
+#~ "&times; %5$s</a> в <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery"
+#~ "\">%8$s</a>."
+
+#~ msgid "Logo Upload"
+#~ msgstr "Загрузка Лого"
+
+#~ msgid "Favicon Upload"
+#~ msgstr "Загрузка Фавикона"
+
+#~ msgid "We need coffee..."
+#~ msgstr "Мы хотим кофе..."
+
+#~ msgid ""
+#~ "Either you are using Customizr for personal or business purposes, "
+#~ "<strong>we do our best do make it the perfect free theme for you</strong>."
+#~ "<br /> Any kind of sponsorship will be appreciated!"
+#~ msgstr ""
+#~ "Используете Вы Customizr для личного сайта или для бизнеса - не важно, "
+#~ "<strong>мы делаем всё чтобы наш бесплатный шаблон был лучшим </strong>."
+#~ "<br /> Любая спонсорская помощь приветствуется!"
+
+#~ msgid "&larr; Older Comments"
+#~ msgstr "&larr; Старые комментарии"
+
+#~ msgid "Newer Comments &rarr;"
+#~ msgstr "Новые комментарии &rarr;"
+
+#~ msgid ""
+#~ "Always use this field to add your custom css instead of editing directly "
+#~ "the style.css file : it will not be deleted during theme updates. Special "
+#~ "characters like quotes or inferior/superior signs will not be accepted in "
+#~ "this field as they might be used for malicious purposes. If your custom "
+#~ "css includes some of these characters, just create a child theme and "
+#~ "write it down in the style.css file."
+#~ msgstr ""
+#~ "Всегда используйте это поле для вставки собственных стилей CSS вместо "
+#~ "редактирования файла style.css на прямую: ваши изменения не исчезнут "
+#~ "после обновления темы. Специальные знаки, такие как цитата и др. не будут "
+#~ "приняты в этом поле из за угрозы вредоносного кода. Если в вашем CSS есть "
+#~ "такие знаки то просто сделайте дочернюю тему и внесите её в файл style."
+#~ "css. "
+
+#~ msgid "Customizr Help"
+#~ msgstr "Помощь по Customizer"
+
+#, fuzzy
+#~ msgid "Ajust the slider size"
+#~ msgstr "Настроить размер заголовка"
+
+#, fuzzy
+#~ msgid "Learn more &raquo;"
+#~ msgstr "Читать &raquo;"
+
+#, fuzzy
+#~ msgid "Choose a font"
+#~ msgstr "Choisir une page"
+
+#, fuzzy
+#~ msgid "Ajust the size"
+#~ msgstr "Настроить размер заголовка"
+
+#~ msgid "Color"
+#~ msgstr "Цвет"
+
+#~ msgid "Designed by "
+#~ msgstr "Разработано: "
+
+#~ msgid "one"
+#~ msgstr "Один"
+
+#~ msgid "two"
+#~ msgstr "Два"
+
+#~ msgid "three"
+#~ msgstr "Три"
+
+#~ msgid "header"
+#~ msgstr "Хедер"
+
+#~ msgid "right-sidebar"
+#~ msgstr "правый-сайдбар"
+
+#~ msgid "left-sidebar"
+#~ msgstr "левый-сайдбар"
+
+#~ msgid "footer"
+#~ msgstr "футер"
+
+#~ msgid "Choose a font for your website title"
+#~ msgstr "Выпрать шрифт заголовка сайта"
+
+#~ msgid "Slide Entry"
+#~ msgstr "Diapositive"
+
+#~ msgid "Edit Slider Name"
+#~ msgstr "Modifier le nom du diporama"
+
+#~ msgid "Front Page Widget Area One"
+#~ msgstr "Première zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Two"
+#~ msgstr "Deuxième zone de widgets de page d'accueil"
+
+#~ msgid "Front Page Widget Area Three"
+#~ msgstr "Troisième zone de widgets de page d'accueil"
+
+#~ msgid "{Customizr} Featured Page Block"
+#~ msgstr "{Customizr} Bloc page mise en avant"
+
+#~ msgid "If this field is empty, it will display an excerpt of the page."
+#~ msgstr "Si le champ est vide, un extrait de la page est affiché."
+
+#~ msgid "Force logo to fit in the left header block"
+#~ msgstr "Forcer le redimensionnement du logo dans le bloc gauche du header"
+
+#~ msgid ""
+#~ "Force default layout for all posts and pages (including front page and "
+#~ "pages/posts with a specific layout)"
+#~ msgstr ""
+#~ "Forcer la structure par défaut pour toutes les pages du sites (y compris "
+#~ "la page d'accueil ainsi que les pages et billets qui ont une structure "
+#~ "spécifique)"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "%"
+#~ msgstr "%"
+
+#~ msgid "Manage widgets"
+#~ msgstr "Gérer les widgets"
+
+#~ msgid "Right"
+#~ msgstr "Droite"
+
+#~ msgid "Left"
+#~ msgstr "Gauche"
+
+#~ msgid "Edit the slide text"
+#~ msgstr "Texte de description (sous le titre) de la diapositive"
+
+#~ msgid "Edit the button text"
+#~ msgstr "Texte du bouton"
+
+#~ msgid "View details &raquo;"
+#~ msgstr "Voir les détails &raquo;"
+
+#~ msgid "Length of the excerpt (default 200)"
+#~ msgstr "Longueur de l'extrait (200 car. par défaut)"
+
+#~ msgid "Theme Options"
+#~ msgstr "Options du thème"
+
+#~ msgid "Layout Settings"
+#~ msgstr "Réglages de la structure de page"
+
+#~ msgid " checked=\"checked\""
+#~ msgstr " "
+
+#~ msgid "Sample Checkbox"
+#~ msgstr "Exemple"
+
+#~ msgid ""
+#~ "Appears on posts and pages except the optional Front Page template, which "
+#~ "has its own widgets"
+#~ msgstr "Affichée dans les posts et les pages, hormis l"
+
+#~ msgid "Show"
+#~ msgstr "Показать"
+
+#~ msgid "Hide"
+#~ msgstr "Спрятать"
+
+#~ msgid "Slider Names"
+#~ msgstr "Diaporamas"
+
+#~ msgid "Edit Slide Entry"
+#~ msgstr "Modifier la diapositive"
+
+#~ msgid "Search Slide Entries"
+#~ msgstr "Rechercher dans les diapositives"
