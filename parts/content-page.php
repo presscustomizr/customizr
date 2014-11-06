@@ -8,10 +8,12 @@
 ?>
 
 <header>
-    <h1 class="format-icon">
-     <?php the_title(); ?>
-    	<?php edit_post_link( __( 'Edit', 'customizr' ), '<span class="edit-link btn btn-inverse btn-mini">', '</span>' ); ?>
-    </h1>
+     <?php 
+     	printf('<h1 class="entry-title format-icon">%1$s %2$s</h1>',
+			get_the_title(),
+			'<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page', 'customizr' ).'">'.__( 'Edit page', 'customizr' ).'</a></span>'
+		); 
+	?>
 </header>
 <hr class="featurette-divider">
 <div class="entry-content">

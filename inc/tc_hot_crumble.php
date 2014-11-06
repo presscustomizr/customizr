@@ -258,7 +258,7 @@ function breadcrumb_trail_get_items( $args = array() ) {
 		elseif ( 'page' !== $post_type ) {
 
 			/* If $front has been set, add it to the $path. */
-			if ( $post_type_object->rewrite['with_front'] && $wp_rewrite->front )
+			if ( isset($post_type_object) && $post_type_object->rewrite['with_front'] && $wp_rewrite->front )
 				$path .= trailingslashit( $wp_rewrite->front );
 
 			/* If there's a slug, add it to the $path. */

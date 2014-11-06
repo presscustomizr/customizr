@@ -253,14 +253,14 @@ function tc_customize_register( $wp_customize ) {
 
 	//Slider
 		//retrieve slider names and generate the select list
-	    $slider_names = get_terms( 'slider', 'orderby=count&hide_empty=0' );
+	    $slider_names = tc_get_options( 'sliders');
 		$choices = array( 
 			0 		=> 	__( '&mdash; No slider &mdash;','customizr' ),
 			'demo' 	=>	__( '&mdash; Demo Slider &mdash;','customizr' )
 			);
 		if ( $slider_names ) {
-			foreach($slider_names as $tc_name) {
-				$choices[ $tc_name -> term_id ] = $tc_name -> name;
+			foreach($slider_names as $tc_name => $slides) {
+				$choices[$tc_name] = $tc_name;
 			}
 		}
 
@@ -334,22 +334,6 @@ function tc_customize_register( $wp_customize ) {
 			'notice'		=> __( 'in ms : 1000ms = 1s','customizr' ),
 			//'priority'       => 8,
 		)));
-
-		//Add button link to slider screen
-		$wp_customize->add_setting( 'slider_button', array(
-			'capability'  	=> 'manage_options',
-		) );
-	 
-		$wp_customize->add_control( new TC_Controls($wp_customize, 'slider_button', array(
-			'section' 		=> 'tc_frontpage_settings',
-			'tc'			=> 'button',
-			'link'			=> 'edit-tags.php?taxonomy=slider&post_type=slide',
-			'buttontext'	=> __('Manage sliders','customizr'),
-			'hr_after'		=> true,
-			//'priority'      =>	4,
-		)));
-
-
 
 
 		//Front page widget area
@@ -647,7 +631,7 @@ add_action('admin_init','tc_theme_activation');
 			update_option('posts_per_page', 10);
 
 			#redirect to options page
-			header( 'Location: '.admin_url().'customize.php' ) ;
+			//header( 'Location: '.admin_url().'customize.php' ) ;
 		}
 	}
 endif;

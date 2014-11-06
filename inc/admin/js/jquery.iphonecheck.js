@@ -1,24 +1,28 @@
-/*!
-// iPhone-style Checkboxes jQuery plugin
-// Copyright Thomas Reynolds, licensed GPL & MIT
-*/
+/**
+ * iPhone-style Checkboxes jQuery plugin
+ * Copyright Thomas Reynolds, licensed GPL & MIT
+ *
+ * @package Customizr
+ * @since Customizr 1.0
+ */
+
 ;(function($, iphoneStyle) {
 
 // Constructor
 $[iphoneStyle] = function(elem, options) {
   this.$elem = $(elem);
-  
+
   // Import options into instance variables
   var obj = this;
   $.each(options, function(key, value) {
     obj[key] = value;
   });
-  
+
   // Initialize the control
   this.wrapCheckboxWithDivs();
   this.attachEvents();
   this.disableTextSelection();
-  
+
   if (this.resizeHandle)    { this.optionallyResize('handle'); }
   if (this.resizeContainer) { this.optionallyResize('container'); }
   
