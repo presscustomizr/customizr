@@ -55,7 +55,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
       * @since Customizr 3.2.0
       */
       function tc_set_menu_style_options( $_classes ) {
-        $_classes = ( 0 != esc_attr( tc__f( '__get_option', 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
+        $_classes = ( ! wp_is_mobile() && 0 != esc_attr( tc__f( '__get_option', 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
         $_classes = ( 0 != esc_attr( tc__f( '__get_option', 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
         $_classes = ( 'hover' == esc_attr( tc__f( '__get_option' , 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
         return array_merge( $_classes, array(esc_attr( tc__f( '__get_option', 'tc_menu_position') ) ) );
