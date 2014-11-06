@@ -28,6 +28,10 @@ The exceptions to this license are as follows:
 * The image laverie.jpg is free for personal and commercial use. Reference: http://www.sxc.hu/photo/1370161
 
 ##  Changelog ##
+= 1.1.6 =
+* Removal of add_editor_style()
+* Addition of image.php and content-attachemnt.php for the images galleries and attachement rendering
+
 = 1.1.5 =
 * Sanitization of home_url() in some files (with esc_url)
 * Clearing of warning message in slides list : check on the $_GET['action'] index
