@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================================================== */
 //@tc addon
-TCParams = TCParams || {};
+var TCParams = TCParams || {};
 
 !function ($) {
 

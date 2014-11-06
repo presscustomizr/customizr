@@ -1,4 +1,4 @@
-TCParams = TCParams || {
+var TCParams = TCParams || {
 	CenterSlides: 1,
 	FancyBoxAutoscale: 1,
 	FancyBoxState: 1,
