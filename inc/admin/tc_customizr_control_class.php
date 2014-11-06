@@ -60,7 +60,7 @@ class TC_Controls extends WP_Customize_Control
 					<label>
 						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 						<span style="color: #999;font-size:11px"><?php echo esc_html( $this-> notice); ?></span>
-						<textarea class="widefat" rows="3" cols="10" <?php $this->link(); ?>><?php echo esc_attr( $this->value() ); ?></textarea>
+						<textarea class="widefat" rows="3" cols="10" <?php $this->link(); ?>><?php echo esc_html( $this->value() ); ?></textarea>
 					</label>
 					<?php
 		        	break;
@@ -115,4 +115,50 @@ class TC_Controls extends WP_Customize_Control
 	        }
 	    }
 	}
+
+
+
+if(!function_exists('tc_sanitize_textarea')) :
+/**
+ * adds sanitization callback funtion : textarea
+ * @package Customizr
+ * @since Customizr 1.1.4
+ */
+	function tc_sanitize_textarea($value) {
+		$value = esc_textarea( $value);
+		return $value;
+	}
+endif;
+
+
+
+
+if(!function_exists('tc_sanitize_number')) :
+/**
+ * adds sanitization callback funtion : number
+ * @package Customizr
+ * @since Customizr 1.1.4
+ */
+	function tc_sanitize_number($value) {
+		$value = esc_attr( $value); // clean input
+		$value = (int) $value; // Force the value into integer type.
+   		return ( 0 < $value ) ? $value : null;
+	}
+endif;
+
+
+
+if(!function_exists('tc_sanitize_url')) :
+/**
+ * adds sanitization callback funtion : url
+ * @package Customizr
+ * @since Customizr 1.1.4
+ */
+	function tc_sanitize_url($value) {
+		$value = esc_url( $value);
+		return $value;
+	}
+endif;
+
+
 ?>

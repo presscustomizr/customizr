@@ -44,7 +44,7 @@ endif;
 
 
 if(!function_exists('tc_add_control')) :
-add_action('customize_register', 'tc_add_control',10,2);
+add_action('customize_register', 'tc_add_control',10,1);
  /**
  * adds controls to customizer
  * @package Customizr
@@ -57,6 +57,7 @@ endif;
 
 
 
+
 if(!function_exists('tc_customize_register')) :
 add_action( 'customize_register', 'tc_customize_register',20,1 );
  /**
@@ -64,7 +65,6 @@ add_action( 'customize_register', 'tc_customize_register',20,1 );
  * @package Customizr
  * @since Customizr 1.0 
  */
- 
 function tc_customize_register( $wp_customize ) {
 
 	//Remove unecessary defaults controls, settings and sections
@@ -319,9 +319,10 @@ function tc_customize_register( $wp_customize ) {
 
 		//Delay between each slides
 		$wp_customize->add_setting( 'tc_theme_options[tc_slider_delay]', array(
-			'default'    => 5000,
-			'type'       => 'option',
-			'capability' => 'manage_options',
+			'default'    		=> 5000,
+			'type'       		=> 'option',
+			'capability' 		=> 'manage_options',
+			'sanitize_callback' => 'tc_sanitize_number'
 		) );
 
 		$wp_customize->add_control( new TC_Controls($wp_customize, 'tc_theme_options[tc_slider_delay]', array(
@@ -403,9 +404,10 @@ function tc_customize_register( $wp_customize ) {
 				//widget text
 				foreach ($front_widget_areas as $key => $area) {
 					$wp_customize->add_setting( 'tc_theme_options[featured_text_'.$key.']', array(
-						//'default'		 => 
-						'capability'     => 'manage_options',
-						'type'           => 'option',
+						//'default'		 	=> 
+						'capability'     	=> 'manage_options',
+						'type'           	=> 'option',
+						'sanitize_callback' => 'tc_sanitize_textarea',
 					) );
 
 					$wp_customize->add_control( new TC_Controls($wp_customize, 'tc_theme_options[featured_text_'.$key.']', array(
@@ -503,9 +505,10 @@ function tc_customize_register( $wp_customize ) {
 		
 		//Post per page
 		$wp_customize->add_setting( 'posts_per_page', array(
-			'default'    => get_option( 'posts_per_page' ),
-			'type'       => 'option',
-			'capability' => 'manage_options',
+			'default'    		=> get_option( 'posts_per_page' ),
+			'type'       		=> 'option',
+			'capability' 		=> 'manage_options',
+			'sanitize_callback' => 'tc_sanitize_number'
 		) );
 
 		$wp_customize->add_control( new TC_Controls($wp_customize, 'posts_per_page', array(
@@ -593,6 +596,7 @@ function tc_customize_register( $wp_customize ) {
 				'default'        => ($key == 'tc_rss') ? get_bloginfo('rss_url') : tc_get_options($key),
 				'capability'     => 'manage_options',
 				'type'           => 'option',
+				'sanitize_callback' => 'tc_sanitize_url',
 			) );
 
 			$wp_customize->add_control( new TC_Controls($wp_customize, $nw_option_name, array(
@@ -608,6 +612,7 @@ endif;
 
 
 
+
 if(!function_exists('tc_customize_preview_js')) :
 add_action( 'customize_preview_init', 'tc_customize_preview_js' );
 /**
@@ -619,6 +624,7 @@ add_action( 'customize_preview_init', 'tc_customize_preview_js' );
 		wp_enqueue_script( 'tc-customizer', get_template_directory_uri() . '/inc/admin/js/theme-customizer.js', array( 'customize-preview' ), '20120827', true );
 	}
 endif;
+
 
 
 

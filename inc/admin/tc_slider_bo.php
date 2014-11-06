@@ -259,8 +259,9 @@ if (!function_exists( 'slide_inner_custom_box' ) ) :
             </label>
           </div>
           <div class="meta-box-item-content">
+            <?php  if ($title_value==null || $title_value==1) $title_check_value = true ?>
             <input name="<?php echo $title_id; ?>" type="hidden" value="0"/>
-            <input name="<?php echo $title_id; ?>" id="<?php echo $title_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php if ($title_value==null || $title_value==1) {echo 'checked="checked"';} else {echo '';} ?>/>
+            <input name="<?php echo $title_id; ?>" id="<?php echo $title_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php checked( $title_check_value, $current = true, $echo = true ) ?>/>
           </div>
           <div class="meta-box-item-title">
               <h4><?php _e('Description text (below the title, 250 car. max length)', 'customizr' ); ?></h4>
@@ -290,10 +291,10 @@ if (!function_exists( 'slide_inner_custom_box' ) ) :
           <div class="meta-box-item-content">
               <select name="<?php echo $link_id; ?>" id="<?php echo $link_id; ?>">
                 <?php //no link option ?>
-                <option value="" <?php if(isset($link_value) && $link_value == null) {echo 'selected=selected';} ?>> <?php _e( 'No link', 'customizr' ); ?></option>
+                <option value="" <?php selected( $link_value, $current = null, $echo = true ) ?>> <?php _e( 'No link', 'customizr' ); ?></option>
                 <?php foreach($tc_all_posts as $type) : ?>
                     <?php foreach ($type as $key => $item) : ?>
-                  <option value="<?php echo $item -> ID; ?>" <?php if(isset($link_value) && $link_value == $item -> ID) {echo 'selected=selected';} ?>>{<?php echo $item -> post_type;?>}&nbsp;<?php echo $item -> post_title; ?></option>
+                  <option value="<?php echo $item -> ID; ?>" <?php selected( $link_value, $current = $item -> ID, $echo = true ) ?>>{<?php echo $item -> post_type;?>}&nbsp;<?php echo $item -> post_title; ?></option>
                     <?php endforeach; ?>
                <?php endforeach; ?>
               </select><br />
@@ -351,7 +352,7 @@ add_action( 'save_post', 'slide_save_postdata' );
           return;
 
       //handle the case when the custom post is quick edited => otherwise, all custom metas fields are cleared out
-      if (wp_verify_nonce($_POST['_inline_edit'], 'inlineeditnonce'))
+      if ( isset($_POST['_inline_edit']) && wp_verify_nonce($_POST['_inline_edit'], 'inlineeditnonce'))
           return;
 
       // verify this came from the our screen and with proper authorization,
@@ -511,9 +512,9 @@ if ( ! function_exists( 'post_slider_inner_custom_box' ) ) :
         <div class="meta-box-item-content">
           <select name="<?php echo $name_id; ?>" id="<?php echo $name_id; ?>">
               <?php //no slider option ?>
-              <option value="" <?php if(isset($name_value) && $name_value == null) {echo 'selected=selected';} ?>> <?php _e( 'No slider selected', 'customizr' ); ?></option>
+              <option value="" <?php selected( $name_value, $current = null, $echo = true ) ?>> <?php _e( 'No slider selected', 'customizr' ); ?></option>
               <?php foreach($slider_names as $tc_name) : ?>
-                <option value="<?php echo $tc_name -> term_id; ?>" <?php if(isset($name_value) && $name_value == $tc_name -> term_id) {echo 'selected=selected';} ?>><?php echo $tc_name -> name; ?></option>
+                <option value="<?php echo $tc_name -> term_id; ?>" <?php selected( $name_value, $current = $tc_name -> term_id, $echo = true ) ?>><?php echo $tc_name -> name; ?></option>
              <?php endforeach; ?>
           </select>
             <br />
@@ -532,8 +533,9 @@ if ( ! function_exists( 'post_slider_inner_custom_box' ) ) :
             <h4><?php _e("Slider Layout : set the slider in full width", 'customizr' );  ?></h4>
         </div>
         <div class="meta-box-item-content">
+            <?php  if ($layout_value==null || $layout_value==1) $layout_check_value = true ?>
             <input name="<?php echo $layout_id; ?>" type="hidden" value="0"/>
-            <input name="<?php echo $layout_id; ?>" id="<?php echo $layout_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php if ($layout_value==null || $layout_value==1) {echo 'checked="checked"';} else {echo '';} ?>/>
+            <input name="<?php echo $layout_id; ?>" id="<?php echo $layout_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php checked( $layout_check_value, $current = true, $echo = true ) ?>/>
         </div>
 
       <?php

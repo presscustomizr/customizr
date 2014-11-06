@@ -82,12 +82,12 @@ if ( ! function_exists( 'post_layout_inner_custom_box' ) ) :
                 $post -> post_type == 'page' ? __('this page','customizr'):__('this post','customizr')); ?></h4>
                 <select name="<?php echo $layout_id; ?>" id="<?php echo $layout_id; ?>">
                 <?php //no layout selected ?>
-                  <option value="" <?php if(isset($layout_value) && $layout_value == null) {echo 'selected=selected';} ?>> <?php printf(__( 'Default layout %1s', 'customizr' ),
+                  <option value="" <?php selected( $layout_value, $current = null, $echo = true ) ?>> <?php printf(__( 'Default layout %1s', 'customizr' ),
                        '('.$layouts[$tc_sidebar_default_layout].')'
                        );
                     ?></option>
                   <?php foreach($layouts as $key => $l) : ?>
-                    <option value="<?php echo $key; ?>" <?php if(isset($layout_value) && $layout_value == $key) {echo 'selected=selected';} ?>><?php echo $l; ?></option>
+                    <option value="<?php echo $key; ?>" <?php selected( $layout_value, $current = $key, $echo = true ) ?>><?php echo $l; ?></option>
                  <?php endforeach; ?>
                 </select>
            <?php endif; ?>

@@ -10,7 +10,7 @@
  * @link    http://themesandco.com
  */
 /* CUSTOMIZR_VER is the Version */
-if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '1.1' ); }
+if( ! defined('CUSTOMIZR_VER' ) )    {  define( 'CUSTOMIZR_VER', '1.1.4' ); }
 
 /* INIT THE THEME */
 require_once( get_template_directory().'/inc/tc_unleash_customizr.php');

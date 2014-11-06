@@ -28,6 +28,10 @@ The exceptions to this license are as follows:
 * The image laverie.jpg is free for personal and commercial use. Reference: http://www.sxc.hu/photo/1370161
 
 ##  Changelog ##
+= 1.1.4 =
+* added selected() and checked() functions in metaboxes input
+* better sanitization of WP customizer inputs : 3 sanitization callbacks added in tc_cusomizr_control_class for number, textarea and url
+
 = 1.1 =
 * Better stylesheets enqueuing
 * Fix the quick mode edit for slide custom post : add a script to disable the clearing of metas fields on update
