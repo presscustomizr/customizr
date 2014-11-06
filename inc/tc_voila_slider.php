@@ -244,7 +244,7 @@ if ( ! function_exists( 'tc_slider_redirect' ) ) :
     $object = get_queried_object(); 
     if(is_single() && $object->post_type = 'slide') {
       if (!is_admin() && !is_user_logged_in()) {
-        wp_redirect( home_url(), 301 ); 
+        wp_redirect( esc_url(home_url()), 301 ); 
       exit;
       }
     }

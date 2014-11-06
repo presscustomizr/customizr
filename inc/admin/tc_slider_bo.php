@@ -434,22 +434,24 @@ add_action( 'admin_notices', 'tc_save_slide_check' );
     function tc_save_slide_check($message, $errormsg = false) {
        global $post;
        $active_status = array('publish','future','draft','private','pending');
-       if(isset($post) && $post -> post_type == 'slide' && in_array($post -> post_status, $active_status) ) {
-         $slide_id = $post -> ID;
+        if (isset($_GET['action']) && $_GET['action'] == 'edit') {
+           if(isset($post) && $post -> post_type == 'slide' && in_array($post -> post_status, $active_status) ) {
+             $slide_id = $post -> ID;
 
-          //get the selected slider object
-          $have_slider = wp_get_post_terms( $slide_id, 'slider');
+              //get the selected slider object
+              $have_slider = wp_get_post_terms( $slide_id, 'slider');
 
-          //if the slide has not been attached to any slider
-          if (empty($have_slider)) {
-             echo '<div class="error"><p>'.__('This slide has not been attached to any slider! You must check a slider name (create one if needed) in the "Slider Names" box of this screen, and update the slide.','customizr').'</p></div>';
-          }
+              //if the slide has not been attached to any slider
+              if (empty($have_slider)) {
+                 echo '<div class="error"><p>'.__('This slide has not been attached to any slider! You must check a slider name (create one if needed) in the "Slider Names" box of this screen, and update the slide.','customizr').'</p></div>';
+              }
 
-          //if the slide has no image
-          if (!has_post_thumbnail( $slide_id )) {
-              echo '<div class="error"><p>'.__('This slide has no image! Choose a featured image in the dedicated box of this screen.','customizr').'</p></div>';
-          }
-       }
+              //if the slide has no image
+              if (!has_post_thumbnail( $slide_id )) {
+                  echo '<div class="error"><p>'.__('This slide has no image! Choose a featured image in the dedicated box of this screen.','customizr').'</p></div>';
+              }
+           }//end if post_type + status check
+        }//end if $_GET check
     }
 endif;
 

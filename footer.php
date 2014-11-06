@@ -18,7 +18,7 @@
 		 		<div class="row-fluid">
 				     <div class="span4 social-block pull-left"><?php echo tc_get_social('tc_social_in_footer'); ?></div>
 			        <?php
-			        $credits = printf( '<div class="span4 credits"><p> &middot; &copy; %1$s <a href="%2$s" title="%3$s" rel="bookmark">%3$s</a> &middot; '.__('Powered by ','customizr').'<a href="http://wordpress.org" title="WordPress">WordPress</a> &middot; '.__('Designed by ','customizr').'<a href="http://www.themesandco.com" title="Themes&amp;Co">Themes&amp;Co</a> &middot;</p></div>',
+			        $credits = printf( '<div class="span4 credits"><p> &middot; &copy; %1$s <a href="%2$s" title="%3$s" rel="bookmark">%3$s</a> &middot; '.__('Designed by ','customizr').'<a href="http://www.themesandco.com" title="Themes WordPress">Themes &amp; Co</a> &middot;</p></div>',
 							    esc_attr( date('Y') ),
 							    esc_url( home_url() ),
 							    esc_attr(get_bloginfo()),
