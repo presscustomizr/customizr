@@ -14,9 +14,10 @@
 
 
 /**
-* The styleheets of Customizr are located in inc/css. Each skin has its own stylesheet : blue.css, green.css, ...
-* This stylesheet is loaded after the main skin.
+* The styleheets of Customizr are located in inc/assets/css. Each skin has its own stylesheet : blue.css, green.css, ...
+* The current stylesheet is loaded after the main skin stylesheet.
 *
 * IMPORTANT : If you write your CSS code below, it will be deleted when you'll update the theme.
-* If you want to style the css of Customizr, you can either use the Custom CSS section in the customizer (which will not be lost on update) OR create a child theme (recommended if you plan to do important customizations) and add your css code in the style.css file of it.
+* If you want to make quick style test / changes, consider using the Custom CSS section in appearance > customize > advanced options > Custom CSS, it will persist on update since it is saved in your database.
+* To make important CSS customizations, you'll want to use a child theme and add your css code in the style.css file of it.
 */
