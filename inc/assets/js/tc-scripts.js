@@ -1,3 +1,4 @@
+//Falls back to default params
 var TCParams = TCParams || {
 	CenterSlides: 1,
 	FancyBoxAutoscale: 1,
@@ -18,6 +19,7 @@ var TCParams = TCParams || {
 	dropdowntoViewport: 1,
 	timerOnScrollAllBrowsers:1
 };
+
 
 /* ! ===================================================
  * bootstrap-transition.js v2.3.2
