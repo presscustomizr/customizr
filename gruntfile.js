@@ -28,9 +28,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-ftp-push');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	
-	var assets_path = '';
 	
 	grunt.initConfig({
 		less: {
@@ -52,7 +51,7 @@ module.exports = function(grunt) {
 						ext: '.css'
 					}
 				]
-					//"inc/assets/css/black.css": "inc/assets/css/black.less"
+				//"inc/assets/css/black.css": "inc/assets/css/black.less"
 			}
 		}, //end of less
 
@@ -70,6 +69,7 @@ module.exports = function(grunt) {
 				ext: '.min.css'
 			}
 		},
+
 		uglify: {
 			options: {
 				compress: {
@@ -90,10 +90,34 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+
 		jshint: {
 			gruntfile: ['Gruntfile.js'],
 			hint_front_js : ['inc/assets/js/tc-scripts.js']
 		},
+		//https://www.npmjs.org/package/grunt-ssh
+		Credentials : grunt.file.readJSON('.ftpauth'),
+		ftp_push: {
+			skin: {
+				options: {
+					authKey: "nikeo",
+					host: "<%= Credentials.host %>",
+					dest: "<%= Credentials.path %>",
+					//port: 21
+				},
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: [
+						"inc/assets/css/blue3.min.css",
+						]
+					}
+				]
+			}
+		},
+
+		//DOC : https://www.npmjs.org/package/grunt-contrib-watch
 		watch: {
 			// gruntfile: {
 			// files: 'Gruntfile.js',
@@ -102,9 +126,11 @@ module.exports = function(grunt) {
 			skin : {
 				options: {
 					spawn: false,
+					// Start a live reload server on the default port 35729
+					livereload: true,
 				},
 				files: ['inc/assets/css/tc_custom.less', 'inc/assets/css/tc_custom_responsive.less'],
-				tasks: ['less:skin' , 'cssmin:skin'],
+				tasks: ['less:skin' , 'cssmin:skin', 'ftp_push:skin'],
 			},
 			front_js : {
 				options: {
@@ -114,10 +140,18 @@ module.exports = function(grunt) {
 				tasks: ['uglify:compile_front_js', 'jshint:hint_front_js'],
 			}
 		},
-
-
 	});//end of initconfig
 
+	//USING THE WATCH EVENT
+	// grunt.event.on('watch', function(action, filepath, target) {
+	// 	grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+	// });
+	// grunt.event.on('watch', function() {
+	// 	grunt.log.writeln( grunt.config('Credentials.host') );
+	// });
+	
 	//grunt.registerTask('compile_skin', ['less:skin' , 'cssmin:skin']);
 	grunt.registerTask('customizr_dev', ['watch']);
 };
+
+//@to do concatenate! !!

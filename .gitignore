@@ -10,3 +10,19 @@ Thumbs.db
 
 # GRUNT #
 node_modules/
+.ftppass
+
+# EXEMPLE OF ADVANCED CONFIG WITH FOLDER
+# Ignore everything:
+# *
+
+# Except for the themes directories:
+# !wordpress/
+# !wordpress/*/
+# !wordpress/*/wp-content/
+# !wordpress/*/wp-content/themes/
+# !wordpress/*/wp-content/themes/*
+# !wordpress/*/wp-content/themes/*/*
+# !wordpress/*/wp-content/themes/*/*/*
+# !wordpress/*/wp-content/themes/*/*/*/*
+# !wordpress/*/wp-content/themes/*/*/*/*/*
