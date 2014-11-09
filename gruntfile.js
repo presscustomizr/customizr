@@ -26,6 +26,7 @@ module.exports = function(grunt) {
 	/* loads less module */
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-ftp-push');
@@ -70,6 +71,16 @@ module.exports = function(grunt) {
 			}
 		},
 
+		concat: {
+			options: {
+				separator: ';',
+			},
+			front_scripts: {
+				src: ['inc/assets/js/params-dev-mode.js', 'inc/assets/js/bootstrap.js', 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.js', 'inc/assets/js/tc-scripts.js'],
+				dest: 'inc/assets/js/tc-scripts.min.js',
+			},
+		},
+
 		uglify: {
 			options: {
 				compress: {
@@ -83,7 +94,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'inc/assets/js',
-					src: ['tc-scripts.js', 'bootstrap.js'],
+					src: ['tc-scripts.min.js'],
 					//src: ['**/*.js', '!*.min.js'],
 					dest: 'inc/assets/js',
 					ext: '.min.js'
@@ -93,26 +104,21 @@ module.exports = function(grunt) {
 
 		jshint: {
 			gruntfile: ['Gruntfile.js'],
-			hint_front_js : ['inc/assets/js/tc-scripts.js']
+			front : ['inc/assets/js/tc-scripts.js']
 		},
+
 		//https://www.npmjs.org/package/grunt-ssh
 		Credentials : grunt.file.readJSON('.ftpauth'),
 		ftp_push: {
-			skin: {
-				options: {
+			options: {
 					authKey: "nikeo",
 					host: "<%= Credentials.host %>",
 					dest: "<%= Credentials.path %>",
 					//port: 21
-				},
+			},
+			those : {
 				files: [
-					{
-						expand: true,
-						cwd: '.',
-						src: [
-						"inc/assets/css/blue3.min.css",
-						]
-					}
+					{}//populated dynamically with the watch event
 				]
 			}
 		},
@@ -123,21 +129,22 @@ module.exports = function(grunt) {
 			// files: 'Gruntfile.js',
 			// tasks: ['jshint:gruntfile'],
 			// },
+			options: {
+				spawn: false,
+				// Start a live reload server on the default port 35729
+				livereload: true,
+			},
 			skin : {
-				options: {
-					spawn: false,
-					// Start a live reload server on the default port 35729
-					livereload: true,
-				},
 				files: ['inc/assets/css/tc_custom.less', 'inc/assets/css/tc_custom_responsive.less'],
-				tasks: ['less:skin' , 'cssmin:skin', 'ftp_push:skin'],
+				tasks: ['less:skin' , 'cssmin:skin', 'ftp_push:those'],
 			},
 			front_js : {
-				options: {
-					spawn: false,
-				},
 				files: ['inc/assets/js/*.js', '!*.min.js'],
-				tasks: ['uglify:compile_front_js', 'jshint:hint_front_js'],
+				tasks: ['concat:front_scripts','uglify:compile_front_js', 'jshint:front', 'ftp_push:those'],
+			},
+			push : {
+				files: ['**/*.php'],
+				tasks: ['ftp_push:those']
 			}
 		},
 	});//end of initconfig
@@ -151,7 +158,33 @@ module.exports = function(grunt) {
 	// });
 	
 	//grunt.registerTask('compile_skin', ['less:skin' , 'cssmin:skin']);
+	
 	grunt.registerTask('customizr_dev', ['watch']);
+
+	// grunt.registerTask('wait_before_reload' , 'Wait before reload' , function () {
+	// 	grunt.log.writeln( 'Waiting for the file to be pushed... then live reload' );
+	// 		setTimeout(function() {
+	// 			grunt.log.writeln('All done!');
+	// 			//done();
+	// 		}, 4000);
+	// 	}
+	// );
+
+	grunt.event.on('watch', function(action, filepath, target) {
+		var files = [
+					{
+						expand: true,
+						cwd: '.',
+						src: [
+						filepath,
+						]
+					}
+		];
+		grunt.log.writeln(action, filepath, target);
+		//if ( 'php' == action )
+		grunt.config('ftp_push.those.files', files);
+
+	});
 };
 
 //@to do concatenate! !!
