@@ -54,7 +54,7 @@
 		value.bind( function( to ) {
 			if ( '#ffffff' == to || '#fff' == to )
 				$( 'body' ).addClass( 'custom-background-white' );
-			else if ( '' == to )
+			else if ( '' === to )
 				$( 'body' ).addClass( 'custom-background-empty' );
 			else
 				$( 'body' ).removeClass( 'custom-background-empty custom-background-white' );
@@ -150,8 +150,8 @@
 				$('.entry-header .entry-meta' , '.article-container').hide('slow');
 				
 			}
-			else {
-				! $('body').hasClass('hide-post-metas') && $('.entry-header .entry-meta' , '.article-container').show('fast');
+			else if (! $('body').hasClass('hide-post-metas') ) {
+				$('.entry-header .entry-meta' , '.article-container').show('fast');
 			}
 		} );
 	} );
@@ -343,7 +343,7 @@
 	wp.customize( 'tc_theme_options[tc_sticky_show_tagline]' , function( value ) {
 		value.bind( function( to ) {
 			if ( false !== to )
-				$('.tc-header').addClass('tc-tagline-on').removeClass('tc-tagline-off').trigger('resize')
+				$('.tc-header').addClass('tc-tagline-on').removeClass('tc-tagline-off').trigger('resize');
 			else
 				$('.tc-header').addClass('tc-tagline-off').removeClass('tc-tagline-on').trigger('resize');
 		} );
@@ -377,8 +377,8 @@
 	wp.customize( 'tc_theme_options[tc_custom_css]' , function( value ) {
 		value.bind( function( to ) {
 			$('#option-custom-css').remove();
-			var $style_element = ( 0 == $('#live-custom-css').length ) ? $('<style>' , { id : 'live-custom-css'}) : $('#live-custom-css');
-			if (  0 == $('#live-custom-css').length )
+			var $style_element = ( 0 === $('#live-custom-css').length ) ? $('<style>' , { id : 'live-custom-css'}) : $('#live-custom-css');
+			if (  0 === $('#live-custom-css').length )
 				$('head').append($style_element.html(to));
 			else
 				$style_element.html(to);
@@ -394,12 +394,12 @@
 	wp.customize( 'tc_theme_options[tc_sticky_transparent_on_scroll]' , function( value ) {
 		value.bind( function( to ) {
 			if ( false !== to ) {
-				$('body').addClass('tc-transparent-on-scroll')
-				$('body').removeClass('tc-solid-color-on-scroll')
+				$('body').addClass('tc-transparent-on-scroll');
+				$('body').removeClass('tc-solid-color-on-scroll');
 			}
 			else {
-				$('body').removeClass('tc-transparent-on-scroll')
-				$('body').addClass('tc-solid-color-on-scroll')
+				$('body').removeClass('tc-transparent-on-scroll');
+				$('body').addClass('tc-solid-color-on-scroll');
 			}
 		} );
 	});
