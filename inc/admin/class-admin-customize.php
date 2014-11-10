@@ -26,6 +26,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			add_action ( 'customize_preview_init'			, array( $this , 'tc_customize_preview_js' ));
 			//Hide donate button
 			add_action ( 'wp_ajax_hide_donate'				, array( $this ,  'tc_hide_donate' ) );
+			//Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
+	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
+	        	add_action( 'customize_controls_print_scripts' , array( $this , 'tc_add_livereload_script') );
 	    }
 
 
@@ -239,7 +242,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		 */
 		function tc_customize_controls_js_css() {
 
-			wp_register_style( 
+			wp_register_style(
 				'tc-customizer-controls-style',
 				sprintf('%1$s/inc/admin/css/theme-customizer-control%2$s.css' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
@@ -247,13 +250,13 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				$media = 'all'
 			);
 			wp_enqueue_style('tc-customizer-controls-style');
-			wp_enqueue_script( 
+			wp_enqueue_script(
 				'tc-customizer-controls',
 				sprintf('%1$s/inc/admin/js/theme-customizer-control%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER ,
 				true
-				);
+			);
 
 			//gets the featured pages id from init
 			$fp_ids				= apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
@@ -290,20 +293,19 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 
 
-	    /**
-		* Update donate options handled in ajax
-		* @package Customizr
-		* @since Customizr 3.1.14
+	    /*
+		* Writes the livereload script in dev mode (Grunt watch livereload enabled)
+		*@since v3.2.4
 		*/
-	    function tc_hide_donate() {
-	    	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
-	    	$options = get_option('tc_theme_options');
-	    	$options['tc_hide_donate'] = true;
-	    	update_option( 'tc_theme_options', $options );
-	    }
-
-
-	    
-
+		function tc_add_livereload_script() {
+			?>
+			<script id="tc-dev-live-reload" type="text/javascript">
+			    document.write('<script src="http://'
+			        + ('localhost').split(':')[0]
+			        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')
+			    console.log('When WP_DEBUG mode is enabled, activate the watch Grunt task to enable live reloading. This script can be disabled with the following code to paste in your functions.php file : add_filter("tc_live_reload_in_dev_mode" , "__return_false")');
+			</script>
+			<?php
+		}
 	}//end of class
 endif;

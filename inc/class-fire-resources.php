@@ -25,6 +25,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
 	        //Customizer user defined style options
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_customizer_user_options_style' ) );
+	        //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
+	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
+	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script') );
 	    }
 
 
@@ -139,7 +142,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			          	'LeftSidebarClass' 		=> $left_sb_class,
 			          	'RightSidebarClass' 	=> $right_sb_class,
 			          	'LoadModernizr' 		=> apply_filters( 'tc_load_modernizr' , true ),
-			          	'LoadCustomizrScript' 	=> apply_filters( 'tc_load_customizr_script' , true ),
 			          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , 0 ),
 			          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ),
 			          	'dropdowntoViewport' 	=> esc_attr( tc__f( '__get_option' , 'tc_menu_resp_dropdown_limit_to_viewport') ),
@@ -306,5 +308,21 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		  	wp_add_inline_style( 'customizr-skin', $_css );
 		}
 
+		/*
+		* Writes the livereload script in dev mode (Grunt watch livereload enabled)
+		*@since v3.2.4
+		*/
+		function tc_add_livereload_script() {
+			if ( TC_utils::$instance -> tc_is_customizing() )
+				return;
+			?>
+			<script id="tc-dev-live-reload" type="text/javascript">
+			    document.write('<script src="http://'
+			        + ('localhost').split(':')[0]
+			        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')
+			    console.log('When WP_DEBUG mode is enabled, activate the watch Grunt task to enable live reloading. This script can be disabled with the following code to paste in your functions.php file : add_filter("tc_live_reload_in_dev_mode" , "__return_false")');
+			</script>
+			<?php
+		}
 	}//end of TC_ressources
 endif;
