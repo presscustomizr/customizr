@@ -30,6 +30,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-ftp-push');
+	grunt.loadNpmTasks('grunt-wait');
+	grunt.loadNpmTasks('grunt-phpcs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	
 	grunt.initConfig({
@@ -42,12 +44,12 @@ module.exports = function(grunt) {
 			},
 			//in production, all less files are compiled using a dynamic mapping
 			//http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically
-			prod: {
+			prod_skins: {
 				files: [
 					{
 						expand: true,
 						cwd: 'inc/assets/css/',
-						src: ['*.less', '!{tc_custom_responsive,tc_custom,variables}*.less'],
+						src: ['*.less', '!{tc_custom_responsive,tc_custom,variables,bootstrap}*.less'],
 						dest: 'inc/assets/css/',
 						ext: '.css'
 					}
@@ -68,6 +70,13 @@ module.exports = function(grunt) {
 				src: ['*.css', '!*.min.css'],
 				dest: 'inc/assets/css/',
 				ext: '.min.css'
+			},
+			prod_admin_css: {
+				expand: true,
+				cwd: 'inc/admin/css/',
+				src: ['*.css', '!*.min.css'],
+				dest: 'inc/admin/css/',
+				ext: '.min.css'
 			}
 		},
 
@@ -75,10 +84,14 @@ module.exports = function(grunt) {
 			options: {
 				separator: ';',
 			},
-			front_scripts: {
-				src: ['inc/assets/js/params-dev-mode.js', 'inc/assets/js/bootstrap.js', 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.js', 'inc/assets/js/tc-scripts.js'],
-				dest: 'inc/assets/js/tc-scripts.min.js',
+			front_js: {
+				src: ['inc/assets/js/params-dev-mode.js', 'inc/assets/js/bootstrap.js', 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.js', 'inc/assets/js/main.js'],
+				dest: 'inc/assets/js/tc-scripts.js',
 			},
+			admin_control_js:{
+				src: ['inc/admin/js/lib/icheck.min.js', 'inc/admin/js/lib/selecter.min.js', 'inc/admin/js/lib/stepper.min.js', 'inc/admin/js/_control.js'],
+				dest: 'inc/admin/js/theme-customizer-control.js',
+			}
 		},
 
 		uglify: {
@@ -90,25 +103,36 @@ module.exports = function(grunt) {
 				dead_code: true
 				}
 			},
-			compile_front_js: {
+			front_js: {
 				files: [{
 					expand: true,
 					cwd: 'inc/assets/js',
-					src: ['tc-scripts.min.js'],
+					src: ['tc-scripts.js'],
 					//src: ['**/*.js', '!*.min.js'],
 					dest: 'inc/assets/js',
+					ext: '.min.js'
+				}]
+			},
+			prod_admin_js:{
+				files: [{
+					expand: true,
+					cwd: 'inc/admin/js',
+					src: ['*.js', '!*.min.js'],
+					dest: 'inc/admin/js',
 					ext: '.min.js'
 				}]
 			}
 		},
 
 		jshint: {
-			gruntfile: ['Gruntfile.js'],
-			front : ['inc/assets/js/tc-scripts.js']
+			gruntfile : ['Gruntfile.js'],
+			front : ['inc/assets/js/main.js'],
+			those : [], //populated dynamically with the watch event
 		},
 
 		//https://www.npmjs.org/package/grunt-ssh
 		Credentials : grunt.file.readJSON('.ftpauth'),
+		//DOC : https://www.npmjs.org/package/grunt-ftp-push
 		ftp_push: {
 			options: {
 					authKey: "nikeo",
@@ -120,56 +144,154 @@ module.exports = function(grunt) {
 				files: [
 					{}//populated dynamically with the watch event
 				]
+			},
+			dev_skin : {
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: ['inc/assets/css/blue3.min.css', 'inc/assets/css/blue3.css']
+					}
+				]
+			},
+			main_front_js : {
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: ['inc/assets/js/tc-scripts.js']
+					}
+				]
+			},
+			admin_customizer_control_js : {
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: ['inc/admin/js/theme-customizer-control.js']
+					}
+				]
+			},
+			prod_skins : {
+				//upload the compiled skins minified and unminified
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: ['inc/assets/css/*.css']
+					}
+				]
+			},
+			all_front_js : {
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: ['inc/assets/js/*.js']
+					}
+				]
+			},
+			all_admin_css : {
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: ['inc/admin/css/*.css']
+					}
+				]
+			},
+			all_admin_js : {
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: ['inc/admin/js/*.js']
+					}
+				]
 			}
 		},
-
+		//timer used to let ftp transfer (sftp module from Sublime Text) do his job
+		wait : {
+			options : {
+				delay : 1000
+			},
+			pause : {
+				options : {
+					before : function(options) {
+						console.log('pausing %dms (waiting for FTP transfer', options.delay);
+					},
+					after : function() {
+						console.log('pause end');
+					}
+				}
+			}
+		},
+		phpcs: {
+			application: {
+				dir: ['inc/parts*.php']
+			},
+			options: {
+				bin: 'phpcs',
+				standard: 'PSR1'
+			}
+		},
 		//DOC : https://www.npmjs.org/package/grunt-contrib-watch
+		// !! This task has to be enabled with WP_DEBUG mode on !!
+		//Javascript files :  No Uglification is done in dev mode
 		watch: {
 			// gruntfile: {
 			// files: 'Gruntfile.js',
 			// tasks: ['jshint:gruntfile'],
 			// },
 			options: {
-				spawn: false,
+				spawn : false,
 				// Start a live reload server on the default port 35729
-				livereload: true,
+				livereload : true,
 			},
-			skin : {
-				files: ['inc/assets/css/tc_custom.less', 'inc/assets/css/tc_custom_responsive.less'],
-				tasks: ['less:skin' , 'cssmin:skin', 'ftp_push:those'],
+			//Regenerate the main css skin each time a less file is changed
+			create_push_skin : {
+				files : ['inc/assets/css/tc_custom.less', 'inc/assets/css/tc_custom_responsive.less', 'inc/assets/css/variables.less' , 'inc/assets/css/bootstrap/*.less'],
+				tasks : ['less:skin' , 'cssmin:skin' , 'ftp_push:dev_skin'],
 			},
 			front_js : {
-				files: ['inc/assets/js/*.js', '!*.min.js'],
-				tasks: ['concat:front_scripts','uglify:compile_front_js', 'jshint:front', 'ftp_push:those'],
+				files : ['inc/assets/js/*.js', '!*.min.js'],
+				tasks : ['concat:front_js','jshint:front', 'ftp_push:main_front_js'],
+				//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
 			},
-			push : {
+			//The customizer control has a special treatment => concatenation + FTP transfer of the built file
+			admin_customizer_control_js : {
+				files : ['inc/admin/js/_control.js'],
+				tasks : ['jshint:those' , 'concat:admin_control_js' , 'ftp_push:admin_customizer_control_js'],
+			},
+			//Other admin js assets are jshinted on change
+			admin_js : {
+				files : ['inc/admin/js/*.js', '!inc/admin/js/_control.js'],
+				tasks : ['jshint:those'],
+			},
+			admin_css : {
+				files : ['inc/admin/css/*.css'],
+				tasks : ['wait:pause'],
+			},
+			push_php : {
 				files: ['**/*.php'],
-				tasks: ['ftp_push:those']
+				tasks: ['wait:pause']
 			}
 		},
 	});//end of initconfig
 
 	//USING THE WATCH EVENT
 	// grunt.event.on('watch', function(action, filepath, target) {
-	// 	grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+	// grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
 	// });
 	// grunt.event.on('watch', function() {
-	// 	grunt.log.writeln( grunt.config('Credentials.host') );
+	// grunt.log.writeln( grunt.config('Credentials.host') );
 	// });
 	
 	//grunt.registerTask('compile_skin', ['less:skin' , 'cssmin:skin']);
 	
 	grunt.registerTask('customizr_dev', ['watch']);
 
-	// grunt.registerTask('wait_before_reload' , 'Wait before reload' , function () {
-	// 	grunt.log.writeln( 'Waiting for the file to be pushed... then live reload' );
-	// 		setTimeout(function() {
-	// 			grunt.log.writeln('All done!');
-	// 			//done();
-	// 		}, 4000);
-	// 	}
-	// );
-
+	//watch is enabled only in dev mode
 	grunt.event.on('watch', function(action, filepath, target) {
 		var files = [
 					{
@@ -180,11 +302,24 @@ module.exports = function(grunt) {
 						]
 					}
 		];
-		grunt.log.writeln(action, filepath, target);
-		//if ( 'php' == action )
-		grunt.config('ftp_push.those.files', files);
+		grunt.log.writeln(grunt.task.current.name , action, filepath, target);
+
+		if ( 'admin_customizer_control_js' == target || 'admin_js' == target ) {
+			//if some js admin scripts have been changed in dev mode, jshint them dynamically
+			grunt.config('jshint.those', [filepath]);
+		} 
+		// else {
+		// 	grunt.config('ftp_push.those.files', files);
+		// }
 
 	});
+
+	//PROD TASKS : compile/uglify/concatenate/jshint + FTP Push
+	grunt.registerTask( 'prod_css_skins', ['less:prod_skins', 'cssmin:prod_skins', 'ftp_push:prod_skins'] );
+	grunt.registerTask( 'prod_front_js', ['jshint', 'concat:front_js','uglify:front_js', 'ftp_push:main_front_js'] );
+	grunt.registerTask( 'prod_admin_css_js' , ['cssmin:prod_admin_css' , 'uglify:prod_admin_js', 'ftp_push:all_admin_css' , 'ftp_push:all_admin_js']);
+
+	grunt.registerTask( 'customizr_prod' , ['prod_css_skins', 'prod_front_js', 'prod_admin_css_js'] );
 };
 
 //@to do concatenate! !!

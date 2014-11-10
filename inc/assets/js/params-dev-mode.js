@@ -6,7 +6,6 @@ var TCParams = TCParams || {
 	HasComments: "",
 	LeftSidebarClass: ".span3.left.tc-sidebar",
 	LoadBootstrap: 1,
-	LoadCustomizrScript: 1,
 	LoadModernizr: 1,
 	ReorderBlocks: 1,
 	RightSidebarClass: ".span3.right.tc-sidebar",
