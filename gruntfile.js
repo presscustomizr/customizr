@@ -31,7 +31,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-ftp-push');
 	grunt.loadNpmTasks('grunt-wait');
-	grunt.loadNpmTasks('grunt-phpcs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	
 	grunt.initConfig({
@@ -231,8 +230,8 @@ module.exports = function(grunt) {
 				dir: ['inc/parts*.php']
 			},
 			options: {
-				bin: 'phpcs',
-				standard: 'PSR1'
+				bin: 'PHP_CodeSniffer/CodeSniffer.php',
+				standard: 'PSR2'
 			}
 		},
 		//DOC : https://www.npmjs.org/package/grunt-contrib-watch
@@ -265,7 +264,7 @@ module.exports = function(grunt) {
 			},
 			//Other admin js assets are jshinted on change
 			admin_js : {
-				files : ['inc/admin/js/*.js', '!inc/admin/js/_control.js'],
+				files : ['inc/admin/js/theme-customizer-preview.js', 'inc/admin/js/tc_ajax_slider.js'],
 				tasks : ['jshint:those'],
 			},
 			admin_css : {
