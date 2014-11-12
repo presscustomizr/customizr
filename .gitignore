@@ -13,7 +13,7 @@ node_modules/
 .ftpauth
 
 # PHP_CodeSniffer
-# PHP_CodeSniffer/
+PHP_CodeSniffer/
 
 # EXEMPLE OF ADVANCED CONFIG WITH FOLDER
 # Ignore everything:

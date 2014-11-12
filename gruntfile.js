@@ -225,15 +225,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		phpcs: {
-			application: {
-				dir: ['inc/parts*.php']
-			},
-			options: {
-				bin: 'PHP_CodeSniffer/CodeSniffer.php',
-				standard: 'PSR2'
-			}
-		},
 		//DOC : https://www.npmjs.org/package/grunt-contrib-watch
 		// !! This task has to be enabled with WP_DEBUG mode on !!
 		//Javascript files :  No Uglification is done in dev mode
