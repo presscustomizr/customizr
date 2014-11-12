@@ -17,6 +17,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
+      private $is_wp_version_before_4_0;
 
       function __construct () {
           self::$instance =& $this;
@@ -27,6 +28,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           add_filter ( 'tc_add_section_map'                   , array( $this ,  'tc_update_section_map') );
           //update setting_control_map
           add_filter ( 'tc_add_setting_control_map'           , array( $this ,  'tc_update_setting_control_map'), 100 );
+          //declare a private property to check wp version >= 4.0
+          global $wp_version;
+          $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
       }//end of construct
 
 
@@ -941,11 +945,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-      function tc_update_remove_sections( $_unchanged ) {
-      global $wp_version;
-      if ( ! version_compare( $wp_version, '4.0', '>=' ) )
-        return $_unchanged;
-
+    function tc_update_remove_sections( $_unchanged ) {
       return array(
         'remove_section'       =>   array(
                               'background_image' ,
@@ -966,10 +966,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_update_section_map( $_unchanged ) {
-      global $wp_version;
-      if ( ! version_compare( $wp_version, '4.0', '>=' ) )
-        return $_unchanged;
-      
       //For nav menus option
       $locations      = get_registered_nav_menus();
       $menus          = wp_get_nav_menus();
