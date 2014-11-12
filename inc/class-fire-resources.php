@@ -62,42 +62,45 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    //load modernizr.js in footer
 		    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 		    
-		   	//in dev mode, all scripts are loaded separetely, while in production some are concatenated in minified in tc-scripts.min.js 
-		    if ( defined('WP_DEBUG') && true === WP_DEBUG ) {
+		   	if ( apply_filters('tc_load_concatenate_front_scripts' , true ) )
+		   	{
+			    //tc-scripts.min.js includes :
+			    //1) Twitter Bootstrap scripts
+			    //2) FancyBox - jQuery Plugin
+			    //3) Customizr scripts
+			    wp_enqueue_script( 
+			    	'tc-scripts' , 
+			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
+			    	array( 'jquery' ), 
+			    	CUSTOMIZR_VER, 
+			    	$in_footer = apply_filters('tc_load_script_in_footer' , false) 
+			    );
+			}
+			else
+			{
+				//in production script are minified 
 		    	wp_enqueue_script(
 			    	'params-dev-mode', 
-			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL ,'params-dev-mode.js'),
+			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'params-dev-mode.js' : 'params-dev-mode.min.js'),
 			    	array( 'jquery' ), 
 			    	CUSTOMIZR_VER, 
 			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
 		    	);
 		    	wp_enqueue_script(
 			    	'dev-bootstrap', 
-			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL ,'bootstrap.js'),
+			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'bootstrap.js' : 'bootstrap.min.js'),
 			    	array( 'params-dev-mode' ), 
 			    	CUSTOMIZR_VER, 
 			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
 		    	);
 		    	wp_enqueue_script(
 			    	'dev-fancybox', 
-			    	sprintf( '%1$sinc/assets/js/fancybox/%2$s' , TC_BASE_URL ,'jquery.fancybox-1.3.4.min.js'),
+			    	sprintf( '%1$sinc/assets/js/fancybox/%2$s' , TC_BASE_URL , 'jquery.fancybox-1.3.4.min.js' ),
 			    	array( 'params-dev-mode' ), 
 			    	CUSTOMIZR_VER, 
 			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
 		    	);
-		    } //end if DEBUG
-
-		    //tc-scripts.min.js includes :
-		    //1) Twitter Bootstrap scripts
-		    //2) FancyBox - jQuery Plugin
-		    //3) Customizr scripts
-		    wp_enqueue_script( 
-		    	'tc-scripts' , 
-		    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
-		    	array( 'jquery' ), 
-		    	CUSTOMIZR_VER, 
-		    	$in_footer = apply_filters('tc_load_script_in_footer' , false) 
-		    );
+			}//end of load concatenate script if
 
 		    //fancybox options
 			$tc_fancybox 		= ( 1 == tc__f( '__get_option' , 'tc_fancybox' ) ) ? true : false;
