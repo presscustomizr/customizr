@@ -145,15 +145,20 @@ if ( ! class_exists( 'TC_controls' ) ) :
 		        	break;
 
 	        	default:
+	        		global $wp_version;
 					?>
 					<label>
 						<?php if ( ! empty( $this->label ) ) : ?>
 							<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 						<?php endif; ?>
 						<?php if ( ! empty( $this->description ) ) : ?>
-							<span class="description customize-control-description"><?php echo $this->description; ?></span>
+							<span class="description customize-control-description"><?php echo $this->description; ?></span>;;;
 						<?php endif; ?>
-						<input type="<?php echo esc_attr( $this->type ); ?>" <?php $this->input_attrs(); ?> value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> />
+						<?php if ( ! version_compare( $wp_version, '4.0', '>=' ) ) : ?>
+							<input type="<?php echo esc_attr( $this->type ); ?>" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> />
+						<?php else : ?>
+							<input type="<?php echo esc_attr( $this->type ); ?>" <?php $this->input_attrs(); ?> value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> />
+						<?php endif; ?>
 						<?php if(!empty( $this -> notice)) : ?>
 							<span class="tc-notice"><?php echo $this-> notice; ?></span>
 						<?php endif; ?>
