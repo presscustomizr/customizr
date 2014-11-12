@@ -337,9 +337,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       );//end of add_sections array
       $add_section = apply_filters( 'tc_add_section_map', $add_section );
 
-
-
-
       //specifies the transport for some options
       $get_setting    = array(
               'get_setting'       =>   array(
@@ -975,93 +972,93 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                   'add_section'       =>   array(
                         'tc_skins_settings'         => array(
                                             'title'     =>  __( 'Skin' , 'customizr' ),
-                                            'priority'    =>  10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 1 : 10,
                                             'description' =>  __( 'Select a skin for Customizr' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_social_settings'        => array(
                                             'title'     =>  __( 'Social links' , 'customizr' ), 
-                                            'priority'    =>  20,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 9 : 20,
                                             'description' =>  __( 'Set up your social links' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_links_settings'         => array(
                                             'title'     =>  __( 'Links style and effects' , 'customizr' ),
-                                            'priority'    =>  30,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 22 : 30,
                                             'description' =>  __( 'Various links settings' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_titles_icons_settings'        => array(
                                             'title'     =>  __( 'Titles icons settings' , 'customizr' ),
-                                            'priority'    =>  40,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 18 : 40,
                                             'description' =>  __( 'Set up the titles icons options' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_image_settings'         => array(
                                             'title'     =>  __( 'Image settings' , 'customizr' ),
-                                            'priority'    =>  50,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 95 : 50,
                                             'description' =>  __( 'Various images settings' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_responsive'           => array(
                                             'title'     =>  __( 'Responsive settings' , 'customizr' ),
-                                            'priority'    =>  60,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 96 : 60,
                                             'description' =>  __( 'Various settings for responsive display' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_header_layout'         => array(
-                                            'title'    => __( 'Design and layout', 'customizr' ),
-                                            'priority' => 20,
+                                            'title'    => $this -> is_wp_version_before_4_0 ? __( 'Header design and layout', 'customizr' ) : __( 'Design and layout', 'customizr' ),
+                                            'priority' => $this -> is_wp_version_before_4_0 ? 5 : 20,
                                             'panel'   => 'tc-header-panel'
                         ),
                         'title_tagline'         => array(
                                             'title'    => __( 'Site Title & Tagline', 'customizr' ),
-                                            'priority' => 20,
+                                            'priority' => $this -> is_wp_version_before_4_0 ? 7 : 20,
                                             'panel'   => 'tc-header-panel'
                         ),
                         'tc_logo_settings'            => array(
                                             'title'     =>  __( 'Logo &amp; Favicon' , 'customizr' ),
-                                            'priority'    =>  30,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 8 : 30,
                                             'description' =>  __( 'Set up logo and favicon options' , 'customizr' ),
                                             'panel'   => 'tc-header-panel'
                         ),
                         'nav'           => array(
                                   'title'          => __( 'Navigation' , 'customizr' ),
                                   'theme_supports' => 'menus',
-                                  'priority'       => 40,
+                                  'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
                                   'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.'),
                                   'panel'   => 'tc-header-panel'
                         ),
 
                         'tc_frontpage_settings'       => array(
                                             'title'     =>  __( 'Front Page' , 'customizr' ),
-                                            'priority'    =>  10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 12 : 10,
                                             'description' =>  __( 'Set up front page options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
 
                         'tc_layout_settings'        => array(
                                             'title'     =>  __( 'Pages &amp; Posts Layout' , 'customizr' ),
-                                            'priority'    =>  15,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 15 : 15,
                                             'description' =>  __( 'Set up layout options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
 
                         'tc_post_list_settings'        => array(
                                             'title'     =>  __( 'Post lists : blog, archives, ...' , 'customizr' ),
-                                            'priority'    =>  20,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 16 : 20,
                                             'description' =>  __( 'Set up post lists options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
                         'tc_single_post_settings'        => array(
                                             'title'     =>  __( 'Single posts' , 'customizr' ),
-                                            'priority'    =>  24,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 17 : 24,
                                             'description' =>  __( 'Set up single posts options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
                         'tc_breadcrumb_settings'        => array(
                                             'title'     =>  __( 'Breadcrumb' , 'customizr' ),
-                                            'priority'    =>  30,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 11 : 30,
                                             'description' =>  __( 'Set up breadcrumb options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
@@ -1075,25 +1072,25 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                         ),*/
                         'tc_post_metas_settings'        => array(
                                             'title'     =>  __( 'Post metas (category, tags, custom taxonomies)' , 'customizr' ),
-                                            'priority'    =>  50,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 20 : 50,
                                             'description' =>  __( 'Set up post metas options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
                         'tc_page_comments'          => array(
                                             'title'     =>  __( 'Comments' , 'customizr' ),
-                                            'priority'    =>  60,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 25 : 60,
                                             'description' =>  __( 'Set up comments options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
                         'tc_footer_global_settings'          => array(
                                             'title'     =>  __( 'Footer global settings' , 'customizr' ),
-                                            'priority'    =>  10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
                                             'description' =>  __( 'Set up footer global options' , 'customizr' ),
                                             'panel'   => 'tc-footer-panel'
                         ),
                         'tc_custom_css'           => array(
                                             'title'     =>  __( 'Custom CSS' , 'customizr' ),
-                                            'priority'    =>  10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 100 : 10,
                                             'description' =>  __( 'Add your own CSS' , 'customizr' ),
                                             'panel'   => 'tc-advanced-panel'
                         )
