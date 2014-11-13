@@ -306,7 +306,7 @@ module.exports = function(grunt) {
 
 	//PROD TASKS : compile/uglify/concatenate/jshint + FTP Push
 	grunt.registerTask( 'prod_css_skins', ['less:prod_skins', 'cssmin:prod_skins', 'ftp_push:prod_skins'] );
-	grunt.registerTask( 'prod_front_js', ['jshint', 'concat:front_js','uglify:front_js', 'ftp_push:main_front_js'] );
+	grunt.registerTask( 'prod_front_js', ['jshint', 'concat:front_js','uglify:front_js', 'ftp_push:all_front_js'] );
 	grunt.registerTask( 'prod_admin_css_js' , ['cssmin:prod_admin_css' , 'uglify:prod_admin_js', 'ftp_push:all_admin_css' , 'ftp_push:all_admin_js']);
 
 	grunt.registerTask( 'customizr_prod' , ['prod_css_skins', 'prod_front_js', 'prod_admin_css_js'] );
