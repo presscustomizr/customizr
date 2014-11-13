@@ -1309,6 +1309,21 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 67,
                                 'transport'     => 'postMessage',
               ),
+              'tc_theme_options[tc_sticky_z_index]'  =>  array(
+                                'default'       => 100,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Set the header z-index" , "customizr" ),
+                                'section'       => 'tc_header_layout' ,
+                                'type'          => 'number' ,
+                                'step'          => 1,
+                                'min'           => 0,
+                                'priority'      => 70,
+                                'transport'     => 'postMessage',
+                                'notice'    => sprintf('%1$s <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/z-index" target="_blank">%2$s</a> ?',
+                                    __( "What is" , 'customizr' ),
+                                    __( "the z-index" , 'customizr')
+                                ),
+              ),
 
               /* Menu */
               'tc_theme_options[tc_menu_position]'  =>  array(

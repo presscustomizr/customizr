@@ -258,6 +258,15 @@ if ( ! class_exists( 'TC_resources' ) ) :
 						}";
 			}
 
+			//HEADER Z-INDEX
+		    if ( 100 != esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') ) ) {
+		    	$_custom_z_index 	= esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') );
+			    $_css .= "
+			    		.tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
+							z-index:{$_custom_z_index}
+						}";
+			}
+
 			//CUSTOM SLIDER HEIGHT
 			// 1) Do we have a custom height ?
 			// 2) check if the setting must be applied to all context
@@ -312,7 +321,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		}
 
 		/*
-		* Writes the livereload script in dev mode (Grunt watch livereload enabled)
+		* Writes the livereload script in dev mode (if Grunt watch livereload is enabled)
 		*@since v3.2.4
 		*/
 		function tc_add_livereload_script() {

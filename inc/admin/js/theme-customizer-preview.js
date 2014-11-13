@@ -374,6 +374,11 @@
 				$('.tc-header').addClass('tc-menu-off').removeClass('tc-menu-on').trigger('resize');
 		} );
 	});
+	wp.customize( 'tc_theme_options[tc_sticky_z_index]' , function( value ) {
+		value.bind( function( to ) {
+			$('.tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header').css('z-index' , to);
+		} );
+	});
 	wp.customize( 'tc_theme_options[tc_custom_css]' , function( value ) {
 		value.bind( function( to ) {
 			$('#option-custom-css').remove();
