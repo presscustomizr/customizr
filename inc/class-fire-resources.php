@@ -62,7 +62,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    //load modernizr.js in footer
 		    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 		    
-		   	if ( apply_filters('tc_load_concatenate_front_scripts' , true ) )
+		   	if ( apply_filters('tc_load_concatenated_front_scripts' , true ) )
 		   	{
 			    //tc-scripts.min.js includes :
 			    //1) Twitter Bootstrap scripts
