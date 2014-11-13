@@ -40,6 +40,22 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.2.4 =
+* added customizer : new header z-index option
+* fixed Logo centered link bug fix. Added a clear both property to .navbar-wrapper
+* fixed menu on tablets landscape, if menu was set to "open on hover", submenus could not be revealed. Fixed by forcing the click behaviour if wp_is_mobile()
+* improved  front scripts concatenation boolean filter : 'tc_load_concatenated_front_scripts' default to true. js files can be loaded loaded separetely in dev mode Load bootstrap param not used anymore
+* improved customizer sections for wp<4.0 : set conditional priorities ( based on is_wp_version_before_4_0) to reoder the section more consistently skin, header, content, footer....
+* fixed Customizer frozen bug. case default control : falls back to no input attr if wp version < 4.0 because input_attrs() was introduced in 4.0
+* improved customizer panels : remove useless check if wp version >= 4.0 new private property : is_wp_version_before_4_0
+* added Grunt : dev mode, customizer control script is a concatenation of libraries and _control.js
+* added Grunt : in dev mode, tc-scripts is a concatenation of main.js + params-dev-mode.js + fancybox + bootstrap
+* added Livereload script loaded on dev mode TC_DEV constant is true added in customize_controls_print_scripts when customizing and in wp_head when live
+* added Grunt : ftp push enabled for all files Grunt : tc-scripts.min.js concatenates params-dev-mode.js, bootstrap.js, jquery.fancybox-1.3.4.min.js, tc-scripts.js Grunt : tc-script.js jshint @to finish
+* fixed menu : 'tc-submenu-fade' is applied if option 'tc_menu_submenu_fade_effect' is true AND ! wp_is_mobile()
+* fixed TCparams (localized params) was not defined as a js var
+* updated lang : pl_PL, thanks to Marcin Paweł Sadowski
+* updated lang : de_DE , thanks to Martin Bangemann
+
 
 = 3.2.3 November 5th 2014 =
 * fixed (php, class-header-header_main.php) remove space after filter declaration for tc_tagline_text
