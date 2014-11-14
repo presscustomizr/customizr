@@ -26,6 +26,10 @@ body {
   color: @customizrgray;
   background: @Customizrbackground;
   background-image:@CustomizrbackgroundImg;
+  & when (@is_rtl = true) {
+    direction: rtl;
+    unicode-bidi: embed;
+  }
 }
 /* LINKS HOVER EFFECT */
 .tc-fade-hover-links a:not([class*=round-div]), .tc-fade-hover-links a:visited, .tc-fade-hover-links button, .tc-fade-hover-links input[type="button"], .tc-fade-hover-links input[type="submit"] {

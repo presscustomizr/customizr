@@ -54,6 +54,23 @@ module.exports = function(grunt) {
 					}
 				]
 				//"inc/assets/css/black.css": "inc/assets/css/black.less"
+			},
+			prod_rtl_skins: {
+				options: {
+					modifyVars: {
+						is_rtl: true,
+					}
+				},
+				files: [
+					{
+						expand: true,
+						cwd: 'inc/assets/css/',
+						src: ['black.less'],
+						dest: 'inc/assets/css/rtl/',
+						ext: '.css'
+					}
+				]
+				//"inc/assets/css/black.css": "inc/assets/css/black.less"
 			}
 		}, //end of less
 
@@ -68,6 +85,13 @@ module.exports = function(grunt) {
 				cwd: 'inc/assets/css/',
 				src: ['*.css', '!*.min.css'],
 				dest: 'inc/assets/css/',
+				ext: '.min.css'
+			},
+			prod_rtl_skins :{
+				expand: true,
+				cwd: 'inc/assets/css/rtl/',
+				src: ['*.css', '!*.min.css'],
+				dest: 'inc/assets/css/rtl/',
 				ext: '.min.css'
 			},
 			prod_admin_css: {
