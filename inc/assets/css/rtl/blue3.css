@@ -4944,6 +4944,8 @@ body {
   color: #5a5a5a;
   background: #fafafa;
   background-image: none;
+  direction: rtl;
+  unicode-bidi: embed;
 }
 /* LINKS HOVER EFFECT */
 .tc-fade-hover-links a:not([class*=round-div]),
