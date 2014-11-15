@@ -5994,6 +5994,7 @@ footer#footer .colophon .social-block a {
   text-decoration: none;
   opacity: .9;
   filter: alpha(opacity=90);
+  outline: none;
 }
 .tc-slider-controls {
   position: absolute;

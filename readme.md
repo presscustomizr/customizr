@@ -1,6 +1,6 @@
 ![Customizr - Free Wordpress Theme - v3.2.0](/screenshot.png) 
 
-*Enjoy designing your website live from the WP customizer : skin, logo, social profiles, slider, layout, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Engage your visitors with beautiful sliders and call to actions on any page or post. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 14 languages. Ready for WooCommerce, bbPress, qTranslate (and others), the code is easily extensible with a comprehensive API hooks.*
+*Enjoy designing a beautiful website live with the WP customizer : 17 color skins, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 23 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.*
 
 # Copyright
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>)) 
@@ -39,6 +39,13 @@ The exceptions to this license are as follows:
 
 
 # Changelog
+= 3.2.5 November 15th 2014 =
+* added (lang) Thai language (th), thanks to <a href="http://new.forest.go.th" target="_blank">Wee Sritippho</a>
+* updated (lang) French translation
+* improved (grunt) skin generation
+* updated (css) rtl skins
+* updated (css) set outline : none for a.tc-carousel-control. Fixes a visual bug reported on Firefox.
+
 = 3.2.4 =
 * added customizer : new header z-index option
 * fixed Logo centered link bug fix. Added a clear both property to .navbar-wrapper

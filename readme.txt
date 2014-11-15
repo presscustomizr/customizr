@@ -39,7 +39,14 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
-= 3.2.4 =
+= 3.2.5 November 15th 2014 =
+* added (lang) Thai language (th), thanks to <a href="http://new.forest.go.th" target="_blank">Wee Sritippho</a>
+* updated (lang) French translation
+* improved (grunt) skin generation
+* updated (css) rtl skins
+* updated (css) set outline : none for a.tc-carousel-control. Fixes a visual bug reported on Firefox.
+
+= 3.2.4 November 13th 2014 =
 * added customizer : new header z-index option
 * fixed Logo centered link bug fix. Added a clear both property to .navbar-wrapper
 * fixed menu on tablets landscape, if menu was set to "open on hover", submenus could not be revealed. Fixed by forcing the click behaviour if wp_is_mobile()
@@ -55,7 +62,6 @@ The exceptions to this license are as follows:
 * fixed TCparams (localized params) was not defined as a js var
 * updated lang : pl_PL, thanks to Marcin Paweł Sadowski
 * updated lang : de_DE , thanks to Martin Bangemann
-
 
 = 3.2.3 November 5th 2014 =
 * fixed (php, class-header-header_main.php) remove space after filter declaration for tc_tagline_text

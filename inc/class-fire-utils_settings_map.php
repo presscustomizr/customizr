@@ -840,7 +840,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
                                 'section'     => 'tc_custom_css' ,
                                 'type'        => 'textarea' ,
-                                'notice'    => __( 'Always use this field to add your custom css instead of editing directly the style.css file : it will not be deleted during theme updates. You can also paste your custom css in the style.css file of a child theme.' , 'customizr' )
+                                'notice'    => sprintf('%1$s <a href="http://themesandco.com/snippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
+                                    __( "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a" , 'customizr' ),
+                                    __( 'child theme.' , 'customizr'),
+                                    __( 'How to create and use a child theme ?' , 'customizr')
+                                )
               )
       );//end of custom_css_options
       $custom_css_option_map = apply_filters( 'tc_custom_css_option_map', $custom_css_option_map , $get_default );
@@ -1697,8 +1701,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
                                 'section'     => 'tc_custom_css' ,
                                 'type'        => 'textarea' ,
-                                'notice'    => __( 'Always use this field to add your custom css instead of editing directly the style.css file : it will not be deleted during theme updates. You can also paste your custom css in the style.css file of a child theme.' , 'customizr' ),
-                                'transport' => 'postMessage'
+                                'notice'    => sprintf('%1$s <a href="http://themesandco.com/snippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
+                                    __( "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a" , 'customizr' ),
+                                    __( 'child theme.' , 'customizr'),
+                                    __( 'How to create and use a child theme ?' , 'customizr')
+                                )
               ),
               //Default slider's height
               'tc_theme_options[tc_slider_default_height]' => array(

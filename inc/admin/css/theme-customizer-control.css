@@ -301,9 +301,9 @@ input[type=checkbox], input[type=radio] {
 
 /* CUSTOM CSS TEXT AREA */
 li#customize-control-tc_theme_options-tc_custom_css textarea {
-	font-size: 11px;
-	background: #252525;
-	color: #FAED77;
+	font-size: 14px;
+	background: #394143;
+	color: #E2E728;
 	min-height: 300px;
 }
 

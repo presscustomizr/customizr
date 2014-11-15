@@ -1,7 +1,7 @@
 /* How to setup this Grunt environment from scratch (without the package.json file ) ?
  ! Before starting this, you must have installed Node.js on your system.
 
-To work with Grunt, you need to files in the current working directory : gruntfile.js + package.json
+To work with Grunt, you need two files in the current working directory : gruntfile.js + package.json
 
 1) Open your System Command Prompt
 2) Install Grunt Command Line Interface globally (-g) => this will make the grunt command available in any folder of your system
@@ -20,7 +20,7 @@ npm install grunt-contrib-jshint --save-dev
 7) Create a gruntfile.js at the root of your working folder and paste the following code in it.
 8) In your system command prompt, run grunt : grunt
 
-TO START WITH THE PACKAGE.JS just run : npm install
+To start with package.js just run : npm install
 */
 module.exports = function(grunt) {
 	// Load all Grunt tasks
