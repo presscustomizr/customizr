@@ -35,6 +35,6 @@
     "grunt-multi": "0.0.6",
     "grunt-wait": "^0.1.0",
     "jshint-stylish": "^1.0.0",
-    "load-grunt-tasks": "^1.0.0"
+    "load-grunt-config": "^0.16.0"
   }
 }
