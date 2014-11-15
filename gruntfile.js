@@ -23,59 +23,84 @@ npm install grunt-contrib-jshint --save-dev
 TO START WITH THE PACKAGE.JS just run : npm install
 */
 module.exports = function(grunt) {
-	/* loads less module */
-	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-ftp-push');
-	grunt.loadNpmTasks('grunt-wait');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	
+	// Load all Grunt tasks
+	// https://github.com/sindresorhus/load-grunt-tasks
+	require( 'load-grunt-tasks' )( grunt );
+
 	grunt.initConfig({
+		pkg: grunt.file.readJSON( 'package.json' ),
+		is_rtl: 'true',
+		skin_name : "blue3",
+		skin_color : '#394143',
+
 		less: {
-			//in development mode, only the default skin is compiled when less files are updated. Use a static mapping
-			skin : {
+			//in development mode, only the default skin (blue3 : #27CDA5 ) is compiled when less files are updated
+			dev_skin : {
 				files: [
-					{src: 'inc/assets/css/blue3.less', dest: 'inc/assets/css/blue3.css'}
+					{src: 'inc/assets/less/skin_gen.less', dest: 'inc/assets/css/blue3.css'}
 				]
 			},
-			//in production, all less files are compiled using a dynamic mapping
+			//in production, skins are generated with modified less vars
 			//http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically
-			prod_skins: {
-				files: [
-					{
-						expand: true,
-						cwd: 'inc/assets/css/',
-						src: ['*.less', '!{tc_custom_responsive,tc_custom,variables,bootstrap}*.less'],
-						dest: 'inc/assets/css/',
-						ext: '.css'
-					}
-				]
-				//"inc/assets/css/black.css": "inc/assets/css/black.less"
-			},
-			prod_rtl_skins: {
+			skin_generator: {
 				options: {
 					modifyVars: {
+						linkColor : '<%= skin_color %>',
+						is_rtl: false,
+					}
+				},
+				files: {"inc/assets/css/<%= skin_name %>.css": "inc/assets/less/skin_gen.less"}
+			},
+			rtl_skin_generator: {
+				options: {
+					modifyVars: {
+						linkColor : '<%= skin_color %>',
 						is_rtl: true,
 					}
 				},
-				files: [
-					{
-						expand: true,
-						cwd: 'inc/assets/css/',
-						src: ['black.less'],
-						dest: 'inc/assets/css/rtl/',
-						ext: '.css'
-					}
-				]
-				//"inc/assets/css/black.css": "inc/assets/css/black.less"
-			}
+				files: {"inc/assets/css/rtl/<%= skin_name %>.css": "inc/assets/less/skin_gen.less"}
+			},
 		}, //end of less
 
+		//https://www.npmjs.org/package/grunt-multi
+		multi: {
+			prod_skins : {
+				options : {
+					logBegin: function( vars ){
+						console.log( 'Begin generating skin : ' + vars.skin_list + ' ' + vars.skin_color_list);
+					},
+					logEnd: function( vars ){
+						console.log( 'Skin : ' + vars.skin_list + ' created');
+					},
+					//pkg : function() { return grunt.file.readJSON( 'package.json' ) },
+					vars : {
+						skin_list : function() {
+							var _skin_list = [];
+							Object.keys(grunt.config('pkg.skins')).forEach(function(key) {
+								_skin_list.push(key);
+							});
+							return _skin_list;
+						},
+						skin_color_list : function() {
+							var _color_list = [],
+								_skins = grunt.config('pkg.skins');
+							Object.keys(_skins).forEach(function(key) {
+								_color_list.push(_skins[key]);
+							});
+							return _color_list;
+						},
+					},
+					config: {
+						skin_name : "<%= skin_list %>",
+						skin_color : "<%= skin_color_list %>",
+					},
+					tasks : ['less:skin_generator' , 'less:rtl_skin_generator']
+				}
+			}
+		},
+
 		cssmin: {
-			skin: {
+			dev_skin: {
 				files: [
 					{'inc/assets/css/blue3.min.css' : 'inc/assets/css/blue3.css'}
 				]
@@ -148,6 +173,9 @@ module.exports = function(grunt) {
 		},
 
 		jshint: {
+			options : {
+				reporter : require('jshint-stylish')
+			},
 			gruntfile : ['Gruntfile.js'],
 			front : ['inc/assets/js/main.js'],
 			those : [], //populated dynamically with the watch event
@@ -201,7 +229,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: '.',
-						src: ['inc/assets/css/*.css']
+						src: ['inc/assets/css/*.css', 'inc/assets/css/rtl/*.css']
 					}
 				]
 			},
@@ -264,8 +292,8 @@ module.exports = function(grunt) {
 			},
 			//Regenerate the main css skin each time a less file is changed
 			create_push_skin : {
-				files : ['inc/assets/css/tc_custom.less', 'inc/assets/css/tc_custom_responsive.less', 'inc/assets/css/variables.less' , 'inc/assets/css/bootstrap/*.less'],
-				tasks : ['less:skin' , 'cssmin:skin' , 'ftp_push:dev_skin'],
+				files : ['inc/assets/less/**/*.less'],
+				tasks : ['less:dev_skin' , 'cssmin:dev_skin' , 'ftp_push:dev_skin'],
 			},
 			front_js : {
 				files : ['inc/assets/js/*.js', '!*.min.js'],
@@ -308,28 +336,25 @@ module.exports = function(grunt) {
 	//watch is enabled only in dev mode
 	grunt.event.on('watch', function(action, filepath, target) {
 		var files = [
-					{
-						expand: true,
-						cwd: '.',
-						src: [
-						filepath,
-						]
-					}
+			{
+				expand: true,
+				cwd: '.',
+				src: [
+				filepath,
+				]
+			}
 		];
 		grunt.log.writeln(grunt.task.current.name , action, filepath, target);
 
 		if ( 'admin_customizer_control_js' == target || 'admin_js' == target ) {
 			//if some js admin scripts have been changed in dev mode, jshint them dynamically
 			grunt.config('jshint.those', [filepath]);
-		} 
-		// else {
-		// 	grunt.config('ftp_push.those.files', files);
-		// }
+		}
 
 	});
 
 	//PROD TASKS : compile/uglify/concatenate/jshint + FTP Push
-	grunt.registerTask( 'prod_css_skins', ['less:prod_skins', 'cssmin:prod_skins', 'ftp_push:prod_skins'] );
+	grunt.registerTask( 'prod_css_skins', ['multi:prod_skins', 'cssmin:prod_skins' , 'cssmin:prod_rtl_skins', 'ftp_push:prod_skins'] );
 	grunt.registerTask( 'prod_front_js', ['jshint', 'concat:front_js','uglify:front_js', 'ftp_push:all_front_js'] );
 	grunt.registerTask( 'prod_admin_css_js' , ['cssmin:prod_admin_css' , 'uglify:prod_admin_js', 'ftp_push:all_admin_css' , 'ftp_push:all_admin_js']);
 
