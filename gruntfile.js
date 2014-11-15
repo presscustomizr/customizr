@@ -43,6 +43,7 @@ module.exports = function(grunt) {
 				front_js : 'inc/assets/js/',
 				admin_css : 'inc/admin/css/',
 				admin_js : 'inc/admin/js/',
+				lang : 'inc/lang/'
 			},
 			//default less modifiers
 			is_rtl: 'true',
