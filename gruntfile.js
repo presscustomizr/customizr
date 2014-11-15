@@ -29,6 +29,14 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON( 'package.json' ),
+		paths : {
+			less : 'inc/assets/less/',
+			front_css : 'inc/assets/css/',
+			front_js : 'inc/assets/js/',
+			admin_css : 'inc/admin/css/',
+			admin_js : 'inc/admin/js/',
+		},
+		//default less modifiers
 		is_rtl: 'true',
 		skin_name : "blue3",
 		skin_color : '#394143',
@@ -37,7 +45,7 @@ module.exports = function(grunt) {
 			//in development mode, only the default skin (blue3 : #27CDA5 ) is compiled when less files are updated
 			dev_skin : {
 				files: [
-					{src: 'inc/assets/less/skin_gen.less', dest: 'inc/assets/css/blue3.css'}
+					{src: '<%= paths.less %>skin_gen.less', dest: '<%= paths.front_css %>blue3.css'}
 				]
 			},
 			//in production, skins are generated with modified less vars
@@ -49,7 +57,7 @@ module.exports = function(grunt) {
 						is_rtl: false,
 					}
 				},
-				files: {"inc/assets/css/<%= skin_name %>.css": "inc/assets/less/skin_gen.less"}
+				files: {"<%= paths.front_css %><%= skin_name %>.css": "<%= paths.less %>skin_gen.less"}
 			},
 			rtl_skin_generator: {
 				options: {
@@ -58,7 +66,7 @@ module.exports = function(grunt) {
 						is_rtl: true,
 					}
 				},
-				files: {"inc/assets/css/rtl/<%= skin_name %>.css": "inc/assets/less/skin_gen.less"}
+				files: {"<%= paths.front_css %>rtl/<%= skin_name %>.css": "<%= paths.less %>skin_gen.less"}
 			},
 		}, //end of less
 
@@ -102,28 +110,28 @@ module.exports = function(grunt) {
 		cssmin: {
 			dev_skin: {
 				files: [
-					{'inc/assets/css/blue3.min.css' : 'inc/assets/css/blue3.css'}
+					{'<%= paths.front_css %>blue3.min.css' : '<%= paths.front_css %>blue3.css'}
 				]
 			},
 			prod_skins: {
 				expand: true,
-				cwd: 'inc/assets/css/',
+				cwd: '<%= paths.front_css %>',
 				src: ['*.css', '!*.min.css'],
-				dest: 'inc/assets/css/',
+				dest: '<%= paths.front_css %>',
 				ext: '.min.css'
 			},
 			prod_rtl_skins :{
 				expand: true,
-				cwd: 'inc/assets/css/rtl/',
+				cwd: '<%= paths.front_css %>rtl/',
 				src: ['*.css', '!*.min.css'],
-				dest: 'inc/assets/css/rtl/',
+				dest: '<%= paths.front_css %>rtl/',
 				ext: '.min.css'
 			},
 			prod_admin_css: {
 				expand: true,
-				cwd: 'inc/admin/css/',
+				cwd: '<%= paths.admin_css %>',
 				src: ['*.css', '!*.min.css'],
-				dest: 'inc/admin/css/',
+				dest: '<%= paths.admin_css %>',
 				ext: '.min.css'
 			}
 		},
@@ -133,12 +141,12 @@ module.exports = function(grunt) {
 				separator: ';',
 			},
 			front_js: {
-				src: ['inc/assets/js/params-dev-mode.js', 'inc/assets/js/bootstrap.js', 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.js', 'inc/assets/js/main.js'],
-				dest: 'inc/assets/js/tc-scripts.js',
+				src: ['<%= paths.front_js %>params-dev-mode.js', '<%= paths.front_js %>bootstrap.js', '<%= paths.front_js %>fancybox/jquery.fancybox-1.3.4.min.js', '<%= paths.front_js %>main.js'],
+				dest: '<%= paths.front_js %>tc-scripts.js',
 			},
 			admin_control_js:{
-				src: ['inc/admin/js/lib/icheck.min.js', 'inc/admin/js/lib/selecter.min.js', 'inc/admin/js/lib/stepper.min.js', 'inc/admin/js/_control.js'],
-				dest: 'inc/admin/js/theme-customizer-control.js',
+				src: ['<%= paths.admin_js %>lib/icheck.min.js', '<%= paths.admin_js %>lib/selecter.min.js', '<%= paths.admin_js %>lib/stepper.min.js', '<%= paths.admin_js %>_control.js'],
+				dest: '<%= paths.admin_js %>theme-customizer-control.js',
 			}
 		},
 
@@ -154,19 +162,19 @@ module.exports = function(grunt) {
 			front_js: {
 				files: [{
 					expand: true,
-					cwd: 'inc/assets/js',
+					cwd: '<%= paths.front_js %>',
 					src: ['tc-scripts.js'],
 					//src: ['**/*.js', '!*.min.js'],
-					dest: 'inc/assets/js',
+					dest: '<%= paths.front_js %>',
 					ext: '.min.js'
 				}]
 			},
 			prod_admin_js:{
 				files: [{
 					expand: true,
-					cwd: 'inc/admin/js',
+					cwd: '<%= paths.admin_js %>',
 					src: ['*.js', '!*.min.js'],
-					dest: 'inc/admin/js',
+					dest: '<%= paths.admin_js %>',
 					ext: '.min.js'
 				}]
 			}
@@ -177,7 +185,7 @@ module.exports = function(grunt) {
 				reporter : require('jshint-stylish')
 			},
 			gruntfile : ['Gruntfile.js'],
-			front : ['inc/assets/js/main.js'],
+			front : ['<%= paths.front_js %>main.js'],
 			those : [], //populated dynamically with the watch event
 		},
 
@@ -201,7 +209,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: '.',
-						src: ['inc/assets/css/blue3.min.css', 'inc/assets/css/blue3.css']
+						src: ['<%= paths.front_css %>blue3.min.css', '<%= paths.front_css %>blue3.css']
 					}
 				]
 			},
@@ -210,7 +218,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: '.',
-						src: ['inc/assets/js/tc-scripts.js']
+						src: ['<%= paths.front_js %>tc-scripts.js']
 					}
 				]
 			},
@@ -219,7 +227,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: '.',
-						src: ['inc/admin/js/theme-customizer-control.js']
+						src: ['<%= paths.admin_js %>theme-customizer-control.js']
 					}
 				]
 			},
@@ -229,7 +237,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: '.',
-						src: ['inc/assets/css/*.css', 'inc/assets/css/rtl/*.css']
+						src: ['<%= paths.front_css %>*.css', '<%= paths.front_css %>rtl/*.css']
 					}
 				]
 			},
@@ -238,7 +246,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: '.',
-						src: ['inc/assets/js/*.js']
+						src: ['<%= paths.front_js %>*.js']
 					}
 				]
 			},
@@ -247,7 +255,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: '.',
-						src: ['inc/admin/css/*.css']
+						src: ['<%= paths.admin_css %>*.css']
 					}
 				]
 			},
@@ -256,7 +264,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: '.',
-						src: ['inc/admin/js/*.js']
+						src: ['<%= paths.admin_js %>*.js']
 					}
 				]
 			}
@@ -292,26 +300,26 @@ module.exports = function(grunt) {
 			},
 			//Regenerate the main css skin each time a less file is changed
 			create_push_skin : {
-				files : ['inc/assets/less/**/*.less'],
+				files : ['<%= paths.less %>**/*.less'],
 				tasks : ['less:dev_skin' , 'cssmin:dev_skin' , 'ftp_push:dev_skin'],
 			},
 			front_js : {
-				files : ['inc/assets/js/*.js', '!*.min.js'],
+				files : ['<%= paths.front_js %>*.js', '!*.min.js'],
 				tasks : ['concat:front_js','jshint:front', 'ftp_push:main_front_js'],
 				//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
 			},
 			//The customizer control has a special treatment => concatenation + FTP transfer of the built file
 			admin_customizer_control_js : {
-				files : ['inc/admin/js/_control.js'],
+				files : ['<%= paths.admin_js %>_control.js'],
 				tasks : ['jshint:those' , 'concat:admin_control_js' , 'ftp_push:admin_customizer_control_js'],
 			},
 			//Other admin js assets are jshinted on change
 			admin_js : {
-				files : ['inc/admin/js/theme-customizer-preview.js', 'inc/admin/js/tc_ajax_slider.js'],
+				files : ['<%= paths.admin_js %>theme-customizer-preview.js', '<%= paths.admin_js %>tc_ajax_slider.js'],
 				tasks : ['jshint:those'],
 			},
 			admin_css : {
-				files : ['inc/admin/css/*.css'],
+				files : ['<%= paths.admin_css %>*.css'],
 				tasks : ['wait:pause'],
 			},
 			push_php : {
