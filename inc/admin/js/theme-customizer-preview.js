@@ -408,4 +408,9 @@
 			}
 		} );
 	});
+	wp.customize( 'tc_theme_options[tc_post_metas_update_notice_text]' , function( value ) {
+		value.bind( function( to ) {
+			$( '.tc-update-notice' ).html( to );
+		} );
+	} );
 } )( jQuery );

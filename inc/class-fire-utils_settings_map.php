@@ -1534,8 +1534,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Display hierarchical taxonomies (like categories)" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
-                                'priority'      => 30,
-                                'transport'   => 'postMessage'
+                                'priority'      => 30
               ),
               
               'tc_theme_options[tc_show_post_metas_tags]'  =>  array(
@@ -1544,8 +1543,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Display non-hierarchical taxonomies (like tags)" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
-                                'priority'      => 35,
-                                'transport'   => 'postMessage'
+                                'priority'      => 35
               ),
 
               'tc_theme_options[tc_show_post_metas_publication_date]'  =>  array(
@@ -1554,28 +1552,71 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Display the publication date" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
-                                'priority'      => 40,
-                                'transport'   => 'postMessage'
+                                'priority'      => 40
               ),
 
               'tc_theme_options[tc_show_post_metas_update_date]'  =>  array(
-                                'default'       => 1,
+                                'default'       => 0,
                                 'control'     => 'TC_controls',
                                 'label'         => __( "Display the update date" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
                                 'priority'      => 45,
-                                'transport'   => 'postMessage'
+                                'notice'    => __( 'If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated).' , 'customizr' ),
               ),
 
+              'tc_theme_options[tc_post_metas_update_date_format]'  =>  array(
+                                'default'       => 'days',
+                                'control'       => 'TC_controls',
+                                'label'         => __( "Select the last update format" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          =>  'select' ,
+                                'choices'       => array(
+                                        'days'     => __( 'Nb of days since last update' , 'customizr' ),
+                                        'date'     => __( 'Date of the last update' , 'customizr' )
+                                ),
+                                'priority'      => 50
+              ),
+
+              'tc_theme_options[tc_post_metas_update_notice_in_title]'  =>  array(
+                                'default'       => 0,
+                                'control'       => 'TC_controls',
+                                'label'         => __( "Display a recent update notice" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 45,
+                                'notice'    => __( 'If this option is checked, a customizable recent update notice is displayed next to the post title.' , 'customizr' ),
+                                'priority'      => 55
+              ),
+
+              'tc_theme_options[tc_post_metas_update_notice_text]'  =>  array(
+                                'default'       => __( "Recently updated !" , "customizr" ),
+                                'control'       => 'TC_controls',
+                                'label'         => __( "Update notice text" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'text',
+                                'priority'      => 60,
+                                'transport'   => 'postMessage'
+              ),
+              'tc_theme_options[tc_post_metas_update_notice_interval]'  =>  array(
+                                'default'       => 30,
+                                'control'       => 'TC_controls',
+                                'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'number' ,
+                                'step'          => 1,
+                                'min'           => 0,
+                                'priority'      => 65,
+                                'notice'    => __( 'Set a maximum interval (in days) during which the last update notice will be displayed.' , 'customizr' ),
+              ),
+              
               'tc_theme_options[tc_show_post_metas_author]'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'TC_controls',
                                 'label'         => __( "Display the author" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
-                                'priority'      => 50,
-                                'transport'   => 'postMessage'
+                                'priority'      => 70
               ),
 
               /* Post list layout */

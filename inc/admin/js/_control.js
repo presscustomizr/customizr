@@ -144,7 +144,27 @@
         'tc_theme_options[tc_show_post_metas_tags]',
         'tc_theme_options[tc_show_post_metas_publication_date]',
         'tc_theme_options[tc_show_post_metas_update_date]',
+        'tc_theme_options[tc_post_metas_update_notice_text]',
+        'tc_theme_options[tc_post_metas_update_notice_interval]',
         'tc_theme_options[tc_show_post_metas_author]'
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
+    },
+    'tc_theme_options[tc_show_post_metas_update_date]' : {
+      controls: [
+        'tc_theme_options[tc_post_metas_update_date_format]',
+        'tc_theme_options[tc_post_metas_update_notice_in_title]'
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
+    },
+    'tc_theme_options[tc_post_metas_update_notice_in_title]' : {
+      controls: [
+        'tc_theme_options[tc_post_metas_update_notice_text]',
+        'tc_theme_options[tc_post_metas_update_notice_interval]'
       ],
       callback: function (to) {
         return '1' == to;

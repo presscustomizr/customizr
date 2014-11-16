@@ -17,33 +17,154 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         function __construct () {
             self::$instance =& $this;
             add_action  ( '__after_content_title'           , array( $this , 'tc_post_metas' ));
-            //Set post metas with customizer options (since 3.2.0)
+            //Set metas contexts with user options (@since 3.2.0)
             add_action( 'template_redirect'                 , array( $this , 'tc_set_post_metas' ));
+            //Set metas content with user options (@since 3.2.6)
+            add_filter( 'tc_meta_utility_text'              , array( $this , 'tc_set_meta_content'));
+            //Add update status net to the title (@since 3.2.6)
+            add_filter('the_title'                          , array( $this , 'tc_add_update_notice_in_title'), 20);
         }
 
+
+
         /**
-         * The template part for displaying entry metas
-         *
-         * @package Customizr
-         * @since Customizr 1.0
-         */
-        function tc_post_metas() {
+        * Post metas controller
+        *
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        function tc_post_metas_controller() {
             global $post;
             //when do we display the metas ?
-            //1) we don't show metas on home page, 404, search page by default
+            //1) default is : not on home page, 404, search page
             //2) +filter conditions
-            $post_metas_bool            = ( tc__f('__is_home') || is_404() || 'page' == $post -> post_type ) ? false : true ;
-            $post_metas_bool            = apply_filters('tc_show_post_metas', $post_metas_bool ); 
-            
-            if ( ! $post_metas_bool )
+            return apply_filters(
+                'tc_show_post_metas',
+                ! tc__f('__is_home') && ! is_404() && ! 'page' == $post -> post_type
+            );
+        }
+
+
+
+        /**
+        * Metas views router
+        *
+        * @package Customizr
+        * @since Customizr 1.0
+        */
+        function tc_post_metas() {
+            global $post;
+            if ( ! $this -> tc_post_metas_controller() )
                 return;
 
+            //Two cases : attachment and not attachment
+            if ( 'attachment' == $post -> post_type )
+                $this -> tc_attachment_post_metas_view();
+            else
+                $this -> tc_post_post_metas_view();
+        }
+
+
+
+
+        /**
+        * Default post metas view
+        *
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        function tc_post_post_metas_view() {
             ob_start();
             ?>
-
             <div class="entry-meta">
                 <?php
-                if ( 'attachment' == $post -> post_type ) {
+                //echoes every metas components
+                printf(
+                    apply_filters( 'tc_meta_utility_text', __( 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.' , 'customizr' ) ),
+                    $this -> tc_get_category_list(),
+                    $this -> tc_get_tag_list(),
+                    $this -> tc_get_meta_date('publication'),
+                    $this -> tc_get_meta_author(),
+                    $this -> tc_get_meta_date('update'),
+                    $this -> tc_has_update()
+                );
+                ?>
+            </div><!-- .entry-meta -->
+            <?php
+            $html = ob_get_contents();
+            if ($html) ob_end_clean();
+            echo apply_filters( 'tc_post_metas', $html );
+        }
+
+
+ 
+        /**
+        * Set meta content base on user options
+        *
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        function tc_set_meta_content( $_default ) {
+            $_show_cats         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_categories' ) ) && false != $this -> tc_get_category_list();
+            $_show_tags         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_tags' ) ) && false != $this -> tc_get_tag_list();
+            $_show_pub_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_publication_date' ) );
+            $_show_upd_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_update_date' ) ) && 'no-updates' !== $this -> tc_has_update();
+            $_show_upd_in_days  = 'days' == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_date_format' ) );
+            $_show_date         = $_show_pub_date || $_show_upd_date;
+            $_show_author       = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_author' ) );
+            
+            //TAGS / CATS
+            $_tax_text              = '';
+            if ( $_show_cats && $_show_tags )
+                $_tax_text   .= __( 'This entry was posted in %1$s and tagged %2$s' , 'customizr' );
+            if ( $_show_cats && ! $_show_tags )
+                $_tax_text   .= __( 'This entry was posted in %1$s' , 'customizr' );
+            if ( ! $_show_cats && $_show_tags )
+                $_tax_text   .= __( 'This entry was tagged %2$s' , 'customizr' );
+            if ( ! $_show_cats && ! $_show_tags )
+                $_tax_text   .= __( 'This entry was' , 'customizr' );
+            
+            //PUBLICATION DATE
+            $_date_text             = '';
+            if ( $_show_date ) {
+                if ( $_show_cats )
+                    $_date_text   .= __( 'on %3$s' , 'customizr' );
+                if ( ! $_show_cats && ! $_show_tags )
+                    $_date_text   .= __( 'posted on %3$s' , 'customizr' );
+                if ( ! $_show_cats && $_show_tags )
+                    $_date_text   .= __( 'and posted on %3$s' , 'customizr' );
+            }
+
+            //AUTHOR
+            $_author_text           = $_show_author ? sprintf( '<span class="by-author">%1$s</span>' , __('by %4$s' , 'customizr') ) : '';
+
+            //UPDATE DATE
+            $_update_text           = '';
+            if ( $_show_upd_date ) {
+                if ( $_show_upd_in_days )
+                    $_update_text = ( 0 == $this -> tc_has_update() ) ? __( '(updated today)' , 'customizr' ) : __( '(updated %6$s days ago)' , 'customizr' );
+                else
+                    $_update_text = __( '(updated on %5$s)' , 'customizr' );
+            }
+
+            return sprintf( '%1$s %2$s %3$s %4$s' , $_tax_text , $_date_text, $_author_text, $_update_text );
+        }
+
+
+
+        /**
+        * Attachment post metas view
+        *
+        *
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        function tc_attachment_post_metas_view() {
+            global $post;
+            ob_start();
+            ?>
+            <div class="entry-meta">
+                <?php
                     $metadata       = wp_get_attachment_metadata();
                     printf( '%1$s <span class="entry-date"><time class="entry-date updated" datetime="%2$s">%3$s</time></span> %4$s %5$s',
                         '<span class="meta-prep meta-prep-entry-date">'.__('Published' , 'customizr').'</span>',
@@ -52,55 +173,8 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                         ( isset($metadata['width']) && isset($metadata['height']) ) ? __('at dimensions' , 'customizr').'<a href="'.esc_url( wp_get_attachment_url() ).'" title="'.__('Link to full-size image' , 'customizr').'"> '.$metadata['width'].' &times; '.$metadata['height'].'</a>' : '',
                         __('in' , 'customizr').'<a href="'.esc_url( get_permalink( $post->post_parent ) ).'" title="'.__('Return to ' , 'customizr').esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ).'" rel="gallery"> '.get_the_title( $post->post_parent ).'</a>.'
                     );
-                }
-
-                else {
-
-                    $categories_list    = $this -> tc_category_list();
-
-                    $tag_list           = $this -> tc_tag_list();
-
-                    $date               = apply_filters( 'tc_date_meta',
-                                        sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
-                                            esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
-                                            esc_attr( get_the_time() ),
-                                            apply_filters('tc_use_the_post_modified_date' , false ) ? esc_attr( get_the_date( 'c' ) ) : esc_attr( get_the_modified_date('c') ),
-                                            esc_html( get_the_date() )
-                                        )
-                    );//end filter
-
-                    $author             = apply_filters( 'tc_author_meta',
-                                        sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
-                                            esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-                                            esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), get_the_author() ) ),
-                                            get_the_author()
-                                        )
-                    );//end filter
-
-                    // Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
-                    $utility_text       = '';
-                    if ( $tag_list ) {
-                        $utility_text   = __( 'This entry was posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.' , 'customizr' );
-                        } elseif ( $categories_list ) {
-                        $utility_text   = __( 'This entry was posted in %1$s on %3$s<span class="by-author"> by %4$s</span>.' , 'customizr' );
-                        } else {
-                        $utility_text   = __( 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.' , 'customizr' );
-                    }
-                    $utility_text       = apply_filters( 'tc_meta_utility_text', $utility_text );
-
-                    //echoes every metas components
-                    printf(
-                        $utility_text,
-                        $categories_list,
-                        $tag_list,
-                        $date,
-                        $author
-                    );
-                }//endif attachment
                 ?>
-
             </div><!-- .entry-meta -->
-
             <?php
             $html = ob_get_contents();
             if ($html) ob_end_clean();
@@ -110,16 +184,15 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
 
-
-         /**
-         * Displays all the hierarchical taxonomy terms (including the category list for posts)
-         *
-         *
-         * @package Customizr
-         * @since Customizr 3.0 
-         */
-        function tc_category_list() {
-            $post_terms                 = apply_filters( 'tc_cat_meta_list', $this -> _get_terms_of_tax_type( $hierarchical = true ) );
+        /**
+        * Returns all the hierarchical taxonomy terms (including the category list for posts)
+        *
+        *
+        * @package Customizr
+        * @since Customizr 3.0 
+        */
+        function tc_get_category_list() {
+            $post_terms                 = apply_filters( 'tc_cat_meta_list', $this -> tc_get_term_of_tax_type( $hierarchical = true ) );
             $html                       = false;
             if ( false != $post_terms) {
                 foreach( $post_terms as $term_id => $term ) {
@@ -136,19 +209,17 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
 
-
-
         /**
-         * Displays all the non-hierarchical taxonomy terms (including the tag list for posts)
-         * Handles tag like terms
-         * Alternative
-         *
-         * @package Customizr
-         * @since Customizr 3.0 
-         *
-         */
-        function tc_tag_list() {
-            $post_terms                 = apply_filters( 'tc_tag_meta_list', $this -> _get_terms_of_tax_type( $hierarchical = false ) );
+        * Returns all the non-hierarchical taxonomy terms (including the tag list for posts)
+        * Handles tag like terms
+        * Alternative
+        *
+        * @package Customizr
+        * @since Customizr 3.0 
+        *
+        */
+        function tc_get_tag_list() {
+            $post_terms                 = apply_filters( 'tc_tag_meta_list', $this -> tc_get_term_of_tax_type( $hierarchical = false ) );
             $html                       = false;
 
             if ( false != $post_terms) {
@@ -165,16 +236,37 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         }
 
 
+
         /**
-         * Helper to return the current post terms of specified taxonomy type : hierarchical or not
-         *
-         * @return boolean (false) or array
-         * @param  boolean : hierarchical or not
-         * @package Customizr
-         * @since Customizr 3.1.20
-         *
-         */
-        private function _get_terms_of_tax_type ( $hierarchical = true ) {
+        * Return 'no-updates' if never updated OR number of days since last update
+        *
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        function tc_has_update() {
+            //Instantiates the different date objects
+            $created                = new DateTime( get_the_date('Y-m-d g:i:s') );
+            $updated                = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
+            $current                = new DateTime( date('Y-m-d g:i:s') );
+            
+            $created_to_updated     = date_diff($created , $updated);
+            $updated_to_today       = date_diff($updated, $current);
+
+            return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? 'no-updates' : $updated_to_today -> days;
+        }
+
+
+
+        /**
+        * Helper to return the current post terms of specified taxonomy type : hierarchical or not
+        *
+        * @return boolean (false) or array
+        * @param  boolean : hierarchical or not
+        * @package Customizr
+        * @since Customizr 3.1.20
+        *
+        */
+        private function tc_get_term_of_tax_type ( $hierarchical = true ) {
             //var declaration
             $post_type              = get_post_type( tc__f('__ID') );
             $tax_list               = get_object_taxonomies( $post_type, 'object' );
@@ -215,6 +307,45 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             return empty($_tax_type_terms_list) ? false : $_tax_type_terms_list;
         }
 
+
+
+        /**
+        * Return the date post metas
+        *
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        function tc_get_meta_date( $pub_or_update = 'publication' ) {
+            return apply_filters(
+                'tc_date_meta',
+                sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
+                    esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
+                    esc_attr( get_the_time() ),
+                    apply_filters( 'tc_use_the_post_modified_date' , 'publication' != $pub_or_update ) ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
+                    apply_filters( 'tc_use_the_post_modified_date' , 'publication' != $pub_or_update ) ? esc_html( get_the_modified_date() ) : esc_html( get_the_date() )
+                )
+            );//end filter
+        }
+
+
+
+
+        /**
+        * Return the post author metas
+        *
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        function tc_get_meta_author() {
+            return apply_filters( 
+                'tc_author_meta',
+                sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
+                    esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+                    esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), get_the_author() ) ),
+                    get_the_author()
+                )
+            );//end filter
+        }
 
 
 
@@ -279,6 +410,59 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         function tc_hide_post_metas( $_classes ) {
             return array_merge($_classes , array('hide-post-metas') );
         }
+
+
+
+        /**
+        * Callback of the the_title => add an updated status
+        * User option based
+        *
+        * @package Customizr
+        * @since Customizr 3.2.0
+        */
+        function tc_add_update_notice_in_title($html) {
+            //First checks if we are in the loop and we are not displaying a page
+            if ( ! in_the_loop() || is_page() )
+                return $html;
+
+            if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_in_title' ) ) )
+                return $html;
+
+            //Instantiates the different date objects
+            $created = new DateTime( get_the_date('Y-m-d g:i:s') );
+            $updated = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
+            $current = new DateTime( date('Y-m-d g:i:s') );
+
+            //Creates the date_diff objects from dates
+            $created_to_updated = date_diff($created , $updated);
+            $updated_to_today = date_diff($updated, $current);
+             
+             //Check if the post has been updated since its creation
+            $has_been_updated = ( $created_to_updated -> s > 0 || $created_to_updated -> i > 0 ) ? true : false;
+            
+             //get the user defined interval in days
+            $_interval = esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_interval' ) );
+            $_interval = ( 0 != $_interval ) ? $_interval : 30;
+            
+            //Check if the last update is less than n days old. (replace n by your own value)
+            $has_recent_update = ( $has_been_updated && $updated_to_today -> days < $_interval ) ? true : false;
+            
+            if ( ! $has_recent_update )
+                return $html;
+
+             //Add HTML after the title
+            $recent_update = $has_recent_update ? 'Recently updated' : '';
+             
+            //Return the modified title
+            return apply_filters(
+                'tc_update_notice_in_title', 
+                sprintf('%1$s &nbsp; <span class="tc-update-notice label label-warning">%2$s</span>',
+                    $html, 
+                    esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_text' ) )
+                )
+            );
+        }
+
     }//end of class
 endif;
 
