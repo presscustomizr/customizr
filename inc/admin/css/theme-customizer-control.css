@@ -453,15 +453,14 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
  * Copyright 2014 Ben Plum; MIT Licensed 
  */ 
 .stepper { border-radius: 3px; margin: 0 0 10px 0; overflow: hidden; position: relative; width: 35%;float: left; clear: both;}
-.stepper .stepper-input { background: #F9F9F9; border: 1px solid #ccc; border-radius: 3px; color: #333; font-size: 13px; line-height: 1.2; margin: 0; overflow: hidden; padding: 5px 10px 5px; width: 100%!important; z-index: 49;
-	-moz-appearance: textfield;
+.stepper .stepper-input { background: #F9F9F9; border: 1px solid #ccc; border-radius: 3px; color: #333; font-size: 13px; line-height: 1.2; margin: 0; overflow: hidden; padding: 5px 10px 5px!important; width: 100%!important; z-index: 49;	-moz-appearance: textfield;max-width: none!important;
 }
 
 .stepper .stepper-input::-webkit-inner-spin-button,
 .stepper .stepper-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
 .stepper .stepper-input:focus { background-color: #fff; }
-.stepper .stepper-arrow { background: #eee url(img/jquery.fs.stepper-arrows.png) no-repeat; border: 1px solid #ccc; cursor: pointer; display: block; height: 50%; position: absolute; right: 0; text-indent: -99999px; width: 20px; z-index: 50; }
+.stepper .stepper-arrow { background: #eee url(img/jquery.fs.stepper-arrows.png) no-repeat; border: 1px solid #ccc; cursor: pointer; display: block; height: 46%; position: absolute; right: 0; text-indent: -99999px; width: 20px; z-index: 50; }
 .stepper .stepper-arrow.up { background-position: center top; border-bottom: none; top: 0; }
 .stepper .stepper-arrow.down { background-position: center bottom; bottom: 0; }
 
