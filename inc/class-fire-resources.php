@@ -162,7 +162,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    $tc_show_featured_pages 	    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
       		$tc_show_featured_pages_img     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
       		if ( 0 != $tc_show_featured_pages && 0 != $tc_show_featured_pages_img ) {
-		    	wp_enqueue_script( 'holder' ,TC_BASE_URL . 'inc/assets/js/holder.min.js' ,array( 'jquery' ), CUSTOMIZR_VER, $in_footer = true);
+		    	wp_enqueue_script( 
+		    		'holder',
+		    		sprintf( '%1$sinc/assets/js/holder.min.js' , TC_BASE_URL ),
+		    		array(),
+		    		CUSTOMIZR_VER,
+		    		$in_footer = true
+		    	);
 		    }
 
 		    //load retina.js in footer if enabled
