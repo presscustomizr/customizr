@@ -1,3 +1,466 @@
+/*!
+Holder - client side image placeholders
+Version 2.4.1+f63aw
+© 2014 Ivan Malopinsky - http://imsky.co
+Site:     http://imsky.github.io/holder
+Issues:   https://github.com/imsky/holder/issues
+License:  http://opensource.org/licenses/MIT
+*/
+/*!
+ * onDomReady.js 1.4.0 (c) 2013 Tubal Martin - MIT license
+ *
+ * Specially modified to work with Holder.js
+ */
+
+;(function(name, global, callback){
+		global[name] = callback;
+})("onDomReady", this,
+
+(function(win) {
+
+    'use strict';
+
+    //Lazy loading fix for Firefox < 3.6
+    //http://webreflection.blogspot.com/2009/11/195-chars-to-help-lazy-loading.html
+    if (document.readyState == null && document.addEventListener) {
+        document.addEventListener("DOMContentLoaded", function DOMContentLoaded() {
+            document.removeEventListener("DOMContentLoaded", DOMContentLoaded, false);
+            document.readyState = "complete";
+        }, false);
+        document.readyState = "loading";
+    }
+
+    var doc = win.document,
+        docElem = doc.documentElement,
+
+        LOAD = "load",
+        FALSE = false,
+        ONLOAD = "on"+LOAD,
+        COMPLETE = "complete",
+        READYSTATE = "readyState",
+        ATTACHEVENT = "attachEvent",
+        DETACHEVENT = "detachEvent",
+        ADDEVENTLISTENER = "addEventListener",
+        DOMCONTENTLOADED = "DOMContentLoaded",
+        ONREADYSTATECHANGE = "onreadystatechange",
+        REMOVEEVENTLISTENER = "removeEventListener",
+
+        // W3C Event model
+        w3c = ADDEVENTLISTENER in doc,
+        top = FALSE,
+
+        // isReady: Is the DOM ready to be used? Set to true once it occurs.
+        isReady = FALSE,
+
+        // Callbacks pending execution until DOM is ready
+        callbacks = [];
+
+    // Handle when the DOM is ready
+    function ready( fn ) {
+        if ( !isReady ) {
+
+            // Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
+            if ( !doc.body ) {
+                return defer( ready );
+            }
+
+            // Remember that the DOM is ready
+            isReady = true;
+
+            // Execute all callbacks
+            while ( fn = callbacks.shift() ) {
+                defer( fn );
+            }
+        }
+    }
+
+    // The ready event handler
+    function completed( event ) {
+        // readyState === "complete" is good enough for us to call the dom ready in oldIE
+        if ( w3c || event.type === LOAD || doc[READYSTATE] === COMPLETE ) {
+            detach();
+            ready();
+        }
+    }
+
+    // Clean-up method for dom ready events
+    function detach() {
+        if ( w3c ) {
+            doc[REMOVEEVENTLISTENER]( DOMCONTENTLOADED, completed, FALSE );
+            win[REMOVEEVENTLISTENER]( LOAD, completed, FALSE );
+        } else {
+            doc[DETACHEVENT]( ONREADYSTATECHANGE, completed );
+            win[DETACHEVENT]( ONLOAD, completed );
+        }
+    }
+
+    // Defers a function, scheduling it to run after the current call stack has cleared.
+    function defer( fn, wait ) {
+        // Allow 0 to be passed
+        setTimeout( fn, +wait >= 0 ? wait : 1 );
+    }
+
+    // Attach the listeners:
+
+    // Catch cases where onDomReady is called after the browser event has already occurred.
+    // we once tried to use readyState "interactive" here, but it caused issues like the one
+    // discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
+    if ( doc[READYSTATE] === COMPLETE ) {
+        // Handle it asynchronously to allow scripts the opportunity to delay ready
+        defer( ready );
+
+    // Standards-based browsers support DOMContentLoaded
+    } else if ( w3c ) {
+        // Use the handy event callback
+        doc[ADDEVENTLISTENER]( DOMCONTENTLOADED, completed, FALSE );
+
+        // A fallback to window.onload, that will always work
+        win[ADDEVENTLISTENER]( LOAD, completed, FALSE );
+
+    // If IE event model is used
+    } else {
+        // Ensure firing before onload, maybe late but safe also for iframes
+        doc[ATTACHEVENT]( ONREADYSTATECHANGE, completed );
+
+        // A fallback to window.onload, that will always work
+        win[ATTACHEVENT]( ONLOAD, completed );
+
+        // If IE and not a frame
+        // continually check to see if the document is ready
+        try {
+            top = win.frameElement == null && docElem;
+        } catch(e) {}
+
+        if ( top && top.doScroll ) {
+            (function doScrollCheck() {
+                if ( !isReady ) {
+                    try {
+                        // Use the trick by Diego Perini
+                        // http://javascript.nwbox.com/IEContentLoaded/
+                        top.doScroll("left");
+                    } catch(e) {
+                        return defer( doScrollCheck, 50 );
+                    }
+
+                    // detach all dom ready events
+                    detach();
+
+                    // and execute any waiting functions
+                    ready();
+                }
+            })();
+        }
+    }
+
+    function onDomReady( fn ) {
+        // If DOM is ready, execute the function (async), otherwise wait
+        isReady ? defer( fn ) : callbacks.push( fn );
+    }
+
+    // Add version
+    onDomReady.version = "1.4.0";
+    // Add method to check if DOM is ready
+    onDomReady.isReady = function(){
+        return isReady;
+    };
+
+    return onDomReady;
+})(this));
+
+//https://github.com/inexorabletash/polyfill/blob/master/web.js
+  if (!document.querySelectorAll) {
+    document.querySelectorAll = function (selectors) {
+      var style = document.createElement('style'), elements = [], element;
+      document.documentElement.firstChild.appendChild(style);
+      document._qsa = [];
+
+      style.styleSheet.cssText = selectors + '{x-qsa:expression(document._qsa && document._qsa.push(this))}';
+      window.scrollBy(0, 0);
+      style.parentNode.removeChild(style);
+
+      while (document._qsa.length) {
+        element = document._qsa.shift();
+        element.style.removeAttribute('x-qsa');
+        elements.push(element);
+      }
+      document._qsa = null;
+      return elements;
+    };
+  }
+
+  if (!document.querySelector) {
+    document.querySelector = function (selectors) {
+      var elements = document.querySelectorAll(selectors);
+      return (elements.length) ? elements[0] : null;
+    };
+  }
+
+  if (!document.getElementsByClassName) {
+    document.getElementsByClassName = function (classNames) {
+      classNames = String(classNames).replace(/^|\s+/g, '.');
+      return document.querySelectorAll(classNames);
+    };
+  }
+
+//https://github.com/inexorabletash/polyfill
+// ES5 15.2.3.14 Object.keys ( O )
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys
+if (!Object.keys) {
+  Object.keys = function (o) {
+    if (o !== Object(o)) { throw TypeError('Object.keys called on non-object'); }
+    var ret = [], p;
+    for (p in o) {
+      if (Object.prototype.hasOwnProperty.call(o, p)) {
+        ret.push(p);
+      }
+    }
+    return ret;
+  };
+}
+
+//https://github.com/inexorabletash/polyfill/blob/master/web.js
+(function (global) {
+  var B64_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  global.atob = global.atob || function (input) {
+    input = String(input);
+    var position = 0,
+        output = [],
+        buffer = 0, bits = 0, n;
+
+    input = input.replace(/\s/g, '');
+    if ((input.length % 4) === 0) { input = input.replace(/=+$/, ''); }
+    if ((input.length % 4) === 1) { throw Error("InvalidCharacterError"); }
+    if (/[^+/0-9A-Za-z]/.test(input)) { throw Error("InvalidCharacterError"); }
+
+    while (position < input.length) {
+      n = B64_ALPHABET.indexOf(input.charAt(position));
+      buffer = (buffer << 6) | n;
+      bits += 6;
+
+      if (bits === 24) {
+        output.push(String.fromCharCode((buffer >> 16) & 0xFF));
+        output.push(String.fromCharCode((buffer >>  8) & 0xFF));
+        output.push(String.fromCharCode(buffer & 0xFF));
+        bits = 0;
+        buffer = 0;
+      }
+      position += 1;
+    }
+
+    if (bits === 12) {
+      buffer = buffer >> 4;
+      output.push(String.fromCharCode(buffer & 0xFF));
+    } else if (bits === 18) {
+      buffer = buffer >> 2;
+      output.push(String.fromCharCode((buffer >> 8) & 0xFF));
+      output.push(String.fromCharCode(buffer & 0xFF));
+    }
+
+    return output.join('');
+  };
+
+  global.btoa = global.btoa || function (input) {
+    input = String(input);
+    var position = 0,
+        out = [],
+        o1, o2, o3,
+        e1, e2, e3, e4;
+
+    if (/[^\x00-\xFF]/.test(input)) { throw Error("InvalidCharacterError"); }
+
+    while (position < input.length) {
+      o1 = input.charCodeAt(position++);
+      o2 = input.charCodeAt(position++);
+      o3 = input.charCodeAt(position++);
+
+      // 111111 112222 222233 333333
+      e1 = o1 >> 2;
+      e2 = ((o1 & 0x3) << 4) | (o2 >> 4);
+      e3 = ((o2 & 0xf) << 2) | (o3 >> 6);
+      e4 = o3 & 0x3f;
+
+      if (position === input.length + 2) {
+        e3 = 64; e4 = 64;
+      }
+      else if (position === input.length + 1) {
+        e4 = 64;
+      }
+
+      out.push(B64_ALPHABET.charAt(e1),
+               B64_ALPHABET.charAt(e2),
+               B64_ALPHABET.charAt(e3),
+               B64_ALPHABET.charAt(e4));
+    }
+
+    return out.join('');
+  };
+}(this));
+
+//https://github.com/jonathantneal/polyfill/blob/master/source/Window.prototype.getComputedStyle.ie8.js
+(function () {
+	if(window.getComputedStyle) return; //Add an exit if already defined
+	function getComputedStylePixel(element, property, fontSize) {
+		element.document; // Internet Explorer sometimes struggles to read currentStyle until the element's document is accessed.
+
+		var
+		value = element.currentStyle[property].match(/([\d\.]+)(%|cm|em|in|mm|pc|pt|)/) || [0, 0, ''],
+		size = value[1],
+		suffix = value[2],
+		rootSize;
+
+		fontSize = !fontSize ? fontSize : /%|em/.test(suffix) && element.parentElement ? getComputedStylePixel(element.parentElement, 'fontSize', null) : 16;
+		rootSize = property == 'fontSize' ? fontSize : /width/i.test(property) ? element.clientWidth : element.clientHeight;
+
+		return suffix == '%' ? size / 100 * rootSize :
+		       suffix == 'cm' ? size * 0.3937 * 96 :
+		       suffix == 'em' ? size * fontSize :
+		       suffix == 'in' ? size * 96 :
+		       suffix == 'mm' ? size * 0.3937 * 96 / 10 :
+		       suffix == 'pc' ? size * 12 * 96 / 72 :
+		       suffix == 'pt' ? size * 96 / 72 :
+		       size;
+	}
+
+	function setShortStyleProperty(style, property) {
+		var
+		borderSuffix = property == 'border' ? 'Width' : '',
+		t = property + 'Top' + borderSuffix,
+		r = property + 'Right' + borderSuffix,
+		b = property + 'Bottom' + borderSuffix,
+		l = property + 'Left' + borderSuffix;
+
+		style[property] = (style[t] == style[r] && style[t] == style[b] && style[t] == style[l] ? [ style[t] ] :
+		                   style[t] == style[b] && style[l] == style[r] ? [ style[t], style[r] ] :
+		                   style[l] == style[r] ? [ style[t], style[r], style[b] ] :
+		                   [ style[t], style[r], style[b], style[l] ]).join(' ');
+	}
+
+	// <CSSStyleDeclaration>
+	function CSSStyleDeclaration(element) {
+		var
+		style = this,
+		currentStyle = element.currentStyle,
+		fontSize = getComputedStylePixel(element, 'fontSize'),
+		unCamelCase = function (match) {
+			return '-' + match.toLowerCase();
+		},
+		property;
+
+		for (property in currentStyle) {
+			Array.prototype.push.call(style, property == 'styleFloat' ? 'float' : property.replace(/[A-Z]/, unCamelCase));
+			if (property == 'width') {
+				style[property] = element.offsetWidth + 'px';
+			} else if (property == 'height') {
+				style[property] = element.offsetHeight + 'px';
+			} else if (property == 'styleFloat') {
+				style.float = currentStyle[property];
+			} else if (/margin.|padding.|border.+W/.test(property) && style[property] != 'auto') {
+				style[property] = Math.round(getComputedStylePixel(element, property, fontSize)) + 'px';
+			} else if (/^outline/.test(property)) {
+				// errors on checking outline
+				try {
+					style[property] = currentStyle[property];
+				} catch (error) {
+					style.outlineColor = currentStyle.color;
+					style.outlineStyle = style.outlineStyle || 'none';
+					style.outlineWidth = style.outlineWidth || '0px';
+					style.outline = [style.outlineColor, style.outlineWidth, style.outlineStyle].join(' ');
+				}
+			} else {
+				style[property] = currentStyle[property];
+			}
+		}
+
+		setShortStyleProperty(style, 'margin');
+		setShortStyleProperty(style, 'padding');
+		setShortStyleProperty(style, 'border');
+
+		style.fontSize = Math.round(fontSize) + 'px';
+	}
+
+	CSSStyleDeclaration.prototype = {
+		constructor: CSSStyleDeclaration,
+		// <CSSStyleDeclaration>.getPropertyPriority
+		getPropertyPriority: function () {
+			throw new Error('NotSupportedError: DOM Exception 9');
+		},
+		// <CSSStyleDeclaration>.getPropertyValue
+		getPropertyValue: function(property) {
+		    var lookup = property.replace(/-([a-z])/g, function(match) {
+		        match = match.charAt ? match.split('') : match;
+		        return match[1].toUpperCase();
+		    });
+		    var ret = this[lookup];
+		    return ret;
+		},
+		// <CSSStyleDeclaration>.item
+		item: function (index) {
+			return this[index];
+		},
+		// <CSSStyleDeclaration>.removeProperty
+		removeProperty: function () {
+			throw new Error('NoModificationAllowedError: DOM Exception 7');
+		},
+		// <CSSStyleDeclaration>.setProperty
+		setProperty: function () {
+			throw new Error('NoModificationAllowedError: DOM Exception 7');
+		},
+		// <CSSStyleDeclaration>.getPropertyCSSValue
+		getPropertyCSSValue: function () {
+			throw new Error('NotSupportedError: DOM Exception 9');
+		}
+	};
+
+	// <window>.getComputedStyle
+	window.getComputedStyle = function (element) {
+		return new CSSStyleDeclaration(element);
+	};
+})();
+
+//https://gist.github.com/jimeh/332357
+if (!Object.prototype.hasOwnProperty){
+    /*jshint -W001, -W103 */
+    Object.prototype.hasOwnProperty = function(prop) {
+		var proto = this.__proto__ || this.constructor.prototype;
+		return (prop in this) && (!(prop in proto) || proto[prop] !== this[prop]);
+	}
+    /*jshint +W001, +W103 */
+}
+
+(function (global, factory) {
+	global.augment = factory();
+}(this, function () {
+    "use strict";
+
+    var Factory = function () {};
+    var slice = Array.prototype.slice;
+
+    var augment = function (base, body) {
+        var uber = Factory.prototype = typeof base === "function" ? base.prototype : base;
+        var prototype = new Factory(), properties = body.apply(prototype, slice.call(arguments, 2).concat(uber));
+        if (typeof properties === "object") for (var key in properties) prototype[key] = properties[key];
+        if (!prototype.hasOwnProperty("constructor")) return prototype;
+        var constructor = prototype.constructor;
+        constructor.prototype = prototype;
+        return constructor;
+    };
+
+    augment.defclass = function (prototype) {
+        var constructor = prototype.constructor;
+        constructor.prototype = prototype;
+        return constructor;
+    };
+
+    augment.extend = function (base, body) {
+        return augment(base, function (uber) {
+            this.uber = uber;
+            return body;
+        });
+    };
+
+    return augment;
+}));
+
 /*
 Holder.js - client side image placeholders
 © 2012-2014 Ivan Malopinsky - http://imsky.co
@@ -999,7 +1462,6 @@ Holder.js - client side image placeholders
 		};
 	})();
 
-	//todo: fix svg rendering on zoomed-in documents if possible
 	var sgSVGRenderer = (function() {
 		//Prevent IE <9 from initializing SVG renderer
 		if (!global.XMLSerializer) return;
@@ -1153,10 +1615,8 @@ Holder.js - client side image placeholders
 		}
 
 		/*
-
 		//External stylesheets: <link> method
 		if (renderSettings.svgLinkStylesheet) {
-
 			defs.removeChild(defs.firstChild);
 			for (i = 0; i < stylesheets.length; i++) {
 				var link = document.createElementNS('http://www.w3.org/1999/xhtml', 'link');
@@ -1166,21 +1626,17 @@ Holder.js - client side image placeholders
 				defs.appendChild(link);
 			}
 		}
-
 		//External stylesheets: <style> and @import method
 		if (renderSettings.svgImportStylesheet) {
 			var style = document.createElementNS(SVG_NS, 'style');
 			var styleText = [];
-
 			for (i = 0; i < stylesheets.length; i++) {
 				styleText.push('@import url(' + stylesheets[i] + ');');
 			}
-
 			var styleTextNode = document.createTextNode(styleText.join('\n'));
 			style.appendChild(styleTextNode);
 			defs.appendChild(style);
 		}
-
 		*/
 
 		var svgText = serializer.serializeToString(svg);
@@ -1297,7 +1753,7 @@ Holder.js - client side image placeholders
 		var buf = [];
 		var charCode = 0;
 		for (var i = str.length - 1; i >= 0; i--) {
-			charCode = str[i].charCodeAt();
+			charCode = str.charCodeAt(i);
 			if (charCode > 128) {
 				buf.unshift(['&#', charCode, ';'].join(''));
 			} else {
@@ -1496,7 +1952,7 @@ Holder.js - client side image placeholders
 			App.setup.supportsSVG = true;
 		}
 	})();
-  
+
 	//Exposing to environment and setting up listeners
 	register(Holder, 'Holder', global);
 
