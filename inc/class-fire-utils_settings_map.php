@@ -1501,10 +1501,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_show_post_metas_home]'  =>  array(
                                 'default'       => 0,
                                 'control'     => 'TC_controls' ,
+                                'title'         => __( 'Select the contexts' , 'customizr' ),
                                 'label'         => __( "Display posts metas on home" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 10,
+                                'priority'      => 15,
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_show_post_metas_single_post]'  =>  array(
@@ -1513,7 +1514,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Display posts metas for single posts" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 10,
+                                'priority'      => 20,
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_show_post_metas_post_lists]'  =>  array(
@@ -1522,10 +1523,61 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Display posts metas in post lists (archives, blog page)" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 10,
+                                'priority'      => 25,
+                                'transport'   => 'postMessage'
+              ),
+
+              'tc_theme_options[tc_show_post_metas_categories]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls',
+                                'title'         => __( 'Select the metas to display' , 'customizr' ),
+                                'label'         => __( "Display hierarchical taxonomies (like categories)" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 30,
                                 'transport'   => 'postMessage'
               ),
               
+              'tc_theme_options[tc_show_post_metas_tags]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls',
+                                'label'         => __( "Display non-hierarchical taxonomies (like tags)" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 35,
+                                'transport'   => 'postMessage'
+              ),
+
+              'tc_theme_options[tc_show_post_metas_publication_date]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls',
+                                'label'         => __( "Display the publication date" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 40,
+                                'transport'   => 'postMessage'
+              ),
+
+              'tc_theme_options[tc_show_post_metas_update_date]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls',
+                                'label'         => __( "Display the update date" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 45,
+                                'transport'   => 'postMessage'
+              ),
+
+              'tc_theme_options[tc_show_post_metas_author]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls',
+                                'label'         => __( "Display the author" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 50,
+                                'transport'   => 'postMessage'
+              ),
+
               /* Post list layout */
               'tc_theme_options[tc_post_list_excerpt_length]'  =>  array(
                                 'default'       => 55,
