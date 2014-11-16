@@ -139,7 +139,12 @@
       controls: [
         'tc_theme_options[tc_show_post_metas_home]',
         'tc_theme_options[tc_show_post_metas_single_post]',
-        'tc_theme_options[tc_show_post_metas_post_lists]'
+        'tc_theme_options[tc_show_post_metas_post_lists]',
+        'tc_theme_options[tc_show_post_metas_categories]',
+        'tc_theme_options[tc_show_post_metas_tags]',
+        'tc_theme_options[tc_show_post_metas_publication_date]',
+        'tc_theme_options[tc_show_post_metas_update_date]',
+        'tc_theme_options[tc_show_post_metas_author]'
       ],
       callback: function (to) {
         return '1' == to;
