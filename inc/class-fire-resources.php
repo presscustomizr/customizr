@@ -164,7 +164,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
       		if ( 0 != $tc_show_featured_pages && 0 != $tc_show_featured_pages_img ) {
 		    	wp_enqueue_script( 
 		    		'holder',
-		    		sprintf( '%1$sinc/assets/js/holder.min.js' , TC_BASE_URL ),
+		    		sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'holder.js' : 'holder.min.js'),
 		    		array(),
 		    		CUSTOMIZR_VER,
 		    		$in_footer = true
