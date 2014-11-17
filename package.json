@@ -42,5 +42,8 @@
     "grunt-wp-i18n": "^0.4.9",
     "jshint-stylish": "^1.0.0",
     "load-grunt-config": "^0.16.0"
+  },
+  "scripts": {
+    "test": "grunt replace --verbose"
   }
 }
