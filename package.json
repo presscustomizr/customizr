@@ -4,6 +4,10 @@
   "description": "![Customizr - Free Wordpress Theme - v3.2.4](/screenshot.png)",
   "author": "nikeo",
   "license": "GNU GPL v2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://https://github.com/Nikeo/customizr.git"
+  },
   "skins": {
     "black": "#000",
     "black2": "#394143",
@@ -44,6 +48,6 @@
     "load-grunt-config": "^0.16.0"
   },
   "scripts": {
-    "test": "grunt replace --verbose"
+    "test": "node -e \"require('grunt').tasks(['replace']);\""
   }
 }
