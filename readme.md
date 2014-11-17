@@ -1,4 +1,4 @@
-![Customizr - Free Wordpress Theme - v3.2.0](/screenshot.png) 
+![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 *Enjoy designing a beautiful website live with the WP customizer : 17 color skins, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 23 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.*
 
@@ -15,6 +15,38 @@ Customizr is distributed under the terms of the GNU GPL v2.0 or later
 * SNIPPETS : http://themesandco.com/code-snippets/
 * HOOKS API : http://www.themesandco.com/customizr/hooks-api/
 
+
+# Setting up the Grunt dev environment
+
+## Grunt setup (first time Grunt users)
+! Before starting this, you must have installed Node.js on your system.
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide.
+
+To work with Grunt, you need two files in the current working directory : gruntfile.js + package.json (can be created simply with `npm init`)
+
+1) Open your System Command Prompt and navigate to your project folder
+2) Install Grunt Command Line Interface globally (-g) => this will make the grunt command available in any folder of your system
+```shell
+npm install -g grunt-cli
+```
+3) Install Grunt locally and include the dependency in package.json with the --save-dev command :
+```shell
+npm install grunt --save-dev
+```
+This will create a node_modules folder in the root folder
+4) If you are using git, create a `.gitignore` file and add /node_modules to ignore it in your commits
+5) run ```shell npm install ``` => it will install all the Grunt dependencies for the project based on the package.json file
+5bis) if you need to install a grunt modules and add the dependencies in the package.json with `--save-dev`, run for example :
+```shell
+npm install grunt-contrib-less --save-dev
+```
+6) In your system command prompt, run grunt : grunt [taskname]
+
+## Running the Grunt tasks
+All tasks are declared in the `gruntfile.js` in the customizr_tasks object.
+There are two main tasks : `customizr_dev` and `customizr_build`, using *sub tasks*.
+*  `customizr_dev` uses the watch event to triggers all the development tasks (less compiling, jshint, ...) and reload the browser page.
+*  `customizr_build` is run just before releasing a new version of the Customizr theme
 
 # Licenses
 Unless otherwise specified, all the theme files, scripts and images
@@ -46,7 +78,7 @@ The exceptions to this license are as follows:
 * updated (css) rtl skins
 * updated (css) set outline : none for a.tc-carousel-control. Fixes a visual bug reported on Firefox.
 
-= 3.2.4 =
+= 3.2.4 November 13th 2014 =
 * added customizer : new header z-index option
 * fixed Logo centered link bug fix. Added a clear both property to .navbar-wrapper
 * fixed menu on tablets landscape, if menu was set to "open on hover", submenus could not be revealed. Fixed by forcing the click behaviour if wp_is_mobile()
@@ -62,7 +94,6 @@ The exceptions to this license are as follows:
 * fixed TCparams (localized params) was not defined as a js var
 * updated lang : pl_PL, thanks to Marcin Paweł Sadowski
 * updated lang : de_DE , thanks to Martin Bangemann
-
 
 = 3.2.3 November 5th 2014 =
 * fixed (php, class-header-header_main.php) remove space after filter declaration for tc_tagline_text
@@ -103,7 +134,6 @@ The exceptions to this license are as follows:
 * updated : the default slider images have been re-designed and their @x2 version (for high definitation devices) has been added in inc/assets/img
 * updated : screenshot of the theme
 
-
 = 3.2.2 October 30th 2014 =
 * fixed (js, tc-script.js) the 'touchstart' event don't trigger the responsive menu toggle anymore => was generating a major bug on responsive devices reported here : https://wordpress.org/support/topic/321-responsive-menu-wont-stay-open?replies=18, and here : https://wordpress.org/support/topic/bug-report-44?replies=4
 * added (php, class-fire-admin_page.php) New hooks in admin : '__before_welcome_panel' '__after_welcome_panel
@@ -116,12 +146,10 @@ The exceptions to this license are as follows:
 * updated (lang) sk_SK : thanks to <a href="http://www.pcipservis.eu/" target="_blank">Tomáš Lojek</a>
 * updated (lang) de_DE : thanks to <a href="http://foerde-mentor.de" target="_blank">Bernd Troba</a>
 
-
 = 3.2.1 October 20th 2014 =
 * fixed (css) Featured pages recentering for max-width 979px
 * fixed (css) Sticky header menu background
 * improved (js, tc-scripts.js) Scroll event timer only for ie
-
 
 = 3.2.0 October 20th 2014 =
 * added (php, class-content-slider.php) New action hooked : __after_carousel_inner. Used to render the slider controls.
@@ -159,8 +187,7 @@ The exceptions to this license are as follows:
 * improved (js, bootstrap) for mobile viewports, apply max-height = viewport to the revealed submenus+ make it scrollable
 * improved (php, class-content-post_list.php) round thumb : if size is not set for media, then falls back to medium and force max-width and max-height.
 
-
-= 3.1.24 Septembre 21th 2014 =
+= 3.1.24 September 21th 2014 =
 * fixed : (php, class-fire-init.php#393 ) check if defined( 'WPLANG'). WPLANG has to be defined in wp-config.php, but it might not be defined sometimes.
 * fixed : (php, class-content-slider.php) the slider loader block has been taken out of the carousel inner wrapper. Fixes the issue reported here : http://www.themesandco.com/customizr-theme-v3-1-23-tested-wordpress-v4-0/#li-comment-235017. The slider loader is diplayed by default for the demo slider.
 * added : (php, class-fire-init.php) new option in Customizer > Images => checkbox to display a gif loader on slides setup. Default == false.
@@ -168,8 +195,7 @@ The exceptions to this license are as follows:
 * improved : (php, class-fire-utils.php#315 ) cleaner code for the fancybox filter on 'the_content'
 * improved : (php, class-fire-ressources.php) performance : holder.min.js is now loaded when featured pages are enabled AND FP are set to show images
 
-
-= 3.1.23 Septembre 6th 2014 =
+= 3.1.23 September 6th 2014 =
 * improved : (php, class-fire-ressources.php, js : tc-scripts.js ) Performances : tc-scripts.js now includes all front end scripts in one file. 1) Twitter Bootstrap scripts, 2) Holder.js , 3) FancyBox - jQuery Plugin, 4) Retina.js, 5) Customizr scripts. New boolean filters to control each scripts load : tc_load_bootstrap, tc_load_modernizr, tc_load_holderjs, tc_load_customizr_script.
 * added : (php, class-footer-footer_main.php#55) 2 new action hooks before and after the footer widgets row : '__before_footer_widgets' , '__after_footer_widgets'
 * added : (php, class-footer-footer_main.php#142) Colophon center block : 2 new filter hooks : tc_copyright_link, tc_credit_link
@@ -207,18 +233,15 @@ The exceptions to this license are as follows:
 * improved : (php , class-fire-utils.php#207)tc_get_the_ID() : now check the wp_version global to avoid the get_post() whitout parameter issue. ( $post parameter became optional after v3.4.1 )
 * added : (php, class-controls.php) 2 new action hooks : __before_setting_control, __after_setting_control, using the setting id as additional parameter.
 * fixed : (css) .navbar-inner .nav li : 1px hack for chrome to not loose the focus on menu item hovering
-
-
+ 
 = 3.1.22 August 16th 2014 =
 * added : (css, class-fire-init.php#75) 9 new minified css skins
 * fixed : (php, class-content-breadcrumb.php#443) added a check is_array(get_query_var( 'post_type' ) in archive context
 (bug reported here : https://wordpress.org/support/topic/illegal-offset-type-in-isset-or-empty-in-postphp-after-upgrade-to-custom3120)
 * improved : (php, class-content-headings.php#224) added a boolean filter named 'tc_display_link_for_post_titles' (default = true) to control whether the post list titles have to be a link or not
 
-
 = 3.1.21 August 11th 2014 =
 * fixed : (php, class-content-post_list.php) boolean filter 'tc_include_cpt_in_archives' is set to false. Following a bug reported here http://wordpress.org/support/topic/content-removedchanged-after-updating-to-3120?replies=8 Thanks to http://wordpress.org/support/profile/le-formateur for reporting it.
-
 
 = 3.1.20 August 9th 2014 =
 * added : (lang) Ukrainian translation. Many thanks to <a href="http://akceptor.org/">Aceptkor!</a>
@@ -232,15 +255,14 @@ The exceptions to this license are as follows:
 * improved : (php, class-content-breadcrumb.php) now displays all levels of any hierarchical taxinomies by default and for all types of post (including hierarchical CPT). This feature can be disabled with a the filter : tc_display_taxonomies_in_breadcrumb (set to true by default). In the case of hierarchical post types (like page or hierarchical CPT), the taxonomy trail is only displayed for the higher parent.
 * improved : (php, class-fire-utils.php and class-controls.php) moved the slider-check control message if no slider created yet to tc_theme_options[tc_front_slider] control
 
-
-= 3.1.19 July 18th 2014 =
+= 3.1.19 July 14th 2014 =
+* improved : (php, class-admin-meta_boxes) code structure
+* improved : (js, meta boxes) better code structure
 * added : (php, class-fire-init.php) support for svg and svgz in media upload
 * added : (php, class-header-header_main.php) new filter 'tc_logo_img_formats'
 * fixed : (php, class-content-breadcrumb#291) check existence of rewrite['with_front']
-* fixed : (php) closing tags php removed from all classes
 
-
-= 3.1.18 July 11rd 2014 =
+= 3.1.18 July 11th 2014 =
 * added : (lang) Czech translation. Many thanks to Martin Filák!
 * added : (php , class-content_slider.php) two new action hooks (filters) for a better control of the slider layout class (tc_slider_layout_class) and the slider image size (tc_slider_img_size)
 * added : (php, class-fire-resources.php) new filter named "tc_custom_css_priority" to take control over the custom css writing priority in head
@@ -250,17 +272,13 @@ The exceptions to this license are as follows:
 * improved : (php, class-content-headings.php) headings of the page for post is now displayed by default (if not front page). Action hook (filter) : tc_page_for_post_header_content
 * improved : (php, class-content-sidebar.php) before and after sidebars hooks have been moved out of the active_sidebar condition in order to be used even with widget free sidebars
 
-
-= 3.1.17 July 6rd 2014 =
+= 3.1.17 July 6th 2014 =
 * fixed : back to previous screenshot
 
-
 = 3.1.16 July 3rd 2014 =
-* improved : (php, css, js) better file structure. Every front end has been move iin /inc folder
-* improved : (php) init class and functions have been moved in /inc/init.php
+* improved : (php, css, js) better file structure. Init and front end files have been moved in /inc folder
 * improved : new theme screenshot
 * fixed : (php, class-content-slider.php#102) missing icon parameter has been added to wp_get_attachment_image()
-
 
 = 3.1.15 May 31st 2014 =
 * fixed : (css : editor-style.css) background default color flagged as !important
@@ -268,16 +286,14 @@ The exceptions to this license are as follows:
 * fixed : (php : class-content-slider.php) slider edit button is displayed for users with the upload_files capability
 * fixed : (php : class-content-comments.php) class comment-{id} has been added to the article comment wrapper to ensure compatibility with the recent comment WP built-in widget
 
-
-= 3.1.14 =
+= 3.1.14 May 15th, 2014 =
 * added : (js : theme-customizer-control.js, css : theme-customizer-control.css, php : class-admin-customize.php) Donate block can be disable forever in admin.
 
-
-= 3.1.13 =
+= 3.1.13 May 5th, 2014 =
 * added : (lang) Danish translation. Thanks to <a href="http://teknikalt.dk">Peter Wiwe</a>
 * added : (css, js) Donate link in admin
 
-= 3.1.12 =
+= 3.1.12 April 23rd, 2014 =
 * fixed : (css) category archive icon now displayed again in chrome
 * fixed : (php : TC_init::tc_add_retina_support) retina bug fixed by <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a>
 * improved : (php : TC_breadcrumb ) breadcrumb trail for single posts, category and tag archive now includes the page_for_posts rewrited if defined.
@@ -286,7 +302,7 @@ The exceptions to this license are as follows:
 * removed : (php) Customiz'it button has been taken off
 
 
-= 3.1.11 =
+= 3.1.11 April 21st, 2014 =
 * added : (php , css) customizer : new option in the Skin Settings, enable/disable the minified version of skin
 * added : (php) customizer : new option in the Responsive Settings, enable/disable the automatic centering of slides
 * added : (js, php) automatic centering of the slider's slides on any devices. Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/">Rocco</a>.
@@ -298,23 +314,20 @@ The exceptions to this license are as follows:
 * improved : (js) block repositioning is only triggered on load for responsive devices
 * updated : (translation) Slovak translation has been updated. Thanks to <a href="www.pcipservis.eu">Michal Hranicky</a>.
 
-
-= 3.1.10 =
+= 3.1.10 March 31st, 2014 =
 * fixed : (php : TC_init::tc_plugins_compatibility() , custom-page.php) WooCommerce compatibility issue fixed.
 * added : (TC_customize::tc_customize_register() , TC_resources::tc_enqueue_customizr_scripts() , tc_script.js ) New option in customizer : Enable/Disable block reordering for smartphone viewport.
 
-
-= 3.1.9 =
+= 3.1.9 March 27th, 2014 =
 * fixed : (js  : tc_scripts.js , php : index.php ) responsive : dynamic content block position bug fixed in tc_script.js, the wrapper had to be more specific to avoid block duplication when inserting other .row inside main content. Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/" target="_blank">Rocco Aliberti</a>.
 * fixed : (php : TC_resources::tc_enqueue_customizr_scripts() ) comment : notice on empty archives due to the function comments_open(). A test on  0 != $wp_query -> post_count has been added in TC_resources::tc_enqueue_customizr_scripts(). Thanks to <a href="http://www.themesandco.com/author/eri_trabiccolo/" target="_blank">Rocco Aliberti</a>.
 * improved : (js  : tc_scripts.js) responsive : the sidebar classes are set dynamically with a js localized var using the tc_{$position}_sidebar_class filter
 
-
-= 3.1.8 =
+= 3.1.8 March 3rd, 2014 =
 * fixed : (js) responsive : dynamic content block position bug fixed in tc_script.js
 
 
-= 3.1.7 =
+= 3.1.7 February 6th, 2014 =
 * fixed : (css) : icons rendering for chrome
 * improved : (css) : footer white icons also for black skin
 * added : (php) utils : new filter with 2 parameters to tc_get_option
@@ -330,7 +343,7 @@ The exceptions to this license are as follows:
 * fixed : (html) Google Structured Data : addition of the "updated" class in entry-date
 
 
-= 3.1.6 =
+= 3.1.6 December 15th, 2013 =
 * added : (php)(js) customizer controls : new filter for localized params
 * added : (php) featured pages : new filters for title, excerpt and button blocks
 * added : (php) search : form in the header if any results are found
@@ -341,33 +354,34 @@ The exceptions to this license are as follows:
 * fixed : (js) submenu opening on click problem : [data-toggle="dropdown"] links are excluded from smoothscroll function
 * fixed : (php) compatibility with NEXTGEN plugin : fixed ob_start() in class-content-headings::tc_content_headings()
 
-
-= 3.1.5 =
+= 3.1.5 December 14th, 2013 =
 * fixed : (php) child themes bug : child theme users can now override the Customizr files with same path/name.php.
 
-
-= 3.1.4 =
+= 3.1.4 December 14th, 2013 =
 * fixed : (css) featured pages : another responsive thumbnails alignment for max-width: 979px
 
-
-= 3.1.3 =
+= 3.1.3 December 14th, 2013 =
 * fixed : (css) featured pages : responsive thumbnails alignment
 
-
-= 3.1.2 =
+= 3.1.2 December 14th, 2013 =
 * improved : (php) minor file change : the class__.php content has been moved in functions.php
 
-
-= 3.1.1 =
+= 3.1.1 December 14th, 2013 =
 * added : (language) Turkish : thanks to <a href="http://www.ahmethakanergun.com/">Ahmet Hakan Ergün</a>
 * added : (css) customizer : some styling
 * fixed : (css) post thumbnails : minor alignment issues
 * fixed : (php) translations in customizer for dropdown lists
 
-
-= 3.1.0 =
+= 3.1.0 December 13rd, 2013 =
 * added : (language) Hungarian : thanks to Ferencz Székely
-* added : (php) Site title : filter on the tag
+* added : (php) Woocommerce : full compatibility
+* added : (php) BBpress : full compatibilty
+* added : (php) Qtranslate : full compatibilty. Thanks to <a href="http://websiter.ro" target="_blank">Andrei Gheorghiu</a>
+* added : (js)(php)(css) Retina new option : customizr now supports retina devices. Uses Ben Atkin's retina.js script.
+* added : (js)(php)(css) new option : Optional smooth scroll effect on anchor links in the same page
+* added : (php)(css) Menu : new option to select hover/click expansion mode of submenus
+* added : (css) Twitter Bootstrap : Glyphicons are now available
+* added : (php) site title : filter on the html tag
 * added : (php) archives (categories, tags, author, dates) and search results titles can be filtered
 * added : (php) posts : 2 new hooks before and after post titles. Used for post metas.
 * added : (php) logo and site title : new filter for link url (allowing to change the link on a per page basis)
@@ -384,11 +398,7 @@ The exceptions to this license are as follows:
 * added : (php) sidebars : filters on column width classes
 * added : (php) content : filters on the layout
 * added : (php) page : support for excerpt
-* added : (js)(php)(css) Retina : customizr now supports retina devices. Uses Ben Atkin's retina.js script.
-* added : (js)(php)(css) New option : Optional smooth scroll effect on anchor links in the same page
-* added : (js)(php) Slider : easier control of the stop on hover
-* added : (php)(css) Menu : new option to select hover/click expansion mode of submenus
-* added : (css) Bootstrap : Glyphicons are now available
+* added : (js)(php) slider : new filter for an easier control of the stop on hover
 * added : (php) Social Networks : possibility to easily add any social networks in option with a custom icon on front end
 * added : (php) Social Networks : filter allowing additional link attributes like rel="publisher" for a specific social network
 * added : (php) Posts/pages headings : new filters to enable/disable icons
@@ -398,19 +408,29 @@ The exceptions to this license are as follows:
 * changed : (php) Featured page : name of the text filter is now 'fp_text'
 * improved : (css) Menu : style has been improved
 * improved : (php) slider : controls are not displayed if only on slide.
-* improved : (php) fancy box : checks if isset $post before filtering content
+* improved : (php) fancybox : checks if isset $post before filtering content
 * improved : (css) widgets : arrow next to widget's list is only displayed for default WP widgets
+* improved : (javascript) fancybox : now sets the image's title or alt as fancybox popin title (instead of page or post title)
 * fixed : (php) blog page layout : when blog was set to a page, the specific page layout was not active anymore
 * fixed : (php) menu : the tc_menu_display filter was missing a parameter
 * fixed : (php) comments : removed the useless permalink for the comments link in pages and posts
+* updated : (lang) pt_BR : Thanks to Roner Marcelo and Rodrigo Stuchi
+* updated : (lang) nl_NL : Thanks to Joris Dutmer
+* updated : (lang) es_ES : Thanks to María
+* updated : (lang) de_DE : Thanks to Martin Bangemann
+* updated : (lang) zh_CN : Thanks to Luckie Joy
+* updated : (lang) ar : Thanks to Ramez Bdiwi
+* updated : (lang) ca_ES : Thanks to Jaume Albaigès
+* updated : (lang) ru_RU : Thanks to <a href="http://bootwalksnews.com/" target="_blank">Evgeny Sudakov</a>
+* removed : (php) Dev Tools : the developer tools have been removed from the theme for perfomances issues.
 
 
-= 3.0.15 =
+= 3.0.15 November 26th, 2013 =
 * added : (language) Catalan : thanks to <a href="https://twitter.com/jaume_albaiges" target="_blank">Jaume Albaig&egrave;s</a>
 * fixed : (js) Slider : ie7/ie8/ie9 hack (had to be re-implemented) : thanks to @barryvdh (https://github.com/twbs/bootstrap/pull/3052)
 
 
-= 3.0.14 =
+= 3.0.14 November 5th, 2013 =
 * added : (language) Arabic : thanks to Ramez Bdiwi
 * added : (language) RTL support : thanks to Ramez Bdiwi
 * added : (language) Romanian : thanks to <a href="http://websiter.ro" target="_blank">Andrei Gheorghiu</a>
@@ -446,15 +466,13 @@ The exceptions to this license are as follows:
 * fixed : (css) comments avatar more responsive
 * fixed : (css) ie9 and less : hack to get rid of the gradient effect => was bugging the responsive menu.
 
-
-= 3.0.13 =
+= 3.0.13 September 20th, 2013 =
 * fixed : (php) Logo upload : we check if the getimagesize() function generates any warning (due to restrictions of use on some servers like 1&1) before using it. Thanks to <a href="http://wordpress.org/support/profile/svematec" target="_blank">svematec</a>, <a href="http://wordpress.org/support/profile/electricfeet" target="_blank">electricfeet</a> and <a href="http://wordpress.org/support/profile/heronswalk" target="_blank">heronswalk</a> for reporting this issue so quickly!
 
-
-= 3.0.12 =
+= 3.0.12 September 18th, 2013 =
 * fixed : (php) the slider is now also displayed on the blog page. Thanks to <a href="http://wordpress.org/support/profile/defttester" target="_blank">defttester</a> and <a href="http://wordpress.org/support/profile/rdellconsulting" target="_blank">rdellconsulting</a>
 
-= 3.0.11 =
+= 3.0.11 September 16th, 2013 =
 * added : (php) filter to the skin choices (in customizer options class), allowing to add new skins in the drop down list
 * added : (php) filter for enqueuing the styles (in class ressources), allowing a better control for child theme
 * added : (css) current menu item or current menu ancestor is colored with the skin color
@@ -470,9 +488,8 @@ The exceptions to this license are as follows:
 * fixed : (php) attachment post type : checks if $post is set before getting the type
 * fixed : (php) left and right sidebars are rendered even if they have no widgets hooked in thanks to <a href="http://wordpress.org/support/profile/pereznat" target="_blank">pereznat</a>.
 
-
-= 3.0.10 =
-* CHILD THEME USERS, templates have been modified : index.php, header.php, footer.php, comments.php *
+= 3.0.10 September 10th, 2013 =
+* CHILD THEME USERS, templates have been modified : index.php, header.php, footer.php, comments.php*
 * added : (php) (css) (html) New option : Draggable help box and clickable tooltips to easily display some contextual information and help for developers
 * added : (php) support for custom post types for the slider meta boxes
 * added : (php) new filter to get the post type
@@ -485,6 +502,7 @@ The exceptions to this license are as follows:
 * added : (js) smooth image loading on gallery attachment navigation
 * added : (lang) Dutch translation. Thanks to Joris Dutmer.
 * added : (css) icon to title of archive, search, 404
+* improved : (js) (php) tc-scripts.js : now includes fancybox + carousel scripts with dynamic variables (localized)
 * improved : (php) attachment screen layout based on the parent
 * improved : (php) simpler action hooks structure in the main templates : index, header, footer, comments, sidebars
 * improved : (css) responsive behaviour : slider caption now visible for devices < 480px wide, thumbnail/content layout change for better display, body extra padding modified
@@ -499,8 +517,7 @@ The exceptions to this license are as follows:
 * fixed : (css) slider text overflow
 * removed : sidebars templates. Sidebar content is now rendered with the class-content-sidebar.php
 
-
-= 3.0.9 =
+= 3.0.9 August 19th, 2013 =
 * ! SAFE UPGRADE FOR CHILD THEME USERS (v3.0.8 => v3.0.9) ! *
 * fixed : function tc_is_home() was not checking the case where display nothing on home page. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/monten01">monten01</a>, <a href="http://wordpress.org/support/profile/rdellconsulting" target="_blank">rdellconsulting</a>
 * fixed : When the permalink structure was not set to default, conditional tags is_page() and is_attachement() stopped working. They are now replaced by tests on $post -> post_type in class-main-content.php
@@ -513,29 +530,27 @@ The exceptions to this license are as follows:
 * added : two new social networks in Customizer options : Instagram and WordPress
 * added : help button and page in admin with links to FAQ, documentation and forum
 * added : new constant TC_WEBSITE for author URI
+* added :  Swedish translation : thanks to Johnny Nyström
 
-
-= 3.0.8 =
+= 3.0.8 August 6th, 2013 =
 * fixed : function tc_is_home() was missing a test. No impact for child theme users. Thanks to <a href="http://wordpress.org/support/profile/ldanielpour962gmailcom">http://wordpress.org/support/profile/ldanielpour962gmailcom</a>, <a href="http://wordpress.org/support/profile/rdellconsulting">http://wordpress.org/support/profile/rdellconsulting</a>, <a href="http://wordpress.org/support/profile/andyblackburn">http://wordpress.org/support/profile/andyblackburn</a>, <a href="http://wordpress.org/support/profile/chandlerleighcom">http://wordpress.org/support/profile/chandlerleighcom</a>
 
-
-= 3.0.7 =
+= 3.0.7 August 5th, 2013 =
 * fixed : the "force default layout" option was returning an array instead of a string. Thanks to http://wordpress.org/support/profile/edwardwilliamson and http://wordpress.org/support/profile/henry12345 for pointing this out!
 * improved : get infos from parent theme if using a child theme in customizr-__ class constructor
 * improved : enhanced filter for footer credit
 * added : a notice about changelog if using a child theme
 * improved : use esc_html tags in featured page text and slider captions
 
-
-= 3.0.6 =
+= 3.0.6 August 4th, 2013 =
 * fixed : Spanish translation has been fixed. Many thanks again to Maria del Mar for her great job!
 * fixed : Pages protected with password will not display any thumbnail or excerpt when used in a featured page home block (thanks to rocketpopgames http://wordpress.org/support/profile/rocketpopgames)
 * improved : performance : jquery.fancybox.1.3.4.js and modernizr have been minified
 * added : footer credits can now be filtered with add_filter( 'footer_credits') and hooked with add_action ('__credits' )
 * added : new customizer option to personnalize the featured page buttons
+* added : brazilian portugues translation! Many thanks to Roner Marcelo  (http://ligaht.com.br/)
 
-
-= 3.0.5 =
+= 3.0.5 July 29th, 2013 =
 * fixed : breadcrumb translation domain was not right
 * fixed : domain translation for comment title was not set
 * fixed : in v3.0.4, a slider could disappeared only if some slides had been inserted at one time and then deleted or disabled afterward. Thanks to Dave http://wordpress.org/support/profile/rdellconsulting!
@@ -548,8 +563,7 @@ The exceptions to this license are as follows:
 * added : jQuery fallback for CSS Transitions in carousel (ie. Internet Explorer) : https://github.com/twbs/bootstrap/pull/3052/files
 * added : spanish translation. Thanks to Maria del Mar
 
-
-= 3.0.4 =
+= 3.0.4 July 22nd, 2013 =
 * fixed : minor css correction on responsive thumbnail hover effect
 * fixed : minor syntaxic issue on comment title (printf)
 * fixed : translation domain was wrong for social networks
@@ -559,49 +573,44 @@ The exceptions to this license are as follows:
 * added : Activation welcome screen
 * added : new action in admin_init hook to load the meta boxes class
 
-
-= 3.0.3 =
+= 3.0.3 July 20th, 2013 =
 * added : german translation. Thanks to Martin Bangemann <design@humane-wirtschaft.de> !
 * changed : default option are now based on customizer settings
 * fixed : reordering slides was deleting the slides
 
-
-= 3.0.2 =
+= 3.0.2 July 20th, 2013 =
 * fixed : problem fixed on theme zipping and upload in repository 
 
+= 3.0.1 July 4th, 2013 =
+* fixed : 'header already sent' error fixed (space before php opening markup in an admin class) was generating an error on log out  
 
-= 3.0.1 =
-* fixed : "header already sent" error fixed (space before php opening markup in an admin class) was generating an error on log out  
-
-= 3.0 =
+= 3.0 June 28th, 2013 =
 * changed : global code structure has changed. Classes are instanciated by a singleton factory, html is rendered with actions, values are called through filters
 * fixed : favicon rendering, $__options was not defined in head
 * fixed : sidebars reordering on responsive display, tc_script.js file
 
 
-= 2.1.8 =
+= 2.1.8 June 19rd, 2013 =
 * changed : activation options are disable for posts_per_page and show_on_front
 * changed : redirect to customizr screen on first theme activation only
 
 
-= 2.1.7 =
+= 2.1.7 June 19rd, 2013 =
 * fixed : home page slider was checking a $slider_active variable not correctly defined
 * fixed : slider name for page and post was only ajax saved. Now also regular save on post update.
 
 
-= 2.1.6 =
+= 2.1.6 June 19rd, 2013 =
 * improved : Menu title padding
 * fixed : front office : page and post sliders could not be disable once created
 * removed : some unnecessary favicon settings
 * fixed : function wp_head() moved just before the closing <head> tag
 * added : filter on wp_filter function
-* added : russion translation, thanks to Evgeny Sudakov!
+* added : russion translation, thanks to Evgeny Sudakov <flounder-1@yandex.ru>!
 * improved : thumbnail and content layout for posts lists
 * fixed : ajax saving was not working properly for page/page slider, a switch case was not breaked.
 
-
-
-= 2.1.5 =
+= 2.1.5 June 13rd, 2013 =
 * fixed 	: When deleted from a slider, the first slide was not cleared out from option array
 * added 	: Titles in customizer sections
 * added 	: checkbox to enable/disable featured pages images
@@ -613,8 +622,7 @@ The exceptions to this license are as follows:
 * improved 	: font icons are now coded in CSS Value (Hex)
 * added 	: add_action hooks in the templates index and sidebars
 
-
-= 2.1.4 =
+= 2.1.4 June 6th, 2013 =
 * fixed : in tc_meta_boxes.php, line 766, a check on the existence of $slide object has been added
 * fixed : iframe content was dissapearing when reordering divs on resize. Now  handled properly in tc_scripts.js
 * fixed : breadcrumb menu was getting covered (not clickable) in pages. fixed in css with z-index.
@@ -625,56 +633,53 @@ The exceptions to this license are as follows:
 * changed : text shadow of titles
 * changed : color and shadow of site description
 
-= 2.1.3 =
+= 2.1.3 May 29th, 2013 =
 * fixed : in tc_voila_slider, jump to next loop if attachment has been deleted
 * removed : title text in footer credit
 * fixed : image in full width slider are displayed with CSS properties max-width: 100%, like before v2.0.9
 
-= 2.1.2 =
+= 2.1.2 May 29th, 2013 =
 * fixed : new screenshot.png
 
-= 2.1.1 =
+= 2.1.1 May 28th, 2013 =
 * fixed : new set of images licensed under Creative Commons CC0 1.0 Universal Public Domain Dedication (GPL Compatible)
 
-
-= 2.1.0 =
+= 2.1.0 May 28th, 2013 =
 * fixed : slide was still showing up when 'add to a slider' button was unchecked and a slider selected
 * fixed : new set of images with compliant licenses
 
-
-= 2.0.9 =
+= 2.0.9 May 27th, 2013 =
 * replaced : jquery fancybox with a GPL compatible version
 * removed : icon set non GPL compatible
 * added : icon sets Genericons and Entypo GPL compatible
 * fixed : image in full width slider are now displayed with CSS properties height:100% et width: auto
 * added : function hooked on wp_head to render the custom CSS
 
-
-= 2.0.8 =
+= 2.0.8 May 26th, 2013 =
 * removed : minor issue, the function tc_write_custom_css() was written twice in header.php
 
-= 2.0.7 =
+= 2.0.7 May 25th, 2013 =
 * fixed : custom featured text (for featured pages) on front page was not updated when updated from customizer screen
 * fixed : title of page was displayed when selected as static page for front page
 * fixed : border-width of the status post-type box
 * added : custom css field in customizer option screen
 * added : lightbox checkbox option in customizer option screen
 
-= 2.0.6 =
+= 2.0.6 May 22nd, 2013 =
 * added : new customizer option to enable/disable comments in page. Option is tested in index.php before rendering comment_templates for pages
 * fixed : in the stylesheets, the right border of tables was unnecessary
 
-= 2.0.5 =
+= 2.0.5 May 17th, 2013  FIRST WP.ORG APPROVED VERSION ! =
 * fixed : printf php syntax in footer.php
 
-= 2.0.4 =
+= 2.0.4 May 16th, 2013 =
 * fixed : test on current_user_can( 'edit_post' ) in template part content-page.php was generating a Notice: Undefined offset: 0 in ~/wp-includes/capabilities.php on line 1067
 * added : copyright and license declaration in style.css
 
-= 2.0.3 =
+= 2.0.3 May 15th, 2013=
 * fixed : same unique slug as prefix for all custom function names, classes, public/global variables, database entries.
 
-= 2.0.2 =
+= 2.0.2 May 6th, 2013 =
 * fixed : CSS image gallery navigation arrows
 * removed : the_content() in attachment templates
 * fixed : bullet list in content now visible
@@ -682,39 +687,37 @@ The exceptions to this license are as follows:
 * fixed : skin colors when hovering and focusing form fields
 * fixed : skin colors when hovering social icons
 
-= 2.0.1 =
+= 2.0.1 April 29th, 2013 =
 * Removal of meta description (plugin territory)
 * Page edit button is only visible for users logged in and with edit_post capabilities
 
-= 2.0 =
-* Replacement of the previous custom post type slider feature (was plugin territory) with a custom fields and options slider generator  
+= 2.0 April 28th, 2013 =
+* Replace the previous custom post type slider feature (was plugin territory) with a custom fields and options slider generator
 * Addition of ajax powered meta boxes in post/page/attachment for the sliders
 
-= 1.1.7 =
+= 1.1.7 April 17th, 2013 =
 * file structure simplification : one core loop in index.php
+* 
 
-= 1.1.6 =
+= 1.1.6 April 17th, 2013 =
 * Removal of add_editor_style()
 * Addition of image.php and content-attachemnt.php for the images galleries and attachement rendering
 
-= 1.1.5 =
+= 1.1.5 April 17th, 2013 =
 * Sanitization of home_url() in some files (with esc_url)
 * Clearing of warning message in slides list : check on the $_GET['action'] index
 * Addition of some localized strings
 * Removal of the optional WP footer credit links
 
-= 1.1.4 =
+= 1.1.4 April 17th, 2013 =
 * addition of selected() and checked() functions in metaboxes input
 * better sanitization of WP customizer inputs : 3 sanitization callbacks added in tc_customizr_control_class for number, textarea and url
 
-= 1.1 =
+= 1.1 April 16th, 2013 =
 * Better stylesheets enqueuing
 * Fix the quick mode edit for slide custom post : add a script to disable the clearing of metas fields on update
 * Add a fallback screen on activation if WP version < 3.4 => WP Customizer not supported
 * Fix the slide caption texts rendering change the conditions (&& => ||)
 
-= 1.0 =
+= 1.0 April 16th, 2013 =
 * Initial Release
- 
-
-Enjoy it!
