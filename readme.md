@@ -1,24 +1,25 @@
+# Customizr v3.2.6 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=master)](https://travis-ci.org/Nikeo/customizr)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
-*Enjoy designing a beautiful website live with the WP customizer : 17 color skins, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 23 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.*
+> Enjoy designing a beautiful website live with the WP customizer : 17 color skins, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 23 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.
 
-# Copyright
+## Copyright
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>)) 
 Feel free to use, modify and redistribute this theme as you like.
 You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D. 
 Customizr is distributed under the terms of the [GNU GPL v2.0 or later](http://www.gnu.org/licenses/gpl-3.0.en.html)
 
 
-# Documentation and FAQs
+## Documentation and FAQs
 * DOCUMENTATION : http://themesandco.com/customizr
 * FAQs : http://themesandco.com/customizr/faq
 * SNIPPETS : http://themesandco.com/code-snippets/
 * HOOKS API : http://www.themesandco.com/customizr/hooks-api/
 
 
-# Setting up the Grunt dev environment
+## Setting up the Grunt dev environment
 
-## Grunt setup (first time Grunt users)
+### Grunt setup (first time Grunt users)
 ! Before starting this, you must have installed Node.js on your system.
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide.
 
@@ -61,13 +62,13 @@ npm install grunt-contrib-less --save-dev
 ```shell
 grunt customizr_dev
 ```
-## Running the Grunt tasks
+### Running the Grunt tasks
 All tasks are declared in the `gruntfile.js` in the customizr_tasks object.
 There are two main tasks : `customizr_dev` and `customizr_build`, using *sub tasks*.
 *  `customizr_dev` uses the watch event to triggers all the development tasks (less compiling, jshint, ...) and reload the browser page.
 *  `customizr_build` is run just before releasing a new version of the Customizr theme
 
-# Licenses
+## Licenses
 Unless otherwise specified, all the theme files, scripts and images
 are licensed under GNU General Public License version 2, see file license.txt.
 The exceptions to this license are as follows:
@@ -89,7 +90,7 @@ The exceptions to this license are as follows:
 * The image slider-loader.gif is released under the WTFPL license (http://www.wtfpl.net/, GPL compatible), generated on http://ajaxload.info/.
 
 
-# Changelog
+## Changelog
 = 3.2.5 November 15th 2014 =
 * added (lang) Thai language (th), thanks to <a href="http://new.forest.go.th" target="_blank">Wee Sritippho</a>
 * updated (lang) French translation
