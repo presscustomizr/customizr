@@ -9,6 +9,7 @@ module.exports = {
 			'!package.json',
 			'!.gitignore',
 			'!.ftpauth',
+			'!.travis.yml',
 			'!grunt-tasks/**',
 			'!**/*.db'
 		],

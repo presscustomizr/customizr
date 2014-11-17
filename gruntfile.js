@@ -23,11 +23,14 @@ module.exports = function(grunt) {
 			//https://www.npmjs.org/package/grunt-ssh
 			credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
 			customizr_tasks : {
-				'customizr_dev': ['watch'],
+				//https://www.npmjs.org/package/grunt-gitinfo
+				//Get Git info from a working copy and populate grunt.config with the data
+				'customizr_dev': ['gitinfo' , 'replace:readme', 'watch'],
+
 				'prod_css_skins': ['multi:prod_skins', 'cssmin:prod_skins' , 'cssmin:prod_rtl_skins', 'ftp_push:prod_skins'],
 				'prod_front_js': ['jshint', 'concat:front_js','uglify:front_js', 'ftp_push:all_front_js'],
 				'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'uglify:prod_admin_js', 'ftp_push:all_admin_css' , 'ftp_push:all_admin_js'],
-				'prod_build':  [ 'replace', 'clean', 'copy', 'compress'],
+				'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
 				//final build meta task
 				'customizr_build' : ['prod_css_skins', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
 				//travis ci virtual machine build check on js @todo check other resources?

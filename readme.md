@@ -1,4 +1,4 @@
-# Customizr v3.2.6 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=master)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.6 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Enjoy designing a beautiful website live with the WP customizer : 17 color skins, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 23 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.

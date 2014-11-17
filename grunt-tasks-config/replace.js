@@ -5,7 +5,7 @@ module.exports = {
 		],
 		overwrite: true,
 		replacements: [ {
-			from: /^.*Version:.*$/m,
+			from: /^.* Version:.*$/m,
 			to: '* Version: <%= pkg.version %>'
 		} ]
 	},
@@ -27,6 +27,17 @@ module.exports = {
 		replacements: [ {
 			from: /^.* Customizr v.*$/m,
 			to: ' * Customizr v<%= pkg.version %>'
+		} ]
+	},
+	//! the gitinfo task must be ran before the replace:readme task, to get Git info from a working copy and populate grunt.config with the data
+	readme : {
+		src: [
+			'readme.md'
+		],
+		overwrite: true,
+		replacements: [ {
+			from: /^.*# Customizr v.*$/m,
+			to: '# Customizr v<%= pkg.version %> [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=<%= gitinfo.local.branch.current.name %>)](https://travis-ci.org/Nikeo/customizr)'
 		} ]
 	}
 };
