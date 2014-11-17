@@ -25,6 +25,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 To work with Grunt, you need two files in the current working directory : gruntfile.js + package.json (can be created simply with `npm init`)
 
 1) Open your System Command Prompt and navigate to your project folder
+
 2) Install Grunt Command Line Interface globally (-g) => this will make the grunt command available in any folder of your system
 ```shell
 npm install -g grunt-cli
@@ -34,8 +35,11 @@ npm install -g grunt-cli
 npm install grunt --save-dev
 ```
 This will create a node_modules folder in the root folder
+
 4) If you are using git, create a `.gitignore` file and add /node_modules to ignore it in your commits
+
 5) Run ```shell npm install ``` => it will install all the Grunt dependencies for the project based on the package.json file
+
 5bis) if you need to install a grunt modules and add the dependencies in the package.json with `--save-dev`, run for example :
 ```shell
 npm install grunt-contrib-less --save-dev
