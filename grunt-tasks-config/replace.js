@@ -26,7 +26,7 @@ module.exports = {
 		overwrite: true,
 		replacements: [ {
 			from: /^.* Customizr v.*$/m,
-			to: ' * Customizr v <%= pkg.version %>'
+			to: ' * Customizr v<%= pkg.version %>'
 		} ]
 	}
 };
