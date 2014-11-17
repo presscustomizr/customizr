@@ -6,7 +6,7 @@
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>)) 
 Feel free to use, modify and redistribute this theme as you like.
 You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D. 
-Customizr is distributed under the terms of the GNU GPL v2.0 or later
+Customizr is distributed under the terms of the [GNU GPL v2.0 or later](http://www.gnu.org/licenses/gpl-3.0.en.html)
 
 
 # Documentation and FAQs
@@ -58,8 +58,9 @@ npm install grunt-contrib-less --save-dev
 **don't forget to add this file in your `.gitignore` file if you plan to share this project.
 
 7) In your system command prompt, run grunt : grunt [taskname], for example run
+```shell
 grunt customizr_dev
-
+```
 ## Running the Grunt tasks
 All tasks are declared in the `gruntfile.js` in the customizr_tasks object.
 There are two main tasks : `customizr_dev` and `customizr_build`, using *sub tasks*.
