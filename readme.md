@@ -35,12 +35,26 @@ npm install grunt --save-dev
 ```
 This will create a node_modules folder in the root folder
 4) If you are using git, create a `.gitignore` file and add /node_modules to ignore it in your commits
-5) run ```shell npm install ``` => it will install all the Grunt dependencies for the project based on the package.json file
+5) Run ```shell npm install ``` => it will install all the Grunt dependencies for the project based on the package.json file
 5bis) if you need to install a grunt modules and add the dependencies in the package.json with `--save-dev`, run for example :
 ```shell
 npm install grunt-contrib-less --save-dev
 ```
-6) In your system command prompt, run grunt : grunt [taskname]
+6) In your project root folder, create a `.ftpauth` file including the credential to your FTP remote server. Used to automate the FTP pushs. This file should be written like this :
+```js
+{
+  "path": "/remote-ftp-path/",
+  "host": "ftp.yourserver.com",
+  "nikeo": {
+    "username": "webmaster@yourserver.com",
+    "password": "password"
+  }
+}
+```
+**don't forget to add this file in your `.gitignore` file if you plan to share this project.
+
+7) In your system command prompt, run grunt : grunt [taskname], for example run
+grunt customizr_dev
 
 ## Running the Grunt tasks
 All tasks are declared in the `gruntfile.js` in the customizr_tasks object.
