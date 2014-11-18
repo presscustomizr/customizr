@@ -22,6 +22,9 @@ build/
 # Ignore everything:
 # *
 
+# UNIT TESTS
+# bin/
+
 # Except for the themes directories:
 # !wordpress/
 # !wordpress/*/
