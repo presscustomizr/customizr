@@ -7,6 +7,20 @@ env:
     - WP_VERSION=latest WP_MULTISITE=0
 
 before_script:
-    - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION 
+	# Install WP in /tmp/wordpress/
+	# Install Tests suite in /tmp/wordpress-tests-lib
+	# Setup wp-tests-config.php
+	# Install db
+    - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+    # Check some vars
+    - echo 'WP_TEST_DIR' . $WP_TESTS_DIR
+    - echo 'WP_CORE_DIR' . $WP_CORE_DIR
+    - echo $(basename $(pwd))
+    -
+    # Set up theme information.
+    - theme_slug=$(basename $(pwd))
+    - theme_dir=$WP_DEVELOP_DIR/src/wp-content/themes/$theme_slug
+    - cd ..
+    - mv $theme_slug $theme_dir
 
 script: phpunit --coverage-clover=coverage.clover
