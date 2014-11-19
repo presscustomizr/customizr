@@ -1,5 +1,5 @@
 <phpunit
-	bootstrap="tests/phpunit/includes/bootstrap.php"
+	bootstrap="tmp/wordpress-tests-lib/bootstrap.php"
 	backupGlobals="false"
 	colors="true"
 	convertErrorsToExceptions="true"
