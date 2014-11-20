@@ -18,12 +18,16 @@ PHP_CodeSniffer/
 # BUILD
 build/
 
+#WPCS
+wpcs/
+
 # EXEMPLE OF ADVANCED CONFIG WITH FOLDER
 # Ignore everything:
 # *
 
 # UNIT TESTS
 # bin/
+# tests/
 
 # Except for the themes directories:
 # !wordpress/
