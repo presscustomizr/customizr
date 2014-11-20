@@ -16,25 +16,272 @@ if ( ! class_exists( 'TC_headings' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
+        //set actions and filters for single post and page headings
+        add_action ( 'template_redirect'             , array( $this , 'tc_set_single_post_page_heading_hooks') );
+        //set actions and filters for archives headings
+        add_action ( 'template_redirect'             , array( $this , 'tc_set_archives_heading_hooks') );
+      }
+
+
+    
+
+      /**
+      * @return void
+      * set up hooks for archives headings
+      * callback of template_redirect
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_set_archives_heading_hooks() {
+        //is there anything to render in the current context ?
+        if ( ! $this -> tc_archive_title_and_class_callback() )
+          return;
+
         //Headings for archives, authors, search, 404
-        add_action  ( '__before_loop'                 , array( $this , 'tc_archives_headings' ));
-        //Headings for post, page, attachment
-        add_action  ( '__before_content'              , array( $this , 'tc_content_headings' ));
-        //Set single post/page icon with customizer options (since 3.2.0)
-        add_filter ( 'tc_content_title_icon'          , array( $this , 'tc_set_post_page_icon' ));
-        //Set single post/page icon with customizer options (since 3.2.0)
-        add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ));
+        add_action ( '__before_loop'                  , array( $this , 'tc_archives_headings_view' ) );
+        //Set archive icon with customizer options (since 3.2.0)
+        add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ) );
+        
+        add_filter( 'tc_archive_header_class'         , array( $this , 'tc_archive_title_and_class_callback'), 10, 2 );
+        add_filter( 'tc_archive_header_content'       , array( $this , 'tc_archive_title_and_class_callback'), 10, 1 );
       }
 
 
 
       /**
-      * The template part for displaying the not post/page headings : archives, author, search, 404 and the post page heading (if not font page)
+      * @return void
+      * set up hooks for single post and page headings
+      * callback of template_redirect
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_set_single_post_page_heading_hooks() {
+        //don't display titles for some post formats
+        if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_header', TC_init::$instance -> post_formats_with_no_header ) ) )
+          return false;
+
+        //by default don't display the title of the front page
+        if( apply_filters('tc_show_page_title', is_front_page() && 'page' == get_option( 'show_on_front' ) ) )
+          return false;
+
+        //Set single post/page icon with customizer options (since 3.2.0)
+        add_filter ( 'tc_content_title_icon'          , array( $this , 'tc_set_post_page_icon' ) );
+        //Headings for post, page, attachment
+        add_action ( '__before_content'               , array( $this , 'tc_content_headings_view' ) );
+        //Create the Customizr title
+        add_filter( 'the_title'                       , array( $this , 'tc_content_heading_title' ) , 0 );
+        //Add comment bubble
+        add_filter( 'the_title'                       , array( $this , 'tc_add_comment_bubble_after_title' ), 1 );
+        //Add edit link
+        add_filter( 'the_title'                       , array( $this , 'tc_add_edit_link_after_title' ), 2 );
+      }
+
+
+
+
+      /**
+      * The post/page heading view
       *
       * @package Customizr
       * @since Customizr 3.1.0
       */
-      function tc_archives_headings() {
+      function tc_content_headings_view() {
+        ?>
+          <header class="<?php echo esc_attr( apply_filters( 'tc_content_header_class', 'entry-header' ) ); ?>">
+            <?php 
+              do_action('__before_content_title');
+              echo apply_filters(
+                'tc_content_headings' , 
+                sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
+                            apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
+                            apply_filters( 'tc_content_title_icon', 'format-icon' ),
+                            get_the_title()
+                )
+              );
+              do_action('__after_content_title');
+              echo is_singular() ? apply_filters( 'tc_content_headings_separator', '<hr class="featurette-divider '.current_filter().'">' ) : '';
+            ?>
+          </header><!-- .entry-header -->
+        <?php
+      }//end of function
+
+
+
+
+      /**
+      * Archives heading view : archives, author, search, 404 and the post page heading (if not font page)
+      *
+      * @package Customizr
+      * @since Customizr 3.1.0
+      */
+      function tc_archives_headings_view() {
+        global $wp_query;
+        ob_start();
+        ?>
+
+        <header class="<?php echo apply_filters( 'tc_archive_header_class', $header_class, $_return_class = true); ?>">
+          <?php 
+          do_action('__before_archive_title');
+          echo apply_filters( 'tc_archive_header_content', '' );
+          do_action('__after_archive_title');
+          echo ( ! tc__f('__is_home') && ! $wp_query -> is_posts_page  ) ? apply_filters( 'tc_archives_headings_separator', '<hr class="featurette-divider '.current_filter(). '">' ) : '';
+          ?>
+        </header>
+
+        <?php
+        $html = ob_get_contents();
+        if ($html) ob_end_clean();
+        echo apply_filters( 'tc_archives_headings', $html );
+      }//end of function
+
+
+
+
+
+      /**
+      * Callback for get_the_title
+      * @return  string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_content_heading_title( $_title ) {
+        //Must be in the loop
+        if ( ! in_the_loop() )
+          return $_title;
+
+        //gets the post/page title
+        if ( is_singular() || ! apply_filters('tc_display_link_for_post_titles' , true ) ) {
+          return is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title;
+        }
+        else {
+          return sprintf('<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
+            get_permalink(),
+            sprintf( apply_filters( 'tc_post_link_title' , __( 'Permalink to %s' , 'customizr' ) ) , esc_attr( strip_tags( $_title ) ) ),
+            is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title
+          );//end sprintf
+        }
+      }
+
+
+
+
+      /**
+      * Callback for get_the_title
+      * @return  string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_add_comment_bubble_after_title( $_title ) {
+        //Must be in the loop
+        if ( ! in_the_loop() )
+          return $_title;
+
+        //when are we showing the comments number in title?
+        $comments_enabled                  = ( 1 == esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
+        $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
+        if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled ) )
+          return $_title;
+
+        //adds filters for comment bubble style and icon
+        $bubble_style                      = ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'';
+        $bubble_style                      = apply_filters( 'tc_comment_bubble_style', $bubble_style );
+        $bubble_comment                    = sprintf('<span class="fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
+                                                $bubble_style,
+                                                get_comments_number()
+                                                );
+        $bubble_comment                    = apply_filters( 'tc_bubble_comment', $bubble_comment );
+
+        //checks if comments are opened AND if there are any comments to display
+        return sprintf('%1$s <span class="comments-link"><a href="%2$s#tc-comment-title" title="%3$s %4$s">%5$s</a></span>',
+          $_title,
+          is_singular() ? '' : get_permalink(),
+          __( 'Comment(s) on' , 'customizr' ),
+          esc_attr( strip_tags( $_title ) ),
+          $bubble_comment
+        );
+      }
+
+
+
+
+      /**
+      * Callback for get_the_title
+      * @return  string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_add_edit_link_after_title( $_title ) {
+        //Must be in the loop
+        if ( ! in_the_loop() )
+          return $_title;
+
+        //when are we displaying the edit link?
+        $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page() ) ? true : false;
+        $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;
+        if ( ! apply_filters( 'tc_edit_in_title', $edit_enabled ) )
+          return $_title;
+
+        return sprintf('%1$s <span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="%2$s" title="%3$s">%3$s</a></span>',
+          $_title,
+          get_edit_post_link(),
+          __( 'Edit' , 'customizr' )
+        );
+
+      }
+
+
+
+      /**
+      * Filter tc_content_title_icon
+      * @return  boolean
+      *
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_set_post_page_icon( $_bool ) {
+          if ( is_page() )
+            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
+          if ( is_single() && ! is_page() )
+            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
+          if ( ! is_single() )
+            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
+          //last condition
+          return ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_title_icon' ) ) ) ? false : $_bool;
+      }
+
+
+
+
+      /**
+      * Filter tc_archive_icon
+      * @return  boolean
+      * 
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_set_archive_icon( $_bool ) {
+          $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_archive_title_icon' ) ) ) ? false : $_bool;
+          //last condition
+          return ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_title_icon' ) ) ) ? false : $_bool;
+      }
+
+
+
+
+      /**
+      * Return 1) the archive title html content OR 2) the archive title class OR 3) the boolean
+      * @return  boolean
+      * 
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_archive_title_and_class_callback( $_title = null, $_return_class = false ) {
+        $content = false;
         //case page for posts but not on front
         global $wp_query;
         if ( $wp_query -> is_posts_page && ! is_front_page() ) {
@@ -132,12 +379,12 @@ if ( ! class_exists( 'TC_headings' ) ) :
             $content    .= sprintf('<div class="archive-meta">%1$s</div>',
               tag_description()
             );
-          }
+                              }
           $content       = apply_filters( 'tc_tag_archive_header_content', $content );
         }
 
         //time archives
-        if ( !is_singular() && ( is_day() || is_month() || is_year() ) ) {
+        if ( ! is_singular() && ( is_day() || is_month() || is_year() ) ) {
           $archive_type   = is_day() ? sprintf( __( 'Daily Archives: %s' , 'customizr' ), '<span>' . get_the_date() . '</span>' ) : __( 'Archives' , 'customizr' );
           $archive_type   = is_month() ? sprintf( __( 'Monthly Archives: %s' , 'customizr' ), '<span>' . get_the_date( _x( 'F Y' , 'monthly archives date format' , 'customizr' ) ) . '</span>' ) : $archive_type;
           $archive_type   = is_year() ? sprintf( __( 'Yearly Archives: %s' , 'customizr' ), '<span>' . get_the_date( _x( 'Y' , 'yearly archives date format' , 'customizr' ) ) . '</span>' ) : $archive_type;
@@ -149,160 +396,9 @@ if ( ! class_exists( 'TC_headings' ) ) :
           $content        = apply_filters( 'tc_time_archive_header_content', $content );
         }
 
-        //renders the heading
-        if ( !isset($content) || !isset($header_class) )
-          return;
-        global $wp_query;
-        ob_start();
-        ?>
+        return $_return_class ? $header_class : $content;
 
-        <header class="<?php echo apply_filters( 'tc_archive_header_class', $header_class ); ?>">
-          <?php 
-          do_action('__before_archive_title');
-
-          echo apply_filters( 'tc_archive_header_content', $content );
-
-          do_action('__after_archive_title');
-          
-          echo ( !tc__f('__is_home') && !$wp_query -> is_posts_page  ) ? apply_filters( 'tc_archives_headings_separator', '<hr class="featurette-divider '.current_filter(). '">' ) : '';
-          ?>
-        </header>
-
-        <?php
-        $html = ob_get_contents();
-        ob_end_clean();
-        echo apply_filters( 'tc_archives_headings', $html );
-      }//end of function
-
-
-
-
-      /**
-       * The template part for displaying the post/page header
-       *
-       * @package Customizr
-       * @since Customizr 3.1.0
-       */
-      function tc_content_headings() {
-        //we don't display titles for some post formats
-        $post_formats_with_no_header = apply_filters( 'tc_post_formats_with_no_header', TC_init::$instance -> post_formats_with_no_header );
-        if( in_array( get_post_format(), $post_formats_with_no_header ) )
-          return;
-
-        //by default we don't display the title of the front page
-        if( apply_filters('tc_show_page_title', is_front_page() && 'page' == get_option( 'show_on_front' ) ) )
-          return
-        ?>
-
-          <header class="<?php echo apply_filters( 'tc_content_header_class', 'entry-header' ); ?>">
-            
-            <?php 
-            do_action('__before_content_title');
-
-            //adds filters for comment bubble style and icon
-            $bubble_style                      = ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'';
-            $bubble_style                      = apply_filters( 'tc_comment_bubble_style', $bubble_style );
-            $bubble_comment                    = sprintf('<span class="fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
-                                                    $bubble_style,
-                                                    get_comments_number()
-                                                    );
-            $bubble_comment                    = apply_filters( 'tc_bubble_comment', $bubble_comment );
-
-            //when are we showing the comments number in title?
-            $comments_enabled                  = ( 1 == esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
-            $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
-            $comments_enabled                  = apply_filters( 'tc_comments_in_title', $comments_enabled );
-
-            //when are we displaying the edit link?
-            $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page() ) ? true : false;
-            $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;
-            $edit_enabled                      = apply_filters( 'tc_edit_in_title', $edit_enabled );
-
-            //declares vars
-            $html = '';
-            $filter_args = array();
-
-            if ( (get_the_title() != null) ) {
-              
-              //gets the post/page title
-              if ( is_singular() || ! apply_filters('tc_display_link_for_post_titles' , true ) ) {
-                $tc_heading_title = ( get_the_title() == null ) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : get_the_title();
-              }
-              else {
-                $tc_heading_title = sprintf('<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
-                                get_permalink(),
-                                sprintf( apply_filters( 'tc_post_link_title' , __( 'Permalink to %s' , 'customizr' ) ) , esc_attr( strip_tags( get_the_title() ) ) ),
-                                ( get_the_title() == null ) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : get_the_title()
-                              );//end sprintf
-              }
-
-              $filter_args        =  array( $bubble_comment, $comments_enabled, $edit_enabled , $tc_heading_title );
-
-              //renders the full title
-              $html = sprintf('<%1$s class="entry-title %2$s">%3$s %4$s %5$s</%1$s>',
-                              apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
-                              apply_filters( 'tc_content_title_icon', 'format-icon' ),
-                              $tc_heading_title,
-
-                              //checks if comments are opened AND if there are any comments to display
-                              $comments_enabled ? sprintf('<span class="comments-link"><a href="%1$s#tc-comment-title" title="%2$s %3$s">%4$s</a></span>',
-                                                    is_singular() ? '' : get_permalink(),
-                                                    __( 'Comment(s) on' , 'customizr' ),
-                                                    get_the_title(),
-                                                    $bubble_comment
-                                                    ) : '',
-
-                              $edit_enabled ? sprintf('<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="%1$s" title="%2$s">%2$s</a></span>',
-                                                get_edit_post_link(),
-                                                __( 'Edit' , 'customizr' )
-                                                ) : ''
-              );//end sprintf
-
-            }//end if title exists
-            echo apply_filters( 'tc_content_headings' , $html, $filter_args );
-
-            do_action('__after_content_title');
-
-            echo is_singular() ? apply_filters( 'tc_content_headings_separator', '<hr class="featurette-divider '.current_filter().'">' ) : '';
-            ?>
-
-          </header><!-- .entry-header -->
-
-        <?php
-      }//end of function
-
-
-      /**
-      * Filter tc_content_title_icon
-      * @return  boolean
-      *
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      function tc_set_post_page_icon( $_bool ) {
-          if ( is_page() )
-            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
-          if ( is_single() && ! is_page() )
-            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
-          if ( ! is_single() )
-            $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
-          //last condition
-          return ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_title_icon' ) ) ) ? false : $_bool;
-      }
-
-
-      /**
-      * Filter tc_archive_icon
-      * @return  boolean
-      * 
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      function tc_set_archive_icon( $_bool ) {
-          $_bool = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_archive_title_icon' ) ) ) ? false : $_bool;
-          //last condition
-          return ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_title_icon' ) ) ) ? false : $_bool;
-      }
+      }//end of fn
 
   }//end of class
 endif;
