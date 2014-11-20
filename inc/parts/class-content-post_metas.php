@@ -100,6 +100,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
  
         /**
         * Set meta content base on user options
+        * callback of tc_meta_utility_text
         *
         * @package Customizr
         * @since Customizr 3.2.6
