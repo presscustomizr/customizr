@@ -11,6 +11,10 @@ module.exports = {
 			'!.ftpauth',
 			'!.travis.yml',
 			'!grunt-tasks/**',
+			'!tests/**',
+			'!travis-examples/**',
+			'!wpcs/**',
+			'!phpunit.xml',
 			'!**/*.db'
 		],
 		dest: 'build/<%= pkg.name %>/'
