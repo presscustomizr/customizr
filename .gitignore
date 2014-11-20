@@ -29,6 +29,9 @@ wpcs/
 # bin/
 # tests/
 
+# Travis
+travis-examples/
+
 # Except for the themes directories:
 # !wordpress/
 # !wordpress/*/
