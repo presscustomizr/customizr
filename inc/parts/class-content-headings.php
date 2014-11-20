@@ -39,12 +39,15 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return;
 
         //Headings for archives, authors, search, 404
-        add_action ( '__before_loop'                  , array( $this , 'tc_archives_headings_view' ) );
+        add_action ( '__before_loop'                  , array( $this , 'tc_headings_view' ) );
         //Set archive icon with customizer options (since 3.2.0)
         add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ) );
         
         add_filter( 'tc_archive_header_class'         , array( $this , 'tc_archive_title_and_class_callback'), 10, 2 );
-        add_filter( 'tc_archive_header_content'       , array( $this , 'tc_archive_title_and_class_callback'), 10, 1 );
+        add_filter( 'tc_headings_content'             , array( $this , 'tc_archive_title_and_class_callback'), 10, 1 );
+        global $wp_query;
+        if ( tc__f('__is_home') || $wp_query -> is_posts_page )
+          add_filter( 'tc_archive_headings_separator' , '__return_false' );
       }
 
 
@@ -60,83 +63,73 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function tc_set_single_post_page_heading_hooks() {
         //don't display titles for some post formats
         if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_header', TC_init::$instance -> post_formats_with_no_header ) ) )
-          return false;
+          return;
 
         //by default don't display the title of the front page
         if( apply_filters('tc_show_page_title', is_front_page() && 'page' == get_option( 'show_on_front' ) ) )
-          return false;
+          return;
 
         //Set single post/page icon with customizer options (since 3.2.0)
         add_filter ( 'tc_content_title_icon'          , array( $this , 'tc_set_post_page_icon' ) );
         //Headings for post, page, attachment
-        add_action ( '__before_content'               , array( $this , 'tc_content_headings_view' ) );
+        add_action ( '__before_content'               , array( $this , 'tc_headings_view' ) );
+        add_filter ( 'tc_headings_content'            , array( $this , 'tc_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
         add_filter( 'the_title'                       , array( $this , 'tc_content_heading_title' ) , 0 );
         //Add comment bubble
         add_filter( 'the_title'                       , array( $this , 'tc_add_comment_bubble_after_title' ), 1 );
         //Add edit link
         add_filter( 'the_title'                       , array( $this , 'tc_add_edit_link_after_title' ), 2 );
+        //No hr if not singular
+        if ( ! is_singular() )
+          add_filter( 'tc_content_headings_separator' , '__return_false' );
       }
 
 
 
-
       /**
-      * The post/page heading view
+      * Generic heading view : archives, author, search, 404 and the post page heading (if not font page)
+      * This is the place where every heading content blocks are hooked
       *
       * @package Customizr
       * @since Customizr 3.1.0
       */
-      function tc_content_headings_view() {
-        ?>
-        <header class="<?php echo esc_attr( apply_filters( 'tc_content_header_class', 'entry-header' ) ); ?>">
-          <?php 
-            do_action('__before_content_title');
-            echo apply_filters(
-              'tc_content_headings' , 
-              sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
-                          apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
-                          apply_filters( 'tc_content_title_icon', 'format-icon' ),
-                          get_the_title()
-              )
-            );
-            do_action('__after_content_title');
-            echo is_singular() ? apply_filters( 'tc_content_headings_separator', '<hr class="featurette-divider '.current_filter().'">' ) : '';
-          ?>
-        </header><!-- .entry-header -->
-        <?php
-      }//end of function
-
-
-
-
-      /**
-      * Archives heading view : archives, author, search, 404 and the post page heading (if not font page)
-      *
-      * @package Customizr
-      * @since Customizr 3.1.0
-      */
-      function tc_archives_headings_view() {
-        global $wp_query;
+      function tc_headings_view() {
+        $_heading_type = ( '__before_content' == current_filter() ) ? 'content' : 'archive';
         ob_start();
         ?>
-
-        <header class="<?php echo implode( ' ' , apply_filters( 'tc_archive_header_class', array(), $_return_class = true ) ); ?>">
+        <header class="<?php echo implode( ' ' , apply_filters( "tc_{$_heading_type}_header_class", array('entry-header'), $_return_class = true ) ); ?>">
           <?php 
-            do_action('__before_archive_title');
-            echo apply_filters( 'tc_archive_header_content', '' );
-            do_action('__after_archive_title');
-            echo ( ! tc__f('__is_home') && ! $wp_query -> is_posts_page  ) ? apply_filters( 'tc_archives_headings_separator', '<hr class="featurette-divider '.current_filter(). '">' ) : '';
+            do_action( "__before_{$_heading_type}_title" );
+            echo apply_filters( "tc_headings_content", '' , $_heading_type );
+            do_action( "__after_{$_heading_type}_title" );
+
+            echo apply_filters( "tc_{$_heading_type}_headings_separator", '<hr class="featurette-divider '.current_filter(). '">' );
           ?>
         </header>
-
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'tc_archives_headings', $html );
+        echo apply_filters( 'tc_headings_view', $html );
       }//end of function
 
 
+
+
+      /**
+      * Callback for tc_headings_content
+      * @return  string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_post_page_title_callback( $_content , $_heading_type ) {
+        return sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
+              apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
+              apply_filters( 'tc_content_title_icon', 'format-icon' ),
+              get_the_title()
+        );
+      }
 
 
 
