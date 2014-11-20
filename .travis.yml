@@ -87,6 +87,10 @@ before_script:
     - cd $theme_dir
     # After CodeSniffer install you should refresh your path.
     - phpenv rehash
+    # Install Grunt CLI
+    - npm install -g grunt-cli
+    # Install Customizr Package
+    - npm install
 
 # Run test script commands.
 # Default is specific to project language.
@@ -104,6 +108,7 @@ script:
     # --standard: Use WordPress as the standard.
     # --extensions: Only sniff PHP files.
     # - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
+    - grunt travis --verbose --context=travis
 
 # Receive notifications for build results.
 # @link http://docs.travis-ci.com/user/notifications/#Email-notifications
