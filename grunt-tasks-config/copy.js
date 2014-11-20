@@ -12,6 +12,7 @@ module.exports = {
 			'!.travis.yml',
 			'!grunt-tasks/**',
 			'!tests/**',
+			'!bin/**',
 			'!travis-examples/**',
 			'!wpcs/**',
 			'!phpunit.xml',
