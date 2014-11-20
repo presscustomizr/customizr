@@ -25,26 +25,26 @@ env:
     # Trunk
     # @link https://github.com/WordPress/WordPress
     - WP_VERSION=master WP_MULTISITE=0
-    - WP_VERSION=master WP_MULTISITE=1
+    # - WP_VERSION=master WP_MULTISITE=1
     # WordPress 4.0
     # @link https://github.com/WordPress/WordPress/tree/4.0-branch
-    - WP_VERSION=4.0 WP_MULTISITE=0
-    - WP_VERSION=4.0 WP_MULTISITE=1
+    # - WP_VERSION=4.0 WP_MULTISITE=0
+    # - WP_VERSION=4.0 WP_MULTISITE=1
     # WordPress 3.9
     # @link https://github.com/WordPress/WordPress/tree/3.9-branch
-    - WP_VERSION=3.9 WP_MULTISITE=0
-    - WP_VERSION=3.9 WP_MULTISITE=1
+    # - WP_VERSION=3.9 WP_MULTISITE=0
+    #- WP_VERSION=3.9 WP_MULTISITE=1
 
 # Declare 5.6 beta in test matrix.
 # @link https://buddypress.trac.wordpress.org/ticket/5620
 # @link http://docs.travis-ci.com/user/build-configuration/
-matrix:
-    include:
-        - php: 5.6
-          env: WP_VERSION=master
-    allow_failures:
-        - php: 5.6
-    fast_finish: true
+# matrix:
+  #  include:
+   #     - php: 5.6
+    #      env: WP_VERSION=master
+    # allow_failures:
+      #  - php: 5.6
+    # fast_finish: true
 
 # Use this to prepare the system to install prerequisites or dependencies.
 # e.g. sudo apt-get update.
@@ -103,7 +103,7 @@ script:
     # -n flag: Do not print warnings (shortcut for --warning-severity=0)
     # --standard: Use WordPress as the standard.
     # --extensions: Only sniff PHP files.
-    - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
+    # - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
 
 # Receive notifications for build results.
 # @link http://docs.travis-ci.com/user/notifications/#Email-notifications
