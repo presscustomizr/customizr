@@ -678,14 +678,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                      COMMENTS SETTINGS
       ------------------------------------------------------------------------------------------------------*/    
       $comment_option_map = array(
-
               'tc_theme_options[tc_page_comments]'  =>  array(
-                                'default'       => 0,
-                                'control'   => 'TC_controls' ,
+                                'default'     => 0,
+                                'control'     => 'TC_controls',
                                 'label'       => __( 'Enable comments on pages' , 'customizr' ),
-                                'section'     => 'tc_page_comments' ,
-                                'type'        => 'checkbox' ,
-                                'notice'    => __( 'This option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen.' , 'customizr' ),
+                                'section'     => 'tc_page_comments',
+                                'type'        => 'checkbox',
+                                'priority'    => 20,
+                                'notice'      => __( 'This option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen.' , 'customizr' ),
               )
       );
       $comment_option_map = apply_filters( 'tc_comment_option_map', $comment_option_map , $get_default );
@@ -1727,6 +1727,19 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'min'         => 0,
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
+              ),
+              /* Comments */
+              'tc_theme_options[tc_comment_bubble_shape]' => array(
+                                'default'     => 'default',
+                                'control'     => 'TC_controls',
+                                'label'       => __( 'Enable comments on pages' , 'customizr' ),
+                                'section'     => 'tc_page_comments',
+                                'type'      =>  'select' ,
+                                'choices'     => array(
+                                        'default'   => __( "Default" , 'customizr' ),
+                                        'custom'    => __( 'Custom' , 'customizr' ),
+                                ),
+                                'priority'    => 10,
               ),
 
               /* Footer */

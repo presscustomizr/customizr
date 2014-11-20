@@ -20,6 +20,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_action ( 'template_redirect'             , array( $this , 'tc_set_single_post_page_heading_hooks') );
         //set actions and filters for archives headings
         add_action ( 'template_redirect'             , array( $this , 'tc_set_archives_heading_hooks') );
+        //Custom Bubble comment since 3.2.6
+        add_filter ( 'tc_bubble_comment'             , array( $this , 'tc_custom_bubble_comment') );
       }
 
 
@@ -177,14 +179,13 @@ if ( ! class_exists( 'TC_headings' ) ) :
         if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled ) )
           return $_title;
 
-        //adds filters for comment bubble style and icon
-        $bubble_style                      = ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'';
-        $bubble_style                      = apply_filters( 'tc_comment_bubble_style', $bubble_style );
-        $bubble_comment                    = sprintf('<span class="fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
-                                                $bubble_style,
-                                                get_comments_number()
-                                                );
-        $bubble_comment                    = apply_filters( 'tc_bubble_comment', $bubble_comment );
+        $_default_bubble_comment                    = apply_filters( 
+          'tc_bubble_comment',
+          sprintf('<span class="fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
+            apply_filters( 'tc_comment_bubble_style' , ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'' ),
+            get_comments_number()
+          )
+        );
 
         //checks if comments are opened AND if there are any comments to display
         return sprintf('%1$s <span class="comments-link"><a href="%2$s#tc-comment-title" title="%3$s %4$s">%5$s</a></span>',
@@ -192,7 +193,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           is_singular() ? '' : get_permalink(),
           __( 'Comment(s) on' , 'customizr' ),
           esc_attr( strip_tags( $_title ) ),
-          $bubble_comment
+          $_default_bubble_comment
         );
       }
 
@@ -393,6 +394,22 @@ if ( ! class_exists( 'TC_headings' ) ) :
         return $_return_class ? $_header_class : $content;
 
       }//end of fn
+
+
+
+      function tc_custom_bubble_comment( $_default ) {
+        if ( 'default' == esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) ) )
+          return $_default;
+        if ( 0 == get_comments_number() ) 
+          return '';
+ 
+          return sprintf('<span class="my-custom-bubble">%1$s %2$s</span>',
+                    get_comments_number(),
+                    sprintf( _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ),
+                      number_format_i18n( get_comments_number(), 'customizr' )
+                    )
+          );
+      }
 
   }//end of class
 endif;
