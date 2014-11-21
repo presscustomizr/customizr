@@ -953,7 +953,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                               'static_front_page' ,
                               'colors',
                               'nav',
-                              'title_tagline'
+                              'title_tagline',
+                              'tc_page_comments'
             )
       );
     }
@@ -1080,7 +1081,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'description' =>  __( 'Set up post metas options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
-                        'tc_page_comments'          => array(
+                        'tc_comments_settings'          => array(
                                             'title'     =>  __( 'Comments' , 'customizr' ),
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 25 : 60,
                                             'description' =>  __( 'Set up comments options' , 'customizr' ),
@@ -1125,7 +1126,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_theme_options[tc_social_in_right-sidebar]',
         'tc_theme_options[tc_social_in_footer]',
         'tc_theme_options[tc_top_border]',
-        'tc_theme_options[tc_custom_css]'
+        'tc_theme_options[tc_custom_css]',
+        'tc_theme_options[tc_page_comments]'
       );
       foreach ($_to_unset as $_value) {
         if ( ! isset($_map['add_setting_control'][$_value]) )
@@ -1137,14 +1139,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $_new_settings = array(
         /*********** OLD **************/
         //Breadcrumb
-                'tc_theme_options[tc_breadcrumb]' => array(
-                                'default'       => 1,//Breadcrumb is checked by default
-                                'label'         => __( 'Display Breadcrumb' , 'customizr' ),
-                                'control'     =>  'TC_controls' ,
-                                'section'       => 'tc_breadcrumb_settings' ,
-                                'type'          => 'checkbox' ,
-                                'priority'      => 1,
-                ),
+              'tc_theme_options[tc_breadcrumb]' => array(
+                              'default'       => 1,//Breadcrumb is checked by default
+                              'label'         => __( 'Display Breadcrumb' , 'customizr' ),
+                              'control'     =>  'TC_controls' ,
+                              'section'       => 'tc_breadcrumb_settings' ,
+                              'type'          => 'checkbox' ,
+                              'priority'      => 1,
+              ),
                 
               //Global sidebar layout
               'tc_theme_options[tc_sidebar_global_layout]' => array(
@@ -1729,19 +1731,69 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               /* Comments */
+              'tc_theme_options[tc_comment_show_bubble]'  =>  array(
+                                'default'       => 1,
+                                'title'         => __('Comments bubbles' , 'customizr'),
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Display the number of comments in a bubble next to the post title" , "customizr" ),
+                                'section'       => 'tc_comments_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 1
+              ),
+
               'tc_theme_options[tc_comment_bubble_shape]' => array(
                                 'default'     => 'default',
                                 'control'     => 'TC_controls',
-                                'label'       => __( 'Enable comments on pages' , 'customizr' ),
-                                'section'     => 'tc_page_comments',
+                                'label'       => __( 'Comments bubble shape' , 'customizr' ),
+                                'section'     => 'tc_comments_settings',
                                 'type'      =>  'select' ,
                                 'choices'     => array(
-                                        'default'   => __( "Default" , 'customizr' ),
-                                        'custom'    => __( 'Custom' , 'customizr' ),
+                                        'default'             => __( "Small bubble" , 'customizr' ),
+                                        'custom-bubble-one'   => __( 'Larger bubble' , 'customizr' ),
                                 ),
                                 'priority'    => 10,
               ),
 
+              'tc_theme_options[tc_comment_bubble_color_type]' => array(
+                                'default'     => 'custom',
+                                'control'     => 'TC_controls',
+                                'label'       => __( 'Comments bubble color' , 'customizr' ),
+                                'section'     => 'tc_comments_settings',
+                                'type'      =>  'select' ,
+                                'choices'     => array(
+                                        'skin'     => __( "Skin color" , 'customizr' ),
+                                        'custom'   => __( 'Custom' , 'customizr' ),
+                                ),
+                                'priority'    => 20,
+              ),
+
+              'tc_theme_options[tc_comment_bubble_color]' => array(
+                                'default'     => '#F00',
+                                'control'     => 'WP_Customize_Color_Control',
+                                'label'       => __( 'Comments bubble color' , 'customizr' ),
+                                'section'     => 'tc_comments_settings',
+                                'type'        =>  'color' ,
+                                'priority'    => 30,
+                                'sanitize_callback'    => array( $this, 'tc_sanitize_hex_color' ),
+                                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                                'transport'   => 'postMessage'
+              ),
+
+              'tc_theme_options[tc_page_comments]'  =>  array(
+                                'default'     => 0,
+                                'control'     => 'TC_controls',
+                                'title'       => __( 'Other comments settings' , 'customizr'),
+                                'label'       => __( 'Enable comments on pages' , 'customizr' ),
+                                'section'     => 'tc_comments_settings',
+                                'type'        => 'checkbox',
+                                'priority'    => 40,
+                                'notice'      => sprintf('%1$s %2$s <a href="%3$s" target="_blank">%4$s</a>',
+                                    __( 'If checked, this option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen.' , 'customizr' ),
+                                    __( "Change other comments settings in the" , 'customizr'),
+                                    admin_url() . 'options-discussion.php',
+                                    __( 'discussion settings page.' , 'customizr' )
+                                ),
+              ),
               /* Footer */
               'tc_theme_options[tc_show_back_to_top]'  =>  array(
                                 'default'       => 1,

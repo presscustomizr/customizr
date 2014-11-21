@@ -17,11 +17,13 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function __construct () {
         self::$instance =& $this;
         //set actions and filters for single post and page headings
-        add_action ( 'template_redirect'             , array( $this , 'tc_set_single_post_page_heading_hooks') );
+        add_action( 'template_redirect'             , array( $this , 'tc_set_single_post_page_heading_hooks') );
         //set actions and filters for archives headings
-        add_action ( 'template_redirect'             , array( $this , 'tc_set_archives_heading_hooks') );
+        add_action( 'template_redirect'             , array( $this , 'tc_set_archives_heading_hooks') );
         //Custom Bubble comment since 3.2.6
-        add_filter ( 'tc_bubble_comment'             , array( $this , 'tc_custom_bubble_comment') );
+        add_filter( 'tc_bubble_comment'             , array( $this , 'tc_custom_bubble_comment') );
+        //Add comment bubble color type class to the headings <header> wrapper element
+        add_filter( 'tc_content_header_class'       , array( $this , 'tc_set_bubble_comment_color_type') );
       }
 
 
@@ -169,8 +171,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.2.6
       */
       function tc_add_comment_bubble_after_title( $_title ) {
-        //Must be in the loop
-        if ( ! in_the_loop() )
+        //Must be in the loop and enabled by user
+        if ( ! in_the_loop() || 0 == esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) )
           return $_title;
 
         //when are we showing the comments number in title?
@@ -181,7 +183,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
         $_default_bubble_comment                    = apply_filters( 
           'tc_bubble_comment',
-          sprintf('<span class="fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
+          sprintf('<span class="tc-comment-bubble fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
             apply_filters( 'tc_comment_bubble_style' , ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'' ),
             get_comments_number()
           )
@@ -397,18 +399,42 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
 
+
+      /**
+      * Callback of tc_content_header_class
+      * @return array of css classes
+      * 
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_set_bubble_comment_color_type( $_class ) {
+        $_bubble_color_type   = esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color_type' ) );
+        return ( 'skin' == $_bubble_color_type ) ? array_merge( $_class , array('tc-skin-bubble-comment-color') ) : $_class;
+      }
+
+
+
+      /**
+      * Callback of tc_bubble_comment
+      * @return string
+      * 
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
       function tc_custom_bubble_comment( $_default ) {
-        if ( 'default' == esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) ) )
+        $_bubble_shape = esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) );
+        if ( 'default' == $_bubble_shape )
           return $_default;
-        if ( 0 == get_comments_number() ) 
+        if ( 0 == get_comments_number() )
           return '';
  
-          return sprintf('<span class="my-custom-bubble">%1$s %2$s</span>',
-                    get_comments_number(),
-                    sprintf( _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ),
-                      number_format_i18n( get_comments_number(), 'customizr' )
-                    )
-          );
+        return sprintf('<span class="tc-comment-bubble %3$s">%1$s %2$s</span>',
+                  get_comments_number(),
+                  sprintf( _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ),
+                    number_format_i18n( get_comments_number(), 'customizr' )
+                  ),
+                  $_bubble_shape
+        );
       }
 
   }//end of class

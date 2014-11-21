@@ -323,7 +323,71 @@ if ( ! class_exists( 'TC_resources' ) ) :
 						}";
 				}
 			}
-		  	wp_add_inline_style( 'customizr-skin', $_css );
+
+			//CUSTOM COMMENT BUBBLE SHAPE AND COLOR
+			if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) ) {
+				$_bubble_color_type 	= esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color_type' ) );
+				$_custom_bubble_color 	= ( 'skin' == $_bubble_color_type ) ? false : esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color' ) );
+
+				if ( 'default' != esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) ) ) {
+					//apply custom color only if type custom
+					//if color type is skin => bubble color is defined in the skin stylesheet
+					if ( false != $_custom_bubble_color ) {
+						$_css .= "
+							.comments-link .custom-bubble-one {
+								color: {$_custom_bubble_color};
+								border: 2px solid {$_custom_bubble_color};
+							}
+							.comments-link .custom-bubble-one:before {
+								border-color: {$_custom_bubble_color} rgba(0, 0, 0, 0);
+							}
+						";
+					}
+					$_css .= " 
+					.comments-link .custom-bubble-one {
+						position: relative;
+						bottom: 28px;
+						right: 10px;
+						padding: 4px;
+						margin: 1em 0 3em;
+						background: none;
+						-webkit-border-radius: 10px;
+						-moz-border-radius: 10px;
+						border-radius: 10px;
+						font-size: 10px;
+					}
+					.comments-link .custom-bubble-one:before {
+						content: '';
+						position: absolute;
+						bottom: -14px;
+						left: 10px;
+						border-width: 14px 8px 0;
+						border-style: solid;
+						display: block;
+						width: 0;
+					}
+					.comments-link .custom-bubble-one:after {
+						content: '';
+						position: absolute;
+						bottom: -11px;
+						left: 11px;
+						border-width: 13px 7px 0;
+						border-style: solid;
+						border-color: #FAFAFA rgba(0, 0, 0, 0);
+						display: block;
+						width: 0;
+					}";
+				}
+				else {
+					if ( false != $_custom_bubble_color && '#F00' != $_custom_bubble_color ) {//default comment bubble custom color
+						$_css .= "
+							.comments-link .fs1 {
+								color:{$_custom_bubble_color};
+						}";
+					}
+				}
+			}//end if show bubble comment
+		  	wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , $_css ) );
 		}
 
 		/*

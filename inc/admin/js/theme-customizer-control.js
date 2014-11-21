@@ -212,6 +212,24 @@ if ( 'function' != typeof(jQuery.fn.stepper) ) {
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_theme_options[tc_comment_bubble_color_type]' : {
+      controls: [
+        'tc_theme_options[tc_comment_bubble_color]',
+      ],
+      callback: function (to) {
+        return 'custom' == to;
+      }
+    },
+    'tc_theme_options[tc_comment_show_bubble]' : {
+      controls: [
+        'tc_theme_options[tc_comment_bubble_shape]',
+        'tc_theme_options[tc_comment_bubble_color_type]',
+        'tc_theme_options[tc_comment_bubble_color]'
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
     }
   }, function (settingId, o) {
     api(settingId, function (setting) {

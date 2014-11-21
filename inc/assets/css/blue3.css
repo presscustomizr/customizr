@@ -6404,9 +6404,29 @@ article .author-info h2,
   height: inherit;
   /*float: left;*/
   z-index: 1;
-  color: #ff0000;
   width: 34px;
   opacity: 0.8;
+}
+.comments-link .tc-comment-bubble {
+  color: #ff0000;
+}
+.tc-skin-bubble-comment-color .comments-link .tc-comment-bubble {
+  color: #27cda5;
+}
+/* custom bubble */
+.comments-link .custom-bubble-one {
+  color: #ff0000;
+  border: 2px solid #ff0000;
+}
+.comments-link .custom-bubble-one:before {
+  border-color: #ff0000 rgba(0, 0, 0, 0);
+}
+.tc-skin-bubble-comment-color .custom-bubble-one {
+  color: #27cda5;
+  border: 2px solid #27cda5;
+}
+.tc-skin-bubble-comment-color .custom-bubble-one:before {
+  border-color: #27cda5 rgba(0, 0, 0, 0);
 }
 .comments-link .inner {
   color: white;

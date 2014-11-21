@@ -1540,10 +1540,31 @@ article .author-info h2 , .archive-header .author-info h2 {
   height: inherit;
   /*float: left;*/
   z-index: 1;
-  color: @CommentsLink;
   width: 34px;
   opacity: 0.8
 }
+.comments-link .tc-comment-bubble {
+  color: @CommentsLink;
+}
+.tc-skin-bubble-comment-color .comments-link .tc-comment-bubble {
+  color: @linkColor
+}
+/* custom bubble */
+.comments-link .custom-bubble-one {
+  color: @CommentsLink;
+  border: 2px solid @CommentsLink;
+}
+.comments-link .custom-bubble-one:before {
+  border-color: @CommentsLink rgba(0, 0, 0, 0);
+}
+.tc-skin-bubble-comment-color .custom-bubble-one {
+  color: @linkColor;
+  border: 2px solid @linkColor;
+}
+.tc-skin-bubble-comment-color .custom-bubble-one:before {
+  border-color: @linkColor rgba(0, 0, 0, 0);
+}
+
 .comments-link .inner {
   color: white;
   display: inline-block;
