@@ -226,7 +226,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				'tc-customizer-preview' ,
 				sprintf('%1$s/inc/admin/js/theme-customizer-preview%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-preview' , 'underscore' ),
-				'20120827' ,
+				CUSTOMIZR_VER ,
 				true
 			);
 		}
