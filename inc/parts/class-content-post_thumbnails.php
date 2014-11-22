@@ -16,11 +16,56 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
       static $instance;
       function __construct () {
           self::$instance =& $this;
-          //Set thumbnails hooks and options (since 3.2.0)
-          add_action ( 'init'                           , array( $this , 'tc_set_thumb_options') );
+          //Set thumbnails hooks and a new image size can be set here ( => template_redirect would be too late) (since 3.2.0)
+          add_action( 'init'                           , array( $this , 'tc_set_thumb_options') );
+          //Set thumbnail options
+          add_action( 'template_redirect'              , array( $this , 'tc_set_thumbnail_options' ) );
       }
 
       
+
+      /**
+      * Callback of template_redirect
+      * Set customizer user options
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_set_thumbnail_options() {
+        //Set top border style option
+        add_filter( 'tc_user_options_style'   , array( $this , 'tc_write_thumbnail_inline_css') );
+      }
+
+
+
+
+      /*
+      * Callback of tc_user_options_style hook
+      * @return css string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_write_thumbnail_inline_css( $_css ) {
+        $_list_thumb_height     = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_height' ) );
+        $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
+
+        $_single_thumb_height   = esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_height' ) );
+        $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
+        return sprintf("%s\n%s",
+          $_css,
+          ".tc-rectangular-thumb {
+            max-height: {$_list_thumb_height}px;
+            height :{$_list_thumb_height}px
+          }\n
+          .single .tc-rectangular-thumb {
+            max-height: {$_single_thumb_height}px;
+            height :{$_single_thumb_height}px
+          }\n"
+        );
+      }
+
+
 
       /**
       * Gets the thumbnail or the first images attached to the post if any

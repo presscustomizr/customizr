@@ -23,12 +23,12 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
 	        //Custom CSS
 	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
-	        //Customizer user defined style options
-	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_customizer_user_options_style' ) );
+	        
 	        //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
-	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script') );
+	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
 	    }
+
 
 
 	    /**
@@ -42,6 +42,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    wp_enqueue_style( 'customizr-skin' );
 		    //Customizr stylesheet (style.css)
 		    wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
+		    //Customizer user defined style options
+		    wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , '' ) );
 		}
 
 
@@ -217,178 +219,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 
 
-
-
-	    /**
-	    * Style from customizer options
-	    * 
-	    * @package Customizr
-	    * @since Customizr 3.2.0
-	    */
-	    function tc_customizer_user_options_style() {
-		  	$_css = '';
-	        //TOP BORDER
-	        if ( 1 != esc_attr( tc__f( '__get_option' , 'tc_top_border') ) )
-	       		$_css .= "
-	       			header.tc-header {border-top: none;}
-	       		";
-
-	       	//THUMBNAIL SETTINGS
-		  	$_list_thumb_height 	= esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_height' ) );
-		  	$_list_thumb_height 	= (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
-
-		  	$_single_thumb_height 	= esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_height' ) );
-		  	$_single_thumb_height 	= (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
-		  	$_css .= "
-		          .tc-rectangular-thumb {
-		            max-height: {$_list_thumb_height}px;
-		            height :{$_list_thumb_height}px
-		          }
-		          .single .tc-rectangular-thumb {
-		            max-height: {$_single_thumb_height}px;
-		            height :{$_single_thumb_height}px
-		          }";
-
-		    //STICKY HEADER
-		    if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_shrink_title_logo') ) || TC_utils::$instance -> tc_is_customizing() ) {
-		    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
-
-		    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
-
-			    $_css .= "
-			    		.sticky-enabled .tc-shrink-on .site-logo img {
-							{$_logo_shrink}
-						}
-						.sticky-enabled .tc-shrink-on .brand .site-title {
-							{$_title_font}
-						}";
-			}
-
-			//HEADER Z-INDEX
-		    if ( 100 != esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') ) ) {
-		    	$_custom_z_index 	= esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') );
-			    $_css .= "
-			    		.tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
-							z-index:{$_custom_z_index}
-						}";
-			}
-
-			//CUSTOM SLIDER HEIGHT
-			// 1) Do we have a custom height ?
-			// 2) check if the setting must be applied to all context
-			$_custom_height = esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') );
-			if ( 500 != $_custom_height
-				&& ( tc__f('__is_home')
-						|| 0 != esc_attr( tc__f( '__get_option' , 'tc_slider_default_height_apply_all') )
-				) ) {
-				$_resp_shrink_ratios = apply_filters( 'tc_slider_resp_shrink_ratios',
-					array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )
-				);
-
-				$_css .= "
-					.carousel .item {
-						line-height: {$_custom_height}px;
-						min-height:{$_custom_height}px;
-						max-height:{$_custom_height}px;
-					}
-					.tc-slider-loader-wrapper {
-						line-height: {$_custom_height}px;
-						height:{$_custom_height}px;
-					}
-					.carousel .tc-slider-controls {
-						line-height: {$_custom_height}px;
-						max-height:{$_custom_height}px;
-					}";
-
-				foreach ( $_resp_shrink_ratios as $_w => $_ratio) {
-					if ( ! is_numeric($_ratio) )
-						continue;
-					$_item_dyn_height 		= $_custom_height * $_ratio;
-					$_caption_dyn_height 	= $_custom_height * ( $_ratio - 0.1 );
-					$_css .= "
-						@media (max-width: {$_w}px) {
-							.carousel .item {
-								line-height: {$_item_dyn_height}px;
-								max-height:{$_item_dyn_height}px;
-								min-height:{$_item_dyn_height}px;
-							}
-							.item .carousel-caption {
-								max-height: {$_caption_dyn_height}px;
-								overflow: hidden;
-							}
-							.carousel .tc-slider-loader-wrapper {
-								line-height: {$_item_dyn_height}px;
-								height:{$_item_dyn_height}px;
-							}
-						}";
-				}
-			}
-
-			//CUSTOM COMMENT BUBBLE SHAPE AND COLOR
-			if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) ) {
-				$_bubble_color_type 	= esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color_type' ) );
-				$_custom_bubble_color 	= ( 'skin' == $_bubble_color_type ) ? false : esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color' ) );
-
-				if ( 'default' != esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) ) ) {
-					//apply custom color only if type custom
-					//if color type is skin => bubble color is defined in the skin stylesheet
-					if ( false != $_custom_bubble_color ) {
-						$_css .= "
-							.comments-link .custom-bubble-one {
-								color: {$_custom_bubble_color};
-								border: 2px solid {$_custom_bubble_color};
-							}
-							.comments-link .custom-bubble-one:before {
-								border-color: {$_custom_bubble_color} rgba(0, 0, 0, 0);
-							}
-						";
-					}
-					$_css .= " 
-					.comments-link .custom-bubble-one {
-						position: relative;
-						bottom: 28px;
-						right: 10px;
-						padding: 4px;
-						margin: 1em 0 3em;
-						background: none;
-						-webkit-border-radius: 10px;
-						-moz-border-radius: 10px;
-						border-radius: 10px;
-						font-size: 10px;
-					}
-					.comments-link .custom-bubble-one:before {
-						content: '';
-						position: absolute;
-						bottom: -14px;
-						left: 10px;
-						border-width: 14px 8px 0;
-						border-style: solid;
-						display: block;
-						width: 0;
-					}
-					.comments-link .custom-bubble-one:after {
-						content: '';
-						position: absolute;
-						bottom: -11px;
-						left: 11px;
-						border-width: 13px 7px 0;
-						border-style: solid;
-						border-color: #FAFAFA rgba(0, 0, 0, 0);
-						display: block;
-						width: 0;
-					}";
-				}
-				else {
-					if ( false != $_custom_bubble_color && '#F00' != $_custom_bubble_color ) {//default comment bubble custom color
-						$_css .= "
-							.comments-link .fs1 {
-								color:{$_custom_bubble_color};
-						}";
-					}
-				}
-			}//end if show bubble comment
-		  	wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , $_css ) );
-		}
 
 		/*
 		* Writes the livereload script in dev mode (if Grunt watch livereload is enabled)

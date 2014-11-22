@@ -1,4 +1,4 @@
-# Customizr v3.2.6 
+# Customizr v3.2.6 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=rethink-user-option-css-style)](https://travis-ci.org/Nikeo/customizr)
 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 

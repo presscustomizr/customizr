@@ -16,29 +16,103 @@ if ( ! class_exists( 'TC_slider' ) ) :
     static $instance;
     function __construct () {
           self::$instance =& $this;
-          add_action( '__after_header'            , array( $this , 'tc_slider_display' ));
-          add_action( '__after_carousel_inner'    , array( $this , 'tc_slider_control_view') );
-
-          //set customizer options. @since v3.2.0
-          add_action ('init'                      , array($this, 'tc_set_slider_options') );
+          add_action('template_redirect'          , array($this, 'tc_set_slider_hooks') );
+          //set user customizer options. @since v3.2.0
+          add_action('template_redirect'          , array($this, 'tc_set_slider_options') );
     }//end of construct
 
+
+    
+    /**
+    * callback of template_redirect
+    * Set slider hooks
+    * @return  void
+    */
+    function tc_set_slider_hooks() {
+      add_action( '__after_header'                , array( $this , 'tc_slider_display' ) );
+      add_action( '__after_carousel_inner'        , array( $this , 'tc_slider_control_view' ) );
+    }
 
 
 
     /**
-    * Get slides from option or default
-    * Returns and array of slides with data
+    * callback of template_redirect
+    * Set slider user options
+    * @return  void
     * 
     * @package Customizr
     * @since Customizr 3.2.0
     *
     */
     function tc_set_slider_options() {
-      add_filter('tc_slider_layout_class' , array($this, 'tc_set_slider_wrapper_class') );
-      
-      if ( 500 == esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') ) )
-        return;
+      add_filter( 'tc_slider_layout_class'        , array( $this , 'tc_set_slider_wrapper_class' ) );
+      //Set user defined height
+      add_filter( 'tc_user_options_style'         , array( $this , 'tc_write_slider_inline_css' ) );
+    }
+
+
+
+
+    /*
+    * Callback of tc_user_options_style hook
+    * @return css string
+    *
+    * @package Customizr
+    * @since Customizr 3.2.6
+    */
+    function tc_write_slider_inline_css( $_css ) {
+      // 1) Do we have a custom height ?
+      // 2) check if the setting must be applied to all context
+      $_custom_height     = esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') );
+      $_slider_inline_css = "";
+
+      if ( 500 != $_custom_height
+        && ( tc__f('__is_home')
+            || 0 != esc_attr( tc__f( '__get_option' , 'tc_slider_default_height_apply_all') )
+        ) ) {
+        $_resp_shrink_ratios = apply_filters( 'tc_slider_resp_shrink_ratios',
+          array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )
+        );
+
+        $_slider_inline_css = "
+          .carousel .item {
+            line-height: {$_custom_height}px;
+            min-height:{$_custom_height}px;
+            max-height:{$_custom_height}px;
+          }
+          .tc-slider-loader-wrapper {
+            line-height: {$_custom_height}px;
+            height:{$_custom_height}px;
+          }
+          .carousel .tc-slider-controls {
+            line-height: {$_custom_height}px;
+            max-height:{$_custom_height}px;
+          }\n";
+
+        foreach ( $_resp_shrink_ratios as $_w => $_ratio) {
+          if ( ! is_numeric($_ratio) )
+            continue;
+          $_item_dyn_height     = $_custom_height * $_ratio;
+          $_caption_dyn_height  = $_custom_height * ( $_ratio - 0.1 );
+          $_slider_inline_css .= "
+            @media (max-width: {$_w}px) {
+              .carousel .item {
+                line-height: {$_item_dyn_height}px;
+                max-height:{$_item_dyn_height}px;
+                min-height:{$_item_dyn_height}px;
+              }
+              .item .carousel-caption {
+                max-height: {$_caption_dyn_height}px;
+                overflow: hidden;
+              }
+              .carousel .tc-slider-loader-wrapper {
+                line-height: {$_item_dyn_height}px;
+                height:{$_item_dyn_height}px;
+              }
+            }\n";
+        }
+      }
+      return sprintf("%s\n%s", $_css, $_slider_inline_css);
     }
 
 
@@ -52,11 +126,10 @@ if ( ! class_exists( 'TC_slider' ) ) :
     *
     */
     function tc_set_slider_wrapper_class($_classes) {
-      if ( !is_array($_classes) )
+      if ( ! is_array($_classes) || 500 == esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') ) )
         return $_classes;
 
-      $_is_custom_height = ( 500 != esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') ) ) ? true : false;
-      return $_is_custom_height ? array_merge( $_classes , array('custom-slider-height') ) : $_classes;
+      return array_merge( $_classes , array('custom-slider-height') );
     }
 
 

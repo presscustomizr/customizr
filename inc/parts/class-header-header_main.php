@@ -16,7 +16,25 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 	    static $instance;
 	    function __construct () {
 	        self::$instance =& $this;
-	        //html > head actions
+	        //Set header hooks
+	        add_action ( 'template_redirect' 		, array( $this , 'tc_set_header_hooks' ) );
+
+	        //Set header options
+	        add_action ( 'template_redirect' 		, array( $this , 'tc_set_header_options' ) );
+	    }
+		
+
+
+	    /**
+		* Set all header hooks
+		* template_redirect callback
+		* @return  void
+		*
+		* @package Customizr
+		* @since Customizr 3.2.6
+		*/
+	    function tc_set_header_hooks() {
+	    	//html > head actions
 	        add_action ( '__before_body'			, array( $this , 'tc_head_display' ));
 	        add_action ( 'wp_head'     				, array( $this , 'tc_favicon_display' ));
 
@@ -31,11 +49,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 	        //body > header > navbar actions ordered by priority
 	        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
 	        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
-
-	        //Set header options
-	        add_action ( 'template_redirect' 		, array( $this , 'tc_set_header_options' ) );
 	    }
-		
 
 
 
@@ -393,20 +407,68 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 		/**
        	* Callback for template_redirect
-       	* Set customizer options for the header
+       	* Set customizer user options
        	*
        	* @package Customizr
        	* @since Customizr 3.2.0
        	*/
 		function tc_set_header_options() {
 			//Set some body classes
-			add_filter ( 'body_class'               , array( $this, 'tc_add_body_classes') );
+			add_filter( 'body_class'               , array( $this, 'tc_add_body_classes') );
 			//Set header classes from options
-			add_filter ( 'tc_header_classes' 		, array( $this , 'tc_set_header_classes') );
+			add_filter( 'tc_header_classes' 		, array( $this , 'tc_set_header_classes') );
 			//Set tagline visibility with a customizer option (since 3.2.0)
-	        add_filter ( 'tc_tagline_display'  		, array( $this , 'tc_set_tagline_visibility') );
+	        add_filter( 'tc_tagline_display'  		, array( $this , 'tc_set_tagline_visibility') );
 	        //Set logo layout with a customizer option (since 3.2.0)
-	        add_filter ( 'tc_logo_class'  			, array( $this , 'tc_set_logo_title_layout') );
+	        add_filter( 'tc_logo_class'  			, array( $this , 'tc_set_logo_title_layout') );
+	        //Set top border style option
+	        add_filter( 'tc_user_options_style'		, array( $this , 'tc_write_header_inline_css') );
+		}
+
+
+		/*
+      	* Callback of tc_user_options_style hook
+      	* @return css string
+	    *
+	    * @package Customizr
+	    * @since Customizr 3.2.6
+	    */
+		function tc_write_header_inline_css( $_css ) {
+			if ( 1 != esc_attr( tc__f( '__get_option' , 'tc_top_border') ) ) {
+				$_css = sprintf("%s\n%s",
+					$_css,
+					"header.tc-header {border-top: none;}\n"
+		       	);
+		    }
+
+	       	//STICKY HEADER
+		    if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_shrink_title_logo') ) || TC_utils::$instance -> tc_is_customizing() ) {
+		    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
+
+		    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
+
+			    $_css = sprintf("%s\n%s",
+			    	$_css,
+			    	".sticky-enabled .tc-shrink-on .site-logo img {
+						{$_logo_shrink}
+					}\n
+					.sticky-enabled .tc-shrink-on .brand .site-title {
+						{$_title_font}
+					}\n"
+				);
+			}
+
+			//HEADER Z-INDEX
+		    if ( 100 != esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') ) ) {
+		    	$_custom_z_index 	= esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') );
+			    $_css = sprintf("%s\n%s",
+			    	$_css,
+			    	".tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
+						z-index:{$_custom_z_index}
+					}\n"
+				);
+			}
+			return $_css;
 		}
 
 

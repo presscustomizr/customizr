@@ -20,14 +20,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_action( 'template_redirect'             , array( $this , 'tc_set_single_post_page_heading_hooks') );
         //set actions and filters for archives headings
         add_action( 'template_redirect'             , array( $this , 'tc_set_archives_heading_hooks') );
-        //Custom Bubble comment since 3.2.6
-        add_filter( 'tc_bubble_comment'             , array( $this , 'tc_custom_bubble_comment') );
-        //Add comment bubble color type class to the headings <header> wrapper element
-        add_filter( 'tc_content_header_class'       , array( $this , 'tc_set_bubble_comment_color_type') );
+        //Set headings user options
+        add_action( 'template_redirect'             , array( $this , 'tc_set_headings_options') );
       }
 
 
-    
 
       /**
       * @return void
@@ -398,6 +395,23 @@ if ( ! class_exists( 'TC_headings' ) ) :
       }//end of fn
 
 
+      /**
+      * @return void
+      * set up user defined options
+      * callback of template_redirect
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_set_headings_options() {
+        //Custom Bubble comment since 3.2.6
+        add_filter( 'tc_bubble_comment'             , array( $this , 'tc_custom_bubble_comment') );
+        //Add comment bubble color type class to the headings <header> wrapper element
+        add_filter( 'tc_content_header_class'       , array( $this , 'tc_set_bubble_comment_color_type') );
+        //Set user defined various inline stylings
+        add_filter( 'tc_user_options_style'         , array( $this , 'tc_write_headings_inline_css' ) );
+      }
+
 
 
       /**
@@ -436,6 +450,81 @@ if ( ! class_exists( 'TC_headings' ) ) :
                   $_bubble_shape
         );
       }
+
+
+      /*
+      * Callback of tc_user_options_style hook
+      * @return css string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_write_headings_inline_css( $_css ) {
+        if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) )
+          return $_css;
+
+        $_bubble_color_type   = esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color_type' ) );
+        $_custom_bubble_color   = ( 'skin' == $_bubble_color_type ) ? false : esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color' ) );
+
+        if ( 'default' != esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) ) ) {
+          //apply custom color only if type custom
+          //if color type is skin => bubble color is defined in the skin stylesheet
+          if ( false != $_custom_bubble_color ) {
+            $_css .= "
+              .comments-link .custom-bubble-one {
+                color: {$_custom_bubble_color};
+                border: 2px solid {$_custom_bubble_color};
+              }
+              .comments-link .custom-bubble-one:before {
+                border-color: {$_custom_bubble_color} rgba(0, 0, 0, 0);
+              }
+            ";
+          }
+          $_css .= " 
+            .comments-link .custom-bubble-one {
+              position: relative;
+              bottom: 28px;
+              right: 10px;
+              padding: 4px;
+              margin: 1em 0 3em;
+              background: none;
+              -webkit-border-radius: 10px;
+              -moz-border-radius: 10px;
+              border-radius: 10px;
+              font-size: 10px;
+            }
+            .comments-link .custom-bubble-one:before {
+              content: '';
+              position: absolute;
+              bottom: -14px;
+              left: 10px;
+              border-width: 14px 8px 0;
+              border-style: solid;
+              display: block;
+              width: 0;
+            }
+            .comments-link .custom-bubble-one:after {
+              content: '';
+              position: absolute;
+              bottom: -11px;
+              left: 11px;
+              border-width: 13px 7px 0;
+              border-style: solid;
+              border-color: #FAFAFA rgba(0, 0, 0, 0);
+              display: block;
+              width: 0;
+            }\n";
+        }
+        else {
+          if ( false != $_custom_bubble_color && '#F00' != $_custom_bubble_color ) {//default comment bubble custom color
+            $_css .= "
+              .comments-link .fs1 {
+                color:{$_custom_bubble_color};
+            }\n";
+          }
+        }
+        return $_css;
+      }//end of fn
 
   }//end of class
 endif;
