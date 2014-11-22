@@ -1,5 +1,4 @@
-# Customizr v3.2.6 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=rethink-user-option-css-style)](https://travis-ci.org/Nikeo/customizr)
-[![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.6 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -85,7 +84,7 @@ The exceptions to this license are as follows:
 * selecter v3.0.9 - 2014-02-10, Copyright 2014 Ben Plum, MIT Licensed
 * stepper v3.0.5 - 2014-02-06, Copyright 2014 Ben Plum, MIT Licensed
 * Hammer.JS - v2.0.4 - Copyright (c) 2014 Jorik Tangelder, MIT license
-* Icon Set:	Entypo is licensed under SIL Open-Font License
+* Icon Set: Entypo is licensed under SIL Open-Font License
 * The image phare.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:Ca_1941_DAF_%27Rijdende_regenjas%27_pic7.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 * The image chevrolet.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:%2755_Chevrolet_ornament.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 * The image customizr.jpg is a creation of Nicolas Guillaume licensed under GPL v2+.
@@ -196,7 +195,7 @@ The exceptions to this license are as follows:
 * added : (php, class-fire-utils_settings_map.php) Creation of class-fire-utils_settings_map.php for the customizer settings. Instanciated before TC_utils().
 * added : (php, class-content-post_metas.php, class-fire-utils.php ) Post metas : 3 new options in the customizer : tc_show_post_metas_home, tc_show_post_metas_single_post, tc_show_post_metas_post_lists. View implemented with a new callback : add_action( 'template_redirect', array( $this , 'tc_set_post_metas' ));
 * added : (php, class-content-headings.php, class-fire-utils.php ) Icons in title : new options in the customizer : tc_show_page_title_icon, tc_show_post_title_icon, tc_show_archive_title_icon, tc_show_post_list_title_icon, tc_show_sidebar_widget_icon, tc_show_footer_widget_icon. View implemented with 2 new callbacks  : add_filter ( 'tc_content_title_icon' , array( $this , 'tc_set_post_page_icon' )), add_filter ( 'tc_archive_icon', array( $this , 'tc_set_archive_icon' ))
-* added : (php, class-content-breadcrumb.php, class-fire-utils.php ) Breadcrumb : 4 new optionw in the customizer : tc_show_breadcrumb_home, tc_show_breadcrumb_in_pages, tc_show_breadcrumb_in_single_posts, tc_show_breadcrumb_in_post_lists. Implemented with a new filter and callback :  add_filter( 'tc_show_breadcrumb_in_context' 	, array( $this , 'tc_set_breadcrumb_display_in_context' ) )
+* added : (php, class-content-breadcrumb.php, class-fire-utils.php ) Breadcrumb : 4 new optionw in the customizer : tc_show_breadcrumb_home, tc_show_breadcrumb_in_pages, tc_show_breadcrumb_in_single_posts, tc_show_breadcrumb_in_post_lists. Implemented with a new filter and callback :  add_filter( 'tc_show_breadcrumb_in_context'   , array( $this , 'tc_set_breadcrumb_display_in_context' ) )
 * added : (lang) Hebrew (he_IL) translation added. Thanks to <a href="http://www.glezer.co.il/">Yaacov Glezer</a>.
 * updated : (lang) Russian translation, thanks to <a href="http://webmotya.com/">Evgeny</a>.
 * added : (php, class-content-slider.php) new hooks before and after each slides : __before_all_slides, __after_all_slides, __before_slide_{$id}, __after_slide_{$id}
@@ -633,16 +632,16 @@ The exceptions to this license are as follows:
 * fixed : ajax saving was not working properly for page/page slider, a switch case was not breaked.
 
 = 2.1.5 June 13rd, 2013 =
-* fixed 	: When deleted from a slider, the first slide was not cleared out from option array
-* added 	: Titles in customizer sections
-* added 	: checkbox to enable/disable featured pages images
-* added 	: Optional colored top border in customizer options
-* added 	: new black skin
-* removed 	: text-rendering: optimizelegibility for hx, in conflict with icon fonts in chrome version 27.0.1453.94
-* improved 	: blockquote styling
-* fixed 	: in tc_script.js insertbefore() target is more precise
-* improved 	: font icons are now coded in CSS Value (Hex)
-* added 	: add_action hooks in the templates index and sidebars
+* fixed     : When deleted from a slider, the first slide was not cleared out from option array
+* added     : Titles in customizer sections
+* added     : checkbox to enable/disable featured pages images
+* added     : Optional colored top border in customizer options
+* added     : new black skin
+* removed   : text-rendering: optimizelegibility for hx, in conflict with icon fonts in chrome version 27.0.1453.94
+* improved  : blockquote styling
+* fixed     : in tc_script.js insertbefore() target is more precise
+* improved  : font icons are now coded in CSS Value (Hex)
+* added     : add_action hooks in the templates index and sidebars
 
 = 2.1.4 June 6th, 2013 =
 * fixed : in tc_meta_boxes.php, line 766, a check on the existence of $slide object has been added

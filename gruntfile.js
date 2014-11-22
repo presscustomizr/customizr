@@ -24,17 +24,20 @@ module.exports = function(grunt) {
 			//Check if the context var is set and == travis => avoid travis error with ftpauth no found
 			credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
 			customizr_tasks : {
-				//https://www.npmjs.org/package/grunt-gitinfo
-				//Get Git info from a working copy and populate grunt.config with the data
-				'customizr_dev': ['gitinfo' , 'replace:readme', 'watch'],
+				//DEV
+				'customizr_dev': ['watch'],
 
+				//PROD
 				'prod_css_skins': ['multi:prod_skins', 'cssmin:prod_skins' , 'cssmin:prod_rtl_skins', 'ftp_push:prod_skins'],
 				'prod_front_js': ['jshint', 'concat:front_js','uglify:front_js', 'ftp_push:all_front_js'],
 				'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'uglify:prod_admin_js', 'ftp_push:all_admin_css' , 'ftp_push:all_admin_js'],
+				//https://www.npmjs.org/package/grunt-gitinfo
+				//Get Git info from a working copy and populate grunt.config with the data
 				'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
 				//final build meta task
 				'customizr_build' : ['prod_css_skins', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
-				//travis ci virtual machine build check on js @todo check other resources?
+
+				//TRAVIS ci virtual machine build check on js @todo check other resources?
 				'travis' : ['jshint']
 			}
 		}
@@ -64,7 +67,7 @@ module.exports = function(grunt) {
 				]
 			}
 		];
-		grunt.log.writeln(grunt.task.current.name , action, filepath, target);
+		grunt.log.writeln( 'WATCH EVENT INFOS : ', grunt.task.current.name , action, filepath, target);
 
 		if ( 'admin_customizer_control_js' == target || 'admin_js' == target ) {
 			//if some js admin scripts have been changed in dev mode, jshint them dynamically
