@@ -11,10 +11,6 @@ module.exports = {
 	//'gitinfo' , 'replace:readme' tasks are ran on each watch event
 	//the gitinfo task updates the config object with the current branch name
 	//replace:readme writes the current git branch name => always up to date for Travis build pass status link
-	update_git_branch_in_readme : {
-		files : ['readme.md'],
-		tasks : ['gitinfo' , 'replace:readme']
-	},
 	//Regenerate the main css skin each time a less file is changed
 	create_push_skin : {
 		files : ['<%= paths.less %>**/*.less'],
