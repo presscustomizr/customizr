@@ -242,14 +242,13 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		 */
 		function tc_customize_controls_js_css() {
 
-			wp_register_style(
+			wp_enqueue_style( 
 				'tc-customizer-controls-style',
 				sprintf('%1$s/inc/admin/css/theme-customizer-control%2$s.css' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER,
 				$media = 'all'
 			);
-			wp_enqueue_style('tc-customizer-controls-style');
 			wp_enqueue_script(
 				'tc-customizer-controls',
 				sprintf('%1$s/inc/admin/js/theme-customizer-control%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
@@ -257,6 +256,23 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				CUSTOMIZR_VER ,
 				true
 			);
+
+			//select2
+			wp_enqueue_style(
+				'tc-select2-css',
+				sprintf('%1$s/inc/admin/js/lib/select2.css', get_template_directory_uri() ),
+				array( 'customize-controls' ),
+				CUSTOMIZR_VER,
+				$media = 'all'
+			);
+			wp_enqueue_script(
+				'tc-select2-js',
+				sprintf('%1$s/inc/admin/js/lib/select2.js', get_template_directory_uri() ),
+				array( 'customize-controls' ),
+				CUSTOMIZR_VER ,
+				true
+			);
+
 
 			//gets the featured pages id from init
 			$fp_ids				= apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);

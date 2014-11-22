@@ -75,22 +75,23 @@ if ( ! class_exists( 'TC_init' ) ) :
           //Default skins array
           $this -> skins              =  array( 
                 'blue.css'        =>  __( 'Blue' , 'customizr' ),
-                'blue2.css'       =>  __( 'Light blue ' , 'customizr' ),
-                'blue3.css'       =>  __( 'Green blue' , 'customizr'),
-                'green.css'       =>  __( 'Green' , 'customizr' ),
-                'green2.css'      =>  __( 'Light green' , 'customizr'),
-                'yellow.css'      =>  __( 'Yellow' , 'customizr' ),
-                'yellow2.css'     =>  __( 'Flat yellow' , 'customizr' ),
-                'orange.css'      =>  __( 'Orange' , 'customizr' ),
-                'orange2.css'     =>  __( 'Flat orange' , 'customizr'),
-                'red.css'         =>  __( 'Red' , 'customizr' ),
-                'red2.css'        =>  __( 'Flat red' , 'customizr' ),
-                'purple.css'      =>  __( 'Purple' , 'customizr' ),
-                'purple2.css'     =>  __( 'Flat purple' , 'customizr' ),
+                'black.css'       =>  __( 'Black' , 'customizr' ),
+                'black2.css'      =>  __( 'Flat black' , 'customizr' ),
                 'grey.css'        =>  __( 'Grey' , 'customizr' ),
                 'grey2.css'       =>  __( 'Ligth grey' , 'customizr' ),
-                'black.css'       =>  __( 'Black' , 'customizr' ),
-                'black2.css'      =>  __( 'Flat black' , 'customizr' )
+                'purple2.css'     =>  __( 'Flat purple' , 'customizr' ),
+                'purple.css'      =>  __( 'Purple' , 'customizr' ),
+                'red2.css'        =>  __( 'Flat red' , 'customizr' ),
+                'red.css'         =>  __( 'Red' , 'customizr' ),
+                'orange.css'      =>  __( 'Orange' , 'customizr' ),
+                'orange2.css'     =>  __( 'Flat orange' , 'customizr'),
+                'yellow.css'      =>  __( 'Yellow' , 'customizr' ),
+                'yellow2.css'     =>  __( 'Flat yellow' , 'customizr' ),
+                'green.css'       =>  __( 'Green' , 'customizr' ),
+                'green2.css'      =>  __( 'Light green' , 'customizr'),
+                'blue3.css'       =>  __( 'Green blue' , 'customizr'),
+                'blue2.css'       =>  __( 'Light blue ' , 'customizr' )
+                
           );
 
           //Main skin color array

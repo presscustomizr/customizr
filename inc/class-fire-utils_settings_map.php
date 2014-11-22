@@ -385,10 +385,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //skin select
               'tc_theme_options[tc_skin]'     => array(
                                 'default'   =>  'blue3.css' ,
+                                'control'   => 'TC_controls' ,
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                                 'section'   =>  'tc_skins_settings' ,
                                 'type'      =>  'select' ,
-                                'choices'   =>  $this -> tc_skin_choices()
+                                'choices'    =>  $this -> tc_skin_choices(),
+                                'transport'   =>  'postMessage',
               ),
 
               'tc_theme_options[tc_minified_skin]'  =>  array(

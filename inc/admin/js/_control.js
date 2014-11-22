@@ -306,13 +306,31 @@
     });
 
     /* SELECT */
-    $('select[data-customize-setting-link]').each( function() {
+    //Exclude skin
+    $('select[data-customize-setting-link]').not('select[data-customize-setting-link="tc_theme_options[tc_skin]"]').each( function() {
       $(this).selecter({
       //triggers a change event on the view, passing the newly selected value + index as parameters.
       // callback : function(value, index) {
       //   self.triggerSettingChange( window.event || {} , value, index); // first param is a null event.
       // }
       });
+    });
+
+    //Skins handled with select2
+    function paintOptionElement(state) {
+        if (!state.id) return state.text; // optgroup
+        return '<span class="tc-select2-skin-color" style="background:' + $(state.element).data('hex') + '">' + $(state.element).data('hex') + '<span>';
+    }
+    //http://ivaynberg.github.io/select2/#documentation
+    $('select[data-customize-setting-link="tc_theme_options[tc_skin]"]').select2({
+        minimumResultsForSearch: -1, //no search box needed
+        formatResult: paintOptionElement,
+        formatSelection: paintOptionElement,
+        escapeMarkup: function(m) { return m; }
+    })
+    .on("select2-highlight", function(e) {
+      //triggerChange = true @see val method doc here http://ivaynberg.github.io/select2/#documentation
+      $(this).select2("val" , e.val, true );
     });
 
     /* NUMBER */
