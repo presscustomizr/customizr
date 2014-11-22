@@ -122,30 +122,37 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                 $_tax_text   .= __( 'This entry was posted in %1$s' , 'customizr' );
             if ( ! $_show_cats && $_show_tags )
                 $_tax_text   .= __( 'This entry was tagged %2$s' , 'customizr' );
-            if ( ! $_show_cats && ! $_show_tags )
-                $_tax_text   .= __( 'This entry was' , 'customizr' );
             
             //PUBLICATION DATE
-            $_date_text             = '';
-            if ( $_show_date ) {
+            $_date_text = '';
+            if ( $_show_pub_date ) {
+                $_date_text        = empty($_tax_text) ? __( 'This entry was posted on %3$s' , 'customizr' ) : $_date_text;
                 if ( $_show_cats )
                     $_date_text   .= __( 'on %3$s' , 'customizr' );
-                if ( ! $_show_cats && ! $_show_tags )
-                    $_date_text   .= __( 'posted on %3$s' , 'customizr' );
                 if ( ! $_show_cats && $_show_tags )
                     $_date_text   .= __( 'and posted on %3$s' , 'customizr' );
             }
 
             //AUTHOR
-            $_author_text           = $_show_author ? sprintf( '<span class="by-author">%1$s</span>' , __('by %4$s' , 'customizr') ) : '';
+            $_author_text = '';
+            if ( $_show_author ) {
+                if ( empty($_tax_text) && empty($_date_text) ) {
+                    $_author_text = sprintf( '%1$s <span class="by-author">%2$s</span>' , __( 'This entry was posted', 'customizr' ), __('by %4$s' , 'customizr') );
+                } else {
+                    $_author_text = sprintf( '<span class="by-author">%1$s</span>' , __('by %4$s' , 'customizr') );
+                }
+            }
 
             //UPDATE DATE
             $_update_text           = '';
             if ( $_show_upd_date ) {
-                if ( $_show_upd_in_days )
+                if ( $_show_upd_in_days ) {
                     $_update_text = ( 0 == $this -> tc_has_update() ) ? __( '(updated today)' , 'customizr' ) : __( '(updated %6$s days ago)' , 'customizr' );
-                else
+                    $_update_text = ( 1 == $this -> tc_has_update() ) ? __( '(updated 1 day ago)' , 'customizr' ) : $_update_text;
+                }
+                else {
                     $_update_text = __( '(updated on %5$s)' , 'customizr' );
+                }
             }
 
             return sprintf( '%1$s %2$s %3$s %4$s' , $_tax_text , $_date_text, $_author_text, $_update_text );
