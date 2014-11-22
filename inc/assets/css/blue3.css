@@ -6529,6 +6529,7 @@ video {
   -moz-transition: -moz-filter 0.4s ease;
   -o-transition: -o-filter 0.4s ease;
   transition: -webkit-filter 0.4s ease;
+  width: 100%;
 }
 .rectangular-blurred .tc-thumbnail img:hover {
   -webkit-filter: blur(2px);
