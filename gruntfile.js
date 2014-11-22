@@ -24,8 +24,8 @@ module.exports = function(grunt) {
 			//Check if the context var is set and == travis => avoid travis error with ftpauth no found
 			credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
 			customizr_tasks : {
-				//DEV
-				'customizr_dev': ['watch'],
+				//DEV : clean the build and watch changes (see watch task)
+				'customizr_dev': ['clean' ,'watch'],
 
 				//PROD
 				'prod_css_skins': ['multi:prod_skins', 'cssmin:prod_skins' , 'cssmin:prod_rtl_skins', 'ftp_push:prod_skins'],

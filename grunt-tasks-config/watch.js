@@ -40,7 +40,7 @@ module.exports = {
 		tasks : ['gitinfo' , 'replace:readme', 'wait:pause'],
 	},
 	push_php : {
-		files: ['**/*.php'],
+		files: ['**/*.php' , '!build/**.*.php'],
 		tasks: ['gitinfo' , 'replace:readme', 'wait:pause']
 	}
 };
