@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+	console.log('OPTIONS : ', grunt.option('src'), grunt.option('dest'));
 	var path = require('path');
 	var global_config = {
 		// path to task.js files, defaults to grunt dir
@@ -39,6 +40,10 @@ module.exports = function(grunt) {
 
 				//TRAVIS ci virtual machine build check on js @todo check other resources?
 				'travis' : ['jshint']
+			},
+			uglify_requested_paths : {
+				src : '' || grunt.option('src'),
+				dest : '' || grunt.option('dest')
 			}
 		}
 	};

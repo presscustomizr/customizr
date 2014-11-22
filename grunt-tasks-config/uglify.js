@@ -25,5 +25,9 @@ module.exports = {
 			dest: '<%= paths.admin_js %>',
 			ext: '.min.js'
 		}]
+	},
+	any_file : {
+		files: { '<%= uglify_requested_paths.dest %>': ['<%= uglify_requested_paths.src %>']
+      }
 	}
 };
