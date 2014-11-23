@@ -140,7 +140,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       //gets the skins : filters the files with a css extension and generates and array[] : $key = filename.css => $value = filename
       $files            = scandir($path) ;
-      foreach ( $files as $file) {
+      foreach( $files as $file ) {
           //skips the minified
           if ( false !== strpos($file, '.min.') )
             continue;
@@ -151,8 +151,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
             }
           }
         }//endforeach
+      $_to_return = array();
 
-        return $skin_list;
+      //Order skins like in the default array
+      foreach( $default_skin_list as $_key => $value ) {
+        if( isset($skin_list[$_key]) ) {
+          $_to_return[$_key] = $skin_list[$_key];
+        }
+      }
+      //add skins not included in default
+      foreach( $skin_list as $_file => $_name ) {
+        if( ! isset( $_to_return[$_file] ) )
+          $_to_return[$_file] = $_name;
+      }
+      return $_to_return;
     }//end of function
 
 
@@ -205,8 +217,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
      * @since Customizr 3.0.11
      * @updated Customizr 3.0.15
      */
-    private function tc_skin_choices() {
-        $parent_skins     = $this -> tc_get_skins(TC_BASE .'inc/assets/css');
+    private function tc_build_skin_list() {
+        $parent_skins   = $this -> tc_get_skins(TC_BASE .'inc/assets/css');
         $child_skins    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css') ) ? $this -> tc_get_skins(TC_BASE_CHILD .'inc/assets/css') : array();
         $skin_list      = array_merge( $parent_skins , $child_skins );
 
@@ -389,7 +401,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                                 'section'   =>  'tc_skins_settings' ,
                                 'type'      =>  'select' ,
-                                'choices'    =>  $this -> tc_skin_choices(),
+                                'choices'    =>  $this -> tc_build_skin_list(),
                                 'transport'   =>  'postMessage',
               ),
 
