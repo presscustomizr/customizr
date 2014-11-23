@@ -173,9 +173,13 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return $_title;
 
         //when are we showing the comments number in title?
+        //1) comments are enabled
+        //2) post type is in the eligible post type list : default post
         $comments_enabled                  = ( 1 == esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
         $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
-        if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled ) )
+
+        if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled )
+          || ! in_array( get_post_type(), apply_filters( 'tc_show_comment_bubbles_for_post_types' , array('post') ) ) )
           return $_title;
 
         $_default_bubble_comment                    = apply_filters( 
