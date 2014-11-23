@@ -38,7 +38,7 @@ if ( ! class_exists( 'TC_post' ) ) :
         && 'page' != $post -> post_type 
         && 'attachment' != $post -> post_type 
         && is_singular() 
-        && !tc__f( '__is_home_empty');
+        && ! tc__f( '__is_home_empty');
         return apply_filters( 'tc_show_single_post_content', $tc_show_single_post_content );
       }
 

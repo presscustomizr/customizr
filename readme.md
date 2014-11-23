@@ -92,6 +92,101 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.2.6 November 23rd 2014 =
+* 1247841 when live previewing skin, add a new link for the live stylesheet instead of replacing the actual skin link => avoid the flash of unstyle content during the skin load
+* 88be803 Add style option for the update status notice next to the title
+* 9353cb7 added filter to display metas and update notice based on post type 'tc_show_metas_for_post_types' 'tc_post_metas_update_notice_in_title'
+* 805dc78 fix comment bubbles in all post types. Now check post type is in the eligible post type list : default = array('post'). The post list can be modified with a new filter hook named : 'tc_show_comment_bubbles_for_post_types
+* bc3aca5 add a todo note in gruntfile.js
+* b5e3e93 update exclude folders / files from build and .gitignore
+* a0db200 updated number of lang to 24 (+1 with Korean)
+* dd83aec tc_menu_resp_dropdown_limit_to_viewport option set to false by default
+* a442b41 slider lead text not hidden anymore for small devices viewports
+* 3e286fb slider controls revealed on hover with a fade effect. Uses jQuery hover() addClass
+* e62cead add the template folder as localized param in preview context => used to build the dynamic skin urls
+* ffdea2d updated korean lang (following pull request from to https://github.com/puyo061)
+* 0afec6f korean lang merge
+*   5fc6220 Merge branch 'add-korean-lang' into korean-merge-test
+|\
+| *   bad820f Merge pull request #14 from MMKP/master
+| |\
+| | * 156cd17 Korean(WIP)
+| | * f4d6bdf Create ko_KR.po
+| |/
+* | 07f1a18 No inset shadow for the selected skin
+* | 30256a0 added select2.min.js in theme-customizer-control.js concatenated script select2.min.css is loaded separetely => not included in control style sheet
+* | 38d1720 updated skin order in customizer
+* | 6386e81 added : live skin preview and select with select2.js jQuery plugin
+* | d63dee2 added uglify file on demand
+* | 67369af remove the update_git_branch_in_readme in watch => fix infinite loop refresh bug
+* | 5dcb2e9 Fix post metas elements inconsitencies (when option is author alone for example)
+* | 3201223 Delete customizr/ folder in build/ when customizr_dev task is fired => avoid mistakes when editing files.
+* | 1e35baf fixed width of thumbnail with rectangular shape => width must be 100%
+* | d8dc880 updated grunt task replace in readme triggered on each watch grunt task => always up to date for Travis build pass status link
+* | 24c16a7 updated user defined inline css is now handled with callback on 'tc_user_options_style' hook
+* |   7169b48 Merge branch 'custom-comment-bubble' into dev
+|\ \
+| * | b23594f added comment bubble options and stylings
+| * | 4c669cb Added new option in the customizer + filter on tc_bubble_comment
+* | | 4b7a583 exclude bin folder
+* | | f11df30 add grunt badge
+* | | 0bcf1b3 updated copy grunt task
+* | | f1bbbfa add grunt travis task
+* | | f01b940 fix issues with WordPress coding standard rules custom page
+* | | 14a9f3b test php syntax error
+|/ /
+* | 9fd56c2 updated gitignore with travis-example folder
+* | 5d5b9d4 removed tc_archives_headings and tc_content_headings replaced by tc_headings_view
+* | 6b08e0f updated : filters tc_content_header_class and tc_archive_header_class are now handled as array of classes with implode();
+* |   098135f Merge branch 'fix-subtitle-bug' into dev
+|\ \
+| * | 7df37fa Fixed : headings are now handled by filtering the_title => fixes the subtitle plugins issue
+* | | 0e2a247 travis updated
+|/ /
+* | 1aaea26 Fix WP coding standard issues
+* | 0af06c2 updated gitignore with wpcs
+* | 178cf9e updated travis added echoes
+* | 8ae0616 changed path to bootstrap
+* | 602b009 new bootstrap for wp-php-unit
+* | e051557 Travis _s config test
+* | 876c2ac added travis phpunit test first test
+* | 158bf8c added gitinfo => automatic update of the branch url parameter for Travis ci build
+* | 269c001 added travis task updated gruntfile credentials are get from .ftpauth only if the context option passed == travis
+* | eb1142b fixed .travis.yml
+* | 833e160 added travis build
+* | b4bc3b5 updated version number
+* | 59f56b5 updated GNU GPL link
+* | e3d61c4 fixed layout issues
+* | 75f77dd updated : grunt setup, add a note about .ftpauth
+* | 73e2960 Added : all changelog dates
+* | a0540bb updated : readme.md now includes the Grunt setup (deleted from the gruntfile.js)
+* | 4a6cec0 updated grunt : task registering is more "dry"
+* |   cd31224 Merge branch 'fix-fp-holder' into dev
+|\ \
+| * | 0fb6b85 updated holder.js to version v2.4.1. => fixes the featured pages holder image bug
+* | | 9658751 updated : always load holder minified
+* | | 66ffb37 updated holder.js to version v2.4.1. => fixes the featured pages holder image bug
+|/ /
+* | 3037f8f added : post metas options. Last update date and customizable notice in title.
+* | cc798fb updated metas settings conditional display
+* | e444982 updated stepper style overrides default WP number input css
+* | b0206ff added customizer settings to select the metas : taxonomies, date, author
+* | 7c21a51 updated customizer style : smaller titles
+|/
+*   3826c72 Merge branch 'grunt-versionning' into dev
+|\
+| * abcb0da added grunt automatic versionning with replace package
+* | 42682f4 updated version to 3.2.6
+|/
+* 85063c7 added grunt build workflow : clean => copy => compress
+* 32e3bdb added grunt translation tasks
+*   46bb285 Merge branch 'grunt-tasks-organization' into dev
+|\
+| * cc7dc38 added each grunt task split by files. Uses load-grunt-config npm package.
+* | 2140786 added each grunt task split by files. Uses load-grunt-config npm package.
+|/
+* 1897c5d added in gruntfile.js : paths global var
+
 = 3.2.5 November 15th 2014 =
 * added (lang) Thai language (th), thanks to <a href="http://new.forest.go.th" target="_blank">Wee Sritippho</a>
 * updated (lang) French translation
