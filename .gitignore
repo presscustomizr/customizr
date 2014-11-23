@@ -18,7 +18,7 @@ PHP_CodeSniffer/
 # BUILD
 build/
 
-#WPCS
+# WPCS
 wpcs/
 
 # EXEMPLE OF ADVANCED CONFIG WITH FOLDER

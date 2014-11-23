@@ -2,20 +2,21 @@ module.exports = {
 	main: {
 		src:  [
 			'**',
-			'!node_modules/**',
+			'!bin/**',
 			'!build/**',
+			'!grunt-tasks-config/**',
+			'!node_modules/**',
+			'!tests/**',
+			'!wpcs/**',
 			'!.git/**',
 			'!gruntfile.js',
 			'!package.json',
 			'!.gitignore',
 			'!.ftpauth',
 			'!.travis.yml',
-			'!grunt-tasks/**',
-			'!tests/**',
-			'!bin/**',
 			'!travis-examples/**',
-			'!wpcs/**',
 			'!phpunit.xml',
+			'!readme.md',
 			'!**/*.db'
 		],
 		dest: 'build/<%= pkg.name %>/'
