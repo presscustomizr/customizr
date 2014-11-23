@@ -6002,6 +6002,14 @@ footer#footer .colophon .social-block a {
   line-height: 500px;
   /* OVERRIDEN BY DYNAMIC!!!! PHP + JS */
   width: 10%;
+  opacity: 0;
+}
+.tc-slid-hover .tc-slider-controls {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 .tc-slider-controls.right {
   right: 0;

@@ -2406,6 +2406,15 @@ jQuery(function ($) {
         }
     }
 
+    //add a class to the slider on hover => used to display the navigation arrow
+    $(".carousel").hover( function() {
+            $(this).addClass('tc-slid-hover');
+        },
+        function() {
+            $(this).removeClass('tc-slid-hover');
+        }
+    );
+
     //Smooth scroll but not on bootstrap buttons. Checks if php localized option is active first.
     var SmoothScroll = TCParams.SmoothScroll;
 
