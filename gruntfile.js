@@ -1,3 +1,4 @@
+//@todo add a grunt log task before build : git log --pretty=format:"%h %s" --graph --since="2014-11-15"
 module.exports = function(grunt) {
 	console.log('OPTIONS : ', grunt.option('src'), grunt.option('dest'));
 	var path = require('path');
