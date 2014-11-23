@@ -17,12 +17,12 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         function __construct () {
             self::$instance =& $this;
             add_action  ( '__after_content_title'           , array( $this , 'tc_post_metas' ));
-            //Set metas contexts with user options (@since 3.2.0)
+            //Show / hide metas based on customizer user options (@since 3.2.0)
             add_action( 'template_redirect'                 , array( $this , 'tc_set_post_metas' ));
-            //Set metas content with user options (@since 3.2.6)
+            //Set metas content based on customizer user options (@since 3.2.6)
             add_filter( 'tc_meta_utility_text'              , array( $this , 'tc_set_meta_content'));
             //Add update status net to the title (@since 3.2.6)
-            add_filter('the_title'                          , array( $this , 'tc_add_update_notice_in_title'), 20);
+            add_filter( 'the_title'                         , array( $this , 'tc_add_update_notice_in_title'), 20);
         }
 
 
@@ -40,7 +40,10 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             //2) +filter conditions
             return apply_filters(
                 'tc_show_post_metas',
-                ! tc__f('__is_home') && ! is_404() && ! 'page' == $post -> post_type
+                ! tc__f('__is_home') 
+                && ! is_404()
+                && ! 'page' == $post -> post_type
+                && in_array( get_post_type(), apply_filters('tc_show_metas_for_post_types' , array( 'post') ) )
             );
         }
 
@@ -98,67 +101,6 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
  
-        /**
-        * Set meta content base on user options
-        * callback of tc_meta_utility_text
-        *
-        * @package Customizr
-        * @since Customizr 3.2.6
-        */
-        function tc_set_meta_content( $_default ) {
-            $_show_cats         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_categories' ) ) && false != $this -> tc_get_category_list();
-            $_show_tags         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_tags' ) ) && false != $this -> tc_get_tag_list();
-            $_show_pub_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_publication_date' ) );
-            $_show_upd_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_update_date' ) ) && 'no-updates' !== $this -> tc_has_update();
-            $_show_upd_in_days  = 'days' == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_date_format' ) );
-            $_show_date         = $_show_pub_date || $_show_upd_date;
-            $_show_author       = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_author' ) );
-            
-            //TAGS / CATS
-            $_tax_text              = '';
-            if ( $_show_cats && $_show_tags )
-                $_tax_text   .= __( 'This entry was posted in %1$s and tagged %2$s' , 'customizr' );
-            if ( $_show_cats && ! $_show_tags )
-                $_tax_text   .= __( 'This entry was posted in %1$s' , 'customizr' );
-            if ( ! $_show_cats && $_show_tags )
-                $_tax_text   .= __( 'This entry was tagged %2$s' , 'customizr' );
-            
-            //PUBLICATION DATE
-            $_date_text = '';
-            if ( $_show_pub_date ) {
-                $_date_text        = empty($_tax_text) ? __( 'This entry was posted on %3$s' , 'customizr' ) : $_date_text;
-                if ( $_show_cats )
-                    $_date_text   .= __( 'on %3$s' , 'customizr' );
-                if ( ! $_show_cats && $_show_tags )
-                    $_date_text   .= __( 'and posted on %3$s' , 'customizr' );
-            }
-
-            //AUTHOR
-            $_author_text = '';
-            if ( $_show_author ) {
-                if ( empty($_tax_text) && empty($_date_text) ) {
-                    $_author_text = sprintf( '%1$s <span class="by-author">%2$s</span>' , __( 'This entry was posted', 'customizr' ), __('by %4$s' , 'customizr') );
-                } else {
-                    $_author_text = sprintf( '<span class="by-author">%1$s</span>' , __('by %4$s' , 'customizr') );
-                }
-            }
-
-            //UPDATE DATE
-            $_update_text           = '';
-            if ( $_show_upd_date ) {
-                if ( $_show_upd_in_days ) {
-                    $_update_text = ( 0 == $this -> tc_has_update() ) ? __( '(updated today)' , 'customizr' ) : __( '(updated %6$s days ago)' , 'customizr' );
-                    $_update_text = ( 1 == $this -> tc_has_update() ) ? __( '(updated 1 day ago)' , 'customizr' ) : $_update_text;
-                }
-                else {
-                    $_update_text = __( '(updated on %5$s)' , 'customizr' );
-                }
-            }
-
-            return sprintf( '%1$s %2$s %3$s %4$s' , $_tax_text , $_date_text, $_author_text, $_update_text );
-        }
-
-
 
         /**
         * Attachment post metas view
@@ -422,6 +364,72 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
         /**
+        * Set meta content based on user options
+        * callback of tc_meta_utility_text
+        *
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        function tc_set_meta_content( $_default ) {
+            if ( ! $this -> tc_post_metas_controller() )
+                return;
+            $_show_cats         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_categories' ) ) && false != $this -> tc_get_category_list();
+            $_show_tags         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_tags' ) ) && false != $this -> tc_get_tag_list();
+            $_show_pub_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_publication_date' ) );
+            $_show_upd_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_update_date' ) ) && 'no-updates' !== $this -> tc_has_update();
+            $_show_upd_in_days  = 'days' == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_date_format' ) );
+            $_show_date         = $_show_pub_date || $_show_upd_date;
+            $_show_author       = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_author' ) );
+            
+            //TAGS / CATS
+            $_tax_text              = '';
+            if ( $_show_cats && $_show_tags )
+                $_tax_text   .= __( 'This entry was posted in %1$s and tagged %2$s' , 'customizr' );
+            if ( $_show_cats && ! $_show_tags )
+                $_tax_text   .= __( 'This entry was posted in %1$s' , 'customizr' );
+            if ( ! $_show_cats && $_show_tags )
+                $_tax_text   .= __( 'This entry was tagged %2$s' , 'customizr' );
+            
+            //PUBLICATION DATE
+            $_date_text = '';
+            if ( $_show_pub_date ) {
+                $_date_text        = empty($_tax_text) ? __( 'This entry was posted on %3$s' , 'customizr' ) : $_date_text;
+                if ( $_show_cats )
+                    $_date_text   .= __( 'on %3$s' , 'customizr' );
+                if ( ! $_show_cats && $_show_tags )
+                    $_date_text   .= __( 'and posted on %3$s' , 'customizr' );
+            }
+
+            //AUTHOR
+            $_author_text = '';
+            if ( $_show_author ) {
+                if ( empty($_tax_text) && empty($_date_text) ) {
+                    $_author_text = sprintf( '%1$s <span class="by-author">%2$s</span>' , __( 'This entry was posted', 'customizr' ), __('by %4$s' , 'customizr') );
+                } else {
+                    $_author_text = sprintf( '<span class="by-author">%1$s</span>' , __('by %4$s' , 'customizr') );
+                }
+            }
+
+            //UPDATE DATE
+            $_update_text           = '';
+            if ( $_show_upd_date ) {
+                if ( $_show_upd_in_days ) {
+                    $_update_text = ( 0 == $this -> tc_has_update() ) ? __( '(updated today)' , 'customizr' ) : __( '(updated %6$s days ago)' , 'customizr' );
+                    $_update_text = ( 1 == $this -> tc_has_update() ) ? __( '(updated 1 day ago)' , 'customizr' ) : $_update_text;
+                }
+                else {
+                    $_update_text = __( '(updated on %5$s)' , 'customizr' );
+                }
+            }
+
+            return sprintf( '%1$s %2$s %3$s %4$s' , $_tax_text , $_date_text, $_author_text, $_update_text );
+        }
+
+
+
+
+
+        /**
         * Callback of the the_title => add an updated status
         * User option based
         *
@@ -433,7 +441,8 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             if ( ! in_the_loop() || is_page() )
                 return $html;
 
-            if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_in_title' ) ) )
+            //Is the notice option enabled AND this post type eligible for updated notice ? (default is post)
+            if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
                 return $html;
 
             //Instantiates the different date objects
