@@ -475,7 +475,8 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 .stepper.disabled .stepper-input { background: #fff; border-color: #eee; color: #ccc; }
 .stepper.disabled .stepper-arrow { background: #fff; border-color: #eee; cursor: default; }
 
-/* SELECT 2 SEPECIFICS */
+
+/* SELECT 2 SPECIFICS */
 .wp-customizer .select2-container {
 	width: 100%
 }
@@ -537,7 +538,7 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 	transition: box-shadow .25s ease;
 	/* vertical-align: middle; */
 }
-.tc-select2-skin-color:hover {
+.select2-chosen .tc-select2-skin-color, .tc-select2-skin-color:hover {
 	-webkit-box-shadow: none;
 	-moz-box-shadow:none;
 	box-shadow: none;
