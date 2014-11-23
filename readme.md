@@ -1,4 +1,4 @@
-# Customizr v3.2.6 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=master)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.7 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -93,6 +93,9 @@ The exceptions to this license are as follows:
 
 ## Changelog
 = 3.2.6 November 23rd 2014 =
+* 936abcb Set update notice default to true and 10 days interval
+* d242b79 Fix archive title bug. A unique dynamic filter is used now to render the heading html in single or archive
+ a3cfea7 v3.2.6 built and tested
 * 1247841 when live previewing skin, add a new link for the live stylesheet instead of replacing the actual skin link => avoid the flash of unstyle content during the skin load
 * 88be803 Add style option for the update status notice next to the title
 * 9353cb7 added filter to display metas and update notice based on post type 'tc_show_metas_for_post_types' 'tc_post_metas_update_notice_in_title'
