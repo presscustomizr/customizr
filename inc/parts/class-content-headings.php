@@ -17,7 +17,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function __construct () {
         self::$instance =& $this;
         //set actions and filters for single post and page headings
-        add_action( 'template_redirect'             , array( $this , 'tc_set_single_post_page_heading_hooks') );
+        add_action( '__before_loop'             , array( $this , 'tc_set_single_post_page_heading_hooks') , 20 );
         //set actions and filters for archives headings
         add_action( 'template_redirect'             , array( $this , 'tc_set_archives_heading_hooks') );
         //Set headings user options
@@ -35,7 +35,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.2.6
       */
       function tc_set_archives_heading_hooks() {
-        //is there anything to render in the current context ?
+        //is there anything to render in the current context
         if ( ! $this -> tc_archive_title_and_class_callback() )
           return;
 
@@ -45,7 +45,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ) );
         
         add_filter( 'tc_archive_header_class'         , array( $this , 'tc_archive_title_and_class_callback'), 10, 2 );
-        add_filter( 'tc_headings_content'             , array( $this , 'tc_archive_title_and_class_callback'), 10, 1 );
+        add_filter( 'tc_headings_archive_html'        , array( $this , 'tc_archive_title_and_class_callback'), 10, 1 );
         global $wp_query;
         if ( tc__f('__is_home') || $wp_query -> is_posts_page )
           add_filter( 'tc_archive_headings_separator' , '__return_false' );
@@ -74,7 +74,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_filter ( 'tc_content_title_icon'          , array( $this , 'tc_set_post_page_icon' ) );
         //Headings for post, page, attachment
         add_action ( '__before_content'               , array( $this , 'tc_headings_view' ) );
-        add_filter ( 'tc_headings_content'            , array( $this , 'tc_post_page_title_callback'), 10, 2 );
+        add_filter ( 'tc_headings_content_html'       , array( $this , 'tc_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
         add_filter( 'the_title'                       , array( $this , 'tc_content_heading_title' ) , 0 );
         //Add comment bubble
@@ -102,7 +102,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         <header class="<?php echo implode( ' ' , apply_filters( "tc_{$_heading_type}_header_class", array('entry-header'), $_return_class = true ) ); ?>">
           <?php 
             do_action( "__before_{$_heading_type}_title" );
-            echo apply_filters( "tc_headings_content", '' , $_heading_type );
+            echo apply_filters( "tc_headings_{$_heading_type}_html", '' , $_heading_type );
             do_action( "__after_{$_heading_type}_title" );
 
             echo apply_filters( "tc_{$_heading_type}_headings_separator", '<hr class="featurette-divider '.current_filter(). '">' );
@@ -118,7 +118,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
       /**
-      * Callback for tc_headings_content
+      * Callback for tc_headings_content_html
       * @return  string
       *
       * @package Customizr
