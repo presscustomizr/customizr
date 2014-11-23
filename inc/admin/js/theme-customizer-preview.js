@@ -12,7 +12,11 @@
 	wp.customize( 'tc_theme_options[tc_skin]' , function( value ) {
 		value.bind( function( to ) {
 			if ( TCPreviewParams && TCPreviewParams.themeFolder ) {
-				$('#customizr-skin-css').attr('href' , [ TCPreviewParams.themeFolder , '/inc/assets/css/' , to.replace('.css' , '.min.css')].join('') );
+				//add a new link to the live stylesheet instead of replacing the actual skin link => avoid the flash of unstyle content during the skin load
+				var $skin_style_element = ( 0 === $('#live-skin-css').length ) ? $('<link>' , { id : 'live-skin-css' , rel : 'stylesheet'}) : $('#live-skin-css');
+				$skin_style_element.attr('href' , [ TCPreviewParams.themeFolder , '/inc/assets/css/' , to.replace('.css' , '.min.css') ].join('') );
+				if (  0 === $('#live-skin-css').length )
+					$('head').append($skin_style_element);
 			}
 		} );
 	} );
