@@ -164,6 +164,7 @@
     'tc_theme_options[tc_post_metas_update_notice_in_title]' : {
       controls: [
         'tc_theme_options[tc_post_metas_update_notice_text]',
+        'tc_theme_options[tc_post_metas_update_notice_format]',
         'tc_theme_options[tc_post_metas_update_notice_interval]'
       ],
       callback: function (to) {

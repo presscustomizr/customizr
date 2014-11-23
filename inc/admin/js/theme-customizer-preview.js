@@ -434,4 +434,19 @@
 			$('head').append($style_element.html(bubble_live_css));
 		} );
 	} );
+	wp.customize( 'tc_theme_options[tc_post_metas_update_notice_format]' , function( value ) {
+		value.bind( function( to ) {
+			$( '.tc-update-notice').each( function() {
+				var classes = $(this).attr('class').split(' ');
+				for (var key in classes) {
+					if ( -1 !== (classes[key]).indexOf('label-') ) {
+						classes.splice(key, 1);
+					}
+				}
+				//rebuild the class attr
+				$(this).attr('class' , classes.join(' ') );
+			});
+			$( '.tc-update-notice' ).addClass( to );
+		} );
+	} );
 } )( jQuery );

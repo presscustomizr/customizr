@@ -1593,26 +1593,22 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 ),
                                 'priority'      => 50
               ),
-
+              'tc_theme_options[tc_show_post_metas_author]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls',
+                                'label'         => __( "Display the author" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 55
+              ),
               'tc_theme_options[tc_post_metas_update_notice_in_title]'  =>  array(
                                 'default'       => 0,
                                 'control'       => 'TC_controls',
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
-                                'priority'      => 45,
-                                'notice'    => __( 'If this option is checked, a customizable recent update notice is displayed next to the post title.' , 'customizr' ),
-                                'priority'      => 55
-              ),
-
-              'tc_theme_options[tc_post_metas_update_notice_text]'  =>  array(
-                                'default'       => __( "Recently updated !" , "customizr" ),
-                                'control'       => 'TC_controls',
-                                'label'         => __( "Update notice text" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
-                                'type'          => 'text',
-                                'priority'      => 60,
-                                'transport'   => 'postMessage'
+                                'priority'      => 65,
+                                'notice'    => __( 'If this option is checked, a customizable recent update notice is displayed next to the post title.' , 'customizr' )
               ),
               'tc_theme_options[tc_post_metas_update_notice_interval]'  =>  array(
                                 'default'       => 30,
@@ -1622,17 +1618,33 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'number' ,
                                 'step'          => 1,
                                 'min'           => 0,
-                                'priority'      => 65,
+                                'priority'      => 70,
                                 'notice'    => __( 'Set a maximum interval (in days) during which the last update notice will be displayed.' , 'customizr' ),
               ),
-              
-              'tc_theme_options[tc_show_post_metas_author]'  =>  array(
-                                'default'       => 1,
-                                'control'     => 'TC_controls',
-                                'label'         => __( "Display the author" , "customizr" ),
+              'tc_theme_options[tc_post_metas_update_notice_text]'  =>  array(
+                                'default'       => __( "Recently updated !" , "customizr" ),
+                                'control'       => 'TC_controls',
+                                'label'         => __( "Update notice text" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
-                                'type'          => 'checkbox',
-                                'priority'      => 70
+                                'type'          => 'text',
+                                'priority'      => 75,
+                                'transport'   => 'postMessage'
+              ),
+              'tc_theme_options[tc_post_metas_update_notice_format]'  =>  array(
+                                'default'       => 'label-warning',
+                                'control'       => 'TC_controls',
+                                'label'         => __( "Update notice style" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          =>  'select' ,
+                                'choices'       => array(
+                                        'label-default'   => __( 'Default (grey)' , 'customizr' ),
+                                        'label-success'   => __( 'Success (green)' , 'customizr' ),
+                                        'label-warning'   => __( 'Alert (orange)' , 'customizr' ),
+                                        'label-important' => __( 'Important (red)' , 'customizr' ),
+                                        'label-info'      => __( 'Info (blue)' , 'customizr' )
+                                ),
+                                'priority'      => 80,
+                                'transport'   => 'postMessage'
               ),
 
               /* Post list layout */

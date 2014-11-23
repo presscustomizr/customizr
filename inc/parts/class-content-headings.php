@@ -174,12 +174,12 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
         //when are we showing the comments number in title?
         //1) comments are enabled
-        //2) post type is in the eligible post type list : default post
+        //2) post type is in the eligible post type list : default = post
         $comments_enabled                  = ( 1 == esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
         $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
 
         if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled )
-          || ! in_array( get_post_type(), apply_filters( 'tc_show_comment_bubbles_for_post_types' , array('post') ) ) )
+          || ! in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post') ) ) )
           return $_title;
 
         $_default_bubble_comment                    = apply_filters( 
@@ -414,6 +414,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_filter( 'tc_content_header_class'       , array( $this , 'tc_set_bubble_comment_color_type') );
         //Set user defined various inline stylings
         add_filter( 'tc_user_options_style'         , array( $this , 'tc_write_headings_inline_css' ) );
+        //Add update status next to the title (@since 3.2.6)
+        add_filter( 'the_title'                      , array( $this , 'tc_add_update_notice_in_title'), 20);
       }
 
 
@@ -529,6 +531,59 @@ if ( ! class_exists( 'TC_headings' ) ) :
         }
         return $_css;
       }//end of fn
+
+
+      /**
+      * Callback of the the_title => add an updated status
+      * User option based
+      *
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_add_update_notice_in_title($html) {
+          //First checks if we are in the loop and we are not displaying a page
+          if ( ! in_the_loop() || is_page() )
+              return $html;
+
+          //Is the notice option enabled AND this post type eligible for updated notice ? (default is post)
+          if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
+              return $html;
+
+          //Instantiates the different date objects
+          $created = new DateTime( get_the_date('Y-m-d g:i:s') );
+          $updated = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
+          $current = new DateTime( date('Y-m-d g:i:s') );
+
+          //Creates the date_diff objects from dates
+          $created_to_updated = date_diff($created , $updated);
+          $updated_to_today = date_diff($updated, $current);
+           
+           //Check if the post has been updated since its creation
+          $has_been_updated = ( $created_to_updated -> s > 0 || $created_to_updated -> i > 0 ) ? true : false;
+          
+           //get the user defined interval in days
+          $_interval = esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_interval' ) );
+          $_interval = ( 0 != $_interval ) ? $_interval : 30;
+          
+          //Check if the last update is less than n days old. (replace n by your own value)
+          $has_recent_update = ( $has_been_updated && $updated_to_today -> days < $_interval ) ? true : false;
+          
+          if ( ! $has_recent_update )
+              return $html;
+
+           //Add HTML after the title
+          $recent_update = $has_recent_update ? 'Recently updated' : '';
+           
+          //Return the modified title
+          return apply_filters(
+              'tc_update_notice_in_title', 
+              sprintf('%1$s &nbsp; <span class="tc-update-notice label %3$s">%2$s</span>',
+                  $html, 
+                  esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_text' ) ),
+                  esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_format' ) )
+              )
+          );
+      }
 
   }//end of class
 endif;
