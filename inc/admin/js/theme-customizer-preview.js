@@ -11,7 +11,9 @@
 ( function( $ ) {
 	wp.customize( 'tc_theme_options[tc_skin]' , function( value ) {
 		value.bind( function( to ) {
-			$('#customizr-skin-css').attr('href' , '//lab.nikeo.fr/wp-content/themes/DEV_customizr/inc/assets/css/' + to.replace('.css' , '.min.css') );
+			if ( TCPreviewParams && TCPreviewParams.themeFolder ) {
+				$('#customizr-skin-css').attr('href' , [ TCPreviewParams.themeFolder , '/inc/assets/css/' , to.replace('.css' , '.min.css')].join('') );
+			}
 		} );
 	} );
 	// Site title and description.

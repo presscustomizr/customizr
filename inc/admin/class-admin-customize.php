@@ -135,15 +135,12 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				}
 			}
 
-
 			//remove sections
 			if ( isset( $setup['remove_section'])) {
 				foreach ( $setup['remove_section'] as $section) {
 					$wp_customize	-> remove_section( $section);
 				}
 			}
-
-
 
 			//add sections
 			if ( isset( $setup['add_section'])) {
@@ -160,15 +157,12 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				}//end foreach
 			}//end if
 
-
 			//get_settings
 			if ( isset( $setup['get_setting'])) {
 				foreach ( $setup['get_setting'] as $setting) {
 					$wp_customize	-> get_setting( $setting )->transport = 'postMessage';
 				}
 			}
-
-
 
 			//add settings and controls
 			if ( isset( $setup['add_setting_control'])) {
@@ -201,7 +195,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 						$option_controls[$con] = isset( $options[$con]) ?  $options[$con] : null;
 					}
 
-					//add control with a dynamic class instanciation if not default
+					//add control with a class instanciation if not default
 					if( ! isset( $options['control']) )
 						$wp_customize	-> add_control( $key,$option_controls );
 					else
@@ -229,6 +223,17 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				CUSTOMIZR_VER ,
 				true
 			);
+
+			//localizes
+			wp_localize_script( 
+		        'tc-customizer-preview', 
+		        'TCPreviewParams',
+		        apply_filters('tc_js_customizer_control_params' ,
+			        array(
+			        	'themeFolder' 		=> get_template_directory_uri(),
+			        )
+			    )
+	        );
 		}
 
 
