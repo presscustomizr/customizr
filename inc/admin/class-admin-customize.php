@@ -257,20 +257,14 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				true
 			);
 
-			//select2
+			//select2 stylesheet
+			//overriden by some specific style in theme-customzer-control.css
 			wp_enqueue_style(
 				'tc-select2-css',
-				sprintf('%1$s/inc/admin/js/lib/select2.css', get_template_directory_uri() ),
+				sprintf('%1$s/inc/admin/js/lib/select2.min.css', get_template_directory_uri() ),
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER,
 				$media = 'all'
-			);
-			wp_enqueue_script(
-				'tc-select2-js',
-				sprintf('%1$s/inc/admin/js/lib/select2.js', get_template_directory_uri() ),
-				array( 'customize-controls' ),
-				CUSTOMIZR_VER ,
-				true
 			);
 
 
