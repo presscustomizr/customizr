@@ -1378,7 +1378,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'     => 'postMessage',
               ),
               'tc_theme_options[tc_menu_resp_dropdown_limit_to_viewport]'  =>  array(
-                                'default'       => 1,
+                                'default'       => 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "In responsive mode, limit the height of the dropdown menu block to the visible viewport" , "customizr" ),
                                 'section'       => 'nav' ,
