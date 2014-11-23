@@ -6004,6 +6004,14 @@ footer#footer .colophon .social-block a {
   line-height: 500px;
   /* OVERRIDEN BY DYNAMIC!!!! PHP + JS */
   width: 10%;
+  opacity: 0;
+}
+.tc-slid-hover .tc-slider-controls {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 .tc-slider-controls.right {
   right: 0;
@@ -6406,9 +6414,29 @@ article .author-info h2,
   height: inherit;
   /*float: left;*/
   z-index: 1;
-  color: #ff0000;
   width: 34px;
   opacity: 0.8;
+}
+.comments-link .tc-comment-bubble {
+  color: #ff0000;
+}
+.tc-skin-bubble-comment-color .comments-link .tc-comment-bubble {
+  color: #5a5a5a;
+}
+/* custom bubble */
+.comments-link .custom-bubble-one {
+  color: #ff0000;
+  border: 2px solid #ff0000;
+}
+.comments-link .custom-bubble-one:before {
+  border-color: #ff0000 rgba(0, 0, 0, 0);
+}
+.tc-skin-bubble-comment-color .custom-bubble-one {
+  color: #5a5a5a;
+  border: 2px solid #5a5a5a;
+}
+.tc-skin-bubble-comment-color .custom-bubble-one:before {
+  border-color: #5a5a5a rgba(0, 0, 0, 0);
 }
 .comments-link .inner {
   color: white;
@@ -6511,6 +6539,7 @@ video {
   -moz-transition: -moz-filter 0.4s ease;
   -o-transition: -o-filter 0.4s ease;
   transition: -webkit-filter 0.4s ease;
+  width: 100%;
 }
 .rectangular-blurred .tc-thumbnail img:hover {
   -webkit-filter: blur(2px);
@@ -8716,9 +8745,6 @@ li#wp-admin-bar-tc-customizr a {
   }
   .item .carousel-caption h1 {
     font-size: 22px;
-  }
-  .carousel-caption .lead {
-    display: none;
   }
   .carousel-caption .btn {
     font-size: 16px;
