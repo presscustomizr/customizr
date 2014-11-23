@@ -1602,7 +1602,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 55
               ),
               'tc_theme_options[tc_post_metas_update_notice_in_title]'  =>  array(
-                                'default'       => 0,
+                                'default'       => 1,
                                 'control'       => 'TC_controls',
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
@@ -1611,7 +1611,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'    => __( 'If this option is checked, a customizable recent update notice is displayed next to the post title.' , 'customizr' )
               ),
               'tc_theme_options[tc_post_metas_update_notice_interval]'  =>  array(
-                                'default'       => 30,
+                                'default'       => 10,
                                 'control'       => 'TC_controls',
                                 'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
@@ -1631,7 +1631,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_post_metas_update_notice_format]'  =>  array(
-                                'default'       => 'label-warning',
+                                'default'       => 'label-default',
                                 'control'       => 'TC_controls',
                                 'label'         => __( "Update notice style" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
