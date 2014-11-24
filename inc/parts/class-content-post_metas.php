@@ -197,9 +197,9 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             $updated                = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
             $current                = new DateTime( date('Y-m-d g:i:s') );
             
-            $created_to_updated     = date_diff($created , $updated);
-            $updated_to_today       = date_diff($updated, $current);
-
+            $created_to_updated     = TC_utils::$instance -> tc_date_diff( $created , $updated );
+            $updated_to_today       = TC_utils::$instance -> tc_date_diff( $updated, $current );
+            
             return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? 'no-updates' : $updated_to_today -> days;
         }
 
