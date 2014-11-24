@@ -2,7 +2,7 @@
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
-> Enjoy designing a beautiful website live with the WP customizer : 17 color skins, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 23 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.
+> Enjoy designing a beautiful website live with the WP customizer : 17 color skins, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 24 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.
 
 ## Copyright
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>)) 
@@ -92,6 +92,13 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.2.8 November 24th 2014 =
+* a4c6ad2 date_diff bug fix. TC_utils::tc_date_diff uses date_diff and falls back to new class TC_DateInterval if php version < 5.3.0
+
+= 3.2.7 November 23rd 2014 =
+* 936abcb Set update notice default to true and 10 days interval
+* d242b79 Fix archive title bug. A unique dynamic filter is used now to render the heading html in single or archive contexts : "tc_headings_{$_heading_type}_html"
+
 = 3.2.6 November 23rd 2014 =
 * 936abcb Set update notice default to true and 10 days interval
 * d242b79 Fix archive title bug. A unique dynamic filter is used now to render the heading html in single or archive

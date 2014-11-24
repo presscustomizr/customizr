@@ -39,6 +39,13 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.2.8 November 24th 2014 =
+* a4c6ad2 date_diff bug fix. TC_utils::tc_date_diff uses date_diff and falls back to new class TC_DateInterval if php version < 5.3.0
+
+= 3.2.7 November 23rd 2014 =
+* 936abcb Set update notice default to true and 10 days interval
+* d242b79 Fix archive title bug. A unique dynamic filter is used now to render the heading html in single or archive contexts : "tc_headings_{$_heading_type}_html"
+
 = 3.2.6 November 23rd 2014 =
 * 936abcb Set update notice default to true and 10 days interval
 * d242b79 Fix archive title bug. A unique dynamic filter is used now to render the heading html in single or archive

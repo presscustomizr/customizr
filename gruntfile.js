@@ -1,7 +1,7 @@
 //@todo add a grunt log task before build : git log --pretty=format:"%h %s" --graph --since="2014-11-15"
 //@todo save description in package json and copy in different place on each builds
+//@todo add customzr.pot in replace version file list
 module.exports = function(grunt) {
-	console.log('OPTIONS : ', grunt.option('src'), grunt.option('dest'));
 	var path = require('path');
 	var global_config = {
 		// path to task.js files, defaults to grunt dir
