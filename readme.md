@@ -1,4 +1,4 @@
-# Customizr v3.2.8 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=master)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.8 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=fix-reordering-bug)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 

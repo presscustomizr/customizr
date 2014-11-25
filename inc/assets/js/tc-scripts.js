@@ -2383,7 +2383,7 @@ jQuery(function ($) {
                 $(this).attr('title',alt);
             }
          });
-	}
+    }
 
 
     //Slider with localized script variables
@@ -2512,12 +2512,13 @@ jQuery(function ($) {
         wrapper             = $('#main-wrapper .container[role=main] > .column-content-wrapper'),
         content             = $("#main-wrapper .container .article-container"),
         left                = $("#main-wrapper .container " + LeftSidebarClass),
-        right               = $("#main-wrapper .container " + RightSidebarClass);
+        right               = $("#main-wrapper .container " + RightSidebarClass),
+        reordered           = false;
 
     function BlockPositions() {
         //15 pixels adjustement to avoid replacement before real responsive width
         WindowWidth = $(window).width();
-        if ( WindowWidth > 767 - 15 ) {
+        if ( WindowWidth > 767 - 15 && reordered ) {
             //$(window).width();
             if ( $(left).length ) {
                 $(left).detach();
@@ -2528,7 +2529,8 @@ jQuery(function ($) {
                 $(right).detach();
                 $(wrapper).append($(right));
             }
-        } else {
+            reordered = false; //this could stay in both if blocks instead
+        } else if ( ( WindowWidth <= 767 - 15 ) && ! reordered ) {
             if ( $(left).length ) {
                  $(left).detach();
                 $(content).detach();
@@ -2538,14 +2540,15 @@ jQuery(function ($) {
                 $(right).detach();
                 $(wrapper).append($(right));
             }
+            reordered = true; //this could stay in both if blocks instead
         }
-    }//end function*/
+    }//end function
 
     //Enable reordering if option is checked in the customizer.
     if ( 1 == TCParams.ReorderBlocks ) {
         //trigger the block positioning only when responsive
         WindowWidth = $(window).width();
-        if ( WindowWidth <= 767 - 15 ) {
+        if ( WindowWidth <= 767 - 15 && ! reordered ) {
             BlockPositions();
         }
 
@@ -2561,7 +2564,7 @@ jQuery(function ($) {
 
         $(images).each(function () {
             var container_width    = $(this).closest(container).width(),
-                container_height	= $(container).height(),
+                container_height    = $(container).height(),
                 // this will let us know the real img height
                 ratio = container_width / $(this).attr("width"),
                 real_img_height = ratio * $(this).attr("height");
@@ -2640,7 +2643,7 @@ jQuery(function ($) {
     }
     //Recenter the slider arrows
     $(window).resize(function(){
-    	_center_slider_arrows();
+        _center_slider_arrows();
     });
     _center_slider_arrows();
 
@@ -2659,148 +2662,148 @@ jQuery(function ($) {
     });
 
     //Slider swipe support with hammer.js
-	if ( 'function' == typeof($.fn.hammer) ) {
-		$('.carousel' ).each( function() {
-			$(this).hammer().on('swipeleft tap', function() {
-				$(this).carousel('next');
-			});
-			$(this).hammer().on('swiperight', function(){
+    if ( 'function' == typeof($.fn.hammer) ) {
+        $('.carousel' ).each( function() {
+            $(this).hammer().on('swipeleft tap', function() {
+                $(this).carousel('next');
+            });
+            $(this).hammer().on('swiperight', function(){
                 $(this).carousel('prev');
             });
-		});
-	}
+        });
+    }
 });
 
 
 /* Sticky header since v3.2.0 */
 jQuery(function ($) {
-	var	   $tcHeader		= $('.tc-header'),
-			elToHide		= [], //[ '.social-block' , '.site-description' ],
-			isUserLogged	= $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
-			isCustomizing	= $('body').hasClass('is-customizing'),
-			customOffset	= +TCParams.stickyCustomOffset;
+    var    $tcHeader        = $('.tc-header'),
+            elToHide        = [], //[ '.social-block' , '.site-description' ],
+            isUserLogged    = $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
+            isCustomizing   = $('body').hasClass('is-customizing'),
+            customOffset    = +TCParams.stickyCustomOffset;
 
-	function _is_scrolling() {
-		return $('body').hasClass('sticky-enabled') ? true : false;
-	}
+    function _is_scrolling() {
+        return $('body').hasClass('sticky-enabled') ? true : false;
+    }
 
-	function _is_sticky_enabled() {
-		return $('body').hasClass('tc-sticky-header') ? true : false;
-	}
+    function _is_sticky_enabled() {
+        return $('body').hasClass('tc-sticky-header') ? true : false;
+    }
 
-	function _get_initial_offset() {
-		//initialOffset 	= ( 1 == isUserLogged &&  580 < $(window).width() ) ? $('#wpadminbar').height() : 0;
-		var initialOffset 	= 0;
-		if ( 1 == isUserLogged && ! isCustomizing ) {
-			if ( 580 < $(window).width() )
-				initialOffset = $('#wpadminbar').height();
-			else
-				initialOffset = ! _is_scrolling() ? $('#wpadminbar').height() : 0;
-		}
-		return initialOffset + customOffset;
-	}
+    function _get_initial_offset() {
+        //initialOffset     = ( 1 == isUserLogged &&  580 < $(window).width() ) ? $('#wpadminbar').height() : 0;
+        var initialOffset   = 0;
+        if ( 1 == isUserLogged && ! isCustomizing ) {
+            if ( 580 < $(window).width() )
+                initialOffset = $('#wpadminbar').height();
+            else
+                initialOffset = ! _is_scrolling() ? $('#wpadminbar').height() : 0;
+        }
+        return initialOffset + customOffset;
+    }
 
-	function _set_sticky_offsets() {
-		if ( ! _is_sticky_enabled() )
-			return;
+    function _set_sticky_offsets() {
+        if ( ! _is_sticky_enabled() )
+            return;
 
-		//Reset all values first
-		$tcHeader.css('top' , '');
-		$('.tc-header').css('height' , 'auto' );
-		$('#tc-reset-margin-top').css('margin-top' , '' ).show();
+        //Reset all values first
+        $tcHeader.css('top' , '');
+        $('.tc-header').css('height' , 'auto' );
+        $('#tc-reset-margin-top').css('margin-top' , '' ).show();
 
-		//What is the initial offset of the header ?
-		var	headerHeight 	= $tcHeader.height();
-		//set initial margin-top = initial offset + header's height
-		$('#tc-reset-margin-top').css('margin-top' , ( +headerHeight + customOffset ) + 10 + 'px' ); //10 = header bottom border
-	}
+        //What is the initial offset of the header ?
+        var headerHeight    = $tcHeader.height();
+        //set initial margin-top = initial offset + header's height
+        $('#tc-reset-margin-top').css('margin-top' , ( +headerHeight + customOffset ) + 10 + 'px' ); //10 = header bottom border
+    }
 
 
-	function _set_header_top_offset() {
-		//set header initial offset
-		$tcHeader.css('top' , _get_initial_offset() + 'px');
-	}
+    function _set_header_top_offset() {
+        //set header initial offset
+        $tcHeader.css('top' , _get_initial_offset() + 'px');
+    }
 
-	function _set_no_title_logo_class() {
-		if ( ! $('body').hasClass('sticky-enabled') ) {
-			$('.navbar-wrapper').addClass('span9').removeClass('span12');
-		} else {
-			$('.tc-title-logo-off .navbar-wrapper' , '.sticky-enabled').addClass('span12').removeClass('span9');
-			$('.tc-title-logo-on .navbar-wrapper' , '.sticky-enabled').addClass('span9').removeClass('span12');
-		}
-	}	
+    function _set_no_title_logo_class() {
+        if ( ! $('body').hasClass('sticky-enabled') ) {
+            $('.navbar-wrapper').addClass('span9').removeClass('span12');
+        } else {
+            $('.tc-title-logo-off .navbar-wrapper' , '.sticky-enabled').addClass('span12').removeClass('span9');
+            $('.tc-title-logo-on .navbar-wrapper' , '.sticky-enabled').addClass('span9').removeClass('span12');
+        }
+    }
 
-	//set site logo width and height if exists
-	//=> allow the CSS3 transition to be enabled
-	if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
-		var logoWidth 	= $('img' , '.site-logo').attr('width'),
-			logoHeight 	= $('img' , '.site-logo').attr('height');
-		$('img' , '.site-logo').css('height' , logoHeight +'px' ).css('width' , logoWidth +'px' );
-	}
+    //set site logo width and height if exists
+    //=> allow the CSS3 transition to be enabled
+    if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
+        var logoWidth   = $('img' , '.site-logo').attr('width'),
+            logoHeight  = $('img' , '.site-logo').attr('height');
+        $('img' , '.site-logo').css('height' , logoHeight +'px' ).css('width' , logoWidth +'px' );
+    }
 
-	//LOADING ACTIONS
-	if ( _is_sticky_enabled() )
+    //LOADING ACTIONS
+    if ( _is_sticky_enabled() )
         setTimeout( function() { _refresh(); } , 20 );
-	if ( _is_sticky_enabled() && ! $('body').hasClass('sticky-enabled') )
+    if ( _is_sticky_enabled() && ! $('body').hasClass('sticky-enabled') )
         $('body').addClass("sticky-disabled");
 
-	//RESIZING ACTIONS
-	$(window).resize(function() {
-		if ( ! _is_sticky_enabled() )
-			return;
-		_set_sticky_offsets();
-		_set_header_top_offset();
-		_set_no_title_logo_class();
-	});
+    //RESIZING ACTIONS
+    $(window).resize(function() {
+        if ( ! _is_sticky_enabled() )
+            return;
+        _set_sticky_offsets();
+        _set_header_top_offset();
+        _set_no_title_logo_class();
+    });
 
-	function _refresh() {
-		setTimeout( function() {
-			_set_sticky_offsets();
-			_set_header_top_offset();
-			_set_no_title_logo_class();
-		} , 20 );
-		$(window).trigger('resize');
-	}
+    function _refresh() {
+        setTimeout( function() {
+            _set_sticky_offsets();
+            _set_header_top_offset();
+            _set_no_title_logo_class();
+        } , 20 );
+        $(window).trigger('resize');
+    }
 
-	//SCROLLING ACTIONS
-	var timer,
-		increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
+    //SCROLLING ACTIONS
+    var timer,
+        increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
 
-	//var windowHeight = $(window).height();  
-	var triggerHeight = 20; //0.5 * windowHeight;
+    //var windowHeight = $(window).height();  
+    var triggerHeight = 20; //0.5 * windowHeight;
 
-	function _scrolling_actions() {
-		_set_header_top_offset();
-		_set_no_title_logo_class();
-		//process scrolling actions
-		if ( $(window).scrollTop() > triggerHeight ) {
+    function _scrolling_actions() {
+        _set_header_top_offset();
+        _set_no_title_logo_class();
+        //process scrolling actions
+        if ( $(window).scrollTop() > triggerHeight ) {
             $('body').addClass("sticky-enabled").removeClass("sticky-disabled");
-		}
-		else {
+        }
+        else {
             $('body').removeClass("sticky-enabled").addClass("sticky-disabled");
             setTimeout( function() { _refresh();} ,
                 $('body').hasClass('is-customizing') ? 100 : 20
-	       );
-		}
-	}
+           );
+        }
+    }
 
-	$(window).scroll(function() {
-		if ( ! _is_sticky_enabled() )
-			return;
-		//use a timer
-		if ( timer) {
-			increment++;
+    $(window).scroll(function() {
+        if ( ! _is_sticky_enabled() )
+            return;
+        //use a timer
+        if ( timer) {
+            increment++;
             window.clearTimeout(timer);
          }
          
          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
             timer = window.setTimeout(function() {
                 _scrolling_actions();
-	         }, increment > 5 ? 50 : 0 );
+             }, increment > 5 ? 50 : 0 );
          } else if ( $('body').hasClass('ie') ) {
-	         timer = window.setTimeout(function() {
+             timer = window.setTimeout(function() {
                 _scrolling_actions();
-	         }, increment > 5 ? 50 : 0 );
-		}
-	});//end of window.scroll()
+             }, increment > 5 ? 50 : 0 );
+        }
+    });//end of window.scroll()
 });
