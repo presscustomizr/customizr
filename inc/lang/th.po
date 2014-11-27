@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.2.8\n"
-"POT-Creation-Date: 2014-11-14 17:14+0100\n"
-"PO-Revision-Date: 2014-11-14 17:16+0100\n"
+"POT-Creation-Date: 2014-11-27 09:04+0100\n"
+"PO-Revision-Date: 2014-11-27 09:04+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Wee Sritippho <weeaix@gmail.com>\n"
 "Language: th\n"
@@ -37,216 +37,216 @@ msgid "Blue"
 msgstr "น้ำเงิน"
 
 #: ../class-fire-init.php:78
-msgid "Light blue "
-msgstr "ฟ้า"
-
-#: ../class-fire-init.php:79
-msgid "Green blue"
-msgstr "เขียวน้ำเงิน"
-
-#: ../class-fire-init.php:80
-msgid "Green"
-msgstr "เขียว"
-
-#: ../class-fire-init.php:81
-msgid "Light green"
-msgstr "เขียวอ่อน"
-
-#: ../class-fire-init.php:82
-msgid "Yellow"
-msgstr "เหลือง"
-
-#: ../class-fire-init.php:83
-msgid "Flat yellow"
-msgstr "เหลืองแบน"
-
-#: ../class-fire-init.php:84
-msgid "Orange"
-msgstr "ส้ม"
-
-#: ../class-fire-init.php:85
-msgid "Flat orange"
-msgstr "ส้มแบน"
-
-#: ../class-fire-init.php:86
-msgid "Red"
-msgstr "แดง"
-
-#: ../class-fire-init.php:87
-msgid "Flat red"
-msgstr "แดงแบน"
-
-#: ../class-fire-init.php:88
-msgid "Purple"
-msgstr "ม่วง"
-
-#: ../class-fire-init.php:89
-msgid "Flat purple"
-msgstr "ม่วงแบน"
-
-#: ../class-fire-init.php:90
-msgid "Grey"
-msgstr "เทา"
-
-#: ../class-fire-init.php:91
-msgid "Ligth grey"
-msgstr "เทาอ่อน"
-
-#: ../class-fire-init.php:92
 msgid "Black"
 msgstr "ดำ"
 
-#: ../class-fire-init.php:93
+#: ../class-fire-init.php:79
 msgid "Flat black"
 msgstr "ดำแบน"
 
-#: ../class-fire-init.php:123
+#: ../class-fire-init.php:80
+msgid "Grey"
+msgstr "เทา"
+
+#: ../class-fire-init.php:81
+msgid "Ligth grey"
+msgstr "เทาอ่อน"
+
+#: ../class-fire-init.php:82
+msgid "Flat purple"
+msgstr "ม่วงแบน"
+
+#: ../class-fire-init.php:83
+msgid "Purple"
+msgstr "ม่วง"
+
+#: ../class-fire-init.php:84
+msgid "Flat red"
+msgstr "แดงแบน"
+
+#: ../class-fire-init.php:85
+msgid "Red"
+msgstr "แดง"
+
+#: ../class-fire-init.php:86
+msgid "Orange"
+msgstr "ส้ม"
+
+#: ../class-fire-init.php:87
+msgid "Flat orange"
+msgstr "ส้มแบน"
+
+#: ../class-fire-init.php:88
+msgid "Yellow"
+msgstr "เหลือง"
+
+#: ../class-fire-init.php:89
+msgid "Flat yellow"
+msgstr "เหลืองแบน"
+
+#: ../class-fire-init.php:90
+msgid "Green"
+msgstr "เขียว"
+
+#: ../class-fire-init.php:91
+msgid "Light green"
+msgstr "เขียวอ่อน"
+
+#: ../class-fire-init.php:92
+msgid "Green blue"
+msgstr "เขียวน้ำเงิน"
+
+#: ../class-fire-init.php:93
+msgid "Light blue "
+msgstr "ฟ้า"
+
+#: ../class-fire-init.php:124
 msgid "Subscribe to my rss feed"
 msgstr "ติดตามฉันผ่านฟีด rss"
 
-#: ../class-fire-init.php:124
+#: ../class-fire-init.php:125
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "ฟีด RSS (ค่าเริ่มต้นคือฟีดของ wordpress)"
 
-#: ../class-fire-init.php:128
+#: ../class-fire-init.php:129
 msgid "Follow me on Twitter"
 msgstr "ติดตามฉันบน Twitter"
 
-#: ../class-fire-init.php:129
+#: ../class-fire-init.php:130
 msgid "Twitter profile url"
 msgstr "url ข้อมูลผู้ใช้ Twitter"
 
-#: ../class-fire-init.php:133
+#: ../class-fire-init.php:134
 msgid "Follow me on Facebook"
 msgstr "ติดตามฉันบน Facebook"
 
-#: ../class-fire-init.php:134
+#: ../class-fire-init.php:135
 msgid "Facebook profile url"
 msgstr "url ข้อมูลผู้ใช้ Facebook"
 
-#: ../class-fire-init.php:138
+#: ../class-fire-init.php:139
 msgid "Follow me on Google+"
 msgstr "ติดตามฉันบน Google+"
 
-#: ../class-fire-init.php:139
+#: ../class-fire-init.php:140
 msgid "Google+ profile url"
 msgstr "url ข้อมูลผู้ใช้ Google+"
 
-#: ../class-fire-init.php:143
+#: ../class-fire-init.php:144
 msgid "Follow me on Instagram"
 msgstr "ติดตามฉันบน Instagram"
 
-#: ../class-fire-init.php:144
+#: ../class-fire-init.php:145
 msgid "Instagram profile url"
 msgstr "url ข้อมูลผู้ใช้ Instagram"
 
-#: ../class-fire-init.php:148
+#: ../class-fire-init.php:149
 msgid "Follow me on Tumblr"
 msgstr "ติดตามฉันบน Tumblr"
 
-#: ../class-fire-init.php:149
+#: ../class-fire-init.php:150
 msgid "Tumblr url"
 msgstr "url ของ Tumblr"
 
-#: ../class-fire-init.php:153
+#: ../class-fire-init.php:154
 msgid "Follow me on Flickr"
 msgstr "ติดตามฉันบน Flickr"
 
-#: ../class-fire-init.php:154
+#: ../class-fire-init.php:155
 msgid "Flickr url"
 msgstr "url ของ Flickr"
 
-#: ../class-fire-init.php:158
+#: ../class-fire-init.php:159
 msgid "Follow me on WordPress"
 msgstr "ติดตามฉันบน Wordpress"
 
-#: ../class-fire-init.php:159
+#: ../class-fire-init.php:160
 msgid "WordPress profile url"
 msgstr "url ข้อมูลผู้ใช้ Wordpress"
 
-#: ../class-fire-init.php:163
+#: ../class-fire-init.php:164
 msgid "Follow me on Youtube"
 msgstr "ติดตามฉันบน Youtube"
 
-#: ../class-fire-init.php:164
+#: ../class-fire-init.php:165
 msgid "Youtube profile url"
 msgstr "url ข้อมูลผู้ใช้ Youtube"
 
-#: ../class-fire-init.php:168
+#: ../class-fire-init.php:169
 msgid "Pin me on Pinterest"
 msgstr "ปักหมุดฉันบน Pinterest"
 
-#: ../class-fire-init.php:169
+#: ../class-fire-init.php:170
 msgid "Pinterest profile url"
 msgstr "url ข้อมูลผู้ใช้ Pinterest"
 
-#: ../class-fire-init.php:173
+#: ../class-fire-init.php:174
 msgid "Follow me on Github"
 msgstr "ติดตามฉันบน Github"
 
-#: ../class-fire-init.php:174
+#: ../class-fire-init.php:175
 msgid "Github profile url"
 msgstr "url ข้อมูลผู้ใช้ Github"
 
-#: ../class-fire-init.php:178
+#: ../class-fire-init.php:179
 msgid "Follow me on Dribbble"
 msgstr "ติดตามฉันบน Dribbble"
 
-#: ../class-fire-init.php:179
+#: ../class-fire-init.php:180
 msgid "Dribbble profile url"
 msgstr "url ข้อมูลผู้ใช้ Dribbble"
 
-#: ../class-fire-init.php:183
+#: ../class-fire-init.php:184
 msgid "Follow me on LinkedIn"
 msgstr "ติดตามฉันบน LinkedIn"
 
-#: ../class-fire-init.php:184
+#: ../class-fire-init.php:185
 msgid "LinkedIn profile url"
 msgstr "url ข้อมูลผู้ใช้ LinkedIn"
 
-#: ../class-fire-init.php:193
+#: ../class-fire-init.php:194
 msgid "Right Sidebar"
 msgstr "แถบด้านขวา"
 
-#: ../class-fire-init.php:194 ../class-fire-init.php:198
+#: ../class-fire-init.php:195 ../class-fire-init.php:199
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "ปรากฏบนเรื่อง หน้าคงที่ แฟ้มเก็บถาวร และ หน้าผลการค้นหา"
 
-#: ../class-fire-init.php:197
+#: ../class-fire-init.php:198
 msgid "Left Sidebar"
 msgstr "แถบด้านซ้าย"
 
-#: ../class-fire-init.php:205
+#: ../class-fire-init.php:206
 msgid "Footer Widget Area One"
 msgstr "แถบ widget ด้านล่าง 1"
 
-#: ../class-fire-init.php:206 ../class-fire-init.php:210
-#: ../class-fire-init.php:214
+#: ../class-fire-init.php:207 ../class-fire-init.php:211
+#: ../class-fire-init.php:215
 msgid "Just use it as you want !"
 msgstr "ใช้ตามที่คุณต้องการ !"
 
-#: ../class-fire-init.php:209
+#: ../class-fire-init.php:210
 msgid "Footer Widget Area Two"
 msgstr "แถบ widget ด้านล่าง 2"
 
-#: ../class-fire-init.php:213
+#: ../class-fire-init.php:214
 msgid "Footer Widget Area Three"
 msgstr "แถบ widget ด้านล่าง 3"
 
-#: ../class-fire-init.php:231
+#: ../class-fire-init.php:232
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr "หากโลกมีแต่ความหลอกลวง การพูดจริงคือปฏิวัติ"
 
-#: ../class-fire-init.php:232
+#: ../class-fire-init.php:233
 msgid "George Orwell"
 msgstr "จอร์จ ออร์เวล"
 
-#: ../class-fire-init.php:233
+#: ../class-fire-init.php:234
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr "ขออภัย ไม่พบหน้าที่คุณระบุ คุณอาจจะลองค้นหาผ่านช่องด้านล่าง"
 
-#: ../class-fire-init.php:238
+#: ../class-fire-init.php:239
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
@@ -254,58 +254,58 @@ msgstr ""
 "ความสำเร็จคือความสามารถที่จะข้ามจากความล้มเหลวหนึ่ง "
 "ไปยังอีกความล้มเหลวหนึ่งโดยไม่สูญเสียความกระตือรือร้น..."
 
-#: ../class-fire-init.php:239
+#: ../class-fire-init.php:240
 msgid "Sir Winston Churchill"
 msgstr "เซอร์วินสตัน เชอร์ชิล"
 
-#: ../class-fire-init.php:240
+#: ../class-fire-init.php:241
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
 msgstr "ขออภัย ไม่มีผลลัพธ์ใดตรงกับคำที่คุณใช้ค้นหา โปรดลองค้นหาด้วยคำอื่นที่แตกต่างออกไป"
 
-#: ../class-fire-init.php:255
+#: ../class-fire-init.php:256
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr เป็นธีมแบบ responsive ที่เรียบง่าย"
 
-#: ../class-fire-init.php:260 ../class-fire-init.php:269
+#: ../class-fire-init.php:261 ../class-fire-init.php:270
 msgid "Style your WordPress site live!"
 msgstr "ตกแต่งเว็บ WordPress ของคุณตามที่ตาเห็น!"
 
-#: ../class-fire-init.php:261
+#: ../class-fire-init.php:262
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
 msgstr ""
 "ตัวเลือกด้านโครงสร้างและรูปแบบส่วนมากมีอยู่ในหน้าปรับแต่ง WordPress : เห็นผลการแก้ไขในทันที !"
 
-#: ../class-fire-init.php:262
+#: ../class-fire-init.php:263
 msgid "Just try it!"
 msgstr "ลองดูสิ!"
 
-#: ../class-fire-init.php:274 ../class-fire-init.php:283
+#: ../class-fire-init.php:275 ../class-fire-init.php:284
 msgid "Create beautiful sliders"
 msgstr "สร้างสไลเดอร์สวยๆ"
 
-#: ../class-fire-init.php:275
+#: ../class-fire-init.php:276
 msgid ""
 "Customizr comes with a cool slider generator : add a slider to any post or "
 "page!"
 msgstr "Customizr มากับที่สร้างสไลเดอร์สุดเท่ห์ : เพิ่มสไลเดอร์ในทุกเรื่องหรือหน้า!"
 
-#: ../class-fire-init.php:276
+#: ../class-fire-init.php:277
 msgid "Discover the features"
 msgstr "สำรวจคุณสมบัติต่างๆ"
 
-#: ../class-fire-init.php:393
+#: ../class-fire-init.php:394
 msgid "Main Menu"
 msgstr "เมนูหลัก"
 
-#: ../class-fire-init.php:782
+#: ../class-fire-init.php:783
 msgid "Help"
 msgstr "ช่วยเหลือ"
 
-#: ../class-fire-init.php:785
+#: ../class-fire-init.php:786
 msgid "Need help with Customizr? Click here!"
 msgstr "ต้องการความช่วยเหลือเกี่ยวกับ Customizr หรือ? คลิกที่นี่!"
 
@@ -354,278 +354,278 @@ msgid ""
 "the page excerpt."
 msgstr "คุณต้องเลือกหน้าก่อน เว้นกล่องข้อความนี้ไว้หากคุณต้องการใช้คำตัดทอนของหน้านั้นๆ"
 
-#: ../class-fire-utils_settings_map.php:188
+#: ../class-fire-utils_settings_map.php:200
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; ไม่มีสไลเดอร์ &mdash;"
 
-#: ../class-fire-utils_settings_map.php:189
+#: ../class-fire-utils_settings_map.php:201
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; สไลเดอร์ตัวอย่าง &mdash;"
 
-#: ../class-fire-utils_settings_map.php:231
+#: ../class-fire-utils_settings_map.php:243
 msgid "Global settings"
 msgstr "การตั้งค่าทั่วไป"
 
-#: ../class-fire-utils_settings_map.php:232
+#: ../class-fire-utils_settings_map.php:244
 msgid "Global settings for the Customizr theme :skin, socials, links..."
 msgstr "การตั้งค่าทั่วไปสำหรับธีม Customizr :skin เครือข่ายสังคม ลิงค์..."
 
-#: ../class-fire-utils_settings_map.php:237
+#: ../class-fire-utils_settings_map.php:249
 msgid "Header : title, logo, menu, ..."
 msgstr "ส่วนหัว : หัวข้อเว็บไซต์ โลโก้ เมนู ฯลฯ"
 
-#: ../class-fire-utils_settings_map.php:238
+#: ../class-fire-utils_settings_map.php:250
 msgid "Header settings for the Customizr theme."
 msgstr "การตั้งค่าส่วนหัวสำหรับธีม Customizr"
 
-#: ../class-fire-utils_settings_map.php:243
+#: ../class-fire-utils_settings_map.php:255
 msgid "Content : home, posts, ..."
 msgstr "เนื้อหา : หน้าแรก เรื่อง ฯลฯ"
 
-#: ../class-fire-utils_settings_map.php:244
+#: ../class-fire-utils_settings_map.php:256
 msgid "Content settings for the Customizr theme."
 msgstr "การตั้งค่าเนื้อหาสำหรับธีม Customizr"
 
-#: ../class-fire-utils_settings_map.php:249
+#: ../class-fire-utils_settings_map.php:261
 msgid "Footer"
 msgstr "ส่วนท้าย"
 
-#: ../class-fire-utils_settings_map.php:250
+#: ../class-fire-utils_settings_map.php:262
 msgid "Footer settings for the Customizr theme."
 msgstr "การตั้งค่าส่วนท้ายสำหรับธีม Customizr"
 
-#: ../class-fire-utils_settings_map.php:255
+#: ../class-fire-utils_settings_map.php:267
 msgid "Advanced options"
 msgstr "การตั้งค่าขั้นสูง"
 
-#: ../class-fire-utils_settings_map.php:256
+#: ../class-fire-utils_settings_map.php:268
 msgid "Advanced settings for the Customizr theme."
 msgstr "การตั้งค่าขั้นสูงสำหรับธีม Customizr"
 
-#: ../class-fire-utils_settings_map.php:277
-#: ../class-fire-utils_settings_map.php:974
+#: ../class-fire-utils_settings_map.php:289
+#: ../class-fire-utils_settings_map.php:993
 msgid "Skin"
 msgstr "สกิน"
 
-#: ../class-fire-utils_settings_map.php:279
-#: ../class-fire-utils_settings_map.php:976
+#: ../class-fire-utils_settings_map.php:291
+#: ../class-fire-utils_settings_map.php:995
 msgid "Select a skin for Customizr"
 msgstr "เลือกสกินสำหรับ Customizr"
 
-#: ../class-fire-utils_settings_map.php:283
-#: ../class-fire-utils_settings_map.php:1020
+#: ../class-fire-utils_settings_map.php:295
+#: ../class-fire-utils_settings_map.php:1039
 msgid "Logo &amp; Favicon"
 msgstr "โลโก้ และไอคอนประจำเว็บ"
 
-#: ../class-fire-utils_settings_map.php:285
-#: ../class-fire-utils_settings_map.php:1022
+#: ../class-fire-utils_settings_map.php:297
+#: ../class-fire-utils_settings_map.php:1041
 msgid "Set up logo and favicon options"
 msgstr "การตั้งค่าเกี่ยวกับโลโก้และไอคอนประจำเว็บ"
 
-#: ../class-fire-utils_settings_map.php:289
-#: ../class-fire-utils_settings_map.php:1034
+#: ../class-fire-utils_settings_map.php:301
+#: ../class-fire-utils_settings_map.php:1053
 msgid "Front Page"
 msgstr "หน้าแรก"
 
-#: ../class-fire-utils_settings_map.php:291
-#: ../class-fire-utils_settings_map.php:1036
+#: ../class-fire-utils_settings_map.php:303
+#: ../class-fire-utils_settings_map.php:1055
 msgid "Set up front page options"
 msgstr "การตั้งค่าเกี่ยวกับหน้าแรก"
 
-#: ../class-fire-utils_settings_map.php:295
-#: ../class-fire-utils_settings_map.php:1041
+#: ../class-fire-utils_settings_map.php:307
+#: ../class-fire-utils_settings_map.php:1060
 msgid "Pages &amp; Posts Layout"
 msgstr "โครงสร้างหน้าและเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:297
-#: ../class-fire-utils_settings_map.php:1043
+#: ../class-fire-utils_settings_map.php:309
+#: ../class-fire-utils_settings_map.php:1062
 msgid "Set up layout options"
 msgstr "การตั้งค่าเกี่ยวกับโครงสร้างหน้าและเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:301
-#: ../class-fire-utils_settings_map.php:1080
+#: ../class-fire-utils_settings_map.php:313
+#: ../class-fire-utils_settings_map.php:1099
 msgid "Comments"
 msgstr "ความเห็น"
 
-#: ../class-fire-utils_settings_map.php:303
-#: ../class-fire-utils_settings_map.php:1082
+#: ../class-fire-utils_settings_map.php:315
+#: ../class-fire-utils_settings_map.php:1101
 msgid "Set up comments options"
 msgstr "การตั้งค่าเกี่ยวกับความเห็น"
 
-#: ../class-fire-utils_settings_map.php:307
-#: ../class-fire-utils_settings_map.php:980
-#: ../class-fire-utils_settings_map.php:1685
+#: ../class-fire-utils_settings_map.php:319
+#: ../class-fire-utils_settings_map.php:999
+#: ../class-fire-utils_settings_map.php:1873
 msgid "Social links"
 msgstr "ลิงค์เครือข่ายสังคม"
 
-#: ../class-fire-utils_settings_map.php:309
-#: ../class-fire-utils_settings_map.php:982
+#: ../class-fire-utils_settings_map.php:321
+#: ../class-fire-utils_settings_map.php:1001
 msgid "Set up your social links"
 msgstr "การตั้งค่าเกี่ยวกับลิงค์เครือข่ายสังคม"
 
-#: ../class-fire-utils_settings_map.php:313
+#: ../class-fire-utils_settings_map.php:325
 msgid "Images"
 msgstr "รูปภาพ"
 
-#: ../class-fire-utils_settings_map.php:315
-#: ../class-fire-utils_settings_map.php:1000
+#: ../class-fire-utils_settings_map.php:327
+#: ../class-fire-utils_settings_map.php:1019
 msgid "Various images settings"
 msgstr "การตั้งค่าเกี่ยวกับรูปภาพ"
 
-#: ../class-fire-utils_settings_map.php:319
+#: ../class-fire-utils_settings_map.php:331
 msgid "Links"
 msgstr "ลิงค์"
 
-#: ../class-fire-utils_settings_map.php:321
-#: ../class-fire-utils_settings_map.php:988
+#: ../class-fire-utils_settings_map.php:333
+#: ../class-fire-utils_settings_map.php:1007
 msgid "Various links settings"
 msgstr "การตั้งค่าเกี่ยวกับลิงค์"
 
-#: ../class-fire-utils_settings_map.php:325
-#: ../class-fire-utils_settings_map.php:1092
+#: ../class-fire-utils_settings_map.php:337
+#: ../class-fire-utils_settings_map.php:1111
 msgid "Custom CSS"
 msgstr "CSS ที่เขียนขึ้นเอง"
 
-#: ../class-fire-utils_settings_map.php:327
-#: ../class-fire-utils_settings_map.php:1094
+#: ../class-fire-utils_settings_map.php:339
+#: ../class-fire-utils_settings_map.php:1113
 msgid "Add your own CSS"
 msgstr "เพิ่ม CSS ของคุณเอง"
 
-#: ../class-fire-utils_settings_map.php:331
-#: ../class-fire-utils_settings_map.php:1004
+#: ../class-fire-utils_settings_map.php:343
+#: ../class-fire-utils_settings_map.php:1023
 msgid "Responsive settings"
 msgstr "คุณสมบัติ responsive"
 
-#: ../class-fire-utils_settings_map.php:333
-#: ../class-fire-utils_settings_map.php:1006
+#: ../class-fire-utils_settings_map.php:345
+#: ../class-fire-utils_settings_map.php:1025
 msgid "Various settings for responsive display"
 msgstr "การตั้งค่าเว็บไซต์ให้ปรับ/ไม่ปรับตามขนาดหน้าจอ"
 
-#: ../class-fire-utils_settings_map.php:362
+#: ../class-fire-utils_settings_map.php:374
 msgid "Manage menus"
 msgstr "จัดการเมนู"
 
-#: ../class-fire-utils_settings_map.php:368
+#: ../class-fire-utils_settings_map.php:380
 msgid "Select a submenu expansion option"
 msgstr "เลือกการแสดงผลของเมนูย่อย"
 
-#: ../class-fire-utils_settings_map.php:372
+#: ../class-fire-utils_settings_map.php:384
 msgid "Expand submenus on click"
 msgstr "แสดงเมนูย่อยเมื่อคลิก"
 
-#: ../class-fire-utils_settings_map.php:373
+#: ../class-fire-utils_settings_map.php:385
 msgid "Expand submenus on hover"
 msgstr "แสดงเมนูย่อยเมื่อนำเมาส์มาชี้"
 
-#: ../class-fire-utils_settings_map.php:388
+#: ../class-fire-utils_settings_map.php:401
 msgid "Choose a predefined skin"
 msgstr "เลือกสกินที่กำหนดไว้ล่วงหน้า"
 
-#: ../class-fire-utils_settings_map.php:397
+#: ../class-fire-utils_settings_map.php:411
 msgid "Performance : use the minified CSS stylesheet"
 msgstr "ประสิทธิภาพ : ใช้ไฟล์ CSS แบบปรับย่อ"
 
-#: ../class-fire-utils_settings_map.php:400
+#: ../class-fire-utils_settings_map.php:414
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
 msgstr "ใช้สกินรุ่นที่ถูกปรับย่อจะทำให้เว็บไซต์โหลดเร็วขึ้น"
 
-#: ../class-fire-utils_settings_map.php:406
-#: ../class-fire-utils_settings_map.php:1216
+#: ../class-fire-utils_settings_map.php:420
+#: ../class-fire-utils_settings_map.php:1236
 msgid "Display top border"
 msgstr "แสดงขอบสีด้านบน"
 
-#: ../class-fire-utils_settings_map.php:410
-#: ../class-fire-utils_settings_map.php:1220
+#: ../class-fire-utils_settings_map.php:424
+#: ../class-fire-utils_settings_map.php:1240
 msgid "Uncheck this option to remove the colored top border."
 msgstr "ปิดตัวเลือกนี้เพื่อลบขอบสีด้านบน"
 
-#: ../class-fire-utils_settings_map.php:422
+#: ../class-fire-utils_settings_map.php:436
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "อัพโหลดโลโก้ (นามสกุลที่สนับสนุน : .jpg, .png, .gif, svg, svgz)"
 
-#: ../class-fire-utils_settings_map.php:431
+#: ../class-fire-utils_settings_map.php:445
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "บังคับให้โลโก้มีความกว้างเป็น 250px และความสูงเป็น 100px"
 
-#: ../class-fire-utils_settings_map.php:447
+#: ../class-fire-utils_settings_map.php:461
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "อัพโหลดไอคอนประจำเว็บ (นามสกุลที่สนับสนุน : .ico, .png, .gif)"
 
-#: ../class-fire-utils_settings_map.php:465
+#: ../class-fire-utils_settings_map.php:479
 msgid "Choose content and layout"
 msgstr "เลือกเนื้อหาและโครงสร้าง"
 
-#: ../class-fire-utils_settings_map.php:473
+#: ../class-fire-utils_settings_map.php:487
 msgid "Front page displays"
 msgstr "การแสดงผลของหน้าแรก"
 
-#: ../class-fire-utils_settings_map.php:478
+#: ../class-fire-utils_settings_map.php:492
 msgid "Don't show any posts or page"
 msgstr "ไม่ต้องแสดงเรื่องหรือหน้าใดๆ"
 
-#: ../class-fire-utils_settings_map.php:479
+#: ../class-fire-utils_settings_map.php:493
 msgid "Your latest posts"
 msgstr "เรื่องล่าสุดของคุณ"
 
-#: ../class-fire-utils_settings_map.php:480
+#: ../class-fire-utils_settings_map.php:494
 msgid "A static page"
 msgstr "หน้าคงที่"
 
-#: ../class-fire-utils_settings_map.php:486
+#: ../class-fire-utils_settings_map.php:500
 msgid "Front page"
 msgstr "หน้าแรก"
 
-#: ../class-fire-utils_settings_map.php:494
+#: ../class-fire-utils_settings_map.php:508
 msgid "Posts page"
 msgstr "หน้าแสดงเรื่องล่าสุด"
 
-#: ../class-fire-utils_settings_map.php:503
+#: ../class-fire-utils_settings_map.php:517
 msgid "Set up the front page layout"
 msgstr "ตั้งค่าโครงสร้างของหน้าแรก"
 
-#: ../class-fire-utils_settings_map.php:514
+#: ../class-fire-utils_settings_map.php:528
 msgid "Slider options"
 msgstr "ตัวเลือกสไลเดอร์"
 
-#: ../class-fire-utils_settings_map.php:515
+#: ../class-fire-utils_settings_map.php:529
 msgid "Select front page slider"
 msgstr "เลือกสไลเดอร์ที่ใช้แสดงในหน้าแรก"
 
-#: ../class-fire-utils_settings_map.php:527
+#: ../class-fire-utils_settings_map.php:541
 msgid "Full width slider"
 msgstr "แสดงสไลเดอร์เต็มขนาด"
 
-#: ../class-fire-utils_settings_map.php:538
+#: ../class-fire-utils_settings_map.php:552
 msgid "Delay between each slides"
 msgstr "หน่วงเวลาระหว่างแต่ละสไลด์"
 
-#: ../class-fire-utils_settings_map.php:543
+#: ../class-fire-utils_settings_map.php:557
 msgid "in ms : 1000ms = 1s"
 msgstr "ในหน่วย ms : 1000ms = 1 วินาที"
 
-#: ../class-fire-utils_settings_map.php:551
+#: ../class-fire-utils_settings_map.php:565
 msgid "Featured pages options"
 msgstr "ตัวเลือกหน้าที่ถูกเน้น"
 
-#: ../class-fire-utils_settings_map.php:552
+#: ../class-fire-utils_settings_map.php:566
 msgid "Display home featured pages area"
 msgstr "แสดงส่วนหน้าที่ถูกเน้น"
 
-#: ../class-fire-utils_settings_map.php:556
+#: ../class-fire-utils_settings_map.php:570
 msgid "Enable"
 msgstr "เปิด"
 
-#: ../class-fire-utils_settings_map.php:557
+#: ../class-fire-utils_settings_map.php:571
 msgid "Disable"
 msgstr "ปิด"
 
-#: ../class-fire-utils_settings_map.php:566
+#: ../class-fire-utils_settings_map.php:580
 msgid "Show images"
 msgstr "แสดงรูปภาพ"
 
-#: ../class-fire-utils_settings_map.php:569
+#: ../class-fire-utils_settings_map.php:583
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -633,73 +633,74 @@ msgstr ""
 "รูปภาพที่ถูกระบุใน \"รูปพิเศษ\" สำหรับแต่ละหน้า (ในหน้าจอทแก้ไขหน้า). "
 "ปิดตัวเลือกด้านบนเพื่องดเว้นการแสดงรูปพิเศษสำหรับแต่ละหน้า"
 
-#: ../class-fire-utils_settings_map.php:575
+#: ../class-fire-utils_settings_map.php:589
 msgid "Read more &raquo;"
 msgstr "อ่านต่อ &raquo;"
 
-#: ../class-fire-utils_settings_map.php:577
+#: ../class-fire-utils_settings_map.php:591
 msgid "Button text"
 msgstr "ข้อความในปุ่ม"
 
-#: ../class-fire-utils_settings_map.php:598
-#: ../class-fire-utils_settings_map.php:1138
+#: ../class-fire-utils_settings_map.php:612
+#: ../class-fire-utils_settings_map.php:1158
 msgid "Display Breadcrumb"
 msgstr "แสดง breadcrumb"
 
-#: ../class-fire-utils_settings_map.php:608
-#: ../class-fire-utils_settings_map.php:1148
+#: ../class-fire-utils_settings_map.php:622
+#: ../class-fire-utils_settings_map.php:1168
 msgid "Choose the global default layout"
 msgstr "เลือกโครงสร้างเริ่มต้น"
 
-#: ../class-fire-utils_settings_map.php:619
-#: ../class-fire-utils_settings_map.php:1160
+#: ../class-fire-utils_settings_map.php:633
+#: ../class-fire-utils_settings_map.php:1180
 msgid "Force default layout everywhere"
 msgstr "บังคับใช้โครงสร้างเริ่มต้นกับทุกที่บนเว็บ"
 
-#: ../class-fire-utils_settings_map.php:622
-#: ../class-fire-utils_settings_map.php:1163
+#: ../class-fire-utils_settings_map.php:636
+#: ../class-fire-utils_settings_map.php:1183
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
 msgstr ""
 "ตัวเลือกนี้จะแทนที่โครงสร้างที่ระบุไว้ในแต่ละ เรื่อง/หน้า (รวมถึงหน้าแรกด้วย) ด้วยโครงสร้างเริ่มต้น"
 
-#: ../class-fire-utils_settings_map.php:629
-#: ../class-fire-utils_settings_map.php:1169
+#: ../class-fire-utils_settings_map.php:643
+#: ../class-fire-utils_settings_map.php:1189
 msgid "Choose the posts default layout"
 msgstr "เลือกโครงสร้างเริ่มต้นสำหรับเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:641
-#: ../class-fire-utils_settings_map.php:1191
+#: ../class-fire-utils_settings_map.php:655
+#: ../class-fire-utils_settings_map.php:1211
 msgid "Maximum number of posts per page"
 msgstr "จำนวนเรื่องสูงสุดต่อหน้า"
 
-#: ../class-fire-utils_settings_map.php:652
-#: ../class-fire-utils_settings_map.php:1201
+#: ../class-fire-utils_settings_map.php:666
+#: ../class-fire-utils_settings_map.php:1221
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr ""
 "เลือกความยาวตัวอักษรของเรื่องที่อยู่ในรายการ (หน้าแรก หน้าผลการค้นหา หน้าแฟ้มเก็บถาวร ฯลฯ)"
 
-#: ../class-fire-utils_settings_map.php:656
-#: ../class-fire-utils_settings_map.php:1205
+#: ../class-fire-utils_settings_map.php:670
+#: ../class-fire-utils_settings_map.php:1225
 msgid "Display the excerpt"
 msgstr "แสดงคำตัดทอน"
 
-#: ../class-fire-utils_settings_map.php:657
-#: ../class-fire-utils_settings_map.php:1206
+#: ../class-fire-utils_settings_map.php:671
+#: ../class-fire-utils_settings_map.php:1226
 msgid "Display the full content"
 msgstr "แสดงเนื้อหาฉบับเต็ม"
 
-#: ../class-fire-utils_settings_map.php:665
-#: ../class-fire-utils_settings_map.php:1178
+#: ../class-fire-utils_settings_map.php:679
+#: ../class-fire-utils_settings_map.php:1198
 msgid "Choose the pages default layout"
 msgstr "เลือกโครงสร้างเริ่มต้นสำหรับหน้า"
 
-#: ../class-fire-utils_settings_map.php:685
+#: ../class-fire-utils_settings_map.php:698
+#: ../class-fire-utils_settings_map.php:1812
 msgid "Enable comments on pages"
 msgstr "เปิดการแสดงความคิดเห็นบนหน้า"
 
-#: ../class-fire-utils_settings_map.php:688
+#: ../class-fire-utils_settings_map.php:702
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -707,31 +708,31 @@ msgstr ""
 "ตัวเลือกนี้จะเปิดให้สามารถแสดงความเห็นบนหน้าได้ "
 "คุณสามารถปิดการแสดงความเห็นสำหรับบางหน้าได้ในโหมด การแก้ไขอย่างเร็ว ในหน้าจอ หน้าทั้งหมด"
 
-#: ../class-fire-utils_settings_map.php:702
-#: ../class-fire-utils_settings_map.php:1649
+#: ../class-fire-utils_settings_map.php:716
+#: ../class-fire-utils_settings_map.php:1837
 msgid "Social links in header"
 msgstr "ลิงค์เครือข่ายสังคมในส่วนบน"
 
-#: ../class-fire-utils_settings_map.php:711
-#: ../class-fire-utils_settings_map.php:1667
+#: ../class-fire-utils_settings_map.php:725
+#: ../class-fire-utils_settings_map.php:1855
 msgid "Social links in left sidebar"
 msgstr "ลิงค์เครือข่ายสังคมในแถบด้านซ้าย"
 
-#: ../class-fire-utils_settings_map.php:720
-#: ../class-fire-utils_settings_map.php:1677
+#: ../class-fire-utils_settings_map.php:734
+#: ../class-fire-utils_settings_map.php:1865
 msgid "Social links in right sidebar"
 msgstr "ลิงค์เครือข่ายสังคมในแถบด้านขวา"
 
-#: ../class-fire-utils_settings_map.php:728
-#: ../class-fire-utils_settings_map.php:1658
+#: ../class-fire-utils_settings_map.php:742
+#: ../class-fire-utils_settings_map.php:1846
 msgid "Social links in footer"
 msgstr "ลิงค์เครือข่ายสังคมในแถบด้านล่าง"
 
-#: ../class-fire-utils_settings_map.php:749
+#: ../class-fire-utils_settings_map.php:763
 msgid "Enable/disable lightbox effect on images"
 msgstr "เปิด/ปิด ลูกเล่น lightbox ขณะเปิดรูปภาพ"
 
-#: ../class-fire-utils_settings_map.php:752
+#: ../class-fire-utils_settings_map.php:766
 msgid ""
 "If enabled, this option activate a popin window whith a zoom effect when an "
 "image is clicked. This will not apply to image gallery."
@@ -739,65 +740,65 @@ msgstr ""
 "หากเปิดไว้ รูปภาพที่ถูกคลิกจะถูกขยายภายในหน้าต่างแทนการเปิดไฟล์รูปภาพตามปกติ "
 "ยกเว้นกรณีเปิดรูปภาพที่อยู่ในอัลบัม"
 
-#: ../class-fire-utils_settings_map.php:758
+#: ../class-fire-utils_settings_map.php:772
 msgid "Autoscale images on zoom"
 msgstr "ปรับขนาดรูปภาพโดยอัตโนมัติเมื่อขยาย"
 
-#: ../class-fire-utils_settings_map.php:761
+#: ../class-fire-utils_settings_map.php:775
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "หากเปิดไว้ จะมีการปรับขนาดรูปภาพให้เต็มขนาดหน้าจอในขณะที่ใช้คุณสมบัติ lightbox แสดงรูปภาพ"
 
-#: ../class-fire-utils_settings_map.php:767
+#: ../class-fire-utils_settings_map.php:781
 msgid "Enable/disable retina support"
 msgstr "เปิด/ปิด การสนับสนุนหน้าจอ retina"
 
-#: ../class-fire-utils_settings_map.php:771
+#: ../class-fire-utils_settings_map.php:785
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr "หากเปิดไว้ เว็บของคุณจะสนับสนุนอุปกรณ์ที่มีความละเอียดหน้าจอสูง"
 
-#: ../class-fire-utils_settings_map.php:772
+#: ../class-fire-utils_settings_map.php:786
 msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:773
+#: ../class-fire-utils_settings_map.php:787
 msgid "regenerate thumbnails"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:775
+#: ../class-fire-utils_settings_map.php:789
 msgid "Open the description page of the Regenerate thumbnails plugin"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:781
+#: ../class-fire-utils_settings_map.php:795
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "สไลเดอร์ : เปิดไอคอนแสดงการโหลดก่อนที่จะแสดงแต่ละสไลด์"
 
-#: ../class-fire-utils_settings_map.php:784
+#: ../class-fire-utils_settings_map.php:798
 msgid ""
 "When checked, this option displays a loading icon when the slides are beeing "
 "setup."
 msgstr "หากเปิดไว้ ไอคอนแสดงการโหลดก่อนการเริ่มต้นแต่ละสไลด์"
 
-#: ../class-fire-utils_settings_map.php:797
+#: ../class-fire-utils_settings_map.php:811
 msgid "Enable/disable smooth scroll on click"
 msgstr "ปิด/เปิด การเลื่อนหน้าจออย่างนุ่มนวลเมื่อคลิก"
 
-#: ../class-fire-utils_settings_map.php:800
+#: ../class-fire-utils_settings_map.php:814
 msgid ""
 "If enabled, this option activates a smooth page scroll when clicking on a "
 "link to an anchor of the same page."
 msgstr ""
 "หากเปิด การคลิกลิงค์ที่มีปลายทางเป็นจุดยึดที่อยู่ภายในหน้าเดียวกันจะค่อยๆเลื่อนหน้าจอไปยังจุดยึดนั้น"
 
-#: ../class-fire-utils_settings_map.php:813
+#: ../class-fire-utils_settings_map.php:827
 msgid "Enable/disable blocks reordering on small devices"
 msgstr "เปิด/ปิด การจัดเรียงบล๊อคใหม่ในอุปกรณ์ที่มีหน้าจอขนาดเล็ก"
 
-#: ../class-fire-utils_settings_map.php:816
+#: ../class-fire-utils_settings_map.php:830
 msgid ""
 "On responsive mode, for smartphone viewport, the sidebars are moved after "
 "the main content block."
@@ -805,262 +806,268 @@ msgstr ""
 "ในโหมด responsive สำหรับหน้าจอของอุปกรณ์ smartphone "
 "แถบด้านข้างจะถูกนำไปวางไว้ถัดจากบล็อคเนื้อหา"
 
-#: ../class-fire-utils_settings_map.php:822
+#: ../class-fire-utils_settings_map.php:836
 msgid "Enable/disable slider's slides centering on any devices"
 msgstr "เปิด/ปิด การจัดวางสไลด์ให้อยู่ตรงกลางสไลเดอร์ในอุปกรณ์ต่างๆ"
 
-#: ../class-fire-utils_settings_map.php:825
+#: ../class-fire-utils_settings_map.php:839
 msgid ""
 "This option centers your slider (carousel) pictures vertically and "
 "horizontally on any devices when displayed in full width mode"
 msgstr "ตัวเลือกนี้จะจัดวางรูปภาพที่อยู่ในสไลเดอร์อยู่อยู่ตรงกลางของทั้งแนวตั้งและแนวนอนเมื่อแสดงผลในโหมดขยายเต็มหน้าจอ"
 
-#: ../class-fire-utils_settings_map.php:840
-#: ../class-fire-utils_settings_map.php:1697
+#: ../class-fire-utils_settings_map.php:854
+#: ../class-fire-utils_settings_map.php:1885
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr "เพิ่ม css ของคุณเองที่นี้ และสังเกตการเปลี่ยนแปลงในทันที! (สำหรับผู้ใช้ที่มีประสบการณ์)"
 
-#: ../class-fire-utils_settings_map.php:843
-#: ../class-fire-utils_settings_map.php:1700
+#: ../class-fire-utils_settings_map.php:858
+#: ../class-fire-utils_settings_map.php:1889
 msgid ""
-"Always use this field to add your custom css instead of editing directly the "
-"style.css file : it will not be deleted during theme updates. You can also "
-"paste your custom css in the style.css file of a child theme."
+"Use this field to test small chunks of CSS code. For important CSS "
+"customizations, you'll want to modify the style.css file of a"
 msgstr ""
-"โปรดใช้กล่องข้อความนี้เพื่อเพิ่ม css ของคุณแทนการแก้ไข style.css โดยตรง : "
-"มันจะไม่ถูกลบเมื่อมีการปรับรุ่นธีม นอกจากนี้คุณยังสามารถวาง css ของคุณเองในไฟล์ style.css "
-"ของ child theme ได้อีกด้วย"
 
-#: ../class-fire-utils_settings_map.php:986
+#: ../class-fire-utils_settings_map.php:859
+#: ../class-fire-utils_settings_map.php:1890
+msgid "child theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:860
+#: ../class-fire-utils_settings_map.php:1891
+msgid "How to create and use a child theme ?"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1005
 msgid "Links style and effects"
 msgstr "ลักษณะและลูกเล่นของลิงค์"
 
-#: ../class-fire-utils_settings_map.php:992
+#: ../class-fire-utils_settings_map.php:1011
 msgid "Titles icons settings"
 msgstr "ไอคอนหน้าหัวข้อ"
 
-#: ../class-fire-utils_settings_map.php:994
+#: ../class-fire-utils_settings_map.php:1013
 msgid "Set up the titles icons options"
 msgstr "ปรับการแสดงผลของไอคอนหน้าหัวข้อ"
 
-#: ../class-fire-utils_settings_map.php:998
+#: ../class-fire-utils_settings_map.php:1017
 msgid "Image settings"
 msgstr "การตั้งค่ารูปภาพ"
 
-#: ../class-fire-utils_settings_map.php:1010
+#: ../class-fire-utils_settings_map.php:1029
 msgid "Header design and layout"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1010
+#: ../class-fire-utils_settings_map.php:1029
 msgid "Design and layout"
 msgstr "การออกแบบและโครงสร้าง"
 
-#: ../class-fire-utils_settings_map.php:1015
+#: ../class-fire-utils_settings_map.php:1034
 msgid "Site Title & Tagline"
 msgstr "หัวข้อเว็บไซต์และคำโปรย"
 
-#: ../class-fire-utils_settings_map.php:1026
+#: ../class-fire-utils_settings_map.php:1045
 msgid "Navigation"
 msgstr "การนำทาง"
 
-#: ../class-fire-utils_settings_map.php:1029
+#: ../class-fire-utils_settings_map.php:1048
 #, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgstr "ธีมของคุณสนับสนุนเมนู %s ตำแหน่ง เลือกเมนูที่คุณต้องการใช้"
 
-#: ../class-fire-utils_settings_map.php:1029
+#: ../class-fire-utils_settings_map.php:1048
 msgid ""
 "You can edit your menu content on the Menus screen in the Appearance section."
 msgstr "คุณสามารถแก้ไขรายการในเมนูของคุณได้ที่หน้าจอเมนูในส่วนรูปแบบบล็อก"
 
-#: ../class-fire-utils_settings_map.php:1048
+#: ../class-fire-utils_settings_map.php:1067
 msgid "Post lists : blog, archives, ..."
 msgstr "รายการของเรื่อง : บล็อก คลังเอกสาร ฯลฯ"
 
-#: ../class-fire-utils_settings_map.php:1050
+#: ../class-fire-utils_settings_map.php:1069
 msgid "Set up post lists options"
 msgstr "ตั้งค่ารายการของเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1054
+#: ../class-fire-utils_settings_map.php:1073
 msgid "Single posts"
 msgstr "เรื่องเดี่ยว"
 
-#: ../class-fire-utils_settings_map.php:1056
+#: ../class-fire-utils_settings_map.php:1075
 msgid "Set up single posts options"
 msgstr "ตั้งค่าคุณสมบัติของเรื่องเดี่ยว"
 
-#: ../class-fire-utils_settings_map.php:1060
+#: ../class-fire-utils_settings_map.php:1079
 msgid "Breadcrumb"
 msgstr "Breadcrumb"
 
-#: ../class-fire-utils_settings_map.php:1062
+#: ../class-fire-utils_settings_map.php:1081
 msgid "Set up breadcrumb options"
 msgstr "ตั้งค่า breadcrumb"
 
-#: ../class-fire-utils_settings_map.php:1074
+#: ../class-fire-utils_settings_map.php:1093
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr "คุณสมบัติของเรื่อง (หมวดหมู่ ป้ายกำกับ การกำกับข้อมูล)"
 
-#: ../class-fire-utils_settings_map.php:1076
+#: ../class-fire-utils_settings_map.php:1095
 msgid "Set up post metas options"
 msgstr "ตั้งค่าคุณสมบัติของเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1086
+#: ../class-fire-utils_settings_map.php:1105
 msgid "Footer global settings"
 msgstr "ค่าทั่วไปของแถบด้านล่าง"
 
-#: ../class-fire-utils_settings_map.php:1088
+#: ../class-fire-utils_settings_map.php:1107
 msgid "Set up footer global options"
 msgstr "การตั้งค่าเกี่ยวกับค่าทั่วไปของแถบด้านล่าง"
 
-#: ../class-fire-utils_settings_map.php:1152
+#: ../class-fire-utils_settings_map.php:1172
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr "หมายเหตุ : ตั้งค่าโครงสร้างของหน้าแรกได้ในส่วนหน้าแรก"
 
-#: ../class-fire-utils_settings_map.php:1226
+#: ../class-fire-utils_settings_map.php:1246
 msgid "Layout"
 msgstr "โครงสร้าง"
 
-#: ../class-fire-utils_settings_map.php:1230
+#: ../class-fire-utils_settings_map.php:1250
 msgid "Logo / title on the left"
 msgstr "โลโก้ / ชื่อเรื่องอยู่ด้านซ้าย"
 
-#: ../class-fire-utils_settings_map.php:1231
+#: ../class-fire-utils_settings_map.php:1251
 msgid "Logo / title centered"
 msgstr "โลโก้ / ชื่อเรื่องอยู่ตรงกลาง"
 
-#: ../class-fire-utils_settings_map.php:1232
+#: ../class-fire-utils_settings_map.php:1252
 msgid "Logo / title on the right"
 msgstr "โลโก้ / ชื่อเรื่องอยู่ด้านขวา"
 
-#: ../class-fire-utils_settings_map.php:1241
+#: ../class-fire-utils_settings_map.php:1261
 msgid "Display the tagline"
 msgstr "แสดงคำโปรย"
 
-#: ../class-fire-utils_settings_map.php:1250
+#: ../class-fire-utils_settings_map.php:1270
 msgid "Display menu in a box"
 msgstr "แสดงเมนูอยู่ในกล่อง"
 
-#: ../class-fire-utils_settings_map.php:1255
+#: ../class-fire-utils_settings_map.php:1275
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
 msgstr "หากเปิดไว้ เมนูหลัก/คำโปรย/เครือข่ายสังคม จะถูกล้อมรอบด้วยกล่องสีเทา"
 
-#: ../class-fire-utils_settings_map.php:1260
+#: ../class-fire-utils_settings_map.php:1280
 msgid "Sticky on scroll"
 msgstr "ตรึงไว้ขณะเลื่อน"
 
-#: ../class-fire-utils_settings_map.php:1265
+#: ../class-fire-utils_settings_map.php:1285
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr "หากเปิดไว้ แถบด้านบนจะถูกตรึงไว้เมื่อมีการเลื่อนหน้าจอลง"
 
-#: ../class-fire-utils_settings_map.php:1270
+#: ../class-fire-utils_settings_map.php:1290
 msgid "Sticky header : display the tagline"
 msgstr "ตรึงแถบด้านบน : แสดงคำโปรย"
 
-#: ../class-fire-utils_settings_map.php:1279
+#: ../class-fire-utils_settings_map.php:1299
 msgid "Sticky header : display the title / logo"
 msgstr "ตรึงแถบด้านบน : แสดงชื่อเว็บไซต์ / โลโก้"
 
-#: ../class-fire-utils_settings_map.php:1288
+#: ../class-fire-utils_settings_map.php:1308
 msgid "Sticky header : shrink title / logo"
 msgstr "ตรึงแถบด้านบน : ย่อชื่อเว็บไซต์ / โลโก้"
 
-#: ../class-fire-utils_settings_map.php:1297
+#: ../class-fire-utils_settings_map.php:1317
 msgid "Sticky header : display the menu"
 msgstr "ตรึงแถบด้านบน : แสดงเมนู"
 
-#: ../class-fire-utils_settings_map.php:1306
+#: ../class-fire-utils_settings_map.php:1326
 msgid "Sticky header : semi-transparent on scroll"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1315
+#: ../class-fire-utils_settings_map.php:1335
 msgid "Set the header z-index"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1323
+#: ../class-fire-utils_settings_map.php:1343
 msgid "What is"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1324
+#: ../class-fire-utils_settings_map.php:1344
 msgid "the z-index"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1332
+#: ../class-fire-utils_settings_map.php:1352
 msgid "Menu position"
 msgstr "ตำแหน่งของเมนู"
 
-#: ../class-fire-utils_settings_map.php:1336
+#: ../class-fire-utils_settings_map.php:1356
 msgid "Menu on the left"
 msgstr "เมนูอยู่ด้านซ้าย"
 
-#: ../class-fire-utils_settings_map.php:1337
+#: ../class-fire-utils_settings_map.php:1357
 msgid "Menu on the right"
 msgstr "เมนูอยู่ด้านขวา"
 
-#: ../class-fire-utils_settings_map.php:1345
+#: ../class-fire-utils_settings_map.php:1365
 msgid "Reveal the sub-menus blocks with a fade effect"
 msgstr "แสดงเมนูย่อยโดยใช้ลูกเล่นแบบจาง"
 
-#: ../class-fire-utils_settings_map.php:1354
+#: ../class-fire-utils_settings_map.php:1374
 msgid "Hover move effect for the sub menu items"
 msgstr "เลื่อนตัวอักษรในเมนูย่อยเล็กน้อยเมื่อมีการนำเมาส์ไปชี้ไว้"
 
-#: ../class-fire-utils_settings_map.php:1363
+#: ../class-fire-utils_settings_map.php:1383
 msgid ""
 "In responsive mode, limit the height of the dropdown menu block to the "
 "visible viewport"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1373
+#: ../class-fire-utils_settings_map.php:1393
 msgid "Fade effect on link hover"
 msgstr "ค่อยๆเปลี่ยนสีลิงค์เมื่อนำเมาส์ไปชี้"
 
-#: ../class-fire-utils_settings_map.php:1384
+#: ../class-fire-utils_settings_map.php:1404
 msgid "Display the breadcrumb on home page"
 msgstr "แสดง breadcrumb บนหน้าแรก "
 
-#: ../class-fire-utils_settings_map.php:1392
+#: ../class-fire-utils_settings_map.php:1412
 msgid "Display the breadcrumb in pages"
 msgstr "แสดง breadcrumb  บนหน้า"
 
-#: ../class-fire-utils_settings_map.php:1401
+#: ../class-fire-utils_settings_map.php:1421
 msgid "Display the breadcrumb in single posts"
 msgstr "แสดง breadcrumb บนเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1410
+#: ../class-fire-utils_settings_map.php:1430
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
 msgstr ""
 "แสดง breadcrumb ในรายการเรื่อง : หน้าแสดงบล็อก หน้าคลังเอกสาร หน้าผลการค้นหา ฯลฯ"
 
-#: ../class-fire-utils_settings_map.php:1421
+#: ../class-fire-utils_settings_map.php:1441
 msgid "Display icons next to titles"
 msgstr "แสดงไอคอนด้านข้างหัวข้อ"
 
-#: ../class-fire-utils_settings_map.php:1425
+#: ../class-fire-utils_settings_map.php:1445
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
 msgstr "เมื่อเปิดไว้ จะมีไอคอนปรากฏถัดจากหัวข้อของหน้า เรื่อง หมวดหมู่  และ ..."
 
-#: ../class-fire-utils_settings_map.php:1431
+#: ../class-fire-utils_settings_map.php:1451
 msgid "Display a page icon next to the page title"
 msgstr "แสดงสัญลักษณ์หน้าไว้ถัดจากชื่อของหน้า"
 
-#: ../class-fire-utils_settings_map.php:1440
+#: ../class-fire-utils_settings_map.php:1460
 msgid "Display a post icon next to the single post title"
 msgstr "แสดงสัญลักษณ์เรื่องไว้ถัดจากชื่อของเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1449
+#: ../class-fire-utils_settings_map.php:1469
 msgid "Display an icon next to the archive title"
 msgstr "แสดงไอคอนถัดจากชื่อของหมวดหมู่"
 
-#: ../class-fire-utils_settings_map.php:1452
+#: ../class-fire-utils_settings_map.php:1472
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -1071,11 +1078,11 @@ msgstr ""
 "แฟ้มเก็บเอกสารในที่นี้อาจเป็น : หมวดหมู่ ป้ายกำกับ เจ้าของบทความ รายวัน "
 "การกำกับข้อมูลที่กำหนดขึ้นเอง และผลการค้นหา"
 
-#: ../class-fire-utils_settings_map.php:1459
+#: ../class-fire-utils_settings_map.php:1479
 msgid "Display an icon next to each post title in an archive page"
 msgstr "แสดงไอคอนถัดจากแต่ละชื่อเรื่องในหน้าแฟ้มเก็บเอกสาร"
 
-#: ../class-fire-utils_settings_map.php:1462
+#: ../class-fire-utils_settings_map.php:1482
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -1085,50 +1092,157 @@ msgstr ""
 "แฟ้มเก็บเอกสารในที่นี้อาจเป็น : หมวดหมู่ ป้ายกำกับ เจ้าของบทความ รายวัน "
 "การกำกับข้อมูลที่กำหนดขึ้นเอง และผลการค้นหา"
 
-#: ../class-fire-utils_settings_map.php:1469
+#: ../class-fire-utils_settings_map.php:1489
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "วิดเจ็ต WordPress ในแถบด้านข้าง  : แสดงไอคอนถัดจากชื่อเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1478
+#: ../class-fire-utils_settings_map.php:1498
 msgid "WP footer widgets : display icons next to titles"
 msgstr "วิดเจ็ต WordPress ในแถบด้านล่าง : แสดงไอคอนถัดจากชื่อเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1490
+#: ../class-fire-utils_settings_map.php:1510
 msgid "Display posts metas"
 msgstr "แสดงคุณสมบัติของเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1493
+#: ../class-fire-utils_settings_map.php:1513
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
 msgstr ""
 "เมื่อเปิดใช้งาน คุณสมบัติของเรื่อง (เช่น ป้ายกำกับ วันที่ และชื่อผู้เขียน) จะถูกแสดงใต้ชื่อเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1500
+#: ../class-fire-utils_settings_map.php:1520
+msgid "Select the contexts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1521
 msgid "Display posts metas on home"
 msgstr "แสดงคุณสมบัติของเรื่องในหน้าแรก"
 
-#: ../class-fire-utils_settings_map.php:1509
+#: ../class-fire-utils_settings_map.php:1530
 msgid "Display posts metas for single posts"
 msgstr "แสดงคุณสมบัติของเรื่องในแต่ละเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1518
+#: ../class-fire-utils_settings_map.php:1539
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr "แสดงคุณสมบัติของเรื่องในรายการของเรื่อง (แฟ้มเก็บเอกสาร หน้าที่เป็นบล็อก)"
 
-#: ../class-fire-utils_settings_map.php:1530
+#: ../class-fire-utils_settings_map.php:1549
+msgid "Select the metas to display"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1550
+msgid "Display hierarchical taxonomies (like categories)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1559
+msgid "Display non-hierarchical taxonomies (like tags)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1568
+#, fuzzy
+msgid "Display the publication date"
+msgstr "แสดงเนื้อหาฉบับเต็ม"
+
+#: ../class-fire-utils_settings_map.php:1577
+#, fuzzy
+msgid "Display the update date"
+msgstr "แสดงคำโปรย"
+
+#: ../class-fire-utils_settings_map.php:1581
+msgid ""
+"If this option is checked, additional date informations about the the last "
+"post update can be displayed (nothing will show up if the post has never "
+"been updated)."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1587
+msgid "Select the last update format"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1591
+msgid "Nb of days since last update"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1592
+msgid "Date of the last update"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1599
+#, fuzzy
+msgid "Display the author"
+msgstr "แสดงคำตัดทอน"
+
+#: ../class-fire-utils_settings_map.php:1607
+#, fuzzy
+msgid "Display a recent update notice"
+msgstr "แสดงสัญลักษณ์หน้าไว้ถัดจากชื่อของหน้า"
+
+#: ../class-fire-utils_settings_map.php:1611
+#, fuzzy
+msgid ""
+"If this option is checked, a customizable recent update notice is displayed "
+"next to the post title."
+msgstr ""
+"เมื่อเปิดใช้งาน คุณสมบัติของเรื่อง (เช่น ป้ายกำกับ วันที่ และชื่อผู้เขียน) จะถูกแสดงใต้ชื่อเรื่อง"
+
+#: ../class-fire-utils_settings_map.php:1616
+msgid ""
+"Display the notice if the last update is less (strictly) than n days old"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1622
+msgid ""
+"Set a maximum interval (in days) during which the last update notice will be "
+"displayed."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1625
+msgid "Recently updated !"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1627
+msgid "Update notice text"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1636
+msgid "Update notice style"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1640
+msgid "Default (grey)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1641
+msgid "Success (green)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1642
+#, fuzzy
+msgid "Alert (orange)"
+msgstr "ส้มแบน"
+
+#: ../class-fire-utils_settings_map.php:1643
+msgid "Important (red)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1644
+msgid "Info (blue)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1655
 msgid "Set the excerpt length (in number of words) "
 msgstr "ตั้งความยาวของคำตัดทอน (นับเป็นคำ)"
 
-#: ../class-fire-utils_settings_map.php:1540
+#: ../class-fire-utils_settings_map.php:1665
 msgid "Thumbnails options"
 msgstr "ตัวเลือกรูปย่อ"
 
-#: ../class-fire-utils_settings_map.php:1541
+#: ../class-fire-utils_settings_map.php:1666
 msgid "Display the post thumbnails"
 msgstr "แสดงรูปย่อประจำเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1545
+#: ../class-fire-utils_settings_map.php:1670
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
@@ -1136,116 +1250,177 @@ msgstr ""
 "เมื่อเปิดใช้งาน รูปย่อประจำเรื่องจะถูกแสดงในรายการของเรื่องทั้งหมด : บล็อก แฟ้มเก็บเอกสาร "
 "หน้าของผู้เขียน หน้าผลการค้นหา ฯลฯ"
 
-#: ../class-fire-utils_settings_map.php:1550
+#: ../class-fire-utils_settings_map.php:1675
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr "หากไม่ได้ตั้งรูปพิเศษ ให้ใช้รูปภาพสุดท้ายที่ถูกแนบลงในเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1558
+#: ../class-fire-utils_settings_map.php:1683
 msgid "Thumbnails shape"
 msgstr "รูปร่างของรูปย่อ"
 
-#: ../class-fire-utils_settings_map.php:1562
+#: ../class-fire-utils_settings_map.php:1687
 msgid "Rounded, expand on hover"
 msgstr "วงกลม ถูกขยายเมื่อนำเมาส์ไปชี้"
 
-#: ../class-fire-utils_settings_map.php:1563
+#: ../class-fire-utils_settings_map.php:1688
 msgid "Rounded, no expansion"
 msgstr "วงกลม ไม่มีการขยาย"
 
-#: ../class-fire-utils_settings_map.php:1564
+#: ../class-fire-utils_settings_map.php:1689
 msgid "Squared, expand on hover"
 msgstr "สี่เหลี่ยมจตุรัส ถูกขยายเมื่อนำเมาส์ไปชี้"
 
-#: ../class-fire-utils_settings_map.php:1565
+#: ../class-fire-utils_settings_map.php:1690
 msgid "Squared, no expansion"
 msgstr "สี่เหลี่ยมจตุรัส ไม่มีการขยาย"
 
-#: ../class-fire-utils_settings_map.php:1566
+#: ../class-fire-utils_settings_map.php:1691
 msgid "Rectangular with no effect"
 msgstr "สี่เหลี่ยมผืนผ้าที่ไม่มีลูกเล่นใดๆ"
 
-#: ../class-fire-utils_settings_map.php:1567
+#: ../class-fire-utils_settings_map.php:1692
 msgid "Rectangular with blur effect on hover"
 msgstr "สี่เหลี่ยมผืนผ้าที่มีลูกเล่นภาพเบลอเมื่อนำเมาส์ไปชี้"
 
-#: ../class-fire-utils_settings_map.php:1568
+#: ../class-fire-utils_settings_map.php:1693
 msgid "Rectangular with unblur effect on hover"
 msgstr "สี่เหลี่ยมผืนผ้าที่มีลูกเล่นภาพชัดเมื่อนำเมาส์ไปชี้"
 
-#: ../class-fire-utils_settings_map.php:1576
-#: ../class-fire-utils_settings_map.php:1626
+#: ../class-fire-utils_settings_map.php:1701
+#: ../class-fire-utils_settings_map.php:1751
 msgid "Set the thumbnail's max height in pixels"
 msgstr "จำกัดความสูงของรูปย่อในหน่วยพิกเซล"
 
-#: ../class-fire-utils_settings_map.php:1587
+#: ../class-fire-utils_settings_map.php:1712
 msgid "Thumbnails position"
 msgstr "ตำแหน่งของรูปย่อ"
 
-#: ../class-fire-utils_settings_map.php:1591
+#: ../class-fire-utils_settings_map.php:1716
 msgid "Top"
 msgstr "ด้านบน"
 
-#: ../class-fire-utils_settings_map.php:1592
+#: ../class-fire-utils_settings_map.php:1717
 msgid "Right"
 msgstr "ขวา"
 
-#: ../class-fire-utils_settings_map.php:1593
+#: ../class-fire-utils_settings_map.php:1718
 msgid "Bottom"
 msgstr "ด้านล่าง"
 
-#: ../class-fire-utils_settings_map.php:1594
+#: ../class-fire-utils_settings_map.php:1719
 msgid "Left"
 msgstr "ซ้าย"
 
-#: ../class-fire-utils_settings_map.php:1602
+#: ../class-fire-utils_settings_map.php:1727
 msgid "Alternate thumbnail/content"
 msgstr "รูปย่อ/เนื้อหาสำรอง"
 
-#: ../class-fire-utils_settings_map.php:1611
+#: ../class-fire-utils_settings_map.php:1736
 msgid "Post thumbnail position"
 msgstr "ตำแหน่งของรูปประจำเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1615
+#: ../class-fire-utils_settings_map.php:1740
 msgid "Don't display"
 msgstr "ไม่แสดง"
 
-#: ../class-fire-utils_settings_map.php:1616
+#: ../class-fire-utils_settings_map.php:1741
 msgid "Before the title in full width"
 msgstr "ก่อนชื่อเรื่อง เต็มขนาด"
 
-#: ../class-fire-utils_settings_map.php:1617
+#: ../class-fire-utils_settings_map.php:1742
 msgid "Before the title boxed"
 msgstr "ก่อนชื่อเรื่อง ในกล่อง"
 
-#: ../class-fire-utils_settings_map.php:1618
+#: ../class-fire-utils_settings_map.php:1743
 msgid "After the title"
 msgstr "หลังชื่อเรื่อง"
 
-#: ../class-fire-utils_settings_map.php:1639
+#: ../class-fire-utils_settings_map.php:1762
+#, fuzzy
+msgid "Comments bubbles"
+msgstr "ความเห็น"
+
+#: ../class-fire-utils_settings_map.php:1764
+#, fuzzy
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr "แสดงสัญลักษณ์เรื่องไว้ถัดจากชื่อของเรื่อง"
+
+#: ../class-fire-utils_settings_map.php:1773
+#, fuzzy
+msgid "Comments bubble shape"
+msgstr "ปิดการแสดงความเห็น"
+
+#: ../class-fire-utils_settings_map.php:1777
+msgid "Small bubbles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1778
+msgid "Large bubbles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1786
+#: ../class-fire-utils_settings_map.php:1799
+#, fuzzy
+msgid "Comments bubble color"
+msgstr "ปิดการแสดงความเห็น"
+
+#: ../class-fire-utils_settings_map.php:1790
+msgid "Skin color"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1791
+#, fuzzy
+msgid "Custom"
+msgstr "CSS ที่เขียนขึ้นเอง"
+
+#: ../class-fire-utils_settings_map.php:1811
+#, fuzzy
+msgid "Other comments settings"
+msgstr "ไอคอนหน้าหัวข้อ"
+
+#: ../class-fire-utils_settings_map.php:1817
+#, fuzzy
+msgid ""
+"If checked, this option will enable comments on pages. You can disable "
+"comments for a single page in the quick edit mode of the page list screen."
+msgstr ""
+"ตัวเลือกนี้จะเปิดให้สามารถแสดงความเห็นบนหน้าได้ "
+"คุณสามารถปิดการแสดงความเห็นสำหรับบางหน้าได้ในโหมด การแก้ไขอย่างเร็ว ในหน้าจอ หน้าทั้งหมด"
+
+#: ../class-fire-utils_settings_map.php:1818
+msgid "Change other comments settings in the"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1820
+#, fuzzy
+msgid "discussion settings page."
+msgstr "ไอคอนหน้าหัวข้อ"
+
+#: ../class-fire-utils_settings_map.php:1827
 msgid "Display a back to top arrow on scroll"
 msgstr "แสดงลูกศรย้อนกลับขึ้นด้านบนเมื่อเลื่อนหน้าจอ"
 
-#: ../class-fire-utils_settings_map.php:1686
+#: ../class-fire-utils_settings_map.php:1874
 msgid "Social link title in sidebars"
 msgstr "ชื่อลิงค์เครือข่ายสังคมในแถบด้านข้าง"
 
-#: ../class-fire-utils_settings_map.php:1692
+#: ../class-fire-utils_settings_map.php:1880
 msgid "Will be hidden if empty"
 msgstr "จะถูกซ่อนหากไม่ได้ระบุค่า"
 
-#: ../class-fire-utils_settings_map.php:1708
+#: ../class-fire-utils_settings_map.php:1899
 msgid "Set slider's height in pixels"
 msgstr "ตั้งความสูงของสไลเดอร์ในหน่วยพิกเซล"
 
-#: ../class-fire-utils_settings_map.php:1718
+#: ../class-fire-utils_settings_map.php:1909
 msgid "Apply this height to all sliders"
 msgstr "ปรับใช้ความสูงนี้กับสไลเดอร์ทั้งหมด"
 
-#: ../class-fire-utils_settings_map.php:1726
+#: ../class-fire-utils_settings_map.php:1917
 msgid "Replace the default image slider's height"
 msgstr "แทนที่ความสูงของรูปภาพในสไลเดอร์เริ่มต้น"
 
-#: ../class-fire-utils_settings_map.php:1732
+#: ../class-fire-utils_settings_map.php:1923
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1253,7 +1428,7 @@ msgstr ""
 "เมื่อเปิดใช้งาน รูปภาพของคุณจะถูกย่อให้เท่ากับขนาดความสูงที่คุณกำหนดไว้ขณะอัพโหลด "
 "สิ่งนี้ดีต่อประสิทธิภาพโดยรวมของเว็บไซต์"
 
-#: ../class-fire-utils_settings_map.php:1733
+#: ../class-fire-utils_settings_map.php:1924
 msgid "You might want to regenerate your thumbnails."
 msgstr "คุณอาจจะต้องการสร้างรูปย่ออีกครั้ง"
 
@@ -1371,7 +1546,7 @@ msgstr "สไลเดอร์นี้จะถูกลบโดยถาว
 msgid "Delete slider"
 msgstr "ลบสไลเดอร์"
 
-#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:88
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:101
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -1454,8 +1629,8 @@ msgstr "ลิงค์เมื่อกดปุ่ม"
 #: ../parts/class-content-breadcrumb.php:721
 #: ../parts/class-content-comments.php:160
 #: ../parts/class-content-featured_pages.php:249
-#: ../parts/class-content-headings.php:257
-#: ../parts/class-content-slider.php:286
+#: ../parts/class-content-headings.php:227
+#: ../parts/class-content-slider.php:359
 msgid "Edit"
 msgstr "แก้ไข"
 
@@ -1471,15 +1646,15 @@ msgstr "แก้ไขสไลด์นี้"
 msgid "Current slide"
 msgstr "สไลด์ปัจจุบัน"
 
-#: ../admin/class-controls.php:88
+#: ../admin/class-controls.php:101
 msgid "Create a slider"
 msgstr "สร้างสไลเดอร์"
 
-#: ../admin/class-controls.php:231
+#: ../admin/class-controls.php:244
 msgid "Upload"
 msgstr "อัพโหลด"
 
-#: ../admin/class-controls.php:232
+#: ../admin/class-controls.php:245
 msgid "Remove"
 msgstr "ลบ"
 
@@ -1886,67 +2061,72 @@ msgstr ""
 msgid "Missing Attachment"
 msgstr "ไฟล์แนบหายไป"
 
-#: ../parts/class-content-headings.php:58
-msgid "Ooops, page not found"
-msgstr "ขออภัย ไม่พบหน้าดังกล่าว"
-
-#: ../parts/class-content-headings.php:69
-msgid "No"
-msgstr "ไม่"
-
-#: ../parts/class-content-headings.php:70
-msgid "Search Results for :"
-msgstr "ผลการค้นหาสำหรับ :"
-
-#: ../parts/class-content-headings.php:85
-msgid "Author Archives :"
-msgstr "บทความของผู้เขียน"
-
-#: ../parts/class-content-headings.php:99 ../parts/class-content-post.php:161
-#, php-format
-msgid "About %s"
-msgstr "เกี่ยวกับ %s"
-
-#: ../parts/class-content-headings.php:112
-msgid "Category Archives :"
-msgstr "หมวดหมู่ :"
-
-#: ../parts/class-content-headings.php:128
-msgid "Tag Archives :"
-msgstr "ป้ายกำกับ :"
-
-#: ../parts/class-content-headings.php:141
-#, php-format
-msgid "Daily Archives: %s"
-msgstr "แฟ้มเก็บเอกสารรายวัน: %s"
-
-#: ../parts/class-content-headings.php:141
-msgid "Archives"
-msgstr "แฟ้มเก็บเอกสาร"
-
-#: ../parts/class-content-headings.php:142
-#, php-format
-msgid "Monthly Archives: %s"
-msgstr "แฟ้มเก็บเอกสารรายเดือน: %s"
-
-#: ../parts/class-content-headings.php:143
-#, php-format
-msgid "Yearly Archives: %s"
-msgstr "แฟ้มเก็บเอกสารรายปี: %s"
-
-#: ../parts/class-content-headings.php:229
-#: ../parts/class-content-headings.php:235
+#: ../parts/class-content-headings.php:151
+#: ../parts/class-content-headings.php:156
 msgid "{no title} Read the post &raquo;"
 msgstr "{ไม่มีชื่อเรื่อง} อ่านเรื่อง &raquo;"
 
-#: ../parts/class-content-headings.php:234
+#: ../parts/class-content-headings.php:155
 #, php-format
 msgid "Permalink to %s"
 msgstr "ลิงค์ถาวรไปยัง %s"
 
-#: ../parts/class-content-headings.php:250
+#: ../parts/class-content-headings.php:197
 msgid "Comment(s) on"
 msgstr "ความเห็นบน"
+
+#: ../parts/class-content-headings.php:303
+msgid "Ooops, page not found"
+msgstr "ขออภัย ไม่พบหน้าดังกล่าว"
+
+#: ../parts/class-content-headings.php:314
+msgid "No"
+msgstr "ไม่"
+
+#: ../parts/class-content-headings.php:315
+msgid "Search Results for :"
+msgstr "ผลการค้นหาสำหรับ :"
+
+#: ../parts/class-content-headings.php:330
+msgid "Author Archives :"
+msgstr "บทความของผู้เขียน"
+
+#: ../parts/class-content-headings.php:344 ../parts/class-content-post.php:161
+#, php-format
+msgid "About %s"
+msgstr "เกี่ยวกับ %s"
+
+#: ../parts/class-content-headings.php:357
+msgid "Category Archives :"
+msgstr "หมวดหมู่ :"
+
+#: ../parts/class-content-headings.php:373
+msgid "Tag Archives :"
+msgstr "ป้ายกำกับ :"
+
+#: ../parts/class-content-headings.php:386
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "แฟ้มเก็บเอกสารรายวัน: %s"
+
+#: ../parts/class-content-headings.php:386
+msgid "Archives"
+msgstr "แฟ้มเก็บเอกสาร"
+
+#: ../parts/class-content-headings.php:387
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "แฟ้มเก็บเอกสารรายเดือน: %s"
+
+#: ../parts/class-content-headings.php:388
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "แฟ้มเก็บเอกสารรายปี: %s"
+
+#: ../parts/class-content-headings.php:453
+#, fuzzy
+msgid "comment"
+msgstr "ความเห็น"
 
 #: ../parts/class-content-page.php:42 ../parts/class-content-post.php:120
 #: ../parts/class-content-post_list.php:149
@@ -1963,58 +2143,101 @@ msgstr "หน้า:"
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "แสดงเรื่องทั้งหมดโดย %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-post_metas.php:49
-msgid "Published"
-msgstr "เผยแพร่แล้ว"
-
-#: ../parts/class-content-post_metas.php:52
-msgid "at dimensions"
-msgstr "ณ มิติ"
-
-#: ../parts/class-content-post_metas.php:52
-msgid "Link to full-size image"
-msgstr "ลิงค์ไปยังรูปภาพขนาดเต็ม"
-
-#: ../parts/class-content-post_metas.php:53
-msgid "in"
-msgstr "ใน"
-
-#: ../parts/class-content-post_metas.php:53
-msgid "Return to "
-msgstr "กลับไปยัง"
-
-#: ../parts/class-content-post_metas.php:75
-#, php-format
-msgid "View all posts by %s"
-msgstr "แสดงเรื่องทั้งหมดโดย %s"
-
-#: ../parts/class-content-post_metas.php:83
-#, php-format
-msgid ""
-"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
-"\"> by %4$s</span>."
-msgstr ""
-"รายการนี้ถูกเผยแพร่ใน %1$s และถูกกำกับด้วย %2$s เมื่อ %3$s<span class=\"by-author"
-"\">โดย %4$s</span>"
-
-#: ../parts/class-content-post_metas.php:85
-#, php-format
-msgid ""
-"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
-"span>."
-msgstr ""
-"รายการนี้ถูกเผยแพร่ใน %1$s เมื่อ %3$s<span class=\"by-author\">โดย %4$s</span>"
-
-#: ../parts/class-content-post_metas.php:87
+#: ../parts/class-content-post_metas.php:84
 #, php-format
 msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
 msgstr "รายการนี้ถูกเผยแพร่เมื่อ %3$s<span class=\"by-author\">โดย %4$s</span>"
 
-#: ../parts/class-content-post_metas.php:129
-#: ../parts/class-content-post_metas.php:159
+#: ../parts/class-content-post_metas.php:118
+msgid "Published"
+msgstr "เผยแพร่แล้ว"
+
+#: ../parts/class-content-post_metas.php:121
+msgid "at dimensions"
+msgstr "ณ มิติ"
+
+#: ../parts/class-content-post_metas.php:121
+msgid "Link to full-size image"
+msgstr "ลิงค์ไปยังรูปภาพขนาดเต็ม"
+
+#: ../parts/class-content-post_metas.php:122
+msgid "in"
+msgstr "ใน"
+
+#: ../parts/class-content-post_metas.php:122
+msgid "Return to "
+msgstr "กลับไปยัง"
+
+#: ../parts/class-content-post_metas.php:150
+#: ../parts/class-content-post_metas.php:178
 #, php-format
 msgid "View all posts in %s"
 msgstr "แสดงรายการทั้งหมดใน %s"
+
+#: ../parts/class-content-post_metas.php:292
+#, php-format
+msgid "View all posts by %s"
+msgstr "แสดงเรื่องทั้งหมดโดย %s"
+
+#: ../parts/class-content-post_metas.php:385
+#, fuzzy, php-format
+msgid "This entry was posted in %1$s and tagged %2$s"
+msgstr ""
+"รายการนี้ถูกเผยแพร่ใน %1$s และถูกกำกับด้วย %2$s เมื่อ %3$s<span class=\"by-author"
+"\">โดย %4$s</span>"
+
+#: ../parts/class-content-post_metas.php:387
+#, fuzzy, php-format
+msgid "This entry was posted in %1$s"
+msgstr "แสดงรายการทั้งหมดใน %s"
+
+#: ../parts/class-content-post_metas.php:389
+#, php-format
+msgid "This entry was tagged %2$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:394
+#, php-format
+msgid "This entry was posted on %3$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:396
+#, php-format
+msgid "on %3$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:398
+#, php-format
+msgid "and posted on %3$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:405
+msgid "This entry was posted"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:405
+#: ../parts/class-content-post_metas.php:407
+#, php-format
+msgid "by %4$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:415
+msgid "(updated today)"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:415
+#, php-format
+msgid "(updated %6$s days ago)"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:416
+msgid "(updated 1 day ago)"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:419
+#, php-format
+msgid "(updated on %5$s)"
+msgstr ""
 
 #: ../parts/class-content-post_navigation.php:54
 #: ../parts/class-content-post_navigation.php:109
@@ -2033,13 +2256,28 @@ msgstr "เรื่องที่ใหม่กว่า <span class=\"meta-n
 msgid "Back to top"
 msgstr "กลับไปด้านบน"
 
-#: ../parts/class-header-header_main.php:235
+#: ../parts/class-header-header_main.php:249
 msgid "Back Home"
 msgstr "กลับไปหน้าแรก"
 
 #: ../parts/class-header-menu.php:126
 msgid "Add a menu"
 msgstr "เพิ่มเมนู"
+
+#~ msgid ""
+#~ "Always use this field to add your custom css instead of editing directly "
+#~ "the style.css file : it will not be deleted during theme updates. You can "
+#~ "also paste your custom css in the style.css file of a child theme."
+#~ msgstr ""
+#~ "โปรดใช้กล่องข้อความนี้เพื่อเพิ่ม css ของคุณแทนการแก้ไข style.css โดยตรง : "
+#~ "มันจะไม่ถูกลบเมื่อมีการปรับรุ่นธีม นอกจากนี้คุณยังสามารถวาง css ของคุณเองในไฟล์ style.css "
+#~ "ของ child theme ได้อีกด้วย"
+
+#~ msgid ""
+#~ "This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+#~ "span>."
+#~ msgstr ""
+#~ "รายการนี้ถูกเผยแพร่ใน %1$s เมื่อ %3$s<span class=\"by-author\">โดย %4$s</span>"
 
 #~ msgid "Customiz'it!"
 #~ msgstr "Customiz'it!"

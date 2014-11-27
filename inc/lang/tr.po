@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.2.8\n"
-"POT-Creation-Date: 2014-10-20 18:19+0100\n"
-"PO-Revision-Date: 2014-10-20 18:19+0100\n"
+"POT-Creation-Date: 2014-11-27 09:04+0100\n"
+"PO-Revision-Date: 2014-11-27 09:04+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: tr\n"
@@ -37,221 +37,221 @@ msgid "Blue"
 msgstr "Mavi"
 
 #: ../class-fire-init.php:78
-msgid "Light blue "
-msgstr ""
+msgid "Black"
+msgstr "Siyah"
 
 #: ../class-fire-init.php:79
+msgid "Flat black"
+msgstr ""
+
+#: ../class-fire-init.php:80
+msgid "Grey"
+msgstr "Gri"
+
+#: ../class-fire-init.php:81
+msgid "Ligth grey"
+msgstr ""
+
+#: ../class-fire-init.php:82
+msgid "Flat purple"
+msgstr ""
+
+#: ../class-fire-init.php:83
+msgid "Purple"
+msgstr "Mor"
+
+#: ../class-fire-init.php:84
+msgid "Flat red"
+msgstr ""
+
+#: ../class-fire-init.php:85
+msgid "Red"
+msgstr "Kırmızı"
+
+#: ../class-fire-init.php:86
+msgid "Orange"
+msgstr "Turuncu"
+
+#: ../class-fire-init.php:87
+msgid "Flat orange"
+msgstr ""
+
+#: ../class-fire-init.php:88
+msgid "Yellow"
+msgstr "Sarı"
+
+#: ../class-fire-init.php:89
+msgid "Flat yellow"
+msgstr ""
+
+#: ../class-fire-init.php:90
+msgid "Green"
+msgstr "Yeşil"
+
+#: ../class-fire-init.php:91
+msgid "Light green"
+msgstr ""
+
+#: ../class-fire-init.php:92
 #, fuzzy
 msgid "Green blue"
 msgstr "Yeşil"
 
-#: ../class-fire-init.php:80
-msgid "Green"
-msgstr "Yeşil"
-
-#: ../class-fire-init.php:81
-msgid "Light green"
-msgstr ""
-
-#: ../class-fire-init.php:82
-msgid "Yellow"
-msgstr "Sarı"
-
-#: ../class-fire-init.php:83
-msgid "Flat yellow"
-msgstr ""
-
-#: ../class-fire-init.php:84
-msgid "Orange"
-msgstr "Turuncu"
-
-#: ../class-fire-init.php:85
-msgid "Flat orange"
-msgstr ""
-
-#: ../class-fire-init.php:86
-msgid "Red"
-msgstr "Kırmızı"
-
-#: ../class-fire-init.php:87
-msgid "Flat red"
-msgstr ""
-
-#: ../class-fire-init.php:88
-msgid "Purple"
-msgstr "Mor"
-
-#: ../class-fire-init.php:89
-msgid "Flat purple"
-msgstr ""
-
-#: ../class-fire-init.php:90
-msgid "Grey"
-msgstr "Gri"
-
-#: ../class-fire-init.php:91
-msgid "Ligth grey"
-msgstr ""
-
-#: ../class-fire-init.php:92
-msgid "Black"
-msgstr "Siyah"
-
 #: ../class-fire-init.php:93
-msgid "Flat black"
+msgid "Light blue "
 msgstr ""
 
-#: ../class-fire-init.php:123
+#: ../class-fire-init.php:124
 msgid "Subscribe to my rss feed"
 msgstr "RSS beslememe abone olun"
 
-#: ../class-fire-init.php:124
+#: ../class-fire-init.php:125
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "RSS beslemesi (varsayılan wordpress beslemesi)"
 
-#: ../class-fire-init.php:128
+#: ../class-fire-init.php:129
 msgid "Follow me on Twitter"
 msgstr "Beni Twitter'da Takip Edin"
 
-#: ../class-fire-init.php:129
+#: ../class-fire-init.php:130
 msgid "Twitter profile url"
 msgstr "Twitter profil URL'si"
 
-#: ../class-fire-init.php:133
+#: ../class-fire-init.php:134
 msgid "Follow me on Facebook"
 msgstr "Beni Facebook'ta takip edin"
 
-#: ../class-fire-init.php:134
+#: ../class-fire-init.php:135
 msgid "Facebook profile url"
 msgstr "Facebook profil URL'si"
 
-#: ../class-fire-init.php:138
+#: ../class-fire-init.php:139
 msgid "Follow me on Google+"
 msgstr "Beni Google +'ta takip edin"
 
-#: ../class-fire-init.php:139
+#: ../class-fire-init.php:140
 msgid "Google+ profile url"
 msgstr "Google + profil URL'si"
 
-#: ../class-fire-init.php:143
+#: ../class-fire-init.php:144
 msgid "Follow me on Instagram"
 msgstr "Beni Instagram'da takip edin"
 
-#: ../class-fire-init.php:144
+#: ../class-fire-init.php:145
 msgid "Instagram profile url"
 msgstr "Instagram profil URL'si"
 
-#: ../class-fire-init.php:148
+#: ../class-fire-init.php:149
 msgid "Follow me on Tumblr"
 msgstr "Beni Tumblr'da takip edin"
 
-#: ../class-fire-init.php:149
+#: ../class-fire-init.php:150
 msgid "Tumblr url"
 msgstr ""
 
-#: ../class-fire-init.php:153
+#: ../class-fire-init.php:154
 msgid "Follow me on Flickr"
 msgstr "Beni Flickr'ta takip edin"
 
-#: ../class-fire-init.php:154
+#: ../class-fire-init.php:155
 msgid "Flickr url"
 msgstr ""
 
-#: ../class-fire-init.php:158
+#: ../class-fire-init.php:159
 msgid "Follow me on WordPress"
 msgstr "Beni WordPress'te takip edin"
 
-#: ../class-fire-init.php:159
+#: ../class-fire-init.php:160
 msgid "WordPress profile url"
 msgstr "WordPress profil URL'si"
 
-#: ../class-fire-init.php:163
+#: ../class-fire-init.php:164
 msgid "Follow me on Youtube"
 msgstr "Beni Youtube'da takip edin"
 
-#: ../class-fire-init.php:164
+#: ../class-fire-init.php:165
 msgid "Youtube profile url"
 msgstr "Youtube profil URL'si"
 
-#: ../class-fire-init.php:168
+#: ../class-fire-init.php:169
 msgid "Pin me on Pinterest"
 msgstr "Beni Pinterest'te iğneleyin"
 
-#: ../class-fire-init.php:169
+#: ../class-fire-init.php:170
 msgid "Pinterest profile url"
 msgstr "Pinterest profil URL'si"
 
-#: ../class-fire-init.php:173
+#: ../class-fire-init.php:174
 msgid "Follow me on Github"
 msgstr "Beni Github'da takip edin"
 
-#: ../class-fire-init.php:174
+#: ../class-fire-init.php:175
 msgid "Github profile url"
 msgstr "Github profil URL'si"
 
-#: ../class-fire-init.php:178
+#: ../class-fire-init.php:179
 msgid "Follow me on Dribbble"
 msgstr "Beni Dribbble'da takip edin"
 
-#: ../class-fire-init.php:179
+#: ../class-fire-init.php:180
 msgid "Dribbble profile url"
 msgstr "Dribbble profil URL'si"
 
-#: ../class-fire-init.php:183
+#: ../class-fire-init.php:184
 msgid "Follow me on LinkedIn"
 msgstr "Beni LinkedIn'de takip edin"
 
-#: ../class-fire-init.php:184
+#: ../class-fire-init.php:185
 msgid "LinkedIn profile url"
 msgstr "LinkedIn profil URL'si"
 
-#: ../class-fire-init.php:193
+#: ../class-fire-init.php:194
 msgid "Right Sidebar"
 msgstr "Sağ kenar çubuğu"
 
-#: ../class-fire-init.php:194 ../class-fire-init.php:198
+#: ../class-fire-init.php:195 ../class-fire-init.php:199
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "Gönderilerde, sabit sayfalarda, arşiv ve arama sayfalarında görünür"
 
-#: ../class-fire-init.php:197
+#: ../class-fire-init.php:198
 msgid "Left Sidebar"
 msgstr "Sol kenar çubuğu"
 
-#: ../class-fire-init.php:205
+#: ../class-fire-init.php:206
 msgid "Footer Widget Area One"
 msgstr "Birinci Altbilgi Aracı Alanı "
 
-#: ../class-fire-init.php:206 ../class-fire-init.php:210
-#: ../class-fire-init.php:214
+#: ../class-fire-init.php:207 ../class-fire-init.php:211
+#: ../class-fire-init.php:215
 msgid "Just use it as you want !"
 msgstr "İstediğiniz gibi kullanın !"
 
-#: ../class-fire-init.php:209
+#: ../class-fire-init.php:210
 msgid "Footer Widget Area Two"
 msgstr "İkinci Altbilgi Aracı Alanı"
 
-#: ../class-fire-init.php:213
+#: ../class-fire-init.php:214
 msgid "Footer Widget Area Three"
 msgstr "Üçüncü Altbilgi Aracı Alanı"
 
-#: ../class-fire-init.php:231
+#: ../class-fire-init.php:232
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr ""
 "Sahtekarlığın evrensel düzeyde hakim olduğu dönemlerde, gerçeği söylemek "
 "devrimci bir eylemdir."
 
-#: ../class-fire-init.php:232
+#: ../class-fire-init.php:233
 msgid "George Orwell"
 msgstr "George Orwell"
 
-#: ../class-fire-init.php:233
+#: ../class-fire-init.php:234
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
 "Üzgünüz, fakat aradığınız sayfa bulunamadı. Aşağıda yeniden aramayı "
 "deneyebilirsiniz."
 
-#: ../class-fire-init.php:238
+#: ../class-fire-init.php:239
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
@@ -259,11 +259,11 @@ msgstr ""
 "Başarı, başarısızlıktan başarısızlığa heyecanını kaybetmeden gitmekle "
 "gelir..."
 
-#: ../class-fire-init.php:239
+#: ../class-fire-init.php:240
 msgid "Sir Winston Churchill"
 msgstr "Sör Winston Churchill"
 
-#: ../class-fire-init.php:240
+#: ../class-fire-init.php:241
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
@@ -271,15 +271,15 @@ msgstr ""
 "Üzgünüz, fakat arama kriterlerinize uygun sonuç bulunamadı. Lütfen farklı "
 "kelimelerle tekrar deneyin."
 
-#: ../class-fire-init.php:255
+#: ../class-fire-init.php:256
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr sade ve esnek bir temadır"
 
-#: ../class-fire-init.php:260 ../class-fire-init.php:269
+#: ../class-fire-init.php:261 ../class-fire-init.php:270
 msgid "Style your WordPress site live!"
 msgstr "WordPress siteni canlı biçimlendir!"
 
-#: ../class-fire-init.php:261
+#: ../class-fire-init.php:262
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -287,15 +287,15 @@ msgstr ""
 "WordPress biçimlendirme ekranında birçok yerleşim ve tasarım seçeneği "
 "mevcut: Değişikliklerini anında gör!"
 
-#: ../class-fire-init.php:262
+#: ../class-fire-init.php:263
 msgid "Just try it!"
 msgstr "Şimdi deneyin!"
 
-#: ../class-fire-init.php:274 ../class-fire-init.php:283
+#: ../class-fire-init.php:275 ../class-fire-init.php:284
 msgid "Create beautiful sliders"
 msgstr "Gözalıcı slayt oynatıcılar oluşturun"
 
-#: ../class-fire-init.php:275
+#: ../class-fire-init.php:276
 msgid ""
 "Customizr comes with a cool slider generator : add a slider to any post or "
 "page!"
@@ -303,71 +303,62 @@ msgstr ""
 "Customizr çok havalı bir slayt oluşturucuyla gelir: Herhangi bir gönderiye "
 "veya sayfaya bir slayt oynatıcı ekleyin!"
 
-#: ../class-fire-init.php:276
+#: ../class-fire-init.php:277
 msgid "Discover the features"
 msgstr "Özellikleri keşfedin!"
 
-#: ../class-fire-init.php:393
+#: ../class-fire-init.php:394
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-# this is a special pronunciation. Customize means in Turkish : "Özelleştirmek". But it does not mean anything about this theme. So that it should be left as original or uses in my translate "CustomizEdin", which is exact meaning of "Customiz'It"
-#: ../class-fire-init.php:772
-msgid "Customiz'it!"
-msgstr "CustomizEdin!"
-
-#: ../class-fire-init.php:775
-msgid "Customize your website at any time!"
-msgstr "İnternet sitenizi istediğiniz zaman özelleştirin!"
-
-#: ../class-fire-init.php:793
+#: ../class-fire-init.php:783
 msgid "Help"
 msgstr "Yardım"
 
-#: ../class-fire-init.php:796
+#: ../class-fire-init.php:786
 msgid "Need help with Customizr? Click here!"
 msgstr "Customizr hakkında yardıma mı ihtiyacınız var? Buraya tıklayın!"
 
-#: ../class-fire-utils.php:378
+#: ../class-fire-utils.php:392
 #, php-format
 msgid "Page %s"
 msgstr "Sayfa %s"
 
-#: ../class-fire-utils_settings_map.php:43
+#: ../class-fire-utils_settings_map.php:47
 msgid "Home featured page one"
 msgstr "Ana Sayfa, birinci öne çıkan sayfa"
 
-#: ../class-fire-utils_settings_map.php:44
+#: ../class-fire-utils_settings_map.php:48
 msgid "Home featured page two"
 msgstr "Ana Sayfa, ikinci öne çıkan sayfa"
 
-#: ../class-fire-utils_settings_map.php:45
+#: ../class-fire-utils_settings_map.php:49
 msgid "Home featured page three"
 msgstr "Ana Sayfa, üçüncü öne çıkan sayfa"
 
-#: ../class-fire-utils_settings_map.php:48
+#: ../class-fire-utils_settings_map.php:52
 msgid "Featured text one (200 car. max)"
 msgstr "Birinci öne çıkan yazı (En Fazla 200 kar.)"
 
-#: ../class-fire-utils_settings_map.php:49
+#: ../class-fire-utils_settings_map.php:53
 msgid "Featured text two (200 car. max)"
 msgstr "İkinci öne çıkan yazı (En Fazla 200 kar.)"
 
-#: ../class-fire-utils_settings_map.php:50
+#: ../class-fire-utils_settings_map.php:54
 msgid "Featured text three (200 car. max)"
 msgstr "Üçüncü öne çıkan yazı (En Fazla 200 kar.)"
 
-#: ../class-fire-utils_settings_map.php:66
+#: ../class-fire-utils_settings_map.php:70
 #, php-format
 msgid "Custom featured page %1$s"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:82
+#: ../class-fire-utils_settings_map.php:86
 #, php-format
 msgid "Featured text %1$s (200 car. max)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:85
+#: ../class-fire-utils_settings_map.php:89
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
@@ -375,284 +366,284 @@ msgstr ""
 "Öncelikle bir sayfa seçmelisiniz. Sayfa alıntısı kullanmak istiyorsanız bu "
 "alanı boş bırakın."
 
-#: ../class-fire-utils_settings_map.php:184
+#: ../class-fire-utils_settings_map.php:200
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Slayt Oynatıcı Yok &mdash;"
 
-#: ../class-fire-utils_settings_map.php:185
+#: ../class-fire-utils_settings_map.php:201
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Örnek Slayt Oynatıcı &mdash;"
 
-#: ../class-fire-utils_settings_map.php:227
+#: ../class-fire-utils_settings_map.php:243
 #, fuzzy
 msgid "Global settings"
 msgstr "Réglages de la structure de page"
 
-#: ../class-fire-utils_settings_map.php:228
+#: ../class-fire-utils_settings_map.php:244
 msgid "Global settings for the Customizr theme :skin, socials, links..."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:233
+#: ../class-fire-utils_settings_map.php:249
 msgid "Header : title, logo, menu, ..."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:234
+#: ../class-fire-utils_settings_map.php:250
 msgid "Header settings for the Customizr theme."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:239
+#: ../class-fire-utils_settings_map.php:255
 msgid "Content : home, posts, ..."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:240
+#: ../class-fire-utils_settings_map.php:256
 msgid "Content settings for the Customizr theme."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:245
+#: ../class-fire-utils_settings_map.php:261
 msgid "Footer"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:246
+#: ../class-fire-utils_settings_map.php:262
 msgid "Footer settings for the Customizr theme."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:251
+#: ../class-fire-utils_settings_map.php:267
 #, fuzzy
 msgid "Advanced options"
 msgstr "Slayt oynatıcı ayarları"
 
-#: ../class-fire-utils_settings_map.php:252
+#: ../class-fire-utils_settings_map.php:268
 msgid "Advanced settings for the Customizr theme."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:273
-#: ../class-fire-utils_settings_map.php:975
+#: ../class-fire-utils_settings_map.php:289
+#: ../class-fire-utils_settings_map.php:993
 msgid "Skin"
 msgstr "Dış görünüm"
 
-#: ../class-fire-utils_settings_map.php:275
-#: ../class-fire-utils_settings_map.php:977
+#: ../class-fire-utils_settings_map.php:291
+#: ../class-fire-utils_settings_map.php:995
 msgid "Select a skin for Customizr"
 msgstr "Customizr için bir dış görünüm seçin"
 
-#: ../class-fire-utils_settings_map.php:279
-#: ../class-fire-utils_settings_map.php:1021
+#: ../class-fire-utils_settings_map.php:295
+#: ../class-fire-utils_settings_map.php:1039
 msgid "Logo &amp; Favicon"
 msgstr "Logo ve Favicon"
 
-#: ../class-fire-utils_settings_map.php:281
-#: ../class-fire-utils_settings_map.php:1023
+#: ../class-fire-utils_settings_map.php:297
+#: ../class-fire-utils_settings_map.php:1041
 msgid "Set up logo and favicon options"
 msgstr "Logo ve Favicon ayarlarını belirleyin"
 
-#: ../class-fire-utils_settings_map.php:285
-#: ../class-fire-utils_settings_map.php:1035
+#: ../class-fire-utils_settings_map.php:301
+#: ../class-fire-utils_settings_map.php:1053
 msgid "Front Page"
 msgstr "Ön sayfa"
 
-#: ../class-fire-utils_settings_map.php:287
-#: ../class-fire-utils_settings_map.php:1037
+#: ../class-fire-utils_settings_map.php:303
+#: ../class-fire-utils_settings_map.php:1055
 msgid "Set up front page options"
 msgstr "Ön sayfa ayarlarını belirleyin"
 
-#: ../class-fire-utils_settings_map.php:291
-#: ../class-fire-utils_settings_map.php:1042
+#: ../class-fire-utils_settings_map.php:307
+#: ../class-fire-utils_settings_map.php:1060
 msgid "Pages &amp; Posts Layout"
 msgstr "Sayfa ve Gönderi Yerleşimleri"
 
-#: ../class-fire-utils_settings_map.php:293
-#: ../class-fire-utils_settings_map.php:1044
+#: ../class-fire-utils_settings_map.php:309
+#: ../class-fire-utils_settings_map.php:1062
 msgid "Set up layout options"
 msgstr "Yerleşim ayarlarını belirleyin."
 
-#: ../class-fire-utils_settings_map.php:297
-#: ../class-fire-utils_settings_map.php:1081
+#: ../class-fire-utils_settings_map.php:313
+#: ../class-fire-utils_settings_map.php:1099
 msgid "Comments"
 msgstr "Yorumlar"
 
-#: ../class-fire-utils_settings_map.php:299
-#: ../class-fire-utils_settings_map.php:1083
+#: ../class-fire-utils_settings_map.php:315
+#: ../class-fire-utils_settings_map.php:1101
 msgid "Set up comments options"
 msgstr "Yorum ayarlarını belirleyin"
 
-#: ../class-fire-utils_settings_map.php:303
-#: ../class-fire-utils_settings_map.php:981
-#: ../class-fire-utils_settings_map.php:1653
+#: ../class-fire-utils_settings_map.php:319
+#: ../class-fire-utils_settings_map.php:999
+#: ../class-fire-utils_settings_map.php:1873
 msgid "Social links"
 msgstr "Sosyal bağlantılar"
 
-#: ../class-fire-utils_settings_map.php:305
-#: ../class-fire-utils_settings_map.php:983
+#: ../class-fire-utils_settings_map.php:321
+#: ../class-fire-utils_settings_map.php:1001
 msgid "Set up your social links"
 msgstr "Sosyal bağlantı ayarlarınızı belirleyin"
 
-#: ../class-fire-utils_settings_map.php:309
+#: ../class-fire-utils_settings_map.php:325
 msgid "Images"
 msgstr "Görseller"
 
-#: ../class-fire-utils_settings_map.php:311
-#: ../class-fire-utils_settings_map.php:1001
+#: ../class-fire-utils_settings_map.php:327
+#: ../class-fire-utils_settings_map.php:1019
 msgid "Various images settings"
 msgstr "Çeşitli görsel ayarları"
 
-#: ../class-fire-utils_settings_map.php:315
+#: ../class-fire-utils_settings_map.php:331
 msgid "Links"
 msgstr "Bağlantılar"
 
-#: ../class-fire-utils_settings_map.php:317
-#: ../class-fire-utils_settings_map.php:989
+#: ../class-fire-utils_settings_map.php:333
+#: ../class-fire-utils_settings_map.php:1007
 msgid "Various links settings"
 msgstr "Çeşitli bağlantı ayarları"
 
-#: ../class-fire-utils_settings_map.php:321
-#: ../class-fire-utils_settings_map.php:1093
+#: ../class-fire-utils_settings_map.php:337
+#: ../class-fire-utils_settings_map.php:1111
 msgid "Custom CSS"
 msgstr "Özel CSS"
 
-#: ../class-fire-utils_settings_map.php:323
-#: ../class-fire-utils_settings_map.php:1095
+#: ../class-fire-utils_settings_map.php:339
+#: ../class-fire-utils_settings_map.php:1113
 msgid "Add your own CSS"
 msgstr "Kendi CSS'inizi ekleyin"
 
-#: ../class-fire-utils_settings_map.php:327
-#: ../class-fire-utils_settings_map.php:1005
+#: ../class-fire-utils_settings_map.php:343
+#: ../class-fire-utils_settings_map.php:1023
 msgid "Responsive settings"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:329
-#: ../class-fire-utils_settings_map.php:1007
+#: ../class-fire-utils_settings_map.php:345
+#: ../class-fire-utils_settings_map.php:1025
 msgid "Various settings for responsive display"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:361
+#: ../class-fire-utils_settings_map.php:374
 msgid "Manage menus"
 msgstr "Menüleri yönetin"
 
-#: ../class-fire-utils_settings_map.php:367
+#: ../class-fire-utils_settings_map.php:380
 msgid "Select a submenu expansion option"
 msgstr "Bir altmenü genişleme ayarı seçin"
 
-#: ../class-fire-utils_settings_map.php:371
+#: ../class-fire-utils_settings_map.php:384
 msgid "Expand submenus on click"
 msgstr "Altmenüleri üzerine tıklanınca genişlet"
 
-#: ../class-fire-utils_settings_map.php:372
+#: ../class-fire-utils_settings_map.php:385
 msgid "Expand submenus on hover"
 msgstr "Altmenüleri üzerine gelince genişlet"
 
-#: ../class-fire-utils_settings_map.php:387
+#: ../class-fire-utils_settings_map.php:401
 msgid "Choose a predefined skin"
 msgstr "Önceden tanımlanmış bir dış görünüm seçin"
 
-#: ../class-fire-utils_settings_map.php:396
+#: ../class-fire-utils_settings_map.php:411
 msgid "Performance : use the minified CSS stylesheet"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:399
+#: ../class-fire-utils_settings_map.php:414
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:405
-#: ../class-fire-utils_settings_map.php:1217
+#: ../class-fire-utils_settings_map.php:420
+#: ../class-fire-utils_settings_map.php:1236
 msgid "Display top border"
 msgstr "Üst kenarlığı göster"
 
-#: ../class-fire-utils_settings_map.php:409
-#: ../class-fire-utils_settings_map.php:1221
+#: ../class-fire-utils_settings_map.php:424
+#: ../class-fire-utils_settings_map.php:1240
 msgid "Uncheck this option to remove the colored top border."
 msgstr ""
 "Renkli üst kenarlığı devredışı bırakmak için bu seçenekten işareti kaldırın."
 
-#: ../class-fire-utils_settings_map.php:421
+#: ../class-fire-utils_settings_map.php:436
 #, fuzzy
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Logo Yükleyin (desteklenen formatlar: .jpg, .png, .gif)"
 
-#: ../class-fire-utils_settings_map.php:430
+#: ../class-fire-utils_settings_map.php:445
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr ""
 "Logo boyutlarını max-width:250px ve max-height:100px olarak düzeltmeye "
 "zorlayın"
 
-#: ../class-fire-utils_settings_map.php:446
+#: ../class-fire-utils_settings_map.php:461
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Favicon Yükleyin (desteklenen formatlar: .ico, .png, .gif)"
 
-#: ../class-fire-utils_settings_map.php:464
+#: ../class-fire-utils_settings_map.php:479
 msgid "Choose content and layout"
 msgstr "İçerik ve yerleşimi seçin"
 
-#: ../class-fire-utils_settings_map.php:472
+#: ../class-fire-utils_settings_map.php:487
 msgid "Front page displays"
 msgstr "Ön sayfa görünümleri"
 
-#: ../class-fire-utils_settings_map.php:477
+#: ../class-fire-utils_settings_map.php:492
 msgid "Don't show any posts or page"
 msgstr "Hiçbir gönderi veya sayfayı gösterme"
 
-#: ../class-fire-utils_settings_map.php:478
+#: ../class-fire-utils_settings_map.php:493
 msgid "Your latest posts"
 msgstr "Son gönderileriniz"
 
-#: ../class-fire-utils_settings_map.php:479
+#: ../class-fire-utils_settings_map.php:494
 msgid "A static page"
 msgstr "Sabit bir sayfa"
 
-#: ../class-fire-utils_settings_map.php:485
+#: ../class-fire-utils_settings_map.php:500
 msgid "Front page"
 msgstr "Ön sayfa"
 
-#: ../class-fire-utils_settings_map.php:493
+#: ../class-fire-utils_settings_map.php:508
 msgid "Posts page"
 msgstr "Gönderi sayfası"
 
-#: ../class-fire-utils_settings_map.php:502
+#: ../class-fire-utils_settings_map.php:517
 msgid "Set up the front page layout"
 msgstr "Ön sayfa yerleşim ayarlarını belirleyin"
 
-#: ../class-fire-utils_settings_map.php:513
+#: ../class-fire-utils_settings_map.php:528
 msgid "Slider options"
 msgstr "Slayt oynatıcı ayarları"
 
-#: ../class-fire-utils_settings_map.php:514
+#: ../class-fire-utils_settings_map.php:529
 msgid "Select front page slider"
 msgstr "Ön sayfa slayt oynatıcısı seçin"
 
-#: ../class-fire-utils_settings_map.php:526
+#: ../class-fire-utils_settings_map.php:541
 msgid "Full width slider"
 msgstr "Tam genişlikli slayt oynatıcısı"
 
-#: ../class-fire-utils_settings_map.php:537
+#: ../class-fire-utils_settings_map.php:552
 msgid "Delay between each slides"
 msgstr "Her bir slayt arası gecikme"
 
-#: ../class-fire-utils_settings_map.php:542
+#: ../class-fire-utils_settings_map.php:557
 msgid "in ms : 1000ms = 1s"
 msgstr "ms : 1000ms = 1s"
 
-#: ../class-fire-utils_settings_map.php:550
+#: ../class-fire-utils_settings_map.php:565
 msgid "Featured pages options"
 msgstr "Öne çıkan sayfa ayarları"
 
-#: ../class-fire-utils_settings_map.php:551
+#: ../class-fire-utils_settings_map.php:566
 msgid "Display home featured pages area"
 msgstr "Ana Sayfa'da özel sayfa alanlarını göster"
 
-#: ../class-fire-utils_settings_map.php:555
+#: ../class-fire-utils_settings_map.php:570
 msgid "Enable"
 msgstr "Etkinleştirin"
 
-#: ../class-fire-utils_settings_map.php:556
+#: ../class-fire-utils_settings_map.php:571
 msgid "Disable"
 msgstr "Devredışı bırakın"
 
-#: ../class-fire-utils_settings_map.php:565
+#: ../class-fire-utils_settings_map.php:580
 msgid "Show images"
 msgstr "Görselleri göster"
 
-#: ../class-fire-utils_settings_map.php:568
+#: ../class-fire-utils_settings_map.php:583
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -660,31 +651,31 @@ msgstr ""
 "Görseller her sayfadaki \"öne çıkan görsel\" bölümünden ayarlanmaktadır. Öne "
 "çıkan sayfa görseli özelliğini ipral etmek için yukarıdaki seçeneği kaldırın."
 
-#: ../class-fire-utils_settings_map.php:574
+#: ../class-fire-utils_settings_map.php:589
 msgid "Read more &raquo;"
 msgstr "Devamını oku &raquo;"
 
-#: ../class-fire-utils_settings_map.php:576
+#: ../class-fire-utils_settings_map.php:591
 msgid "Button text"
 msgstr "Düğme yazısı"
 
-#: ../class-fire-utils_settings_map.php:597
-#: ../class-fire-utils_settings_map.php:1139
+#: ../class-fire-utils_settings_map.php:612
+#: ../class-fire-utils_settings_map.php:1158
 msgid "Display Breadcrumb"
 msgstr "Breadcrumblar'ı Göster"
 
-#: ../class-fire-utils_settings_map.php:607
-#: ../class-fire-utils_settings_map.php:1149
+#: ../class-fire-utils_settings_map.php:622
+#: ../class-fire-utils_settings_map.php:1168
 msgid "Choose the global default layout"
 msgstr "Varsayılan genel yerleşim ayarlarını seçin"
 
-#: ../class-fire-utils_settings_map.php:618
-#: ../class-fire-utils_settings_map.php:1161
+#: ../class-fire-utils_settings_map.php:633
+#: ../class-fire-utils_settings_map.php:1180
 msgid "Force default layout everywhere"
 msgstr "Her yerde varsayılan yerleşim için zorla"
 
-#: ../class-fire-utils_settings_map.php:621
-#: ../class-fire-utils_settings_map.php:1164
+#: ../class-fire-utils_settings_map.php:636
+#: ../class-fire-utils_settings_map.php:1183
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -692,41 +683,42 @@ msgstr ""
 "Bu seçenek tüm gönderilerde/sayfalarda ve ön sayfada, özelleştirilmiş "
 "yerleşim ayarlarının üzerine yazılacaktır."
 
-#: ../class-fire-utils_settings_map.php:628
-#: ../class-fire-utils_settings_map.php:1170
+#: ../class-fire-utils_settings_map.php:643
+#: ../class-fire-utils_settings_map.php:1189
 msgid "Choose the posts default layout"
 msgstr "Varsayılan gönderi yerleşim ayarlarını seçin"
 
-#: ../class-fire-utils_settings_map.php:640
-#: ../class-fire-utils_settings_map.php:1192
+#: ../class-fire-utils_settings_map.php:655
+#: ../class-fire-utils_settings_map.php:1211
 msgid "Maximum number of posts per page"
 msgstr "Her sayfada görüntülenecek en fazla gönderi adeti"
 
-#: ../class-fire-utils_settings_map.php:651
-#: ../class-fire-utils_settings_map.php:1202
+#: ../class-fire-utils_settings_map.php:666
+#: ../class-fire-utils_settings_map.php:1221
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "Gönderi listesi uzunluğunu seçin (ana sayfa, arama, arşiv, ...)"
 
-#: ../class-fire-utils_settings_map.php:655
-#: ../class-fire-utils_settings_map.php:1206
+#: ../class-fire-utils_settings_map.php:670
+#: ../class-fire-utils_settings_map.php:1225
 msgid "Display the excerpt"
 msgstr "Alıntıları gösterin"
 
-#: ../class-fire-utils_settings_map.php:656
-#: ../class-fire-utils_settings_map.php:1207
+#: ../class-fire-utils_settings_map.php:671
+#: ../class-fire-utils_settings_map.php:1226
 msgid "Display the full content"
 msgstr "Tüm içeriği gösterin"
 
-#: ../class-fire-utils_settings_map.php:664
-#: ../class-fire-utils_settings_map.php:1179
+#: ../class-fire-utils_settings_map.php:679
+#: ../class-fire-utils_settings_map.php:1198
 msgid "Choose the pages default layout"
 msgstr "Varsayılan sayfa yerleşim ayarlarını seçin"
 
-#: ../class-fire-utils_settings_map.php:684
+#: ../class-fire-utils_settings_map.php:698
+#: ../class-fire-utils_settings_map.php:1812
 msgid "Enable comments on pages"
 msgstr "Sayfalarda yorumları etkinleştir"
 
-#: ../class-fire-utils_settings_map.php:687
+#: ../class-fire-utils_settings_map.php:702
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -735,32 +727,32 @@ msgstr ""
 "yorumları sayfa görüntüleme ekranındaki hızlı düzenleme seçeneğinden "
 "değiştirebilirsiniz."
 
-#: ../class-fire-utils_settings_map.php:701
-#: ../class-fire-utils_settings_map.php:1617
+#: ../class-fire-utils_settings_map.php:716
+#: ../class-fire-utils_settings_map.php:1837
 msgid "Social links in header"
 msgstr "Üstbilgi sosyal bağlantıları"
 
-#: ../class-fire-utils_settings_map.php:710
-#: ../class-fire-utils_settings_map.php:1635
+#: ../class-fire-utils_settings_map.php:725
+#: ../class-fire-utils_settings_map.php:1855
 msgid "Social links in left sidebar"
 msgstr "Sol kenar çubuğu sosyal bağlantıları"
 
-#: ../class-fire-utils_settings_map.php:719
-#: ../class-fire-utils_settings_map.php:1645
+#: ../class-fire-utils_settings_map.php:734
+#: ../class-fire-utils_settings_map.php:1865
 msgid "Social links in right sidebar"
 msgstr "Sağ kenar çubuğu sosyal bağlantıları"
 
-#: ../class-fire-utils_settings_map.php:727
-#: ../class-fire-utils_settings_map.php:1626
+#: ../class-fire-utils_settings_map.php:742
+#: ../class-fire-utils_settings_map.php:1846
 msgid "Social links in footer"
 msgstr "Altbilgi sosyal bağlantıları"
 
-#: ../class-fire-utils_settings_map.php:748
+#: ../class-fire-utils_settings_map.php:763
 msgid "Enable/disable lightbox effect on images"
 msgstr ""
 "Görseller üzerindeki lightbox efektlerini etkinleştirin/devre dışı bırakın"
 
-#: ../class-fire-utils_settings_map.php:751
+#: ../class-fire-utils_settings_map.php:766
 msgid ""
 "If enabled, this option activate a popin window whith a zoom effect when an "
 "image is clicked. This will not apply to image gallery."
@@ -768,43 +760,57 @@ msgstr ""
 "Bu efekt eğer etkinleştirilirse, bir görsele tıklanrığında yakınlaştırma "
 "efektli bir pencere açılacaktır. Bu tüm görsel galerisi için uygulanmaz."
 
-#: ../class-fire-utils_settings_map.php:757
+#: ../class-fire-utils_settings_map.php:772
 msgid "Autoscale images on zoom"
 msgstr "Yakınlaştırma anında dörselleri otomatik ölçeklendir"
 
-#: ../class-fire-utils_settings_map.php:760
+#: ../class-fire-utils_settings_map.php:775
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "Bu efekt eğer etkinleştirilirse, görselleri ligtbox yakınlaştırmasında "
 "ekrana sığdırmaya zorlayacaktır."
 
-#: ../class-fire-utils_settings_map.php:766
+#: ../class-fire-utils_settings_map.php:781
 msgid "Enable/disable retina support"
 msgstr "Retina desteğini etkinleştirin/devre dışı bırakın"
 
-#: ../class-fire-utils_settings_map.php:769
+#: ../class-fire-utils_settings_map.php:785
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr ""
 "Eğer etkinleştirilirse, internet sayfanız yüksek çözünürlüklü cihazlara da "
 "destek verecektir."
 
-#: ../class-fire-utils_settings_map.php:774
+#: ../class-fire-utils_settings_map.php:786
+msgid ""
+"It is strongly recommended to regenerate your media library images in high "
+"definition with this free plugin"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:787
+msgid "regenerate thumbnails"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:789
+msgid "Open the description page of the Regenerate thumbnails plugin"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:795
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:777
+#: ../class-fire-utils_settings_map.php:798
 msgid ""
 "When checked, this option displays a loading icon when the slides are beeing "
 "setup."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:790
+#: ../class-fire-utils_settings_map.php:811
 msgid "Enable/disable smooth scroll on click"
 msgstr "Tıklama anında akıcı kaydırmayı etkinleştirin/devre dışı bırakın"
 
-#: ../class-fire-utils_settings_map.php:793
+#: ../class-fire-utils_settings_map.php:814
 msgid ""
 "If enabled, this option activates a smooth page scroll when clicking on a "
 "link to an anchor of the same page."
@@ -812,264 +818,296 @@ msgstr ""
 "Eğer etkinleştirilirse, bu seçenek aynı sayfadaki bağlantıya tıklandığında "
 "akıcı kaydırmayı aktif hale getirecektir."
 
-#: ../class-fire-utils_settings_map.php:806
+#: ../class-fire-utils_settings_map.php:827
 msgid "Enable/disable blocks reordering on small devices"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:809
+#: ../class-fire-utils_settings_map.php:830
 msgid ""
 "On responsive mode, for smartphone viewport, the sidebars are moved after "
 "the main content block."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:815
+#: ../class-fire-utils_settings_map.php:836
 msgid "Enable/disable slider's slides centering on any devices"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:818
+#: ../class-fire-utils_settings_map.php:839
 msgid ""
 "This option centers your slider (carousel) pictures vertically and "
 "horizontally on any devices when displayed in full width mode"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:833
-#: ../class-fire-utils_settings_map.php:1665
+#: ../class-fire-utils_settings_map.php:854
+#: ../class-fire-utils_settings_map.php:1885
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Buradan özelleştirilmiş CSS dosyanızı ekleyin ve anında tasarlayın! (ileri "
 "düzey kullanıcılar içindir)"
 
-#: ../class-fire-utils_settings_map.php:836
-#: ../class-fire-utils_settings_map.php:1668
+#: ../class-fire-utils_settings_map.php:858
+#: ../class-fire-utils_settings_map.php:1889
 msgid ""
-"Always use this field to add your custom css instead of editing directly the "
-"style.css file : it will not be deleted during theme updates. You can also "
-"paste your custom css in the style.css file of a child theme."
+"Use this field to test small chunks of CSS code. For important CSS "
+"customizations, you'll want to modify the style.css file of a"
 msgstr ""
-"Özelleştirilmiş CSS dosyalarınızı eklerken, style.css dosyanızı doğrudan "
-"düzenlemek yerine her zaman bu alanı kullanın: bu alan tema "
-"güncellemelerinde silinmeyecektir. Ayrıca özelleştirilmiş CSSlerinizi bir "
-"alt temanın style.css dosyası içerisine yapıştırabilirsiniz."
 
-#: ../class-fire-utils_settings_map.php:987
+#: ../class-fire-utils_settings_map.php:859
+#: ../class-fire-utils_settings_map.php:1890
+msgid "child theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:860
+#: ../class-fire-utils_settings_map.php:1891
+msgid "How to create and use a child theme ?"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1005
 msgid "Links style and effects"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:993
+#: ../class-fire-utils_settings_map.php:1011
 #, fuzzy
 msgid "Titles icons settings"
 msgstr "Çeşitli bağlantı ayarları"
 
-#: ../class-fire-utils_settings_map.php:995
+#: ../class-fire-utils_settings_map.php:1013
 #, fuzzy
 msgid "Set up the titles icons options"
 msgstr "Yorum ayarlarını belirleyin"
 
-#: ../class-fire-utils_settings_map.php:999
+#: ../class-fire-utils_settings_map.php:1017
 #, fuzzy
 msgid "Image settings"
 msgstr "Çeşitli görsel ayarları"
 
-#: ../class-fire-utils_settings_map.php:1011
+#: ../class-fire-utils_settings_map.php:1029
+#, fuzzy
+msgid "Header design and layout"
+msgstr "İçerik ve yerleşimi seçin"
+
+#: ../class-fire-utils_settings_map.php:1029
 #, fuzzy
 msgid "Design and layout"
 msgstr "İçerik ve yerleşimi seçin"
 
-#: ../class-fire-utils_settings_map.php:1016
+#: ../class-fire-utils_settings_map.php:1034
 msgid "Site Title & Tagline"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1027
+#: ../class-fire-utils_settings_map.php:1045
 #, fuzzy
 msgid "Navigation"
 msgstr "Gönderi gezintisi"
 
-#: ../class-fire-utils_settings_map.php:1030
+#: ../class-fire-utils_settings_map.php:1048
 #, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1030
+#: ../class-fire-utils_settings_map.php:1048
 msgid ""
 "You can edit your menu content on the Menus screen in the Appearance section."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1049
+#: ../class-fire-utils_settings_map.php:1067
 msgid "Post lists : blog, archives, ..."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1051
+#: ../class-fire-utils_settings_map.php:1069
 #, fuzzy
 msgid "Set up post lists options"
 msgstr "Yorum ayarlarını belirleyin"
 
-#: ../class-fire-utils_settings_map.php:1055
+#: ../class-fire-utils_settings_map.php:1073
 msgid "Single posts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1057
+#: ../class-fire-utils_settings_map.php:1075
 #, fuzzy
 msgid "Set up single posts options"
 msgstr "Yerleşim ayarlarını belirleyin."
 
-#: ../class-fire-utils_settings_map.php:1061
+#: ../class-fire-utils_settings_map.php:1079
 #, fuzzy
 msgid "Breadcrumb"
 msgstr "Breadcrumblar'ı Göster"
 
-#: ../class-fire-utils_settings_map.php:1063
+#: ../class-fire-utils_settings_map.php:1081
 #, fuzzy
 msgid "Set up breadcrumb options"
 msgstr "Yerleşim ayarlarını belirleyin."
 
-#: ../class-fire-utils_settings_map.php:1075
+#: ../class-fire-utils_settings_map.php:1093
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1077
+#: ../class-fire-utils_settings_map.php:1095
 #, fuzzy
 msgid "Set up post metas options"
 msgstr "Yorum ayarlarını belirleyin"
 
-#: ../class-fire-utils_settings_map.php:1087
+#: ../class-fire-utils_settings_map.php:1105
 msgid "Footer global settings"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1089
+#: ../class-fire-utils_settings_map.php:1107
 #, fuzzy
 msgid "Set up footer global options"
 msgstr "Ön sayfa ayarlarını belirleyin"
 
-#: ../class-fire-utils_settings_map.php:1153
+#: ../class-fire-utils_settings_map.php:1172
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1227
+#: ../class-fire-utils_settings_map.php:1246
 #, fuzzy
 msgid "Layout"
 msgstr "Yerleşim Ayarları"
 
-#: ../class-fire-utils_settings_map.php:1231
+#: ../class-fire-utils_settings_map.php:1250
 msgid "Logo / title on the left"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1232
+#: ../class-fire-utils_settings_map.php:1251
 msgid "Logo / title centered"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1233
+#: ../class-fire-utils_settings_map.php:1252
 msgid "Logo / title on the right"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1242
+#: ../class-fire-utils_settings_map.php:1261
 #, fuzzy
 msgid "Display the tagline"
 msgstr "Tüm içeriği gösterin"
 
-#: ../class-fire-utils_settings_map.php:1251
+#: ../class-fire-utils_settings_map.php:1270
 msgid "Display menu in a box"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1256
+#: ../class-fire-utils_settings_map.php:1275
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1261
+#: ../class-fire-utils_settings_map.php:1280
 msgid "Sticky on scroll"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1266
+#: ../class-fire-utils_settings_map.php:1285
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1271
+#: ../class-fire-utils_settings_map.php:1290
 msgid "Sticky header : display the tagline"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1280
+#: ../class-fire-utils_settings_map.php:1299
 msgid "Sticky header : display the title / logo"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1289
+#: ../class-fire-utils_settings_map.php:1308
 msgid "Sticky header : shrink title / logo"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1298
+#: ../class-fire-utils_settings_map.php:1317
 msgid "Sticky header : display the menu"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1309
-msgid "Menu position"
+#: ../class-fire-utils_settings_map.php:1326
+msgid "Sticky header : semi-transparent on scroll"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1313
-msgid "Menu on the left"
+#: ../class-fire-utils_settings_map.php:1335
+msgid "Set the header z-index"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1314
-msgid "Menu on the right"
+#: ../class-fire-utils_settings_map.php:1343
+msgid "What is"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1322
-msgid "Reveal the sub-menus blocks with a fade effect"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1331
-msgid "Hover move effect for the sub menu items"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1341
-msgid "Fade effect on link hover"
+#: ../class-fire-utils_settings_map.php:1344
+msgid "the z-index"
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:1352
+msgid "Menu position"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1356
+msgid "Menu on the left"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1357
+msgid "Menu on the right"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1365
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1374
+msgid "Hover move effect for the sub menu items"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1383
+msgid ""
+"In responsive mode, limit the height of the dropdown menu block to the "
+"visible viewport"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1393
+msgid "Fade effect on link hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1404
 #, fuzzy
 msgid "Display the breadcrumb on home page"
 msgstr "Breadcrumblar'ı Göster"
 
-#: ../class-fire-utils_settings_map.php:1360
+#: ../class-fire-utils_settings_map.php:1412
 #, fuzzy
 msgid "Display the breadcrumb in pages"
 msgstr "Breadcrumblar'ı Göster"
 
-#: ../class-fire-utils_settings_map.php:1369
+#: ../class-fire-utils_settings_map.php:1421
 #, fuzzy
 msgid "Display the breadcrumb in single posts"
 msgstr "Breadcrumblar'ı Göster"
 
-#: ../class-fire-utils_settings_map.php:1378
+#: ../class-fire-utils_settings_map.php:1430
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1389
+#: ../class-fire-utils_settings_map.php:1441
 msgid "Display icons next to titles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1393
+#: ../class-fire-utils_settings_map.php:1445
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1399
+#: ../class-fire-utils_settings_map.php:1451
 msgid "Display a page icon next to the page title"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1408
+#: ../class-fire-utils_settings_map.php:1460
 msgid "Display a post icon next to the single post title"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1417
+#: ../class-fire-utils_settings_map.php:1469
 msgid "Display an icon next to the archive title"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1420
+#: ../class-fire-utils_settings_map.php:1472
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -1077,188 +1115,352 @@ msgid ""
 "results."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1427
+#: ../class-fire-utils_settings_map.php:1479
 msgid "Display an icon next to each post title in an archive page"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1430
+#: ../class-fire-utils_settings_map.php:1482
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
 "author, date archive, custom taxonomies, search results."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1437
+#: ../class-fire-utils_settings_map.php:1489
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1446
+#: ../class-fire-utils_settings_map.php:1498
 msgid "WP footer widgets : display icons next to titles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1458
+#: ../class-fire-utils_settings_map.php:1510
 #, fuzzy
 msgid "Display posts metas"
 msgstr "Alıntıları gösterin"
 
-#: ../class-fire-utils_settings_map.php:1461
+#: ../class-fire-utils_settings_map.php:1513
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1468
+#: ../class-fire-utils_settings_map.php:1520
+msgid "Select the contexts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1521
 msgid "Display posts metas on home"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1477
+#: ../class-fire-utils_settings_map.php:1530
 msgid "Display posts metas for single posts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1486
+#: ../class-fire-utils_settings_map.php:1539
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1498
+#: ../class-fire-utils_settings_map.php:1549
+msgid "Select the metas to display"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1550
+msgid "Display hierarchical taxonomies (like categories)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1559
+msgid "Display non-hierarchical taxonomies (like tags)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1568
+#, fuzzy
+msgid "Display the publication date"
+msgstr "Tüm içeriği gösterin"
+
+#: ../class-fire-utils_settings_map.php:1577
+#, fuzzy
+msgid "Display the update date"
+msgstr "Tüm içeriği gösterin"
+
+#: ../class-fire-utils_settings_map.php:1581
+msgid ""
+"If this option is checked, additional date informations about the the last "
+"post update can be displayed (nothing will show up if the post has never "
+"been updated)."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1587
+msgid "Select the last update format"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1591
+msgid "Nb of days since last update"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1592
+msgid "Date of the last update"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1599
+#, fuzzy
+msgid "Display the author"
+msgstr "Alıntıları gösterin"
+
+#: ../class-fire-utils_settings_map.php:1607
+msgid "Display a recent update notice"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1611
+msgid ""
+"If this option is checked, a customizable recent update notice is displayed "
+"next to the post title."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1616
+msgid ""
+"Display the notice if the last update is less (strictly) than n days old"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1622
+msgid ""
+"Set a maximum interval (in days) during which the last update notice will be "
+"displayed."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1625
+msgid "Recently updated !"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1627
+msgid "Update notice text"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1636
+msgid "Update notice style"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1640
+msgid "Default (grey)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1641
+msgid "Success (green)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1642
+msgid "Alert (orange)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1643
+msgid "Important (red)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1644
+msgid "Info (blue)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1655
 msgid "Set the excerpt length (in number of words) "
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1508
+#: ../class-fire-utils_settings_map.php:1665
 #, fuzzy
 msgid "Thumbnails options"
 msgstr "Options du thème"
 
-#: ../class-fire-utils_settings_map.php:1509
+#: ../class-fire-utils_settings_map.php:1666
 #, fuzzy
 msgid "Display the post thumbnails"
 msgstr "Alıntıları gösterin"
 
-#: ../class-fire-utils_settings_map.php:1513
+#: ../class-fire-utils_settings_map.php:1670
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1518
+#: ../class-fire-utils_settings_map.php:1675
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1526
+#: ../class-fire-utils_settings_map.php:1683
 msgid "Thumbnails shape"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1530
+#: ../class-fire-utils_settings_map.php:1687
 msgid "Rounded, expand on hover"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1531
+#: ../class-fire-utils_settings_map.php:1688
 msgid "Rounded, no expansion"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1532
+#: ../class-fire-utils_settings_map.php:1689
 msgid "Squared, expand on hover"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1533
+#: ../class-fire-utils_settings_map.php:1690
 msgid "Squared, no expansion"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1534
+#: ../class-fire-utils_settings_map.php:1691
 msgid "Rectangular with no effect"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1535
+#: ../class-fire-utils_settings_map.php:1692
 msgid "Rectangular with blur effect on hover"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1536
+#: ../class-fire-utils_settings_map.php:1693
 msgid "Rectangular with unblur effect on hover"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1544
-#: ../class-fire-utils_settings_map.php:1594
+#: ../class-fire-utils_settings_map.php:1701
+#: ../class-fire-utils_settings_map.php:1751
 msgid "Set the thumbnail's max height in pixels"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1555
+#: ../class-fire-utils_settings_map.php:1712
 msgid "Thumbnails position"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1559
+#: ../class-fire-utils_settings_map.php:1716
 msgid "Top"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1560
+#: ../class-fire-utils_settings_map.php:1717
 msgid "Right"
 msgstr "Droite"
 
-#: ../class-fire-utils_settings_map.php:1561
+#: ../class-fire-utils_settings_map.php:1718
 msgid "Bottom"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1562
+#: ../class-fire-utils_settings_map.php:1719
 msgid "Left"
 msgstr "Gauche"
 
-#: ../class-fire-utils_settings_map.php:1570
+#: ../class-fire-utils_settings_map.php:1727
 msgid "Alternate thumbnail/content"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1579
+#: ../class-fire-utils_settings_map.php:1736
 #, fuzzy
 msgid "Post thumbnail position"
 msgstr "Gönderi gezintisi"
 
-#: ../class-fire-utils_settings_map.php:1583
+#: ../class-fire-utils_settings_map.php:1740
 #, fuzzy
 msgid "Don't display"
 msgstr "Ön sayfa görünümleri"
 
-#: ../class-fire-utils_settings_map.php:1584
+#: ../class-fire-utils_settings_map.php:1741
 #, fuzzy
 msgid "Before the title in full width"
 msgstr "Slayt Oynatıcı Yerleşimi: slayt oynatıcıyı tam genişliğe ayarla"
 
-#: ../class-fire-utils_settings_map.php:1585
+#: ../class-fire-utils_settings_map.php:1742
 msgid "Before the title boxed"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1586
+#: ../class-fire-utils_settings_map.php:1743
 msgid "After the title"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1607
+#: ../class-fire-utils_settings_map.php:1762
+#, fuzzy
+msgid "Comments bubbles"
+msgstr "Yorumlar"
+
+#: ../class-fire-utils_settings_map.php:1764
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1773
+#, fuzzy
+msgid "Comments bubble shape"
+msgstr "Yorumlar kapalı"
+
+#: ../class-fire-utils_settings_map.php:1777
+msgid "Small bubbles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1778
+msgid "Large bubbles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1786
+#: ../class-fire-utils_settings_map.php:1799
+#, fuzzy
+msgid "Comments bubble color"
+msgstr "Yorumlar kapalı"
+
+#: ../class-fire-utils_settings_map.php:1790
+msgid "Skin color"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1791
+#, fuzzy
+msgid "Custom"
+msgstr "Özel CSS"
+
+#: ../class-fire-utils_settings_map.php:1811
+#, fuzzy
+msgid "Other comments settings"
+msgstr "Çeşitli bağlantı ayarları"
+
+#: ../class-fire-utils_settings_map.php:1817
+#, fuzzy
+msgid ""
+"If checked, this option will enable comments on pages. You can disable "
+"comments for a single page in the quick edit mode of the page list screen."
+msgstr ""
+"Bu ayar tüm sayfalarda yorumları etkinleştirecektir. Tek bir sayfa için "
+"yorumları sayfa görüntüleme ekranındaki hızlı düzenleme seçeneğinden "
+"değiştirebilirsiniz."
+
+#: ../class-fire-utils_settings_map.php:1818
+msgid "Change other comments settings in the"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1820
+#, fuzzy
+msgid "discussion settings page."
+msgstr "Çeşitli bağlantı ayarları"
+
+#: ../class-fire-utils_settings_map.php:1827
 msgid "Display a back to top arrow on scroll"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1654
+#: ../class-fire-utils_settings_map.php:1874
 #, fuzzy
 msgid "Social link title in sidebars"
 msgstr "Sol kenar çubuğu sosyal bağlantıları"
 
-#: ../class-fire-utils_settings_map.php:1660
+#: ../class-fire-utils_settings_map.php:1880
 msgid "Will be hidden if empty"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1676
+#: ../class-fire-utils_settings_map.php:1899
 msgid "Set slider's height in pixels"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1686
+#: ../class-fire-utils_settings_map.php:1909
 msgid "Apply this height to all sliders"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1694
+#: ../class-fire-utils_settings_map.php:1917
 msgid "Replace the default image slider's height"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1700
+#: ../class-fire-utils_settings_map.php:1923
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1701
+#: ../class-fire-utils_settings_map.php:1924
 msgid "You might want to regenerate your thumbnails."
 msgstr ""
 
@@ -1384,7 +1586,7 @@ msgstr ""
 msgid "Delete slider"
 msgstr "Slayt oynatıcıyı sil"
 
-#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:88
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:101
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -1470,10 +1672,10 @@ msgstr "Düğme Bağlantısı"
 #: ../parts/class-content-breadcrumb.php:678
 #: ../parts/class-content-breadcrumb.php:693
 #: ../parts/class-content-breadcrumb.php:721
-#: ../parts/class-content-comments.php:157
-#: ../parts/class-content-featured_pages.php:245
-#: ../parts/class-content-headings.php:257
-#: ../parts/class-content-slider.php:286
+#: ../parts/class-content-comments.php:160
+#: ../parts/class-content-featured_pages.php:249
+#: ../parts/class-content-headings.php:227
+#: ../parts/class-content-slider.php:359
 msgid "Edit"
 msgstr "Düzenleyin"
 
@@ -1489,45 +1691,48 @@ msgstr "Bu slaytı düzenleyin"
 msgid "Current slide"
 msgstr "Mevcut slayt"
 
-#: ../admin/class-controls.php:88
+#: ../admin/class-controls.php:101
 msgid "Create a slider"
 msgstr "Bir slayt oynatıcı oluşturun"
 
-#: ../admin/class-controls.php:226
+#: ../admin/class-controls.php:244
 msgid "Upload"
 msgstr ""
 
-#: ../admin/class-controls.php:227
+#: ../admin/class-controls.php:245
 msgid "Remove"
 msgstr ""
 
-#: ../admin/class-fire-admin_init.php:63 ../admin/class-fire-admin_init.php:64
+#: ../admin/class-fire-admin_init.php:55 ../admin/class-fire-admin_init.php:56
 msgid "Upgrade WP"
 msgstr "WP'i güncelleyin"
 
-#: ../admin/class-fire-admin_init.php:83
+#: ../admin/class-fire-admin_init.php:75
 msgid "This theme requires WordPress 3.4+"
 msgstr "Bu tema WordPress 3.4 sürümü ve üstünü gerektirir."
 
-#: ../admin/class-fire-admin_init.php:86 ../admin/class-fire-admin_init.php:87
+#: ../admin/class-fire-admin_init.php:78 ../admin/class-fire-admin_init.php:79
 msgid "Upgrade Wordpress Now"
 msgstr "WordPress'i Şimdi Güncelleyin."
 
-#: ../admin/class-fire-admin_init.php:104
-#: ../admin/class-fire-admin_init.php:105
+#: ../admin/class-fire-admin_init.php:96 ../admin/class-fire-admin_init.php:97
+#: ../admin/class-fire-admin_page.php:37 ../admin/class-fire-admin_page.php:38
 msgid "About Customizr"
 msgstr "Customizr Hakkında"
 
-#: ../admin/class-fire-admin_init.php:127
+#: ../admin/class-fire-admin_init.php:119
+#: ../admin/class-fire-admin_page.php:61
 msgid "Need help with Customizr ?"
 msgstr "Customizr ile ilgili yardıma mı ihtiyacınız var?"
 
-#: ../admin/class-fire-admin_init.php:129
+#: ../admin/class-fire-admin_init.php:121
+#: ../admin/class-fire-admin_page.php:63
 #, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Customizr'a Hoşgeldin %s"
 
-#: ../admin/class-fire-admin_init.php:136
+#: ../admin/class-fire-admin_init.php:128
+#: ../admin/class-fire-admin_page.php:70
 #, php-format
 msgid ""
 "You can start by watching the <a href=\"%1$s\" target=\"_blank"
@@ -1545,23 +1750,28 @@ msgstr ""
 "sorununa mutlaka bir çözüm bulacaksın. Aksi takdirde SSS sayfamızı ve "
 "kullanıcı forumumuzu ziyaret edebilirsin. "
 
-#: ../admin/class-fire-admin_init.php:144
+#: ../admin/class-fire-admin_init.php:136
+#: ../admin/class-fire-admin_page.php:78
 msgid "Read the documentation"
 msgstr "Belgeleri okuyun"
 
-#: ../admin/class-fire-admin_init.php:148
+#: ../admin/class-fire-admin_init.php:140
+#: ../admin/class-fire-admin_page.php:82
 msgid "Check the FAQ"
 msgstr "SSS'ye göz atın."
 
-#: ../admin/class-fire-admin_init.php:153
+#: ../admin/class-fire-admin_init.php:145
+#: ../admin/class-fire-admin_page.php:87
 msgid "Code snippets"
 msgstr "Kod parçacıkları"
 
-#: ../admin/class-fire-admin_init.php:156
+#: ../admin/class-fire-admin_init.php:148
+#: ../admin/class-fire-admin_page.php:90
 msgid "Discuss in the user forum"
 msgstr "Kullanıcı forumunda tartışın"
 
-#: ../admin/class-fire-admin_init.php:164
+#: ../admin/class-fire-admin_init.php:156
+#: ../admin/class-fire-admin_page.php:98
 #, php-format
 msgid ""
 "Thank you for using Customizr! Customizr %1$s has more features, is safer "
@@ -1577,7 +1787,8 @@ msgstr ""
 "videosunu izleyin ve <a href=\"#showcase\">vitrin</a>'den ilham alın.<br/> "
 "Tadını çıkarın!"
 
-#: ../admin/class-fire-admin_init.php:178
+#: ../admin/class-fire-admin_init.php:170
+#: ../admin/class-fire-admin_page.php:112
 #, php-format
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
@@ -1587,11 +1798,13 @@ msgstr ""
 "güncellemeden sonra, %2$s için yeni bir fonksiyon veya temanın önerilip "
 "önerilmediğini kontrol edin. "
 
-#: ../admin/class-fire-admin_init.php:193
+#: ../admin/class-fire-admin_init.php:185
+#: ../admin/class-fire-admin_page.php:127
 msgid "We need sponsors!"
 msgstr "Sponsorlara ihtiyacımız var!"
 
-#: ../admin/class-fire-admin_init.php:194
+#: ../admin/class-fire-admin_init.php:186
+#: ../admin/class-fire-admin_page.php:128
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
 "strong><br/> Please help support it's continued development with a donation "
@@ -1601,11 +1814,13 @@ msgstr ""
 "geldiğinin en iyisini yapıyoruz!</strong><br/>Lütfen, geliştirmenin devam "
 "etmesi için $20, $50 ve hatta $100'lık bağışlarla desteğe devam edin."
 
-#: ../admin/class-fire-admin_init.php:201
+#: ../admin/class-fire-admin_init.php:193
+#: ../admin/class-fire-admin_page.php:135
 msgid "Happy user of Customizr?"
 msgstr "Customizr'ın mutlu bir kullanıcısı mısınız?"
 
-#: ../admin/class-fire-admin_init.php:202
+#: ../admin/class-fire-admin_init.php:194
+#: ../admin/class-fire-admin_page.php:136
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
@@ -1613,24 +1828,30 @@ msgstr ""
 "Eğer temadan memnunsanuz, wordpress.org internet sitesinde Customizr ile "
 "ilgili naif bir yazı yazın! <br/>(Geri dönüşlerinizle yaşıyoruz...)"
 
-#: ../admin/class-fire-admin_init.php:207
+#: ../admin/class-fire-admin_init.php:199
+#: ../admin/class-fire-admin_page.php:141
 msgid "Follow us"
 msgstr "Bizi takip edin"
 
-#: ../admin/class-fire-admin_init.php:215
+#: ../admin/class-fire-admin_init.php:207
+#: ../admin/class-fire-admin_page.php:149
 msgid "Customizr's extensions"
 msgstr ""
 
-#: ../admin/class-fire-admin_init.php:218
-#: ../admin/class-fire-admin_init.php:227
+#: ../admin/class-fire-admin_init.php:210
+#: ../admin/class-fire-admin_init.php:219
+#: ../admin/class-fire-admin_page.php:152
+#: ../admin/class-fire-admin_page.php:161
 msgid "Visit the extension's page"
 msgstr ""
 
-#: ../admin/class-fire-admin_init.php:219
+#: ../admin/class-fire-admin_init.php:211
+#: ../admin/class-fire-admin_page.php:153
 msgid "Easily take your web design one step further"
 msgstr ""
 
-#: ../admin/class-fire-admin_init.php:220
+#: ../admin/class-fire-admin_init.php:212
+#: ../admin/class-fire-admin_page.php:154
 msgid ""
 "The Customizr's extensions are plugins developed to extend the Customizr "
 "theme with great features. Nicely integrated with the theme's built-in "
@@ -1638,34 +1859,41 @@ msgid ""
 "existing settings or customizations."
 msgstr ""
 
-#: ../admin/class-fire-admin_init.php:222
+#: ../admin/class-fire-admin_init.php:214
+#: ../admin/class-fire-admin_page.php:156
 msgid ""
 "These modules are designed to be simple to use for everyone. They are a good "
 "solution to add some creative customizations whitout needing to dive into "
 "the code."
 msgstr ""
 
-#: ../admin/class-fire-admin_init.php:224
+#: ../admin/class-fire-admin_init.php:216
+#: ../admin/class-fire-admin_page.php:158
 msgid ""
 "Customizr's extensions are installed and upgraded from your WordPress admin, "
 "like any other WordPress plugins. Well documented and easily extendable with "
 "hooks, they come with a dedicated support forum on themesandco.com."
 msgstr ""
 
-#: ../admin/class-fire-admin_init.php:233
+#: ../admin/class-fire-admin_init.php:225
+#: ../admin/class-fire-admin_page.php:167
 msgid "Customizr Showcase"
 msgstr "Customizr Vitrini"
 
-#: ../admin/class-fire-admin_init.php:236
-#: ../admin/class-fire-admin_init.php:243
+#: ../admin/class-fire-admin_init.php:228
+#: ../admin/class-fire-admin_init.php:235
+#: ../admin/class-fire-admin_page.php:170
+#: ../admin/class-fire-admin_page.php:177
 msgid "Visit the showcase"
 msgstr "Vitrini ziyaret edin"
 
-#: ../admin/class-fire-admin_init.php:237
+#: ../admin/class-fire-admin_init.php:229
+#: ../admin/class-fire-admin_page.php:171
 msgid "Find inspiration for your next Customizr based website!"
 msgstr "Bir sonraki Customizr temalı internet siteniz için ilham alın!"
 
-#: ../admin/class-fire-admin_init.php:238
+#: ../admin/class-fire-admin_init.php:230
+#: ../admin/class-fire-admin_page.php:172
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
@@ -1673,7 +1901,8 @@ msgstr ""
 "Bu vitrinin amacı Customizr ile neler yapılabileceğini göstermek ve diğer "
 "kullanıclara internet siteleri için aradıkları ilhamı verebilmektir."
 
-#: ../admin/class-fire-admin_init.php:240
+#: ../admin/class-fire-admin_init.php:232
+#: ../admin/class-fire-admin_page.php:174
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
@@ -1681,18 +1910,35 @@ msgstr ""
 "İnsanları etkileyecek bir site mi yaptığınızı düşünüyorsunuz? Bunun için "
 "incelenecek siteyi sunmak hızlı ve kolay bir yoldur."
 
-#: ../admin/class-fire-admin_init.php:250
+#: ../admin/class-fire-admin_init.php:242
+#: ../admin/class-fire-admin_page.php:244
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "%1$s sürümü için değişim günüğü"
 
-#: ../admin/class-fire-admin_init.php:259
+#: ../admin/class-fire-admin_init.php:251
+#: ../admin/class-fire-admin_page.php:186
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Başlangıca gidin &rarr; Ana Sayfa"
 
-#: ../admin/class-fire-admin_init.php:259
+#: ../admin/class-fire-admin_init.php:251
+#: ../admin/class-fire-admin_page.php:186
 msgid "Go to Dashboard"
 msgstr "Başlangıca gidin"
+
+#: ../admin/class-fire-admin_page.php:261
+msgid "System Informations"
+msgstr ""
+
+#: ../admin/class-fire-admin_page.php:262
+msgid "Please include the following informations when posting support requests"
+msgstr ""
+
+#: ../admin/class-fire-admin_page.php:263
+msgid ""
+"To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
+"(Mac)."
+msgstr ""
 
 #: ../parts/class-content-attachment.php:41
 msgid "&larr; Previous"
@@ -1780,53 +2026,56 @@ msgstr "Ayır"
 msgid "Merge"
 msgstr "Birleştir"
 
-#: ../parts/class-content-comments.php:58
-#, php-format
-msgid "One thought on &ldquo;%2$s&rdquo;"
-msgstr "&ldquo;%2$s&rdquo; üzerine bir düşünce"
+#: ../parts/class-content-comments.php:57
+msgid "One thought on"
+msgstr ""
 
-#: ../parts/class-content-comments.php:116
+#: ../parts/class-content-comments.php:59
+msgid "thoughts on"
+msgstr ""
+
+#: ../parts/class-content-comments.php:119
 msgid "Pingback:"
 msgstr ""
 
-#: ../parts/class-content-comments.php:116
+#: ../parts/class-content-comments.php:119
 msgid "(Edit)"
 msgstr "(Düzenle)"
 
-#: ../parts/class-content-comments.php:143
+#: ../parts/class-content-comments.php:146
 msgid "Reply"
 msgstr "Yanıtlayın"
 
-#: ../parts/class-content-comments.php:156
+#: ../parts/class-content-comments.php:159
 msgid "Post author"
 msgstr "Gönderi yazarı"
 
-#: ../parts/class-content-comments.php:163
+#: ../parts/class-content-comments.php:166
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: ../parts/class-content-comments.php:168
+#: ../parts/class-content-comments.php:171
 msgid "Your comment is awaiting moderation."
 msgstr "Yorumunuz onay bekliyor."
 
-#: ../parts/class-content-comments.php:203
+#: ../parts/class-content-comments.php:206
 msgid "Comment navigation"
 msgstr "Yorum gezintisi"
 
-#: ../parts/class-content-comments.php:209
+#: ../parts/class-content-comments.php:212
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Eski Yorumlar"
 
-#: ../parts/class-content-comments.php:217
+#: ../parts/class-content-comments.php:220
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Yeni Yorumlar <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-comments.php:249
+#: ../parts/class-content-comments.php:252
 msgid "Comments are closed."
 msgstr "Yorumlar kapalı"
 
-#: ../parts/class-content-comments.php:264
+#: ../parts/class-content-comments.php:267
 #, fuzzy
 msgid "Leave a comment"
 msgstr "Bir Yorum Yapın"
@@ -1856,75 +2105,80 @@ msgstr ""
 msgid "Missing Attachment"
 msgstr "Eksik Ekler"
 
-#: ../parts/class-content-headings.php:58
-msgid "Ooops, page not found"
-msgstr "Üzgünüz, sayfa bulunamadı!"
-
-#: ../parts/class-content-headings.php:69
-msgid "No"
-msgstr "Hayır"
-
-#: ../parts/class-content-headings.php:70
-msgid "Search Results for :"
-msgstr "Arama Sonucu : "
-
-#: ../parts/class-content-headings.php:85
-msgid "Author Archives :"
-msgstr "Yazar Arşivi :"
-
-#: ../parts/class-content-headings.php:99 ../parts/class-content-post.php:161
-#, php-format
-msgid "About %s"
-msgstr "%s hakkında"
-
-#: ../parts/class-content-headings.php:112
-msgid "Category Archives :"
-msgstr "Kategori Arşivi :"
-
-#: ../parts/class-content-headings.php:128
-msgid "Tag Archives :"
-msgstr "Etiket Arşivi :"
-
-#: ../parts/class-content-headings.php:141
-#, php-format
-msgid "Daily Archives: %s"
-msgstr "Günlük Arşiv: %s"
-
-#: ../parts/class-content-headings.php:141
-msgid "Archives"
-msgstr "Arşiv"
-
-#: ../parts/class-content-headings.php:142
-#, php-format
-msgid "Monthly Archives: %s"
-msgstr "Aylık Arşiv: %s"
-
-#: ../parts/class-content-headings.php:143
-#, php-format
-msgid "Yearly Archives: %s"
-msgstr "Yıllık Arşiv: %s"
-
-#: ../parts/class-content-headings.php:229
-#: ../parts/class-content-headings.php:235
+#: ../parts/class-content-headings.php:151
+#: ../parts/class-content-headings.php:156
 msgid "{no title} Read the post &raquo;"
 msgstr "{başlık yok} Gönderiyi oku &raquo;"
 
-#: ../parts/class-content-headings.php:234
+#: ../parts/class-content-headings.php:155
 #, php-format
 msgid "Permalink to %s"
 msgstr "%s için kalıcı link"
 
-#: ../parts/class-content-headings.php:250
+#: ../parts/class-content-headings.php:197
 msgid "Comment(s) on"
 msgstr "Yorumlar"
 
+#: ../parts/class-content-headings.php:303
+msgid "Ooops, page not found"
+msgstr "Üzgünüz, sayfa bulunamadı!"
+
+#: ../parts/class-content-headings.php:314
+msgid "No"
+msgstr "Hayır"
+
+#: ../parts/class-content-headings.php:315
+msgid "Search Results for :"
+msgstr "Arama Sonucu : "
+
+#: ../parts/class-content-headings.php:330
+msgid "Author Archives :"
+msgstr "Yazar Arşivi :"
+
+#: ../parts/class-content-headings.php:344 ../parts/class-content-post.php:161
+#, php-format
+msgid "About %s"
+msgstr "%s hakkında"
+
+#: ../parts/class-content-headings.php:357
+msgid "Category Archives :"
+msgstr "Kategori Arşivi :"
+
+#: ../parts/class-content-headings.php:373
+msgid "Tag Archives :"
+msgstr "Etiket Arşivi :"
+
+#: ../parts/class-content-headings.php:386
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Günlük Arşiv: %s"
+
+#: ../parts/class-content-headings.php:386
+msgid "Archives"
+msgstr "Arşiv"
+
+#: ../parts/class-content-headings.php:387
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Aylık Arşiv: %s"
+
+#: ../parts/class-content-headings.php:388
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Yıllık Arşiv: %s"
+
+#: ../parts/class-content-headings.php:453
+#, fuzzy
+msgid "comment"
+msgstr "Yorumlar"
+
 #: ../parts/class-content-page.php:42 ../parts/class-content-post.php:120
-#: ../parts/class-content-post_list.php:148
+#: ../parts/class-content-post_list.php:149
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Okumaya devam edin <span class=\"meta-nav\">&rarr;</span>"
 
 #: ../parts/class-content-page.php:44 ../parts/class-content-post.php:121
-#: ../parts/class-content-post_list.php:149
+#: ../parts/class-content-post_list.php:150
 msgid "Pages:"
 msgstr "Sayfalar:"
 
@@ -1935,61 +2189,103 @@ msgstr ""
 "%s tarafından gönderilen tüm gönderileri gör <span class=\"meta-nav\">&rarr;"
 "</span>"
 
-#: ../parts/class-content-post_metas.php:49
-msgid "Published"
-msgstr "Yayınlanmış"
-
-#: ../parts/class-content-post_metas.php:52
-msgid "at dimensions"
-msgstr "boyutlarında"
-
-#: ../parts/class-content-post_metas.php:52
-msgid "Link to full-size image"
-msgstr "Tam-boyutlu görsele bağlantı"
-
-#: ../parts/class-content-post_metas.php:53
-msgid "in"
-msgstr "içinde"
-
-#: ../parts/class-content-post_metas.php:53
-msgid "Return to "
-msgstr "Şuraya gidin"
-
-#: ../parts/class-content-post_metas.php:75
-#, php-format
-msgid "View all posts by %s"
-msgstr "%s tarafından gönderilen tüm gönderileri gör"
-
-#: ../parts/class-content-post_metas.php:83
-#, php-format
-msgid ""
-"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
-"\"> by %4$s</span>."
-msgstr ""
-"Bu gönderi %1$s kategorisine %2$s etiketiyle %3$s tarihinde <span class=\"by-"
-"author\">%4$s</span> tarafından gönderildi."
-
-#: ../parts/class-content-post_metas.php:85
-#, php-format
-msgid ""
-"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
-"span>."
-msgstr ""
-"Bu gönderi %1$s kategorisine %3$s<span class=\"by-author\"> tarihinde %4$s "
-"tarafından gönderildi</span>."
-
-#: ../parts/class-content-post_metas.php:87
+#: ../parts/class-content-post_metas.php:84
 #, php-format
 msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
 msgstr ""
 "Bu gönderi %3$s<span class=\"by-author\"> tarihinde %4$s</span> tarafından "
 "gönderildi."
 
-#: ../parts/class-content-post_metas.php:129
-#: ../parts/class-content-post_metas.php:159
+#: ../parts/class-content-post_metas.php:118
+msgid "Published"
+msgstr "Yayınlanmış"
+
+#: ../parts/class-content-post_metas.php:121
+msgid "at dimensions"
+msgstr "boyutlarında"
+
+#: ../parts/class-content-post_metas.php:121
+msgid "Link to full-size image"
+msgstr "Tam-boyutlu görsele bağlantı"
+
+#: ../parts/class-content-post_metas.php:122
+msgid "in"
+msgstr "içinde"
+
+#: ../parts/class-content-post_metas.php:122
+msgid "Return to "
+msgstr "Şuraya gidin"
+
+#: ../parts/class-content-post_metas.php:150
+#: ../parts/class-content-post_metas.php:178
 #, php-format
 msgid "View all posts in %s"
 msgstr "%s'deki tüm gönderileri gör"
+
+#: ../parts/class-content-post_metas.php:292
+#, php-format
+msgid "View all posts by %s"
+msgstr "%s tarafından gönderilen tüm gönderileri gör"
+
+#: ../parts/class-content-post_metas.php:385
+#, fuzzy, php-format
+msgid "This entry was posted in %1$s and tagged %2$s"
+msgstr ""
+"Bu gönderi %1$s kategorisine %2$s etiketiyle %3$s tarihinde <span class=\"by-"
+"author\">%4$s</span> tarafından gönderildi."
+
+#: ../parts/class-content-post_metas.php:387
+#, fuzzy, php-format
+msgid "This entry was posted in %1$s"
+msgstr "%s'deki tüm gönderileri gör"
+
+#: ../parts/class-content-post_metas.php:389
+#, php-format
+msgid "This entry was tagged %2$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:394
+#, php-format
+msgid "This entry was posted on %3$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:396
+#, php-format
+msgid "on %3$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:398
+#, php-format
+msgid "and posted on %3$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:405
+msgid "This entry was posted"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:405
+#: ../parts/class-content-post_metas.php:407
+#, php-format
+msgid "by %4$s"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:415
+msgid "(updated today)"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:415
+#, php-format
+msgid "(updated %6$s days ago)"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:416
+msgid "(updated 1 day ago)"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:419
+#, php-format
+msgid "(updated on %5$s)"
+msgstr ""
 
 #: ../parts/class-content-post_navigation.php:54
 #: ../parts/class-content-post_navigation.php:109
@@ -2008,13 +2304,40 @@ msgstr "<span class=\"meta-nav\">&larr;</span> Yeni gönderiler"
 msgid "Back to top"
 msgstr "Başa dön"
 
-#: ../parts/class-header-header_main.php:183
+#: ../parts/class-header-header_main.php:249
 msgid "Back Home"
 msgstr "Ana Sayfa'ya dön"
 
 #: ../parts/class-header-menu.php:126
 msgid "Add a menu"
 msgstr "Menü ekle"
+
+# this is a special pronunciation. Customize means in Turkish : "Özelleştirmek". But it does not mean anything about this theme. So that it should be left as original or uses in my translate "CustomizEdin", which is exact meaning of "Customiz'It"
+#~ msgid "Customiz'it!"
+#~ msgstr "CustomizEdin!"
+
+#~ msgid "Customize your website at any time!"
+#~ msgstr "İnternet sitenizi istediğiniz zaman özelleştirin!"
+
+#~ msgid ""
+#~ "Always use this field to add your custom css instead of editing directly "
+#~ "the style.css file : it will not be deleted during theme updates. You can "
+#~ "also paste your custom css in the style.css file of a child theme."
+#~ msgstr ""
+#~ "Özelleştirilmiş CSS dosyalarınızı eklerken, style.css dosyanızı doğrudan "
+#~ "düzenlemek yerine her zaman bu alanı kullanın: bu alan tema "
+#~ "güncellemelerinde silinmeyecektir. Ayrıca özelleştirilmiş CSSlerinizi bir "
+#~ "alt temanın style.css dosyası içerisine yapıştırabilirsiniz."
+
+#~ msgid "One thought on &ldquo;%2$s&rdquo;"
+#~ msgstr "&ldquo;%2$s&rdquo; üzerine bir düşünce"
+
+#~ msgid ""
+#~ "This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+#~ "span>."
+#~ msgstr ""
+#~ "Bu gönderi %1$s kategorisine %3$s<span class=\"by-author\"> tarihinde "
+#~ "%4$s tarafından gönderildi</span>."
 
 #~ msgid "Let your creativity speak and easily customiz'it the way you want!"
 #~ msgstr "Yaratıcılığını konuştur ve Customizr'ı istediğin gibi tasarla!"
