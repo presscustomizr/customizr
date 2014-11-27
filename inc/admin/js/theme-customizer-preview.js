@@ -339,7 +339,15 @@
 				$('.navbar-wrapper').removeClass('tc-submenu-move');
 		} );
 	});
-	wp.customize( 'tc_theme_options[tc_sticky_header]' , function( value ) {
+	wp.customize( 'tc_theme_options[tc_sticky_logo_upload]' , function( value ) {
+        value.bind( function( to ) {
+            if ( ! to )
+                $('header.tc-header').removeClass('tc-sticky-logo-on');
+            else
+                $('header.tc-header').addClass('tc-sticky-logo-on');
+            } );
+    });
+    wp.customize( 'tc_theme_options[tc_sticky_header]' , function( value ) {
 		value.bind( function( to ) {
 			if ( false !== to ) {
 				$('body').addClass('tc-sticky-header').trigger('resize');

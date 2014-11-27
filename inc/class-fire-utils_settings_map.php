@@ -447,6 +447,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'   =>  'tc_logo_settings' ,
                                 'type'        => 'checkbox' ,
               ),
+              'tc_theme_options[tc_sticky_logo_upload]'  => array(
+                                'control'   =>  'TC_Customize_Upload_Control' ,
+                                'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
+                                'section'   =>  'tc_logo_settings' ,
+                                'type'      => 'tc_upload',
+                                'transport'     => 'postMessage',
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+              ),
 
               //hr
               'hr_logo'             => array(

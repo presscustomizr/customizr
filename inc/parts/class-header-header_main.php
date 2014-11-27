@@ -143,49 +143,64 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 		* @since Customizr 3.2.3
 		*/
 		function tc_prepare_logo_title_display() {
-	       	//check if the logo is a path or is numeric
-	       	//get src for both cases
-	       	$_logo_src 				= '';
-			$_width 				= false;
-			$_height 				= false;
-			$_attachement_id 		= false;
-	       	$_logo_option  			= esc_attr( tc__f( '__get_option' , 'tc_logo_upload') );
-	       	//check if option is an attachement id or a path (for backward compatibility)
-	       	if ( is_numeric($_logo_option) ) {
-	       		$_attachement_id 	= $_logo_option;
-	       		$_attachment_data 	= apply_filters( 'tc_logo_attachment_img' , wp_get_attachment_image_src( $_logo_option , 'large' ) );
-	       		$_logo_src 			= $_attachment_data[0];
-	       		$_width 			= isset($_attachment_data[1]) ? $_attachment_data[1] : $_width;
-	       		$_height 			= isset($_attachment_data[2]) ? $_attachment_data[2] : $_height;
-	       	} else { //old treatment
-	       		//rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
-	       		$upload_dir 			= wp_upload_dir();
-	       		$_saved_path 			= esc_url ( tc__f( '__get_option' , 'tc_logo_upload') );
-	       		$_logo_src 				= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
-	       	}
+            $logos_type = array( '_sticky_', '_');
+            $logos_img = [];
 
-	       	//hook + makes ssl compliant
-	       	$_logo_src    			= apply_filters( 'tc_logo_src' , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
-	       	
-	       	$logo_resize 			= esc_attr( tc__f( '__get_option' , 'tc_logo_resize') );
-	      	$accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
-	       	$filetype 				= TC_utils::$instance -> tc_check_filetype ($_logo_src);
-	       	$logo_classes 			= array( 'brand', 'span3');
+            $accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
+            $logo_classes 			= array( 'brand', 'span3');
+            foreach ($logos_type as $logo_type){
+                // check if we have to print the sticky logo
+                if ( '_sticky_' == $logo_type && ! $this -> tc_use_sticky_logo() )
+                    continue;    
+                
+                //check if the logo is a path or is numeric
+                //get src for both cases
+                $_logo_src 				= '';
+                $_width 				= false;
+                $_height 				= false;
+                $_attachement_id 		= false;                
+                $_logo_option  			= esc_attr( tc__f( '__get_option' , "tc{$logo_type}logo_upload") );
+                //check if option is an attachement id or a path (for backward compatibility)
+                if ( is_numeric($_logo_option) ) {
+                    $_attachement_id 	= $_logo_option;
+                    $_attachment_data 	= apply_filters( "tc{$logo_type}logo_attachment_img" , wp_get_attachment_image_src( $_logo_option , 'large' ) );
+                    $_logo_src 			= $_attachment_data[0];
+                    $_width 			= isset($_attachment_data[1]) ? $_attachment_data[1] : $_width;
+                    $_height 			= isset($_attachment_data[2]) ? $_attachment_data[2] : $_height;
+                } else { //old treatment
+                    //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
+                    $upload_dir 			= wp_upload_dir();
+                    $_saved_path 			= esc_url ( tc__f( '__get_option' , "tc{$logo_type}logo_upload") );
+                    $_logo_src 				= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
+                }
 
-			if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) ) {
-		   		$_args 		= array( 
-			       		'logo_src' 				=> $_logo_src, 
-			       		'logo_resize' 			=> $logo_resize,
-			       		'logo_class'			=> $logo_classes,
-			       		'logo_width' 			=> $_width,
-			       		'logo_height' 			=> $_height,
-			       		'logo_attachment_id' 	=> $_attachement_id
-		   		);
-		   		//render
-				$this -> tc_logo_view($_args);
-			} else {
-				$this -> tc_title_view($logo_classes);
-			}
+                //hook + makes ssl compliant
+                $_logo_src    			= apply_filters( "tc{$logo_type}logo_src" , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
+                
+                $logo_resize 			= ( $logo_type == '_' ) ? esc_attr( tc__f( '__get_option' , 'tc_logo_resize') ) : '';
+                $filetype 				= TC_utils::$instance -> tc_check_filetype ($_logo_src);
+                if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) ) {
+                    $_args 		= array( 
+                            'logo_src' 				=> $_logo_src, 
+                            'logo_resize' 			=> $logo_resize,
+                            'logo_attachment_id' 	=> $_attachement_id,
+                            'logo_width' 			=> $_width,
+                            'logo_height' 			=> $_height,
+                            'logo_type'             => trim($logo_type,'_')
+                    );
+                    $logos_img[] = $this -> tc_logo_img_view($_args);
+                }
+            }//end foreach
+            //render
+            if ( count($logos_img) == 0 )
+                $this -> tc_title_view($logo_classes);
+            else
+                $this -> tc_logo_view( array (
+                                           'logo_class'   => $logo_classes,
+                                                             // normal logo first
+                                           'logos_img'    => array_reverse($logos_img)
+                                       )
+                );
 		}
 
 
@@ -223,49 +238,69 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 		}
 
 
+        /**
+        * Logo img view
+        *
+        * @package Customizr
+        * @since Customizr 3.2.9
+        */
+        function tc_logo_img_view($_args){
+        //Exctracts $args : logo_src, logo_resize, logo_attachment_id, logo_width, logo_height, logo_type
+            extract($_args);
+            ob_start();
+            printf('<img src="%1$s" alt="%2$s" %3$s %4$s %5$s %6$s class="%7$s %8$s"/>',
+                $logo_src,	
+              	__( 'Back Home' , 'customizr' ),
+                $logo_width ? sprintf( 'width="%1$s"', $logo_width ) : '',
+                $logo_height ? sprintf( 'height="%1$s"', $logo_height ) : '',
+                ( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
+                                        apply_filters( 'tc_logo_max_width', 250 ),
+                                        apply_filters( 'tc_logo_max_height', 100 )
+                                        ) : '',
+                implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) ),
+                $logo_type,
+                $logo_attachment_id ? sprintf( 'attachment-%1$s', $logo_attachment_id ) : ''
+            );
+	       	$html = ob_get_contents();
+            if ($html) ob_end_clean();
+           	return apply_filters( 'tc_logo_img_view', $html, $_args);
+        }
 
+        
+        
+        
+        /**
+        * Logo view
+        *
+        * @package Customizr
+        * @since Customizr 3.2.3
+        */
+        function tc_logo_view( $_args ) {
+            //Exctracts $args : $logo_class, $logos_img (array of <img>)
+            extract($_args);
 
-		/**
-		* Logo view
-		*
-		* @package Customizr
-		* @since Customizr 3.2.3
-		*/
-		function tc_logo_view( $_args ) {
-			//Exctracts $args : logo_src, logo_resize, logo_class, logo_attachment_id, logo_width, logo_height
-			extract($_args);
+            ob_start();
+            ?>
 
-			ob_start();
-			?>
+            <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', $logo_class ) ) ?>">
+            <?php 
+                do_action( '__before_logo' );
 
-	        <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', $logo_class ) ) ?>">
-	        <?php 
-	        	do_action( '__before_logo' );
-
-	          	printf( '<a class="site-logo %8$s" href="%1$s" title="%2$s"><img src="%3$s" alt="%4$s" %5$s %6$s %7$s %9$s/></a>',
-	          		apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
-	          		apply_filters( 'tc_logo_link_title', sprintf( '%1$s | %2$s' , __( esc_attr( get_bloginfo( 'name' ) ) ) , __( esc_attr( get_bloginfo( 'description' ) ) ) ) ),
-	          		$logo_src,	
-	          		__( 'Back Home' , 'customizr' ),
-					$logo_width ? sprintf( 'width="%1$s"', $logo_width ) : '',
-					$logo_height ? sprintf( 'height="%1$s"', $logo_height ) : '',
-					( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
-											apply_filters( 'tc_logo_max_width', 250 ),
-											apply_filters( 'tc_logo_max_height', 100 )
-											) : '',
-					$logo_attachment_id ? sprintf( 'attachment-%1$s', $logo_attachment_id ) : '',
-					implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
+                printf( '<a class="site-logo" href="%1$s" title="%2$s">%3$s</a>',
+                    apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
+                    apply_filters( 'tc_logo_link_title', sprintf( '%1$s | %2$s' , __( esc_attr( get_bloginfo( 'name' ) ) ) , __( esc_attr( get_bloginfo( 'description' ) ) ) ) ),
+                    implode( '', $logos_img )
 	          	); 
 
-	           	do_action( '__after_logo' );
-	         ?>
-	        </div> <!-- brand span3 -->
+                do_action( '__after_logo' );
+            ?>
+            </div> <!-- brand span3 -->
 
-	        <?php 
-		   	$html = ob_get_contents();
-	       	if ($html) ob_end_clean();
-	       	echo apply_filters( 'tc_logo_img_display', $html, $_args );
-		}
+            <?php 
+            $html = ob_get_contents();
+            if ($html) ob_end_clean();
+            echo apply_filters( 'tc_logo_img_display', $html, $_args );
+        }
 
 
 		
@@ -457,6 +492,21 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 					}\n"
 				);
 			}
+            
+            //STICKY LOGO
+            if ( $this -> tc_use_sticky_logo() )
+                $_css = sprintf("%s\n%s",
+                    $_css,
+                    ".site-logo img.sticky {
+                        display: none;
+                     }\n
+                    .sticky-enabled .tc-sticky-logo-on .site-logo img {
+                        display: none;
+                     }\n
+                    .sticky-enabled .tc-sticky-logo-on .site-logo img.sticky{
+                        display: inline-block;
+                    }\n"
+                );
 
 			//HEADER Z-INDEX
 		    if ( 100 != esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') ) ) {
@@ -511,13 +561,15 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 				return $_classes;
 			
 			$_show_tagline 			= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_tagline') );
-			$_show_title_logo 		= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_title_logo') );
+            $_show_title_logo 		= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_title_logo') );
+            $_use_sticky_logo 		= $this -> tc_use_sticky_logo();
 			$_shrink_title_logo 	= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_shrink_title_logo') );
 			$_show_menu 			= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_menu') );
 			$_header_layout 		= "logo-" . esc_attr( tc__f( '__get_option' , 'tc_header_layout' ) );
 			$_add_classes 			= array(
 				$_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',
-				$_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
+                $_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
+                $_use_sticky_logo ? 'tc-sticky-logo-on' : '',
 				$_shrink_title_logo ? 'tc-shrink-on' : 'tc-shrink-off',
 				$_show_menu ? 'tc-menu-on' : 'tc-menu-off',
 				$_header_layout
@@ -526,6 +578,24 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 		}
 
 
+        /**
+        * Returns wheter we're using or not a specific sticky logo
+        *
+        * @package Customizr
+        * @since Customizr 3.2.9
+        */
+        function tc_use_sticky_logo(){
+            if ( TC_utils :: $instance ->  tc_is_customizing() )
+                return true;
+            if ( ! esc_attr( tc__f( '__get_option' , "tc_sticky_logo_upload") ) )
+                return false;
+            if ( ! ( esc_attr( tc__f( '__get_option' , "tc_sticky_header") ) &&
+                         esc_attr( tc__f( '__get_option' , 'tc_sticky_show_title_logo') )
+                   )
+            )
+                return false;
+            return true;
+        }
 
 
 		/**
