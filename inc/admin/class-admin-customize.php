@@ -307,6 +307,18 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		}
 
 
+		/**
+		* Update donate options handled in ajax
+		* @package Customizr
+		* @since Customizr 3.1.14
+		*/
+	    function tc_hide_donate() {
+	    	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
+	    	$options = get_option('tc_theme_options');
+	    	$options['tc_hide_donate'] = true;
+	    	update_option( 'tc_theme_options', $options );
+	    }
+
 
 	    /*
 		* Writes the livereload script in dev mode (Grunt watch livereload enabled)
