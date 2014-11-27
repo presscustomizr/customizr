@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.2.8\n"
-"POT-Creation-Date: 2014-11-27 09:01+0100\n"
-"PO-Revision-Date: 2014-11-27 09:01+0100\n"
+"POT-Creation-Date: 2014-11-27 15:51+0100\n"
+"PO-Revision-Date: 2014-11-27 16:23+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -905,7 +905,11 @@ msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural ""
 "Your theme supports %s menus. Select which menu appears in each location."
 msgstr[0] ""
+"Ce thème fonctionne avec %s menu. Sélectionner le menu que vous souhaitez "
+"utiliser."
 msgstr[1] ""
+"Ce thème fonctionne avec %s menus. Sélectionner le menu de chaque "
+"emplacements prédéfinis."
 
 #: ../class-fire-utils_settings_map.php:1048
 msgid ""
@@ -1155,9 +1159,8 @@ msgstr ""
 "auteur) sont affichées sous les titres des billets."
 
 #: ../class-fire-utils_settings_map.php:1520
-#, fuzzy
 msgid "Select the contexts"
-msgstr "Texte du bouton"
+msgstr "Choisir les contextes d'affichage"
 
 #: ../class-fire-utils_settings_map.php:1521
 msgid "Display posts metas on home"
@@ -1173,25 +1176,23 @@ msgstr "Afficher les metas informations dans les listes de billets"
 
 #: ../class-fire-utils_settings_map.php:1549
 msgid "Select the metas to display"
-msgstr ""
+msgstr "Choisir les metas informations à afficher"
 
 #: ../class-fire-utils_settings_map.php:1550
 msgid "Display hierarchical taxonomies (like categories)"
-msgstr ""
+msgstr "Afficher les taxinomies hiérarchiques (telles que les catégories)"
 
 #: ../class-fire-utils_settings_map.php:1559
 msgid "Display non-hierarchical taxonomies (like tags)"
-msgstr ""
+msgstr "Afficher les taxinomies non hiérarchiques (telles que les mots clés)"
 
 #: ../class-fire-utils_settings_map.php:1568
-#, fuzzy
 msgid "Display the publication date"
-msgstr "Afficher le contenu complet"
+msgstr "Afficher la date de publication"
 
 #: ../class-fire-utils_settings_map.php:1577
-#, fuzzy
 msgid "Display the update date"
-msgstr "Afficher la description du site"
+msgstr "Afficher la date de mise à jour"
 
 #: ../class-fire-utils_settings_map.php:1581
 msgid ""
@@ -1199,81 +1200,84 @@ msgid ""
 "post update can be displayed (nothing will show up if the post has never "
 "been updated)."
 msgstr ""
+"Une fois cochée, cette option permet d'afficher des informations sur la date "
+"de dernière mise à jour (rien ne sera affiché si le billet n'a jamais été "
+"mis à jour)."
 
 #: ../class-fire-utils_settings_map.php:1587
 msgid "Select the last update format"
-msgstr ""
+msgstr "Choisir un format pour l'affichage de la mise à jour"
 
 #: ../class-fire-utils_settings_map.php:1591
 msgid "Nb of days since last update"
-msgstr ""
+msgstr "Nombre de jours depuis la dernière mise à jour"
 
 #: ../class-fire-utils_settings_map.php:1592
 msgid "Date of the last update"
-msgstr ""
+msgstr "Date de la dernière mise à jour"
 
 #: ../class-fire-utils_settings_map.php:1599
-#, fuzzy
 msgid "Display the author"
-msgstr "Afficher le résumé"
+msgstr "Afficher l'auteur"
 
 #: ../class-fire-utils_settings_map.php:1607
-#, fuzzy
 msgid "Display a recent update notice"
-msgstr "Afficher une icône à côté des titres des pages."
+msgstr "Afficher une note de mise à jour"
 
 #: ../class-fire-utils_settings_map.php:1611
-#, fuzzy
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
 msgstr ""
-"Si cette option est cochée, les metas informations ( taxinomies, date et "
-"auteur) sont affichées sous les titres des billets."
+"Si cette option est cochée, une notification (modifiable) de mise à jour "
+"récente est affichée à côté du titre."
 
 #: ../class-fire-utils_settings_map.php:1616
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
+"Afficher la notification si la dernière mise à jour a été faite il y a moins "
+"de n jours (strictement)"
 
 #: ../class-fire-utils_settings_map.php:1622
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
 msgstr ""
+"Choisir une durée (en jours) pendant laquelle la notification de dernière "
+"mise à jour doit s'afficher."
 
 #: ../class-fire-utils_settings_map.php:1625
 msgid "Recently updated !"
-msgstr ""
+msgstr "Mise à jour récente !"
 
 #: ../class-fire-utils_settings_map.php:1627
 msgid "Update notice text"
-msgstr ""
+msgstr "Text de la notification de mise à jour"
 
 #: ../class-fire-utils_settings_map.php:1636
 msgid "Update notice style"
-msgstr ""
+msgstr "Design de la notification de mise à jour"
 
 #: ../class-fire-utils_settings_map.php:1640
 msgid "Default (grey)"
-msgstr ""
+msgstr "Défaut (gris)"
 
 #: ../class-fire-utils_settings_map.php:1641
 msgid "Success (green)"
-msgstr ""
+msgstr "Succés (vert)"
 
 #: ../class-fire-utils_settings_map.php:1642
-#, fuzzy
 msgid "Alert (orange)"
-msgstr "Orange pastel"
+msgstr "Alerte (orange)"
 
 #: ../class-fire-utils_settings_map.php:1643
 msgid "Important (red)"
-msgstr ""
+msgstr "Important (rouge)"
 
 #: ../class-fire-utils_settings_map.php:1644
 msgid "Info (blue)"
-msgstr ""
+msgstr "Info (bleu)"
 
 #: ../class-fire-utils_settings_map.php:1655
 msgid "Set the excerpt length (in number of words) "
@@ -1383,67 +1387,58 @@ msgid "After the title"
 msgstr "Après le titre"
 
 #: ../class-fire-utils_settings_map.php:1762
-#, fuzzy
 msgid "Comments bubbles"
-msgstr "Commentaires"
+msgstr "Bulles de commentaires"
 
 #: ../class-fire-utils_settings_map.php:1764
-#, fuzzy
 msgid "Display the number of comments in a bubble next to the post title"
-msgstr "Afficher une icône à côté des titres des billets seuls."
+msgstr "Afficher le nombre de commentaires dans une bulle à côté du titre"
 
 #: ../class-fire-utils_settings_map.php:1773
-#, fuzzy
 msgid "Comments bubble shape"
-msgstr "Les commentaires sont fermés."
+msgstr "Forme des bulles de commentaires"
 
 #: ../class-fire-utils_settings_map.php:1777
 msgid "Small bubbles"
-msgstr ""
+msgstr "Petites bulles"
 
 #: ../class-fire-utils_settings_map.php:1778
 msgid "Large bubbles"
-msgstr ""
+msgstr "Grandes bulles"
 
 #: ../class-fire-utils_settings_map.php:1786
 #: ../class-fire-utils_settings_map.php:1799
-#, fuzzy
 msgid "Comments bubble color"
-msgstr "Les commentaires sont fermés."
+msgstr "Couleur des bulles de commentaires"
 
 #: ../class-fire-utils_settings_map.php:1790
-#, fuzzy
 msgid "Skin color"
-msgstr "Couleur de l'icone des tips"
+msgstr "Couleur du thème"
 
 #: ../class-fire-utils_settings_map.php:1791
-#, fuzzy
 msgid "Custom"
-msgstr "Custom CSS"
+msgstr "Custom"
 
 #: ../class-fire-utils_settings_map.php:1811
-#, fuzzy
 msgid "Other comments settings"
-msgstr "Réglages des icônes des titres"
+msgstr "Autres réglages des commentaires"
 
 #: ../class-fire-utils_settings_map.php:1817
-#, fuzzy
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
 msgstr ""
-"Cette option active les commentaires sur les pages. Vous pouvez ensuite "
-"désactiver les commentaires page par page dans les options de modifications "
-"rapides de la liste des pages."
+"Une fois cochée, cette option active les commentaires dans les pages. Il est "
+"également possible de gérer l'activation des commentaires page par page avec "
+"le mode édition rapide dans la liste des pages."
 
 #: ../class-fire-utils_settings_map.php:1818
 msgid "Change other comments settings in the"
-msgstr ""
+msgstr "Modifier les autres réglages de commentaires dans"
 
 #: ../class-fire-utils_settings_map.php:1820
-#, fuzzy
 msgid "discussion settings page."
-msgstr "Réglages des icônes des titres"
+msgstr "réglages des commentaires"
 
 #: ../class-fire-utils_settings_map.php:1827
 msgid "Display a back to top arrow on scroll"
@@ -2198,11 +2193,10 @@ msgid "Yearly Archives: %s"
 msgstr "Billets de l'année: %s"
 
 #: ../parts/class-content-headings.php:453
-#, fuzzy
 msgid "comment"
 msgid_plural "comments"
-msgstr[0] "Commentaires"
-msgstr[1] "Commentaires"
+msgstr[0] "commentaire"
+msgstr[1] "commentaires"
 
 #: ../parts/class-content-page.php:42 ../parts/class-content-post.php:120
 #: ../parts/class-content-post_list.php:149
@@ -2257,64 +2251,62 @@ msgid "View all posts by %s"
 msgstr "Voir tous les billets de %s"
 
 #: ../parts/class-content-post_metas.php:385
-#, fuzzy, php-format
+#, php-format
 msgid "This entry was posted in %1$s and tagged %2$s"
-msgstr ""
-"Ce billet a été publié dans %1$s et taggé avec %2$s le %3$s<span class=\"by-"
-"author\"> par %4$s</span>."
+msgstr "Billet publié dans %1$s et taggé avec %2$s"
 
 #: ../parts/class-content-post_metas.php:387
-#, fuzzy, php-format
+#, php-format
 msgid "This entry was posted in %1$s"
-msgstr "Voir tous les billets dans %s"
+msgstr "Billet publié dans %1$s"
 
 #: ../parts/class-content-post_metas.php:389
 #, php-format
 msgid "This entry was tagged %2$s"
-msgstr ""
+msgstr "Billet comportant le(s) mot(s) clé(s) %2$s"
 
 #: ../parts/class-content-post_metas.php:394
 #, php-format
 msgid "This entry was posted on %3$s"
-msgstr ""
+msgstr "Billet publié le %3$s"
 
 #: ../parts/class-content-post_metas.php:396
 #, php-format
 msgid "on %3$s"
-msgstr ""
+msgstr "le %3$s"
 
 #: ../parts/class-content-post_metas.php:398
 #, php-format
 msgid "and posted on %3$s"
-msgstr ""
+msgstr "et publié le %3$s"
 
 #: ../parts/class-content-post_metas.php:405
 msgid "This entry was posted"
-msgstr ""
+msgstr "Billet publié"
 
 #: ../parts/class-content-post_metas.php:405
 #: ../parts/class-content-post_metas.php:407
-#, fuzzy, php-format
+#, php-format
 msgid "by %4$s"
-msgstr "Design par %4$s"
+msgstr "par %4$s"
 
 #: ../parts/class-content-post_metas.php:415
 msgid "(updated today)"
-msgstr ""
+msgstr "(mis à jour aujourd'hui)"
 
 #: ../parts/class-content-post_metas.php:415
 #, php-format
 msgid "(updated %6$s days ago)"
-msgstr ""
+msgstr "(mis à jour il y a %6$s jours)"
 
 #: ../parts/class-content-post_metas.php:416
 msgid "(updated 1 day ago)"
-msgstr ""
+msgstr "(mis à jour hier)"
 
 #: ../parts/class-content-post_metas.php:419
 #, php-format
 msgid "(updated on %5$s)"
-msgstr ""
+msgstr "(mis à jour le %5$s)"
 
 #: ../parts/class-content-post_navigation.php:54
 #: ../parts/class-content-post_navigation.php:109
