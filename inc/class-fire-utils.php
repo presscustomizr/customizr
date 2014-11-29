@@ -2,7 +2,7 @@
 /**
 * Defines filters and actions used in several templates/classes
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
@@ -53,10 +53,10 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
 
       /**
-      * Init TC_utils class properties after_setup_theme 
+      * Init TC_utils class properties after_setup_theme
       * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
       * tc_get_default_options uses is_user_logged_in() => was causing the bug
-      *  
+      *
       * @package Customizr
       * @since Customizr 3.2.3
       */
@@ -69,7 +69,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
 
       /**
-      * Returns the current skin's primary color 
+      * Returns the current skin's primary color
       *
       * @package Customizr
       * @since Customizr 3.1.23
@@ -101,7 +101,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         return $is_customizing;
       }
 
-      
+
 
 
      /**
@@ -112,7 +112,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_get_default_options() {
         $def_options = get_option( "tc_theme_defaults" );
-        
+
         //Always update the default option when (OR) :
         // 1) they are not defined
         // 2) customzing => takes into account if user has set a filter or added a new customizer setting
@@ -151,7 +151,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
               //isolate the option name between brackets [ ]
               $option_name = '';
               $option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
-              if ( isset( $match[1][0] ) ) 
+              if ( isset( $match[1][0] ) )
                 {
                     $option_name = $match[1][0];
                 }
@@ -163,7 +163,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
               else {
                 $defaults[$option_name] = null;
               }
-             
+
             }//end if
 
           }//end foreach
@@ -219,7 +219,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * In live context (not customizing || admin) cache the theme options
-      * 
+      *
       * @package Customizr
       * @since Customizr 3.2.0
       */
@@ -234,7 +234,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       /**
       * Returns the "real" queried post ID or if !isset, get_the_ID()
       * Checks some contextual booleans
-      * 
+      *
       * @package Customizr
       * @since Customizr 1.0
       */
@@ -243,8 +243,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
           if ( version_compare( $wp_version, '3.4.1', '<=' ) )
             {
               $tc_id            = get_the_ID();
-            } 
-            else 
+            }
+            else
             {
               $queried_object   = get_queried_object();
               $tc_id            = ! is_null( get_post() ) ? get_the_ID() : null;
@@ -258,7 +258,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * This function returns the layout (sidebar(s), or full width) to apply to a context
-      * 
+      *
       * @package Customizr
       * @since Customizr 1.0
       */
@@ -266,7 +266,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
           $__options                    = tc__f ( '__options' );
 
           global $post;
-          
+
           //Article wrapper class definition
           $global_layout                = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
 
@@ -316,7 +316,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
           elseif ( is_singular() || $wp_query -> is_posts_page ) {
             $tc_specific_post_layout  = esc_attr(get_post_meta( $post_id, $key = 'layout_key' , $single = true ));
           }
-          
+
           //checks if we display home page, either posts or static page and apply the customizer option
           if( (is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page()) {
              $tc_specific_post_layout = $__options['tc_front_layout'];
@@ -331,7 +331,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
             );
           }
 
-          
+
 
         return apply_filters( 'tc_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
@@ -341,10 +341,10 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
 
 
-       
+
       /**
        * Add an optional rel="tc-fancybox[]" attribute to all images embedded in a post.
-       * 
+       *
        * @package Customizr
        * @since Customizr 2.0.7
        */
@@ -391,7 +391,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if ( $paged >= 2 || $page >= 2 )
           $title = "$title $sep " . sprintf( __( 'Page %s' , 'customizr' ), max( $paged, $page ) );
 
-        
+
 
         return $title;
       }
@@ -406,12 +406,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
       *
       */
       function tc_is_home() {
-        
+
         //get info whether the front page is a list of last posts or a page
         return ( (is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) ) || is_front_page() ) ? true : false;
       }
 
-      
+
 
 
 
@@ -440,15 +440,15 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         if ( !isset($post) )
           return;
-        
+
         return $post -> post_type;
       }
 
 
 
-      
 
-      
+
+
       /**
       * Returns the classes for the post div.
       *
@@ -484,12 +484,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * Displays the selectors of the article depending on the context
-      * 
+      *
       * @package Customizr
       * @since 3.1.0
       */
       function tc_article_selectors() {
-        
+
         //gets global vars
         global $post;
         global $wp_query;
@@ -529,9 +529,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * Gets the social networks list defined in customizer options
-      * 
+      *
       * @package Customizr
-      * @since Customizr 3.0.10 
+      * @since Customizr 3.0.10
       */
       function tc_get_social_networks() {
         $__options    = tc__f( '__options' );

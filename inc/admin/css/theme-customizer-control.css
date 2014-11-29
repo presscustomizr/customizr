@@ -369,15 +369,73 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
     }
 }
 
+/* iCheck plugin Flat skin, grey
+----------------------------------- */
+.icheckbox_flat-grey,
+.iradio_flat-grey {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background: url(grey.png) no-repeat;
+    border: none;
+    cursor: pointer;
+    top: 4px;
+    float: right;
+}
+
+.icheckbox_flat-grey {
+    background-position: 0 0;
+}
+    .icheckbox_flat-grey.checked {
+        background-position: -22px 0;
+    }
+    .icheckbox_flat-grey.disabled {
+        background-position: -44px 0;
+        cursor: default;
+    }
+    .icheckbox_flat-grey.checked.disabled {
+        background-position: -66px 0;
+    }
+
+.iradio_flat-grey {
+    background-position: -88px 0;
+}
+    .iradio_flat-grey.checked {
+        background-position: -110px 0;
+    }
+    .iradio_flat-grey.disabled {
+        background-position: -132px 0;
+        cursor: default;
+    }
+    .iradio_flat-grey.checked.disabled {
+        background-position: -154px 0;
+    }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox_flat-grey,
+    .iradio_flat-grey {
+        background-image: url(grey@2x.png);
+        -webkit-background-size: 176px 22px;
+        background-size: 176px 22px;
+    }
+}
 
 
-/* 
- * Selecter v3.1.9 - 2014-09-02 
- * A jQuery plugin for replacing default select elements. Part of the Formstone Library. 
- * http://formstone.it/selecter/ 
- * 
- * Copyright 2014 Ben Plum; MIT Licensed 
- */ 
+/*
+ * Selecter v3.1.9 - 2014-09-02
+ * A jQuery plugin for replacing default select elements. Part of the Formstone Library.
+ * http://formstone.it/selecter/
+ *
+ * Copyright 2014 Ben Plum; MIT Licensed
+ */
 .selecter-element { *left: -999999px; position: absolute; opacity: 0; }
 .selecter { display: block;float: right;margin: 2px 0;position: relative;width: 100%;z-index: 100; }
 .selecter .selecter-selected { background: #F9F9F9 url(img/jquery.fs.selecter-arrow.png) no-repeat right center; border: 1px solid #ccc; border-radius: 3px; color: #333; cursor: pointer; display: block; font-size: 13px; margin: 0; overflow: hidden; padding: 4px 4.6%; position: relative; text-overflow: clip; z-index: 49; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);height: auto;line-height: 18px;width: 90%; }
@@ -445,13 +503,13 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 }
 
 
-/* 
- * Stepper v3.0.7 - 2014-05-07 
- * A jQuery plugin for cross browser number inputs. Part of the Formstone Library. 
- * http://formstone.it/stepper/ 
- * 
- * Copyright 2014 Ben Plum; MIT Licensed 
- */ 
+/*
+ * Stepper v3.0.7 - 2014-05-07
+ * A jQuery plugin for cross browser number inputs. Part of the Formstone Library.
+ * http://formstone.it/stepper/
+ *
+ * Copyright 2014 Ben Plum; MIT Licensed
+ */
 .stepper { border-radius: 3px; margin: 0 0 10px 0; overflow: hidden; position: relative; width: 35%;float: left; clear: both;}
 .stepper .stepper-input { background: #F9F9F9; border: 1px solid #ccc; border-radius: 3px; color: #333; font-size: 13px; line-height: 1.2; margin: 0; overflow: hidden; padding: 5px 10px 5px!important; width: 100%!important; z-index: 49;	-moz-appearance: textfield;max-width: none!important;
 }
