@@ -1,1391 +1,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.2.8\n"
-"POT-Creation-Date: 2014-11-23 09:08+0100\n"
-"PO-Revision-Date: 2014-11-23 09:09+0100\n"
-"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"POT-Creation-Date: 2014-11-23 20:08+0900\n"
+"PO-Revision-Date: 2014-11-23 20:09+0900\n"
+"Last-Translator: puyo061 <puyo061@gmail.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
-"Language: ko_KR\n"
+"Language: Korean\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
-
-#: ../class-fire-init.php:47 ../class-fire-init.php:48
-msgid "Right sidebar"
-msgstr "오른쪽 사이드바"
-
-#: ../class-fire-init.php:53 ../class-fire-init.php:54
-msgid "Left sidebar"
-msgstr "왼쪽 사이드바"
-
-#: ../class-fire-init.php:59 ../class-fire-init.php:60
-msgid "2 sidebars : Right and Left"
-msgstr "사이드바 2개 : 왼쪽&오른쪽"
-
-#: ../class-fire-init.php:65 ../class-fire-init.php:66
-msgid "No sidebars : full width layout"
-msgstr "사이드바 없음 : 전체 "
-
-#: ../class-fire-init.php:77
-msgid "Blue"
-msgstr "파랑색"
-
-#: ../class-fire-init.php:78
-msgid "Black"
-msgstr "검은색"
-
-#: ../class-fire-init.php:79
-msgid "Flat black"
-msgstr ""
-
-#: ../class-fire-init.php:80
-msgid "Grey"
-msgstr "회색"
-
-#: ../class-fire-init.php:81
-msgid "Ligth grey"
-msgstr "밝은 회색"
-
-#: ../class-fire-init.php:82
-msgid "Flat purple"
-msgstr ""
-
-#: ../class-fire-init.php:83
-msgid "Purple"
-msgstr "자주색"
-
-#: ../class-fire-init.php:84
-msgid "Flat red"
-msgstr ""
-
-#: ../class-fire-init.php:85
-msgid "Red"
-msgstr "붉은색"
-
-#: ../class-fire-init.php:86
-msgid "Orange"
-msgstr "주황색"
-
-#: ../class-fire-init.php:87
-msgid "Flat orange"
-msgstr ""
-
-#: ../class-fire-init.php:88
-msgid "Yellow"
-msgstr "노랑색"
-
-#: ../class-fire-init.php:89
-#, fuzzy
-msgid "Flat yellow"
-msgstr "플랫 옐로우"
-
-#: ../class-fire-init.php:90
-msgid "Green"
-msgstr "초록색"
-
-#: ../class-fire-init.php:91
-msgid "Light green"
-msgstr "연두색"
-
-#: ../class-fire-init.php:92
-msgid "Green blue"
-msgstr ""
-
-#: ../class-fire-init.php:93
-msgid "Light blue "
-msgstr "하늘색"
-
-#: ../class-fire-init.php:124
-msgid "Subscribe to my rss feed"
-msgstr "제 RSS피드에 가입해주세요!"
-
-#: ../class-fire-init.php:125
-msgid "RSS feed (default is the wordpress feed)"
-msgstr "RSS피드(기본:워드프레스피드)"
-
-#: ../class-fire-init.php:129
-msgid "Follow me on Twitter"
-msgstr "제 트위터를 팔로우 해주세요!"
-
-#: ../class-fire-init.php:130
-msgid "Twitter profile url"
-msgstr "트위터 프로필 주소"
-
-#: ../class-fire-init.php:134
-msgid "Follow me on Facebook"
-msgstr "제 페이스북을 팔로우 해주세요!"
-
-#: ../class-fire-init.php:135
-msgid "Facebook profile url"
-msgstr "페이스북 프로필 주소"
-
-#: ../class-fire-init.php:139
-msgid "Follow me on Google+"
-msgstr "제 Google+ 팔로우 해주세요!"
-
-#: ../class-fire-init.php:140
-msgid "Google+ profile url"
-msgstr "Google+ 프로필 주소"
-
-#: ../class-fire-init.php:144
-msgid "Follow me on Instagram"
-msgstr "제 인스타그램을 팔로우 해주세요!"
-
-#: ../class-fire-init.php:145
-msgid "Instagram profile url"
-msgstr "인스타그램 프로필 주소"
-
-#: ../class-fire-init.php:149
-msgid "Follow me on Tumblr"
-msgstr "제 텀블러를 팔로우 해주세요!"
-
-#: ../class-fire-init.php:150
-msgid "Tumblr url"
-msgstr " 주소"
-
-#: ../class-fire-init.php:154
-msgid "Follow me on Flickr"
-msgstr "제 Flickr를 팔로우 해주세요!"
-
-#: ../class-fire-init.php:155
-msgid "Flickr url"
-msgstr "Flickr 프로필 주소"
-
-#: ../class-fire-init.php:159
-msgid "Follow me on WordPress"
-msgstr "제 워드프레스를 팔로우 해주세요!"
-
-#: ../class-fire-init.php:160
-msgid "WordPress profile url"
-msgstr "워드 프레스 프로필 주소"
-
-#: ../class-fire-init.php:164
-msgid "Follow me on Youtube"
-msgstr "제 유투브를 구독 해주세요!"
-
-#: ../class-fire-init.php:165
-msgid "Youtube profile url"
-msgstr "유투브 프로필 주소"
-
-#: ../class-fire-init.php:169
-msgid "Pin me on Pinterest"
-msgstr ""
-
-#: ../class-fire-init.php:170
-msgid "Pinterest profile url"
-msgstr ""
-
-#: ../class-fire-init.php:174
-msgid "Follow me on Github"
-msgstr "제 깃허브를 팔로우 해주세요!"
-
-#: ../class-fire-init.php:175
-msgid "Github profile url"
-msgstr "깃허브 프로필 주소"
-
-#: ../class-fire-init.php:179
-msgid "Follow me on Dribbble"
-msgstr ""
-
-#: ../class-fire-init.php:180
-msgid "Dribbble profile url"
-msgstr ""
-
-#: ../class-fire-init.php:184
-msgid "Follow me on LinkedIn"
-msgstr ""
-
-#: ../class-fire-init.php:185
-msgid "LinkedIn profile url"
-msgstr ""
-
-#: ../class-fire-init.php:194
-msgid "Right Sidebar"
-msgstr "오른쪽 사이드바"
-
-#: ../class-fire-init.php:195 ../class-fire-init.php:199
-msgid "Appears on posts, static pages, archives and search pages"
-msgstr "게시글,정적 페이지,아카이브 그리고 검색페이지를 표시합니다."
-
-#: ../class-fire-init.php:198
-msgid "Left Sidebar"
-msgstr "왼쪽 사이드바"
-
-#: ../class-fire-init.php:206
-msgid "Footer Widget Area One"
-msgstr "바닥 위젯공간1"
-
-#: ../class-fire-init.php:207 ../class-fire-init.php:211
-#: ../class-fire-init.php:215
-msgid "Just use it as you want !"
-msgstr "원하는곳에다가 원하는 만큼!"
-
-#: ../class-fire-init.php:210
-msgid "Footer Widget Area Two"
-msgstr "바닥 위젯공간2"
-
-#: ../class-fire-init.php:214
-msgid "Footer Widget Area Three"
-msgstr "바닥 위젯공간3"
-
-#: ../class-fire-init.php:232
-msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
-msgstr "\"기만이 가득한 시대에 진실을 말하는 것은 혁명적인 행동이다.\""
-
-#: ../class-fire-init.php:233
-msgid "George Orwell"
-msgstr "조지 오웰(George Orwell)"
-
-#: ../class-fire-init.php:234
-msgid ""
-"Sorry, but the requested page is not found. You might try a search below."
-msgstr ""
-"요청된 페이지를 찾을 수 없습니다. 아래의 검색상자에서 검색을 시도해보세요"
-
-#: ../class-fire-init.php:239
-msgid ""
-"Success is the ability to go from one failure to another with no loss of "
-"enthusiasm..."
-msgstr "\"성공이란 열정을 잃지 않고 실패를 거듭할 수 있는 능력이다.\""
-
-#: ../class-fire-init.php:240
-msgid "Sir Winston Churchill"
-msgstr "윈스턴 처칠(Winston Churchill)"
-
-#: ../class-fire-init.php:241
-msgid ""
-"Sorry, but nothing matched your search criteria. Please try again with some "
-"different keywords."
-msgstr "일치하는 검색결과가 존재하지 않습니다. 다른 키워드로 시도해 보세요"
-
-#: ../class-fire-init.php:256
-msgid "Customizr is a clean responsive theme"
-msgstr "Customizr는 심플한 반응형 테마입니다."
-
-#: ../class-fire-init.php:261 ../class-fire-init.php:270
-msgid "Style your WordPress site live!"
-msgstr "워드프레스 홈페이지를 스타일링!"
-
-#: ../class-fire-init.php:262
-msgid ""
-"Many layout and design options are available from the WordPress customizer "
-"screen : see your changes live !"
-msgstr ""
-"대부분의 레이아웃과 디자인 옵션은 워드프레스 사용자정의를 통해서 수정하실 수 "
-"있습니다!"
-
-#: ../class-fire-init.php:263
-msgid "Just try it!"
-msgstr "이제 시작해보세요!"
-
-#: ../class-fire-init.php:275 ../class-fire-init.php:284
-msgid "Create beautiful sliders"
-msgstr "예쁜 슬라이더 생성"
-
-#: ../class-fire-init.php:276
-msgid ""
-"Customizr comes with a cool slider generator : add a slider to any post or "
-"page!"
-msgstr ""
-"Customizr에서는 멋진 슬라이더 제작기를 추가합니다! : 글이나 페이지에 슬라이더"
-"를 추가하실 수 있습니다"
-
-#: ../class-fire-init.php:277
-msgid "Discover the features"
-msgstr "기능 둘러보기"
-
-#: ../class-fire-init.php:394
-msgid "Main Menu"
-msgstr "메인메뉴"
-
-#: ../class-fire-init.php:783
-msgid "Help"
-msgstr "도움이 필요하신가요?"
-
-#: ../class-fire-init.php:786
-msgid "Need help with Customizr? Click here!"
-msgstr "Customizr에 대한 도움이 필요하신가요? 여길 클릭하세요!"
-
-#: ../class-fire-utils.php:392
-#, php-format
-msgid "Page %s"
-msgstr "%s 페이지"
-
-#: ../class-fire-utils_settings_map.php:47
-msgid "Home featured page one"
-msgstr "홈 기능 페이지 1"
-
-#: ../class-fire-utils_settings_map.php:48
-msgid "Home featured page two"
-msgstr "홈 기능 페이지 2"
-
-#: ../class-fire-utils_settings_map.php:49
-msgid "Home featured page three"
-msgstr "홈 기능 페이지 3"
-
-#: ../class-fire-utils_settings_map.php:52
-msgid "Featured text one (200 car. max)"
-msgstr "기능 택스트1(최대 한글 100글자,영숫자 200글자)"
-
-#: ../class-fire-utils_settings_map.php:53
-msgid "Featured text two (200 car. max)"
-msgstr "기능 택스트2(최대 한글 100글자,영숫자 200글자)"
-
-#: ../class-fire-utils_settings_map.php:54
-msgid "Featured text three (200 car. max)"
-msgstr "기능 택스트3(최대 한글 100글자,영숫자 200글자)"
-
-#: ../class-fire-utils_settings_map.php:70
-#, php-format
-msgid "Custom featured page %1$s"
-msgstr "사용자 정의 기능페이지 %1$s"
-
-#: ../class-fire-utils_settings_map.php:86
-#, php-format
-msgid "Featured text %1$s (200 car. max)"
-msgstr "기능 택스트 %1$s (최대 한글 100글자,영숫자 200글자)"
-
-#: ../class-fire-utils_settings_map.php:89
-msgid ""
-"You need to select a page first. Leave this field empty if you want to use "
-"the page excerpt."
-msgstr "먼저 페이지를 선택한후에 페이지를 발행하기 위해서 필드를 비워주세요"
-
-#: ../class-fire-utils_settings_map.php:200
-msgid "&mdash; No slider &mdash;"
-msgstr "&mdash; 슬라이더가 없습니다 &mdash;"
-
-#: ../class-fire-utils_settings_map.php:201
-msgid "&mdash; Demo Slider &mdash;"
-msgstr "&mdash; 데모 슬라이더 &mdash;"
-
-#: ../class-fire-utils_settings_map.php:243
-msgid "Global settings"
-msgstr "글로벌 "
-
-#: ../class-fire-utils_settings_map.php:244
-msgid "Global settings for the Customizr theme :skin, socials, links..."
-msgstr "Customizr의 글로벌 설정: 스킨,누리소통망,링크"
-
-#: ../class-fire-utils_settings_map.php:249
-msgid "Header : title, logo, menu, ..."
-msgstr "헤더 : 타이틀, 로고, 메뉴, ..."
-
-#: ../class-fire-utils_settings_map.php:250
-msgid "Header settings for the Customizr theme."
-msgstr "Customizr의  설정"
-
-#: ../class-fire-utils_settings_map.php:255
-msgid "Content : home, posts, ..."
-msgstr "콘탠츠: 홈, 포스트, ..."
-
-#: ../class-fire-utils_settings_map.php:256
-msgid "Content settings for the Customizr theme."
-msgstr "Customizr의  설정"
-
-#: ../class-fire-utils_settings_map.php:261
-msgid "Footer"
-msgstr "바닥글"
-
-#: ../class-fire-utils_settings_map.php:262
-msgid "Footer settings for the Customizr theme."
-msgstr "Customizr의  설정"
-
-#: ../class-fire-utils_settings_map.php:267
-msgid "Advanced options"
-msgstr "고급 옵션"
-
-#: ../class-fire-utils_settings_map.php:268
-msgid "Advanced settings for the Customizr theme."
-msgstr "Customizr의 고급옵션 설정"
-
-#: ../class-fire-utils_settings_map.php:289
-#: ../class-fire-utils_settings_map.php:993
-msgid "Skin"
-msgstr "스킨"
-
-#: ../class-fire-utils_settings_map.php:291
-#: ../class-fire-utils_settings_map.php:995
-msgid "Select a skin for Customizr"
-msgstr "Customizr의 스킨을 선택해주세요!"
-
-#: ../class-fire-utils_settings_map.php:295
-#: ../class-fire-utils_settings_map.php:1039
-msgid "Logo &amp; Favicon"
-msgstr "로고 &amp; 파비콘"
-
-#: ../class-fire-utils_settings_map.php:297
-#: ../class-fire-utils_settings_map.php:1041
-msgid "Set up logo and favicon options"
-msgstr "로고와 파비콘 설정"
-
-#: ../class-fire-utils_settings_map.php:301
-#: ../class-fire-utils_settings_map.php:1053
-msgid "Front Page"
-msgstr "메인화면"
-
-#: ../class-fire-utils_settings_map.php:303
-#: ../class-fire-utils_settings_map.php:1055
-msgid "Set up front page options"
-msgstr "메인화면 설정"
-
-#: ../class-fire-utils_settings_map.php:307
-#: ../class-fire-utils_settings_map.php:1060
-msgid "Pages &amp; Posts Layout"
-msgstr "페이지 &amp; 포스트 레이아웃"
-
-#: ../class-fire-utils_settings_map.php:309
-#: ../class-fire-utils_settings_map.php:1062
-msgid "Set up layout options"
-msgstr "레이아웃옵션 설정"
-
-#: ../class-fire-utils_settings_map.php:313
-#: ../class-fire-utils_settings_map.php:1099
-msgid "Comments"
-msgstr "덧글"
-
-#: ../class-fire-utils_settings_map.php:315
-#: ../class-fire-utils_settings_map.php:1101
-msgid "Set up comments options"
-msgstr "덧글옵션 설정"
-
-#: ../class-fire-utils_settings_map.php:319
-#: ../class-fire-utils_settings_map.php:999
-#: ../class-fire-utils_settings_map.php:1861
-msgid "Social links"
-msgstr "누리소통망 링크"
-
-#: ../class-fire-utils_settings_map.php:321
-#: ../class-fire-utils_settings_map.php:1001
-msgid "Set up your social links"
-msgstr "누리소통망 링크 설정"
-
-#: ../class-fire-utils_settings_map.php:325
-msgid "Images"
-msgstr "이미지"
-
-#: ../class-fire-utils_settings_map.php:327
-#: ../class-fire-utils_settings_map.php:1019
-msgid "Various images settings"
-msgstr "다양한 이미지 설정"
-
-#: ../class-fire-utils_settings_map.php:331
-msgid "Links"
-msgstr "링크"
-
-#: ../class-fire-utils_settings_map.php:333
-#: ../class-fire-utils_settings_map.php:1007
-msgid "Various links settings"
-msgstr "다양한 링크 설정"
-
-#: ../class-fire-utils_settings_map.php:337
-#: ../class-fire-utils_settings_map.php:1111
-msgid "Custom CSS"
-msgstr "사용자정의 CSS"
-
-#: ../class-fire-utils_settings_map.php:339
-#: ../class-fire-utils_settings_map.php:1113
-msgid "Add your own CSS"
-msgstr "own CSS 추가"
-
-#: ../class-fire-utils_settings_map.php:343
-#: ../class-fire-utils_settings_map.php:1023
-msgid "Responsive settings"
-msgstr "응답설정"
-
-#: ../class-fire-utils_settings_map.php:345
-#: ../class-fire-utils_settings_map.php:1025
-msgid "Various settings for responsive display"
-msgstr "출력되는 다양한 응답 설정"
-
-#: ../class-fire-utils_settings_map.php:374
-msgid "Manage menus"
-msgstr "메뉴관리"
-
-#: ../class-fire-utils_settings_map.php:380
-msgid "Select a submenu expansion option"
-msgstr "하위메뉴 확장옵션 선택"
-
-#: ../class-fire-utils_settings_map.php:384
-msgid "Expand submenus on click"
-msgstr "클릭시 하위메뉴 확장"
-
-#: ../class-fire-utils_settings_map.php:385
-msgid "Expand submenus on hover"
-msgstr "마우스오버시 하위메뉴 확장"
-
-#: ../class-fire-utils_settings_map.php:401
-msgid "Choose a predefined skin"
-msgstr "사전정의된 스킨 선택"
-
-#: ../class-fire-utils_settings_map.php:411
-msgid "Performance : use the minified CSS stylesheet"
-msgstr "성능 : 최소한의 CSS 스타일시트 사용"
-
-#: ../class-fire-utils_settings_map.php:414
-msgid ""
-"Using the minified version of the skin stylesheet will speed up your webpage "
-"load time."
-msgstr "최소한의 스킨 스타일시트를 사용하여서 로딩시간을 단축합니다"
-
-#: ../class-fire-utils_settings_map.php:420
-#: ../class-fire-utils_settings_map.php:1236
-msgid "Display top border"
-msgstr "위의 경계 표시"
-
-#: ../class-fire-utils_settings_map.php:424
-#: ../class-fire-utils_settings_map.php:1240
-msgid "Uncheck this option to remove the colored top border."
-msgstr "위쪽 테두리의 색을 제거하려면 이 옵션의 체크를 풀어주세요"
-
-#: ../class-fire-utils_settings_map.php:436
-msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "로고 업로드 (지원 포맷 :  .jpg, .png, .gif, svg, svgz)"
-
-#: ../class-fire-utils_settings_map.php:445
-msgid "Force logo dimensions to max-width:250px and max-height:100px"
-msgstr "크기가 폭 250px , 높이 100px로 변경됩니다."
-
-#: ../class-fire-utils_settings_map.php:461
-msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
-msgstr "파비콘 업로드 (지원 포맷 : .ico, .png, .gif)"
-
-#: ../class-fire-utils_settings_map.php:479
-msgid "Choose content and layout"
-msgstr "컨탠츠와 레이아웃 선택"
-
-#: ../class-fire-utils_settings_map.php:487
-msgid "Front page displays"
-msgstr "메인페이지 보기"
-
-#: ../class-fire-utils_settings_map.php:492
-msgid "Don't show any posts or page"
-msgstr "게시글이나 페이지를 표시하지 않음"
-
-#: ../class-fire-utils_settings_map.php:493
-msgid "Your latest posts"
-msgstr "마지막 게시글"
-
-#: ../class-fire-utils_settings_map.php:494
-msgid "A static page"
-msgstr "정적 페이지"
-
-#: ../class-fire-utils_settings_map.php:500
-msgid "Front page"
-msgstr "메인페이지"
-
-#: ../class-fire-utils_settings_map.php:508
-msgid "Posts page"
-msgstr "게시글 페이지"
-
-#: ../class-fire-utils_settings_map.php:517
-msgid "Set up the front page layout"
-msgstr "메인페이지 레이아웃 설정"
-
-#: ../class-fire-utils_settings_map.php:528
-msgid "Slider options"
-msgstr "슬라이더 옵션"
-
-#: ../class-fire-utils_settings_map.php:529
-msgid "Select front page slider"
-msgstr "메인페이지 슬라이더 선택"
-
-#: ../class-fire-utils_settings_map.php:541
-msgid "Full width slider"
-msgstr "전체 폭 슬라이더"
-
-#: ../class-fire-utils_settings_map.php:552
-msgid "Delay between each slides"
-msgstr "각각 슬라이드간의 지연시간"
-
-#: ../class-fire-utils_settings_map.php:557
-msgid "in ms : 1000ms = 1s"
-msgstr "기준 : ms(1000ms = 1s)"
-
-#: ../class-fire-utils_settings_map.php:565
-msgid "Featured pages options"
-msgstr "기능 페이지 옵션"
-
-#: ../class-fire-utils_settings_map.php:566
-msgid "Display home featured pages area"
-msgstr "홈페이지 영역 확인"
-
-#: ../class-fire-utils_settings_map.php:570
-msgid "Enable"
-msgstr "활성화"
-
-#: ../class-fire-utils_settings_map.php:571
-msgid "Disable"
-msgstr "비활성화"
-
-#: ../class-fire-utils_settings_map.php:580
-msgid "Show images"
-msgstr "이미지 보기"
-
-#: ../class-fire-utils_settings_map.php:583
-msgid ""
-"The images are set with the \"featured image\" of each pages (in the page "
-"edit screen). Uncheck the option above to disable the featured page images."
-msgstr ""
-"이미지 (페이지 편집 화면에서) 각 페이지의 \"기능을 갖춘 이미지\"로 설정됩니"
-"다.기능 페이지 이미지를 사용하지 않도록 위의 옵션을 선택 취소합니다."
-
-#: ../class-fire-utils_settings_map.php:589
-msgid "Read more &raquo;"
-msgstr "더 많은 정보 : &raquo;"
-
-#: ../class-fire-utils_settings_map.php:591
-msgid "Button text"
-msgstr "버튼 텍스트"
-
-#: ../class-fire-utils_settings_map.php:612
-#: ../class-fire-utils_settings_map.php:1158
-msgid "Display Breadcrumb"
-msgstr "이동경로 확인"
-
-#: ../class-fire-utils_settings_map.php:622
-#: ../class-fire-utils_settings_map.php:1168
-msgid "Choose the global default layout"
-msgstr "전체 기본 레이아웃 선택"
-
-#: ../class-fire-utils_settings_map.php:633
-#: ../class-fire-utils_settings_map.php:1180
-msgid "Force default layout everywhere"
-msgstr "모든페이지 기본레이아웃"
-
-#: ../class-fire-utils_settings_map.php:636
-#: ../class-fire-utils_settings_map.php:1183
-msgid ""
-"This option will override the specific layouts on all posts/pages, including "
-"the front page."
-msgstr "이 옵션은 모든 게시글/페이지에 특정 레이아웃을 우선적용합니다."
-
-#: ../class-fire-utils_settings_map.php:643
-#: ../class-fire-utils_settings_map.php:1189
-msgid "Choose the posts default layout"
-msgstr "게시글 기본 레이아웃 선택"
-
-#: ../class-fire-utils_settings_map.php:655
-#: ../class-fire-utils_settings_map.php:1211
-msgid "Maximum number of posts per page"
-msgstr "페이지당 게시글 최대 수"
-
-#: ../class-fire-utils_settings_map.php:666
-#: ../class-fire-utils_settings_map.php:1221
-msgid "Select the length of posts in lists (home, search, archives, ...)"
-msgstr "게시글 리스트 옵션 설정"
-
-#: ../class-fire-utils_settings_map.php:670
-#: ../class-fire-utils_settings_map.php:1225
-msgid "Display the excerpt"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:671
-#: ../class-fire-utils_settings_map.php:1226
-msgid "Display the full content"
-msgstr "전체 컨탠츠 보이기"
-
-#: ../class-fire-utils_settings_map.php:679
-#: ../class-fire-utils_settings_map.php:1198
-msgid "Choose the pages default layout"
-msgstr "페이지 기본 레이아웃 선택"
-
-#: ../class-fire-utils_settings_map.php:698
-#: ../class-fire-utils_settings_map.php:1800
-msgid "Enable comments on pages"
-msgstr "페이지에 댓글 활성화"
-
-#: ../class-fire-utils_settings_map.php:702
-msgid ""
-"This option will enable comments on pages. You can disable comments for a "
-"single page in the quick edit mode of the page list screen."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:716
-#: ../class-fire-utils_settings_map.php:1825
-msgid "Social links in header"
-msgstr "헤더에 누리소통망링크 넣기"
-
-#: ../class-fire-utils_settings_map.php:725
-#: ../class-fire-utils_settings_map.php:1843
-msgid "Social links in left sidebar"
-msgstr "왼쪽 사이드바에 누리소통망링크 넣기"
-
-#: ../class-fire-utils_settings_map.php:734
-#: ../class-fire-utils_settings_map.php:1853
-msgid "Social links in right sidebar"
-msgstr "오른쪽 사이드바에 누리소통망링크 넣기"
-
-#: ../class-fire-utils_settings_map.php:742
-#: ../class-fire-utils_settings_map.php:1834
-msgid "Social links in footer"
-msgstr "바닥글에 누리소통망링크 넣기"
-
-#: ../class-fire-utils_settings_map.php:763
-msgid "Enable/disable lightbox effect on images"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:766
-msgid ""
-"If enabled, this option activate a popin window whith a zoom effect when an "
-"image is clicked. This will not apply to image gallery."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:772
-msgid "Autoscale images on zoom"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:775
-msgid ""
-"If enabled, this option will force images to fit the screen on lightbox zoom."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:781
-msgid "Enable/disable retina support"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:785
-msgid ""
-"If enabled, your website will include support for high resolution devices."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:786
-msgid ""
-"It is strongly recommended to regenerate your media library images in high "
-"definition with this free plugin"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:787
-msgid "regenerate thumbnails"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:789
-msgid "Open the description page of the Regenerate thumbnails plugin"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:795
-msgid "Sliders : display on loading icon before rendering the slides"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:798
-msgid ""
-"When checked, this option displays a loading icon when the slides are beeing "
-"setup."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:811
-msgid "Enable/disable smooth scroll on click"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:814
-msgid ""
-"If enabled, this option activates a smooth page scroll when clicking on a "
-"link to an anchor of the same page."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:827
-msgid "Enable/disable blocks reordering on small devices"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:830
-msgid ""
-"On responsive mode, for smartphone viewport, the sidebars are moved after "
-"the main content block."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:836
-msgid "Enable/disable slider's slides centering on any devices"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:839
-msgid ""
-"This option centers your slider (carousel) pictures vertically and "
-"horizontally on any devices when displayed in full width mode"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:854
-#: ../class-fire-utils_settings_map.php:1873
-msgid "Add your custom css here and design live! (for advanced users)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:858
-#: ../class-fire-utils_settings_map.php:1877
-msgid ""
-"Use this field to test small chunks of CSS code. For important CSS "
-"customizations, you'll want to modify the style.css file of a"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:859
-#: ../class-fire-utils_settings_map.php:1878
-msgid "child theme."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:860
-#: ../class-fire-utils_settings_map.php:1879
-msgid "How to create and use a child theme ?"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1005
-msgid "Links style and effects"
-msgstr "링크 스타일과 효과"
-
-#: ../class-fire-utils_settings_map.php:1011
-msgid "Titles icons settings"
-msgstr "타이틀 아이콘 설정"
-
-#: ../class-fire-utils_settings_map.php:1013
-msgid "Set up the titles icons options"
-msgstr "타이틀 아이콘 옵션 설정"
-
-#: ../class-fire-utils_settings_map.php:1017
-msgid "Image settings"
-msgstr "이미지 "
-
-#: ../class-fire-utils_settings_map.php:1029
-#, fuzzy
-msgid "Header design and layout"
-msgstr "디자인과 레이아웃"
-
-#: ../class-fire-utils_settings_map.php:1029
-msgid "Design and layout"
-msgstr "디자인과 레이아웃"
-
-#: ../class-fire-utils_settings_map.php:1034
-msgid "Site Title & Tagline"
-msgstr "누리집 타이틀 & 태그라인"
-
-#: ../class-fire-utils_settings_map.php:1045
-msgid "Navigation"
-msgstr "탐색"
-
-#: ../class-fire-utils_settings_map.php:1048
-#, php-format
-msgid "Your theme supports %s menu. Select which menu you would like to use."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1048
-msgid ""
-"You can edit your menu content on the Menus screen in the Appearance section."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1067
-msgid "Post lists : blog, archives, ..."
-msgstr "게시글 리스트 : 블로그, 아카이브, ..."
-
-#: ../class-fire-utils_settings_map.php:1069
-msgid "Set up post lists options"
-msgstr "게시글 리스트 옵션"
-
-#: ../class-fire-utils_settings_map.php:1073
-msgid "Single posts"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1075
-msgid "Set up single posts options"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1079
-msgid "Breadcrumb"
-msgstr "경로"
-
-#: ../class-fire-utils_settings_map.php:1081
-msgid "Set up breadcrumb options"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1093
-msgid "Post metas (category, tags, custom taxonomies)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1095
-msgid "Set up post metas options"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1105
-msgid "Footer global settings"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1107
-msgid "Set up footer global options"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1172
-msgid "Note : the home page layout has to be set in the home page section"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1246
-msgid "Layout"
-msgstr "레이아웃"
-
-#: ../class-fire-utils_settings_map.php:1250
-msgid "Logo / title on the left"
-msgstr "로고 / 타이틀 왼쪽에 표시"
-
-#: ../class-fire-utils_settings_map.php:1251
-msgid "Logo / title centered"
-msgstr "로고 / 타이틀 가운데에 표시"
-
-#: ../class-fire-utils_settings_map.php:1252
-msgid "Logo / title on the right"
-msgstr "로고 / 타이틀 오른쪽에 표시"
-
-#: ../class-fire-utils_settings_map.php:1261
-msgid "Display the tagline"
-msgstr "태그라인 표시"
-
-#: ../class-fire-utils_settings_map.php:1270
-msgid "Display menu in a box"
-msgstr "메뉴를 박스안에 표시"
-
-#: ../class-fire-utils_settings_map.php:1275
-msgid ""
-"If checked, this option wraps the header menu/tagline/social in a light grey "
-"box."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1280
-msgid "Sticky on scroll"
-msgstr "스크롤 고정"
-
-#: ../class-fire-utils_settings_map.php:1285
-msgid ""
-"If checked, this option makes the header stick to the top of the page on "
-"scroll down."
-msgstr ""
-"체크할 경우, 여러분들이 위에서 아래로 스크롤을 내리면 로고가 같이 따라옵니다"
-
-#: ../class-fire-utils_settings_map.php:1290
-msgid "Sticky header : display the tagline"
-msgstr "고정 헤더 : 태그라인 보이기"
-
-#: ../class-fire-utils_settings_map.php:1299
-msgid "Sticky header : display the title / logo"
-msgstr "고정 헤더 : 타이틀/로고 보이기"
-
-#: ../class-fire-utils_settings_map.php:1308
-msgid "Sticky header : shrink title / logo"
-msgstr "고정 헤더 : 타이틀/로고 크기 줄이기"
-
-#: ../class-fire-utils_settings_map.php:1317
-msgid "Sticky header : display the menu"
-msgstr "고정 헤더 : 메뉴 보이기"
-
-#: ../class-fire-utils_settings_map.php:1326
-#, fuzzy
-msgid "Sticky header : semi-transparent on scroll"
-msgstr "고정 헤더 : 메뉴 보이기"
-
-#: ../class-fire-utils_settings_map.php:1335
-msgid "Set the header z-index"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1343
-msgid "What is"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1344
-msgid "the z-index"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1352
-msgid "Menu position"
-msgstr "메뉴 위치"
-
-#: ../class-fire-utils_settings_map.php:1356
-msgid "Menu on the left"
-msgstr "왼쪽에 위치"
-
-#: ../class-fire-utils_settings_map.php:1357
-msgid "Menu on the right"
-msgstr "오른쪽에 위치"
-
-#: ../class-fire-utils_settings_map.php:1365
-msgid "Reveal the sub-menus blocks with a fade effect"
-msgstr "하위메뉴에 페이드 효과"
-
-#: ../class-fire-utils_settings_map.php:1374
-msgid "Hover move effect for the sub menu items"
-msgstr "서브메뉴의 움직임 효과"
-
-#: ../class-fire-utils_settings_map.php:1383
-msgid ""
-"In responsive mode, limit the height of the dropdown menu block to the "
-"visible viewport"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1393
-msgid "Fade effect on link hover"
-msgstr "링크오버의 페이트효과"
-
-#: ../class-fire-utils_settings_map.php:1404
-msgid "Display the breadcrumb on home page"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1412
-msgid "Display the breadcrumb in pages"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1421
-msgid "Display the breadcrumb in single posts"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1430
-msgid ""
-"Display the breadcrumb in posts lists : blog page, archives, search "
-"results..."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1441
-msgid "Display icons next to titles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1445
-msgid ""
-"When this option is checked, a contextual icon is displayed next to the "
-"titles of pages, posts, archives, and WP built-in widgets."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1451
-msgid "Display a page icon next to the page title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1460
-msgid "Display a post icon next to the single post title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1469
-msgid "Display an icon next to the archive title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1472
-msgid ""
-"When this option is checked, an archive type icon is displayed in the "
-"heading of every types of archives, on the left of the title. An archive "
-"page can be : category, tag, author, date archive, custom taxonomies, search "
-"results."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1479
-msgid "Display an icon next to each post title in an archive page"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1482
-msgid ""
-"When this option is checked, a post type icon is displayed on the left of "
-"each post titles in an archive page. An archive page can be : category, tag, "
-"author, date archive, custom taxonomies, search results."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1489
-msgid "WP sidebar widgets : display icons next to titles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1498
-msgid "WP footer widgets : display icons next to titles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1510
-msgid "Display posts metas"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1513
-msgid ""
-"When this option is checked, the post metas (like taxonomies, date and "
-"author) are displayed below the post titles."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1520
-msgid "Select the contexts"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1521
-msgid "Display posts metas on home"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1530
-msgid "Display posts metas for single posts"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1539
-msgid "Display posts metas in post lists (archives, blog page)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1549
-msgid "Select the metas to display"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1550
-msgid "Display hierarchical taxonomies (like categories)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1559
-msgid "Display non-hierarchical taxonomies (like tags)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1568
-#, fuzzy
-msgid "Display the publication date"
-msgstr "전체 컨탠츠 보이기"
-
-#: ../class-fire-utils_settings_map.php:1577
-#, fuzzy
-msgid "Display the update date"
-msgstr "태그라인 표시"
-
-#: ../class-fire-utils_settings_map.php:1581
-msgid ""
-"If this option is checked, additional date informations about the the last "
-"post update can be displayed (nothing will show up if the post has never "
-"been updated)."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1587
-msgid "Select the last update format"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1591
-msgid "Nb of days since last update"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1592
-msgid "Date of the last update"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1600
-msgid "Display a recent update notice"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1604
-msgid ""
-"If this option is checked, a customizable recent update notice is displayed "
-"next to the post title."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1609
-msgid "Recently updated !"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1611
-msgid "Update notice text"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1620
-msgid ""
-"Display the notice if the last update is less (strictly) than n days old"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1626
-msgid ""
-"Set a maximum interval (in days) during which the last update notice will be "
-"displayed."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1632
-#, fuzzy
-msgid "Display the author"
-msgstr "태그라인 표시"
-
-#: ../class-fire-utils_settings_map.php:1643
-#, fuzzy
-msgid "Set the excerpt length (in number of words) "
-msgstr "길이 설정(글자수)"
-
-#: ../class-fire-utils_settings_map.php:1653
-msgid "Thumbnails options"
-msgstr "섬네일 옵션"
-
-#: ../class-fire-utils_settings_map.php:1654
-msgid "Display the post thumbnails"
-msgstr "게시글 섬네일 표시"
-
-#: ../class-fire-utils_settings_map.php:1658
-msgid ""
-"When this option is checked, the post thumbnails are displayed in all post "
-"lists : blog, archives, author page, search pages, ..."
-msgstr ""
-"이 옵션을 체크할 경우, 게시글에 이런 섬네일들이 표시됩니다: 블로그, 아카이"
-"브, 작성자페이지, 검색 페이지"
-
-#: ../class-fire-utils_settings_map.php:1663
-msgid "If no featured image is set, use the last image attached to this post."
-msgstr "특별히 이미지를 첨부하지 않으면 게시글에 첨부된 이미지를 사용"
-
-#: ../class-fire-utils_settings_map.php:1671
-msgid "Thumbnails shape"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1675
-msgid "Rounded, expand on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1676
-msgid "Rounded, no expansion"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1677
-msgid "Squared, expand on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1678
-msgid "Squared, no expansion"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1679
-msgid "Rectangular with no effect"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1680
-msgid "Rectangular with blur effect on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1681
-msgid "Rectangular with unblur effect on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1689
-#: ../class-fire-utils_settings_map.php:1739
-msgid "Set the thumbnail's max height in pixels"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1700
-msgid "Thumbnails position"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1704
-msgid "Top"
-msgstr "위"
-
-#: ../class-fire-utils_settings_map.php:1705
-msgid "Right"
-msgstr "오른쪽"
-
-#: ../class-fire-utils_settings_map.php:1706
-msgid "Bottom"
-msgstr "아래"
-
-#: ../class-fire-utils_settings_map.php:1707
-msgid "Left"
-msgstr "왼쪽"
-
-#: ../class-fire-utils_settings_map.php:1715
-msgid "Alternate thumbnail/content"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1724
-msgid "Post thumbnail position"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1728
-msgid "Don't display"
-msgstr "표시하지 않음"
-
-#: ../class-fire-utils_settings_map.php:1729
-msgid "Before the title in full width"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1730
-msgid "Before the title boxed"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1731
-msgid "After the title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1750
-#, fuzzy
-msgid "Comments bubbles"
-msgstr "덧글"
-
-#: ../class-fire-utils_settings_map.php:1752
-msgid "Display the number of comments in a bubble next to the post title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1761
-msgid "Comments bubble shape"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1765
-msgid "Small bubbles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1766
-msgid "Large bubbles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1774
-#: ../class-fire-utils_settings_map.php:1787
-msgid "Comments bubble color"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1778
-msgid "Skin color"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1779
-#, fuzzy
-msgid "Custom"
-msgstr "사용자정의 CSS"
-
-#: ../class-fire-utils_settings_map.php:1799
-#, fuzzy
-msgid "Other comments settings"
-msgstr "타이틀 아이콘 설정"
-
-#: ../class-fire-utils_settings_map.php:1805
-msgid ""
-"If checked, this option will enable comments on pages. You can disable "
-"comments for a single page in the quick edit mode of the page list screen."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1806
-msgid "Change other comments settings in the"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1808
-#, fuzzy
-msgid "discussion settings page."
-msgstr "타이틀 아이콘 설정"
-
-#: ../class-fire-utils_settings_map.php:1815
-msgid "Display a back to top arrow on scroll"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1862
-msgid "Social link title in sidebars"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1868
-msgid "Will be hidden if empty"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1887
-msgid "Set slider's height in pixels"
-msgstr "슬라이더 높이(단위 : 픽셀)"
-
-#: ../class-fire-utils_settings_map.php:1897
-msgid "Apply this height to all sliders"
-msgstr "모든 슬라이더에 적용"
-
-#: ../class-fire-utils_settings_map.php:1905
-msgid "Replace the default image slider's height"
-msgstr "기본 이미지 슬라이더의 높이를 교체"
-
-#: ../class-fire-utils_settings_map.php:1911
-msgid ""
-"If this option is checked, your images will be resized with your custom "
-"height on upload. This is better for your overall loading performance."
-msgstr ""
-"이 옵션을 선택하면, 당신의 이미지는 슬라이더의 크기대로 조정됩니다. 이는 전"
-"체 로딩에 좋은영향을 끼칩니다."
-
-#: ../class-fire-utils_settings_map.php:1912
-msgid "You might want to regenerate your thumbnails."
-msgstr ""
 
 #: ../admin/class-admin-meta_boxes.php:87
 msgid "Layout Options"
@@ -1399,7 +28,7 @@ msgstr "슬라이더 옵션"
 #: ../admin/class-admin-meta_boxes.php:164
 #, php-format
 msgid "Default %1$s layout is set to : %2$s"
-msgstr ""
+msgstr "기본 %1$s 레이아웃은 %2$s에 설정됩니다"
 
 #: ../admin/class-admin-meta_boxes.php:164
 msgid "pages"
@@ -1415,6 +44,8 @@ msgid ""
 "\"</i>, you must unchecked this option to enable a specific layout for this "
 "post."
 msgstr ""
+"<i>\"모든 글과 페이지의 전체 기본 레이아웃 지정\"</i>을 선택했습니다. 이 글"
+"에 특정 레이아웃을 활성화 하려면 이 옵션을 체크 해제 해야 합니다."
 
 #: ../admin/class-admin-meta_boxes.php:170
 msgid "Change layout options"
@@ -1427,6 +58,9 @@ msgid ""
 "right sidebars. The default layouts can be defined in the WordPress "
 "customizer screen %2$s.<br />"
 msgstr ""
+"미리 정의된 좌측 및 우측 사이드바를 사용해서 %1$s에 특정 레이아웃을 정의 할 "
+"수 있습니다. 기본 레이아웃은 워드프레스 사용자 정의 화면 %2$s에서 정의 할 수 "
+"있습니다.<br />"
 
 #: ../admin/class-admin-meta_boxes.php:175
 #: ../admin/class-admin-meta_boxes.php:180
@@ -1445,7 +79,7 @@ msgstr ""
 #: ../admin/class-admin-meta_boxes.php:179
 #, php-format
 msgid "Select a specific layout for %1$s"
-msgstr ""
+msgstr "%1$s의 특정 레이아웃 선택"
 
 #: ../admin/class-admin-meta_boxes.php:183
 #, php-format
@@ -1471,14 +105,16 @@ msgid ""
 "To create a new slider : open the media library, edit your images and add "
 "them to your new slider."
 msgstr ""
+"새로운 슬라이더를 만들려면 : 미디어 라이브러리를 열고, 이미지를 편집한 다음 "
+"새 슬라이더에 추가하세요."
 
 #: ../admin/class-admin-meta_boxes.php:305
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
-msgstr ""
+msgstr "각 슬라이더의 간격 밀리초 (기본 : 5000 ms)"
 
 #: ../admin/class-admin-meta_boxes.php:312
 msgid "Slider Layout : set the slider in full width"
-msgstr ""
+msgstr "슬라이더 레이아웃 : 슬라이더 전체 폭 설정"
 
 #: ../admin/class-admin-meta_boxes.php:329
 #: ../admin/class-admin-meta_boxes.php:697
@@ -1490,14 +126,14 @@ msgstr "이 슬라이더 삭제"
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
-msgstr ""
+msgstr "이 슬라이더 삭제"
 
 #: ../admin/class-admin-meta_boxes.php:337
 #: ../admin/class-admin-meta_boxes.php:704
 msgid "Delete slider"
 msgstr "슬라이더 삭제"
 
-#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:101
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:88
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -1547,12 +183,16 @@ msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
 msgstr ""
+"슬라이더를 아직 만들지 않았습니다. 슬라이더 이름을 만들고 버튼을 클릭해서 첫 "
+"번째 슬라이더에 추가하세요."
 
 #: ../admin/class-admin-meta_boxes.php:838
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
 msgstr ""
+"이 슬라이더는 보여줄 슬라이드가 없습니다. 미디어 라이브러리로 가서 이미지를 "
+"추가하세요."
 
 #: ../admin/class-admin-meta_boxes.php:848
 msgid "Slide Image"
@@ -1581,8 +221,8 @@ msgstr "버튼 링크"
 #: ../parts/class-content-breadcrumb.php:721
 #: ../parts/class-content-comments.php:160
 #: ../parts/class-content-featured_pages.php:249
-#: ../parts/class-content-headings.php:223
-#: ../parts/class-content-slider.php:359
+#: ../parts/class-content-headings.php:257
+#: ../parts/class-content-slider.php:286
 msgid "Edit"
 msgstr "편집"
 
@@ -1598,15 +238,15 @@ msgstr "이 슬라이드 편집"
 msgid "Current slide"
 msgstr "현재 슬라이드"
 
-#: ../admin/class-controls.php:101
+#: ../admin/class-controls.php:88
 msgid "Create a slider"
 msgstr "슬라이더 생성"
 
-#: ../admin/class-controls.php:244
+#: ../admin/class-controls.php:231
 msgid "Upload"
 msgstr "업로드"
 
-#: ../admin/class-controls.php:245
+#: ../admin/class-controls.php:232
 msgid "Remove"
 msgstr "삭제"
 
@@ -1616,11 +256,11 @@ msgstr "WP 업로드"
 
 #: ../admin/class-fire-admin_init.php:75
 msgid "This theme requires WordPress 3.4+"
-msgstr ""
+msgstr "이 테마는 워드프레스 3.4 이상이 필요합니다"
 
 #: ../admin/class-fire-admin_init.php:78 ../admin/class-fire-admin_init.php:79
 msgid "Upgrade Wordpress Now"
-msgstr ""
+msgstr "지금당장 워드프레스를 업데이트 해보세요!"
 
 #: ../admin/class-fire-admin_init.php:96 ../admin/class-fire-admin_init.php:97
 #: ../admin/class-fire-admin_page.php:37 ../admin/class-fire-admin_page.php:38
@@ -1649,6 +289,11 @@ msgid ""
 "reporting bugs and making continuous improvements, you will probably find a "
 "solution to your problem either in the FAQ or in the user forum."
 msgstr ""
+"<a href=\"%1$s\" target=\"_blank\">소개 비디오</a>를 보고 시작할 수 있습니"
+"다. 또는 <a href=\"%2$s\" target=\"_blank\">문서</a>를 볼 수도 있습니다. <br/"
+"> 문제에 대한 답을 찾지 못한다면 당황하지 마세요! Customizr는 발전하는 웹마스"
+"터 그룹이 사용하고 버그를 보고하며 지속적인 개선을 하고 있습니다. FAQ나 사용"
+"자 포럼에서 문제 해결을 찾을 수도 있습니다."
 
 #: ../admin/class-fire-admin_init.php:136
 #: ../admin/class-fire-admin_page.php:78
@@ -1680,6 +325,11 @@ msgid ""
 "\" target=\"_blank\">introduction video</a> and find inspiration in the <a "
 "href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
 msgstr ""
+"Customizr를 사용해주셔서 감사합니다! Customizr %1$s는 이전보다 더 많은 기능"
+"이 있으며 안전하고 더욱 안정적입니다. 굉장한 웹사이트를 만드는데 도움이 필요"
+"하면 <a href=\"#customizr-changelog\">(변경 기록 보기)</a>. <a href=\"%2$s\" "
+"target=\"_blank\">소개 비디오</a>를 보고 <a href=\"#showcase\">쇼케이스</a>에"
+"서 영감을 얻으세요.<br/> 즐기세요!"
 
 #: ../admin/class-fire-admin_init.php:170
 #: ../admin/class-fire-admin_page.php:112
@@ -1688,11 +338,13 @@ msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
 "upgrading to see if a function or a template has been deprecated."
 msgstr ""
+"Customizr %1$s의 자식 테마를 사용하고 있습니다 : 함수나 템플릿이 제거됐는지 "
+"알아보려면 항상 업그레이드 후에 %2$s를 점검하세요."
 
 #: ../admin/class-fire-admin_init.php:185
 #: ../admin/class-fire-admin_page.php:127
 msgid "We need sponsors!"
-msgstr ""
+msgstr "우리는 스폰서가 필요해요!"
 
 #: ../admin/class-fire-admin_init.php:186
 #: ../admin/class-fire-admin_page.php:128
@@ -1701,6 +353,9 @@ msgid ""
 "strong><br/> Please help support it's continued development with a donation "
 "of $20, $50, or even $100."
 msgstr ""
+"<strong>Customizr를 완벽한 무료 테마로 만들기 위해 최선을 다하고 있습니다!</"
+"strong><br/> 지속적인 개발을 위해 $20, $50, 또는 $100의 기부를 통한 지원을 부"
+"탁합니다."
 
 #: ../admin/class-fire-admin_init.php:193
 #: ../admin/class-fire-admin_page.php:135
@@ -1713,11 +368,13 @@ msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
 msgstr ""
+"테마가 마음에 드신다면 wordpress.org에 말해주고 Customizr에 좋은 평가를 부탁"
+"합니다! <br />(피드백이 필요합니다...)"
 
 #: ../admin/class-fire-admin_init.php:199
 #: ../admin/class-fire-admin_page.php:141
 msgid "Follow us"
-msgstr ""
+msgstr "팔로우"
 
 #: ../admin/class-fire-admin_init.php:207
 #: ../admin/class-fire-admin_page.php:149
@@ -1744,6 +401,10 @@ msgid ""
 "options, they can be enabled/disabled safely with no side effects on your "
 "existing settings or customizations."
 msgstr ""
+"Customizr의 확장 프로그램은 Customizr 테마를 훌륭한 기능으로 확장할 수 있도"
+"록 개발된 플러그인입니다. 테마의 내장된 옵션과 제대로 결합되며 기존의 설정이"
+"나 사용자 정의에 어떠한 부작용이 없이 안전하게 활성화/비활성화 할 수 있습니"
+"다."
 
 #: ../admin/class-fire-admin_init.php:214
 #: ../admin/class-fire-admin_page.php:156
@@ -1752,6 +413,8 @@ msgid ""
 "solution to add some creative customizations whitout needing to dive into "
 "the code."
 msgstr ""
+"이 모듈은 모든 사람이 사용할 수 있도록 단순하게 디자인 됐습니다. 코딩의 필요 "
+"없이 창의적인 사용자 정의를 추가할 수 있는 좋은 해결책입니다."
 
 #: ../admin/class-fire-admin_init.php:216
 #: ../admin/class-fire-admin_page.php:158
@@ -1760,6 +423,10 @@ msgid ""
 "like any other WordPress plugins. Well documented and easily extendable with "
 "hooks, they come with a dedicated support forum on themesandco.com."
 msgstr ""
+"Customizr 확장 프로그램은 다른 워드프레스 플러그인처럼 워드프레스 관리자 페이"
+"지에서 설치되고 업그레이드 됩니다. 도움말 문서가 잘 돼있고 훅(hook)을 이용하"
+"면 쉽게 확장할 수 있습니다. 이들은  themesandco.com의 전용 지원 포럼에서 나"
+"온 것들입니다."
 
 #: ../admin/class-fire-admin_init.php:225
 #: ../admin/class-fire-admin_page.php:167
@@ -1771,12 +438,12 @@ msgstr "Customizr 쇼케이스"
 #: ../admin/class-fire-admin_page.php:170
 #: ../admin/class-fire-admin_page.php:177
 msgid "Visit the showcase"
-msgstr ""
+msgstr "쇼케이스 방문"
 
 #: ../admin/class-fire-admin_init.php:229
 #: ../admin/class-fire-admin_page.php:171
 msgid "Find inspiration for your next Customizr based website!"
-msgstr ""
+msgstr "Customizr를 사용한 차기 웹사이트를 위해 영감을 얻으세요!"
 
 #: ../admin/class-fire-admin_init.php:230
 #: ../admin/class-fire-admin_page.php:172
@@ -1784,6 +451,8 @@ msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
 msgstr ""
+"이 쇼케이스는 Customizr로 할 수 있는 것을 보여주는 것을 목표로 하며 다른 사용"
+"자로 하여금 웹디자인의 영감을 얻는데 도움을 줍니다."
 
 #: ../admin/class-fire-admin_init.php:232
 #: ../admin/class-fire-admin_page.php:174
@@ -1791,6 +460,8 @@ msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
 msgstr ""
+"사람들에게 영감을 줄 수 있는 굉장한 웹사이트를 만들었다고 생각되나요? 리뷰를 "
+"위해 사이트를 제출하는 것은 빠르고 쉽습니다."
 
 #: ../admin/class-fire-admin_init.php:242
 #: ../admin/class-fire-admin_page.php:244
@@ -1822,6 +493,1246 @@ msgid ""
 "(Mac)."
 msgstr ""
 
+#: ../class-fire-init.php:47 ../class-fire-init.php:48
+msgid "Right sidebar"
+msgstr "우측 사이드바"
+
+#: ../class-fire-init.php:53 ../class-fire-init.php:54
+msgid "Left sidebar"
+msgstr "좌측 사이드바"
+
+#: ../class-fire-init.php:59 ../class-fire-init.php:60
+msgid "2 sidebars : Right and Left"
+msgstr "사이드바 2개 : 왼쪽&오른쪽"
+
+#: ../class-fire-init.php:65 ../class-fire-init.php:66
+msgid "No sidebars : full width layout"
+msgstr "사이드바 없음 : 전체 "
+
+#: ../class-fire-init.php:77
+msgid "Blue"
+msgstr "파랑색"
+
+#: ../class-fire-init.php:78
+msgid "Light blue "
+msgstr "하늘색"
+
+#: ../class-fire-init.php:79
+msgid "Green blue"
+msgstr ""
+
+#: ../class-fire-init.php:80
+msgid "Green"
+msgstr "초록색"
+
+#: ../class-fire-init.php:81
+msgid "Light green"
+msgstr "연두색"
+
+#: ../class-fire-init.php:82
+msgid "Yellow"
+msgstr "노랑색"
+
+#: ../class-fire-init.php:83
+#, fuzzy
+msgid "Flat yellow"
+msgstr "플랫 옐로우"
+
+#: ../class-fire-init.php:84
+msgid "Orange"
+msgstr "주황색"
+
+#: ../class-fire-init.php:85
+msgid "Flat orange"
+msgstr ""
+
+#: ../class-fire-init.php:86
+msgid "Red"
+msgstr "붉은색"
+
+#: ../class-fire-init.php:87
+msgid "Flat red"
+msgstr ""
+
+#: ../class-fire-init.php:88
+msgid "Purple"
+msgstr "자주색"
+
+#: ../class-fire-init.php:89
+msgid "Flat purple"
+msgstr ""
+
+#: ../class-fire-init.php:90
+msgid "Grey"
+msgstr "회색"
+
+#: ../class-fire-init.php:91
+msgid "Ligth grey"
+msgstr "밝은 회색"
+
+#: ../class-fire-init.php:92
+msgid "Black"
+msgstr "검은색"
+
+#: ../class-fire-init.php:93
+msgid "Flat black"
+msgstr ""
+
+#: ../class-fire-init.php:123
+msgid "Subscribe to my rss feed"
+msgstr "Rss 피드 구독"
+
+#: ../class-fire-init.php:124
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "RSS피드(기본:워드프레스피드)"
+
+#: ../class-fire-init.php:128
+msgid "Follow me on Twitter"
+msgstr "트위터를 팔로우"
+
+#: ../class-fire-init.php:129
+msgid "Twitter profile url"
+msgstr "트위터 프로필 주소"
+
+#: ../class-fire-init.php:133
+msgid "Follow me on Facebook"
+msgstr "페이스북을 팔로우"
+
+#: ../class-fire-init.php:134
+msgid "Facebook profile url"
+msgstr "페이스북 프로필 주소"
+
+#: ../class-fire-init.php:138
+msgid "Follow me on Google+"
+msgstr "Google+ 팔로우"
+
+#: ../class-fire-init.php:139
+msgid "Google+ profile url"
+msgstr "Google+ 프로필 주소"
+
+#: ../class-fire-init.php:143
+msgid "Follow me on Instagram"
+msgstr "인스타그램을 팔로우"
+
+#: ../class-fire-init.php:144
+msgid "Instagram profile url"
+msgstr "인스타그램 프로필 주소"
+
+#: ../class-fire-init.php:148
+msgid "Follow me on Tumblr"
+msgstr "텀블러를 팔로우"
+
+#: ../class-fire-init.php:149
+msgid "Tumblr url"
+msgstr "텀블러 주소"
+
+#: ../class-fire-init.php:153
+msgid "Follow me on Flickr"
+msgstr "Flickr를 팔로우"
+
+#: ../class-fire-init.php:154
+msgid "Flickr url"
+msgstr "Flickr 프로필 주소"
+
+#: ../class-fire-init.php:158
+msgid "Follow me on WordPress"
+msgstr "워드프레스를 팔로우"
+
+#: ../class-fire-init.php:159
+msgid "WordPress profile url"
+msgstr "워드 프레스 프로필 주소"
+
+#: ../class-fire-init.php:163
+msgid "Follow me on Youtube"
+msgstr "유투브 구독"
+
+#: ../class-fire-init.php:164
+msgid "Youtube profile url"
+msgstr "유투브 프로필 주소"
+
+#: ../class-fire-init.php:168
+msgid "Pin me on Pinterest"
+msgstr ""
+
+#: ../class-fire-init.php:169
+msgid "Pinterest profile url"
+msgstr ""
+
+#: ../class-fire-init.php:173
+msgid "Follow me on Github"
+msgstr "깃허브를 팔로우"
+
+#: ../class-fire-init.php:174
+msgid "Github profile url"
+msgstr "깃허브 프로필 주소"
+
+#: ../class-fire-init.php:178
+msgid "Follow me on Dribbble"
+msgstr ""
+
+#: ../class-fire-init.php:179
+msgid "Dribbble profile url"
+msgstr ""
+
+#: ../class-fire-init.php:183
+msgid "Follow me on LinkedIn"
+msgstr ""
+
+#: ../class-fire-init.php:184
+msgid "LinkedIn profile url"
+msgstr ""
+
+#: ../class-fire-init.php:193
+msgid "Right Sidebar"
+msgstr "우측 사이드바"
+
+#: ../class-fire-init.php:194 ../class-fire-init.php:198
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "글, 정적 페이지, 보관함 및 검색 페이지에 표시합니다"
+
+#: ../class-fire-init.php:197
+msgid "Left Sidebar"
+msgstr "좌측 사이드바"
+
+#: ../class-fire-init.php:205
+msgid "Footer Widget Area One"
+msgstr "바닥 위젯 영역1"
+
+#: ../class-fire-init.php:206 ../class-fire-init.php:210
+#: ../class-fire-init.php:214
+msgid "Just use it as you want !"
+msgstr "필요하시다면..."
+
+#: ../class-fire-init.php:209
+msgid "Footer Widget Area Two"
+msgstr "바닥 위젯 영역2"
+
+#: ../class-fire-init.php:213
+msgid "Footer Widget Area Three"
+msgstr "바닥 위젯 영역3"
+
+#: ../class-fire-init.php:231
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "\"기만이 가득한 시대에 진실을 말하는 것은 혁명적인 행동이다.\""
+
+#: ../class-fire-init.php:232
+msgid "George Orwell"
+msgstr "조지 오웰(George Orwell)"
+
+#: ../class-fire-init.php:233
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"요청된 페이지를 찾을 수 없습니다. 아래의 검색상자에서 검색을 시도해보세요"
+
+#: ../class-fire-init.php:238
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr "\"성공이란 열정을 잃지 않고 실패를 거듭할 수 있는 능력이다.\""
+
+#: ../class-fire-init.php:239
+msgid "Sir Winston Churchill"
+msgstr "윈스턴 처칠(Winston Churchill)"
+
+#: ../class-fire-init.php:240
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr "일치하는 검색결과가 존재하지 않습니다. 다른 키워드로 시도해 보세요"
+
+#: ../class-fire-init.php:255
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr는 깔끔한 반응형 테마입니다."
+
+#: ../class-fire-init.php:260 ../class-fire-init.php:269
+msgid "Style your WordPress site live!"
+msgstr "워드프레스 홈페이지를 스타일링!"
+
+#: ../class-fire-init.php:261
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"대부분의 레이아웃과 디자인 옵션은 워드프레스 사용자정의를 통해서 수정하실 수 "
+"있습니다!"
+
+#: ../class-fire-init.php:262
+msgid "Just try it!"
+msgstr "이제 시작해보세요!"
+
+#: ../class-fire-init.php:274 ../class-fire-init.php:283
+msgid "Create beautiful sliders"
+msgstr "예쁜 슬라이더 생성"
+
+#: ../class-fire-init.php:275
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr에서는 멋진 슬라이더 제작기를 추가합니다! : 글이나 페이지에 슬라이더"
+"를 추가하실 수 있습니다"
+
+#: ../class-fire-init.php:276
+msgid "Discover the features"
+msgstr "기능 둘러보기"
+
+#: ../class-fire-init.php:393
+msgid "Main Menu"
+msgstr "메인메뉴"
+
+#: ../class-fire-init.php:782
+msgid "Help"
+msgstr "도움이 필요하신가요?"
+
+#: ../class-fire-init.php:785
+msgid "Need help with Customizr? Click here!"
+msgstr "Customizr에 대한 도움이 필요하신가요? 여길 클릭하세요!"
+
+#: ../class-fire-utils.php:392
+#, php-format
+msgid "Page %s"
+msgstr "%s 페이지"
+
+#: ../class-fire-utils_settings_map.php:47
+msgid "Home featured page one"
+msgstr "홈 기능 페이지 1"
+
+#: ../class-fire-utils_settings_map.php:48
+msgid "Home featured page two"
+msgstr "홈 기능 페이지 2"
+
+#: ../class-fire-utils_settings_map.php:49
+msgid "Home featured page three"
+msgstr "홈 기능 페이지 3"
+
+#: ../class-fire-utils_settings_map.php:52
+msgid "Featured text one (200 car. max)"
+msgstr "특성 택스트 1(최대 한글 100글자,영숫자 200글자)"
+
+#: ../class-fire-utils_settings_map.php:53
+msgid "Featured text two (200 car. max)"
+msgstr "특성 택스트 2(최대 한글 100글자,영숫자 200글자)"
+
+#: ../class-fire-utils_settings_map.php:54
+msgid "Featured text three (200 car. max)"
+msgstr "특성 택스트 3(최대 한글 100글자,영숫자 200글자)"
+
+#: ../class-fire-utils_settings_map.php:70
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr "사용자 정의 기능페이지 %1$s"
+
+#: ../class-fire-utils_settings_map.php:86
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr "기능 택스트 %1$s (최대 한글 100글자,영숫자 200글자)"
+
+#: ../class-fire-utils_settings_map.php:89
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr "먼저 페이지를 선택한후에 페이지를 발행하기 위해서 필드를 비워주세요"
+
+#: ../class-fire-utils_settings_map.php:188
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; 슬라이더가 없습니다 &mdash;"
+
+#: ../class-fire-utils_settings_map.php:189
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; 데모 슬라이더 &mdash;"
+
+#: ../class-fire-utils_settings_map.php:231
+msgid "Global settings"
+msgstr "글로벌 "
+
+#: ../class-fire-utils_settings_map.php:232
+msgid "Global settings for the Customizr theme :skin, socials, links..."
+msgstr "Customizr의 글로벌 설정: 스킨,누리소통망,링크"
+
+#: ../class-fire-utils_settings_map.php:237
+msgid "Header : title, logo, menu, ..."
+msgstr "헤더 : 타이틀, 로고, 메뉴, ..."
+
+#: ../class-fire-utils_settings_map.php:238
+msgid "Header settings for the Customizr theme."
+msgstr "Customizr의  설정"
+
+#: ../class-fire-utils_settings_map.php:243
+msgid "Content : home, posts, ..."
+msgstr "콘탠츠: 홈, 포스트, ..."
+
+#: ../class-fire-utils_settings_map.php:244
+msgid "Content settings for the Customizr theme."
+msgstr "Customizr의  설정"
+
+#: ../class-fire-utils_settings_map.php:249
+msgid "Footer"
+msgstr "바닥글"
+
+#: ../class-fire-utils_settings_map.php:250
+msgid "Footer settings for the Customizr theme."
+msgstr "Customizr의  설정"
+
+#: ../class-fire-utils_settings_map.php:255
+msgid "Advanced options"
+msgstr "고급 옵션"
+
+#: ../class-fire-utils_settings_map.php:256
+msgid "Advanced settings for the Customizr theme."
+msgstr "Customizr의 고급옵션 설정"
+
+#: ../class-fire-utils_settings_map.php:277
+#: ../class-fire-utils_settings_map.php:978
+msgid "Skin"
+msgstr "스킨"
+
+#: ../class-fire-utils_settings_map.php:279
+#: ../class-fire-utils_settings_map.php:980
+msgid "Select a skin for Customizr"
+msgstr "Customizr의 스킨을 선택해주세요!"
+
+#: ../class-fire-utils_settings_map.php:283
+#: ../class-fire-utils_settings_map.php:1024
+msgid "Logo &amp; Favicon"
+msgstr "로고 &amp; 파비콘"
+
+#: ../class-fire-utils_settings_map.php:285
+#: ../class-fire-utils_settings_map.php:1026
+msgid "Set up logo and favicon options"
+msgstr "로고와 파비콘 설정"
+
+#: ../class-fire-utils_settings_map.php:289
+#: ../class-fire-utils_settings_map.php:1038
+msgid "Front Page"
+msgstr "메인화면"
+
+#: ../class-fire-utils_settings_map.php:291
+#: ../class-fire-utils_settings_map.php:1040
+msgid "Set up front page options"
+msgstr "메인화면 설정"
+
+#: ../class-fire-utils_settings_map.php:295
+#: ../class-fire-utils_settings_map.php:1045
+msgid "Pages &amp; Posts Layout"
+msgstr "페이지 &amp; 포스트 레이아웃"
+
+#: ../class-fire-utils_settings_map.php:297
+#: ../class-fire-utils_settings_map.php:1047
+msgid "Set up layout options"
+msgstr "레이아웃옵션 설정"
+
+#: ../class-fire-utils_settings_map.php:301
+#: ../class-fire-utils_settings_map.php:1084
+msgid "Comments"
+msgstr "덧글"
+
+#: ../class-fire-utils_settings_map.php:303
+#: ../class-fire-utils_settings_map.php:1086
+msgid "Set up comments options"
+msgstr "덧글옵션 설정"
+
+#: ../class-fire-utils_settings_map.php:307
+#: ../class-fire-utils_settings_map.php:984
+#: ../class-fire-utils_settings_map.php:1689
+msgid "Social links"
+msgstr "누리소통망 링크"
+
+#: ../class-fire-utils_settings_map.php:309
+#: ../class-fire-utils_settings_map.php:986
+msgid "Set up your social links"
+msgstr "누리소통망 링크 설정"
+
+#: ../class-fire-utils_settings_map.php:313
+msgid "Images"
+msgstr "이미지"
+
+#: ../class-fire-utils_settings_map.php:315
+#: ../class-fire-utils_settings_map.php:1004
+msgid "Various images settings"
+msgstr "다양한 이미지 설정"
+
+#: ../class-fire-utils_settings_map.php:319
+msgid "Links"
+msgstr "링크"
+
+#: ../class-fire-utils_settings_map.php:321
+#: ../class-fire-utils_settings_map.php:992
+msgid "Various links settings"
+msgstr "다양한 링크 설정"
+
+#: ../class-fire-utils_settings_map.php:325
+#: ../class-fire-utils_settings_map.php:1096
+msgid "Custom CSS"
+msgstr "사용자정의 CSS"
+
+#: ../class-fire-utils_settings_map.php:327
+#: ../class-fire-utils_settings_map.php:1098
+msgid "Add your own CSS"
+msgstr "own CSS 추가"
+
+#: ../class-fire-utils_settings_map.php:331
+#: ../class-fire-utils_settings_map.php:1008
+msgid "Responsive settings"
+msgstr "응답설정"
+
+#: ../class-fire-utils_settings_map.php:333
+#: ../class-fire-utils_settings_map.php:1010
+msgid "Various settings for responsive display"
+msgstr "출력되는 다양한 응답 설정"
+
+#: ../class-fire-utils_settings_map.php:362
+msgid "Manage menus"
+msgstr "메뉴관리"
+
+#: ../class-fire-utils_settings_map.php:368
+msgid "Select a submenu expansion option"
+msgstr "하위메뉴 확장옵션 선택"
+
+#: ../class-fire-utils_settings_map.php:372
+msgid "Expand submenus on click"
+msgstr "클릭시 하위메뉴 확장"
+
+#: ../class-fire-utils_settings_map.php:373
+msgid "Expand submenus on hover"
+msgstr "마우스오버시 하위메뉴 확장"
+
+#: ../class-fire-utils_settings_map.php:388
+msgid "Choose a predefined skin"
+msgstr "사전정의된 스킨 선택"
+
+#: ../class-fire-utils_settings_map.php:397
+msgid "Performance : use the minified CSS stylesheet"
+msgstr "성능 : 최소한의 CSS 스타일시트 사용"
+
+#: ../class-fire-utils_settings_map.php:400
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr "최소한의 스킨 스타일시트를 사용하여서 로딩시간을 단축합니다"
+
+#: ../class-fire-utils_settings_map.php:406
+#: ../class-fire-utils_settings_map.php:1220
+msgid "Display top border"
+msgstr "위의 경계 표시"
+
+#: ../class-fire-utils_settings_map.php:410
+#: ../class-fire-utils_settings_map.php:1224
+msgid "Uncheck this option to remove the colored top border."
+msgstr "위쪽 테두리의 색을 제거하려면 이 옵션의 체크를 풀어주세요"
+
+#: ../class-fire-utils_settings_map.php:422
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "로고 업로드 (지원 포맷 :  .jpg, .png, .gif, svg, svgz)"
+
+#: ../class-fire-utils_settings_map.php:431
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "크기가 폭 250px , 높이 100px로 변경됩니다."
+
+#: ../class-fire-utils_settings_map.php:447
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "파비콘 업로드 (지원 포맷 : .ico, .png, .gif)"
+
+#: ../class-fire-utils_settings_map.php:465
+msgid "Choose content and layout"
+msgstr "컨탠츠와 레이아웃 선택"
+
+#: ../class-fire-utils_settings_map.php:473
+msgid "Front page displays"
+msgstr "메인페이지 보기"
+
+#: ../class-fire-utils_settings_map.php:478
+msgid "Don't show any posts or page"
+msgstr "게시글이나 페이지를 표시하지 않음"
+
+#: ../class-fire-utils_settings_map.php:479
+msgid "Your latest posts"
+msgstr "마지막 게시글"
+
+#: ../class-fire-utils_settings_map.php:480
+msgid "A static page"
+msgstr "정적 페이지"
+
+#: ../class-fire-utils_settings_map.php:486
+msgid "Front page"
+msgstr "메인페이지"
+
+#: ../class-fire-utils_settings_map.php:494
+msgid "Posts page"
+msgstr "게시글 페이지"
+
+#: ../class-fire-utils_settings_map.php:503
+msgid "Set up the front page layout"
+msgstr "메인페이지 레이아웃 설정"
+
+#: ../class-fire-utils_settings_map.php:514
+msgid "Slider options"
+msgstr "슬라이더 옵션"
+
+#: ../class-fire-utils_settings_map.php:515
+msgid "Select front page slider"
+msgstr "메인페이지 슬라이더 선택"
+
+#: ../class-fire-utils_settings_map.php:527
+msgid "Full width slider"
+msgstr "전체 폭 슬라이더"
+
+#: ../class-fire-utils_settings_map.php:538
+msgid "Delay between each slides"
+msgstr "각각 슬라이드간의 지연시간"
+
+#: ../class-fire-utils_settings_map.php:543
+msgid "in ms : 1000ms = 1s"
+msgstr "기준 : ms(1000ms = 1s)"
+
+#: ../class-fire-utils_settings_map.php:551
+msgid "Featured pages options"
+msgstr "기능 페이지 옵션"
+
+#: ../class-fire-utils_settings_map.php:552
+msgid "Display home featured pages area"
+msgstr "홈페이지 영역 확인"
+
+#: ../class-fire-utils_settings_map.php:556
+msgid "Enable"
+msgstr "활성화"
+
+#: ../class-fire-utils_settings_map.php:557
+msgid "Disable"
+msgstr "비활성화"
+
+#: ../class-fire-utils_settings_map.php:566
+msgid "Show images"
+msgstr "이미지 보기"
+
+#: ../class-fire-utils_settings_map.php:569
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"이미지 (페이지 편집 화면에서) 각 페이지의 \"기능을 갖춘 이미지\"로 설정됩니"
+"다.기능 페이지 이미지를 사용하지 않도록 위의 옵션을 선택 취소합니다."
+
+#: ../class-fire-utils_settings_map.php:575
+msgid "Read more &raquo;"
+msgstr "더 많은 정보 : &raquo;"
+
+#: ../class-fire-utils_settings_map.php:577
+msgid "Button text"
+msgstr "버튼 텍스트"
+
+#: ../class-fire-utils_settings_map.php:598
+#: ../class-fire-utils_settings_map.php:1142
+msgid "Display Breadcrumb"
+msgstr "이동경로 확인"
+
+#: ../class-fire-utils_settings_map.php:608
+#: ../class-fire-utils_settings_map.php:1152
+msgid "Choose the global default layout"
+msgstr "전체 기본 레이아웃 선택"
+
+#: ../class-fire-utils_settings_map.php:619
+#: ../class-fire-utils_settings_map.php:1164
+msgid "Force default layout everywhere"
+msgstr "모든페이지 기본레이아웃"
+
+#: ../class-fire-utils_settings_map.php:622
+#: ../class-fire-utils_settings_map.php:1167
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr "이 옵션은 모든 게시글/페이지에 특정 레이아웃을 우선적용합니다."
+
+#: ../class-fire-utils_settings_map.php:629
+#: ../class-fire-utils_settings_map.php:1173
+msgid "Choose the posts default layout"
+msgstr "게시글 기본 레이아웃 선택"
+
+#: ../class-fire-utils_settings_map.php:641
+#: ../class-fire-utils_settings_map.php:1195
+msgid "Maximum number of posts per page"
+msgstr "페이지당 게시글 최대 수"
+
+#: ../class-fire-utils_settings_map.php:652
+#: ../class-fire-utils_settings_map.php:1205
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "게시글 리스트 옵션 설정"
+
+#: ../class-fire-utils_settings_map.php:656
+#: ../class-fire-utils_settings_map.php:1209
+msgid "Display the excerpt"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:657
+#: ../class-fire-utils_settings_map.php:1210
+msgid "Display the full content"
+msgstr "전체 컨탠츠 보이기"
+
+#: ../class-fire-utils_settings_map.php:665
+#: ../class-fire-utils_settings_map.php:1182
+msgid "Choose the pages default layout"
+msgstr "페이지 기본 레이아웃 선택"
+
+#: ../class-fire-utils_settings_map.php:685
+msgid "Enable comments on pages"
+msgstr "페이지에 댓글 활성화"
+
+#: ../class-fire-utils_settings_map.php:688
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"이 옵션은 페이지에 댓글을 활성화 합니다. 페이지 목록 화면에서 빠른 편집 모드"
+"로 단일 페이지의 댓글을 비활성화 할 수 있습니다."
+
+#: ../class-fire-utils_settings_map.php:702
+#: ../class-fire-utils_settings_map.php:1653
+msgid "Social links in header"
+msgstr "헤더에 누리소통망링크 넣기"
+
+#: ../class-fire-utils_settings_map.php:711
+#: ../class-fire-utils_settings_map.php:1671
+msgid "Social links in left sidebar"
+msgstr "왼쪽 사이드바에 누리소통망링크 넣기"
+
+#: ../class-fire-utils_settings_map.php:720
+#: ../class-fire-utils_settings_map.php:1681
+msgid "Social links in right sidebar"
+msgstr "오른쪽 사이드바에 누리소통망링크 넣기"
+
+#: ../class-fire-utils_settings_map.php:728
+#: ../class-fire-utils_settings_map.php:1662
+msgid "Social links in footer"
+msgstr "바닥글에 누리소통망링크 넣기"
+
+#: ../class-fire-utils_settings_map.php:749
+msgid "Enable/disable lightbox effect on images"
+msgstr "이미지에 라이트박스 효과 활성화/비활성화"
+
+#: ../class-fire-utils_settings_map.php:752
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"활성화 되면 이 옵션은 이미지를 클릭했을 때  줌 효과가 있는 팝업 창을 활성화 "
+"합니다. 이것은 이미지 갤러리에 적용되지 않습니다."
+
+#: ../class-fire-utils_settings_map.php:758
+msgid "Autoscale images on zoom"
+msgstr "줌에서 이미지 자동 리사이즈"
+
+#: ../class-fire-utils_settings_map.php:761
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:767
+msgid "Enable/disable retina support"
+msgstr "레티나 지원 활성화/비활성화"
+
+#: ../class-fire-utils_settings_map.php:771
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr "활성화 되면 웹사이트가 고해상도 기기를 지원합니다."
+
+#: ../class-fire-utils_settings_map.php:772
+msgid ""
+"It is strongly recommended to regenerate your media library images in high "
+"definition with this free plugin"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:773
+msgid "regenerate thumbnails"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:775
+msgid "Open the description page of the Regenerate thumbnails plugin"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:781
+msgid "Sliders : display on loading icon before rendering the slides"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:784
+msgid ""
+"When checked, this option displays a loading icon when the slides are beeing "
+"setup."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:797
+msgid "Enable/disable smooth scroll on click"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:800
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:813
+msgid "Enable/disable blocks reordering on small devices"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:816
+msgid ""
+"On responsive mode, for smartphone viewport, the sidebars are moved after "
+"the main content block."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:822
+msgid "Enable/disable slider's slides centering on any devices"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:825
+msgid ""
+"This option centers your slider (carousel) pictures vertically and "
+"horizontally on any devices when displayed in full width mode"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:840
+#: ../class-fire-utils_settings_map.php:1701
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:844
+#: ../class-fire-utils_settings_map.php:1705
+msgid ""
+"Use this field to test small chunks of CSS code. For important CSS "
+"customizations, you'll want to modify the style.css file of a"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:845
+#: ../class-fire-utils_settings_map.php:1706
+msgid "child theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:846
+#: ../class-fire-utils_settings_map.php:1707
+msgid "How to create and use a child theme ?"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:990
+msgid "Links style and effects"
+msgstr "링크 스타일과 효과"
+
+#: ../class-fire-utils_settings_map.php:996
+msgid "Titles icons settings"
+msgstr "타이틀 아이콘 설정"
+
+#: ../class-fire-utils_settings_map.php:998
+msgid "Set up the titles icons options"
+msgstr "타이틀 아이콘 옵션 설정"
+
+#: ../class-fire-utils_settings_map.php:1002
+msgid "Image settings"
+msgstr "이미지 "
+
+#: ../class-fire-utils_settings_map.php:1014
+#, fuzzy
+msgid "Header design and layout"
+msgstr "디자인과 레이아웃"
+
+#: ../class-fire-utils_settings_map.php:1014
+msgid "Design and layout"
+msgstr "디자인과 레이아웃"
+
+#: ../class-fire-utils_settings_map.php:1019
+msgid "Site Title & Tagline"
+msgstr "누리집 타이틀 & 태그라인"
+
+#: ../class-fire-utils_settings_map.php:1030
+msgid "Navigation"
+msgstr "탐색"
+
+#: ../class-fire-utils_settings_map.php:1033
+#, php-format
+msgid "Your theme supports %s menu. Select which menu you would like to use."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1033
+msgid ""
+"You can edit your menu content on the Menus screen in the Appearance section."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1052
+msgid "Post lists : blog, archives, ..."
+msgstr "게시글 리스트 : 블로그, 아카이브, ..."
+
+#: ../class-fire-utils_settings_map.php:1054
+msgid "Set up post lists options"
+msgstr "게시글 리스트 옵션"
+
+#: ../class-fire-utils_settings_map.php:1058
+msgid "Single posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1060
+msgid "Set up single posts options"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1064
+msgid "Breadcrumb"
+msgstr "경로"
+
+#: ../class-fire-utils_settings_map.php:1066
+msgid "Set up breadcrumb options"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1078
+msgid "Post metas (category, tags, custom taxonomies)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1080
+msgid "Set up post metas options"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1090
+msgid "Footer global settings"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1092
+msgid "Set up footer global options"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1156
+msgid "Note : the home page layout has to be set in the home page section"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1230
+msgid "Layout"
+msgstr "레이아웃"
+
+#: ../class-fire-utils_settings_map.php:1234
+msgid "Logo / title on the left"
+msgstr "로고 / 타이틀 왼쪽에 표시"
+
+#: ../class-fire-utils_settings_map.php:1235
+msgid "Logo / title centered"
+msgstr "로고 / 타이틀 가운데에 표시"
+
+#: ../class-fire-utils_settings_map.php:1236
+msgid "Logo / title on the right"
+msgstr "로고 / 타이틀 오른쪽에 표시"
+
+#: ../class-fire-utils_settings_map.php:1245
+msgid "Display the tagline"
+msgstr "태그라인 표시"
+
+#: ../class-fire-utils_settings_map.php:1254
+msgid "Display menu in a box"
+msgstr "메뉴를 박스안에 표시"
+
+#: ../class-fire-utils_settings_map.php:1259
+msgid ""
+"If checked, this option wraps the header menu/tagline/social in a light grey "
+"box."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1264
+msgid "Sticky on scroll"
+msgstr "스크롤 고정"
+
+#: ../class-fire-utils_settings_map.php:1269
+msgid ""
+"If checked, this option makes the header stick to the top of the page on "
+"scroll down."
+msgstr ""
+"체크할 경우, 여러분들이 위에서 아래로 스크롤을 내리면 로고가 같이 따라옵니다"
+
+#: ../class-fire-utils_settings_map.php:1274
+msgid "Sticky header : display the tagline"
+msgstr "고정 헤더 : 태그라인 보이기"
+
+#: ../class-fire-utils_settings_map.php:1283
+msgid "Sticky header : display the title / logo"
+msgstr "고정 헤더 : 타이틀/로고 보이기"
+
+#: ../class-fire-utils_settings_map.php:1292
+msgid "Sticky header : shrink title / logo"
+msgstr "고정 헤더 : 타이틀/로고 크기 줄이기"
+
+#: ../class-fire-utils_settings_map.php:1301
+msgid "Sticky header : display the menu"
+msgstr "고정 헤더 : 메뉴 보이기"
+
+#: ../class-fire-utils_settings_map.php:1310
+#, fuzzy
+msgid "Sticky header : semi-transparent on scroll"
+msgstr "고정 헤더 : 메뉴 보이기"
+
+#: ../class-fire-utils_settings_map.php:1319
+msgid "Set the header z-index"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1327
+msgid "What is"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1328
+msgid "the z-index"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1336
+msgid "Menu position"
+msgstr "메뉴 위치"
+
+#: ../class-fire-utils_settings_map.php:1340
+msgid "Menu on the left"
+msgstr "왼쪽에 위치"
+
+#: ../class-fire-utils_settings_map.php:1341
+msgid "Menu on the right"
+msgstr "오른쪽에 위치"
+
+#: ../class-fire-utils_settings_map.php:1349
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr "하위메뉴에 페이드 효과"
+
+#: ../class-fire-utils_settings_map.php:1358
+msgid "Hover move effect for the sub menu items"
+msgstr "서브메뉴의 움직임 효과"
+
+#: ../class-fire-utils_settings_map.php:1367
+msgid ""
+"In responsive mode, limit the height of the dropdown menu block to the "
+"visible viewport"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1377
+msgid "Fade effect on link hover"
+msgstr "링크오버의 페이트효과"
+
+#: ../class-fire-utils_settings_map.php:1388
+msgid "Display the breadcrumb on home page"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1396
+msgid "Display the breadcrumb in pages"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1405
+msgid "Display the breadcrumb in single posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1414
+msgid ""
+"Display the breadcrumb in posts lists : blog page, archives, search "
+"results..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1425
+msgid "Display icons next to titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1429
+msgid ""
+"When this option is checked, a contextual icon is displayed next to the "
+"titles of pages, posts, archives, and WP built-in widgets."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1435
+msgid "Display a page icon next to the page title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1444
+msgid "Display a post icon next to the single post title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1453
+msgid "Display an icon next to the archive title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1456
+msgid ""
+"When this option is checked, an archive type icon is displayed in the "
+"heading of every types of archives, on the left of the title. An archive "
+"page can be : category, tag, author, date archive, custom taxonomies, search "
+"results."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1463
+msgid "Display an icon next to each post title in an archive page"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1466
+msgid ""
+"When this option is checked, a post type icon is displayed on the left of "
+"each post titles in an archive page. An archive page can be : category, tag, "
+"author, date archive, custom taxonomies, search results."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1473
+msgid "WP sidebar widgets : display icons next to titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1482
+msgid "WP footer widgets : display icons next to titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1494
+msgid "Display posts metas"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1497
+msgid ""
+"When this option is checked, the post metas (like taxonomies, date and "
+"author) are displayed below the post titles."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1504
+msgid "Display posts metas on home"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1513
+msgid "Display posts metas for single posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1522
+msgid "Display posts metas in post lists (archives, blog page)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1534
+#, fuzzy
+msgid "Set the excerpt length (in number of words) "
+msgstr "길이 설정(글자수)"
+
+#: ../class-fire-utils_settings_map.php:1544
+msgid "Thumbnails options"
+msgstr "섬네일 옵션"
+
+#: ../class-fire-utils_settings_map.php:1545
+msgid "Display the post thumbnails"
+msgstr "게시글 섬네일 표시"
+
+#: ../class-fire-utils_settings_map.php:1549
+msgid ""
+"When this option is checked, the post thumbnails are displayed in all post "
+"lists : blog, archives, author page, search pages, ..."
+msgstr ""
+"이 옵션을 체크할 경우, 게시글에 이런 섬네일들이 표시됩니다: 블로그, 아카이"
+"브, 작성자페이지, 검색 페이지"
+
+#: ../class-fire-utils_settings_map.php:1554
+msgid "If no featured image is set, use the last image attached to this post."
+msgstr "특별히 이미지를 첨부하지 않으면 게시글에 첨부된 이미지를 사용"
+
+#: ../class-fire-utils_settings_map.php:1562
+msgid "Thumbnails shape"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1566
+msgid "Rounded, expand on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1567
+msgid "Rounded, no expansion"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1568
+msgid "Squared, expand on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1569
+msgid "Squared, no expansion"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1570
+msgid "Rectangular with no effect"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1571
+msgid "Rectangular with blur effect on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1572
+msgid "Rectangular with unblur effect on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1580
+#: ../class-fire-utils_settings_map.php:1630
+msgid "Set the thumbnail's max height in pixels"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1591
+msgid "Thumbnails position"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1595
+msgid "Top"
+msgstr "위"
+
+#: ../class-fire-utils_settings_map.php:1596
+msgid "Right"
+msgstr "오른쪽"
+
+#: ../class-fire-utils_settings_map.php:1597
+msgid "Bottom"
+msgstr "아래"
+
+#: ../class-fire-utils_settings_map.php:1598
+msgid "Left"
+msgstr "왼쪽"
+
+#: ../class-fire-utils_settings_map.php:1606
+msgid "Alternate thumbnail/content"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1615
+msgid "Post thumbnail position"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1619
+msgid "Don't display"
+msgstr "표시하지 않음"
+
+#: ../class-fire-utils_settings_map.php:1620
+msgid "Before the title in full width"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1621
+msgid "Before the title boxed"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1622
+msgid "After the title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1643
+msgid "Display a back to top arrow on scroll"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1690
+msgid "Social link title in sidebars"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1696
+msgid "Will be hidden if empty"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1715
+msgid "Set slider's height in pixels"
+msgstr "슬라이더 높이(단위 : 픽셀)"
+
+#: ../class-fire-utils_settings_map.php:1725
+msgid "Apply this height to all sliders"
+msgstr "모든 슬라이더에 적용"
+
+#: ../class-fire-utils_settings_map.php:1733
+msgid "Replace the default image slider's height"
+msgstr "기본 이미지 슬라이더의 높이를 교체"
+
+#: ../class-fire-utils_settings_map.php:1739
+msgid ""
+"If this option is checked, your images will be resized with your custom "
+"height on upload. This is better for your overall loading performance."
+msgstr ""
+"이 옵션을 선택하면, 당신의 이미지는 슬라이더의 크기대로 조정됩니다. 이는 전"
+"체 로딩에 좋은영향을 끼칩니다."
+
+#: ../class-fire-utils_settings_map.php:1740
+msgid "You might want to regenerate your thumbnails."
+msgstr ""
+
 #: ../parts/class-content-attachment.php:41
 msgid "&larr; Previous"
 msgstr ""
@@ -1846,7 +1757,7 @@ msgstr ""
 #: ../parts/class-content-breadcrumb.php:527
 #, php-format
 msgid "Minute %1$s"
-msgstr ""
+msgstr "%1$s 분"
 
 #: ../parts/class-content-breadcrumb.php:527
 msgid "i"
@@ -1882,13 +1793,13 @@ msgstr ""
 #: ../parts/class-content-breadcrumb.php:561
 #, php-format
 msgid "Week %1$s"
-msgstr ""
+msgstr "%1$s 주"
 
 #: ../parts/class-content-breadcrumb.php:587
 #: ../parts/class-content-breadcrumb.php:589
 #, php-format
 msgid "Search results for &quot;%1$s&quot;"
-msgstr ""
+msgstr "&quot;%1$s&quot;의 검색 결과"
 
 #: ../parts/class-content-breadcrumb.php:594
 msgid "404 Not Found"
@@ -1898,15 +1809,15 @@ msgstr "404 문서를 찾을 수 없음"
 #: ../parts/class-content-breadcrumb.php:601
 #, php-format
 msgid "Page %d"
-msgstr ""
+msgstr "페이지 %d"
 
 #: ../parts/class-content-breadcrumb.php:670
 msgid "Split"
-msgstr ""
+msgstr "나누기"
 
 #: ../parts/class-content-breadcrumb.php:674
 msgid "Merge"
-msgstr ""
+msgstr "병합"
 
 #: ../parts/class-content-comments.php:57
 msgid "One thought on"
@@ -1914,11 +1825,11 @@ msgstr ""
 
 #: ../parts/class-content-comments.php:59
 msgid "thoughts on"
-msgstr ""
+msgstr "하나의 생각"
 
 #: ../parts/class-content-comments.php:119
 msgid "Pingback:"
-msgstr ""
+msgstr "핑백:"
 
 #: ../parts/class-content-comments.php:119
 msgid "(Edit)"
@@ -1932,38 +1843,39 @@ msgstr "전송"
 msgid "Post author"
 msgstr "작성자"
 
+#. translators: 1: date, 2: time
 #: ../parts/class-content-comments.php:166
 #, php-format
 msgid "%1$s at %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #: ../parts/class-content-comments.php:171
 msgid "Your comment is awaiting moderation."
-msgstr ""
+msgstr "댓글이 검토를 기다리고 있습니다."
 
 #: ../parts/class-content-comments.php:206
 msgid "Comment navigation"
-msgstr ""
+msgstr "댓글 내비게이션"
 
 #: ../parts/class-content-comments.php:212
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
-msgstr ""
+msgstr "<span class=\"meta-nav\">&larr;</span> 예전 덧글"
 
 #: ../parts/class-content-comments.php:220
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
+msgstr "새로운 댓글<span class=\"meta-nav\">&rarr;</span>"
 
 #: ../parts/class-content-comments.php:252
 msgid "Comments are closed."
-msgstr ""
+msgstr "댓글이 닫혔습니다."
 
 #: ../parts/class-content-comments.php:267
 msgid "Leave a comment"
-msgstr "덧글 삭제"
+msgstr "덧글 달기"
 
 #: ../parts/class-content-featured_pages.php:125
 msgid "Customizer screen"
-msgstr ""
+msgstr "사용자 정의 화면"
 
 #: ../parts/class-content-featured_pages.php:125
 msgid " here"
@@ -1971,7 +1883,7 @@ msgstr ""
 
 #: ../parts/class-content-featured_pages.php:129
 msgid "Featured page"
-msgstr ""
+msgstr "특성 페이지"
 
 #: ../parts/class-content-featured_pages.php:132
 #, php-format
@@ -1979,205 +1891,159 @@ msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the Customizr screen%s."
 msgstr ""
+"특성 페이지 설명 텍스트 : 페이지 요약 글을 사용하거나 Customizr 화면 %s에서 "
+"자신의 사용자 정의 텍스트를 설정하세요."
 
 #: ../parts/class-content-gallery.php:187
 msgid "Missing Attachment"
-msgstr ""
+msgstr "존재하지 않는 첨부파일"
 
-#: ../parts/class-content-headings.php:151
-#: ../parts/class-content-headings.php:156
-msgid "{no title} Read the post &raquo;"
-msgstr ""
-
-#: ../parts/class-content-headings.php:155
-#, php-format
-msgid "Permalink to %s"
-msgstr ""
-
-#: ../parts/class-content-headings.php:193
-msgid "Comment(s) on"
-msgstr ""
-
-#: ../parts/class-content-headings.php:299
+#: ../parts/class-content-headings.php:58
 msgid "Ooops, page not found"
 msgstr "페이지를 찾지 못하였습니다."
 
-#: ../parts/class-content-headings.php:310
+#: ../parts/class-content-headings.php:69
 msgid "No"
 msgstr "아니오"
 
-#: ../parts/class-content-headings.php:311
+#: ../parts/class-content-headings.php:70
 msgid "Search Results for :"
-msgstr ""
+msgstr "검색 결과 :"
 
-#: ../parts/class-content-headings.php:326
+#: ../parts/class-content-headings.php:85
 msgid "Author Archives :"
-msgstr ""
+msgstr "글쓴이 글 보관함 :"
 
-#: ../parts/class-content-headings.php:340 ../parts/class-content-post.php:161
+#: ../parts/class-content-headings.php:99 ../parts/class-content-post.php:161
 #, php-format
 msgid "About %s"
 msgstr "%s 이란?"
 
-#: ../parts/class-content-headings.php:353
+#: ../parts/class-content-headings.php:112
 msgid "Category Archives :"
 msgstr "카테고리 아카이브:"
 
-#: ../parts/class-content-headings.php:369
+#: ../parts/class-content-headings.php:128
 msgid "Tag Archives :"
 msgstr "태그 아카이브:"
 
-#: ../parts/class-content-headings.php:382
+#: ../parts/class-content-headings.php:141
 #, php-format
 msgid "Daily Archives: %s"
-msgstr ""
+msgstr "일별 글 보관함: %s"
 
-#: ../parts/class-content-headings.php:382
+#: ../parts/class-content-headings.php:141
 msgid "Archives"
-msgstr ""
+msgstr "글 보관함"
 
-#: ../parts/class-content-headings.php:383
+#: ../parts/class-content-headings.php:142
 #, php-format
 msgid "Monthly Archives: %s"
-msgstr ""
+msgstr "월별 글 보관함: %s"
 
-#: ../parts/class-content-headings.php:384
+#: ../parts/class-content-headings.php:143
 #, php-format
 msgid "Yearly Archives: %s"
-msgstr ""
+msgstr "년도별 글 보관함: %s"
 
-#: ../parts/class-content-headings.php:447
-#, fuzzy
-msgid "comment"
-msgstr "덧글"
+#: ../parts/class-content-headings.php:229
+#: ../parts/class-content-headings.php:235
+msgid "{no title} Read the post &raquo;"
+msgstr "{no title} 글 읽기 &raquo;"
+
+#: ../parts/class-content-headings.php:234
+#, php-format
+msgid "Permalink to %s"
+msgstr "%s 고유주소"
+
+#: ../parts/class-content-headings.php:250
+msgid "Comment(s) on"
+msgstr ""
 
 #: ../parts/class-content-page.php:42 ../parts/class-content-post.php:120
 #: ../parts/class-content-post_list.php:149
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
+msgstr "계속 읽기 <span class=\"meta-nav\">&rarr;</span>"
 
 #: ../parts/class-content-page.php:44 ../parts/class-content-post.php:121
 #: ../parts/class-content-post_list.php:150
 msgid "Pages:"
-msgstr ""
+msgstr "페이지:"
 
 #: ../parts/class-content-post.php:165
 #, php-format
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
+msgstr "%s의 모든 글 보기 <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-post_metas.php:83
-#, php-format
-msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:120
-#, php-format
-msgid "This entry was posted in %1$s and tagged %2$s"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:122
-#, php-format
-msgid "This entry was posted in %1$s"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:124
-#, php-format
-msgid "This entry was tagged %2$s"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:129
-#, php-format
-msgid "This entry was posted on %3$s"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:131
-#, php-format
-msgid "on %3$s"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:133
-#, php-format
-msgid "and posted on %3$s"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:140
-msgid "This entry was posted"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:140
-#: ../parts/class-content-post_metas.php:142
-#, php-format
-msgid "by %4$s"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:150
-msgid "(updated today)"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:150
-#, php-format
-msgid "(updated %6$s days ago)"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:151
-msgid "(updated 1 day ago)"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:154
-#, php-format
-msgid "(updated on %5$s)"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:178
+#: ../parts/class-content-post_metas.php:49
 msgid "Published"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:181
+#: ../parts/class-content-post_metas.php:52
 msgid "at dimensions"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:181
+#: ../parts/class-content-post_metas.php:52
 msgid "Link to full-size image"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:182
+#: ../parts/class-content-post_metas.php:53
 msgid "in"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:182
+#: ../parts/class-content-post_metas.php:53
 msgid "Return to "
-msgstr ""
+msgstr "돌아가기"
 
-#: ../parts/class-content-post_metas.php:210
-#: ../parts/class-content-post_metas.php:238
-#, php-format
-msgid "View all posts in %s"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:352
+#: ../parts/class-content-post_metas.php:75
 #, php-format
 msgid "View all posts by %s"
+msgstr "%s의 모든 글 보기"
+
+#: ../parts/class-content-post_metas.php:83
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
 msgstr ""
+"카테고리 %1$s 태그 %2$s %3$s<span class=\"by-author\"> 글쓴이 %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:85
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr "카테고리 %1$s %3$s<span class=\"by-author\"> 글쓴이 %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:87
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr "%3$s<span class=\"by-author\"> 글쓴이 %4$s</span>."
+
+#: ../parts/class-content-post_metas.php:129
+#: ../parts/class-content-post_metas.php:159
+#, php-format
+msgid "View all posts in %s"
+msgstr "%s의 글 모두 보기"
 
 #: ../parts/class-content-post_navigation.php:54
 #: ../parts/class-content-post_navigation.php:109
 msgid "Post navigation"
-msgstr ""
+msgstr "게시글 내비게이션"
 
 #: ../parts/class-content-post_navigation.php:122
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
-msgstr ""
+msgstr "<span class=\"meta-nav\">&larr;</span> 이전 글"
 
 #: ../parts/class-content-post_navigation.php:142
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
+msgstr "다음 글 <span class=\"meta-nav\">&rarr;</span>"
 
 #: ../parts/class-footer-footer_main.php:177
 msgid "Back to top"
 msgstr "맨 위로"
 
-#: ../parts/class-header-header_main.php:249
+#: ../parts/class-header-header_main.php:235
 msgid "Back Home"
 msgstr "홈으로"
 
