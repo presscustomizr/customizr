@@ -802,7 +802,7 @@ msgstr "幻灯片：在打开幻灯片之前先显示加载图片"
 
 #: ../class-fire-utils_settings_map.php:798
 msgid ""
-"When checked, this option displays a loading icon when the slides are beeing "
+"When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr "选择此项后，这个选项在用户设置幻灯片的过程中会以加载图片的的方式显示。"
 

@@ -1202,7 +1202,7 @@ msgstr ""
 #: inc/class-fire-utils_settings_map.php:784
 msgid ""
 "When checked, this option displays a loading icon when the slides are "
-"beeing setup."
+"being setup."
 msgstr ""
 
 #: inc/class-fire-utils_settings_map.php:797

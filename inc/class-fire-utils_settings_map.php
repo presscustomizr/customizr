@@ -3,7 +3,7 @@
 * Defines the customizer setting map
 * On live context, used to generate the default option values
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
@@ -36,10 +36,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
     /**
     * Generates the featured pages options
-    * 
+    *
     * @package Customizr
     * @since Customizr 3.0.15
-    * 
+    *
     */
     private function tc_generates_featured_pages() {
       $default = array(
@@ -144,7 +144,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           //skips the minified
           if ( false !== strpos($file, '.min.') )
             continue;
-          
+
           if ( $file[0] != '.' && !is_dir($path.$file) ) {
             if ( substr( $file, -4) == '.css' ) {
               $skin_list[$file] = isset($default_skin_list[$file]) ?  call_user_func( '__' , $default_skin_list[$file] , 'customizr' ) : substr_replace( $file , '' , -4 , 4);
@@ -172,13 +172,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
     /**
     * Returns the layout choices array
-    * 
+    *
     * @package Customizr
     * @since Customizr 3.1.0
     */
     private function tc_layout_choices() {
         $global_layout  = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
-        $layout_choices = array(); 
+        $layout_choices = array();
         foreach ($global_layout as $key => $value) {
           $layout_choices[$key]   = ( $value['customizer'] ) ? call_user_func(  '__' , $value['customizer'] , 'customizr' ) : null ;
         }
@@ -196,7 +196,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $__options    =   get_option('tc_theme_options');
       $slider_names   =   isset($__options['tc_sliders']) ? $__options['tc_sliders'] : array();
 
-      $slider_choices = array( 
+      $slider_choices = array(
         0     =>  __( '&mdash; No slider &mdash;' , 'customizr' ),
         'demo'  =>  __( '&mdash; Demo Slider &mdash;' , 'customizr' )
         );
@@ -212,7 +212,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       /**
      * Returns the list of available skins from child (if exists) and parent theme
-     * 
+     *
      * @package Customizr
      * @since Customizr 3.0.11
      * @updated Customizr 3.0.15
@@ -229,10 +229,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
     /**
     * Defines sections, settings and function of customizer and return and array
-    * Also used to get the default options array, in this case $get_default = true and we DISABLE the __get_option (=>infinite loop) 
-    * 
+    * Also used to get the default options array, in this case $get_default = true and we DISABLE the __get_option (=>infinite loop)
+    *
     * @package Customizr
-    * @since Customizr 3.0 
+    * @since Customizr 3.0
     */
     function tc_customizer_map( $get_default = null ) {
       $add_panel = array(
@@ -312,11 +312,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                       'tc_page_comments'          => array(
                                         'title'     =>  __( 'Comments' , 'customizr' ),
                                         'priority'    =>  160,
-                                        'description' =>  __( 'Set up comments options' , 'customizr' ),  
+                                        'description' =>  __( 'Set up comments options' , 'customizr' ),
                       ),
 
                       'tc_social_settings'        => array(
-                                        'title'     =>  __( 'Social links' , 'customizr' ), 
+                                        'title'     =>  __( 'Social links' , 'customizr' ),
                                         'priority'    =>  170,
                                         'description' =>  __( 'Set up your social links' , 'customizr' ),
                       ),
@@ -363,8 +363,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       /*-----------------------------------------------------------------------------------------------------
                           NAVIGATION SECTION
-      ------------------------------------------------------------------------------------------------------*/  
-      $navigation_option_map = array(         
+      ------------------------------------------------------------------------------------------------------*/
+      $navigation_option_map = array(
               'menu_button'           => array(
                                 'setting_type'  =>  null,
                                 'control'   =>  'TC_controls' ,
@@ -373,7 +373,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'link'      =>  'nav-menus.php' ,
                                 'buttontext'  => __( 'Manage menus' , 'customizr' ),
               ),
-              //The hover menu type has been introduced in v3.1.0. 
+              //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
               'tc_theme_options[tc_menu_type]'  => array(
                                 'default'   =>  ( false == get_option('tc_theme_options') ) ? 'hover' : 'click' ,
@@ -470,7 +470,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       /*-----------------------------------------------------------------------------------------------------
                                      FRONT PAGE SETTINGS
-      ------------------------------------------------------------------------------------------------------*/    
+      ------------------------------------------------------------------------------------------------------*/
       $front_page_option_map = array(
               //title
               'homecontent_title'         => array(
@@ -565,7 +565,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'title'       => __( 'Featured pages options' , 'customizr' ),
                                 'label'       => __( 'Display home featured pages area' , 'customizr' ),
                                 'section'     => 'tc_frontpage_settings' ,
-                                'type'        => 'select' , 
+                                'type'        => 'select' ,
                                 'choices'     => array(
                                         1 => __( 'Enable' , 'customizr' ),
                                         0 => __( 'Disable' , 'customizr' ),
@@ -604,7 +604,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       /*-----------------------------------------------------------------------------------------------------
                                      SITE LAYOUT
-      ------------------------------------------------------------------------------------------------------*/    
+      ------------------------------------------------------------------------------------------------------*/
       $layout_option_map = array(
               //Breadcrumb
               'tc_theme_options[tc_breadcrumb]' => array(
@@ -690,7 +690,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       /*-----------------------------------------------------------------------------------------------------
                                      COMMENTS SETTINGS
-      ------------------------------------------------------------------------------------------------------*/    
+      ------------------------------------------------------------------------------------------------------*/
       $comment_option_map = array(
               'tc_theme_options[tc_page_comments]'  =>  array(
                                 'default'     => 0,
@@ -746,7 +746,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'       => 40
               )
       );//end of social layout map
-              
+
       $social_option_map = array_merge( $social_layout_map , $this -> tc_generates_socials() );
       $social_option_map = apply_filters( 'tc_social_option_map', $social_option_map, $get_default );
 
@@ -795,7 +795,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( "Sliders : display on loading icon before rendering the slides" , "customizr" ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'When checked, this option displays a loading icon when the slides are beeing setup.' , 'customizr' ),
+                                'notice'    => __( 'When checked, this option displays a loading icon when the slides are being setup.' , 'customizr' ),
               )
       );//end of images options
       $images_option_map = apply_filters( 'tc_images_option_map', $images_option_map , $get_default );
@@ -865,13 +865,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       $add_setting_control = array(
               'add_setting_control'   =>   array_merge(
-                $navigation_option_map, 
-                $skin_option_map, 
-                $logo_favicon_option_map, 
-                $front_page_option_map, 
-                $layout_option_map,  
-                $comment_option_map, 
-                $social_option_map, 
+                $navigation_option_map,
+                $skin_option_map,
+                $logo_favicon_option_map,
+                $front_page_option_map,
+                $layout_option_map,
+                $comment_option_map,
+                $social_option_map,
                 $images_option_map,
                 $links_option_map,
                 $responsive_option_map,
@@ -951,7 +951,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $upload_dir = wp_upload_dir();
       return str_replace($upload_dir['baseurl'], '', $url);
     }
-    
+
 
 
     /**
@@ -996,7 +996,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_social_settings'        => array(
-                                            'title'     =>  __( 'Social links' , 'customizr' ), 
+                                            'title'     =>  __( 'Social links' , 'customizr' ),
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 9 : 20,
                                             'description' =>  __( 'Set up your social links' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
@@ -1081,8 +1081,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'description' =>  __( 'Set up breadcrumb options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
-                       
-                        
+
+
                         /*'tc_page_settings'        => array(
                                             'title'     =>  __( 'Pages' , 'customizr' ),
                                             'priority'    =>  25,
@@ -1121,7 +1121,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
     /**
     * Update initial setting_control map defined in class-fire-utils.php.
-    * 
+    *
     * @package Customizr
     * @since Customizr 3.2.0
     */
@@ -1161,7 +1161,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                               'type'          => 'checkbox' ,
                               'priority'      => 1,
               ),
-                
+
               //Global sidebar layout
               'tc_theme_options[tc_sidebar_global_layout]' => array(
                               'default'       => 'l' ,//Default sidebar layout is on the left
@@ -1396,7 +1396,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
               ),
-              
+
               /* Breadcrumb*/
               'tc_theme_options[tc_show_breadcrumb_home]'  =>  array(
                                 'default'       => 0,
@@ -1413,7 +1413,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_breadcrumb_settings' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 30
-                                              
+
               ),
               'tc_theme_options[tc_show_breadcrumb_in_single_posts]'  =>  array(
                                 'default'       => 1,
@@ -1422,7 +1422,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_breadcrumb_settings' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40
-                                              
+
               ),
               'tc_theme_options[tc_show_breadcrumb_in_post_lists]'  =>  array(
                                 'default'       => 1,
@@ -1431,7 +1431,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_breadcrumb_settings' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 50
-                                              
+
               ),
 
               /* Icons */
@@ -1552,7 +1552,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 30
               ),
-              
+
               'tc_theme_options[tc_show_post_metas_tags]'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'TC_controls',
@@ -1720,7 +1720,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 ),
                                 'priority'      => 40
               ),
-             
+
               'tc_theme_options[tc_post_list_thumb_alternate]'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
@@ -1729,7 +1729,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 50
               ),
-              
+
               'tc_theme_options[tc_single_post_thumb_location]'  =>  array(
                                 'default'       => 'hide',
                                 'control'     => 'TC_controls' ,

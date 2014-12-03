@@ -793,7 +793,7 @@ msgstr "Слайдеры: Показывать иконку загрузки п�
 
 #: ../class-fire-utils_settings_map.php:798
 msgid ""
-"When checked, this option displays a loading icon when the slides are beeing "
+"When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr ""
 "Если отмечено, эта опция показывает иконку загрузки когда есть слайды. "

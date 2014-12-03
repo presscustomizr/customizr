@@ -20,7 +20,7 @@ if ( have_comments() )
 ?>
 
 <div id="comments" class="<?php echo apply_filters( 'tc_comments_wrapper_class' , 'comments-area' ) ?>" >
-	<?php 
+	<?php
 		comment_form();
 		if ( have_comments() )
 			do_action ( '__comment' );

@@ -791,7 +791,7 @@ msgstr "Sliders : display on loading icon before rendering the slides"
 #: ../class-fire-utils_settings_map.php:798
 #, fuzzy
 msgid ""
-"When checked, this option displays a loading icon when the slides are beeing "
+"When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr "Pokud je zaškrnuto zobrazuje se ikona načítání po dobu přípravy slidů."
 

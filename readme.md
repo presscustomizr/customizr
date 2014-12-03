@@ -1,4 +1,4 @@
-# Customizr v3.2.8 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.9 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -605,7 +605,7 @@ The exceptions to this license are as follows:
 * added : (php) function to check if we are using a child theme. Handles WP version <3.4.
 * improved : (css) new conditional stylesheets ie8-hacks : icon sizes for IE8
 * improved : (css) better table styling
-* improved : (php) logo dimensions are beeing rendered in the img tag
+* improved : (php) logo dimensions are being rendered in the img tag
 * improved : (php) class group instanciation is faster, using the class group array instead of each singular group of class.
 * improved : (php) the search and archive headers are easier to filter now with dedicated functions
 * fixed : (css) archives and search icons color were all green for all skins

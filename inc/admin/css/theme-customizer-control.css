@@ -380,7 +380,7 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(grey.png) no-repeat;
+    background: url(img/grey.png) no-repeat;
     border: none;
     cursor: pointer;
     top: 4px;
@@ -422,7 +422,7 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_flat-grey,
     .iradio_flat-grey {
-        background-image: url(grey@2x.png);
+        background-image: url(img/grey@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }

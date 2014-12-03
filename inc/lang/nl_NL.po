@@ -797,7 +797,7 @@ msgstr "Sliders : toon het laad icoon voor het renderen van de slides"
 
 #: ../class-fire-utils_settings_map.php:798
 msgid ""
-"When checked, this option displays a loading icon when the slides are beeing "
+"When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr ""
 "Wannneer deze optie is ingeschakeld zal er een laad icoon getoond worden "
