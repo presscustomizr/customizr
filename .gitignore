@@ -21,6 +21,9 @@ PHP_CodeSniffer/
 # BUILD
 build/
 
+# PRO VERSION
+inc/init-pro.php
+
 # WPCS
 wpcs/
 

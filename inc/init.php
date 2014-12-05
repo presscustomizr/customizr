@@ -117,30 +117,13 @@ if ( ! class_exists( 'TC___' ) ) :
                     'footer'    => array(
                                     array('inc/parts', 'footer_main'),
                                 ),
-                    'addons'    => apply_filters('tc_addons_classes' , array() )
+                    'addons'    => apply_filters( 'tc_addons_classes' , array() )
                 )//end of array
             );//end of filters
 
-            if ( 'customizr-pro' == sanitize_title(THEMENAME) ) {
-              $_activation_classes = array(
-                'TC_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array(  THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
-                'TC_theme_updater'           => array('/addons/activation-key/updates/class_theme_updater.php'),
-                'TC_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  THEMENAME , 'customizr_pro' , CUSTOMIZR_VER ))
-              );
-
-              //loads and instanciates the activation / updates classes
-              foreach ( $_activation_classes as $name => $params ) {
-                  //don't load admin classes if not admin && not customizing
-                  if ( ! is_admin() )
-                    continue;
-
-                  if( ! class_exists( $name ) )
-                      require_once ( dirname( dirname( __FILE__ ) ) . $params[0] );
-
-                  $_args = isset( $params[1] ) ? $params[1] : null;
-                  if ( $name !=  'TC_plug_updater' )
-                      new $name( $_args );
-              }
+            //check the context
+            if ( file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) ) {
+              require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
             }
 
             //theme class groups instanciation
