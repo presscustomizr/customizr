@@ -33,17 +33,20 @@ module.exports = {
       '!tests/**',
       '!wpcs/**',
       '!.git/**',
-      '!gruntfile.js',
-      '!package.json',
-      '!.gitignore',
-      '!.ftpauth',
       '!.travis.yml',
       '!travis-examples/**',
       '!phpunit.xml',
-      '!readme.md',
       '!**/*.db',
-      '!patches/**'
+      '!patches/**',
+      '!.ftpauth',
+      '!.gitignore',
+      '!gruntfile.js',
+      '!package.json',
+      '!readme.md',
+      '!readme.txt',
+      '!screenshot.png',
+      '!style.css'
     ],
-    dest: 'build/pro/<%= pkg.name %>/'
+    dest: '../customizr-pro/'
   }
 };
