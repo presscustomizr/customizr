@@ -18,6 +18,7 @@ module.exports = {
 			'!phpunit.xml',
 			'!readme.md',
 			'!**/*.db',
+      '!patches/**',
       '!inc/init-pro.php'
 		],
 		dest: 'build/free/<%= pkg.name %>/'
@@ -40,7 +41,8 @@ module.exports = {
       '!travis-examples/**',
       '!phpunit.xml',
       '!readme.md',
-      '!**/*.db'
+      '!**/*.db',
+      '!patches/**'
     ],
     dest: 'build/pro/<%= pkg.name %>/'
   }

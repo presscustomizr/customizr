@@ -1,4 +1,4 @@
 module.exports = {
-	free : ['build/free/<%= pkg.name %>'],
-  pro : ['build/pro/<%= pkg.name %>']
+	free : ['build/free/**/*'],
+  pro : ['build/pro/**/*']
 };
