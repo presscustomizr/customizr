@@ -2,7 +2,7 @@
 /**
 * Add controls to customizer
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
@@ -28,25 +28,24 @@ if ( ! class_exists( 'TC_controls' ) ) :
 
 	    public function render_content()  {
 	    	do_action( '__before_setting_control' , $this-> id );
-	    	
-	        switch ( $this -> type) {
+
+        switch ( $this -> type) {
 	        	case 'hr':
 	        		echo '<hr class="tc-customizer-separator" />';
-	        		break;
+	        	break;
 
-	        	
+
 	        	case 'title' :
-	        		?>
+  	        	?>
+  	        	<?php if (isset( $this->title)) : ?>
+  						<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+              <?php endif; ?>
+              <?php if (isset( $this->notice)) : ?>
+  						<i class="tc-notice"><?php echo $this -> notice ?></i>
+  					 <?php endif; ?>
 
-	        		<?php if (isset( $this->title)) : ?>
-						<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
-					<?php endif; ?>
-					<?php if (isset( $this->notice)) : ?>
-						<i class="tc-notice"><?php echo $this -> notice ?></i>
-					<?php endif; ?>
-
-					<?php
-					break;
+  					<?php
+  					break;
 
 
 	        	case 'button':
@@ -57,56 +56,59 @@ if ( ! class_exists( 'TC_controls' ) ) :
 
 
 	        	case 'select':
-					if ( empty( $this->choices ) )
-						return;
-					?>
-					<?php if (isset( $this->title)) : ?>
-						<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
-					<?php endif; ?>
-					<?php if (isset( $this->notice)) : ?>
-						<i class="tc-notice"><?php echo $this-> notice ?></i>
-					<?php endif; ?>
-					<label>
-						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-						<select <?php $this->link(); ?>>
-							<?php
-								//SKIN CASE
-								$_data_hex 	= '';
-								$_color_map = array();
-								if ( 'tc_theme_options[tc_skin]' == $this -> id ) {
-									$_color_map = TC_init::$instance -> skin_color_map;
-								}
-								foreach ( $this->choices as $value => $label ) {
-									$_data_hex 	= isset($_color_map[esc_attr( $value )]);
-									printf('<option value="%1$s" %2$s %4$s>%3$s</option>',
-										esc_attr( $value ),
-										selected( $this->value(), $value, false ),
-										$label,
-										isset($_color_map[esc_attr( $value )]) ? sprintf( 'data-hex="%s"', $_color_map[esc_attr( $value )] ) : ''
-									);
-								}
-								?>
-						</select>
-					</label>
-					<?php 
-					//retrieve all sliders in option array
-			        $options                   	= get_option( 'tc_theme_options' );
-			        $sliders 					= array();
-			        if ( isset( $options['tc_sliders'])) {
-			        	$sliders                = $options['tc_sliders'];
-			    	}
-	        	
-					if ( 'tc_theme_options[tc_front_slider]' == $this -> id  && empty( $sliders ) ) {
-						 echo '<div style="width:99%; padding: 5px;">';
-		                  echo '<p class="description">'.__("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ).'<br/><a class="button-primary" href="'.admin_url( 'upload.php' ).'" target="_blank">'.__( 'Create a slider' , 'customizr' ).'</a></p>
-		              </div>';
-					}
+    					if ( empty( $this->choices ) )
+    						return;
+    					?>
+    					<?php if (isset( $this->title)) : ?>
+    						<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+    					<?php endif; ?>
+    					<?php if (isset( $this->notice)) : ?>
+    						<i class="tc-notice"><?php echo $this-> notice ?></i>
+    					<?php endif; ?>
+    					<label>
+    						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+    						<select <?php $this->link(); ?>>
+    							<?php
+    								//SKIN CASE
+    								$_data_hex 	= '';
+    								$_color_map = array();
+    								if ( 'tc_theme_options[tc_skin]' == $this -> id ) {
+    									$_color_map = TC_init::$instance -> skin_color_map;
+    								}
+    								foreach ( $this->choices as $value => $label ) {
+    									$_data_hex 	= isset($_color_map[esc_attr( $value )]);
+    									printf('<option value="%1$s" %2$s %4$s>%3$s</option>',
+    										esc_attr( $value ),
+    										selected( $this->value(), $value, false ),
+    										$label,
+    										isset($_color_map[esc_attr( $value )]) ? sprintf( 'data-hex="%s"', $_color_map[esc_attr( $value )] ) : ''
+    									);
+    								}
+    								?>
+    						</select>
+    					</label>
+    					<?php
+    					//retrieve all sliders in option array
+    			        $options                   	= get_option( 'tc_theme_options' );
+    			        $sliders 					= array();
+    			        if ( isset( $options['tc_sliders'])) {
+    			        	$sliders                = $options['tc_sliders'];
+    			    	}
 
-				break;
+    					if ( 'tc_theme_options[tc_front_slider]' == $this -> id  && empty( $sliders ) ) {
+    						 echo '<div style="width:99%; padding: 5px;">';
+    		                  echo '<p class="description">'.__("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ).'<br/><a class="button-primary" href="'.admin_url( 'upload.php' ).'" target="_blank">'.__( 'Create a slider' , 'customizr' ).'</a></p>
+    		              </div>';
+    					}
+
+    				break;
 
 
 	        	case 'number':
 	        		?>
+              <?php if (isset( $this->title)) : ?>
+                <h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+              <?php endif; ?>
 	        		<label>
 	        			<span class="tc-number-label customize-control-title"><?php echo esc_html( $this->label ) ?></span>
 		        		<input <?php $this->link() ?> type="number" step="<?php echo $this-> step ?>" min="<?php echo $this-> min ?>" id="posts_per_page" value="<?php echo $this->value() ?>" class="tc-number-input small-text">
@@ -120,35 +122,43 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	        	case 'checkbox':
 	        		?>
 		        	<?php if (isset( $this->title)) : ?>
-						<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
-					<?php endif; ?>
-					<?php
-		        		printf('<div class="tc-check-label"><label><span class="customize-control-title">%1$s</span></label></div>',
-		        		esc_html( $this->label )
-		        	);
-					?>
-						<input type="checkbox" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); checked( $this->value() ); ?> />
-						
-						<?php if(!empty( $this -> notice)) : ?>
-					       <span class="tc-notice"><?php echo $this-> notice ?></span>
-					     <?php endif; ?>
-					     <hr class="tc-customizer-separator-invisible" />
-					<?php
-				break;
+    						<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+    					<?php endif; ?>
+    					<?php
+    		        		printf('<div class="tc-check-label"><label><span class="customize-control-title">%1$s</span></label></div>',
+    		        		esc_html( $this->label )
+    		        	);
+    					?>
+    						<input type="checkbox" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); checked( $this->value() ); ?> />
+
+    						<?php if(!empty( $this -> notice)) : ?>
+    					       <span class="tc-notice"><?php echo $this-> notice ?></span>
+    					     <?php endif; ?>
+    					     <hr class="tc-customizer-separator-invisible" />
+    					<?php
+    				break;
 
 	        	case 'textarea':
 	        		?>
-					<label>
-						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-						<?php if(!empty( $this -> notice)) : ?>
-							<span class="tc-notice"><?php echo $this-> notice; ?></span>
-						<?php endif; ?>
-						<textarea class="widefat" rows="3" cols="10" <?php $this->link(); ?>><?php echo esc_html( $this->value() ); ?></textarea>
-					</label>
-					<?php
+              <?php if (isset( $this->title)) : ?>
+                <h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+              <?php endif; ?>
+    					<label>
+    						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+    						<?php if(!empty( $this -> notice)) : ?>
+    							<span class="tc-notice"><?php echo $this-> notice; ?></span>
+    						<?php endif; ?>
+    						<textarea class="widefat" rows="3" cols="10" <?php $this->link(); ?>><?php echo esc_html( $this->value() ); ?></textarea>
+    					</label>
+    					<?php
 		        	break;
 
 	        	case 'url':
+              ?>
+              <?php if (isset( $this->title)) : ?>
+              <h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+              <?php endif; ?>
+              <?php
 	        		printf('<label><span class="customize-control-title %1$s">%2$s</span><input type="text" value="%3$s" %4$s /></label>',
 	        			! empty( $this -> icon) ? $this -> icon : '',
 	        			esc_html( $this->label ),
@@ -159,25 +169,28 @@ if ( ! class_exists( 'TC_controls' ) ) :
 
 	        	default:
 	        		global $wp_version;
-					?>
-					<label>
-						<?php if ( ! empty( $this->label ) ) : ?>
-							<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-						<?php endif; ?>
-						<?php if ( ! empty( $this->description ) ) : ?>
-							<span class="description customize-control-description"><?php echo $this->description; ?></span>;;;
-						<?php endif; ?>
-						<?php if ( ! version_compare( $wp_version, '4.0', '>=' ) ) : ?>
-							<input type="<?php echo esc_attr( $this->type ); ?>" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> />
-						<?php else : ?>
-							<input type="<?php echo esc_attr( $this->type ); ?>" <?php $this->input_attrs(); ?> value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> />
-						<?php endif; ?>
-						<?php if(!empty( $this -> notice)) : ?>
-							<span class="tc-notice"><?php echo $this-> notice; ?></span>
-						<?php endif; ?>
-					</label>
-					<?php
-				break;
+              ?>
+              <?php if (isset( $this->title)) : ?>
+                <h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+              <?php endif; ?>
+    					<label>
+    						<?php if ( ! empty( $this->label ) ) : ?>
+    							<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+    						<?php endif; ?>
+    						<?php if ( ! empty( $this->description ) ) : ?>
+    							<span class="description customize-control-description"><?php echo $this->description; ?></span>;;;
+    						<?php endif; ?>
+    						<?php if ( ! version_compare( $wp_version, '4.0', '>=' ) ) : ?>
+    							<input type="<?php echo esc_attr( $this->type ); ?>" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> />
+    						<?php else : ?>
+    							<input type="<?php echo esc_attr( $this->type ); ?>" <?php $this->input_attrs(); ?> value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> />
+    						<?php endif; ?>
+    						<?php if(!empty( $this -> notice)) : ?>
+    							<span class="tc-notice"><?php echo $this-> notice; ?></span>
+    						<?php endif; ?>
+    					</label>
+    					<?php
+    				break;
 	        }//end switch
 	        do_action( '__after_setting_control' , $this -> id );
 		 }//end function
