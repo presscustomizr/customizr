@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 				'customizr_dev': ['clean' ,'watch'],
 
 				//PROD
-				'prod_css_skins': ['multi:prod_skins', 'cssmin:prod_skins' , 'cssmin:prod_rtl_skins', 'ftp_push:prod_skins'],
+				'prod_css_skins': ['multi:prod_skins', 'cssmin:prod_skins' , 'cssmin:prod_rtl_skins'],
 				'prod_front_js': ['jshint', 'concat:front_js','uglify:front_js', 'ftp_push:all_front_js'],
 				'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'uglify:prod_admin_js', 'ftp_push:all_admin_css' , 'ftp_push:all_admin_js'],
 				//https://www.npmjs.org/package/grunt-gitinfo
