@@ -41,7 +41,8 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
                     require_once ( $_file_path );
 
                 $_args = isset( $params[1] ) ? $params[1] : null;
-                if ( $name !=  'TC_theme_updater' )
+                //instanciates only for the following classes, the other are instanciated in their respective files.
+                if ( 'TC_activation_key' == $name || 'TC_theme_check_updates' == $name )
                     new $name( $_args );
             }
 
