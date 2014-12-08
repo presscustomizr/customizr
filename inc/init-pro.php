@@ -27,7 +27,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
               'TC_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
               'TC_wfc'                     => array('/addons/wfc/wordpress-font-customizer.php'),
               'TC_fpu'                     => array('/addons/fpu/tc_unlimited_featured_pages.php'),
-              'TC_fc'                      => array('/addons/fc/font_customizer.php')
+              'TC_fc'                      => array('/addons/fc/footer-customizer.php')
             );
 
             //loads and instanciates the activation / updates classes

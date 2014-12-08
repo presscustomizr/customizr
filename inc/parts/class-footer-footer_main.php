@@ -2,7 +2,7 @@
 /**
 * Footer actions
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
@@ -47,7 +47,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	    	}
 			if ( !$status )
 				return;
-			
+
 			//hack to render white color icons if skin is grey or black
 			$skin_class 					= ( in_array( tc__f('__get_option' , 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
 			$footer_widgets_wrapper_classes = implode(" ", apply_filters( 'tc_footer_widget_wrapper_class' , array('container' , 'footer-widgets', $skin_class) ) );
@@ -57,13 +57,13 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 					<div class="row widget-area" role="complementary">
 						<?php do_action("__before_footer_widgets") ?>
 						<?php foreach ( $footer_widgets as $key => $area )  : ?>
-							
+
 							<div id="<?php echo $key; ?>" class="<?php echo apply_filters( "{$key}_widget_class", "span4" ) ?>">
 								<?php do_action("__before_{$key}_widgets"); ?>
 								<?php if ( is_active_sidebar( $key ) ) : ?>
-									
+
 										<?php dynamic_sidebar( $key ); ?>
-									
+
 								<?php endif; ?>
 								<?php do_action("__after_{$key}_widgets"); ?>
 							</div><!-- .{$key}_widget_class -->
@@ -91,16 +91,16 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		 * @since Customizr 3.0.10
 		 */
 	    function tc_colophon_display() {
-	    	
+
 	    	?>
 	    	<?php ob_start() ?>
 			 <div class="colophon">
 			 	<div class="container">
 			 		<div class="<?php echo apply_filters( 'tc_colophon_class', 'row-fluid' ) ?>">
-					    <?php 
+					    <?php
 						    //colophon blocks actions priorities
 						    //renders blocks
-						    do_action( '__colophon' ); 
+						    do_action( '__colophon' );
 					    ?>
 	      			</div><!-- .row-fluid -->
 	      		</div><!-- .container -->
@@ -125,8 +125,8 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	    	//when do we display this block ?
 	        //1) if customizing always. (is hidden if empty of disabled)
 	        //2) if not customizing : must be enabled and have social networks.
-	      	echo apply_filters( 
-	      		'tc_colophon_left_block', 
+	      	echo apply_filters(
+	      		'tc_colophon_left_block',
 	      		sprintf('<div class="%1$s">%2$s</div>',
 	      			apply_filters( 'tc_colophon_left_block_class', 'span4 social-block pull-left' ),
 	      			sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
@@ -140,7 +140,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 
 
 
-	    /**
+	   /**
 		 * Footer Credits call back functions
 		 * Can be filtered using the $site_credits, $tc_credits parameters
 		 *
