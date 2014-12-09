@@ -114,12 +114,12 @@ jQuery(function ($) {
         $("body").addClass("safari");
     else if ( $.browser.msie || '8.0' === $.browser.version || '9.0' === $.browser.version || '10.0' === $.browser.version || '11.0' === $.browser.version )
         $("body").addClass("ie").addClass("ie" + $.browser.version.replace(/[.0]/g, ''));
-    
+
     //Adds version if browser = ie
     if ( $("body").hasClass("ie") )
         $("body").addClass($.browser.version);
 
-    
+
     //handle some dynamic hover effects
     $(".widget-front, article").hover(function () {
         $(this).addClass("hover");
@@ -207,7 +207,7 @@ jQuery(function ($) {
             setTimeout(BlockPositions, 200);
         });
     }
-    
+
 
     function centerImageInContainer(container , images){
         if ( ! $(images).length  )
@@ -219,7 +219,7 @@ jQuery(function ($) {
                 // this will let us know the real img height
                 ratio = container_width / $(this).attr("width"),
                 real_img_height = ratio * $(this).attr("height");
-            
+
             // if our image has an height smaller than the container
             // stretch it (h & w) proportionally to reach the container height
             // and center it horizontally
@@ -235,7 +235,7 @@ jQuery(function ($) {
                 // center it horizontally
                 var pos_left = ( (container_width - new_img_width ) / 2 );
                 $(this).css("left", pos_left);
-                
+
                 // reset v-center flag and margin-top
                 if ( $(this).hasClass("v-center") ){
                     $(this).removeClass("v-center")
@@ -262,9 +262,9 @@ jQuery(function ($) {
                 $(this).css("top", pos_top);
                 // add v-center class flag
                 $(this).addClass("v-center");
-            }// end if-else                                      
+            }// end if-else
         });// end imgs each function
-        
+
     }// end centerImageInContainer
 
      //Enable slides centering if option is checked in the customizer.
@@ -314,6 +314,13 @@ jQuery(function ($) {
 
     //Slider swipe support with hammer.js
     if ( 'function' == typeof($.fn.hammer) ) {
+
+        //prevent propagation event from sensible children
+        $(".carousel input, .carousel button, .carousel textarea, .carousel select, .carousel a").
+            on("touchstart touchmove", function(ev) {
+                ev.stopPropagation();
+        });
+
         $('.carousel' ).each( function() {
             $(this).hammer().on('swipeleft tap', function() {
                 $(this).carousel('next');
@@ -422,7 +429,7 @@ jQuery(function ($) {
     var timer,
         increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
 
-    //var windowHeight = $(window).height();  
+    //var windowHeight = $(window).height();
     var triggerHeight = 20; //0.5 * windowHeight;
 
     function _scrolling_actions() {
@@ -448,7 +455,7 @@ jQuery(function ($) {
             increment++;
             window.clearTimeout(timer);
          }
-         
+
          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
             timer = window.setTimeout(function() {
                 _scrolling_actions();

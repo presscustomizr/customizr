@@ -542,7 +542,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
        	}
 
        	return $_classes;
-	   }
+    }
 
 
 
