@@ -245,7 +245,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
                                     apply_filters( 'tc_fp_title_tag' , 'h2', $fp_single_id, $featured_page_id ),
                                     $featured_page_title,
                                     ( isset($edit_enabled) && $edit_enabled )? sprintf('<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
-                                              get_edit_post_link(),
+                                              get_edit_post_link($featured_page_id),
                                               __( 'Edit' , 'customizr' )
                                               ) : ''
                 );
