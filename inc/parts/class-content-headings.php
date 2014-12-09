@@ -2,7 +2,7 @@
 /**
 * Headings actions
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.1.0
@@ -17,7 +17,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function __construct () {
         self::$instance =& $this;
         //set actions and filters for single post and page headings
-        add_action( '__before_loop'             , array( $this , 'tc_set_single_post_page_heading_hooks') , 20 );
+        add_action( '__before_loop'                 , array( $this , 'tc_set_single_post_page_heading_hooks') , 20 );
         //set actions and filters for archives headings
         add_action( 'template_redirect'             , array( $this , 'tc_set_archives_heading_hooks') );
         //Set headings user options
@@ -43,7 +43,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_action ( '__before_loop'                  , array( $this , 'tc_headings_view' ) );
         //Set archive icon with customizer options (since 3.2.0)
         add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ) );
-        
+
         add_filter( 'tc_archive_header_class'         , array( $this , 'tc_archive_title_and_class_callback'), 10, 2 );
         add_filter( 'tc_headings_archive_html'        , array( $this , 'tc_archive_title_and_class_callback'), 10, 1 );
         global $wp_query;
@@ -100,7 +100,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         ob_start();
         ?>
         <header class="<?php echo implode( ' ' , apply_filters( "tc_{$_heading_type}_header_class", array('entry-header'), $_return_class = true ) ); ?>">
-          <?php 
+          <?php
             do_action( "__before_{$_heading_type}_title" );
             echo apply_filters( "tc_headings_{$_heading_type}_html", '' , $_heading_type );
             do_action( "__after_{$_heading_type}_title" );
@@ -168,6 +168,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.2.6
       */
       function tc_add_comment_bubble_after_title( $_title ) {
+
         //Must be in the loop and enabled by user
         if ( ! in_the_loop() || 0 == esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) )
           return $_title;
@@ -179,10 +180,10 @@ if ( ! class_exists( 'TC_headings' ) ) :
         $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
 
         if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled )
-          || ! in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post') ) ) )
+          || ! in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) ) )
           return $_title;
 
-        $_default_bubble_comment                    = apply_filters( 
+        $_default_bubble_comment                    = apply_filters(
           'tc_bubble_comment',
           sprintf('<span class="tc-comment-bubble fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
             apply_filters( 'tc_comment_bubble_style' , ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'' ),
@@ -255,7 +256,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * Filter tc_archive_icon
       * @return  boolean
-      * 
+      *
       * @package Customizr
       * @since Customizr 3.2.0
       */
@@ -271,7 +272,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * Return 1) the archive title html content OR 2) the archive title class OR 3) the boolean
       * @return  boolean
-      * 
+      *
       * @package Customizr
       * @since Customizr 3.2.0
       */
@@ -319,7 +320,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           );
           $content       = apply_filters( 'tc_search_results_header_content', $content );
         }
-        
+
         //author's posts page
         if ( !is_singular() && is_author() ) {
           //gets the user ID
@@ -328,7 +329,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                   apply_filters( 'tc_archive_icon', 'format-icon' ),
                   apply_filters( 'tc_author_archive_title' , __( 'Author Archives :' , 'customizr' ) ),
-                  '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( $user_id ) ) . '" title="' . esc_attr( get_the_author_meta( 'display_name' , $user_id ) ) . '" rel="me">' . get_the_author_meta( 'display_name' , $user_id ) . '</a></span>' 
+                  '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( $user_id ) ) . '" title="' . esc_attr( get_the_author_meta( 'display_name' , $user_id ) ) . '" rel="me">' . get_the_author_meta( 'display_name' , $user_id ) . '</a></span>'
           );
           if ( apply_filters ( 'tc_show_author_meta' , get_the_author_meta( 'description', $user_id  ) ) ) {
             $content    .= sprintf('%1$s<div class="author-info"><div class="%2$s">%3$s</div></div>',
@@ -423,7 +424,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * Callback of tc_content_header_class
       * @return array of css classes
-      * 
+      *
       * @package Customizr
       * @since Customizr 3.2.6
       */
@@ -437,7 +438,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * Callback of tc_bubble_comment
       * @return string
-      * 
+      *
       * @package Customizr
       * @since Customizr 3.2.6
       */
@@ -447,7 +448,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return $_default;
         if ( 0 == get_comments_number() )
           return '';
- 
+
         return sprintf('<span class="tc-comment-bubble %3$s">%1$s %2$s</span>',
                   get_comments_number(),
                   sprintf( _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ),
@@ -486,7 +487,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
               }
             ";
           }
-          $_css .= " 
+          $_css .= "
             .comments-link .custom-bubble-one {
               position: relative;
               bottom: 28px;
@@ -558,28 +559,28 @@ if ( ! class_exists( 'TC_headings' ) ) :
           //Creates the date_diff objects from dates
           $created_to_updated = TC_utils::$instance -> tc_date_diff( $created , $updated );
           $updated_to_today   = TC_utils::$instance -> tc_date_diff( $updated, $current );
-          
+
           //Check if the post has been updated since its creation
           $has_been_updated = ( $created_to_updated -> s > 0 || $created_to_updated -> i > 0 ) ? true : false;
-          
+
           //get the user defined interval in days
           $_interval = esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_interval' ) );
           $_interval = ( 0 != $_interval ) ? $_interval : 30;
-          
+
           //Check if the last update is less than n days old. (replace n by your own value)
           $has_recent_update = ( $has_been_updated && $updated_to_today -> days < $_interval ) ? true : false;
-          
+
           if ( ! $has_recent_update )
               return $html;
 
            //Add HTML after the title
           $recent_update = $has_recent_update ? 'Recently updated' : '';
-           
+
           //Return the modified title
           return apply_filters(
-              'tc_update_notice_in_title', 
+              'tc_update_notice_in_title',
               sprintf('%1$s &nbsp; <span class="tc-update-notice label %3$s">%2$s</span>',
-                  $html, 
+                  $html,
                   esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_text' ) ),
                   esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_format' ) )
               )
