@@ -388,6 +388,9 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       //triggerChange = true @see val method doc here http://ivaynberg.github.io/select2/#documentation
       $(this).select2("val" , e.val, true );
     });
+    //Fixes the non closing bug for the select2 dropdown
+    $('#customize-controls').on('click' , function() { $('select[data-customize-setting-link]').select2("close"); } );
+
 
     /* NUMBER */
     $('input[type="number"]').stepper();
@@ -396,6 +399,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   $('.accordion-section').not('.control-panel').click( function () {
     _recenter_current_section($(this));
   });
+
   function _recenter_current_section( section ) {
     var $siblings               = section.siblings( '.open' );
     //check if clicked element is above or below sibling with offset.top
