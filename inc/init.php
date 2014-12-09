@@ -38,13 +38,13 @@ if ( ! class_exists( 'TC___' ) ) :
         static $instance;
         public $tc_core;
         public $is_customizing;
+        public static $theme_name;
         function __construct () {
             self::$instance =& $this;
 
             /* GETS INFORMATIONS FROM STYLE.CSS */
             // get themedata version wp 3.4+
-            if( function_exists( 'wp_get_theme' ) )
-              {
+            if( function_exists( 'wp_get_theme' ) ) {
                 //get WP_Theme object of customizr
                 $tc_theme                     = wp_get_theme();
 
@@ -54,14 +54,15 @@ if ( ! class_exists( 'TC___' ) ) :
                 $tc_base_data['prefix']       = $tc_base_data['title'] = $tc_theme -> name;
                 $tc_base_data['version']      = $tc_theme -> version;
                 $tc_base_data['authoruri']    = $tc_theme -> {'Author URI'};
-              }
+            }
 
             // get themedata for lower versions (get_stylesheet_directory() points to the current theme root, child or parent)
-            else
-              {
+            else {
                  $tc_base_data                = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
                  $tc_base_data['prefix']      = $tc_base_data['title'];
-              }
+            }
+
+            self::$theme_name                 = sanitize_file_name( strtolower($tc_base_data['title']) );
 
             //CUSTOMIZR_VER is the Version
             if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
@@ -77,6 +78,7 @@ if ( ! class_exists( 'TC___' ) ) :
             if( ! defined( 'THEMENAME' ) )          define( 'THEMENAME' , $tc_base_data['title'] );
             //TC_WEBSITE is the home website of Customizr
             if( ! defined( 'TC_WEBSITE' ) )         define( 'TC_WEBSITE' , $tc_base_data['authoruri'] );
+
 
             //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
             $this -> tc_core = apply_filters( 'tc_core',
@@ -122,7 +124,7 @@ if ( ! class_exists( 'TC___' ) ) :
             );//end of filters
 
             //check the context
-            if ( file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) ) {
+            if ( file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && 'customizr-pro' == self::$theme_name ) {
               require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
             }
 

@@ -16,11 +16,8 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
         //Access any method or var of the class with classname::$instance -> var or method():
         static $instance;
 
-        function __construct ( $_theme_name ) {
+        function __construct () {
             self::$instance =& $this;
-            if ( 'customizr-pro' != $_theme_name )
-              return;
-
             $_classes = array(
               'TC_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array(  THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
               'TC_theme_updater'           => array('/addons/activation-key/updates/class_theme_updater.php'),
@@ -53,5 +50,6 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
     }//end of class
 endif;
 
-//Creates a new instance
-new TC_init_pro(sanitize_file_name( strtolower(THEMENAME) ) );
+//pro version
+if ( 'customizr-pro' == TC___::$theme_name )
+  new TC_init_pro(TC___::$theme_name );
