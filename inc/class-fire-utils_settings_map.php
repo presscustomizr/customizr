@@ -434,7 +434,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_logo_upload]'  => array(
                                 'control'   =>  'TC_Customize_Upload_Control' ,
                                 'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
-                                'section'   =>  'tc_logo_settings' ,
+                                'title'     => __( 'LOGO' , 'customizr'),
+                                'section'   => 'tc_logo_settings' ,
                                 'type'      => 'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' )
               ),
@@ -452,21 +453,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'section'   =>  'tc_logo_settings' ,
                                 'type'      => 'tc_upload',
-                                'transport'     => 'postMessage',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
-              ),
-
-              //hr
-              'hr_logo'             => array(
-                                'control'   =>  'TC_controls' ,
-                                'section'   =>  'tc_logo_settings' ,
-                                'type'        =>  'hr' ,
+                                'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
               ),
 
               //favicon
               'tc_theme_options[tc_fav_upload]' => array(
                                 'control'   =>  'TC_Customize_Upload_Control' ,
                                 'label'       => __( 'Favicon Upload (supported formats : .ico, .png, .gif)' , 'customizr' ),
+                                'title'     => __( 'FAVICON' , 'customizr'),
                                 'section'   =>  'tc_logo_settings' ,
                                 'type'      => 'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number'),

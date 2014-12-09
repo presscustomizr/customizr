@@ -223,13 +223,22 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         return 'excerpt' == to;
       }
     },
+    'tc_theme_options[tc_sticky_show_title_logo]' : {
+      controls: [
+        'tc_theme_options[tc_sticky_logo_upload]',
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
+    },
     'tc_theme_options[tc_sticky_header]' : {
       controls: [
         'tc_theme_options[tc_sticky_show_tagline]',
         'tc_theme_options[tc_sticky_show_title_logo]',
         'tc_theme_options[tc_sticky_shrink_title_logo]',
         'tc_theme_options[tc_sticky_show_menu]',
-        'tc_theme_options[tc_sticky_transparent_on_scroll]'
+        'tc_theme_options[tc_sticky_transparent_on_scroll]',
+        'tc_theme_options[tc_sticky_logo_upload]'
       ],
       callback: function (to) {
         return '1' == to;
