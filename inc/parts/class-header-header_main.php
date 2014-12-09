@@ -446,15 +446,15 @@ if ( ! class_exists( 'TC_header_main' ) ) :
    	*/
 		function tc_set_header_options() {
 			//Set some body classes
-			add_filter( 'body_class'               , array( $this, 'tc_add_body_classes') );
+			add_filter( 'body_class'               , array( $this , 'tc_add_body_classes') );
 			//Set header classes from options
-			add_filter( 'tc_header_classes' 		, array( $this , 'tc_set_header_classes') );
+			add_filter( 'tc_header_classes' 		   , array( $this , 'tc_set_header_classes') );
 			//Set tagline visibility with a customizer option (since 3.2.0)
-	        add_filter( 'tc_tagline_display'  		, array( $this , 'tc_set_tagline_visibility') );
-	        //Set logo layout with a customizer option (since 3.2.0)
-	        add_filter( 'tc_logo_class'  			, array( $this , 'tc_set_logo_title_layout') );
-	        //Set top border style option
-	        add_filter( 'tc_user_options_style'		, array( $this , 'tc_write_header_inline_css') );
+      add_filter( 'tc_tagline_display'  		 , array( $this , 'tc_set_tagline_visibility') );
+      //Set logo layout with a customizer option (since 3.2.0)
+      add_filter( 'tc_logo_class'  			     , array( $this , 'tc_set_logo_title_layout') );
+      //Set top border style option
+      add_filter( 'tc_user_options_style'		 , array( $this , 'tc_write_header_inline_css') );
 		}
 
 

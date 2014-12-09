@@ -94,6 +94,10 @@
     -o-transition: all ease 0.241s;
     transition: all ease 0.241s;
   }
+  //expand submenus for tablets in landscape mode
+  .tc-is-mobile .navbar .nav li > ul ul {
+    display: block;
+  }
 }
 
 @media (max-width: 979px) {
@@ -448,6 +452,8 @@
     float: none;
   }
 }
+
+
 @media (max-width: 767px) {
   body {
     padding-left: 0px;
