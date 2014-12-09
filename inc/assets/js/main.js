@@ -314,6 +314,13 @@ jQuery(function ($) {
 
     //Slider swipe support with hammer.js
     if ( 'function' == typeof($.fn.hammer) ) {
+        
+        //prevent propagation event from sensible children
+        $(".carousel input, .carousel button, .carousel textarea, .carousel select, .carousel a").
+            on("touchstart touchmove", function(ev) {
+                ev.stopPropagation();
+        });
+
         $('.carousel' ).each( function() {
             $(this).hammer().on('swipeleft tap', function() {
                 $(this).carousel('next');
