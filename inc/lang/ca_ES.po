@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.2.9\n"
-"POT-Creation-Date: 2014-11-27 08:57+0100\n"
-"PO-Revision-Date: 2014-11-27 08:58+0100\n"
+"POT-Creation-Date: 2014-12-09 11:52+0100\n"
+"PO-Revision-Date: 2014-12-09 11:52+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Jaume Albaigès <jaumealbaiges@hotmail.com>\n"
 "Language: Català\n"
@@ -1496,6 +1496,48 @@ msgstr ""
 msgid "You might want to regenerate your thumbnails."
 msgstr "Probablement voldreu regenerar les vostres miniatures."
 
+#: ../admin/class-admin-customize.php:306
+msgid "Hi! This is"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:307
+#, fuzzy
+msgid ", developer of the Customizr theme"
+msgstr "Configuració avançada de Customizr."
+
+#: ../admin/class-admin-customize.php:308
+#, fuzzy
+msgid ""
+"I'm doing my best to make Customizr the perfect free theme for you. If you "
+"think it helped you in any way to build a better web presence, please "
+"support it's continued development with a donation of $20, $50, ..."
+msgstr ""
+"<strong>Fem tot el possible per tal que Customizr sigui un tema lliure "
+"perfecte per a vosaltres.</strong><br /> Si us plau, ajudeu-nos a mantenir i "
+"continuar el desenvolupament amb una donació de $20, $50 o fins i tot $100."
+
+#: ../admin/class-admin-customize.php:309
+#, fuzzy
+msgid "Make a donation for Customizr"
+msgstr "Escull un estil per a Customizr"
+
+#: ../admin/class-admin-customize.php:310
+msgid ""
+"Once clicked the 'Hide forever' button, this donation block will not be "
+"displayed anymore.<br/>Either you are using Customizr for personal or "
+"business purposes, any kind of sponsorship will be appreciated to support "
+"this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> "
+"Live long and prosper with Customizr!</strong>"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:311
+msgid "Hide forever"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:312
+msgid "Let me think twice"
+msgstr ""
+
 #: ../admin/class-admin-meta_boxes.php:87
 msgid "Layout Options"
 msgstr "Opcions de disposici&oacute;"
@@ -1616,7 +1658,7 @@ msgstr ""
 msgid "Delete slider"
 msgstr "Elimina l'slider"
 
-#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:101
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:100
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -1724,15 +1766,15 @@ msgstr "Edita aquest slide"
 msgid "Current slide"
 msgstr "Slide actual"
 
-#: ../admin/class-controls.php:101
+#: ../admin/class-controls.php:100
 msgid "Create a slider"
 msgstr "Crea un slider"
 
-#: ../admin/class-controls.php:244
+#: ../admin/class-controls.php:257
 msgid "Upload"
 msgstr "Carrega"
 
-#: ../admin/class-controls.php:245
+#: ../admin/class-controls.php:258
 msgid "Remove"
 msgstr "Elimina"
 

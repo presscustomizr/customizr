@@ -2,7 +2,7 @@
 /**
 * Customizer actions and filters
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
@@ -36,7 +36,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		/**
 		* Adds controls to customizer
 		* @package Customizr
-		* @since Customizr 1.0 
+		* @since Customizr 1.0
 		*/
 		function tc_add_controls_class( $type) {
 			locate_template( 'inc/admin/class-controls.php' , $load = true, $require_once = true );
@@ -47,7 +47,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		/**
 		* Generates customizer sections, settings and controls
 		* @package Customizr
-		* @since Customizr 3.0 
+		* @since Customizr 3.0
 		*/
 		function tc_customize_register( $wp_customize) {
 			return $this -> tc_customize_factory ( $wp_customize , $args = $this -> tc_customize_arguments(), $setup = TC_utils_settings_map::$instance -> tc_customizer_map() );
@@ -59,7 +59,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		/**
 		 * Defines authorized arguments for panels, sections, settings and controls
 		 * @package Customizr
-		 * @since Customizr 3.0 
+		 * @since Customizr 3.0
 		 */
 		function tc_customize_arguments() {
 			$args = array(
@@ -118,7 +118,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		/**
 		 * Generates customizer
 		 * @package Customizr
-		 * @since Customizr 3.0 
+		 * @since Customizr 3.0
 		 */
 		function tc_customize_factory ( $wp_customize , $args, $setup ) {
 			global $wp_version;
@@ -188,7 +188,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 					//add setting
 					$wp_customize	-> add_setting( $key, $option_settings );
-				
+
 					//generate controls array
 					$option_controls = array();
 					foreach( $args['controls'] as $con) {
@@ -212,11 +212,11 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		/**
 		 *  Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
 		 * @package Customizr
-		 * @since Customizr 1.0 
+		 * @since Customizr 1.0
 		 */
-		 
+
 		function tc_customize_preview_js() {
-			wp_enqueue_script( 
+			wp_enqueue_script(
 				'tc-customizer-preview' ,
 				sprintf('%1$s/inc/admin/js/theme-customizer-preview%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-preview' , 'underscore' ),
@@ -225,8 +225,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			);
 
 			//localizes
-			wp_localize_script( 
-		        'tc-customizer-preview', 
+			wp_localize_script(
+		        'tc-customizer-preview',
 		        'TCPreviewParams',
 		        apply_filters('tc_js_customizer_control_params' ,
 			        array(
@@ -247,7 +247,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		 */
 		function tc_customize_controls_js_css() {
 
-			wp_enqueue_style( 
+			wp_enqueue_style(
 				'tc-customizer-controls-style',
 				sprintf('%1$s/inc/admin/css/theme-customizer-control%2$s.css' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
@@ -289,17 +289,29 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				$page_dropdowns[] 	= 'tc_theme_options[tc_featured_page_'. $id.']';
 				$text_fields[]		= 'tc_theme_options[tc_featured_text_'. $id.']';
 			}
-			
+
 			//localizes
-			wp_localize_script( 
-		        'tc-customizer-controls', 
+			wp_localize_script(
+		        'tc-customizer-controls',
 		        'TCControlParams',
 		        apply_filters('tc_js_customizer_control_params' ,
 			        array(
 			        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
-			        	'AjaxUrl'          	=> admin_url( 'admin-ajax.php' ),
+			        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 			        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
 			        	'HideDonate' 		=> tc__f('__get_option' ,'tc_hide_donate'),
+                'themeName'     => TC___::$theme_name,
+                'translations'   => array(
+                  'donate' => array(
+                    'hi'                => __( "Hi! This is" , 'customizr' ),
+                    'developer'         => __( ", developer of the Customizr theme", 'customizr' ),
+                    'support_message'   => __( "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support it's continued development with a donation of $20, $50, ..." , 'customizr' ),
+                    'donate_img_alt'    => __( "Make a donation for Customizr" , 'customizr' ),
+                    'alert_message'     => __( "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>" , 'customizr'),
+                    'hide_forever'      => __( "Hide forever" , 'customizr' ),
+                    'think_twice'       => __( "Let me think twice" , 'customizr' )
+                  )
+                )
 			        )
 			    )
 	        );

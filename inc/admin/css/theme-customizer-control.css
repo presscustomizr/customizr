@@ -144,7 +144,7 @@ span[class*=tc-icon]:before {
 	display: block;
 	text-align: center;
 }
-.donate-alert {
+#tc-donate-customizer .donate-alert {
 	display: none;
 	clear: both;
 	background-color: #DFF0D8;
@@ -157,10 +157,10 @@ span[class*=tc-icon]:before {
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 }
-.donate-alert p {
+#tc-donate-customizer .donate-alert p {
 	font-size: 12px;
 }
-.donate-alert .button {
+#tc-donate-customizer .donate-alert .button {
 	padding: 0 9px 1px;
 }
 
@@ -174,7 +174,7 @@ span[class*=tc-icon]:before {
 	margin: 0;
 	padding: 0 4px 0px;
 }
-.tc-hide-donate, .tc-cancel-hide-donate {
+#tc-donate-customizer .donate-alert .tc-hide-donate, #tc-donate-customizer .donate-alert .tc-cancel-hide-donate {
 	padding: 0 5px 1px;
 }
 
