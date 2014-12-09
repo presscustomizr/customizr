@@ -211,6 +211,8 @@ if ( ! class_exists( 'TC_Customize_Upload_Control' ) ) :
 		public $removed = '';
 		public $context;
 		public $extensions = array();
+    public $title;
+    public $notice;
 
 		/**
 		 * Enqueue control related scripts/styles.
@@ -246,6 +248,9 @@ if ( ! class_exists( 'TC_Customize_Upload_Control' ) ) :
 		 */
 		public function render_content() {
 			?>
+      <?php if ( isset( $this->title) ) : ?>
+        <h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+      <?php endif; ?>
 			<label>
 				<?php if ( ! empty( $this->label ) ) : ?>
 					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
@@ -257,6 +262,9 @@ if ( ! class_exists( 'TC_Customize_Upload_Control' ) ) :
 					<a href="#" class="button-secondary tc-upload"><?php _e( 'Upload' , 'customizr'  ); ?></a>
 					<a href="#" class="remove"><?php _e( 'Remove' , 'customizr'  ); ?></a>
 				</div>
+        <?php if(!empty( $this -> notice)) : ?>
+          <span class="tc-notice"><?php echo $this -> notice; ?></span>
+        <?php endif; ?>
 			</label>
 			<?php
 		}
