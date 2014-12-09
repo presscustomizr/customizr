@@ -387,9 +387,11 @@ jQuery(function ($) {
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
     if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
-        var logoWidth   = $('img' , '.site-logo').attr('width'),
-            logoHeight  = $('img' , '.site-logo').attr('height');
-        $('img' , '.site-logo').css('height' , logoHeight +'px' ).css('width' , logoWidth +'px' );
+        $.each($('img', '.site-logo'), function(){
+            var logoWidth   = $(this).attr('width'),
+                logoHeight  = $(this).attr('height');
+            $(this).css('height' , logoHeight +'px' ).css('width' , logoWidth +'px' );
+        });
     }
 
     //LOADING ACTIONS
