@@ -115,6 +115,13 @@ if ( ! class_exists( 'TC_init' ) ) :
                 'black2.css'      =>  '#394143'
           );
 
+          //Default fonts pairs
+          $this -> fonts_pairs             = array(
+            'alegreya_roboto'               => array( 'Alegreya, Roboto' , 'Roboto|Alegreya:700' ),
+            'lato_grand_hotel'              => array( 'Lato, Grand Hotel', 'Lato:300|Grand+Hotel' ),
+            'dancing_script_eb_garamond'    => array( 'Dancing Script, EB Garamond' , 'Dancing+Script:700|EB+Garamond' )
+          );
+
           //Default featured pages ids
           $this -> fp_ids             = array( 'one' , 'two' , 'three' );
 
