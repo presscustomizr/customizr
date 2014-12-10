@@ -231,6 +231,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		        apply_filters('tc_js_customizer_control_params' ,
 			        array(
 			        	'themeFolder' 		=> get_template_directory_uri(),
+                'fontPairs'       => TC_utils_settings_map::$instance -> tc_get_font_lists()
 			        )
 			    )
 	        );

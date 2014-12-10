@@ -438,6 +438,7 @@
 			$('head').append($style_element.html(bubble_live_css));
 		} );
 	} );
+
 	wp.customize( 'tc_theme_options[tc_post_metas_update_notice_format]' , function( value ) {
 		value.bind( function( to ) {
 			$( '.tc-update-notice').each( function() {
@@ -453,4 +454,10 @@
 			$( '.tc-update-notice' ).addClass( to );
 		} );
 	} );
+
+  wp.customize( 'tc_theme_options[tc_fonts]' , function( value ) {
+    value.bind( function( to ) {
+      console.log('TO : ' , to , 'PAIRS' , TCPreviewParams.fontPairs );
+    } );
+  } );
 } )( jQuery );
