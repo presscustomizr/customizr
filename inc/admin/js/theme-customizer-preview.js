@@ -462,7 +462,7 @@
         if ( group.list[to]) {
           if ( 'gfont' == key )
             addGfontLink( group.list[to][1] );
-          toStyle( 'group' , group.list[to][1] );
+          toStyle( group.list[to][1] );
         }
       });
     } );
@@ -486,7 +486,7 @@
     }
   }
 
-  function toStyle( group, fonts ) {
+  function toStyle( fonts ) {
     var selector_fonts = fonts.split('|');
     $.each( selector_fonts , function( key, single_font ) {
       var split         = single_font.split(':'),
