@@ -210,19 +210,56 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
 
 
-      /**
-     * Returns the list of available skins from child (if exists) and parent theme
-     *
-     * @package Customizr
-     * @since Customizr 3.0.11
-     * @updated Customizr 3.0.15
-     */
+    /**
+    * Returns the list of available skins from child (if exists) and parent theme
+    *
+    * @package Customizr
+    * @since Customizr 3.0.11
+    * @updated Customizr 3.0.15
+    */
     private function tc_build_skin_list() {
         $parent_skins   = $this -> tc_get_skins(TC_BASE .'inc/assets/css');
         $child_skins    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css') ) ? $this -> tc_get_skins(TC_BASE_CHILD .'inc/assets/css') : array();
         $skin_list      = array_merge( $parent_skins , $child_skins );
 
       return apply_filters( 'tc_skin_list', $skin_list );
+    }
+
+
+    /**
+    * @return an array of font name / code
+    * @parameter string name or google compliant suffix for href link
+    *
+    * @package Customizr
+    * @since Customizr 3.2.9
+    */
+    function tc_get_font_lists( $_what = null ) {
+      $_to_return = array();
+      $_font_groups = apply_filters(
+        'tc_font_pairs',
+        TC_init::$instance -> fonts_pairs
+      );
+      foreach ( $_font_groups as $_group_slug => $_font_list ) {
+        $_to_return[$_group_slug] = array();
+        $_to_return[$_group_slug]['list'] = array();
+        $_to_return[$_group_slug]['name'] = $_font_list['name'];
+        foreach ( $_font_list['list'] as $slug => $data ) {
+          switch ($_what) {
+            case 'name':
+              $_to_return[$_group_slug]['list'][$slug] =  $data[0];
+              break;
+
+            case 'code':
+              $_to_return[$_group_slug]['list'][$slug] =  $data[1];
+              break;
+
+            default:
+              $_to_return[$_group_slug]['list'][$slug] = $data;
+              break;
+          }
+        }
+      }
+      return $_to_return;
     }
 
 
@@ -998,6 +1035,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'description' =>  __( 'Select a skin for Customizr' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
+                        'tc_fonts'          => array(
+                                            'title'     =>  __( 'Fonts global settings' , 'customizr' ),
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
+                                            'description' =>  __( 'Set up the font global settings' , 'customizr' ),
+                                            'panel'   => 'tc-global-panel'
+                        ),
                         'tc_social_settings'        => array(
                                             'title'     =>  __( 'Social links' , 'customizr' ),
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 9 : 20,
@@ -1232,6 +1275,31 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               /********** NEW **********/
+              /* Fonts */
+              'tc_theme_options[tc_fonts]'      => array(
+                                'default'       => 'lato_grand_hotel',
+                                'label'         => __( 'Select the best font combination for your website : headings &amp; default fonts' , 'customizr' ),
+                                'control'       =>  'TC_controls',
+                                'section'       => 'tc_fonts',
+                                'type'          => 'select' ,
+                                'choices'       => $this -> tc_get_font_lists('name'),
+                                'priority'      => 10,
+                                'transport'     => 'postMessage',
+                                'notice'        => __( "This font picker allows you to apply a combination of carefully selected Google fonts and web safe fonts. The first font will be applied to the site name, site description, and the titles h1, h2, h3. The second will be the default font applied to your entire website." , 'customizr' )
+              ),
+              'tc_theme_options[tc_body_font_size]'      => array(
+                                'default'       => 14,
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'label'         => __( 'Set your website default font size in pixels.' , 'customizr' ),
+                                'control'       =>  'TC_controls',
+                                'section'       => 'tc_fonts',
+                                'type'          => 'number' ,
+                                'step'          => 1,
+                                'min'           => 0,
+                                'priority'      => 20,
+                                'transport'     => 'postMessage',
+                                'notice'        => __( "This option sets the default font size applied to any text element of your website, when no font size is already applied." , 'customizr' )
+              ),
               /* Header */
               //enable/disable top border
               'tc_theme_options[tc_top_border]' => array(
@@ -1335,6 +1403,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_sticky_z_index]'  =>  array(
                                 'default'       => 100,
                                 'control'       => 'TC_controls' ,
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( "Set the header z-index" , "customizr" ),
                                 'section'       => 'tc_header_layout' ,
                                 'type'          => 'number' ,
@@ -1616,6 +1685,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_post_metas_update_notice_interval]'  =>  array(
                                 'default'       => 10,
                                 'control'       => 'TC_controls',
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'number' ,
@@ -1932,8 +2002,5 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $_map['add_setting_control'] = array_merge($_map['add_setting_control'] , $_new_settings );
       return $_map;
     }
-
-
-
   }//end of class
 endif;

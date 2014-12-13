@@ -117,9 +117,41 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           //Default fonts pairs
           $this -> fonts_pairs             = array(
-            'alegreya_roboto'               => array( 'Alegreya, Roboto' , 'Roboto|Alegreya:700' ),
-            'lato_grand_hotel'              => array( 'Lato, Grand Hotel', 'Lato:300|Grand+Hotel' ),
-            'dancing_script_eb_garamond'    => array( 'Dancing Script, EB Garamond' , 'Dancing+Script:700|EB+Garamond' )
+            'default' => array(
+              'name'  => __('No combination'),
+              'list'  => array(
+                'helvetica_arial'                       => array( 'Helvetica, Arial, sans-serif' , 'Helvetica Neue,Helvetica,Arial,sans-serif|Helvetica Neue,Helvetica,Arial,sans-serif' )
+              )
+            ),
+            'gfont' => array(
+              'name'  => __('Google fonts'),
+              'list'  => array(
+                'alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Roboto|Alegreya:700' ),
+                'lato_grand_hotel'              => array( 'Lato &amp; Grand Hotel', 'Lato:300|Grand+Hotel' ),
+                'dancing_script_eb_garamond'    => array( 'Dancing Script &amp; EB Garamond' , 'Dancing+Script:700|EB+Garamond' ),
+                'amatic_josephin'    => array( 'Amatic SC &amp; Josefin Sans' , 'Amatic+SC:700|Josefin+Sans:700' ),
+                'oswald_droid'    => array( 'Oswald &amp; Droid Serif' , 'Oswald:700|Droid+Serif:400' ),
+                'playfair_alice'    => array( 'Playfair Display &amp; Alice' , 'Playfair+Display:900|Alice' ),
+                'dosis_opensans'    => array( 'Dosis &amp; Open Sans' , 'Dosis:400|Open+Sans' ),
+                'medula_abel'    => array( 'Medula One &amp; Abel' , 'Medula+One|Abel' ),
+                'fjalla_cantarell'    => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One|Cantarell:400' ),
+                'coustard_leckerli'    => array( 'Coustard Ultra &amp; Leckerli One' , 'Coustard:900|Leckerli+One' ),
+                'lobster_raleway'    => array( 'Lobster &amp; Raleway' , 'Lobster|Raleway' ),
+                'sacramento_alice'    => array( 'Sacramento &amp; Alice' , 'Sacramento|Alice' ),
+                'squada_allerta'    => array( 'Squada One &amp; Allerta' , 'Squada+One|Allerta' ),
+                'bitter_sourcesanspro'    => array( 'Bitter &amp; Source Sans Pro' , 'Bitter|Source+Sans+Pro' ),
+                'montserrat_neuton'    => array( 'Montserrat &amp; Neuton' , 'Montserrat|Neuton' )
+              )
+            ),
+            'wsfont' => array(
+              'name'  => __('Web safe fonts'),
+              'list'  => array(
+                'impact_palatino'               => array( 'Impact &amp; Palatino' , 'Impact,Charcoal,sans-serif|Palatino Linotype,Book Antiqua,Palatino,serif'),
+                'georgia_verdana'               => array( 'Georgia &amp; Verdana' , 'Georgia,Georgia,serif|Verdana,Geneva,sans-serif' ),
+                'tahoma_times'                  => array( 'Tahoma &amp; Times' , 'Tahoma,Geneva,sans-serif|Times New Roman,Times,serif'),
+                'lucida_courrier'               => array( 'Lucida &amp; Courrier' , 'Lucida Sans Unicode,Lucida Grande,sans-serif|Courier New,Courier New,Courier,monospace')
+              )
+            )
           );
 
           //Default featured pages ids

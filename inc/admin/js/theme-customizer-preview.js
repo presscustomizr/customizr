@@ -457,7 +457,66 @@
 
   wp.customize( 'tc_theme_options[tc_fonts]' , function( value ) {
     value.bind( function( to ) {
-      console.log('TO : ' , to , 'PAIRS' , TCPreviewParams.fontPairs );
+      var font_groups = TCPreviewParams.fontPairs;
+      $.each( font_groups , function( key, group ) {
+        if ( group.list[to]) {
+          if ( 'gfont' == key )
+            addGfontLink( group.list[to][1] );
+          toStyle( 'group' , group.list[to][1] );
+        }
+      });
     } );
   } );
+
+  function addGfontLink (fonts ) {
+    var gfontUrl        = ['//fonts.googleapis.com/css?family='];
+    gfontUrl.push(fonts);
+    if ( 0 === $('link#gfontlink' ).length ) {
+        $gfontlink = $('<link>' , {
+          id    : 'gfontlink' ,
+          href  : gfontUrl.join(''),
+          rel   : 'stylesheet',
+          type  : 'text/css'
+        });
+
+        $('link:last').after($gfontlink);
+    }
+    else {
+      $('link#gfontlink' ).attr('href', gfontUrl.join('') );
+    }
+  }
+
+  function toStyle( group, fonts ) {
+    var selector_fonts = fonts.split('|');
+    $.each( selector_fonts , function( key, single_font ) {
+      var split         = single_font.split(':'),
+          css_properties = {},
+          font_family, font_weight = '',
+          fontSelectors  = TCPreviewParams.fontSelectors;
+
+      css_properties = {
+        'font-family' : (split[0]).replace(/[\+|:]/g, ' '),
+        'font-weight' : split[1] ? split[1] : 'inherit'
+      };
+      switch (key) {
+        case 0 : //titles font
+          $(fontSelectors.titles).css( css_properties );
+        break;
+
+        case 1 ://body font
+          $(fontSelectors.body).css( css_properties );
+        break;
+      }
+    });
+  }
+
+  wp.customize( 'tc_theme_options[tc_body_font_size]' , function( value ) {
+    value.bind( function( to ) {
+      $( 'body' ).not('.social-icon').css( {
+        'font-size' : to + 'px',
+        'line-height' : Number((to * 19 / 14).toFixed()) + 'px'
+      });
+    } );
+  } );
+
 } )( jQuery );
