@@ -22,6 +22,8 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $slider_size;
       public $skins;
       public $skin_color_map;
+      public $font_pairs;
+      public $font_selectors;
       public $fp_ids;
       public $socials;
       public $sidebar_widgets;
@@ -116,7 +118,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           );
 
           //Default fonts pairs
-          $this -> fonts_pairs             = array(
+          $this -> font_pairs             = array(
             'default' => array(
               'name'  => __('No combination'),
               'list'  => array(
@@ -153,6 +155,12 @@ if ( ! class_exists( 'TC_init' ) ) :
               ) )
             )
           );
+
+          $this -> font_selectors     = array(
+            'titles' => implode(',' , apply_filters( 'tc-titles-font-selectors' , array('.site-title' , '.site-description', 'h1', 'h2', 'h3' ) ) ),
+            'body'   => implode(',' , apply_filters( 'tc-body-font-selectors' , array('body') ) )
+          );
+
 
           //Default featured pages ids
           $this -> fp_ids             = array( 'one' , 'two' , 'three' );
