@@ -1036,7 +1036,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'panel'   => 'tc-global-panel'
                         ),
                         'tc_fonts'          => array(
-                                            'title'     =>  __( 'Fonts global settings' , 'customizr' ),
+                                            'title'     =>  __( 'Fonts' , 'customizr' ),
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
                                             'description' =>  __( 'Set up the font global settings' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
@@ -1277,7 +1277,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               /********** NEW **********/
               /* Fonts */
               'tc_theme_options[tc_fonts]'      => array(
-                                'default'       => 'lato_grand_hotel',
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 'helvetica_arial' : 'fjalla_cantarell',
                                 'label'         => __( 'Select the best font combination for your website : headings &amp; default fonts' , 'customizr' ),
                                 'control'       =>  'TC_controls',
                                 'section'       => 'tc_fonts',
@@ -1285,7 +1285,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'choices'       => $this -> tc_get_font_lists('name'),
                                 'priority'      => 10,
                                 'transport'     => 'postMessage',
-                                'notice'        => __( "This font picker allows you to apply a combination of carefully selected Google fonts and web safe fonts. The first font will be applied to the site name, site description, and the titles h1, h2, h3. The second will be the default font applied to your entire website." , 'customizr' )
+                                'notice'        => __( "This font picker allows you to apply predefined pairs of fonts to your website.The first font will be applied to the site main headings : site name, site description, titles h1, h2, h3. The second will be the default font applied to your entire website." , 'customizr' )
               ),
               'tc_theme_options[tc_body_font_size]'      => array(
                                 'default'       => 14,
