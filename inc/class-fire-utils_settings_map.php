@@ -227,44 +227,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
 
     /**
-    * @return an array of font name / code
-    * @parameter string name or google compliant suffix for href link
-    *
-    * @package Customizr
-    * @since Customizr 3.2.9
-    */
-    function tc_get_font_lists( $_what = null ) {
-      $_to_return = array();
-      $_font_groups = apply_filters(
-        'tc_font_pairs',
-        TC_init::$instance -> fonts_pairs
-      );
-      foreach ( $_font_groups as $_group_slug => $_font_list ) {
-        $_to_return[$_group_slug] = array();
-        $_to_return[$_group_slug]['list'] = array();
-        $_to_return[$_group_slug]['name'] = $_font_list['name'];
-        foreach ( $_font_list['list'] as $slug => $data ) {
-          switch ($_what) {
-            case 'name':
-              $_to_return[$_group_slug]['list'][$slug] =  $data[0];
-              break;
-
-            case 'code':
-              $_to_return[$_group_slug]['list'][$slug] =  $data[1];
-              break;
-
-            default:
-              $_to_return[$_group_slug]['list'][$slug] = $data;
-              break;
-          }
-        }
-      }
-      return $_to_return;
-    }
-
-
-
-    /**
     * Defines sections, settings and function of customizer and return and array
     * Also used to get the default options array, in this case $get_default = true and we DISABLE the __get_option (=>infinite loop)
     *
@@ -1282,7 +1244,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       =>  'TC_controls',
                                 'section'       => 'tc_fonts',
                                 'type'          => 'select' ,
-                                'choices'       => $this -> tc_get_font_lists('name'),
+                                'choices'       => TC_utils::$instance -> tc_get_font( 'list' , 'name' ),
                                 'priority'      => 10,
                                 'transport'     => 'postMessage',
                                 'notice'        => __( "This font picker allows you to apply predefined pairs of fonts to your website.The first font will be applied to the site main headings : site name, site description, titles h1, h2, h3. The second will be the default font applied to your entire website." , 'customizr' )

@@ -80,28 +80,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
 
       /**
-      * Returns a boolean
-      * check if user started to use the theme before ( strictly < ) the requested version
-      *
-      * @package Customizr
-      * @since Customizr 3.2.9
-      */
-      function tc_user_started_before_version( $_version ) {
-        $_start_version_infos = explode('|', esc_attr( get_transient( 'started_using_customizr' ) ) );
-        switch ($_start_version_infos[0]) {
-          case 'with':
-            return version_compare( $_start_version_infos[1] , $_version, '<' );
-          break;
-
-          case 'before':
-            return true;
-          break;
-        }
-      }
-
-
-
-      /**
       * Returns the current skin's primary color
       *
       * @package Customizr
@@ -656,6 +634,75 @@ if ( ! class_exists( 'TC_utils' ) ) :
         return new TC_DateInterval( $_date_two_timestamp - $_date_one_timestamp );
       }
     }
+
+
+    /**
+    * @return an array of font name / code OR a string of the font css code
+    * @parameter string name or google compliant suffix for href link
+    *
+    * @package Customizr
+    * @since Customizr 3.2.9
+    */
+    function tc_get_font( $_what = 'list' , $_requested = null ) {
+      $_to_return = ( 'list' == $_what ) ? array() : false;
+      $_font_groups = apply_filters(
+        'tc_font_pairs',
+        TC_init::$instance -> font_pairs
+      );
+      foreach ( $_font_groups as $_group_slug => $_font_list ) {
+        if ( 'list' == $_what ) {
+          $_to_return[$_group_slug] = array();
+          $_to_return[$_group_slug]['list'] = array();
+          $_to_return[$_group_slug]['name'] = $_font_list['name'];
+        }
+
+        foreach ( $_font_list['list'] as $slug => $data ) {
+          switch ($_requested) {
+            case 'name':
+              if ( 'list' == $_what )
+                $_to_return[$_group_slug]['list'][$slug] =  $data[0];
+            break;
+
+            case 'code':
+              if ( 'list' == $_what )
+                $_to_return[$_group_slug]['list'][$slug] =  $data[1];
+            break;
+
+            default:
+              if ( 'list' == $_what )
+                $_to_return[$_group_slug]['list'][$slug] = $data;
+              else if ( $slug == $_requested ) {
+                  return $data[1];
+              }
+            break;
+          }
+        }
+      }
+      return $_to_return;
+    }
+
+
+
+    /**
+    * Returns a boolean
+    * check if user started to use the theme before ( strictly < ) the requested version
+    *
+    * @package Customizr
+    * @since Customizr 3.2.9
+    */
+    function tc_user_started_before_version( $_version ) {
+      $_start_version_infos = explode('|', esc_attr( get_transient( 'started_using_customizr' ) ) );
+      switch ($_start_version_infos[0]) {
+        case 'with':
+          return version_compare( $_start_version_infos[1] , $_version, '<' );
+        break;
+
+        case 'before':
+          return true;
+        break;
+      }
+    }
+
   }//end of class
 endif;
 
