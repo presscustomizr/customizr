@@ -63,7 +63,40 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_init_properties() {
         $this -> is_customizing   = $this -> tc_is_customizing();
         $this -> default_options  = $this -> tc_get_default_options();
-        $this -> db_options       = array();
+        $this -> db_options       = (array) esc_attr( get_option( TC___::$tc_option_group ) );
+
+        //What was the theme version when the user started to use Customizr?
+        //new install = tc_skin option is not set yet
+        //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
+        $_db_options = $this -> db_options;
+        if ( ! isset( $_db_options['tc_skin'] ) || ! esc_attr( get_transient( 'started_using_customizr' ) ) ) {
+          set_transient(
+            'started_using_customizr',
+            sprintf('%s|%s' , ! isset( $_db_options['tc_skin'] ) ? 'with' : 'before', CUSTOMIZR_VER ),
+            60*60*24*9999
+          );
+        }
+      }
+
+
+      /**
+      * Returns a boolean
+      * check if user started to use the theme before ( strictly < ) the requested version
+      *
+      * @package Customizr
+      * @since Customizr 3.2.9
+      */
+      function tc_user_started_before_version( $_version ) {
+        $_start_version_infos = explode('|', esc_attr( get_transient( 'started_using_customizr' ) ) );
+        switch ($_start_version_infos[0]) {
+          case 'with':
+            return version_compare( $_start_version_infos[1] , $_version, '<' );
+          break;
+
+          case 'before':
+            return true;
+          break;
+        }
       }
 
 
@@ -224,7 +257,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.2.0
       */
       function tc_cache_db_options($option_group) {
-        $this-> db_options = (array) get_option( $option_group );
+        $this -> db_options = (array) get_option( $option_group );
         return $this-> db_options;
       }
 
