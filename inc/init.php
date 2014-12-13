@@ -39,6 +39,7 @@ if ( ! class_exists( 'TC___' ) ) :
         public $tc_core;
         public $is_customizing;
         public static $theme_name;
+        public static $tc_option_group;
         function __construct () {
             self::$instance =& $this;
 
@@ -126,6 +127,9 @@ if ( ! class_exists( 'TC___' ) ) :
             //check the context
             if ( file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && 'customizr-pro' == self::$theme_name ) {
               require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
+              self::$tc_option_group = 'tc_theme_options';
+            } else {
+              self::$tc_option_group = 'tc_theme_options';
             }
 
             //theme class groups instanciation
