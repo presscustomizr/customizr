@@ -1,14 +1,14 @@
 <?php
 /**
-* 
-* This program is a free software; you can use it and/or modify it under the terms of the GNU 
-* General Public License as published by the Free Software Foundation; either version 2 of the License, 
+*
+* This program is a free software; you can use it and/or modify it under the terms of the GNU
+* General Public License as published by the Free Software Foundation; either version 2 of the License,
 * or (at your option) any later version.
 *
-* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
 * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 *
-* You should have received a copy of the GNU General Public License along with this program; if not, write 
+* You should have received a copy of the GNU General Public License along with this program; if not, write
 * to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 *
 * @package   	Customizr
@@ -32,13 +32,13 @@
 * 6) Plugins compatibility : jetpack, bbpress, qtranslate, woocommerce and more to come
 * 7) Default filtered options for the customizer
 * 8) Customizr theme's hooks API : front end components are rendered with action and filter hooks
-* 
+*
 * The method TC__::tc__() loads the php files and instanciates all theme's classes.
 * All classes files (except the class__.php file which loads the other) are named with the following convention : class-[group]-[class_name].php
-* 
+*
 * The theme is entirely built on an extensible filter and action hooks API, which makes customizations easy as breeze, without ever needing to modify the core structure.
 * Customizr's code acts like a collection of plugins that can be enabled, disabled or extended. More here : http://themesandco.com/customizr/hooks-api
-* 
+*
 */
 
 

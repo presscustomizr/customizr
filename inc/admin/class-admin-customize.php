@@ -231,11 +231,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		        apply_filters('tc_js_customizer_control_params' ,
 			        array(
 			        	'themeFolder' 		=> get_template_directory_uri(),
-                'fontPairs'       => TC_utils_settings_map::$instance -> tc_get_font_lists(),
-                'fontSelectors'   => array(
-                  'titles' => implode(',' , apply_filters( 'tc-titles-font-selectors' , array('.site-title' , '.site-description', 'h1', 'h2', 'h3' ) ) ),
-                  'body'   => implode(',' , apply_filters( 'tc-body-font-selectors' , array('body') ) )
-                )
+                'fontPairs'       => TC_utils_settings_map::$instance -> tc_get_font( 'list' ),
+                'fontSelectors'   => TC_init::$instance -> font_selectors
 			        )
 			       )
 	        );
