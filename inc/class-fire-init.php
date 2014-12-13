@@ -125,7 +125,7 @@ if ( ! class_exists( 'TC_init' ) ) :
             ),
             'gfont' => array(
               'name'  => __('Google fonts'),
-              'list'  => array(
+              'list'  => apply_filters( 'tc_gfont_pairs' , array(
                 'fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
                 'lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
                 'alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
@@ -141,16 +141,16 @@ if ( ! class_exists( 'TC_init' ) ) :
                 'squada_allerta'                => array( 'Squada One &amp; Allerta' , 'Squada+One:400|Allerta' ),
                 'bitter_sourcesanspro'          => array( 'Bitter &amp; Source Sans Pro' , 'Bitter:400|Source+Sans+Pro' ),
                 'montserrat_neuton'             => array( 'Montserrat &amp; Neuton' , 'Montserrat:400|Neuton' )
-              )
+              ) )
             ),
             'wsfont' => array(
               'name'  => __('Web safe fonts'),
-              'list'  => array(
+              'list'  => apply_filters( 'tc_wsfont_pairs' , array(
                 'impact_palatino'               => array( 'Impact &amp; Palatino' , 'Impact,Charcoal,sans-serif|Palatino Linotype,Book Antiqua,Palatino,serif'),
                 'georgia_verdana'               => array( 'Georgia &amp; Verdana' , 'Georgia,Georgia,serif|Verdana,Geneva,sans-serif' ),
                 'tahoma_times'                  => array( 'Tahoma &amp; Times' , 'Tahoma,Geneva,sans-serif|Times New Roman,Times,serif'),
                 'lucida_courrier'               => array( 'Lucida &amp; Courrier' , 'Lucida Sans Unicode,Lucida Grande,sans-serif|Courier New,Courier New,Courier,monospace')
-              )
+              ) )
             )
           );
 
