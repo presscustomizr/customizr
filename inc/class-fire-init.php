@@ -119,14 +119,8 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           //Default fonts pairs
           $this -> font_pairs             = array(
-            'default' => array(
-              'name'  => __('No combination'),
-              'list'  => array(
-                'helvetica_arial'               => array( 'Helvetica, Arial, sans-serif' , 'Helvetica Neue,Helvetica,Arial,sans-serif|Helvetica Neue,Helvetica,Arial,sans-serif' )
-              )
-            ),
             'gfont' => array(
-              'name'  => __('Google fonts'),
+              'name'  => __('Google fonts pairs' , 'customizr'),
               'list'  => apply_filters( 'tc_gfont_pairs' , array(
                 'fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
                 'lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
@@ -146,12 +140,18 @@ if ( ! class_exists( 'TC_init' ) ) :
               ) )
             ),
             'wsfont' => array(
-              'name'  => __('Web safe fonts'),
+              'name'  => __('Web safe fonts pairs' , 'customizr'),
               'list'  => apply_filters( 'tc_wsfont_pairs' , array(
                 'impact_palatino'               => array( 'Impact &amp; Palatino' , 'Impact,Charcoal,sans-serif|Palatino Linotype,Book Antiqua,Palatino,serif'),
                 'georgia_verdana'               => array( 'Georgia &amp; Verdana' , 'Georgia,Georgia,serif|Verdana,Geneva,sans-serif' ),
                 'tahoma_times'                  => array( 'Tahoma &amp; Times' , 'Tahoma,Geneva,sans-serif|Times New Roman,Times,serif'),
                 'lucida_courrier'               => array( 'Lucida &amp; Courrier' , 'Lucida Sans Unicode,Lucida Grande,sans-serif|Courier New,Courier New,Courier,monospace')
+              ) )
+            ),
+             'default' => array(
+              'name'  => __('Single default font' , 'customizr'),
+              'list'  => apply_filters( 'tc_single_fonts' , array(
+                'helvetica_arial'               => array( 'Helvetica, Arial, sans-serif' , 'Helvetica Neue,Helvetica,Arial,sans-serif|Helvetica Neue,Helvetica,Arial,sans-serif' )
               ) )
             )
           );

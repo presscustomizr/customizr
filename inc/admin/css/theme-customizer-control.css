@@ -625,6 +625,8 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 }
 #select2-results-4 .select2-results-dept-0 > div.select2-result-label {
  height: 30px;
+ padding: 7px 7px 1px;
+ text-transform: uppercase;
 }
 #select2-results-4 li {
   margin-bottom: 0;
@@ -635,4 +637,8 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 #select2-results-4 .select2-result-label {
   border-bottom: 1px solid #E3E3E3;
   text-overflow: ellipsis;
+}
+.tc-google-logo {
+  position: relative;
+  top: 6px;
 }

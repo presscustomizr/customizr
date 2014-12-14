@@ -359,7 +359,10 @@
       $(this).select2("val" , e.val, true );
     });
     function paintFontOptionElement(state) {
-        if (!state.id) return state.text; // optgroup
+        if ( ! state.id && ( -1 != state.text.indexOf('Google') ) )
+          return '<img class="tc-google-logo" src="http://www.google.com/images/logos/google_logo_41.png" height="20"/> Fonts'; // google font optgroup
+        else if ( ! state.id )
+          return state.text;// optgroup different than google font
         return '<span class="tc-select2-font">' + state.text + '<span>';
     }
     //Fixes the non closing bug for the select2 dropdown

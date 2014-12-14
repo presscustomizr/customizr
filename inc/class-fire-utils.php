@@ -63,7 +63,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_init_properties() {
         $this -> is_customizing   = $this -> tc_is_customizing();
         $this -> default_options  = $this -> tc_get_default_options();
-        $this -> db_options       = (array) esc_attr( get_option( TC___::$tc_option_group ) );
+        $this -> db_options       = (array) get_option( TC___::$tc_option_group );
 
         //What was the theme version when the user started to use Customizr?
         //new install = tc_skin option is not set yet

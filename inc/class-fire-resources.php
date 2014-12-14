@@ -278,8 +278,10 @@ if ( ! class_exists( 'TC_resources' ) ) :
       $_body_font_size    = esc_attr( tc__f( '__get_option' , 'tc_body_font_size' ) );
       $_font_selectors    = TC_init::$instance -> font_selectors;
 
+      //create the $body and $titles vars
+      extract( TC_init::$instance -> font_selectors, EXTR_OVERWRITE );
+
       if ( 'helvetica_arial' != $_font_pair ) {
-        extract( TC_init::$instance -> font_selectors, EXTR_OVERWRITE );
         $_font_code       = TC_utils::$instance -> tc_get_font( 'single' , $_font_pair );
         $_selector_fonts  = explode('|', $_font_code);
         foreach ($_selector_fonts as $_key => $_single_font) {
@@ -301,12 +303,21 @@ if ( ! class_exists( 'TC_resources' ) ) :
                 {$body} {
                   font-family : '{$_family}';
                   font-weight : {$_weight};
-                  font-size   : {$_body_font_size};
                 }\n";
             break;
           }
         }
       }//end if
+
+      if ( 14 != $_body_font_size ) {
+        $_line_height = round( $_body_font_size * 19 / 14 );
+        $_css .= "
+          {$body} {
+            font-size : {$_body_font_size}px;
+            line-height : {$_line_height}px;
+          }\n";
+        }
+
       return $_css;
     }//end of fn
 

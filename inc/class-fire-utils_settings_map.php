@@ -1240,17 +1240,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               /* Fonts */
               'tc_theme_options[tc_fonts]'      => array(
                                 'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 'helvetica_arial' : 'fjalla_cantarell',
-                                'label'         => __( 'Select the best font combination for your website : headings &amp; default fonts' , 'customizr' ),
+                                'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                                 'control'       =>  'TC_controls',
                                 'section'       => 'tc_fonts',
                                 'type'          => 'select' ,
                                 'choices'       => TC_utils::$instance -> tc_get_font( 'list' , 'name' ),
                                 'priority'      => 10,
                                 'transport'     => 'postMessage',
-                                'notice'        => __( "This font picker allows you to apply predefined pairs of fonts to your website.The first font will be applied to the site main headings : site name, site description, titles h1, h2, h3. The second will be the default font applied to your entire website." , 'customizr' )
+                                'notice'        => __( "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs." , 'customizr' )
               ),
               'tc_theme_options[tc_body_font_size]'      => array(
-                                'default'       => 14,
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 14 : 15,
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( 'Set your website default font size in pixels.' , 'customizr' ),
                                 'control'       =>  'TC_controls',
