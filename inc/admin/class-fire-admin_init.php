@@ -2,7 +2,7 @@
 /**
 * Init admin actions : loads the meta boxes,
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
@@ -17,8 +17,8 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       function __construct () {
         self::$instance =& $this;
         global $wp_version;
-          //check WP version to include customizer functions, must be >= 3.4
-        if (version_compare( $wp_version, '3.4' , '>=' ) ) {
+        //check WP version to include customizer functions, must be >= 3.4
+        if ( version_compare( $wp_version, '3.4' , '>=' ) ) {
             //require_once( TC_BASE.'inc/admin/tc_customize.php' );
             TC___::$instance -> tc__( array ('admin' => array( array( 'inc/admin' , 'customize'))) );
         }
@@ -35,7 +35,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
 
       /**
       *  load the meta boxes for pages, posts and attachment
-      * 
+      *
       * @package Customizr
       * @since Customizr 3.0.4
       */
@@ -109,12 +109,12 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
      * @since Customizr 3.0.4
      */
       function tc_welcome_panel() {
-        
+
         $is_help = isset($_GET['help'])  ?  true : false;
 
         ?>
         <div class="wrap about-wrap">
-          
+
             <?php if ($is_help) : ?>
               <h1 class="need-help-title"><?php _e( 'Need help with Customizr ?','customizr' ) ?></h1>
             <?php else : ?>
@@ -126,7 +126,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
             <div class="changelog">
               <div class="about-text tc-welcome">
               <?php printf( __( 'You can start by watching the <a href="%1$s" target="_blank">introduction video</a> or by reading <a href="%2$s" target="_blank">the documentation</a>.<br/> If you don\'t find an answer to your issue, don\'t panic! Since Customizr is used by a growing community of webmasters reporting bugs and making continuous improvements, you will probably find a solution to your problem either in the FAQ or in the user forum.','customizr' ),
-               TC_WEBSITE, 
+               TC_WEBSITE,
                TC_WEBSITE.'customizr'
                ); ?>
                </div>
@@ -149,16 +149,16 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
                  </div>
               </div><!-- .two-col -->
             </div><!-- .changelog -->
-          
+
           <?php else: ?>
-          
+
             <div class="about-text tc-welcome">
               <?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see the changelog)</a> to help you build an awesome website. Watch the <a href="%2$s" target="_blank">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/>Enjoy it! ','customizr' ),
                CUSTOMIZR_VER,
                TC_WEBSITE
                ); ?>
             </div>
-          
+
           <?php endif; ?>
 
           <?php if ( TC___::$instance -> tc_is_child() ) : ?>
@@ -166,11 +166,11 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
 
             <div class="tc-upgrade-notice">
               <p>
-              <?php 
+              <?php
                 printf( __('You are using a child theme of Customizr %1$s : always check the %2$s after upgrading to see if a function or a template has been deprecated.' , 'customizr'),
                   'v'.CUSTOMIZR_VER,
                   '<strong><a href="#customizr-changelog">changelog</a></strong>'
-                  ); 
+                  );
                 ?>
               </p>
             </div>
@@ -215,7 +215,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
             </p>
             <p style="text-align: left"><?php _e("Customizr's extensions are installed and upgraded from your WordPress admin, like any other WordPress plugins. Well documented and easily extendable with hooks, they come with a dedicated support forum on themesandco.com." , 'customizr') ?>
             </p>
-            <p style="text-align:left">    
+            <p style="text-align:left">
                 <a class="button-primary review-customizr" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/extend/" target="_blank"><?php _e("Visit the extension's page",'customizr') ?> &raquo;</a>
             </p>
           </div>
@@ -231,18 +231,18 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
             </p>
             <p style="text-align: right"><?php _e('Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do.' , 'customizr') ?></br>
             </p>
-            <p style="text-align:right">    
+            <p style="text-align:right">
                 <a class="button-primary review-customizr" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><?php _e('Visit the showcase','customizr') ?> &raquo;</a>
             </p>
           </div>
         </div>
 
         <div id="customizr-changelog" class="changelog">
-          
+
           <h3><?php printf( __( 'Changelog in version %1$s' , 'customizr' ) , CUSTOMIZR_VER ); ?></h3>
 
             <p><?php do_action( '__changelog' ); ?></p>
-        
+
         </div>
 
 
@@ -262,10 +262,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
      * @since Customizr 3.0.4
      */
       function tc_admin_style() {
-        wp_enqueue_style( 
+        wp_enqueue_style(
           'tc-admincss',
           sprintf('%1$sinc/admin/css/tc_admin%2$s.css' , TC_BASE_URL, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
-          array(), 
+          array(),
           CUSTOMIZR_VER
         );
       }
@@ -278,7 +278,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
      * @since Customizr 3.0.5
      */
       function tc_extract_changelog() {
-        
+
         if( ! file_exists(TC_BASE."readme.txt") ) {
           return;
         }
@@ -286,7 +286,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
           echo '<p>The changelog in readme.txt is not readable.</p>';
           return;
         }
-        
+
         $stylelines = explode("\n", implode('', file(TC_BASE."readme.txt")));
         $read = false;
         $i = 0;
@@ -315,5 +315,5 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
           }
         }
       }
-  }//end of class       
+  }//end of class
 endif;

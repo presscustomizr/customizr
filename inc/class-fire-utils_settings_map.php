@@ -210,13 +210,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
 
 
-      /**
-     * Returns the list of available skins from child (if exists) and parent theme
-     *
-     * @package Customizr
-     * @since Customizr 3.0.11
-     * @updated Customizr 3.0.15
-     */
+    /**
+    * Returns the list of available skins from child (if exists) and parent theme
+    *
+    * @package Customizr
+    * @since Customizr 3.0.11
+    * @updated Customizr 3.0.15
+    */
     private function tc_build_skin_list() {
         $parent_skins   = $this -> tc_get_skins(TC_BASE .'inc/assets/css');
         $child_skins    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css') ) ? $this -> tc_get_skins(TC_BASE_CHILD .'inc/assets/css') : array();
@@ -224,7 +224,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       return apply_filters( 'tc_skin_list', $skin_list );
     }
-
 
 
     /**
@@ -998,6 +997,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'description' =>  __( 'Select a skin for Customizr' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
+                        'tc_fonts'          => array(
+                                            'title'     =>  __( 'Fonts' , 'customizr' ),
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
+                                            'description' =>  __( 'Set up the font global settings' , 'customizr' ),
+                                            'panel'   => 'tc-global-panel'
+                        ),
                         'tc_social_settings'        => array(
                                             'title'     =>  __( 'Social links' , 'customizr' ),
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 9 : 20,
@@ -1232,6 +1237,31 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               /********** NEW **********/
+              /* Fonts */
+              'tc_theme_options[tc_fonts]'      => array(
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 'helvetica_arial' : 'fjalla_cantarell',
+                                'label'         => __( 'Select the best font combination for your website : headings &amp; default fonts' , 'customizr' ),
+                                'control'       =>  'TC_controls',
+                                'section'       => 'tc_fonts',
+                                'type'          => 'select' ,
+                                'choices'       => TC_utils::$instance -> tc_get_font( 'list' , 'name' ),
+                                'priority'      => 10,
+                                'transport'     => 'postMessage',
+                                'notice'        => __( "This font picker allows you to apply predefined pairs of fonts to your website.The first font will be applied to the site main headings : site name, site description, titles h1, h2, h3. The second will be the default font applied to your entire website." , 'customizr' )
+              ),
+              'tc_theme_options[tc_body_font_size]'      => array(
+                                'default'       => 14,
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'label'         => __( 'Set your website default font size in pixels.' , 'customizr' ),
+                                'control'       =>  'TC_controls',
+                                'section'       => 'tc_fonts',
+                                'type'          => 'number' ,
+                                'step'          => 1,
+                                'min'           => 0,
+                                'priority'      => 20,
+                                'transport'     => 'postMessage',
+                                'notice'        => __( "This option sets the default font size applied to any text element of your website, when no font size is already applied." , 'customizr' )
+              ),
               /* Header */
               //enable/disable top border
               'tc_theme_options[tc_top_border]' => array(
@@ -1335,6 +1365,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_sticky_z_index]'  =>  array(
                                 'default'       => 100,
                                 'control'       => 'TC_controls' ,
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( "Set the header z-index" , "customizr" ),
                                 'section'       => 'tc_header_layout' ,
                                 'type'          => 'number' ,
@@ -1616,6 +1647,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_post_metas_update_notice_interval]'  =>  array(
                                 'default'       => 10,
                                 'control'       => 'TC_controls',
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'number' ,
@@ -1932,8 +1964,5 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $_map['add_setting_control'] = array_merge($_map['add_setting_control'] , $_new_settings );
       return $_map;
     }
-
-
-
   }//end of class
 endif;

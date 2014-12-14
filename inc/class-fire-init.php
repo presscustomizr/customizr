@@ -22,6 +22,8 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $slider_size;
       public $skins;
       public $skin_color_map;
+      public $font_pairs;
+      public $font_selectors;
       public $fp_ids;
       public $socials;
       public $sidebar_widgets;
@@ -114,6 +116,51 @@ if ( ! class_exists( 'TC_init' ) ) :
                 'black.css'       =>  '#000',
                 'black2.css'      =>  '#394143'
           );
+
+          //Default fonts pairs
+          $this -> font_pairs             = array(
+            'default' => array(
+              'name'  => __('No combination'),
+              'list'  => array(
+                'helvetica_arial'               => array( 'Helvetica, Arial, sans-serif' , 'Helvetica Neue,Helvetica,Arial,sans-serif|Helvetica Neue,Helvetica,Arial,sans-serif' )
+              )
+            ),
+            'gfont' => array(
+              'name'  => __('Google fonts'),
+              'list'  => apply_filters( 'tc_gfont_pairs' , array(
+                'fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
+                'lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
+                'alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
+                'lato_grand_hotel'              => array( 'Lato &amp; Grand Hotel', 'Lato:400|Grand+Hotel' ),
+                'dosis_opensans'                => array( 'Dosis &amp; Open Sans' , 'Dosis:400|Open+Sans' ),
+                'dancing_script_eb_garamond'    => array( 'Dancing Script &amp; EB Garamond' , 'Dancing+Script:700|EB+Garamond' ),
+                'amatic_josephin'               => array( 'Amatic SC &amp; Josefin Sans' , 'Amatic+SC:700|Josefin+Sans:700' ),
+                'oswald_droid'                  => array( 'Oswald &amp; Droid Serif' , 'Oswald:700|Droid+Serif:400' ),
+                'playfair_alice'                => array( 'Playfair Display &amp; Alice' , 'Playfair+Display:700|Alice' ),
+                'medula_abel'                   => array( 'Medula One &amp; Abel' , 'Medula+One:400|Abel' ),
+                'coustard_leckerli'             => array( 'Coustard Ultra &amp; Leckerli One' , 'Coustard:900|Leckerli+One' ),
+                'sacramento_alice'              => array( 'Sacramento &amp; Alice' , 'Sacramento:400|Alice' ),
+                'squada_allerta'                => array( 'Squada One &amp; Allerta' , 'Squada+One:400|Allerta' ),
+                'bitter_sourcesanspro'          => array( 'Bitter &amp; Source Sans Pro' , 'Bitter:400|Source+Sans+Pro' ),
+                'montserrat_neuton'             => array( 'Montserrat &amp; Neuton' , 'Montserrat:400|Neuton' )
+              ) )
+            ),
+            'wsfont' => array(
+              'name'  => __('Web safe fonts'),
+              'list'  => apply_filters( 'tc_wsfont_pairs' , array(
+                'impact_palatino'               => array( 'Impact &amp; Palatino' , 'Impact,Charcoal,sans-serif|Palatino Linotype,Book Antiqua,Palatino,serif'),
+                'georgia_verdana'               => array( 'Georgia &amp; Verdana' , 'Georgia,Georgia,serif|Verdana,Geneva,sans-serif' ),
+                'tahoma_times'                  => array( 'Tahoma &amp; Times' , 'Tahoma,Geneva,sans-serif|Times New Roman,Times,serif'),
+                'lucida_courrier'               => array( 'Lucida &amp; Courrier' , 'Lucida Sans Unicode,Lucida Grande,sans-serif|Courier New,Courier New,Courier,monospace')
+              ) )
+            )
+          );
+
+          $this -> font_selectors     = array(
+            'titles' => implode(',' , apply_filters( 'tc-titles-font-selectors' , array('.site-title' , '.site-description', 'h1', 'h2', 'h3' ) ) ),
+            'body'   => implode(',' , apply_filters( 'tc-body-font-selectors' , array('body') ) )
+          );
+
 
           //Default featured pages ids
           $this -> fp_ids             = array( 'one' , 'two' , 'three' );

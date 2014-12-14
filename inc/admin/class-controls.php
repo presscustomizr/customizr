@@ -59,40 +59,62 @@ if ( ! class_exists( 'TC_controls' ) ) :
     					if ( empty( $this->choices ) )
     						return;
     					?>
-    					<?php if (isset( $this->title)) : ?>
+    					<?php if (!empty( $this->title)) : ?>
     						<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
-    					<?php endif; ?>
-    					<?php if (isset( $this->notice)) : ?>
-    						<i class="tc-notice"><?php echo $this-> notice ?></i>
     					<?php endif; ?>
     					<label>
     						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
     						<select <?php $this->link(); ?>>
     							<?php
-    								//SKIN CASE
+    								//IF SKIN, THEN DEFINE SOME VARS
     								$_data_hex 	= '';
     								$_color_map = array();
     								if ( 'tc_theme_options[tc_skin]' == $this -> id ) {
     									$_color_map = TC_init::$instance -> skin_color_map;
     								}
-    								foreach ( $this->choices as $value => $label ) {
-    									$_data_hex 	= isset($_color_map[esc_attr( $value )]);
-    									printf('<option value="%1$s" %2$s %4$s>%3$s</option>',
-    										esc_attr( $value ),
-    										selected( $this->value(), $value, false ),
-    										$label,
-    										isset($_color_map[esc_attr( $value )]) ? sprintf( 'data-hex="%s"', $_color_map[esc_attr( $value )] ) : ''
-    									);
-    								}
+                    switch ( $this -> id ) {
+                      case 'tc_theme_options[tc_fonts]':
+                        foreach ( $this -> choices as $_opt_group => $_opt_list ) {
+                          $_options = array();
+                          foreach ( $_opt_list['list'] as $label => $value ) {
+                            $_options[] = sprintf('<option value="%1$s" %2$s>%3$s</option>',
+                              esc_attr( $label ),
+                              selected( $this->value(), $value, false ),
+                              $value
+                            );
+                          }
+                          printf('<optgroup label="%1$s">%2$s</optgroup>',
+                            $_opt_list['name'],
+                            implode($_options)
+                          );
+                        }
+                      break;
+
+                      default:
+                        foreach ( $this->choices as $value => $label ) {
+                          $_data_hex  = isset($_color_map[esc_attr( $value )]);
+                          printf('<option value="%1$s" %2$s %4$s>%3$s</option>',
+                            esc_attr( $value ),
+                            selected( $this->value(), $value, false ),
+                            $label,
+                            isset($_color_map[esc_attr( $value )]) ? sprintf( 'data-hex="%s"', $_color_map[esc_attr( $value )] ) : ''
+                          );
+                        }
+                      break;
+                    }
+
     								?>
     						</select>
+                <?php if(!empty( $this -> notice)) : ?>
+                  <span class="tc-notice"><?php echo $this -> notice ?></span>
+                <?php endif; ?>
     					</label>
     					<?php
     					//retrieve all sliders in option array
-    			        $options                   	= get_option( 'tc_theme_options' );
+    			        $options          = get_option( 'tc_theme_options' );
     			        $sliders 					= array();
     			        if ( isset( $options['tc_sliders'])) {
-    			        	$sliders                = $options['tc_sliders'];
+    			        	$sliders        = $options['tc_sliders'];
     			    	}
 
     					if ( 'tc_theme_options[tc_front_slider]' == $this -> id  && empty( $sliders ) ) {
@@ -129,12 +151,12 @@ if ( ! class_exists( 'TC_controls' ) ) :
     		        		esc_html( $this->label )
     		        	);
     					?>
-    						<input type="checkbox" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); checked( $this->value() ); ?> />
+    					<input type="checkbox" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); checked( $this->value() ); ?> />
 
-    						<?php if(!empty( $this -> notice)) : ?>
-    					       <span class="tc-notice"><?php echo $this-> notice ?></span>
-    					     <?php endif; ?>
-    					     <hr class="tc-customizer-separator-invisible" />
+    					<?php if(!empty( $this -> notice)) : ?>
+    					 <span class="tc-notice"><?php echo $this-> notice ?></span>
+    					<?php endif; ?>
+    					<hr class="tc-customizer-separator-invisible" />
     					<?php
     				break;
 

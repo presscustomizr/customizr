@@ -2,7 +2,7 @@
 /**
 * Loads front end stylesheets and scripts
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
@@ -17,16 +17,19 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    static $instance;
 	    function __construct () {
 	        self::$instance =& $this;
+          add_action ( 'wp_enqueue_scripts'           , array( $this , 'tc_enqueue_gfonts' ) , 0 );
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
 	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
 	        //Write font icon
-	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
+	        add_action ( 'wp_head'                 		  , array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
 	        //Custom CSS
-	        add_action ( 'wp_head'                 					, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
-	        
+	        add_action ( 'wp_head'                 			, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
+
 	        //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
 	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
+
+          add_filter('tc_user_options_style'          , array( $this , 'tc_write_fonts_inline_css') );
 	    }
 
 
@@ -50,7 +53,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 		/**
 		* Loads Customizr and JS script in footer for better time load.
-		* 
+		*
 		* @uses wp_enqueue_script() to manage script dependencies
 		* @package Customizr
 		* @since Customizr 1.0
@@ -63,43 +66,43 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    wp_enqueue_script( 'jquery-ui-core' );
 		    //load modernizr.js in footer
 		    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
-		    
+
 		   	if ( apply_filters('tc_load_concatenated_front_scripts' , true ) )
 		   	{
 			    //tc-scripts.min.js includes :
 			    //1) Twitter Bootstrap scripts
 			    //2) FancyBox - jQuery Plugin
 			    //3) Customizr scripts
-			    wp_enqueue_script( 
-			    	'tc-scripts' , 
+			    wp_enqueue_script(
+			    	'tc-scripts' ,
 			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
-			    	array( 'jquery' ), 
-			    	CUSTOMIZR_VER, 
-			    	$in_footer = apply_filters('tc_load_script_in_footer' , false) 
+			    	array( 'jquery' ),
+			    	CUSTOMIZR_VER,
+			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
 			    );
 			}
 			else
 			{
-				//in production script are minified 
+				//in production script are minified
 		    	wp_enqueue_script(
-			    	'params-dev-mode', 
+			    	'params-dev-mode',
 			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'params-dev-mode.js' : 'params-dev-mode.min.js'),
-			    	array( 'jquery' ), 
-			    	CUSTOMIZR_VER, 
+			    	array( 'jquery' ),
+			    	CUSTOMIZR_VER,
 			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
 		    	);
 		    	wp_enqueue_script(
-			    	'dev-bootstrap', 
+			    	'dev-bootstrap',
 			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'bootstrap.js' : 'bootstrap.min.js'),
-			    	array( 'params-dev-mode' ), 
-			    	CUSTOMIZR_VER, 
+			    	array( 'params-dev-mode' ),
+			    	CUSTOMIZR_VER,
 			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
 		    	);
 		    	wp_enqueue_script(
-			    	'dev-fancybox', 
+			    	'dev-fancybox',
 			    	sprintf( '%1$sinc/assets/js/fancybox/%2$s' , TC_BASE_URL , 'jquery.fancybox-1.3.4.min.js' ),
-			    	array( 'params-dev-mode' ), 
-			    	CUSTOMIZR_VER, 
+			    	array( 'params-dev-mode' ),
+			    	CUSTOMIZR_VER,
 			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
 		    	);
 			}//end of load concatenate script if
@@ -112,7 +115,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        //gets slider options if any for home/front page or for others posts/pages
 		    $js_slidername      = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_front_slider' ) : get_post_meta( tc__f('__ID') , $key = 'post_slider_key' , $single = true );
 		    $js_sliderdelay     = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_slider_delay' ) : get_post_meta( tc__f('__ID') , $key = 'slider_delay_key' , $single = true );
-		      
+
 			//has the post comments ? adds a boolean parameter in js
 			global $wp_query;
 			$has_post_comments 	= ( 0 != $wp_query -> post_count && comments_open() && get_comments_number() != 0 ) ? true : false;
@@ -131,7 +134,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			$left_sb_class     	= sprintf( '.%1$s.left.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 	      	$right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
-			wp_localize_script( 
+			wp_localize_script(
 		        (defined('WP_DEBUG') && true === WP_DEBUG ) ? 'params-dev-mode' : 'tc-scripts',
 		        'TCParams',
 		        apply_filters('tc_customizr_script_params' , array(
@@ -164,7 +167,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    $tc_show_featured_pages 	    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
       		$tc_show_featured_pages_img     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
       		if ( 0 != $tc_show_featured_pages && 0 != $tc_show_featured_pages_img ) {
-		    	wp_enqueue_script( 
+		    	wp_enqueue_script(
 		    		'holder',
 		    		sprintf( '%1$sinc/assets/js/holder.min.js' , TC_BASE_URL ),
 		    		array(),
@@ -187,7 +190,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 		/**
 	    * Write the font icon in head
-	    * 
+	    *
 	    * @package Customizr
 	    * @since Customizr 3.2.3
 	    */
@@ -205,7 +208,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 	    /**
 	    * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
-	    * 
+	    *
 	    * @package Customizr
 	    * @since Customizr 2.0.7
 	    */
@@ -236,5 +239,76 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			</script>
 			<?php
 		}
+
+
+
+    /*
+    * Callback of tc_user_options_style hook
+    * @return css string
+    *
+    * @package Customizr
+    * @since Customizr 3.2.9
+    */
+    function tc_enqueue_gfonts() {
+      $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
+      $_all_font_pairs    = TC_init::$instance -> font_pairs;
+      if ( !isset($_all_font_pairs['gfont']['list'][$_font_pair]) )
+        return;
+
+      wp_enqueue_style(
+        'tc-gfonts',
+        sprintf( '//fonts.googleapis.com/css?family=%s', TC_utils::$instance -> tc_get_font( 'single' , $_font_pair ) ),
+        array(),
+        null,
+        'all'
+      );
+    }
+
+
+
+    /*
+    * Callback of tc_user_options_style hook
+    * @return css string
+    *
+    * @package Customizr
+    * @since Customizr 3.2.9
+    */
+    function tc_write_fonts_inline_css( $_css ) {
+      $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
+      $_body_font_size    = esc_attr( tc__f( '__get_option' , 'tc_body_font_size' ) );
+      $_font_selectors    = TC_init::$instance -> font_selectors;
+
+      if ( 'helvetica_arial' != $_font_pair ) {
+        extract( TC_init::$instance -> font_selectors, EXTR_OVERWRITE );
+        $_font_code       = TC_utils::$instance -> tc_get_font( 'single' , $_font_pair );
+        $_selector_fonts  = explode('|', $_font_code);
+        foreach ($_selector_fonts as $_key => $_single_font) {
+          $_css_exp       = explode(':', $_single_font);
+          $_family        = str_replace('+', ' ' , $_css_exp[0]);
+          $_weight        = $_css_exp[1] ? $_css_exp[1] : 'inherit';
+
+          switch ($_key) {
+            case 0 : //titles font
+              $_css .= "
+                {$titles} {
+                  font-family : '{$_family}';
+                  font-weight : {$_weight};
+                }\n";
+            break;
+
+            case 1 ://body font
+              $_css .= "
+                {$body} {
+                  font-family : '{$_family}';
+                  font-weight : {$_weight};
+                  font-size   : {$_body_font_size};
+                }\n";
+            break;
+          }
+        }
+      }//end if
+      return $_css;
+    }//end of fn
+
 	}//end of TC_ressources
 endif;
