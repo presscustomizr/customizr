@@ -145,7 +145,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 		*/
 		function tc_prepare_logo_title_display() {
       $logos_type = array( '_sticky_', '_');
-      $logos_img = [];
+      $logos_img  = array();
 
       $accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
       $logo_classes 			= array( 'brand', 'span3');
