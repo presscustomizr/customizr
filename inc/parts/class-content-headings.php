@@ -217,8 +217,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return $_title;
 
         //when are we displaying the edit link?
-        $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page() ) ? true : false;
-        $edit_enabled                      = ( (is_user_logged_in()) && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;
+        $edit_enabled                      = ( (is_user_logged_in()) && is_page() && current_user_can('edit_pages') ) ? true : false;
+        $edit_enabled                      = ( (is_user_logged_in()) && 0 !== get_the_ID() && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;
         if ( ! apply_filters( 'tc_edit_in_title', $edit_enabled ) )
           return $_title;
 
