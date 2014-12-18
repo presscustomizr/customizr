@@ -30,7 +30,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $footer_widgets;
       public $widgets;
       public $post_list_layout;
-      public $post_formats_with_no_header;
+      public $post_formats_with_no_heading;
       public $content_404;
       public $content_no_results;
       public $default_slides;
@@ -272,7 +272,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           );
 
           //Defines post formats with no headers
-          $this -> post_formats_with_no_header   = array( 'aside' , 'status' , 'link' , 'quote' );
+          $this -> post_formats_with_no_heading   = array( 'aside' , 'status' , 'link' , 'quote' );
 
           //Default 404 content
           $this -> content_404        = array(

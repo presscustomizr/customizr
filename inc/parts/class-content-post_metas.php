@@ -2,7 +2,7 @@
 /**
 * Post metas content actions
 * Since 3.1.20, displays all levels of any hierarchical taxinomies by default and for all types of post (including hierarchical CPT). This feature can be disabled with a the filter : tc_display_taxonomies_in_breadcrumb (set to true by default). In the case of hierarchical post types (like page or hierarchical CPT), the taxonomy trail is only displayed for the higher parent.
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0.5
@@ -16,9 +16,12 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         static $instance;
         function __construct () {
             self::$instance =& $this;
+            //init the post metas view
             add_action  ( '__after_content_title'           , array( $this , 'tc_post_metas' ));
             //Show / hide metas based on customizer user options (@since 3.2.0)
-            add_action( 'template_redirect'                 , array( $this , 'tc_set_post_metas' ));
+            add_action( 'wp'                                , array( $this , 'tc_set_post_metas' ));
+            //filter metas content with default theme settings
+            add_filter( 'tc_meta_utility_text'              , array( $this , 'tc_add_link_to_post_after_metas'), 20);
             //Set metas content based on customizer user options (@since 3.2.6)
             add_filter( 'tc_meta_utility_text'              , array( $this , 'tc_set_meta_content'));
         }
@@ -38,7 +41,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             //2) +filter conditions
             return apply_filters(
                 'tc_show_post_metas',
-                ! tc__f('__is_home') 
+                ! tc__f('__is_home')
                 && ! is_404()
                 && ! 'page' == $post -> post_type
                 && in_array( get_post_type(), apply_filters('tc_show_metas_for_post_types' , array( 'post') ) )
@@ -98,7 +101,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         }
 
 
- 
+
 
         /**
         * Attachment post metas view
@@ -137,7 +140,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         *
         *
         * @package Customizr
-        * @since Customizr 3.0 
+        * @since Customizr 3.0
         */
         function tc_get_category_list() {
             $post_terms                 = apply_filters( 'tc_cat_meta_list', $this -> tc_get_term_of_tax_type( $hierarchical = true ) );
@@ -163,7 +166,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * Alternative
         *
         * @package Customizr
-        * @since Customizr 3.0 
+        * @since Customizr 3.0
         *
         */
         function tc_get_tag_list() {
@@ -196,10 +199,10 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             $created                = new DateTime( get_the_date('Y-m-d g:i:s') );
             $updated                = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
             $current                = new DateTime( date('Y-m-d g:i:s') );
-            
+
             $created_to_updated     = TC_utils::$instance -> tc_date_diff( $created , $updated );
             $updated_to_today       = TC_utils::$instance -> tc_date_diff( $updated, $current );
-            
+
             return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? 'no-updates' : $updated_to_today -> days;
         }
 
@@ -285,7 +288,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @since Customizr 3.2.6
         */
         function tc_get_meta_author() {
-            return apply_filters( 
+            return apply_filters(
                 'tc_author_meta',
                 sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
                     esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
@@ -293,6 +296,26 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                     get_the_author()
                 )
             );//end filter
+        }
+
+
+        /**
+        * @return  string
+        * Return the filter post metas for specific post formats
+        * Callback of tc_meta_utility_text
+        * @package Customizr
+        * @since Customizr 3.2.9
+        */
+        function tc_add_link_to_post_after_metas( $_metas_html ) {
+
+          if ( apply_filters( 'tc_show_link_after_post_metas' , true )
+            && in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) )
+            && ! is_singular() ) {
+            return apply_filters('tc_add_link_to_post_after_metas',
+              sprintf('%1$s | <a href="%2$s" title="%3$s">%3$s &raquo;</a>', $_metas_html, get_permalink(), __('Open' , 'customizr') )
+            );
+          }
+          return $_metas_html;
         }
 
 
@@ -310,7 +333,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                     add_filter( 'tc_show_post_metas' , '__return_true' );
                     return;
                 }
-                
+
                 if ( TC_utils::$instance -> tc_is_customizing() ) {
                     add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
                     add_filter( 'tc_show_post_metas' , '__return_true' );
@@ -378,7 +401,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             $_show_upd_in_days  = 'days' == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_date_format' ) );
             $_show_date         = $_show_pub_date || $_show_upd_date;
             $_show_author       = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_author' ) );
-            
+
             //TAGS / CATS
             $_tax_text              = '';
             if ( $_show_cats && $_show_tags )
@@ -387,7 +410,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                 $_tax_text   .= __( 'This entry was posted in %1$s' , 'customizr' );
             if ( ! $_show_cats && $_show_tags )
                 $_tax_text   .= __( 'This entry was tagged %2$s' , 'customizr' );
-            
+
             //PUBLICATION DATE
             $_date_text = '';
             if ( $_show_pub_date ) {

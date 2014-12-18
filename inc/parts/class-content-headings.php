@@ -16,12 +16,12 @@ if ( ! class_exists( 'TC_headings' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
-        //set actions and filters for single post and page headings
-        add_action( '__before_loop'                 , array( $this , 'tc_set_single_post_page_heading_hooks') , 20 );
+        //set actions and filters for posts and page headings
+        add_action( 'wp'                            , array( $this , 'tc_set_post_page_heading_hooks') );
         //set actions and filters for archives headings
-        add_action( 'template_redirect'             , array( $this , 'tc_set_archives_heading_hooks') );
+        add_action( 'wp'                            , array( $this , 'tc_set_archives_heading_hooks') );
         //Set headings user options
-        add_action( 'template_redirect'             , array( $this , 'tc_set_headings_options') );
+        add_action( 'wp'                            , array( $this , 'tc_set_headings_options') );
       }
 
 
@@ -29,7 +29,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return void
       * set up hooks for archives headings
-      * callback of template_redirect
+      * callback of wp
       *
       * @package Customizr
       * @since Customizr 3.2.6
@@ -40,7 +40,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return;
 
         //Headings for archives, authors, search, 404
-        add_action ( '__before_loop'                  , array( $this , 'tc_headings_view' ) );
+        add_action ( '__before_loop'                  , array( $this , 'tc_prepare_headings_view' ) );
         //Set archive icon with customizer options (since 3.2.0)
         add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ) );
 
@@ -55,25 +55,23 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
       /**
       * @return void
-      * set up hooks for single post and page headings
-      * callback of template_redirect
+      * set up hooks for post and page headings
+      * callback of wp
       *
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function tc_set_single_post_page_heading_hooks() {
-        //don't display titles for some post formats
-        if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_header', TC_init::$instance -> post_formats_with_no_header ) ) )
-          return;
+      function tc_set_post_page_heading_hooks() {
 
         //by default don't display the title of the front page
-        if( apply_filters('tc_show_page_title', is_front_page() && 'page' == get_option( 'show_on_front' ) ) )
+        if( apply_filters('tc_hide_front_page_title', is_front_page() && 'page' == get_option( 'show_on_front' ) ) )
           return;
 
         //Set single post/page icon with customizer options (since 3.2.0)
         add_filter ( 'tc_content_title_icon'          , array( $this , 'tc_set_post_page_icon' ) );
-        //Headings for post, page, attachment
-        add_action ( '__before_content'               , array( $this , 'tc_headings_view' ) );
+        //Prepare the headings for post, page, attachment
+        add_action ( '__before_content'               , array( $this , 'tc_prepare_headings_view' ) );
+        //Populate heading with default content
         add_filter ( 'tc_headings_content_html'       , array( $this , 'tc_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
         add_filter( 'the_title'                       , array( $this , 'tc_content_heading_title' ) , 0 );
@@ -81,11 +79,31 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_filter( 'the_title'                       , array( $this , 'tc_add_comment_bubble_after_title' ), 1 );
         //Add edit link
         add_filter( 'the_title'                       , array( $this , 'tc_add_edit_link_after_title' ), 2 );
+
+        //SOME DEFAULT OPTIONS
         //No hr if not singular
         if ( ! is_singular() )
           add_filter( 'tc_content_headings_separator' , '__return_false' );
+
+        //No heading if post with no heading
+        add_filter( 'tc_prepare_headings_view'        , array( $this, 'tc_post_formats_heading') , 100 );
+
       }
 
+
+      /**
+      * @return string or boolean
+      * Returns the heading html content or false
+      * callback of tc_headings_content_html
+      *
+      * @package Customizr
+      * @since Customizr 3.2.9
+      */
+      function tc_post_formats_heading( $_html ) {
+        if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
+          return;
+        return $_html;
+      }
 
 
       /**
@@ -95,7 +113,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.1.0
       */
-      function tc_headings_view() {
+      function tc_prepare_headings_view() {
         $_heading_type = ( '__before_content' == current_filter() ) ? 'content' : 'archive';
         ob_start();
         ?>
@@ -111,7 +129,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'tc_headings_view', $html );
+        echo apply_filters( 'tc_prepare_headings_view', $html );
       }//end of function
 
 
@@ -403,7 +421,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return void
       * set up user defined options
-      * callback of template_redirect
+      * callback of wp
       *
       * @package Customizr
       * @since Customizr 3.2.6
