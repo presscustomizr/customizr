@@ -332,11 +332,11 @@ jQuery(function ($) {
     }
 
     //Handle dropdown on click for multi-tier menus
-    var dropdown_ahrefs = $('.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'),
-    dropdown_submenus = $('.tc-open-on-click .dropdown .dropdown-submenu');
-            
+    var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'),
+        $dropdown_submenus  = $('.tc-open-on-click .dropdown .dropdown-submenu');
+
     // go to the link if submenu is already opened
-    dropdown_ahrefs.on('tap click', function(evt){
+    $dropdown_ahrefs.on('tap click', function(evt) {
         if ( $(this).next('.dropdown-menu').is(':visible') ){
             window.location = $(this).attr('href');
         }
@@ -345,7 +345,7 @@ jQuery(function ($) {
     // do we want restrict this in "non-mobile menu"?
     // for "non-mobile menu" I mean when btn-navbar is visible
     // or if you prefer when window width < 980px (-scrollbar)
-    dropdown_submenus.each(function(){
+    $dropdown_submenus.each(function(){
         var $parent = $(this),
             $children = $parent.children('[data-toggle="dropdown"]');
         $children.on('tap click', function(){
