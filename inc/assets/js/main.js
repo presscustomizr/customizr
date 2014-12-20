@@ -330,6 +330,44 @@ jQuery(function ($) {
             });
         });
     }
+
+    //Handle dropdown on click for multi-tier menus
+    var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a'),
+        $dropdown_submenus  = $('.tc-open-on-click .dropdown .dropdown-submenu');
+
+
+    // go to the link if submenu is already opened
+    $dropdown_ahrefs.not('a' , $dropdown_submenus).on('tap click', function(evt) {
+        var href = $(this).attr('href');
+        if ( '#' != href && '' !== href )
+          return;
+        if ( $(this).next('.dropdown-menu').is(':visible') )
+          window.location = href;
+    });
+    // make sub-submenus dropdown on click work
+    $dropdown_submenus.each(function(){
+        var $parent = $(this),
+            $children = $parent.children('[data-toggle="dropdown"]');
+        $children.on('tap click', function(){
+            var submenu   = $(this).next('.dropdown-menu'),
+                openthis  = false,
+                href      = $(this).attr('href');
+            if ( ! $parent.hasClass('open') ) {
+              openthis = true;
+            } else {
+              if ( '#' != href && '' !== href )
+                window.location = href;
+            }
+            // close opened submenus
+            $($parent.parent()).children('.dropdown-submenu').each(function(){
+                $(this).removeClass('open');
+            });
+            if ( openthis )
+                $parent.addClass('open');
+
+            return false;
+        });
+    });
 });
 
 
