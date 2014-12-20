@@ -8346,9 +8346,6 @@ li#wp-admin-bar-tc-customizr a {
     -o-transition: all ease 0.241s;
     transition: all ease 0.241s;
   }
-  .tc-is-mobile .navbar .nav li > ul ul {
-    display: block;
-  }
 }
 @media (max-width: 979px) {
   .tc-header .outside {
