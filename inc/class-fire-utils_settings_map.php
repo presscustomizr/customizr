@@ -856,10 +856,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
                                 'section'     => 'tc_custom_css' ,
                                 'type'        => 'textarea' ,
-                                'notice'    => sprintf('%1$s <a href="http://themesandco.com/snippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
+                                'notice'    => sprintf('%1$s <a href="%4$ssnippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
                                     __( "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a" , 'customizr' ),
                                     __( 'child theme.' , 'customizr'),
-                                    __( 'How to create and use a child theme ?' , 'customizr')
+                                    __( 'How to create and use a child theme ?' , 'customizr'),
+                                    TC_WEBSITE
                                 )
               )
       );//end of custom_css_options
@@ -1920,10 +1921,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
                                 'section'     => 'tc_custom_css' ,
                                 'type'        => 'textarea' ,
-                                'notice'    => sprintf('%1$s <a href="http://themesandco.com/snippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
+                                'notice'    => sprintf('%1$s <a href="%4$ssnippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
                                     __( "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a" , 'customizr' ),
                                     __( 'child theme.' , 'customizr'),
-                                    __( 'How to create and use a child theme ?' , 'customizr')
+                                    __( 'How to create and use a child theme ?' , 'customizr'),
+                                    TC_WEBSITE
                                 )
               ),
               //Default slider's height
