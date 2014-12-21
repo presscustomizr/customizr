@@ -259,7 +259,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			wp_enqueue_script(
 				'tc-customizer-controls',
 				sprintf('%1$s/inc/admin/js/theme-customizer-control%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
-				array( 'customize-controls' ),
+				array( 'customize-controls' , 'underscore'),
 				CUSTOMIZR_VER ,
 				true
 			);
