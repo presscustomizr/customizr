@@ -13,23 +13,27 @@
 */
 if ( ! class_exists( 'TC_customize' ) ) :
 	class TC_customize {
-	    static $instance;
-	    function __construct () {
-	        self::$instance =& $this;
-			//add control class
-			add_action ( 'customize_register'				, array( $this , 'tc_add_controls_class' ) ,10,1);
-			//control scripts and style
-			add_action ( 'customize_controls_enqueue_scripts'	, array( $this , 'tc_customize_controls_js_css' ));
-			//add the customizer built with the builder below
-			add_action ( 'customize_register'				, array( $this , 'tc_customize_register' ) , 20, 1 );
-			//preview scripts
-			add_action ( 'customize_preview_init'			, array( $this , 'tc_customize_preview_js' ));
-			//Hide donate button
-			add_action ( 'wp_ajax_hide_donate'				, array( $this ,  'tc_hide_donate' ) );
-			//Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
-	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
-	        	add_action( 'customize_controls_print_scripts' , array( $this , 'tc_add_livereload_script') );
-	    }
+    static $instance;
+    public $control_translations;
+
+    function __construct () {
+      self::$instance =& $this;
+  		//add control class
+  		add_action ( 'customize_register'				                , array( $this , 'tc_add_controls_class' ) ,10,1);
+  		//control scripts and style
+  		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
+  		//add the customizer built with the builder below
+  		add_action ( 'customize_register'				                , array( $this , 'tc_customize_register' ) , 20, 1 );
+  		//preview scripts
+  		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ));
+  		//Hide donate button
+  		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
+  		//Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
+      if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
+      	add_action( 'customize_controls_print_scripts'        , array( $this , 'tc_add_livereload_script') );
+
+      add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'tc_print_js_templates' ) );
+    }
 
 
 
@@ -301,19 +305,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
 			        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 			        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
-			        	'HideDonate' 		=> tc__f('__get_option' ,'tc_hide_donate'),
                 'themeName'     => TC___::$theme_name,
-                'translations'   => array(
-                  'donate' => array(
-                    'hi'                => __( "Hi! This is" , 'customizr' ),
-                    'developer'         => __( ", developer of the Customizr theme", 'customizr' ),
-                    'support_message'   => __( "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support it's continued development with a donation of $20, $50, ..." , 'customizr' ),
-                    'donate_img_alt'    => __( "Make a donation for Customizr" , 'customizr' ),
-                    'alert_message'     => __( "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>" , 'customizr'),
-                    'hide_forever'      => __( "Hide forever" , 'customizr' ),
-                    'think_twice'       => __( "Let me think twice" , 'customizr' )
-                  )
-                )
+                'HideDonate'    => tc__f('__get_option' ,'tc_hide_donate'),
+                'ShowCTA'       => ( true == tc__f('__get_option' ,'tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false
 			        )
 			    )
 	        );
@@ -321,20 +315,24 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		}
 
 
+
 		/**
 		* Update donate options handled in ajax
+    * callback of wp_ajax_hide_donate*
 		* @package Customizr
 		* @since Customizr 3.1.14
 		*/
-	    function tc_hide_donate() {
-	    	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
-	    	$options = get_option('tc_theme_options');
-	    	$options['tc_hide_donate'] = true;
-	    	update_option( 'tc_theme_options', $options );
-	    }
+    function tc_hide_donate() {
+    	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
+    	$options = get_option('tc_theme_options');
+    	$options['tc_hide_donate'] = true;
+    	update_option( 'tc_theme_options', $options );
+      set_transient( 'tc_cta', 'cta_waiting' , 60*60*24 );
+    }
 
 
-	    /*
+
+	  /*
 		* Writes the livereload script in dev mode (Grunt watch livereload enabled)
 		*@since v3.2.4
 		*/
@@ -348,5 +346,76 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			</script>
 			<?php
 		}
+
+
+
+    /*
+    * Renders the underscore templates for the call to actions
+    * callback of 'customize_controls_print_footer_scripts'
+    *@since v3.2.9
+    */
+    function tc_print_js_templates() {
+      ?>
+      <script type="text/template" id="donate_template">
+        <div id="tc-donate-customizer">
+          <span class="tc-close-request button">X</span>
+            <?php
+              printf('<h3>%1$s <a href="https://twitter.com/nicguillaume" target="_blank">Nicolas</a>%2$s :).</h3>',
+                __( "Hi! This is" , 'customizr' ),
+                __( ", developer of the Customizr theme", 'customizr' )
+              );
+              printf('<span class="tc-notice">%1$s</span>',
+                __( "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support it's continued development with a donation of $20, $50, ..." , 'customizr' )
+              );
+              printf('<a class="tc-donate-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow">
+                <img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="%1$s"></a>',
+                __( "Make a donation for Customizr" , 'customizr' )
+              );
+              printf('<div class="donate-alert"><p class="tc-notice">%1$s</p><span class="tc-hide-donate button">%2$s</span><span class="tc-cancel-hide-donate button">%3$s</span></div>',
+                __( "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>" , 'customizr'),
+                __( "Hide forever" , 'customizr' ),
+                __( "Let me think twice" , 'customizr' )
+              );
+            ?>
+        </div>
+      </script>
+      <script type="text/template" id="main_cta">
+        <div class="tc-cta tc-cta-wrap">
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Need more features and premium support ? Discover the power of Customizr Pro" , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Discover Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
+      <script type="text/template" id="wfc_cta">
+        <div class="tc-cta tc-in-control-cta-wrap">
+        <hr/>
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with the Customizr Pro theme." , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Discover Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
+       <script type="text/template" id="fpu_cta">
+        <div class="tc-cta tc-in-control-cta-wrap">
+        <hr/>
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Add unlimited featured pages with Customizr Pro" , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Discover Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
+      <?php
+    }
+
 	}//end of class
 endif;

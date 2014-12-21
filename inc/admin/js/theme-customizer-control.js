@@ -368,31 +368,35 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
  * @package Customizr
  * @since Customizr 3.2.9
  */
-(function ( _, $) {
+jQuery(function ($) {
 
   /* CONTRIBUTION TO CUSTOMIZR */
-  if (  ! TCControlParams.HideDonate && 'customizr-pro' != TCControlParams.themeName )
-    donate_block();
+  var donate_displayed  = false,
+      is_pro            = 'customizr-pro' == TCControlParams.themeName;
+  if ( is_pro )
+    return;
 
-  function donate_block() {
-    var html  = '',
-        trans = TCControlParams.translations.donate;
+  if (  ! TCControlParams.HideDonate ) {
+    _render_donate_block();
+    donate_displayed = true;
+  }
 
-    html += '  <div id="tc-donate-customizer">';
-    html += '    <span class="tc-close-request button">X</span>';
-    html += '    <h3>' + trans.hi + ' <a href="https://twitter.com/nicguillaume" target="_blank">Nicolas</a>' + trans.developer + ' :).</h3>';
-    html += '    <span class="tc-notice"> ' + trans.support_message + '</span>';
-    html += '      <a class="tc-donate-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow">';
-    html += '        <img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="' + trans.donate_img_alt + '">';
-    html += '      </a>';
-    html += '     <div class="donate-alert">';
-    html += '       <p class="tc-notice">' + trans.alert_message + '</p>';
-    html += '       <span class="tc-hide-donate button">' + trans.hide_forever + '</span>';
-    html += '       <span class="tc-cancel-hide-donate button">' + trans.think_twice + '</span>';
-    html += '     </div>';
-    html += '  </div>';
+  //Main call to action
+  if ( TCControlParams.ShowCTA && ! donate_displayed ) {
+   _render_main_cta();
+  }
 
-    $('#customize-info').append( html );
+  //In controls call to action
+  _render_wfc_cta();
+  _render_fpu_cta();
+
+  function _render_donate_block() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var donate_template = _.template(
+        $( "script#donate_template" ).html()
+    );
+
+    $('#customize-info').after( donate_template() );
 
      //BIND EVENTS
     $('.tc-close-request').click( function(e) {
@@ -416,6 +420,30 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   }//end of donate block
 
 
+  function _render_main_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var main_cta = _.template(
+        $( "script#main_cta" ).html()
+    );
+    $('#customize-info').after( main_cta() );
+  }
+
+  function _render_wfc_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var wfc_cta = _.template(
+        $( "script#wfc_cta" ).html()
+    );
+    $('li[id*="tc_body_font_size"]').append( wfc_cta() );
+  }
+
+  function _render_fpu_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var fpu_cta = _.template(
+        $( "script#fpu_cta" ).html()
+    );
+    $('li[id*="tc_featured_text_three"]').append( fpu_cta() );
+  }
+
   function DoAjaxSave() {
       var AjaxUrl         = TCControlParams.AjaxUrl,
       query = {
@@ -434,5 +462,4 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           }
       });
   }//end of function
-
-})( wp, jQuery );
+});
