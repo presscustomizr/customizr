@@ -23,7 +23,7 @@ module.exports = {
 	},
 	//The customizer control has a special treatment => concatenation + FTP transfer of the built file
 	admin_customizer_control_js : {
-		files : ['<%= paths.admin_js %>_control.js'],
+		files : ['<%= paths.admin_js %>_control.js', '<%= paths.admin_js %>_call_to_actions.js'],
 		tasks : ['gitinfo' , 'replace:readme', 'jshint:those' , 'concat:admin_control_js' , 'ftp_push:admin_customizer_control_js'],
 	},
 	//Other admin js assets are jshinted on change
