@@ -189,21 +189,25 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
         /**
-        * Return 'no-updates' if never updated OR number of days since last update
+        * Return string 'no-updates' if never updated OR number of days since last update OR PHP version < 5.2
         *
         * @package Customizr
         * @since Customizr 3.2.6
         */
         function tc_has_update() {
-            //Instantiates the different date objects
-            $created                = new DateTime( get_the_date('Y-m-d g:i:s') );
-            $updated                = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
-            $current                = new DateTime( date('Y-m-d g:i:s') );
+          //php version check for DateTime
+          //http://php.net/manual/fr/class.datetime.php
+          if ( version_compare( PHP_VERSION, '5.2.0' ) < 0 )
+            return 'no-updates';
+          //Instantiates the different date objects
+          $created                = new DateTime( get_the_date('Y-m-d g:i:s') );
+          $updated                = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
+          $current                = new DateTime( date('Y-m-d g:i:s') );
 
-            $created_to_updated     = TC_utils::$instance -> tc_date_diff( $created , $updated );
-            $updated_to_today       = TC_utils::$instance -> tc_date_diff( $updated, $current );
+          $created_to_updated     = TC_utils::$instance -> tc_date_diff( $created , $updated );
+          $updated_to_today       = TC_utils::$instance -> tc_date_diff( $updated, $current );
 
-            return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? 'no-updates' : $updated_to_today -> days;
+          return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? 'no-updates' : $updated_to_today -> days;
         }
 
 

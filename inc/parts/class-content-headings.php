@@ -568,6 +568,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
           if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
               return $html;
 
+          //php version check for DateTime
+          //http://php.net/manual/fr/class.datetime.php
+          if ( version_compare( PHP_VERSION, '5.2.0' ) < 0 )
+            return $html;
+
           //Instantiates the different date objects
           $created = new DateTime( get_the_date('Y-m-d g:i:s') );
           $updated = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
