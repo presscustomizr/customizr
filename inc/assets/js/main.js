@@ -5,17 +5,13 @@
 */
 //ON DOM READY
 jQuery(function ($) {
-    function g($) {
-        return ($.which > 0 || "mousedown" === $.type || "mousewheel" === $.type) && f.stop().off("scroll mousedown DOMMouseScroll mousewheel keyup", g);
-    }
-
     //fancybox with localized script variables
     var b = TCParams.FancyBoxState,
         c = TCParams.FancyBoxAutoscale;
     if ( 1 == b ) {
             $("a.grouped_elements").fancybox({
-            transitionIn: "elastic",
             transitionOut: "elastic",
+            transitionIn: "elastic",
             speedIn: 200,
             speedOut: 200,
             overlayShow: !1,
@@ -82,6 +78,9 @@ jQuery(function ($) {
     }
 
     //BACK TO TOP
+    function g($) {
+        return ($.which > 0 || "mousedown" === $.type || "mousewheel" === $.type) && f.stop().off("scroll mousedown DOMMouseScroll mousewheel keyup", g);
+    }
     //Stop the viewport animation if user interaction is detected
     var f = $("html, body");
     $(".back-to-top, .tc-btt-wrapper, .btt-arrow").on("click touchstart touchend", function ($) {
@@ -95,16 +94,39 @@ jQuery(function ($) {
             $.preventDefault();
     });
 
-    //displays the button on scroll
-    $(document).on( 'scroll', function() {
-        //console.log($(window));
-            if ( $(window).scrollTop() > 100 ) {
-                $('.tc-btt-wrapper').addClass('show');
-            } else {
-                $('.tc-btt-wrapper').removeClass('show');
-            }
-        }
-    );
+
+    //DISPLAY BACK TO TOP BUTTON ON SCROLL
+    function btt_scrolling_actions() {
+      if ( $(window).scrollTop() > 100 )
+        $('.tc-btt-wrapper').addClass('show');
+      else
+        $('.tc-btt-wrapper').removeClass('show');
+    }
+    //use of a timer instead of attaching handler directly to the window scroll event
+    //@uses TCParams.timerOnScrollAllBrowsers : boolean set to true by default
+    //http://ejohn.org/blog/learning-from-twitter/
+    //https://dannyvankooten.com/delay-scroll-handlers-javascript/
+    var btt_timer,
+        btt_increment = 1,//used to wait a little bit after the first user scroll actions to trigger the timer
+        btt_triggerHeight = 20; //0.5 * windowHeight;
+
+    $(window).scroll(function() {
+      if ( btt_timer) {
+          btt_increment++;
+          window.clearTimeout(btt_timer);
+      }
+      if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+          btt_timer = window.setTimeout(function() {
+              btt_scrolling_actions();
+           }, btt_increment > 5 ? 50 : 0 );
+      } else if ( $('body').hasClass('ie') ) {
+           btt_timer = window.setTimeout(function() {
+              btt_scrolling_actions();
+           }, btt_increment > 5 ? 50 : 0 );
+      }
+    });//end of window.scroll()
+
+
 
     //Detects browser with CSS
     // Chrome is Webkit, but Webkit is also Safari. If browser = ie + strips out the .0 suffix
