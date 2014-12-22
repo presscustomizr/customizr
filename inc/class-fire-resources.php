@@ -243,7 +243,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 
     /*
-    * Callback of tc_user_options_style hook
+    * Callback of wp_enqueue_scripts
     * @return css string
     *
     * @package Customizr
@@ -252,7 +252,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
     function tc_enqueue_gfonts() {
       $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
       $_all_font_pairs    = TC_init::$instance -> font_pairs;
-      if ( !isset($_all_font_pairs['gfont']['list'][$_font_pair]) )
+      if ( false === strpos($_font_pair,'_g_') )
         return;
 
       wp_enqueue_style(
@@ -281,13 +281,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
       //create the $body and $titles vars
       extract( TC_init::$instance -> font_selectors, EXTR_OVERWRITE );
 
-      if ( 'helvetica_arial' != $_font_pair ) {
+      if ( 'helvetica_arial' != $_font_pair ) {//check if not default
         $_font_code       = TC_utils::$instance -> tc_get_font( 'single' , $_font_pair );
         $_selector_fonts  = explode('|', $_font_code);
         foreach ($_selector_fonts as $_key => $_single_font) {
           $_css_exp       = explode(':', $_single_font);
           $_family        = str_replace('+', ' ' , $_css_exp[0]);
-          $_weight        = $_css_exp[1] ? $_css_exp[1] : 'inherit';
+          $_weight        = isset( $_css_exp[1] ) ? $_css_exp[1] : 'inherit';
 
           switch ($_key) {
             case 0 : //titles font

@@ -1240,7 +1240,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               /********** NEW **********/
               /* Fonts */
               'tc_theme_options[tc_fonts]'      => array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 'helvetica_arial' : 'fjalla_cantarell',
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 'helvetica_arial' : '_g_fjalla_cantarell',
                                 'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                                 'control'       =>  'TC_controls',
                                 'section'       => 'tc_fonts',

@@ -460,7 +460,7 @@
       var font_groups = TCPreviewParams.fontPairs;
       $.each( font_groups , function( key, group ) {
         if ( group.list[to]) {
-          if ( 'gfont' == key )
+          if ( -1 != to.indexOf('_g_') )
             addGfontLink( group.list[to][1] );
           toStyle( group.list[to][1] );
         }
@@ -512,7 +512,8 @@
 
   wp.customize( 'tc_theme_options[tc_body_font_size]' , function( value ) {
     value.bind( function( to ) {
-      $( 'body' ).not('.social-icon').css( {
+      var fontSelectors  = TCPreviewParams.fontSelectors;
+      $( fontSelectors.body ).not('.social-icon').css( {
         'font-size' : to + 'px',
         'line-height' : Number((to * 19 / 14).toFixed()) + 'px'
       });
