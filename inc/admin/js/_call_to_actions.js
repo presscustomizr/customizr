@@ -1,7 +1,5 @@
 /**
  * Call to actions
- * @package Customizr
- * @since Customizr 3.2.9
  */
 jQuery(function ($) {
 
@@ -40,7 +38,7 @@ jQuery(function ($) {
     });
 
     $('.tc-hide-donate').click( function(e) {
-      DoAjaxSave();
+      _ajax_save();
       setTimeout(function(){
           $('#tc-donate-customizer').slideToggle("fast");
       }, 200);
@@ -79,7 +77,7 @@ jQuery(function ($) {
     $('li[id*="tc_featured_text_three"]').append( fpu_cta() );
   }
 
-  function DoAjaxSave() {
+  function _ajax_save() {
       var AjaxUrl         = TCControlParams.AjaxUrl,
       query = {
           action  : 'hide_donate',

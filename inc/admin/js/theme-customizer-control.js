@@ -47,8 +47,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
  * @package Customizr
  * @since Customizr 1.0
  */
-/* global _wpCustomizeWidgetsSettings */
-
 (function (wp, $) {
 
   var api = wp.customize;
@@ -276,9 +274,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     });
   });
 
-
-  //FIRE SPECIFIC INPUT PLUGINS
-  $(function () {
+  //DOM READY SPECIFIC CONTROLS ACTIONS
+  $( function($) {
     /* CHECK */
     //init icheck only if not already initiated
     //exclude widget inputs
@@ -305,7 +302,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         //   self.triggerSettingChange( window.event || {} , value, index); // first param is a null event.
         // }
         });
-      });
+    });
 
 
     //SKINS
@@ -349,24 +346,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     $('input[type="number"]').stepper();
   });
 
-  $('.accordion-section').not('.control-panel').click( function () {
-    _recenter_current_section($(this));
-  });
-
-  function _recenter_current_section( section ) {
-    var $siblings               = section.siblings( '.open' );
-    //check if clicked element is above or below sibling with offset.top
-    if ( 0 !== $siblings.length &&  $siblings.offset().top < 0 ) {
-      $('.wp-full-overlay-sidebar-content').animate({
-            scrollTop:  - $('#customize-theme-controls').offset().top - $siblings.height() + section.offset().top + $('.wp-full-overlay-sidebar-content').offset().top
-      }, 700);
-    }
-  }//end of fn
-})( wp, jQuery );
-;/**
+})( wp, jQuery );;/**
  * Call to actions
- * @package Customizr
- * @since Customizr 3.2.9
  */
 jQuery(function ($) {
 
@@ -405,7 +386,7 @@ jQuery(function ($) {
     });
 
     $('.tc-hide-donate').click( function(e) {
-      DoAjaxSave();
+      _ajax_save();
       setTimeout(function(){
           $('#tc-donate-customizer').slideToggle("fast");
       }, 200);
@@ -444,7 +425,7 @@ jQuery(function ($) {
     $('li[id*="tc_featured_text_three"]').append( fpu_cta() );
   }
 
-  function DoAjaxSave() {
+  function _ajax_save() {
       var AjaxUrl         = TCControlParams.AjaxUrl,
       query = {
           action  : 'hide_donate',
@@ -462,4 +443,29 @@ jQuery(function ($) {
           }
       });
   }//end of function
+});
+;//DOM READY :
+//1) FIRE SPECIFIC INPUT PLUGINS
+//2) ADD SOME COOL STUFFS
+jQuery(function ($) {
+
+  /* RECENTER CURRENT SECTIONS */
+  $('.accordion-section').not('.control-panel').click( function () {
+    _recenter_current_section($(this));
+  });
+
+  function _recenter_current_section( section ) {
+    var $siblings               = section.siblings( '.open' );
+    //check if clicked element is above or below sibling with offset.top
+    if ( 0 !== $siblings.length &&  $siblings.offset().top < 0 ) {
+      $('.wp-full-overlay-sidebar-content').animate({
+            scrollTop:  - $('#customize-theme-controls').offset().top - $siblings.height() + section.offset().top + $('.wp-full-overlay-sidebar-content').offset().top
+      }, 700);
+    }
+  }//end of fn
+
+  /* ADD GOOGLE IN TITLE */
+  $g_logo = $('<img>' , {class : 'tc-title-google-logo' , src : 'http://www.google.com/images/logos/google_logo_41.png' , height : 20 });
+  $('#accordion-section-tc_fonts').prepend($g_logo);
+
 });

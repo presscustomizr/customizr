@@ -637,6 +637,14 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   border-bottom: 1px solid #E3E3E3;
   text-overflow: ellipsis;
 }
+.tc-title-google-logo {
+  display: block;
+  float: left;
+  position: relative;
+  z-index: 100;
+  padding: 2px 4px 0 20px;
+  top: 6px;
+}
 .tc-google-logo {
   position: relative;
   top: 6px;

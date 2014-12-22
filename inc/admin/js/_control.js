@@ -3,8 +3,6 @@
  * @package Customizr
  * @since Customizr 1.0
  */
-/* global _wpCustomizeWidgetsSettings */
-
 (function (wp, $) {
 
   var api = wp.customize;
@@ -232,9 +230,8 @@
     });
   });
 
-
-  //FIRE SPECIFIC INPUT PLUGINS
-  $(function () {
+  //DOM READY SPECIFIC CONTROLS ACTIONS
+  $( function($) {
     /* CHECK */
     //init icheck only if not already initiated
     //exclude widget inputs
@@ -261,7 +258,7 @@
         //   self.triggerSettingChange( window.event || {} , value, index); // first param is a null event.
         // }
         });
-      });
+    });
 
 
     //SKINS
@@ -305,17 +302,4 @@
     $('input[type="number"]').stepper();
   });
 
-  $('.accordion-section').not('.control-panel').click( function () {
-    _recenter_current_section($(this));
-  });
-
-  function _recenter_current_section( section ) {
-    var $siblings               = section.siblings( '.open' );
-    //check if clicked element is above or below sibling with offset.top
-    if ( 0 !== $siblings.length &&  $siblings.offset().top < 0 ) {
-      $('.wp-full-overlay-sidebar-content').animate({
-            scrollTop:  - $('#customize-theme-controls').offset().top - $siblings.height() + section.offset().top + $('.wp-full-overlay-sidebar-content').offset().top
-      }, 700);
-    }
-  }//end of fn
 })( wp, jQuery );
