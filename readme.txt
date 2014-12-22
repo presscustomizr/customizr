@@ -39,6 +39,123 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.2.9 December 22nd 2014 =
+* 4602677 add more single fonts check on _g_ prefix to determine if google font
+* 76282b8 Customizer : Add Google logo in fonts title
+* b1d9a66 add call to actions in the customizer
+* 3e3d7d6 separate controls and call to action scripts in the customizer
+* 9316c01 add underscore dependency to js control
+* f0be9ee adapt admin pages if pro context
+* 2d712e2 use of a timer instead of attaching handler directly to the window scroll event @uses TCParams.timerOnScrollAllBrowsers : boolean set to true by default
+* b01a1fc translation updates
+* 95785d7 check if php version supports DateTime ( must be >= 5.2 ) Bug initially reported here : https://wordpress.org/support/topic/fatal-error-call-to-undefined?repl* 90cee9a fix hard coded link issue
+*   3a95a23 Merge branch 'eri-trabiccolo-multitier-menu' into dev
+|\
+| * 87ab91a remove the expand submenus for tablets in landscape mode ( selector : .tc-is-mobile .navbar .nav li > ul ul )
+| * d326123 fix the issue for parent with depth > 0 for tablets in landscape mode In a context like : Parent0 > Parent1 > child, clicking on Parent0 now opens Parent1 C| * 4f2d376 added a $ prefix to jQuery vars
+| |\
+| | * 7df8265 Fix dropdown on click for multitier menus
+* | | cd6eb04 fix post formats metas hook order issues add an "open" link to post after the metas of post formats with no headings when displayed in a list
+* | | f5e7614 fix a notice with bbpress tags view : make sure that get_the_ID() is not false before adding the edit link in heading
+|/ /
+* | ffa1635 minor fixes on the new font picker feature
+* |   b85d547 Merge branch 'googlefonts' into dev
+|\ \
+| * | 829fa5c google fonts enqueued on front end + generated custom CSS code
+| * | 9ac6d21 remove the uselesss group parameter in the toStyle function
+| * | 00437b5 change tc_get_font_lists to tc_get_font() with 2 parameters list / single and name or code
+| * | 431dbcd added properties : font_selectors, font_pairs
+| * | eaca195 add filters 'tc_gfont_pairs' and 'tc_wsfont_pairs'
+| * | b1f1779 set the the default font depending on the user start theme version
+| * | 3463729 Fix google font weight issues Reorder the font pairs
+| * | ab8f4d9 property db_options is instanciated with the raw db option array new transient : started_using_customizr => used to stored the theme version number when t| * | 09de2fa added a static property to TC_init : tc_option_group (default is tc_theme_options)
+| * | 618007d customizer font setup : admin control + preview php, js, css devs
+| * | f21c58a the font pairs are localized to preview with TCPreviewParams.fontPairs
+| * | 42cbe54 added font list as a TC_init property
+| |/
+* | cff5dd3 Fix $logos_img instanciation bug in class TC_header_main#148
+|/
+* f806c18 pages with comments : enable the comment bubble after the title in headings
+* 57ac308 admin css : change help buttons and icon to the new set of colors : #27CDA5 #1B8D71
+* 786bbbc expand submenus for tablets in landscape mode
+* d4bc5eb add a tc-is-mobile class to the body tag if wp_is_mobile()
+* d3bb703 Fix the skin dropdown not closing when clicking outside the dropdown
+* 094e0b2 Changed author URL to http://themesandco.com/
+*   c6611bb Merge branch 'eri-trabiccolo-android-menu' into dev
+|\
+| *   7b08e52 Merge branch 'android-menu' of https://github.com/eri-trabiccolo/customizr into eri-trabiccolo-android-menu
+| |\
+|/ /
+| * d94fff6 Fix collapsed menu on android devices
+* |   605a462 Merge branch 'eri-trabiccolo-fp-edit-link' into dev
+|\ \
+| * \   eb6e05c Merge branch 'fp-edit-link' of https://github.com/eri-trabiccolo/customizr into eri-trabiccolo-fp-edit-link
+| |\ \
+|/ / /
+| * | 63c6aa0 Featured Pages: fix edit link
+| |/
+* |   8e24584 Merge branch 'eri-trabiccolo-parent-menu-item' into dev
+|\ \
+| * \   0205df3 Merge branch 'parent-menu-item' of https://github.com/eri-trabiccolo/customizr into eri-trabiccolo-parent-menu-item
+| |\ \
+|/ / /
+| * | 0ccdc04 Fix: add href(=#) attribute to menu parent item which doesn't have it
+* | |   708b7b1 Merge branch 'eri-trabiccolo-hammer-issue' into dev
+|\ \ \
+| * \ \   81aaa17 Merge branch 'hammer-issue' of https://github.com/eri-trabiccolo/customizr into eri-trabiccolo-hammer-issue
+| |\ \ \
+|/ / / /
+| * | | 01bca14 Fix click on slide's call to action buttons in mobile devs
+| | |/
+| |/|
+* | | bc5f118 minor changes to https://github.com/eri-trabiccolo dev on the sticky logo
+* | | cb77df3 add the title and notice to TC_Customize_Upload_Control
+* | |   7b31410 Merge branch 'eri-trabiccolo-dev' into dev
+|\ \ \
+| * \ \   30aeb72 Merge branch 'dev' of https://github.com/eri-trabiccolo/customizr into eri-trabiccolo-dev
+| |\ \ \
+|/ / / /
+| * | | 937dc04 Add sticky logo option: a different logo when sticky header enabled
+* | | | d0671a7 donate message strings are now translation ready and passed as js parameters
+* | | | 4c1eebb add theme_name as a static property of TC___ check if theme is customizr-pro before instanciating init-pro.php
+* | | | 8c6f3db fix footer customizer addon issues
+* | | | 62bce18 add the title rendering for some control types
+* | | | d3bc218 add the footer-customizer as an addon in init-pro
+* | | | dd24119 remove the ftp_push skin task on prod build (too long and useless)
+* | | | 07f04ab instanciates only for the following classes 'TC_activation_key' && 'TC_theme_check_updates'
+* | | | fd70517 add TC_init_pro class in inc/init-pro.php. Not part of the free version
+* | | | c997f65 setup the pro build in a parent folder
+* | | | 11affc1 remove the patches/ folder on build
+* | | | 94200f6 separate free and pro builds
+* | | | 85ebbb6 require init-pro file in pro context
+| |/ /
+|/| |
+* | | 4311c40 add a tc_is_customizing method and a pro conditional class instanciation
+* | | 0c0e46a customizer controls : update jquery plugins path
+* | | 48891bb fix the $default_title_length hard coded value
+* | | 058993f icheck control : added the flat grey skin
+* | | 70cbf61 French translation update
+| |/
+|/|
+* | f1ebe3d fix the hide donate button not hiding. The tc_hide_donate method had been removed from TC_customize.
+* | bc4526b updated cs_CZ, thanks to Martin Filák
+* |   2cd88b2 Merge branch 'czech-lang-update' into dev
+|\ \
+| * | 849c53b updated cs_CZ translation
+| * |   8704dd0 Merge branch 'master' of https://github.com/mejatysek/customizr into czech-lang-update
+| |\ \
+| | |/
+| |/|
+| | * 8547045 Updated czech translation Translated new strings added in newer template versions Corrected some bad translations
+* | | be57dea updated lang files
+|/ /
+* |   b03f80f Merge branch 'fix-reordering-bug' into dev
+|\ \
+| * | f3e6700 fix the block reordering issue with Rocco's patch => cache the reordering status in a var and checking the status before doing anything
+| |/
+* | 08fc163 added a patches folder (ignored by git)
+|/
+
 = 3.2.8 November 24th 2014 =
 * a4c6ad2 date_diff bug fix. TC_utils::tc_date_diff uses date_diff and falls back to new class TC_DateInterval if php version < 5.3.0
 

@@ -383,7 +383,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
         <div class="tc-cta tc-cta-wrap">
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Need more features and premium support ? Discover the power of Customizr Pro" , 'customizr' ),
+              __( "Need more customizations options and premium support ?" , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
               __( "Discover Customizr Pro" , 'customizr' )
             );

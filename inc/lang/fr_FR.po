@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.2.9\n"
-"POT-Creation-Date: 2014-12-21 17:08+0100\n"
-"PO-Revision-Date: 2014-12-21 17:08+0100\n"
+"POT-Creation-Date: 2014-12-22 09:50+0100\n"
+"PO-Revision-Date: 2014-12-22 09:51+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -109,172 +109,172 @@ msgid "Web safe fonts pairs"
 msgstr "Polices du web"
 
 #: ../class-fire-init.php:152
-msgid "Single default font"
-msgstr "Police unique par défaut"
+msgid "Single fonts"
+msgstr "Polices seules"
 
-#: ../class-fire-init.php:171
+#: ../class-fire-init.php:190
 msgid "Subscribe to my rss feed"
 msgstr "Abonnez-vous au flux rss"
 
-#: ../class-fire-init.php:172
+#: ../class-fire-init.php:191
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "Flux RSS (Par défaut, flux WordPress du site)"
 
-#: ../class-fire-init.php:176
+#: ../class-fire-init.php:195
 msgid "Follow me on Twitter"
 msgstr "Suivez-moi sur Twitter"
 
-#: ../class-fire-init.php:177
+#: ../class-fire-init.php:196
 msgid "Twitter profile url"
 msgstr "Url du compte Twitter"
 
-#: ../class-fire-init.php:181
+#: ../class-fire-init.php:200
 msgid "Follow me on Facebook"
 msgstr "Suivez-moi sur Facebook"
 
-#: ../class-fire-init.php:182
+#: ../class-fire-init.php:201
 msgid "Facebook profile url"
 msgstr "Url du compte Facebook"
 
-#: ../class-fire-init.php:186
+#: ../class-fire-init.php:205
 msgid "Follow me on Google+"
 msgstr "Suivez-moi sur Google+"
 
-#: ../class-fire-init.php:187
+#: ../class-fire-init.php:206
 msgid "Google+ profile url"
 msgstr "Url du compte Google+"
 
-#: ../class-fire-init.php:191
+#: ../class-fire-init.php:210
 msgid "Follow me on Instagram"
 msgstr "Suivez-moi sur Instagram"
 
-#: ../class-fire-init.php:192
+#: ../class-fire-init.php:211
 msgid "Instagram profile url"
 msgstr "Url du compte Instagram"
 
-#: ../class-fire-init.php:196
+#: ../class-fire-init.php:215
 msgid "Follow me on Tumblr"
 msgstr "Suivez-moi sur Tumblr"
 
-#: ../class-fire-init.php:197
+#: ../class-fire-init.php:216
 msgid "Tumblr url"
 msgstr "Url Tumblr"
 
-#: ../class-fire-init.php:201
+#: ../class-fire-init.php:220
 msgid "Follow me on Flickr"
 msgstr "Suivez-moi sur Flickr"
 
-#: ../class-fire-init.php:202
+#: ../class-fire-init.php:221
 msgid "Flickr url"
 msgstr "Url Flickr"
 
-#: ../class-fire-init.php:206
+#: ../class-fire-init.php:225
 msgid "Follow me on WordPress"
 msgstr "Suivez-moi sur WordPress"
 
-#: ../class-fire-init.php:207
+#: ../class-fire-init.php:226
 msgid "WordPress profile url"
 msgstr "Url du compte WordPress"
 
-#: ../class-fire-init.php:211
+#: ../class-fire-init.php:230
 msgid "Follow me on Youtube"
 msgstr "Suivez-moi sur Youtube"
 
-#: ../class-fire-init.php:212
+#: ../class-fire-init.php:231
 msgid "Youtube profile url"
 msgstr "Url du compte Youtube"
 
-#: ../class-fire-init.php:216
+#: ../class-fire-init.php:235
 msgid "Pin me on Pinterest"
 msgstr "Suivez moi sur Pinterest"
 
-#: ../class-fire-init.php:217
+#: ../class-fire-init.php:236
 msgid "Pinterest profile url"
 msgstr "Url du compte Pinterest"
 
-#: ../class-fire-init.php:221
+#: ../class-fire-init.php:240
 msgid "Follow me on Github"
 msgstr "Suivez-moi sur Github "
 
-#: ../class-fire-init.php:222
+#: ../class-fire-init.php:241
 msgid "Github profile url"
 msgstr "Url du compte Github"
 
-#: ../class-fire-init.php:226
+#: ../class-fire-init.php:245
 msgid "Follow me on Dribbble"
 msgstr "Suivez-moi sur Dribbble "
 
-#: ../class-fire-init.php:227
+#: ../class-fire-init.php:246
 msgid "Dribbble profile url"
 msgstr "Url du compte Dribbble"
 
-#: ../class-fire-init.php:231
+#: ../class-fire-init.php:250
 msgid "Follow me on LinkedIn"
 msgstr "Suivez-moi sur LinkedIn"
 
-#: ../class-fire-init.php:232
+#: ../class-fire-init.php:251
 msgid "LinkedIn profile url"
 msgstr "Url du compte LinkedIn"
 
-#: ../class-fire-init.php:241
+#: ../class-fire-init.php:260
 msgid "Right Sidebar"
 msgstr "Barre latérale droite"
 
-#: ../class-fire-init.php:242 ../class-fire-init.php:246
+#: ../class-fire-init.php:261 ../class-fire-init.php:265
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr ""
 "Affichée dans les billets, les pages statiques, les archives et les pages de "
 "recherche"
 
-#: ../class-fire-init.php:245
+#: ../class-fire-init.php:264
 msgid "Left Sidebar"
 msgstr "Barre latérale gauche"
 
-#: ../class-fire-init.php:253
+#: ../class-fire-init.php:272
 msgid "Footer Widget Area One"
 msgstr "Première zone de widgets du pied de page"
 
-#: ../class-fire-init.php:254 ../class-fire-init.php:258
-#: ../class-fire-init.php:262
+#: ../class-fire-init.php:273 ../class-fire-init.php:277
+#: ../class-fire-init.php:281
 msgid "Just use it as you want !"
 msgstr "Glissez-deposez les widgets de votre choix ici!"
 
-#: ../class-fire-init.php:257
+#: ../class-fire-init.php:276
 msgid "Footer Widget Area Two"
 msgstr "Deuxième zone de widgets du pied de page"
 
-#: ../class-fire-init.php:261
+#: ../class-fire-init.php:280
 msgid "Footer Widget Area Three"
 msgstr "Troisième zone de widgets du pied de page"
 
-#: ../class-fire-init.php:279
+#: ../class-fire-init.php:298
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr ""
 "En ces temps d'imposture universelle, dire la vérité est un acte "
 "révolutionnaire."
 
-#: ../class-fire-init.php:280
+#: ../class-fire-init.php:299
 msgid "George Orwell"
 msgstr "George Orwell"
 
-#: ../class-fire-init.php:281
+#: ../class-fire-init.php:300
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
 "La page demandée n'a pas été trouvée. Essayez une recherche sur le site ci-"
 "dessous."
 
-#: ../class-fire-init.php:286
+#: ../class-fire-init.php:305
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
 msgstr "Le succès c'est d'aller d'échec en échec sans perdre son enthousiasme."
 
-#: ../class-fire-init.php:287
+#: ../class-fire-init.php:306
 msgid "Sir Winston Churchill"
 msgstr "Sir Winston Churchill"
 
-#: ../class-fire-init.php:288
+#: ../class-fire-init.php:307
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
@@ -282,15 +282,15 @@ msgstr ""
 "La recherche n'a donné aucuns résultats...Vous pourriez essayer avec des "
 "mots clés différents?"
 
-#: ../class-fire-init.php:303
+#: ../class-fire-init.php:322
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr est un thème élégant et simple"
 
-#: ../class-fire-init.php:308 ../class-fire-init.php:317
+#: ../class-fire-init.php:327 ../class-fire-init.php:336
 msgid "Style your WordPress site live!"
 msgstr "Modifiez votre site WordPress en live!"
 
-#: ../class-fire-init.php:309
+#: ../class-fire-init.php:328
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -298,15 +298,15 @@ msgstr ""
 "De nombreuses options de design et structures sont disponibles dans l'écran "
 "de customization Wordpress : vos modifications s'affichent en live !"
 
-#: ../class-fire-init.php:310
+#: ../class-fire-init.php:329
 msgid "Just try it!"
 msgstr "Essayez le!"
 
-#: ../class-fire-init.php:322 ../class-fire-init.php:331
+#: ../class-fire-init.php:341 ../class-fire-init.php:350
 msgid "Create beautiful sliders"
 msgstr "Créez de superbes diaporamas"
 
-#: ../class-fire-init.php:323
+#: ../class-fire-init.php:342
 msgid ""
 "Customizr comes with a cool slider generator : add a slider to any post or "
 "page!"
@@ -314,19 +314,19 @@ msgstr ""
 "Customizr inclut un générateur de diaporama très pratique : ajoutez un "
 "diaporama à n'importe quel billet ou page !"
 
-#: ../class-fire-init.php:324
+#: ../class-fire-init.php:343
 msgid "Discover the features"
 msgstr "Découvrez les fonctionnalités"
 
-#: ../class-fire-init.php:441
+#: ../class-fire-init.php:460
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: ../class-fire-init.php:830
+#: ../class-fire-init.php:849
 msgid "Help"
 msgstr "Aide"
 
-#: ../class-fire-init.php:833
+#: ../class-fire-init.php:852
 msgid "Need help with Customizr? Click here!"
 msgstr "Besoin d'aide sur Customizr? Cliquez ici!"
 
@@ -1552,15 +1552,15 @@ msgstr ""
 msgid "You might want to regenerate your thumbnails."
 msgstr "Pensez à re-générer vos images."
 
-#: ../admin/class-admin-customize.php:308
+#: ../admin/class-admin-customize.php:364
 msgid "Hi! This is"
 msgstr "Bonjour, je suis"
 
-#: ../admin/class-admin-customize.php:309
+#: ../admin/class-admin-customize.php:365
 msgid ", developer of the Customizr theme"
 msgstr ", developpeur du thème Customizr"
 
-#: ../admin/class-admin-customize.php:310
+#: ../admin/class-admin-customize.php:368
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
 "think it helped you in any way to build a better web presence, please "
@@ -1569,11 +1569,11 @@ msgstr ""
 "Contribuez à  l'amélioration permanente du thème avec un don de 20, 50 ou "
 "même 100€."
 
-#: ../admin/class-admin-customize.php:311
+#: ../admin/class-admin-customize.php:372
 msgid "Make a donation for Customizr"
 msgstr "Faire une donation pour Customizr"
 
-#: ../admin/class-admin-customize.php:312
+#: ../admin/class-admin-customize.php:375
 msgid ""
 "Once clicked the 'Hide forever' button, this donation block will not be "
 "displayed anymore.<br/>Either you are using Customizr for personal or "
@@ -1586,13 +1586,33 @@ msgstr ""
 "apprécié pour ce thème gratuit.<br/><strong>Déjà sponsor? Merci l !<br/><br/"
 "> Bonne route avec Customizr!</strong>"
 
-#: ../admin/class-admin-customize.php:313
+#: ../admin/class-admin-customize.php:376
 msgid "Hide forever"
 msgstr "Cacher"
 
-#: ../admin/class-admin-customize.php:314
+#: ../admin/class-admin-customize.php:377
 msgid "Let me think twice"
 msgstr "Laissez-moi réfléchir"
+
+#: ../admin/class-admin-customize.php:386
+msgid "Need more customizations options and premium support ?"
+msgstr "Besoin de plus d'options et d'un support premium ?"
+
+#: ../admin/class-admin-customize.php:388
+#: ../admin/class-admin-customize.php:400
+#: ../admin/class-admin-customize.php:412
+msgid "Discover Customizr Pro"
+msgstr "Découvrir Customizr Pro"
+
+#: ../admin/class-admin-customize.php:398
+msgid ""
+"Need more control on your fonts ? Style any text in live preview ( size, "
+"color, font family, effect, ...) with the Customizr Pro theme."
+msgstr "Plus d'options disponibles avec Customizr Pro"
+
+#: ../admin/class-admin-customize.php:410
+msgid "Add unlimited featured pages with Customizr Pro"
+msgstr "Plus d'options disponibles avec Customizr Pro"
 
 #: ../admin/class-admin-meta_boxes.php:87
 msgid "Layout Options"
@@ -1845,23 +1865,23 @@ msgid "Upgrade Wordpress Now"
 msgstr "Mettre à jour WordPress"
 
 #: ../admin/class-fire-admin_init.php:96 ../admin/class-fire-admin_init.php:97
-#: ../admin/class-fire-admin_page.php:37 ../admin/class-fire-admin_page.php:38
+#: ../admin/class-fire-admin_page.php:40
 msgid "About Customizr"
 msgstr "A propos de Customizr"
 
 #: ../admin/class-fire-admin_init.php:119
-#: ../admin/class-fire-admin_page.php:61
+#: ../admin/class-fire-admin_page.php:68
 msgid "Need help with Customizr ?"
 msgstr "Besoin d'aide sur Customizr?"
 
 #: ../admin/class-fire-admin_init.php:121
-#: ../admin/class-fire-admin_page.php:63
+#: ../admin/class-fire-admin_page.php:70
 #, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Bienvenue dans Customizr %s"
 
 #: ../admin/class-fire-admin_init.php:128
-#: ../admin/class-fire-admin_page.php:70
+#: ../admin/class-fire-admin_page.php:78
 #, php-format
 msgid ""
 "You can start by watching the <a href=\"%1$s\" target=\"_blank"
@@ -1880,27 +1900,26 @@ msgstr ""
 "votre problème dans la rubrique FAQ ou dans le forum des utilisateurs."
 
 #: ../admin/class-fire-admin_init.php:136
-#: ../admin/class-fire-admin_page.php:78
+#: ../admin/class-fire-admin_page.php:86
 msgid "Read the documentation"
 msgstr "Lire la documentation"
 
 #: ../admin/class-fire-admin_init.php:140
-#: ../admin/class-fire-admin_page.php:82
+#: ../admin/class-fire-admin_page.php:90
 msgid "Check the FAQ"
 msgstr "Voir la rubrique FAQ"
 
 #: ../admin/class-fire-admin_init.php:145
-#: ../admin/class-fire-admin_page.php:87
+#: ../admin/class-fire-admin_page.php:95
 msgid "Code snippets"
 msgstr "Code snippets"
 
 #: ../admin/class-fire-admin_init.php:148
-#: ../admin/class-fire-admin_page.php:90
 msgid "Discuss in the user forum"
 msgstr "Consultez le forum des utilisateurs"
 
 #: ../admin/class-fire-admin_init.php:156
-#: ../admin/class-fire-admin_page.php:98
+#: ../admin/class-fire-admin_page.php:106
 #, php-format
 msgid ""
 "Thank you for using Customizr! Customizr %1$s has more features, is safer "
@@ -1916,7 +1935,7 @@ msgstr ""
 "dans le <a href=\"#showcase\">showcase</a>."
 
 #: ../admin/class-fire-admin_init.php:170
-#: ../admin/class-fire-admin_page.php:112
+#: ../admin/class-fire-admin_page.php:120
 #, php-format
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
@@ -1927,12 +1946,12 @@ msgstr ""
 "template a été déprécié."
 
 #: ../admin/class-fire-admin_init.php:185
-#: ../admin/class-fire-admin_page.php:127
+#: ../admin/class-fire-admin_page.php:137
 msgid "We need sponsors!"
 msgstr "Soutenez Customizr!"
 
 #: ../admin/class-fire-admin_init.php:186
-#: ../admin/class-fire-admin_page.php:128
+#: ../admin/class-fire-admin_page.php:138
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
 "strong><br/> Please help support it's continued development with a donation "
@@ -1943,12 +1962,12 @@ msgstr ""
 "avec un don de 20, 50 ou même 100€."
 
 #: ../admin/class-fire-admin_init.php:193
-#: ../admin/class-fire-admin_page.php:135
+#: ../admin/class-fire-admin_page.php:145
 msgid "Happy user of Customizr?"
 msgstr "Satisfait par Customizr?"
 
 #: ../admin/class-fire-admin_init.php:194
-#: ../admin/class-fire-admin_page.php:136
+#: ../admin/class-fire-admin_page.php:146
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
@@ -1957,29 +1976,29 @@ msgstr ""
 "évaluant le thème!"
 
 #: ../admin/class-fire-admin_init.php:199
-#: ../admin/class-fire-admin_page.php:141
+#: ../admin/class-fire-admin_page.php:151
 msgid "Follow us"
 msgstr "Suivez notre actu"
 
 #: ../admin/class-fire-admin_init.php:207
-#: ../admin/class-fire-admin_page.php:149
+#: ../admin/class-fire-admin_page.php:160
 msgid "Customizr's extensions"
 msgstr "Extensions pour Customizr"
 
 #: ../admin/class-fire-admin_init.php:210
 #: ../admin/class-fire-admin_init.php:219
-#: ../admin/class-fire-admin_page.php:152
-#: ../admin/class-fire-admin_page.php:161
+#: ../admin/class-fire-admin_page.php:163
+#: ../admin/class-fire-admin_page.php:172
 msgid "Visit the extension's page"
 msgstr "Voir les extensions"
 
 #: ../admin/class-fire-admin_init.php:211
-#: ../admin/class-fire-admin_page.php:153
+#: ../admin/class-fire-admin_page.php:164
 msgid "Easily take your web design one step further"
 msgstr "Ajoutez facilement des fonctionnalités à votre thème"
 
 #: ../admin/class-fire-admin_init.php:212
-#: ../admin/class-fire-admin_page.php:154
+#: ../admin/class-fire-admin_page.php:165
 msgid ""
 "The Customizr's extensions are plugins developed to extend the Customizr "
 "theme with great features. Nicely integrated with the theme's built-in "
@@ -1992,7 +2011,7 @@ msgstr ""
 "pour vos réglages ou customisations existants."
 
 #: ../admin/class-fire-admin_init.php:214
-#: ../admin/class-fire-admin_page.php:156
+#: ../admin/class-fire-admin_page.php:167
 msgid ""
 "These modules are designed to be simple to use for everyone. They are a good "
 "solution to add some creative customizations whitout needing to dive into "
@@ -2003,7 +2022,7 @@ msgstr ""
 "nécessiter de connaissances techniques."
 
 #: ../admin/class-fire-admin_init.php:216
-#: ../admin/class-fire-admin_page.php:158
+#: ../admin/class-fire-admin_page.php:169
 msgid ""
 "Customizr's extensions are installed and upgraded from your WordPress admin, "
 "like any other WordPress plugins. Well documented and easily extendable with "
@@ -2015,25 +2034,25 @@ msgstr ""
 "com."
 
 #: ../admin/class-fire-admin_init.php:225
-#: ../admin/class-fire-admin_page.php:167
+#: ../admin/class-fire-admin_page.php:179
 msgid "Customizr Showcase"
 msgstr "Customizr Showcase"
 
 #: ../admin/class-fire-admin_init.php:228
 #: ../admin/class-fire-admin_init.php:235
-#: ../admin/class-fire-admin_page.php:170
-#: ../admin/class-fire-admin_page.php:177
+#: ../admin/class-fire-admin_page.php:182
+#: ../admin/class-fire-admin_page.php:189
 msgid "Visit the showcase"
 msgstr "Voir le showcase"
 
 #: ../admin/class-fire-admin_init.php:229
-#: ../admin/class-fire-admin_page.php:171
+#: ../admin/class-fire-admin_page.php:183
 msgid "Find inspiration for your next Customizr based website!"
 msgstr ""
 "Trouvez de l'inspiration pour créer votre prochain site avec Customizr!"
 
 #: ../admin/class-fire-admin_init.php:230
-#: ../admin/class-fire-admin_page.php:172
+#: ../admin/class-fire-admin_page.php:184
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
@@ -2042,7 +2061,7 @@ msgstr ""
 "Customizr et d'aider d'autres webdesigners à trouver de l'inspiration."
 
 #: ../admin/class-fire-admin_init.php:232
-#: ../admin/class-fire-admin_page.php:174
+#: ../admin/class-fire-admin_page.php:186
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
@@ -2051,31 +2070,35 @@ msgstr ""
 "webdesigner? Proposez-le au showcase, c'est simple et rapide."
 
 #: ../admin/class-fire-admin_init.php:242
-#: ../admin/class-fire-admin_page.php:244
+#: ../admin/class-fire-admin_page.php:256
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Changelog de la version %1$s"
 
 #: ../admin/class-fire-admin_init.php:251
-#: ../admin/class-fire-admin_page.php:186
+#: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Aller au tableau de bord &rarr; Accueil"
 
 #: ../admin/class-fire-admin_init.php:251
-#: ../admin/class-fire-admin_page.php:186
+#: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard"
 msgstr "Aller au tableau de bord"
 
-#: ../admin/class-fire-admin_page.php:261
+#: ../admin/class-fire-admin_page.php:98
+msgid "Get support in the forum"
+msgstr "Consultez le forum des utilisateurs"
+
+#: ../admin/class-fire-admin_page.php:273
 msgid "System Informations"
 msgstr "Informations de configuration"
 
-#: ../admin/class-fire-admin_page.php:262
+#: ../admin/class-fire-admin_page.php:274
 msgid "Please include the following informations when posting support requests"
 msgstr ""
 "Merci d'inclure les informations ci-dessous lors d'une demande de support."
 
-#: ../admin/class-fire-admin_page.php:263
+#: ../admin/class-fire-admin_page.php:275
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
@@ -2455,6 +2478,14 @@ msgid "Add a menu"
 msgstr "Ajouter un menu"
 
 #~ msgid ""
+#~ "Need more features and premium support ? Discover the power of Customizr "
+#~ "Pro"
+#~ msgstr "Plus d'options disponibles avec Customizr Pro"
+
+#~ msgid "Single default font"
+#~ msgstr "Police unique par défaut"
+
+#~ msgid ""
 #~ "This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
 #~ "span>."
 #~ msgstr ""
@@ -2578,9 +2609,6 @@ msgstr "Ajouter un menu"
 #~ "a> pour vous aider à créer un site extraordinaire! Regardez la <a href="
 #~ "\"#introduction\">vidéo d'introduction</a> et trouvez l'inspiration dans "
 #~ "le <a href=\"#showcase\">showcase</a>."
-
-#~ msgid "Discover Customizr : quick video introduction"
-#~ msgstr "Tour d'horizon de Customizr en images"
 
 #~ msgid ""
 #~ "Welcome to the new version of Customizr. You will be redirected to the "
