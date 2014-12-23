@@ -693,13 +693,20 @@ if ( ! class_exists( 'TC_utils' ) ) :
     */
     function tc_user_started_before_version( $_version ) {
       $_start_version_infos = explode('|', esc_attr( get_transient( 'started_using_customizr' ) ) );
-      switch ($_start_version_infos[0]) {
+      if ( ! is_array( $_start_version_infos ) )
+        return false;
+
+      switch ( $_start_version_infos[0] ) {
         case 'with':
           return version_compare( $_start_version_infos[1] , $_version, '<' );
         break;
 
         case 'before':
           return true;
+        break;
+
+        default :
+          return false;
         break;
       }
     }
