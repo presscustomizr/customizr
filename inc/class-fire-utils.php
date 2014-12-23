@@ -385,6 +385,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
       *
       */
       function tc_wp_title( $title, $sep ) {
+        if ( function_exists( '_wp_render_title_tag' ) )
+          return $title;
+
         global $paged, $page;
 
         if ( is_feed() )
@@ -401,8 +404,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
         // Add a page number if necessary.
         if ( $paged >= 2 || $page >= 2 )
           $title = "$title $sep " . sprintf( __( 'Page %s' , 'customizr' ), max( $paged, $page ) );
-
-
 
         return $title;
       }
