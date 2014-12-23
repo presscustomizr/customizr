@@ -1,4 +1,4 @@
-# Customizr v3.2.9 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.10 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,6 +92,17 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.2.10 December 23rd 2014 =
+* f404eda Add a fallback false value to tc_user_started_before_version()
+* 1577dfb Add Google fonts to the theme description
+*   349ee57 Merge branch 'eri-trabiccolo-fix_tccta-in-subpanel' into dev
+|\
+| *   72d22a6 Merge branch 'fix_tccta-in-subpanel' of https://github.com/eri-trab| |\
+|/ /
+| * be4b067 Fix: 'hide' tc-cta when in sub-panel
+* | 7414a5e Fix the double title bug add backward compatibility with wp_title()
+|/
+
 = 3.2.9 December 22nd 2014 =
 * 4602677 add more single fonts check on _g_ prefix to determine if google font
 * 76282b8 Customizer : Add Google logo in fonts title
