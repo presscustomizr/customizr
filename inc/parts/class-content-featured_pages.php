@@ -71,7 +71,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
               $j = 1;
               for ($i = 1; $i <= $fp_nb ; $i++ ) {
                     printf('%1$s<div class="span%2$s fp-%3$s">%4$s</div>%5$s',
-                        ( 1 == $j ) ? '<div class="row widget-area" role="complementary">' : '',
+                        ( 1 == $j ) ? sprintf('<div class="%1$s" role="complementary">', apply_filters( 'tc_fp_widget_area' , 'row widget-area' ) ) : '',
                         $span_value,
                         $fp_ids[$i - 1],
                         $this -> tc_fp_single_display( $fp_ids[$i - 1] , $tc_show_featured_pages_img ),
