@@ -360,10 +360,11 @@ jQuery(function ($) {
 
     // go to the link if submenu is already opened
     $dropdown_ahrefs.on('tap click', function(evt) {
-        if ( $(this).next('.dropdown-menu').css('visibility') != 'hidden' && 
-            ! $(this).parent().hasClass('dropdown-submenu' ||
-                $(this).next('.dropdown-menu').is(':visible') && 
-                $(this).parent().hasClass('dropdown-submenu') )
+        if ( ( $(this).next('.dropdown-menu').css('visibility') != 'hidden' && 
+                $(this).next('.dropdown-menu').is(':visible')  &&
+                ! $(this).parent().hasClass('dropdown-submenu') ) ||
+             ( $(this).next('.dropdown-menu').is(':visible') && 
+                $(this).parent().hasClass('dropdown-submenu') ) )
             window.location = $(this).attr('href');
     });
     // make sub-submenus dropdown on click work
@@ -372,7 +373,7 @@ jQuery(function ($) {
             $children = $parent.children('[data-toggle="dropdown"]');
         $children.on('tap click', function(){
             var submenu   = $(this).next('.dropdown-menu'),
-                openthis  = false,
+                openthis  = false;
             if ( ! $parent.hasClass('open') ) {
               openthis = true;
             }
