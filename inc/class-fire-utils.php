@@ -251,7 +251,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_get_the_ID()  {
           global $wp_version;
-          if ( version_compare( $wp_version, '3.4.1', '<=' ) )
+          if ( in_the_loop() || version_compare( $wp_version, '3.4.1', '<=' ) )
             {
               $tc_id            = get_the_ID();
             }
