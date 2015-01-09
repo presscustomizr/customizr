@@ -692,6 +692,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @since Customizr 3.2.9
     */
     function tc_user_started_before_version( $_version ) {
+      if ( ! get_transient( 'started_using_customizr' ) )
+        return false;
+
       $_start_version_infos = explode('|', esc_attr( get_transient( 'started_using_customizr' ) ) );
       if ( ! is_array( $_start_version_infos ) )
         return false;
