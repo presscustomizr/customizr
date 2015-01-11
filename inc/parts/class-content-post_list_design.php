@@ -31,36 +31,21 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             
             add_action( '__before_article', array($this, 'tc_post_list_design_hooks'), 0 );
         }
-
-        function tc_get_post_list_cols(){
-            return apply_filters( 'tc_post_list_design_cols', 
-                esc_attr( tc__f('__get_option', 'tc_post_list_design_cols') ) );
-        }
-
-        function tc_force_post_list_excerpt(){
-            add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
-            add_filter('tc_show_post_list_excerpt', '__return_true', 0);
-        }
         
-        function tc_get_post_list_expand_featured(){
-            global $wp_query;
-            $current_post = $wp_query -> current_post;
-
-            return ( apply_filters('tc_post_list_expand_featured', tc__f('__get_option', 'tc_post_list_expand_featured') ) && $current_post == 0 ) ? true : false;
-        }        
-
         function tc_post_list_design_hooks(){
 
             $expand_featured = $this -> tc_get_post_list_expand_featured();
 
             $this -> tc_force_post_list_excerpt();
+            
+            $this -> tc_force_post_list_thumbnails();
  
             remove_filter('tc_post_list_layout', 
                             array( TC_post_list::$instance, 'tc_set_post_list_layout') );
 
             add_filter('tc_post_list_layout', 
                             array( $this, 'tc_set_post_list_layout') );
-            
+
             //TODO if on what kind of post list + options
             //case simple post_list
             add_filter( 'tc_post_list_selectors', 
@@ -78,14 +63,47 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_filter( 'tc_post_list_separator', '__return_empty_string' );
         }
 
+        function tc_get_post_list_cols(){
+            return apply_filters( 'tc_post_list_design_cols', 
+                esc_attr( tc__f('__get_option', 'tc_post_list_design_cols') ) );
+        }
+
+        function tc_force_post_list_excerpt(){
+            add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
+            add_filter('tc_show_post_list_excerpt', '__return_true', 0);
+        }
+
+        function tc_force_post_list_thumbnails(){
+            add_filter('tc_thumb_size_name', 
+                        array( $this, 'tc_post_list_design_thumbs') );
+            add_filter('tc_thumb_wrapper_class',
+                        array( $this, 'tc_post_list_design_thumbs') );
+        }
+        
+        function tc_get_post_list_expand_featured(){
+            global $wp_query;
+            $current_post = $wp_query -> current_post;
+
+            return ( apply_filters('tc_post_list_expand_featured', tc__f('__get_option', 'tc_post_list_expand_featured') ) && $current_post == 0 ) ? true : false;
+        }        
+
+        function tc_post_list_design_thumbs(){
+            $current_filter = current_filter();
+            $thumb_settings = array(
+                'tc_thumb_size_name'     => 'slider',
+                'tc_thumb_wrapper_class' => array()
+            );
+            return $thumb_settings[$current_filter];
+        }
+
         // force content + thumb layout
         function tc_set_post_list_layout( $layout ){
             $_position                  = in_array(esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) ), array('top', 'left') ) ? 'top' : 'bottom';
 
             $layout['alternate']        = false;
             $layout['show_thumb_first'] = ( 'top' == $_position ) ? true : false;
-            $layout['content']          = ( 'top' == $_position ) ? $layout['content'] : 'span12';
-            $layout['thumb']            = ( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $layout['thumb'];
+            $layout['content']          = 'span12';
+            $layout['thumb']            = 'span12';
             
             return $layout;
         }
