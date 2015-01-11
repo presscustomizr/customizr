@@ -7,7 +7,7 @@
 * @subpackage   classes
 * @since        3.2.11
 * @author       Rocco Aliberti <rocco@themesandco.com>, Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Rocco Aliberti, Nicolas GUILLAUME
+* @copyright    Copyright (c) 2015, Rocco Aliberti, Nicolas GUILLAUME
 * @link         http://themesandco.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
