@@ -17,13 +17,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    static $instance;
 	    function __construct () {
 	        self::$instance =& $this;
-          add_action ( 'wp_enqueue_scripts'           , array( $this , 'tc_enqueue_gfonts' ) , 0 );
-	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
-	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
+          add_action( 'wp_enqueue_scripts'            , array( $this , 'tc_enqueue_gfonts' ) , 0 );
+	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
+	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
 	        //Write font icon
-	        add_action ( 'wp_head'                 		  , array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
+	        add_action( 'wp_head'                 		  , array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
 	        //Custom CSS
-	        add_action ( 'wp_head'                 			, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
+	        add_action( 'wp_head'                 			, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
 
 	        //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
@@ -273,13 +273,26 @@ if ( ! class_exists( 'TC_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
-    function tc_write_fonts_inline_css( $_css ) {
+    function tc_write_fonts_inline_css( $_css = null , $_context = null ) {
+      $_css               = isset($_css) ? $_css : '';
       $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
       $_body_font_size    = esc_attr( tc__f( '__get_option' , 'tc_body_font_size' ) );
       $_font_selectors    = TC_init::$instance -> font_selectors;
 
       //create the $body and $titles vars
       extract( TC_init::$instance -> font_selectors, EXTR_OVERWRITE );
+
+      if ( ! isset($body) || ! isset($titles) )
+        return;
+
+      //adapt the selectors in edit context => add specificity for the mce-editor
+      if ( ! is_null( $_context ) ) {
+        $titles = ".{$_context} .h1, .{$_context} h2, .{$_context} h3";
+        $body   = "body.{$_context}";
+      }
+
+      $titles = apply_filters('tc_title_fonts_selectors' , $titles );
+      $body   = apply_filters('tc_body_fonts_selectors' , $body );
 
       if ( 'helvetica_arial' != $_font_pair ) {//check if not default
         $_font_code       = TC_utils::$instance -> tc_get_font( 'single' , $_font_pair );
