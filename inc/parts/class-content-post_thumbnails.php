@@ -318,7 +318,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
         if ( ! is_single() && ! $_is_rectangular )
           return $_style;
 
-        return sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width:100%;max-height: none;', $_width, $_height );
+        return sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width:100%%;max-height: none;', $_width, $_height );
       }
 
 
