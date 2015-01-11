@@ -66,13 +66,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $this -> db_options       = (array) get_option( TC___::$tc_option_group );
 
         //What was the theme version when the user started to use Customizr?
-        //new install = tc_skin option is not set yet
+        //new install = no options yet
         //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-        $_db_options = $this -> db_options;
-        if ( ! isset( $_db_options['tc_skin'] ) || ! esc_attr( get_transient( 'started_using_customizr' ) ) ) {
+        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( 'started_using_customizr' ) ) ) {
           set_transient(
             'started_using_customizr',
-            sprintf('%s|%s' , ! isset( $_db_options['tc_skin'] ) ? 'with' : 'before', CUSTOMIZR_VER ),
+            sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
             60*60*24*9999
           );
         }
