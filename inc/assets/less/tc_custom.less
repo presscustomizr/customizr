@@ -59,6 +59,24 @@ body {
   transition: background-position .1s linear;
 }
 
+/* External Links style */
+a + span.tc-external:after {
+  font-family: 'genericons';
+  font-size: 1.25em;
+  color: @linkColor;
+  content: "\f442";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 0;
+  padding-left: 0;
+  position: relative;
+  text-decoration: none!important;
+  top: 5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 ul, ol {
   padding: 0px 5px;

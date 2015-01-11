@@ -1432,6 +1432,27 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
 
+              'tc_theme_options[tc_ext_link_style]'  =>  array(
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.11' ) ? 0 : 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Display an icon next to external links" , "customizr" ),
+                                'section'       => 'tc_links_settings' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 30,
+                                'notice'    => __( 'This will be applied to links in post content only.' , 'customizr' ),
+                                'transport'     => 'postMessage'
+              ),
+
+              'tc_theme_options[tc_ext_link_target]'  =>  array(
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.11' ) ? 0 : 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Open external links in a new tab" , "customizr" ),
+                                'section'       => 'tc_links_settings' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 40,
+                                'notice'    => __( 'This will be applied to links in post content only.' , 'customizr' ),
+                                'transport'     => 'postMessage'
+              ),
               /* Breadcrumb*/
               'tc_theme_options[tc_show_breadcrumb_home]'  =>  array(
                                 'default'       => 0,
