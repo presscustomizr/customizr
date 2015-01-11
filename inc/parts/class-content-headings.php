@@ -596,9 +596,6 @@ if ( ! class_exists( 'TC_headings' ) ) :
           if ( ! $has_recent_update )
               return $html;
 
-           //Add HTML after the title
-          $recent_update = $has_recent_update ? 'Recently updated' : '';
-
           //Return the modified title
           return apply_filters(
               'tc_update_notice_in_title',

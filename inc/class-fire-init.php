@@ -356,17 +356,17 @@ if ( ! class_exists( 'TC_init' ) ) :
           //! must be included in utils to be available in admin for plugins like regenerate thumbnails
           add_action ( 'after_setup_theme'                      , array( $this, 'tc_set_user_defined_settings'), 10 );
 
-          //adds the text domain, various theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails
+          //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails
           add_action ( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ), 20 );
 
-          //adds various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, ...)
+          //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, ...)
           add_action ( 'after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 30 );
 
-          //adds retina support for high resolution devices
+          //add retina support for high resolution devices
           add_filter ( 'wp_generate_attachment_metadata'        , array( $this , 'tc_add_retina_support') , 10 , 2 );
           add_filter ( 'delete_attachment'                      , array( $this , 'tc_clean_retina_images') );
 
-          //adds classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
+          //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
           add_filter ('body_class'                              , array( $this , 'tc_set_body_classes') );
 
       }//end of constructor
@@ -439,12 +439,6 @@ if ( ! class_exists( 'TC_init' ) ) :
          * Translations can be added to the /inc/lang/ directory.
          */
         load_theme_textdomain( 'customizr' , TC_BASE . '/inc/lang' );
-
-        /*
-        * Customizr styles the visual editor to resemble the theme style,
-        * Loads the editor-style specific (post formats and RTL), the active skin, the user style.css
-        */
-        add_editor_style( array( TC_BASE_URL.'inc/admin/css/editor-style.css', $this -> tc_active_skin() , get_stylesheet_uri() ) );
 
         /* Adds RSS feed links to <head> for posts and comments. */
         add_theme_support( 'automatic-feed-links' );

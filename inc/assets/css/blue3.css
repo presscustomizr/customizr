@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.2.9
+ * Customizr v3.2.11
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4978,6 +4978,24 @@ body {
   -moz-transition: background-position 0.1s linear;
   -o-transition: background-position 0.1s linear;
   transition: background-position 0.1s linear;
+}
+/* External Links style */
+a + span.tc-external:after {
+  font-family: 'genericons';
+  font-size: 1.25em;
+  color: #27cda5;
+  content: "\f442";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 0;
+  padding-left: 0;
+  position: relative;
+  text-decoration: none!important;
+  top: 5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 ul,
 ol {

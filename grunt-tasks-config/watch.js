@@ -17,7 +17,7 @@ module.exports = {
 		tasks : ['gitinfo' , 'replace:readme', 'less:dev_skin' , 'cssmin:dev_skin' , 'ftp_push:dev_skin'],
 	},
 	front_js : {
-		files : ['<%= paths.front_js %>*.js', '!*.min.js'],
+		files : ['<%= paths.front_js %>parts/*.js', '!*.min.js'],
 		tasks : ['gitinfo' , 'replace:readme', 'concat:front_js','jshint:front', 'ftp_push:main_front_js'],
 		//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
 	},

@@ -16,5 +16,7 @@ var TCParams = TCParams || {
 	stickyCustomOffset: 0,
 	stickyHeader: 1,
 	dropdowntoViewport: 1,
-	timerOnScrollAllBrowsers:1
-}
+	timerOnScrollAllBrowsers:1,
+  extLinksStyle :1,
+  extLinksTargetExt:1
+};
