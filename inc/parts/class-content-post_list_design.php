@@ -36,10 +36,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return esc_attr( tc__f('__get_option', 'tc_post_list_design_cols') );
         }
 
-        function tc_force_post_list_excerpt($bool){
-            $function_suffix = $bool ? 'true' : 'false';
-            add_filter('tc_force_show_post_list_excerpt', "__return_{$function_suffix}", 0);
-            add_filter('tc_show_post_list_excerpt', "__return_{$function_suffix}", 0);
+        function tc_force_post_list_excerpt(){
+            add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
+            add_filter('tc_show_post_list_excerpt', '__return_true', 0);
         }
 
         function tc_post_list_design_hooks(){
@@ -47,10 +46,14 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             global $wp_query;
             $current_post = $wp_query -> current_post;
 
-            $display_grid = ( apply_filters('tc_post_list_expand_featured', tc__f('__get_option', 'tc_post_list_expand_featured') ) && $current_post == 0 ) ? false : true;
-            $show_excerpt = $display_grid;
+            $expand_first = ( apply_filters('tc_post_list_expand_featured', tc__f('__get_option', 'tc_post_list_expand_featured') ) && $current_post == 0 ) ? true : false;
 
-            $this -> tc_force_post_list_excerpt( $show_excerpt );
+            $this -> tc_force_post_list_excerpt();
+ 
+            remove_filter('tc_post_list_layout', array( TC_post_list::$instance, 'tc_set_post_list_layout') );
+            add_filter('tc_post_list_layout', array( $this, 'tc_set_post_list_layout') );
+
+            $display_grid = ! $expand_first;
 
             if ( ! $display_grid )
                 return;
@@ -64,9 +67,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             
             add_filter( 'tc_post_list_cols', array($this, 'tc_get_post_list_cols') , 0 );
             add_filter( 'tc_post_list_selectors', array($this, 'tc_post_list_design_article_selectors') );
-
-            remove_filter('tc_post_list_layout', array( TC_post_list::$instance, 'tc_set_post_list_layout') );
-            add_filter('tc_post_list_layout', array( $this, 'tc_set_post_list_layout') );
 
             add_filter('tc_post_list_separator', '__return_empty_string');
         }
