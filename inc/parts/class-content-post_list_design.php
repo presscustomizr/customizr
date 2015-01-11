@@ -16,7 +16,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         static $instance;
         function __construct () {
             self::$instance =& $this;
-
             add_action ( '__before_article_container', array( $this , 'tc_post_list_design'), 0);
         }
 
@@ -28,28 +27,30 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             $design = apply_filters( 'tc_post_list_design', $design );
             if ( ! $design )
                 return;
-            
-            add_action( '__before_article', array($this, 'tc_post_list_design_hooks'), 0 );
+            $this -> tc_post_list_design_hooks();
+            add_action( '__before_article', array($this, 'tc_post_list_design_loop_hooks'), 0 );
         }
         
         function tc_post_list_design_hooks(){
 
-            $expand_featured = $this -> tc_get_post_list_expand_featured();
-
             $this -> tc_force_post_list_excerpt();
             
             $this -> tc_force_post_list_thumbnails();
- 
+       
             remove_filter('tc_post_list_layout', 
                             array( TC_post_list::$instance, 'tc_set_post_list_layout') );
-
             add_filter('tc_post_list_layout', 
                             array( $this, 'tc_set_post_list_layout') );
-
+ 
             //TODO if on what kind of post list + options
             //case simple post_list
             add_filter( 'tc_post_list_selectors', 
                             array($this, 'tc_post_list_design_article_selectors') );
+        }
+
+        function tc_post_list_design_loop_hooks(){
+
+            $expand_featured = $this -> tc_get_post_list_expand_featured();
 
             $display_grid = ! $expand_featured;
 
@@ -61,6 +62,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_action( '__after_article', 
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
             add_filter( 'tc_post_list_separator', '__return_empty_string' );
+
         }
 
         function tc_get_post_list_cols(){
@@ -73,27 +75,46 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_filter('tc_show_post_list_excerpt', '__return_true', 0);
         }
 
-        function tc_force_post_list_thumbnails(){
-            add_filter('tc_thumb_size_name', 
-                        array( $this, 'tc_post_list_design_thumbs') );
-            add_filter('tc_thumb_wrapper_class',
-                        array( $this, 'tc_post_list_design_thumbs') );
-        }
-        
         function tc_get_post_list_expand_featured(){
             global $wp_query;
             $current_post = $wp_query -> current_post;
 
             return ( apply_filters('tc_post_list_expand_featured', tc__f('__get_option', 'tc_post_list_expand_featured') ) && $current_post == 0 ) ? true : false;
-        }        
+        }
+
+        function tc_force_post_list_thumbnails(){
+            remove_filter( 'post_class',
+                array( TC_post_list::$instance , 'tc_add_thumb_shape_name'));
+            add_filter( 'post_class',
+                array( $this , 'tc_add_thumb_shape_name'));
+
+            remove_filter('tc_thumb_size_name', 
+                array( TC_post_thumbnails::$instance, 'tc_set_thumb_size') );
+            add_filter('tc_thumb_size_name', 
+                array( $this, 'tc_post_list_design_thumbs') );
+
+            remove_filter('tc_post_thumb_wrapper', 
+                array( TC_post_thumbnails::$instance, 'tc_set_thumb_shape') );
+            add_filter('tc_post_thumb_wrapper', 
+                array( $this, 'tc_set_thumb_shape'), 10, 2 );
+        }
+
+        function tc_add_thumb_shape_name($_classes){
+            $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
+            $_class =  ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') ) ? 'rectangular' : $_shape;
+            return array_merge( $_classes, array( $_class ) );
+        }
 
         function tc_post_list_design_thumbs(){
-            $current_filter = current_filter();
-            $thumb_settings = array(
-                'tc_thumb_size_name'     => 'slider',
-                'tc_thumb_wrapper_class' => array()
+            return 'tc_rectangular_size';
+        }
+
+        function tc_set_thumb_shape($thumb_wrapper, $thumb_img){
+            return sprintf('<div><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
+                get_permalink( get_the_ID() ),
+                esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
+                $thumb_img
             );
-            return $thumb_settings[$current_filter];
         }
 
         // force content + thumb layout
