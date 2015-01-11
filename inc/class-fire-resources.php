@@ -135,7 +135,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	      	$right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
 			wp_localize_script(
-		        (defined('WP_DEBUG') && true === WP_DEBUG ) ? 'params-dev-mode' : 'tc-scripts',
+		        ( ! apply_filters('tc_load_concatenated_front_scripts' , true ) ) ? 'params-dev-mode' : 'tc-scripts',
 		        'TCParams',
 		        apply_filters('tc_customizr_script_params' , array(
 			          	'FancyBoxState' 		=> $tc_fancybox,
@@ -158,7 +158,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		        	tc__f('__ID')
 		       	)//end of filter
 	        );
-
 		    //fancybox style
 		    if ( $tc_fancybox )
 		      	wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.css' );
