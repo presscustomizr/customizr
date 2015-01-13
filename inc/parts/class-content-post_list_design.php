@@ -27,25 +27,23 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             $design = apply_filters( 'tc_post_list_design', $design );
             if ( ! $design )
                 return;
-            $this -> tc_post_list_design_hooks();
+            add_action('__before_article_container', array( $this, 'tc_post_list_design_hooks') , 1);
+     //       $this -> tc_post_list_design_hooks();
             add_action( '__before_article', array($this, 'tc_post_list_design_loop_hooks'), 0 );
         }
         
         function tc_post_list_design_hooks(){
-
-            $this -> tc_force_post_list_excerpt();
             
-            $this -> tc_force_post_list_thumbnails();
-       
-            remove_filter('tc_post_list_layout', 
-                            array( TC_post_list::$instance, 'tc_set_post_list_layout') );
-            add_filter('tc_post_list_layout', 
-                            array( $this, 'tc_set_post_list_layout') );
- 
+            add_action('__post_list_design',array( $this, 'tc_force_post_list_excerpt') );
+            add_action('__post_list_design',array( $this, 'tc_force_post_list_thumbnails') );
+            add_action('__post_list_design',array( $this, 'tc_post_list_design_layout') );
+            
             //TODO if on what kind of post list + options
             //case simple post_list
             add_filter( 'tc_post_list_selectors', 
                             array($this, 'tc_post_list_design_article_selectors') );
+
+            do_action('__post_list_design');
         }
 
         function tc_post_list_design_loop_hooks(){
@@ -74,25 +72,46 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
             add_filter('tc_show_post_list_excerpt', '__return_true', 0);
         }
+        
+        function tc_post_list_design_layout(){
+            remove_filter('tc_post_list_layout', 
+                            array( TC_post_list::$instance, 'tc_set_post_list_layout') );
+            add_filter('tc_post_list_layout', 
+                            array( $this, 'tc_set_post_list_layout') );
+        }
 
         function tc_get_post_list_expand_featured(){
             global $wp_query;
             $current_post = $wp_query -> current_post;
 
-            return ( apply_filters('tc_post_list_expand_featured', tc__f('__get_option', 'tc_post_list_expand_featured') ) && $current_post == 0 ) ? true : false;
+            return ( apply_filters('tc_post_list_expand_featured', 
+                tc__f('__get_option', 'tc_post_list_expand_featured') ) && $current_post == 0 ) ? true : false;
         }
 
         function tc_force_post_list_thumbnails(){
+            add_action( 'tc_post_list_design_thumbnails', array( $this, 'tc_post_list_design_thumb_shape_name') );
+            add_action( 'tc_post_list_design_thumbnails', array( $this, 'tc_post_list_design_thumb_size_name') );
+            add_action( 'tc_post_list_design_thumbnails', array( $this, 'tc_post_list_design_post_thumb_wrapper') );
+
+
+            do_action('tc_post_list_design_thumbnails');
+        }
+
+        function tc_post_list_design_thumb_shape_name(){
             remove_filter( 'post_class',
                 array( TC_post_list::$instance , 'tc_add_thumb_shape_name'));
             add_filter( 'post_class',
                 array( $this , 'tc_add_thumb_shape_name'));
+        }
 
+        function tc_post_list_design_thumb_size_name(){
             remove_filter('tc_thumb_size_name', 
                 array( TC_post_thumbnails::$instance, 'tc_set_thumb_size') );
             add_filter('tc_thumb_size_name', 
                 array( $this, 'tc_post_list_design_thumbs') );
+        }
 
+        function tc_post_list_design_post_thumb_wrapper(){
             remove_filter('tc_post_thumb_wrapper', 
                 array( TC_post_thumbnails::$instance, 'tc_set_thumb_shape') );
             add_filter('tc_post_thumb_wrapper', 
