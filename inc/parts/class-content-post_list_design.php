@@ -16,7 +16,19 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         static $instance;
         function __construct () {
             self::$instance =& $this;
+            add_action ( 'init', array( $this , 'tc_post_list_design_hooks') );
             add_action ( '__before_article_container', array( $this , 'tc_post_list_design'), 0);
+        }
+
+        function tc_post_list_design_hooks(){
+            // pre loop hooks
+            add_action('__post_list_design', array( $this, 'tc_force_post_list_excerpt') );
+            add_action('__post_list_design', array( $this, 'tc_force_post_list_thumbnails') );
+            add_action('__post_list_design', array( $this, 'tc_post_list_design_layout') );
+            add_action('__post_list_design', array( $this, 'tc_post_list_design_selectors') );
+            
+            // loop hooks
+            add_action('__post_list_design_loop', array( $this, 'tc_post_list_design_loop') );
         }
 
         function tc_post_list_design(){
@@ -27,26 +39,18 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             $design = apply_filters( 'tc_post_list_design', $design );
             if ( ! $design )
                 return;
-            add_action('__before_article_container', array( $this, 'tc_post_list_design_hooks') , 1);
-     //       $this -> tc_post_list_design_hooks();
-            add_action( '__before_article', array($this, 'tc_post_list_design_loop_hooks'), 0 );
+ 
+            add_action('__before_article_container', array( $this, 'tc_post_list_design_actions') , 1);
+            add_action( '__before_article', array($this, 'tc_post_list_design_loop_actions'), 0 );
         }
-        
-        function tc_post_list_design_hooks(){
-            
-            add_action('__post_list_design',array( $this, 'tc_force_post_list_excerpt') );
-            add_action('__post_list_design',array( $this, 'tc_force_post_list_thumbnails') );
-            add_action('__post_list_design',array( $this, 'tc_post_list_design_layout') );
-            
-            //TODO if on what kind of post list + options
-            //case simple post_list
-            add_filter( 'tc_post_list_selectors', 
-                            array($this, 'tc_post_list_design_article_selectors') );
 
+
+        function tc_post_list_design_actions(){
             do_action('__post_list_design');
+            do_action('tc_post_list_design_thumbnails');
         }
 
-        function tc_post_list_design_loop_hooks(){
+        function tc_post_list_design_loop_actions(){
 
             $expand_featured = $this -> tc_get_post_list_expand_featured();
 
@@ -54,12 +58,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
             if ( ! $display_grid )
                 return;
-
-            $this -> tc_print_row_fluid_section_wrapper();
             
-            add_action( '__after_article', 
-                            array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
-            add_filter( 'tc_post_list_separator', '__return_empty_string' );
+            do_action('__post_list_design_loop');
 
         }
 
@@ -67,7 +67,22 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return apply_filters( 'tc_post_list_design_cols', 
                 esc_attr( tc__f('__get_option', 'tc_post_list_design_cols') ) );
         }
-
+        
+        function tc_post_list_design_selectors(){        
+            //TODO if on what kind of post list + options
+            //case simple post_list
+            add_filter( 'tc_post_list_selectors', 
+                            array($this, 'tc_post_list_design_article_selectors') );
+        }
+        
+        function tc_post_list_design_loop(){
+            add_action( '__before_article', 
+                            array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
+            add_action( '__after_article', 
+                            array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
+            add_filter( 'tc_post_list_separator', '__return_empty_string' );
+        }
+        
         function tc_force_post_list_excerpt(){
             add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
             add_filter('tc_show_post_list_excerpt', '__return_true', 0);
@@ -92,9 +107,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_action( 'tc_post_list_design_thumbnails', array( $this, 'tc_post_list_design_thumb_shape_name') );
             add_action( 'tc_post_list_design_thumbnails', array( $this, 'tc_post_list_design_thumb_size_name') );
             add_action( 'tc_post_list_design_thumbnails', array( $this, 'tc_post_list_design_post_thumb_wrapper') );
-
-
-            do_action('tc_post_list_design_thumbnails');
         }
 
         function tc_post_list_design_thumb_shape_name(){
@@ -138,7 +150,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
         // force content + thumb layout
         function tc_set_post_list_layout( $layout ){
-            $_position                  = in_array(esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) ), array('top', 'left') ) ? 'top' : 'bottom';
+            $_position                  = in_array( esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) ), 
+                                            array('top', 'left') ) ? 'top' : 'bottom';
 
             $layout['alternate']        = false;
             $layout['show_thumb_first'] = ( 'top' == $_position ) ? true : false;
