@@ -28,12 +28,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
             $this -> has_expanded_featured = false;
 
+            add_action ( 'pre_get_posts', array( $this, 'tc_post_list_design_sticky_post') );
             add_action ( 'wp', array( $this , 'tc_post_list_design_hooks') );
         }
 
         function tc_post_list_design_hooks(){
             // pre loop hooks
-            add_action ( 'pre_get_posts', array( $this, 'tc_post_list_design_sticky_post') );
             add_action('__post_list_design', array( $this, 'tc_force_post_list_excerpt') );
             add_action('__post_list_design', array( $this, 'tc_force_post_list_thumbnails') );
             add_action('__post_list_design', array( $this, 'tc_post_list_design_layout') );
@@ -152,11 +152,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_thumbs(){
-            return 'tc_rectangular_size';
+            return  ( $this->tc_post_list_is_expanded_featured() ) ? 'tc-design-full' : 'tc-design';
         }
 
         function tc_set_thumb_shape($thumb_wrapper, $thumb_img){
-            return sprintf('<div><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
+            return sprintf('<div><a class="%1$s" href="%2$s" title="%3s">%4$s</a></div>',
+                'tc-design-thumb',
                 get_permalink( get_the_ID() ),
                 esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
                 $thumb_img
