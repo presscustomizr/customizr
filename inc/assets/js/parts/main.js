@@ -6,15 +6,36 @@
 //ON DOM READY
 jQuery(function ($) {
     var _p = TCParams;
-    //Add external class to relevant links and remove links around images (expect for logo)
-    $('a[href^="http://"], a[href^="https://"]' , '.entry-content').each( function() {
-      if( 'IMG' != $(this).children().first().prop("tagName") ) {
+
+    //May be add (check if activated by user) external class + target="_blank" to relevant links
+    //images are excluded
+    var _url_comp     = (location.host).split('.'),
+      _nakedDomain  = new RegExp( _url_comp[1] + "." + _url_comp[2] );
+
+    function _is_external( _href  ) {
+      var _thisHref = $.trim( _href );
+      if ( _thisHref !== '' && _thisHref != '#' && _isValidURL(_thisHref) )
+          return ! _nakedDomain.test(_thisHref) ? true : false;
+    }
+
+    function _isValidURL(url){
+        var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        if (pattern.test(url)){
+            return true;
+        }
+        return false;
+    }
+    //links inside post/page content
+    $('a' , '.entry-content').each( function() {
+      var _thisHref = $.trim( $(this).attr('href'));
+      if( _is_external( _thisHref ) && 'IMG' != $(this).children().first().prop("tagName") ) {
         if ( _p.extLinksStyle )
           $(this).after('<span class="tc-external">');
         if ( _p.extLinksTargetExt )
           $(this).attr('target' , '_blank');
       }
     });
+
 
     //fancybox with localized script variables
     var b = _p.FancyBoxState,
