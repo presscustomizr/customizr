@@ -327,13 +327,13 @@ jQuery(function ($) {
         $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
 
         setTimeout( function() {
-            centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image > img' );
+            centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
             $('.tc-slider-loader-wrapper').hide();
         } , 50);
 
         $(window).resize(function(){
             setTimeout( function() {
-                centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image > img' );
+                centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
             }, 50);
         });
     }//end of center slides
