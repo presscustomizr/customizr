@@ -385,7 +385,8 @@ if ( ! class_exists( 'TC_init' ) ) :
         $_options = get_option('tc_theme_options');
         //add "rectangular" image size
         if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
-          $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : esc_attr( $_options['tc_post_list_thumb_height'] );
+          $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
+          $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
           $_rectangular_size    = apply_filters(
             'tc_rectangular_size' ,
             array( 'width' => '1170' , 'height' => $_user_height , 'crop' => true )
