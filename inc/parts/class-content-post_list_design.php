@@ -237,7 +237,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         /* Helpers */
         
         /* check if we have to expand the first sticky post */
-        functions tc_consider_sticky_post($query){
+        function tc_consider_sticky_post($query){
             global $wp_query;
 
             if ( !$query->is_main_query() )
@@ -298,22 +298,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         /* performs the match between the option where to use post list design 
          * and the post list we're in */
         function tc_post_list_design_match_type(){
-            $post_list_design_in = array(
-                'blog',
-                'search',
-                'archive'
-            );
-            $i = 0;
-            foreach ( $post_list_design_in as $type ){
-                if ( ! $this -> tc_get_post_list_design_in($type) ) 
-                    unset($post_list_design_in[$i]); 
-                $i++;
-            }
-            
             $post_list_type = $this -> tc_post_list_type();
-            
-            return ( $post_list_type && in_array( $post_list_type,
-                                                  $post_list_design_in ) );
+            return ( apply_filters('tc_post_list_design_do',
+                $post_list_type && $this -> tc_get_post_list_design_in( $post_list_type ) ) );
         }
     }
 endif;
