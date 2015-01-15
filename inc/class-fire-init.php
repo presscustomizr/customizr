@@ -20,6 +20,8 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $tc_thumb_size;
       public $slider_full_size;
       public $slider_size;
+      public $tc_design_full_size;
+      public $tc_desgin_size;
       public $skins;
       public $skin_color_map;
       public $font_pairs;
@@ -73,6 +75,9 @@ if ( ! class_exists( 'TC_init' ) ) :
           $this -> tc_thumb_size      = array('width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
           $this -> slider_full_size   = array('width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
           $this -> slider_size        = array('width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
+          $this -> tc_design_full_size = array('width' => 9999 , 'height' => 240, 'crop' => true ); //size name : tc-design-full
+          $this -> tc_design_size = array('width' => 480 , 'height' => 240, 'crop' => true ); //size name : tc-design
+
 
           //Default skins array
           $this -> skins              =  array(
@@ -480,6 +485,15 @@ if ( ! class_exists( 'TC_init' ) ) :
         //slider boxed
         $slider_size      = apply_filters( 'tc_slider_size' , $this -> slider_size );
         add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
+        
+        //post list design thumbnails
+        // full size
+        $tc_design_full_size = apply_filters( 'tc_design_full_size', $this -> tc_design_full_size );
+        add_image_size( 'tc-design-full', $tc_design_full_size['width'], $tc_design_full_size['height'], $tc_design_full_size['crop'] );
+
+        $tc_design_size = apply_filters( 'tc_design_size', $this -> tc_design_size );
+        add_image_size( 'tc-design', $tc_design_size['width'], $tc_design_size['height'], $tc_design_size['crop'] );
+
 
         //add support for svg and svgz format in media upload
         add_filter( 'upload_mimes'                        , array( $this , 'tc_custom_mtypes' ) );
