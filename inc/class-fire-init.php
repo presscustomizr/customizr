@@ -21,7 +21,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $slider_full_size;
       public $slider_size;
       public $tc_design_full_size;
-      public $tc_desgin_size;
+      public $tc_design_size;
       public $skins;
       public $skin_color_map;
       public $font_pairs;

@@ -121,6 +121,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     array( $this, 'tc_post_list_design_thumb_size_name') );
             add_action( '__post_list_design_thumbnails',
                     array( $this, 'tc_post_list_design_post_thumb_wrapper') );
+            add_filter( 'tc_post_thumb_inline_style',
+                array( $this, 'tc_change_tumbnail_inline_css_width'), 20, 3 );
         }
 
         function tc_post_list_design_thumb_shape_name(){
@@ -134,7 +136,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             remove_filter('tc_thumb_size_name',
                     array( TC_post_thumbnails::$instance, 'tc_set_thumb_size') );
             add_filter('tc_thumb_size_name',
-                    array( $this, 'tc_post_list_design_thumbs') );
+                   array( $this, 'tc_set_thumb_size_name') );
+            add_filter('tc_thumb_size',
+                   array( $this, 'tc_set_thumb_size') );
         }
 
         function tc_post_list_design_post_thumb_wrapper(){
@@ -151,8 +155,14 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return array_merge( $_classes, array( $_class ) );
         }
 
-        function tc_post_list_design_thumbs(){
+        function tc_set_thumb_size_name(){
             return  ( $this->tc_post_list_is_expanded_featured() ) ? 'tc-design-full' : 'tc-design';
+        }
+
+        function tc_set_thumb_size(){
+            $thumb = ( $this -> tc_post_list_is_expanded_featured() ) ? 
+                        'tc_design_full_size' : 'tc_design_size';
+            return TC_init::$instance -> $thumb;
         }
 
         function tc_set_thumb_shape($thumb_wrapper, $thumb_img){
@@ -163,7 +173,13 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 $thumb_img
             );
         }
-
+        function tc_change_tumbnail_inline_css_width($_style, $width, $height){
+            //check on if we're in a design context
+            $design_context = true;
+            if ( ! $design_context )
+                return $_style;
+            return sprintf('width:100%%;height:auto;');
+        }
         /* force content + thumb layout */
         function tc_set_post_list_layout( $layout ){
             $_position                  = in_array( esc_attr( tc__f( '__get_option' ,
