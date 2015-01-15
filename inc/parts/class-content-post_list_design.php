@@ -46,9 +46,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design(){
-            if ( ! TC_post_list::$instance -> tc_post_list_controller() )
+/*            if ( ! TC_post_list::$instance -> tc_post_list_controller() )
+    return;*/
+            if ( ! $this -> tc_post_list_design_match_type() )
                 return;
-
             add_action('__before_article_container',
                     array( $this, 'tc_post_list_design_actions') , 1);
             add_action( '__before_article', array($this,
@@ -174,10 +175,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             );
         }
         function tc_change_tumbnail_inline_css_width($_style, $width, $height){
-            //check on if we're in a design context
-            $design_context = true;
-            if ( ! $design_context )
-                return $_style;
             return sprintf('width:100%%;height:auto;');
         }
         /* force content + thumb layout */
@@ -231,13 +228,16 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         /* Callback pre_get_posts */
         // exclude the first sticky post
         function tc_post_list_design_sticky_post($query){
+            if ( ! $this -> tc_post_list_design_match_type() )
+                return;
             if ( $this -> tc_consider_sticky_post($query) )
                 $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
         }
 
         /* Helpers */
-
-        function tc_consider_sticky_post($query){
+        
+        /* check if we have to expand the first sticky post */
+        functions tc_consider_sticky_post($query){
             global $wp_query;
 
             if ( !$query->is_main_query() )
@@ -253,21 +253,67 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return true;
         }
 
+        /* retrieves number of cols option, and wrap it into a filter */
         function tc_get_post_list_cols(){
             return apply_filters( 'tc_post_list_design_cols',
                 esc_attr( tc__f('__get_option', 'tc_post_list_design_cols') ) );
         }
  
+        /* retrieves the expand featured option, and wrap it into a filter */
         function tc_get_post_list_expand_featured(){
-            return ( apply_filters('tc_post_list_expand_featured', 
-                tc__f('__get_option', 'tc_post_list_expand_featured') ) );
+            return apply_filters( 'tc_post_list_expand_featured',
+                esc_attr( tc__f('__get_option', 'tc_post_list_expand_featured') ) );
         }
-   
+
+        /* retrieves where to apply the post list design option, and wrap it into a filter 
+         * dinamically
+         * input param: post list type.
+         */
+        function tc_get_post_list_design_in( $type ){
+            return apply_filters( 'tc_post_list_design_in_' . $type,
+                esc_attr( tc__f('__get_option'. 'tc_post_list_design_' . $type ) ) );
+        }
+        
+        /* returns if the current post is the expanded one */
         function tc_post_list_is_expanded_featured(){
             global $wp_query;
             $current_post = $wp_query -> current_post;
             return ( $this -> has_expanded_featured &&
                         $current_post == 0 ) ? true : false;
+        }
+
+        /* returns the type of post list we're in if any, an empty string otherwise */
+        function tc_post_list_type(){
+            global $wp_query;
+            if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
+                    $wp_query->is_posts_page )
+                return 'blog';
+            else if ( is_search() )
+                return 'search';
+            else if ( is_archive() )
+                return 'archive';
+            return '';
+        }
+
+        /* performs the match between the option where to use post list design 
+         * and the post list we're in */
+        function tc_post_list_design_match_type(){
+            $post_list_design_in = array(
+                'blog',
+                'search',
+                'archive'
+            );
+            $i = 0;
+            foreach ( $post_list_design_in as $type ){
+                if ( ! $this -> tc_get_post_list_design_in($type) ) 
+                    unset($post_list_design_in[$i]); 
+                $i++;
+            }
+            
+            $post_list_type = $this -> tc_post_list_type();
+            
+            return ( $post_list_type && in_array( $post_list_type,
+                                                  $post_list_design_in ) );
         }
     }
 endif;
