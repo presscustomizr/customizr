@@ -107,7 +107,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         function tc_post_list_prepare_expand_featured(){
             global $wp_query;
             
-            if ( ! ( $this -> tc_consider_sticky_post($wp_query) &&
+            if ( ! ( $this -> tc_consider_sticky_post() &&
                    $wp_query -> query_vars['paged'] == 0 ) )
                 return;
             // prepend the first sticky
@@ -229,18 +229,19 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
         /* Callback pre_get_posts */
         // exclude the first sticky post
-        function tc_post_list_design_sticky_post($query){
+        function tc_post_list_design_sticky_post( $query ){
             if ( ! $this -> tc_post_list_design_match_type() )
                 return;
-            if ( $this -> tc_consider_sticky_post($query) )
+            if ( $this -> tc_consider_sticky_post( $query ) )
                 $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
         }
 
         /* Helpers */
         
         /* check if we have to expand the first sticky post */
-        function tc_consider_sticky_post($query){
+        function tc_consider_sticky_post( $query = null ){
             global $wp_query;
+            $query = ( $query ) ? $query : $wp_query;
 
             if ( !$query->is_main_query() )
                 return false;
