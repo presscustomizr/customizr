@@ -249,6 +249,8 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
       * @since Customizr 3.2.6
       */
       function tc_set_thumb_options() {
+        //Hook to TC_post_list tc_thumb_data filter
+        add_filter ( 'tc_thumb_data'                  , array( $this , 'tc_get_thumbnail_data') );
         //Set thumb shape with customizer options (since 3.2.0)
         add_filter ( 'tc_post_thumb_wrapper'          , array( $this , 'tc_set_thumb_shape'), 10 , 2);
         //Set thumb size depending on the customizer thumbnail position options (since 3.2.0)
