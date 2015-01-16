@@ -17,13 +17,13 @@ module.exports = {
 		tasks : ['gitinfo' , 'replace:readme', 'less:dev_skin' , 'cssmin:dev_skin' , 'ftp_push:dev_skin'],
 	},
 	front_js : {
-		files : ['<%= paths.front_js %>*.js', '!*.min.js'],
-		tasks : ['gitinfo' , 'replace:readme', 'concat:front_js','jshint:front', 'ftp_push:main_front_js'],
+		files : ['<%= paths.front_js %>parts/*.js', '!*.min.js'],
+		tasks : ['gitinfo' , 'replace:readme', 'concat:front_js', 'jshint:front', 'uglify:part_front_js' , 'uglify:main_front_js' , 'ftp_push:main_front_js'],
 		//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
 	},
 	//The customizer control has a special treatment => concatenation + FTP transfer of the built file
 	admin_customizer_control_js : {
-		files : ['<%= paths.admin_js %>_control.js', '<%= paths.admin_js %>_call_to_actions.js', '<%= paths.admin_js %>_various_dom_ready.js'],
+		files : ['<%= paths.admin_js %>parts/_control.js', '<%= paths.admin_js %>parts/_call_to_actions.js', '<%= paths.admin_js %>parts/_various_dom_ready.js'],
 		tasks : ['gitinfo' , 'replace:readme', 'jshint:those' , 'concat:admin_control_js' , 'ftp_push:admin_customizer_control_js'],
 	},
 	//Other admin js assets are jshinted on change

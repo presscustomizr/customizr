@@ -16,8 +16,10 @@ var TCParams = TCParams || {
 	stickyCustomOffset: 0,
 	stickyHeader: 1,
 	dropdowntoViewport: 1,
-	timerOnScrollAllBrowsers:1
-};/* ===================================================
+	timerOnScrollAllBrowsers:1,
+  extLinksStyle :1,
+  extLinksTargetExt:1
+};;/* ===================================================
  * bootstrap-transition.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#transitions
  * ===================================================
@@ -2354,9 +2356,41 @@ var TCParams = TCParams || {};
 */
 //ON DOM READY
 jQuery(function ($) {
+    var _p = TCParams;
+
+    //May be add (check if activated by user) external class + target="_blank" to relevant links
+    //images are excluded
+    var _url_comp     = (location.host).split('.'),
+      _nakedDomain  = new RegExp( _url_comp[1] + "." + _url_comp[2] );
+
+    function _is_external( _href  ) {
+      var _thisHref = $.trim( _href );
+      if ( _thisHref !== '' && _thisHref != '#' && _isValidURL(_thisHref) )
+          return ! _nakedDomain.test(_thisHref) ? true : false;
+    }
+
+    function _isValidURL(url){
+        var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        if (pattern.test(url)){
+            return true;
+        }
+        return false;
+    }
+    //links inside post/page content
+    $('a' , '.entry-content').each( function() {
+      var _thisHref = $.trim( $(this).attr('href'));
+      if( _is_external( _thisHref ) && 'IMG' != $(this).children().first().prop("tagName") ) {
+        if ( _p.extLinksStyle )
+          $(this).after('<span class="tc-external">');
+        if ( _p.extLinksTargetExt )
+          $(this).attr('target' , '_blank');
+      }
+    });
+
+
     //fancybox with localized script variables
-    var b = TCParams.FancyBoxState,
-        c = TCParams.FancyBoxAutoscale;
+    var b = _p.FancyBoxState,
+        c = _p.FancyBoxAutoscale;
     if ( 1 == b ) {
             $("a.grouped_elements").fancybox({
             transitionOut: "elastic",
@@ -2383,9 +2417,9 @@ jQuery(function ($) {
 
 
     //Slider with localized script variables
-    var d = TCParams.SliderName,
-        e = TCParams.SliderDelay;
-        j = TCParams.SliderHover;
+    var d = _p.SliderName,
+        e = _p.SliderDelay;
+        j = _p.SliderHover;
 
     if (0 !== d.length) {
         if (0 !== e.length && !j) {
@@ -2412,7 +2446,7 @@ jQuery(function ($) {
     );
 
     //Smooth scroll but not on bootstrap buttons. Checks if php localized option is active first.
-    var SmoothScroll = TCParams.SmoothScroll;
+    var SmoothScroll = _p.SmoothScroll;
 
     if ('easeOutExpo' == SmoothScroll) {
         $('a[href^="#"]', '#content').not('[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"]').click(function () {
@@ -2452,7 +2486,7 @@ jQuery(function ($) {
         $('.tc-btt-wrapper').removeClass('show');
     }
     //use of a timer instead of attaching handler directly to the window scroll event
-    //@uses TCParams.timerOnScrollAllBrowsers : boolean set to true by default
+    //@uses _p.timerOnScrollAllBrowsers : boolean set to true by default
     //http://ejohn.org/blog/learning-from-twitter/
     //https://dannyvankooten.com/delay-scroll-handlers-javascript/
     var btt_timer,
@@ -2464,7 +2498,7 @@ jQuery(function ($) {
           btt_increment++;
           window.clearTimeout(btt_timer);
       }
-      if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+      if ( 1 == _p.timerOnScrollAllBrowsers ) {
           btt_timer = window.setTimeout(function() {
               btt_scrolling_actions();
            }, btt_increment > 5 ? 50 : 0 );
@@ -2510,7 +2544,7 @@ jQuery(function ($) {
     );
 
     //Change classes of the comment reply and edit to make the whole button clickable (no filters offered in WP to do that)
-    if ( TCParams.HasComments ) {
+    if ( _p.HasComments ) {
        //edit
        $('cite p.edit-link').each(function() {
             $(this).removeClass('btn btn-success btn-mini');
@@ -2529,8 +2563,8 @@ jQuery(function ($) {
 
 
     //Detect layout and reorder content divs
-    var LeftSidebarClass    = TCParams.LeftSidebarClass || '.span3.left.tc-sidebar',
-        RightSidebarClass   = TCParams.RightSidebarClass || '.span3.right.tc-sidebar',
+    var LeftSidebarClass    = _p.LeftSidebarClass || '.span3.left.tc-sidebar',
+        RightSidebarClass   = _p.RightSidebarClass || '.span3.right.tc-sidebar',
         wrapper             = $('#main-wrapper .container[role=main] > .column-content-wrapper'),
         content             = $("#main-wrapper .container .article-container"),
         left                = $("#main-wrapper .container " + LeftSidebarClass),
@@ -2567,7 +2601,7 @@ jQuery(function ($) {
     }//end function
 
     //Enable reordering if option is checked in the customizer.
-    if ( 1 == TCParams.ReorderBlocks ) {
+    if ( 1 == _p.ReorderBlocks ) {
         //trigger the block positioning only when responsive
         WindowWidth = $(window).width();
         if ( WindowWidth <= 767 - 15 && ! reordered ) {
@@ -2639,18 +2673,18 @@ jQuery(function ($) {
     }// end centerImageInContainer
 
      //Enable slides centering if option is checked in the customizer.
-    if ( 1 == TCParams.CenterSlides ) {
+    if ( 1 == _p.CenterSlides ) {
         //adds a specific class to the carousel when automatic centering is enabled
         $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
 
         setTimeout( function() {
-            centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image > img' );
+            centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
             $('.tc-slider-loader-wrapper').hide();
         } , 50);
 
         $(window).resize(function(){
             setTimeout( function() {
-                centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image > img' );
+                centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
             }, 50);
         });
     }//end of center slides
@@ -2703,17 +2737,18 @@ jQuery(function ($) {
     }
 
     //Handle dropdown on click for multi-tier menus
-    var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a'),
+    var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'),
         $dropdown_submenus  = $('.tc-open-on-click .dropdown .dropdown-submenu');
 
 
     // go to the link if submenu is already opened
-    $dropdown_ahrefs.not('a' , $dropdown_submenus).on('tap click', function(evt) {
-        var href = $(this).attr('href');
-        if ( '#' != href && '' !== href )
-          return;
-        if ( $(this).next('.dropdown-menu').is(':visible') )
-          window.location = href;
+    $dropdown_ahrefs.on('tap click', function(evt) {
+        if ( ( $(this).next('.dropdown-menu').css('visibility') != 'hidden' &&
+                $(this).next('.dropdown-menu').is(':visible')  &&
+                ! $(this).parent().hasClass('dropdown-submenu') ) ||
+             ( $(this).next('.dropdown-menu').is(':visible') &&
+                $(this).parent().hasClass('dropdown-submenu') ) )
+            window.location = $(this).attr('href');
     });
     // make sub-submenus dropdown on click work
     $dropdown_submenus.each(function(){
@@ -2721,13 +2756,9 @@ jQuery(function ($) {
             $children = $parent.children('[data-toggle="dropdown"]');
         $children.on('tap click', function(){
             var submenu   = $(this).next('.dropdown-menu'),
-                openthis  = false,
-                href      = $(this).attr('href');
+                openthis  = false;
             if ( ! $parent.hasClass('open') ) {
               openthis = true;
-            } else {
-              if ( '#' != href && '' !== href )
-                window.location = href;
             }
             // close opened submenus
             $($parent.parent()).children('.dropdown-submenu').each(function(){
@@ -2744,11 +2775,12 @@ jQuery(function ($) {
 
 /* Sticky header since v3.2.0 */
 jQuery(function ($) {
-    var    $tcHeader        = $('.tc-header'),
-            elToHide        = [], //[ '.social-block' , '.site-description' ],
-            isUserLogged    = $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
-            isCustomizing   = $('body').hasClass('is-customizing'),
-            customOffset    = +TCParams.stickyCustomOffset;
+    var   _p              = TCParams,
+          $tcHeader       = $('.tc-header'),
+          elToHide        = [], //[ '.social-block' , '.site-description' ],
+          isUserLogged    = $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
+          isCustomizing   = $('body').hasClass('is-customizing'),
+          customOffset    = +_p.stickyCustomOffset;
 
     function _is_scrolling() {
         return $('body').hasClass('sticky-enabled') ? true : false;
@@ -2865,7 +2897,7 @@ jQuery(function ($) {
             window.clearTimeout(timer);
          }
 
-         if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+         if ( 1 == _p.timerOnScrollAllBrowsers ) {
             timer = window.setTimeout(function() {
                 _scrolling_actions();
              }, increment > 5 ? 50 : 0 );

@@ -17,13 +17,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    static $instance;
 	    function __construct () {
 	        self::$instance =& $this;
-          add_action ( 'wp_enqueue_scripts'           , array( $this , 'tc_enqueue_gfonts' ) , 0 );
-	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
-	        add_action ( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
+          add_action( 'wp_enqueue_scripts'            , array( $this , 'tc_enqueue_gfonts' ) , 0 );
+	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
+	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
 	        //Write font icon
-	        add_action ( 'wp_head'                 		  , array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
+	        add_action( 'wp_head'                 		  , array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
 	        //Custom CSS
-	        add_action ( 'wp_head'                 			, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
+	        add_action( 'wp_head'                 			, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
 
 	        //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
@@ -59,62 +59,69 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		* @since Customizr 1.0
 		*/
 		function tc_enqueue_customizr_scripts() {
-		    //wp scripts
-		  	if ( is_singular() && get_option( 'thread_comments' ) )
-			    wp_enqueue_script( 'comment-reply' );
-		    wp_enqueue_script( 'jquery' );
-		    wp_enqueue_script( 'jquery-ui-core' );
-		    //load modernizr.js in footer
-		    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+	    //wp scripts
+	  	if ( is_singular() && get_option( 'thread_comments' ) )
+		    wp_enqueue_script( 'comment-reply' );
+	    wp_enqueue_script( 'jquery' );
+	    wp_enqueue_script( 'jquery-ui-core' );
+	    //load modernizr.js in footer
+	    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, true);
 
-		   	if ( apply_filters('tc_load_concatenated_front_scripts' , true ) )
-		   	{
-			    //tc-scripts.min.js includes :
-			    //1) Twitter Bootstrap scripts
-			    //2) FancyBox - jQuery Plugin
-			    //3) Customizr scripts
-			    wp_enqueue_script(
-			    	'tc-scripts' ,
-			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
-			    	array( 'jquery' ),
-			    	CUSTOMIZR_VER,
-			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
-			    );
+	   	if ( apply_filters('tc_load_concatenated_front_scripts' , true ) )
+	   	{
+		    //tc-scripts.min.js includes :
+		    //1) Twitter Bootstrap scripts
+		    //2) FancyBox - jQuery Plugin
+		    //3) Customizr scripts
+		    wp_enqueue_script(
+		    	'tc-scripts' ,
+		    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
+		    	array( 'jquery' ),
+		    	CUSTOMIZR_VER,
+		    	apply_filters('tc_load_script_in_footer' , false)
+		    );
 			}
 			else
 			{
 				//in production script are minified
-		    	wp_enqueue_script(
-			    	'params-dev-mode',
-			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'params-dev-mode.js' : 'params-dev-mode.min.js'),
-			    	array( 'jquery' ),
-			    	CUSTOMIZR_VER,
-			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
-		    	);
-		    	wp_enqueue_script(
-			    	'dev-bootstrap',
-			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'bootstrap.js' : 'bootstrap.min.js'),
-			    	array( 'params-dev-mode' ),
-			    	CUSTOMIZR_VER,
-			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
-		    	);
-		    	wp_enqueue_script(
-			    	'dev-fancybox',
-			    	sprintf( '%1$sinc/assets/js/fancybox/%2$s' , TC_BASE_URL , 'jquery.fancybox-1.3.4.min.js' ),
-			    	array( 'params-dev-mode' ),
-			    	CUSTOMIZR_VER,
-			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
-		    	);
+	    	wp_enqueue_script(
+		    	'tc-js-params',
+		    	sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'tc-js-params.js'),
+		    	array( 'jquery' ),
+		    	CUSTOMIZR_VER,
+		    	apply_filters('tc_load_script_in_footer' , false)
+	    	);
+	    	wp_enqueue_script(
+		    	'tc-bootstrap',
+		    	sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'bootstrap.js' : 'bootstrap.min.js'),
+		    	array( 'jquery' , 'tc-js-params',  ),
+		    	CUSTOMIZR_VER,
+		    	apply_filters('tc_load_script_in_footer' , false)
+	    	);
+	    	wp_enqueue_script(
+		    	'tc-fancybox',
+		    	sprintf( '%1$sinc/assets/js/fancybox/%2$s' , TC_BASE_URL , 'jquery.fancybox-1.3.4.min.js' ),
+		    	array( 'jquery' , 'tc-js-params', 'tc-bootstrap' ),
+		    	CUSTOMIZR_VER,
+		    	apply_filters('tc_load_script_in_footer' , false)
+	    	);
+        wp_enqueue_script(
+          'tc-main-front',
+          sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'main.js' : 'main.min.js'),
+          array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' ),
+          CUSTOMIZR_VER,
+          apply_filters('tc_load_script_in_footer' , false)
+        );
 			}//end of load concatenate script if
 
-		    //fancybox options
+		  //fancybox options
 			$tc_fancybox 		= ( 1 == tc__f( '__get_option' , 'tc_fancybox' ) ) ? true : false;
 			$autoscale 			= ( 1 == tc__f( '__get_option' , 'tc_fancybox_autoscale') ) ? true : false ;
 
-	        //carousel options
-	        //gets slider options if any for home/front page or for others posts/pages
-		    $js_slidername      = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_front_slider' ) : get_post_meta( tc__f('__ID') , $key = 'post_slider_key' , $single = true );
-		    $js_sliderdelay     = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_slider_delay' ) : get_post_meta( tc__f('__ID') , $key = 'slider_delay_key' , $single = true );
+      //carousel options
+      //gets slider options if any for home/front page or for others posts/pages
+      $js_slidername      = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_front_slider' ) : get_post_meta( tc__f('__ID') , $key = 'post_slider_key' , $single = true );
+      $js_sliderdelay     = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_slider_delay' ) : get_post_meta( tc__f('__ID') , $key = 'slider_delay_key' , $single = true );
 
 			//has the post comments ? adds a boolean parameter in js
 			global $wp_query;
@@ -126,63 +133,66 @@ if ( ! class_exists( 'TC_resources' ) ) :
 				wp_enqueue_script('jquery-effects-core');
 
 			//gets current screen layout
-        	$screen_layout      = tc__f( '__screen_layout' , tc__f ( '__ID' ) , 'sidebar'  );
-        	//gets the global layout settings
-        	$global_layout      = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
-        	$sidebar_layout     = isset($global_layout[$screen_layout]['sidebar']) ? $global_layout[$screen_layout]['sidebar'] : false;
+    	$screen_layout      = tc__f( '__screen_layout' , tc__f ( '__ID' ) , 'sidebar'  );
+    	//gets the global layout settings
+    	$global_layout      = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
+    	$sidebar_layout     = isset($global_layout[$screen_layout]['sidebar']) ? $global_layout[$screen_layout]['sidebar'] : false;
 			//Gets the left and right sidebars class for js actions
 			$left_sb_class     	= sprintf( '.%1$s.left.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
-	      	$right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
+	    $right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
 			wp_localize_script(
-		        (defined('WP_DEBUG') && true === WP_DEBUG ) ? 'params-dev-mode' : 'tc-scripts',
-		        'TCParams',
-		        apply_filters('tc_customizr_script_params' , array(
-			          	'FancyBoxState' 		=> $tc_fancybox,
-			          	'FancyBoxAutoscale' 	=> $autoscale,
-			          	'SliderName' 			=> $js_slidername,
-			          	'SliderDelay' 			=> $js_sliderdelay,
-			          	'SliderHover'			=> apply_filters( 'tc_stop_slider_hover', true ),
-			          	'SmoothScroll'			=> $smooth_scroll,
-			          	'ReorderBlocks' 		=> esc_attr( tc__f( '__get_option' , 'tc_block_reorder') ),
-			          	'CenterSlides' 			=> esc_attr( tc__f( '__get_option' , 'tc_center_slides') ),
-			          	'HasComments' 			=> $has_post_comments,
-			          	'LeftSidebarClass' 		=> $left_sb_class,
-			          	'RightSidebarClass' 	=> $right_sb_class,
-			          	'LoadModernizr' 		=> apply_filters( 'tc_load_modernizr' , true ),
-			          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , 0 ),
-			          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ),
-			          	'dropdowntoViewport' 	=> esc_attr( tc__f( '__get_option' , 'tc_menu_resp_dropdown_limit_to_viewport') ),
-			          	'timerOnScrollAllBrowsers' => apply_filters('tc_timer_on_scroll_for_all_browser' , true) //<= if false, for ie only
-		        	),
-		        	tc__f('__ID')
-		       	)//end of filter
-	        );
+	        ( ! apply_filters('tc_load_concatenated_front_scripts' , true ) ) ? 'tc-js-params' : 'tc-scripts',
+	        'TCParams',
+	        apply_filters( 'tc_customizr_script_params' , array(
+	          	'FancyBoxState' 		=> $tc_fancybox,
+	          	'FancyBoxAutoscale' 	=> $autoscale,
+	          	'SliderName' 			=> $js_slidername,
+	          	'SliderDelay' 			=> $js_sliderdelay,
+	          	'SliderHover'			=> apply_filters( 'tc_stop_slider_hover', true ),
+	          	'SmoothScroll'			=> $smooth_scroll,
+	          	'ReorderBlocks' 		=> esc_attr( tc__f( '__get_option' , 'tc_block_reorder') ),
+	          	'CenterSlides' 			=> esc_attr( tc__f( '__get_option' , 'tc_center_slides') ),
+	          	'HasComments' 			=> $has_post_comments,
+	          	'LeftSidebarClass' 		=> $left_sb_class,
+	          	'RightSidebarClass' 	=> $right_sb_class,
+	          	'LoadModernizr' 		=> apply_filters( 'tc_load_modernizr' , true ),
+	          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , 0 ),
+	          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ),
+	          	'dropdowntoViewport' 	=> esc_attr( tc__f( '__get_option' , 'tc_menu_resp_dropdown_limit_to_viewport') ),
+	          	'timerOnScrollAllBrowsers' => apply_filters('tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
+              'extLinksStyle'       => esc_attr( tc__f( '__get_option' , 'tc_ext_link_style' ) ),
+              'extLinksTargetExt'   => esc_attr( tc__f( '__get_option' , 'tc_ext_link_target' ) )
 
-		    //fancybox style
-		    if ( $tc_fancybox )
-		      	wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.css' );
+	        	),
+	        	tc__f('__ID')
+		    )//end of filter
+	     );
 
-		    //holder.js is loaded when featured pages are enabled AND FP are set to show images
-		    $tc_show_featured_pages 	    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
-      		$tc_show_featured_pages_img     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
-      		if ( 0 != $tc_show_featured_pages && 0 != $tc_show_featured_pages_img ) {
-		    	wp_enqueue_script(
-		    		'holder',
-		    		sprintf( '%1$sinc/assets/js/holder.min.js' , TC_BASE_URL ),
-		    		array(),
-		    		CUSTOMIZR_VER,
-		    		$in_footer = true
-		    	);
-		    }
+	    //fancybox style
+	    if ( $tc_fancybox )
+	      	wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.css' );
 
-		    //load retina.js in footer if enabled
-		    if ( apply_filters('tc_load_retinajs', 1 == tc__f( '__get_option' , 'tc_retina_support' ) ) )
-		    	wp_enqueue_script( 'retinajs' ,TC_BASE_URL . 'inc/assets/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+	    //holder.js is loaded when featured pages are enabled AND FP are set to show images
+	    $tc_show_featured_pages 	    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
+    		$tc_show_featured_pages_img     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
+    		if ( 0 != $tc_show_featured_pages && 0 != $tc_show_featured_pages_img ) {
+	    	wp_enqueue_script(
+	    		'holder',
+	    		sprintf( '%1$sinc/assets/js/holder.min.js' , TC_BASE_URL ),
+	    		array(),
+	    		CUSTOMIZR_VER,
+	    		$in_footer = true
+	    	);
+	    }
 
-		    //Load hammer.js for mobile
-		    if ( apply_filters('tc_load_hammerjs', wp_is_mobile() ) )
-		    	wp_enqueue_script( 'hammer' ,TC_BASE_URL . 'inc/assets/js/hammer.min.js', array('jquery'), CUSTOMIZR_VER );
+	    //load retina.js in footer if enabled
+	    if ( apply_filters('tc_load_retinajs', 1 == tc__f( '__get_option' , 'tc_retina_support' ) ) )
+	    	wp_enqueue_script( 'retinajs' ,TC_BASE_URL . 'inc/assets/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+
+	    //Load hammer.js for mobile
+	    if ( apply_filters('tc_load_hammerjs', wp_is_mobile() ) )
+	    	wp_enqueue_script( 'hammer' ,TC_BASE_URL . 'inc/assets/js/hammer.min.js', array('jquery'), CUSTOMIZR_VER );
 
 		}
 
@@ -273,13 +283,26 @@ if ( ! class_exists( 'TC_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
-    function tc_write_fonts_inline_css( $_css ) {
+    function tc_write_fonts_inline_css( $_css = null , $_context = null ) {
+      $_css               = isset($_css) ? $_css : '';
       $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
       $_body_font_size    = esc_attr( tc__f( '__get_option' , 'tc_body_font_size' ) );
       $_font_selectors    = TC_init::$instance -> font_selectors;
 
       //create the $body and $titles vars
       extract( TC_init::$instance -> font_selectors, EXTR_OVERWRITE );
+
+      if ( ! isset($body) || ! isset($titles) )
+        return;
+
+      //adapt the selectors in edit context => add specificity for the mce-editor
+      if ( ! is_null( $_context ) ) {
+        $titles = ".{$_context} .h1, .{$_context} h2, .{$_context} h3";
+        $body   = "body.{$_context}";
+      }
+
+      $titles = apply_filters('tc_title_fonts_selectors' , $titles );
+      $body   = apply_filters('tc_body_fonts_selectors' , $body );
 
       if ( 'helvetica_arial' != $_font_pair ) {//check if not default
         $_font_code       = TC_utils::$instance -> tc_get_font( 'single' , $_font_pair );

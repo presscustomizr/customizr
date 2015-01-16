@@ -2,7 +2,7 @@
 /**
 * Posts thumbnails actions
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0.5
@@ -22,7 +22,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
           add_action( 'template_redirect'              , array( $this , 'tc_set_thumbnail_options' ) );
       }
 
-      
+
 
       /**
       * Callback of template_redirect
@@ -82,11 +82,11 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
         $tc_thumb_width                 = '';
         $image                          = array();
         $_class_attr                    = array();
-        
+
         //define a filtrable boolean to set if attached images can be used as thumbnails
         //1) must be a non single post context
         //2) user option should be checked in customizer
-        $_use_attachment_as_thumb = ! TC_post::$instance -> tc_single_post_display_controller() 
+        $_use_attachment_as_thumb = ! TC_post::$instance -> tc_single_post_display_controller()
         && ( 0 != esc_attr( tc__f( '__get_option' , 'tc_post_list_use_attachment_as_thumb' ) ) );
 
         //define the default thumb size
@@ -104,8 +104,8 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
             if ( isset($image[3]) && false == $image[3] && 'tc-thumb' == $tc_thumb_size ) {
               $tc_thumb_size            = 'large';
 
-              $_class_attr              = array( 
-                'class' => "attachment-{$tc_thumb_size} no-tc-thumb-size wp-post-image" , 
+              $_class_attr              = array(
+                'class' => "attachment-{$tc_thumb_size} no-tc-thumb-size wp-post-image" ,
               );
             }
 
@@ -116,8 +116,8 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
             $_img_style               = '';
 
             //if we have a width and a height and at least on dimension is < to default thumb
-            if ( ! empty($image[1]) 
-              && ! empty($image[2]) 
+            if ( ! empty($image[1])
+              && ! empty($image[2])
               && ( $image[1] < $_width || $image[2] < $_height )
               ) {
                 $_img_style           = sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width: auto;max-height: none;', $_width, $_height );
@@ -129,7 +129,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
             //Add the style value
             $_class_attr['style']     = apply_filters( 'tc_post_thumb_inline_style' , $_img_style, $_width, $_height );
 
-            $_class_attr              = apply_filters( 'tc_post_thumbnail_img_attributes' , $_class_attr ); 
+            $_class_attr              = apply_filters( 'tc_post_thumbnail_img_attributes' , $_class_attr );
 
             //check if the size exists
             if ( isset($image[3]) && false == $image[3] && 'tc_rectangular_size' == $tc_thumb_size ) {
@@ -195,14 +195,14 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
         return apply_filters( 'tc_get_thumbnail_data' , array( $tc_thumb, $tc_thumb_width, $tc_thumb_height ), tc__f('__ID') );
 
       }//end of function
-          
+
 
 
 
       /**
       * Displays the thumbnail or the first images attached to the post if any
       * Takes 2 parameters : thumbnail data array (img, width, height) and layout value
-      * 
+      *
       * @package Customizr
       * @since Customizr 3.0.10
       */
@@ -269,16 +269,16 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
       * @since Customizr 3.2.0
       */
       function tc_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
-         /* 
+         /*
          ********** POST LIST OPTIONS **********
          */
         if ( TC_post_list::$instance -> tc_post_list_controller() ) {
           $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
-          
+
           //1) check if shape is rounded, squared on rectangular
           if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
             return $thumb_wrapper;
-          
+
           $_position = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
           return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
                 get_permalink( get_the_ID() ),
@@ -288,7 +288,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
           );
         }
 
-        /* 
+        /*
         ******** SINGLE POST OPTIONS **********
         */
         if ( TC_post::$instance -> tc_single_post_display_controller() ) {
@@ -307,7 +307,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
       * Callback of tc_post_thumb_inline_style
       * Replace default widht:auto by width:100%
       * @param array of args passed by apply_filters_ref_array method
-      * @return  string 
+      * @return  string
       *
       * @package Customizr
       * @since Customizr 3.2.6
@@ -318,14 +318,14 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
         if ( ! is_single() && ! $_is_rectangular )
           return $_style;
 
-        return sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width:100%;max-height: none;', $_width, $_height );
+        return sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width:100%%;max-height: none;', $_width, $_height );
       }
 
 
 
       /**
       * Callback of filter tc_thumb_size_name
-      * 
+      *
       *
       * @package Customizr
       * @since Customizr 3.2.0
@@ -334,7 +334,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
         $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
         if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
           return $_default_size;
-        
+
         $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
         return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
       }

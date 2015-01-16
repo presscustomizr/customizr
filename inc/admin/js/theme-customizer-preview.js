@@ -520,4 +520,55 @@
     } );
   } );
 
+  var _url_comp     = (location.host).split('.'),
+      _nakedDomain  = new RegExp( _url_comp[1] + "." + _url_comp[2] );
+
+  function _is_external( _href  ) {
+    var _thisHref = $.trim( _href );
+    if ( _thisHref !== '' && _thisHref != '#' && _isValidURL(_thisHref) )
+        return ! _nakedDomain.test(_thisHref) ? true : false;
+  }
+
+  function _isValidURL(url){
+      var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+      if (pattern.test(url)){
+          return true;
+      }
+      return false;
+  }
+
+  wp.customize( 'tc_theme_options[tc_ext_link_style]' , function( value ) {
+    value.bind( function( to ) {
+      if ( false !== to ) {
+        $('a' , '.entry-content').each( function() {
+          var _thisHref = $.trim( $(this).attr('href'));
+          if( _is_external( _thisHref ) && 'IMG' != $(this).children().first().prop("tagName") ) {
+              $(this).after('<span class="tc-external">');
+          }
+        });
+      } else {
+        $( '.tc-external' , '.entry-content' ).remove();
+      }
+    } );
+  } );
+
+
+  wp.customize( 'tc_theme_options[tc_ext_link_target]' , function( value ) {
+    value.bind( function( to ) {
+      if ( false !== to ) {
+        $('a' , '.entry-content').each( function() {
+          var _thisHref = $.trim( $(this).attr('href'));
+          if( _is_external( _thisHref ) && 'IMG' != $(this).children().first().prop("tagName") ) {
+            $(this).attr('target' , '_blank');
+          }
+        });
+      } else {
+        $(this).removeAttr('target');
+      }
+    } );
+  } );
+
+
+
+
 } )( jQuery );

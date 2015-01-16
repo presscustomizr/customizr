@@ -66,13 +66,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $this -> db_options       = (array) get_option( TC___::$tc_option_group );
 
         //What was the theme version when the user started to use Customizr?
-        //new install = tc_skin option is not set yet
+        //new install = no options yet
         //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-        $_db_options = $this -> db_options;
-        if ( ! isset( $_db_options['tc_skin'] ) || ! esc_attr( get_transient( 'started_using_customizr' ) ) ) {
+        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( 'started_using_customizr' ) ) ) {
           set_transient(
             'started_using_customizr',
-            sprintf('%s|%s' , ! isset( $_db_options['tc_skin'] ) ? 'with' : 'before', CUSTOMIZR_VER ),
+            sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
             60*60*24*9999
           );
         }
@@ -250,18 +249,15 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 1.0
       */
       function tc_get_the_ID()  {
-          global $wp_version;
-          if ( version_compare( $wp_version, '3.4.1', '<=' ) )
-            {
-              $tc_id            = get_the_ID();
-            }
-            else
-            {
-              $queried_object   = get_queried_object();
-              $tc_id            = ! is_null( get_post() ) ? get_the_ID() : null;
-              $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
-            }
-          return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
+        global $wp_version;
+        if ( in_the_loop() || version_compare( $wp_version, '3.4.1', '<=' ) ) {
+          $tc_id            = get_the_ID();
+        } else {
+          $queried_object   = get_queried_object();
+          $tc_id            = ! is_null( get_post() ) ? get_the_ID() : null;
+          $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
+        }
+        return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
       }
 
 
@@ -597,6 +593,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @return array Values with extension first and mime type.
     */
     function tc_check_filetype( $filename, $mimes = null ) {
+      $filename = basename( $filename );
       if ( empty($mimes) )
         $mimes = get_allowed_mime_types();
       $type = false;

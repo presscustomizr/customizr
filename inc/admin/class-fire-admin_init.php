@@ -24,13 +24,42 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         }
         else {
               //adds an information page if version < 3.4
-              add_action ( 'admin_menu'                      , array( $this , 'tc_add_fallback_page' ));
+              add_action( 'admin_menu'                    , array( $this , 'tc_add_fallback_page' ));
         }
         //load the meta boxes
-        add_action ( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
+        add_action( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
         //enqueue additional styling for admin screens
-        add_action ( 'admin_init'                          , array( $this , 'tc_admin_style' ));
+        add_action( 'admin_init'                          , array( $this , 'tc_admin_style' ) );
+
+        //Load the editor-style specific (post formats and RTL), the active skin, the user style.css
+        //add user defined fonts in the editor style (@see the query args add_editor_style below)
+        add_action( 'after_setup_theme'                   , array( $this, 'tc_add_editor_style') );
+
+        add_filter( 'tiny_mce_before_init'                , array( $this, 'tc_user_defined_tinymce_css') );
       }
+
+
+      /*
+      * @return css string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.10
+      */
+      function tc_maybe_add_gfonts_to_editor() {
+        $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
+        $_all_font_pairs    = TC_init::$instance -> font_pairs;
+        if ( false === strpos($_font_pair,'_g_') )
+          return;
+        //Commas in a URL need to be encoded before the string can be passed to add_editor_style.
+        return array(
+          str_replace(
+            ',',
+            '%2C',
+            sprintf( '//fonts.googleapis.com/css?family=%s', TC_utils::$instance -> tc_get_font( 'single' , $_font_pair ) )
+          )
+        );
+      }
+
 
 
       /**
@@ -315,5 +344,60 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
           }
         }
       }
+
+
+      /**
+      * Customizr styles the visual editor to resemble the theme style,
+      * Loads the editor-style specific (post formats and RTL), the active skin, the user style.css, the user_defined fonts
+      * @package Customizr
+      * @since Customizr 3.2.11
+      *
+      */
+      function tc_add_editor_style() {
+        $_stylesheets = array(
+            TC_BASE_URL.'inc/admin/css/editor-style.css',
+            TC_init::$instance -> tc_active_skin() , get_stylesheet_uri()
+        );
+
+        if ( apply_filters( 'tc_add_custom_fonts_to_editor' , false !== $this -> tc_maybe_add_gfonts_to_editor() ) )
+          $_stylesheets = array_merge( $_stylesheets , $this -> tc_maybe_add_gfonts_to_editor() );
+
+        add_editor_style( $_stylesheets );
+      }
+
+
+
+
+      /**
+      * Extend TinyMCE config with a setup function.
+      * See http://www.tinymce.com/wiki.php/API3:event.tinymce.Editor.onInit
+      * http://wordpress.stackexchange.com/questions/120831/how-to-add-custom-css-theme-option-to-tinymce
+      * @package Customizr
+      * @since Customizr 3.2.11
+      *
+      */
+      function tc_user_defined_tinymce_css( $init ) {
+        if ( ! apply_filters( 'tc_add_custom_fonts_to_editor' , true ) )
+          return $init;
+
+        $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
+       ?>
+
+          <script type="text/javascript">
+            function add_user_defined_CSS( ed ) {
+              //http://www.tinymce.com/wiki.php/Tutorial:Migration_guide_from_3.x
+                ed.on('init', function() {
+                    tinyMCE.activeEditor.dom.addStyle(<?php echo json_encode($_css) ?>);
+                } );
+            };
+          </script>
+
+          <?php
+          if (wp_default_editor() == 'tinymce')
+              $init['setup'] = 'add_user_defined_CSS';
+
+          return $init;
+      }
+
   }//end of class
 endif;
