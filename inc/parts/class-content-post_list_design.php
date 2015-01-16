@@ -33,6 +33,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_hooks(){
+            if ( ! $this -> tc_post_list_design_match_type() )
+                return;
+
             // pre loop hooks
             add_action('__post_list_design', array( $this, 'tc_force_post_list_excerpt') );
             add_action('__post_list_design', array( $this, 'tc_force_post_list_thumbnails') );
@@ -46,10 +49,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design(){
-/*            if ( ! TC_post_list::$instance -> tc_post_list_controller() )
-    return;*/
             if ( ! $this -> tc_post_list_design_match_type() )
                 return;
+
             add_action('__before_article_container',
                     array( $this, 'tc_post_list_design_actions') , 1);
             add_action( '__before_article', array($this,
