@@ -168,8 +168,8 @@ if ( ! class_exists( 'TC_header_main' ) ) :
               $_attachement_id 	= $_logo_option;
               $_attachment_data 	= apply_filters( "tc{$logo_type}logo_attachment_img" , wp_get_attachment_image_src( $_logo_option , 'large' ) );
               $_logo_src 			= $_attachment_data[0];
-              $_width 			= isset($_attachment_data[1]) ? $_attachment_data[1] : $_width;
-              $_height 			= isset($_attachment_data[2]) ? $_attachment_data[2] : $_height;
+              $_width 			= ( isset($_attachment_data[1]) && $_attachment_data[1] > 1 ) ? $_attachment_data[1] : $_width;
+              $_height 			= ( isset($_attachment_data[2]) && $_attachment_data[2] > 1 ) ? $_attachment_data[2] : $_height;
           } else { //old treatment
               //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
               $upload_dir 			= wp_upload_dir();
