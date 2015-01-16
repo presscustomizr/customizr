@@ -54,7 +54,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 			ob_start();
 			?>
 				<div class="<?php echo $footer_widgets_wrapper_classes; ?>">
-                    <div class="<?php echo apply_filters( 'tc_footer_widget_area', 'row widget-area') ?>" role="complementary">
+                    <div class="<?php echo implode( ' ' , apply_filters( 'tc_footer_widget_area', array('row' ,'widget-area') ) ) ?>" role="complementary">
 						<?php do_action("__before_footer_widgets") ?>
 						<?php foreach ( $footer_widgets as $key => $area )  : ?>
 
