@@ -249,18 +249,15 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 1.0
       */
       function tc_get_the_ID()  {
-          global $wp_version;
-          if ( version_compare( $wp_version, '3.4.1', '<=' ) )
-            {
-              $tc_id            = get_the_ID();
-            }
-            else
-            {
-              $queried_object   = get_queried_object();
-              $tc_id            = ! is_null( get_post() ) ? get_the_ID() : null;
-              $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
-            }
-          return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
+        global $wp_version;
+        if ( in_the_loop() || version_compare( $wp_version, '3.4.1', '<=' ) ) {
+          $tc_id            = get_the_ID();
+        } else {
+          $queried_object   = get_queried_object();
+          $tc_id            = ! is_null( get_post() ) ? get_the_ID() : null;
+          $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
+        }
+        return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
       }
 
 
@@ -596,7 +593,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @return array Values with extension first and mime type.
     */
     function tc_check_filetype( $filename, $mimes = null ) {
-      $filename = basename( $filename );  
+      $filename = basename( $filename );
       if ( empty($mimes) )
         $mimes = get_allowed_mime_types();
       $type = false;
