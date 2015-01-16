@@ -596,6 +596,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @return array Values with extension first and mime type.
     */
     function tc_check_filetype( $filename, $mimes = null ) {
+      $filename = basename( $filename );  
       if ( empty($mimes) )
         $mimes = get_allowed_mime_types();
       $type = false;
