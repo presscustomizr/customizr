@@ -59,60 +59,67 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		* @since Customizr 1.0
 		*/
 		function tc_enqueue_customizr_scripts() {
-		    //wp scripts
-		  	if ( is_singular() && get_option( 'thread_comments' ) )
-			    wp_enqueue_script( 'comment-reply' );
-		    wp_enqueue_script( 'jquery' );
-		    wp_enqueue_script( 'jquery-ui-core' );
-		    //load modernizr.js in footer
-		    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+	    //wp scripts
+	  	if ( is_singular() && get_option( 'thread_comments' ) )
+		    wp_enqueue_script( 'comment-reply' );
+	    wp_enqueue_script( 'jquery' );
+	    wp_enqueue_script( 'jquery-ui-core' );
+	    //load modernizr.js in footer
+	    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, true);
 
-		   	if ( apply_filters('tc_load_concatenated_front_scripts' , true ) )
-		   	{
-			    //tc-scripts.min.js includes :
-			    //1) Twitter Bootstrap scripts
-			    //2) FancyBox - jQuery Plugin
-			    //3) Customizr scripts
-			    wp_enqueue_script(
-			    	'tc-scripts' ,
-			    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
-			    	array( 'jquery' ),
-			    	CUSTOMIZR_VER,
-			    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
-			    );
+	   	if ( apply_filters('tc_load_concatenated_front_scripts' , true ) )
+	   	{
+		    //tc-scripts.min.js includes :
+		    //1) Twitter Bootstrap scripts
+		    //2) FancyBox - jQuery Plugin
+		    //3) Customizr scripts
+		    wp_enqueue_script(
+		    	'tc-scripts' ,
+		    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
+		    	array( 'jquery' ),
+		    	CUSTOMIZR_VER,
+		    	apply_filters('tc_load_script_in_footer' , false)
+		    );
 			}
 			else
 			{
 				//in production script are minified
 	    	wp_enqueue_script(
-		    	'params-dev-mode',
-		    	sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'params-dev-mode.js'),
+		    	'tc-js-params',
+		    	sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'tc-js-params.js'),
 		    	array( 'jquery' ),
 		    	CUSTOMIZR_VER,
-		    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
+		    	apply_filters('tc_load_script_in_footer' , false)
 	    	);
 	    	wp_enqueue_script(
-		    	'dev-bootstrap',
+		    	'tc-bootstrap',
 		    	sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'bootstrap.js' : 'bootstrap.min.js'),
-		    	array( 'params-dev-mode' ),
+		    	array( 'jquery' , 'tc-js-params',  ),
 		    	CUSTOMIZR_VER,
-		    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
+		    	apply_filters('tc_load_script_in_footer' , false)
 	    	);
 	    	wp_enqueue_script(
-		    	'dev-fancybox',
+		    	'tc-fancybox',
 		    	sprintf( '%1$sinc/assets/js/fancybox/%2$s' , TC_BASE_URL , 'jquery.fancybox-1.3.4.min.js' ),
-		    	array( 'params-dev-mode' ),
+		    	array( 'jquery' , 'tc-js-params', 'tc-bootstrap' ),
 		    	CUSTOMIZR_VER,
-		    	$in_footer = apply_filters('tc_load_script_in_footer' , false)
+		    	apply_filters('tc_load_script_in_footer' , false)
 	    	);
+        wp_enqueue_script(
+          'tc-main-front',
+          sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'main.js' : 'main.min.js'),
+          array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' ),
+          CUSTOMIZR_VER,
+          apply_filters('tc_load_script_in_footer' , false)
+        );
 			}//end of load concatenate script if
 
-		    //fancybox options
+		  //fancybox options
 			$tc_fancybox 		= ( 1 == tc__f( '__get_option' , 'tc_fancybox' ) ) ? true : false;
 			$autoscale 			= ( 1 == tc__f( '__get_option' , 'tc_fancybox_autoscale') ) ? true : false ;
 
-        //carousel options
-        //gets slider options if any for home/front page or for others posts/pages
+      //carousel options
+      //gets slider options if any for home/front page or for others posts/pages
       $js_slidername      = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_front_slider' ) : get_post_meta( tc__f('__ID') , $key = 'post_slider_key' , $single = true );
       $js_sliderdelay     = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_slider_delay' ) : get_post_meta( tc__f('__ID') , $key = 'slider_delay_key' , $single = true );
 
@@ -135,7 +142,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    $right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
 			wp_localize_script(
-	        ( ! apply_filters('tc_load_concatenated_front_scripts' , true ) ) ? 'params-dev-mode' : 'tc-scripts',
+	        ( ! apply_filters('tc_load_concatenated_front_scripts' , true ) ) ? 'tc-js-params' : 'tc-scripts',
 	        'TCParams',
 	        apply_filters( 'tc_customizr_script_params' , array(
 	          	'FancyBoxState' 		=> $tc_fancybox,

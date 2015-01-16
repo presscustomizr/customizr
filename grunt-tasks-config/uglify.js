@@ -7,7 +7,7 @@ module.exports = {
 		dead_code: true
 		}
 	},
-	front_js: {
+	main_front_js: {
 		files: [{
 			expand: true,
 			cwd: '<%= paths.front_js %>',
@@ -17,6 +17,15 @@ module.exports = {
 			ext: '.min.js'
 		}]
 	},
+  part_front_js: {
+    files: [{
+      expand: true,
+      cwd: '<%= paths.front_js %>/parts',
+      src: ['**/*.js', '!*.min.js'],
+      dest: '<%= paths.front_js %>/parts',
+      ext: '.min.js'
+    }]
+  },
 	prod_admin_js:{
 		files: [{
 			expand: true,

@@ -2678,13 +2678,13 @@ jQuery(function ($) {
         $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
 
         setTimeout( function() {
-            centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image > img' );
+            centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
             $('.tc-slider-loader-wrapper').hide();
         } , 50);
 
         $(window).resize(function(){
             setTimeout( function() {
-                centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image > img' );
+                centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
             }, 50);
         });
     }//end of center slides
@@ -2737,17 +2737,18 @@ jQuery(function ($) {
     }
 
     //Handle dropdown on click for multi-tier menus
-    var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a'),
+    var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'),
         $dropdown_submenus  = $('.tc-open-on-click .dropdown .dropdown-submenu');
 
 
     // go to the link if submenu is already opened
-    $dropdown_ahrefs.not('a' , $dropdown_submenus).on('tap click', function(evt) {
-        var href = $(this).attr('href');
-        if ( '#' != href && '' !== href )
-          return;
-        if ( $(this).next('.dropdown-menu').is(':visible') )
-          window.location = href;
+    $dropdown_ahrefs.on('tap click', function(evt) {
+        if ( ( $(this).next('.dropdown-menu').css('visibility') != 'hidden' &&
+                $(this).next('.dropdown-menu').is(':visible')  &&
+                ! $(this).parent().hasClass('dropdown-submenu') ) ||
+             ( $(this).next('.dropdown-menu').is(':visible') &&
+                $(this).parent().hasClass('dropdown-submenu') ) )
+            window.location = $(this).attr('href');
     });
     // make sub-submenus dropdown on click work
     $dropdown_submenus.each(function(){
@@ -2755,13 +2756,9 @@ jQuery(function ($) {
             $children = $parent.children('[data-toggle="dropdown"]');
         $children.on('tap click', function(){
             var submenu   = $(this).next('.dropdown-menu'),
-                openthis  = false,
-                href      = $(this).attr('href');
+                openthis  = false;
             if ( ! $parent.hasClass('open') ) {
               openthis = true;
-            } else {
-              if ( '#' != href && '' !== href )
-                window.location = href;
             }
             // close opened submenus
             $($parent.parent()).children('.dropdown-submenu').each(function(){
