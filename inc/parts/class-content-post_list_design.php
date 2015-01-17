@@ -333,6 +333,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 .expand .tc-design-container .tc-design-content{
                     visibility: visible;
                 }
+                .tc-design-container.no-thumb .tc-design-content{
+                    visibility: visible;
+                    position: relative;
+                }
                 .tc-post-list-design-grid article.hover .tc-design-container .tc-design-content{
                     visibility: visible;
                 }
