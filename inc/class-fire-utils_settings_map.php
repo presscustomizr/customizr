@@ -1775,7 +1775,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 29,
-              ),
+               ),
+              
               'tc_theme_options[tc_post_list_show_thumb]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
@@ -1837,7 +1838,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 ),
                                 'priority'      => 40
               ),
-
               'tc_theme_options[tc_post_list_thumb_alternate]'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
@@ -1846,7 +1846,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 50
               ),
-
+              'tc_theme_options[tc_post_list_design_default_thumb]' => array(
+                                'control'       =>  'TC_Customize_Upload_Control' ,
+                                'label'         => __( 'Upload a default thumbnail for Post List Design' , 'customizr' ),
+                                'section'       =>  'tc_post_list_settings' ,
+                                'type'          =>  'tc_upload',
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number'),
+                                'priority'      =>  60,
+              ),
               'tc_theme_options[tc_single_post_thumb_location]'  =>  array(
                                 'default'       => 'hide',
                                 'control'     => 'TC_controls' ,

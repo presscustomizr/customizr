@@ -39,8 +39,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 array( $this , 'tc_post_list_design_write_inline_css') );
 
             // pre loop hooks
-            add_action('__post_list_design',
+ /*           add_action('__post_list_design',
                             array( $this, 'tc_force_post_list_excerpt') );
+  */
             add_action('__post_list_design',
                             array( $this, 'tc_force_post_list_thumbnails') );
             add_action('__post_list_design',
