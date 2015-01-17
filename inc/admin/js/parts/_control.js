@@ -177,6 +177,18 @@
         return 'excerpt' == to;
       }
     },
+    'tc_theme_options[tc_post_list_design]' : {
+      controls: [
+        'tc_theme_options[tc_post_list_design_columns]',
+        'tc_theme_options[tc_post_list_design_expand_featured]',
+        'tc_theme_options[tc_post_list_design_in_blog]',
+        'tc_theme_options[tc_post_list_design_in_archive]',
+        'tc_theme_options[tc_post_list_design_in_search]',
+        'tc_theme_options[tc_post_list_design_default_thumb]'
+      ],
+      callback: function (to) {
+        return 'default' != to;
+    },
     'tc_theme_options[tc_sticky_show_title_logo]' : {
       controls: [
         'tc_theme_options[tc_sticky_logo_upload]',

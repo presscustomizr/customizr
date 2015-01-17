@@ -313,9 +313,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         /* Callback pre_get_posts */
         // exclude the first sticky post
         function tc_post_list_design_sticky_post( $query ){
-            if ( ! $this -> tc_post_list_design_match_type() )
-                return;
-            if ( $this -> tc_consider_sticky_post( $query ) )
+            if ( $this -> tc_consider_sticky_post( $query ) &&
+                 $this -> tc_post_list_design_match_type() )
                 $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
         }
 
