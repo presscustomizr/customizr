@@ -64,7 +64,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
             add_action( '__after_article',
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
-            add_filter( 'tc_post_list_separator', '__return_empty_string' );
+ //           add_filter( 'tc_post_list_separator', '__return_empty_string' );
 
             if ( $this -> is_expanded_featured() ){
                 add_action( '__before_post_list_post_content',
@@ -264,7 +264,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             printf( '<section class="tc-design-container %1$s">',
                 ( ! $tc_show_post_list_thumb ) ? 'no-thumb' : ''
             );
-            
+                if ( isset($layout['show_thumb_first']) && ! $layout['show_thumb_first'] )
+                    //hook for the title
+                    do_action('__before_content');
+
                 $post_content = $this -> tc_post_list_design_prepare_post_content($post_list_content_class);
                 if ( ! $tc_show_post_list_thumb ){
                     echo $post_content;
@@ -274,8 +277,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                         $thumb_data, $layout['thumb']
                     );
                 }
-                //hook for the title
-                do_action('__before_content');
+                if ( isset($layout['show_thumb_first']) && $layout['show_thumb_first'] )
+                    //hook for the title
+                    do_action('__before_content');
             echo '</section>';
             do_action('__after_post_list_post');
             $html = ob_get_contents();
@@ -329,6 +333,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     display: inline-block;
                     visibility: hidden;
                     vertical-align: middle;
+                    maring-left: 0 !important;
                 }
                 .expand .tc-design-container .tc-design-content{
                     visibility: visible;
