@@ -281,9 +281,15 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     //hook for the title
                     do_action('__before_content');
             echo '</section>';
+                
+            //renders the hr separator after each article
+            echo apply_filters( 'tc_post_list_separator', '<hr class="featurette-divider '.current_filter().'">' );
+
             do_action('__after_post_list_post');
+            
             $html = ob_get_contents();
             if ($html) ob_end_clean();
+
             echo apply_filters('tc_post_list_design_display', $html);
         }
 
@@ -318,12 +324,11 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         function css( $_css){
             return sprintf("%s\n%s",
                 $_css,
-                ".tc-design-container header.entry-header{
-                    width: 100%;
-                    float: left;
-                }
-                .tc-design-container{
+                "
+                .tc-design-container, .tc-design-thumb{
                     position: relative;
+                    float: left;
+                    width: 100%;
                 }
                 .tc-design-container .tc-design-content{
                     height: 100%;
@@ -342,6 +347,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     visibility: visible;
                     position: relative;
                 }
+
                 .tc-post-list-design-grid article.hover .tc-design-container .tc-design-content{
                     visibility: visible;
                 }
@@ -350,6 +356,20 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 }
                 .tc-post-list-design-grid article.sticky{
                     text-align: justify;
+                }
+                .tc-post-list-design-grid .featurette-divider.__loop{
+                    display: none;
+                }
+                @media (max-width: 767px){
+                    .featurette-divider.post-list-design{
+                        display: none;
+                    }
+                    .tc-post-list-design-grid .featurette-divider.__loop{
+                        display: block;
+                    }
+                    .tc-design-container {
+                        margin-bottom: 30px;
+                    }
                 }
                 \n"   
             );
