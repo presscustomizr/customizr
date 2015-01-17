@@ -19,22 +19,22 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
         function __construct () {
             self::$instance =& $this;
-            $is_design = ( 'default' == esc_attr( tc__f('__get_option',
-                            'tc_post_list_design') ) ) ? false : true;
-            $is_design = apply_filters( 'tc_post_list_design', $is_design );
-            if ( ! $is_design )
-                return;
-            
-            $this -> has_expanded_featured = false;
 
+            $this -> has_expanded_featured = false;
+            
             add_action ( 'pre_get_posts', array( $this, 'tc_post_list_design_sticky_post') );
             add_action ( 'wp', array( $this , 'tc_post_list_design_hooks') );
         }
 
         function tc_post_list_design_hooks(){
-            if ( ! $this -> tc_post_list_design_match_type() )
+            $is_design = ( 'default' == esc_attr( tc__f('__get_option',
+                'tc_post_list_design') ) ) ? false : true;
+
+            $is_design = apply_filters( 'tc_post_list_design', $is_design );
+
+            if ( ! $is_design || ! $this -> tc_post_list_design_match_type() )
                 return;
-            
+                      
             add_filter( 'tc_user_options_style',
                 array( $this , 'tc_post_list_design_write_inline_css') );
 
@@ -314,7 +314,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         // exclude the first sticky post
         function tc_post_list_design_sticky_post( $query ){
             if ( $this -> tc_consider_sticky_post( $query ) &&
-                 $this -> tc_post_list_design_match_type() )
+                     $this -> tc_post_list_design_match_type() )
                 $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
         }
 
