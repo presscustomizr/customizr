@@ -22,10 +22,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             $is_design = ( 'default' == esc_attr( tc__f('__get_option',
                             'tc_post_list_design') ) ) ? false : true;
             $is_design = apply_filters( 'tc_post_list_design', $is_design );
-
             if ( ! $is_design )
                 return;
-
+            
             $this -> has_expanded_featured = false;
 
             add_action ( 'pre_get_posts', array( $this, 'tc_post_list_design_sticky_post') );
@@ -35,9 +34,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         function tc_post_list_design_hooks(){
             if ( ! $this -> tc_post_list_design_match_type() )
                 return;
-
+            
             add_filter( 'tc_user_options_style',
-                array( $this , 'css') );
+                array( $this , 'tc_post_list_design_write_inline_css') );
 
             // pre loop hooks
             add_action('__post_list_design',
@@ -106,7 +105,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_force_post_list_excerpt(){
-            add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
+            //add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
             add_filter('tc_show_post_list_excerpt', '__return_true', 0);
         }
         
@@ -319,7 +318,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
         }
 
-        function css( $_css){
+        function tc_post_list_design_write_inline_css( $_css){
             return sprintf("%s\n%s",
                 $_css,
                 "
@@ -400,14 +399,14 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
         /* retrieves number of cols option, and wrap it into a filter */
         function tc_get_post_list_cols(){
-            return apply_filters( 'tc_post_list_design_cols',
-                esc_attr( tc__f('__get_option', 'tc_post_list_design_cols') ) );
+            return apply_filters( 'tc_post_list_design_columns',
+                esc_attr( tc__f('__get_option', 'tc_post_list_design_columns') ) );
         }
  
         /* retrieves the expand featured option, and wrap it into a filter */
         function tc_get_post_list_expand_featured(){
             return apply_filters( 'tc_post_list_expand_featured',
-                esc_attr( tc__f('__get_option', 'tc_post_list_expand_featured') ) );
+                esc_attr( tc__f('__get_option', 'tc_post_list_design_expand_featured') ) );
         }
 
         /* retrieves where to apply the post list design option, and wrap it into a filter 
@@ -416,7 +415,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
          */
         function tc_get_post_list_design_in( $type ){
             return apply_filters( 'tc_post_list_design_in_' . $type,
-                esc_attr( tc__f('__get_option'. 'tc_post_list_design_' . $type ) ) );
+                esc_attr( tc__f('__get_option'. 'tc_post_list_design_in_' . $type ) ) );
         }
         
         /* returns if the current post is the expanded one */
