@@ -36,6 +36,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             if ( ! $this -> tc_post_list_design_match_type() )
                 return;
 
+            add_filter( 'tc_user_options_style',
+                array( $this , 'css') );
+
             // pre loop hooks
             add_action('__post_list_design',
                             array( $this, 'tc_force_post_list_excerpt') );
@@ -62,13 +65,32 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_action( '__after_article',
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
             add_filter( 'tc_post_list_separator', '__return_empty_string' );
+
+            if ( $this -> is_expanded_featured() ){
+                add_action( '__before_post_list_post_content',
+                    array( $this, 'tc_post_list_design_expanded_post_title'));
+                remove_action( '__before_content', array(TC_headings::$instance, 'tc_prepare_headings_view') );
+            }else{
+                add_action( '__before_content', array(TC_headings::$instance, 'tc_prepare_headings_view') );
+                remove_action( '__before_post_list_post_content',
+                    array( $this, 'tc_post_list_design_expanded_post_title'));
+            }
+
         }
     
         function tc_post_list_design_actions(){
             add_action('__before_article_container',
                     array( $this, 'tc_post_list_design_before_loop_actions') , 1);
-            add_action( '__before_article', array($this,
-                    'tc_post_list_design_loop_actions'), 0 );
+            add_action( '__before_article', 
+                array( $this, 'tc_post_list_design_loop_actions'), 0 );
+
+            remove_action( '__loop',
+                array( TC_post_list::$instance, 'tc_post_list_display') );
+            add_action( '__loop',
+                array( $this, 'tc_post_list_display') );
+
+           /* remove_action('__before_content',
+               array( TC_headings::$instance, 'tc_prepare_headings_view');*/
         }
 
         function tc_post_list_design_before_loop_actions(){
@@ -77,13 +99,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_loop_actions(){
-            $expand_featured = $this -> tc_post_list_is_expanded_featured();
-    
-            $display_grid = ! $expand_featured;
-
-            if ( ! $display_grid )
-                return;
-            
             do_action('__post_list_design_loop');
         }
         
@@ -103,7 +118,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             remove_filter('tc_post_list_layout',
                             array( TC_post_list::$instance, 'tc_set_post_list_layout') );
             add_filter('tc_post_list_layout',
-                            array( $this, 'tc_set_post_list_layout') );
+                            array( $this, 'tc_set_post_list_layout'), 99999 );
         }
 
         function tc_post_list_prepare_expand_featured(){
@@ -117,7 +132,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             array_unshift($wp_query->posts, $first_sticky);
             $wp_query->post_count = $wp_query->post_count + 1;
             $this -> has_expanded_featured = true;
-        }
+                    }
 
         function tc_force_post_list_thumbnails(){
             add_action( '__post_list_design_thumbnails',
@@ -133,8 +148,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         function tc_post_list_design_thumb_shape_name(){
             remove_filter( 'post_class',
                     array( TC_post_list::$instance , 'tc_add_thumb_shape_name'));
-            add_filter( 'post_class',
-                    array( $this , 'tc_add_thumb_shape_name'));
+            /*add_filter( 'post_class',
+                array( $this , 'tc_add_thumb_shape_name'));*/
         }
 
         function tc_post_list_design_thumb_size_name(){
@@ -161,11 +176,11 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_set_thumb_size_name(){
-            return  ( $this->tc_post_list_is_expanded_featured() ) ? 'tc-design-full' : 'tc-design';
+            return  ( $this-> is_expanded_featured() ) ? 'tc-design-full' : 'tc-design';
         }
 
         function tc_set_thumb_size(){
-            $thumb = ( $this -> tc_post_list_is_expanded_featured() ) ? 
+            $thumb = ( $this -> is_expanded_featured() ) ? 
                         'tc_design_full_size' : 'tc_design_size';
             return TC_init::$instance -> $thumb;
         }
@@ -197,8 +212,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
         /* Apply proper class to articles selectors to control articles width*/
         function tc_post_list_design_article_selectors($selectors){
-            $class = $this -> tc_post_list_is_expanded_featured() ?
-                        'row-fluid expand tc-design' : '';
+            $class = $this -> is_expanded_featured() ?
+                        'span12 expand tc-design' : '';
             $class = ( $class ) ? $class :
                     'tc-design span'. ( 12 / $this -> tc_get_post_list_cols() );
 
@@ -210,18 +225,18 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             global $wp_query;
             $current_post = $wp_query -> current_post;
             $start_post = $this -> has_expanded_featured ? 1 : 0;
-            
+            $is_expanded_featured = ( $start_post ) ? $this -> is_expanded_featured() : false;
             $current_filter = current_filter();
-            $cols = $this -> tc_get_post_list_cols();
+            $cols = ( $is_expanded_featured ) ? 1 : $this -> tc_get_post_list_cols();
             
-            if ( '__before_article' == $current_filter &&
+            if ( '__before_article' == $current_filter && ( $is_expanded_featured ||
                 ( $start_post == $current_post ||
-                    0 == ( $current_post - $start_post ) % $cols ) )
+                    0 == ( $current_post - $start_post ) % $cols ) ) )
                     echo apply_filters( 'tc_post_list_design_grid_section',
                         '<section class="tc-post-list-design-grid row-fluid cols-'.$cols.'">' );
-            elseif (  '__after_article' == $current_filter &&
+            elseif ( '__after_article' == $current_filter && ( $is_expanded_featured ||
                       ( $wp_query->post_count == ( $current_post + 1 ) ||
-                        0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ){
+                        0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) ){
                             
                 echo '</section><!--end section.tc-post-list-design.row-fluid-->';
                 echo apply_filters( 'tc_post_list_design_separator',
@@ -229,6 +244,64 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             }
         }
 
+        function tc_post_list_display(){
+            global $post;
+            if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_post_list_design_match_type()  , $post ) )
+              return;
+
+            //get the thumbnail data (src, width, height) if any
+            $thumb_data                     = apply_filters( 'tc_thumb_data', null );
+            
+            //get the filtered post list layout
+            $layout                         = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
+            
+            $tc_show_post_list_thumb        = empty($thumb_data[0]) ? false : true;
+            //what is determining the layout ? if no thumbnail then full width + filter's conditions
+            $post_list_content_class        = $layout['content'];
+
+            ob_start();
+            do_action( '__before_post_list_post');
+            printf( '<section class="tc-design-container %1$s">',
+                ( ! $tc_show_post_list_thumb ) ? 'no-thumb' : ''
+            );
+            
+                $post_content = $this -> tc_post_list_design_prepare_post_content($post_list_content_class);
+                if ( ! $tc_show_post_list_thumb ){
+                    echo $post_content;
+                }else{
+                    $thumb_data[0] = $post_content . $thumb_data[0];
+                    TC_post_thumbnails::$instance -> tc_display_post_thumbnail(
+                        $thumb_data, $layout['thumb']
+                    );
+                }
+                //hook for the title
+                do_action('__before_content');
+            echo '</section>';
+            do_action('__after_post_list_post');
+            $html = ob_get_contents();
+            if ($html) ob_end_clean();
+            echo apply_filters('tc_post_list_design_display', $html);
+        }
+
+        function tc_post_list_design_prepare_post_content($post_list_content_class){
+            ob_start();
+            ?>
+            <span class="tc-design-content <?php echo $post_list_content_class ?>">
+                <?php do_action( '__before_post_list_post_content' ) ?>
+                    <span class="entry-summary">
+                        <?php echo apply_filters('tc_post_list_design_excerpt', get_the_excerpt() ); ?>
+                    </span>
+                <?php do_action( '__after_post_list_post_conent' ) ?>
+            </span>
+            <?php
+            $html = ob_get_contents();
+            if ($html) ob_end_clean();
+            return apply_filters('tc_post_list_design_content', $html, $post_list_content_class);
+        }
+        function tc_post_list_design_expanded_post_title(){
+            global $post;
+            echo '<h2>'.$post->post_title.'</h2>';
+        }
         /* Callback pre_get_posts */
         // exclude the first sticky post
         function tc_post_list_design_sticky_post( $query ){
@@ -238,6 +311,40 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
         }
 
+        function css( $_css){
+            return sprintf("%s\n%s",
+                $_css,
+                ".tc-design-container header.entry-header{
+                    width: 100%;
+                    float: left;
+                }
+                .tc-design-container{
+                    position: relative;
+                }
+                .tc-design-container .tc-design-content{
+                    height: 100%;
+                    background: rgba(0,0,0,.2);
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
+                    position: absolute;
+                    display: inline-block;
+                    visibility: hidden;
+                    vertical-align: middle;
+                }
+                .expand .tc-design-container .tc-design-content{
+                    visibility: visible;
+                }
+                .tc-post-list-design-grid article.hover .tc-design-container .tc-design-content{
+                    visibility: visible;
+                }
+                .tc-post-list-design-grid .entry-summary{
+                    display: block;
+                }
+                .tc-post-list-design-grid article.sticky{
+                    text-align: justify;
+                }
+                \n"   
+            );
+        }
         /* Helpers */
         
         /* check if we have to expand the first sticky post */
@@ -280,7 +387,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
         
         /* returns if the current post is the expanded one */
-        function tc_post_list_is_expanded_featured(){
+        function is_expanded_featured(){
             global $wp_query;
             $current_post = $wp_query -> current_post;
             return ( $this -> has_expanded_featured &&
