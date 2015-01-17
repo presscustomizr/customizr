@@ -188,7 +188,8 @@
       ],
       callback: function (to) {
         return 'default' != to;
-    },
+      }
+    },  
     'tc_theme_options[tc_sticky_show_title_logo]' : {
       controls: [
         'tc_theme_options[tc_sticky_logo_upload]',
