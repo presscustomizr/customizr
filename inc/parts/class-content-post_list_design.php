@@ -415,7 +415,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
          */
         function tc_get_post_list_design_in( $type ){
             return apply_filters( 'tc_post_list_design_in_' . $type,
-                esc_attr( tc__f('__get_option'. 'tc_post_list_design_in_' . $type ) ) );
+                esc_attr( tc__f('__get_option', 'tc_post_list_design_in_' . $type ) ) );
         }
         
         /* returns if the current post is the expanded one */
