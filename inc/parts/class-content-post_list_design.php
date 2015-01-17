@@ -32,9 +32,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
             $is_design = apply_filters( 'tc_post_list_design', $is_design );
 
-            if ( ! $is_design || ! $this -> tc_post_list_design_match_type() )
+            if ( ! $this -> tc_post_list_is_design() ||
+                    ! $this -> tc_post_list_design_match_type() )
                 return;
-                      
+            
             add_filter( 'tc_user_options_style',
                 array( $this , 'tc_post_list_design_write_inline_css') );
 
@@ -99,14 +100,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
         
         function tc_post_list_design_selectors(){        
-            //TODO if on what kind of post list + options
-            //case simple post_list
             add_filter( 'tc_post_list_selectors',
                             array( $this, 'tc_post_list_design_article_selectors') );
         }
 
         function tc_force_post_list_excerpt(){
-            //add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
+            add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
             add_filter('tc_show_post_list_excerpt', '__return_true', 0);
         }
         
@@ -128,7 +127,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             array_unshift($wp_query->posts, $first_sticky);
             $wp_query->post_count = $wp_query->post_count + 1;
             $this -> has_expanded_featured = true;
-                    }
+        }
 
         function tc_force_post_list_thumbnails(){
             add_action( '__post_list_design_thumbnails',
@@ -313,7 +312,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         /* Callback pre_get_posts */
         // exclude the first sticky post
         function tc_post_list_design_sticky_post( $query ){
-            if ( $this -> tc_consider_sticky_post( $query ) &&
+            if ( $this -> tc_post_list_is_design() &&
+                     $this -> tc_consider_sticky_post( $query ) &&
                      $this -> tc_post_list_design_match_type() )
                 $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
         }
@@ -422,8 +422,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         function is_expanded_featured(){
             global $wp_query;
             $current_post = $wp_query -> current_post;
-            return ( $this -> has_expanded_featured &&
-                        $current_post == 0 ) ? true : false;
+            return ( $this -> has_expanded_featured && $current_post == 0 );
         }
 
         /* returns the type of post list we're in if any, an empty string otherwise */
@@ -445,6 +444,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             $post_list_type = $this -> tc_post_list_type();
             return ( apply_filters('tc_post_list_design_do',
                 $post_list_type && $this -> tc_get_post_list_design_in( $post_list_type ) ) );
+        }
+
+        /* checks the option tc_post_list_design and wraps it into a filter */
+        function tc_post_list_is_design(){
+            return apply_filters( 'tc_post_list_design',
+                'default' != esc_attr( tc__f('__get_option', 'tc_post_list_design') ) );
         }
     }
 endif;
