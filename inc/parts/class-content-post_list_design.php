@@ -64,7 +64,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
             add_action( '__after_article',
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
- //           add_filter( 'tc_post_list_separator', '__return_empty_string' );
 
             if ( $this -> is_expanded_featured() ){
                 add_action( '__before_post_list_post_content',
@@ -88,9 +87,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 array( TC_post_list::$instance, 'tc_post_list_display') );
             add_action( '__loop',
                 array( $this, 'tc_post_list_display') );
-
-           /* remove_action('__before_content',
-               array( TC_headings::$instance, 'tc_prepare_headings_view');*/
         }
 
         function tc_post_list_design_before_loop_actions(){
@@ -213,7 +209,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         /* Apply proper class to articles selectors to control articles width*/
         function tc_post_list_design_article_selectors($selectors){
             $class = $this -> is_expanded_featured() ?
-                        'span12 expand tc-design' : '';
+                        'span12 expanded tc-design' : '';
             $class = ( $class ) ? $class :
                     'tc-design span'. ( 12 / $this -> tc_get_post_list_cols() );
 
@@ -308,10 +304,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             if ($html) ob_end_clean();
             return apply_filters('tc_post_list_design_content', $html, $post_list_content_class);
         }
+
         function tc_post_list_design_expanded_post_title(){
             global $post;
             echo '<h2>'.$post->post_title.'</h2>';
         }
+
         /* Callback pre_get_posts */
         // exclude the first sticky post
         function tc_post_list_design_sticky_post( $query ){
@@ -338,10 +336,16 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     display: inline-block;
                     visibility: hidden;
                     vertical-align: middle;
-                    maring-left: 0 !important;
+                    margin-left: 0;
                 }
-                .expand .tc-design-container .tc-design-content{
+                .expanded .tc-design-container .tc-design-content{
                     visibility: visible;
+                    max-width: 50%;
+                    line-height: 10px;
+                    height: auto;
+                    top: 5%;
+                    margin-left: 11%;
+                    padding: 2%;
                 }
                 .tc-design-container.no-thumb .tc-design-content{
                     visibility: visible;
