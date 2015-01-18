@@ -1,6 +1,6 @@
 <?php
 /**
-* Post lists content actions
+* Post lists design content actions
 *
 * 
 * @package      Customizr
@@ -91,15 +91,16 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_filter( 'tc_post_list_selectors',
                             array( $this, 'tc_post_list_design_article_selectors') );
         }
-
+    /*
         function tc_force_post_list_excerpt(){
             add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
             add_filter('tc_show_post_list_excerpt', '__return_true', 0);
         }
-        
+     */  
         function tc_post_list_design_layout(){
-            remove_filter('tc_post_list_layout',
+       /*     remove_filter('tc_post_list_layout',
                             array( TC_post_list::$instance, 'tc_set_post_list_layout') );
+        */
             add_filter('tc_post_list_layout',
                             array( $this, 'tc_set_post_list_layout'), 99999 );
         }
@@ -148,14 +149,14 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_filter('tc_post_list_design_container',
                     array( $this, 'tc_post_list_design_post_container'), 20, 2 );
         }
-
+/*
         function tc_add_thumb_shape_name($_classes){
             $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
             $_class =  ( ! $_shape || false !== strpos($_shape, 'rounded') ||
                     false !== strpos($_shape, 'squared') ) ? 'rectangular' : $_shape;
             return array_merge( $_classes, array( $_class ) );
         }
-
+ */
         function tc_set_thumb_size_name(){
             return  ( $this-> is_expanded_featured() ) ? 'tc-design-full' : 'tc-design';
         }
