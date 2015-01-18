@@ -32,8 +32,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
             $is_design = apply_filters( 'tc_post_list_design', $is_design );
 
-            if ( ! $this -> tc_post_list_is_design() ||
-                    ! $this -> tc_post_list_design_match_type() )
+            if ( ! $this -> tc_post_list_is_design() )
                 return;
             
             add_filter( 'tc_user_options_style',
@@ -313,8 +312,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         // exclude the first sticky post
         function tc_post_list_design_sticky_post( $query ){
             if ( $this -> tc_post_list_is_design() &&
-                     $this -> tc_consider_sticky_post( $query ) &&
-                     $this -> tc_post_list_design_match_type() )
+                     $this -> tc_consider_sticky_post( $query ) )
                 $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
         }
 
@@ -417,7 +415,18 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return apply_filters( 'tc_post_list_design_in_' . $type,
                 esc_attr( tc__f('__get_option', 'tc_post_list_design_in_' . $type ) ) );
         }
-        
+ 
+        /* checks the option tc_post_list_design and wraps it into a filter */
+        function tc_get_post_list_design(){
+            return apply_filters( 'tc_post_list_design',
+                'default' != esc_attr( tc__f('__get_option', 'tc_post_list_design') ) );
+        }       
+
+        function tc_post_list_is_design(){
+            return apply_filters( 'tc_post_list_is_design',
+                $this -> tc_get_post_list_design() && $this -> tc_post_list_design_match_type() );
+        }
+
         /* returns if the current post is the expanded one */
         function is_expanded_featured(){
             global $wp_query;
@@ -445,11 +454,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return ( apply_filters('tc_post_list_design_do',
                 $post_list_type && $this -> tc_get_post_list_design_in( $post_list_type ) ) );
         }
-
-        /* checks the option tc_post_list_design and wraps it into a filter */
-        function tc_post_list_is_design(){
-            return apply_filters( 'tc_post_list_design',
-                'default' != esc_attr( tc__f('__get_option', 'tc_post_list_design') ) );
-        }
+    
     }
 endif;
