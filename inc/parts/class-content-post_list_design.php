@@ -27,11 +27,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_hooks(){
-            $is_design = ( 'default' == esc_attr( tc__f('__get_option',
-                'tc_post_list_design') ) ) ? false : true;
-
-            $is_design = apply_filters( 'tc_post_list_design', $is_design );
-
+            
             if ( ! $this -> tc_post_list_is_design() )
                 return;
             
