@@ -403,6 +403,13 @@ if ( ! class_exists( 'TC_init' ) ) :
             add_filter( 'tc_slider_full_size'    , array($this,  'tc_set_slider_img_height') );
             add_filter( 'tc_slider_size'         , array($this,  'tc_set_slider_img_height') );
         }
+        if ( isset( $_options['tc_post_list_thumb_height'] ) ){
+            $_user_height  = esc_attr( $_options['tc_post_list_thumb_height'] );
+            if ( 250 != $_user_height ){
+                add_filter( 'tc_design_full_size', array($this,  'tc_set_design_img_height') );
+                add_filter( 'tc_design_size'     , array($this,  'tc_set_design_img_height') );
+            }
+        }        
       }
 
 
@@ -421,6 +428,23 @@ if ( ! class_exists( 'TC_init' ) ) :
           return $_default_size;
 
         $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
+        return $_default_size;
+      }
+
+
+      /**
+      * Set post list desgin new image sizes
+      * Callback of tc_design_full_size and tc_design_size filters
+      *
+      * @package Customizr
+      * @since Customizr 3.1.12
+      *
+      */
+
+      function tc_set_design_img_height( $_default_size ) {
+        $_options = get_option('tc_theme_options');
+
+        $_default_size['height'] =  esc_attr( $_options['tc_post_list_thumb_height'] ) ;
         return $_default_size;
       }
 
