@@ -64,7 +64,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
             add_action( '__after_article',
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
-            add_action( '__before_post_list_design_entry_summary',
+            add_action( '__before_post_list_design_figcaption_content',
                     array( $this, 'tc_post_list_design_expanded_post_title'));
         }
     
@@ -283,11 +283,11 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             ob_start();
             ?>
             <figcaption class="<?php echo $post_list_content_class ?>">
-                <?php do_action( '__before_post_list_design_entry_summary' ) ?>
+                <?php do_action( '__before_post_list_design_figcaption_content' ) ?>
                     <div class="entry-summary">
                         <?php the_excerpt(); ?>
                     </div>
-                <?php do_action( '__after_post_list_design_entry_summary' ) ?>
+                <?php do_action( '__after_post_list_design_figcaption_content' ) ?>
             </figcaption>
             <?php
             $html = ob_get_contents();
