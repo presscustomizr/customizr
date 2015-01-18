@@ -64,17 +64,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
             add_action( '__after_article',
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
-
-            if ( $this -> is_expanded_featured() ){
-                add_action( '__before_post_list_post_content',
+            add_action( '__before_post_list_post_content',
                     array( $this, 'tc_post_list_design_expanded_post_title'));
-                remove_action( '__before_content', array(TC_headings::$instance, 'tc_prepare_headings_view') );
-            }else{
-                add_action( '__before_content', array(TC_headings::$instance, 'tc_prepare_headings_view') );
-                remove_action( '__before_post_list_post_content',
-                    array( $this, 'tc_post_list_design_expanded_post_title'));
-            }
-
         }
     
         function tc_post_list_design_actions(){
@@ -156,10 +147,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_post_thumb_wrapper(){
-            remove_filter('tc_post_thumb_wrapper',
-                    array( TC_post_thumbnails::$instance, 'tc_set_thumb_shape') );
-            add_filter('tc_post_thumb_wrapper',
-                    array( $this, 'tc_set_thumb_shape'), 10, 2 );
+            add_filter('tc_post_list_design_container',
+                    array( $this, 'tc_post_list_design_post_container'), 20, 2 );
         }
 
         function tc_add_thumb_shape_name($_classes){
@@ -179,17 +168,20 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return TC_init::$instance -> $thumb;
         }
 
-        function tc_set_thumb_shape($thumb_wrapper, $thumb_img){
-            return sprintf('<div><a class="%1$s" href="%2$s" title="%3s">%4$s</a></div>',
-                'tc-design-thumb',
+        function tc_post_list_design_post_container($figure_class, $content){
+            return sprintf('<section class="tc-design-post"><figure class="%1$s"><a href="%2$s" title="%3s">%4$s</a></figure></section>',
+                apply_filters('tc_post_list_design_figure_class', $figure_class),
                 get_permalink( get_the_ID() ),
                 esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
-                $thumb_img
+                $content
             );
+
         }
+
         function tc_change_tumbnail_inline_css_width($_style, $width, $height){
             return sprintf('width:100%%;height:auto;');
         }
+ 
         /* force content + thumb layout */
         function tc_set_post_list_layout( $layout ){
             $_position                  = in_array( esc_attr( tc__f( '__get_option' ,
@@ -198,8 +190,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
             $layout['alternate']        = false;
             $layout['show_thumb_first'] = ( 'top' == $_position ) ? true : false;
-            $layout['content']          = 'span12';
-            $layout['thumb']            = 'span12';
+            $layout['content']          = 'tc-design-excerpt';
+            $layout['thumb']            = 'span12 tc-design-post-container';
             
             return $layout;
         }
@@ -253,34 +245,34 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             //what is determining the layout ? if no thumbnail then full width + filter's conditions
             $post_list_content_class        = $layout['content'];
 
+            if ( ! $this -> is_expanded_featured() ){
+                $hook_prefix = '__before';
+                if ( $layout['show_thumb_first'] )
+                    $hook_prefix = '__after';
+
+                add_action( $hook_prefix.'_post_list_post',
+                    array( $this, 'tc_post_list_design_display_title_metas' ) );       
+            }
+
             ob_start();
             do_action( '__before_post_list_post');
-            printf( '<section class="tc-design-container %1$s">',
-                ( ! $tc_show_post_list_thumb ) ? 'no-thumb' : ''
-            );
-                if ( isset($layout['show_thumb_first']) && ! $layout['show_thumb_first'] )
-                    //hook for the title
-                    do_action('__before_content');
-
+            
                 $post_content = $this -> tc_post_list_design_prepare_post_content($post_list_content_class);
-                if ( ! $tc_show_post_list_thumb ){
-                    echo $post_content;
-                }else{
-                    $thumb_data[0] = $post_content . $thumb_data[0];
-                    TC_post_thumbnails::$instance -> tc_display_post_thumbnail(
-                        $thumb_data, $layout['thumb']
-                    );
-                }
-                if ( isset($layout['show_thumb_first']) && $layout['show_thumb_first'] )
-                    //hook for the title
-                    do_action('__before_content');
-            echo '</section>';
-                
+                $post_content = ( $tc_show_post_list_thumb ) ?
+                                    $post_content . $thumb_data[0] :
+                                    $post_content;
+
+                $figure_class = 'tc-design-figure span12';
+                $figure_class = ( $tc_show_post_list_thumb ) ?
+                                    $figure_class :
+                                    $figure_class . ' no-thumb';
+
+                echo apply_filters('tc_post_list_design_container', $figure_class, $post_content);
+                    
+            do_action('__after_post_list_post');        
             //renders the hr separator after each article
             echo apply_filters( 'tc_post_list_separator', '<hr class="featurette-divider '.current_filter().'">' );
 
-            do_action('__after_post_list_post');
-            
             $html = ob_get_contents();
             if ($html) ob_end_clean();
 
@@ -290,13 +282,13 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         function tc_post_list_design_prepare_post_content($post_list_content_class){
             ob_start();
             ?>
-            <span class="tc-design-content <?php echo $post_list_content_class ?>">
+            <figcaption class="<?php echo $post_list_content_class ?>">
                 <?php do_action( '__before_post_list_post_content' ) ?>
-                    <span class="entry-summary">
-                        <?php echo apply_filters('tc_post_list_design_excerpt', get_the_excerpt() ); ?>
-                    </span>
+                    <div class="entry-summary">
+                        <?php the_excerpt(); ?>
+                    </div>
                 <?php do_action( '__after_post_list_post_conent' ) ?>
-            </span>
+            </figcaption>
             <?php
             $html = ob_get_contents();
             if ($html) ob_end_clean();
@@ -304,8 +296,22 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_expanded_post_title(){
+            if ( ! $this -> is_expanded_featured() )
+                return;
             global $post;
             echo '<h2>'.$post->post_title.'</h2>';
+        }
+        
+        function tc_post_list_design_display_title_metas(){
+            ob_start();
+            ?>
+                <section class="tc-design-title-metas">
+                    <?php do_action('__before_content'); ?>
+                </section>
+            <?php
+            $html = ob_get_contents();
+            if ($html) ob_end_clean();
+            echo apply_filters('tc_post_list_design_display_title_metas', $html);
         }
 
         /* Callback pre_get_posts */
@@ -320,12 +326,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return sprintf("%s\n%s",
                 $_css,
                 "
-                .tc-design-container, .tc-design-thumb{
+                .tc-design-figure{
                     position: relative;
                     float: left;
                     width: 100%;
                 }
-                .tc-design-container .tc-design-content{
+                .tc-design-excerpt{
                     height: 100%;
                     background: rgba(0,0,0,.2);
                     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
@@ -334,22 +340,30 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     visibility: hidden;
                     vertical-align: middle;
                     margin-left: 0;
+                    width: 100%;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+                    padding: 2%;
                 }
-                .expanded .tc-design-container .tc-design-content{
+                .expanded .tc-design-post .tc-design-excerpt{
                     visibility: visible;
+                    width: auto;
                     max-width: 50%;
                     line-height: 10px;
                     height: auto;
                     top: 5%;
                     margin-left: 11%;
-                    padding: 2%;
                 }
-                .tc-design-container.no-thumb .tc-design-content{
+                .tc-post-list-design-grid figure {
+                    margin: 0;
+                }
+                figure.no-thumb .tc-design-excerpt{
                     visibility: visible;
                     position: relative;
                 }
 
-                .tc-post-list-design-grid article.hover .tc-design-container .tc-design-content{
+                .tc-post-list-design-grid article.hover .tc-design-excerpt{
                     visibility: visible;
                 }
                 .tc-post-list-design-grid .entry-summary{
@@ -368,7 +382,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     .tc-post-list-design-grid .featurette-divider.__loop{
                         display: block;
                     }
-                    .tc-design-container {
+                    .tc-post-list-design-grid article section + section {
                         margin-bottom: 30px;
                     }
                 }
