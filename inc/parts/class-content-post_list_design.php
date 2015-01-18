@@ -50,13 +50,15 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                             array( $this, 'tc_post_list_design_selectors') );
             add_action('__post_list_design',
                             array( $this, 'tc_post_list_prepare_expand_featured' ) );
-    
+            add_action('tc_post_list_design_figcaption_content',
+                            array( $this, 'tc_post_list_design_display_figcaption_content') );
+            
             add_action ( '__before_article_container', 
-                array( $this , 'tc_post_list_design_actions'), 0);
+                            array( $this , 'tc_post_list_design_actions'), 0);
            
             // loop hooks
             add_action('__post_list_design_loop', 
-                array( $this, 'tc_post_list_design_loop_hooks') );
+                            array( $this, 'tc_post_list_design_loop_hooks') );
         }
  
         function tc_post_list_design_loop_hooks(){
@@ -284,9 +286,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             ?>
             <figcaption class="<?php echo $post_list_content_class ?>">
                 <?php do_action( '__before_post_list_design_figcaption_content' ) ?>
-                    <div class="entry-summary">
-                        <?php the_excerpt(); ?>
-                    </div>
+                    <?php do_action( 'tc_post_list_design_figcaption_content' ); ?>
                 <?php do_action( '__after_post_list_design_figcaption_content' ) ?>
             </figcaption>
             <?php
@@ -302,6 +302,18 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             echo '<h2>'.$post->post_title.'</h2>';
         }
         
+        function tc_post_list_design_display_figcaption_content(){
+            ob_start();
+            ?>
+                <div class="entry-summary">
+                    <?php the_excerpt(); ?>
+                </div>
+            <?php
+            $html = ob_get_contents();
+            if ($html) ob_end_clean();
+            echo apply_filters('tc_post_list_design_display_figcaption_content', $html);
+        }
+
         function tc_post_list_design_display_title_metas(){
             ob_start();
             ?>
@@ -313,6 +325,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             if ($html) ob_end_clean();
             echo apply_filters('tc_post_list_design_display_title_metas', $html);
         }
+        
 
         /* Callback pre_get_posts */
         // exclude the first sticky post
