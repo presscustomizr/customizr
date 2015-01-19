@@ -1626,14 +1626,21 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 40
               ),
-
+              'tc_theme_options[tc_show_post_metas_author]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls',
+                                'label'         => __( "Display the author" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 45
+              ),
               'tc_theme_options[tc_show_post_metas_update_date]'  =>  array(
                                 'default'       => 0,
                                 'control'     => 'TC_controls',
                                 'label'         => __( "Display the update date" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
-                                'priority'      => 45,
+                                'priority'      => 50,
                                 'notice'    => __( 'If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated).' , 'customizr' ),
               ),
 
@@ -1647,19 +1654,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'days'     => __( 'Nb of days since last update' , 'customizr' ),
                                         'date'     => __( 'Date of the last update' , 'customizr' )
                                 ),
-                                'priority'      => 50
-              ),
-              'tc_theme_options[tc_show_post_metas_author]'  =>  array(
-                                'default'       => 1,
-                                'control'     => 'TC_controls',
-                                'label'         => __( "Display the author" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
-                                'type'          => 'checkbox',
                                 'priority'      => 55
               ),
+
               'tc_theme_options[tc_post_metas_update_notice_in_title]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls',
+                                'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',

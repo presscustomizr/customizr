@@ -153,7 +153,6 @@
     'tc_theme_options[tc_show_post_metas_update_date]' : {
       controls: [
         'tc_theme_options[tc_post_metas_update_date_format]',
-        'tc_theme_options[tc_post_metas_update_notice_in_title]'
       ],
       callback: function (to) {
         return '1' == to;
