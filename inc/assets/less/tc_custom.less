@@ -772,9 +772,6 @@ h2.site-description {
   padding: 5px 20px 5px 20px;
   font-size:16px;
 }
-.navbar .nav > li > a:first-letter {
-  font-size: 17px;
-}
 
 .navbar .nav > li.current-menu-item > a, .navbar .nav > li.current-menu-ancestor > a {
   color: @navbarLinkColorHover;
@@ -1597,7 +1594,7 @@ article .author-info h2 , .archive-header .author-info h2 {
   font-size: 11px;
   font-weight: bold;
   height: 51px;
-  line-height: 26px;
+  line-height: 30px;
   position: relative;
   left: -35px;
   text-align: center;
@@ -1606,7 +1603,10 @@ article .author-info h2 , .archive-header .author-info h2 {
   width: 30px;
   z-index: 10;
 }
-
+.rtl .comments-link .inner {
+  right: -35px;
+  left: initial;
+}
 .comments-link a:hover {
   text-decoration: none;
 }

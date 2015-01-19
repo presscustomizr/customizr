@@ -43,8 +43,11 @@ if ( ! class_exists( 'TC_menu' ) ) :
         if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ) )
           add_action( '__after_header'                , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
         add_filter( 'tc_navbar_wrapper_class'       , array( $this, 'tc_set_menu_style_options'), 0 );
-      }
 
+        if ( apply_filters( 'tc_menu_item_style_first_letter' , true ) )
+          //Set thumbnail specific design based on user options
+          add_filter( 'tc_user_options_style'   , array( $this , 'tc_menu_item_style_first_letter_css') );
+      }
 
 
       /*
@@ -195,6 +198,23 @@ if ( ! class_exists( 'TC_menu' ) ) :
       function tc_add_menuclass( $ulclass) {
         $html =  preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
         return apply_filters( 'tc_add_menuclass', $html );
+      }
+
+
+      /**
+      * Adds a specific style to the first letter of the menu item
+      * hook : tc_user_options_style
+      *
+      * @package Customizr
+      * @since Customizr 3.2.11
+      */
+      function tc_menu_item_style_first_letter_css( $_css ) {
+        return sprintf("%s\n%s",
+          $_css,
+          ".navbar .nav > li > a:first-letter {
+            font-size: 17px;
+          }\n"
+        );
       }
   }//end of class
 endif;

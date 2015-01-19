@@ -245,7 +245,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc-header-panel' => array(
                         'priority'       => 20,
                         'capability'     => 'edit_theme_options',
-                        'title'          => __( 'Header : title, logo, menu, ...' , 'customizr' ),
+                        'title'          => __( 'Header' , 'customizr' ),
                         'description'    => __( "Header settings for the Customizr theme." , 'customizr' )
               ),
               'tc-content-panel' => array(
@@ -376,6 +376,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
               'tc_theme_options[tc_menu_type]'  => array(
                                 'default'   =>  ( false == get_option('tc_theme_options') ) ? 'hover' : 'click' ,
+                                'control'   =>  'TC_controls' ,
+                                'title'     => __( 'Design and effects' , 'customizr'),
                                 'label'     =>  __( 'Select a submenu expansion option' , 'customizr' ),
                                 'section'   =>  'nav' ,
                                 'type'      =>  'select' ,
@@ -992,9 +994,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       return array(
                   'add_section'       =>   array(
+                        'title_tagline'         => array(
+                                            'title'    => __( 'Site Title & Tagline', 'customizr' ),
+                                            'priority' => $this -> is_wp_version_before_4_0 ? 7 : 0,
+                                            'panel'   => 'tc-global-panel'
+                        ),
+                        'tc_logo_settings'            => array(
+                                            'title'     =>  __( 'Logo &amp; Favicon' , 'customizr' ),
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 8 : 5,
+                                            'description' =>  __( 'Set up logo and favicon options' , 'customizr' ),
+                                            'panel'   => 'tc-global-panel'
+                        ),
                         'tc_skins_settings'         => array(
                                             'title'     =>  __( 'Skin' , 'customizr' ),
-                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 1 : 10,
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 1 : 7,
                                             'description' =>  __( 'Select a skin for Customizr' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
@@ -1037,17 +1050,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                         'tc_header_layout'         => array(
                                             'title'    => $this -> is_wp_version_before_4_0 ? __( 'Header design and layout', 'customizr' ) : __( 'Design and layout', 'customizr' ),
                                             'priority' => $this -> is_wp_version_before_4_0 ? 5 : 20,
-                                            'panel'   => 'tc-header-panel'
-                        ),
-                        'title_tagline'         => array(
-                                            'title'    => __( 'Site Title & Tagline', 'customizr' ),
-                                            'priority' => $this -> is_wp_version_before_4_0 ? 7 : 20,
-                                            'panel'   => 'tc-header-panel'
-                        ),
-                        'tc_logo_settings'            => array(
-                                            'title'     =>  __( 'Logo &amp; Favicon' , 'customizr' ),
-                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 8 : 30,
-                                            'description' =>  __( 'Set up logo and favicon options' , 'customizr' ),
                                             'panel'   => 'tc-header-panel'
                         ),
                         'nav'           => array(
@@ -1217,6 +1219,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                               'default'     => get_option( 'posts_per_page' ),
                               'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                               'control'     => 'TC_controls' ,
+                              'title'         => __( 'Global Post Lists Settings' , 'customizr' ),
                               'label'         => __( 'Maximum number of posts per page' , 'customizr' ),
                               'section'       => 'tc_post_list_settings' ,
                               'type'          => 'number' ,
@@ -1267,6 +1270,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //enable/disable top border
               'tc_theme_options[tc_top_border]' => array(
                                 'default'       =>  1,//top border on by default
+                                'title'         => __( 'Header design and layout' , 'customizr'),
                                 'label'         =>  __( 'Display top border' , 'customizr' ),
                                 'control'       =>  'TC_controls' ,
                                 'section'       =>  'tc_header_layout' ,
@@ -1274,28 +1278,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
                                 'priority'      => 5
               ),
-              'tc_theme_options[tc_header_layout]'  =>  array(
-                                'default'       => 'left',
-                                'control'       => 'TC_controls' ,
-                                'label'         => __( "Layout" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
-                                'type'          =>  'select' ,
-                                'choices'       => array(
-                                        'left'      => __( 'Logo / title on the left' , 'customizr' ),
-                                        'centered'  => __( 'Logo / title centered' , 'customizr'),
-                                        'right'     => __( 'Logo / title on the right' , 'customizr' )
-                                ),
-                                'priority'      => 10,
-                                'transport'     => 'postMessage'
-              ),
-
               'tc_theme_options[tc_show_tagline]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display the tagline" , "customizr" ),
-                                'section'       => 'title_tagline' ,
+                                'section'       => 'tc_header_layout' ,
                                 'type'          => 'checkbox' ,
-                                'priority'      => 30,
+                                'priority'      => 10,
                                 'transport'     => 'postMessage'
               ),
               'tc_theme_options[tc_display_boxed_navbar]'  =>  array(
@@ -1308,9 +1297,24 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'     => 'postMessage',
                                 'notice'    => __( 'If checked, this option wraps the header menu/tagline/social in a light grey box.' , 'customizr' ),
               ),
+              'tc_theme_options[tc_header_layout]'  =>  array(
+                                'default'       => 'left',
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Layout" , "customizr" ),
+                                'section'       => 'tc_header_layout' ,
+                                'type'          =>  'select' ,
+                                'choices'       => array(
+                                        'left'      => __( 'Logo / title on the left' , 'customizr' ),
+                                        'centered'  => __( 'Logo / title centered' , 'customizr'),
+                                        'right'     => __( 'Logo / title on the right' , 'customizr' )
+                                ),
+                                'priority'      => 30,
+                                'transport'     => 'postMessage'
+              ),
               'tc_theme_options[tc_sticky_header]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
+                                'title'         => __( 'Sticky header settings' , 'customizr'),
                                 'label'         => __( "Sticky on scroll" , "customizr" ),
                                 'section'       => 'tc_header_layout' ,
                                 'type'          => 'checkbox' ,
@@ -1439,7 +1443,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_links_settings' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 30,
-                                'notice'    => __( 'This will be applied to links in post content only.' , 'customizr' ),
+                                'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
                                 'transport'     => 'postMessage'
               ),
 
@@ -1450,7 +1454,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_links_settings' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40,
-                                'notice'    => __( 'This will be applied to links in post content only.' , 'customizr' ),
+                                'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
                                 'transport'     => 'postMessage'
               ),
               /* Breadcrumb*/
@@ -1626,14 +1630,21 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 40
               ),
-
+              'tc_theme_options[tc_show_post_metas_author]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls',
+                                'label'         => __( "Display the author" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings',
+                                'type'          => 'checkbox',
+                                'priority'      => 45
+              ),
               'tc_theme_options[tc_show_post_metas_update_date]'  =>  array(
                                 'default'       => 0,
                                 'control'     => 'TC_controls',
                                 'label'         => __( "Display the update date" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
-                                'priority'      => 45,
+                                'priority'      => 50,
                                 'notice'    => __( 'If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated).' , 'customizr' ),
               ),
 
@@ -1647,19 +1658,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'days'     => __( 'Nb of days since last update' , 'customizr' ),
                                         'date'     => __( 'Date of the last update' , 'customizr' )
                                 ),
-                                'priority'      => 50
-              ),
-              'tc_theme_options[tc_show_post_metas_author]'  =>  array(
-                                'default'       => 1,
-                                'control'     => 'TC_controls',
-                                'label'         => __( "Display the author" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
-                                'type'          => 'checkbox',
                                 'priority'      => 55
               ),
+
               'tc_theme_options[tc_post_metas_update_notice_in_title]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls',
+                                'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
                                 'section'       => 'tc_post_metas_settings',
                                 'type'          => 'checkbox',
