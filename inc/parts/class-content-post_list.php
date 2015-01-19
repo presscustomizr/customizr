@@ -63,7 +63,7 @@ if ( ! class_exists( 'TC_post_list' ) ) :
         $tc_show_post_list_excerpt      = apply_filters( 'tc_show_post_list_excerpt', $tc_show_post_list_excerpt );
        
         //get the thumbnail data (src, width, height) if any
-        $thumb_data                     = apply_filters( 'tc_thumb_data', null );
+        $thumb_data                     = TC_post_thumbnails::$instance -> tc_get_thumbnail_data();
 
         //get the filtered post list layout
         $layout                         = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );

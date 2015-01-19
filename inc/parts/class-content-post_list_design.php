@@ -24,6 +24,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             
             add_action ( 'pre_get_posts', array( $this, 'tc_post_list_design_sticky_post') );
             add_action ( 'wp', array( $this , 'tc_post_list_design_hooks') );
+
         }
 
         function tc_post_list_design_hooks(){
@@ -51,7 +52,13 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             
             add_action ( '__before_article_container', 
                             array( $this , 'tc_post_list_design_actions'), 0);
-           
+         
+            add_action( '__after_post_list_design_figcaption_content',
+                            array( $this, 'tc_post_list_design_post_link') );
+            
+            add_filter( 'tc_post_list_design_thumb_data',
+                            array( $this, 'tc_post_list_design_thumb_data') );
+   
             // loop hooks
             add_action('__post_list_design_loop', 
                             array( $this, 'tc_post_list_design_loop_hooks') );
@@ -168,10 +175,11 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_post_container($figure_class, $content){
-            return sprintf('<section class="tc-design-post"><figure class="%1$s"><a href="%2$s" title="%3s">%4$s</a></figure></section>',
+            /*return sprintf('<section class="tc-design-post"><figure class="%1$s"><a href="%2$s" title="%3s">%4$s</a></figure></section>',*/
+            return sprintf('<section class="tc-design-post"><figure class="%1$s">%2$s</figure></section>',
                 apply_filters('tc_post_list_design_figure_class', $figure_class),
-                get_permalink( get_the_ID() ),
-                esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
+ /*               get_permalink( get_the_ID() ),
+ esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),*/
                 $content
             );
 
@@ -218,7 +226,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 ( $start_post == $current_post ||
                     0 == ( $current_post - $start_post ) % $cols ) ) )
                     echo apply_filters( 'tc_post_list_design_grid_section',
-                        '<section class="tc-post-list-design-grid row-fluid cols-'.$cols.'">' );
+                        '<section class="tc-post-list-design row-fluid cols-'.$cols.'">' );
             elseif ( '__after_article' == $current_filter && ( $is_expanded_featured ||
                       ( $wp_query->post_count == ( $current_post + 1 ) ||
                         0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) ){
@@ -235,7 +243,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
               return;
 
             //get the thumbnail data (src, width, height) if any
-            $thumb_data                     = apply_filters( 'tc_thumb_data', null );
+            $thumb_data                     = apply_filters( 'tc_post_list_design_thumb_data', TC_post_thumbnails::$instance -> tc_get_thumbnail_data() );
             
             //get the filtered post list layout
             $layout                         = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
@@ -278,6 +286,34 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             echo apply_filters('tc_post_list_design_display', $html);
         }
 
+        function tc_post_list_design_thumb_data( $thumb_data ){
+            if ( ! empty($thumb_data[0]) )
+                return $thumb_data;
+
+            $default_thumb_id = apply_filters('tc_post_list_design_default_thumb',
+                esc_attr( tc__f( '__get_option', 'tc_post_list_design_default_thumb' ) ) );
+            
+            if ( ! $default_thumb_id )
+                return $thumb_data;
+
+            $tc_thumb_size = apply_filters( 'tc_thumb_size_name' , 'tc-thumb' );
+            $image = wp_get_attachment_image_src( $default_thumb_id, $tc_thumb_size);
+    
+            if ( empty( $image[0] ) )
+                return $thumb_data;
+
+            $tc_thumb               = $image[0];
+            $tc_thumb_height        = '';
+            $tc_thumb_width         = '';
+            
+            //get height and width if not empty
+            if ( ! empty($image[1]) && ! empty($image[2]) ) {
+                $tc_thumb_height        = $image[2];
+                $tc_thumb_width         = $image[1];
+            }
+
+            return array($tc_thumb, $tc_thumb_height, $tc_thumb_width);
+        }
         function tc_post_list_design_prepare_post_content($post_list_content_class){
             ob_start();
             ?>
@@ -292,11 +328,16 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return apply_filters('tc_post_list_design_content', $html, $post_list_content_class);
         }
 
+        function tc_post_list_design_post_link(){
+            printf( '<a href="%1$s" title="%2s"></a>',
+                get_permalink( get_the_ID() ),
+                esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
+        }
         function tc_post_list_design_expanded_post_title(){
             if ( ! $this -> is_expanded_featured() )
                 return;
             global $post;
-            echo '<h2>'.$post->post_title.'</h2>';
+            echo '<h2 class="title">'.$post->post_title.'</h2>';
         }
         
         function tc_post_list_design_display_figcaption_content(){
@@ -333,71 +374,132 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_write_inline_css( $_css){
-            return sprintf("%s\n%s",
+            /* for testing only */
+            $_css = sprintf("%s\n%s",
                 $_css,
                 "
-                .tc-design-figure{
+                .tc-design-figure {
                     position: relative;
                     float: left;
                     width: 100%;
+                    height: 100%;
+                    overflow: hidden;
                 }
-                .tc-design-excerpt{
+                .tc-design-figure img {
+                    width: 100%;
+                    height: auto;
+                }
+                .tc-design-post figcaption{
                     height: 100%;
                     background: rgba(0,0,0,.2);
                     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
                     position: absolute;
-                    display: inline-block;
-                    visibility: hidden;
+                    opacity: 0;
                     vertical-align: middle;
                     margin-left: 0;
                     width: 100%;
                     -webkit-box-sizing: border-box;
                     -moz-box-sizing: border-box;
                     box-sizing: border-box;
-                    padding: 2%;
                 }
-                .expanded .tc-design-post .tc-design-excerpt{
-                    visibility: visible;
+                .expanded .tc-design-post figcaption{
+                    opacity: 1;
                     width: auto;
                     max-width: 50%;
                     line-height: 10px;
                     height: auto;
                     top: 5%;
                     margin-left: 11%;
+                    padding: 4%;
                 }
-                .tc-post-list-design-grid figure {
+                .expanded .tc-design-post figcaption .title{
+                    padding: 0 10px;
+                }
+                .tc-post-list-design figure {
                     margin: 0;
                 }
-                figure.no-thumb .tc-design-excerpt{
-                    visibility: visible;
+                figure.no-thumb figcaption{
+                    opacity: 1;
                     position: relative;
                 }
-
-                .tc-post-list-design-grid article.hover .tc-design-excerpt{
-                    visibility: visible;
+                .tc-post-list-design article.hover figcaption{
+                    opacity: 1;
                 }
-                .tc-post-list-design-grid .entry-summary{
+                .tc-post-list-design .entry-summary{
                     display: block;
+                    width: 85%;
+                    height: 85%;
+                    margin: auto;
+                    overflow: hidden;
+                    padding: 10px 10px 0 10px;
                 }
-                .tc-post-list-design-grid article.sticky{
+                .tc-post-list-design article.sticky{
                     text-align: justify;
                 }
-                .tc-post-list-design-grid .featurette-divider.__loop{
+                .tc-post-list-design .featurette-divider.__loop{
                     display: none;
+                }
+                .tc-post-list-design figcaption a {
+                    position: absolute;
+                    z-index: 10;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%; 
+                }
+                .tc-is-mobile .tc-post-list-design article.tc-design figure figcaption a {
+                    -webkit-transition-property: width;
+                    -webkit-transition-duration: 0.1s;
+                    -webkit-transition-timing-function: linear;
+                    -webkit-transition-delay: 1s;
+                    transition-property: width;
+                    transition-duration: 0.1s;
+                    transition-timing-function: linear;
+                    transition-delay: 0.5s;
+                }
+                .tc-is-mobile article:not([class*=expanded]) figure:not([class*=no-thumb]) figcaption a {
+                    width: 0;
+                }
+
+                .tc-is-mobile article:not([class*=expanded]).hover figure:not([class*=no-thumb]) figcaption a {
+                    width: 100%;
                 }
                 @media (max-width: 767px){
                     .featurette-divider.post-list-design{
                         display: none;
                     }
-                    .tc-post-list-design-grid .featurette-divider.__loop{
+                    .tc-post-list-design .featurette-divider.__loop{
                         display: block;
                     }
-                    .tc-post-list-design-grid article section + section {
+                    .tc-post-list-design article section + section {
                         margin-bottom: 30px;
                     }
                 }
                 \n"   
             );
+
+            $_css = sprintf("%s\n%s",
+                $_css,
+                "
+                .tc-post-list-design .tc-design-post,
+                .tc-post-list-design.cols-2 .tc-design-post{
+                    height: 350px;
+                }
+                .tc-post-list-design.cols-3 .tc-design-post{
+                    height: 250px;   
+                }
+                .tc-post-list-design.cols-4 .tc-design-post{
+                    height: 170px;   
+                }
+                @media (max-width: 979px){
+                    [class*=cols].tc-post-list-design .tc-design-post{
+                        height: 170px;   
+                    }
+                }
+                \n
+                "
+            );
+            return $_css;
         }
         /* Helpers */
         
@@ -427,7 +529,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
  
         /* retrieves the expand featured option, and wrap it into a filter */
         function tc_get_post_list_expand_featured(){
-            return apply_filters( 'tc_post_list_expand_featured',
+            return apply_filters( 'tc_post_list_design_expand_featured',
                 esc_attr( tc__f('__get_option', 'tc_post_list_design_expand_featured') ) );
         }
 
@@ -478,6 +580,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return ( apply_filters('tc_post_list_design_do',
                 $post_list_type && $this -> tc_get_post_list_design_in( $post_list_type ) ) );
         }
-    
+        
     }
 endif;

@@ -20,8 +20,6 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
           add_action( 'init'                           , array( $this , 'tc_set_thumb_options') );
           //Set thumbnail options : shape, size
           add_action( 'template_redirect'              , array( $this , 'tc_set_thumbnail_options' ) );
-          //Hook to TC_post_list tc_thumb_data filter
-          add_filter ( 'tc_thumb_data'                  , array( $this , 'tc_get_thumbnail_data') );
       }
 
 
