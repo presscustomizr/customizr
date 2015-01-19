@@ -359,7 +359,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails
           add_action ( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ), 20 );
 
-          //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, ...)
+          //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
           add_action ( 'after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 30 );
 
           //add retina support for high resolution devices
@@ -479,11 +479,12 @@ if ( ! class_exists( 'TC_init' ) ) :
         //add support for svg and svgz format in media upload
         add_filter( 'upload_mimes'                        , array( $this , 'tc_custom_mtypes' ) );
 
-        //add support for plugins (added in v3.1.0)
+        //add support for plugins (added in v3.1+)
         add_theme_support( 'jetpack' );
         add_theme_support( 'bbpress' );
         add_theme_support( 'qtranslate' );
         add_theme_support( 'woocommerce' );
+        add_theme_support( 'the-events-calendar' );
 
         //add help button to admin bar
         add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
@@ -566,7 +567,6 @@ if ( ! class_exists( 'TC_init' ) ) :
           function tc_bbpress_disable_post_metas($bool) {
              return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
           }
-
         }//end if bbpress on
 
 
@@ -705,6 +705,42 @@ if ( ! class_exists( 'TC_init' ) ) :
           }
 
         }//end if woocommerce
+
+
+        /* The Event Calendar
+        ** @Credits : @https://wordpress.org/support/profile/d4z_c0nf
+        */
+        if ( current_theme_supports( 'the-events-calendar' ) ) {
+          add_action('wp', 'tc_events_calendar_comp', 100);
+          function tc_events_calendar_comp(){
+            global $wp_query;
+            if ( ! $wp_query -> tribe_is_event_query )
+                return;
+
+            if ( method_exists( 'TC_headings', 'tc_content_heading_title' ) ){
+                remove_filter( 'the_title', array( TC_Headings::$instance, 'tc_content_heading_title' ), 0);
+            }
+            if ( method_exists( 'TC_headings', 'tc_add_edit_link_after_title' ) ){
+                remove_filter( 'the_title', array(TC_Headings::$instance, 'tc_add_edit_link_after_title' ), 2);
+                //use create_function() for anonymous function if php version < 5.3.0
+                if ( version_compare( PHP_VERSION, '5.3.0' ) < 0 ) {
+                  add_action( 'tribe_events_after_the_event_title' , create_function('',
+                    'global $post;
+                    echo TC_Headings::$instance -> tc_add_edit_link_after_title($post->the_title) ;'
+                  ) );
+                } else {
+                  add_action( 'tribe_events_after_the_event_title' , function() {
+                    global $post;
+                    echo TC_Headings::$instance -> tc_add_edit_link_after_title($post->the_title) ;
+                  } );
+                }
+
+            }
+            if ( method_exists( 'TC_headings', 'tc_add_comment_bubble_after_title' ) )
+                remove_filter( 'the_title', array(TC_Headings::$instance, 'tc_add_comment_bubble_after_title'), 1 );
+          }
+        }//end if the-events-calendar
+
 
       }//end of plugin compatibility function
 
