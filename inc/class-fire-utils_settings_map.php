@@ -1217,6 +1217,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                               'default'     => get_option( 'posts_per_page' ),
                               'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                               'control'     => 'TC_controls' ,
+                              'title'         => __( 'Global Post Lists Settings' , 'customizr' ),
                               'label'         => __( 'Maximum number of posts per page' , 'customizr' ),
                               'section'       => 'tc_post_list_settings' ,
                               'type'          => 'number' ,
