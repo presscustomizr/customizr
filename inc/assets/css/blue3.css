@@ -5674,9 +5674,6 @@ h2.site-description {
   padding: 5px 20px 5px 20px;
   font-size: 16px;
 }
-.navbar .nav > li > a:first-letter {
-  font-size: 17px;
-}
 .navbar .nav > li.current-menu-item > a,
 .navbar .nav > li.current-menu-ancestor > a {
   color: #27cda5;
@@ -8363,6 +8360,9 @@ li#wp-admin-bar-tc-customizr a {
     -moz-transition: all ease 0.241s;
     -o-transition: all ease 0.241s;
     transition: all ease 0.241s;
+  }
+  .tc-open-on-click .dropdown-submenu:hover > .dropdown.menu {
+    display: none;
   }
 }
 @media (max-width: 979px) {
