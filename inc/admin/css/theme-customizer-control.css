@@ -69,6 +69,9 @@ span[class*=tc-icon]:before {
 	position: relative;
 	top: 4px;
 }
+.rtl span[class*=tc-icon]:before {
+  padding-left: 10px;
+}
 .tc-icon-google:before {
   content: "\f206";
 }
@@ -174,7 +177,11 @@ span[class*=tc-icon]:before {
 	line-height: 19px;
 	height: 21px;
 	margin: 0;
-	padding: 0 4px 0px;
+	padding: 0 4px 0;
+}
+.rtl #tc-donate-customizer .tc-close-request {
+  left: 13px;
+  right: inherit;
 }
 #tc-donate-customizer .donate-alert .tc-hide-donate, #tc-donate-customizer .donate-alert .tc-cancel-hide-donate {
 	padding: 0 5px 1px;
@@ -207,6 +214,10 @@ li[id*="customize-control-"] {
 	right: 10px;
 	opacity:0.7;
 }
+.rtl .control-section.control-panel > .accordion-section-title:after {
+  left: 8px;
+  right: initial;
+}
 #customize-theme-controls .control-section.control-panel > h3.accordion-section-title:hover:after ,  #customize-theme-controls .control-section.control-panel > h3.accordion-section-title:focus:after {
 	right: 8px;
 	top: 8px;
@@ -214,6 +225,10 @@ li[id*="customize-control-"] {
 	color: #F5F5F5!important;
 }
 
+.rtl #customize-theme-controls .control-section.control-panel > h3.accordion-section-title:hover:after , .rtl #customize-theme-controls .control-section.control-panel > h3.accordion-section-title:focus:after {
+  left: 6px;
+  right: initial;
+}
 /* Overrides WP built in style : hack for nested section arrow */
 #customize-theme-controls .control-section.control-panel>h3.accordion-section-title:focus:after, #customize-theme-controls .control-section.control-panel>h3.accordion-section-title:hover:after, .control-section.control-panel>.accordion-section-title:after {
 	background: none!important;
@@ -441,6 +456,7 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 .selecter-element { *left: -999999px; position: absolute; opacity: 0; }
 .selecter { display: block;float: right;margin: 2px 0;position: relative;width: 100%;z-index: 100; }
 .selecter .selecter-selected { background: #F9F9F9 url(img/jquery.fs.selecter-arrow.png) no-repeat right center; border: 1px solid #ccc; border-radius: 3px; color: #333; cursor: pointer; display: block; font-size: 13px; margin: 0; overflow: hidden; padding: 4px 4.6%; position: relative; text-overflow: clip; z-index: 49; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);height: auto;line-height: 18px;width: 90%; }
+
 .selecter .selecter-options { border: 1px solid #ccc; border-width: 0 1px 1px; background-color: #fefefe; border-radius: 0 0 3px 3px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); display: none; left: 0; margin: 0; max-height: 260px; overflow: auto; overflow-x: hidden; padding: 0; position: absolute; top: 100%; width: 99%; *width: auto; z-index: 50; }
 .selecter .selecter-group { background: #F9F9F9; border-bottom: 1px solid #e3e3e3; color: #999; display: block; font-size: 11px; padding: 5px 10px 4px; text-transform: uppercase; }
 .selecter .selecter-item { background: #fff; border-bottom: 1px solid #e3e3e3; color: #333; cursor: pointer; display: block; font-size: 13px; margin: 0; overflow: hidden; padding: 8px 10px; text-overflow: ellipsis; width: 86%;height: auto;line-height: 14px;padding: 8px 24px 8px 10px;}
@@ -448,6 +464,11 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 .selecter .selecter-item.disabled { color: #999; cursor: default; }
 .selecter .selecter-item:first-child { border-radius: 0; }
 .selecter .selecter-item:last-child { border-radius: 0 0 2px 2px; border-bottom: 0; }
+
+/* CUSTOM FOR CUSTOMIZR */
+.rtl .selecter .selecter-selected {
+  background: #F9F9F9 url(img/jquery.fs.selecter-arrow.png) no-repeat 4% center;
+}
 
 @media screen and (min-width: 980px) {
   .selecter .selecter-item:hover,
@@ -523,6 +544,11 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 .stepper .stepper-arrow { background: #eee url(img/jquery.fs.stepper-arrows.png) no-repeat; border: 1px solid #ccc; cursor: pointer; display: block; height: 46%; position: absolute; right: 0; text-indent: -99999px; width: 20px; z-index: 50; }
 .stepper .stepper-arrow.up { background-position: center top; border-bottom: none; top: 0; }
 .stepper .stepper-arrow.down { background-position: center bottom; bottom: 0; }
+
+/* CUSTOM FOR CUSTOMIZR */
+.rtl .stepper .stepper-input {
+  text-align: left;
+}
 
 @media screen and (min-width: 740px) {
 	.stepper:hover .stepper-input { background-color: #fff; }
@@ -647,6 +673,10 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   z-index: 100;
   padding: 2px 4px 0 20px;
   top: 6px;
+}
+.rtl .tc-title-google-logo {
+  float: right;
+  padding: 2px 18px 0 7px;
 }
 .tc-google-logo {
   position: relative;
