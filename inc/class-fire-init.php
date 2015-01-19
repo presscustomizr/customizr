@@ -714,7 +714,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           add_action('wp', 'tc_events_calendar_comp', 100);
           function tc_events_calendar_comp(){
             global $wp_query;
-            if ( ! $wp_query -> tribe_is_event_query )
+            if ( ! ( isset($wp_query -> tribe_is_event_query) && $wp_query -> tribe_is_event_query ) )
                 return;
 
             if ( method_exists( 'TC_headings', 'tc_content_heading_title' ) ){
