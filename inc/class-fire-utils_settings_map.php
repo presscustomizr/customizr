@@ -342,7 +342,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'title'     =>  __( 'Responsive settings' , 'customizr' ),
                                         'priority'    =>  210,
                                         'description' =>  __( 'Various settings for responsive display' , 'customizr' ),
-                      )
+                      ),
               )
 
       );//end of add_sections array
@@ -1047,6 +1047,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'description' =>  __( 'Various settings for responsive display' , 'customizr' ),
                                             'panel'   => 'tc-global-panel'
                         ),
+                        'tc_authors'               => array(
+                                            'title'     =>  __( 'Authors' , 'customizr' ),
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 220 : 70,
+                                            'description' =>  __( 'Post authors settings' , 'customizr' ),
+                                            'panel'   => 'tc-global-panel'
+                        ),
                         'tc_header_layout'         => array(
                                             'title'    => $this -> is_wp_version_before_4_0 ? __( 'Header design and layout', 'customizr' ) : __( 'Design and layout', 'customizr' ),
                                             'priority' => $this -> is_wp_version_before_4_0 ? 5 : 20,
@@ -1241,6 +1247,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               /********** NEW **********/
+              /* Authors info */
+              'tc_theme_options[tc_show_author_info]'  =>  array(
+                                'default'       => 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Display an author box after each single post content" , "customizr" ),
+                                'section'       => 'tc_authors',
+                                'type'          => 'checkbox',
+                                'priority'      => 1,
+                                'notice'        =>  __( 'Check this option to display an author info block after each single post content. Note : the Biographical info field must be filled out in the user profile.' , 'customizr' ),
+              ),
+
               /* Fonts */
               'tc_theme_options[tc_fonts]'      => array(
                                 'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 'helvetica_arial' : '_g_fjalla_cantarell',
@@ -1882,6 +1899,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     __( 'discussion settings page.' , 'customizr' )
                                 ),
               ),
+
               /* Footer */
               'tc_theme_options[tc_show_back_to_top]'  =>  array(
                                 'default'       => 1,
