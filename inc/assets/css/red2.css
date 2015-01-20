@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.2.10
+ * Customizr v3.2.11
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4979,6 +4979,24 @@ body {
   -o-transition: background-position 0.1s linear;
   transition: background-position 0.1s linear;
 }
+/* External Links style */
+a + span.tc-external:after {
+  font-family: 'genericons';
+  font-size: 1.25em;
+  color: #e7797a;
+  content: "\f442";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 0;
+  padding-left: 0;
+  position: relative;
+  text-decoration: none!important;
+  top: 5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 ul,
 ol {
   padding: 0px 5px;
@@ -5655,9 +5673,6 @@ h2.site-description {
 .navbar .nav > li > a {
   padding: 5px 20px 5px 20px;
   font-size: 16px;
-}
-.navbar .nav > li > a:first-letter {
-  font-size: 17px;
 }
 .navbar .nav > li.current-menu-item > a,
 .navbar .nav > li.current-menu-ancestor > a {
@@ -6442,7 +6457,7 @@ article .author-info h2,
   font-size: 11px;
   font-weight: bold;
   height: 51px;
-  line-height: 26px;
+  line-height: 30px;
   position: relative;
   left: -35px;
   text-align: center;
@@ -6450,6 +6465,10 @@ article .author-info h2,
   vertical-align: middle;
   width: 30px;
   z-index: 10;
+}
+.rtl .comments-link .inner {
+  right: -35px;
+  left: initial;
 }
 .comments-link a:hover {
   text-decoration: none;
@@ -8345,6 +8364,9 @@ li#wp-admin-bar-tc-customizr a {
     -moz-transition: all ease 0.241s;
     -o-transition: all ease 0.241s;
     transition: all ease 0.241s;
+  }
+  .tc-open-on-click .dropdown-submenu:hover > .dropdown.menu {
+    display: none;
   }
 }
 @media (max-width: 979px) {
