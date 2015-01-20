@@ -161,7 +161,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         function tc_post_list_design_post_container($figure_class, $content){
             return sprintf('<section class="tc-design-post"><figure class="%1$s">%2$s</figure></section>',
                 $figure_class,
-                apply_filters('tc_post_list_design_figure_class', $figure_class),
                 $content
             );
 
@@ -250,7 +249,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                                     $post_content . $thumb_data[0] :
                                     $post_content;
 
-                $figure_class = apply_filters('tc_post_list_design_figure_class', 'tc-design-figure span12' ),
+                $figure_class = apply_filters('tc_post_list_design_figure_class', 'tc-design-figure span12' );
                 $figure_class = ( $tc_show_post_list_thumb ) ?
                                     $figure_class :
                                     $figure_class . ' no-thumb';
