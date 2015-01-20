@@ -281,8 +281,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
     
             if ( empty( $image[0] ) )
                 return $thumb_data;
-
-            $tc_thumb               = $image[0];
+            
+            $_class_attr = array( 'class' => "attachment-{$tc_thumb_size} tc-design-default-thumb");
+            
+            $tc_thumb               = wp_get_attachment_image( $default_thumb_id, $tc_thumb_size, false, $_class_attr );
             $tc_thumb_height        = '';
             $tc_thumb_width         = '';
             

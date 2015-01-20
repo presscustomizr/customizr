@@ -32,7 +32,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
       * @since Customizr 3.2.6
       */
       function tc_set_thumbnail_options() {
-        //Set thumbnail specific design based on user options
+        //Set top border style option
         add_filter( 'tc_user_options_style'   , array( $this , 'tc_write_thumbnail_inline_css') );
       }
 
