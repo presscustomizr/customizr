@@ -70,7 +70,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
     								$_data_hex 	= '';
     								$_color_map = array();
     								if ( 'tc_theme_options[tc_skin]' == $this -> id ) {
-    									$_color_map = TC_init::$instance -> skin_color_map;
+    									$_color_map = TC_utils::$instance -> tc_get_skin_color( 'all' );
     								}
                     switch ( $this -> id ) {
                       case 'tc_theme_options[tc_fonts]':
@@ -92,12 +92,12 @@ if ( ! class_exists( 'TC_controls' ) ) :
 
                       default:
                         foreach ( $this->choices as $value => $label ) {
-                          $_data_hex  = isset($_color_map[esc_attr( $value )]);
+                          $_data_hex  = isset($_color_map[esc_attr( $value )][0]) ? sprintf( 'data-hex="%s"', $_color_map[esc_attr( $value )][0] ) : '';
                           printf('<option value="%1$s" %2$s %4$s>%3$s</option>',
                             esc_attr( $value ),
                             selected( $this->value(), $value, false ),
                             $label,
-                            isset($_color_map[esc_attr( $value )]) ? sprintf( 'data-hex="%s"', $_color_map[esc_attr( $value )] ) : ''
+                            $_data_hex
                           );
                         }
                       break;

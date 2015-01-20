@@ -30,6 +30,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
 
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_fonts_inline_css') );
+          add_filter('tc_user_options_style'          , array( $this , 'tc_write_dropcap_inline_css') );
 	    }
 
 
@@ -106,6 +107,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    	apply_filters('tc_load_script_in_footer' , false)
 	    	);
         wp_enqueue_script(
+          'tc-dropcap',
+          sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'jquery.addDropCap.js' ),
+          array( 'jquery' , 'tc-js-params', 'tc-bootstrap' ),
+          CUSTOMIZR_VER,
+          apply_filters('tc_load_script_in_footer' , false)
+        );
+        wp_enqueue_script(
           'tc-main-front',
           sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'main.js' : 'main.min.js'),
           array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' ),
@@ -162,8 +170,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	          	'dropdowntoViewport' 	=> esc_attr( tc__f( '__get_option' , 'tc_menu_resp_dropdown_limit_to_viewport') ),
 	          	'timerOnScrollAllBrowsers' => apply_filters('tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
               'extLinksStyle'       => esc_attr( tc__f( '__get_option' , 'tc_ext_link_style' ) ),
-              'extLinksTargetExt'   => esc_attr( tc__f( '__get_option' , 'tc_ext_link_target' ) )
-
+              'extLinksTargetExt'   => esc_attr( tc__f( '__get_option' , 'tc_ext_link_target' ) ),
+              'dropcapEnabled'      => esc_attr( tc__f( '__get_option' , 'tc_enable_dropcap' ) ),
+              'dropcapWhere'      => array( 'post' => esc_attr( tc__f( '__get_option' , 'tc_post_dropcap' ) ) , 'page' => esc_attr( tc__f( '__get_option' , 'tc_page_dropcap' ) ) )
 	        	),
 	        	tc__f('__ID')
 		    )//end of filter
@@ -343,6 +352,44 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
       return $_css;
     }//end of fn
+
+
+
+    /*
+    * Callback of tc_user_options_style hook
+    * @return css string
+    *
+    * @package Customizr
+    * @since Customizr 3.2.11
+    */
+    function tc_write_dropcap_inline_css( $_css = null , $_context = null ) {
+      $_css               = isset($_css) ? $_css : '';
+      if ( ! esc_attr( tc__f( '__get_option' , 'tc_enable_dropcap' ) ) )
+        return $_css;
+
+      $_main_color_pair = TC_utils::$instance -> tc_get_skin_color( 'pair' );
+      $_color           = $_main_color_pair[0];
+      $_shad_color      = $_main_color_pair[1];
+      $_pad_right       = false !== strpos( esc_attr( tc__f( '__get_option' , 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;
+      $_css .= "
+        .tc-dropcap {
+          color: {$_color};
+          float: left;
+          font-size: 75px;
+          line-height: 75px;
+          padding-right: {$_pad_right}px;
+          padding-left: 3px;
+        }\n
+        .skin-shadow .tc-dropcap {
+          color: {$_color};
+          text-shadow: {$_shad_color} -1px 0, {$_shad_color} 0 -1px, {$_shad_color} 0 1px, {$_shad_color} -1px -2px;
+        }\n
+        .simple-black .tc-dropcap {
+          color: #444;
+        }\n";
+
+      return $_css;
+    }
 
 	}//end of TC_ressources
 endif;

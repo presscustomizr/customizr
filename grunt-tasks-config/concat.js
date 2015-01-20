@@ -3,7 +3,7 @@ module.exports = {
 		separator: ';',
 	},
 	front_js: {
-		src: ['<%= paths.front_js %>parts/tc-js-params.js', '<%= paths.front_js %>parts/bootstrap.js', '<%= paths.front_js %>fancybox/jquery.fancybox-1.3.4.min.js', '<%= paths.front_js %>parts/main.js'],
+		src: ['<%= paths.front_js %>parts/tc-js-params.js', '<%= paths.front_js %>parts/bootstrap.js', '<%= paths.front_js %>fancybox/jquery.fancybox-1.3.4.min.js', '<%= paths.front_js %>parts/jquery.addDropCap.js', '<%= paths.front_js %>parts/main.js'],
 		dest: '<%= paths.front_js %>tc-scripts.js',
 	},
 	admin_control_js:{

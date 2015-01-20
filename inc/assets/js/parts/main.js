@@ -7,6 +7,16 @@
 jQuery(function ($) {
     var _p = TCParams;
 
+    //Drop Caps
+    if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
+      $.each( _p.dropcapWhere , function( ind, val ) {
+        if ( 1 == val ) {
+          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).find('p').first().addDropCap();
+        }
+      });
+    }
+
+
     //May be add (check if activated by user) external class + target="_blank" to relevant links
     //images are excluded
     var _url_comp     = (location.host).split('.'),

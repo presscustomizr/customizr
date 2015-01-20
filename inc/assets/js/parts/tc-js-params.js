@@ -18,5 +18,7 @@ var TCParams = TCParams || {
 	dropdowntoViewport: 1,
 	timerOnScrollAllBrowsers:1,
   extLinksStyle :1,
-  extLinksTargetExt:1
+  extLinksTargetExt:1,
+  dropcapEnabled:1,
+  dropcapWhere:{ post : 0, page : 1 }
 };
