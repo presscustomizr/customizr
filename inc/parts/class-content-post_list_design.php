@@ -34,11 +34,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             
             add_filter( 'tc_user_options_style',
                 array( $this , 'tc_post_list_design_write_inline_css') );
-
+            
             // pre loop hooks
- /*           add_action('__post_list_design',
-                            array( $this, 'tc_force_post_list_excerpt') );
-  */
             add_action('__post_list_design',
                             array( $this, 'tc_force_post_list_thumbnails') );
             add_action('__post_list_design',
@@ -69,20 +66,22 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
             add_action( '__after_article',
                             array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
+
             add_action( '__before_post_list_design_figcaption_content',
-                    array( $this, 'tc_post_list_design_expanded_post_title'));
+                            array( $this, 'tc_post_list_design_expanded_post_title'));
         }
     
         function tc_post_list_design_actions(){
             add_action('__before_article_container',
-                    array( $this, 'tc_post_list_design_before_loop_actions') , 1);
-            add_action( '__before_article', 
-                array( $this, 'tc_post_list_design_loop_actions'), 0 );
+                            array( $this, 'tc_post_list_design_before_loop_actions') , 1);
 
             remove_action( '__loop',
-                array( TC_post_list::$instance, 'tc_post_list_display') );
+                            array( TC_post_list::$instance, 'tc_post_list_display') );
             add_action( '__loop',
-                array( $this, 'tc_post_list_display') );
+                            array( $this, 'tc_post_list_display') );
+
+            add_action( '__before_article', 
+                            array( $this, 'tc_post_list_design_loop_actions'), 0 );
         }
 
         function tc_post_list_design_before_loop_actions(){
@@ -98,18 +97,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_filter( 'tc_post_list_selectors',
                             array( $this, 'tc_post_list_design_article_selectors') );
         }
-    /*
-        function tc_force_post_list_excerpt(){
-            add_filter('tc_force_show_post_list_excerpt', '__return_true', 0);
-            add_filter('tc_show_post_list_excerpt', '__return_true', 0);
-        }
-     */  
+  
         function tc_post_list_design_layout(){
-       /*     remove_filter('tc_post_list_layout',
-                            array( TC_post_list::$instance, 'tc_set_post_list_layout') );
-        */
             add_filter('tc_post_list_layout',
-                            array( $this, 'tc_set_post_list_layout'), 99999 );
+                            array( $this, 'tc_set_post_list_layout') );
         }
 
         function tc_post_list_prepare_expand_featured(){
@@ -156,14 +147,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_filter('tc_post_list_design_container',
                     array( $this, 'tc_post_list_design_post_container'), 20, 2 );
         }
-/*
-        function tc_add_thumb_shape_name($_classes){
-            $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
-            $_class =  ( ! $_shape || false !== strpos($_shape, 'rounded') ||
-                    false !== strpos($_shape, 'squared') ) ? 'rectangular' : $_shape;
-            return array_merge( $_classes, array( $_class ) );
-        }
- */
+
         function tc_set_thumb_size_name(){
             return  ( $this-> is_expanded_featured() ) ? 'tc-design-full' : 'tc-design';
         }
@@ -175,11 +159,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_post_container($figure_class, $content){
-            /*return sprintf('<section class="tc-design-post"><figure class="%1$s"><a href="%2$s" title="%3s">%4$s</a></figure></section>',*/
             return sprintf('<section class="tc-design-post"><figure class="%1$s">%2$s</figure></section>',
+                $figure_class,
                 apply_filters('tc_post_list_design_figure_class', $figure_class),
- /*               get_permalink( get_the_ID() ),
- esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),*/
                 $content
             );
 
@@ -195,7 +177,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                                                     'tc_post_list_thumb_position' ) ),
                                             array('top', 'left') ) ? 'top' : 'bottom';
 
-            $layout['alternate']        = false;
             $layout['show_thumb_first'] = ( 'top' == $_position ) ? true : false;
             $layout['content']          = 'tc-design-excerpt';
             $layout['thumb']            = 'span12 tc-design-post-container';
@@ -269,7 +250,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                                     $post_content . $thumb_data[0] :
                                     $post_content;
 
-                $figure_class = 'tc-design-figure span12';
+                $figure_class = apply_filters('tc_post_list_design_figure_class', 'tc-design-figure span12' ),
                 $figure_class = ( $tc_show_post_list_thumb ) ?
                                     $figure_class :
                                     $figure_class . ' no-thumb';
@@ -314,6 +295,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
             return array($tc_thumb, $tc_thumb_height, $tc_thumb_width);
         }
+
         function tc_post_list_design_prepare_post_content($post_list_content_class){
             ob_start();
             ?>
@@ -333,6 +315,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 get_permalink( get_the_ID() ),
                 esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
         }
+
         function tc_post_list_design_expanded_post_title(){
             if ( ! $this -> is_expanded_featured() )
                 return;
