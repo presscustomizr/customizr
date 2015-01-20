@@ -532,8 +532,10 @@ jQuery(function ($) {
         else {
             $('body').removeClass("sticky-enabled").addClass("sticky-disabled");
             setTimeout( function() { _refresh();} ,
-                $('body').hasClass('is-customizing') ? 100 : 20
-           );
+              $('body').hasClass('is-customizing') ? 100 : 20
+            );
+            //additional refresh for some edge cases like big logos
+            setTimeout( function() { _refresh(); } , 200 );
         }
     }
 

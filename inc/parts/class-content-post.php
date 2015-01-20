@@ -2,7 +2,7 @@
 /**
 * Single post content actions
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0.5
@@ -34,10 +34,10 @@ if ( ! class_exists( 'TC_post' ) ) :
       function tc_single_post_display_controller() {
         //check conditional tags : we want to show single post or single custom post types
         global $post;
-        $tc_show_single_post_content = isset($post) 
-        && 'page' != $post -> post_type 
-        && 'attachment' != $post -> post_type 
-        && is_singular() 
+        $tc_show_single_post_content = isset($post)
+        && 'page' != $post -> post_type
+        && 'attachment' != $post -> post_type
+        && is_singular()
         && ! tc__f( '__is_home_empty');
         return apply_filters( 'tc_show_single_post_content', $tc_show_single_post_content );
       }
@@ -54,16 +54,16 @@ if ( ! class_exists( 'TC_post' ) ) :
         //__before_main_wrapper, 200
         //__before_content 0
         //__before_content 20
-        if ( ! $this -> tc_single_post_display_controller() 
-          || ! esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) ) 
+        if ( ! $this -> tc_single_post_display_controller()
+          || ! esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) )
           || 'hide' == esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) )
           )
           return;
-       
+
         $_exploded_location   = explode('|', esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' )) );
         $_hook                = isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content';
         $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
-       
+
         add_action( $_hook, array($this , 'tc_single_post_thumbnail_view') , $_priority );
       }
 
@@ -114,7 +114,7 @@ if ( ! class_exists( 'TC_post' ) ) :
 
         do_action( '__before_content' );
 
-        ?>    
+        ?>
 
           <section class="entry-content <?php echo $icon_class ?>">
               <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
@@ -123,7 +123,7 @@ if ( ! class_exists( 'TC_post' ) ) :
 
         <?php
         do_action( '__after_content' );
-                    
+
         $html = ob_get_contents();
         if ($html) ob_end_clean();
 
@@ -143,14 +143,14 @@ if ( ! class_exists( 'TC_post' ) ) :
         if ( ! $this -> tc_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
             return;
         //@todo check if some conditions below not redundant?
-        if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) )
+        if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( tc__f( '__get_option' , 'tc_show_author_info' ) ) )
           return;
 
         $html = sprintf('<footer class="entry-meta">%1$s<div class="author-info"><div class="%2$s">%3$s %4$s</div></div></footer>',
                      '<hr class="featurette-divider">',
-                     
+
                     apply_filters( 'tc_author_meta_wrapper_class', 'row-fluid' ),
-                     
+
                     sprintf('<div class="%1$s">%2$s</div>',
                             apply_filters( 'tc_author_meta_avatar_class', 'comment-avatar author-avatar span2'),
                             get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'tc_author_bio_avatar_size' , 100 ) )

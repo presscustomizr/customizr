@@ -36,7 +36,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
       */
       function tc_set_archives_heading_hooks() {
         //is there anything to render in the current context
-        if ( ! $this -> tc_archive_title_and_class_callback() )
+        //by default don't display the Customizr title in feeds
+        if ( apply_filters('tc_display_customizr_headings',  ! $this -> tc_archive_title_and_class_callback() || is_feed() ) )
           return;
 
         //Headings for archives, authors, search, 404
@@ -63,8 +64,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
       */
       function tc_set_post_page_heading_hooks() {
 
-        //by default don't display the title of the front page
-        if( apply_filters('tc_hide_front_page_title', is_front_page() && 'page' == get_option( 'show_on_front' ) ) )
+        //by default don't display the Customizr title of the front page and in feeds
+        if ( apply_filters('tc_display_customizr_headings', ( is_front_page() && 'page' == get_option( 'show_on_front' ) ) ) || is_feed() )
           return;
 
         //Set single post/page icon with customizer options (since 3.2.0)
@@ -427,6 +428,10 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.2.6
       */
       function tc_set_headings_options() {
+        //by default don't display the Customizr title in feeds
+        if ( apply_filters('tc_display_customizr_headings',  is_feed() ) )
+          return;
+
         //Custom Bubble comment since 3.2.6
         add_filter( 'tc_bubble_comment'             , array( $this , 'tc_custom_bubble_comment') );
         //Add comment bubble color type class to the headings <header> wrapper element
