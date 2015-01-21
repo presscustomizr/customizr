@@ -2,7 +2,7 @@
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
-> Enjoy designing a beautiful website live with the WP customizer : 17 color skins, Google fonts, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 24 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.
+> Navigate to Appearance > Customize. Design in live preview. Save. Let your visitors enjoy a beautiful, fast and responsive website compatible with all browsers.
 
 ## Copyright
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://www.themesandco.com>)) 
