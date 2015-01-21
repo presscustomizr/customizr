@@ -40,6 +40,7 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.2.11 January 21st 2015 =
+7df1282 update : translation files
 cbd0c0c New theme description
 24e1ae3 add missing icon parameter to wp_get_attachment_image()
 2719d65 Apply a drop cap to paragraphs including at least 50 words by default The min number of words can be cu

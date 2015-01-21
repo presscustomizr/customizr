@@ -8365,7 +8365,7 @@ li#wp-admin-bar-tc-customizr a {
     -o-transition: all ease 0.241s;
     transition: all ease 0.241s;
   }
-  .tc-open-on-click .dropdown-submenu:hover > .dropdown.menu {
+  .tc-open-on-click .dropdown-submenu:hover > .dropdown-menu {
     display: none;
   }
 }

@@ -10,10 +10,8 @@
     function Plugin( element, options ) {
       this.element = element;
       this.options = $.extend( {}, defaults, options) ;
-
       this._defaults = defaults;
       this._name = pluginName;
-
       this.init();
     }
 
@@ -33,8 +31,7 @@
       if ( this.options.minwords > this._countWords( _first_p_text ) )
         return;
 
-      $_to_prepend = $( '<span>' , { class : 'tc-dropcap' , html : _to_transform } );
-      $_target.text( _truncated_text ).prepend( $_to_prepend );
+      $_target.text( _truncated_text ).prepend( $( '<span>' , { class : 'tc-dropcap' , html : _to_transform } ) );
     };
 
     Plugin.prototype._countWords = function( _expr ) {
