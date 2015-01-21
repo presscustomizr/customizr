@@ -11,7 +11,9 @@ jQuery(function ($) {
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
       $.each( _p.dropcapWhere , function( ind, val ) {
         if ( 1 == val ) {
-          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).find('p').first().addDropCap();
+          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).find('p').first().addDropCap( {
+            minwords : _p.dropcapMinWords//@todo check if number
+          });
         }
       });
     }

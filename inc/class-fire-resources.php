@@ -172,7 +172,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
               'extLinksStyle'       => esc_attr( tc__f( '__get_option' , 'tc_ext_link_style' ) ),
               'extLinksTargetExt'   => esc_attr( tc__f( '__get_option' , 'tc_ext_link_target' ) ),
               'dropcapEnabled'      => esc_attr( tc__f( '__get_option' , 'tc_enable_dropcap' ) ),
-              'dropcapWhere'      => array( 'post' => esc_attr( tc__f( '__get_option' , 'tc_post_dropcap' ) ) , 'page' => esc_attr( tc__f( '__get_option' , 'tc_page_dropcap' ) ) )
+              'dropcapWhere'      => array( 'post' => esc_attr( tc__f( '__get_option' , 'tc_post_dropcap' ) ) , 'page' => esc_attr( tc__f( '__get_option' , 'tc_page_dropcap' ) ) ),
+              'dropcapMinWords'     => esc_attr( tc__f( '__get_option' , 'tc_dropcap_minwords' ) )
 	        	),
 	        	tc__f('__ID')
 		    )//end of filter
