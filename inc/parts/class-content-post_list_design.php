@@ -149,12 +149,13 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_set_thumb_size_name(){
-            return  ( $this-> is_full_width() ) ? 'tc-design-full' : 'tc-design';
+            return  ( $this-> tc_post_list_design_section_cols() == '1' ) ?
+                            'tc-design-full' : 'tc-design';
         }
 
         function tc_set_thumb_size(){
-            $thumb = ( $this -> is_full_width() ) ? 
-                        'tc_design_full_size' : 'tc_design_size';
+            $thumb = ( $this -> tc_post_list_design_section_cols() == '1' ) ? 
+                            'tc_design_full_size' : 'tc_design_size';
             return TC_init::$instance -> $thumb;
         }
 
@@ -185,10 +186,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
         /* Apply proper class to articles selectors to control articles width*/
         function tc_post_list_design_article_selectors($selectors){
-            $class = $this -> is_expanded_featured() ?
-                        'tc-design span12 expanded' : '';
-            $class = ( $class ) ? $class :
-                    'tc-design span'. ( 12 / $this -> tc_get_post_list_cols() );
+
+            $class = $this -> is_expanded_featured() ? 'expanded ' : '';
+
+            $class .= 'tc-design span'. ( 12 / $this -> tc_post_list_design_section_cols() );
 
             return str_replace( 'row-fluid', $class, $selectors );
         }
@@ -198,18 +199,17 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             global $wp_query;
             $current_post = $wp_query -> current_post;
             $start_post = $this -> has_expanded_featured ? 1 : 0;
-            $is_full = ( $start_post ) ? $this -> is_full_width() : false;
-            $cols = ( $is_full ) ? 1 : $this -> tc_get_post_list_cols();
+            $cols = $this -> tc_post_list_design_section_cols();
             $current_filter = current_filter();
             
-            if ( '__before_article' == $current_filter && ( $is_full ||
+            if ( '__before_article' == $current_filter &&
                 ( $start_post == $current_post ||
-                    0 == ( $current_post - $start_post ) % $cols ) ) )
+                    0 == ( $current_post - $start_post ) % $cols ) )
                     echo apply_filters( 'tc_post_list_design_grid_section',
                         '<section class="tc-post-list-design row-fluid cols-'.$cols.'">' );
-            elseif ( '__after_article' == $current_filter && ( $is_full ||
+            elseif ( '__after_article' == $current_filter &&
                       ( $wp_query->post_count == ( $current_post + 1 ) ||
-                        0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) ){
+                      0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) )/* )*/{
                             
                 echo '</section><!--end section.tc-post-list-design.row-fluid-->';
                 echo apply_filters( 'tc_post_list_design_separator',
@@ -544,10 +544,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return ( $this -> has_expanded_featured && $current_post == 0 );
         }
 
-        /* returns if the current post has to be shown in full width */
-        function is_full_width(){
-            return apply_filters( 'tc_post_list_design_is_full',
-                $this -> is_expanded_featured() || ( '1' == $this -> tc_get_post_list_cols() ) );
+        /* returns articles wrapper section columns */
+        function tc_post_list_design_section_cols(){
+            $cols = $this -> is_expanded_featured() ? '1' : $this -> tc_get_post_list_cols();
+            return apply_filters( 'tc_post_list_design_section_cols', $cols );
         }
 
         /* returns the type of post list we're in if any, an empty string otherwise */
