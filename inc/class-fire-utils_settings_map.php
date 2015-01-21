@@ -1857,7 +1857,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 50,
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'control'       => 'TC_controls' ,
-                                'label'         => __( "Apply a drop cap to paragraphs including at least the following number of words :" , "customizr" ),
+                                'label'         => __( "Apply a drop cap when the paragraph includes at least the following number of words :" , "customizr" ),
                                 'notice'         => __( "(number of words)" , "customizr" ),
                                 'section'       => 'tc_paragraphs_settings' ,
                                 'type'          => 'number' ,
