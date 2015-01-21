@@ -40,43 +40,44 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.2.11 January 21st 2015 =
-cbd0c0c New theme description
-24e1ae3 add missing icon parameter to wp_get_attachment_image()
-2719d65 Apply a drop cap to paragraphs including at least 50 words by default The min number of words can be cu
-05fc1ae Fix: .tc-open-on click submenus typo
-19336e0 New drop cap options for paragraphs in post / page content
-04a56cd New option added in Global settings > Authors, to display the author's infos box after post content
-9f43181 changed hook : 'tc_hide_front_page_title' to 'tc_display_customizr_headings' by default don't display t
-4a57b7d sticky header : additional refresh on scroll top for some edge cases like big logos
-483178d Merge branch 'eri-trabiccolo-tribe-events' into dev
-5b6c8f8 Fix: check if wp_query var exists otherwise a notice will be displayed (plug-in not running) when WP_DE
-fafc579 Better customizer settings organization : Logo, favicon, site title and tagline have been moved to global settings
-4afdbfc added a title for the global post lists settings
-75efa6a post metas customizer control. The recent update notice after post titles is now a separate subsection
-0416b16 Fix a rtl issue for the slider control arrows
-b106e02 Fix some rtl issues in the customizer
-1caa268 Add The Event Calendar plugin compatibility : fixes an issue with the titles.
-3ff11e2 style of the first letter menu items made optional
-69ec886 fix the issue with the front js params when scripts are not concatenated
-61f1439 missing '%' escape when sprintf tc-thumb inline style
-086b923 handle the new css classes filter with implode()
-2962a2d options for external links style and target is only applied to external links => url must be different
-d54f73c Fix issue with tc_post_list_thumb_height : check if exist in options
-f5111ca better customizer js part files structure
-dc8b0a1 post content links : add 2 new options activated by default, except for users already using a previous
-ed5c490 better front js file organization
-75938ad Better way to check the user start version of the theme
-4dda608 add user defined fonts to the admin editor
-04d4505 Fix donate and cta in subpanel
-994abc7 remove useless string var for "Recent update" in title
-b697085 Add a fallback value to tc_user_started_before_version
-34d4bcb Fix: retrieve correct ID in posts page
-b584148 Fix: fix typos and missing matching visibility condition
-a57ec96 Fix tc_check_filetype: we want just the basename
-9604be2 Fix logo print: don't use wrong attachment's height & width
-5149c3d Add new filters for fp and footer widget areas
-1c30809 Fix: dropdown menu on click
-b349192 Fix: make slides centering compatible with 'link the whole slide' snippet
+* 7df1282 update : translation files
+* cbd0c0c New theme description
+* 24e1ae3 add missing icon parameter to wp_get_attachment_image()
+* 2719d65 Apply a drop cap to paragraphs including at least 50 words by default The min number of words can be cu
+* 05fc1ae Fix: .tc-open-on click submenus typo
+* 19336e0 New drop cap options for paragraphs in post / page content
+* 04a56cd New option added in Global settings > Authors, to display the author's infos box after post content
+* 9f43181 changed hook : 'tc_hide_front_page_title' to 'tc_display_customizr_headings' by default don't display t
+* 4a57b7d sticky header : additional refresh on scroll top for some edge cases like big logos
+* 483178d Merge branch 'eri-trabiccolo-tribe-events' into dev
+* 5b6c8f8 Fix: check if wp_query var exists otherwise a notice will be displayed (plug-in not running) when WP_DE
+* fafc579 Better customizer settings organization : Logo, favicon, site title and tagline have been moved to global settings
+* 4afdbfc added a title for the global post lists settings
+* 75efa6a post metas customizer control. The recent update notice after post titles is now a separate subsection
+* 0416b16 Fix a rtl issue for the slider control arrows
+* b106e02 Fix some rtl issues in the customizer
+* 1caa268 Add The Event Calendar plugin compatibility : fixes an issue with the titles.
+* 3ff11e2 style of the first letter menu items made optional
+* 69ec886 fix the issue with the front js params when scripts are not concatenated
+* 61f1439 missing '%' escape when sprintf tc-thumb inline style
+* 086b923 handle the new css classes filter with implode()
+* 2962a2d options for external links style and target is only applied to external links => url must be different
+* d54f73c Fix issue with tc_post_list_thumb_height : check if exist in options
+* f5111ca better customizer js part files structure
+* dc8b0a1 post content links : add 2 new options activated by default, except for users already using a previous
+* ed5c490 better front js file organization
+* 75938ad Better way to check the user start version of the theme
+* 4dda608 add user defined fonts to the admin editor
+* 04d4505 Fix donate and cta in subpanel
+* 994abc7 remove useless string var for "Recent update" in title
+* b697085 Add a fallback value to tc_user_started_before_version
+* 34d4bcb Fix: retrieve correct ID in posts page
+* b584148 Fix: fix typos and missing matching visibility condition
+* a57ec96 Fix tc_check_filetype: we want just the basename
+* 9604be2 Fix logo print: don't use wrong attachment's height & width
+* 5149c3d Add new filters for fp and footer widget areas
+* 1c30809 Fix: dropdown menu on click
+* b349192 Fix: make slides centering compatible with 'link the whole slide' snippet
 
 = 3.2.10 December 23rd 2014 =
 * f404eda Add a fallback false value to tc_user_started_before_version()
