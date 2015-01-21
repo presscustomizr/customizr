@@ -107,12 +107,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             global $wp_query;
             
             if ( ! ( $this -> tc_consider_sticky_post() &&
-                   $wp_query -> query_vars['paged'] == 0 ) )
+                   $wp_query -> query_vars[ 'paged' ] == 0 ) )
                 return;
             // prepend the first sticky
-            $first_sticky = get_post(get_option('sticky_posts')[0]);
-            array_unshift($wp_query->posts, $first_sticky);
-            $wp_query->post_count = $wp_query->post_count + 1;
+            $first_sticky = get_post( get_option( 'sticky_posts' )[0] );
+            array_unshift( $wp_query -> posts, $first_sticky );
+            $wp_query -> post_count = $wp_query -> post_count + 1;
             $this -> has_expanded_featured = true;
         }
 
@@ -124,7 +124,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_action( '__post_list_design_thumbnails',
                     array( $this, 'tc_post_list_design_post_thumb_wrapper') );
             add_filter( 'tc_post_thumb_inline_style',
-                array( $this, 'tc_change_tumbnail_inline_css_width'), 20, 3 );
+                    array( $this, 'tc_change_tumbnail_inline_css_width'), 20, 3 );
         }
 
         function tc_post_list_design_thumb_shape_name(){
@@ -149,11 +149,11 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_set_thumb_size_name(){
-            return  ( $this-> is_expanded_featured() ) ? 'tc-design-full' : 'tc-design';
+            return  ( $this-> is_full_width() ) ? 'tc-design-full' : 'tc-design';
         }
 
         function tc_set_thumb_size(){
-            $thumb = ( $this -> is_expanded_featured() ) ? 
+            $thumb = ( $this -> is_full_width() ) ? 
                         'tc_design_full_size' : 'tc_design_size';
             return TC_init::$instance -> $thumb;
         }
@@ -186,7 +186,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         /* Apply proper class to articles selectors to control articles width*/
         function tc_post_list_design_article_selectors($selectors){
             $class = $this -> is_expanded_featured() ?
-                        'span12 expanded tc-design' : '';
+                        'tc-design span12 expanded' : '';
             $class = ( $class ) ? $class :
                     'tc-design span'. ( 12 / $this -> tc_get_post_list_cols() );
 
@@ -198,16 +198,16 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             global $wp_query;
             $current_post = $wp_query -> current_post;
             $start_post = $this -> has_expanded_featured ? 1 : 0;
-            $is_expanded_featured = ( $start_post ) ? $this -> is_expanded_featured() : false;
+            $is_full = ( $start_post ) ? $this -> is_full_width() : false;
+            $cols = ( $is_full ) ? 1 : $this -> tc_get_post_list_cols();
             $current_filter = current_filter();
-            $cols = ( $is_expanded_featured ) ? 1 : $this -> tc_get_post_list_cols();
             
-            if ( '__before_article' == $current_filter && ( $is_expanded_featured ||
+            if ( '__before_article' == $current_filter && ( $is_full ||
                 ( $start_post == $current_post ||
                     0 == ( $current_post - $start_post ) % $cols ) ) )
                     echo apply_filters( 'tc_post_list_design_grid_section',
                         '<section class="tc-post-list-design row-fluid cols-'.$cols.'">' );
-            elseif ( '__after_article' == $current_filter && ( $is_expanded_featured ||
+            elseif ( '__after_article' == $current_filter && ( $is_full ||
                       ( $wp_query->post_count == ( $current_post + 1 ) ||
                         0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) ){
                             
@@ -542,6 +542,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             global $wp_query;
             $current_post = $wp_query -> current_post;
             return ( $this -> has_expanded_featured && $current_post == 0 );
+        }
+
+        /* returns if the current post has to be shown in full width */
+        function is_full_width(){
+            return apply_filters( 'tc_post_list_design_is_full',
+                $this -> is_expanded_featured() || ( '1' == $this -> tc_get_post_list_cols() ) );
         }
 
         /* returns the type of post list we're in if any, an empty string otherwise */
