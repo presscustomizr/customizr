@@ -1112,6 +1112,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'description' =>  __( 'Set up post metas options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
+                        'tc_paragraphs_settings'        => array(
+                                            'title'     =>  __( 'Paragraphs' , 'customizr' ),
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 20 : 55,
+                                            'description' =>  __( 'Set up paragraphs options' , 'customizr' ),
+                                            'panel'   => 'tc-content-panel'
+                        ),
                         'tc_comments_settings'          => array(
                                             'title'     =>  __( 'Comments' , 'customizr' ),
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 25 : 60,
@@ -1902,6 +1908,51 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
               ),
+
+              /* Paragraphs */
+              'tc_theme_options[tc_enable_dropcap]'  =>  array(
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.11' ) ? 0 : 1,
+                                'title'         => __( 'Drop caps', 'customizr'),
+                                'label'         => __('Enable drop caps' , 'customizr'),
+                                'control'       => 'TC_controls' ,
+                                'notice'         => __( "Apply a drop cap to the first paragraph of your post / page content." , "customizr" ),
+                                'section'       => 'tc_paragraphs_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 1
+              ),
+
+              'tc_theme_options[tc_dropcap_design]' => array(
+                                'default'     => 'skin-shadow',
+                                'control'     => 'TC_controls',
+                                'label'       => __( 'Drop cap style' , 'customizr' ),
+                                'section'     => 'tc_paragraphs_settings',
+                                'type'      =>  'select' ,
+                                'choices'     => array(
+                                        'skin-shadow'    => __( "Skin color with shadow" , 'customizr' ),
+                                        'simple-black'   => __( 'Simple black' , 'customizr' ),
+                                ),
+                                'priority'    => 10,
+              ),
+              'tc_theme_options[tc_post_dropcap]'  =>  array(
+                                'default'       => 0,
+                                'label'         => __('Enable drop caps in posts' , 'customizr'),
+                                'control'       => 'TC_controls' ,
+                                'notice'         => __( "Apply a drop cap to the first paragraph of your single posts content" , "customizr" ),
+                                'section'       => 'tc_paragraphs_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 20
+              ),
+              'tc_theme_options[tc_page_dropcap]'  =>  array(
+                                'default'       => 1,
+                                'label'         => __('Enable drop caps in pages' , 'customizr'),
+                                'control'       => 'TC_controls' ,
+                                'notice'         => __( "Apply a drop cap to the first paragraph of your pages" , "customizr" ),
+                                'section'       => 'tc_paragraphs_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 30
+              ),
+
+
               /* Comments */
               'tc_theme_options[tc_comment_show_bubble]'  =>  array(
                                 'default'       => 1,

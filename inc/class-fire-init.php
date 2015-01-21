@@ -101,26 +101,26 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           );
 
-          //Main skin color array
-          $this -> skin_color_map     = array(
-                'blue.css'        =>  '#08c',
-                'blue2.css'       =>  '#27CBCD',
-                'blue3.css'       =>  '#27CDA5',
-                'green.css'       =>  '#9db668',
-                'green2.css'      =>  '#26CE61',
-                'yellow.css'      =>  '#e9a825',
-                'yellow2.css'     =>  '#d2d62a',
-                'orange.css'      =>  '#F78C40',
-                'orange2.css'     =>  '#E79B5D',
-                'red.css'         =>  '#e10707',
-                'red2.css'        =>  '#e7797a',
-                'purple.css'      =>  '#e67fb9',
-                'purple2.css'     =>  '#8183D8',
-                'grey.css'        =>  '#5A5A5A',
-                'grey2.css'       =>  '#E4E4E4',
-                'black.css'       =>  '#000',
-                'black2.css'      =>  '#394143'
-          );
+          //Main skin color array : array( link color, link hover color )
+          $this -> skin_color_map     = apply_filters( 'tc_skin_color_map' , array(
+                'blue.css'        =>  array( '#08c', '#005580' ),
+                'blue2.css'       =>  array( '#27CBCD', '#1b8b8d' ),
+                'blue3.css'       =>  array( '#27CDA5', '#1b8d71' ),
+                'green.css'       =>  array( '#9db668', '#768d44' ),
+                'green2.css'      =>  array( '#26CE61', '#1a8d43' ),
+                'yellow.css'      =>  array( '#e9a825', '#b07b12' ),
+                'yellow2.css'     =>  array( '#d2d62a', '#94971d' ),
+                'orange.css'      =>  array( '#F78C40', '#e16309' ),
+                'orange2.css'     =>  array( '#E79B5D', '#d87220' ),
+                'red.css'         =>  array( '#e10707', '#970505' ),
+                'red2.css'        =>  array( '#e7797a', '#db383a' ),
+                'purple.css'      =>  array( '#e67fb9', '#da3f96' ),
+                'purple2.css'     =>  array( '#8183D8', '#474ac6' ),
+                'grey.css'        =>  array( '#5A5A5A', '#343434' ),
+                'grey2.css'       =>  array( '#E4E4E4', '#bebebe' ),
+                'black.css'       =>  array( '#000', '#000000' ),
+                'black2.css'      =>  array( '#394143', '#16191a' )
+          ) );
 
           //Default fonts pairs
           $this -> font_pairs             = array(
@@ -181,7 +181,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           );//end of font pairs
 
           $this -> font_selectors     = array(
-            'titles' => implode(',' , apply_filters( 'tc-titles-font-selectors' , array('.site-title' , '.site-description', 'h1', 'h2', 'h3' ) ) ),
+            'titles' => implode(',' , apply_filters( 'tc-titles-font-selectors' , array('.site-title' , '.site-description', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
             'body'   => implode(',' , apply_filters( 'tc-body-font-selectors' , array('body' , '.navbar .nav>li>a') ) )
           );
 
@@ -927,7 +927,8 @@ if ( ! class_exists( 'TC_init' ) ) :
 
 
       /**
-      * Add a class on the body element.
+      * Add various classes on the body element.
+      * cb of body_class
       *
       * @package Customizr
       * @since Customizr 3.2.0
@@ -940,6 +941,9 @@ if ( ! class_exists( 'TC_init' ) ) :
           $_to_add[] = 'is-customizing';
         if ( wp_is_mobile() )
           $_to_add[] = 'tc-is-mobile';
+        if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_enable_dropcap' ) ) )
+          $_to_add[] = esc_attr( tc__f( '__get_option' , 'tc_dropcap_design' ) );
+
         return array_merge( $_classes , $_to_add );
       }
 

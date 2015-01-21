@@ -84,11 +84,26 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 3.1.23
       */
-      function tc_get_skin_color() {
-          $_skin_map    = TC_init::$instance -> skin_color_map;
-          $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_active_skin() ) );
-          //falls back to blue3 ( default #27CDA5 ) if not defined
-        return ( false != $_active_skin && isset($_skin_map[$_active_skin]) ) ? $_skin_map[$_active_skin] : '#27CDA5';
+      function tc_get_skin_color( $_what = null ) {
+        $_color_map    = TC_init::$instance -> skin_color_map;
+        $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_active_skin() ) );
+        //falls back to blue3 ( default #27CDA5 ) if not defined
+        $_to_return = array( '#27CDA5', '#1b8d71' );
+
+        switch ($_what) {
+          case 'all':
+            $_to_return = ( is_array($_color_map) ) ? $_color_map : array();
+          break;
+
+          case 'pair':
+            $_to_return = ( false != $_active_skin && is_array($_color_map[$_active_skin]) ) ? $_color_map[$_active_skin] : $_to_return;
+          break;
+
+          default:
+            $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
+          break;
+        }
+        return apply_filters( 'tc_get_skin_color' , $_to_return , $_what );
       }
 
 

@@ -258,6 +258,16 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_theme_options[tc_enable_dropcap]' : {
+      controls: [
+        'tc_theme_options[tc_dropcap_design]',
+        'tc_theme_options[tc_post_dropcap]',
+        'tc_theme_options[tc_page_dropcap]'
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
     }
   }, function (settingId, o) {
     api(settingId, function (setting) {
