@@ -180,7 +180,7 @@ if ( ! class_exists( 'TC_post_thumbnails' ) ) :
               if ( isset($image[3]) && false == $image[3] && 'tc_rectangular_size' == $tc_thumb_size ) {
                 $tc_thumb_size            = 'slider';
               }
-              $tc_thumb                 = wp_get_attachment_image( $attachment->ID, $tc_thumb_size, $_class_attr );
+              $tc_thumb                 = wp_get_attachment_image( $attachment->ID, $tc_thumb_size, false, $_class_attr );
 
               //get height and width if not empty
               if ( ! empty($image[1]) && ! empty($image[2]) ) {
