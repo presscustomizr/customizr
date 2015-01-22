@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.2.11\n"
-"POT-Creation-Date: 2015-01-20 20:20+0100\n"
-"PO-Revision-Date: 2015-01-20 20:20+0100\n"
+"Project-Id-Version: * Customizr v3.2.12\n"
+"POT-Creation-Date: 2015-01-21 16:41+0100\n"
+"PO-Revision-Date: 2015-01-21 16:41+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Jaume Albaigès <jaumealbaiges@hotmail.com>\n"
 "Language: Català\n"
@@ -477,7 +477,7 @@ msgstr "Configura les opcions dels comentaris"
 
 #: ../class-fire-utils_settings_map.php:318
 #: ../class-fire-utils_settings_map.php:1021
-#: ../class-fire-utils_settings_map.php:2004
+#: ../class-fire-utils_settings_map.php:2015
 msgid "Social links"
 msgstr "Enllaços socials"
 
@@ -751,7 +751,7 @@ msgid "Choose the pages default layout"
 msgstr "Seleccioneu la disposici&oacute; per defecte de les p&agrave;gines"
 
 #: ../class-fire-utils_settings_map.php:702
-#: ../class-fire-utils_settings_map.php:1942
+#: ../class-fire-utils_settings_map.php:1953
 msgid "Enable comments on pages"
 msgstr "Permet els comentaris a les p&agrave;gines"
 
@@ -765,22 +765,22 @@ msgstr ""
 "d'edici&oacute; r&agrave;pida de la pantalla de llista de p&agrave;gines."
 
 #: ../class-fire-utils_settings_map.php:720
-#: ../class-fire-utils_settings_map.php:1968
+#: ../class-fire-utils_settings_map.php:1979
 msgid "Social links in header"
 msgstr "Enllaços socials a la capçalera"
 
 #: ../class-fire-utils_settings_map.php:729
-#: ../class-fire-utils_settings_map.php:1986
+#: ../class-fire-utils_settings_map.php:1997
 msgid "Social links in left sidebar"
 msgstr "Enllaços socials a la barra lateral esquerra"
 
 #: ../class-fire-utils_settings_map.php:738
-#: ../class-fire-utils_settings_map.php:1996
+#: ../class-fire-utils_settings_map.php:2007
 msgid "Social links in right sidebar"
 msgstr "Enllaços socials a la barra lateral dreta"
 
 #: ../class-fire-utils_settings_map.php:746
-#: ../class-fire-utils_settings_map.php:1977
+#: ../class-fire-utils_settings_map.php:1988
 msgid "Social links in footer"
 msgstr "Enllaços socials al peu de p&agrave;gina"
 
@@ -888,14 +888,14 @@ msgstr ""
 "completa"
 
 #: ../class-fire-utils_settings_map.php:858
-#: ../class-fire-utils_settings_map.php:2016
+#: ../class-fire-utils_settings_map.php:2027
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Afegiu el vostre CSS personalitzat aqu&iacute; i dissenyeu en viu! (usuaris "
 "avançats)"
 
 #: ../class-fire-utils_settings_map.php:862
-#: ../class-fire-utils_settings_map.php:2020
+#: ../class-fire-utils_settings_map.php:2031
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -904,12 +904,12 @@ msgstr ""
 "personalitzacions importants del CSS, modifiqueu l'arxiu style.css d'un"
 
 #: ../class-fire-utils_settings_map.php:863
-#: ../class-fire-utils_settings_map.php:2021
+#: ../class-fire-utils_settings_map.php:2032
 msgid "child theme."
 msgstr "tema fill."
 
 #: ../class-fire-utils_settings_map.php:864
-#: ../class-fire-utils_settings_map.php:2022
+#: ../class-fire-utils_settings_map.php:2033
 msgid "How to create and use a child theme ?"
 msgstr "Com es crea i es fa servir un tema fill?"
 
@@ -1541,76 +1541,86 @@ msgid "Apply a drop cap to the first paragraph of your post / page content."
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:1860
+msgid ""
+"Apply a drop cap when the paragraph includes at least the following number "
+"of words :"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1861
+msgid "(number of words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1871
 msgid "Drop cap style"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1864
+#: ../class-fire-utils_settings_map.php:1875
 #, fuzzy
 msgid "Skin color with shadow"
 msgstr "Color de la pell"
 
-#: ../class-fire-utils_settings_map.php:1865
+#: ../class-fire-utils_settings_map.php:1876
 #, fuzzy
 msgid "Simple black"
 msgstr "Negre pla"
 
-#: ../class-fire-utils_settings_map.php:1871
+#: ../class-fire-utils_settings_map.php:1882
 msgid "Enable drop caps in posts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1873
+#: ../class-fire-utils_settings_map.php:1884
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1880
+#: ../class-fire-utils_settings_map.php:1891
 #, fuzzy
 msgid "Enable drop caps in pages"
 msgstr "Permet els comentaris a les p&agrave;gines"
 
-#: ../class-fire-utils_settings_map.php:1882
+#: ../class-fire-utils_settings_map.php:1893
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1892
+#: ../class-fire-utils_settings_map.php:1903
 msgid "Comments bubbles"
 msgstr "Bombolles dels comentaris"
 
-#: ../class-fire-utils_settings_map.php:1894
+#: ../class-fire-utils_settings_map.php:1905
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr ""
 "Mostra una bombolla amb el nombre de comentaris al costat del títol de "
 "l'entrada"
 
-#: ../class-fire-utils_settings_map.php:1903
+#: ../class-fire-utils_settings_map.php:1914
 msgid "Comments bubble shape"
 msgstr "Forma de la bombolla dels comentaris"
 
-#: ../class-fire-utils_settings_map.php:1907
+#: ../class-fire-utils_settings_map.php:1918
 msgid "Small bubbles"
 msgstr "Bombolles petites"
 
-#: ../class-fire-utils_settings_map.php:1908
+#: ../class-fire-utils_settings_map.php:1919
 msgid "Large bubbles"
 msgstr "Bombolles grans"
 
-#: ../class-fire-utils_settings_map.php:1916
-#: ../class-fire-utils_settings_map.php:1929
+#: ../class-fire-utils_settings_map.php:1927
+#: ../class-fire-utils_settings_map.php:1940
 msgid "Comments bubble color"
 msgstr "Color de la bombolla dels comentaris"
 
-#: ../class-fire-utils_settings_map.php:1920
+#: ../class-fire-utils_settings_map.php:1931
 msgid "Skin color"
 msgstr "Color de la pell"
 
-#: ../class-fire-utils_settings_map.php:1921
+#: ../class-fire-utils_settings_map.php:1932
 msgid "Custom"
 msgstr "Personalitzat"
 
-#: ../class-fire-utils_settings_map.php:1941
+#: ../class-fire-utils_settings_map.php:1952
 msgid "Other comments settings"
 msgstr "Altres opcions dels comentaris"
 
-#: ../class-fire-utils_settings_map.php:1947
+#: ../class-fire-utils_settings_map.php:1958
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
@@ -1619,39 +1629,39 @@ msgstr ""
 "Podeu desactivar-los per a una pàgina concreta en el mode d'edició ràpida de "
 "la pantalla del llistat de pàgines."
 
-#: ../class-fire-utils_settings_map.php:1948
+#: ../class-fire-utils_settings_map.php:1959
 msgid "Change other comments settings in the"
 msgstr "Canvia altres opcions dels comentaris a"
 
-#: ../class-fire-utils_settings_map.php:1950
+#: ../class-fire-utils_settings_map.php:1961
 msgid "discussion settings page."
 msgstr "pàgina de configuració de la discussió."
 
-#: ../class-fire-utils_settings_map.php:1958
+#: ../class-fire-utils_settings_map.php:1969
 msgid "Display a back to top arrow on scroll"
 msgstr "Durant el desplaçament, mostra una fletxa de tornar a dalt"
 
-#: ../class-fire-utils_settings_map.php:2005
+#: ../class-fire-utils_settings_map.php:2016
 msgid "Social link title in sidebars"
 msgstr "Títol dels enllaços socials a les barres laterals"
 
-#: ../class-fire-utils_settings_map.php:2011
+#: ../class-fire-utils_settings_map.php:2022
 msgid "Will be hidden if empty"
 msgstr "S'amagarà si està buit"
 
-#: ../class-fire-utils_settings_map.php:2031
+#: ../class-fire-utils_settings_map.php:2042
 msgid "Set slider's height in pixels"
 msgstr "Indica l'alçada en píxels de l'slider"
 
-#: ../class-fire-utils_settings_map.php:2041
+#: ../class-fire-utils_settings_map.php:2052
 msgid "Apply this height to all sliders"
 msgstr "Aplica aquesta alçada a tots els sliders"
 
-#: ../class-fire-utils_settings_map.php:2049
+#: ../class-fire-utils_settings_map.php:2060
 msgid "Replace the default image slider's height"
 msgstr "Substitueix l'alçada de la imatge per defecte de l'slider"
 
-#: ../class-fire-utils_settings_map.php:2055
+#: ../class-fire-utils_settings_map.php:2066
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1660,7 +1670,7 @@ msgstr ""
 "càrrega d'acord amb l'alçada personalitzada. Això és millor per afavorir el "
 "rendiment durant la càrrega del web."
 
-#: ../class-fire-utils_settings_map.php:2056
+#: ../class-fire-utils_settings_map.php:2067
 msgid "You might want to regenerate your thumbnails."
 msgstr "Probablement voldreu regenerar les vostres miniatures."
 

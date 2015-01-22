@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.2.11\n"
-"POT-Creation-Date: 2015-01-20 20:09+0100\n"
-"PO-Revision-Date: 2015-01-20 20:10+0100\n"
+"Project-Id-Version: * Customizr v3.2.12\n"
+"POT-Creation-Date: 2015-01-21 16:53+0100\n"
+"PO-Revision-Date: 2015-01-21 16:53+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: Français\n"
@@ -475,7 +475,7 @@ msgstr "إعداد وخيارات التعليقات"
 
 #: ../class-fire-utils_settings_map.php:318
 #: ../class-fire-utils_settings_map.php:1021
-#: ../class-fire-utils_settings_map.php:2004
+#: ../class-fire-utils_settings_map.php:2015
 msgid "Social links"
 msgstr "الروابط الإجتماعية"
 
@@ -741,7 +741,7 @@ msgid "Choose the pages default layout"
 msgstr "اختر تصميم الصفحات الافتراضي"
 
 #: ../class-fire-utils_settings_map.php:702
-#: ../class-fire-utils_settings_map.php:1942
+#: ../class-fire-utils_settings_map.php:1953
 msgid "Enable comments on pages"
 msgstr "تمكين التعليقات ضمن الصفحات"
 
@@ -754,22 +754,22 @@ msgstr ""
 "واحدة في وضع التحرير السريع من شاشة قائمة الصفحة."
 
 #: ../class-fire-utils_settings_map.php:720
-#: ../class-fire-utils_settings_map.php:1968
+#: ../class-fire-utils_settings_map.php:1979
 msgid "Social links in header"
 msgstr "الروابط الاجتماعية في الترويسة.الهيدر."
 
 #: ../class-fire-utils_settings_map.php:729
-#: ../class-fire-utils_settings_map.php:1986
+#: ../class-fire-utils_settings_map.php:1997
 msgid "Social links in left sidebar"
 msgstr "الروابط الاجتماعية في المربع الجانبي اليميني"
 
 #: ../class-fire-utils_settings_map.php:738
-#: ../class-fire-utils_settings_map.php:1996
+#: ../class-fire-utils_settings_map.php:2007
 msgid "Social links in right sidebar"
 msgstr "الروابط الاجتماعية في المربع الجانبي اليساري"
 
 #: ../class-fire-utils_settings_map.php:746
-#: ../class-fire-utils_settings_map.php:1977
+#: ../class-fire-utils_settings_map.php:1988
 msgid "Social links in footer"
 msgstr "الروابط الاجتماعية في التذييل.الفوتر."
 
@@ -859,24 +859,24 @@ msgid ""
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:858
-#: ../class-fire-utils_settings_map.php:2016
+#: ../class-fire-utils_settings_map.php:2027
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr "إضافة css مخصص الخاص بك هنا وتصميم لايف! (للمستخدمين المتقدمين)"
 
 #: ../class-fire-utils_settings_map.php:862
-#: ../class-fire-utils_settings_map.php:2020
+#: ../class-fire-utils_settings_map.php:2031
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:863
-#: ../class-fire-utils_settings_map.php:2021
+#: ../class-fire-utils_settings_map.php:2032
 msgid "child theme."
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:864
-#: ../class-fire-utils_settings_map.php:2022
+#: ../class-fire-utils_settings_map.php:2033
 msgid "How to create and use a child theme ?"
 msgstr ""
 
@@ -1491,79 +1491,89 @@ msgid "Apply a drop cap to the first paragraph of your post / page content."
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:1860
+msgid ""
+"Apply a drop cap when the paragraph includes at least the following number "
+"of words :"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1861
+msgid "(number of words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1871
 msgid "Drop cap style"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1864
+#: ../class-fire-utils_settings_map.php:1875
 #, fuzzy
 msgid "Skin color with shadow"
 msgstr "تلميح لون الايقونة"
 
-#: ../class-fire-utils_settings_map.php:1865
+#: ../class-fire-utils_settings_map.php:1876
 msgid "Simple black"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1871
+#: ../class-fire-utils_settings_map.php:1882
 msgid "Enable drop caps in posts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1873
+#: ../class-fire-utils_settings_map.php:1884
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1880
+#: ../class-fire-utils_settings_map.php:1891
 #, fuzzy
 msgid "Enable drop caps in pages"
 msgstr "تمكين التعليقات ضمن الصفحات"
 
-#: ../class-fire-utils_settings_map.php:1882
+#: ../class-fire-utils_settings_map.php:1893
 msgid "Apply a drop cap to the first paragraph of your pages"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1892
-#, fuzzy
-msgid "Comments bubbles"
-msgstr "التعليقات"
-
-#: ../class-fire-utils_settings_map.php:1894
-msgid "Display the number of comments in a bubble next to the post title"
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:1903
 #, fuzzy
+msgid "Comments bubbles"
+msgstr "التعليقات"
+
+#: ../class-fire-utils_settings_map.php:1905
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1914
+#, fuzzy
 msgid "Comments bubble shape"
 msgstr "التعليقات مغلقة."
 
-#: ../class-fire-utils_settings_map.php:1907
+#: ../class-fire-utils_settings_map.php:1918
 msgid "Small bubbles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1908
+#: ../class-fire-utils_settings_map.php:1919
 msgid "Large bubbles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1916
-#: ../class-fire-utils_settings_map.php:1929
+#: ../class-fire-utils_settings_map.php:1927
+#: ../class-fire-utils_settings_map.php:1940
 #, fuzzy
 msgid "Comments bubble color"
 msgstr "التعليقات مغلقة."
 
-#: ../class-fire-utils_settings_map.php:1920
+#: ../class-fire-utils_settings_map.php:1931
 #, fuzzy
 msgid "Skin color"
 msgstr "تلميح لون الايقونة"
 
-#: ../class-fire-utils_settings_map.php:1921
+#: ../class-fire-utils_settings_map.php:1932
 #, fuzzy
 msgid "Custom"
 msgstr "CSS مخصص"
 
-#: ../class-fire-utils_settings_map.php:1941
+#: ../class-fire-utils_settings_map.php:1952
 #, fuzzy
 msgid "Other comments settings"
 msgstr "إعداد وخيارات التعليقات"
 
-#: ../class-fire-utils_settings_map.php:1947
+#: ../class-fire-utils_settings_map.php:1958
 #, fuzzy
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
@@ -1572,46 +1582,46 @@ msgstr ""
 "سيتم تمكين هذا الخيار التعليقات على الصفحات. يمكنك تعطيل التعليقات لصفحة "
 "واحدة في وضع التحرير السريع من شاشة قائمة الصفحة."
 
-#: ../class-fire-utils_settings_map.php:1948
+#: ../class-fire-utils_settings_map.php:1959
 msgid "Change other comments settings in the"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1950
+#: ../class-fire-utils_settings_map.php:1961
 msgid "discussion settings page."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1958
+#: ../class-fire-utils_settings_map.php:1969
 msgid "Display a back to top arrow on scroll"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2005
+#: ../class-fire-utils_settings_map.php:2016
 #, fuzzy
 msgid "Social link title in sidebars"
 msgstr "الروابط الاجتماعية في المربع الجانبي اليميني"
 
-#: ../class-fire-utils_settings_map.php:2011
+#: ../class-fire-utils_settings_map.php:2022
 msgid "Will be hidden if empty"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2031
+#: ../class-fire-utils_settings_map.php:2042
 msgid "Set slider's height in pixels"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2041
+#: ../class-fire-utils_settings_map.php:2052
 msgid "Apply this height to all sliders"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2049
+#: ../class-fire-utils_settings_map.php:2060
 msgid "Replace the default image slider's height"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2055
+#: ../class-fire-utils_settings_map.php:2066
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2056
+#: ../class-fire-utils_settings_map.php:2067
 msgid "You might want to regenerate your thumbnails."
 msgstr ""
 

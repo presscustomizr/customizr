@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.2.11\n"
-"POT-Creation-Date: 2015-01-20 20:26+0100\n"
-"PO-Revision-Date: 2015-01-20 20:26+0100\n"
+"Project-Id-Version: * Customizr v3.2.12\n"
+"POT-Creation-Date: 2015-01-21 16:42+0100\n"
+"PO-Revision-Date: 2015-01-21 16:43+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Martin Bangemann <contact@themesandco.com>\n"
 "Language: de_DE\n"
@@ -479,7 +479,7 @@ msgstr "Kommentaroptionen"
 
 #: ../class-fire-utils_settings_map.php:318
 #: ../class-fire-utils_settings_map.php:1021
-#: ../class-fire-utils_settings_map.php:2004
+#: ../class-fire-utils_settings_map.php:2015
 msgid "Social links"
 msgstr "Soziale Links"
 
@@ -744,7 +744,7 @@ msgid "Choose the pages default layout"
 msgstr "Standardlayout für Seiten wählen"
 
 #: ../class-fire-utils_settings_map.php:702
-#: ../class-fire-utils_settings_map.php:1942
+#: ../class-fire-utils_settings_map.php:1953
 msgid "Enable comments on pages"
 msgstr "Kommentare auf Seiten aktivieren"
 
@@ -757,22 +757,22 @@ msgstr ""
 "Modus individuell deaktiviert werden."
 
 #: ../class-fire-utils_settings_map.php:720
-#: ../class-fire-utils_settings_map.php:1968
+#: ../class-fire-utils_settings_map.php:1979
 msgid "Social links in header"
 msgstr "Soziale Links in Kopfzeile"
 
 #: ../class-fire-utils_settings_map.php:729
-#: ../class-fire-utils_settings_map.php:1986
+#: ../class-fire-utils_settings_map.php:1997
 msgid "Social links in left sidebar"
 msgstr "Soziale Links in linker Seitenleiste"
 
 #: ../class-fire-utils_settings_map.php:738
-#: ../class-fire-utils_settings_map.php:1996
+#: ../class-fire-utils_settings_map.php:2007
 msgid "Social links in right sidebar"
 msgstr "Soziale Links in rechter Seitenleiste"
 
 #: ../class-fire-utils_settings_map.php:746
-#: ../class-fire-utils_settings_map.php:1977
+#: ../class-fire-utils_settings_map.php:1988
 msgid "Social links in footer"
 msgstr "Soziale Links in Fußzeile"
 
@@ -877,14 +877,14 @@ msgstr ""
 "Anzeigegeräten wenn sie im Modus \"volle Breite\" angezeigt werden."
 
 #: ../class-fire-utils_settings_map.php:858
-#: ../class-fire-utils_settings_map.php:2016
+#: ../class-fire-utils_settings_map.php:2027
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Benutzerdefiniertes CSS hinzufügen und live gestalten! (Nur für "
 "fortgeschrittene Benutzer!)"
 
 #: ../class-fire-utils_settings_map.php:862
-#: ../class-fire-utils_settings_map.php:2020
+#: ../class-fire-utils_settings_map.php:2031
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -893,12 +893,12 @@ msgstr ""
 "Anpassungen empfiehlt sich die Änderung der style.css in einem"
 
 #: ../class-fire-utils_settings_map.php:863
-#: ../class-fire-utils_settings_map.php:2021
+#: ../class-fire-utils_settings_map.php:2032
 msgid "child theme."
 msgstr "Child-Theme."
 
 #: ../class-fire-utils_settings_map.php:864
-#: ../class-fire-utils_settings_map.php:2022
+#: ../class-fire-utils_settings_map.php:2033
 msgid "How to create and use a child theme ?"
 msgstr "Wie wird ein Child-Theme erstellt und verwendet?"
 
@@ -1523,76 +1523,86 @@ msgid "Apply a drop cap to the first paragraph of your post / page content."
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:1860
+msgid ""
+"Apply a drop cap when the paragraph includes at least the following number "
+"of words :"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1861
+msgid "(number of words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1871
 msgid "Drop cap style"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1864
+#: ../class-fire-utils_settings_map.php:1875
 #, fuzzy
 msgid "Skin color with shadow"
 msgstr "Farbe des Designs"
 
-#: ../class-fire-utils_settings_map.php:1865
+#: ../class-fire-utils_settings_map.php:1876
 #, fuzzy
 msgid "Simple black"
 msgstr "Dunkelgrau"
 
-#: ../class-fire-utils_settings_map.php:1871
+#: ../class-fire-utils_settings_map.php:1882
 msgid "Enable drop caps in posts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1873
+#: ../class-fire-utils_settings_map.php:1884
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1880
+#: ../class-fire-utils_settings_map.php:1891
 #, fuzzy
 msgid "Enable drop caps in pages"
 msgstr "Kommentare auf Seiten aktivieren"
 
-#: ../class-fire-utils_settings_map.php:1882
+#: ../class-fire-utils_settings_map.php:1893
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1892
+#: ../class-fire-utils_settings_map.php:1903
 msgid "Comments bubbles"
 msgstr "Kommentar-Sprechblasen"
 
-#: ../class-fire-utils_settings_map.php:1894
+#: ../class-fire-utils_settings_map.php:1905
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr ""
 "Anzeige der Anzahl der Kommentare in einer Sprechblase neben dem "
 "Beitragstitel."
 
-#: ../class-fire-utils_settings_map.php:1903
+#: ../class-fire-utils_settings_map.php:1914
 msgid "Comments bubble shape"
 msgstr "Aussehen der Kommentar-Sprechblase"
 
-#: ../class-fire-utils_settings_map.php:1907
+#: ../class-fire-utils_settings_map.php:1918
 msgid "Small bubbles"
 msgstr "Kleine Sprechblasen"
 
-#: ../class-fire-utils_settings_map.php:1908
+#: ../class-fire-utils_settings_map.php:1919
 msgid "Large bubbles"
 msgstr "Große Sprechblasen"
 
-#: ../class-fire-utils_settings_map.php:1916
-#: ../class-fire-utils_settings_map.php:1929
+#: ../class-fire-utils_settings_map.php:1927
+#: ../class-fire-utils_settings_map.php:1940
 msgid "Comments bubble color"
 msgstr "Farbe der Kommentar-Sprechblase"
 
-#: ../class-fire-utils_settings_map.php:1920
+#: ../class-fire-utils_settings_map.php:1931
 msgid "Skin color"
 msgstr "Farbe des Designs"
 
-#: ../class-fire-utils_settings_map.php:1921
+#: ../class-fire-utils_settings_map.php:1932
 msgid "Custom"
 msgstr "Individuell"
 
-#: ../class-fire-utils_settings_map.php:1941
+#: ../class-fire-utils_settings_map.php:1952
 msgid "Other comments settings"
 msgstr "Andere Kommentar-Einstellungen"
 
-#: ../class-fire-utils_settings_map.php:1947
+#: ../class-fire-utils_settings_map.php:1958
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
@@ -1600,39 +1610,39 @@ msgstr ""
 "Ist diese Option aktiviert, sind Kommentare möglich. Kann für einzelne "
 "Seiten im Quick-Edit-Modus individuell deaktiviert werden."
 
-#: ../class-fire-utils_settings_map.php:1948
+#: ../class-fire-utils_settings_map.php:1959
 msgid "Change other comments settings in the"
 msgstr "Ändern anderer Kommentar-Einstellungen in"
 
-#: ../class-fire-utils_settings_map.php:1950
+#: ../class-fire-utils_settings_map.php:1961
 msgid "discussion settings page."
 msgstr "Einstellungen Diskussion"
 
-#: ../class-fire-utils_settings_map.php:1958
+#: ../class-fire-utils_settings_map.php:1969
 msgid "Display a back to top arrow on scroll"
 msgstr "Anzeige eines Nach-oben-Pfeils beim Scrollen"
 
-#: ../class-fire-utils_settings_map.php:2005
+#: ../class-fire-utils_settings_map.php:2016
 msgid "Social link title in sidebars"
 msgstr "Titel der Sozialen Links in Seitenleiste"
 
-#: ../class-fire-utils_settings_map.php:2011
+#: ../class-fire-utils_settings_map.php:2022
 msgid "Will be hidden if empty"
 msgstr "Wird nicht angezeigt wenn leer"
 
-#: ../class-fire-utils_settings_map.php:2031
+#: ../class-fire-utils_settings_map.php:2042
 msgid "Set slider's height in pixels"
 msgstr "Höhe des Sliders in Pixeln"
 
-#: ../class-fire-utils_settings_map.php:2041
+#: ../class-fire-utils_settings_map.php:2052
 msgid "Apply this height to all sliders"
 msgstr "Höhe auf alle Slider übertragen"
 
-#: ../class-fire-utils_settings_map.php:2049
+#: ../class-fire-utils_settings_map.php:2060
 msgid "Replace the default image slider's height"
 msgstr "Ersetze die Standard-Höhe des Sliderbilds"
 
-#: ../class-fire-utils_settings_map.php:2055
+#: ../class-fire-utils_settings_map.php:2066
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1640,7 +1650,7 @@ msgstr ""
 "Ist diese Option aktiviert, werden Bilder beim Hochladen an die "
 "benutzerdefinierte Höhe angepasst. Dies beschleunigt den Seitenaufbau."
 
-#: ../class-fire-utils_settings_map.php:2056
+#: ../class-fire-utils_settings_map.php:2067
 msgid "You might want to regenerate your thumbnails."
 msgstr "Vielleicht möchten Sie Ihre Miniaturbilder erneut erstellen"
 

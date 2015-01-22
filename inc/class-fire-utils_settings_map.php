@@ -1920,7 +1920,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 1
               ),
-
+              'tc_theme_options[tc_dropcap_minwords]'  =>  array(
+                                'default'       => 50,
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Apply a drop cap when the paragraph includes at least the following number of words :" , "customizr" ),
+                                'notice'         => __( "(number of words)" , "customizr" ),
+                                'section'       => 'tc_paragraphs_settings' ,
+                                'type'          => 'number' ,
+                                'step'          => 1,
+                                'min'           => 1,
+                                'priority'      => 10
+              ),
               'tc_theme_options[tc_dropcap_design]' => array(
                                 'default'     => 'skin-shadow',
                                 'control'     => 'TC_controls',
@@ -1931,7 +1942,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'skin-shadow'    => __( "Skin color with shadow" , 'customizr' ),
                                         'simple-black'   => __( 'Simple black' , 'customizr' ),
                                 ),
-                                'priority'    => 10,
+                                'priority'    => 20,
               ),
               'tc_theme_options[tc_post_dropcap]'  =>  array(
                                 'default'       => 0,
@@ -1940,7 +1951,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'         => __( "Apply a drop cap to the first paragraph of your single posts content" , "customizr" ),
                                 'section'       => 'tc_paragraphs_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 20
+                                'priority'      => 30
               ),
               'tc_theme_options[tc_page_dropcap]'  =>  array(
                                 'default'       => 1,
@@ -1949,7 +1960,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'         => __( "Apply a drop cap to the first paragraph of your pages" , "customizr" ),
                                 'section'       => 'tc_paragraphs_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 30
+                                'priority'      => 40
               ),
 
 

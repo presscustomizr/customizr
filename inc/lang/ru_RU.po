@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.2.11\n"
-"POT-Creation-Date: 2014-12-21 16:47+0100\n"
-"PO-Revision-Date: 2014-12-21 16:47+0100\n"
+"Project-Id-Version: * Customizr v3.2.12\n"
+"POT-Creation-Date: 2015-01-21 16:45+0100\n"
+"PO-Revision-Date: 2015-01-21 16:45+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@themesandco.com>\n"
 "Language: ru_RU\n"
@@ -109,158 +109,159 @@ msgid "Web safe fonts pairs"
 msgstr ""
 
 #: ../class-fire-init.php:152
-msgid "Single default font"
-msgstr ""
+#, fuzzy
+msgid "Single fonts"
+msgstr "Отдельные записи"
 
-#: ../class-fire-init.php:171
+#: ../class-fire-init.php:190
 msgid "Subscribe to my rss feed"
 msgstr "Подписывайся на rss ленту"
 
-#: ../class-fire-init.php:172
+#: ../class-fire-init.php:191
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "RSS лента ( по умолчанию wordpress feed )"
 
-#: ../class-fire-init.php:176
+#: ../class-fire-init.php:195
 msgid "Follow me on Twitter"
 msgstr "Профиль в Twitter"
 
-#: ../class-fire-init.php:177
+#: ../class-fire-init.php:196
 msgid "Twitter profile url"
 msgstr "URL профиля в Twitter"
 
-#: ../class-fire-init.php:181
+#: ../class-fire-init.php:200
 msgid "Follow me on Facebook"
 msgstr "Профиль на Facebook"
 
-#: ../class-fire-init.php:182
+#: ../class-fire-init.php:201
 msgid "Facebook profile url"
 msgstr "URL профиля в Facebook"
 
-#: ../class-fire-init.php:186
+#: ../class-fire-init.php:205
 msgid "Follow me on Google+"
 msgstr "Профиль на Google+"
 
-#: ../class-fire-init.php:187
+#: ../class-fire-init.php:206
 msgid "Google+ profile url"
 msgstr "URL профиля в Google+"
 
-#: ../class-fire-init.php:191
+#: ../class-fire-init.php:210
 msgid "Follow me on Instagram"
 msgstr "Профиль в Instagram"
 
-#: ../class-fire-init.php:192
+#: ../class-fire-init.php:211
 msgid "Instagram profile url"
 msgstr "URL профиля в Instagram"
 
-#: ../class-fire-init.php:196
+#: ../class-fire-init.php:215
 msgid "Follow me on Tumblr"
 msgstr "Профиль на Tumblr"
 
-#: ../class-fire-init.php:197
+#: ../class-fire-init.php:216
 msgid "Tumblr url"
 msgstr "URL профиля в Tumblr"
 
-#: ../class-fire-init.php:201
+#: ../class-fire-init.php:220
 msgid "Follow me on Flickr"
 msgstr "Профиль на Flickr"
 
-#: ../class-fire-init.php:202
+#: ../class-fire-init.php:221
 msgid "Flickr url"
 msgstr "URL профиля в Flickr"
 
-#: ../class-fire-init.php:206
+#: ../class-fire-init.php:225
 msgid "Follow me on WordPress"
 msgstr "Профиль на WordPress"
 
-#: ../class-fire-init.php:207
+#: ../class-fire-init.php:226
 msgid "WordPress profile url"
 msgstr "URL профиля в  WordPress"
 
-#: ../class-fire-init.php:211
+#: ../class-fire-init.php:230
 msgid "Follow me on Youtube"
 msgstr "Профиль на Youtube"
 
-#: ../class-fire-init.php:212
+#: ../class-fire-init.php:231
 msgid "Youtube profile url"
 msgstr "URL профиля в Youtube"
 
-#: ../class-fire-init.php:216
+#: ../class-fire-init.php:235
 msgid "Pin me on Pinterest"
 msgstr "Приколи меня на Pinterest"
 
-#: ../class-fire-init.php:217
+#: ../class-fire-init.php:236
 msgid "Pinterest profile url"
 msgstr "URL профиля в Pinterest"
 
-#: ../class-fire-init.php:221
+#: ../class-fire-init.php:240
 msgid "Follow me on Github"
 msgstr "Профиль на Github"
 
-#: ../class-fire-init.php:222
+#: ../class-fire-init.php:241
 msgid "Github profile url"
 msgstr "URL профиля в Github"
 
-#: ../class-fire-init.php:226
+#: ../class-fire-init.php:245
 msgid "Follow me on Dribbble"
 msgstr "Профиль на Dribbble"
 
-#: ../class-fire-init.php:227
+#: ../class-fire-init.php:246
 msgid "Dribbble profile url"
 msgstr "URL профиля в Dribbble"
 
-#: ../class-fire-init.php:231
+#: ../class-fire-init.php:250
 msgid "Follow me on LinkedIn"
 msgstr "Профиль на LinkedIn"
 
-#: ../class-fire-init.php:232
+#: ../class-fire-init.php:251
 msgid "LinkedIn profile url"
 msgstr "URL профиля в LinkedIn"
 
-#: ../class-fire-init.php:241
+#: ../class-fire-init.php:260
 msgid "Right Sidebar"
 msgstr "Правый сайдбар"
 
-#: ../class-fire-init.php:242 ../class-fire-init.php:246
+#: ../class-fire-init.php:261 ../class-fire-init.php:265
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "Появляется в постах, статических страницах, архивах и страницах поиска"
 
-#: ../class-fire-init.php:245
+#: ../class-fire-init.php:264
 msgid "Left Sidebar"
 msgstr "Левый сайдбар"
 
-#: ../class-fire-init.php:253
+#: ../class-fire-init.php:272
 msgid "Footer Widget Area One"
 msgstr "Место для виджета в футере №1"
 
-#: ../class-fire-init.php:254 ../class-fire-init.php:258
-#: ../class-fire-init.php:262
+#: ../class-fire-init.php:273 ../class-fire-init.php:277
+#: ../class-fire-init.php:281
 msgid "Just use it as you want !"
 msgstr "Вставляйте сюда что угодно!"
 
-#: ../class-fire-init.php:257
+#: ../class-fire-init.php:276
 msgid "Footer Widget Area Two"
 msgstr "Место для виджета в футере №2"
 
-#: ../class-fire-init.php:261
+#: ../class-fire-init.php:280
 msgid "Footer Widget Area Three"
 msgstr "Место для виджета в футере №3"
 
-#: ../class-fire-init.php:279
+#: ../class-fire-init.php:298
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr "По правде говоря, во времена всеобщего обмана вы делаете революцию."
 
-#: ../class-fire-init.php:280
+#: ../class-fire-init.php:299
 msgid "George Orwell"
 msgstr "Джордж Орвелл"
 
-#: ../class-fire-init.php:281
+#: ../class-fire-init.php:300
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
 "Очень жаль, но запрашиваемая вами страница не найдена. Вы можете попробывать "
 "ниже."
 
-#: ../class-fire-init.php:286
+#: ../class-fire-init.php:305
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
@@ -268,11 +269,11 @@ msgstr ""
 "Успех - это способность выдерживать одну неудачу за другой не теряя при этом "
 "энтузиазма..."
 
-#: ../class-fire-init.php:287
+#: ../class-fire-init.php:306
 msgid "Sir Winston Churchill"
 msgstr "Сэр Винстон Черчилль"
 
-#: ../class-fire-init.php:288
+#: ../class-fire-init.php:307
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
@@ -280,15 +281,15 @@ msgstr ""
 "Очень жаль, но соответствий введённым вами критериям не нашлось. Попробуйте "
 "другие слова."
 
-#: ../class-fire-init.php:303
+#: ../class-fire-init.php:322
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr - это удобная тема хорошо выглядящая на любых девайсах!"
 
-#: ../class-fire-init.php:308 ../class-fire-init.php:317
+#: ../class-fire-init.php:327 ../class-fire-init.php:336
 msgid "Style your WordPress site live!"
 msgstr "Стилизуйте Ваш WordPress сайт быстрее!"
 
-#: ../class-fire-init.php:309
+#: ../class-fire-init.php:328
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -296,15 +297,15 @@ msgstr ""
 "Многие изменения в расположении объектов и опций доступны в панели "
 "кастомайзера в WordPress: наблюдайте за изменениями в реальном времени!"
 
-#: ../class-fire-init.php:310
+#: ../class-fire-init.php:329
 msgid "Just try it!"
 msgstr "Просто попробуй!"
 
-#: ../class-fire-init.php:322 ../class-fire-init.php:331
+#: ../class-fire-init.php:341 ../class-fire-init.php:350
 msgid "Create beautiful sliders"
 msgstr "Создай красивейший слайдер!"
 
-#: ../class-fire-init.php:323
+#: ../class-fire-init.php:342
 msgid ""
 "Customizr comes with a cool slider generator : add a slider to any post or "
 "page!"
@@ -312,23 +313,23 @@ msgstr ""
 "Customizr  идёт с крутым генератором слайдеров: добавь слайдер в любой пост "
 "и на любую страницу!"
 
-#: ../class-fire-init.php:324
+#: ../class-fire-init.php:343
 msgid "Discover the features"
 msgstr "Узнай больше!"
 
-#: ../class-fire-init.php:441
+#: ../class-fire-init.php:455
 msgid "Main Menu"
 msgstr "Главное Меню"
 
-#: ../class-fire-init.php:830
+#: ../class-fire-init.php:880
 msgid "Help"
 msgstr "Помощь"
 
-#: ../class-fire-init.php:833
+#: ../class-fire-init.php:883
 msgid "Need help with Customizr? Click here!"
 msgstr "Нужна помощь с Customizr? Кликните здесь!"
 
-#: ../class-fire-utils.php:403
+#: ../class-fire-utils.php:417
 #, php-format
 msgid "Page %s"
 msgstr "Страница %s"
@@ -392,8 +393,9 @@ msgid "Global settings for the Customizr theme :skin, socials, links..."
 msgstr "Глобальные настройки шаблона Customizr: оболочка, соцсети, ссылки..."
 
 #: ../class-fire-utils_settings_map.php:248
-msgid "Header : title, logo, menu, ..."
-msgstr "Хедер: title, Лого, меню,..."
+#, fuzzy
+msgid "Header"
+msgstr "Хедер"
 
 #: ../class-fire-utils_settings_map.php:249
 msgid "Header settings for the Customizr theme."
@@ -424,63 +426,63 @@ msgid "Advanced settings for the Customizr theme."
 msgstr "Продвинутые настройки для шаблона Customizr."
 
 #: ../class-fire-utils_settings_map.php:288
-#: ../class-fire-utils_settings_map.php:996
+#: ../class-fire-utils_settings_map.php:1009
 msgid "Skin"
 msgstr "Внешний вид"
 
 #: ../class-fire-utils_settings_map.php:290
-#: ../class-fire-utils_settings_map.php:998
+#: ../class-fire-utils_settings_map.php:1011
 msgid "Select a skin for Customizr"
 msgstr "Выберите внешний вид для Customizr"
 
 #: ../class-fire-utils_settings_map.php:294
-#: ../class-fire-utils_settings_map.php:1048
+#: ../class-fire-utils_settings_map.php:1003
 msgid "Logo &amp; Favicon"
 msgstr "Лого  &amp; Фавикон"
 
 #: ../class-fire-utils_settings_map.php:296
-#: ../class-fire-utils_settings_map.php:1050
+#: ../class-fire-utils_settings_map.php:1005
 msgid "Set up logo and favicon options"
 msgstr "Параметры ваших Лого и Фавикона"
 
 #: ../class-fire-utils_settings_map.php:300
-#: ../class-fire-utils_settings_map.php:1062
+#: ../class-fire-utils_settings_map.php:1070
 msgid "Front Page"
 msgstr "Главная страница"
 
 #: ../class-fire-utils_settings_map.php:302
-#: ../class-fire-utils_settings_map.php:1064
+#: ../class-fire-utils_settings_map.php:1072
 msgid "Set up front page options"
 msgstr "Параметры главной страницы"
 
 #: ../class-fire-utils_settings_map.php:306
-#: ../class-fire-utils_settings_map.php:1069
+#: ../class-fire-utils_settings_map.php:1077
 msgid "Pages &amp; Posts Layout"
 msgstr "Страницы &amp;  Вид записей"
 
 #: ../class-fire-utils_settings_map.php:308
-#: ../class-fire-utils_settings_map.php:1071
+#: ../class-fire-utils_settings_map.php:1079
 msgid "Set up layout options"
 msgstr "Установите опции расположения"
 
 #: ../class-fire-utils_settings_map.php:312
-#: ../class-fire-utils_settings_map.php:1108
+#: ../class-fire-utils_settings_map.php:1122
 msgid "Comments"
 msgstr "Комментарии"
 
 #: ../class-fire-utils_settings_map.php:314
-#: ../class-fire-utils_settings_map.php:1110
+#: ../class-fire-utils_settings_map.php:1124
 msgid "Set up comments options"
 msgstr "Опции комментариев"
 
 #: ../class-fire-utils_settings_map.php:318
-#: ../class-fire-utils_settings_map.php:1008
-#: ../class-fire-utils_settings_map.php:1909
+#: ../class-fire-utils_settings_map.php:1021
+#: ../class-fire-utils_settings_map.php:2015
 msgid "Social links"
 msgstr "Линки соцсетей"
 
 #: ../class-fire-utils_settings_map.php:320
-#: ../class-fire-utils_settings_map.php:1010
+#: ../class-fire-utils_settings_map.php:1023
 msgid "Set up your social links"
 msgstr "Добавить соцсети"
 
@@ -489,7 +491,7 @@ msgid "Images"
 msgstr "Изображения"
 
 #: ../class-fire-utils_settings_map.php:326
-#: ../class-fire-utils_settings_map.php:1028
+#: ../class-fire-utils_settings_map.php:1041
 msgid "Various images settings"
 msgstr "Разные настройки изображений"
 
@@ -498,27 +500,27 @@ msgid "Links"
 msgstr "Ссылки"
 
 #: ../class-fire-utils_settings_map.php:332
-#: ../class-fire-utils_settings_map.php:1016
+#: ../class-fire-utils_settings_map.php:1029
 msgid "Various links settings"
 msgstr "Настройки ссылок"
 
 #: ../class-fire-utils_settings_map.php:336
-#: ../class-fire-utils_settings_map.php:1120
+#: ../class-fire-utils_settings_map.php:1134
 msgid "Custom CSS"
 msgstr "Собственная CSS"
 
 #: ../class-fire-utils_settings_map.php:338
-#: ../class-fire-utils_settings_map.php:1122
+#: ../class-fire-utils_settings_map.php:1136
 msgid "Add your own CSS"
 msgstr "Добавить свои стили"
 
 #: ../class-fire-utils_settings_map.php:342
-#: ../class-fire-utils_settings_map.php:1032
+#: ../class-fire-utils_settings_map.php:1045
 msgid "Responsive settings"
 msgstr "Респонсивные настройки"
 
 #: ../class-fire-utils_settings_map.php:344
-#: ../class-fire-utils_settings_map.php:1034
+#: ../class-fire-utils_settings_map.php:1047
 msgid "Various settings for responsive display"
 msgstr "Разные респонсивные настройки"
 
@@ -526,27 +528,32 @@ msgstr "Разные респонсивные настройки"
 msgid "Manage menus"
 msgstr "Управляйте блоком Меню"
 
-#: ../class-fire-utils_settings_map.php:379
+#: ../class-fire-utils_settings_map.php:380
+#, fuzzy
+msgid "Design and effects"
+msgstr "Дезайн и расположение"
+
+#: ../class-fire-utils_settings_map.php:381
 msgid "Select a submenu expansion option"
 msgstr "Выбрать способ выпадения подменю"
 
-#: ../class-fire-utils_settings_map.php:383
+#: ../class-fire-utils_settings_map.php:385
 msgid "Expand submenus on click"
 msgstr "Выпадение подменю по клику"
 
-#: ../class-fire-utils_settings_map.php:384
+#: ../class-fire-utils_settings_map.php:386
 msgid "Expand submenus on hover"
 msgstr "Выпадение подменю при наведении"
 
-#: ../class-fire-utils_settings_map.php:400
+#: ../class-fire-utils_settings_map.php:402
 msgid "Choose a predefined skin"
 msgstr "Выберите предустановленый вид"
 
-#: ../class-fire-utils_settings_map.php:410
+#: ../class-fire-utils_settings_map.php:412
 msgid "Performance : use the minified CSS stylesheet"
 msgstr "Производительность: используйте мини-версию таблицы CSS"
 
-#: ../class-fire-utils_settings_map.php:413
+#: ../class-fire-utils_settings_map.php:415
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
@@ -554,119 +561,119 @@ msgstr ""
 "Использование мини-версии текущей таблицы CSS увеличит скорость загрузки "
 "Вашей веб-страницы."
 
-#: ../class-fire-utils_settings_map.php:419
-#: ../class-fire-utils_settings_map.php:1270
+#: ../class-fire-utils_settings_map.php:421
+#: ../class-fire-utils_settings_map.php:1297
 msgid "Display top border"
 msgstr " Показать верхний бордер"
 
-#: ../class-fire-utils_settings_map.php:423
-#: ../class-fire-utils_settings_map.php:1274
+#: ../class-fire-utils_settings_map.php:425
+#: ../class-fire-utils_settings_map.php:1301
 msgid "Uncheck this option to remove the colored top border."
 msgstr "Исключите данную опцию для отмены цветного бордера сверху сайта."
 
-#: ../class-fire-utils_settings_map.php:435
+#: ../class-fire-utils_settings_map.php:437
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Загрузка лого (форматы только:  .jpg, .png, .gif, svg, svgz)"
 
-#: ../class-fire-utils_settings_map.php:436
+#: ../class-fire-utils_settings_map.php:438
 msgid "LOGO"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:445
+#: ../class-fire-utils_settings_map.php:447
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Оптимальные размеры Лого: max-width:250px and max-height:100px"
 
-#: ../class-fire-utils_settings_map.php:452
+#: ../class-fire-utils_settings_map.php:454
 #, fuzzy
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Загрузка лого (форматы только:  .jpg, .png, .gif, svg, svgz)"
 
-#: ../class-fire-utils_settings_map.php:456
+#: ../class-fire-utils_settings_map.php:458
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:462
+#: ../class-fire-utils_settings_map.php:464
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Загрузка фавикона ( форматы только:  .ico, .png, .gif)"
 
-#: ../class-fire-utils_settings_map.php:463
+#: ../class-fire-utils_settings_map.php:465
 msgid "FAVICON"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:481
+#: ../class-fire-utils_settings_map.php:483
 msgid "Choose content and layout"
 msgstr "Выбрать контент и расположение "
 
-#: ../class-fire-utils_settings_map.php:489
+#: ../class-fire-utils_settings_map.php:491
 msgid "Front page displays"
 msgstr "Отображение Главной страницы"
 
-#: ../class-fire-utils_settings_map.php:494
+#: ../class-fire-utils_settings_map.php:496
 msgid "Don't show any posts or page"
 msgstr "Не показывать ни сообщения ни страницы"
 
-#: ../class-fire-utils_settings_map.php:495
+#: ../class-fire-utils_settings_map.php:497
 msgid "Your latest posts"
 msgstr "Ваши последние посты"
 
-#: ../class-fire-utils_settings_map.php:496
+#: ../class-fire-utils_settings_map.php:498
 msgid "A static page"
 msgstr "Статическая страница"
 
-#: ../class-fire-utils_settings_map.php:502
+#: ../class-fire-utils_settings_map.php:504
 msgid "Front page"
 msgstr "Главная страница"
 
-#: ../class-fire-utils_settings_map.php:510
+#: ../class-fire-utils_settings_map.php:512
 msgid "Posts page"
 msgstr "Страница с записями"
 
-#: ../class-fire-utils_settings_map.php:519
+#: ../class-fire-utils_settings_map.php:521
 msgid "Set up the front page layout"
 msgstr "Конструкция главной страницы"
 
-#: ../class-fire-utils_settings_map.php:530
+#: ../class-fire-utils_settings_map.php:532
 msgid "Slider options"
 msgstr "Опции слайдера"
 
-#: ../class-fire-utils_settings_map.php:531
+#: ../class-fire-utils_settings_map.php:533
 msgid "Select front page slider"
 msgstr "Выберите слайдер для главной страницы"
 
-#: ../class-fire-utils_settings_map.php:543
+#: ../class-fire-utils_settings_map.php:545
 msgid "Full width slider"
 msgstr "Слайдер во всю ширину"
 
-#: ../class-fire-utils_settings_map.php:554
+#: ../class-fire-utils_settings_map.php:556
 msgid "Delay between each slides"
 msgstr "Задержка между слайдерами"
 
-#: ../class-fire-utils_settings_map.php:559
+#: ../class-fire-utils_settings_map.php:561
 msgid "in ms : 1000ms = 1s"
 msgstr "В мс: 1000мс = 1сек."
 
-#: ../class-fire-utils_settings_map.php:567
+#: ../class-fire-utils_settings_map.php:569
 msgid "Featured pages options"
 msgstr "Опции страниц под слайдером"
 
-#: ../class-fire-utils_settings_map.php:568
+#: ../class-fire-utils_settings_map.php:570
 msgid "Display home featured pages area"
 msgstr "Показать место для нижних страниц на главной"
 
-#: ../class-fire-utils_settings_map.php:572
+#: ../class-fire-utils_settings_map.php:574
 msgid "Enable"
 msgstr "Применить"
 
-#: ../class-fire-utils_settings_map.php:573
+#: ../class-fire-utils_settings_map.php:575
 msgid "Disable"
 msgstr "Отменить"
 
-#: ../class-fire-utils_settings_map.php:582
+#: ../class-fire-utils_settings_map.php:584
 msgid "Show images"
 msgstr "Показать изображения"
 
-#: ../class-fire-utils_settings_map.php:585
+#: ../class-fire-utils_settings_map.php:587
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -675,31 +682,31 @@ msgstr ""
 "панели редактирования страниц.  Для того чтобы убрать изображения снимите "
 "галочку сверху."
 
-#: ../class-fire-utils_settings_map.php:591
+#: ../class-fire-utils_settings_map.php:593
 msgid "Read more &raquo;"
 msgstr "Читать &raquo;"
 
-#: ../class-fire-utils_settings_map.php:593
+#: ../class-fire-utils_settings_map.php:595
 msgid "Button text"
 msgstr "Текст кнопки"
 
-#: ../class-fire-utils_settings_map.php:614
-#: ../class-fire-utils_settings_map.php:1167
+#: ../class-fire-utils_settings_map.php:616
+#: ../class-fire-utils_settings_map.php:1181
 msgid "Display Breadcrumb"
 msgstr "Применить Breadcrumb"
 
-#: ../class-fire-utils_settings_map.php:624
-#: ../class-fire-utils_settings_map.php:1177
+#: ../class-fire-utils_settings_map.php:626
+#: ../class-fire-utils_settings_map.php:1191
 msgid "Choose the global default layout"
 msgstr "Выбрать структуру по умолчанию"
 
-#: ../class-fire-utils_settings_map.php:635
-#: ../class-fire-utils_settings_map.php:1189
+#: ../class-fire-utils_settings_map.php:637
+#: ../class-fire-utils_settings_map.php:1203
 msgid "Force default layout everywhere"
 msgstr "Выбрать структуру по умолчанию везде"
 
-#: ../class-fire-utils_settings_map.php:638
-#: ../class-fire-utils_settings_map.php:1192
+#: ../class-fire-utils_settings_map.php:640
+#: ../class-fire-utils_settings_map.php:1206
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -707,42 +714,42 @@ msgstr ""
 "Эта опция перекроет отдельные настройки во всех постах и страницах включая "
 "главную."
 
-#: ../class-fire-utils_settings_map.php:645
-#: ../class-fire-utils_settings_map.php:1198
+#: ../class-fire-utils_settings_map.php:647
+#: ../class-fire-utils_settings_map.php:1212
 msgid "Choose the posts default layout"
 msgstr "Выбрать расположение постов"
 
-#: ../class-fire-utils_settings_map.php:657
-#: ../class-fire-utils_settings_map.php:1220
+#: ../class-fire-utils_settings_map.php:659
+#: ../class-fire-utils_settings_map.php:1235
 msgid "Maximum number of posts per page"
 msgstr "Максимальное число постов на странице"
 
-#: ../class-fire-utils_settings_map.php:668
-#: ../class-fire-utils_settings_map.php:1230
+#: ../class-fire-utils_settings_map.php:670
+#: ../class-fire-utils_settings_map.php:1245
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "Выбрать длину постов в списках (домашняя, поиск, архивы, ...)"
 
-#: ../class-fire-utils_settings_map.php:672
-#: ../class-fire-utils_settings_map.php:1234
+#: ../class-fire-utils_settings_map.php:674
+#: ../class-fire-utils_settings_map.php:1249
 msgid "Display the excerpt"
 msgstr "Показать выдержку"
 
-#: ../class-fire-utils_settings_map.php:673
-#: ../class-fire-utils_settings_map.php:1235
+#: ../class-fire-utils_settings_map.php:675
+#: ../class-fire-utils_settings_map.php:1250
 msgid "Display the full content"
 msgstr "Показать контент целиком"
 
-#: ../class-fire-utils_settings_map.php:681
-#: ../class-fire-utils_settings_map.php:1207
+#: ../class-fire-utils_settings_map.php:683
+#: ../class-fire-utils_settings_map.php:1221
 msgid "Choose the pages default layout"
 msgstr "Выбрать расположение страниц по умолчанию"
 
-#: ../class-fire-utils_settings_map.php:700
-#: ../class-fire-utils_settings_map.php:1848
+#: ../class-fire-utils_settings_map.php:702
+#: ../class-fire-utils_settings_map.php:1953
 msgid "Enable comments on pages"
 msgstr "Разрешить комментарии на страницах"
 
-#: ../class-fire-utils_settings_map.php:704
+#: ../class-fire-utils_settings_map.php:706
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -750,31 +757,31 @@ msgstr ""
 "Эта опция разрешит комментарии на страницах. Вы можете запретить комментарии "
 "на любой странице в панели правки страницы."
 
-#: ../class-fire-utils_settings_map.php:718
-#: ../class-fire-utils_settings_map.php:1873
+#: ../class-fire-utils_settings_map.php:720
+#: ../class-fire-utils_settings_map.php:1979
 msgid "Social links in header"
 msgstr "Соцсети в хедере"
 
-#: ../class-fire-utils_settings_map.php:727
-#: ../class-fire-utils_settings_map.php:1891
+#: ../class-fire-utils_settings_map.php:729
+#: ../class-fire-utils_settings_map.php:1997
 msgid "Social links in left sidebar"
 msgstr "Соцсети в левом сайдбаре"
 
-#: ../class-fire-utils_settings_map.php:736
-#: ../class-fire-utils_settings_map.php:1901
+#: ../class-fire-utils_settings_map.php:738
+#: ../class-fire-utils_settings_map.php:2007
 msgid "Social links in right sidebar"
 msgstr "Соцсети в правом сайдбаре"
 
-#: ../class-fire-utils_settings_map.php:744
-#: ../class-fire-utils_settings_map.php:1882
+#: ../class-fire-utils_settings_map.php:746
+#: ../class-fire-utils_settings_map.php:1988
 msgid "Social links in footer"
 msgstr "Соцсети в футере"
 
-#: ../class-fire-utils_settings_map.php:765
+#: ../class-fire-utils_settings_map.php:767
 msgid "Enable/disable lightbox effect on images"
 msgstr "Вкл./Выкл. эффект лайтбокса на изображениях"
 
-#: ../class-fire-utils_settings_map.php:768
+#: ../class-fire-utils_settings_map.php:770
 msgid ""
 "If enabled, this option activate a popin window whith a zoom effect when an "
 "image is clicked. This will not apply to image gallery."
@@ -782,27 +789,27 @@ msgstr ""
 "Если включено, то это активирует всплывание окна с зум-эффектом если "
 "кликнуть на изображение. Не действует на галерею."
 
-#: ../class-fire-utils_settings_map.php:774
+#: ../class-fire-utils_settings_map.php:776
 msgid "Autoscale images on zoom"
 msgstr "Подгонка размера изображения зумом"
 
-#: ../class-fire-utils_settings_map.php:777
+#: ../class-fire-utils_settings_map.php:779
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "Если выбрана, эта опция подгонит размер изображения под экран в lightbox. "
 
-#: ../class-fire-utils_settings_map.php:783
+#: ../class-fire-utils_settings_map.php:785
 msgid "Enable/disable retina support"
 msgstr "Вкл./Выкл. поддержку ретины дисплея"
 
-#: ../class-fire-utils_settings_map.php:787
+#: ../class-fire-utils_settings_map.php:789
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr ""
 "Если активно, Ваш сайт будет поддерживать девайсы с высоким разрешением."
 
-#: ../class-fire-utils_settings_map.php:788
+#: ../class-fire-utils_settings_map.php:790
 msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
@@ -810,19 +817,19 @@ msgstr ""
 "Настоятельно рекомендуем регенерировать изображения высокой чёткости из "
 "вашей медиа библиотеки по средством этого бесплатного плагина"
 
-#: ../class-fire-utils_settings_map.php:789
+#: ../class-fire-utils_settings_map.php:791
 msgid "regenerate thumbnails"
 msgstr "регенерировать  миниатюры"
 
-#: ../class-fire-utils_settings_map.php:791
+#: ../class-fire-utils_settings_map.php:793
 msgid "Open the description page of the Regenerate thumbnails plugin"
 msgstr "Откройте страницу описания плагина Regenerate thumbnails plugin"
 
-#: ../class-fire-utils_settings_map.php:797
+#: ../class-fire-utils_settings_map.php:799
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "Слайдеры: Показывать иконку загрузки перед появлением слайдов"
 
-#: ../class-fire-utils_settings_map.php:800
+#: ../class-fire-utils_settings_map.php:802
 #, fuzzy
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
@@ -830,11 +837,11 @@ msgid ""
 msgstr ""
 "Если отмечено, эта опция показывает иконку загрузки когда есть слайды. "
 
-#: ../class-fire-utils_settings_map.php:813
+#: ../class-fire-utils_settings_map.php:815
 msgid "Enable/disable smooth scroll on click"
 msgstr "Вкл./Выкл. плавное прокруч. по клику"
 
-#: ../class-fire-utils_settings_map.php:816
+#: ../class-fire-utils_settings_map.php:818
 msgid ""
 "If enabled, this option activates a smooth page scroll when clicking on a "
 "link to an anchor of the same page."
@@ -842,11 +849,11 @@ msgstr ""
 "Если активно, данная опция активирует плавное прокручивание страницы при "
 "клике на ссылку с анкором на той же странице."
 
-#: ../class-fire-utils_settings_map.php:829
+#: ../class-fire-utils_settings_map.php:831
 msgid "Enable/disable blocks reordering on small devices"
 msgstr "Вкл./Выкл. подгонку блоков на небольших девайсах"
 
-#: ../class-fire-utils_settings_map.php:832
+#: ../class-fire-utils_settings_map.php:834
 msgid ""
 "On responsive mode, for smartphone viewport, the sidebars are moved after "
 "the main content block."
@@ -854,11 +861,11 @@ msgstr ""
 "При респонсивном включении, для смартфонов, сайдбары выстраиваются после "
 "главного блока контента."
 
-#: ../class-fire-utils_settings_map.php:838
+#: ../class-fire-utils_settings_map.php:840
 msgid "Enable/disable slider's slides centering on any devices"
 msgstr "Вкл./Выкл. центровку слайдов слайдера  на всех девайсах"
 
-#: ../class-fire-utils_settings_map.php:841
+#: ../class-fire-utils_settings_map.php:843
 msgid ""
 "This option centers your slider (carousel) pictures vertically and "
 "horizontally on any devices when displayed in full width mode"
@@ -866,15 +873,15 @@ msgstr ""
 "Данная опция центрует изображения Вашего слайдера (карусели) вертикально и "
 "гаризонтально на любых девайсах при отображении во всю ширину"
 
-#: ../class-fire-utils_settings_map.php:856
-#: ../class-fire-utils_settings_map.php:1921
+#: ../class-fire-utils_settings_map.php:858
+#: ../class-fire-utils_settings_map.php:2027
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Добавьте сюда свои стили и смотрите результат! ( для продвинутых "
 "пользователей)."
 
-#: ../class-fire-utils_settings_map.php:860
-#: ../class-fire-utils_settings_map.php:1925
+#: ../class-fire-utils_settings_map.php:862
+#: ../class-fire-utils_settings_map.php:2031
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -882,121 +889,157 @@ msgstr ""
 "Используйте это поле для тестов небольших кусков CSS кода. Делайте важные "
 "CSS изменения в файле style.css "
 
-#: ../class-fire-utils_settings_map.php:861
-#: ../class-fire-utils_settings_map.php:1926
+#: ../class-fire-utils_settings_map.php:863
+#: ../class-fire-utils_settings_map.php:2032
 msgid "child theme."
 msgstr "дочерней темы."
 
-#: ../class-fire-utils_settings_map.php:862
-#: ../class-fire-utils_settings_map.php:1927
+#: ../class-fire-utils_settings_map.php:864
+#: ../class-fire-utils_settings_map.php:2033
 msgid "How to create and use a child theme ?"
 msgstr "Как создать и использовать дочернюю тему?"
 
-#: ../class-fire-utils_settings_map.php:1002
+#: ../class-fire-utils_settings_map.php:998
+msgid "Site Title & Tagline"
+msgstr "Название & Слоган сайта"
+
+#: ../class-fire-utils_settings_map.php:1015
 msgid "Fonts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1004
+#: ../class-fire-utils_settings_map.php:1017
 #, fuzzy
 msgid "Set up the font global settings"
 msgstr "Установить глобальные опции футера"
 
-#: ../class-fire-utils_settings_map.php:1014
+#: ../class-fire-utils_settings_map.php:1027
 msgid "Links style and effects"
 msgstr "Стили и эффекты ссылок"
 
-#: ../class-fire-utils_settings_map.php:1020
+#: ../class-fire-utils_settings_map.php:1033
 msgid "Titles icons settings"
 msgstr "Настройки иконок заголовков"
 
-#: ../class-fire-utils_settings_map.php:1022
+#: ../class-fire-utils_settings_map.php:1035
 msgid "Set up the titles icons options"
 msgstr "Установить опции иконок заголовков"
 
-#: ../class-fire-utils_settings_map.php:1026
+#: ../class-fire-utils_settings_map.php:1039
 msgid "Image settings"
 msgstr "Настройки изображений"
 
-#: ../class-fire-utils_settings_map.php:1038
+#: ../class-fire-utils_settings_map.php:1051
+msgid "Authors"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1053
+#, fuzzy
+msgid "Post authors settings"
+msgstr "От автора"
+
+#: ../class-fire-utils_settings_map.php:1057
+#: ../class-fire-utils_settings_map.php:1296
 msgid "Header design and layout"
 msgstr "Дезайн хедера и расположение"
 
-#: ../class-fire-utils_settings_map.php:1038
+#: ../class-fire-utils_settings_map.php:1057
 msgid "Design and layout"
 msgstr "Дезайн и расположение"
 
-#: ../class-fire-utils_settings_map.php:1043
-msgid "Site Title & Tagline"
-msgstr "Название & Слоган сайта"
-
-#: ../class-fire-utils_settings_map.php:1054
+#: ../class-fire-utils_settings_map.php:1062
 msgid "Navigation"
 msgstr "Навигация"
 
-#: ../class-fire-utils_settings_map.php:1057
+#: ../class-fire-utils_settings_map.php:1065
 #, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgstr "Ваш шаблон поддерживает %s меню. Выберите подходящее для вас меню."
 
-#: ../class-fire-utils_settings_map.php:1057
+#: ../class-fire-utils_settings_map.php:1065
 msgid ""
 "You can edit your menu content on the Menus screen in the Appearance section."
 msgstr ""
 "Вы можете редактировать контент вашего меню в панели Меню отделения Вид."
 
-#: ../class-fire-utils_settings_map.php:1076
+#: ../class-fire-utils_settings_map.php:1084
 msgid "Post lists : blog, archives, ..."
 msgstr "Списки записей: блог, архивы,..."
 
-#: ../class-fire-utils_settings_map.php:1078
+#: ../class-fire-utils_settings_map.php:1086
 msgid "Set up post lists options"
 msgstr "Установить опции списков записей"
 
-#: ../class-fire-utils_settings_map.php:1082
+#: ../class-fire-utils_settings_map.php:1090
 msgid "Single posts"
 msgstr "Отдельные записи"
 
-#: ../class-fire-utils_settings_map.php:1084
+#: ../class-fire-utils_settings_map.php:1092
 msgid "Set up single posts options"
 msgstr "Установить опции отдельных записей"
 
-#: ../class-fire-utils_settings_map.php:1088
+#: ../class-fire-utils_settings_map.php:1096
 msgid "Breadcrumb"
 msgstr "Хлебные крошки"
 
-#: ../class-fire-utils_settings_map.php:1090
+#: ../class-fire-utils_settings_map.php:1098
 msgid "Set up breadcrumb options"
 msgstr "Установить опции хлебных крошек"
 
-#: ../class-fire-utils_settings_map.php:1102
+#: ../class-fire-utils_settings_map.php:1110
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr "Метаописания записей (категория,тэги, собственные таксономии)"
 
-#: ../class-fire-utils_settings_map.php:1104
+#: ../class-fire-utils_settings_map.php:1112
 msgid "Set up post metas options"
 msgstr "Установить опции метаописаний записей"
 
-#: ../class-fire-utils_settings_map.php:1114
+#: ../class-fire-utils_settings_map.php:1116
+msgid "Paragraphs"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1118
+#, fuzzy
+msgid "Set up paragraphs options"
+msgstr "Установить опции метаописаний записей"
+
+#: ../class-fire-utils_settings_map.php:1128
 msgid "Footer global settings"
 msgstr "Глобальные настройки Футера"
 
-#: ../class-fire-utils_settings_map.php:1116
+#: ../class-fire-utils_settings_map.php:1130
 msgid "Set up footer global options"
 msgstr "Установить глобальные опции футера"
 
-#: ../class-fire-utils_settings_map.php:1181
+#: ../class-fire-utils_settings_map.php:1195
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr ""
 "Внимание: схема домашней страницы должна быть установлена в секции домашней "
 "станицы"
 
-#: ../class-fire-utils_settings_map.php:1244
+#: ../class-fire-utils_settings_map.php:1234
+#, fuzzy
+msgid "Global Post Lists Settings"
+msgstr "Глобальные настройки"
+
+#: ../class-fire-utils_settings_map.php:1260
+#, fuzzy
+msgid "Display an author box after each single post content"
+msgstr "Показывать иконку записи рядом с заголовком отдельной записи"
+
+#: ../class-fire-utils_settings_map.php:1264
+msgid ""
+"Check this option to display an author info block after each single post "
+"content. Note : the Biographical info field must be filled out in the user "
+"profile."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1270
 msgid ""
 "Select a beautiful font pair (headings &amp; default fonts) or single font "
 "for your website."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1251
+#: ../class-fire-utils_settings_map.php:1277
 msgid ""
 "This font picker allows you to preview and select among a handy selection of "
 "font pairs and single fonts. If you choose a pair, the first font will be "
@@ -1005,41 +1048,25 @@ msgid ""
 "texts or paragraphs."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1256
+#: ../class-fire-utils_settings_map.php:1282
 msgid "Set your website default font size in pixels."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1264
+#: ../class-fire-utils_settings_map.php:1290
 msgid ""
 "This option sets the default font size applied to any text element of your "
 "website, when no font size is already applied."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1280
-msgid "Layout"
-msgstr "Расположение"
-
-#: ../class-fire-utils_settings_map.php:1284
-msgid "Logo / title on the left"
-msgstr "Лого / заголовок слева"
-
-#: ../class-fire-utils_settings_map.php:1285
-msgid "Logo / title centered"
-msgstr "Лого / заголовок по центру"
-
-#: ../class-fire-utils_settings_map.php:1286
-msgid "Logo / title on the right"
-msgstr "Лого / заголовок справа"
-
-#: ../class-fire-utils_settings_map.php:1295
+#: ../class-fire-utils_settings_map.php:1307
 msgid "Display the tagline"
 msgstr "Показывать слоган"
 
-#: ../class-fire-utils_settings_map.php:1304
+#: ../class-fire-utils_settings_map.php:1316
 msgid "Display menu in a box"
 msgstr "Показывать меню в боксе"
 
-#: ../class-fire-utils_settings_map.php:1309
+#: ../class-fire-utils_settings_map.php:1321
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
@@ -1047,11 +1074,32 @@ msgstr ""
 "Если отмечено, эта опция обрамляет меню хедера/слоган/соцсети свето-серым "
 "цветом."
 
-#: ../class-fire-utils_settings_map.php:1314
+#: ../class-fire-utils_settings_map.php:1326
+msgid "Layout"
+msgstr "Расположение"
+
+#: ../class-fire-utils_settings_map.php:1330
+msgid "Logo / title on the left"
+msgstr "Лого / заголовок слева"
+
+#: ../class-fire-utils_settings_map.php:1331
+msgid "Logo / title centered"
+msgstr "Лого / заголовок по центру"
+
+#: ../class-fire-utils_settings_map.php:1332
+msgid "Logo / title on the right"
+msgstr "Лого / заголовок справа"
+
+#: ../class-fire-utils_settings_map.php:1340
+#, fuzzy
+msgid "Sticky header settings"
+msgstr "Фиксир.-ный хедер: показывать слоган"
+
+#: ../class-fire-utils_settings_map.php:1341
 msgid "Sticky on scroll"
 msgstr "Фиксация при прокручивании"
 
-#: ../class-fire-utils_settings_map.php:1319
+#: ../class-fire-utils_settings_map.php:1346
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
@@ -1059,82 +1107,97 @@ msgstr ""
 "Если отмечено, эта опция делает хедер фиксир.-ым сверху страницы при скролле "
 "вниз."
 
-#: ../class-fire-utils_settings_map.php:1324
+#: ../class-fire-utils_settings_map.php:1351
 msgid "Sticky header : display the tagline"
 msgstr "Фиксир.-ный хедер: показывать слоган"
 
-#: ../class-fire-utils_settings_map.php:1333
+#: ../class-fire-utils_settings_map.php:1360
 msgid "Sticky header : display the title / logo"
 msgstr "Фиксир.-ный хедер: показывать заголовок/Лого"
 
-#: ../class-fire-utils_settings_map.php:1342
+#: ../class-fire-utils_settings_map.php:1369
 msgid "Sticky header : shrink title / logo"
 msgstr "Фиксир.-ный хедер: укоротить заголовок/Лого"
 
-#: ../class-fire-utils_settings_map.php:1351
+#: ../class-fire-utils_settings_map.php:1378
 msgid "Sticky header : display the menu"
 msgstr "Фиксир.-ный хедер: показывать меню"
 
-#: ../class-fire-utils_settings_map.php:1360
+#: ../class-fire-utils_settings_map.php:1387
 msgid "Sticky header : semi-transparent on scroll"
 msgstr "Фиксир.-ный хедер: полупрозрачный при скроле"
 
-#: ../class-fire-utils_settings_map.php:1370
+#: ../class-fire-utils_settings_map.php:1397
 msgid "Set the header z-index"
 msgstr "Определить z-index хедера"
 
-#: ../class-fire-utils_settings_map.php:1378
+#: ../class-fire-utils_settings_map.php:1405
 msgid "What is"
 msgstr "Что такое"
 
-#: ../class-fire-utils_settings_map.php:1379
+#: ../class-fire-utils_settings_map.php:1406
 msgid "the z-index"
 msgstr "z-index"
 
-#: ../class-fire-utils_settings_map.php:1387
+#: ../class-fire-utils_settings_map.php:1414
 msgid "Menu position"
 msgstr "Расположение меню"
 
-#: ../class-fire-utils_settings_map.php:1391
+#: ../class-fire-utils_settings_map.php:1418
 msgid "Menu on the left"
 msgstr "Меню слева"
 
-#: ../class-fire-utils_settings_map.php:1392
+#: ../class-fire-utils_settings_map.php:1419
 msgid "Menu on the right"
 msgstr "Меню справа"
 
-#: ../class-fire-utils_settings_map.php:1400
+#: ../class-fire-utils_settings_map.php:1427
 msgid "Reveal the sub-menus blocks with a fade effect"
 msgstr "Показывать блоки подменю с эффектом затухания"
 
-#: ../class-fire-utils_settings_map.php:1409
+#: ../class-fire-utils_settings_map.php:1436
 msgid "Hover move effect for the sub menu items"
 msgstr "Эффект движения при наведении на отделения подменю"
 
-#: ../class-fire-utils_settings_map.php:1418
+#: ../class-fire-utils_settings_map.php:1445
 msgid ""
 "In responsive mode, limit the height of the dropdown menu block to the "
 "visible viewport"
 msgstr ""
 "В респонсивном виде, ограничьте высоту видимого содержания выпадающего меню "
 
-#: ../class-fire-utils_settings_map.php:1428
+#: ../class-fire-utils_settings_map.php:1455
 msgid "Fade effect on link hover"
 msgstr "Эффект затухания при наведении на ссылку"
 
-#: ../class-fire-utils_settings_map.php:1439
+#: ../class-fire-utils_settings_map.php:1465
+#, fuzzy
+msgid "Display an icon next to external links"
+msgstr "Показывать иконку рядом с заголовком архива"
+
+#: ../class-fire-utils_settings_map.php:1469
+#: ../class-fire-utils_settings_map.php:1480
+msgid ""
+"This will be applied to the links included in post or page content only."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1476
+msgid "Open external links in a new tab"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1487
 msgid "Display the breadcrumb on home page"
 msgstr "Показывать хлебные крошки на главной"
 
-#: ../class-fire-utils_settings_map.php:1447
+#: ../class-fire-utils_settings_map.php:1495
 msgid "Display the breadcrumb in pages"
 msgstr "Показывать хлебные крошки на страницах"
 
-#: ../class-fire-utils_settings_map.php:1456
+#: ../class-fire-utils_settings_map.php:1504
 msgid "Display the breadcrumb in single posts"
 msgstr "Показывать хлебные крошки на отдельных записях"
 
-#: ../class-fire-utils_settings_map.php:1465
+#: ../class-fire-utils_settings_map.php:1513
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
@@ -1142,11 +1205,11 @@ msgstr ""
 "Показывать хлебные крошки в списках записей: страница блога, архивы, "
 "результаты поиска..."
 
-#: ../class-fire-utils_settings_map.php:1476
+#: ../class-fire-utils_settings_map.php:1524
 msgid "Display icons next to titles"
 msgstr "Показывать иконки рядом с заголовками"
 
-#: ../class-fire-utils_settings_map.php:1480
+#: ../class-fire-utils_settings_map.php:1528
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
@@ -1154,19 +1217,19 @@ msgstr ""
 "Если эта опция включена, то контекстная иконка показывается рядом с "
 "заголовками страниц, записей, архивов, и встроенных WP виджетов."
 
-#: ../class-fire-utils_settings_map.php:1486
+#: ../class-fire-utils_settings_map.php:1534
 msgid "Display a page icon next to the page title"
 msgstr "Показывать иконку страницы рядом с заголовком страницы"
 
-#: ../class-fire-utils_settings_map.php:1495
+#: ../class-fire-utils_settings_map.php:1543
 msgid "Display a post icon next to the single post title"
 msgstr "Показывать иконку записи рядом с заголовком отдельной записи"
 
-#: ../class-fire-utils_settings_map.php:1504
+#: ../class-fire-utils_settings_map.php:1552
 msgid "Display an icon next to the archive title"
 msgstr "Показывать иконку рядом с заголовком архива"
 
-#: ../class-fire-utils_settings_map.php:1507
+#: ../class-fire-utils_settings_map.php:1555
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -1178,11 +1241,11 @@ msgstr ""
 "категорией, тегом, автора, даты, собственной таксономией, результатами "
 "поиска."
 
-#: ../class-fire-utils_settings_map.php:1514
+#: ../class-fire-utils_settings_map.php:1562
 msgid "Display an icon next to each post title in an archive page"
 msgstr "Показывать иконку рядом с каждым заголовком записи на странице архива"
 
-#: ../class-fire-utils_settings_map.php:1517
+#: ../class-fire-utils_settings_map.php:1565
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -1192,19 +1255,19 @@ msgstr ""
 "заголовка записи на странице архива. Страницей архива может быть: категория, "
 "тэг, автор, архив даты, собственные таксономии, результаты поиска."
 
-#: ../class-fire-utils_settings_map.php:1524
+#: ../class-fire-utils_settings_map.php:1572
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "WP виджеты в сайдбаре: показывать иконки рядом с заголовками"
 
-#: ../class-fire-utils_settings_map.php:1533
+#: ../class-fire-utils_settings_map.php:1581
 msgid "WP footer widgets : display icons next to titles"
 msgstr "WP виджеты в футере: показывать иконки рядом с заголовками"
 
-#: ../class-fire-utils_settings_map.php:1545
+#: ../class-fire-utils_settings_map.php:1593
 msgid "Display posts metas"
 msgstr "Показывать метаописания записей"
 
-#: ../class-fire-utils_settings_map.php:1548
+#: ../class-fire-utils_settings_map.php:1596
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
@@ -1212,44 +1275,48 @@ msgstr ""
 "Если эта опция отмечена, то метаописания записей (такие как таксономии, дата "
 "и автор)  показываются под заголовками записей."
 
-#: ../class-fire-utils_settings_map.php:1555
+#: ../class-fire-utils_settings_map.php:1603
 msgid "Select the contexts"
 msgstr "Выбрать контексты"
 
-#: ../class-fire-utils_settings_map.php:1556
+#: ../class-fire-utils_settings_map.php:1604
 msgid "Display posts metas on home"
 msgstr "Показывать метаописания записей на домашней"
 
-#: ../class-fire-utils_settings_map.php:1565
+#: ../class-fire-utils_settings_map.php:1613
 msgid "Display posts metas for single posts"
 msgstr "Показывать метаописания записей для отдельных записей"
 
-#: ../class-fire-utils_settings_map.php:1574
+#: ../class-fire-utils_settings_map.php:1622
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr ""
 "Показывать метаописания записей в списках записей (архивы, страница блога)"
 
-#: ../class-fire-utils_settings_map.php:1584
+#: ../class-fire-utils_settings_map.php:1632
 msgid "Select the metas to display"
 msgstr "Выбирите метаописания для показа"
 
-#: ../class-fire-utils_settings_map.php:1585
+#: ../class-fire-utils_settings_map.php:1633
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr "Показ иерархических таксономий (например категорий)"
 
-#: ../class-fire-utils_settings_map.php:1594
+#: ../class-fire-utils_settings_map.php:1642
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr "Показ  не-иерархических таксономий (например тегов)"
 
-#: ../class-fire-utils_settings_map.php:1603
+#: ../class-fire-utils_settings_map.php:1651
 msgid "Display the publication date"
 msgstr "Показать дату публикации"
 
-#: ../class-fire-utils_settings_map.php:1612
+#: ../class-fire-utils_settings_map.php:1659
+msgid "Display the author"
+msgstr "Показывать автора"
+
+#: ../class-fire-utils_settings_map.php:1667
 msgid "Display the update date"
 msgstr "Показывать дату обновления"
 
-#: ../class-fire-utils_settings_map.php:1616
+#: ../class-fire-utils_settings_map.php:1671
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
@@ -1259,27 +1326,27 @@ msgstr ""
 "последней публикации записи (ничего не будет позазано если запись никогда не "
 "была обновлена)."
 
-#: ../class-fire-utils_settings_map.php:1622
+#: ../class-fire-utils_settings_map.php:1677
 msgid "Select the last update format"
 msgstr "Выбирите формат последнего обновления"
 
-#: ../class-fire-utils_settings_map.php:1626
+#: ../class-fire-utils_settings_map.php:1681
 msgid "Nb of days since last update"
 msgstr "Кол.-во дней после последнего обновления"
 
-#: ../class-fire-utils_settings_map.php:1627
+#: ../class-fire-utils_settings_map.php:1682
 msgid "Date of the last update"
 msgstr "Дата последнего обновления"
 
-#: ../class-fire-utils_settings_map.php:1634
-msgid "Display the author"
-msgstr "Показывать автора"
+#: ../class-fire-utils_settings_map.php:1690
+msgid "Recent update notice after post titles"
+msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1642
+#: ../class-fire-utils_settings_map.php:1691
 msgid "Display a recent update notice"
 msgstr "Показывать последнее уведомление об обновлении"
 
-#: ../class-fire-utils_settings_map.php:1646
+#: ../class-fire-utils_settings_map.php:1695
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
@@ -1287,13 +1354,13 @@ msgstr ""
 "Если эта опция отмечена, то показывается редактируемое последнее уведомление "
 "об обновлении  рядом с заголовком записи."
 
-#: ../class-fire-utils_settings_map.php:1652
+#: ../class-fire-utils_settings_map.php:1701
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 "Дать знать если последнее обновление было меньше (строго) чем н дней назад"
 
-#: ../class-fire-utils_settings_map.php:1658
+#: ../class-fire-utils_settings_map.php:1707
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
@@ -1301,51 +1368,51 @@ msgstr ""
 "Установить максимальный интервал (в днях) в течении которого будет "
 "показываться сообщение о последнем обновлении"
 
-#: ../class-fire-utils_settings_map.php:1661
+#: ../class-fire-utils_settings_map.php:1710
 msgid "Recently updated !"
 msgstr "Недавно обновлено !"
 
-#: ../class-fire-utils_settings_map.php:1663
+#: ../class-fire-utils_settings_map.php:1712
 msgid "Update notice text"
 msgstr "Текст сообщения об обновлении"
 
-#: ../class-fire-utils_settings_map.php:1672
+#: ../class-fire-utils_settings_map.php:1721
 msgid "Update notice style"
 msgstr "Стиль сообщения об обновлении"
 
-#: ../class-fire-utils_settings_map.php:1676
+#: ../class-fire-utils_settings_map.php:1725
 msgid "Default (grey)"
 msgstr "По умолчанию (серый)"
 
-#: ../class-fire-utils_settings_map.php:1677
+#: ../class-fire-utils_settings_map.php:1726
 msgid "Success (green)"
 msgstr "Успех (зелёный)"
 
-#: ../class-fire-utils_settings_map.php:1678
+#: ../class-fire-utils_settings_map.php:1727
 msgid "Alert (orange)"
 msgstr "Внимание (ораньжевый)"
 
-#: ../class-fire-utils_settings_map.php:1679
+#: ../class-fire-utils_settings_map.php:1728
 msgid "Important (red)"
 msgstr "Важно (красный)"
 
-#: ../class-fire-utils_settings_map.php:1680
+#: ../class-fire-utils_settings_map.php:1729
 msgid "Info (blue)"
 msgstr "Инфо (голубой)"
 
-#: ../class-fire-utils_settings_map.php:1691
+#: ../class-fire-utils_settings_map.php:1740
 msgid "Set the excerpt length (in number of words) "
 msgstr "Установить длину выдержки (число слов)"
 
-#: ../class-fire-utils_settings_map.php:1701
+#: ../class-fire-utils_settings_map.php:1750
 msgid "Thumbnails options"
 msgstr "Опции миниатюр"
 
-#: ../class-fire-utils_settings_map.php:1702
+#: ../class-fire-utils_settings_map.php:1751
 msgid "Display the post thumbnails"
 msgstr "Показывать миниатюры записей"
 
-#: ../class-fire-utils_settings_map.php:1706
+#: ../class-fire-utils_settings_map.php:1755
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
@@ -1353,131 +1420,184 @@ msgstr ""
 "Если эта опция отмечена, то миниатюры записей показываются во всех списках "
 "записей: блог, архивы, страница автора, страницы поиска, ..."
 
-#: ../class-fire-utils_settings_map.php:1711
+#: ../class-fire-utils_settings_map.php:1760
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
 "Если миниатюра не выбрана, использовать последнее изображение в данной "
 "записи."
 
-#: ../class-fire-utils_settings_map.php:1719
+#: ../class-fire-utils_settings_map.php:1768
 msgid "Thumbnails shape"
 msgstr "Форма миниатюры"
 
-#: ../class-fire-utils_settings_map.php:1723
+#: ../class-fire-utils_settings_map.php:1772
 msgid "Rounded, expand on hover"
 msgstr "Круглый, разширяется при наведении"
 
-#: ../class-fire-utils_settings_map.php:1724
+#: ../class-fire-utils_settings_map.php:1773
 msgid "Rounded, no expansion"
 msgstr "Круглый, не расширяется"
 
-#: ../class-fire-utils_settings_map.php:1725
+#: ../class-fire-utils_settings_map.php:1774
 msgid "Squared, expand on hover"
 msgstr "Квадратный, разширяется при наведении"
 
-#: ../class-fire-utils_settings_map.php:1726
+#: ../class-fire-utils_settings_map.php:1775
 msgid "Squared, no expansion"
 msgstr "Квадратный, не разширяется"
 
-#: ../class-fire-utils_settings_map.php:1727
+#: ../class-fire-utils_settings_map.php:1776
 msgid "Rectangular with no effect"
 msgstr "Прямоугольный без эффектов"
 
-#: ../class-fire-utils_settings_map.php:1728
+#: ../class-fire-utils_settings_map.php:1777
 msgid "Rectangular with blur effect on hover"
 msgstr "Прямоугольный с эффектом размытости при наведении"
 
-#: ../class-fire-utils_settings_map.php:1729
+#: ../class-fire-utils_settings_map.php:1778
 msgid "Rectangular with unblur effect on hover"
 msgstr "Прямоугольный с эффектом резкости при наведении"
 
-#: ../class-fire-utils_settings_map.php:1737
-#: ../class-fire-utils_settings_map.php:1787
+#: ../class-fire-utils_settings_map.php:1786
+#: ../class-fire-utils_settings_map.php:1836
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Установить макс.-ную высоту миниатюры в пикселях"
 
-#: ../class-fire-utils_settings_map.php:1748
+#: ../class-fire-utils_settings_map.php:1797
 msgid "Thumbnails position"
 msgstr "Расположение миниатюры"
 
-#: ../class-fire-utils_settings_map.php:1752
+#: ../class-fire-utils_settings_map.php:1801
 msgid "Top"
 msgstr "Верх"
 
-#: ../class-fire-utils_settings_map.php:1753
+#: ../class-fire-utils_settings_map.php:1802
 msgid "Right"
 msgstr "Droite"
 
-#: ../class-fire-utils_settings_map.php:1754
+#: ../class-fire-utils_settings_map.php:1803
 msgid "Bottom"
 msgstr "Низ"
 
-#: ../class-fire-utils_settings_map.php:1755
+#: ../class-fire-utils_settings_map.php:1804
 msgid "Left"
 msgstr "Gauche"
 
-#: ../class-fire-utils_settings_map.php:1763
+#: ../class-fire-utils_settings_map.php:1812
 msgid "Alternate thumbnail/content"
 msgstr "Чередовать миниатюра/контент"
 
-#: ../class-fire-utils_settings_map.php:1772
+#: ../class-fire-utils_settings_map.php:1821
 msgid "Post thumbnail position"
 msgstr "Расположение миниатюры записи"
 
-#: ../class-fire-utils_settings_map.php:1776
+#: ../class-fire-utils_settings_map.php:1825
 msgid "Don't display"
 msgstr "Не показывать"
 
-#: ../class-fire-utils_settings_map.php:1777
+#: ../class-fire-utils_settings_map.php:1826
 msgid "Before the title in full width"
 msgstr "Перед заголовком, во всю ширину"
 
-#: ../class-fire-utils_settings_map.php:1778
+#: ../class-fire-utils_settings_map.php:1827
 msgid "Before the title boxed"
 msgstr "Перед сворачиванием заголовка"
 
-#: ../class-fire-utils_settings_map.php:1779
+#: ../class-fire-utils_settings_map.php:1828
 msgid "After the title"
 msgstr "После заголовка"
 
-#: ../class-fire-utils_settings_map.php:1798
+#: ../class-fire-utils_settings_map.php:1848
+msgid "Drop caps"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1849
+msgid "Enable drop caps"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1851
+msgid "Apply a drop cap to the first paragraph of your post / page content."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1860
+msgid ""
+"Apply a drop cap when the paragraph includes at least the following number "
+"of words :"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1861
+msgid "(number of words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1871
+msgid "Drop cap style"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1875
+#, fuzzy
+msgid "Skin color with shadow"
+msgstr "Основного цвета"
+
+#: ../class-fire-utils_settings_map.php:1876
+#, fuzzy
+msgid "Simple black"
+msgstr "Мягко чёрный"
+
+#: ../class-fire-utils_settings_map.php:1882
+msgid "Enable drop caps in posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1884
+msgid "Apply a drop cap to the first paragraph of your single posts content"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1891
+#, fuzzy
+msgid "Enable drop caps in pages"
+msgstr "Разрешить комментарии на страницах"
+
+#: ../class-fire-utils_settings_map.php:1893
+msgid "Apply a drop cap to the first paragraph of your pages"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1903
 msgid "Comments bubbles"
 msgstr "Пузырьки комментариев"
 
-#: ../class-fire-utils_settings_map.php:1800
+#: ../class-fire-utils_settings_map.php:1905
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr "Показывать число комментариев в пузырьке рядом с заголовком записи"
 
-#: ../class-fire-utils_settings_map.php:1809
+#: ../class-fire-utils_settings_map.php:1914
 msgid "Comments bubble shape"
 msgstr "Форма пузырька комментария"
 
-#: ../class-fire-utils_settings_map.php:1813
+#: ../class-fire-utils_settings_map.php:1918
 msgid "Small bubbles"
 msgstr "Маленькие пузырьки"
 
-#: ../class-fire-utils_settings_map.php:1814
+#: ../class-fire-utils_settings_map.php:1919
 msgid "Large bubbles"
 msgstr "Большие пузырьки"
 
-#: ../class-fire-utils_settings_map.php:1822
-#: ../class-fire-utils_settings_map.php:1835
+#: ../class-fire-utils_settings_map.php:1927
+#: ../class-fire-utils_settings_map.php:1940
 msgid "Comments bubble color"
 msgstr "Цвет пузырька комментария"
 
-#: ../class-fire-utils_settings_map.php:1826
+#: ../class-fire-utils_settings_map.php:1931
 msgid "Skin color"
 msgstr "Основного цвета"
 
-#: ../class-fire-utils_settings_map.php:1827
+#: ../class-fire-utils_settings_map.php:1932
 msgid "Custom"
 msgstr "Собственный"
 
-#: ../class-fire-utils_settings_map.php:1847
+#: ../class-fire-utils_settings_map.php:1952
 msgid "Other comments settings"
 msgstr "Другие настройки комментариев"
 
-#: ../class-fire-utils_settings_map.php:1853
+#: ../class-fire-utils_settings_map.php:1958
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
@@ -1486,39 +1606,39 @@ msgstr ""
 "запретить комментарии для любой страницы в режиме быстрой правки в списке "
 "страниц на вкладке Страницы."
 
-#: ../class-fire-utils_settings_map.php:1854
+#: ../class-fire-utils_settings_map.php:1959
 msgid "Change other comments settings in the"
 msgstr "Измените другие настройки комментариев на"
 
-#: ../class-fire-utils_settings_map.php:1856
+#: ../class-fire-utils_settings_map.php:1961
 msgid "discussion settings page."
 msgstr "странице настроек дискуссий."
 
-#: ../class-fire-utils_settings_map.php:1863
+#: ../class-fire-utils_settings_map.php:1969
 msgid "Display a back to top arrow on scroll"
 msgstr "Показывать стрелку - Наверх, при прокручивании"
 
-#: ../class-fire-utils_settings_map.php:1910
+#: ../class-fire-utils_settings_map.php:2016
 msgid "Social link title in sidebars"
 msgstr "Заголовок ссылки соцсети в сайбарах"
 
-#: ../class-fire-utils_settings_map.php:1916
+#: ../class-fire-utils_settings_map.php:2022
 msgid "Will be hidden if empty"
 msgstr "Будет скрываться если пустой"
 
-#: ../class-fire-utils_settings_map.php:1936
+#: ../class-fire-utils_settings_map.php:2042
 msgid "Set slider's height in pixels"
 msgstr "Установить высоту слайдера в пикселях"
 
-#: ../class-fire-utils_settings_map.php:1946
+#: ../class-fire-utils_settings_map.php:2052
 msgid "Apply this height to all sliders"
 msgstr "Установить эту высоту для всех слайдеров"
 
-#: ../class-fire-utils_settings_map.php:1954
+#: ../class-fire-utils_settings_map.php:2060
 msgid "Replace the default image slider's height"
 msgstr "Заменить дефолтную высоту изображения слайдера"
 
-#: ../class-fire-utils_settings_map.php:1960
+#: ../class-fire-utils_settings_map.php:2066
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1527,20 +1647,20 @@ msgstr ""
 "изменён в соответствии с выбранной вами высотой. Это хорошо для общих "
 "показателей загрузки."
 
-#: ../class-fire-utils_settings_map.php:1961
+#: ../class-fire-utils_settings_map.php:2067
 msgid "You might want to regenerate your thumbnails."
 msgstr "Вы могли бы регенерировать ваши миниатюры."
 
-#: ../admin/class-admin-customize.php:308
+#: ../admin/class-admin-customize.php:364
 msgid "Hi! This is"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:309
+#: ../admin/class-admin-customize.php:365
 #, fuzzy
 msgid ", developer of the Customizr theme"
 msgstr "Продвинутые настройки для шаблона Customizr."
 
-#: ../admin/class-admin-customize.php:310
+#: ../admin/class-admin-customize.php:368
 #, fuzzy
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
@@ -1551,12 +1671,12 @@ msgstr ""
 "бесплатным шаблоном для Вас!</strong><br/> Пожалуйста, помогите в разработке "
 "шаблона переводом в $20, $50  или даже в $100."
 
-#: ../admin/class-admin-customize.php:311
+#: ../admin/class-admin-customize.php:372
 #, fuzzy
 msgid "Make a donation for Customizr"
 msgstr "Выберите внешний вид для Customizr"
 
-#: ../admin/class-admin-customize.php:312
+#: ../admin/class-admin-customize.php:375
 msgid ""
 "Once clicked the 'Hide forever' button, this donation block will not be "
 "displayed anymore.<br/>Either you are using Customizr for personal or "
@@ -1565,12 +1685,33 @@ msgid ""
 "Live long and prosper with Customizr!</strong>"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:313
+#: ../admin/class-admin-customize.php:376
 msgid "Hide forever"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:314
+#: ../admin/class-admin-customize.php:377
 msgid "Let me think twice"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:386
+msgid "Need more customizations options and premium support ?"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:388
+#: ../admin/class-admin-customize.php:400
+#: ../admin/class-admin-customize.php:412
+#, fuzzy
+msgid "Discover Customizr Pro"
+msgstr "Откройте для себя Customizr : быстрая видео-презентация"
+
+#: ../admin/class-admin-customize.php:398
+msgid ""
+"Need more control on your fonts ? Style any text in live preview ( size, "
+"color, font family, effect, ...) with the Customizr Pro theme."
+msgstr ""
+
+#: ../admin/class-admin-customize.php:410
+msgid "Add unlimited featured pages with Customizr Pro"
 msgstr ""
 
 #: ../admin/class-admin-meta_boxes.php:87
@@ -1779,8 +1920,8 @@ msgstr "Линк кнопки"
 #: ../parts/class-content-breadcrumb.php:693
 #: ../parts/class-content-breadcrumb.php:721
 #: ../parts/class-content-comments.php:160
-#: ../parts/class-content-featured_pages.php:249
-#: ../parts/class-content-headings.php:246
+#: ../parts/class-content-featured_pages.php:251
+#: ../parts/class-content-headings.php:247
 #: ../parts/class-content-slider.php:359
 msgid "Edit"
 msgstr "Править"
@@ -1809,36 +1950,38 @@ msgstr "Загрузка"
 msgid "Remove"
 msgstr "Убрать"
 
-#: ../admin/class-fire-admin_init.php:55 ../admin/class-fire-admin_init.php:56
+#: ../admin/class-fire-admin_init.php:84 ../admin/class-fire-admin_init.php:85
 msgid "Upgrade WP"
 msgstr "Обновить WordPress"
 
-#: ../admin/class-fire-admin_init.php:75
+#: ../admin/class-fire-admin_init.php:104
 msgid "This theme requires WordPress 3.4+"
 msgstr "Для этой темы нужен WordPress 3.4+"
 
-#: ../admin/class-fire-admin_init.php:78 ../admin/class-fire-admin_init.php:79
+#: ../admin/class-fire-admin_init.php:107
+#: ../admin/class-fire-admin_init.php:108
 msgid "Upgrade Wordpress Now"
 msgstr "Обновите WordPress сейчас"
 
-#: ../admin/class-fire-admin_init.php:96 ../admin/class-fire-admin_init.php:97
-#: ../admin/class-fire-admin_page.php:37 ../admin/class-fire-admin_page.php:38
+#: ../admin/class-fire-admin_init.php:125
+#: ../admin/class-fire-admin_init.php:126
+#: ../admin/class-fire-admin_page.php:40
 msgid "About Customizr"
 msgstr "Про Customizr"
 
-#: ../admin/class-fire-admin_init.php:119
-#: ../admin/class-fire-admin_page.php:61
+#: ../admin/class-fire-admin_init.php:148
+#: ../admin/class-fire-admin_page.php:68
 msgid "Need help with Customizr ?"
 msgstr "Нужна помощь с  Customizr ?"
 
-#: ../admin/class-fire-admin_init.php:121
-#: ../admin/class-fire-admin_page.php:63
+#: ../admin/class-fire-admin_init.php:150
+#: ../admin/class-fire-admin_page.php:70
 #, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Добро пожаловать в  Customizr %s"
 
-#: ../admin/class-fire-admin_init.php:128
-#: ../admin/class-fire-admin_page.php:70
+#: ../admin/class-fire-admin_init.php:157
+#: ../admin/class-fire-admin_page.php:78
 #, php-format
 msgid ""
 "You can start by watching the <a href=\"%1$s\" target=\"_blank"
@@ -1855,28 +1998,27 @@ msgstr ""
 "проблемы и баги на пользовательском форуме, многие решения Вы сможете найти "
 "там или проверте FAQ.  "
 
-#: ../admin/class-fire-admin_init.php:136
-#: ../admin/class-fire-admin_page.php:78
+#: ../admin/class-fire-admin_init.php:165
+#: ../admin/class-fire-admin_page.php:86
 msgid "Read the documentation"
 msgstr "Читайте документацию"
 
-#: ../admin/class-fire-admin_init.php:140
-#: ../admin/class-fire-admin_page.php:82
+#: ../admin/class-fire-admin_init.php:169
+#: ../admin/class-fire-admin_page.php:90
 msgid "Check the FAQ"
 msgstr "Посмотрите FAQ"
 
-#: ../admin/class-fire-admin_init.php:145
-#: ../admin/class-fire-admin_page.php:87
+#: ../admin/class-fire-admin_init.php:174
+#: ../admin/class-fire-admin_page.php:95
 msgid "Code snippets"
 msgstr "Сниппеты кода"
 
-#: ../admin/class-fire-admin_init.php:148
-#: ../admin/class-fire-admin_page.php:90
+#: ../admin/class-fire-admin_init.php:177
 msgid "Discuss in the user forum"
 msgstr "Обсудите на форуме"
 
-#: ../admin/class-fire-admin_init.php:156
-#: ../admin/class-fire-admin_page.php:98
+#: ../admin/class-fire-admin_init.php:185
+#: ../admin/class-fire-admin_page.php:106
 #, php-format
 msgid ""
 "Thank you for using Customizr! Customizr %1$s has more features, is safer "
@@ -1892,8 +2034,8 @@ msgstr ""
 "видео</a> и находите вдохновение на <a href=\"#showcase\">шоукейсе</a>.<br/> "
 "Наслаждайтесь!"
 
-#: ../admin/class-fire-admin_init.php:170
-#: ../admin/class-fire-admin_page.php:112
+#: ../admin/class-fire-admin_init.php:199
+#: ../admin/class-fire-admin_page.php:120
 #, php-format
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
@@ -1902,13 +2044,13 @@ msgstr ""
 "Вы используете дочернюю тему Customizr %1$s :  всегда проверяйте %2$s после "
 "обновления на предмет устаревания функции или файла шаблона."
 
-#: ../admin/class-fire-admin_init.php:185
-#: ../admin/class-fire-admin_page.php:127
+#: ../admin/class-fire-admin_init.php:214
+#: ../admin/class-fire-admin_page.php:137
 msgid "We need sponsors!"
 msgstr "Требуются спонсоры!"
 
-#: ../admin/class-fire-admin_init.php:186
-#: ../admin/class-fire-admin_page.php:128
+#: ../admin/class-fire-admin_init.php:215
+#: ../admin/class-fire-admin_page.php:138
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
 "strong><br/> Please help support it's continued development with a donation "
@@ -1918,13 +2060,13 @@ msgstr ""
 "бесплатным шаблоном для Вас!</strong><br/> Пожалуйста, помогите в разработке "
 "шаблона переводом в $20, $50  или даже в $100."
 
-#: ../admin/class-fire-admin_init.php:193
-#: ../admin/class-fire-admin_page.php:135
+#: ../admin/class-fire-admin_init.php:222
+#: ../admin/class-fire-admin_page.php:145
 msgid "Happy user of Customizr?"
 msgstr "Счастливый обладатель Customizr?"
 
-#: ../admin/class-fire-admin_init.php:194
-#: ../admin/class-fire-admin_page.php:136
+#: ../admin/class-fire-admin_init.php:223
+#: ../admin/class-fire-admin_page.php:146
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
@@ -1932,30 +2074,30 @@ msgstr ""
 "Если Вы довольны данным шаблоном, скажите об этом на wordpress.org, опишите "
 "свой Customizr! <br /> (Мы любим фидбеки...) "
 
-#: ../admin/class-fire-admin_init.php:199
-#: ../admin/class-fire-admin_page.php:141
+#: ../admin/class-fire-admin_init.php:228
+#: ../admin/class-fire-admin_page.php:151
 msgid "Follow us"
 msgstr "Следите за нами"
 
-#: ../admin/class-fire-admin_init.php:207
-#: ../admin/class-fire-admin_page.php:149
+#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_page.php:160
 msgid "Customizr's extensions"
 msgstr "Расширения Кастомайзера"
 
-#: ../admin/class-fire-admin_init.php:210
-#: ../admin/class-fire-admin_init.php:219
-#: ../admin/class-fire-admin_page.php:152
-#: ../admin/class-fire-admin_page.php:161
+#: ../admin/class-fire-admin_init.php:239
+#: ../admin/class-fire-admin_init.php:248
+#: ../admin/class-fire-admin_page.php:163
+#: ../admin/class-fire-admin_page.php:172
 msgid "Visit the extension's page"
 msgstr "Перейти на страницу с расширениями"
 
-#: ../admin/class-fire-admin_init.php:211
-#: ../admin/class-fire-admin_page.php:153
+#: ../admin/class-fire-admin_init.php:240
+#: ../admin/class-fire-admin_page.php:164
 msgid "Easily take your web design one step further"
 msgstr "Приблизьте Ваш вебдизайн ещё на один шаг к совершенству"
 
-#: ../admin/class-fire-admin_init.php:212
-#: ../admin/class-fire-admin_page.php:154
+#: ../admin/class-fire-admin_init.php:241
+#: ../admin/class-fire-admin_page.php:165
 msgid ""
 "The Customizr's extensions are plugins developed to extend the Customizr "
 "theme with great features. Nicely integrated with the theme's built-in "
@@ -1967,8 +2109,8 @@ msgstr ""
 "они легко могут быть включены или выключены без последствий для текущих "
 "настроек или модификаций."
 
-#: ../admin/class-fire-admin_init.php:214
-#: ../admin/class-fire-admin_page.php:156
+#: ../admin/class-fire-admin_init.php:243
+#: ../admin/class-fire-admin_page.php:167
 msgid ""
 "These modules are designed to be simple to use for everyone. They are a good "
 "solution to add some creative customizations whitout needing to dive into "
@@ -1978,8 +2120,8 @@ msgstr ""
 "хорошим решением для добавления некоторого креатива без надобности "
 "погружаться в код."
 
-#: ../admin/class-fire-admin_init.php:216
-#: ../admin/class-fire-admin_page.php:158
+#: ../admin/class-fire-admin_init.php:245
+#: ../admin/class-fire-admin_page.php:169
 msgid ""
 "Customizr's extensions are installed and upgraded from your WordPress admin, "
 "like any other WordPress plugins. Well documented and easily extendable with "
@@ -1991,25 +2133,25 @@ msgstr ""
 "данным продуктом вопросам можно обращяться на форум на сайте themesandco.com "
 "(если Вы владеете английским)."
 
-#: ../admin/class-fire-admin_init.php:225
-#: ../admin/class-fire-admin_page.php:167
+#: ../admin/class-fire-admin_init.php:254
+#: ../admin/class-fire-admin_page.php:179
 msgid "Customizr Showcase"
 msgstr "Customizer шоукейс"
 
-#: ../admin/class-fire-admin_init.php:228
-#: ../admin/class-fire-admin_init.php:235
-#: ../admin/class-fire-admin_page.php:170
-#: ../admin/class-fire-admin_page.php:177
+#: ../admin/class-fire-admin_init.php:257
+#: ../admin/class-fire-admin_init.php:264
+#: ../admin/class-fire-admin_page.php:182
+#: ../admin/class-fire-admin_page.php:189
 msgid "Visit the showcase"
 msgstr "Посмотрите шоукейс"
 
-#: ../admin/class-fire-admin_init.php:229
-#: ../admin/class-fire-admin_page.php:171
+#: ../admin/class-fire-admin_init.php:258
+#: ../admin/class-fire-admin_page.php:183
 msgid "Find inspiration for your next Customizr based website!"
 msgstr "Найдите вдохновение для Вашего следующего Customizr сайта!"
 
-#: ../admin/class-fire-admin_init.php:230
-#: ../admin/class-fire-admin_page.php:172
+#: ../admin/class-fire-admin_init.php:259
+#: ../admin/class-fire-admin_page.php:184
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
@@ -2017,8 +2159,8 @@ msgstr ""
 "Эти примеры призваны показать, что можно делать с Customizr и вдохновить "
 "вебдизайнеров на новые свершения."
 
-#: ../admin/class-fire-admin_init.php:232
-#: ../admin/class-fire-admin_page.php:174
+#: ../admin/class-fire-admin_init.php:261
+#: ../admin/class-fire-admin_page.php:186
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
@@ -2026,32 +2168,37 @@ msgstr ""
 "Вы считаете, что Вы сделали потрясающий сайт, который сможет впечатлить "
 "всех? Предложить свой сайт для выставки примеров быстро и просто."
 
-#: ../admin/class-fire-admin_init.php:242
-#: ../admin/class-fire-admin_page.php:244
+#: ../admin/class-fire-admin_init.php:271
+#: ../admin/class-fire-admin_page.php:256
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Журнал изменений в версии %1$s"
 
-#: ../admin/class-fire-admin_init.php:251
-#: ../admin/class-fire-admin_page.php:186
+#: ../admin/class-fire-admin_init.php:280
+#: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard &rarr; Home"
 msgstr "В панель опций  &rarr; На главную"
 
-#: ../admin/class-fire-admin_init.php:251
-#: ../admin/class-fire-admin_page.php:186
+#: ../admin/class-fire-admin_init.php:280
+#: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard"
 msgstr "В панель опций"
 
-#: ../admin/class-fire-admin_page.php:261
+#: ../admin/class-fire-admin_page.php:98
+#, fuzzy
+msgid "Get support in the forum"
+msgstr "Обсудите на форуме"
+
+#: ../admin/class-fire-admin_page.php:273
 msgid "System Informations"
 msgstr "Информация о системе"
 
-#: ../admin/class-fire-admin_page.php:262
+#: ../admin/class-fire-admin_page.php:274
 msgid "Please include the following informations when posting support requests"
 msgstr ""
 "Пожалуйста, когда обращаетесь в поддержку предоставьте следующую информацию"
 
-#: ../admin/class-fire-admin_page.php:263
+#: ../admin/class-fire-admin_page.php:275
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
@@ -2198,19 +2345,19 @@ msgstr "Комментарии закрыты"
 msgid "Leave a comment"
 msgstr "Оставьте комментарий"
 
-#: ../parts/class-content-featured_pages.php:125
+#: ../parts/class-content-featured_pages.php:127
 msgid "Customizer screen"
 msgstr "Панель Customizer"
 
-#: ../parts/class-content-featured_pages.php:125
+#: ../parts/class-content-featured_pages.php:127
 msgid " here"
 msgstr "здесь"
 
-#: ../parts/class-content-featured_pages.php:129
+#: ../parts/class-content-featured_pages.php:131
 msgid "Featured page"
 msgstr "Страница под слайдером"
 
-#: ../parts/class-content-featured_pages.php:132
+#: ../parts/class-content-featured_pages.php:134
 #, php-format
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
@@ -2223,69 +2370,69 @@ msgstr ""
 msgid "Missing Attachment"
 msgstr "Недостающее вложение"
 
-#: ../parts/class-content-headings.php:169
-#: ../parts/class-content-headings.php:174
+#: ../parts/class-content-headings.php:170
+#: ../parts/class-content-headings.php:175
 msgid "{no title} Read the post &raquo;"
 msgstr "{no title}  Читать пост &raquo;"
 
-#: ../parts/class-content-headings.php:173
+#: ../parts/class-content-headings.php:174
 #, php-format
 msgid "Permalink to %s"
 msgstr "Пермалинк к %s"
 
-#: ../parts/class-content-headings.php:216
+#: ../parts/class-content-headings.php:217
 msgid "Comment(s) on"
 msgstr "Комментарий (ии) к"
 
-#: ../parts/class-content-headings.php:322
+#: ../parts/class-content-headings.php:323
 msgid "Ooops, page not found"
 msgstr "Упс, страница не найдена"
 
-#: ../parts/class-content-headings.php:333
+#: ../parts/class-content-headings.php:334
 msgid "No"
 msgstr "Нет"
 
-#: ../parts/class-content-headings.php:334
+#: ../parts/class-content-headings.php:335
 msgid "Search Results for :"
 msgstr "Результатов поиска для :"
 
-#: ../parts/class-content-headings.php:349
+#: ../parts/class-content-headings.php:350
 msgid "Author Archives :"
 msgstr "Архивы по авторам: "
 
-#: ../parts/class-content-headings.php:363 ../parts/class-content-post.php:161
+#: ../parts/class-content-headings.php:364 ../parts/class-content-post.php:161
 #, php-format
 msgid "About %s"
 msgstr "Про %s"
 
-#: ../parts/class-content-headings.php:376
+#: ../parts/class-content-headings.php:377
 msgid "Category Archives :"
 msgstr "Категория: "
 
-#: ../parts/class-content-headings.php:392
+#: ../parts/class-content-headings.php:393
 msgid "Tag Archives :"
 msgstr "Архивы по тегам: "
 
-#: ../parts/class-content-headings.php:405
+#: ../parts/class-content-headings.php:406
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Архивы по дням: %s"
 
-#: ../parts/class-content-headings.php:405
+#: ../parts/class-content-headings.php:406
 msgid "Archives"
 msgstr "Архивы"
 
-#: ../parts/class-content-headings.php:406
+#: ../parts/class-content-headings.php:407
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Архивы по месяцам: %s"
 
-#: ../parts/class-content-headings.php:407
+#: ../parts/class-content-headings.php:408
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Архивы по годам: %s"
 
-#: ../parts/class-content-headings.php:472
+#: ../parts/class-content-headings.php:477
 msgid "comment"
 msgstr "комментарий"
 
@@ -2420,13 +2567,16 @@ msgstr "Новые посты  <span class=\"meta-nav\">&rarr;</span>"
 msgid "Back to top"
 msgstr "Наверх"
 
-#: ../parts/class-header-header_main.php:254
+#: ../parts/class-header-header_main.php:256
 msgid "Back Home"
 msgstr "Назад на главную"
 
-#: ../parts/class-header-menu.php:126
+#: ../parts/class-header-menu.php:129
 msgid "Add a menu"
 msgstr "Добавить меню"
+
+#~ msgid "Header : title, logo, menu, ..."
+#~ msgstr "Хедер: title, Лого, меню,..."
 
 #~ msgid ""
 #~ "Always use this field to add your custom css instead of editing directly "
@@ -2556,9 +2706,6 @@ msgstr "Добавить меню"
 #~ "\">обучающее видео</a> и находите вдохновение на <a href=\"#showcase"
 #~ "\">шоукейсе</a>.<br/> Наслаждайтесь!"
 
-#~ msgid "Discover Customizr : quick video introduction"
-#~ msgstr "Откройте для себя Customizr : быстрая видео-презентация"
-
 #~ msgid ""
 #~ "Welcome to the new version of Customizr. You will be redirected to the "
 #~ "About screen. If not, click <a href=\"%1$s\">here</a>."
@@ -2641,9 +2788,6 @@ msgstr "Добавить меню"
 
 #~ msgid "three"
 #~ msgstr "Три"
-
-#~ msgid "header"
-#~ msgstr "Хедер"
 
 #~ msgid "right-sidebar"
 #~ msgstr "правый-сайдбар"

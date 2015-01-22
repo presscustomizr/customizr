@@ -261,6 +261,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     },
     'tc_theme_options[tc_enable_dropcap]' : {
       controls: [
+        'tc_theme_options[tc_dropcap_minwords]',
         'tc_theme_options[tc_dropcap_design]',
         'tc_theme_options[tc_post_dropcap]',
         'tc_theme_options[tc_page_dropcap]'

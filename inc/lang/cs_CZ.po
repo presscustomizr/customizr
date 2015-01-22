@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.2.11\n"
+"Project-Id-Version: * Customizr v3.2.12\n"
 "Report-Msgid-Bugs-To: http://themesandco.com/contact/\n"
-"POT-Creation-Date: 2014-12-21 17:19+0100\n"
-"PO-Revision-Date: 2014-12-21 17:19+0100\n"
+"POT-Creation-Date: 2015-01-21 16:42+0100\n"
+"PO-Revision-Date: 2015-01-21 16:42+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Martin Filák <martin.filak@gmail.com>\n"
 "Language: cs_CZ\n"
@@ -109,170 +109,171 @@ msgid "Web safe fonts pairs"
 msgstr ""
 
 #: ../class-fire-init.php:152
-msgid "Single default font"
-msgstr ""
+#, fuzzy
+msgid "Single fonts"
+msgstr "Stránka příspěvku"
 
-#: ../class-fire-init.php:171
+#: ../class-fire-init.php:190
 msgid "Subscribe to my rss feed"
 msgstr "Přihlásit k RSS odběrům"
 
-#: ../class-fire-init.php:172
+#: ../class-fire-init.php:191
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "RSS zdroj (přednastaven je wordpress odběr)"
 
-#: ../class-fire-init.php:176
+#: ../class-fire-init.php:195
 msgid "Follow me on Twitter"
 msgstr "Sledujte nás na Twitteru"
 
-#: ../class-fire-init.php:177
+#: ../class-fire-init.php:196
 msgid "Twitter profile url"
 msgstr "url adresa profilu na Twitteru"
 
-#: ../class-fire-init.php:181
+#: ../class-fire-init.php:200
 msgid "Follow me on Facebook"
 msgstr "Sledujte nás na Facebooku"
 
-#: ../class-fire-init.php:182
+#: ../class-fire-init.php:201
 msgid "Facebook profile url"
 msgstr "url adresa profilu na Facebooku"
 
-#: ../class-fire-init.php:186
+#: ../class-fire-init.php:205
 msgid "Follow me on Google+"
 msgstr "Sledujte nás na Google+"
 
-#: ../class-fire-init.php:187
+#: ../class-fire-init.php:206
 msgid "Google+ profile url"
 msgstr "url adresa Google+ profilu"
 
-#: ../class-fire-init.php:191
+#: ../class-fire-init.php:210
 msgid "Follow me on Instagram"
 msgstr "Sledujte nás na Instagramu"
 
-#: ../class-fire-init.php:192
+#: ../class-fire-init.php:211
 msgid "Instagram profile url"
 msgstr "url adresa profilu na Instagram"
 
-#: ../class-fire-init.php:196
+#: ../class-fire-init.php:215
 msgid "Follow me on Tumblr"
 msgstr "Sledujte nás na Tumblru"
 
-#: ../class-fire-init.php:197
+#: ../class-fire-init.php:216
 msgid "Tumblr url"
 msgstr "Url adresa Tumblr"
 
-#: ../class-fire-init.php:201
+#: ../class-fire-init.php:220
 msgid "Follow me on Flickr"
 msgstr "Sledujte nás na Flickeru"
 
-#: ../class-fire-init.php:202
+#: ../class-fire-init.php:221
 msgid "Flickr url"
 msgstr "Url adresa Flicker"
 
-#: ../class-fire-init.php:206
+#: ../class-fire-init.php:225
 msgid "Follow me on WordPress"
 msgstr "Sledujte nás na WordPressu"
 
-#: ../class-fire-init.php:207
+#: ../class-fire-init.php:226
 msgid "WordPress profile url"
 msgstr "url adresa profilu na WordPress"
 
-#: ../class-fire-init.php:211
+#: ../class-fire-init.php:230
 msgid "Follow me on Youtube"
 msgstr "Sledujte nás na Youtube"
 
-#: ../class-fire-init.php:212
+#: ../class-fire-init.php:231
 msgid "Youtube profile url"
 msgstr "url adresa profilu na Youtube"
 
-#: ../class-fire-init.php:216
+#: ../class-fire-init.php:235
 msgid "Pin me on Pinterest"
 msgstr "Sledujte nás na Pinterest"
 
-#: ../class-fire-init.php:217
+#: ../class-fire-init.php:236
 msgid "Pinterest profile url"
 msgstr "url adresa profilu na Pinterest"
 
-#: ../class-fire-init.php:221
+#: ../class-fire-init.php:240
 msgid "Follow me on Github"
 msgstr "Sledujte nás na Github"
 
-#: ../class-fire-init.php:222
+#: ../class-fire-init.php:241
 msgid "Github profile url"
 msgstr "url adresa profilu na Github"
 
-#: ../class-fire-init.php:226
+#: ../class-fire-init.php:245
 msgid "Follow me on Dribbble"
 msgstr "Sledujte nás na Dribbble"
 
-#: ../class-fire-init.php:227
+#: ../class-fire-init.php:246
 msgid "Dribbble profile url"
 msgstr "url adresa profilu na Dribbble"
 
-#: ../class-fire-init.php:231
+#: ../class-fire-init.php:250
 msgid "Follow me on LinkedIn"
 msgstr "Sledujte nás na LinkedIn"
 
-#: ../class-fire-init.php:232
+#: ../class-fire-init.php:251
 msgid "LinkedIn profile url"
 msgstr "url adresa profilu na LinkedIn"
 
-#: ../class-fire-init.php:241
+#: ../class-fire-init.php:260
 msgid "Right Sidebar"
 msgstr "Pravý boční panel"
 
-#: ../class-fire-init.php:242 ../class-fire-init.php:246
+#: ../class-fire-init.php:261 ../class-fire-init.php:265
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr ""
 "Zobrazí se v příspěvcích, statických stránkách, archívech a stránkách "
 "vyhledávání"
 
-#: ../class-fire-init.php:245
+#: ../class-fire-init.php:264
 msgid "Left Sidebar"
 msgstr "Levý boční panel"
 
-#: ../class-fire-init.php:253
+#: ../class-fire-init.php:272
 msgid "Footer Widget Area One"
 msgstr "Prvníwiget paticky"
 
-#: ../class-fire-init.php:254 ../class-fire-init.php:258
-#: ../class-fire-init.php:262
+#: ../class-fire-init.php:273 ../class-fire-init.php:277
+#: ../class-fire-init.php:281
 msgid "Just use it as you want !"
 msgstr "Stačí použít tak, jak chcete!"
 
-#: ../class-fire-init.php:257
+#: ../class-fire-init.php:276
 msgid "Footer Widget Area Two"
 msgstr "Druhý wiget paticky"
 
-#: ../class-fire-init.php:261
+#: ../class-fire-init.php:280
 msgid "Footer Widget Area Three"
 msgstr "Třetí wiget paticky"
 
-#: ../class-fire-init.php:279
+#: ../class-fire-init.php:298
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr "Říkat pravdu v čase všeobecného klamu je revoluční čin."
 
-#: ../class-fire-init.php:280
+#: ../class-fire-init.php:299
 msgid "George Orwell"
 msgstr "George Orwell"
 
-#: ../class-fire-init.php:281
+#: ../class-fire-init.php:300
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
 "Je nám líto, ale požadovaná stránka nebyla nalezena. Můžete zkusit nové "
 "hledání."
 
-#: ../class-fire-init.php:286
+#: ../class-fire-init.php:305
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
 msgstr "Úspěch je jít od jednoho neúspěchu k druhému bez ztráty nadšení. "
 
-#: ../class-fire-init.php:287
+#: ../class-fire-init.php:306
 msgid "Sir Winston Churchill"
 msgstr "Sir Winston Churchill"
 
-#: ../class-fire-init.php:288
+#: ../class-fire-init.php:307
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
@@ -280,15 +281,15 @@ msgstr ""
 "Je nám líto, ale zadaným kritériím nic neodpovídá. Zkuste, prosím, hledat "
 "znovu s jinými klíčovými slovy."
 
-#: ../class-fire-init.php:303
+#: ../class-fire-init.php:322
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr je čisté a přehledné téma"
 
-#: ../class-fire-init.php:308 ../class-fire-init.php:317
+#: ../class-fire-init.php:327 ../class-fire-init.php:336
 msgid "Style your WordPress site live!"
 msgstr "Upravte si Vaši WordPress stránku!"
 
-#: ../class-fire-init.php:309
+#: ../class-fire-init.php:328
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -296,15 +297,15 @@ msgstr ""
 "Hodně nastavení rozložení a vzhledů je přístupných přímo z Wordpress "
 "náhledové stránky: sledujte Vaše změny živě!"
 
-#: ../class-fire-init.php:310
+#: ../class-fire-init.php:329
 msgid "Just try it!"
 msgstr "Stačí to zkusit!"
 
-#: ../class-fire-init.php:322 ../class-fire-init.php:331
+#: ../class-fire-init.php:341 ../class-fire-init.php:350
 msgid "Create beautiful sliders"
 msgstr "Vytvořte nádherné slidery"
 
-#: ../class-fire-init.php:323
+#: ../class-fire-init.php:342
 msgid ""
 "Customizr comes with a cool slider generator : add a slider to any post or "
 "page!"
@@ -312,23 +313,23 @@ msgstr ""
 "Customizr přichází s krásným generátorem sliderů: přidejte slider na "
 "jakýkoliv příspěvek nebo stránku!"
 
-#: ../class-fire-init.php:324
+#: ../class-fire-init.php:343
 msgid "Discover the features"
 msgstr "Objevte funkce"
 
-#: ../class-fire-init.php:441
+#: ../class-fire-init.php:455
 msgid "Main Menu"
 msgstr "Hlavní menu"
 
-#: ../class-fire-init.php:830
+#: ../class-fire-init.php:880
 msgid "Help"
 msgstr "Pomoc"
 
-#: ../class-fire-init.php:833
+#: ../class-fire-init.php:883
 msgid "Need help with Customizr? Click here!"
 msgstr "Potřebujete pomoct s tématem Customizr? Klikněte zde!"
 
-#: ../class-fire-utils.php:403
+#: ../class-fire-utils.php:417
 #, php-format
 msgid "Page %s"
 msgstr "Stránka %s"
@@ -392,8 +393,8 @@ msgid "Global settings for the Customizr theme :skin, socials, links..."
 msgstr "Globání nastavení Customizr šablony :vzhled, sociální, odkazy..."
 
 #: ../class-fire-utils_settings_map.php:248
-msgid "Header : title, logo, menu, ..."
-msgstr "Hlavička : titulek, logo, menu, ..."
+msgid "Header"
+msgstr ""
 
 #: ../class-fire-utils_settings_map.php:249
 msgid "Header settings for the Customizr theme."
@@ -424,63 +425,63 @@ msgid "Advanced settings for the Customizr theme."
 msgstr "pokročílá nastavení pro Customizr šablonu."
 
 #: ../class-fire-utils_settings_map.php:288
-#: ../class-fire-utils_settings_map.php:996
+#: ../class-fire-utils_settings_map.php:1009
 msgid "Skin"
 msgstr "Vzhled"
 
 #: ../class-fire-utils_settings_map.php:290
-#: ../class-fire-utils_settings_map.php:998
+#: ../class-fire-utils_settings_map.php:1011
 msgid "Select a skin for Customizr"
 msgstr "Vyberte vzhled pro Customizr"
 
 #: ../class-fire-utils_settings_map.php:294
-#: ../class-fire-utils_settings_map.php:1048
+#: ../class-fire-utils_settings_map.php:1003
 msgid "Logo &amp; Favicon"
 msgstr "Logo a Ikona"
 
 #: ../class-fire-utils_settings_map.php:296
-#: ../class-fire-utils_settings_map.php:1050
+#: ../class-fire-utils_settings_map.php:1005
 msgid "Set up logo and favicon options"
 msgstr "Nastavení­ loga a ikony"
 
 #: ../class-fire-utils_settings_map.php:300
-#: ../class-fire-utils_settings_map.php:1062
+#: ../class-fire-utils_settings_map.php:1070
 msgid "Front Page"
 msgstr "Úvodní stránka"
 
 #: ../class-fire-utils_settings_map.php:302
-#: ../class-fire-utils_settings_map.php:1064
+#: ../class-fire-utils_settings_map.php:1072
 msgid "Set up front page options"
 msgstr "Nastavení úvodní stránky"
 
 #: ../class-fire-utils_settings_map.php:306
-#: ../class-fire-utils_settings_map.php:1069
+#: ../class-fire-utils_settings_map.php:1077
 msgid "Pages &amp; Posts Layout"
 msgstr "Rozložení úvodních stránek a příspěvků"
 
 #: ../class-fire-utils_settings_map.php:308
-#: ../class-fire-utils_settings_map.php:1071
+#: ../class-fire-utils_settings_map.php:1079
 msgid "Set up layout options"
 msgstr "Nastavení­ rozložení"
 
 #: ../class-fire-utils_settings_map.php:312
-#: ../class-fire-utils_settings_map.php:1108
+#: ../class-fire-utils_settings_map.php:1122
 msgid "Comments"
 msgstr "Komentáře"
 
 #: ../class-fire-utils_settings_map.php:314
-#: ../class-fire-utils_settings_map.php:1110
+#: ../class-fire-utils_settings_map.php:1124
 msgid "Set up comments options"
 msgstr "Nastavení­ komentářů"
 
 #: ../class-fire-utils_settings_map.php:318
-#: ../class-fire-utils_settings_map.php:1008
-#: ../class-fire-utils_settings_map.php:1909
+#: ../class-fire-utils_settings_map.php:1021
+#: ../class-fire-utils_settings_map.php:2015
 msgid "Social links"
 msgstr "Sociální sítě"
 
 #: ../class-fire-utils_settings_map.php:320
-#: ../class-fire-utils_settings_map.php:1010
+#: ../class-fire-utils_settings_map.php:1023
 msgid "Set up your social links"
 msgstr "Nastavení sociálních sítí"
 
@@ -489,7 +490,7 @@ msgid "Images"
 msgstr "Obrázky"
 
 #: ../class-fire-utils_settings_map.php:326
-#: ../class-fire-utils_settings_map.php:1028
+#: ../class-fire-utils_settings_map.php:1041
 msgid "Various images settings"
 msgstr "Nastavení obrázků"
 
@@ -498,27 +499,27 @@ msgid "Links"
 msgstr "Odkazy"
 
 #: ../class-fire-utils_settings_map.php:332
-#: ../class-fire-utils_settings_map.php:1016
+#: ../class-fire-utils_settings_map.php:1029
 msgid "Various links settings"
 msgstr "Nastavení odkazů"
 
 #: ../class-fire-utils_settings_map.php:336
-#: ../class-fire-utils_settings_map.php:1120
+#: ../class-fire-utils_settings_map.php:1134
 msgid "Custom CSS"
 msgstr "Vlastní­ CSS"
 
 #: ../class-fire-utils_settings_map.php:338
-#: ../class-fire-utils_settings_map.php:1122
+#: ../class-fire-utils_settings_map.php:1136
 msgid "Add your own CSS"
 msgstr "Přidat vlastní CSS"
 
 #: ../class-fire-utils_settings_map.php:342
-#: ../class-fire-utils_settings_map.php:1032
+#: ../class-fire-utils_settings_map.php:1045
 msgid "Responsive settings"
 msgstr "Nastavení respozivity"
 
 #: ../class-fire-utils_settings_map.php:344
-#: ../class-fire-utils_settings_map.php:1034
+#: ../class-fire-utils_settings_map.php:1047
 msgid "Various settings for responsive display"
 msgstr "Různá nastavení pro citlivá zobrazení"
 
@@ -526,146 +527,151 @@ msgstr "Různá nastavení pro citlivá zobrazení"
 msgid "Manage menus"
 msgstr "Sparvovat menu"
 
-#: ../class-fire-utils_settings_map.php:379
+#: ../class-fire-utils_settings_map.php:380
+#, fuzzy
+msgid "Design and effects"
+msgstr "Zvolte obsah a rozložení"
+
+#: ../class-fire-utils_settings_map.php:381
 msgid "Select a submenu expansion option"
 msgstr "Zvolte nastavení­ rozbalení­ podmenu"
 
-#: ../class-fire-utils_settings_map.php:383
+#: ../class-fire-utils_settings_map.php:385
 msgid "Expand submenus on click"
 msgstr "Rozbalit podmenu po kliknutí­"
 
-#: ../class-fire-utils_settings_map.php:384
+#: ../class-fire-utils_settings_map.php:386
 msgid "Expand submenus on hover"
 msgstr "Rozbalit podmenu po ukázání"
 
-#: ../class-fire-utils_settings_map.php:400
+#: ../class-fire-utils_settings_map.php:402
 msgid "Choose a predefined skin"
 msgstr "Zvolte předdefinovaný vzhled"
 
-#: ../class-fire-utils_settings_map.php:410
+#: ../class-fire-utils_settings_map.php:412
 msgid "Performance : use the minified CSS stylesheet"
 msgstr "Výkon: použít minified CSS stylesheet"
 
-#: ../class-fire-utils_settings_map.php:413
+#: ../class-fire-utils_settings_map.php:415
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
 msgstr "Použití minified verze vzhledu stylesheet zrychlí načítání webu."
 
-#: ../class-fire-utils_settings_map.php:419
-#: ../class-fire-utils_settings_map.php:1270
+#: ../class-fire-utils_settings_map.php:421
+#: ../class-fire-utils_settings_map.php:1297
 msgid "Display top border"
 msgstr "Zobrazit horní orámování"
 
-#: ../class-fire-utils_settings_map.php:423
-#: ../class-fire-utils_settings_map.php:1274
+#: ../class-fire-utils_settings_map.php:425
+#: ../class-fire-utils_settings_map.php:1301
 msgid "Uncheck this option to remove the colored top border."
 msgstr "Toto odšktněte pro odstranění vrchního barevného rámečku."
 
-#: ../class-fire-utils_settings_map.php:435
+#: ../class-fire-utils_settings_map.php:437
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Nahrát logo (podporované formáty: .jpg, .png, .gif)"
 
-#: ../class-fire-utils_settings_map.php:436
+#: ../class-fire-utils_settings_map.php:438
 msgid "LOGO"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:445
+#: ../class-fire-utils_settings_map.php:447
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Nastavit rozměry loga na max. šířku: 250px a max. výšku: 100px"
 
-#: ../class-fire-utils_settings_map.php:452
+#: ../class-fire-utils_settings_map.php:454
 #, fuzzy
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Nahrát logo (podporované formáty: .jpg, .png, .gif)"
 
-#: ../class-fire-utils_settings_map.php:456
+#: ../class-fire-utils_settings_map.php:458
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:462
+#: ../class-fire-utils_settings_map.php:464
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Nahrát ikonu (podporované formáty : .ico, .png, .gif)"
 
-#: ../class-fire-utils_settings_map.php:463
+#: ../class-fire-utils_settings_map.php:465
 msgid "FAVICON"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:481
+#: ../class-fire-utils_settings_map.php:483
 msgid "Choose content and layout"
 msgstr "Zvolte obsah a rozložení"
 
-#: ../class-fire-utils_settings_map.php:489
+#: ../class-fire-utils_settings_map.php:491
 msgid "Front page displays"
 msgstr "Zobrazení úvodní stránky"
 
-#: ../class-fire-utils_settings_map.php:494
+#: ../class-fire-utils_settings_map.php:496
 msgid "Don't show any posts or page"
 msgstr "Nezobrazovat žádný příspěvek nebo stránku"
 
-#: ../class-fire-utils_settings_map.php:495
+#: ../class-fire-utils_settings_map.php:497
 msgid "Your latest posts"
 msgstr "Vaše poslední příspěvky"
 
-#: ../class-fire-utils_settings_map.php:496
+#: ../class-fire-utils_settings_map.php:498
 msgid "A static page"
 msgstr "Statická stránka"
 
-#: ../class-fire-utils_settings_map.php:502
+#: ../class-fire-utils_settings_map.php:504
 msgid "Front page"
 msgstr "Úvodní stránka"
 
-#: ../class-fire-utils_settings_map.php:510
+#: ../class-fire-utils_settings_map.php:512
 msgid "Posts page"
 msgstr "Stránka příspěvků"
 
-#: ../class-fire-utils_settings_map.php:519
+#: ../class-fire-utils_settings_map.php:521
 msgid "Set up the front page layout"
 msgstr "Nastavit rozložení­ úvodní stránky"
 
-#: ../class-fire-utils_settings_map.php:530
+#: ../class-fire-utils_settings_map.php:532
 msgid "Slider options"
 msgstr "Nastavení­ slideru"
 
-#: ../class-fire-utils_settings_map.php:531
+#: ../class-fire-utils_settings_map.php:533
 msgid "Select front page slider"
 msgstr "Zvolte slider úvodní stránky"
 
-#: ../class-fire-utils_settings_map.php:543
+#: ../class-fire-utils_settings_map.php:545
 msgid "Full width slider"
 msgstr "Plná šíře slideru"
 
-#: ../class-fire-utils_settings_map.php:554
+#: ../class-fire-utils_settings_map.php:556
 msgid "Delay between each slides"
 msgstr "Zpoždění mezi jednotlivými slidy"
 
-#: ../class-fire-utils_settings_map.php:559
+#: ../class-fire-utils_settings_map.php:561
 msgid "in ms : 1000ms = 1s"
 msgstr "v ms: 1000ms = 1s"
 
-#: ../class-fire-utils_settings_map.php:567
+#: ../class-fire-utils_settings_map.php:569
 msgid "Featured pages options"
 msgstr "Nastavení úvodních představovacích stránek"
 
-#: ../class-fire-utils_settings_map.php:568
+#: ../class-fire-utils_settings_map.php:570
 #, fuzzy
 msgid "Display home featured pages area"
 msgstr "Zobrazit oblast úvodní­ch představovací­ch stránek"
 
-#: ../class-fire-utils_settings_map.php:572
+#: ../class-fire-utils_settings_map.php:574
 msgid "Enable"
 msgstr "Povoleno"
 
-#: ../class-fire-utils_settings_map.php:573
+#: ../class-fire-utils_settings_map.php:575
 msgid "Disable"
 msgstr "Zakázáno"
 
-#: ../class-fire-utils_settings_map.php:582
+#: ../class-fire-utils_settings_map.php:584
 msgid "Show images"
 msgstr "Zobrazit obrázky"
 
-#: ../class-fire-utils_settings_map.php:585
+#: ../class-fire-utils_settings_map.php:587
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -673,31 +679,31 @@ msgstr ""
 "Přiřazení obrázku se nastavuje při editování každé stránky zvlášť. "
 "Odškrtněte tuto možnost pro zakázání zobrazení obrázků."
 
-#: ../class-fire-utils_settings_map.php:591
+#: ../class-fire-utils_settings_map.php:593
 msgid "Read more &raquo;"
 msgstr "Dozvědět se ví­ce &raquo;"
 
-#: ../class-fire-utils_settings_map.php:593
+#: ../class-fire-utils_settings_map.php:595
 msgid "Button text"
 msgstr "Text tlačítka"
 
-#: ../class-fire-utils_settings_map.php:614
-#: ../class-fire-utils_settings_map.php:1167
+#: ../class-fire-utils_settings_map.php:616
+#: ../class-fire-utils_settings_map.php:1181
 msgid "Display Breadcrumb"
 msgstr "Zobrazit navigaci"
 
-#: ../class-fire-utils_settings_map.php:624
-#: ../class-fire-utils_settings_map.php:1177
+#: ../class-fire-utils_settings_map.php:626
+#: ../class-fire-utils_settings_map.php:1191
 msgid "Choose the global default layout"
 msgstr "Zvolte globální přednastavené rozložení"
 
-#: ../class-fire-utils_settings_map.php:635
-#: ../class-fire-utils_settings_map.php:1189
+#: ../class-fire-utils_settings_map.php:637
+#: ../class-fire-utils_settings_map.php:1203
 msgid "Force default layout everywhere"
 msgstr "Přiřadit všude přednastavené rozložení"
 
-#: ../class-fire-utils_settings_map.php:638
-#: ../class-fire-utils_settings_map.php:1192
+#: ../class-fire-utils_settings_map.php:640
+#: ../class-fire-utils_settings_map.php:1206
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -705,42 +711,42 @@ msgstr ""
 "Tato možnost přepíše specifická nastavení rozložení na všech příspěvcích a "
 "stránkách včetně úvodní stránky."
 
-#: ../class-fire-utils_settings_map.php:645
-#: ../class-fire-utils_settings_map.php:1198
+#: ../class-fire-utils_settings_map.php:647
+#: ../class-fire-utils_settings_map.php:1212
 msgid "Choose the posts default layout"
 msgstr "Zvolte přednastavené rozložení příspěvků"
 
-#: ../class-fire-utils_settings_map.php:657
-#: ../class-fire-utils_settings_map.php:1220
+#: ../class-fire-utils_settings_map.php:659
+#: ../class-fire-utils_settings_map.php:1235
 msgid "Maximum number of posts per page"
 msgstr "Maximální počet příspěvků na stránku"
 
-#: ../class-fire-utils_settings_map.php:668
-#: ../class-fire-utils_settings_map.php:1230
+#: ../class-fire-utils_settings_map.php:670
+#: ../class-fire-utils_settings_map.php:1245
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "Zvolte délku příspěvků v seznamech (vyhledávání, archív...)"
 
-#: ../class-fire-utils_settings_map.php:672
-#: ../class-fire-utils_settings_map.php:1234
+#: ../class-fire-utils_settings_map.php:674
+#: ../class-fire-utils_settings_map.php:1249
 msgid "Display the excerpt"
 msgstr "Zobrazit ukázku"
 
-#: ../class-fire-utils_settings_map.php:673
-#: ../class-fire-utils_settings_map.php:1235
+#: ../class-fire-utils_settings_map.php:675
+#: ../class-fire-utils_settings_map.php:1250
 msgid "Display the full content"
 msgstr "Zobrazit celý obsah"
 
-#: ../class-fire-utils_settings_map.php:681
-#: ../class-fire-utils_settings_map.php:1207
+#: ../class-fire-utils_settings_map.php:683
+#: ../class-fire-utils_settings_map.php:1221
 msgid "Choose the pages default layout"
 msgstr "Zvolte přednastavené rozložení stránek"
 
-#: ../class-fire-utils_settings_map.php:700
-#: ../class-fire-utils_settings_map.php:1848
+#: ../class-fire-utils_settings_map.php:702
+#: ../class-fire-utils_settings_map.php:1953
 msgid "Enable comments on pages"
 msgstr "Povolit na stránkách komentáře"
 
-#: ../class-fire-utils_settings_map.php:704
+#: ../class-fire-utils_settings_map.php:706
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -748,31 +754,31 @@ msgstr ""
 "Tato možnost povolí komentáře na stránkách. Komentáře pro jednotlivé stránky "
 "můžete zakázat při editování daných stránek."
 
-#: ../class-fire-utils_settings_map.php:718
-#: ../class-fire-utils_settings_map.php:1873
+#: ../class-fire-utils_settings_map.php:720
+#: ../class-fire-utils_settings_map.php:1979
 msgid "Social links in header"
 msgstr "Sociální sítě v hlavičce"
 
-#: ../class-fire-utils_settings_map.php:727
-#: ../class-fire-utils_settings_map.php:1891
+#: ../class-fire-utils_settings_map.php:729
+#: ../class-fire-utils_settings_map.php:1997
 msgid "Social links in left sidebar"
 msgstr "Sociální sítě v levém bočním panelu"
 
-#: ../class-fire-utils_settings_map.php:736
-#: ../class-fire-utils_settings_map.php:1901
+#: ../class-fire-utils_settings_map.php:738
+#: ../class-fire-utils_settings_map.php:2007
 msgid "Social links in right sidebar"
 msgstr "Sociální sítě v pravém bočním panelu"
 
-#: ../class-fire-utils_settings_map.php:744
-#: ../class-fire-utils_settings_map.php:1882
+#: ../class-fire-utils_settings_map.php:746
+#: ../class-fire-utils_settings_map.php:1988
 msgid "Social links in footer"
 msgstr "Sociální sítě v patičce"
 
-#: ../class-fire-utils_settings_map.php:765
+#: ../class-fire-utils_settings_map.php:767
 msgid "Enable/disable lightbox effect on images"
 msgstr "Povolit/zakázat lightbox efekt pro obrázky"
 
-#: ../class-fire-utils_settings_map.php:768
+#: ../class-fire-utils_settings_map.php:770
 msgid ""
 "If enabled, this option activate a popin window whith a zoom effect when an "
 "image is clicked. This will not apply to image gallery."
@@ -780,25 +786,25 @@ msgstr ""
 "Tato možnost aktivuje po kliknutí na obrázek okno s přibližovacím efektem. "
 "Neplatí pro galerii obrázků."
 
-#: ../class-fire-utils_settings_map.php:774
+#: ../class-fire-utils_settings_map.php:776
 msgid "Autoscale images on zoom"
 msgstr "Automaticky nastavit velikost obrázku po přiblížení"
 
-#: ../class-fire-utils_settings_map.php:777
+#: ../class-fire-utils_settings_map.php:779
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr "Tato možnost zarovná obrázky do velikosti okna lightbox efektu."
 
-#: ../class-fire-utils_settings_map.php:783
+#: ../class-fire-utils_settings_map.php:785
 msgid "Enable/disable retina support"
 msgstr "Povolit/zakázat retina podporu"
 
-#: ../class-fire-utils_settings_map.php:787
+#: ../class-fire-utils_settings_map.php:789
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr "Tato možnost zahrnuje podporu pro zařízení s vysokým rozlišením."
 
-#: ../class-fire-utils_settings_map.php:788
+#: ../class-fire-utils_settings_map.php:790
 msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
@@ -806,30 +812,30 @@ msgstr ""
 "Důrazně se doporučuje přegenrovat vaší knohovnu médií do vyšího rozlišení s "
 "využitím tohoto zdarma dostupného rozšíření"
 
-#: ../class-fire-utils_settings_map.php:789
+#: ../class-fire-utils_settings_map.php:791
 msgid "regenerate thumbnails"
 msgstr "přegebnerovat náhledy"
 
-#: ../class-fire-utils_settings_map.php:791
+#: ../class-fire-utils_settings_map.php:793
 msgid "Open the description page of the Regenerate thumbnails plugin"
 msgstr "Otevřít stránku o Regenerate thumbnails rozšížení"
 
-#: ../class-fire-utils_settings_map.php:797
+#: ../class-fire-utils_settings_map.php:799
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "Sliders : display on loading icon before rendering the slides"
 
-#: ../class-fire-utils_settings_map.php:800
+#: ../class-fire-utils_settings_map.php:802
 #, fuzzy
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr "Pokud je zaškrnuto zobrazuje se ikona načítání po dobu přípravy slidů."
 
-#: ../class-fire-utils_settings_map.php:813
+#: ../class-fire-utils_settings_map.php:815
 msgid "Enable/disable smooth scroll on click"
 msgstr "Povolit/zakázat plynulý přechod po kliknutí"
 
-#: ../class-fire-utils_settings_map.php:816
+#: ../class-fire-utils_settings_map.php:818
 msgid ""
 "If enabled, this option activates a smooth page scroll when clicking on a "
 "link to an anchor of the same page."
@@ -837,11 +843,11 @@ msgstr ""
 "Tato možnost aktivuje plynulý přechod po kliknutí na link kotvy na stejné "
 "stránce."
 
-#: ../class-fire-utils_settings_map.php:829
+#: ../class-fire-utils_settings_map.php:831
 msgid "Enable/disable blocks reordering on small devices"
 msgstr "Povolit/zakázat­ změny bloků na malých zařízeních"
 
-#: ../class-fire-utils_settings_map.php:832
+#: ../class-fire-utils_settings_map.php:834
 msgid ""
 "On responsive mode, for smartphone viewport, the sidebars are moved after "
 "the main content block."
@@ -849,11 +855,11 @@ msgstr ""
 "V citlivém režimu, u smartphonů, se boční lišty přesunou pod hlavní blok "
 "obsahu."
 
-#: ../class-fire-utils_settings_map.php:838
+#: ../class-fire-utils_settings_map.php:840
 msgid "Enable/disable slider's slides centering on any devices"
 msgstr "Povolit/zakázat centrování slideru na všech zařízeních."
 
-#: ../class-fire-utils_settings_map.php:841
+#: ../class-fire-utils_settings_map.php:843
 msgid ""
 "This option centers your slider (carousel) pictures vertically and "
 "horizontally on any devices when displayed in full width mode"
@@ -861,13 +867,13 @@ msgstr ""
 "Tato možnost vycentruje slider a obrázky svisle i vodorovně na všech "
 "zařízeních v režimu celé šíře"
 
-#: ../class-fire-utils_settings_map.php:856
-#: ../class-fire-utils_settings_map.php:1921
+#: ../class-fire-utils_settings_map.php:858
+#: ../class-fire-utils_settings_map.php:2027
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr "Přidejte vlastní CSS! (pro pokročilé uživatele)"
 
-#: ../class-fire-utils_settings_map.php:860
-#: ../class-fire-utils_settings_map.php:1925
+#: ../class-fire-utils_settings_map.php:862
+#: ../class-fire-utils_settings_map.php:2031
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -875,132 +881,168 @@ msgstr ""
 "Použil toto pole pro testování malých častí CSS kódu. Pro podstatné změnu "
 "CSS uprav soubor style.css"
 
-#: ../class-fire-utils_settings_map.php:861
-#: ../class-fire-utils_settings_map.php:1926
+#: ../class-fire-utils_settings_map.php:863
+#: ../class-fire-utils_settings_map.php:2032
 msgid "child theme."
 msgstr "odvozená šablona."
 
-#: ../class-fire-utils_settings_map.php:862
-#: ../class-fire-utils_settings_map.php:1927
+#: ../class-fire-utils_settings_map.php:864
+#: ../class-fire-utils_settings_map.php:2033
 msgid "How to create and use a child theme ?"
 msgstr "Jak vytvořit a používat odvozenou šabalonu?"
 
-#: ../class-fire-utils_settings_map.php:1002
+#: ../class-fire-utils_settings_map.php:998
+msgid "Site Title & Tagline"
+msgstr "Titulek stránky & rádek tagů"
+
+#: ../class-fire-utils_settings_map.php:1015
 msgid "Fonts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1004
+#: ../class-fire-utils_settings_map.php:1017
 #, fuzzy
 msgid "Set up the font global settings"
 msgstr "Nastavení úvodní stránky"
 
-#: ../class-fire-utils_settings_map.php:1014
+#: ../class-fire-utils_settings_map.php:1027
 msgid "Links style and effects"
 msgstr "Styl a efekty odkazů"
 
-#: ../class-fire-utils_settings_map.php:1020
+#: ../class-fire-utils_settings_map.php:1033
 #, fuzzy
 msgid "Titles icons settings"
 msgstr "Nastavení odkazů"
 
-#: ../class-fire-utils_settings_map.php:1022
+#: ../class-fire-utils_settings_map.php:1035
 #, fuzzy
 msgid "Set up the titles icons options"
 msgstr "Nastavení­ komentářů"
 
-#: ../class-fire-utils_settings_map.php:1026
+#: ../class-fire-utils_settings_map.php:1039
 #, fuzzy
 msgid "Image settings"
 msgstr "Nastavení obrázků"
 
-#: ../class-fire-utils_settings_map.php:1038
+#: ../class-fire-utils_settings_map.php:1051
+msgid "Authors"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1053
+#, fuzzy
+msgid "Post authors settings"
+msgstr "Autor příspěvku"
+
+#: ../class-fire-utils_settings_map.php:1057
+#: ../class-fire-utils_settings_map.php:1296
 #, fuzzy
 msgid "Header design and layout"
 msgstr "Zvolte obsah a rozložení"
 
-#: ../class-fire-utils_settings_map.php:1038
+#: ../class-fire-utils_settings_map.php:1057
 #, fuzzy
 msgid "Design and layout"
 msgstr "Zvolte obsah a rozložení"
 
-#: ../class-fire-utils_settings_map.php:1043
-msgid "Site Title & Tagline"
-msgstr "Titulek stránky & rádek tagů"
-
-#: ../class-fire-utils_settings_map.php:1054
+#: ../class-fire-utils_settings_map.php:1062
 #, fuzzy
 msgid "Navigation"
 msgstr "Navigace v příspěvcích"
 
-#: ../class-fire-utils_settings_map.php:1057
+#: ../class-fire-utils_settings_map.php:1065
 #, fuzzy, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgstr "Tvoje šablona podporuje %s menu. Vyber které menu chceš použít."
 
-#: ../class-fire-utils_settings_map.php:1057
+#: ../class-fire-utils_settings_map.php:1065
 msgid ""
 "You can edit your menu content on the Menus screen in the Appearance section."
 msgstr ""
 "Můžeš upravit obsah menu v Nastavení menu, kterou najdeš v Nastavení vzhledu."
 
-#: ../class-fire-utils_settings_map.php:1076
+#: ../class-fire-utils_settings_map.php:1084
 msgid "Post lists : blog, archives, ..."
 msgstr "Seznamy příspěvků : blog, archívy, ..."
 
-#: ../class-fire-utils_settings_map.php:1078
+#: ../class-fire-utils_settings_map.php:1086
 #, fuzzy
 msgid "Set up post lists options"
 msgstr "Nastavení­ komentářů"
 
-#: ../class-fire-utils_settings_map.php:1082
+#: ../class-fire-utils_settings_map.php:1090
 msgid "Single posts"
 msgstr "Stránka příspěvku"
 
-#: ../class-fire-utils_settings_map.php:1084
+#: ../class-fire-utils_settings_map.php:1092
 #, fuzzy
 msgid "Set up single posts options"
 msgstr "Nastavení­ rozložení"
 
-#: ../class-fire-utils_settings_map.php:1088
+#: ../class-fire-utils_settings_map.php:1096
 #, fuzzy
 msgid "Breadcrumb"
 msgstr "Zobrazit navigaci"
 
-#: ../class-fire-utils_settings_map.php:1090
+#: ../class-fire-utils_settings_map.php:1098
 #, fuzzy
 msgid "Set up breadcrumb options"
 msgstr "Nastavení­ rozložení"
 
-#: ../class-fire-utils_settings_map.php:1102
+#: ../class-fire-utils_settings_map.php:1110
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr "Metadata příspěvku (kategorie, tagy, vlastní označení)"
 
-#: ../class-fire-utils_settings_map.php:1104
+#: ../class-fire-utils_settings_map.php:1112
 #, fuzzy
 msgid "Set up post metas options"
 msgstr "Nastavení­ komentářů"
 
-#: ../class-fire-utils_settings_map.php:1114
+#: ../class-fire-utils_settings_map.php:1116
+msgid "Paragraphs"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1118
+#, fuzzy
+msgid "Set up paragraphs options"
+msgstr "Nastavení­ komentářů"
+
+#: ../class-fire-utils_settings_map.php:1128
 msgid "Footer global settings"
 msgstr "Globání nastavení patičky"
 
-#: ../class-fire-utils_settings_map.php:1116
+#: ../class-fire-utils_settings_map.php:1130
 #, fuzzy
 msgid "Set up footer global options"
 msgstr "Nastavení úvodní stránky"
 
-#: ../class-fire-utils_settings_map.php:1181
+#: ../class-fire-utils_settings_map.php:1195
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr ""
 "Poznámka: nastavení rozložení musí být nastaveno v sekci domovské stránky"
 
-#: ../class-fire-utils_settings_map.php:1244
+#: ../class-fire-utils_settings_map.php:1234
+#, fuzzy
+msgid "Global Post Lists Settings"
+msgstr "Obecná nastavení"
+
+#: ../class-fire-utils_settings_map.php:1260
+#, fuzzy
+msgid "Display an author box after each single post content"
+msgstr "Zobrazit ikonku postu vedle titulku příspěvku"
+
+#: ../class-fire-utils_settings_map.php:1264
+msgid ""
+"Check this option to display an author info block after each single post "
+"content. Note : the Biographical info field must be filled out in the user "
+"profile."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1270
 msgid ""
 "Select a beautiful font pair (headings &amp; default fonts) or single font "
 "for your website."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1251
+#: ../class-fire-utils_settings_map.php:1277
 msgid ""
 "This font picker allows you to preview and select among a handy selection of "
 "font pairs and single fonts. If you choose a pair, the first font will be "
@@ -1009,43 +1051,26 @@ msgid ""
 "texts or paragraphs."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1256
+#: ../class-fire-utils_settings_map.php:1282
 msgid "Set your website default font size in pixels."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1264
+#: ../class-fire-utils_settings_map.php:1290
 msgid ""
 "This option sets the default font size applied to any text element of your "
 "website, when no font size is already applied."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1280
-#, fuzzy
-msgid "Layout"
-msgstr "Nastavení rozložení"
-
-#: ../class-fire-utils_settings_map.php:1284
-msgid "Logo / title on the left"
-msgstr "Logo / titulek v levo"
-
-#: ../class-fire-utils_settings_map.php:1285
-msgid "Logo / title centered"
-msgstr "Logo / titulek uprostěd"
-
-#: ../class-fire-utils_settings_map.php:1286
-msgid "Logo / title on the right"
-msgstr "Logo / titulek v pravo"
-
-#: ../class-fire-utils_settings_map.php:1295
+#: ../class-fire-utils_settings_map.php:1307
 #, fuzzy
 msgid "Display the tagline"
 msgstr "Zobrazit celý obsah"
 
-#: ../class-fire-utils_settings_map.php:1304
+#: ../class-fire-utils_settings_map.php:1316
 msgid "Display menu in a box"
 msgstr "Zobrazovat menu v rámečku"
 
-#: ../class-fire-utils_settings_map.php:1309
+#: ../class-fire-utils_settings_map.php:1321
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
@@ -1053,69 +1078,91 @@ msgstr ""
 "Pokud je zaškrtnuto, zabalí menu/řádek tagů/sociální do světle šedého "
 "rámečku."
 
-#: ../class-fire-utils_settings_map.php:1314
+#: ../class-fire-utils_settings_map.php:1326
+#, fuzzy
+msgid "Layout"
+msgstr "Nastavení rozložení"
+
+#: ../class-fire-utils_settings_map.php:1330
+msgid "Logo / title on the left"
+msgstr "Logo / titulek v levo"
+
+#: ../class-fire-utils_settings_map.php:1331
+msgid "Logo / title centered"
+msgstr "Logo / titulek uprostěd"
+
+#: ../class-fire-utils_settings_map.php:1332
+msgid "Logo / title on the right"
+msgstr "Logo / titulek v pravo"
+
+#: ../class-fire-utils_settings_map.php:1340
+#, fuzzy
+msgid "Sticky header settings"
+msgstr "Přípíchnutá "
+
+#: ../class-fire-utils_settings_map.php:1341
 msgid "Sticky on scroll"
 msgstr "Při scrolování přilepit"
 
-#: ../class-fire-utils_settings_map.php:1319
+#: ../class-fire-utils_settings_map.php:1346
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr "Pokude je zaškrnuto zůstane hlavička nahoře při scrolování dolů."
 
-#: ../class-fire-utils_settings_map.php:1324
+#: ../class-fire-utils_settings_map.php:1351
 msgid "Sticky header : display the tagline"
 msgstr "Přípíchnutá "
 
-#: ../class-fire-utils_settings_map.php:1333
+#: ../class-fire-utils_settings_map.php:1360
 msgid "Sticky header : display the title / logo"
 msgstr "Přilepená hlavička : zobrazit titulek / logo"
 
-#: ../class-fire-utils_settings_map.php:1342
+#: ../class-fire-utils_settings_map.php:1369
 msgid "Sticky header : shrink title / logo"
 msgstr "Přilepená hlavička : zmenšit titulek / logo"
 
-#: ../class-fire-utils_settings_map.php:1351
+#: ../class-fire-utils_settings_map.php:1378
 msgid "Sticky header : display the menu"
 msgstr "Přilepená hlavička : zobrazit menu"
 
-#: ../class-fire-utils_settings_map.php:1360
+#: ../class-fire-utils_settings_map.php:1387
 msgid "Sticky header : semi-transparent on scroll"
 msgstr "Přilepená hlavička : poloprůledná při scrolování"
 
-#: ../class-fire-utils_settings_map.php:1370
+#: ../class-fire-utils_settings_map.php:1397
 msgid "Set the header z-index"
 msgstr "Nastavit z-index hlavičky"
 
-#: ../class-fire-utils_settings_map.php:1378
+#: ../class-fire-utils_settings_map.php:1405
 msgid "What is"
 msgstr "Co je"
 
-#: ../class-fire-utils_settings_map.php:1379
+#: ../class-fire-utils_settings_map.php:1406
 msgid "the z-index"
 msgstr "z-index"
 
-#: ../class-fire-utils_settings_map.php:1387
+#: ../class-fire-utils_settings_map.php:1414
 msgid "Menu position"
 msgstr "Pozice menu"
 
-#: ../class-fire-utils_settings_map.php:1391
+#: ../class-fire-utils_settings_map.php:1418
 msgid "Menu on the left"
 msgstr "Menu nalevo"
 
-#: ../class-fire-utils_settings_map.php:1392
+#: ../class-fire-utils_settings_map.php:1419
 msgid "Menu on the right"
 msgstr "Menu napravo"
 
-#: ../class-fire-utils_settings_map.php:1400
+#: ../class-fire-utils_settings_map.php:1427
 msgid "Reveal the sub-menus blocks with a fade effect"
 msgstr "Zobrarovat bloky podmenu s efektem rozplynutí"
 
-#: ../class-fire-utils_settings_map.php:1409
+#: ../class-fire-utils_settings_map.php:1436
 msgid "Hover move effect for the sub menu items"
 msgstr "Po najetí myší pohnout položkou podmenu"
 
-#: ../class-fire-utils_settings_map.php:1418
+#: ../class-fire-utils_settings_map.php:1445
 msgid ""
 "In responsive mode, limit the height of the dropdown menu block to the "
 "visible viewport"
@@ -1123,26 +1170,41 @@ msgstr ""
 "Omezit výšku rozbalovacího menu na viditelný viewport, při zapnuté "
 "respozivnosti"
 
-#: ../class-fire-utils_settings_map.php:1428
+#: ../class-fire-utils_settings_map.php:1455
 msgid "Fade effect on link hover"
 msgstr "Efekt rozplynutí po najetí na odkaz"
 
-#: ../class-fire-utils_settings_map.php:1439
+#: ../class-fire-utils_settings_map.php:1465
+#, fuzzy
+msgid "Display an icon next to external links"
+msgstr "Zobrazit inkonky vedle titulku archívu"
+
+#: ../class-fire-utils_settings_map.php:1469
+#: ../class-fire-utils_settings_map.php:1480
+msgid ""
+"This will be applied to the links included in post or page content only."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1476
+msgid "Open external links in a new tab"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1487
 #, fuzzy
 msgid "Display the breadcrumb on home page"
 msgstr "Zobrazit navigaci"
 
-#: ../class-fire-utils_settings_map.php:1447
+#: ../class-fire-utils_settings_map.php:1495
 #, fuzzy
 msgid "Display the breadcrumb in pages"
 msgstr "Zobrazit navigaci"
 
-#: ../class-fire-utils_settings_map.php:1456
+#: ../class-fire-utils_settings_map.php:1504
 #, fuzzy
 msgid "Display the breadcrumb in single posts"
 msgstr "Zobrazit navigaci"
 
-#: ../class-fire-utils_settings_map.php:1465
+#: ../class-fire-utils_settings_map.php:1513
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
@@ -1150,11 +1212,11 @@ msgstr ""
 "Zobrazit cestu v sezanamu příspěvků: stránek, archívů, výsledků "
 "vyhledávání..."
 
-#: ../class-fire-utils_settings_map.php:1476
+#: ../class-fire-utils_settings_map.php:1524
 msgid "Display icons next to titles"
 msgstr "Zobrazit ikony vedle titulků"
 
-#: ../class-fire-utils_settings_map.php:1480
+#: ../class-fire-utils_settings_map.php:1528
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
@@ -1162,19 +1224,19 @@ msgstr ""
 "Pokud je toto zaškrtnuto, zobrazují se kontextové ikonky vedle stránek, "
 "příspěvků, archívů a WP vestavěných wigetů."
 
-#: ../class-fire-utils_settings_map.php:1486
+#: ../class-fire-utils_settings_map.php:1534
 msgid "Display a page icon next to the page title"
 msgstr "Zobrazit ikonku vedle titulku stránky"
 
-#: ../class-fire-utils_settings_map.php:1495
+#: ../class-fire-utils_settings_map.php:1543
 msgid "Display a post icon next to the single post title"
 msgstr "Zobrazit ikonku postu vedle titulku příspěvku"
 
-#: ../class-fire-utils_settings_map.php:1504
+#: ../class-fire-utils_settings_map.php:1552
 msgid "Display an icon next to the archive title"
 msgstr "Zobrazit inkonky vedle titulku archívu"
 
-#: ../class-fire-utils_settings_map.php:1507
+#: ../class-fire-utils_settings_map.php:1555
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -1185,11 +1247,11 @@ msgstr ""
 "archívu nalevo od titulku. Typy archívů: kategorie, tagy, autor, datové "
 "archívy, vlastní,výsledky vyhledávání."
 
-#: ../class-fire-utils_settings_map.php:1514
+#: ../class-fire-utils_settings_map.php:1562
 msgid "Display an icon next to each post title in an archive page"
 msgstr "Zobrazit ikonku u každého titulku příspěvku na stránce archívu"
 
-#: ../class-fire-utils_settings_map.php:1517
+#: ../class-fire-utils_settings_map.php:1565
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -1199,20 +1261,20 @@ msgstr ""
 "archívu nalevo od titulku. Typy archívů: kategorie, tagy, autor, datové "
 "archívy, vlastní,výsledky vyhledávání."
 
-#: ../class-fire-utils_settings_map.php:1524
+#: ../class-fire-utils_settings_map.php:1572
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "WP postraní wigety : zobrazit ikony vedle titulků"
 
-#: ../class-fire-utils_settings_map.php:1533
+#: ../class-fire-utils_settings_map.php:1581
 msgid "WP footer widgets : display icons next to titles"
 msgstr "WP patičkové wigety : zobrazit ikony vedle titulků"
 
-#: ../class-fire-utils_settings_map.php:1545
+#: ../class-fire-utils_settings_map.php:1593
 #, fuzzy
 msgid "Display posts metas"
 msgstr "Zobrazit ukázku"
 
-#: ../class-fire-utils_settings_map.php:1548
+#: ../class-fire-utils_settings_map.php:1596
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
@@ -1220,74 +1282,78 @@ msgstr ""
 "Pokud je toto zaškrtnuto, zobrazují se pod titulkem příspěvku metadata "
 "(např. datum a autor, zařazení)"
 
-#: ../class-fire-utils_settings_map.php:1555
+#: ../class-fire-utils_settings_map.php:1603
 msgid "Select the contexts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1556
+#: ../class-fire-utils_settings_map.php:1604
 msgid "Display posts metas on home"
 msgstr "Dobrazit metadata příspěvků na domácí stránce"
 
-#: ../class-fire-utils_settings_map.php:1565
+#: ../class-fire-utils_settings_map.php:1613
 msgid "Display posts metas for single posts"
 msgstr "Zobrazit metadata na stránce příspěvku"
 
-#: ../class-fire-utils_settings_map.php:1574
+#: ../class-fire-utils_settings_map.php:1622
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr "Zobrazit metadata v seznamu příspěvků (archívy, stránky)"
 
-#: ../class-fire-utils_settings_map.php:1584
+#: ../class-fire-utils_settings_map.php:1632
 msgid "Select the metas to display"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1585
+#: ../class-fire-utils_settings_map.php:1633
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1594
+#: ../class-fire-utils_settings_map.php:1642
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1603
+#: ../class-fire-utils_settings_map.php:1651
 #, fuzzy
 msgid "Display the publication date"
 msgstr "Zobrazit celý obsah"
 
-#: ../class-fire-utils_settings_map.php:1612
+#: ../class-fire-utils_settings_map.php:1659
+#, fuzzy
+msgid "Display the author"
+msgstr "Zobrazit ukázku"
+
+#: ../class-fire-utils_settings_map.php:1667
 #, fuzzy
 msgid "Display the update date"
 msgstr "Zobrazit celý obsah"
 
-#: ../class-fire-utils_settings_map.php:1616
+#: ../class-fire-utils_settings_map.php:1671
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
 "been updated)."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1622
+#: ../class-fire-utils_settings_map.php:1677
 msgid "Select the last update format"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1626
+#: ../class-fire-utils_settings_map.php:1681
 msgid "Nb of days since last update"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1627
+#: ../class-fire-utils_settings_map.php:1682
 msgid "Date of the last update"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1634
-#, fuzzy
-msgid "Display the author"
-msgstr "Zobrazit ukázku"
+#: ../class-fire-utils_settings_map.php:1690
+msgid "Recent update notice after post titles"
+msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1642
+#: ../class-fire-utils_settings_map.php:1691
 #, fuzzy
 msgid "Display a recent update notice"
 msgstr "Zobrazit ikonku vedle titulku stránky"
 
-#: ../class-fire-utils_settings_map.php:1646
+#: ../class-fire-utils_settings_map.php:1695
 #, fuzzy
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
@@ -1296,64 +1362,64 @@ msgstr ""
 "Pokud je toto zaškrtnuto, zobrazují se pod titulkem příspěvku metadata "
 "(např. datum a autor, zařazení)"
 
-#: ../class-fire-utils_settings_map.php:1652
+#: ../class-fire-utils_settings_map.php:1701
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1658
+#: ../class-fire-utils_settings_map.php:1707
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1661
+#: ../class-fire-utils_settings_map.php:1710
 msgid "Recently updated !"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1663
+#: ../class-fire-utils_settings_map.php:1712
 msgid "Update notice text"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1672
+#: ../class-fire-utils_settings_map.php:1721
 msgid "Update notice style"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1676
+#: ../class-fire-utils_settings_map.php:1725
 msgid "Default (grey)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1677
+#: ../class-fire-utils_settings_map.php:1726
 msgid "Success (green)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1678
+#: ../class-fire-utils_settings_map.php:1727
 #, fuzzy
 msgid "Alert (orange)"
 msgstr "Plochá oranžová"
 
-#: ../class-fire-utils_settings_map.php:1679
+#: ../class-fire-utils_settings_map.php:1728
 msgid "Important (red)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1680
+#: ../class-fire-utils_settings_map.php:1729
 msgid "Info (blue)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1691
+#: ../class-fire-utils_settings_map.php:1740
 msgid "Set the excerpt length (in number of words) "
 msgstr "Nastavit délku perexu (počet slov)"
 
-#: ../class-fire-utils_settings_map.php:1701
+#: ../class-fire-utils_settings_map.php:1750
 msgid "Thumbnails options"
 msgstr "Nastavení náhledů"
 
-#: ../class-fire-utils_settings_map.php:1702
+#: ../class-fire-utils_settings_map.php:1751
 #, fuzzy
 msgid "Display the post thumbnails"
 msgstr "Zobrazit ukázku"
 
-#: ../class-fire-utils_settings_map.php:1706
+#: ../class-fire-utils_settings_map.php:1755
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
@@ -1361,144 +1427,196 @@ msgstr ""
 "Pokud je toto zaškrtnuto, zobrazují se náhledy ve všech seznamech příspěvků: "
 "blog, archívy, stránky autorů, stránky vyhledávání..."
 
-#: ../class-fire-utils_settings_map.php:1711
+#: ../class-fire-utils_settings_map.php:1760
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
 "Pokud není zvolen žádný obrázek, použije se poslední přidaný obrázek k "
 "příspěvku."
 
-#: ../class-fire-utils_settings_map.php:1719
+#: ../class-fire-utils_settings_map.php:1768
 msgid "Thumbnails shape"
 msgstr "Tvar náhledů"
 
-#: ../class-fire-utils_settings_map.php:1723
+#: ../class-fire-utils_settings_map.php:1772
 msgid "Rounded, expand on hover"
 msgstr "Kulaté zvětšení při najetí"
 
-#: ../class-fire-utils_settings_map.php:1724
+#: ../class-fire-utils_settings_map.php:1773
 msgid "Rounded, no expansion"
 msgstr "Kolaté bez zvětšení"
 
-#: ../class-fire-utils_settings_map.php:1725
+#: ../class-fire-utils_settings_map.php:1774
 msgid "Squared, expand on hover"
 msgstr "Čtvercové zvěšení při najetí"
 
-#: ../class-fire-utils_settings_map.php:1726
+#: ../class-fire-utils_settings_map.php:1775
 msgid "Squared, no expansion"
 msgstr "Čtvercové bez zvětšení"
 
-#: ../class-fire-utils_settings_map.php:1727
+#: ../class-fire-utils_settings_map.php:1776
 msgid "Rectangular with no effect"
 msgstr "Obdelníkové bez efektů"
 
-#: ../class-fire-utils_settings_map.php:1728
+#: ../class-fire-utils_settings_map.php:1777
 msgid "Rectangular with blur effect on hover"
 msgstr "Obdelníkové s efektem rozmazání při najetí"
 
-#: ../class-fire-utils_settings_map.php:1729
+#: ../class-fire-utils_settings_map.php:1778
 #, fuzzy
 msgid "Rectangular with unblur effect on hover"
 msgstr "Obdelníhové s efektem zaostění při najetí"
 
-#: ../class-fire-utils_settings_map.php:1737
-#: ../class-fire-utils_settings_map.php:1787
+#: ../class-fire-utils_settings_map.php:1786
+#: ../class-fire-utils_settings_map.php:1836
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Nastavit maximální výšku náhledů v pixelech"
 
-#: ../class-fire-utils_settings_map.php:1748
+#: ../class-fire-utils_settings_map.php:1797
 msgid "Thumbnails position"
 msgstr "Pozice náhledů"
 
-#: ../class-fire-utils_settings_map.php:1752
+#: ../class-fire-utils_settings_map.php:1801
 msgid "Top"
 msgstr "Horní"
 
-#: ../class-fire-utils_settings_map.php:1753
+#: ../class-fire-utils_settings_map.php:1802
 #, fuzzy
 msgid "Right"
 msgstr "Pravá"
 
-#: ../class-fire-utils_settings_map.php:1754
+#: ../class-fire-utils_settings_map.php:1803
 msgid "Bottom"
 msgstr "Spodní"
 
-#: ../class-fire-utils_settings_map.php:1755
+#: ../class-fire-utils_settings_map.php:1804
 #, fuzzy
 msgid "Left"
 msgstr "Levá"
 
-#: ../class-fire-utils_settings_map.php:1763
+#: ../class-fire-utils_settings_map.php:1812
 #, fuzzy
 msgid "Alternate thumbnail/content"
 msgstr "Náhradní miniatura/obsah"
 
-#: ../class-fire-utils_settings_map.php:1772
+#: ../class-fire-utils_settings_map.php:1821
 #, fuzzy
 msgid "Post thumbnail position"
 msgstr "Navigace v příspěvcích"
 
-#: ../class-fire-utils_settings_map.php:1776
+#: ../class-fire-utils_settings_map.php:1825
 #, fuzzy
 msgid "Don't display"
 msgstr "Zobrazení úvodní stránky"
 
-#: ../class-fire-utils_settings_map.php:1777
+#: ../class-fire-utils_settings_map.php:1826
 #, fuzzy
 msgid "Before the title in full width"
 msgstr "Rozložení slideru: nastavit plnou šířku slideru"
 
-#: ../class-fire-utils_settings_map.php:1778
+#: ../class-fire-utils_settings_map.php:1827
 msgid "Before the title boxed"
 msgstr "Nad titulkem ohraničeno"
 
-#: ../class-fire-utils_settings_map.php:1779
+#: ../class-fire-utils_settings_map.php:1828
 msgid "After the title"
 msgstr "Pod titulkem"
 
-#: ../class-fire-utils_settings_map.php:1798
+#: ../class-fire-utils_settings_map.php:1848
+msgid "Drop caps"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1849
+msgid "Enable drop caps"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1851
+msgid "Apply a drop cap to the first paragraph of your post / page content."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1860
+msgid ""
+"Apply a drop cap when the paragraph includes at least the following number "
+"of words :"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1861
+msgid "(number of words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1871
+msgid "Drop cap style"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1875
+msgid "Skin color with shadow"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1876
+#, fuzzy
+msgid "Simple black"
+msgstr "Plochá čšerná"
+
+#: ../class-fire-utils_settings_map.php:1882
+msgid "Enable drop caps in posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1884
+msgid "Apply a drop cap to the first paragraph of your single posts content"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1891
+#, fuzzy
+msgid "Enable drop caps in pages"
+msgstr "Povolit na stránkách komentáře"
+
+#: ../class-fire-utils_settings_map.php:1893
+msgid "Apply a drop cap to the first paragraph of your pages"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1903
 #, fuzzy
 msgid "Comments bubbles"
 msgstr "Komentáře"
 
-#: ../class-fire-utils_settings_map.php:1800
+#: ../class-fire-utils_settings_map.php:1905
 #, fuzzy
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr "Zobrazit ikonku postu vedle titulku příspěvku"
 
-#: ../class-fire-utils_settings_map.php:1809
+#: ../class-fire-utils_settings_map.php:1914
 #, fuzzy
 msgid "Comments bubble shape"
 msgstr "Komentáře jsou uzavřeny."
 
-#: ../class-fire-utils_settings_map.php:1813
+#: ../class-fire-utils_settings_map.php:1918
 msgid "Small bubbles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1814
+#: ../class-fire-utils_settings_map.php:1919
 msgid "Large bubbles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1822
-#: ../class-fire-utils_settings_map.php:1835
+#: ../class-fire-utils_settings_map.php:1927
+#: ../class-fire-utils_settings_map.php:1940
 #, fuzzy
 msgid "Comments bubble color"
 msgstr "Komentáře jsou uzavřeny."
 
-#: ../class-fire-utils_settings_map.php:1826
+#: ../class-fire-utils_settings_map.php:1931
 msgid "Skin color"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1827
+#: ../class-fire-utils_settings_map.php:1932
 #, fuzzy
 msgid "Custom"
 msgstr "O tématu Customizr"
 
-#: ../class-fire-utils_settings_map.php:1847
+#: ../class-fire-utils_settings_map.php:1952
 #, fuzzy
 msgid "Other comments settings"
 msgstr "Nastavení odkazů"
 
-#: ../class-fire-utils_settings_map.php:1853
+#: ../class-fire-utils_settings_map.php:1958
 #, fuzzy
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
@@ -1507,41 +1625,41 @@ msgstr ""
 "Tato možnost povolí komentáře na stránkách. Komentáře pro jednotlivé stránky "
 "můžete zakázat při editování daných stránek."
 
-#: ../class-fire-utils_settings_map.php:1854
+#: ../class-fire-utils_settings_map.php:1959
 msgid "Change other comments settings in the"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1856
+#: ../class-fire-utils_settings_map.php:1961
 #, fuzzy
 msgid "discussion settings page."
 msgstr "Nastavení odkazů"
 
-#: ../class-fire-utils_settings_map.php:1863
+#: ../class-fire-utils_settings_map.php:1969
 msgid "Display a back to top arrow on scroll"
 msgstr "Při scrollování zobrazit šipku zpět nahoru"
 
-#: ../class-fire-utils_settings_map.php:1910
+#: ../class-fire-utils_settings_map.php:2016
 #, fuzzy
 msgid "Social link title in sidebars"
 msgstr "Sociální sítě v levém bočním panelu"
 
-#: ../class-fire-utils_settings_map.php:1916
+#: ../class-fire-utils_settings_map.php:2022
 msgid "Will be hidden if empty"
 msgstr "Pokud necháté prázdné nezobrazí se"
 
-#: ../class-fire-utils_settings_map.php:1936
+#: ../class-fire-utils_settings_map.php:2042
 msgid "Set slider's height in pixels"
 msgstr "Nastavit výšku slidů v pixelech"
 
-#: ../class-fire-utils_settings_map.php:1946
+#: ../class-fire-utils_settings_map.php:2052
 msgid "Apply this height to all sliders"
 msgstr "Uplatnit tuto výšku na všechny slidy"
 
-#: ../class-fire-utils_settings_map.php:1954
+#: ../class-fire-utils_settings_map.php:2060
 msgid "Replace the default image slider's height"
 msgstr "Nahradit výchozí výšku obrázků slideru"
 
-#: ../class-fire-utils_settings_map.php:1960
+#: ../class-fire-utils_settings_map.php:2066
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1549,20 +1667,20 @@ msgstr ""
 "Pokud zvolíte tuto možnost, obrázek bude zmenšen na vámi zvlenou výšku po "
 "nahrání. Tato možnot zrychluje náčítání."
 
-#: ../class-fire-utils_settings_map.php:1961
+#: ../class-fire-utils_settings_map.php:2067
 msgid "You might want to regenerate your thumbnails."
 msgstr "Možná byste chtěl přegerovat náhledy."
 
-#: ../admin/class-admin-customize.php:308
+#: ../admin/class-admin-customize.php:364
 msgid "Hi! This is"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:309
+#: ../admin/class-admin-customize.php:365
 #, fuzzy
 msgid ", developer of the Customizr theme"
 msgstr "pokročílá nastavení pro Customizr šablonu."
 
-#: ../admin/class-admin-customize.php:310
+#: ../admin/class-admin-customize.php:368
 #, fuzzy
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
@@ -1572,12 +1690,12 @@ msgstr ""
 "<strong>Snaží­me se z plných sil, aby byl Customizr perfektní téma!</"
 "strong><br/> Prosí­m, podpořte náš vývoj příspěvkem $20, $50 nebo $100."
 
-#: ../admin/class-admin-customize.php:311
+#: ../admin/class-admin-customize.php:372
 #, fuzzy
 msgid "Make a donation for Customizr"
 msgstr "Vyberte vzhled pro Customizr"
 
-#: ../admin/class-admin-customize.php:312
+#: ../admin/class-admin-customize.php:375
 msgid ""
 "Once clicked the 'Hide forever' button, this donation block will not be "
 "displayed anymore.<br/>Either you are using Customizr for personal or "
@@ -1586,12 +1704,33 @@ msgid ""
 "Live long and prosper with Customizr!</strong>"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:313
+#: ../admin/class-admin-customize.php:376
 msgid "Hide forever"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:314
+#: ../admin/class-admin-customize.php:377
 msgid "Let me think twice"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:386
+msgid "Need more customizations options and premium support ?"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:388
+#: ../admin/class-admin-customize.php:400
+#: ../admin/class-admin-customize.php:412
+#, fuzzy
+msgid "Discover Customizr Pro"
+msgstr "Ví­tejte v tématu Customizr %s"
+
+#: ../admin/class-admin-customize.php:398
+msgid ""
+"Need more control on your fonts ? Style any text in live preview ( size, "
+"color, font family, effect, ...) with the Customizr Pro theme."
+msgstr ""
+
+#: ../admin/class-admin-customize.php:410
+msgid "Add unlimited featured pages with Customizr Pro"
 msgstr ""
 
 #: ../admin/class-admin-meta_boxes.php:87
@@ -1798,8 +1937,8 @@ msgstr "Odkaz tlačí­tka"
 #: ../parts/class-content-breadcrumb.php:693
 #: ../parts/class-content-breadcrumb.php:721
 #: ../parts/class-content-comments.php:160
-#: ../parts/class-content-featured_pages.php:249
-#: ../parts/class-content-headings.php:246
+#: ../parts/class-content-featured_pages.php:251
+#: ../parts/class-content-headings.php:247
 #: ../parts/class-content-slider.php:359
 msgid "Edit"
 msgstr "Upravit"
@@ -1828,36 +1967,38 @@ msgstr "Nahrát"
 msgid "Remove"
 msgstr "Odstranit"
 
-#: ../admin/class-fire-admin_init.php:55 ../admin/class-fire-admin_init.php:56
+#: ../admin/class-fire-admin_init.php:84 ../admin/class-fire-admin_init.php:85
 msgid "Upgrade WP"
 msgstr "Aktualizovat WP"
 
-#: ../admin/class-fire-admin_init.php:75
+#: ../admin/class-fire-admin_init.php:104
 msgid "This theme requires WordPress 3.4+"
 msgstr "Toto téma vyžaduje WordPress 3.4+"
 
-#: ../admin/class-fire-admin_init.php:78 ../admin/class-fire-admin_init.php:79
+#: ../admin/class-fire-admin_init.php:107
+#: ../admin/class-fire-admin_init.php:108
 msgid "Upgrade Wordpress Now"
 msgstr "Aktualizovat Wordpress"
 
-#: ../admin/class-fire-admin_init.php:96 ../admin/class-fire-admin_init.php:97
-#: ../admin/class-fire-admin_page.php:37 ../admin/class-fire-admin_page.php:38
+#: ../admin/class-fire-admin_init.php:125
+#: ../admin/class-fire-admin_init.php:126
+#: ../admin/class-fire-admin_page.php:40
 msgid "About Customizr"
 msgstr "O tématu Customizr"
 
-#: ../admin/class-fire-admin_init.php:119
-#: ../admin/class-fire-admin_page.php:61
+#: ../admin/class-fire-admin_init.php:148
+#: ../admin/class-fire-admin_page.php:68
 msgid "Need help with Customizr ?"
 msgstr "Potřebujete pomoct s tématem Customizr ?"
 
-#: ../admin/class-fire-admin_init.php:121
-#: ../admin/class-fire-admin_page.php:63
+#: ../admin/class-fire-admin_init.php:150
+#: ../admin/class-fire-admin_page.php:70
 #, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Ví­tejte v tématu Customizr %s"
 
-#: ../admin/class-fire-admin_init.php:128
-#: ../admin/class-fire-admin_page.php:70
+#: ../admin/class-fire-admin_init.php:157
+#: ../admin/class-fire-admin_page.php:78
 #, php-format
 msgid ""
 "You can start by watching the <a href=\"%1$s\" target=\"_blank"
@@ -1873,28 +2014,27 @@ msgstr ""
 "stále větší­ komunita vývojářů, Vaše řešení pravděpodobně najdete ve FAQ nebo "
 "ve fóru."
 
-#: ../admin/class-fire-admin_init.php:136
-#: ../admin/class-fire-admin_page.php:78
+#: ../admin/class-fire-admin_init.php:165
+#: ../admin/class-fire-admin_page.php:86
 msgid "Read the documentation"
 msgstr "Přečíst dokumentaci"
 
-#: ../admin/class-fire-admin_init.php:140
-#: ../admin/class-fire-admin_page.php:82
+#: ../admin/class-fire-admin_init.php:169
+#: ../admin/class-fire-admin_page.php:90
 msgid "Check the FAQ"
 msgstr "Zobrazit FAQ"
 
-#: ../admin/class-fire-admin_init.php:145
-#: ../admin/class-fire-admin_page.php:87
+#: ../admin/class-fire-admin_init.php:174
+#: ../admin/class-fire-admin_page.php:95
 msgid "Code snippets"
 msgstr "Úryvky kódu"
 
-#: ../admin/class-fire-admin_init.php:148
-#: ../admin/class-fire-admin_page.php:90
+#: ../admin/class-fire-admin_init.php:177
 msgid "Discuss in the user forum"
 msgstr "Diskuze"
 
-#: ../admin/class-fire-admin_init.php:156
-#: ../admin/class-fire-admin_page.php:98
+#: ../admin/class-fire-admin_init.php:185
+#: ../admin/class-fire-admin_page.php:106
 #, php-format
 msgid ""
 "Thank you for using Customizr! Customizr %1$s has more features, is safer "
@@ -1908,8 +2048,8 @@ msgstr ""
 "Sledujte <a href=\"%2$s\" target=\"_blank\">introduction video</a> a "
 "inspirujte se <a href=\"#showcase\">showcase</a>.<br/>Užijte si to! "
 
-#: ../admin/class-fire-admin_init.php:170
-#: ../admin/class-fire-admin_page.php:112
+#: ../admin/class-fire-admin_init.php:199
+#: ../admin/class-fire-admin_page.php:120
 #, php-format
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
@@ -1918,13 +2058,13 @@ msgstr ""
 "Používáte child téma Customizr %1$s : vždy zkontrolujte %2$s po aktualizaci, "
 "zda se již nepoužívají funkce nebo šablony."
 
-#: ../admin/class-fire-admin_init.php:185
-#: ../admin/class-fire-admin_page.php:127
+#: ../admin/class-fire-admin_init.php:214
+#: ../admin/class-fire-admin_page.php:137
 msgid "We need sponsors!"
 msgstr "Potřebujeme sponzory!"
 
-#: ../admin/class-fire-admin_init.php:186
-#: ../admin/class-fire-admin_page.php:128
+#: ../admin/class-fire-admin_init.php:215
+#: ../admin/class-fire-admin_page.php:138
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
 "strong><br/> Please help support it's continued development with a donation "
@@ -1933,13 +2073,13 @@ msgstr ""
 "<strong>Snaží­me se z plných sil, aby byl Customizr perfektní téma!</"
 "strong><br/> Prosí­m, podpořte náš vývoj příspěvkem $20, $50 nebo $100."
 
-#: ../admin/class-fire-admin_init.php:193
-#: ../admin/class-fire-admin_page.php:135
+#: ../admin/class-fire-admin_init.php:222
+#: ../admin/class-fire-admin_page.php:145
 msgid "Happy user of Customizr?"
 msgstr "Jste šťastný uživatel Customizr?"
 
-#: ../admin/class-fire-admin_init.php:194
-#: ../admin/class-fire-admin_page.php:136
+#: ../admin/class-fire-admin_init.php:223
+#: ../admin/class-fire-admin_page.php:146
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
@@ -1947,30 +2087,30 @@ msgstr ""
 "Pokud jste s tématem spokojeni, vyjádřete se na wordpress.org! <br />(Tešíme "
 "se na Vaše ohlasy...)"
 
-#: ../admin/class-fire-admin_init.php:199
-#: ../admin/class-fire-admin_page.php:141
+#: ../admin/class-fire-admin_init.php:228
+#: ../admin/class-fire-admin_page.php:151
 msgid "Follow us"
 msgstr "Sledujte nás"
 
-#: ../admin/class-fire-admin_init.php:207
-#: ../admin/class-fire-admin_page.php:149
+#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_page.php:160
 msgid "Customizr's extensions"
 msgstr "Rozšíření tématu Customizr"
 
-#: ../admin/class-fire-admin_init.php:210
-#: ../admin/class-fire-admin_init.php:219
-#: ../admin/class-fire-admin_page.php:152
-#: ../admin/class-fire-admin_page.php:161
+#: ../admin/class-fire-admin_init.php:239
+#: ../admin/class-fire-admin_init.php:248
+#: ../admin/class-fire-admin_page.php:163
+#: ../admin/class-fire-admin_page.php:172
 msgid "Visit the extension's page"
 msgstr "Navštívit stránku rozšíření"
 
-#: ../admin/class-fire-admin_init.php:211
-#: ../admin/class-fire-admin_page.php:153
+#: ../admin/class-fire-admin_init.php:240
+#: ../admin/class-fire-admin_page.php:164
 msgid "Easily take your web design one step further"
 msgstr "Jednoduše udělejte design svého webu o jeden stupeň lepší"
 
-#: ../admin/class-fire-admin_init.php:212
-#: ../admin/class-fire-admin_page.php:154
+#: ../admin/class-fire-admin_init.php:241
+#: ../admin/class-fire-admin_page.php:165
 msgid ""
 "The Customizr's extensions are plugins developed to extend the Customizr "
 "theme with great features. Nicely integrated with the theme's built-in "
@@ -1981,8 +2121,8 @@ msgstr ""
 "Jednoduchá implementace, mohou být bezpečně zakázány/povoleny bez žádného "
 "vedlejšího účinku."
 
-#: ../admin/class-fire-admin_init.php:214
-#: ../admin/class-fire-admin_page.php:156
+#: ../admin/class-fire-admin_init.php:243
+#: ../admin/class-fire-admin_page.php:167
 msgid ""
 "These modules are designed to be simple to use for everyone. They are a good "
 "solution to add some creative customizations whitout needing to dive into "
@@ -1991,8 +2131,8 @@ msgstr ""
 "Tyto moduly jsou navrženy tak, aby byly lehce ovladatelné. Jsou dobrým "
 "způsobem, jak přidat kreativní­ funkce bez nutnosti detailní­ znalosti kódu."
 
-#: ../admin/class-fire-admin_init.php:216
-#: ../admin/class-fire-admin_page.php:158
+#: ../admin/class-fire-admin_init.php:245
+#: ../admin/class-fire-admin_page.php:169
 msgid ""
 "Customizr's extensions are installed and upgraded from your WordPress admin, "
 "like any other WordPress plugins. Well documented and easily extendable with "
@@ -2002,25 +2142,25 @@ msgstr ""
 "WordPress. Kvalitní dokumentaci k rozšířením najdete ve fóru na stránce "
 "thmesandco.com."
 
-#: ../admin/class-fire-admin_init.php:225
-#: ../admin/class-fire-admin_page.php:167
+#: ../admin/class-fire-admin_init.php:254
+#: ../admin/class-fire-admin_page.php:179
 msgid "Customizr Showcase"
 msgstr "Představení­ tématu Customizr"
 
-#: ../admin/class-fire-admin_init.php:228
-#: ../admin/class-fire-admin_init.php:235
-#: ../admin/class-fire-admin_page.php:170
-#: ../admin/class-fire-admin_page.php:177
+#: ../admin/class-fire-admin_init.php:257
+#: ../admin/class-fire-admin_init.php:264
+#: ../admin/class-fire-admin_page.php:182
+#: ../admin/class-fire-admin_page.php:189
 msgid "Visit the showcase"
 msgstr "Navštivte přehlídku"
 
-#: ../admin/class-fire-admin_init.php:229
-#: ../admin/class-fire-admin_page.php:171
+#: ../admin/class-fire-admin_init.php:258
+#: ../admin/class-fire-admin_page.php:183
 msgid "Find inspiration for your next Customizr based website!"
 msgstr "Inspirujte se pro Váš další web založený na tématu Customizr!"
 
-#: ../admin/class-fire-admin_init.php:230
-#: ../admin/class-fire-admin_page.php:172
+#: ../admin/class-fire-admin_init.php:259
+#: ../admin/class-fire-admin_page.php:184
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
@@ -2028,8 +2168,8 @@ msgstr ""
 "Tato přehlídka ukazuje, jak jednoduše používat­ a upravovat web založený na "
 "tématu Customizr."
 
-#: ../admin/class-fire-admin_init.php:232
-#: ../admin/class-fire-admin_page.php:174
+#: ../admin/class-fire-admin_init.php:261
+#: ../admin/class-fire-admin_page.php:186
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
@@ -2037,31 +2177,36 @@ msgstr ""
 "Myslí­te si, že jste vytvořili úžasnou webovou stránku, kterou můžete "
 "inspirovat další­ lidi? Odeslání­ stránky pro náhled je jednoduché a rychlé."
 
-#: ../admin/class-fire-admin_init.php:242
-#: ../admin/class-fire-admin_page.php:244
+#: ../admin/class-fire-admin_init.php:271
+#: ../admin/class-fire-admin_page.php:256
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Seznam změn ve verzi %1$s"
 
-#: ../admin/class-fire-admin_init.php:251
-#: ../admin/class-fire-admin_page.php:186
+#: ../admin/class-fire-admin_init.php:280
+#: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Jdi na Dashboard &rarr; Domů¯"
 
-#: ../admin/class-fire-admin_init.php:251
-#: ../admin/class-fire-admin_page.php:186
+#: ../admin/class-fire-admin_init.php:280
+#: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard"
 msgstr "Jdi na Dashboard"
 
-#: ../admin/class-fire-admin_page.php:261
+#: ../admin/class-fire-admin_page.php:98
+#, fuzzy
+msgid "Get support in the forum"
+msgstr "Diskuze"
+
+#: ../admin/class-fire-admin_page.php:273
 msgid "System Informations"
 msgstr "Sytémové infromace"
 
-#: ../admin/class-fire-admin_page.php:262
+#: ../admin/class-fire-admin_page.php:274
 msgid "Please include the following informations when posting support requests"
 msgstr "K zádosti o podporu nezapomeňte připojit následující informace"
 
-#: ../admin/class-fire-admin_page.php:263
+#: ../admin/class-fire-admin_page.php:275
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
@@ -2209,20 +2354,20 @@ msgstr "Komentáře jsou uzavřeny."
 msgid "Leave a comment"
 msgstr "Zanechat komentář"
 
-#: ../parts/class-content-featured_pages.php:125
+#: ../parts/class-content-featured_pages.php:127
 msgid "Customizer screen"
 msgstr "Obrazovka tématu Customizr"
 
-#: ../parts/class-content-featured_pages.php:125
+#: ../parts/class-content-featured_pages.php:127
 msgid " here"
 msgstr "zde"
 
-#: ../parts/class-content-featured_pages.php:129
+#: ../parts/class-content-featured_pages.php:131
 #, fuzzy
 msgid "Featured page"
 msgstr "Úvodní představovací stránka"
 
-#: ../parts/class-content-featured_pages.php:132
+#: ../parts/class-content-featured_pages.php:134
 #, php-format
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
@@ -2235,69 +2380,69 @@ msgstr ""
 msgid "Missing Attachment"
 msgstr "Chybějící příloha"
 
-#: ../parts/class-content-headings.php:169
-#: ../parts/class-content-headings.php:174
+#: ../parts/class-content-headings.php:170
+#: ../parts/class-content-headings.php:175
 msgid "{no title} Read the post &raquo;"
 msgstr "{žádný nadpis} Čí­st příspěvek &raquo;"
 
-#: ../parts/class-content-headings.php:173
+#: ../parts/class-content-headings.php:174
 #, php-format
 msgid "Permalink to %s"
 msgstr "Permalink na %s"
 
-#: ../parts/class-content-headings.php:216
+#: ../parts/class-content-headings.php:217
 msgid "Comment(s) on"
 msgstr "Komentář(e) na"
 
-#: ../parts/class-content-headings.php:322
+#: ../parts/class-content-headings.php:323
 msgid "Ooops, page not found"
 msgstr "Ouha, stránka nenalezena"
 
-#: ../parts/class-content-headings.php:333
+#: ../parts/class-content-headings.php:334
 msgid "No"
 msgstr "Ne"
 
-#: ../parts/class-content-headings.php:334
+#: ../parts/class-content-headings.php:335
 msgid "Search Results for :"
 msgstr "Výsledky hledání pro:"
 
-#: ../parts/class-content-headings.php:349
+#: ../parts/class-content-headings.php:350
 msgid "Author Archives :"
 msgstr "Autor Archí­vu :"
 
-#: ../parts/class-content-headings.php:363 ../parts/class-content-post.php:161
+#: ../parts/class-content-headings.php:364 ../parts/class-content-post.php:161
 #, php-format
 msgid "About %s"
 msgstr "O %s"
 
-#: ../parts/class-content-headings.php:376
+#: ../parts/class-content-headings.php:377
 msgid "Category Archives :"
 msgstr "Archí­v kategorií:"
 
-#: ../parts/class-content-headings.php:392
+#: ../parts/class-content-headings.php:393
 msgid "Tag Archives :"
 msgstr "Archí­v Tagů:"
 
-#: ../parts/class-content-headings.php:405
+#: ../parts/class-content-headings.php:406
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Denní­ archí­v: %s"
 
-#: ../parts/class-content-headings.php:405
+#: ../parts/class-content-headings.php:406
 msgid "Archives"
 msgstr "Archí­vy"
 
-#: ../parts/class-content-headings.php:406
+#: ../parts/class-content-headings.php:407
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Měsíční archív: %s"
 
-#: ../parts/class-content-headings.php:407
+#: ../parts/class-content-headings.php:408
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Roční archív: %s"
 
-#: ../parts/class-content-headings.php:472
+#: ../parts/class-content-headings.php:477
 #, fuzzy
 msgid "comment"
 msgstr "Komentáře"
@@ -2436,13 +2581,16 @@ msgstr "Novější příspěvky <span class=\"meta-nav\">&rarr;</span>"
 msgid "Back to top"
 msgstr "Návrat zpět nahoru"
 
-#: ../parts/class-header-header_main.php:254
+#: ../parts/class-header-header_main.php:256
 msgid "Back Home"
 msgstr "Zpět domů"
 
-#: ../parts/class-header-menu.php:126
+#: ../parts/class-header-menu.php:129
 msgid "Add a menu"
 msgstr "Přidat menu "
+
+#~ msgid "Header : title, logo, menu, ..."
+#~ msgstr "Hlavička : titulek, logo, menu, ..."
 
 #, fuzzy
 #~ msgid "W"

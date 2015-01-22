@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.2.11
+ * Customizr v3.2.12
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -8367,7 +8367,7 @@ li#wp-admin-bar-tc-customizr a {
     -o-transition: all ease 0.241s;
     transition: all ease 0.241s;
   }
-  .tc-open-on-click .dropdown-submenu:hover > .dropdown.menu {
+  .tc-open-on-click .dropdown-submenu:hover > .dropdown-menu {
     display: none;
   }
 }

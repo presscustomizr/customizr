@@ -2356,18 +2356,18 @@ var TCParams = TCParams || {};
     //defaults
     var pluginName = 'addDropCap',
         defaults = {
-            wrapper : ".entry-content"
+            wrapper : ".entry-content",
+            minwords : 50,
         };
 
     function Plugin( element, options ) {
       this.element = element;
       this.options = $.extend( {}, defaults, options) ;
-
       this._defaults = defaults;
       this._name = pluginName;
-
       this.init();
     }
+
     //can access this.element and this.option
     Plugin.prototype.init = function () {
       this._may_be_add_dc();
@@ -2380,11 +2380,19 @@ var TCParams = TCParams || {};
           _to_transform     = _clean_p_text.charAt(0),
           _truncated_text   = _first_p_text.substr(1);
 
-      $_to_prepend = $( '<span>' , { class : 'tc-dropcap' , html : _to_transform } );
+      //check max numb. of words
+      if ( this.options.minwords > this._countWords( _first_p_text ) )
+        return;
 
-      $_target.text( _truncated_text );
+      $_target.text( _truncated_text ).prepend( $( '<span>' , { class : 'tc-dropcap' , html : _to_transform } ) );
+    };
 
-      $_target.prepend( $_to_prepend );
+    Plugin.prototype._countWords = function( _expr ) {
+      if ( 'string' != typeof( _expr ) )
+        return 0;
+
+      return (_expr.split(' ')).length;
+
     };
 
     Plugin.prototype._removeSpecChars = function( expr , replaceBy ) {
@@ -2420,7 +2428,9 @@ jQuery(function ($) {
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
       $.each( _p.dropcapWhere , function( ind, val ) {
         if ( 1 == val ) {
-          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).find('p').first().addDropCap();
+          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).find('p').first().addDropCap( {
+            minwords : _p.dropcapMinWords//@todo check if number
+          });
         }
       });
     }
