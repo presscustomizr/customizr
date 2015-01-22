@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.2.13 January 22nd 2015 =
+c583b19 Fix warning when attempting to load Google font in the admin editor
+
 = 3.2.12 January 22nd 2015 =
 * cbe6780 Update : theme description
 

@@ -1,4 +1,4 @@
-# Customizr v3.2.12 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.13 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,6 +92,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.2.13 January 22nd 2015 =
+c583b19 Fix warning when attempting to load Google font in the admin editor
+
 = 3.2.12 January 22nd 2015 =
 * cbe6780 Update : theme description
 
