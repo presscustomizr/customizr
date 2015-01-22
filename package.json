@@ -1,7 +1,7 @@
 {
   "name": "customizr",
-  "version": "3.2.11",
-  "description": "Enjoy designing a beautiful website live with the WP customizer : 17 color skins, Google fonts, logo upload, social profiles, sliders, layout choices, home featured blocks, or even live css styling. The flat and fully responsive design can be used for small businesses, portfolios, blogs, corporate sites or landing pages. Built with valid HTML5 and CSS3 (from the Twitter Bootstrap), cross-browser tested, the theme is translation ready and available in 24 languages. Ready for WooCommerce, bbPress, qTranslate, the code is easily extensible with a comprehensive API of hooks.",
+  "version": "3.2.12",
+  "description": "Navigate to Appearance, Customize. Design in live preview, save and enjoy a beautiful, fast and responsive website compatible with all browsers. For developers, Customizr offers a well documented and modular code, easy to extend with hooks.",
   "author": "nikeo",
   "license": "GNU GPL v2.0",
   "repository": {
