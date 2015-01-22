@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.2.12 January 22nd 2015 =
+* cbe6780 Update : theme description
+
 = 3.2.11 January 21st 2015 =
 * 7df1282 update : translation files
 * cbd0c0c New theme description

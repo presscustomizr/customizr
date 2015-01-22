@@ -1,4 +1,4 @@
-# Customizr v3.2.11 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.12 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,7 +92,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
-= 3.2.11 January 21st 2015 =
+= 3.2.12 January 22nd 2015 =
+* cbe6780 Update : theme description
+
 = 3.2.11 January 21st 2015 =
 * 7df1282 update : translation files
 * cbd0c0c New theme description
