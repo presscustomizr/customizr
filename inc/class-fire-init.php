@@ -710,11 +710,10 @@ if ( ! class_exists( 'TC_init' ) ) :
         /* The Event Calendar
         ** @Credits : @https://wordpress.org/support/profile/d4z_c0nf
         */
-        if ( current_theme_supports( 'the-events-calendar' ) ) {
+        if ( current_theme_supports( 'the-events-calendar' ) && function_exists( 'tribe_is_event_query' ) ) {
           add_action('wp', 'tc_events_calendar_comp', 100);
           function tc_events_calendar_comp(){
-            global $wp_query;
-            if ( ! ( isset($wp_query -> tribe_is_event_query) && $wp_query -> tribe_is_event_query ) )
+            if ( ! tribe_is_event_query() )
                 return;
 
             if ( method_exists( 'TC_headings', 'tc_content_heading_title' ) ){
@@ -722,19 +721,6 @@ if ( ! class_exists( 'TC_init' ) ) :
             }
             if ( method_exists( 'TC_headings', 'tc_add_edit_link_after_title' ) ){
                 remove_filter( 'the_title', array(TC_Headings::$instance, 'tc_add_edit_link_after_title' ), 2);
-                //use create_function() for anonymous function if php version < 5.3.0
-                if ( version_compare( PHP_VERSION, '5.3.0' ) < 0 ) {
-                  add_action( 'tribe_events_after_the_event_title' , create_function('',
-                    'global $post;
-                    echo TC_Headings::$instance -> tc_add_edit_link_after_title($post->the_title) ;'
-                  ) );
-                } else {
-                  add_action( 'tribe_events_after_the_event_title' , function() {
-                    global $post;
-                    echo TC_Headings::$instance -> tc_add_edit_link_after_title($post->the_title) ;
-                  } );
-                }
-
             }
             if ( method_exists( 'TC_headings', 'tc_add_comment_bubble_after_title' ) )
                 remove_filter( 'the_title', array(TC_Headings::$instance, 'tc_add_comment_bubble_after_title'), 1 );
