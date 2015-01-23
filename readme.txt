@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.2.14 January 23rd 2015 =
+Fix: don't re-add edit link button for tribe-events events
+
 = 3.2.13 January 22nd 2015 =
 c583b19 Fix warning when attempting to load Google font in the admin editor
 

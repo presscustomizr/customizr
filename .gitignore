@@ -11,9 +11,6 @@ Thumbs.db
 # PATCHES
 patches/
 
-# VARIOUS
-dev/
-
 # GRUNT #
 node_modules/
 .ftpauth
