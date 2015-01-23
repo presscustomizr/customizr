@@ -1,4 +1,4 @@
-# Customizr v3.2.14 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.15 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,7 +92,7 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
-= 3.2.14 January 23rd 2015 =
+= 3.2.15 January 23rd 2015 =
 Fix: don't re-add edit link button for tribe-events events
 
 = 3.2.13 January 22nd 2015 =
