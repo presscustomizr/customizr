@@ -359,7 +359,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
             TC_init::$instance -> tc_active_skin() , get_stylesheet_uri()
         );
 
-        if ( apply_filters( 'tc_add_custom_fonts_to_editor' , false !== $this -> tc_maybe_add_gfonts_to_editor() ) )
+        if ( apply_filters( 'tc_add_custom_fonts_to_editor' , false != $this -> tc_maybe_add_gfonts_to_editor() ) )
           $_stylesheets = array_merge( $_stylesheets , $this -> tc_maybe_add_gfonts_to_editor() );
 
         add_editor_style( $_stylesheets );
