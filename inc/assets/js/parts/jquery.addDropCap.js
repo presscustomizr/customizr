@@ -22,8 +22,12 @@
 
     Plugin.prototype._may_be_add_dc = function() {
       var $_target          = $( this.options.wrapper ).find( this.element ).first(),
-          _first_p_text     = this._stripHtmlTags ( $_target.text() ),
-          _clean_p_text     = this._removeSpecChars( _first_p_text ),
+          _first_p_text     = this._stripHtmlTags ( $_target.text() );
+
+      if ( ! _first_p_text )
+          return;
+
+      var _clean_p_text     = this._removeSpecChars( _first_p_text ),
           _to_transform     = _clean_p_text.charAt(0),
           _truncated_text   = _first_p_text.substr(1);
 
