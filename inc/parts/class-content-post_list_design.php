@@ -306,11 +306,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
         function tc_post_list_design_display_title_metas(){
             ob_start();
-            ?>
-                <section class="tc-design-title-metas">
-                    <?php do_action('__before_content'); ?>
-                </section>
-            <?php
+                do_action('__before_content');
             $html = ob_get_contents();
             if ($html) ob_end_clean();
             echo apply_filters('tc_post_list_design_display_title_metas', $html);
@@ -423,9 +419,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     }
                     .tc-post-list-design .featurette-divider.__loop{
                         display: block;
-                    }
-                    .tc-post-list-design article section + section {
-                        margin-bottom: 30px;
                     }
                 }
                 \n"   
