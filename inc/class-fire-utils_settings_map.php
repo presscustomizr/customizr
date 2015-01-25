@@ -1745,7 +1745,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 23
               ),
               'tc_theme_options[tc_post_list_design]'  =>  array(
-                                'default'       => 1,
+                                'default'       => 'default',
                                 'control'       => 'TC_controls' ,
                                 'title'         => __( 'Post List Design' , 'customizr' ),
                                 'label'         => __( 'Select a Layout' , "customizr" ),
@@ -1759,7 +1759,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'    => __( 'When you select the Column Layout, the length of posts in lists you want to apply this feature will be forced to the excerpt' , 'customizr' ),
               ),
               'tc_theme_options[tc_post_list_design_columns]'  =>  array(
-                                'default'       => 2,
+                                'default'       => '2',
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Columns' , "customizr" ),
                                 'section'       => 'tc_post_list_settings' ,
