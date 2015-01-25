@@ -136,7 +136,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
  
         /* Wrap articles in a grid section*/
-        function tc_print_row_fluid_section_wrapper(){
+        function tc_print_row_fluid_section_wrapper_old(){
             global $wp_query;
             $current_post = $wp_query -> current_post;
             $start_post = $this -> has_expanded_featured ? 1 : 0;
@@ -150,7 +150,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                         '<section class="tc-post-list-design row-fluid cols-'.$cols.'">' );
             elseif ( '__after_article' == $current_filter &&
                       ( $wp_query->post_count == ( $current_post + 1 ) ||
-                      0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) )/* )*/{
+                      0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) {
                             
                 echo '</section><!--end section.tc-post-list-design.row-fluid-->';
                 echo apply_filters( 'tc_post_list_design_separator',
@@ -158,6 +158,24 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             }
         }
 
+        /* Wrap articles in a grid section*/
+        function tc_print_row_fluid_section_wrapper(){
+            global $wp_query;
+            $current_post = $wp_query -> current_post;
+            $start_post = $this -> has_expanded_featured ? 1 : 0;
+            $cols = $this -> tc_post_list_design_section_cols();
+            $current_filter = current_filter();
+            
+            if ( '__before_article' == $current_filter && $start_post == $current_post )
+                    echo apply_filters( 'tc_post_list_design_grid_section',
+                        '<section class="tc-post-list-design row-fluid cols-'.$cols.'">' );
+            elseif ( '__after_article' == $current_filter &&
+                      $wp_query->post_count == ( $current_post + 1 ) ){
+                echo '</section><!--end section.tc-post-list-design.row-fluid-->';
+                echo apply_filters( 'tc_post_list_design_separator',
+                    '<hr class="featurette-divider post-list-design">' );
+            }
+        }
         /* Thumbnails */
         function tc_set_thumb_size_name(){
             return  ( $this-> tc_post_list_design_section_cols() == '1' ) ?
@@ -423,7 +441,20 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 }
                 \n"   
             );
+                
+            $cols = $this -> tc_get_post_list_cols();
 
+            $first_article = 'article';
+            for ( $i = 2; $i <= $cols + 1 ; $i++ )
+                $first_article .= ' + article';
+            
+            $_css .= sprintf("
+                .tc-post-list-design.row-fluid %s {
+                    margin-left: 0;                
+                }
+                ", 
+                $first_article
+            );
             $_css = sprintf("%s\n%s",
                 $_css,
                 "
