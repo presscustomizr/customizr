@@ -136,7 +136,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
  
         /* Wrap articles in a grid section*/
-        function tc_print_row_fluid_section_wrapper_old(){
+        function tc_print_row_fluid_section_wrapper(){
             global $wp_query;
             $current_post = $wp_query -> current_post;
             $start_post = $this -> has_expanded_featured ? 1 : 0;
@@ -159,7 +159,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         /* Wrap articles in a grid section*/
-        function tc_print_row_fluid_section_wrapper(){
+        function tc_print_row_fluid_section_wrapper_exp(){
             global $wp_query;
             $current_post = $wp_query -> current_post;
             $start_post = $this -> has_expanded_featured ? 1 : 0;
@@ -442,7 +442,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 }
                 \n"   
             );
-                
+/*                
             $cols = $this -> tc_get_post_list_cols();
 
             $first_article = 'article';
@@ -455,7 +455,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 }
                 ", 
                 $first_article
-            );
+            );*/
             $_css = sprintf("%s\n%s",
                 $_css,
                 "
