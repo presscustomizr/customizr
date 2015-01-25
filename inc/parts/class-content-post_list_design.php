@@ -166,11 +166,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             $cols = $this -> tc_post_list_design_section_cols();
             $current_filter = current_filter();
             
-            if ( '__before_article' == $current_filter && $start_post == $current_post )
+            if ( '__before_article' == $current_filter && 
+                ( $start_post == $current_post || $this -> is_expanded_featured() ) )
                     echo apply_filters( 'tc_post_list_design_grid_section',
                         '<section class="tc-post-list-design row-fluid cols-'.$cols.'">' );
             elseif ( '__after_article' == $current_filter &&
-                      $wp_query->post_count == ( $current_post + 1 ) ){
+                ( $wp_query->post_count == ( $current_post + 1 )  || $this -> is_expanded_featured() ) ){
                 echo '</section><!--end section.tc-post-list-design.row-fluid-->';
                 echo apply_filters( 'tc_post_list_design_separator',
                     '<hr class="featurette-divider post-list-design">' );
