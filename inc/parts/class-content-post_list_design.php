@@ -523,7 +523,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         /* checks the option tc_post_list_design and wraps it into a filter */
         function tc_get_post_list_design(){
             return apply_filters( 'tc_post_list_design',
-                'default' != esc_attr( tc__f('__get_option', 'tc_post_list_design') ) );
+                'design' == esc_attr( tc__f('__get_option', 'tc_post_list_design') ) );
         }       
 
         function tc_post_list_is_design(){

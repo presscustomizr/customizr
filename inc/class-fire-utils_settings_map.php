@@ -1753,7 +1753,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'select',
                                 'choices'       => array(
                                         'default'               => __( 'Default' , 'customizr'),
-                                        'columns'               => __( 'Column Layout' , 'customizr')
+                                        'design'               => __( 'Column Layout' , 'customizr')
                                 ),
                                 'priority'      => 24,
                                 'notice'    => __( 'When you select the Column Layout, the length of posts in lists you want to apply this feature will be forced to the excerpt' , 'customizr' ),

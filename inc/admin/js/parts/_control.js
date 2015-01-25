@@ -186,7 +186,7 @@
         'tc_theme_options[tc_post_list_design_default_thumb]'
       ],
       callback: function (to) {
-        return 'default' != to;
+        return 'design' == to;
       }
     },  
     'tc_theme_options[tc_sticky_show_title_logo]' : {
