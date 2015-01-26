@@ -183,7 +183,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
               //write default option in array
               if(isset($options['default'])) {
-                $defaults[$option_name] = $options['default'];
+                $defaults[$option_name] = ( 'checkbox' == $options['type'] ) ? (bool) $options['default'] : $options['default'];
               }
               else {
                 $defaults[$option_name] = null;
