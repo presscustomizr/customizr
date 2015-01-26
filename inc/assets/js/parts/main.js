@@ -6,13 +6,13 @@
 //ON DOM READY
 jQuery(function ($) {
     var _p = TCParams;
-
     //Drop Caps
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
       $.each( _p.dropcapWhere , function( ind, val ) {
         if ( 1 == val ) {
-          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).find('p').first().addDropCap( {
-            minwords : _p.dropcapMinWords//@todo check if number
+          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).children().first().addDropCap( {
+            minwords : _p.dropcapMinWords,//@todo check if number
+            skipSelectors : _.isObject(_p.skipSelectors) ? _p.skipSelectors : {}
           });
         }
       });
