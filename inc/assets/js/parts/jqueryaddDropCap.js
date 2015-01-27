@@ -6,7 +6,7 @@
             wrapper : ".entry-content",
             minwords : 50,
             skipSelectors : { //defines the selector to skip when parsing the wrapper
-              tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'],
+              tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE'],
               classes : [],
               ids : []
             },
