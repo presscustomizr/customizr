@@ -21,7 +21,7 @@ module.exports = {
 	},
 	less: {
 		src: [
-			'<%= paths.less %>skin_gen.less'
+			'<%= paths.less %>common_gen.less'
 		],
 		overwrite: true,
 		replacements: [ {
