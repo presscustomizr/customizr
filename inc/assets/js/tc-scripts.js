@@ -2388,7 +2388,6 @@ var TCParams = TCParams || {};
     //can access this.element and this.option
     Plugin.prototype.init = function () {
       var $_target = this._get_dropcap_el();
-      console.log('$_target' , $_target);
       //if there's text and enough words, then apply a drop cap
       if ( $_target && this.options.minwords <= this._countWords( $_target.text() ) )
         this._may_be_add_dc( $_target );
@@ -2427,7 +2426,7 @@ var TCParams = TCParams || {};
 
       if ( ! $_el[0] || ! $_el[0].tagName )
         return;
-      console.log( this.options.skipSelectors, _.isArray(this.options.skipSelectors.tags) , $_el[0].tagName, _.indexOf( _.map( this.options.skipSelectors.tags , function(_tag) { return _tag.toUpperCase(); } ), $_el[0].tagName )  );
+
       //is first child tag allowed ?
       if ( _.isArray(this.options.skipChildTags) && $_el.children().first().length && -1 != _.indexOf( _.map( this.options.skipChildTags , function(_tag) { return _tag.toUpperCase(); } ), $_el.children().first()[0].tagName ) )
         return;

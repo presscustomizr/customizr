@@ -1,4 +1,4 @@
-# Customizr v3.2.16 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.17 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,6 +92,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.2.17 January 27th 2015 =
+* removed : console.log() in addDropCap script
+
 = 3.2.16 January 27th 2015 =
 * d1207b1 updated : list of selectors to skip when applying drop caps
 * 6512345 changed : external links icon and new tab (_target = blank) are disabled by default
