@@ -2997,15 +2997,6 @@ jQuery(function ($) {
         $tcHeader.css('top' , _get_initial_offset() + 'px');
     }
 
-    function _set_no_title_logo_class() {
-        if ( ! $('body').hasClass('sticky-enabled') ) {
-            $('.navbar-wrapper').addClass('span9').removeClass('span12');
-        } else {
-            $('.tc-title-logo-off .navbar-wrapper' , '.sticky-enabled').addClass('span12').removeClass('span9');
-            $('.tc-title-logo-on .navbar-wrapper' , '.sticky-enabled').addClass('span9').removeClass('span12');
-        }
-    }
-
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
     if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
@@ -3028,14 +3019,12 @@ jQuery(function ($) {
             return;
         _set_sticky_offsets();
         _set_header_top_offset();
-        _set_no_title_logo_class();
     });
 
     function _refresh() {
         setTimeout( function() {
             _set_sticky_offsets();
             _set_header_top_offset();
-            _set_no_title_logo_class();
         } , 20 );
         $(window).trigger('resize');
     }
@@ -3049,7 +3038,6 @@ jQuery(function ($) {
 
     function _scrolling_actions() {
         _set_header_top_offset();
-        _set_no_title_logo_class();
         //process scrolling actions
         if ( $(window).scrollTop() > triggerHeight ) {
             $('body').addClass("sticky-enabled").removeClass("sticky-disabled");
