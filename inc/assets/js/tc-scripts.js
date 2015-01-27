@@ -23,7 +23,7 @@ var TCParams = TCParams || {
   dropcapWhere:{ post : 0, page : 1 },
   dropcapMinWords:50,
   skipSelectors: {
-              tags : ['IMG' , 'IFRAME'],
+              tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'],
               classes : [],
               ids : []
             },
@@ -2370,7 +2370,7 @@ var TCParams = TCParams || {};
             wrapper : ".entry-content",
             minwords : 50,
             skipSelectors : { //defines the selector to skip when parsing the wrapper
-              tags : ['IMG' , 'IFRAME'],
+              tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'],
               classes : [],
               ids : []
             },
@@ -2388,7 +2388,7 @@ var TCParams = TCParams || {};
     //can access this.element and this.option
     Plugin.prototype.init = function () {
       var $_target = this._get_dropcap_el();
-
+      console.log('$_target' , $_target);
       //if there's text and enough words, then apply a drop cap
       if ( $_target && this.options.minwords <= this._countWords( $_target.text() ) )
         this._may_be_add_dc( $_target );
@@ -2399,7 +2399,7 @@ var TCParams = TCParams || {};
     //recursive function. parse this.wrapper to find the first eligible element with text
     Plugin.prototype._get_dropcap_el = function( _requested_el ) {
       var $_first_el      = _requested_el || $( this.options.wrapper ).find( this.element ).first(),
-          _first_el_text = this._get_real_text( $_first_el.text() );
+          _first_el_text  = this._get_real_text( $_first_el.text() );
 
       if ( ! this._is_authorized( $_first_el ) && $_first_el.next().length )
         return this._get_dropcap_el( $_first_el.next() );
@@ -2427,12 +2427,12 @@ var TCParams = TCParams || {};
 
       if ( ! $_el[0] || ! $_el[0].tagName )
         return;
-
+      console.log( this.options.skipSelectors, _.isArray(this.options.skipSelectors.tags) , $_el[0].tagName, _.indexOf( _.map( this.options.skipSelectors.tags , function(_tag) { return _tag.toUpperCase(); } ), $_el[0].tagName )  );
       //is first child tag allowed ?
       if ( _.isArray(this.options.skipChildTags) && $_el.children().first().length && -1 != _.indexOf( _.map( this.options.skipChildTags , function(_tag) { return _tag.toUpperCase(); } ), $_el.children().first()[0].tagName ) )
         return;
       //is tag allowed ?
-      if ( _.isArray(this.options.skipSelectors.tags) && -1 != _.indexOf(_.map( this.options.skipSelectors.tags , function(_tag) { return _tag.toUpperCase(); } ), $_el[0].tagName ) )
+      if ( _.isArray(this.options.skipSelectors.tags) && -1 != _.indexOf( _.map( this.options.skipSelectors.tags , function(_tag) { return _tag.toUpperCase(); } ), $_el[0].tagName ) )
         return;
       //is class allowed ?
       if ( _.isArray(this.options.skipSelectors.classes) && $_el.attr('class') && 0 !== _.intersection( $_el.attr('class').split(' '), this.options.skipSelectors.classes ).length )

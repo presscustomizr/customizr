@@ -40,6 +40,7 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.2.16 January 27th 2015 =
+* d1207b1 updated : list of selectors to skip when applying drop caps
 * 6512345 changed : external links icon and new tab (_target = blank) are disabled by default
 * 6d0f725 Fix drop cap feature : html tags are not striped out anymore. Instead, the dropcap plugin search the first
 * h0145a45 add : front javascript underscore.js dependency ~+5.5kb
