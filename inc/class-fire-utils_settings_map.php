@@ -1852,6 +1852,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 35,
                                 'transport'   => 'postMessage'
               ),
+              'tc_theme_options[tc_post_list_design_thumb_height]' => array(
+                                'default'       => 350,
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'control'   => 'TC_controls' ,
+                                'label'       => __( "Set the Post List Design thumbnail's max height in pixels" , 'customizr' ),
+                                'section'     => 'tc_post_list_settings' ,
+                                'type'        => 'number' ,
+                                'step'      => 1,
+                                'min'     => 0,
+                                'priority'      => 36,
+                                'transport'   => 'postMessage'
+              ),
               'tc_theme_options[tc_post_list_thumb_position]'  =>  array(
                                 'default'       => 'right',
                                 'control'     => 'TC_controls' ,
