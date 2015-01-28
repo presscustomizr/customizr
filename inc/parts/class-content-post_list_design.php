@@ -481,6 +481,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             $thumb_full_size = apply_filters( 'tc_design_full_size', 
                                     TC_init::$instance -> tc_design_full_size );
 
+            $thumb_full_width = $thumb_full_size['width'];
             $thumb_size = apply_filters( 'tc_design_size', 
                                     TC_init::$instance -> tc_design_size );
             
@@ -495,23 +496,22 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     height: 0;
                     width: 100%;
                     padding-bottom: {$thumb_ratio}%;
+                    max-width : {$thumb_width}px;
                 }
-                .tc-post-list-design .expanded figure {
+                .tc-post-list-design.cols-1 figure {
                     padding-bottom: {$thumb_full_ratio}%;
+                    max-width: ${thumb_full_width}px;   
                 }
-                @media (max-width: 764px){
+                @media (max-width: 767px){
                     .tc-post-list-design header,
                     .tc-post-list-design .tc-design-post{
                         margin: 0 auto !important;   
                         float: none;
                         width: auto;
-                        max-width: ${thumb_width}px;   
+                        max-width : {$thumb_width}px;
                     }
-                    .tc-post-list-design .expanded .tc-design-post {
-                        margin: 0 auto !important;   
-                        float: none;
-                        width: auto;
-                        max-width: 100%;   
+                    .tc-post-list-design.cols1 .tc-design-post {
+                        max-width: ${thumb_full_width}px;   
                     }
                 }
                 \n
