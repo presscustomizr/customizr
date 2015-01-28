@@ -117,13 +117,14 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_is_customizing() {
         //checks if is customizing : two contexts, admin and front (preview frame)
         global $pagenow;
-        $is_customizing = false;
-        if ( is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow ) {
-                $is_customizing = true;
-        } else if ( ! is_admin() && isset($_REQUEST['wp_customize']) ) {
-                $is_customizing = true;
-        }
-        return $is_customizing;
+        $bool = false;
+        if ( is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow )
+          $bool = true;
+        if ( ! is_admin() && isset($_REQUEST['wp_customize']) )
+          $bool = true;
+        if ( $this -> doing_customizer_ajax() )
+          $bool = true;
+        return $bool;
       }
 
 
