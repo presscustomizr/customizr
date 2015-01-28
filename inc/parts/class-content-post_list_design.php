@@ -249,7 +249,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             //what is determining the layout ? if no thumbnail then full width + filter's conditions
             $post_list_content_class        = $layout['content'];
 
-            if ( ! $this -> is_expanded_featured() ){
+            if ( ! $this -> tc_post_list_design_title_in_caption() ){
                 $hook_prefix = '__before';
                 if ( $layout['show_thumb_first'] )
                     $hook_prefix = '__after';
@@ -305,8 +305,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_expanded_post_title(){
-            if ( ! apply_filters( 'tc_post_list_design_title_in_caption', 
-                            $this -> is_expanded_featured() ) )
+            if ( ! $this -> tc_post_list_design_title_in_caption() )
                 return;
             global $post;
             echo '<h2 class="title">'.$post->post_title.'</h2>';
@@ -565,6 +564,11 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             return ( apply_filters('tc_post_list_design_do',
                 $post_list_type && $this -> tc_get_post_list_design_in( $post_list_type ) ) );
         }
-        
+
+        /* checks whether we have to show the title in caption or not */
+        function tc_post_list_design_title_in_caption(){
+            return apply_filters( 'tc_post_list_design_title_in_caption', 
+                $this -> is_expanded_featured() );
+        }
     }
 endif;
