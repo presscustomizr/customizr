@@ -348,9 +348,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 "
                 .tc-design-figure {
                     position: relative;
-                    float: left;
+                  /*  float: left;
                     width: 100%;
-                    height: 100%;
+                    height: 100%;*/
                     overflow: hidden;
                 }
                 .tc-design-figure img {
@@ -388,7 +388,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 }
                 figure.no-thumb figcaption{
                     opacity: 1;
-                    position: relative;
                 }
                 .tc-post-list-design article.hover figcaption{
                     opacity: 1;
@@ -456,7 +455,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 ", 
                 $first_article
             );*/
-            $_css = sprintf("%s\n%s",
+            /*$_css = sprintf("%s\n%s",
                 $_css,
                 "
                 .tc-post-list-design .tc-design-post,
@@ -476,7 +475,49 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 }
                 \n
                 "
+            );*/
+
+            /* retrieve the height/width ratios */
+            $thumb_full_size = apply_filters( 'tc_design_full_size', 
+                                    TC_init::$instance -> tc_design_full_size );
+
+            $thumb_size = apply_filters( 'tc_design_size', 
+                                    TC_init::$instance -> tc_design_size );
+            
+            $thumb_width = $thumb_size['width'];
+            $thumb_full_ratio = $thumb_full_size['height'] / $thumb_full_size['width'] * 100;
+            $thumb_ratio =  $thumb_size['height'] / $thumb_size['width'] * 100;
+
+            $_css = sprintf("%s\n%s",
+                $_css,
+                "
+                .tc-post-list-design figure {
+                    height: 0;
+                    width: 100%;
+                    padding-bottom: {$thumb_ratio}%;
+                }
+                .tc-post-list-design .expanded figure {
+                    padding-bottom: {$thumb_full_ratio}%;
+                }
+                @media (max-width: 764px){
+                    .tc-post-list-design header,
+                    .tc-post-list-design .tc-design-post{
+                        margin: 0 auto !important;   
+                        float: none;
+                        width: auto;
+                        max-width: ${thumb_width}px;   
+                    }
+                    .tc-post-list-design .expanded .tc-design-post {
+                        margin: 0 auto !important;   
+                        float: none;
+                        width: auto;
+                        max-width: 100%;   
+                    }
+                }
+                \n
+                "
             );
+
             return $_css;
         }
         /* Helpers */
