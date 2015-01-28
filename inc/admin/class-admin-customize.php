@@ -191,7 +191,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 					}
 
 					//add setting
-					$wp_customize	-> add_setting( $key, $option_settings );
+					$wp_customize	-> add_setting( new WP_Customize_test ( $wp_customize, $key, $option_settings ) );
 
 					//generate controls array
 					$option_controls = array();
@@ -419,3 +419,44 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 	}//end of class
 endif;
+
+class WP_Customize_test extends WP_Customize_Setting {
+      //public $id = 'background_image_thumb';
+
+      /**
+       * @since 3.4.0
+       *
+       * @param $value
+       */
+      protected function update( $value ) {
+
+        switch( $this->type ) {
+          case 'theme_mod' :
+            return $this->_update_theme_mod( $value );
+
+          case 'option' :
+            ?>
+            <pre>
+              <?php print_r('during ajax in extended class ' .  $this->type ); ?>
+            </pre>
+          <?php
+          //wp_die();
+            return $this->_update_option( $value );
+
+          default :
+
+            /**
+             * Fires when the {@see WP_Customize_Setting::update()} method is called for settings
+             * not handled as theme_mods or options.
+             *
+             * The dynamic portion of the hook name, `$this->type`, refers to the type of setting.
+             *
+             * @since 3.4.0
+             *
+             * @param mixed                $value Value of the setting.
+             * @param WP_Customize_Setting $this  WP_Customize_Setting instance.
+             */
+          return do_action( 'customize_update_' . $this->type, $value, $this );
+        }
+      }
+    }
