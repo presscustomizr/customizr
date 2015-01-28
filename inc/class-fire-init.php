@@ -75,8 +75,8 @@ if ( ! class_exists( 'TC_init' ) ) :
           $this -> tc_thumb_size      = array('width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
           $this -> slider_full_size   = array('width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
           $this -> slider_size        = array('width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
-          $this -> tc_design_full_size = array('width' => 1170 , 'height' => 250, 'crop' => true ); //size name : tc-design-full
-          $this -> tc_design_size = array('width' => 480 , 'height' => 250, 'crop' => true ); //size name : tc-design
+          $this -> tc_design_full_size = array('width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-design-full
+          $this -> tc_design_size = array('width' => 480 , 'height' => 350, 'crop' => true ); //size name : tc-design
 
 
           //Default skins array
@@ -403,9 +403,9 @@ if ( ! class_exists( 'TC_init' ) ) :
             add_filter( 'tc_slider_full_size'    , array($this,  'tc_set_slider_img_height') );
             add_filter( 'tc_slider_size'         , array($this,  'tc_set_slider_img_height') );
         }
-        if ( isset( $_options['tc_post_list_thumb_height'] ) ){
-            $_user_height  = esc_attr( $_options['tc_post_list_thumb_height'] );
-            if ( 250 != $_user_height ){
+        if ( isset( $_options['tc_post_list_design_thumb_height'] ) ){
+            $_user_height  = esc_attr( $_options['tc_post_list_design_thumb_height'] );
+            if ( 350 != $_user_height ){
                 add_filter( 'tc_design_full_size', array($this,  'tc_set_design_img_height') );
                 add_filter( 'tc_design_size'     , array($this,  'tc_set_design_img_height') );
             }
@@ -444,7 +444,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       function tc_set_design_img_height( $_default_size ) {
         $_options = get_option('tc_theme_options');
 
-        $_default_size['height'] =  esc_attr( $_options['tc_post_list_thumb_height'] ) ;
+        $_default_size['height'] =  esc_attr( $_options['tc_post_list_design_thumb_height'] ) ;
         return $_default_size;
       }
 

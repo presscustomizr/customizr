@@ -408,7 +408,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 .tc-post-list-design .featurette-divider.__loop{
                     display: none;
                 }
-                .tc-post-list-design figcaption a {
+                .tc-post-list-design figcaption > a {
                     position: absolute;
                     z-index: 10;
                     top: 0;
@@ -416,7 +416,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     width: 100%;
                     height: 100%; 
                 }
-                .tc-is-mobile .tc-post-list-design article.tc-design figure figcaption a {
+                .tc-is-mobile .tc-post-list-design article.tc-design figure figcaption > a {
                     -webkit-transition-property: width;
                     -webkit-transition-duration: 0.1s;
                     -webkit-transition-timing-function: linear;
@@ -426,11 +426,11 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     transition-timing-function: linear;
                     transition-delay: 0.5s;
                 }
-                .tc-is-mobile article:not([class*=expanded]) figure:not([class*=no-thumb]) figcaption a {
+                .tc-is-mobile article:not([class*=expanded]) figure:not([class*=no-thumb]) figcaption > a {
                     width: 0;
                 }
 
-                .tc-is-mobile article:not([class*=expanded]).hover figure:not([class*=no-thumb]) figcaption a {
+                .tc-is-mobile article:not([class*=expanded]).hover figure:not([class*=no-thumb]) figcaption > a {
                     width: 100%;
                 }
                 @media (max-width: 767px){
