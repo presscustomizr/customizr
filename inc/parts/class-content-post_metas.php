@@ -89,8 +89,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                     $this -> tc_get_tag_list(),
                     $this -> tc_get_meta_date('publication'),
                     $this -> tc_get_meta_author(),
-                    $this -> tc_get_meta_date('update'),
-                    $this -> tc_has_update()
+                    $this -> tc_get_meta_date('update')
                 );
                 ?>
             </div><!-- .entry-meta -->
