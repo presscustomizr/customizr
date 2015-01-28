@@ -76,7 +76,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           $this -> slider_full_size   = array('width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
           $this -> slider_size        = array('width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
           $this -> tc_design_full_size = array('width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-design-full
-          $this -> tc_design_size = array('width' => 480 , 'height' => 350, 'crop' => true ); //size name : tc-design
+          $this -> tc_design_size = array('width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-design
 
 
           //Default skins array
