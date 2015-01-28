@@ -305,7 +305,8 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
         }
 
         function tc_post_list_design_expanded_post_title(){
-            if ( ! $this -> is_expanded_featured() )
+            if ( ! apply_filters( 'tc_post_list_design_title_in_caption', 
+                            $this -> is_expanded_featured() ) )
                 return;
             global $post;
             echo '<h2 class="title">'.$post->post_title.'</h2>';
