@@ -6,13 +6,13 @@
 //ON DOM READY
 jQuery(function ($) {
     var _p = TCParams;
-
     //Drop Caps
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
       $.each( _p.dropcapWhere , function( ind, val ) {
         if ( 1 == val ) {
-          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).find('p').first().addDropCap( {
-            minwords : _p.dropcapMinWords//@todo check if number
+          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).children().first().addDropCap( {
+            minwords : _p.dropcapMinWords,//@todo check if number
+            skipSelectors : _.isObject(_p.skipSelectors) ? _p.skipSelectors : {}
           });
         }
       });
@@ -484,15 +484,6 @@ jQuery(function ($) {
         $tcHeader.css('top' , _get_initial_offset() + 'px');
     }
 
-    function _set_no_title_logo_class() {
-        if ( ! $('body').hasClass('sticky-enabled') ) {
-            $('.navbar-wrapper').addClass('span9').removeClass('span12');
-        } else {
-            $('.tc-title-logo-off .navbar-wrapper' , '.sticky-enabled').addClass('span12').removeClass('span9');
-            $('.tc-title-logo-on .navbar-wrapper' , '.sticky-enabled').addClass('span9').removeClass('span12');
-        }
-    }
-
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
     if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
@@ -515,14 +506,12 @@ jQuery(function ($) {
             return;
         _set_sticky_offsets();
         _set_header_top_offset();
-        _set_no_title_logo_class();
     });
 
     function _refresh() {
         setTimeout( function() {
             _set_sticky_offsets();
             _set_header_top_offset();
-            _set_no_title_logo_class();
         } , 20 );
         $(window).trigger('resize');
     }
@@ -536,7 +525,6 @@ jQuery(function ($) {
 
     function _scrolling_actions() {
         _set_header_top_offset();
-        _set_no_title_logo_class();
         //process scrolling actions
         if ( $(window).scrollTop() > triggerHeight ) {
             $('body').addClass("sticky-enabled").removeClass("sticky-disabled");

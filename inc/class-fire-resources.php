@@ -108,15 +108,15 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    	);
         wp_enqueue_script(
           'tc-dropcap',
-          sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'jquery.addDropCap.js' ),
-          array( 'jquery' , 'tc-js-params', 'tc-bootstrap' ),
+          sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'jqueryaddDropCap.js' ),
+          array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' ),
           CUSTOMIZR_VER,
           apply_filters('tc_load_script_in_footer' , false)
         );
         wp_enqueue_script(
           'tc-main-front',
           sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'main.js' : 'main.min.js'),
-          array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' ),
+          array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ),
           CUSTOMIZR_VER,
           apply_filters('tc_load_script_in_footer' , false)
         );
@@ -168,12 +168,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , 0 ),
 	          	'stickyHeader' 			=> esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ),
 	          	'dropdowntoViewport' 	=> esc_attr( tc__f( '__get_option' , 'tc_menu_resp_dropdown_limit_to_viewport') ),
-	          	'timerOnScrollAllBrowsers' => apply_filters('tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
+	          	'timerOnScrollAllBrowsers' => apply_filters( 'tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
               'extLinksStyle'       => esc_attr( tc__f( '__get_option' , 'tc_ext_link_style' ) ),
               'extLinksTargetExt'   => esc_attr( tc__f( '__get_option' , 'tc_ext_link_target' ) ),
               'dropcapEnabled'      => esc_attr( tc__f( '__get_option' , 'tc_enable_dropcap' ) ),
               'dropcapWhere'      => array( 'post' => esc_attr( tc__f( '__get_option' , 'tc_post_dropcap' ) ) , 'page' => esc_attr( tc__f( '__get_option' , 'tc_page_dropcap' ) ) ),
-              'dropcapMinWords'     => esc_attr( tc__f( '__get_option' , 'tc_dropcap_minwords' ) )
+              'dropcapMinWords'     => esc_attr( tc__f( '__get_option' , 'tc_dropcap_minwords' ) ),
+              'skipSelectors'       => apply_filters( 'tc_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE' ), 'classes' => array() , 'id' => array() ) )
 	        	),
 	        	tc__f('__ID')
 		    )//end of filter

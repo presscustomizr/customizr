@@ -20,5 +20,11 @@ var TCParams = TCParams || {
   extLinksStyle :1,
   extLinksTargetExt:1,
   dropcapEnabled:1,
-  dropcapWhere:{ post : 0, page : 1 }
+  dropcapWhere:{ post : 0, page : 1 },
+  dropcapMinWords:50,
+  skipSelectors: {
+              tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE'],
+              classes : [],
+              ids : []
+            },
 };

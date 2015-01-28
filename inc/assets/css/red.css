@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.2.15
+ * Customizr v3.2.17
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5451,6 +5451,9 @@ h2.comments-title:before {
 #tc-reset-margin-top {
   display: none;
 }
+body:not(.tc-sticky-header) #tc-reset-margin-top {
+  display: none !important;
+}
 /*.tc-sticky-header #tc-reset-margin-top {
   width: 100%;
   display: block;
@@ -5507,6 +5510,7 @@ h2.comments-title:before {
 }
 .sticky-enabled .tc-title-logo-off .navbar-wrapper {
   margin-left: 0px;
+  width: 100%;
 }
 .sticky-enabled .navbar .nav > li > a {
   font-size: 14px;

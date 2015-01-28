@@ -1460,7 +1460,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               'tc_theme_options[tc_ext_link_style]'  =>  array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.11' ) ? 0 : 1,
+                                'default'       => 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display an icon next to external links" , "customizr" ),
                                 'section'       => 'tc_links_settings' ,
@@ -1471,7 +1471,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               'tc_theme_options[tc_ext_link_target]'  =>  array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.11' ) ? 0 : 1,
+                                'default'       => 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Open external links in a new tab" , "customizr" ),
                                 'section'       => 'tc_links_settings' ,

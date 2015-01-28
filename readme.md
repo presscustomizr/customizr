@@ -1,4 +1,4 @@
-# Customizr v3.2.15 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.17 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,11 +92,23 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.2.17 January 27th 2015 =
+* removed : console.log() in addDropCap script
+
+= 3.2.16 January 27th 2015 =
+* d1207b1 updated : list of selectors to skip when applying drop caps
+* 6512345 changed : external links icon and new tab (_target = blank) are disabled by default
+* 6d0f725 Fix drop cap feature : html tags are not striped out anymore. Instead, the dropcap plugin search the first
+* h0145a45 add : front javascript underscore.js dependency ~+5.5kb
+* 57a7a6f Fix: handle boolean types in default options
+* bb355ec Imp: handle .tc-no-title-logo in css (instead of js), when sticky header is enabled,
+* 95b3e6f Fix: force hiding tc-reset-margin-top when no sticky header (css way)
+
 = 3.2.15 January 23rd 2015 =
-Fix: don't re-add edit link button for tribe-events events
+* Fix: don't re-add edit link button for tribe-events events
 
 = 3.2.13 January 22nd 2015 =
-c583b19 Fix warning when attempting to load Google font in the admin editor
+* c583b19 Fix warning when attempting to load Google font in the admin editor
 
 = 3.2.12 January 22nd 2015 =
 * cbe6780 Update : theme description
