@@ -249,7 +249,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		*@since v3.2.4
 		*/
 		function tc_add_livereload_script() {
-			if ( TC_utils::$instance -> tc_is_customizing() )
+			if ( TC___::$instance -> tc_is_customizing() )
 				return;
 			?>
 			<script id="tc-dev-live-reload" type="text/javascript">

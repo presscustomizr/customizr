@@ -130,7 +130,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	      		sprintf('<div class="%1$s">%2$s</div>',
 	      			apply_filters( 'tc_colophon_left_block_class', 'span4 social-block pull-left' ),
 	      			sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
-	      				( TC_utils::$instance -> tc_is_customizing() && 0 == tc__f( '__get_option', 'tc_social_in_footer') ) ? 'style="display:none"' : '',
+	      				( TC___::$instance -> tc_is_customizing() && 0 == tc__f( '__get_option', 'tc_social_in_footer') ) ? 'style="display:none"' : '',
 	      				tc__f( '__get_socials' )
 	      			)
 	      		)
