@@ -51,7 +51,7 @@ require_once( get_template_directory() . '/inc/init.php' );
 * More informations on how to create a child theme with Customizr here : http://themesandco.com/customizr/#child-theme
 */
 
-if ( TC_utils::$instance -> tc_is_customizing() ) :
+if ( TC___::$instance -> tc_is_customizing() ) :
     class TC_customize_plus extends TC_customize  {
 
       function tc_customize_factory ( $wp_customize , $args, $setup ) {
@@ -179,3 +179,21 @@ if ( TC_utils::$instance -> tc_is_customizing() ) :
     new TC_customize_plus();
 
 endif;//end if customizing
+
+
+add_action('init' , 'tc_set_option');
+function tc_set_option() {
+  $_options = get_option('tc_theme_options');
+  $_options['test'] = array( 'context_1' => 'value_context_1' , 'context_2' => 'value_context_2');
+  update_option( 'tc_theme_options', $_options );
+}
+
+add_action('__after_header' , 'tc_display_options');
+function tc_display_options() {
+  $_options = get_option('tc_theme_options');
+  ?>
+    <pre>
+      <?php print_r( $_options['test'] ); ?>
+    </pre>
+  <?php
+}

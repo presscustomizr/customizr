@@ -25,12 +25,18 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	    public $step;
 	    public $min;
 	    public $icon;
+      public $tc_context;
 
 	    public function render_content()  {
-	    	do_action( '__before_setting_control' , $this-> id );
-
+	    	do_action( '__before_setting_control' , $this -> id );
         switch ( $this -> type) {
-	        	case 'hr':
+	        	case 'tc-context-hidden' :
+              ?>
+              <input <?php $this->link() ?> name="tc-context" id="tc-context" type="hidden" value="<?php echo TC_contextualizr::$instance -> tc_get_context() ?>"/>
+              <?php
+            break;
+
+            case 'hr':
 	        		echo '<hr class="tc-customizer-separator" />';
 	        	break;
 

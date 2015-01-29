@@ -305,6 +305,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
 			        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 			        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
+                'TCContext'     => TC_contextualizr::$instance -> tc_get_context(),
                 'themeName'     => TC___::$theme_name,
                 'HideDonate'    => tc__f('__get_option' ,'tc_hide_donate'),
                 'ShowCTA'       => ( true == tc__f('__get_option' ,'tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false
@@ -422,6 +423,119 @@ endif;
 
 class WP_Customize_test extends WP_Customize_Setting {
       //public $id = 'background_image_thumb';
+  /**
+   * Fetch the value of the setting.
+   *
+   * @since 3.4.0
+   *
+   * @return mixed The value.
+   */
+  public function value() {
+    // Get the callback that corresponds to the setting type.
+    switch( $this->type ) {
+      case 'theme_mod' :
+        $function = 'get_theme_mod';
+        break;
+      case 'option' :
+        $function = 'get_option';
+        break;
+      default :
+        /**
+         * Filter a Customize setting value not handled as a theme_mod or option.
+         *
+         * The dynamic portion of the hook name, `$this->id_date['base']`, refers to
+         * the base slug of the setting name.
+         *
+         * For settings handled as theme_mods or options, see those corresponding
+         * functions for available hooks.
+         *
+         * @since 3.4.0
+         *
+         * @param mixed $default The setting default value. Default empty.
+         */
+        return apply_filters( 'customize_value_' . $this->id_data[ 'base' ], $this->default );
+    }
+    // Handle non-array value
+    if ( empty( $this->id_data[ 'keys' ] ) ) {
+      return $function( $this->id_data[ 'base' ], $this->default );
+    }
+
+    // Handle array-based value
+    $values = $function( $this->id_data[ 'base' ] );
+    return $this->tc_multidimensional_get( $values, $this->id_data[ 'keys' ], $this->default );
+  }
+
+  /**
+   * Will attempt to fetch a specific value from a multidimensional array.
+   *
+   * @since 3.4.0
+   *
+   * @param $root
+   * @param $keys
+   * @param mixed $default A default value which is used as a fallback. Default is null.
+   * @return mixed The requested value or the default value.
+   */
+  function tc_multidimensional_get( $root, $keys, $default = null ) {
+    ?>
+      <pre>
+        <?php print_r($keys); ?>
+      </pre>
+    <?php
+    if ( empty( $keys ) ) // If there are no keys, test the root.
+      return isset( $root ) ? $root : $default;
+
+    $result = $this->multidimensional( $root, $keys );
+    ?>
+      <pre>
+        <?php print_r( isset( $result ) ? $result['node'][ $result['key'] ] : $default ); ?>
+      </pre>
+    <?php
+    return isset( $result ) ? $result['node'][ $result['key'] ] : $default;
+  }
+
+
+  /**
+   * Multidimensional helper function.
+   *
+   * @since 3.4.0
+   *
+   * @param $root
+   * @param $keys
+   * @param bool $create Default is false.
+   * @return null|array Keys are 'root', 'node', and 'key'.
+   */
+  function tc_multidimensional( &$root, $keys, $create = false ) {
+    if ( $create && empty( $root ) )
+      $root = array();
+
+    if ( ! isset( $root ) || empty( $keys ) )
+      return;
+
+    $last = array_pop( $keys );
+    $node = &$root;
+
+    foreach ( $keys as $key ) {
+      if ( $create && ! isset( $node[ $key ] ) )
+        $node[ $key ] = array();
+
+      if ( ! is_array( $node ) || ! isset( $node[ $key ] ) )
+        return;
+
+      $node = &$node[ $key ];
+    }
+
+    if ( $create && ! isset( $node[ $last ] ) )
+      $node[ $last ] = array();
+
+    if ( ! isset( $node[ $last ] ) )
+      return;
+
+    return array(
+      'root' => &$root,
+      'node' => &$node,
+      'key'  => $last,
+    );
+  }
 
       /**
        * @since 3.4.0
