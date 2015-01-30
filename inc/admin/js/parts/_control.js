@@ -4,9 +4,7 @@
  * @since Customizr 1.0
  */
 (function (wp, $) {
-
   var api = wp.customize;
-
   /**
    * @constructor
    * @augments wp.customize.Control
@@ -242,6 +240,7 @@
 
   //DOM READY SPECIFIC CONTROLS ACTIONS
   $( function($) {
+
     /* CHECK */
     //init icheck only if not already initiated
     //exclude widget inputs
