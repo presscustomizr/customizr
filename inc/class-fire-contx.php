@@ -21,7 +21,7 @@ if ( ! class_exists( 'TC_contx' ) ) :
     function __construct () {
       self::$instance =& $this;
       //add_action ( 'init'                         , array( $this , 'tc_set_customize_context') );
-      self::$customize_context = $this -> tc_get_context();
+
       //add_action ( 'init'                         , array( $this , 'tc_init_customize_transient') );
       //clean the transient if customizer has been fired without saving
       //add_action ( 'admin_init'                   , array( $this , 'tc_init_customize_transient') );
@@ -71,35 +71,29 @@ if ( ! class_exists( 'TC_contx' ) ) :
     function tc_get_context( $_requesting_wot = null ) {
       //Handle the case when we request it in AJAX => no transient update!
       if ( TC___::$instance -> tc_doing_customizer_ajax() )
-        return $this -> tc_build_context( 'ajaxing', $_requesting_wot );
+        return $this -> tc_build_context( 'from_ajax', $_requesting_wot );
 
       //Those conditions are important : the customizer_register function is ran several time during the customizer init
       //We want to define the transient only once, on the first run
       //@to do faut il rajouter la condition did_action('after_setup_theme') ?
-      //@to do && defined('IFRAME_REQUEST') ?
-
-      if ( TC___::$instance -> tc_is_customizing() && ! TC___::$instance -> tc_doing_customizer_ajax() && defined('IFRAME_REQUEST') )
-        return $this -> tc_build_context( 'customizing', $_requesting_wot );
+      if ( TC___::$instance -> tc_is_customizing() && defined('IFRAME_REQUEST') )
+        return $this -> tc_build_context( 'from_get', $_requesting_wot );
 
 
-      //Not customizing context
-      if ( ! TC___::$instance -> tc_is_customizing() && ! TC___::$instance -> tc_doing_customizer_ajax() )
-        return $this -> tc_build_context( null, $_requesting_wot);
-
-      return;
+      //Preview frame or not customizing context
+      return $this -> tc_build_context( null, $_requesting_wot);
     }
 
 
 
-    private function tc_build_context( $_doing_wot = null, $_requesting_wot = null ) { //$type = null , $obj_id = null
+   public function tc_build_context( $_doing_wot = null, $_requesting_wot = null ) { //$type = null , $obj_id = null
       $parts    = array();
-
       switch ( $_doing_wot ) {
-        case 'ajaxing':
+        case 'from_ajax':
           return isset($_POST['TCContext']) ? $_POST['TCContext'] : null;
         break;
 
-        case 'customizing':
+        case 'from_get':
           $parts = $this -> tc_get_url_contx();
         break;
 
@@ -109,71 +103,103 @@ if ( ! class_exists( 'TC_contx' ) ) :
       }
 
       if ( is_array( $parts) && ! empty( $parts ) )
-        list($type , $obj_id) =  $parts;
+        list($meta_type , $type , $obj_id) =  $parts;
 
       switch ( $_requesting_wot ) {
-        case 'type':
-          if ( false != $type )
-            return "_{$type}";
+        case 'meta_type':
+          if ( false != $meta_type )
+            return "{$meta_type}";
         break;
 
+        case 'type':
+          if ( false != $type )
+            return "{$type}";
+        break;
+
+        case 'id':
+          if ( false != $obj_id )
+            return "{$obj_id}";
+        break;
+
+        // case 'title':
+        //   if  ( false !== $type && false !== $obj_id )
+        //     return tc_get_obj_title( $type , $obj_id );
+
         default:
-          if  ( false !== $type && false !== $obj_id )
-            return "_{$type}_{$obj_id}";
-          else if ( false != $type && ! $obj_id )
-            return "_{$type}";
+          if  ( false != $meta_type && false != $obj_id )
+            return "_{$meta_type}_{$type}_{$obj_id}";
+          else if ( false != $meta_type && ! $obj_id )
+            return "_{$meta_type}_{$type}";
         break;
       }
       return "";
     }
 
 
-    private function tc_get_url_contx() {
+    public function tc_get_url_contx() {
+      $meta_type    = isset( $_GET['meta_type']) ? $_GET['meta_type'] : false;
       $type         = isset( $_GET['type']) ? $_GET['type'] : false;
       $obj_id       = isset( $_GET['obj_id']) ? $_GET['obj_id'] : false;
-      return apply_filters( 'tc_get_url_contx' , array( $type , $obj_id ) );
+      return apply_filters( 'tc_get_url_contx' , array( $meta_type, $type , $obj_id ) );
     }
 
 
     /*
     * @return array
     */
-    private function tc_get_query_contx() {
+    public function tc_get_query_contx() {
       //don't call get_queried_object if the $query is not defined yet
       global $wp_query;
       if ( ! isset($wp_query) || empty($wp_query) )
         return array();
 
       $current_obj  = get_queried_object();
+      $meta_type    = false;
       $type         = false;
       $obj_id       = false;
 
       //post, custom post types, page
       if ( isset($current_obj -> post_type) ) {
+          $meta_type  = 'post';
           $type       = $current_obj -> post_type;
           $obj_id     = $current_obj -> ID;
       }
 
       //taxinomies : tags, categories, custom tax type
       if ( isset($current_obj -> taxonomy) && isset($current_obj -> term_id) ) {
+          $meta_type  = 'tax';
           $type       = $current_obj -> taxonomy;
           $obj_id     = $current_obj -> term_id;
       }
 
       //author page
       if ( isset($current_obj -> data -> user_login ) && isset($current_obj -> ID) ) {
+          $meta_type  = 'author';
           $type       = 'user';
           $obj_id     = $current_obj -> ID;
       }
 
       if ( is_404() )
-        $type       = '404';
+        $meta_type  = '404';
       if ( is_search() )
-        $type       = 'search';
+        $meta_type  = 'search';
       if ( is_date() )
-        $type       = 'date';
+        $meta_type  = 'date';
 
-      return apply_filters( 'tc_get_query_contx' , array( $type , $obj_id ) , $current_obj );
+      return apply_filters( 'tc_get_query_contx' , array( $meta_type , $type , $obj_id ) , $current_obj );
+    }
+
+
+    function tc_get_obj_title( $type , $obj_id ) {
+        switch (variable) {
+          case 'value':
+            # code...
+            break;
+
+          default:
+            # code...
+            break;
+        }
     }
 
 
@@ -188,7 +214,10 @@ if ( ! class_exists( 'TC_contx' ) ) :
         return array_merge(
           $_params,
           array(
-            'TCContext'     => self::$customize_context
+            'TCContext'     => array(
+              'complete'  => $this -> tc_get_context(),
+              'type'      => $this -> tc_get_context( 'type' )
+              )
             )
         );
     }
@@ -208,25 +237,25 @@ if ( ! class_exists( 'TC_contx' ) ) :
 
       global $wp_admin_bar;
       //declares $type and $obj_id
-      list($type , $obj_id) = $this -> tc_get_query_contx();
+      list($meta_type, $type , $obj_id) = $this -> tc_get_query_contx();
 
-      $current_url    = join(",", array(
+      $current_url    = join("", array(
                           ( is_ssl() ? 'https://' : 'http://' ),
                           $_SERVER['HTTP_HOST'],
                           $_SERVER['REQUEST_URI']));
 
-      $type   = is_null($type) ? false : $type;
-      $obj_id = is_null($obj_id) ? false : $obj_id;
-      $title = '';
+      $meta_type    = is_null($meta_type) ? false : $meta_type;
+      $type         = is_null($type) ? false : $type;
+      $obj_id       = is_null($obj_id) ? false : $obj_id;
+      $title        = '';
+      $args         = array();
 
-      if ( false != $type && false != $obj_id ) {
-         $args    = array( 'url' => urlencode( $current_url ) , 'type' => $type , 'obj_id' => $obj_id );
+      if ( false != $meta_type && false != $obj_id ) {
+         $args    = array( 'url' => urlencode( $current_url ) , 'meta_type' => $meta_type , 'type' => $type , 'obj_id' => $obj_id );
          $title   = sprintf('%1$s #%2$s' , $type, $obj_id );
-      } else if ( false != $type && ! $obj_id ) {
+      } else if ( false != $meta_type && ! $obj_id ) {
         $args  = array( 'url' => urlencode( $current_url ) , 'type' => $type );
         $title  = sprintf('%1$s' , $type );
-      } else {
-        $args  = array();
       }
       //Add it under appearance
       $wp_admin_bar -> add_menu( array(
@@ -255,64 +284,18 @@ if ( ! class_exists( 'TC_contx' ) ) :
 
 
 
-    function tc_check_cross_page_customization() {
-      $db_obj_suffix        = self::$customize_context;
-        ?>
-      <pre>
-        <?php print_r( 'in tc check cross page customization' ); ?>
-      </pre>
-        <?php
-      ?>
-        <pre>
-          <?php print_r( $db_obj_suffix ); ?>
-        </pre>
-      <?php
-      ?>
-        <pre>
-          <?php print_r( $_POST['customized'] ); ?>
-        </pre>
-      <?php
-
-      /*$customized_sets      = json_decode( wp_unslash( $_POST['customized'] ), true );
-
-      $obj_suffix_to_save   = isset($customized_sets["tc_hidden_context"]) ? $customized_sets["tc_hidden_context"] : '';
-      $obj_suffix_to_save   = ! $obj_suffix_to_save ? '' : $obj_suffix_to_save;
-
-      if ( $db_obj_suffix != $obj_suffix_to_save ){
-        //first reset the transient
-        set_transient( 'tc_current_customize_context' , $obj_suffix_to_save, 60*60 );
-        //then die
-        //die;
-      }*/
-    }
-
-
     //ON CUSTOMIZER SAVE :
     //1) identify the current context with obj suffix
     function tc_ajax_update_context() {
       //check_ajax_referer( 'tc-customizer-nonce', 'TCNonce' );
-/*      ?>
-        <pre>
-          <?php print_r($_POST); ?>
-        </pre>
-      <?php*/
 
       $db_obj_suffix    = self::$customize_context;
-      ?>
-        <pre>
-          <?php print_r('BEFORE : '. $db_obj_suffix); ?>
-        </pre>
-      <?php
       $customizer_current_suffix  = isset($_POST['TCContext']) ? $_POST['TCContext'] : '';
       if ( $db_obj_suffix != $customizer_current_suffix ){
         set_transient( 'tc_current_customize_context' , $customizer_current_suffix, 60*60 );
       }
       echo get_transient( 'tc_current_customize_context');
-      ?>
-        <pre>
-          <?php print_r('AFTER : '. get_transient( 'tc_current_customize_context')); ?>
-        </pre>
-      <?php
+
       die;
     }
 

@@ -193,7 +193,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
      * @since Customizr 3.0.1
      */
     private function tc_slider_choices() {
-      $__options    =   get_option('tc_theme_options');
+      $__options    =   get_option(TC___::$tc_option_group);
       $slider_names   =   isset($__options['tc_sliders']) ? $__options['tc_sliders'] : array();
 
       $slider_choices = array(
@@ -375,7 +375,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
               'tc_theme_options[tc_menu_type]'  => array(
-                                'default'   =>  ( false == get_option('tc_theme_options') ) ? 'hover' : 'click' ,
+                                'default'   =>  ( false == get_option(TC___::$tc_option_group) ) ? 'hover' : 'click' ,
                                 'control'   =>  'TC_controls' ,
                                 'title'     => __( 'Design and effects' , 'customizr'),
                                 'label'     =>  __( 'Select a submenu expansion option' , 'customizr' ),

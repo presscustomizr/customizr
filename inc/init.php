@@ -229,7 +229,7 @@ if ( ! class_exists( 'TC___' ) ) :
         * @since  3.2.18
         */
         function tc_doing_customizer_ajax() {
-          return isset( $_POST['customized'] ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX );
+          return isset( $_POST['customized'] ) && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
         }
     }//end of class
 endif;

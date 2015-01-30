@@ -34,7 +34,8 @@ if ( ! class_exists( 'TC_Customize_Setting') ) :
         return $_opt_values;
 
       //handle contextualized array based options
-      $_context       = TC_contx::$customize_context;
+      $_context       = TC_contx::$instance -> tc_get_context();
+
       if ( ! $_context || null == $_context )
         return isset($_opt_values['all_contexts']) ? $_opt_values['all_contexts'] : $_opt_values;
 
@@ -74,24 +75,25 @@ if ( ! class_exists( 'TC_Customize_Setting') ) :
 
       //handle contextualized array based options
       if ( isset( $_keys[0]) ) {
-        $_context       = TC_contx::$customize_context;
+        $_context       = TC_contx::$instance -> tc_get_context();
         $_opt_name      = $_keys[0];
         //make sure it's set and an array
         $_base_values[$_opt_name] = ( ! isset($_base_values[$_opt_name]) || ! is_array($_base_values[$_opt_name]) ) ? array() : $_base_values[$_opt_name];
 
         //if context exist
-        if ( isset($_POST['TCContext']) && null != $_POST['TCContext'] )
+        if ( null != $_context )
           $_base_values[$_opt_name][$_context] = $value;
         else
           $_base_values[$_opt_name]['all_contexts'] = $value;
 
         //always make sure that the 'all_contexts' is present
-        $_base_values[$_opt_name]['all_contexts'] =  isset($_base_values[$_opt_name]['all_contexts']) ? $_base_values[$_opt_name]['all_contexts'] : $value;
-        ?>
+        //$_base_values[$_opt_name]['all_contexts'] =  isset($_base_values[$_opt_name]['all_contexts']) ? $_base_values[$_opt_name]['all_contexts'] : $value;
+        /*?>
           <pre>
-            <?php print_r($_base_values); ?>
+            <?php print_r($_POST); ?>
           </pre>
-        <?php
+        <?php*/
+
         return update_option( $this->id_data[ 'base' ], $_base_values );
       }
     }
@@ -110,7 +112,7 @@ if ( ! class_exists( 'TC_Customize_Setting') ) :
       ### TEST ###
       // if ( ! empty($this->id_data[ 'keys'] ) && in_array( 'tc_test_context' , $this->id_data[ 'keys'] ) ) {
       //   $_result = $this->multidimensional_replace( $original, $this->id_data[ 'keys' ], $this->post_value() );
-      //   return TC_contx::$customize_context;
+      //   return TC_contx::$instance -> tc_get_context();
       // }
 
       return $this->multidimensional_replace( $original, $this->id_data[ 'keys' ], $this->post_value() );

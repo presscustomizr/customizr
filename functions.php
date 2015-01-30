@@ -51,13 +51,28 @@ require_once( get_template_directory() . '/inc/init.php' );
 * More informations on how to create a child theme with Customizr here : http://themesandco.com/customizr/#child-theme
 */
 
-add_action('__after_header' , 'tc_display_options');
+//add_action('__after_header' , 'tc_display_options');
 function tc_display_options() {
   $_options = get_option('tc_theme_options');
   $_option = tc__f('__get_option' , 'tc_test_context');
   ?>
     <pre>
-      <?php print_r( 'Context : ' . TC_contx::$instance -> tc_get_context( 'type' ) ); ?>
+      <?php print_r( TC_contx::$instance -> tc_build_context() ); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( 'Context meta type: ' . TC_contx::$instance -> tc_get_context( 'meta_type' ) ); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( 'Context type: ' . TC_contx::$instance -> tc_get_context( 'type' ) ); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( 'Context: ' . TC_contx::$instance -> tc_get_context() ); ?>
     </pre>
   <?php
   ?>

@@ -327,9 +327,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		*/
     function tc_hide_donate() {
     	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
-    	$options = get_option('tc_theme_options');
+    	$options = get_option(TC___::$tc_option_group);
     	$options['tc_hide_donate'] = true;
-    	update_option( 'tc_theme_options', $options );
+    	update_option( TC___::$tc_option_group, $options );
       set_transient( 'tc_cta', 'cta_waiting' , 60*60*24 );
     }
 

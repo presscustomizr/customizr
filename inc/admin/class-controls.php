@@ -111,7 +111,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
     					</label>
     					<?php
     					//retrieve all sliders in option array
-    			        $options          = get_option( 'tc_theme_options' );
+    			        $options          = get_option( TC___::$tc_option_group );
     			        $sliders 					= array();
     			        if ( isset( $options['tc_sliders'])) {
     			        	$sliders        = $options['tc_sliders'];

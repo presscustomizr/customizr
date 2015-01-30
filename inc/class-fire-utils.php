@@ -122,7 +122,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         // 3) theme version not defined
         // 4) versions are different
         if ( is_user_logged_in() || ! $def_options || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
-          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
+          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_customizer_map( $get_default_option = 'true' ) , TC___::$tc_option_group );
           //Adds the version
           $def_options['ver']   =  CUSTOMIZR_VER;
           update_option( "tc_theme_defaults" , $def_options );
@@ -141,7 +141,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_generate_default_options( $map, $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
-          $option_group   = is_null($option_group) ? 'tc_theme_options' : $option_group;
+          $option_group   = is_null($option_group) ? TC___::$tc_option_group : $option_group;
 
           //initialize the default array with the sliders options
           $defaults = array();
@@ -185,7 +185,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_get_theme_options ( $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
-          $option_group       = is_null($option_group) ? 'tc_theme_options' : $option_group;
+          $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
           $saved              = (array) get_option( $option_group );
           $defaults           = $this -> default_options;
           $__options          = wp_parse_args( $saved, $defaults );

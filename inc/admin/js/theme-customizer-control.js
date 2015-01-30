@@ -481,26 +481,51 @@ jQuery(function ($) {
 ;/**
  * Contextualizr
  */
-jQuery(function ($) {
-  var ContextHasBeenUpdated = false;
+(function( exports, $ ){
 
-  //add the context param to the ajax query on save
-  wp.customize.previewer.query = function() {
-    var dirtyCustomized = {};
-    wp.customize.each( function ( value, key ) {
-      if ( value._dirty ) {
-        dirtyCustomized[ key ] = value();
-      }
-    } );
+  var ContextHasBeenUpdated = false,
+      api = wp.customize;
 
-    return {
-      wp_customize: 'on',
-      theme: wp.customize.settings.theme.stylesheet,
-      customized: JSON.stringify( dirtyCustomized ),
-      nonce: this.nonce.preview,
-      TCContext: TCControlParams.TCContext
+  overridePreviewerQuery = function() {
+    console.log('API READY : TCControlParams.TCContext' , TCControlParams.TCContext);
+    //add the context param to the ajax query on save
+    api.previewer.query = function() {
+      var dirtyCustomized = {};
+      wp.customize.each( function ( value, key ) {
+        if ( value._dirty ) {
+          dirtyCustomized[ key ] = value();
+        }
+      } );
+
+      return {
+        wp_customize: 'on',
+        theme: api.settings.theme.stylesheet,
+        customized: JSON.stringify( dirtyCustomized ),
+        nonce: this.nonce.preview,
+        TCContext: TCControlParams.TCContext.complete || ''
+      };
     };
   };
+
+  api.bind( 'ready' , overridePreviewerQuery );
+
+  //DOM READY
+  $(function($) {
+    //Replace default wp title
+    //$('.preview-notice', '.panel-meta').first()
+    $_title = $('.panel-title' , '.panel-meta').first();
+
+    //display a context box right below the main title
+    /*function _render_context_block() {
+      // Grab the HTML out of our template tag and pre-compile it.
+      var main_cta = _.template(
+          $( "script#main_cta" ).html()
+      );
+      $('#customize-info').after( main_cta() );
+    }*/
+
+
+  });//end of DOM READY
 
 
   //refresh on load
@@ -540,4 +565,4 @@ jQuery(function ($) {
     $('#tc-context').val(TCControlParams.TCContext).trigger('change');
   }
 
-});
+})( wp, jQuery );

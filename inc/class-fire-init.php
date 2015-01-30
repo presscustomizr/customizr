@@ -382,7 +382,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       * @since Customizr 3.1.23
       */
       function tc_set_user_defined_settings() {
-        $_options = get_option('tc_theme_options');
+        $_options = get_option(TC___::$tc_option_group);
         //add "rectangular" image size
         if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
           $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
@@ -411,7 +411,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       *
       */
       function tc_set_slider_img_height( $_default_size ) {
-        $_options = get_option('tc_theme_options');
+        $_options = get_option(TC___::$tc_option_group);
         if ( 0 == $_options['tc_slider_default_height'] )
           return $_default_size;
 
