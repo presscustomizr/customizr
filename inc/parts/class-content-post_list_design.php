@@ -101,11 +101,15 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
   
         /* force content + thumb layout */
         function tc_set_post_list_layout( $layout ){
+            /* Force the title to be displayed always on bottom */
+            /*
             $_position                  = in_array( esc_attr( tc__f( '__get_option' ,
                                                     'tc_post_list_thumb_position' ) ),
                                             array('top', 'left') ) ? 'top' : 'bottom';
 
             $layout['show_thumb_first'] = ( 'top' == $_position ) ? true : false;
+            */
+            $layout['show_thumb_first'] = true;
             $layout['content']          = 'tc-design-excerpt';
             $layout['thumb']            = 'span12 tc-design-post-container';
             
@@ -158,25 +162,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             }
         }
 
-        /* Wrap articles in a grid section*/
-        function tc_print_row_fluid_section_wrapper_exp(){
-            global $wp_query;
-            $current_post = $wp_query -> current_post;
-            $start_post = $this -> has_expanded_featured ? 1 : 0;
-            $cols = $this -> tc_post_list_design_section_cols();
-            $current_filter = current_filter();
-            
-            if ( '__before_article' == $current_filter && 
-                ( $start_post == $current_post || $this -> is_expanded_featured() ) )
-                    echo apply_filters( 'tc_post_list_design_grid_section',
-                        '<section class="tc-post-list-design row-fluid cols-'.$cols.'">' );
-            elseif ( '__after_article' == $current_filter &&
-                ( $wp_query->post_count == ( $current_post + 1 )  || $this -> is_expanded_featured() ) ){
-                echo '</section><!--end section.tc-post-list-design.row-fluid-->';
-                echo apply_filters( 'tc_post_list_design_separator',
-                    '<hr class="featurette-divider post-list-design">' );
-            }
-        }
         /* Thumbnails */
         function tc_set_thumb_size_name(){
             return  ( $this-> tc_post_list_design_section_cols() == '1' ) ?
@@ -308,7 +293,12 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             if ( ! $this -> tc_post_list_design_title_in_caption() )
                 return;
             global $post;
-            echo '<h2 class="title">'.$post->post_title.'</h2>';
+            $title = sprintf('<%1$s class="%2$s">%3$s</%1$s>',
+                apply_filters( 'tc_post_list_design_caption_title_tag', 'h2'),
+                apply_filters( 'tc_post_list_design_caption_title_class', 'tcd-title'),
+                $post->post_title
+            );
+            echo apply_filters( 'tc_post_list_design_caption_title', $title );
         }
         
         function tc_post_list_design_display_figcaption_content(){
@@ -380,7 +370,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     margin-left: 11%;
                     padding: 4%;
                 }
-                .expanded .tc-design-post figcaption .title{
+                .expanded .tc-design-post figcaption .tcd-title{
                     padding: 0 10px;
                 }
                 .tc-post-list-design figure {
@@ -441,41 +431,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 }
                 \n"   
             );
-/*                
-            $cols = $this -> tc_get_post_list_cols();
-
-            $first_article = 'article';
-            for ( $i = 2; $i <= $cols + 1 ; $i++ )
-                $first_article .= ' + article';
-            
-            $_css .= sprintf("
-                .tc-post-list-design.row-fluid %s {
-                    margin-left: 0;                
-                }
-                ", 
-                $first_article
-            );*/
-            /*$_css = sprintf("%s\n%s",
-                $_css,
-                "
-                .tc-post-list-design .tc-design-post,
-                .tc-post-list-design.cols-2 .tc-design-post{
-                    height: 350px;
-                }
-                .tc-post-list-design.cols-3 .tc-design-post{
-                    height: 250px;   
-                }
-                .tc-post-list-design.cols-4 .tc-design-post{
-                    height: 170px;   
-                }
-                @media (max-width: 979px){
-                    [class*=cols].tc-post-list-design .tc-design-post{
-                        height: 170px;   
-                    }
-                }
-                \n
-                "
-            );*/
+            /* end for testing only */
 
             /* retrieve the height/width ratios */
             $thumb_full_size = apply_filters( 'tc_design_full_size', 
