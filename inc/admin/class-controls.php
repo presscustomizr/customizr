@@ -63,20 +63,6 @@ if ( ! class_exists( 'TC_controls' ) ) :
     						<h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
     					<?php endif; ?>
     					<label>
-                <?php
-                if ( 'tc_theme_options[tc_skin]' == $this -> id ) :
-                  ?>
-                    <pre>
-                      <?php print_r($this->choices); ?>
-                    </pre>
-                  <?php
-                ?>
-                  <pre>
-                    <?php print_r(TC_utils::$instance -> tc_get_skin_color( 'all' )); ?>
-                  </pre>
-                <?php
-                endif;
-                ?>
     						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
     						<select <?php $this->link(); ?>>
     							<?php
