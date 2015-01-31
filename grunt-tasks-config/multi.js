@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 					skin_name : "<%= skin_list %>",
 					skin_color : "<%= skin_color_list %>",
 				},
-				tasks : ['less:skin_generator' , 'less:rtl_skin_generator']
+				tasks : ['less:skin_generator']
 			}
 		}
 	};

@@ -14,7 +14,7 @@ module.exports = {
 	//Regenerate the main css skin each time a less file is changed
 	create_push_skin : {
 		files : ['<%= paths.less %>**/*.less'],
-		tasks : ['gitinfo' , 'replace:readme', 'less:dev_skin' , 'cssmin:dev_skin' , 'ftp_push:dev_skin'],
+		tasks : ['gitinfo' , 'replace:readme', 'less:dev_common', 'less:dev_skin' , 'cssmin:dev_common', 'cssmin:dev_skin' , 'ftp_push:dev_comon', 'ftp_push:dev_skin'],
 	},
 	front_js : {
 		files : ['<%= paths.front_js %>parts/*.js', '!*.min.js'],

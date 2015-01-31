@@ -141,8 +141,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       //gets the skins : filters the files with a css extension and generates and array[] : $key = filename.css => $value = filename
       $files            = scandir($path) ;
       foreach( $files as $file ) {
-          //skips the minified
-          if ( false !== strpos($file, '.min.') )
+          //skips the minified and tc_common
+          if ( false !== strpos($file, '.min.') || false !== strpos($file, 'tc_common') )
             continue;
 
           if ( $file[0] != '.' && !is_dir($path.$file) ) {

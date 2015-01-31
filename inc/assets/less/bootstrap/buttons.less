@@ -37,10 +37,6 @@
     .transition(background-position .1s linear);
   }
 
-  // Focus state for keyboard and accessibility
-  &:focus {
-    .tab-focus();
-  }
 
   // Active state
   &.active,
@@ -140,11 +136,7 @@ input[type="button"] {
   color: rgba(255,255,255,.75);
 }
 
-// Set the backgrounds
-// -------------------------
-.btn-primary {
-  .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
-}
+
 // Warning appears are orange
 .btn-warning {
   .buttonBackground(@btnWarningBackground, @btnWarningBackgroundHighlight);
@@ -156,10 +148,6 @@ input[type="button"] {
 // Success appears as green
 .btn-success {
   .buttonBackground(@btnSuccessBackground, @btnSuccessBackgroundHighlight);
-}
-// Info appears as a neutral blue
-.btn-info {
-  .buttonBackground(@btnInfoBackground, @btnInfoBackgroundHighlight);
 }
 // Inverse appears as dark gray
 .btn-inverse {
@@ -209,18 +197,8 @@ input[type="submit"].btn {
   background-image: none;
   .box-shadow(none);
 }
-.btn-link {
-  border-color: transparent;
-  cursor: pointer;
-  color: @linkColor;
-  .border-radius(0);
-}
-.btn-link:hover,
-.btn-link:focus {
-  color: @linkColorHover;
-  text-decoration: underline;
-  background-color: transparent;
-}
+
+
 .btn-link[disabled]:hover,
 .btn-link[disabled]:focus {
   color: @grayDark;
