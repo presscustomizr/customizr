@@ -31,14 +31,14 @@ module.exports = function(grunt) {
 				'customizr_dev': ['clean' ,'watch'],
 
 				//PROD
-				'prod_css_skins': ['multi:prod_skins', 'cssmin:prod_skins' , 'cssmin:prod_rtl_skins'],
+				'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'cssmin:prod_common_rtl'],
 				'prod_front_js': ['jshint', 'concat:front_js', 'uglify:part_front_js' , 'uglify:main_front_js' , 'ftp_push:all_front_js'],
 				'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'ftp_push:all_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js', 'ftp_push:all_admin_js'],
 				//https://www.npmjs.org/package/grunt-gitinfo
 				//Get Git info from a working copy and populate grunt.config with the data
 				'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
 				//final build meta task
-				'customizr_build' : ['prod_css_skins', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
+				'customizr_build' : ['prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
 
 				//TRAVIS ci virtual machine build check on js @todo check other resources?
 				'travis' : ['jshint']

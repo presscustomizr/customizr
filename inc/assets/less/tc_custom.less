@@ -63,7 +63,6 @@ body {
 a + span.tc-external:after {
   font-family: 'genericons';
   font-size: 1.25em;
-  color: @linkColor;
   content: "\f442";
   speak: none;
   font-style: normal;
@@ -90,24 +89,7 @@ section {
   word-wrap: break-word
 }
 
-table {
-  border-bottom: 5px solid @TableBorder;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font-size: 14px;
-  line-height: 2;
-  margin: 0 0 20px;
-  width: 100%;
-}
 
-th {
-  font-weight: bold;
-  border-bottom: 1px solid @TableBorder;
-}
-td {
-  border-top: 1px solid #ededed;
-  padding: 6px 10px 6px 0;
-}
 
 /* LAYOUT STUFFS
   --------------------------------------------------- */
@@ -223,7 +205,6 @@ td {
 /*ICONS FOR WIDGETS*/
 .widget h3:before {
   font-family: 'genericons';
-  color: @IconColor;
   speak: none;
   font-weight: normal;
   font-variant: normal;
@@ -463,13 +444,6 @@ article.format-link .format-icon:before {
   top: 7px;
 }
 
-/*ARCHIVES ICONS*/
-.search .search-header .format-icon:before, .archive .archive-header .format-icon:before {
-  color: @IconColor;
-  opacity:1;
-  line-height: 0.2em;
-}
-
 .search .search-header .format-icon:before {
   font-family: 'genericons';
   content: "\f400";
@@ -539,7 +513,6 @@ h2.comments-title:before {
   background: @HeaderBg;
   background-image:@HeaderBgImg;
   border-bottom: 10px solid @LargeBorder;
-  border-top: 5px solid @TopBorder;
   z-index: 200;
 }
 
@@ -696,11 +669,6 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
     display:none;
   }
 
-.navbar .btn-navbar:hover, .navbar .btn-navbar:focus, .navbar .btn-navbar:active, .navbar .btn-navbar.active, .navbar .btn-navbar.disabled, .navbar .btn-navbar[disabled] {
-background-color: @navbarBtn;
-background-position: 0 -30px;
-}
-
 .navbar.notresp {
   display:block;
   min-width: 690px\9; /* IE 8 and below */
@@ -733,7 +701,6 @@ background-position: 0 -30px;
   font-style: italic;
   line-height: 19px;
   text-align: right;
-  color:@Slogan;
   /* max-width: 240px; */
 }
 /* NO NAVBAR */
@@ -762,8 +729,6 @@ h2.site-description {
   padding-top: 0px;
   line-height: 20px;
   font-style: italic;
-  color:@Slogan;
-
 }
 
 /* 1px hack for chrome to not loose the focus on menu item hovering */
@@ -777,15 +742,6 @@ h2.site-description {
   font-size:16px;
 }
 
-.navbar .nav > li.current-menu-item > a, .navbar .nav > li.current-menu-ancestor > a {
-  color: @navbarLinkColorHover;
-}
-
-.navbar .nav > li.current-menu-item > a .caret, .navbar .nav li.current-menu-ancestor > a .caret, .navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.current-menu-item > a .caret, .navbar .nav li.dropdown.current-menu-ancestor > a .caret, .navbar .nav li.dropdown.open.current-menu-ancestor > .dropdown-toggle .caret {
-  border-top-color: @navbarLinkColorHover;
-  border-bottom-color:@navbarLinkColorHover;
-}
-
 .navbar .nav li.dropdown .caret {
   border-top-color: @navbarLinkColor;
   border-bottom-color: @navbarLinkColor;
@@ -793,7 +749,6 @@ h2.site-description {
 
 .dropdown-menu > li.current-menu-item > a, .dropdown-menu > li.current-menu-ancestor > a {
   text-decoration: none;
-  color: @linkColor;
   background-color: @navbarBackground;
   /*#gradient > .vertical(@dropdownLinkBackgroundHover, darken(@dropdownLinkBackgroundHover, 5%));*/
 }
@@ -801,7 +756,6 @@ h2.site-description {
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
   background-color: @navbarBackground;
   background-image: none;
-  color: @linkColor;
   text-decoration: none;
 }
 
@@ -816,9 +770,7 @@ h2.site-description {
   border-width: 4px 0 4px 4px;
   border-left-color: #cccccc;
 }
-.dropdown-submenu:hover > a:after, .dropdown-menu > li.current-menu-item > a:after, .dropdown-menu > li.current-menu-ancestor > a:after {
-  border-left-color: @linkColor;
-}
+
 
 /* Offset the responsive button for proper vertical alignment */
 
@@ -991,7 +943,6 @@ font-size: 13px;
     content: '\203A';
     position: relative;
     left: -10px;
-    color:@WidgetArrow;
     -webkit-transition:left 0.2s;
       -moz-transition:left 0.2s;
       -ms-transition:left 0.2s;
@@ -1071,11 +1022,6 @@ footer#footer .colophon .social-block a {
    font-size: 1.1em;
   }
 
-.social-block a:hover{
-  color: @SocialHover;
-  opacity: 1;
-}
-
 
 
 /* SLIDER
@@ -1111,7 +1057,6 @@ footer#footer .colophon .social-block a {
   height: 38px;
 }
 .tc-carousel-control:focus, .tc-carousel-control:hover {
-  color: @linkColor;/* DYNAMIC!!!!  LESS */
   text-decoration: none;
   opacity: .9;
   filter: alpha(opacity=90);
@@ -1537,7 +1482,6 @@ article .author-info h2 , .archive-header .author-info h2 {
 
 /* pagination */
 .page-links button.btn {
-  color: @linkColor;
   font-weight: bold;
 }
 .page-links a button.btn {
@@ -1573,9 +1517,7 @@ article .author-info h2 , .archive-header .author-info h2 {
 .comments-link .tc-comment-bubble {
   color: @CommentsLink;
 }
-.tc-skin-bubble-comment-color .comments-link .tc-comment-bubble {
-  color: @linkColor
-}
+
 /* custom bubble */
 .comments-link .custom-bubble-one {
   color: @CommentsLink;
@@ -1584,13 +1526,7 @@ article .author-info h2 , .archive-header .author-info h2 {
 .comments-link .custom-bubble-one:before {
   border-color: @CommentsLink rgba(0, 0, 0, 0);
 }
-.tc-skin-bubble-comment-color .custom-bubble-one {
-  color: @linkColor;
-  border: 2px solid @linkColor;
-}
-.tc-skin-bubble-comment-color .custom-bubble-one:before {
-  border-color: @linkColor rgba(0, 0, 0, 0);
-}
+
 
 .comments-link .inner {
   color: white;
@@ -1671,7 +1607,6 @@ code {
 h3.assistive-text {
   text-align: center;
   letter-spacing: 4px;
-  color: @PostNavigationText;
   opacity: 0.5;
   margin: 0px;
 }
@@ -1962,9 +1897,7 @@ img.aligncenter {
 #footer #calendar_wrap table caption{
 color: #EEE;
 }
-#footer #calendar_wrap table a{
-  color:@WidgetlinkColor
-}
+
 
 table caption {
   padding: 0 0 5px 0;
@@ -1984,10 +1917,7 @@ table caption {
   font-size: inherit;
   padding: 3px;
 }
-#wp-calendar th {
-  background-color: @CalendarBorder;
-  color: white;
-}
+
 tr:nth-child(odd) td,
 tr:nth-child(odd) th {
   background-color: #f8f8f8;
@@ -2050,9 +1980,7 @@ footer#footer .colophon a, footer#footer .colophon p {
   color:@FooterBg;
 }
 
-footer#footer .colophon a.back-to-top {
-  color:  @linkColor;
-}
+
 
 footer .widget_recent_entries li:after {
   border-bottom: none;

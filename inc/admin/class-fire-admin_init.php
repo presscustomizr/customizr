@@ -356,7 +356,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       function tc_add_editor_style() {
         $_stylesheets = array(
             TC_BASE_URL.'inc/admin/css/editor-style.css',
-            TC_init::$instance -> tc_active_skin() , get_stylesheet_uri()
+            TC_init::$instance -> tc_get_style_src() , get_stylesheet_uri()
         );
 
         if ( apply_filters( 'tc_add_custom_fonts_to_editor' , false != $this -> tc_maybe_add_gfonts_to_editor() ) )

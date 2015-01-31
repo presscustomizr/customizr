@@ -20,9 +20,9 @@
 
 // Links
 // -------------------------
-@linkColor:             #08c;
-@linkColorHover:        darken(@linkColor, 15%);
-@LightenlinkColor: 		lighten(@linkColor, 15%);
+@lnkCol:             #08c;
+@lnkColHover:        darken(@lnkCol, 15%);
+@lnkColLightenlinkColor: 		lighten(@lnkCol, 15%);
 
 // CUSTOMIZR ELEMENTS
 // -------------------------
@@ -43,7 +43,7 @@
 
 @CommentsLink: 			#F00;//red
 
-@PostNavText:        	@LightenlinkColor;
+@PostNavText:        	@lnkColLightenlinkColor;
 
 // Accent colors
 // -------------------------
@@ -109,11 +109,11 @@
 @btnBackgroundHighlight:            darken(@white, 10%);
 @btnBorder:                         #ccc;
 
-@btnPrimaryBackground:              @linkColor;
-@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 20%);
+@lnkColbtnPrimaryBackground:              @lnkCol;
+@lnkColbtnPrimaryBackgroundHighlight:     spin(@lnkColbtnPrimaryBackground, 20%);
 
-@btnInfoBackground:                 #5bc0de;
-@btnInfoBackgroundHighlight:        #2f96b4;
+@lnkColbtnInfoBackground:                 #5bc0de;
+@lnkColbtnInfoBackgroundHighlight:        #2f96b4;
 
 @btnSuccessBackground:              #62c462;
 @btnSuccessBackgroundHighlight:     #51a351;
@@ -149,8 +149,8 @@
 @dropdownLinkColorHover:        @white;
 @dropdownLinkColorActive:       @white;
 
-@dropdownLinkBackgroundActive:  @linkColor;
-@dropdownLinkBackgroundHover:   @dropdownLinkBackgroundActive;
+@lnkColdropdownLinkBackgroundActive:  @lnkCol;
+@dropdownLinkBackgroundHover:   @lnkColdropdownLinkBackgroundActive;
 
 
 
@@ -208,7 +208,7 @@
 
 @navbarText:                      #777;
 @navbarLinkColor:                 #777;
-@navbarLinkColorHover:            @grayDark;
+@lnkColnavbarLinkColorHover:            @grayDark;
 @navbarLinkColorActive:           @gray;
 @navbarLinkBackgroundHover:       transparent;
 @navbarLinkBackgroundActive:      darken(@navbarBackground, 5%);
