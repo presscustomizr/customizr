@@ -41,8 +41,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		* @since Customizr 1.1
 		*/
 		function tc_enqueue_customizr_styles() {
-		    //Customizr active skin
-		    wp_register_style( 'customizr-skin', TC_init::$instance -> tc_active_skin(), array(), CUSTOMIZR_VER, 'all' );
+		    wp_enqueue_style( 'customizr-common', TC_init::$instance -> tc_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
+        //Customizr active skin
+		    wp_register_style( 'customizr-skin', TC_init::$instance -> tc_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
 		    wp_enqueue_style( 'customizr-skin' );
 		    //Customizr stylesheet (style.css)
 		    wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );

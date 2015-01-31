@@ -19,6 +19,15 @@ module.exports = {
 			}
 		]
 	},
+  dev_common : {
+    files: [
+      {
+        expand: true,
+        cwd: '.',
+        src: ['<%= paths.front_css %>tc_common.min.css', '<%= paths.front_css %>tc_common.css']
+      }
+    ]
+  },
 	main_front_js : {
 		files: [
 			{

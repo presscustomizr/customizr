@@ -493,28 +493,33 @@ if ( ! class_exists( 'TC_init' ) ) :
 
 
       /**
-      * Returns the active path+skin.css
+      * Returns the active path+skin.css or tc_common.css
       *
       * @package Customizr
       * @since Customizr 3.0.15
       */
-      function tc_active_skin() {
-        $skin           = esc_attr( tc__f( '__get_option' , 'tc_skin' ) );
-        $skin           = esc_attr( tc__f( '__get_option' , 'tc_minified_skin' ) ) ? str_replace('.css', '.min.css', $skin) : $skin;
+      function tc_get_style_src( $_wot = 'skin' ) {
+        $_sheet    = ( 'skin' == $_wot ) ? esc_attr( tc__f( '__get_option' , 'tc_skin' ) ) : 'tc_common.css';
+        if ( esc_attr( tc__f( '__get_option' , 'tc_minified_skin' ) ) )
+          $_sheet  = str_replace('.css', '.min.css', $_sheet);
 
         //Finds the good path : are we in a child theme and is there a skin to override?
-        $remote_path    = false;
-        $remote_path    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css/' . $skin) ) ? TC_BASE_URL_CHILD .'inc/assets/css/' : $remote_path ;
-        $remote_path    = ( !$remote_path && file_exists(TC_BASE .'inc/assets/css/' . $skin) ) ? TC_BASE_URL .'inc/assets/css/' : $remote_path ;
-        //Checks if there is a rtl version of the selected skin if needed
-        if ( defined( 'WPLANG' ) && ( 'ar' == WPLANG || 'he_IL' == WPLANG ) ) {
-          $remote_path   = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css/rtl/' . $skin) ) ? TC_BASE_URL_CHILD .'inc/assets/css/rtl/' : $remote_path ;
-          $remote_path   = ( !TC___::$instance -> tc_is_child() && file_exists(TC_BASE .'inc/assets/css/rtl/' . $skin) ) ? TC_BASE_URL .'inc/assets/css/rtl/' : $remote_path ;
+        $remote_path    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css/' . $_sheet) ) ? TC_BASE_URL_CHILD .'inc/assets/css/' : false ;
+        $remote_path    = ( ! $remote_path && file_exists(TC_BASE .'inc/assets/css/' . $_sheet) ) ? TC_BASE_URL .'inc/assets/css/' : $remote_path ;
+
+        //Checks if there is a rtl version of common if needed
+        if ( 'skin' != $_wot && defined( 'WPLANG' ) && ( 'ar' == WPLANG || 'he_IL' == WPLANG ) ) {
+          $remote_path   = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css/rtl/' . $_sheet) ) ? TC_BASE_URL_CHILD .'inc/assets/css/rtl/' : $remote_path ;
+          $remote_path   = ( !TC___::$instance -> tc_is_child() && file_exists(TC_BASE .'inc/assets/css/rtl/' . $_sheet) ) ? TC_BASE_URL .'inc/assets/css/rtl/' : $remote_path ;
         }
 
         //Defines the active skin and fallback to blue.css if needed
-        $tc_active_skin  = $remote_path ? $remote_path.$skin : TC_BASE_URL.'inc/assets/css/blue3.css';
-        return apply_filters ( 'tc_active_skin' , $tc_active_skin );
+        if ( 'skin' == $_wot )
+          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/blue3.css';
+        else
+          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/tc_common.css';
+
+        return apply_filters ( 'tc_get_style_src' , $tc_get_style_src , $_wot );
       }
 
 
