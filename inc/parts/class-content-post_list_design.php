@@ -65,10 +65,10 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                             array( $this, 'tc_set_thumb_size_name') );
             add_filter( 'tc_thumb_size',
                             array( $this, 'tc_set_thumb_size') );
-            
+  /*          
             add_filter( 'tc_post_thumb_inline_style',
                             array( $this, 'tc_change_tumbnail_inline_css_width'), 20, 3 );
-            
+   */        
             add_filter( 'tc_post_list_design_thumb_data',
                             array( $this, 'tc_post_list_design_thumb_data') );
 
@@ -341,9 +341,6 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 "
                 .tc-design-figure {
                     position: relative;
-                  /*  float: left;
-                    width: 100%;
-                    height: 100%;*/
                     overflow: hidden;
                 }
                 .tc-design-figure img {
@@ -356,42 +353,39 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
                     position: absolute;
                     opacity: 0;
-                    vertical-align: middle;
-                    margin-left: 0;
                     width: 100%;
+                    color: white;
+                }
+                .expanded .tc-design-post figcaption{
+                    opacity: 1;
+                    max-width: 50%;
+                    line-height: 0.8em;
+                    height: auto;
+                    top: 5%;
+                    margin-left: 11%;
+                }
+                .tc-post-list-design .entry-summary{
+                    height: 100%;
+                    padding: 6%;
                     -webkit-box-sizing: border-box;
                     -moz-box-sizing: border-box;
                     box-sizing: border-box;
                 }
-                .expanded .tc-design-post figcaption{
-                    opacity: 1;
-                    width: auto;
-                    max-width: 50%;
-                    line-height: 10px;
-                    height: auto;
-                    top: 5%;
-                    margin-left: 11%;
-                    padding: 4%;
+                .tc-design-excerpt p {
+                    height: 100%;
+                    overflow: hidden;
+                    margin: 0;
                 }
                 .expanded .tc-design-post figcaption .tcd-title{
-                    padding: 0 10px;
+                    padding: 0 6%;
+                    display: block;
                 }
                 .tc-post-list-design figure {
                     margin: 0;
                 }
-                figure.no-thumb figcaption{
-                    opacity: 1;
-                }
+                figure.no-thumb figcaption,
                 .tc-post-list-design article.hover figcaption{
                     opacity: 1;
-                }
-                .tc-post-list-design .entry-summary{
-                    display: block;
-                    width: 85%;
-                    height: 85%;
-                    margin: auto;
-                    overflow: hidden;
-                    padding: 10px 10px 0 10px;
                 }
                 .tc-post-list-design article.sticky{
                     text-align: justify;
@@ -436,6 +430,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             );
             /* end for testing only */
 
+            /* dynamic css */
             /* retrieve the height/width ratios */
             $thumb_full_size = apply_filters( 'tc_design_full_size', 
                                     TC_init::$instance -> tc_design_full_size );
@@ -479,6 +474,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
 
             return $_css;
         }
+        
         /* Helpers */
         
         /* check if we have to expand the first sticky post */
