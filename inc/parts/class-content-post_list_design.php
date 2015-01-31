@@ -297,7 +297,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 return;
             global $post;
             $title = sprintf('<%1$s class="%2$s">%3$s</%1$s>',
-                apply_filters( 'tc_post_list_design_caption_title_tag', 'h2'),
+                apply_filters( 'tc_post_list_design_caption_title_tag', 'h1'),
                 apply_filters( 'tc_post_list_design_caption_title_class', 'tcd-title'),
                 $post->post_title
             );
@@ -342,6 +342,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                 .tc-design-figure {
                     position: relative;
                     overflow: hidden;
+                    margin: 0;
                 }
                 .tc-design-figure img {
                     width: 100%;
@@ -363,24 +364,21 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     height: auto;
                     top: 5%;
                     margin-left: 11%;
+                    padding: 1%;
                 }
                 .tc-post-list-design .entry-summary{
                     height: 100%;
-                    padding: 6%;
+                    padding: 8% 9%;
                     -webkit-box-sizing: border-box;
                     -moz-box-sizing: border-box;
                     box-sizing: border-box;
                 }
+                .tc-post-list-design .expanded .tcd-title{
+                    padding: 0 9%;
+                }
                 .tc-design-excerpt p {
                     height: 100%;
                     overflow: hidden;
-                    margin: 0;
-                }
-                .expanded .tc-design-post figcaption .tcd-title{
-                    padding: 0 6%;
-                    display: block;
-                }
-                .tc-post-list-design figure {
                     margin: 0;
                 }
                 figure.no-thumb figcaption,
