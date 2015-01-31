@@ -251,7 +251,7 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             
                 $post_content = $this -> tc_post_list_design_prepare_post_content($post_list_content_class);
                 $post_content = ( $tc_show_post_list_thumb ) ?
-                                    $post_content . $thumb_data[0] :
+                                    $thumb_data[0] . $post_content :
                                     $post_content;
 
                 $figure_class = apply_filters('tc_post_list_design_figure_class', 'tc-design-figure span12' );
@@ -348,10 +348,22 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     width: 100%;
                     height: auto;
                 }
+                /* the following two rules are for testing, just opacify the thumb and don't apply background for normal posts */
+                .tc-design-figure img {
+                    opacity: 1;
+                }
+                article.hover .tc-design-figure img {
+                    opacity: 0.5;
+                }
                 .tc-design-post figcaption{
+                    top: 0;
+                    left: 0;
                     height: 100%;
+                    /* this is commented for testing, just opacify the thumb and don't apply background for normal posts */
+                    /*
                     background: rgba(0,0,0,.2);
                     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
+                    */
                     position: absolute;
                     opacity: 0;
                     width: 100%;
@@ -365,6 +377,14 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
                     top: 5%;
                     margin-left: 11%;
                     padding: 1%;
+                }
+                /* this is for testing, just opacify the thumb and don't apply background for normal posts 
+                *  but apply it to .expanded caption and .no-thumb caption
+                */
+                .expanded figcaption,
+                .no-thumb figcaption{
+                    background: rgba(0,0,0,.2);
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
                 }
                 .tc-post-list-design .entry-summary{
                     height: 100%;
