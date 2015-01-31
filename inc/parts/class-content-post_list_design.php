@@ -72,6 +72,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             add_filter( 'tc_post_list_design_thumb_data',
                             array( $this, 'tc_post_list_design_thumb_data') );
 
+            //force title displaying for all post types
+            add_filter( 'tc_post_formats_with_no_heading', '__return_empty_array');
+
             // specific post list design hooks
             add_filter( 'tc_post_list_design_container',
                            array( $this, 'tc_post_list_design_post_container'), 20, 2 );
