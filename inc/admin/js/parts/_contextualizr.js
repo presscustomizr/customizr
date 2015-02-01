@@ -31,6 +31,10 @@
 
   //DOM READY
   $(function($) {
+
+    // $( document ).on( 'widget-synced' , function( response ) {
+    //   console.log('response widget-synced in _contextualizer' , response);
+    // } );
     //Replace default wp title
     //$('.preview-notice', '.panel-meta').first()
     $_title = $('.panel-title' , '.panel-meta').first();

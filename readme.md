@@ -1,4 +1,4 @@
-# Customizr v3.2.17 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=contextualizer)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.2.17 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=contx)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 

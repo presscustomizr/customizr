@@ -46,7 +46,40 @@ if ( ! class_exists( 'TC_contx' ) ) :
       ### FILTER OPTIONS ON GET (OUTSIDE CUSTOMIZER) ###
       add_filter( 'tc_get_option'                 , array( $this , 'tc_contx_option'), 10 , 3 );
 
+      ### Add scripts in admin ###
+      add_action( 'admin_footer'                  , array( $this , 'tc_render_contx_script') );
+
     }//end of construct
+
+
+
+    function tc_render_contx_script() {
+      //@to do Only render is the href is valid (not a draft post for example or user must have appropriate capabilities )
+      if ( ! isset( $_GET['action'] ) || 'edit' != isset( $_GET['action'] ) || TC___::$instance -> tc_is_customizing() )
+        return;
+      $_html    = __( 'Customize' , 'customizr');
+      $_href    = $this -> tc_get_contx_link_attr('href');
+      $_target  = '_blank';
+      $_title   = __( 'Customize in live preview' , 'customizr' );
+      $_lnk_attr = apply_filters('tc_customize_link_attr' , compact("_html", "_href", "_target", "_title") );
+      ?>
+      <script type="text/javascript">
+        jQuery( function($) {
+          var _html = "<?php echo $_lnk_attr['_html'] ?>",
+              _href = "<?php echo $_lnk_attr['_href'] ?>",
+              _target = "<?php echo $_lnk_attr['_target'] ?>",
+              _title = "<?php echo $_lnk_attr['_title'] ?>",
+              $cust_button = $( '<a>' , { class: 'tc-cust-button',  href : _href, html: _html, target: _target, title : _title } );
+
+          if ( ! $( '.wrap > h2' , '#wpbody-content' ).find('a').length )
+            $( '.wrap > h2' , '#wpbody-content' ).append($cust_button);
+          else
+            $( '.wrap > h2' , '#wpbody-content' ).find('a').before($cust_button);
+        });
+      </script>
+      <?php
+    }
+
 
 
     function tc_contx_option( $original , $option_name , $option_group ) {
@@ -94,7 +127,7 @@ if ( ! class_exists( 'TC_contx' ) ) :
         break;
 
         case 'from_get':
-          $parts = $this -> tc_get_url_contx();
+          $parts = $this -> tc_get_get_contx();
         break;
 
         default:
@@ -136,11 +169,11 @@ if ( ! class_exists( 'TC_contx' ) ) :
     }
 
 
-    public function tc_get_url_contx() {
+    public function tc_get_get_contx() {
       $meta_type    = isset( $_GET['meta_type']) ? $_GET['meta_type'] : false;
       $type         = isset( $_GET['type']) ? $_GET['type'] : false;
       $obj_id       = isset( $_GET['obj_id']) ? $_GET['obj_id'] : false;
-      return apply_filters( 'tc_get_url_contx' , array( $meta_type, $type , $obj_id ) );
+      return apply_filters( 'tc_get_get_contx' , array( $meta_type, $type , $obj_id ) );
     }
 
 
@@ -190,6 +223,46 @@ if ( ! class_exists( 'TC_contx' ) ) :
     }
 
 
+    //@todo author case not handled
+    function tc_get_admin_contx() {
+      if ( ! is_admin() )
+        return array();
+
+      global $tag;
+      $current_screen = get_current_screen();
+      $post           = get_post();
+      $meta_type      = false;
+      $type           = false;
+      $obj_id         = false;
+
+      //post case : page, post CPT
+      if ( 'post' == $current_screen->base
+        && 'add' != $current_screen->action
+        && ( $post_type_object = get_post_type_object( $post->post_type ) )
+        && current_user_can( 'read_post', $post->ID )
+        && ( $post_type_object->public )
+        && ( $post_type_object->show_in_admin_bar )
+        && ( 'draft' != $post->post_status ) )
+      {
+        $meta_type  = 'post';
+        $type       = $post -> post_type;
+        $obj_id     = $post -> ID;
+      }
+      //tax case : tags, cats, custom tax
+      elseif ( 'edit-tags' == $current_screen->base
+        && isset( $tag ) && is_object( $tag )
+        && ( $tax = get_taxonomy( $tag->taxonomy ) )
+        && $tax->public )
+      {
+        $meta_type  = 'tax';
+        $type       = $tag -> taxonomy ;
+        $obj_id     = $tag -> term_id;
+      }
+      return apply_filters( 'tc_get_admin_contx' , array( $meta_type , $type , $obj_id ) );
+    }
+
+
+
     function tc_get_obj_title( $type , $obj_id ) {
         switch (variable) {
           case 'value':
@@ -224,48 +297,32 @@ if ( ! class_exists( 'TC_contx' ) ) :
 
 
     function tc_remove_initial_customize_menu() {
+      //@todo //Only render is the href is valid (not a draft post for example or user must have appropriate capabilities )
       if ( ! current_user_can( 'edit_theme_options' ) || is_admin() )
         return;
+
       global $wp_admin_bar;
       $wp_admin_bar->remove_menu('customize');
     }
 
 
+
+
     function tc_add_customize_menu() {
+      //@todo //Only render is the href is valid (not a draft post for example or user must have appropriate capabilities )
       if ( ! current_user_can( 'edit_theme_options' ) || is_admin() )
         return;
 
       global $wp_admin_bar;
-      //declares $type and $obj_id
-      list($meta_type, $type , $obj_id) = $this -> tc_get_query_contx();
-
-      $current_url    = join("", array(
-                          ( is_ssl() ? 'https://' : 'http://' ),
-                          $_SERVER['HTTP_HOST'],
-                          $_SERVER['REQUEST_URI']));
-
-      $meta_type    = is_null($meta_type) ? false : $meta_type;
-      $type         = is_null($type) ? false : $type;
-      $obj_id       = is_null($obj_id) ? false : $obj_id;
-      $title        = '';
-      $args         = array();
-
-      if ( false != $meta_type && false != $obj_id ) {
-         $args    = array( 'url' => urlencode( $current_url ) , 'meta_type' => $meta_type , 'type' => $type , 'obj_id' => $obj_id );
-         $title   = sprintf('%1$s #%2$s' , $type, $obj_id );
-      } else if ( false != $meta_type && ! $obj_id ) {
-        $args  = array( 'url' => urlencode( $current_url ) , 'type' => $type );
-        $title  = sprintf('%1$s' , $type );
-      }
       //Add it under appearance
       $wp_admin_bar -> add_menu( array(
           'parent' => 'appearance',
           'id'     => 'pc-wp-admin-appeance',
-          'title'  => sprintf( '%1$s %2$s' , __( 'Customize' , 'customizr' ), $title ),
-          'href'   => add_query_arg( $args , wp_customize_url() ),
+          'title'  => sprintf( '%1$s %2$s' , __( 'Customize' , 'customizr' ), $this -> tc_get_contx_link_attr('title') ),
+          'href'   => $this -> tc_get_contx_link_attr('href'),
           'meta'   => array(
               'class' => 'hide-if-no-customize',
-              'title'   => sprintf( '%1$s %2$s' , __( 'Customize this context :' , 'customizr' ) , $title ),
+              'title'   => sprintf( '%1$s %2$s' , __( 'Customize this context :' , 'customizr' ) , $this -> tc_get_contx_link_attr('title') ),
           ),
       ) );
       //Add it in the wp admin bar
@@ -273,14 +330,83 @@ if ( ! class_exists( 'TC_contx' ) ) :
          'parent'   => false,
          'id'     => 'tc-customize-button' ,
          'title'    => sprintf( '%1$s' , __( 'Customize' , 'customizr' ) ),
-         'href'     => add_query_arg( $args , wp_customize_url() ),
+         'href'     => $this -> tc_get_contx_link_attr('href'),
          'meta'     => array(
             'class' => 'hide-if-no-customize',
-             'title'    => sprintf( '%1$s %2$s' , __( 'Customize this context :' , 'customizr' ) , $title ),
+             'title'    => sprintf( '%1$s %2$s' , __( 'Customize this context :' , 'customizr' ) , $this -> tc_get_contx_link_attr('title') ),
             ),
      ));
     }
 
+
+    /*
+    * @return string
+    */
+    function tc_get_contx_link_attr( $_wot = null ) {
+      $_wot = is_null($_wot) ? 'href' : $_wot;
+      $_return = '';
+      $current_url = '';
+
+      if ( is_admin() )
+        list($meta_type, $type , $obj_id) = $this -> tc_get_admin_contx();
+      else
+        list($meta_type, $type , $obj_id) = $this -> tc_get_query_contx();
+
+      if ( 'href' == $_wot ) {
+        //inspired by wp_admin_bar_edit_menu() in wp-admin/admin-bar.php
+        //@todo : author case to handle
+        ### ADMIN CONTEXT ###
+        if ( is_admin() ) {
+          global $tag;
+          $current_screen = get_current_screen();
+          $post = get_post();
+          if ( 'post' == $current_screen->base
+            && 'add' != $current_screen->action
+            && ( $post_type_object = get_post_type_object( $post->post_type ) )
+            && current_user_can( 'read_post', $post->ID )
+            && ( $post_type_object->public )
+            && ( $post_type_object->show_in_admin_bar ) )
+          {
+            if ( 'draft' != $post->post_status )
+              $current_url = get_permalink( $post->ID );
+          }
+          elseif ( 'edit-tags' == $current_screen->base
+            && isset( $tag ) && is_object( $tag )
+            && ( $tax = get_taxonomy( $tag->taxonomy ) )
+            && $tax->public )
+          {
+            $current_url = get_term_link( $tag );
+          }
+        }
+        ### FRONT END CONTEXT ###
+        else {
+          $current_url    = join("", array(
+                          ( is_ssl() ? 'https://' : 'http://' ),
+                          $_SERVER['HTTP_HOST'],
+                          $_SERVER['REQUEST_URI']));
+        }
+
+        if ( empty( $current_url ))
+          return $_return;
+
+        $args = array();
+        if ( ! is_null($meta_type) && ! is_null($obj_id) )
+          $args = array( 'url' => urlencode( $current_url ) , 'meta_type' => $meta_type , 'type' => $type , 'obj_id' => $obj_id );
+        else if ( ! is_null($meta_type) && is_null($obj_id) )
+          $args = array( 'url' => urlencode( $current_url ) , 'type' => $type );
+        $_return = add_query_arg( $args , wp_customize_url() );
+      }
+
+      if ( 'title' == $_wot ) {
+        $_title = '';
+        if ( ! is_null($meta_type) && ! is_null($obj_id) )
+          $_title = sprintf('%1$s #%2$s' , $type, $obj_id );
+        else if ( ! is_null($meta_type) && is_null($obj_id) )
+          $_title = sprintf('%1$s' , $type );
+        $_return = $_title;
+      }
+      return $_return;
+    }
 
 
 
