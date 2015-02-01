@@ -31,7 +31,9 @@ if ( ! class_exists( 'TC_post_list_design' ) ) :
             
             if ( ! $this -> tc_post_list_is_design() )
                 return;
-            
+
+            do_action( '__post_list_design' );
+
             add_filter( 'tc_user_options_style',
                     array( $this , 'tc_post_list_design_write_inline_css') );
 
