@@ -23,11 +23,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           self::$instance =& $this;
 
           //update remove section map, since 3.2.0
-          add_filter ( 'tc_remove_section_map'                , array( $this ,  'tc_update_remove_sections') );
+          add_filter ( 'tc_remove_section_map'                , array( $this , 'tc_update_remove_sections') );
           //update section map, since 3.2.0
-          add_filter ( 'tc_add_section_map'                   , array( $this ,  'tc_update_section_map') );
+          add_filter ( 'tc_add_section_map'                   , array( $this , 'tc_update_section_map') );
           //update setting_control_map
-          add_filter ( 'tc_add_setting_control_map'           , array( $this ,  'tc_update_setting_control_map'), 100 );
+          add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_update_setting_control_map'), 100 );
+          //update setting_control_map with post list design, v3.2.18+
+          add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_post_list_design_map'), 101 );
           //declare a private property to check wp version >= 4.0
           global $wp_version;
           $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
@@ -1744,67 +1746,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'min'           => 0,
                                 'priority'      => 23
               ),
-              'tc_theme_options[tc_post_list_design]'  =>  array(
-                                'default'       => 'default',
-                                'control'       => 'TC_controls' ,
-                                'title'         => __( 'Post List Design' , 'customizr' ),
-                                'label'         => __( 'Select a Layout' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
-                                'type'          => 'select',
-                                'choices'       => array(
-                                        'default'               => __( 'Default' , 'customizr'),
-                                        'design'               => __( 'Column Layout' , 'customizr')
-                                ),
-                                'priority'      => 24,
-                                'notice'    => __( 'When you select the Column Layout, the length of posts in lists you want to apply this feature will be forced to the excerpt' , 'customizr' ),
-              ),
-              'tc_theme_options[tc_post_list_design_columns]'  =>  array(
-                                'default'       => '2',
-                                'control'       => 'TC_controls' ,
-                                'label'         => __( 'Columns' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
-                                'type'          => 'select',
-                                'choices'       => array(
-                                        '1'                     => __( '1' , 'customizr'),
-                                        '2'                     => __( '2' , 'customizr'),
-                                        '3'                     => __( '3' , 'customizr'),
-                                        '4'                     => __( '4' , 'customizr')
-                                ),
-                                'priority'      => 25,
-              ),
-              'tc_theme_options[tc_post_list_design_expand_featured]'  =>  array(
-                                'default'       => 1,
-                                'control'       => 'TC_controls' ,
-                                'label'         => __( 'Featured Post Expanded (for home and blog page only)' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
-                                'type'          => 'checkbox',
-                                'priority'      => 26,
-              ),
-              'tc_theme_options[tc_post_list_design_in_blog]'  =>  array(
-                                'default'       => 1,
-                                'control'       => 'TC_controls' ,
-                                'label'         => __( 'Apply the column layout to Home/Blog' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
-                                'type'          => 'checkbox',
-                                'priority'      => 27,
-              ),
-              'tc_theme_options[tc_post_list_design_in_archive]'  =>  array(
-                                'default'       => 0,
-                                'control'       => 'TC_controls' ,
-                                'label'         => __( 'Apply the column layout to Archives (archives, categories, author posts)' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
-                                'type'          => 'checkbox',
-                                'priority'      => 28,
-              ),
-              'tc_theme_options[tc_post_list_design_in_search]'  =>  array(
-                                'default'       => 0,
-                                'control'       => 'TC_controls' ,
-                                'label'         => __( 'Apply the column layout to Search results' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
-                                'type'          => 'checkbox',
-                                'priority'      => 29,
-               ),
-              
               'tc_theme_options[tc_post_list_show_thumb]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
@@ -1812,7 +1753,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Display the post thumbnails" , "customizr" ),
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 31,
+                                'priority'      => 68,
                                 'notice'    => __( 'When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ...' , 'customizr' ),
               ),
               'tc_theme_options[tc_post_list_use_attachment_as_thumb]'  =>  array(
@@ -1821,7 +1762,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "If no featured image is set, use the last image attached to this post." , "customizr" ),
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 32
+                                'priority'      => 70
               ),
               'tc_theme_options[tc_post_list_thumb_shape]'  =>  array(
                                 'default'       => 'rounded',
@@ -1838,7 +1779,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'rectangular-blurred'   => __( 'Rectangular with blur effect on hover' , 'customizr'  ),
                                         'rectangular-unblurred' => __( 'Rectangular with unblur effect on hover' , 'customizr'),
                                 ),
-                                'priority'      => 33
+                                'priority'      => 75
               ),
               'tc_theme_options[tc_post_list_thumb_height]' => array(
                                 'default'       => 250,
@@ -1849,7 +1790,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'        => 'number' ,
                                 'step'      => 1,
                                 'min'     => 0,
-                                'priority'      => 35,
+                                'priority'      => 80,
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_post_list_design_thumb_height]' => array(
@@ -1861,7 +1802,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'        => 'number' ,
                                 'step'      => 1,
                                 'min'     => 0,
-                                'priority'      => 36,
+                                'priority'      => 85,
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_post_list_thumb_position]'  =>  array(
@@ -1876,7 +1817,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'bottom'    => __( 'Bottom' , 'customizr' ),
                                         'left'    => __( 'Left' , 'customizr' ),
                                 ),
-                                'priority'      => 40
+                                'priority'      => 90
               ),
               'tc_theme_options[tc_post_list_thumb_alternate]'  =>  array(
                                 'default'       => 1,
@@ -1884,7 +1825,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Alternate thumbnail/content" , "customizr" ),
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 50
+                                'priority'      => 95
               ),
               'tc_theme_options[tc_post_list_design_default_thumb]' => array(
                                 'control'       =>  'TC_Customize_Upload_Control' ,
@@ -1892,7 +1833,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       =>  'tc_post_list_settings' ,
                                 'type'          =>  'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number'),
-                                'priority'      =>  60,
+                                'priority'      =>  100,
               ),
               'tc_theme_options[tc_single_post_thumb_location]'  =>  array(
                                 'default'       => 'hide',
@@ -2151,5 +2092,82 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $_map['add_setting_control'] = array_merge($_map['add_setting_control'] , $_new_settings );
       return $_map;
     }
+
+
+    /**
+    * Update initial setting_control map defined in class-fire-utils.php.
+    *
+    * @package Customizr
+    * @since Customizr 3.2.18
+    */
+    function tc_post_list_design_map( $_map ) {
+        $_new_settings = array(
+          'tc_theme_options[tc_post_list_design]'  =>  array(
+                            'default'       => 'default',
+                            'control'       => 'TC_controls' ,
+                            'title'         => __( 'Post List Design' , 'customizr' ),
+                            'label'         => __( 'Select a Layout' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'select',
+                            'choices'       => array(
+                                    'default'               => __( 'Default' , 'customizr'),
+                                    'design'               => __( 'Column Layout' , 'customizr')
+                            ),
+                            'priority'      => 40,
+                            'notice'    => __( 'When you select the Column Layout, the length of posts in lists you want to apply this feature will be forced to the excerpt' , 'customizr' ),
+          ),
+          'tc_theme_options[tc_post_list_design_columns]'  =>  array(
+                            'default'       => '2',
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Columns' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'select',
+                            'choices'       => array(
+                                    '1'                     => __( '1' , 'customizr'),
+                                    '2'                     => __( '2' , 'customizr'),
+                                    '3'                     => __( '3' , 'customizr'),
+                                    '4'                     => __( '4' , 'customizr')
+                            ),
+                            'priority'      => 45
+          ),
+          'tc_theme_options[tc_post_list_design_expand_featured]'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Featured Post Expanded (for home and blog page only)' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'checkbox',
+                            'priority'      => 50
+          ),
+          'tc_theme_options[tc_post_list_design_in_blog]'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Apply the column layout to Home/Blog' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'checkbox',
+                            'priority'      => 55
+          ),
+          'tc_theme_options[tc_post_list_design_in_archive]'  =>  array(
+                            'default'       => 0,
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Apply the column layout to Archives (archives, categories, author posts)' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'checkbox',
+                            'priority'      => 60
+          ),
+          'tc_theme_options[tc_post_list_design_in_search]'  =>  array(
+                            'default'       => 0,
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Apply the column layout to Search results' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'checkbox',
+                            'priority'      => 65
+           ),
+        );//$_new_settings
+
+      $_map['add_setting_control'] = array_merge($_map['add_setting_control'] , $_new_settings );
+      return $_map;
+
+    }//end of fn
+
   }//end of class
 endif;

@@ -103,7 +103,7 @@
       callback: function (to) {
         return 'design' == to;
       }
-    },  
+    },
     'tc_theme_options[tc_post_list_show_thumb]' : {
       controls: [
         'tc_theme_options[tc_post_list_use_attachment_as_thumb]',
