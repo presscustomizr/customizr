@@ -559,16 +559,16 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           }
           if (strlen( $title_value) > $default_title_length) {
             $title_value = substr( $title_value,0,strpos( $title_value, ' ' , $default_title_length));
-            $title_value = esc_html( $title_value) . ' ...';
+            $title_value = strip_tags( $title_value) . ' ...';
           }
           else {
-            $title_value = esc_html( $title_value);
+            $title_value = strip_tags( $title_value);
           }
 
 
           //text_field setup : sanitize and limit length
           $text_id        = 'slide_text_field';
-          $text_value     = esc_html(get_post_meta( $postid, $key = 'slide_text_key' , $single = true ));
+          $text_value     = strip_tags(get_post_meta( $postid, $key = 'slide_text_key' , $single = true ));
            //we define a filter for the slide_title_length
           $default_text_length   = apply_filters( 'tc_slide_text_length', 250 );
 
@@ -789,10 +789,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                           $default_text_length = apply_filters( 'tc_slide_text_length', 250 );
                           if (strlen( $mydata) > $default_text_length) {
                           $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,$default_text_length));
-                          $mydata = esc_html( $mydata) . ' ...';
+                          $mydata = strip_tags( $mydata) . ' ...';
                           }
                           else {
-                            $mydata = esc_html( $mydata);
+                            $mydata = strip_tags( $mydata);
                           }
                         break;
 
@@ -874,7 +874,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                         $slide_src              = wp_get_attachment_image_src( $id, 'thumbnail' );
                         $slide_url              = $slide_src[0];
                         $title                  = esc_attr(get_post_meta( $id, $key = 'slide_title_key' , $single = true ));
-                        $text                   = esc_html(get_post_meta( $id, $key = 'slide_text_key' , $single = true ));
+                        $text                   = strip_tags(get_post_meta( $id, $key = 'slide_text_key' , $single = true ));
                         $text_color             = esc_attr(get_post_meta( $id, $key = 'slide_color_key' , $single = true ));
                         $button_text            = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
                         $button_link            = esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true ));
@@ -1226,10 +1226,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                                 $mydata = sanitize_text_field( $_POST[$tcid] );
                                 if (strlen( $mydata) > 250) {
                                 $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,250));
-                                $mydata = esc_html( $mydata) . ' ...';
+                                $mydata = strip_tags( $mydata) . ' ...';
                                 }
                                 else {
-                                  $mydata = esc_html( $mydata);
+                                  $mydata = strip_tags( $mydata);
                                 }
                                  //write in DB
                                 add_post_meta( $post_ID, $tckey, $mydata, true) or
