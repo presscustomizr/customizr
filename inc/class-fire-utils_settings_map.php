@@ -1764,6 +1764,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 70
               ),
+              'tc_theme_options[tc_post_list_default_thumb]' => array(
+                                'control'       =>  'TC_Customize_Upload_Control',
+                                'label'         => __( 'Upload a default thumbnail' , 'customizr' ),
+                                'section'       =>  'tc_post_list_settings',
+                                'type'          =>  'tc_upload',
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number'),
+                                'priority'      =>  73,
+              ),
               'tc_theme_options[tc_post_list_thumb_shape]'  =>  array(
                                 'default'       => 'rounded',
                                 'control'     => 'TC_controls' ,
@@ -1793,18 +1801,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 80,
                                 'transport'   => 'postMessage'
               ),
-              'tc_theme_options[tc_post_list_design_thumb_height]' => array(
-                                'default'       => 350,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
-                                'control'   => 'TC_controls' ,
-                                'label'       => __( "Set the Post List Design thumbnail's max height in pixels" , 'customizr' ),
-                                'section'     => 'tc_post_list_settings' ,
-                                'type'        => 'number' ,
-                                'step'      => 1,
-                                'min'     => 0,
-                                'priority'      => 85,
-                                'transport'   => 'postMessage'
-              ),
+
               'tc_theme_options[tc_post_list_thumb_position]'  =>  array(
                                 'default'       => 'right',
                                 'control'     => 'TC_controls' ,
@@ -1826,14 +1823,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 95
-              ),
-              'tc_theme_options[tc_post_list_design_default_thumb]' => array(
-                                'control'       =>  'TC_Customize_Upload_Control' ,
-                                'label'         => __( 'Upload a default thumbnail for Post List Design' , 'customizr' ),
-                                'section'       =>  'tc_post_list_settings' ,
-                                'type'          =>  'tc_upload',
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number'),
-                                'priority'      =>  100,
               ),
               'tc_theme_options[tc_single_post_thumb_location]'  =>  array(
                                 'default'       => 'hide',
@@ -2162,6 +2151,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'checkbox',
                             'priority'      => 65
            ),
+          'tc_theme_options[tc_post_list_design_thumb_height]' => array(
+                            'default'       => 350,
+                            'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                            'control'   => 'TC_controls' ,
+                            'label'       => __( "Set the Post List Design thumbnail's max height in pixels" , 'customizr' ),
+                            'section'     => 'tc_post_list_settings' ,
+                            'type'        => 'number' ,
+                            'step'      => 1,
+                            'min'     => 0,
+                            'priority'      => 85
+                            //'transport'   => 'postMessage'
+          )
         );//$_new_settings
 
       $_map['add_setting_control'] = array_merge($_map['add_setting_control'] , $_new_settings );
