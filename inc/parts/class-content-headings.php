@@ -102,8 +102,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
       */
       function tc_post_formats_heading( $_html, $current_filter ) {
         if( '__before_content' != $current_filter || ! in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
-          return;
-        return $_html;
+          return $_html;
+        return;
       }
 
 
