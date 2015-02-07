@@ -717,7 +717,8 @@ if ( ! class_exists( 'TC_init' ) ) :
           }
 
         }//end if woocommerce
-      }
+
+      }//end of plugin compatibility function
 
 
 
