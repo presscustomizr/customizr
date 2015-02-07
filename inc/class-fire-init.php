@@ -717,18 +717,9 @@ if ( ! class_exists( 'TC_init' ) ) :
           }
 
         }//end if woocommerce
-    
       }
 
-      /**
-      * Callback for the_title
-      *
-      * @package Customizr
-      * @since Customizr 3.2.18
-      */
-      function tc_the_title( $_title ) {
-        return apply_filters( 'tc_the_title', $_title);
-      }
+
 
 
       /**
