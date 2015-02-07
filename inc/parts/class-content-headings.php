@@ -75,11 +75,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
         //Populate heading with default content
         add_filter ( 'tc_headings_content_html'       , array( $this , 'tc_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
-        add_filter( 'the_title'                       , array( $this , 'tc_content_heading_title' ) , 0 );
+        add_filter( 'tc_the_title'                       , array( $this , 'tc_content_heading_title' ) , 0 );
         //Add comment bubble
-        add_filter( 'the_title'                       , array( $this , 'tc_add_comment_bubble_after_title' ), 1 );
+        add_filter( 'tc_the_title'                       , array( $this , 'tc_add_comment_bubble_after_title' ), 1 );
         //Add edit link
-        add_filter( 'the_title'                       , array( $this , 'tc_add_edit_link_after_title' ), 2 );
+        add_filter( 'tc_the_title'                       , array( $this , 'tc_add_edit_link_after_title' ), 2 );
 
         //SOME DEFAULT OPTIONS
         //No hr if not singular
@@ -147,14 +147,14 @@ if ( ! class_exists( 'TC_headings' ) ) :
         return sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
               apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
               apply_filters( 'tc_content_title_icon', 'format-icon' ),
-              get_the_title()
+              apply_filters( 'tc_the_title', get_the_title() )
         );
       }
 
 
 
       /**
-      * Callback for get_the_title
+      * Callback for tc_the_title
       * @return  string
       *
       * @package Customizr
@@ -180,7 +180,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
       /**
-      * Callback for get_the_title
+      * Callback for tc_the_title
       * @return  string
       *
       * @package Customizr
@@ -224,7 +224,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
       /**
-      * Callback for get_the_title
+      * Callback for tc_the_title
       * @return  string
       *
       * @package Customizr
@@ -439,7 +439,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         //Set user defined various inline stylings
         add_filter( 'tc_user_options_style'         , array( $this , 'tc_write_headings_inline_css' ) );
         //Add update status next to the title (@since 3.2.6)
-        add_filter( 'the_title'                      , array( $this , 'tc_add_update_notice_in_title'), 20);
+        add_filter( 'tc_the_title'                      , array( $this , 'tc_add_update_notice_in_title'), 20);
       }
 
 
@@ -558,7 +558,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
       /**
-      * Callback of the the_title => add an updated status
+      * Callback of the tc_the_title => add an updated status
       * User option based
       *
       * @package Customizr

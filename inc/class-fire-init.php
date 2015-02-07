@@ -683,6 +683,13 @@ if ( ! class_exists( 'TC_init' ) ) :
             <?php
           }//end of nested function
 
+          // use Customizr title
+          add_filter( 'the_title', 'tc_woocommerce_the_title' );
+          function tc_woocommerce_the_title( $_title ){
+            if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
+                return apply_filters( 'tc_the_title', $_title );
+            return $_title;
+          }
 
           //handles the woocomerce sidebar : removes action if sidebars not active
           if ( !is_active_sidebar( 'shop') ) {
@@ -710,32 +717,18 @@ if ( ! class_exists( 'TC_init' ) ) :
           }
 
         }//end if woocommerce
+    
+      }
 
-
-        /* The Event Calendar
-        ** @Credits : @https://wordpress.org/support/profile/d4z_c0nf
-        */
-        if ( current_theme_supports( 'the-events-calendar' ) && function_exists( 'tribe_is_event_query' ) ) {
-          add_action('wp', 'tc_events_calendar_comp', 100);
-          function tc_events_calendar_comp(){
-            if ( ! tribe_is_event_query() )
-                return;
-
-            if ( method_exists( 'TC_headings', 'tc_content_heading_title' ) ){
-                remove_filter( 'the_title', array( TC_Headings::$instance, 'tc_content_heading_title' ), 0);
-            }
-            if ( method_exists( 'TC_headings', 'tc_add_edit_link_after_title' ) ){
-                remove_filter( 'the_title', array(TC_Headings::$instance, 'tc_add_edit_link_after_title' ), 2);
-            }
-            if ( method_exists( 'TC_headings', 'tc_add_comment_bubble_after_title' ) )
-                remove_filter( 'the_title', array(TC_Headings::$instance, 'tc_add_comment_bubble_after_title'), 1 );
-          }
-        }//end if the-events-calendar
-
-
-      }//end of plugin compatibility function
-
-
+      /**
+      * Callback for the_title
+      *
+      * @package Customizr
+      * @since Customizr 3.2.18
+      */
+      function tc_the_title( $_title ) {
+        return apply_filters( 'tc_the_title', $_title);
+      }
 
 
       /**
