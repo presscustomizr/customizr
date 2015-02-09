@@ -441,7 +441,10 @@ jQuery(function ($) {
           elToHide        = [], //[ '.social-block' , '.site-description' ],
           isUserLogged    = $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
           isCustomizing   = $('body').hasClass('is-customizing'),
-          customOffset    = +_p.stickyCustomOffset;
+          customOffset    = +_p.stickyCustomOffset,
+          logosHeight     = [],
+          logosWidth      = [],
+          logosRatio      = [];
 
     function _is_scrolling() {
         return $('body').hasClass('sticky-enabled') ? true : false;
@@ -484,13 +487,23 @@ jQuery(function ($) {
         $tcHeader.css('top' , _get_initial_offset() + 'px');
     }
 
+    function _set_logo_height(){
+        if ( 0 === $('img' , '.site-logo').length )
+            return;
+        $.each($('img', '.site-logo'), function( $i ){
+            var logoHeight   = $(this).width() / logosRatio[$i];
+            $(this).css('height' , logoHeight +'px' );
+        });
+
+    }
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
     if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
-        $.each($('img', '.site-logo'), function(){
-            var logoWidth   = $(this).attr('width'),
-                logoHeight  = $(this).attr('height');
-            $(this).css('height' , logoHeight +'px' ).css('width' , logoWidth +'px' );
+        $.each($('img', '.site-logo'), function( $i ){
+            logosWidth[$i]   = $(this).attr('width');
+            logosHeight[$i]  = $(this).attr('height');
+            logosRatio[$i]  = logosWidth[$i] / logosHeight[$i];
+            $(this).css('height' , logosHeight[$i] +'px' ).css('width' , logosWidth[$i] +'px' );
         });
     }
 
@@ -506,6 +519,7 @@ jQuery(function ($) {
             return;
         _set_sticky_offsets();
         _set_header_top_offset();
+        _set_logo_height();
     });
 
     function _refresh() {
