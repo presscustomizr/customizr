@@ -1320,6 +1320,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'     => 'postMessage',
                                 'notice'    => __( 'If checked, this option wraps the header menu/tagline/social in a light grey box.' , 'customizr' ),
               ),
+              'tc_theme_options[tc_header_container]'  =>  array(
+                                'default'       => 0,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Wrap header elements into a container" , "customizr" )
+,
+                                'section'       => 'tc_header_layout' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 25,
+                                'transport'     => 'postMessage',
+                                'notice'    => __( 'If checked, this option wraps the header logo/m
+enu/tagline/social in a container with the same width of the main content' , 'customizr' ),
+              ), 
               'tc_theme_options[tc_header_layout]'  =>  array(
                                 'default'       => 'left',
                                 'control'       => 'TC_controls' ,

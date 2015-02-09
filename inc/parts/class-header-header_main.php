@@ -44,6 +44,12 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 	        add_action ( '__header' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
 	        add_action ( '__header' 				, array( $this , 'tc_navbar_display' ) , 30 );
 
+            //New wrap header in a .container (since 3.2.18)
+            if ( esc_attr( tc__f( '__get_option' , 'tc_header_container') ) ){
+                add_action( '__header'              , array( $this, 'tc_header_container_start' ), 0 );
+                add_action( '__header'              , array( $this, 'tc_header_container_end' ), 100 );
+            }
+
 	        //New menu view (since 3.2.0)
           add_filter ( 'tc_navbar_display', array( $this , 'tc_new_menu_view'), 10, 2);
 
@@ -640,6 +646,28 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 				break;
 			}
 			return $_classes;
-		}
+        }
+
+        /**
+         * Wrap header elements into a .container
+         * start
+         * @package Customizr
+         * @since Customizr 3.2.18
+         */
+        function tc_header_container_start() {
+            printf('<div class="tc-header-container %1$s">',
+                implode( " ", apply_filters( 'tc_header_container_class', array( 'container' ) ) )
+            );
+        }
+        /**
+         * Wrap header elements into a .container
+         * end
+         * @package Customizr
+         * @since Customizr 3.2.18
+         */
+
+        function tc_header_container_end() {
+            echo "</div><!-- /.tc-header-container -->";
+        }
 	}//end of class
 endif;
