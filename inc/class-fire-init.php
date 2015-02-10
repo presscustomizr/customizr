@@ -20,8 +20,8 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $tc_thumb_size;
       public $slider_full_size;
       public $slider_size;
-      public $tc_design_full_size;
-      public $tc_design_size;
+      public $tc_grid_full_size;
+      public $tc_grid_size;
       public $skins;
       public $skin_color_map;
       public $font_pairs;
@@ -75,8 +75,8 @@ if ( ! class_exists( 'TC_init' ) ) :
           $this -> tc_thumb_size      = array('width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
           $this -> slider_full_size   = array('width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
           $this -> slider_size        = array('width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
-          $this -> tc_design_full_size = array('width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-design-full
-          $this -> tc_design_size = array('width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-design
+          $this -> tc_grid_full_size = array('width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
+          $this -> tc_grid_size = array('width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
 
 
           //Default skins array
@@ -403,13 +403,13 @@ if ( ! class_exists( 'TC_init' ) ) :
             add_filter( 'tc_slider_full_size'    , array($this,  'tc_set_slider_img_height') );
             add_filter( 'tc_slider_size'         , array($this,  'tc_set_slider_img_height') );
         }
-        if ( isset( $_options['tc_post_list_design_thumb_height'] ) ){
-            $_user_height  = esc_attr( $_options['tc_post_list_design_thumb_height'] );
+        if ( isset( $_options['tc_post_list_grid_thumb_height'] ) ){
+            $_user_height  = esc_attr( $_options['tc_post_list_grid_thumb_height'] );
             if ( 350 != $_user_height ){
-                add_filter( 'tc_design_full_size', array($this,  'tc_set_design_img_height') );
-                add_filter( 'tc_design_size'     , array($this,  'tc_set_design_img_height') );
+                add_filter( 'tc_grid_full_size', array($this,  'tc_set_grid_img_height') );
+                add_filter( 'tc_grid_size'     , array($this,  'tc_set_grid_img_height') );
             }
-        }        
+        }
       }
 
 
@@ -434,17 +434,17 @@ if ( ! class_exists( 'TC_init' ) ) :
 
       /**
       * Set post list desgin new image sizes
-      * Callback of tc_design_full_size and tc_design_size filters
+      * Callback of tc_grid_full_size and tc_grid_size filters
       *
       * @package Customizr
       * @since Customizr 3.1.12
       *
       */
 
-      function tc_set_design_img_height( $_default_size ) {
+      function tc_set_grid_img_height( $_default_size ) {
         $_options = get_option('tc_theme_options');
 
-        $_default_size['height'] =  esc_attr( $_options['tc_post_list_design_thumb_height'] ) ;
+        $_default_size['height'] =  esc_attr( $_options['tc_post_list_grid_thumb_height'] ) ;
         return $_default_size;
       }
 
@@ -504,14 +504,14 @@ if ( ! class_exists( 'TC_init' ) ) :
         //slider boxed
         $slider_size      = apply_filters( 'tc_slider_size' , $this -> slider_size );
         add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
-        
-        //post list design thumbnails
-        // full size
-        $tc_design_full_size = apply_filters( 'tc_design_full_size', $this -> tc_design_full_size );
-        add_image_size( 'tc-design-full', $tc_design_full_size['width'], $tc_design_full_size['height'], $tc_design_full_size['crop'] );
 
-        $tc_design_size = apply_filters( 'tc_design_size', $this -> tc_design_size );
-        add_image_size( 'tc-design', $tc_design_size['width'], $tc_design_size['height'], $tc_design_size['crop'] );
+        //post list grid thumbnails
+        // full size
+        $tc_grid_full_size = apply_filters( 'tc_grid_full_size', $this -> tc_grid_full_size );
+        add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $tc_grid_full_size['height'], $tc_grid_full_size['crop'] );
+
+        $tc_grid_size = apply_filters( 'tc_grid_size', $this -> tc_grid_size );
+        add_image_size( 'tc-grid', $tc_grid_size['width'], $tc_grid_size['height'], $tc_grid_size['crop'] );
 
 
         //add support for svg and svgz format in media upload

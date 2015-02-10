@@ -136,18 +136,18 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         return '0' !== to;
       }
     },
-    'tc_post_list_design' : {
+    'tc_post_list_grid' : {
       show: {
         controls: [
-          'tc_post_list_design_columns',
-          'tc_post_list_design_expand_featured',
-          'tc_post_list_design_in_blog',
-          'tc_post_list_design_in_archive',
-          'tc_post_list_design_in_search',
-          'tc_post_list_design_thumb_height'
+          'tc_post_list_grid_columns',
+          'tc_post_list_grid_expand_featured',
+          'tc_post_list_grid_in_blog',
+          'tc_post_list_grid_in_archive',
+          'tc_post_list_grid_in_search',
+          'tc_post_list_grid_thumb_height'
         ],
         callback: function (to) {
-          return 'design' == to;
+          return 'grid' == to;
         }
       },
       hide : {
@@ -158,8 +158,14 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           'tc_post_list_thumb_height'
         ],
         callback: function (to) {
-          return 'design' == to;
+          return 'grid' == to;
         }
+      },
+      cross: {
+        tc_post_list_thumb_height : { master : 'tc_post_list_grid' , value : 'default' },
+        tc_post_list_thumb_shape : { master : 'tc_post_list_grid' , value : 'default' },
+        tc_post_list_thumb_alternate : { master : 'tc_post_list_grid' , value : 'default' },
+        tc_post_list_thumb_position : { master : 'tc_post_list_grid' , value : 'default' }
       }
     },
     'tc_post_list_show_thumb' : {
@@ -169,10 +175,19 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         'tc_post_list_thumb_shape',
         'tc_post_list_thumb_alternate',
         'tc_post_list_thumb_position',
-        'tc_post_list_thumb_height'
+        'tc_post_list_thumb_height',
+        'tc_post_list_grid_thumb_height'
       ],
       callback: function (to) {
         return '1' == to;
+      },
+      //display dependant if master setting value == value
+      cross: {
+        tc_post_list_thumb_height : { master : 'tc_post_list_grid' , value : 'default' },
+        tc_post_list_thumb_shape : { master : 'tc_post_list_grid' , value : 'default' },
+        tc_post_list_thumb_alternate : { master : 'tc_post_list_grid' , value : 'default' },
+        tc_post_list_thumb_position : { master : 'tc_post_list_grid' , value : 'default' },
+        tc_post_list_grid_thumb_height : { master : 'tc_post_list_grid' , value : 'grid' }
       }
     },
     'tc_post_list_thumb_shape' : {
@@ -302,24 +317,25 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     }
   };
 
+
   /*
   * @return string
   * simple helper to build the setting id name
   */
-  var _make_settingId = function ( name ) {
+  var _build_setId = function ( name ) {
     return [ 'tc_theme_options[' , name  , ']' ].join('');
   };
 
 
   /*
-  * find the settingId key in the _controlDependencies object
+  * find the setId key in the _controlDependencies object
   * get the controls, merge show and hide if needed
   * return an []
   */
-  var _get_dependants = function( settingId ) {
-    if ( ! _controlDependencies[settingId] )
+  var _get_dependants = function( setId ) {
+    if ( ! _controlDependencies[setId] )
       return [];
-    var _dependants = _controlDependencies[settingId];
+    var _dependants = _controlDependencies[setId];
 
     if ( _dependants.show && _dependants.hide )
       return _.union(_dependants.show.controls , _dependants.hide.controls);
@@ -332,21 +348,59 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   };
 
   /*
+  * @return string hide or show. default is hide
+  */
+  var _get_visibility_action = function ( setId , depSetId ) {
+    if ( ! _controlDependencies[setId] )
+      return 'both';
+    var _dependants = _controlDependencies[setId];
+    if ( _dependants.show && -1 != _.indexOf( _dependants.show.controls, depSetId ) )
+      return 'show';
+    if ( _dependants.hide && -1 != _.indexOf( _dependants.hide.controls, depSetId ) )
+      return 'hide';
+    return 'both';
+  };
+
+
+  var _get_visibility_cb = function( setId , _action ) {
+    if ( ! _controlDependencies[setId] )
+      return;
+    var _dependants = _controlDependencies[setId];
+    if ( ! _dependants[_action] )
+      return _dependants.callback;
+    return (_dependants[_action]).callback;
+  };
+
+
+  var _check_cross_dependant = function( setId, depSetId ) {
+    if ( ! _controlDependencies[setId] )
+      return true;
+    var _dependants = _controlDependencies[setId];
+    if ( ! _dependants.cross || ! _dependants.cross[depSetId] )
+      return true;
+    var _cross = _dependants.cross[depSetId],
+        _id   = _cross.master,
+        _val  = _cross.value;
+
+    _id = _build_setId(_id);
+    //if current master val == _val => show
+    return _val == api.instance(_id).get();
+  };
+
+  /*
   * @return void
   * show or hide setting according to the dependency + callback pair
   */
-  var _prepare_visibilities = function( settingId, o ) {
-    console.log('JOIE', _make_settingId(settingId) , o);
-    api( _make_settingId(settingId) , function (setting) {
+  var _prepare_visibilities = function( setId, o ) {
+    api( _build_setId(setId) , function (setting) {
       var _params = {
         setting   : setting,
-        settingId : _make_settingId(settingId),
-        controls  : _get_dependants(settingId),
+        setId : setId,
+        controls  : _get_dependants(setId),
       };
 
-      console.log('CONTROLS' , _params.controls);
-      _.map( _params.controls , function( dependantSettingId ) {
-        _set_single_dependant_control_visibility( _make_settingId(dependantSettingId) , _params);
+      _.map( _params.controls , function( depSetId ) {
+        _set_single_dependant_control_visibility( depSetId , _params);
       } );
     });
   };
@@ -354,34 +408,32 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
 
   /*
   * _params = {
-        settingId : settingId,
+        setId : settingId,
         controls  : {},
         callback  : '',
         action    : 'hide',
       };
    */
-  var _set_single_dependant_control_visibility = function( dependantSettingId , _params ) {
-    console.log( 'IN _set_control_visibility' , _params.settingId, dependantSettingId );
-
-    api.control( dependantSettingId , function (control) {
-      //console.log( 'IN SET CONTROL SINGLE : _make_settingId(dependantSettingId )' , dependantSettingId , ' settingId',  _params.settingId);
-      //console.log( 'SHOW ? ', _show, 'settingId' , _params.settingId, 'callback(to)', api.instance(_params.settingId).get() );
-      //console.log( 'CALLBACK RESULT' , _params.callback( api.instance( _params.settingId).get() ) );
-
+  var _set_single_dependant_control_visibility = function( depSetId , _params ) {
+    api.control( _build_setId(depSetId) , function (control) {
       var _visibility = function (to) {
-        //visible if 'show' == _params.action && _params.callback(to)
-        //novisible if 'hide' == _params.action && _params.callback(to)
-        console.log('CURRENT CHANGED SETTING' , _params.setting );
+        var _action   = _get_visibility_action( _params.setId , depSetId ),
+            _callback = _get_visibility_cb( _params.setId , _action ),
+            _bool     = false;
 
-        //var _action = _get_action( dependantSettingId
-        // var _bool = false;
-        // if ( 'show' == _params.action && _params.callback(to) )
-        //   _bool = true;
-        // if ( 'hide' == _params.action && _params.callback(to) )
-        //   _bool = false;
-        // console.log( 'to : ', to , '_params.action : ' , _params.action , '_params.callback(to)' , _params.callback(to));
-        // console.log( 'SHOW ', dependantSettingId , ' ? : ', _bool );
-        control.container.toggle( true );
+        if ( 'show' == _action && _callback(to) )
+          _bool = true;
+        if ( 'hide' == _action && _callback(to) )
+          _bool = false;
+        if ( 'both' == _action )
+          _bool = _callback(to);
+
+        //check if there are any cross dependencies to look at
+        //_check_cross_dependant return true if there are no cross dependencies.
+        //if cross dependency :
+        //1) return true if we must show, false if not.
+        _bool = _check_cross_dependant( _params.setId, depSetId ) && _bool;
+        control.container.toggle( _bool );
       };
 
       _visibility( _params.setting.get() );
@@ -389,68 +441,13 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     });
   };
 
-  // var setAdditionalCustomizrControls = function() {
-  //   console.log( api( _make_settingId('tc_post_list_show_thumb')).get() );
-
-  //   _set_visibility( _make_settingId('tc_post_list_design'),
-  //     {
-  //     controls:
-  //         1 == api( _make_settingId('tc_post_list_show_thumb')).get() ? [ _make_settingId('tc_post_list_thumb_alternate') ] : [],
-  //       callback: function (to) {
-  //         return 'design' != to;
-  //       }
-  //     }
-  //   );
-  // };//end of setCustomizrControls();
-
-
-  /* POST LIST DESIGN */
-  //Set dependencies with
-  //- thumbnails positions
-  //- thumbnail shapes
-  var postListDesignDependencies = function( _changed_val ) {
-    var _dependants = [
-      { id : 'tc_post_list_thumb_shape' },
-      { id : 'tc_post_list_thumb_position' , val_to : 'top' },
-      { id : 'tc_post_list_thumb_alternate' },
-      { id : 'tc_post_list_thumb_height' }
-      ];
-
-    var _update_dependants = function( dep ) {
-      var _control_id = _make_settingId( dep.id );
-
-      if ( dep.val_to )
-        api.control(_control_id).setting.set(dep.val_to);
-
-      if ( 'design' == _changed_val ) {
-        //destroy and re built if select type
-        $( 'select' , api.control(_control_id).selector ).selecter("destroy").selecter();
-        $( api.control(_control_id).selector ).hide();
-      } else {
-        $( api.control(_control_id).selector ).show();
-      }
-    };
-
-    _.map( _dependants , _update_dependants );
-
-    //trigger change to fire the hidden/shown control rules
-    _.map( _dependants , function() {
-
-    } );
-  };
-
 
   //bind to wp.customize ready event
   //map each setting with its dependencies
   api.bind( 'ready' , function() {
-    _.map( _controlDependencies , function( opts , settingId ) {
-      if ( 'tc_post_list_design' == settingId )
-        _prepare_visibilities( settingId, opts );
+    _.map( _controlDependencies , function( opts , setId ) {
+        _prepare_visibilities( setId, opts );
     });
-
-    //setAdditionalCustomizrControls();
-    //postListDesignDependencies();
-    //api( _make_settingId('tc_post_list_design')).bind('change' , postListDesignDependencies );
   } );
 
 })( wp, jQuery);;/**

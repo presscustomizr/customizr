@@ -29,7 +29,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           //update setting_control_map
           add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_update_setting_control_map'), 100 );
           //update setting_control_map with post list design, v3.2.18+
-          add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_post_list_design_map'), 101 );
+          add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_post_list_grid_map'), 101 );
           //declare a private property to check wp version >= 4.0
           global $wp_version;
           $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
@@ -2089,9 +2089,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.2.18
     */
-    function tc_post_list_design_map( $_map ) {
+    function tc_post_list_grid_map( $_map ) {
         $_new_settings = array(
-          'tc_theme_options[tc_post_list_design]'  =>  array(
+          'tc_theme_options[tc_post_list_grid]'  =>  array(
                             'default'       => 'default',
                             'control'       => 'TC_controls' ,
                             'title'         => __( 'Post List Design' , 'customizr' ),
@@ -2099,16 +2099,16 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'select',
                             'choices'       => array(
-                                    'default'               => __( 'Default' , 'customizr'),
-                                    'design'               => __( 'Column Layout' , 'customizr')
+                                    'default'            => __( 'Default' , 'customizr'),
+                                    'grid'               => __( 'Grid Layout' , 'customizr')
                             ),
                             'priority'      => 40,
                             'notice'    => __( 'When you select the Column Layout, the length of posts in lists you want to apply this feature will be forced to the excerpt' , 'customizr' ),
           ),
-          'tc_theme_options[tc_post_list_design_columns]'  =>  array(
+          'tc_theme_options[tc_post_list_grid_columns]'  =>  array(
                             'default'       => '2',
                             'control'       => 'TC_controls' ,
-                            'label'         => __( 'Columns' , "customizr" ),
+                            'label'         => __( 'Number of columns per row' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'select',
                             'choices'       => array(
@@ -2119,7 +2119,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             ),
                             'priority'      => 45
           ),
-          'tc_theme_options[tc_post_list_design_expand_featured]'  =>  array(
+          'tc_theme_options[tc_post_list_grid_expand_featured]'  =>  array(
                             'default'       => 1,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Featured Post Expanded (for home and blog page only)' , "customizr" ),
@@ -2127,7 +2127,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'checkbox',
                             'priority'      => 50
           ),
-          'tc_theme_options[tc_post_list_design_in_blog]'  =>  array(
+          'tc_theme_options[tc_post_list_grid_in_blog]'  =>  array(
                             'default'       => 1,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Apply the column layout to Home/Blog' , "customizr" ),
@@ -2135,7 +2135,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'checkbox',
                             'priority'      => 55
           ),
-          'tc_theme_options[tc_post_list_design_in_archive]'  =>  array(
+          'tc_theme_options[tc_post_list_grid_in_archive]'  =>  array(
                             'default'       => 0,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Apply the column layout to Archives (archives, categories, author posts)' , "customizr" ),
@@ -2143,7 +2143,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'checkbox',
                             'priority'      => 60
           ),
-          'tc_theme_options[tc_post_list_design_in_search]'  =>  array(
+          'tc_theme_options[tc_post_list_grid_in_search]'  =>  array(
                             'default'       => 0,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Apply the column layout to Search results' , "customizr" ),
@@ -2151,7 +2151,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'checkbox',
                             'priority'      => 65
            ),
-          'tc_theme_options[tc_post_list_design_thumb_height]' => array(
+          'tc_theme_options[tc_post_list_grid_thumb_height]' => array(
                             'default'       => 350,
                             'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                             'control'   => 'TC_controls' ,
