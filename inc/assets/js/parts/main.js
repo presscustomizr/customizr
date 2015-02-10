@@ -494,8 +494,12 @@ jQuery(function ($) {
             var logoHeight   = $(this).width() / logosRatio[$i];
             $(this).css('height' , logoHeight +'px' );
         });
-
+        setTimeout( function() { 
+            _set_sticky_offsets();
+            _set_header_top_offset(); 
+        } , 200 );
     }
+
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
     if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
