@@ -2103,7 +2103,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     'grid'               => __( 'Grid Layout' , 'customizr')
                             ),
                             'priority'      => 40,
-                            'notice'    => __( 'When you select the Column Layout, the length of posts in lists you want to apply this feature will be forced to the excerpt' , 'customizr' ),
+                            'notice'    => __( 'When you select the grid Layout, the post content will be forced to excerpt' , 'customizr' ),
           ),
           'tc_theme_options[tc_post_list_grid_columns]'  =>  array(
                             'default'       => '2',
@@ -2122,7 +2122,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           'tc_theme_options[tc_post_list_grid_expand_featured]'  =>  array(
                             'default'       => 1,
                             'control'       => 'TC_controls' ,
-                            'label'         => __( 'Featured Post Expanded (for home and blog page only)' , "customizr" ),
+                            'label'         => __( 'Expand the featured posts (for home and blog page only)' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
                             'priority'      => 50
@@ -2130,7 +2130,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           'tc_theme_options[tc_post_list_grid_in_blog]'  =>  array(
                             'default'       => 1,
                             'control'       => 'TC_controls' ,
-                            'label'         => __( 'Apply the column layout to Home/Blog' , "customizr" ),
+                            'label'         => __( 'Apply the grid layout to Home/Blog' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
                             'priority'      => 55
@@ -2138,7 +2138,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           'tc_theme_options[tc_post_list_grid_in_archive]'  =>  array(
                             'default'       => 0,
                             'control'       => 'TC_controls' ,
-                            'label'         => __( 'Apply the column layout to Archives (archives, categories, author posts)' , "customizr" ),
+                            'label'         => __( 'Apply the grid layout to Archives (archives, categories, author posts)' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
                             'priority'      => 60
@@ -2146,7 +2146,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           'tc_theme_options[tc_post_list_grid_in_search]'  =>  array(
                             'default'       => 0,
                             'control'       => 'TC_controls' ,
-                            'label'         => __( 'Apply the column layout to Search results' , "customizr" ),
+                            'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
                             'priority'      => 65
@@ -2155,7 +2155,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'default'       => 350,
                             'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                             'control'   => 'TC_controls' ,
-                            'label'       => __( "Set the Post List Design thumbnail's max height in pixels" , 'customizr' ),
+                            'label'       => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
                             'section'     => 'tc_post_list_settings' ,
                             'type'        => 'number' ,
                             'step'      => 1,
