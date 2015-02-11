@@ -363,13 +363,8 @@
 
 
   /*
-  * _params = {
-        setId : settingId,
-        controls  : {},
-        callback  : '',
-        action    : 'hide',
-      };
-   */
+  *
+  */
   var _set_single_dependant_control_visibility = function( depSetId , _params ) {
     api.control( _build_setId(depSetId) , function (control) {
       var _visibility = function (to) {
