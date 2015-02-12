@@ -394,7 +394,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
         }
 
-        if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) ) {
+        if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) && isset ( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
             add_filter( 'tc_slider_full_size'    , array($this,  'tc_set_slider_img_height') );
             add_filter( 'tc_slider_size'         , array($this,  'tc_set_slider_img_height') );
         }
@@ -412,8 +412,6 @@ if ( ! class_exists( 'TC_init' ) ) :
       */
       function tc_set_slider_img_height( $_default_size ) {
         $_options = get_option('tc_theme_options');
-        if ( 0 == $_options['tc_slider_default_height'] )
-          return $_default_size;
 
         $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
         return $_default_size;
