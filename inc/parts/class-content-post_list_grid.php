@@ -14,577 +14,512 @@
 if ( ! class_exists( 'TC_post_list_grid' ) ) :
     class TC_post_list_grid {
         static $instance;
-
         private $has_expanded_featured;
-
         function __construct () {
             self::$instance =& $this;
-
             $this -> has_expanded_featured = false;
-
-            add_action ( 'pre_get_posts'                        , array( $this , 'tc_post_list_grid_sticky_post') );
-            add_action ( 'wp'                                   , array( $this , 'tc_post_list_grid_hooks') );
+            add_action ( 'pre_get_posts'            , array( $this , 'tc_maybe_excl_first_sticky') );
+            add_action ( 'wp'                       , array( $this , 'tc_set_grid_hooks') );
         }
 
 
-        function tc_post_list_grid_hooks(){
-
-            if ( ! $this -> tc_post_list_is_grid() )
-                return;
-
-            do_action( '__post_list_grid' );
-
-            add_filter( 'tc_user_options_style',
-                    array( $this , 'tc_post_list_grid_write_inline_css') );
-
-            // pre loop hooks
-            add_action( '__before_article_container',
-                            array( $this, 'tc_post_list_grid_before_loop_hooks') , 5);
-
-            // loop hooks
-            add_action( '__before_article',
-                            array( $this, 'tc_post_list_grid_loop_hooks'), 0 );
-
-        }
-
-        function tc_post_list_grid_before_loop_hooks(){
-            //layout
-            add_filter( 'tc_post_list_layout',
-                            array( $this, 'tc_set_post_list_layout') );
-
-            add_filter( 'tc_post_list_selectors',
-                            array( $this, 'tc_post_list_grid_article_selectors') );
-
-            add_action( '__before_article_container',
-                            array( $this, 'tc_post_list_prepare_expand_featured' ) );
-            // thumbnails
-            remove_filter( 'post_class',
-                            array( TC_post_list::$instance , 'tc_add_thumb_shape_name'));
-
-            remove_filter( 'tc_thumb_size_name',
-                            array( TC_post_thumbnails::$instance, 'tc_set_thumb_size') );
-            add_filter( 'tc_thumb_size_name',
-                            array( $this, 'tc_set_thumb_size_name') );
-            add_filter( 'tc_thumb_size',
-                            array( $this, 'tc_set_thumb_size') );
-  /*
-            add_filter( 'tc_post_thumb_inline_style',
-                            array( $this, 'tc_change_tumbnail_inline_css_width'), 20, 3 );
-   */
-            add_filter( 'tc_post_list_grid_thumb_data',
-                            array( $this, 'tc_post_list_grid_thumb_data') );
-
-            //force title displaying for all post types
-            add_filter( 'tc_post_formats_with_no_heading', '__return_empty_array');
-
-            // specific post list grid hooks
-            add_filter( 'tc_post_list_grid_container',
-                           array( $this, 'tc_post_list_grid_post_container'), 20, 2 );
-
-            add_action( '__before_post_list_grid_figcaption_content',
-                            array( $this, 'tc_post_list_grid_expanded_post_title') );
-            add_action( 'tc_post_list_grid_figcaption_content',
-                            array( $this, 'tc_post_list_grid_display_figcaption_content') );
-            add_action( '__after_post_list_grid_figcaption_content',
-                            array( $this, 'tc_post_list_grid_post_link') );
-        }
-
-        function tc_post_list_grid_loop_hooks(){
-
-            add_action( '__before_article',
-                            array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
-            add_action( '__after_article',
-                            array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
-
-            remove_action( '__loop',
-                            array( TC_post_list::$instance, 'tc_post_list_display') );
-            add_action( '__loop',
-                            array( $this, 'tc_post_list_display') );
-        }
-
-        /* Layout */
-
-        /* force content + thumb layout */
-        function tc_set_post_list_layout( $layout ){
-            /* Force the title to be displayed always on bottom */
-            /*
-            $_position                  = in_array( esc_attr( tc__f( '__get_option' ,
-                                                    'tc_post_list_thumb_position' ) ),
-                                            array('top', 'left') ) ? 'top' : 'bottom';
-
-            $layout['show_thumb_first'] = ( 'top' == $_position ) ? true : false;
-            */
-            $layout['show_thumb_first'] = true;
-            $layout['content']          = 'tc-grid-excerpt';
-            $layout['thumb']            = 'span12 tc-grid-post-container';
-
-            return $layout;
-        }
-
-        /* Apply proper class to articles selectors to control articles width*/
-        function tc_post_list_grid_article_selectors($selectors){
-
-            $class = $this -> is_expanded_featured() ? 'expanded ' : '';
-
-            $class .= 'tc-grid span'. ( 12 / $this -> tc_post_list_grid_section_cols() );
-
-            return str_replace( 'row-fluid', $class, $selectors );
-        }
-
-        function tc_post_list_prepare_expand_featured(){
-            global $wp_query;
-
-            if ( ! ( $this -> tc_consider_sticky_post() &&
-                   $wp_query -> query_vars[ 'paged' ] == 0 ) )
-                return;
-            // prepend the first sticky
-            $first_sticky = get_post( get_option( 'sticky_posts' )[0] );
-            array_unshift( $wp_query -> posts, $first_sticky );
-            $wp_query -> post_count = $wp_query -> post_count + 1;
-            $this -> has_expanded_featured = true;
-        }
-
-        /* Wrap articles in a grid section*/
-        function tc_print_row_fluid_section_wrapper(){
-            global $wp_query;
-            $current_post = $wp_query -> current_post;
-            $start_post = $this -> has_expanded_featured ? 1 : 0;
-            $cols = $this -> tc_post_list_grid_section_cols();
-            $current_filter = current_filter();
-
-            if ( '__before_article' == $current_filter &&
-                ( $start_post == $current_post ||
-                    0 == ( $current_post - $start_post ) % $cols ) )
-                    echo apply_filters( 'tc_post_list_grid_grid_section',
-                        '<section class="tc-post-list-grid row-fluid cols-'.$cols.'">' );
-            elseif ( '__after_article' == $current_filter &&
-                      ( $wp_query->post_count == ( $current_post + 1 ) ||
-                      0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) {
-
-                echo '</section><!--end section.tc-post-list-grid.row-fluid-->';
-                echo apply_filters( 'tc_post_list_grid_separator',
-                    '<hr class="featurette-divider post-list-grid">' );
-            }
-        }
-
-        /* Thumbnails */
-        function tc_set_thumb_size_name(){
-            return  ( $this-> tc_post_list_grid_section_cols() == '1' ) ?
-                            'tc-grid-full' : 'tc-grid';
-        }
-
-        function tc_set_thumb_size(){
-            $thumb = ( $this -> tc_post_list_grid_section_cols() == '1' ) ?
-                            'tc_grid_full_size' : 'tc_grid_size';
-            return TC_init::$instance -> $thumb;
-        }
-
-        function tc_post_list_grid_post_container($figure_class, $content){
-            return sprintf('<section class="tc-grid-post"><figure class="%1$s">%2$s</figure></section>',
-                $figure_class,
-                $content
-            );
-
-        }
-
-        function tc_change_tumbnail_inline_css_width($_style, $width, $height){
-            return sprintf('width:100%%;height:auto;');
-        }
-
-        function tc_post_list_grid_thumb_data( $thumb_data ){
-            if ( ! empty($thumb_data[0]) )
-                return $thumb_data;
-
-            $default_thumb_id = apply_filters('tc_post_list_grid_default_thumb',
-                esc_attr( tc__f( '__get_option', 'tc_post_list_grid_default_thumb' ) ) );
-
-            if ( ! $default_thumb_id )
-                return $thumb_data;
-
-            $tc_thumb_size = apply_filters( 'tc_thumb_size_name' , 'tc-thumb' );
-            $image = wp_get_attachment_image_src( $default_thumb_id, $tc_thumb_size);
-
-            if ( empty( $image[0] ) )
-                return $thumb_data;
-
-            $_class_attr = array( 'class' => "attachment-{$tc_thumb_size} tc-grid-default-thumb");
-
-            $tc_thumb               = wp_get_attachment_image( $default_thumb_id, $tc_thumb_size, false, $_class_attr );
-            $tc_thumb_height        = '';
-            $tc_thumb_width         = '';
-
-            //get height and width if not empty
-            if ( ! empty($image[1]) && ! empty($image[2]) ) {
-                $tc_thumb_height        = $image[2];
-                $tc_thumb_width         = $image[1];
-            }
-
-            return array($tc_thumb, $tc_thumb_height, $tc_thumb_width);
-        }
-
-
-        /* Post list display */
-        function tc_post_list_display(){
-            global $post;
-            if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_post_list_grid_match_type()  , $post ) )
+        /***************************************
+        * HOOKS SETTINGS $$*********************
+        ****************************************/
+        /*
+        * hook : wp
+        */
+        function tc_set_grid_hooks(){
+          if ( ! $this -> tc_is_grid_enabled() )
               return;
 
-            //get the thumbnail data (src, width, height) if any
-            $thumb_data                     = apply_filters( 'tc_post_list_grid_thumb_data', TC_post_thumbnails::$instance -> tc_get_thumbnail_data() );
+          do_action( '__post_list_grid' );
+          add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
+          // pre loop hooks
+          add_action( '__before_article_container'  , array( $this, 'tc_set_grid_before_loop_hooks'), 5 );
+          // loop hooks
+          add_action( '__before_article'            , array( $this, 'tc_set_grid_loop_hooks'), 0 );
+        }
 
-            //get the filtered post list layout
-            $layout                         = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
 
-            $tc_show_post_list_thumb        = empty($thumb_data[0]) ? false : true;
-            //what is determining the layout ? if no thumbnail then full width + filter's conditions
-            $post_list_content_class        = $layout['content'];
+        /*
+        * hook : __before_article_container
+        * before loop
+        */
+        function tc_set_grid_before_loop_hooks(){
+          // LAYOUT
+          add_filter( 'tc_post_list_layout'         , array( $this, 'tc_grid_set_content_layout') );
+          add_filter( 'tc_post_list_selectors'      , array( $this, 'tc_grid_set_article_selectors') );
+          add_action( '__before_article_container'  , array( $this, 'tc_grid_prepare_expand_featured' ) );
 
-            if ( ! $this -> tc_post_list_grid_title_in_caption() ){
-                $hook_prefix = '__before';
-                if ( $layout['show_thumb_first'] )
-                    $hook_prefix = '__after';
+          // THUMBNAILS
+          remove_filter( 'post_class'               , array( TC_post_list::$instance , 'tc_add_thumb_shape_name'));
+          remove_filter( 'tc_thumb_size_name'       , array( TC_post_thumbnails::$instance, 'tc_set_thumb_size') );
+          add_filter( 'tc_thumb_size_name'          , array( $this, 'tc_set_thumb_size_name') );
+          add_filter( 'tc_thumb_size'               , array( $this, 'tc_set_thumb_size') );
+          //remove inline style for grid thumbs (handled in javascript on page load)
+          add_filter( 'tc_post_thumb_inline_style'  , '__return_false' );
 
-                add_action( $hook_prefix.'_post_list_post',
-                    array( $this, 'tc_post_list_grid_display_title_metas' ) );
-            }
+          // force title displaying for all post types
+          add_filter( 'tc_post_formats_with_no_heading', '__return_empty_array');
 
-            ob_start();
-            do_action( '__before_post_list_post');
+          // SINGLE POST CONTENT IN GRID
+          $_content_priorities = apply_filters('tc_grid_post_content_priorities' , array( 'featured_title' => 10, 'content' => 20, 'link' =>30 ));
+          add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_expanded_post_title'), $_content_priorities['featured_title'] );
+          add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_figcaption_content') , $_content_priorities['content'] );
+          add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_post_link')          , $_content_priorities['link'] );
+        }
 
-                $post_content = $this -> tc_post_list_grid_prepare_post_content($post_list_content_class);
-                $post_content = ( $tc_show_post_list_thumb ) ?
-                                    $thumb_data[0] . $post_content :
-                                    $post_content;
+        /*
+        * hook : __before_article
+        * inside loop
+        */
+        function tc_set_grid_loop_hooks(){
+          add_action( '__before_article'            , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
+          add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
 
-                $figure_class = apply_filters('tc_post_list_grid_figure_class', 'tc-grid-figure span12' );
-                $figure_class = ( $tc_show_post_list_thumb ) ?
-                                    $figure_class :
-                                    $figure_class . ' no-thumb';
+          remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_post_list_display') );
+          add_action( '__loop'                      , array( $this, 'tc_grid_single_post_display') );
+        }
 
-                echo apply_filters('tc_post_list_grid_container', $figure_class, $post_content);
 
-            do_action('__after_post_list_post');
+
+        /******************************************
+        * SET VARIOUS VALUES **********************
+        ******************************************/
+
+        /* Layout
+        * hook : tc_post_list_layout
+        * force content + thumb layout : Force the title to be displayed always on bottom
+        */
+        function tc_grid_set_content_layout( $_layout ){
+          $_layout['show_thumb_first'] = true;
+          $_layout['content']          = 'tc-grid-excerpt';
+          $_layout['thumb']            = 'span12 tc-grid-post-container';
+
+          return $_layout;
+        }
+
+
+        /*
+        * Apply proper class to articles selectors to control articles width
+        * hook : tc_post_list_selectors
+        */
+        function tc_grid_set_article_selectors($selectors){
+          $_class = sprintf( '%1$s tc-grid span%2$s',
+            $this -> tc_force_current_post_expansion() ? 'expanded' : '',
+            is_numeric($this -> tc_get_grid_section_cols()) ? 12 / $this -> tc_get_grid_section_cols() : 6
+          );
+          return str_replace( 'row-fluid', $_class, $selectors );
+        }
+
+
+        /*
+        * hook : __before_article_container
+        */
+        function tc_grid_prepare_expand_featured(){
+          global $wp_query;
+          if ( ! ( $this -> tc_is_sticky_expanded() &&
+                 $wp_query -> query_vars[ 'paged' ] == 0 ) )
+              return;
+          // prepend the first sticky
+          $first_sticky = get_post( get_option( 'sticky_posts' )[0] );
+          array_unshift( $wp_query -> posts, $first_sticky );
+          $wp_query -> post_count = $wp_query -> post_count + 1;
+          $this -> has_expanded_featured = true;
+        }
+
+
+        /*
+        * hook : tc_thumb_size_name
+        */
+        function tc_set_thumb_size_name(){
+          return  ( $this-> tc_get_grid_section_cols() == '1' ) ?
+                          'tc-grid-full' : 'tc-grid';
+        }
+
+        /*
+        * hook : tc_thumb_size
+        */
+        function tc_set_thumb_size(){
+          $thumb = ( $this -> tc_get_grid_section_cols() == '1' ) ?
+                          'tc_grid_full_size' : 'tc_grid_size';
+          return TC_init::$instance -> $thumb;
+        }
+
+        // function tc_change_tumbnail_inline_css_width($_style, $width, $height){
+        //   return sprintf('width:100%%;height:auto;');
+        // }
+
+
+
+        /******************************************
+        * RENDER VIEWS ****************************
+        ******************************************/
+        /*
+        * hook : __before_article
+        * Wrap articles in a grid section
+        */
+        function tc_print_row_fluid_section_wrapper(){
+          global $wp_query;
+          $current_post = $wp_query -> current_post;
+          $start_post = $this -> has_expanded_featured ? 1 : 0;
+          $cols = $this -> tc_get_grid_section_cols();
+          $current_filter = current_filter();
+
+          if ( '__before_article' == $current_filter &&
+              ( $start_post == $current_post ||
+                  0 == ( $current_post - $start_post ) % $cols ) )
+                  echo apply_filters( 'tc_grid_grid_section',
+                      '<section class="tc-post-list-grid row-fluid grid-cols-'.$cols.'">' );
+          elseif ( '__after_article' == $current_filter &&
+                    ( $wp_query->post_count == ( $current_post + 1 ) ||
+                    0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) {
+
+              echo '</section><!--end section.tc-post-list-grid.row-fluid-->';
+              echo apply_filters( 'tc_grid_separator',
+                  '<hr class="featurette-divider post-list-grid">' );
+          }
+        }
+
+
+        /*
+        * hook : __loop
+        * display single post content + thumbnail
+        */
+        function tc_grid_single_post_display(){
+          //creates vars $_single_grid_post_wrapper_class, $_thumb_html, $_post_content_html
+          extract( $this -> tc_prepare_grid_single_post_content() , EXTR_OVERWRITE );
+
+          ob_start();
+            do_action( '__before_grid_single_post');//<= open <section> and maybe display title + metas
+
+              echo apply_filters( 'tc_grid_single_post_thumb_content',
+                sprintf('<section class="tc-grid-post"><figure class="%1$s">%2$s %3$s</figure></section>',
+                  $_single_grid_post_wrapper_class,
+                  $_thumb_html,
+                  $_post_content_html
+                )
+              );
+
+
+            do_action('__after_grid_single_post');//<= close </section> and maybe display title + metas
             //renders the hr separator after each article
             echo apply_filters( 'tc_post_list_separator', '<hr class="featurette-divider '.current_filter().'">' );
 
-            $html = ob_get_contents();
-            if ($html) ob_end_clean();
+          $html = ob_get_contents();
+          if ($html) ob_end_clean();
 
-            echo apply_filters('tc_post_list_grid_display', $html);
+          echo apply_filters('tc_grid_display', $html);
         }
 
 
-        function tc_post_list_grid_prepare_post_content($post_list_content_class){
-            ob_start();
-            ?>
-            <figcaption class="<?php echo $post_list_content_class ?>">
-                <?php do_action( '__before_post_list_grid_figcaption_content' ) ?>
-                    <?php do_action( 'tc_post_list_grid_figcaption_content' ); ?>
-                <?php do_action( '__after_post_list_grid_figcaption_content' ) ?>
-            </figcaption>
-            <?php
-            $html = ob_get_contents();
-            if ($html) ob_end_clean();
-            return apply_filters('tc_post_list_grid_content', $html, $post_list_content_class);
-        }
-
-        function tc_post_list_grid_post_link(){
-            printf( '<a href="%1$s" title="%2s"></a>',
-                get_permalink( get_the_ID() ),
-                esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
-        }
-
-        function tc_post_list_grid_expanded_post_title(){
-            if ( ! $this -> tc_post_list_grid_title_in_caption() )
-                return;
-            global $post;
-            $title = sprintf('<%1$s class="%2$s">%3$s</%1$s>',
-                apply_filters( 'tc_post_list_grid_caption_title_tag', 'h1'),
-                apply_filters( 'tc_post_list_grid_caption_title_class', 'tcd-title'),
-                $post->post_title
-            );
-            echo apply_filters( 'tc_post_list_grid_caption_title', $title );
-        }
-
-        function tc_post_list_grid_display_figcaption_content(){
-            ob_start();
-            ?>
-                <div class="entry-summary">
-                    <?php the_excerpt(); ?>
-                </div>
-            <?php
-            $html = ob_get_contents();
-            if ($html) ob_end_clean();
-            echo apply_filters('tc_post_list_grid_display_figcaption_content', $html);
-        }
-
-        function tc_post_list_grid_display_title_metas(){
-            ob_start();
-                do_action('__before_content');
-            $html = ob_get_contents();
-            if ($html) ob_end_clean();
-            echo apply_filters('tc_post_list_grid_display_title_metas', $html);
+        /*
+        * hook : __grid_single_post_content
+        */
+        function tc_grid_display_post_link(){
+          printf( '<a href="%1$s" title="%2s"></a>',
+              get_permalink( get_the_ID() ),
+              esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
         }
 
 
-        /* Callback pre_get_posts */
-        // exclude the first sticky post
-        function tc_post_list_grid_sticky_post( $query ){
-            if ( $this -> tc_post_list_is_grid() &&
-                     $this -> tc_consider_sticky_post( $query ) )
-                $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
+        /*
+        * hook : __grid_single_post_content
+        */
+        function tc_grid_display_expanded_post_title(){
+          if ( ! $this -> tc_force_current_post_expansion() )
+              return;
+          global $post;
+          $title = sprintf('<%1$s class="%2$s">%3$s</%1$s>',
+              apply_filters( 'tc_grid_caption_title_tag', 'h1'),
+              implode( ' ' , apply_filters( 'tc_grid_caption_title_class', array('tcd-title') ) ),
+              $post->post_title
+          );
+          echo apply_filters( 'tc_grid_caption_title', $title );
         }
 
-        /* inline css */
-        function tc_post_list_grid_write_inline_css( $_css){
-            /* for testing only */
-            $_css = sprintf("%s\n%s",
-                $_css,
-                "
-                .tc-grid-figure {
-                    position: relative;
-                    overflow: hidden;
-                    margin: 0;
-                }
-                .tc-grid-figure img {
-                    width: 100%;
-                    height: auto;
-                }
-                /* the following two rules are for testing, just opacify the thumb and don't apply background for normal posts */
-                .tc-grid-figure img {
-                    opacity: 1;
-                }
-                article.hover .tc-grid-figure img {
-                    opacity: 0.5;
-                }
-                .tc-grid-post figcaption{
-                    top: 0;
-                    left: 0;
-                    height: 100%;
-                    /* this is commented for testing, just opacify the thumb and don't apply background for normal posts */
-                    /*
-                    background: rgba(0,0,0,.2);
-                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
-                    */
-                    position: absolute;
-                    opacity: 0;
-                    width: 100%;
-                    color: white;
-                }
-                .expanded .tc-grid-post figcaption{
-                    opacity: 1;
-                    max-width: 50%;
-                    line-height: 0.8em;
-                    height: auto;
-                    top: 5%;
-                    margin-left: 11%;
-                    padding: 1%;
-                }
-                /* this is for testing, just opacify the thumb and don't apply background for normal posts
-                *  but apply it to .expanded caption and .no-thumb caption
-                */
-                .expanded figcaption,
-                .no-thumb figcaption{
-                    background: rgba(0,0,0,.2);
-                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
-                }
-                .tc-post-list-grid .entry-summary{
-                    height: 100%;
-                    padding: 8% 9%;
-                    -webkit-box-sizing: border-box;
-                    -moz-box-sizing: border-box;
-                    box-sizing: border-box;
-                }
-                .tc-post-list-grid .expanded .tcd-title{
-                    padding: 0 9%;
-                }
-                .tc-grid-excerpt p {
-                    height: 100%;
-                    overflow: hidden;
-                    margin: 0;
-                }
-                figure.no-thumb figcaption,
-                .tc-post-list-grid article.hover figcaption{
-                    opacity: 1;
-                }
-                .tc-post-list-grid article.sticky{
-                    text-align: justify;
-                }
-                .tc-post-list-grid .featurette-divider.__loop{
-                    display: none;
-                }
-                .tc-post-list-grid figcaption > a {
-                    position: absolute;
-                    z-index: 10;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                }
-                .tc-is-mobile .tc-post-list-grid article.tc-grid figure figcaption > a {
-                    -webkit-transition-property: width;
-                    -webkit-transition-duration: 0.1s;
-                    -webkit-transition-timing-function: linear;
-                    -webkit-transition-delay: 1s;
-                    transition-property: width;
-                    transition-duration: 0.1s;
-                    transition-timing-function: linear;
-                    transition-delay: 0.5s;
-                }
-                .tc-is-mobile article:not([class*=expanded]) figure:not([class*=no-thumb]) figcaption > a {
-                    width: 0;
-                }
 
-                .tc-is-mobile article:not([class*=expanded]).hover figure:not([class*=no-thumb]) figcaption > a {
-                    width: 100%;
-                }
-                @media (max-width: 767px){
-                    .featurette-divider.post-list-grid{
-                        display: none;
-                    }
-                    .tc-post-list-grid .featurette-divider.__loop{
-                        display: block;
-                    }
-                }
-                \n"
-            );
-            /* end for testing only */
 
-            /* dynamic css */
-            /* retrieve the height/width ratios */
-            $thumb_full_size = apply_filters( 'tc_grid_full_size',
-                                    TC_init::$instance -> tc_grid_full_size );
+        /*
+        * hook : __grid_single_post_content
+        */
+        function tc_grid_display_figcaption_content(){
+          ob_start();
+          ?>
+              <div class="entry-summary">
+                  <?php the_excerpt(); ?>
+              </div>
+          <?php
+          $html = ob_get_contents();
+          if ($html) ob_end_clean();
+          echo apply_filters('tc_grid_display_figcaption_content', $html);
+        }
 
-            $thumb_full_width = $thumb_full_size['width'];
-            $thumb_size = apply_filters( 'tc_grid_size',
-                                    TC_init::$instance -> tc_grid_size );
 
-            $thumb_width = $thumb_size['width'];
-            $thumb_full_ratio = $thumb_full_size['height'] / $thumb_full_size['width'] * 100;
-            $thumb_ratio =  $thumb_size['height'] / $thumb_size['width'] * 100;
+        /*
+        * hook : {$hook_prefix}_grid_single_post
+        */
+        function tc_grid_display_title_metas(){
+          ob_start();
+              do_action('__before_content');
+          $html = ob_get_contents();
+          if ($html) ob_end_clean();
+          echo apply_filters('tc_grid_display_title_metas', $html);
+        }
 
-            $_css = sprintf("%s\n%s",
-                $_css,
-                "
-                .tc-post-list-grid figure {
-                    height: 0;
-                    width: 100%;
-                    padding-bottom: {$thumb_ratio}%;
-                    max-width : {$thumb_width}px;
-                }
-                .tc-post-list-grid.cols-1 figure {
-                    padding-bottom: {$thumb_full_ratio}%;
-                    max-width: ${thumb_full_width}px;
-                }
-                @media (max-width: 767px){
-                    .tc-post-list-grid header,
-                    .tc-post-list-grid .tc-grid-post{
-                        margin: 0 auto !important;
-                        float: none;
-                        width: auto;
-                        max-width : {$thumb_width}px;
-                    }
-                    .tc-post-list-grid.cols1 .tc-grid-post {
-                        max-width: ${thumb_full_width}px;
-                    }
-                }
-                \n
-                "
-            );
 
+
+        /*
+        * hook : pre_get_posts
+        * exclude the first sticky post
+        */
+        function tc_maybe_excl_first_sticky( $query ){
+          if ( $this -> tc_is_grid_enabled() &&
+                   $this -> tc_is_sticky_expanded( $query ) )
+              $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
+        }
+
+
+        /*
+        * @return css string
+        * hook : tc_user_options_style
+        * @since Customizr 3.2.18
+        */
+        function tc_grid_write_inline_css( $_css){
+          /* retrieve the height/width ratios */
+          $thumb_full_size  = apply_filters( 'tc_grid_full_size',
+                                  TC_init::$instance -> tc_grid_full_size );
+          $thumb_full_width = $thumb_full_size['width'];
+          $thumb_size       = apply_filters( 'tc_grid_size',
+                                  TC_init::$instance -> tc_grid_size );
+
+          if ( ! isset($thumb_size['width']) || ! isset($thumb_size['height']) || ! isset($thumb_full_size['width']) || !isset($thumb_full_size['height']) )
             return $_css;
+          if ( ! is_numeric($thumb_size['width']*$thumb_size['height']*$thumb_full_size['width']*$thumb_full_size['height']) )
+            return $_css;
+
+          $thumb_width      = $thumb_size['width'];
+          $thumb_full_ratio = $thumb_full_size['height'] / $thumb_full_size['width'] * 100;
+          $thumb_ratio      = $thumb_size['height'] / $thumb_size['width'] * 100;
+          $_cols_class      = sprintf('grid-cols-%s' , $this -> tc_get_grid_section_cols() );
+          $_grid_column_height = apply_filters(
+            'tc_grid_figure_height' ,
+            array(
+              'grid-cols-1' => 350,
+              'grid-cols-2' => 350,
+              'grid-cols-3' => 225,
+              'grid-cols-4' => 165
+            )
+          );
+          $_figure_height = isset($_grid_column_height[$_cols_class]) ? $_grid_column_height[$_cols_class] : 350;
+
+          $_css = sprintf("%s\n%s",
+              $_css,
+              "
+              /*.tc-post-list-grid figure {
+                  height: 0;
+                  width: 100%;
+                  padding-bottom: {$thumb_ratio}%;
+                  max-width : {$thumb_width}px;
+              }*/
+              .{$_cols_class} figure {
+                  height:{$_figure_height}px;
+              }
+              @media (max-width: 767px){
+                  .tc-post-list-grid header,
+                  .tc-post-list-grid .tc-grid-post{
+                      margin: 0 auto !important;
+                      float: none;
+                      width: auto;
+                      max-width : {$thumb_width}px;
+                  }
+                  .tc-post-list-grid.cols1 .tc-grid-post {
+                      max-width: ${thumb_full_width}px;
+                  }
+              }
+              \n
+              "
+          );
+
+          return $_css;
         }
 
-        /* Helpers */
 
-        /* check if we have to expand the first sticky post */
-        function tc_consider_sticky_post( $query = null ){
-            global $wp_query;
-            $query = ( $query ) ? $query : $wp_query;
 
-            if ( !$query->is_main_query() )
-                return false;
-            if ( ! ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
-                    $wp_query->is_posts_page ) )
-                return false;
 
-            if ( ! ( $this -> tc_get_post_list_expand_featured() &&
-                    isset( get_option ('sticky_posts')[0]) ) )
-                return false;
+        /**********************************************
+        * PREPARE VARIOUS HTML CONTENT ****************
+        ***********************************************/
+        /*
+        * @return the figcation content parts as an array of html strings
+        * inside loop
+        */
+        private function tc_prepare_grid_single_post_content() {
+          global $post;
+          if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_is_grid_context_matching() , $post ) )
+            return;
 
-            return true;
+          // get the filtered post list layout
+          $_layout                          = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
+
+          // SET HOOKS FOR POST TITLES AND METAS (only for non featured post)
+          if ( ! $this -> tc_force_current_post_expansion() ){
+              $hook_prefix = '__before';
+              if ( $_layout['show_thumb_first'] )
+                  $hook_prefix = '__after';
+
+              add_action( "{$hook_prefix}_grid_single_post",  array( $this, 'tc_grid_display_title_metas' ) );
+          }
+
+          // THUMBNAIL : get the thumbnail data (src, width, height) if any
+          $_thumb_data                      = $this -> tc_get_grid_thumb_data( TC_post_thumbnails::$instance -> tc_get_thumbnail_data() );
+          $_thumb_html  = isset($_thumb_data[0]) ? $_thumb_data[0] : '';
+
+          // CONTENT : get the figcaption content => post content
+          $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content']) ? $_layout['content'] : 'span6' );
+
+          // WRAPPER CLASS : build single grid post wrapper class
+          $_tc_show_thumb                   = ( empty($_thumb_data[0]) || ! esc_attr( tc__f('__get_option', 'tc_post_list_show_thumb') ) ) ? false : true;
+          $_single_grid_post_wrapper_class  = implode( ' ' , apply_filters('tc_single_grid_post_wrapper_class', array('tc-grid-figure') ) );
+          $_single_grid_post_wrapper_class  = ( $_tc_show_thumb ) ? $_single_grid_post_wrapper_class : sprintf( '%s no-thumb' , $_single_grid_post_wrapper_class );
+
+          return apply_filters( 'tc_prepare_grid_single_post_content' , compact( '_single_grid_post_wrapper_class', '_thumb_html', '_post_content_html') );
         }
+
+
+        /*
+        * hook : tc_grid_thumb_data
+        */
+        private function tc_get_grid_thumb_data( $_thumb_data ){
+          if ( ! empty($_thumb_data[0]) )
+              return $_thumb_data;
+
+          $default_thumb_id = apply_filters('tc_grid_default_thumb',
+              esc_attr( tc__f( '__get_option', 'tc_grid_default_thumb' ) ) );
+
+          if ( ! $default_thumb_id )
+              return $_thumb_data;
+
+          $tc_thumb_size = apply_filters( 'tc_thumb_size_name' , 'tc-thumb' );
+          $image = wp_get_attachment_image_src( $default_thumb_id, $tc_thumb_size);
+
+          if ( empty( $image[0] ) )
+              return $_thumb_data;
+
+          $_class_attr = array( 'class' => "attachment-{$tc_thumb_size} tc-grid-default-thumb");
+
+          $tc_thumb               = wp_get_attachment_image( $default_thumb_id, $tc_thumb_size, false, $_class_attr );
+          $tc_thumb_height        = '';
+          $tc_thumb_width         = '';
+
+          //get height and width if not empty
+          if ( ! empty($image[1]) && ! empty($image[2]) ) {
+              $tc_thumb_height        = $image[2];
+              $tc_thumb_width         = $image[1];
+          }
+
+          return array($tc_thumb, $tc_thumb_height, $tc_thumb_width);
+        }
+
+
+        /*
+        * @return the figcation content as a string
+        * inside loop
+        */
+        private function tc_grid_get_single_post_html($post_list_content_class){
+          global $post;
+          ob_start();
+          ?>
+          <figcaption class="<?php echo $post_list_content_class ?>">
+            <?php do_action( '__grid_single_post_content' ) ?>
+          </figcaption>
+          <?php
+          $html = ob_get_contents();
+          if ($html) ob_end_clean();
+          return apply_filters('tc_grid_get_single_post_html', $html, $post_list_content_class, $post -> ID);
+        }
+
+
+
+        /******************************
+        ***** HELPERS *****************
+        *******************************/
+        /*
+        * @return bool
+        * check if we have to expand the first sticky post
+        */
+        private function tc_is_sticky_expanded( $query = null ){
+          global $wp_query;
+          $query = ( $query ) ? $query : $wp_query;
+
+          if ( ! $query->is_main_query() )
+              return false;
+          if ( ! ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
+                  $wp_query->is_posts_page ) )
+              return false;
+
+          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( tc__f('__get_option', 'tc_grid_expand_featured') ) );
+          if ( ! ( $_expand_feat_post_opt &&
+                  isset( get_option ('sticky_posts')[0]) ) )
+              return false;
+
+          return true;
+        }
+
+
+        /*
+        * @return bool
+        * returns if the current post is the expanded one
+        */
+        private function tc_force_current_post_expansion(){
+          global $wp_query;
+          return ( $this -> has_expanded_featured && 0 == $wp_query -> current_post );
+        }
+
+
+        /*
+        * @return bool
+        */
+        private function tc_is_grid_enabled(){
+          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( tc__f('__get_option', 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
+        }
+
 
         /* retrieves number of cols option, and wrap it into a filter */
-        function tc_get_post_list_cols(){
-            return apply_filters( 'tc_post_list_grid_columns',
-                esc_attr( tc__f('__get_option', 'tc_post_list_grid_columns') ) );
+        private function tc_get_post_list_cols(){
+          return apply_filters( 'tc_grid_columns', esc_attr( tc__f('__get_option', 'tc_grid_columns') ) );
         }
 
-        /* retrieves the expand featured option, and wrap it into a filter */
-        function tc_get_post_list_expand_featured(){
-            return apply_filters( 'tc_post_list_grid_expand_featured',
-                esc_attr( tc__f('__get_option', 'tc_post_list_grid_expand_featured') ) );
-        }
-
-        /* retrieves where to apply the post list grid option, and wrap it into a filter
-         * dinamically
-         * input param: post list type.
-         */
-        function tc_get_post_list_grid_in( $type ){
-            return apply_filters( 'tc_post_list_grid_in_' . $type,
-                esc_attr( tc__f('__get_option', 'tc_post_list_grid_in_' . $type ) ) );
-        }
-
-        /* checks the option tc_post_list_grid and wraps it into a filter */
-        function tc_get_post_list_grid(){
-            return apply_filters( 'tc_post_list_grid',
-                'grid' == esc_attr( tc__f('__get_option', 'tc_post_list_grid') ) );
-        }
-
-        function tc_post_list_is_grid(){
-            return apply_filters( 'tc_post_list_is_grid',
-                $this -> tc_get_post_list_grid() && $this -> tc_post_list_grid_match_type() );
-        }
-
-        /* returns if the current post is the expanded one */
-        function is_expanded_featured(){
-            global $wp_query;
-            $current_post = $wp_query -> current_post;
-            return ( $this -> has_expanded_featured && $current_post == 0 );
-        }
 
         /* returns articles wrapper section columns */
-        function tc_post_list_grid_section_cols(){
-            $cols = $this -> is_expanded_featured() ? '1' : $this -> tc_get_post_list_cols();
-            return apply_filters( 'tc_post_list_grid_section_cols', $cols );
+        private function tc_get_grid_section_cols(){
+          return apply_filters( 'tc_grid_section_cols',
+            $this -> tc_force_current_post_expansion() ? '1' : $this -> tc_get_post_list_cols()
+          );
         }
 
+
         /* returns the type of post list we're in if any, an empty string otherwise */
-        function tc_post_list_type(){
-            global $wp_query;
-            if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
-                    $wp_query->is_posts_page )
-                return 'blog';
-            else if ( is_search() )
-                return 'search';
-            else if ( is_archive() )
-                return 'archive';
-            return '';
+        private function tc_get_grid_context(){
+          global $wp_query;
+          if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
+                  $wp_query->is_posts_page )
+              return 'blog';
+          else if ( is_search() )
+              return 'search';
+          else if ( is_archive() )
+              return 'archive';
+          return '';
         }
+
 
         /* performs the match between the option where to use post list grid
          * and the post list we're in */
-        function tc_post_list_grid_match_type(){
-            $post_list_type = $this -> tc_post_list_type();
-            return ( apply_filters('tc_post_list_grid_do',
-                $post_list_type && $this -> tc_get_post_list_grid_in( $post_list_type ) ) );
-        }
-
-        /* checks whether we have to show the title in caption or not */
-        function tc_post_list_grid_title_in_caption(){
-            return apply_filters( 'tc_post_list_grid_title_in_caption',
-                $this -> is_expanded_featured() );
+        private function tc_is_grid_context_matching() {
+          $_type = $this -> tc_get_grid_context();
+          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( tc__f('__get_option', 'tc_grid_in_' . $_type ) ) );
+          return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
         }
 
   }//end of class
