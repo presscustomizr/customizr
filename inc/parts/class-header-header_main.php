@@ -532,7 +532,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     function tc_add_body_classes($_classes) {
       //STICKY HEADER
     	if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ) ) {
-       		$_classes = array_merge( $_classes, array('tc-sticky-header') );
+       		$_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );
        		//STICKY TRANSPARENT ON SCROLL
 	       	if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_transparent_on_scroll' ) ) )
 	       		$_classes = array_merge( $_classes, array('tc-transparent-on-scroll') );
