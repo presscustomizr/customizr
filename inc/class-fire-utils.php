@@ -637,7 +637,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @param date one object.
     * @param date two object.
     */
-    function tc_date_diff( $_date_one , $_date_two ) {
+    private function tc_date_diff( $_date_one , $_date_two ) {
       //if version is at least 5.3.0, use date_diff function
       if ( version_compare( PHP_VERSION, '5.3.0' ) >= 0) {
         return date_diff( $_date_one , $_date_two );
@@ -647,6 +647,70 @@ if ( ! class_exists( 'TC_utils' ) ) :
         return new TC_DateInterval( $_date_two_timestamp - $_date_one_timestamp );
       }
     }
+
+
+
+    /**
+    * Return boolean false if never updated OR number of days since last update OR PHP version < 5.2
+    *
+    * @package Customizr
+    * @since Customizr 3.2.6
+    */
+    function tc_post_has_update( $_bool = false) {
+      //php version check for DateTime
+      //http://php.net/manual/fr/class.datetime.php
+      if ( version_compare( PHP_VERSION, '5.2.0' ) < 0 )
+        return false;
+
+      //first proceed to a date check
+      $dates_to_check = array(
+        'created'   => get_the_date('Y-m-d g:i:s'),
+        'updated'   => get_the_modified_date('Y-m-d g:i:s'),
+        'current'   => date('Y-m-d g:i:s')
+      );
+      //ALL dates must be valid
+      if ( 1 != array_product ( array_map( array($this , 'tc_is_date_valid') , $dates_to_check ) ) )
+        return false;
+
+      //Import variables into the current symbol table from an array
+      extract($dates_to_check);
+
+      //Instantiates the different date objects
+      $created                = new DateTime( $created );
+      $updated                = new DateTime( $updated );
+      $current                = new DateTime( $current );
+
+      $created_to_updated     = $this -> tc_date_diff( $created , $updated );
+      $updated_to_today       = $this -> tc_date_diff( $updated, $current );
+
+      if ( true === $_bool )
+        //return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? false : true;
+        return ( $created_to_updated -> s > 0 || $created_to_updated -> i > 0 ) ? true : false;
+      else
+        //return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? false : $updated_to_today -> days;
+        return ( $created_to_updated -> s > 0 || $created_to_updated -> i > 0 ) ? $updated_to_today -> days : false;
+    }
+
+
+
+    /*
+    * @return boolean
+    * //http://stackoverflow.com/questions/11343403/php-exception-handling-on-datetime-object
+    */
+    private function tc_is_date_valid($str) {
+      if ( ! is_string($str) )
+         return false;
+
+      $stamp = strtotime($str);
+      if ( ! is_numeric($stamp) )
+         return false;
+
+      if ( checkdate(date('m', $stamp), date('d', $stamp), date('Y', $stamp)) )
+         return true;
+
+      return false;
+    }
+
 
 
     /**
