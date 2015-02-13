@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.2.18
+ * Customizr v3.3.0
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -641,27 +641,27 @@ h6 small {
 /* tc addons */
 h1 {
   font-size: 38px;
-  line-height: 38px;
+  line-height: 48px;
 }
 h2 {
   font-size: 32px;
-  line-height: 32px;
+  line-height: 40px;
 }
 h3 {
   font-size: 24px;
-  line-height: 24px;
+  line-height: 36px;
 }
 h4 {
   font-size: 18px;
-  line-height: 18px;
+  line-height: 23px;
 }
 h5 {
   font-size: 14px;
-  line-height: 14px;
+  line-height: 18px;
 }
 h6 {
   font-size: 12px;
-  line-height: 12px;
+  line-height: 15px;
 }
 /*
 h1,
@@ -3346,6 +3346,7 @@ input[type="submit"].btn.btn-mini {
 .nav-collapse.collapse {
   height: auto;
   overflow: visible;
+  clear: both;
 }
 .navbar .brand {
   float: left;
@@ -5328,12 +5329,13 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 /* Downsize the brand/project name a bit */
-.navbar-wrapper .navbar h2 {
+.navbar-wrapper .navbar .site-description {
   float: right;
   padding-right: 5px;
-  font-style: italic;
-  line-height: 19px;
   text-align: right;
+}
+.navbar-wrapper .navbar h2.site-description {
+  line-height: 19px;
   /* max-width: 240px; */
 }
 /* NO NAVBAR */
@@ -5402,11 +5404,8 @@ h2.site-description {
   border-width: 4px 0 4px 4px;
   border-left-color: #cccccc;
 }
-/* Offset the responsive button for proper vertical alignment */
+/* Hide responsive button by default */
 .navbar .btn-navbar {
-  margin-top: 7px;
-}
-.navbar-inner .tc-nav-button {
   display: none;
 }
 .navbar .btn-navbar:hover,
