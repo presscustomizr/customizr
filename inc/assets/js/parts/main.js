@@ -441,7 +441,10 @@ jQuery(function ($) {
           elToHide        = [], //[ '.social-block' , '.site-description' ],
           isUserLogged    = $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
           isCustomizing   = $('body').hasClass('is-customizing'),
-          customOffset    = +_p.stickyCustomOffset;
+          customOffset    = +_p.stickyCustomOffset,
+          logosH     = [],
+          logosW      = [],
+          logosRatio      = [];
 
     function _is_scrolling() {
         return $('body').hasClass('sticky-enabled') ? true : false;
@@ -481,16 +484,36 @@ jQuery(function ($) {
 
     function _set_header_top_offset() {
         //set header initial offset
-        $tcHeader.css('top' , _get_initial_offset() + 'px');
+        $tcHeader.css('top' , _get_initial_offset() );
+    }
+
+    function _set_logo_height(){
+        if ( 0 === $('img' , '.site-logo').length )
+            return;
+        $.each($('img', '.site-logo'), function( $i ){
+            if ( ! logosRatio[$i] )
+              return;
+            var logoHeight   = $(this).width() / logosRatio[$i];
+            $(this).css('height' , logoHeight );
+        });
+        setTimeout( function() { _refresh(); } , 200 );
     }
 
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
     if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
-        $.each($('img', '.site-logo'), function(){
-            var logoWidth   = $(this).attr('width'),
-                logoHeight  = $(this).attr('height');
-            $(this).css('height' , logoHeight +'px' ).css('width' , logoWidth +'px' );
+        $.each($('img', '.site-logo'), function( $i ){
+            logosW[$i]  = $(this).attr('width');
+            logosH[$i]  = $(this).attr('height');
+
+            console.log( 'LOGO CHECK' , _.map( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber(num) && 0 !== num; }), _.filter( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber(num) && 0 !== num; } ) , 0 === _.size( _.filter( [ logosW[$i], 0 ], function(num){ return _.isNumber(num) && 0 !== num; } ) ) );
+
+            //check that all numbers are valid before using division
+            if ( 0 === _.size( _.filter( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber(num) && 0 !== num; } ) ) )
+              return;
+
+            logosRatio[$i]  = logosW[$i] / logosH[$i];
+            $(this).css('height' , logosH[$i]  ).css('width' , logosW[$i] );
         });
     }
 
@@ -504,6 +527,7 @@ jQuery(function ($) {
             return;
         _set_sticky_offsets();
         _set_header_top_offset();
+        _set_logo_height();
     });
 
     function _refresh() {

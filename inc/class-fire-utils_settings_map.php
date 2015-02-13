@@ -448,6 +448,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'   =>  'TC_controls' ,
                                 'section'   =>  'tc_logo_settings' ,
                                 'type'        => 'checkbox' ,
+                                'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
               ),
               'tc_theme_options[tc_sticky_logo_upload]'  => array(
                                 'control'   =>  'TC_Customize_Upload_Control' ,
