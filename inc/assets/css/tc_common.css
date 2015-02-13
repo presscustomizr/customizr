@@ -5402,11 +5402,8 @@ h2.site-description {
   border-width: 4px 0 4px 4px;
   border-left-color: #cccccc;
 }
-/* Offset the responsive button for proper vertical alignment */
+/* Hide responsive button by default */
 .navbar .btn-navbar {
-  margin-top: 7px;
-}
-.navbar-inner .tc-nav-button {
   display: none;
 }
 .navbar .btn-navbar:hover,
