@@ -2999,6 +2999,7 @@ jQuery(function ($) {
         $tcHeader.css('top' , _get_initial_offset() );
     }
 
+
     function _set_logo_height(){
         if ( 0 === $('img' , '.site-logo').length )
             return;
@@ -3013,6 +3014,7 @@ jQuery(function ($) {
             _set_header_top_offset();
         } , 200 );
     }
+
 
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
