@@ -497,8 +497,6 @@ jQuery(function ($) {
     //LOADING ACTIONS
     if ( _is_sticky_enabled() )
         setTimeout( function() { _refresh(); } , 20 );
-    if ( _is_sticky_enabled() && ! $('body').hasClass('sticky-enabled') )
-        $('body').addClass("sticky-disabled");
 
     //RESIZING ACTIONS
     $(window).resize(function() {
