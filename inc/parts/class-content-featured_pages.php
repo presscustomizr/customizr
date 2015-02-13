@@ -261,14 +261,20 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
                 echo apply_filters( 'tc_fp_text_block' , $tc_fp_text_block , $fp_single_id , $text, $featured_page_id);
 
                 //button block
-                $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
-                                    apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id ),
-                                    $featured_page_link,
-                                    $featured_page_title,
-                                    apply_filters( 'tc_fp_button_text' , esc_attr( tc__f( '__get_option' , 'tc_featured_page_button_text') ) , $fp_single_id )
-                );
-                echo apply_filters( 'tc_fp_button_block' , $tc_fp_button_block , $featured_page_link , $featured_page_title , $fp_single_id, $featured_page_id );
+                $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( tc__f( '__get_option' , 'tc_featured_page_button_text') ) , $fp_single_id );
 
+                if ( $tc_fp_button_text || TC_utils::$instance -> tc_is_customizing() ){
+                  $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
+                  $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
+                  $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
+                                      $tc_fp_button_class,
+                                      $featured_page_link,
+                                      $featured_page_title,
+                                      $tc_fp_button_text
+                                    
+                  );
+                  echo apply_filters( 'tc_fp_button_block' , $tc_fp_button_block , $featured_page_link , $featured_page_title , $fp_single_id, $featured_page_id );
+                }
               ?>
 
             </div><!-- /.widget-front -->

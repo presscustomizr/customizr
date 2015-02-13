@@ -56,7 +56,10 @@
 	//featured page button text
 	wp.customize( 'tc_theme_options[tc_featured_page_button_text]' , function( value ) {
 		value.bind( function( to ) {
-			$( '.fp-button' ).html( to );
+            if ( to )
+                $( '.fp-button' ).html( to ).removeClass( 'hidden');
+            else
+                $( '.fp-button' ).addClass( 'hidden' );
 		} );
 	} );
 
