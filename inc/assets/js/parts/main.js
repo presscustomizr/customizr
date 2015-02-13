@@ -496,7 +496,10 @@ jQuery(function ($) {
             var logoHeight   = $(this).width() / logosRatio[$i];
             $(this).css('height' , logoHeight );
         });
-        setTimeout( function() { _refresh(); } , 200 );
+        setTimeout( function() {
+            _set_sticky_offsets();
+            _set_header_top_offset();
+        } , 200 );
     }
 
     //set site logo width and height if exists
@@ -505,8 +508,6 @@ jQuery(function ($) {
         $.each($('img', '.site-logo'), function( $i ){
             logosW[$i]  = $(this).attr('width');
             logosH[$i]  = $(this).attr('height');
-
-            console.log( 'LOGO CHECK' , _.map( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber(num) && 0 !== num; }), _.filter( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber(num) && 0 !== num; } ) , 0 === _.size( _.filter( [ logosW[$i], 0 ], function(num){ return _.isNumber(num) && 0 !== num; } ) ) );
 
             //check that all numbers are valid before using division
             if ( 0 === _.size( _.filter( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber(num) && 0 !== num; } ) ) )
