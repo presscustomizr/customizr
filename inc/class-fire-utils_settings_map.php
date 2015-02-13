@@ -1529,7 +1529,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_show_page_title_icon]'  =>  array(
-                                'default'       => 1,
+                                'default'       => 0,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display a page icon next to the page title" , "customizr" ),
                                 'section'       => 'tc_titles_icons_settings' ,
@@ -1538,7 +1538,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_show_post_title_icon]'  =>  array(
-                                'default'       => 1,
+                                'default'       => 0,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display a post icon next to the single post title" , "customizr" ),
                                 'section'       => 'tc_titles_icons_settings' ,
@@ -1557,7 +1557,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_show_post_list_title_icon]'  =>  array(
-                                'default'       => 1,
+                                'default'       => 0,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display an icon next to each post title in an archive page" , "customizr" ),
                                 'section'       => 'tc_titles_icons_settings' ,
