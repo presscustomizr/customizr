@@ -115,6 +115,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
           apply_filters('tc_load_script_in_footer' , false)
         );
         wp_enqueue_script(
+          'tc-center-images',
+          sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'jqueryCenterImages.js' ),
+          array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' ),
+          CUSTOMIZR_VER,
+          apply_filters('tc_load_script_in_footer' , false)
+        );
+        wp_enqueue_script(
           'tc-main-front',
           sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'main.js' : 'main.min.js'),
           array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ),
