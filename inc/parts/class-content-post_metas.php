@@ -188,34 +188,6 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
         /**
-        * Return boolean false if never updated OR number of days since last update OR PHP version < 5.2
-        *
-        * @package Customizr
-        * @since Customizr 3.2.6
-        */
-        function tc_has_update() {
-          //php version check for DateTime
-          //http://php.net/manual/fr/class.datetime.php
-          if ( version_compare( PHP_VERSION, '5.2.0' ) < 0 )
-            return false;
-          //Instantiates the different date objects
-        
-          try {
-            $created                = new DateTime( get_the_date('Y-m-d g:i:s') );
-            $updated                = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
-            $current                = new DateTime( date('Y-m-d g:i:s') );
-          } catch ( Exception $e) {
-              return false;
-          }
-
-          $created_to_updated     = TC_utils::$instance -> tc_date_diff( $created , $updated );
-          $updated_to_today       = TC_utils::$instance -> tc_date_diff( $updated, $current );
-          return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? false : $updated_to_today -> days;
-        }
-
-
-
-        /**
         * Helper to return the current post terms of specified taxonomy type : hierarchical or not
         *
         * @return boolean (false) or array
@@ -404,7 +376,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             $_show_cats         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_categories' ) ) && false != $this -> tc_get_category_list();
             $_show_tags         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_tags' ) ) && false != $this -> tc_get_tag_list();
             $_show_pub_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_publication_date' ) );
-            $_show_upd_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_update_date' ) ) && false !== $this -> tc_has_update();
+            $_show_upd_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_update_date' ) ) && false !== TC_utils::$instance -> tc_post_has_update();
             $_show_upd_in_days  = 'days' == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_date_format' ) );
             $_show_date         = $_show_pub_date || $_show_upd_date;
             $_show_author       = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_author' ) );
@@ -442,7 +414,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             $_update_text           = '';
             if ( $_show_upd_date ) {
                 if ( $_show_upd_in_days ) {
-                    $_update_days = $this -> tc_has_update(); 
+                    $_update_days = TC_utils::$instance -> tc_post_has_update();
                     $_update_text = ( 0 == $_update_days ) ? __( '(updated today)' , 'customizr' ) : sprintf( __( '(updated %1$s days ago)' , 'customizr' ), $_update_days );
                     $_update_text = ( 1 == $_update_days ) ? __( '(updated 1 day ago)' , 'customizr' ) : $_update_text;
                 }

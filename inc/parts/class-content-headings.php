@@ -578,25 +578,12 @@ if ( ! class_exists( 'TC_headings' ) ) :
           if ( version_compare( PHP_VERSION, '5.2.0' ) < 0 )
             return $html;
 
-          //Instantiates the different date objects
-          $created = new DateTime( get_the_date('Y-m-d g:i:s') );
-          $updated = new DateTime( get_the_modified_date('Y-m-d g:i:s') );
-          $current = new DateTime( date('Y-m-d g:i:s') );
-
-
-          //Creates the date_diff objects from dates
-          $created_to_updated = TC_utils::$instance -> tc_date_diff( $created , $updated );
-          $updated_to_today   = TC_utils::$instance -> tc_date_diff( $updated, $current );
-
-          //Check if the post has been updated since its creation
-          $has_been_updated = ( $created_to_updated -> s > 0 || $created_to_updated -> i > 0 ) ? true : false;
-
           //get the user defined interval in days
           $_interval = esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_notice_interval' ) );
           $_interval = ( 0 != $_interval ) ? $_interval : 30;
 
           //Check if the last update is less than n days old. (replace n by your own value)
-          $has_recent_update = ( $has_been_updated && $updated_to_today -> days < $_interval ) ? true : false;
+          $has_recent_update = ( TC_utils::$instance -> tc_post_has_update( true ) && TC_utils::$instance -> tc_post_has_update( 'in_days') < $_interval ) ? true : false;
 
           if ( ! $has_recent_update )
               return $html;
