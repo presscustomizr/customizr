@@ -1334,6 +1334,16 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 30,
                                 'transport'     => 'postMessage'
               ),
+              'tc_theme_options[tc_header_mobile_min]'  =>  array(
+                                'default'       => 0,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( 'Enable/disable min header on small devices' , 'customizr' ),
+                                'section'       => 'tc_header_layout' ,
+                                'type'          =>  'checkbox' ,
+                                'priority'      => 30,
+                                'transport'     => 'postMessage',
+                                'notice'        => __( 'If checked, in responsive mode this option will minify the header')
+              ),
               'tc_theme_options[tc_sticky_header]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,

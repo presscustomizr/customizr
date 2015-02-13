@@ -144,6 +144,29 @@
     position: relative;
   }
 
+  /* Min mobile header */
+  .tc-mobile-min {
+    border-bottom: none;
+  }
+  .tc-mobile-min.tc-header .social-block {
+    display: none;
+  }
+  /* shrink header img by default*/
+  .tc-mobile-min .site-logo img {
+    height: 30px!important;
+    width: auto!important;
+  }
+  .tc-mobile-min .brand h1, .tc-mobile-min .brand a{
+    margin: 10px 0px;
+  }
+  .tc-mobile-min .brand .site-title {
+    font-size: 0.6em;
+    line-height: 1.2em;
+  }
+  .tc-mobile-min .navbar-wrapper {
+    float: none;
+  }
+
   /* Default Menu */
   .nav-collapse, .nav-collapse.collapse {
     overflow: hidden;
@@ -339,6 +362,7 @@
   /* PLACE LOGO / TITLE ON THE LEFT SINCE V3.2.0 */
   .sticky-enabled .site-logo img {
   }
+  .tc-mobile-min .brand,
   .sticky-enabled .brand {
     float: left;
     width: 80%;
@@ -351,13 +375,16 @@
   .navbar-wrapper .navbar h2 {
     display: none!important;
   }
+  .tc-mobile-min.tc-header,
   .sticky-enabled .tc-header {
     min-height: 40px;
   }
+  .tc-mobile-min.tc-header,
   .sticky-enabled .tc-header .outside {
     display: none;
   }
   /* Adjust button margin SINCE V3.2.0*/
+  .tc-mobile-min .navbar .navbar-inner,
   .sticky-enabled .navbar .navbar-inner {
     margin: 0px;
   }
@@ -367,11 +394,13 @@
     margin: 10px 0;
   }
   /* GIVE NAVBAR A SMALLER Z-index than logo / title SINCE V3.2.0*/
+  .tc-mobile-min .navbar-wrapper,
   .sticky-enabled .navbar-wrapper {
     position: relative;
     z-index: 1;
   }
 
+  .tc-mobile-min .nav-collapse,
   .no-navbar .nav-collapse, .nav-collapse.collapse {
     /* default fallback */
     background: rgb(255, 255, 255) transparent;
@@ -383,6 +412,7 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF)";
   }
 
+  .tc-mobile-min .navbar .navbar-inner,
   .no-navbar .navbar .navbar-inner {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -629,6 +659,7 @@
   .social-block a {
     font-size: 1em;
   }
+  .tc-mobile-min .brand .site-title,
   .sticky-enabled .brand .site-title {
     font-size: 0.5em;
     display: -webkit-box;
@@ -636,6 +667,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .tc-mobile-min .brand h1, .tc-mobile-min .brand a,
   .sticky-enabled .brand h1, .sticky-enabled .brand a {
     margin: 10px 0px 0px;
   }
