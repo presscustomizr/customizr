@@ -23,7 +23,7 @@ var TCParams = TCParams || {
   dropcapWhere:{ post : 0, page : 1 },
   dropcapMinWords:50,
   skipSelectors: {
-              tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE'],
+              tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'],
               classes : [],
               ids : []
             },
