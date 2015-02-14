@@ -27,4 +27,6 @@ var TCParams = TCParams || {
               classes : [],
               ids : []
             },
+  imgSmartLoadEnabled:0,
+  imgSmartLoadOpts: {}
 };

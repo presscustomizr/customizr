@@ -22,32 +22,79 @@ if ( ! class_exists( 'TC_utils' ) ) :
       public $is_customizing;
 
       function __construct () {
+        self::$instance =& $this;
+        //get all options
+        add_filter( '__options'                           , array( $this , 'tc_get_theme_options' ), 10, 1);
+        //get single option
+        add_filter( '__get_option'                        , array( $this , 'tc_get_option' ), 10, 2 );
 
-          self::$instance =& $this;
+        //some useful filters
+        add_filter( '__ID'                                , array( $this , 'tc_get_the_ID' ));
+        add_filter( '__screen_layout'                     , array( $this , 'tc_get_current_screen_layout' ) , 10 , 2 );
+        add_filter( '__is_home'                           , array( $this , 'tc_is_home' ) );
+        add_filter( '__is_home_empty'                     , array( $this , 'tc_is_home_empty' ) );
+        add_filter( '__post_type'                         , array( $this , 'tc_get_post_type' ) );
+        add_filter( '__is_no_results'                     , array( $this , 'tc_is_no_results') );
+        add_filter( '__article_selectors'                 , array( $this , 'tc_article_selectors' ) );
 
-          //get all options
-          add_filter  ( '__options'                           , array( $this , 'tc_get_theme_options' ), 10, 1);
-          //get single option
-          add_filter  ( '__get_option'                        , array( $this , 'tc_get_option' ), 10, 2 );
+        //social networks
+        add_filter( '__get_socials'                       , array( $this , 'tc_get_social_networks' ) );
 
-          //some useful filters
-          add_filter  ( '__ID'                                , array( $this , 'tc_get_the_ID' ));
-          add_filter  ( '__screen_layout'                     , array( $this , 'tc_get_current_screen_layout' ) , 10 , 2 );
-          add_filter  ( '__is_home'                           , array( $this , 'tc_is_home' ) );
-          add_filter  ( '__is_home_empty'                     , array( $this , 'tc_is_home_empty' ) );
-          add_filter  ( '__post_type'                         , array( $this , 'tc_get_post_type' ) );
-          add_filter  ( '__is_no_results'                     , array( $this , 'tc_is_no_results') );
-          add_filter  ( '__article_selectors'                 , array( $this , 'tc_article_selectors' ));
+        //WP filters
+        add_action( 'after_setup_theme'                   , array( $this , 'tc_wp_filters') );
 
-          //social networks
-          add_filter  ( '__get_socials'                       , array( $this , 'tc_get_social_networks' ) );
+        //init properties
+        add_action( 'after_setup_theme'                   , array( $this , 'tc_init_properties') );
+      }
 
-          //WP filters
-          add_filter  ( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ));
-          add_filter  ( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
 
-          //init properties
-          add_action ( 'after_setup_theme'                    , array( $this , 'tc_init_properties') );
+      /*
+      * hook : after_setup_theme
+      */
+      function tc_wp_filters() {
+        add_filter( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ) );
+        if ( esc_attr( tc__f( '__get_option' , 'tc_img_smart_load' ) ) ) {
+          add_filter( 'the_content'                       , array( $this , 'tc_parse_imgs' ) );
+          add_filter( 'tc_display_post_thumbnail'         , array( $this , 'tc_parse_imgs' ) );
+        }
+        add_filter( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
+      }
+
+
+      /*
+      * hook : the_content
+      * @return string
+      */
+      function tc_parse_imgs( $_html ) {
+        if( is_feed() || is_preview() || wp_is_mobile() )
+          return $_html;
+
+        if (strpos( $_html, 'data-src' ) !== false)
+          return $_html;
+
+        return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'tc_regex_callback' ) , $_html);
+      }
+
+
+      /*
+      * callback of preg_replace_callback in tc_parse_imgs
+      * @return string
+      */
+      private function tc_regex_callback( $matches ) {
+        $_placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        if ( preg_match('/ data-lazy *= *"false" */', $matches[0]) )
+          return sprintf('<img %1$s src="%2$s" %3$s>',
+            $matches[1],
+            $matches[2],
+            $matches[3]
+          );
+        else
+          return sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s><noscript><img %1$s src="%2$s" %4$s></noscript>',
+            $matches[1],
+            $_placeholder,
+            $matches[2],
+            $matches[3]
+          );
       }
 
 

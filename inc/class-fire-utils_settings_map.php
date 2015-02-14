@@ -1171,7 +1171,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_theme_options[tc_social_in_footer]',
         'tc_theme_options[tc_top_border]',
         'tc_theme_options[tc_custom_css]',
-        'tc_theme_options[tc_page_comments]'
+        'tc_theme_options[tc_page_comments]',
+        'tc_theme_options[tc_minified_skin]'
       );
       foreach ($_to_unset as $_value) {
         if ( ! isset($_map['add_setting_control'][$_value]) )
@@ -2041,15 +2042,26 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     TC_WEBSITE
                                 )
               ),
-              'tc_theme_options[tc_lazy_load_img]'  =>  array(
+
+              'tc_theme_options[tc_minified_skin]'  =>  array(
+                                'default'       => 1,
+                                'control'   => 'TC_controls' ,
+                                'label'       => __( "Performance : use the minified CSS stylesheet", 'customizr' ),
+                                'section'     => 'tc_performances' ,
+                                'type'        => 'checkbox' ,
+                                'notice'    => __( 'Using the minified version of the skin stylesheet will speed up your webpage load time.' , 'customizr' ),
+              ),
+              'tc_theme_options[tc_img_smart_load]'  =>  array(
                                 'default'       => 0,
                                 'label'       => __( 'Load images on scroll' , 'customizr' ),
                                 'control'     =>  'TC_controls' ,
                                 'section'     => 'tc_performances' ,
                                 'type'        => 'checkbox',
-                                'priority'    => 10,
-                                'notice'      => __('Check this option to load only the visible images on page load. Images below the viewport will be rendered on scroll. This can drastically increase your page load if you incorporates many images in your pages or posts.' , 'customizr')
+                                'priority'    => 20,
+                                'notice'      => __('Check this option to load only the visible images on page load. Images below the viewport will be rendered on scroll. This can drastically reduce your pages weight if you incorporates many images in them.' , 'customizr')
               ),
+
+
               //Default slider's height
               'tc_theme_options[tc_slider_default_height]' => array(
                                 'default'       => 500,

@@ -115,6 +115,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
           apply_filters('tc_load_script_in_footer' , false)
         );
         wp_enqueue_script(
+          'tc-img-smartload',
+          sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'jqueryimgSmartLoad.js' ),
+          array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' ),
+          CUSTOMIZR_VER,
+          apply_filters('tc_load_script_in_footer' , false)
+        );
+        wp_enqueue_script(
           'tc-main-front',
           sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'main.js' : 'main.min.js'),
           array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ),
@@ -175,7 +182,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
               'dropcapEnabled'      => esc_attr( tc__f( '__get_option' , 'tc_enable_dropcap' ) ),
               'dropcapWhere'      => array( 'post' => esc_attr( tc__f( '__get_option' , 'tc_post_dropcap' ) ) , 'page' => esc_attr( tc__f( '__get_option' , 'tc_page_dropcap' ) ) ),
               'dropcapMinWords'     => esc_attr( tc__f( '__get_option' , 'tc_dropcap_minwords' ) ),
-              'skipSelectors'       => apply_filters( 'tc_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE' ), 'classes' => array() , 'id' => array() ) )
+              'skipSelectors'       => apply_filters( 'tc_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE' ), 'classes' => array() , 'id' => array() ) ),
+              'imgSmartLoadEnabled' => esc_attr( tc__f( '__get_option' , 'tc_img_smart_load' ) ),
+              'imgSmartLoadOpts'    => apply_filters( 'tc_img_smart_load_options' , array() )
 	        	),
 	        	tc__f('__ID')
 		    )//end of filter
