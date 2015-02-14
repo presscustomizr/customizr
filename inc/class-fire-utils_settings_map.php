@@ -1136,7 +1136,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 100 : 10,
                                             'description' =>  __( 'Add your own CSS' , 'customizr' ),
                                             'panel'   => 'tc-advanced-panel'
-                        )
+                        ),
+                        'tc_performances'           => array(
+                                            'title'     =>  __( 'Website Perfomances' , 'customizr' ),
+                                            'priority'    => 20,
+                                            'description' =>  __( 'On the web, speed is key ! Improve the load time of your pages with those options.' , 'customizr' ),
+                                            'panel'   => 'tc-advanced-panel'
+                        ),
                   )
 
         );//end of add_sections array
@@ -2034,6 +2040,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     __( 'How to create and use a child theme ?' , 'customizr'),
                                     TC_WEBSITE
                                 )
+              ),
+              'tc_theme_options[tc_lazy_load_img]'  =>  array(
+                                'default'       => 0,
+                                'label'       => __( 'Load images on scroll' , 'customizr' ),
+                                'control'     =>  'TC_controls' ,
+                                'section'     => 'tc_performances' ,
+                                'type'        => 'checkbox',
+                                'priority'    => 10,
+                                'notice'      => __('Check this option to load only the visible images on page load. Images below the viewport will be rendered on scroll. This can drastically increase your page load if you incorporates many images in your pages or posts.' , 'customizr')
               ),
               //Default slider's height
               'tc_theme_options[tc_slider_default_height]' => array(
