@@ -1852,7 +1852,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
               /* Paragraphs */
               'tc_theme_options[tc_enable_dropcap]'  =>  array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.11' ) ? 0 : 1,
+                                'default'       => 0,
                                 'title'         => __( 'Drop caps', 'customizr'),
                                 'label'         => __('Enable drop caps' , 'customizr'),
                                 'control'       => 'TC_controls' ,
@@ -1895,7 +1895,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 30
               ),
               'tc_theme_options[tc_page_dropcap]'  =>  array(
-                                'default'       => 1,
+                                'default'       => 0,
                                 'label'         => __('Enable drop caps in pages' , 'customizr'),
                                 'control'       => 'TC_controls' ,
                                 'notice'         => __( "Apply a drop cap to the first paragraph of your pages" , "customizr" ),
