@@ -48,8 +48,10 @@ if ( ! class_exists( 'TC_utils' ) ) :
       }
 
 
-      /*
+      /**
       * hook : after_setup_theme
+      * @package Customizr
+      * @since Customizr 3.3.0
       */
       function tc_wp_filters() {
         add_filter( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ) );
@@ -61,9 +63,11 @@ if ( ! class_exists( 'TC_utils' ) ) :
       }
 
 
-      /*
+      /**
       * hook : the_content
       * @return string
+      * @package Customizr
+      * @since Customizr 3.3.0
       */
       function tc_parse_imgs( $_html ) {
         if( is_feed() || is_preview() || wp_is_mobile() )
@@ -76,9 +80,11 @@ if ( ! class_exists( 'TC_utils' ) ) :
       }
 
 
-      /*
+      /**
       * callback of preg_replace_callback in tc_parse_imgs
       * @return string
+      * @package Customizr
+      * @since Customizr 3.3.0
       */
       private function tc_regex_callback( $matches ) {
         $_placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';

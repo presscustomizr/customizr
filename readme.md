@@ -92,6 +92,32 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.0 February 15th 2015 =
+Fix: dropcap skips also ul,ol tags
+Updated : dropcaps are disabled by default in pages and posts
+Added smart img load script
+Added new option "Website Performance" in a new section  Advanced Settings > Performances
+Added lang zh_TW. Thanks to https://github.com/pppdog
+Changed : tc_menu_item_style_first_letter set to false for new users
+Updated thai and hebrew lang
+Improved : increased headings line height for accessibility (font-size x 1.25)
+Fix infinite loop potential issue on resize
+Updated theme doc link
+Moved date functions in TC_utils and added : check on date format validity
+Fix: better check on when changing default slider's height
+Fix: set sticky offsets after resizing logo
+Fix: fp-button display nothing if empty
+Fix: logo image stretched when sticky header enabled, handled for both logos (normal and sticky) in js. Avoid uFix: tagline navbar-wrapper. Navbar h2 => use .site-description instead of H2 and split the CSS rule in two parFix: add clear:both to boostrap .nav-collapse fix the misplacing .nav-collapse when no socials are displayed inFix: re-add comment near the closing brace for compatibility function
+Fix: typo in the latest commit
+Fix: new filter tc_the_title, apply filters to the_title in Customizr contexts strictly
+Fix: handle mobile menu display in tc_common (tc_custom)
+Fix: add body class sticky-disabled, with php, by default when sticky header selected
+Fix: tc_has_update() catch exceptions use bool false if no updates
+updated stylesheets
+Improved : skip tc_common.css when scan the skins folder
+Added : tc_common.css
+Fix: in post metas don't call tc_has_update() when not needed
+
 = 3.2.17 January 27th 2015 =
 * removed : console.log() in addDropCap script
 
