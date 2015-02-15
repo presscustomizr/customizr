@@ -82,18 +82,19 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       private function tc_regex_callback( $matches ) {
         $_placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-        if ( preg_match('/ data-lazy *= *"false" */', $matches[0]) )
+        if ( preg_match('/ data-smartload *= *"false" */', $matches[0]) )
           return sprintf('<img %1$s src="%2$s" %3$s>',
             $matches[1],
             $matches[2],
             $matches[3]
           );
         else
-          return sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s><noscript><img %1$s src="%2$s" %4$s></noscript>',
+          return sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s><noscript><img %1$s src="%5$s" %4$s></noscript>',
             $matches[1],
             $_placeholder,
             $matches[2],
-            $matches[3]
+            $matches[3],
+            $matches[0]
           );
       }
 

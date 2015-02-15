@@ -2058,7 +2058,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'tc_performances' ,
                                 'type'        => 'checkbox',
                                 'priority'    => 20,
-                                'notice'      => __('Check this option to load only the visible images on page load. Images below the viewport will be rendered on scroll. This can drastically reduce your pages weight if you incorporates many images in them.' , 'customizr')
+                                'notice'      => __('Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performance by reducing the weight of long web page with images.' , 'customizr')
               ),
 
 

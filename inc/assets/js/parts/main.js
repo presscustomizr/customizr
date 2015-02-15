@@ -6,7 +6,7 @@
 //ON DOM READY
 jQuery(function ($) {
     var _p = TCParams;
-    //Img Smart load
+    //Img Smart Load
     if ( 1 == _p.imgSmartLoadEnabled ) {
       $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts) > 0 || {} );
     }
