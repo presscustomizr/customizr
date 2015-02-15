@@ -13,6 +13,9 @@
  * Example of gif 1px x 1px placeholder :
  * 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
  *
+ * inspired by the work of Luís Almeida
+ * http://luis-almeida.github.com/unveil
+ *
  * =================================================== */
 ;(function ( $, window, document, undefined ) {
   //defaults
@@ -93,17 +96,17 @@
   */
   Plugin.prototype._is_visible = function( _img, _evt ) {
     var $_img       = $(_img),
-        wind_to_top = $(window).scrollTop(),
-        wind_to_bot = wind_to_top + $(window).height(),
-        img_to_top  = $_img.offset().top,
-        img_to_bot  = img_to_top + $_img.height(),
-        cust_thresh = this.options.threshold;
+        wt = $(window).scrollTop(),
+        wb = wt + $(window).height(),
+        it  = $_img.offset().top,
+        ib  = it + $_img.height(),
+        th = this.options.threshold;
 
     //force all images to visible if first scroll option enabled
     if ( _evt && 'scroll' == _evt.type && this.options.load_all_images_on_first_scroll )
       return true;
 
-    return img_to_bot >= wind_to_top - cust_thresh && img_to_top <= wind_to_bot + cust_thresh;
+    return ib >= wt - th && it <= wb + th;
   };
 
 
