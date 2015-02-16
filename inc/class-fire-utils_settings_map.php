@@ -375,7 +375,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
               'tc_theme_options[tc_menu_type]'  => array(
-                                'default'   =>  ( false == get_option('tc_theme_options') ) ? 'hover' : 'click' ,
+                                'default'   =>  TC_utils::$instance -> tc_user_started_before_version( '3.1.0' ) ? 'click' : 'hover',
                                 'control'   =>  'TC_controls' ,
                                 'title'     => __( 'Design and effects' , 'customizr'),
                                 'label'     =>  __( 'Select a submenu expansion option' , 'customizr' ),
