@@ -397,7 +397,10 @@
 		value.bind( function( to ) {
 			$('#option-custom-css').remove();
 			var $style_element = ( 0 === $('#live-custom-css').length ) ? $('<style>' , { id : 'live-custom-css'}) : $('#live-custom-css');
-			if (  0 === $('#live-custom-css').length )
+			//sanitize string => remove html tags
+      to = to.replace(/(<([^>]+)>)/ig,"");
+
+      if (  0 === $('#live-custom-css').length )
 				$('head').append($style_element.html(to));
 			else
 				$style_element.html(to);

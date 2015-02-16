@@ -2030,7 +2030,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'    => __( 'Will be hidden if empty' , 'customizr' )
               ),
               'tc_theme_options[tc_custom_css]' =>  array(
-                                'sanitize_callback' => array( $this , 'tc_sanitize_textarea' ),
+                                'sanitize_callback' => 'wp_filter_nohtml_kses',
+                                'sanitize_js_callback' => 'wp_filter_nohtml_kses',
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
                                 'section'     => 'tc_custom_css' ,
@@ -2040,7 +2041,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     __( 'child theme.' , 'customizr'),
                                     __( 'How to create and use a child theme ?' , 'customizr'),
                                     TC_WEBSITE
-                                )
+                                ),
+                                'transport'   => 'postMessage'
               ),
 
               'tc_theme_options[tc_minified_skin]'  =>  array(
