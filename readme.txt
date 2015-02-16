@@ -39,6 +39,12 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.1 February 16th 2015 =
+added : pro parameter to the version check
+updated : menu open on hover by default if user started after v3.1+
+improved : better sanitization cb for custom css https://make.wordpress.org/themes/2015/02/10/custom-css-boxes-Fix typos in website performance options description texts
+fix : typos in website performance options description texts
+
 = 3.3.0 February 15th 2015 =
 Fix: dropcap skips also ul,ol tags
 Updated : dropcaps are disabled by default in pages and posts
