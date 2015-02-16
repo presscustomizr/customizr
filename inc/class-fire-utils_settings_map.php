@@ -1138,7 +1138,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'panel'   => 'tc-advanced-panel'
                         ),
                         'tc_performances'           => array(
-                                            'title'     =>  __( 'Website Perfomances' , 'customizr' ),
+                                            'title'     =>  __( 'Website Performances' , 'customizr' ),
                                             'priority'    => 20,
                                             'description' =>  __( 'On the web, speed is key ! Improve the load time of your pages with those options.' , 'customizr' ),
                                             'panel'   => 'tc-advanced-panel'
@@ -2058,7 +2058,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'tc_performances' ,
                                 'type'        => 'checkbox',
                                 'priority'    => 20,
-                                'notice'      => __('Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performance by reducing the weight of long web page with images.' , 'customizr')
+                                'notice'      => __('Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images.' , 'customizr')
               ),
 
 
