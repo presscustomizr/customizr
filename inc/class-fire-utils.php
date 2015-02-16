@@ -118,13 +118,15 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $this -> is_customizing   = $this -> tc_is_customizing();
         $this -> default_options  = $this -> tc_get_default_options();
         $this -> db_options       = (array) get_option( TC___::$tc_option_group );
+        $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
+        $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
 
         //What was the theme version when the user started to use Customizr?
         //new install = no options yet
         //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( 'started_using_customizr' ) ) ) {
+        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
           set_transient(
-            'started_using_customizr',
+            $_trans,
             sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
             60*60*24*9999
           );
@@ -821,19 +823,32 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
-    function tc_user_started_before_version( $_version ) {
-      if ( ! get_transient( 'started_using_customizr' ) )
+    function tc_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
+      $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
+
+      if ( $_ispro && ! get_transient( 'started_using_customizr_pro' ) )
         return false;
 
-      $_start_version_infos = explode('|', esc_attr( get_transient( 'started_using_customizr' ) ) );
+      if ( ! $_ispro && ! get_transient( 'started_using_customizr' ) )
+        return false;
+
+      $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
+      $_ver   = $_ispro ? $_pro_ver : $_czr_ver;
+      if ( ! $_ver )
+        return false;
+
+      $_start_version_infos = explode('|', esc_attr( get_transient( $_trans ) ) );
+
       if ( ! is_array( $_start_version_infos ) )
         return false;
 
       switch ( $_start_version_infos[0] ) {
+        //in this case with now exactly what was the starting version (most common case)
         case 'with':
-          return version_compare( $_start_version_infos[1] , $_version, '<' );
+          return version_compare( $_start_version_infos[1] , $_ver, '<' );
         break;
-
+        //here the user started to use the theme before, we don't know when.
+        //but this was actually before this check was created
         case 'before':
           return true;
         break;

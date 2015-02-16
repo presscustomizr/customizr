@@ -375,7 +375,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
               'tc_theme_options[tc_menu_type]'  => array(
-                                'default'   =>  TC_utils::$instance -> tc_user_started_before_version( '3.1.0' ) ? 'click' : 'hover',
+                                'default'   =>  TC_utils::$instance -> tc_user_started_before_version( '3.1.0' , '1.0.0' ) ? 'click' : 'hover',
                                 'control'   =>  'TC_controls' ,
                                 'title'     => __( 'Design and effects' , 'customizr'),
                                 'label'     =>  __( 'Select a submenu expansion option' , 'customizr' ),
@@ -1274,7 +1274,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
               /* Fonts */
               'tc_theme_options[tc_fonts]'      => array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 'helvetica_arial' : '_g_fjalla_cantarell',
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
                                 'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                                 'control'       =>  'TC_controls',
                                 'section'       => 'tc_fonts',
@@ -1285,7 +1285,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'        => __( "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs." , 'customizr' )
               ),
               'tc_theme_options[tc_body_font_size]'      => array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9' ) ? 14 : 15,
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.9', '1.0.1' ) ? 14 : 15,
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( 'Set your website default font size in pixels.' , 'customizr' ),
                                 'control'       =>  'TC_controls',
@@ -1537,7 +1537,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_show_page_title_icon]'  =>  array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.0' ) ? 1 : 0,
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display a page icon next to the page title" , "customizr" ),
                                 'section'       => 'tc_titles_icons_settings' ,
@@ -1546,7 +1546,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_show_post_title_icon]'  =>  array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.0' ) ? 1 : 0,
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display a post icon next to the single post title" , "customizr" ),
                                 'section'       => 'tc_titles_icons_settings' ,
@@ -1565,7 +1565,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_show_post_list_title_icon]'  =>  array(
-                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.0' ) ? 1 : 0,
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.0' , '1.0.11' ) ? 1 : 0,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display an icon next to each post title in an archive page" , "customizr" ),
                                 'section'       => 'tc_titles_icons_settings' ,
