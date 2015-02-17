@@ -291,7 +291,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
     function tc_enqueue_gfonts() {
       $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
       $_all_font_pairs    = TC_init::$instance -> font_pairs;
-      if ( false === strpos($_font_pair,'_g_') )
+      if ( ! $this -> tc_is_gfont( $_font_pair , '_g_') )
         return;
 
       wp_enqueue_style(
@@ -305,7 +305,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 
 
-    /*
+    /**
     * Callback of tc_user_options_style hook
     * @return css string
     *
@@ -334,18 +334,19 @@ if ( ! class_exists( 'TC_resources' ) ) :
       $body   = apply_filters('tc_body_fonts_selectors' , $body );
 
       if ( 'helvetica_arial' != $_font_pair ) {//check if not default
-        $_font_code       = TC_utils::$instance -> tc_get_font( 'single' , $_font_pair );
-        $_selector_fonts  = explode('|', $_font_code);
-        foreach ($_selector_fonts as $_key => $_single_font) {
-          $_css_exp       = explode(':', $_single_font);
-          $_family        = str_replace('+', ' ' , $_css_exp[0]);
-          $_weight        = isset( $_css_exp[1] ) ? $_css_exp[1] : 'inherit';
+        $_selector_fonts  = explode( '|', TC_utils::$instance -> tc_get_font( 'single' , $_font_pair ) );
+        if ( ! is_array($_selector_fonts) )
+          return $_css;
+
+        foreach ($_selector_fonts as $_key => $_raw_font) {
+          //create the $_family and $_weight vars
+          extract( $this -> tc_get_font_css_prop( $_raw_font , $this -> tc_is_gfont( $_font_pair ) ) );
 
           switch ($_key) {
             case 0 : //titles font
               $_css .= "
                 {$titles} {
-                  font-family : '{$_family}';
+                  font-family : {$_family};
                   font-weight : {$_weight};
                 }\n";
             break;
@@ -353,7 +354,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
             case 1 ://body font
               $_css .= "
                 {$body} {
-                  font-family : '{$_family}';
+                  font-family : {$_family};
                   font-weight : {$_weight};
                 }\n";
             break;
@@ -374,8 +375,43 @@ if ( ! class_exists( 'TC_resources' ) ) :
     }//end of fn
 
 
+    /**
+    * Helper to check if the requested font code includes the Google font identifier : _g_
+    * @return bool
+    *
+    * @package Customizr
+    * @since Customizr 3.3.2
+    */
+    private function tc_is_gfont($_font , $_gfont_id = null ) {
+      $_gfont_id = $_gfont_id ? $_gfont_id : '_g_';
+      return false !== strpos( $_font , $_gfont_id );
+    }
 
-    /*
+
+    /**
+    * Helper to extract font-family and weight from a Customizr font option
+    * @return array( font-family, weight )
+    *
+    * @package Customizr
+    * @since Customizr 3.3.2
+    */
+    private function tc_get_font_css_prop( $_raw_font , $is_gfont = false ) {
+      $_css_exp = explode(':', $_raw_font);
+      $_weight  = isset( $_css_exp[1] ) ? $_css_exp[1] : 'inherit';
+      $_family  = '';
+
+      if ( $is_gfont ) {
+        $_family = str_replace('+', ' ' , $_css_exp[0]);
+      } else {
+        $_family = implode("','", explode(',', $_css_exp[0] ) );
+      }
+      $_family = sprintf("'%s'" , $_family );
+
+      return compact("_family" , "_weight" );
+    }
+
+
+    /**
     * Callback of tc_user_options_style hook
     * @return css string
     *
