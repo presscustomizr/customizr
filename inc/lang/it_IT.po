@@ -1,1668 +1,42 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.1\n"
-"POT-Creation-Date: 2015-01-21 16:44+0100\n"
-"PO-Revision-Date: 2015-01-21 16:44+0100\n"
-"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"POT-Creation-Date: 2015-02-17 14:29+0100\n"
+"PO-Revision-Date: 2015-02-17 18:52+0100\n"
+"Last-Translator: Rocco Aliberti\n"
 "Language-Team: ElectricFeet <contact@themesandco.com>\n"
-"Language: Italiano\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../class-fire-init.php:49 ../class-fire-init.php:50
-msgid "Right sidebar"
-msgstr "Barra laterale a destra"
-
-#: ../class-fire-init.php:55 ../class-fire-init.php:56
-msgid "Left sidebar"
-msgstr "Barra laterale a sinistra"
-
-#: ../class-fire-init.php:61 ../class-fire-init.php:62
-msgid "2 sidebars : Right and Left"
-msgstr "2 barre laterali: a destra e a sinistra"
-
-#: ../class-fire-init.php:67 ../class-fire-init.php:68
-msgid "No sidebars : full width layout"
-msgstr "Nessuna barra laterale: Larghezza a tutta pagina"
-
-#: ../class-fire-init.php:79
-msgid "Blue"
-msgstr "Azzurro"
-
-#: ../class-fire-init.php:80
-msgid "Black"
-msgstr "Nero"
-
-#: ../class-fire-init.php:81
-msgid "Flat black"
-msgstr ""
-
-#: ../class-fire-init.php:82
-msgid "Grey"
-msgstr "Grigio"
-
-#: ../class-fire-init.php:83
-msgid "Ligth grey"
-msgstr ""
-
-#: ../class-fire-init.php:84
-msgid "Flat purple"
-msgstr ""
-
-#: ../class-fire-init.php:85
-msgid "Purple"
-msgstr "Viola"
-
-#: ../class-fire-init.php:86
-msgid "Flat red"
-msgstr ""
-
-#: ../class-fire-init.php:87
-msgid "Red"
-msgstr "Rosso"
-
-#: ../class-fire-init.php:88
-msgid "Orange"
-msgstr "Arancione"
-
-#: ../class-fire-init.php:89
-msgid "Flat orange"
-msgstr ""
-
-#: ../class-fire-init.php:90
-msgid "Yellow"
-msgstr "Giallo"
-
-#: ../class-fire-init.php:91
-msgid "Flat yellow"
-msgstr ""
-
-#: ../class-fire-init.php:92
-msgid "Green"
-msgstr "Verde"
-
-#: ../class-fire-init.php:93
-msgid "Light green"
-msgstr ""
-
-#: ../class-fire-init.php:94
-#, fuzzy
-msgid "Green blue"
-msgstr "Verde"
-
-#: ../class-fire-init.php:95
-msgid "Light blue "
-msgstr ""
-
-#: ../class-fire-init.php:123
-msgid "Google fonts pairs"
-msgstr ""
-
-#: ../class-fire-init.php:143
-msgid "Web safe fonts pairs"
-msgstr ""
-
-#: ../class-fire-init.php:152
-msgid "Single fonts"
-msgstr ""
-
-#: ../class-fire-init.php:190
-msgid "Subscribe to my rss feed"
-msgstr "Iscriviti al feed RSS"
-
-#: ../class-fire-init.php:191
-msgid "RSS feed (default is the wordpress feed)"
-msgstr "Feed RSS (il feed di WordPress è il predefinito)"
-
-#: ../class-fire-init.php:195
-msgid "Follow me on Twitter"
-msgstr "Seguimi su Twitter"
-
-#: ../class-fire-init.php:196
-msgid "Twitter profile url"
-msgstr "Url profilo Twitter"
-
-#: ../class-fire-init.php:200
-msgid "Follow me on Facebook"
-msgstr "Seguimi su Facebook"
-
-#: ../class-fire-init.php:201
-msgid "Facebook profile url"
-msgstr "Url profilo Facebook"
-
-#: ../class-fire-init.php:205
-msgid "Follow me on Google+"
-msgstr "Seguimi su Google+"
-
-#: ../class-fire-init.php:206
-msgid "Google+ profile url"
-msgstr "Url profilo Google+"
-
-#: ../class-fire-init.php:210
-msgid "Follow me on Instagram"
-msgstr "Seguimi su Instagram"
-
-#: ../class-fire-init.php:211
-msgid "Instagram profile url"
-msgstr "Url profilo Instagram"
-
-#: ../class-fire-init.php:215
-msgid "Follow me on Tumblr"
-msgstr "Seguimi su Tumblr"
-
-#: ../class-fire-init.php:216
-msgid "Tumblr url"
-msgstr ""
-
-#: ../class-fire-init.php:220
-msgid "Follow me on Flickr"
-msgstr "Seguimi su Flickr"
-
-#: ../class-fire-init.php:221
-msgid "Flickr url"
-msgstr ""
-
-#: ../class-fire-init.php:225
-msgid "Follow me on WordPress"
-msgstr "Seguimi su WordPress"
-
-#: ../class-fire-init.php:226
-msgid "WordPress profile url"
-msgstr "Url profilo WordPress"
-
-#: ../class-fire-init.php:230
-msgid "Follow me on Youtube"
-msgstr "Seguimi su Youtube"
-
-#: ../class-fire-init.php:231
-msgid "Youtube profile url"
-msgstr "Url profilo Youtube"
-
-#: ../class-fire-init.php:235
-msgid "Pin me on Pinterest"
-msgstr ""
-
-#: ../class-fire-init.php:236
-msgid "Pinterest profile url"
-msgstr "Url profilo Pinterest"
-
-#: ../class-fire-init.php:240
-msgid "Follow me on Github"
-msgstr "Seguimi su Github"
-
-#: ../class-fire-init.php:241
-msgid "Github profile url"
-msgstr "Url profilo Github"
-
-#: ../class-fire-init.php:245
-msgid "Follow me on Dribbble"
-msgstr "Seguimi su Dribbble"
-
-#: ../class-fire-init.php:246
-msgid "Dribbble profile url"
-msgstr "Url profilo Dribbble"
-
-#: ../class-fire-init.php:250
-msgid "Follow me on LinkedIn"
-msgstr "Seguimi su LinkedIn"
-
-#: ../class-fire-init.php:251
-msgid "LinkedIn profile url"
-msgstr "Url profilo LinkedIn"
-
-#: ../class-fire-init.php:260
-msgid "Right Sidebar"
-msgstr "Barra laterale a destra"
-
-#: ../class-fire-init.php:261 ../class-fire-init.php:265
-msgid "Appears on posts, static pages, archives and search pages"
-msgstr ""
-"Appare negli articoli, le pagine statiche, gli archivi e i moduli di ricerca"
-
-#: ../class-fire-init.php:264
-msgid "Left Sidebar"
-msgstr "Barra laterale a sinistra"
-
-#: ../class-fire-init.php:272
-msgid "Footer Widget Area One"
-msgstr "Widget piè di pagina, area uno"
-
-#: ../class-fire-init.php:273 ../class-fire-init.php:277
-#: ../class-fire-init.php:281
-msgid "Just use it as you want !"
-msgstr "Da utilizzare come vuoi!"
-
-#: ../class-fire-init.php:276
-msgid "Footer Widget Area Two"
-msgstr "Widget piè di pagina, area due"
-
-#: ../class-fire-init.php:280
-msgid "Footer Widget Area Three"
-msgstr "Widget piè di pagina, area tre"
-
-#: ../class-fire-init.php:298
-msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
-msgstr "Mi scusi, per andare dove dobbiamo andare, per dove dobbiamo andare?"
-
-#: ../class-fire-init.php:299
-msgid "George Orwell"
-msgstr "Totò"
-
-#: ../class-fire-init.php:300
-msgid ""
-"Sorry, but the requested page is not found. You might try a search below."
-msgstr ""
-"Siamo spiacenti, non abbiamo trovato nessuna pagina corrispondente. Vuoi "
-"provare a cercarlo?"
-
-#: ../class-fire-init.php:305
-msgid ""
-"Success is the ability to go from one failure to another with no loss of "
-"enthusiasm..."
-msgstr "Questa è la civiltà: hai tutto quello che vuoi quando non ti serve."
-
-#: ../class-fire-init.php:306
-msgid "Sir Winston Churchill"
-msgstr "Totò"
-
-#: ../class-fire-init.php:307
-msgid ""
-"Sorry, but nothing matched your search criteria. Please try again with some "
-"different keywords."
-msgstr ""
-"Siamo spiacenti, non abbiamo trovato nessuna pagina che contiene le parole "
-"ricercate. Vuoi riprovare con altre parole?"
-
-#: ../class-fire-init.php:322
-msgid "Customizr is a clean responsive theme"
-msgstr "Customizr è un tema elegante e semplice"
-
-#: ../class-fire-init.php:327 ../class-fire-init.php:336
-msgid "Style your WordPress site live!"
-msgstr "Modifica tuo sito WordPress dal vivo!"
-
-#: ../class-fire-init.php:328
-msgid ""
-"Many layout and design options are available from the WordPress customizer "
-"screen : see your changes live !"
-msgstr ""
-"Numerose opzioni per il layout e look sono accessibili nello schermo di "
-"personalizzazione di Wordpress: vedi i tuoi cambiamenti dal vivo!"
-
-#: ../class-fire-init.php:329
-msgid "Just try it!"
-msgstr "Provalo!"
-
-#: ../class-fire-init.php:341 ../class-fire-init.php:350
-msgid "Create beautiful sliders"
-msgstr "Crea fantastici sliders"
-
-#: ../class-fire-init.php:342
-msgid ""
-"Customizr comes with a cool slider generator : add a slider to any post or "
-"page!"
-msgstr ""
-"Customizr include un generatore di slider molto pratico: aggiungi uno slider "
-"in qualsiasi articolo o pagina!"
-
-#: ../class-fire-init.php:343
-msgid "Discover the features"
-msgstr "Scopri le funzionalità"
-
-#: ../class-fire-init.php:455
-msgid "Main Menu"
-msgstr "Menu principale"
-
-#: ../class-fire-init.php:880
-msgid "Help"
-msgstr "Aiuto"
-
-#: ../class-fire-init.php:883
-msgid "Need help with Customizr? Click here!"
-msgstr "Hai bisogno di aiuto con Customizr? Clicca qui!"
-
-#: ../class-fire-utils.php:417
-#, php-format
-msgid "Page %s"
-msgstr "Pagina %s"
-
-#: ../class-fire-utils_settings_map.php:47
-msgid "Home featured page one"
-msgstr "Pagina in evidenza nella pagina iniziale - uno"
-
-#: ../class-fire-utils_settings_map.php:48
-msgid "Home featured page two"
-msgstr "Pagina in evidenza nella pagina iniziale - due"
-
-#: ../class-fire-utils_settings_map.php:49
-msgid "Home featured page three"
-msgstr "Pagina in evidenza nella pagina iniziale - tre"
-
-#: ../class-fire-utils_settings_map.php:52
-msgid "Featured text one (200 car. max)"
-msgstr "Testo della prima pagina in evidenza (200 car. max)"
-
-#: ../class-fire-utils_settings_map.php:53
-msgid "Featured text two (200 car. max)"
-msgstr "Testo della seconda pagina in evidenza (200 car. max)"
-
-#: ../class-fire-utils_settings_map.php:54
-msgid "Featured text three (200 car. max)"
-msgstr "Testo della terza pagina in evidenza (200 car. max)"
-
-#: ../class-fire-utils_settings_map.php:70
-#, php-format
-msgid "Custom featured page %1$s"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:86
-#, php-format
-msgid "Featured text %1$s (200 car. max)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:89
-msgid ""
-"You need to select a page first. Leave this field empty if you want to use "
-"the page excerpt."
-msgstr ""
-"Devi prima selezionare una pagina. Lascia vuoto questo campo se vuoi "
-"utilizzare un estratto dalla pagina stessa."
-
-#: ../class-fire-utils_settings_map.php:200
-msgid "&mdash; No slider &mdash;"
-msgstr "&mdash; Nessun slider &mdash;"
-
-#: ../class-fire-utils_settings_map.php:201
-msgid "&mdash; Demo Slider &mdash;"
-msgstr "&mdash; Slider demo &mdash;"
-
-#: ../class-fire-utils_settings_map.php:242
-#, fuzzy
-msgid "Global settings"
-msgstr "Réglages de la structure de page"
-
-#: ../class-fire-utils_settings_map.php:243
-msgid "Global settings for the Customizr theme :skin, socials, links..."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:248
-#, fuzzy
-msgid "Header"
-msgstr "le haut de page"
-
-#: ../class-fire-utils_settings_map.php:249
-msgid "Header settings for the Customizr theme."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:254
-msgid "Content : home, posts, ..."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:255
-msgid "Content settings for the Customizr theme."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:260
-#, fuzzy
-msgid "Footer"
-msgstr "le pied de page"
-
-#: ../class-fire-utils_settings_map.php:261
-msgid "Footer settings for the Customizr theme."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:266
-#, fuzzy
-msgid "Advanced options"
-msgstr "Impostazioni slider"
-
-#: ../class-fire-utils_settings_map.php:267
-msgid "Advanced settings for the Customizr theme."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:288
-#: ../class-fire-utils_settings_map.php:1009
-msgid "Skin"
-msgstr "Skin"
-
-#: ../class-fire-utils_settings_map.php:290
-#: ../class-fire-utils_settings_map.php:1011
-msgid "Select a skin for Customizr"
-msgstr "Seleziona un skin per Customizr"
-
-#: ../class-fire-utils_settings_map.php:294
-#: ../class-fire-utils_settings_map.php:1003
-msgid "Logo &amp; Favicon"
-msgstr "Logo &amp; Favicon"
-
-#: ../class-fire-utils_settings_map.php:296
-#: ../class-fire-utils_settings_map.php:1005
-msgid "Set up logo and favicon options"
-msgstr "Impostazioni logo e favicon"
-
-#: ../class-fire-utils_settings_map.php:300
-#: ../class-fire-utils_settings_map.php:1070
-msgid "Front Page"
-msgstr "Pagina iniziale"
-
-#: ../class-fire-utils_settings_map.php:302
-#: ../class-fire-utils_settings_map.php:1072
-msgid "Set up front page options"
-msgstr "Personalizza la pagina iniziale"
-
-#: ../class-fire-utils_settings_map.php:306
-#: ../class-fire-utils_settings_map.php:1077
-msgid "Pages &amp; Posts Layout"
-msgstr "Layout per pagine e articoli"
-
-#: ../class-fire-utils_settings_map.php:308
-#: ../class-fire-utils_settings_map.php:1079
-msgid "Set up layout options"
-msgstr "Impostazioni per il layout"
-
-#: ../class-fire-utils_settings_map.php:312
-#: ../class-fire-utils_settings_map.php:1122
-msgid "Comments"
-msgstr "Commenti"
-
-#: ../class-fire-utils_settings_map.php:314
-#: ../class-fire-utils_settings_map.php:1124
-msgid "Set up comments options"
-msgstr "Impostazioni commenti"
-
-#: ../class-fire-utils_settings_map.php:318
-#: ../class-fire-utils_settings_map.php:1021
-#: ../class-fire-utils_settings_map.php:2015
-msgid "Social links"
-msgstr "Social links"
-
-#: ../class-fire-utils_settings_map.php:320
-#: ../class-fire-utils_settings_map.php:1023
-msgid "Set up your social links"
-msgstr "Impostazioni social links"
-
-#: ../class-fire-utils_settings_map.php:324
-msgid "Images"
-msgstr "Immagini"
-
-#: ../class-fire-utils_settings_map.php:326
-#: ../class-fire-utils_settings_map.php:1041
-msgid "Various images settings"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:330
-msgid "Links"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:332
-#: ../class-fire-utils_settings_map.php:1029
-msgid "Various links settings"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:336
-#: ../class-fire-utils_settings_map.php:1134
-msgid "Custom CSS"
-msgstr "Custom CSS"
-
-#: ../class-fire-utils_settings_map.php:338
-#: ../class-fire-utils_settings_map.php:1136
-msgid "Add your own CSS"
-msgstr "Aggiungi il tuo CSS"
-
-#: ../class-fire-utils_settings_map.php:342
-#: ../class-fire-utils_settings_map.php:1045
-msgid "Responsive settings"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:344
-#: ../class-fire-utils_settings_map.php:1047
-msgid "Various settings for responsive display"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:373
-msgid "Manage menus"
-msgstr "Gestione menu"
-
-#: ../class-fire-utils_settings_map.php:380
-#, fuzzy
-msgid "Design and effects"
-msgstr "Progettato da"
-
-#: ../class-fire-utils_settings_map.php:381
-msgid "Select a submenu expansion option"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:385
-msgid "Expand submenus on click"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:386
-msgid "Expand submenus on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:402
-msgid "Choose a predefined skin"
-msgstr "Scegli un skin predefinito"
-
-#: ../class-fire-utils_settings_map.php:412
-msgid "Performance : use the minified CSS stylesheet"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:415
-msgid ""
-"Using the minified version of the skin stylesheet will speed up your webpage "
-"load time."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:421
-#: ../class-fire-utils_settings_map.php:1297
-msgid "Display top border"
-msgstr "Mostra il bordo in alto"
-
-#: ../class-fire-utils_settings_map.php:425
-#: ../class-fire-utils_settings_map.php:1301
-msgid "Uncheck this option to remove the colored top border."
-msgstr "Deselezionare questa opzione per rimuovere il bordo colorato in alto."
-
-#: ../class-fire-utils_settings_map.php:437
-#, fuzzy
-msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "Caricare logo (formati supportati: .jpg, .png, .gif)"
-
-#: ../class-fire-utils_settings_map.php:438
-msgid "LOGO"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:447
-msgid "Force logo dimensions to max-width:250px and max-height:100px"
-msgstr ""
-"Costringere le dimensioni del logo a: larghezza max 250px e altezza max 100px"
-
-#: ../class-fire-utils_settings_map.php:454
-#, fuzzy
-msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "Caricare logo (formati supportati: .jpg, .png, .gif)"
-
-#: ../class-fire-utils_settings_map.php:458
-msgid ""
-"Use this upload control to specify a different logo on sticky header mode."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:464
-msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
-msgstr "Caricare favicon (formati supportati: .ico, .png, .gif)"
-
-#: ../class-fire-utils_settings_map.php:465
-msgid "FAVICON"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:483
-msgid "Choose content and layout"
-msgstr "Scegli il contenuto e il layout"
-
-#: ../class-fire-utils_settings_map.php:491
-msgid "Front page displays"
-msgstr "La pagina iniziale mostra"
-
-#: ../class-fire-utils_settings_map.php:496
-msgid "Don't show any posts or page"
-msgstr "Non mostrare nessun articolo o pagina"
-
-#: ../class-fire-utils_settings_map.php:497
-msgid "Your latest posts"
-msgstr "Gli ultimi articoli"
-
-#: ../class-fire-utils_settings_map.php:498
-msgid "A static page"
-msgstr "Una pagina statica"
-
-#: ../class-fire-utils_settings_map.php:504
-msgid "Front page"
-msgstr "Pagina iniziale"
-
-#: ../class-fire-utils_settings_map.php:512
-msgid "Posts page"
-msgstr "Pagina articoli"
-
-#: ../class-fire-utils_settings_map.php:521
-msgid "Set up the front page layout"
-msgstr "Impostazioni per il layout della pagina iniziale"
-
-#: ../class-fire-utils_settings_map.php:532
-msgid "Slider options"
-msgstr "Impostazioni slider"
-
-#: ../class-fire-utils_settings_map.php:533
-msgid "Select front page slider"
-msgstr "Seleziona uno slider per la pagina iniziale"
-
-#: ../class-fire-utils_settings_map.php:545
-msgid "Full width slider"
-msgstr "Slider larghezza a tutta pagina"
-
-#: ../class-fire-utils_settings_map.php:556
-msgid "Delay between each slides"
-msgstr "Intervallo tra diapositive"
-
-#: ../class-fire-utils_settings_map.php:561
-msgid "in ms : 1000ms = 1s"
-msgstr "in ms : 1000ms = 1s"
-
-#: ../class-fire-utils_settings_map.php:569
-msgid "Featured pages options"
-msgstr "Impostazioni pagine in evidenza"
-
-#: ../class-fire-utils_settings_map.php:570
-msgid "Display home featured pages area"
-msgstr "Mostra le pagine in evidenza sulla pagina iniziale"
-
-#: ../class-fire-utils_settings_map.php:574
-msgid "Enable"
-msgstr "Abilita"
-
-#: ../class-fire-utils_settings_map.php:575
-msgid "Disable"
-msgstr "Disabilita"
-
-#: ../class-fire-utils_settings_map.php:584
-msgid "Show images"
-msgstr "Mostra le immagini"
-
-#: ../class-fire-utils_settings_map.php:587
-msgid ""
-"The images are set with the \"featured image\" of each pages (in the page "
-"edit screen). Uncheck the option above to disable the featured page images."
-msgstr ""
-"Le immagini sono impostate con la funzione \"immagine in evidenza\" nel "
-"basso dello schermo di Modifica Pagina. Deseleziona l'opzione qui sopra per "
-"disabilitare le immagini in evidenza."
-
-#: ../class-fire-utils_settings_map.php:593
-msgid "Read more &raquo;"
-msgstr "Scopri di più &raquo;"
-
-#: ../class-fire-utils_settings_map.php:595
-msgid "Button text"
-msgstr "Testo del pulsante"
-
-#: ../class-fire-utils_settings_map.php:616
-#: ../class-fire-utils_settings_map.php:1181
-msgid "Display Breadcrumb"
-msgstr "Mostra Breadcrumb"
-
-#: ../class-fire-utils_settings_map.php:626
-#: ../class-fire-utils_settings_map.php:1191
-msgid "Choose the global default layout"
-msgstr "Scegli il layout globale predefinito"
-
-#: ../class-fire-utils_settings_map.php:637
-#: ../class-fire-utils_settings_map.php:1203
-msgid "Force default layout everywhere"
-msgstr "Costringere il layout globale predefinito in tutto il sito"
-
-#: ../class-fire-utils_settings_map.php:640
-#: ../class-fire-utils_settings_map.php:1206
-msgid ""
-"This option will override the specific layouts on all posts/pages, including "
-"the front page."
-msgstr ""
-"Questa opzione sovrascriverà il layout che hai definito per ogni pagina/"
-"articolo, inclusa la pagina iniziale."
-
-#: ../class-fire-utils_settings_map.php:647
-#: ../class-fire-utils_settings_map.php:1212
-msgid "Choose the posts default layout"
-msgstr "Scegli il layout predefinito degli articoli"
-
-#: ../class-fire-utils_settings_map.php:659
-#: ../class-fire-utils_settings_map.php:1235
-msgid "Maximum number of posts per page"
-msgstr "Numero massimo di articoli per pagina"
-
-#: ../class-fire-utils_settings_map.php:670
-#: ../class-fire-utils_settings_map.php:1245
-msgid "Select the length of posts in lists (home, search, archives, ...)"
-msgstr ""
-"Seleziona la lunghezza degli articoli in liste (la pagina iniziale, i moduli "
-"di ricerca, gli archivi, ...)"
-
-#: ../class-fire-utils_settings_map.php:674
-#: ../class-fire-utils_settings_map.php:1249
-msgid "Display the excerpt"
-msgstr "Mostra l'estratto"
-
-#: ../class-fire-utils_settings_map.php:675
-#: ../class-fire-utils_settings_map.php:1250
-msgid "Display the full content"
-msgstr "Mostra tutto il contenuto"
-
-#: ../class-fire-utils_settings_map.php:683
-#: ../class-fire-utils_settings_map.php:1221
-msgid "Choose the pages default layout"
-msgstr "Scegli il layout predefinito delle pagine"
-
-#: ../class-fire-utils_settings_map.php:702
-#: ../class-fire-utils_settings_map.php:1953
-msgid "Enable comments on pages"
-msgstr "Abilita i commenti sulle pagine"
-
-#: ../class-fire-utils_settings_map.php:706
-msgid ""
-"This option will enable comments on pages. You can disable comments for a "
-"single page in the quick edit mode of the page list screen."
-msgstr ""
-"Questa opzione abilita i commenti sulle pagine. Puoi disabilitare i commenti "
-"per una pagina individuale utilizzando Modifica Rapida dalla lista delle "
-"pagine."
-
-#: ../class-fire-utils_settings_map.php:720
-#: ../class-fire-utils_settings_map.php:1979
-msgid "Social links in header"
-msgstr "Social links nella header"
-
-#: ../class-fire-utils_settings_map.php:729
-#: ../class-fire-utils_settings_map.php:1997
-msgid "Social links in left sidebar"
-msgstr "Social links nella barra laterale a sinistra"
-
-#: ../class-fire-utils_settings_map.php:738
-#: ../class-fire-utils_settings_map.php:2007
-msgid "Social links in right sidebar"
-msgstr "Social links nella barra laterale a destra"
-
-#: ../class-fire-utils_settings_map.php:746
-#: ../class-fire-utils_settings_map.php:1988
-msgid "Social links in footer"
-msgstr "Social links nel piè di pagina"
-
-#: ../class-fire-utils_settings_map.php:767
-msgid "Enable/disable lightbox effect on images"
-msgstr "Abilita/disabilita l'effetto lightbox per le immagini"
-
-#: ../class-fire-utils_settings_map.php:770
-msgid ""
-"If enabled, this option activate a popin window whith a zoom effect when an "
-"image is clicked. This will not apply to image gallery."
-msgstr ""
-"Se è abilitata, questa opzione attiva una finestra popin con un effetto zoom "
-"quando l'immagine è cliccata. Però non riguarda le gallerie."
-
-#: ../class-fire-utils_settings_map.php:776
-msgid "Autoscale images on zoom"
-msgstr "Ridimensionamento automatico per lo Zoom"
-
-#: ../class-fire-utils_settings_map.php:779
-msgid ""
-"If enabled, this option will force images to fit the screen on lightbox zoom."
-msgstr ""
-"Se è abilitata, questa opzione costringe il lightbox a ridimensionare le "
-"immagini nella finestra"
-
-#: ../class-fire-utils_settings_map.php:785
-msgid "Enable/disable retina support"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:789
-msgid ""
-"If enabled, your website will include support for high resolution devices."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:790
-msgid ""
-"It is strongly recommended to regenerate your media library images in high "
-"definition with this free plugin"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:791
-msgid "regenerate thumbnails"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:793
-msgid "Open the description page of the Regenerate thumbnails plugin"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:799
-msgid "Sliders : display on loading icon before rendering the slides"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:802
-msgid ""
-"When checked, this option displays a loading icon when the slides are being "
-"setup."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:815
-msgid "Enable/disable smooth scroll on click"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:818
-msgid ""
-"If enabled, this option activates a smooth page scroll when clicking on a "
-"link to an anchor of the same page."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:831
-msgid "Enable/disable blocks reordering on small devices"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:834
-msgid ""
-"On responsive mode, for smartphone viewport, the sidebars are moved after "
-"the main content block."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:840
-msgid "Enable/disable slider's slides centering on any devices"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:843
-msgid ""
-"This option centers your slider (carousel) pictures vertically and "
-"horizontally on any devices when displayed in full width mode"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:858
-#: ../class-fire-utils_settings_map.php:2027
-msgid "Add your custom css here and design live! (for advanced users)"
-msgstr ""
-"Aggiungi qui il tuo custom css e disegna dal vivo! (per utenti avanzati)"
-
-#: ../class-fire-utils_settings_map.php:862
-#: ../class-fire-utils_settings_map.php:2031
-msgid ""
-"Use this field to test small chunks of CSS code. For important CSS "
-"customizations, you'll want to modify the style.css file of a"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:863
-#: ../class-fire-utils_settings_map.php:2032
-msgid "child theme."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:864
-#: ../class-fire-utils_settings_map.php:2033
-msgid "How to create and use a child theme ?"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:998
-msgid "Site Title & Tagline"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1015
-msgid "Fonts"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1017
-#, fuzzy
-msgid "Set up the font global settings"
-msgstr "Personalizza la pagina iniziale"
-
-#: ../class-fire-utils_settings_map.php:1027
-msgid "Links style and effects"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1033
-msgid "Titles icons settings"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1035
-#, fuzzy
-msgid "Set up the titles icons options"
-msgstr "Impostazioni commenti"
-
-#: ../class-fire-utils_settings_map.php:1039
-#, fuzzy
-msgid "Image settings"
-msgstr "Réglages de la structure de page"
-
-#: ../class-fire-utils_settings_map.php:1051
-msgid "Authors"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1053
-#, fuzzy
-msgid "Post authors settings"
-msgstr "L'autore dell'articolo"
-
-#: ../class-fire-utils_settings_map.php:1057
-#: ../class-fire-utils_settings_map.php:1296
-#, fuzzy
-msgid "Header design and layout"
-msgstr "Progettato da"
-
-#: ../class-fire-utils_settings_map.php:1057
-#, fuzzy
-msgid "Design and layout"
-msgstr "Progettato da"
-
-#: ../class-fire-utils_settings_map.php:1062
-#, fuzzy
-msgid "Navigation"
-msgstr "Navigazione articoli"
-
-#: ../class-fire-utils_settings_map.php:1065
-#, php-format
-msgid "Your theme supports %s menu. Select which menu you would like to use."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1065
-msgid ""
-"You can edit your menu content on the Menus screen in the Appearance section."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1084
-msgid "Post lists : blog, archives, ..."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1086
-#, fuzzy
-msgid "Set up post lists options"
-msgstr "Impostazioni commenti"
-
-#: ../class-fire-utils_settings_map.php:1090
-msgid "Single posts"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1092
-#, fuzzy
-msgid "Set up single posts options"
-msgstr "Impostazioni per il layout"
-
-#: ../class-fire-utils_settings_map.php:1096
-#, fuzzy
-msgid "Breadcrumb"
-msgstr "Mostra Breadcrumb"
-
-#: ../class-fire-utils_settings_map.php:1098
-#, fuzzy
-msgid "Set up breadcrumb options"
-msgstr "Impostazioni per il layout"
-
-#: ../class-fire-utils_settings_map.php:1110
-msgid "Post metas (category, tags, custom taxonomies)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1112
-#, fuzzy
-msgid "Set up post metas options"
-msgstr "Impostazioni commenti"
-
-#: ../class-fire-utils_settings_map.php:1116
-msgid "Paragraphs"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1118
-#, fuzzy
-msgid "Set up paragraphs options"
-msgstr "Impostazioni commenti"
-
-#: ../class-fire-utils_settings_map.php:1128
-msgid "Footer global settings"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1130
-#, fuzzy
-msgid "Set up footer global options"
-msgstr "Personalizza la pagina iniziale"
-
-#: ../class-fire-utils_settings_map.php:1195
-msgid "Note : the home page layout has to be set in the home page section"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1234
-#, fuzzy
-msgid "Global Post Lists Settings"
-msgstr "Réglages de la structure de page"
-
-#: ../class-fire-utils_settings_map.php:1260
-#, fuzzy
-msgid "Display an author box after each single post content"
-msgstr "Mostra Breadcrumb"
-
-#: ../class-fire-utils_settings_map.php:1264
-msgid ""
-"Check this option to display an author info block after each single post "
-"content. Note : the Biographical info field must be filled out in the user "
-"profile."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1270
-msgid ""
-"Select a beautiful font pair (headings &amp; default fonts) or single font "
-"for your website."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1277
-msgid ""
-"This font picker allows you to preview and select among a handy selection of "
-"font pairs and single fonts. If you choose a pair, the first font will be "
-"applied to the site main headings : site name, site description, titles h1, "
-"h2, h3., while the second will be the default font of your website for any "
-"texts or paragraphs."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1282
-msgid "Set your website default font size in pixels."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1290
-msgid ""
-"This option sets the default font size applied to any text element of your "
-"website, when no font size is already applied."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1307
-#, fuzzy
-msgid "Display the tagline"
-msgstr "Mostra tutto il contenuto"
-
-#: ../class-fire-utils_settings_map.php:1316
-msgid "Display menu in a box"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1321
-msgid ""
-"If checked, this option wraps the header menu/tagline/social in a light grey "
-"box."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1326
-#, fuzzy
-msgid "Layout"
-msgstr "youtube"
-
-#: ../class-fire-utils_settings_map.php:1330
-msgid "Logo / title on the left"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1331
-msgid "Logo / title centered"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1332
-msgid "Logo / title on the right"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1340
-#, fuzzy
-msgid "Sticky header settings"
-msgstr "Réglages de la structure de page"
-
-#: ../class-fire-utils_settings_map.php:1341
-msgid "Sticky on scroll"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1346
-msgid ""
-"If checked, this option makes the header stick to the top of the page on "
-"scroll down."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1351
-msgid "Sticky header : display the tagline"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1360
-msgid "Sticky header : display the title / logo"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1369
-msgid "Sticky header : shrink title / logo"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1378
-msgid "Sticky header : display the menu"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1387
-msgid "Sticky header : semi-transparent on scroll"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1397
-msgid "Set the header z-index"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1405
-msgid "What is"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1406
-msgid "the z-index"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1414
-msgid "Menu position"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1418
-msgid "Menu on the left"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1419
-msgid "Menu on the right"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1427
-msgid "Reveal the sub-menus blocks with a fade effect"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1436
-msgid "Hover move effect for the sub menu items"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1445
-msgid ""
-"In responsive mode, limit the height of the dropdown menu block to the "
-"visible viewport"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1455
-msgid "Fade effect on link hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1465
-msgid "Display an icon next to external links"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1469
-#: ../class-fire-utils_settings_map.php:1480
-msgid ""
-"This will be applied to the links included in post or page content only."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1476
-msgid "Open external links in a new tab"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1487
-#, fuzzy
-msgid "Display the breadcrumb on home page"
-msgstr "Mostra Breadcrumb"
-
-#: ../class-fire-utils_settings_map.php:1495
-#, fuzzy
-msgid "Display the breadcrumb in pages"
-msgstr "Mostra Breadcrumb"
-
-#: ../class-fire-utils_settings_map.php:1504
-#, fuzzy
-msgid "Display the breadcrumb in single posts"
-msgstr "Mostra Breadcrumb"
-
-#: ../class-fire-utils_settings_map.php:1513
-msgid ""
-"Display the breadcrumb in posts lists : blog page, archives, search "
-"results..."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1524
-msgid "Display icons next to titles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1528
-msgid ""
-"When this option is checked, a contextual icon is displayed next to the "
-"titles of pages, posts, archives, and WP built-in widgets."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1534
-msgid "Display a page icon next to the page title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1543
-msgid "Display a post icon next to the single post title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1552
-msgid "Display an icon next to the archive title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1555
-msgid ""
-"When this option is checked, an archive type icon is displayed in the "
-"heading of every types of archives, on the left of the title. An archive "
-"page can be : category, tag, author, date archive, custom taxonomies, search "
-"results."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1562
-msgid "Display an icon next to each post title in an archive page"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1565
-msgid ""
-"When this option is checked, a post type icon is displayed on the left of "
-"each post titles in an archive page. An archive page can be : category, tag, "
-"author, date archive, custom taxonomies, search results."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1572
-msgid "WP sidebar widgets : display icons next to titles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1581
-msgid "WP footer widgets : display icons next to titles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1593
-#, fuzzy
-msgid "Display posts metas"
-msgstr "Mostra l'estratto"
-
-#: ../class-fire-utils_settings_map.php:1596
-msgid ""
-"When this option is checked, the post metas (like taxonomies, date and "
-"author) are displayed below the post titles."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1603
-#, fuzzy
-msgid "Select the contexts"
-msgstr "Texte du bouton"
-
-#: ../class-fire-utils_settings_map.php:1604
-msgid "Display posts metas on home"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1613
-msgid "Display posts metas for single posts"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1622
-msgid "Display posts metas in post lists (archives, blog page)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1632
-msgid "Select the metas to display"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1633
-msgid "Display hierarchical taxonomies (like categories)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1642
-msgid "Display non-hierarchical taxonomies (like tags)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1651
-#, fuzzy
-msgid "Display the publication date"
-msgstr "Mostra tutto il contenuto"
-
-#: ../class-fire-utils_settings_map.php:1659
-#, fuzzy
-msgid "Display the author"
-msgstr "Mostra l'estratto"
-
-#: ../class-fire-utils_settings_map.php:1667
-#, fuzzy
-msgid "Display the update date"
-msgstr "Mostra tutto il contenuto"
-
-#: ../class-fire-utils_settings_map.php:1671
-msgid ""
-"If this option is checked, additional date informations about the the last "
-"post update can be displayed (nothing will show up if the post has never "
-"been updated)."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1677
-msgid "Select the last update format"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1681
-msgid "Nb of days since last update"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1682
-msgid "Date of the last update"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1690
-msgid "Recent update notice after post titles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1691
-msgid "Display a recent update notice"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1695
-msgid ""
-"If this option is checked, a customizable recent update notice is displayed "
-"next to the post title."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1701
-msgid ""
-"Display the notice if the last update is less (strictly) than n days old"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1707
-msgid ""
-"Set a maximum interval (in days) during which the last update notice will be "
-"displayed."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1710
-msgid "Recently updated !"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1712
-msgid "Update notice text"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1721
-msgid "Update notice style"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1725
-msgid "Default (grey)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1726
-msgid "Success (green)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1727
-msgid "Alert (orange)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1728
-msgid "Important (red)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1729
-msgid "Info (blue)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1740
-msgid "Set the excerpt length (in number of words) "
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1750
-#, fuzzy
-msgid "Thumbnails options"
-msgstr "Options du thème"
-
-#: ../class-fire-utils_settings_map.php:1751
-#, fuzzy
-msgid "Display the post thumbnails"
-msgstr "Mostra l'estratto"
-
-#: ../class-fire-utils_settings_map.php:1755
-msgid ""
-"When this option is checked, the post thumbnails are displayed in all post "
-"lists : blog, archives, author page, search pages, ..."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1760
-msgid "If no featured image is set, use the last image attached to this post."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1768
-msgid "Thumbnails shape"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1772
-msgid "Rounded, expand on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1773
-msgid "Rounded, no expansion"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1774
-msgid "Squared, expand on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1775
-msgid "Squared, no expansion"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1776
-msgid "Rectangular with no effect"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1777
-msgid "Rectangular with blur effect on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1778
-msgid "Rectangular with unblur effect on hover"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1786
-#: ../class-fire-utils_settings_map.php:1836
-msgid "Set the thumbnail's max height in pixels"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1797
-msgid "Thumbnails position"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1801
-msgid "Top"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1802
-msgid "Right"
-msgstr "Droite"
-
-#: ../class-fire-utils_settings_map.php:1803
-msgid "Bottom"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1804
-msgid "Left"
-msgstr "Gauche"
-
-#: ../class-fire-utils_settings_map.php:1812
-msgid "Alternate thumbnail/content"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1821
-#, fuzzy
-msgid "Post thumbnail position"
-msgstr "Navigazione articoli"
-
-#: ../class-fire-utils_settings_map.php:1825
-#, fuzzy
-msgid "Don't display"
-msgstr "La pagina iniziale mostra"
-
-#: ../class-fire-utils_settings_map.php:1826
-#, fuzzy
-msgid "Before the title in full width"
-msgstr "Slider larghezza: a tutta pagina"
-
-#: ../class-fire-utils_settings_map.php:1827
-msgid "Before the title boxed"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1828
-#, fuzzy
-msgid "After the title"
-msgstr "Ajuster la taille du titre"
-
-#: ../class-fire-utils_settings_map.php:1848
-msgid "Drop caps"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1849
-msgid "Enable drop caps"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1851
-msgid "Apply a drop cap to the first paragraph of your post / page content."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1860
-msgid ""
-"Apply a drop cap when the paragraph includes at least the following number "
-"of words :"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1861
-msgid "(number of words)"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1871
-msgid "Drop cap style"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1875
-#, fuzzy
-msgid "Skin color with shadow"
-msgstr "Colore del icona del tooltip"
-
-#: ../class-fire-utils_settings_map.php:1876
-msgid "Simple black"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1882
-msgid "Enable drop caps in posts"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1884
-msgid "Apply a drop cap to the first paragraph of your single posts content"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1891
-#, fuzzy
-msgid "Enable drop caps in pages"
-msgstr "Abilita i commenti sulle pagine"
-
-#: ../class-fire-utils_settings_map.php:1893
-msgid "Apply a drop cap to the first paragraph of your pages"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1903
-#, fuzzy
-msgid "Comments bubbles"
-msgstr "Commenti"
-
-#: ../class-fire-utils_settings_map.php:1905
-msgid "Display the number of comments in a bubble next to the post title"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1914
-#, fuzzy
-msgid "Comments bubble shape"
-msgstr "I commenti sono chiusi."
-
-#: ../class-fire-utils_settings_map.php:1918
-msgid "Small bubbles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1919
-msgid "Large bubbles"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1927
-#: ../class-fire-utils_settings_map.php:1940
-#, fuzzy
-msgid "Comments bubble color"
-msgstr "I commenti sono chiusi."
-
-#: ../class-fire-utils_settings_map.php:1931
-#, fuzzy
-msgid "Skin color"
-msgstr "Colore del icona del tooltip"
-
-#: ../class-fire-utils_settings_map.php:1932
-#, fuzzy
-msgid "Custom"
-msgstr "Custom CSS"
-
-#: ../class-fire-utils_settings_map.php:1952
-#, fuzzy
-msgid "Other comments settings"
-msgstr "Impostazioni commenti"
-
-#: ../class-fire-utils_settings_map.php:1958
-#, fuzzy
-msgid ""
-"If checked, this option will enable comments on pages. You can disable "
-"comments for a single page in the quick edit mode of the page list screen."
-msgstr ""
-"Questa opzione abilita i commenti sulle pagine. Puoi disabilitare i commenti "
-"per una pagina individuale utilizzando Modifica Rapida dalla lista delle "
-"pagine."
-
-#: ../class-fire-utils_settings_map.php:1959
-msgid "Change other comments settings in the"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1961
-msgid "discussion settings page."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:1969
-msgid "Display a back to top arrow on scroll"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:2016
-#, fuzzy
-msgid "Social link title in sidebars"
-msgstr "Social links nella barra laterale a sinistra"
-
-#: ../class-fire-utils_settings_map.php:2022
-msgid "Will be hidden if empty"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:2042
-msgid "Set slider's height in pixels"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:2052
-msgid "Apply this height to all sliders"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:2060
-msgid "Replace the default image slider's height"
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:2066
-msgid ""
-"If this option is checked, your images will be resized with your custom "
-"height on upload. This is better for your overall loading performance."
-msgstr ""
-
-#: ../class-fire-utils_settings_map.php:2067
-msgid "You might want to regenerate your thumbnails."
-msgstr ""
-
 #: ../admin/class-admin-customize.php:364
 msgid "Hi! This is"
-msgstr ""
+msgstr "Ciao! Sono"
 
 #: ../admin/class-admin-customize.php:365
-#, fuzzy
 msgid ", developer of the Customizr theme"
-msgstr "Hai bisogno di aiuto con Customizr?"
+msgstr ", lo sviluppatore del tema Customizr"
 
 #: ../admin/class-admin-customize.php:368
-#, fuzzy
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
 "think it helped you in any way to build a better web presence, please "
 "support it's continued development with a donation of $20, $50, ..."
 msgstr ""
 "<strong>Noi abbiamo fatto di tutto per darti un tema perfetto, gratis.</"
-"strong><br/> Aiutaci a continuare lo sviluppo con una donazione di €20, €50, "
-"o €100."
+"strong><br/> Aiutaci a continuare lo sviluppo con una donazione di €20, "
+"€50, ..."
 
 #: ../admin/class-admin-customize.php:372
-#, fuzzy
 msgid "Make a donation for Customizr"
-msgstr "Seleziona un skin per Customizr"
+msgstr "Fai una donazione per Customizr"
 
 #: ../admin/class-admin-customize.php:375
 msgid ""
@@ -1672,35 +46,43 @@ msgid ""
 "this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> "
 "Live long and prosper with Customizr!</strong>"
 msgstr ""
+"Una volta cliccato su \"Nascondi per sempre\", questo blocco non verrà più "
+"mostrato.<br/>Sia che tu usi Customizr per il tuo sito personale o per "
+"motivi lavorativi, ogni tipo di sponsorizzazione sarà apprezzato per "
+"sostenere questo tema gratuito.<br/><strong>Sei già un donatore? Grazie "
+"amico, tu spacchi!<br/><br/>Lunga vita e prosperità con Customizr!<strong>"
 
 #: ../admin/class-admin-customize.php:376
 msgid "Hide forever"
-msgstr ""
+msgstr "Nascondi per sempre"
 
 #: ../admin/class-admin-customize.php:377
 msgid "Let me think twice"
-msgstr ""
+msgstr "Fammici pensare un po' su.."
 
 #: ../admin/class-admin-customize.php:386
 msgid "Need more customizations options and premium support ?"
 msgstr ""
+"Senti il bisogno di più opzioni di personalizzazione e di assistenza premium?"
 
 #: ../admin/class-admin-customize.php:388
 #: ../admin/class-admin-customize.php:400
 #: ../admin/class-admin-customize.php:412
-#, fuzzy
 msgid "Discover Customizr Pro"
-msgstr "Scopri Customizr: video veloce di introduzione"
+msgstr "Scopri Customizr Pro"
 
 #: ../admin/class-admin-customize.php:398
 msgid ""
 "Need more control on your fonts ? Style any text in live preview ( size, "
 "color, font family, effect, ...) with the Customizr Pro theme."
 msgstr ""
+"Senti il bisogno di avere un maggior controllo sui tuoi fonts? Applica i "
+"tuoi stili nell'anteprima live ( dimensione, colore, famiglia dei font, "
+"effetti, ... ) con il tema Customizr Pro."
 
 #: ../admin/class-admin-customize.php:410
 msgid "Add unlimited featured pages with Customizr Pro"
-msgstr ""
+msgstr "Aggiungi un numero illimitato di pagine in evidenza con Customizr Pro"
 
 #: ../admin/class-admin-meta_boxes.php:87
 msgid "Layout Options"
@@ -1936,13 +318,12 @@ msgid "Create a slider"
 msgstr "Creare uno slider"
 
 #: ../admin/class-controls.php:284
-#, fuzzy
 msgid "Upload"
-msgstr "Caricamento logo"
+msgstr "Carica"
 
 #: ../admin/class-controls.php:285
 msgid "Remove"
-msgstr ""
+msgstr "Elimina"
 
 #: ../admin/class-fire-admin_init.php:84 ../admin/class-fire-admin_init.php:85
 msgid "Upgrade WP"
@@ -2022,9 +403,9 @@ msgid ""
 "href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
 msgstr ""
 "Congratulazioni, hai installato l'ultima versione di Customizr! Customizr "
-"%1$s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog\">"
-"(vedi changelog)</a> per aiutarti a creare un sito straordinario! Guarda il "
-"<a href=\"%2$s\" target=\"_blank\">video d'introduzione</a> e trova "
+"%1$s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog"
+"\">(vedi changelog)</a> per aiutarti a creare un sito straordinario! Guarda "
+"il <a href=\"%2$s\" target=\"_blank\">video d'introduzione</a> e trova "
 "ispirazione nella <a href=\"#showcase\">vetrina di Customizr</a>.<br/"
 ">Divertiti! "
 
@@ -2076,14 +457,14 @@ msgstr "Seguici"
 #: ../admin/class-fire-admin_init.php:236
 #: ../admin/class-fire-admin_page.php:160
 msgid "Customizr's extensions"
-msgstr ""
+msgstr "Estensioni di Customizr"
 
 #: ../admin/class-fire-admin_init.php:239
 #: ../admin/class-fire-admin_init.php:248
 #: ../admin/class-fire-admin_page.php:163
 #: ../admin/class-fire-admin_page.php:172
 msgid "Visit the extension's page"
-msgstr ""
+msgstr "Vai alla pagina delle estensioni"
 
 #: ../admin/class-fire-admin_init.php:240
 #: ../admin/class-fire-admin_page.php:164
@@ -2167,13 +548,12 @@ msgid "Go to Dashboard"
 msgstr "Vai alla bacheca"
 
 #: ../admin/class-fire-admin_page.php:98
-#, fuzzy
 msgid "Get support in the forum"
-msgstr "Dialoga nel forum degli utenti"
+msgstr "Ricevi assistenza nel forum utenti"
 
 #: ../admin/class-fire-admin_page.php:273
 msgid "System Informations"
-msgstr ""
+msgstr "Informazioni del Sistema"
 
 #: ../admin/class-fire-admin_page.php:274
 msgid "Please include the following informations when posting support requests"
@@ -2184,6 +564,1613 @@ msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
 msgstr ""
+
+#: ../class-fire-init.php:49 ../class-fire-init.php:50
+msgid "Right sidebar"
+msgstr "Barra laterale a destra"
+
+#: ../class-fire-init.php:55 ../class-fire-init.php:56
+msgid "Left sidebar"
+msgstr "Barra laterale a sinistra"
+
+#: ../class-fire-init.php:61 ../class-fire-init.php:62
+msgid "2 sidebars : Right and Left"
+msgstr "2 barre laterali: a destra e a sinistra"
+
+#: ../class-fire-init.php:67 ../class-fire-init.php:68
+msgid "No sidebars : full width layout"
+msgstr "Nessuna barra laterale: Larghezza a tutta pagina"
+
+#: ../class-fire-init.php:79
+msgid "Blue"
+msgstr "Azzurro"
+
+#: ../class-fire-init.php:80
+msgid "Black"
+msgstr "Nero"
+
+#: ../class-fire-init.php:81
+msgid "Flat black"
+msgstr ""
+
+#: ../class-fire-init.php:82
+msgid "Grey"
+msgstr "Grigio"
+
+#: ../class-fire-init.php:83
+msgid "Ligth grey"
+msgstr ""
+
+#: ../class-fire-init.php:84
+msgid "Flat purple"
+msgstr ""
+
+#: ../class-fire-init.php:85
+msgid "Purple"
+msgstr "Viola"
+
+#: ../class-fire-init.php:86
+msgid "Flat red"
+msgstr ""
+
+#: ../class-fire-init.php:87
+msgid "Red"
+msgstr "Rosso"
+
+#: ../class-fire-init.php:88
+msgid "Orange"
+msgstr "Arancione"
+
+#: ../class-fire-init.php:89
+msgid "Flat orange"
+msgstr ""
+
+#: ../class-fire-init.php:90
+msgid "Yellow"
+msgstr "Giallo"
+
+#: ../class-fire-init.php:91
+msgid "Flat yellow"
+msgstr ""
+
+#: ../class-fire-init.php:92
+msgid "Green"
+msgstr "Verde"
+
+#: ../class-fire-init.php:93
+msgid "Light green"
+msgstr ""
+
+#: ../class-fire-init.php:94
+msgid "Green blue"
+msgstr "Verde/blu"
+
+#: ../class-fire-init.php:95
+msgid "Light blue "
+msgstr ""
+
+#: ../class-fire-init.php:123
+msgid "Google fonts pairs"
+msgstr ""
+
+#: ../class-fire-init.php:143
+msgid "Web safe fonts pairs"
+msgstr ""
+
+#: ../class-fire-init.php:152
+msgid "Single fonts"
+msgstr "Font singoli"
+
+#: ../class-fire-init.php:190
+msgid "Subscribe to my rss feed"
+msgstr "Iscriviti al feed RSS"
+
+#: ../class-fire-init.php:191
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "Feed RSS (il feed di WordPress è il predefinito)"
+
+#: ../class-fire-init.php:195
+msgid "Follow me on Twitter"
+msgstr "Seguimi su Twitter"
+
+#: ../class-fire-init.php:196
+msgid "Twitter profile url"
+msgstr "Url profilo Twitter"
+
+#: ../class-fire-init.php:200
+msgid "Follow me on Facebook"
+msgstr "Seguimi su Facebook"
+
+#: ../class-fire-init.php:201
+msgid "Facebook profile url"
+msgstr "Url profilo Facebook"
+
+#: ../class-fire-init.php:205
+msgid "Follow me on Google+"
+msgstr "Seguimi su Google+"
+
+#: ../class-fire-init.php:206
+msgid "Google+ profile url"
+msgstr "Url profilo Google+"
+
+#: ../class-fire-init.php:210
+msgid "Follow me on Instagram"
+msgstr "Seguimi su Instagram"
+
+#: ../class-fire-init.php:211
+msgid "Instagram profile url"
+msgstr "Url profilo Instagram"
+
+#: ../class-fire-init.php:215
+msgid "Follow me on Tumblr"
+msgstr "Seguimi su Tumblr"
+
+#: ../class-fire-init.php:216
+msgid "Tumblr url"
+msgstr ""
+
+#: ../class-fire-init.php:220
+msgid "Follow me on Flickr"
+msgstr "Seguimi su Flickr"
+
+#: ../class-fire-init.php:221
+msgid "Flickr url"
+msgstr ""
+
+#: ../class-fire-init.php:225
+msgid "Follow me on WordPress"
+msgstr "Seguimi su WordPress"
+
+#: ../class-fire-init.php:226
+msgid "WordPress profile url"
+msgstr "Url profilo WordPress"
+
+#: ../class-fire-init.php:230
+msgid "Follow me on Youtube"
+msgstr "Seguimi su Youtube"
+
+#: ../class-fire-init.php:231
+msgid "Youtube profile url"
+msgstr "Url profilo Youtube"
+
+#: ../class-fire-init.php:235
+msgid "Pin me on Pinterest"
+msgstr ""
+
+#: ../class-fire-init.php:236
+msgid "Pinterest profile url"
+msgstr "Url profilo Pinterest"
+
+#: ../class-fire-init.php:240
+msgid "Follow me on Github"
+msgstr "Seguimi su Github"
+
+#: ../class-fire-init.php:241
+msgid "Github profile url"
+msgstr "Url profilo Github"
+
+#: ../class-fire-init.php:245
+msgid "Follow me on Dribbble"
+msgstr "Seguimi su Dribbble"
+
+#: ../class-fire-init.php:246
+msgid "Dribbble profile url"
+msgstr "Url profilo Dribbble"
+
+#: ../class-fire-init.php:250
+msgid "Follow me on LinkedIn"
+msgstr "Seguimi su LinkedIn"
+
+#: ../class-fire-init.php:251
+msgid "LinkedIn profile url"
+msgstr "Url profilo LinkedIn"
+
+#: ../class-fire-init.php:260
+msgid "Right Sidebar"
+msgstr "Barra laterale a destra"
+
+#: ../class-fire-init.php:261 ../class-fire-init.php:265
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr ""
+"Appare negli articoli, le pagine statiche, gli archivi e i moduli di ricerca"
+
+#: ../class-fire-init.php:264
+msgid "Left Sidebar"
+msgstr "Barra laterale a sinistra"
+
+#: ../class-fire-init.php:272
+msgid "Footer Widget Area One"
+msgstr "Widget piè di pagina, area uno"
+
+#: ../class-fire-init.php:273 ../class-fire-init.php:277
+#: ../class-fire-init.php:281
+msgid "Just use it as you want !"
+msgstr "Da utilizzare come vuoi!"
+
+#: ../class-fire-init.php:276
+msgid "Footer Widget Area Two"
+msgstr "Widget piè di pagina, area due"
+
+#: ../class-fire-init.php:280
+msgid "Footer Widget Area Three"
+msgstr "Widget piè di pagina, area tre"
+
+#: ../class-fire-init.php:298
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Mi scusi, per andare dove dobbiamo andare, per dove dobbiamo andare?"
+
+#: ../class-fire-init.php:299
+msgid "George Orwell"
+msgstr "Totò"
+
+#: ../class-fire-init.php:300
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"Siamo spiacenti, non abbiamo trovato nessuna pagina corrispondente. Vuoi "
+"provare a cercarlo?"
+
+#: ../class-fire-init.php:305
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr "Questa è la civiltà: hai tutto quello che vuoi quando non ti serve."
+
+#: ../class-fire-init.php:306
+msgid "Sir Winston Churchill"
+msgstr "Totò"
+
+#: ../class-fire-init.php:307
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Siamo spiacenti, non abbiamo trovato nessuna pagina che contiene le parole "
+"ricercate. Vuoi riprovare con altre parole?"
+
+#: ../class-fire-init.php:322
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr è un tema elegante e semplice"
+
+#: ../class-fire-init.php:327 ../class-fire-init.php:336
+msgid "Style your WordPress site live!"
+msgstr "Modifica tuo sito WordPress dal vivo!"
+
+#: ../class-fire-init.php:328
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"Numerose opzioni per il layout e look sono accessibili nello schermo di "
+"personalizzazione di Wordpress: vedi i tuoi cambiamenti dal vivo!"
+
+#: ../class-fire-init.php:329
+msgid "Just try it!"
+msgstr "Provalo!"
+
+#: ../class-fire-init.php:341 ../class-fire-init.php:350
+msgid "Create beautiful sliders"
+msgstr "Crea fantastici sliders"
+
+#: ../class-fire-init.php:342
+msgid ""
+"Customizr comes with a cool slider generator : add a slider to any post or "
+"page!"
+msgstr ""
+"Customizr include un generatore di slider molto pratico: aggiungi uno slider "
+"in qualsiasi articolo o pagina!"
+
+#: ../class-fire-init.php:343
+msgid "Discover the features"
+msgstr "Scopri le funzionalità"
+
+#: ../class-fire-init.php:453
+msgid "Main Menu"
+msgstr "Menu principale"
+
+#: ../class-fire-init.php:854
+msgid "Help"
+msgstr "Aiuto"
+
+#: ../class-fire-init.php:857
+msgid "Need help with Customizr? Click here!"
+msgstr "Hai bisogno di aiuto con Customizr? Clicca qui!"
+
+#: ../class-fire-utils.php:473
+#, php-format
+msgid "Page %s"
+msgstr "Pagina %s"
+
+#: ../class-fire-utils_settings_map.php:47
+msgid "Home featured page one"
+msgstr "Pagina in evidenza nella pagina iniziale - uno"
+
+#: ../class-fire-utils_settings_map.php:48
+msgid "Home featured page two"
+msgstr "Pagina in evidenza nella pagina iniziale - due"
+
+#: ../class-fire-utils_settings_map.php:49
+msgid "Home featured page three"
+msgstr "Pagina in evidenza nella pagina iniziale - tre"
+
+#: ../class-fire-utils_settings_map.php:52
+msgid "Featured text one (200 car. max)"
+msgstr "Testo della prima pagina in evidenza (200 car. max)"
+
+#: ../class-fire-utils_settings_map.php:53
+msgid "Featured text two (200 car. max)"
+msgstr "Testo della seconda pagina in evidenza (200 car. max)"
+
+#: ../class-fire-utils_settings_map.php:54
+msgid "Featured text three (200 car. max)"
+msgstr "Testo della terza pagina in evidenza (200 car. max)"
+
+#: ../class-fire-utils_settings_map.php:70
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:86
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:89
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr ""
+"Devi prima selezionare una pagina. Lascia vuoto questo campo se vuoi "
+"utilizzare un estratto dalla pagina stessa."
+
+#: ../class-fire-utils_settings_map.php:200
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Nessun slider &mdash;"
+
+#: ../class-fire-utils_settings_map.php:201
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Slider demo &mdash;"
+
+#: ../class-fire-utils_settings_map.php:242
+msgid "Global settings"
+msgstr "Impostazioni globali"
+
+#: ../class-fire-utils_settings_map.php:243
+msgid "Global settings for the Customizr theme :skin, socials, links..."
+msgstr "Impostazioni globali per il tema Customizr: skin, socials, link..."
+
+#: ../class-fire-utils_settings_map.php:248
+msgid "Header"
+msgstr "Testata"
+
+#: ../class-fire-utils_settings_map.php:249
+msgid "Header settings for the Customizr theme."
+msgstr "Impostazioni Testata per il tema Customizr"
+
+#: ../class-fire-utils_settings_map.php:254
+msgid "Content : home, posts, ..."
+msgstr "Contenuto: pagina iniziale, articoli, ..."
+
+#: ../class-fire-utils_settings_map.php:255
+msgid "Content settings for the Customizr theme."
+msgstr "Impostazioni del Contenuto per il tema Customizr."
+
+#: ../class-fire-utils_settings_map.php:260
+msgid "Footer"
+msgstr "Piè di pagina"
+
+#: ../class-fire-utils_settings_map.php:261
+msgid "Footer settings for the Customizr theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:266
+msgid "Advanced options"
+msgstr "Opzioni avanzate"
+
+#: ../class-fire-utils_settings_map.php:267
+msgid "Advanced settings for the Customizr theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:288
+#: ../class-fire-utils_settings_map.php:1010
+msgid "Skin"
+msgstr "Skin"
+
+#: ../class-fire-utils_settings_map.php:290
+#: ../class-fire-utils_settings_map.php:1012
+msgid "Select a skin for Customizr"
+msgstr "Seleziona un skin per Customizr"
+
+#: ../class-fire-utils_settings_map.php:294
+#: ../class-fire-utils_settings_map.php:1004
+msgid "Logo &amp; Favicon"
+msgstr "Logo &amp; Favicon"
+
+#: ../class-fire-utils_settings_map.php:296
+#: ../class-fire-utils_settings_map.php:1006
+msgid "Set up logo and favicon options"
+msgstr "Impostazioni logo e favicon"
+
+#: ../class-fire-utils_settings_map.php:300
+#: ../class-fire-utils_settings_map.php:1071
+msgid "Front Page"
+msgstr "Pagina iniziale"
+
+#: ../class-fire-utils_settings_map.php:302
+#: ../class-fire-utils_settings_map.php:1073
+msgid "Set up front page options"
+msgstr "Personalizza la pagina iniziale"
+
+#: ../class-fire-utils_settings_map.php:306
+#: ../class-fire-utils_settings_map.php:1078
+msgid "Pages &amp; Posts Layout"
+msgstr "Layout per pagine e articoli"
+
+#: ../class-fire-utils_settings_map.php:308
+#: ../class-fire-utils_settings_map.php:1080
+msgid "Set up layout options"
+msgstr "Impostazioni per il layout"
+
+#: ../class-fire-utils_settings_map.php:312
+#: ../class-fire-utils_settings_map.php:1123
+msgid "Comments"
+msgstr "Commenti"
+
+#: ../class-fire-utils_settings_map.php:314
+#: ../class-fire-utils_settings_map.php:1125
+msgid "Set up comments options"
+msgstr "Impostazioni commenti"
+
+#: ../class-fire-utils_settings_map.php:318
+#: ../class-fire-utils_settings_map.php:1022
+#: ../class-fire-utils_settings_map.php:2023
+msgid "Social links"
+msgstr "Social links"
+
+#: ../class-fire-utils_settings_map.php:320
+#: ../class-fire-utils_settings_map.php:1024
+msgid "Set up your social links"
+msgstr "Impostazioni social links"
+
+#: ../class-fire-utils_settings_map.php:324
+msgid "Images"
+msgstr "Immagini"
+
+#: ../class-fire-utils_settings_map.php:326
+#: ../class-fire-utils_settings_map.php:1042
+msgid "Various images settings"
+msgstr "Varie impostazioni per le immagini"
+
+#: ../class-fire-utils_settings_map.php:330
+msgid "Links"
+msgstr "Collegamenti"
+
+#: ../class-fire-utils_settings_map.php:332
+#: ../class-fire-utils_settings_map.php:1030
+msgid "Various links settings"
+msgstr "Varie impostazioni per i collegamenti"
+
+#: ../class-fire-utils_settings_map.php:336
+#: ../class-fire-utils_settings_map.php:1135
+msgid "Custom CSS"
+msgstr "Custom CSS"
+
+#: ../class-fire-utils_settings_map.php:338
+#: ../class-fire-utils_settings_map.php:1137
+msgid "Add your own CSS"
+msgstr "Aggiungi il tuo CSS"
+
+#: ../class-fire-utils_settings_map.php:342
+#: ../class-fire-utils_settings_map.php:1046
+msgid "Responsive settings"
+msgstr "Impostazioni Responsive"
+
+#: ../class-fire-utils_settings_map.php:344
+#: ../class-fire-utils_settings_map.php:1048
+msgid "Various settings for responsive display"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:373
+msgid "Manage menus"
+msgstr "Gestione menu"
+
+#: ../class-fire-utils_settings_map.php:380
+msgid "Design and effects"
+msgstr "Design ed effetti"
+
+#: ../class-fire-utils_settings_map.php:381
+msgid "Select a submenu expansion option"
+msgstr "Seleziona l'opzione per l'espansione dei sottomenù"
+
+#: ../class-fire-utils_settings_map.php:385
+msgid "Expand submenus on click"
+msgstr "Espandi sottomenù al click del mouse"
+
+#: ../class-fire-utils_settings_map.php:386
+msgid "Expand submenus on hover"
+msgstr "Espandi sottomenù al passaggio del mouse"
+
+#: ../class-fire-utils_settings_map.php:402
+msgid "Choose a predefined skin"
+msgstr "Scegli un skin predefinito"
+
+#: ../class-fire-utils_settings_map.php:412
+#: ../class-fire-utils_settings_map.php:2051
+msgid "Performance : use the minified CSS stylesheet"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:415
+#: ../class-fire-utils_settings_map.php:2054
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:421
+#: ../class-fire-utils_settings_map.php:1305
+msgid "Display top border"
+msgstr "Mostra il bordo in alto"
+
+#: ../class-fire-utils_settings_map.php:425
+#: ../class-fire-utils_settings_map.php:1309
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Deselezionare questa opzione per rimuovere il bordo colorato in alto."
+
+#: ../class-fire-utils_settings_map.php:437
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Carica logo (formati supportati: .jpg, .png, .gif)"
+
+#: ../class-fire-utils_settings_map.php:438
+msgid "LOGO"
+msgstr "LOGO"
+
+#: ../class-fire-utils_settings_map.php:447
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr ""
+"Costringere le dimensioni del logo a: larghezza max 250px e altezza max 100px"
+
+#: ../class-fire-utils_settings_map.php:451
+msgid "Uncheck this option to keep your original logo dimensions."
+msgstr ""
+"Deseleziona questa opzione per mantenere le dimensioni originali del tuo "
+"logo."
+
+#: ../class-fire-utils_settings_map.php:455
+msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Carica logo sticky(formati supportati: .jpg, .png, .gif)"
+
+#: ../class-fire-utils_settings_map.php:459
+msgid ""
+"Use this upload control to specify a different logo on sticky header mode."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:465
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Caricare favicon (formati supportati: .ico, .png, .gif)"
+
+#: ../class-fire-utils_settings_map.php:466
+msgid "FAVICON"
+msgstr "FAVICON"
+
+#: ../class-fire-utils_settings_map.php:484
+msgid "Choose content and layout"
+msgstr "Scegli il contenuto e il layout"
+
+#: ../class-fire-utils_settings_map.php:492
+msgid "Front page displays"
+msgstr "La pagina iniziale mostra"
+
+#: ../class-fire-utils_settings_map.php:497
+msgid "Don't show any posts or page"
+msgstr "Non mostrare nessun articolo o pagina"
+
+#: ../class-fire-utils_settings_map.php:498
+msgid "Your latest posts"
+msgstr "Gli ultimi articoli"
+
+#: ../class-fire-utils_settings_map.php:499
+msgid "A static page"
+msgstr "Una pagina statica"
+
+#: ../class-fire-utils_settings_map.php:505
+msgid "Front page"
+msgstr "Pagina iniziale"
+
+#: ../class-fire-utils_settings_map.php:513
+msgid "Posts page"
+msgstr "Pagina articoli"
+
+#: ../class-fire-utils_settings_map.php:522
+msgid "Set up the front page layout"
+msgstr "Impostazioni per il layout della pagina iniziale"
+
+#: ../class-fire-utils_settings_map.php:533
+msgid "Slider options"
+msgstr "Impostazioni slider"
+
+#: ../class-fire-utils_settings_map.php:534
+msgid "Select front page slider"
+msgstr "Seleziona uno slider per la pagina iniziale"
+
+#: ../class-fire-utils_settings_map.php:546
+msgid "Full width slider"
+msgstr "Slider larghezza a tutta pagina"
+
+#: ../class-fire-utils_settings_map.php:557
+msgid "Delay between each slides"
+msgstr "Intervallo tra diapositive"
+
+#: ../class-fire-utils_settings_map.php:562
+msgid "in ms : 1000ms = 1s"
+msgstr "in ms : 1000ms = 1s"
+
+#: ../class-fire-utils_settings_map.php:570
+msgid "Featured pages options"
+msgstr "Impostazioni pagine in evidenza"
+
+#: ../class-fire-utils_settings_map.php:571
+msgid "Display home featured pages area"
+msgstr "Mostra le pagine in evidenza sulla pagina iniziale"
+
+#: ../class-fire-utils_settings_map.php:575
+msgid "Enable"
+msgstr "Abilita"
+
+#: ../class-fire-utils_settings_map.php:576
+msgid "Disable"
+msgstr "Disabilita"
+
+#: ../class-fire-utils_settings_map.php:585
+msgid "Show images"
+msgstr "Mostra le immagini"
+
+#: ../class-fire-utils_settings_map.php:588
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"Le immagini sono impostate con la funzione \"immagine in evidenza\" nel "
+"basso dello schermo di Modifica Pagina. Deseleziona l'opzione qui sopra per "
+"disabilitare le immagini in evidenza."
+
+#: ../class-fire-utils_settings_map.php:594
+msgid "Read more &raquo;"
+msgstr "Scopri di più &raquo;"
+
+#: ../class-fire-utils_settings_map.php:596
+msgid "Button text"
+msgstr "Testo del pulsante"
+
+#: ../class-fire-utils_settings_map.php:617
+#: ../class-fire-utils_settings_map.php:1189
+msgid "Display Breadcrumb"
+msgstr "Mostra Breadcrumb"
+
+#: ../class-fire-utils_settings_map.php:627
+#: ../class-fire-utils_settings_map.php:1199
+msgid "Choose the global default layout"
+msgstr "Scegli il layout globale predefinito"
+
+#: ../class-fire-utils_settings_map.php:638
+#: ../class-fire-utils_settings_map.php:1211
+msgid "Force default layout everywhere"
+msgstr "Costringere il layout globale predefinito in tutto il sito"
+
+#: ../class-fire-utils_settings_map.php:641
+#: ../class-fire-utils_settings_map.php:1214
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"Questa opzione sovrascriverà il layout che hai definito per ogni pagina/"
+"articolo, inclusa la pagina iniziale."
+
+#: ../class-fire-utils_settings_map.php:648
+#: ../class-fire-utils_settings_map.php:1220
+msgid "Choose the posts default layout"
+msgstr "Scegli il layout predefinito degli articoli"
+
+#: ../class-fire-utils_settings_map.php:660
+#: ../class-fire-utils_settings_map.php:1243
+msgid "Maximum number of posts per page"
+msgstr "Numero massimo di articoli per pagina"
+
+#: ../class-fire-utils_settings_map.php:671
+#: ../class-fire-utils_settings_map.php:1253
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr ""
+"Seleziona la lunghezza degli articoli in liste (la pagina iniziale, i moduli "
+"di ricerca, gli archivi, ...)"
+
+#: ../class-fire-utils_settings_map.php:675
+#: ../class-fire-utils_settings_map.php:1257
+msgid "Display the excerpt"
+msgstr "Mostra l'estratto"
+
+#: ../class-fire-utils_settings_map.php:676
+#: ../class-fire-utils_settings_map.php:1258
+msgid "Display the full content"
+msgstr "Mostra tutto il contenuto"
+
+#: ../class-fire-utils_settings_map.php:684
+#: ../class-fire-utils_settings_map.php:1229
+msgid "Choose the pages default layout"
+msgstr "Scegli il layout predefinito delle pagine"
+
+#: ../class-fire-utils_settings_map.php:703
+#: ../class-fire-utils_settings_map.php:1961
+msgid "Enable comments on pages"
+msgstr "Abilita i commenti sulle pagine"
+
+#: ../class-fire-utils_settings_map.php:707
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"Questa opzione abilita i commenti sulle pagine. Puoi disabilitare i commenti "
+"per una pagina individuale utilizzando Modifica Rapida dalla lista delle "
+"pagine."
+
+#: ../class-fire-utils_settings_map.php:721
+#: ../class-fire-utils_settings_map.php:1987
+msgid "Social links in header"
+msgstr "Social links nella testata"
+
+#: ../class-fire-utils_settings_map.php:730
+#: ../class-fire-utils_settings_map.php:2005
+msgid "Social links in left sidebar"
+msgstr "Social links nella barra laterale a sinistra"
+
+#: ../class-fire-utils_settings_map.php:739
+#: ../class-fire-utils_settings_map.php:2015
+msgid "Social links in right sidebar"
+msgstr "Social links nella barra laterale a destra"
+
+#: ../class-fire-utils_settings_map.php:747
+#: ../class-fire-utils_settings_map.php:1996
+msgid "Social links in footer"
+msgstr "Social links nel piè di pagina"
+
+#: ../class-fire-utils_settings_map.php:768
+msgid "Enable/disable lightbox effect on images"
+msgstr "Abilita/disabilita l'effetto lightbox per le immagini"
+
+#: ../class-fire-utils_settings_map.php:771
+msgid ""
+"If enabled, this option activate a popin window whith a zoom effect when an "
+"image is clicked. This will not apply to image gallery."
+msgstr ""
+"Se è abilitata, questa opzione attiva una finestra popin con un effetto zoom "
+"quando l'immagine è cliccata. Però non riguarda le gallerie."
+
+#: ../class-fire-utils_settings_map.php:777
+msgid "Autoscale images on zoom"
+msgstr "Ridimensionamento automatico per lo Zoom"
+
+#: ../class-fire-utils_settings_map.php:780
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr ""
+"Se è abilitata, questa opzione costringe il lightbox a ridimensionare le "
+"immagini nella finestra"
+
+#: ../class-fire-utils_settings_map.php:786
+msgid "Enable/disable retina support"
+msgstr "Abilita/disabilita il supporto retina"
+
+#: ../class-fire-utils_settings_map.php:790
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr ""
+"Se abilitato, il tuo sito web includerà il supporto per i dispositivi ad "
+"alta risoluzione."
+
+#: ../class-fire-utils_settings_map.php:791
+msgid ""
+"It is strongly recommended to regenerate your media library images in high "
+"definition with this free plugin"
+msgstr ""
+"Consigliamo fortemente di rigenerare le immagini della tua libreria media in "
+"alta definizione, con l'ausilio di questo plugin gratuito"
+
+#: ../class-fire-utils_settings_map.php:792
+msgid "regenerate thumbnails"
+msgstr "regenerate thumbnails"
+
+#: ../class-fire-utils_settings_map.php:794
+msgid "Open the description page of the Regenerate thumbnails plugin"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:800
+msgid "Sliders : display on loading icon before rendering the slides"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:803
+msgid ""
+"When checked, this option displays a loading icon when the slides are being "
+"setup."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:816
+msgid "Enable/disable smooth scroll on click"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:819
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:832
+msgid "Enable/disable blocks reordering on small devices"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:835
+msgid ""
+"On responsive mode, for smartphone viewport, the sidebars are moved after "
+"the main content block."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:841
+msgid "Enable/disable slider's slides centering on any devices"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:844
+msgid ""
+"This option centers your slider (carousel) pictures vertically and "
+"horizontally on any devices when displayed in full width mode"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:859
+#: ../class-fire-utils_settings_map.php:2036
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr ""
+"Aggiungi qui il tuo custom css e disegna dal vivo! (per utenti avanzati)"
+
+#: ../class-fire-utils_settings_map.php:863
+#: ../class-fire-utils_settings_map.php:2040
+msgid ""
+"Use this field to test small chunks of CSS code. For important CSS "
+"customizations, you'll want to modify the style.css file of a"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:864
+#: ../class-fire-utils_settings_map.php:2041
+msgid "child theme."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:865
+#: ../class-fire-utils_settings_map.php:2042
+msgid "How to create and use a child theme ?"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:999
+msgid "Site Title & Tagline"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1016
+msgid "Fonts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1018
+msgid "Set up the font global settings"
+msgstr "Imposta le opzioni globali per i font"
+
+#: ../class-fire-utils_settings_map.php:1028
+msgid "Links style and effects"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1034
+msgid "Titles icons settings"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1036
+msgid "Set up the titles icons options"
+msgstr "Imposta le opzioni per le icone dei titoli"
+
+#: ../class-fire-utils_settings_map.php:1040
+msgid "Image settings"
+msgstr "Impostazioni immagini"
+
+#: ../class-fire-utils_settings_map.php:1052
+msgid "Authors"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1054
+msgid "Post authors settings"
+msgstr "Impostazioni autore articolo"
+
+#: ../class-fire-utils_settings_map.php:1058
+#: ../class-fire-utils_settings_map.php:1304
+msgid "Header design and layout"
+msgstr "Design e layout della testata"
+
+#: ../class-fire-utils_settings_map.php:1058
+msgid "Design and layout"
+msgstr "Design e layout"
+
+#: ../class-fire-utils_settings_map.php:1063
+msgid "Navigation"
+msgstr "Navigazione"
+
+#: ../class-fire-utils_settings_map.php:1066
+#, php-format
+msgid "Your theme supports %s menu. Select which menu you would like to use."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1066
+msgid ""
+"You can edit your menu content on the Menus screen in the Appearance section."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1085
+msgid "Post lists : blog, archives, ..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1087
+msgid "Set up post lists options"
+msgstr "Imposta le opzioni per le liste di articoli"
+
+#: ../class-fire-utils_settings_map.php:1091
+msgid "Single posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1093
+msgid "Set up single posts options"
+msgstr "Imposta le opzioni per i singoli articoli"
+
+#: ../class-fire-utils_settings_map.php:1097
+msgid "Breadcrumb"
+msgstr "Breadcrumb"
+
+#: ../class-fire-utils_settings_map.php:1099
+msgid "Set up breadcrumb options"
+msgstr "Imposta le opzioni della Breadcrumb"
+
+#: ../class-fire-utils_settings_map.php:1111
+msgid "Post metas (category, tags, custom taxonomies)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1113
+msgid "Set up post metas options"
+msgstr "Imposta le opzioni dei metadati degli articoli"
+
+#: ../class-fire-utils_settings_map.php:1117
+msgid "Paragraphs"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1119
+msgid "Set up paragraphs options"
+msgstr "Imposta le opzioni dei paragrafi"
+
+#: ../class-fire-utils_settings_map.php:1129
+msgid "Footer global settings"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1131
+msgid "Set up footer global options"
+msgstr "Imposta le opzioni globali del footer (piè di pagina)"
+
+#: ../class-fire-utils_settings_map.php:1141
+msgid "Website Performances"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1143
+msgid ""
+"On the web, speed is key ! Improve the load time of your pages with those "
+"options."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1203
+msgid "Note : the home page layout has to be set in the home page section"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1242
+msgid "Global Post Lists Settings"
+msgstr "Impostazioni globali delle Liste di Articoli"
+
+#: ../class-fire-utils_settings_map.php:1268
+msgid "Display an author box after each single post content"
+msgstr "Mostra il box dell'autore sotto il contenuto di ogni singolo articolo"
+
+#: ../class-fire-utils_settings_map.php:1272
+msgid ""
+"Check this option to display an author info block after each single post "
+"content. Note : the Biographical info field must be filled out in the user "
+"profile."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1278
+msgid ""
+"Select a beautiful font pair (headings &amp; default fonts) or single font "
+"for your website."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1285
+msgid ""
+"This font picker allows you to preview and select among a handy selection of "
+"font pairs and single fonts. If you choose a pair, the first font will be "
+"applied to the site main headings : site name, site description, titles h1, "
+"h2, h3., while the second will be the default font of your website for any "
+"texts or paragraphs."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1290
+msgid "Set your website default font size in pixels."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1298
+msgid ""
+"This option sets the default font size applied to any text element of your "
+"website, when no font size is already applied."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1315
+msgid "Display the tagline"
+msgstr "Mostra il motto"
+
+#: ../class-fire-utils_settings_map.php:1324
+msgid "Display menu in a box"
+msgstr "Visualizza il menù in un box"
+
+#: ../class-fire-utils_settings_map.php:1329
+msgid ""
+"If checked, this option wraps the header menu/tagline/social in a light grey "
+"box."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1334
+msgid "Layout"
+msgstr "Layout"
+
+#: ../class-fire-utils_settings_map.php:1338
+msgid "Logo / title on the left"
+msgstr "Logo / titolo a sinistra"
+
+#: ../class-fire-utils_settings_map.php:1339
+msgid "Logo / title centered"
+msgstr "Logo / titolo centrati"
+
+#: ../class-fire-utils_settings_map.php:1340
+msgid "Logo / title on the right"
+msgstr "Logo / titolo a destra"
+
+#: ../class-fire-utils_settings_map.php:1348
+msgid "Sticky header settings"
+msgstr "Impostazioni dello sticky header (testata fissa)"
+
+#: ../class-fire-utils_settings_map.php:1349
+msgid "Sticky on scroll"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1354
+msgid ""
+"If checked, this option makes the header stick to the top of the page on "
+"scroll down."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1359
+msgid "Sticky header : display the tagline"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1368
+msgid "Sticky header : display the title / logo"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1377
+msgid "Sticky header : shrink title / logo"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1386
+msgid "Sticky header : display the menu"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1395
+msgid "Sticky header : semi-transparent on scroll"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1405
+msgid "Set the header z-index"
+msgstr "Imposta lo z-index della testata"
+
+#: ../class-fire-utils_settings_map.php:1413
+msgid "What is"
+msgstr "Cos'è"
+
+#: ../class-fire-utils_settings_map.php:1414
+msgid "the z-index"
+msgstr "lo z-index"
+
+#: ../class-fire-utils_settings_map.php:1422
+msgid "Menu position"
+msgstr "Posizione del menù"
+
+#: ../class-fire-utils_settings_map.php:1426
+msgid "Menu on the left"
+msgstr "Menù a sinistra"
+
+#: ../class-fire-utils_settings_map.php:1427
+msgid "Menu on the right"
+msgstr "Menù a destra"
+
+#: ../class-fire-utils_settings_map.php:1435
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1444
+msgid "Hover move effect for the sub menu items"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1453
+msgid ""
+"In responsive mode, limit the height of the dropdown menu block to the "
+"visible viewport"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1463
+msgid "Fade effect on link hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1473
+msgid "Display an icon next to external links"
+msgstr "Mostra un'icona accanto ai link esterni"
+
+#: ../class-fire-utils_settings_map.php:1477
+#: ../class-fire-utils_settings_map.php:1488
+msgid ""
+"This will be applied to the links included in post or page content only."
+msgstr ""
+"Verrà applicata solamente ai link inclusi nei contenuti degli articoli e/o "
+"delle pagine"
+
+#: ../class-fire-utils_settings_map.php:1484
+msgid "Open external links in a new tab"
+msgstr "Apri link esterni in una nuova scheda"
+
+#: ../class-fire-utils_settings_map.php:1495
+msgid "Display the breadcrumb on home page"
+msgstr "Mostra Breadcrumb nella pagina iniziale"
+
+#: ../class-fire-utils_settings_map.php:1503
+msgid "Display the breadcrumb in pages"
+msgstr "Mostra Breadcrumb nelle pagine"
+
+#: ../class-fire-utils_settings_map.php:1512
+msgid "Display the breadcrumb in single posts"
+msgstr "Mostra Breadcrumb nei singoli articoli"
+
+#: ../class-fire-utils_settings_map.php:1521
+msgid ""
+"Display the breadcrumb in posts lists : blog page, archives, search "
+"results..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1532
+msgid "Display icons next to titles"
+msgstr "Mostra un'icona accanto ai titoli"
+
+#: ../class-fire-utils_settings_map.php:1536
+msgid ""
+"When this option is checked, a contextual icon is displayed next to the "
+"titles of pages, posts, archives, and WP built-in widgets."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1542
+msgid "Display a page icon next to the page title"
+msgstr "Mostra un'icona accanto al titolo delle pagine"
+
+#: ../class-fire-utils_settings_map.php:1551
+msgid "Display a post icon next to the single post title"
+msgstr "Mostra un'icona accanto al titolo degli articoli"
+
+#: ../class-fire-utils_settings_map.php:1560
+msgid "Display an icon next to the archive title"
+msgstr "Mostra un'icona accanto al titolo degli archivi"
+
+#: ../class-fire-utils_settings_map.php:1563
+msgid ""
+"When this option is checked, an archive type icon is displayed in the "
+"heading of every types of archives, on the left of the title. An archive "
+"page can be : category, tag, author, date archive, custom taxonomies, search "
+"results."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1570
+msgid "Display an icon next to each post title in an archive page"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1573
+msgid ""
+"When this option is checked, a post type icon is displayed on the left of "
+"each post titles in an archive page. An archive page can be : category, tag, "
+"author, date archive, custom taxonomies, search results."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1580
+msgid "WP sidebar widgets : display icons next to titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1589
+msgid "WP footer widgets : display icons next to titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1601
+msgid "Display posts metas"
+msgstr "Mostra i metadati dell'articolo"
+
+#: ../class-fire-utils_settings_map.php:1604
+msgid ""
+"When this option is checked, the post metas (like taxonomies, date and "
+"author) are displayed below the post titles."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1611
+msgid "Select the contexts"
+msgstr "Seleziona i contesti"
+
+#: ../class-fire-utils_settings_map.php:1612
+msgid "Display posts metas on home"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1621
+msgid "Display posts metas for single posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1630
+msgid "Display posts metas in post lists (archives, blog page)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1640
+msgid "Select the metas to display"
+msgstr "Seleziona i metadati da mostrare"
+
+#: ../class-fire-utils_settings_map.php:1641
+msgid "Display hierarchical taxonomies (like categories)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1650
+msgid "Display non-hierarchical taxonomies (like tags)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1659
+msgid "Display the publication date"
+msgstr "Mostra la data di pubblicazione"
+
+#: ../class-fire-utils_settings_map.php:1667
+msgid "Display the author"
+msgstr "Mostra l'autore"
+
+#: ../class-fire-utils_settings_map.php:1675
+msgid "Display the update date"
+msgstr "Mostra la data dell'ultimo aggiornamento"
+
+#: ../class-fire-utils_settings_map.php:1679
+msgid ""
+"If this option is checked, additional date informations about the the last "
+"post update can be displayed (nothing will show up if the post has never "
+"been updated)."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1685
+msgid "Select the last update format"
+msgstr "Seleziona il formato per l'ultimo aggiornamento"
+
+#: ../class-fire-utils_settings_map.php:1689
+msgid "Nb of days since last update"
+msgstr "Num di giorni dall'ultimo aggiornamento"
+
+#: ../class-fire-utils_settings_map.php:1690
+msgid "Date of the last update"
+msgstr "Data dell'ultimo aggiornamento"
+
+#: ../class-fire-utils_settings_map.php:1698
+msgid "Recent update notice after post titles"
+msgstr "Notifica di aggiornamento recente dopo il titolo degl'articoli"
+
+#: ../class-fire-utils_settings_map.php:1699
+msgid "Display a recent update notice"
+msgstr "Mostra la notifica di un aggiornamento recente"
+
+#: ../class-fire-utils_settings_map.php:1703
+msgid ""
+"If this option is checked, a customizable recent update notice is displayed "
+"next to the post title."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1709
+msgid ""
+"Display the notice if the last update is less (strictly) than n days old"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1715
+msgid ""
+"Set a maximum interval (in days) during which the last update notice will be "
+"displayed."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1718
+msgid "Recently updated !"
+msgstr "Aggiornato recentemente!"
+
+#: ../class-fire-utils_settings_map.php:1720
+msgid "Update notice text"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1729
+msgid "Update notice style"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1733
+msgid "Default (grey)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1734
+msgid "Success (green)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1735
+msgid "Alert (orange)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1736
+msgid "Important (red)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1737
+msgid "Info (blue)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1748
+msgid "Set the excerpt length (in number of words) "
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1758
+msgid "Thumbnails options"
+msgstr "Opzioni delle immaigni in miniatura"
+
+#: ../class-fire-utils_settings_map.php:1759
+msgid "Display the post thumbnails"
+msgstr "Mostra l'immagine in miniatura"
+
+#: ../class-fire-utils_settings_map.php:1763
+msgid ""
+"When this option is checked, the post thumbnails are displayed in all post "
+"lists : blog, archives, author page, search pages, ..."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1768
+msgid "If no featured image is set, use the last image attached to this post."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1776
+msgid "Thumbnails shape"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1780
+msgid "Rounded, expand on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1781
+msgid "Rounded, no expansion"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1782
+msgid "Squared, expand on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1783
+msgid "Squared, no expansion"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1784
+msgid "Rectangular with no effect"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1785
+msgid "Rectangular with blur effect on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1786
+msgid "Rectangular with unblur effect on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1794
+#: ../class-fire-utils_settings_map.php:1844
+msgid "Set the thumbnail's max height in pixels"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1805
+msgid "Thumbnails position"
+msgstr "Posizione miniature"
+
+#: ../class-fire-utils_settings_map.php:1809
+msgid "Top"
+msgstr "Sopra"
+
+#: ../class-fire-utils_settings_map.php:1810
+msgid "Right"
+msgstr "Droite"
+
+#: ../class-fire-utils_settings_map.php:1811
+msgid "Bottom"
+msgstr "Sotto"
+
+#: ../class-fire-utils_settings_map.php:1812
+msgid "Left"
+msgstr "Gauche"
+
+#: ../class-fire-utils_settings_map.php:1820
+msgid "Alternate thumbnail/content"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1829
+msgid "Post thumbnail position"
+msgstr "Posizione delle miniature negli articoli"
+
+#: ../class-fire-utils_settings_map.php:1833
+msgid "Don't display"
+msgstr "Non mostrare nulla"
+
+#: ../class-fire-utils_settings_map.php:1834
+msgid "Before the title in full width"
+msgstr "Prima del titolo a tutta pagina"
+
+#: ../class-fire-utils_settings_map.php:1835
+msgid "Before the title boxed"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1836
+msgid "After the title"
+msgstr "Dopo il titolo"
+
+#: ../class-fire-utils_settings_map.php:1856
+msgid "Drop caps"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1857
+msgid "Enable drop caps"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1859
+msgid "Apply a drop cap to the first paragraph of your post / page content."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1868
+msgid ""
+"Apply a drop cap when the paragraph includes at least the following number "
+"of words :"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1869
+msgid "(number of words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1879
+msgid "Drop cap style"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1883
+msgid "Skin color with shadow"
+msgstr "Colore della skin con ombre"
+
+#: ../class-fire-utils_settings_map.php:1884
+msgid "Simple black"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1890
+msgid "Enable drop caps in posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1892
+msgid "Apply a drop cap to the first paragraph of your single posts content"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1899
+msgid "Enable drop caps in pages"
+msgstr "Abilita la capolettera nelle pagine"
+
+#: ../class-fire-utils_settings_map.php:1901
+msgid "Apply a drop cap to the first paragraph of your pages"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1911
+msgid "Comments bubbles"
+msgstr "Nuvoletta dei commenti"
+
+#: ../class-fire-utils_settings_map.php:1913
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1922
+msgid "Comments bubble shape"
+msgstr "Forma della nuvoletta dei commenti"
+
+#: ../class-fire-utils_settings_map.php:1926
+msgid "Small bubbles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1927
+msgid "Large bubbles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1935
+#: ../class-fire-utils_settings_map.php:1948
+msgid "Comments bubble color"
+msgstr "Colore della nuvoletta dei commenti"
+
+#: ../class-fire-utils_settings_map.php:1939
+msgid "Skin color"
+msgstr "Colore della skin"
+
+#: ../class-fire-utils_settings_map.php:1940
+msgid "Custom"
+msgstr "Personalizzato"
+
+#: ../class-fire-utils_settings_map.php:1960
+msgid "Other comments settings"
+msgstr "Impostazioni commenti"
+
+#: ../class-fire-utils_settings_map.php:1966
+msgid ""
+"If checked, this option will enable comments on pages. You can disable "
+"comments for a single page in the quick edit mode of the page list screen."
+msgstr ""
+"Se selezionata, questa opzione abilita i commenti sulle pagine. Puoi "
+"disabilitare i commenti per una pagina individuale utilizzando Modifica "
+"Rapida dalla lista delle pagine."
+
+#: ../class-fire-utils_settings_map.php:1967
+msgid "Change other comments settings in the"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1969
+msgid "discussion settings page."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1977
+msgid "Display a back to top arrow on scroll"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2024
+msgid "Social link title in sidebars"
+msgstr "Social links nelle barre laterali"
+
+#: ../class-fire-utils_settings_map.php:2030
+msgid "Will be hidden if empty"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2058
+msgid "Load images on scroll"
+msgstr "Carica le immagini quando scrolli la pagina"
+
+#: ../class-fire-utils_settings_map.php:2063
+msgid ""
+"Check this option to delay the loading of non visible images. Images below "
+"the viewport will be loaded dynamically on scroll. This can boost "
+"performances by reducing the weight of long web pages with images."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2072
+msgid "Set slider's height in pixels"
+msgstr "Inserisci l'altezza della slider in pixel"
+
+#: ../class-fire-utils_settings_map.php:2082
+msgid "Apply this height to all sliders"
+msgstr "Apllica quest'altezza a tutte le slider"
+
+#: ../class-fire-utils_settings_map.php:2090
+msgid "Replace the default image slider's height"
+msgstr "Ridefinisci l'altezza predefinita delle immagini della slider"
+
+#: ../class-fire-utils_settings_map.php:2096
+msgid ""
+"If this option is checked, your images will be resized with your custom "
+"height on upload. This is better for your overall loading performance."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2097
+msgid "You might want to regenerate your thumbnails."
+msgstr "Potresti voler rigenerare le tue immagini in miniatura."
 
 #: ../parts/class-content-attachment.php:41
 msgid "&larr; Previous"
@@ -2273,11 +2260,11 @@ msgstr "Unisci "
 
 #: ../parts/class-content-comments.php:57
 msgid "One thought on"
-msgstr ""
+msgstr "Un commento su"
 
 #: ../parts/class-content-comments.php:59
 msgid "thoughts on"
-msgstr ""
+msgstr "commenti su"
 
 #: ../parts/class-content-comments.php:119
 msgid "Pingback:"
@@ -2295,6 +2282,7 @@ msgstr "Rispondi"
 msgid "Post author"
 msgstr "L'autore dell'articolo"
 
+#. translators: 1: date, 2: time
 #: ../parts/class-content-comments.php:166
 #, php-format
 msgid "%1$s at %2$s"
@@ -2321,7 +2309,6 @@ msgid "Comments are closed."
 msgstr "I commenti sono chiusi."
 
 #: ../parts/class-content-comments.php:267
-#, fuzzy
 msgid "Leave a comment"
 msgstr "Lascia un commento"
 
@@ -2413,9 +2400,8 @@ msgid "Yearly Archives: %s"
 msgstr "Archivi annuali: %s"
 
 #: ../parts/class-content-headings.php:477
-#, fuzzy
 msgid "comment"
-msgstr "Commenti"
+msgstr "commento"
 
 #: ../parts/class-content-page.php:42 ../parts/class-content-post.php:120
 #: ../parts/class-content-post_list.php:149
@@ -2437,100 +2423,98 @@ msgstr "Vedi tutti gli articoli di %s <span class=\"meta-nav\">&rarr;</span>"
 msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
 msgstr "Pubblicato il %3$s<span class=\"by-author\"> da %4$s</span>."
 
-#: ../parts/class-content-post_metas.php:121
+#: ../parts/class-content-post_metas.php:120
 msgid "Published"
 msgstr "Pubblicato"
 
-#: ../parts/class-content-post_metas.php:124
+#: ../parts/class-content-post_metas.php:123
 msgid "at dimensions"
 msgstr "alle dimensioni"
 
-#: ../parts/class-content-post_metas.php:124
+#: ../parts/class-content-post_metas.php:123
 msgid "Link to full-size image"
 msgstr "Collegamento all'immagine alla grandezza massima"
 
-#: ../parts/class-content-post_metas.php:125
+#: ../parts/class-content-post_metas.php:124
 msgid "in"
 msgstr "in"
 
-#: ../parts/class-content-post_metas.php:125
+#: ../parts/class-content-post_metas.php:124
 msgid "Return to "
 msgstr "Torna a"
 
-#: ../parts/class-content-post_metas.php:153
-#: ../parts/class-content-post_metas.php:181
+#: ../parts/class-content-post_metas.php:152
+#: ../parts/class-content-post_metas.php:180
 #, php-format
 msgid "View all posts in %s"
 msgstr "Vedi tutti gli articoli nel %s"
 
-#: ../parts/class-content-post_metas.php:299
+#: ../parts/class-content-post_metas.php:274
 #, php-format
 msgid "View all posts by %s"
 msgstr "Vedi tutti gli articoli di %s"
 
-#: ../parts/class-content-post_metas.php:319
+#: ../parts/class-content-post_metas.php:294
 msgid "Open"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:412
-#, fuzzy, php-format
+#: ../parts/class-content-post_metas.php:387
+#, php-format
 msgid "This entry was posted in %1$s and tagged %2$s"
-msgstr ""
-"Pubblicato in %1$s con tag %2$s il %3$s<span class=\"by-author\"> da %4$s</"
-"span>."
+msgstr "Pubblicato in %1$s con tag %2$s"
 
-#: ../parts/class-content-post_metas.php:414
-#, fuzzy, php-format
+#: ../parts/class-content-post_metas.php:389
+#, php-format
 msgid "This entry was posted in %1$s"
-msgstr "Vedi tutti gli articoli nel %s"
+msgstr "Pubblicato in %1$s"
 
-#: ../parts/class-content-post_metas.php:416
+#: ../parts/class-content-post_metas.php:391
 #, php-format
 msgid "This entry was tagged %2$s"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:421
+#: ../parts/class-content-post_metas.php:396
 #, php-format
 msgid "This entry was posted on %3$s"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:423
+#: ../parts/class-content-post_metas.php:398
 #, php-format
 msgid "on %3$s"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:425
+#: ../parts/class-content-post_metas.php:400
 #, php-format
 msgid "and posted on %3$s"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:432
+#: ../parts/class-content-post_metas.php:407
 msgid "This entry was posted"
-msgstr ""
+msgstr "Articolo pubblicato"
 
-#: ../parts/class-content-post_metas.php:432
-#: ../parts/class-content-post_metas.php:434
+#: ../parts/class-content-post_metas.php:407
+#: ../parts/class-content-post_metas.php:409
 #, php-format
 msgid "by %4$s"
-msgstr ""
+msgstr "da %4$s"
 
-#: ../parts/class-content-post_metas.php:442
+#: ../parts/class-content-post_metas.php:418
 msgid "(updated today)"
-msgstr ""
+msgstr "(aggiornato oggi)"
 
-#: ../parts/class-content-post_metas.php:442
+#: ../parts/class-content-post_metas.php:418
 #, php-format
-msgid "(updated %6$s days ago)"
-msgstr ""
+msgid "(updated %1$s days ago)"
+msgstr "(aggiornato %1$s giorni fa)"
 
-#: ../parts/class-content-post_metas.php:443
+#: ../parts/class-content-post_metas.php:419
 msgid "(updated 1 day ago)"
-msgstr ""
+msgstr "(aggiornato 1 giorno fa)"
 
-#: ../parts/class-content-post_metas.php:446
+#: ../parts/class-content-post_metas.php:422
 #, php-format
 msgid "(updated on %5$s)"
-msgstr ""
+msgstr "(aggiornato il %5$s)"
 
 #: ../parts/class-content-post_navigation.php:54
 #: ../parts/class-content-post_navigation.php:109
@@ -2680,8 +2664,8 @@ msgstr "Aggiungi un menu"
 #~ "inspiration in the <a href=\"#showcase\">showcase</a>.<br/> Enjoy it! "
 #~ msgstr ""
 #~ "Congratulazioni, hai installato l'ultima versione di Customizr! Customizr "
-#~ "%s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog\">"
-#~ "(vedi changelog)</a> per aiutarti a creare un sito straordinario!"
+#~ "%s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog"
+#~ "\">(vedi changelog)</a> per aiutarti a creare un sito straordinario!"
 
 #~ msgid "We need coffee..."
 #~ msgstr "Diventa sponsor!"
