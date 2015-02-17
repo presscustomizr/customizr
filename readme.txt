@@ -60,7 +60,10 @@ Moved date functions in TC_utils and added : check on date format validity
 Fix: better check on when changing default slider's height
 Fix: set sticky offsets after resizing logo
 Fix: fp-button display nothing if empty
-Fix: logo image stretched when sticky header enabled, handled for both logos (normal and sticky) in js. Avoid uFix: tagline navbar-wrapper. Navbar h2 => use .site-description instead of H2 and split the CSS rule in two parFix: add clear:both to boostrap .nav-collapse fix the misplacing .nav-collapse when no socials are displayed inFix: re-add comment near the closing brace for compatibility function
+Fix: logo image stretched when sticky header enabled, handled for both logos (normal and sticky) in js.
+Fix: tagline navbar-wrapper. Navbar h2 => use .site-description instead of H2 and split the CSS rule in two parts
+Fix: add clear:both to boostrap .nav-collapse fix the misplacing .nav-collapse when no socials are displayed in
+Fix: re-add comment near the closing brace for compatibility function
 Fix: new filter tc_the_title, apply filters to the_title in Customizr contexts strictly
 Fix: handle mobile menu display in tc_common (tc_custom)
 Fix: add body class sticky-disabled, with php, by default when sticky header selected

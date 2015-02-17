@@ -19,14 +19,18 @@ var TCParams = TCParams || {
 	timerOnScrollAllBrowsers:1,
   extLinksStyle :1,
   extLinksTargetExt:1,
+  extLinksSkipSelectors: {
+    classes : ['btn'],
+    ids:[]
+  },
   dropcapEnabled:1,
   dropcapWhere:{ post : 0, page : 1 },
   dropcapMinWords:50,
-  skipSelectors: {
-              tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'],
-              classes : [],
-              ids : []
-            },
+  dropcapSkipSelectors: {
+    tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'],
+    classes : [],
+    ids : []
+  },
   imgSmartLoadEnabled:0,
   imgSmartLoadOpts: {}
 };
