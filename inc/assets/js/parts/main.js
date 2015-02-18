@@ -264,77 +264,21 @@ jQuery(function ($) {
     }
 
 
-    function centerImageInContainer(container , images){
-        if ( ! $(images).length  )
-            return;
 
-        $(images).each(function () {
-            var container_width    = $(this).closest(container).width(),
-                container_height    = $(container).height(),
-                // this will let us know the real img height
-                ratio = container_width / $(this).attr("width"),
-                real_img_height = ratio * $(this).attr("height");
-
-            // if our image has an height smaller than the container
-            // stretch it (h & w) proportionally to reach the container height
-            // and center it horizontally
-            if ( real_img_height < container_height ){
-                // set the image height as the container height
-                $(this).css("height", container_height);
-                // this will let us know the new image width
-                var img_ratio = container_height / real_img_height;
-                var new_img_width = img_ratio * container_width;
-                // set it
-                $(this).css("width", new_img_width).css("max-width", new_img_width);
-
-                // center it horizontally
-                var pos_left = ( (container_width - new_img_width ) / 2 );
-                $(this).css("left", pos_left);
-
-                // reset v-center flag and margin-top
-                if ( $(this).hasClass("v-center") ){
-                    $(this).removeClass("v-center")
-                    .css("top", "0px");
-                }
-
-                // add h-center class flag
-                $(this).addClass("h-center");
-
-            } else { // center it vertically
-                    // this covers also the case real_img_height == container_height
-                    // a differentiation here looks like pratically useless
-
-                // reset margin-left, width, height and h-center flag
-                if ( $(this).hasClass("h-center") ){
-                    $(this).css("width", "100%")
-                    .css("max-width", "100%")
-                    .css("left", "0px")
-                    .css("height", "auto")
-                    .removeClass("h-center");
-                }
-                // center it vertically
-                var pos_top = ( container_height - real_img_height ) / 2 ;
-                $(this).css("top", pos_top);
-                // add v-center class flag
-                $(this).addClass("v-center");
-            }// end if-else
-        });// end imgs each function
-
-    }// end centerImageInContainer
-
-     //Enable slides centering if option is checked in the customizer.
+    //SLIDER
+    //Enable slides centering if option is checked in the customizer.
     if ( 1 == _p.CenterSlides ) {
         //adds a specific class to the carousel when automatic centering is enabled
         $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
 
         setTimeout( function() {
-            centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
+            $( '.carousel .carousel-inner').centerImages( '.carousel .item .carousel-image img' );
             $('.tc-slider-loader-wrapper').hide();
         } , 50);
 
         $(window).resize(function(){
             setTimeout( function() {
-                centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
+                $( '.carousel .carousel-inner').centerImages( '.carousel .item .carousel-image img' );
             }, 50);
         });
     }//end of center slides
@@ -353,19 +297,28 @@ jQuery(function ($) {
     });
     _center_slider_arrows();
 
-    //CENTER RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
+    //CENTER VARIOUS IMAGES
     //on load
     setTimeout( function() {
-        centerImageInContainer( '.tc-rectangular-thumb' , '.tc-rectangular-thumb > img' );
+        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
+        $('.tc-rectangular-thumb').centerImages('.tc-rectangular-thumb > img' );
+        //POST GRID IMAGES
+        $('.tc-grid-figure').centerImages();
     }, 300 );
     //on resize
-    $(window).resize(function(){
-            centerImageInContainer( '.tc-rectangular-thumb' , '.tc-rectangular-thumb > img' );
-    });
+   /* $(window).resize(function(){
+        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
+        $('.tc-rectangular-thumb').centerImages( '.tc-rectangular-thumb > img' );
+        //POST GRID IMAGES
+        $('.tc-grid-figure').centerImages();
+    });*/
     //bind 'refresh-height' event (triggered from the customizer)
     $('.tc-rectangular-thumb').on('refresh-height' , function(){
-        centerImageInContainer( '.tc-rectangular-thumb' , '.tc-rectangular-thumb > img' );
+        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
+        $('.tc-rectangular-thumb').centerImages('.tc-rectangular-thumb > img' );
     });
+
+
 
     //Slider swipe support with hammer.js
     if ( 'function' == typeof($.fn.hammer) ) {

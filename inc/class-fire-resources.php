@@ -85,7 +85,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			}
 			else
 			{
-				//in production script are minified
 	    	wp_enqueue_script(
 		    	'tc-js-params',
 		    	sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'tc-js-params.js'),
@@ -124,6 +123,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
         wp_enqueue_script(
           'tc-ext-links',
           sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'jqueryextLinks.js' ),
+          array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' ),
+          CUSTOMIZR_VER,
+          apply_filters('tc_load_script_in_footer' , false)
+        );
+        wp_enqueue_script(
+          'tc-center-images',
+          sprintf( '%1$sinc/assets/js/parts/%2$s' , TC_BASE_URL , 'jqueryCenterImages.js' ),
           array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' ),
           CUSTOMIZR_VER,
           apply_filters('tc_load_script_in_footer' , false)

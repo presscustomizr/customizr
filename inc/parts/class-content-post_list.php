@@ -127,7 +127,7 @@ if ( ! class_exists( 'TC_post_list' ) ) :
             <?php //display an icon for div if there is no title
                     $icon_class = in_array(get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' )) ? apply_filters( 'tc_post_list_content_icon', 'format-icon' ) :'';
                 ?>
-            <?php if (!get_post_format()) :  // Only display Excerpts for lists of posts with format different than quote, status, link, aside ?>
+            <?php if ( apply_filters('tc_force_show_post_list_excerpt', !get_post_format() ) ) :  // Only display Excerpts for lists of posts with format different than quote, status, link, aside ?>
                 
                 <section class="entry-summary">
                     <?php if ( !$tc_show_post_list_excerpt ) : ?>
