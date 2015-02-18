@@ -384,10 +384,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
           // THUMBNAIL : get the thumbnail data (src, width, height) if any
           $_thumb_data                      = $this -> tc_get_grid_thumb_data( TC_post_thumbnails::$instance -> tc_get_thumbnail_data() );
-          $_thumb_html  = isset($_thumb_data[0]) ? $_thumb_data[0] : '';
+          $_thumb_html                      = apply_filters( 'tc_grid_thumbnail_html' , isset($_thumb_data[0]) ? $_thumb_data[0] : '' );
 
           // CONTENT : get the figcaption content => post content
-          $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content']) ? $_layout['content'] : 'span6' );
+          $_post_content_html               = apply_filters( 'tc_grid_content_html' , $this -> tc_grid_get_single_post_html( isset( $_layout['content']) ? $_layout['content'] : 'span6' ) );
 
           // WRAPPER CLASS : build single grid post wrapper class
           $_tc_show_thumb                   = ( empty($_thumb_data[0]) || ! esc_attr( tc__f('__get_option', 'tc_post_list_show_thumb') ) ) ? false : true;

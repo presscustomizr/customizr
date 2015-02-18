@@ -2821,7 +2821,7 @@ var TCParams = TCParams || {};
   var pluginName = 'centerImages',
       defaults = {
         onresize : true,
-        oncustom : '',
+        oncustom : [],//list of event here
       };
 
   function Plugin( element, options ) {

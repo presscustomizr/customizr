@@ -58,6 +58,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if ( esc_attr( tc__f( '__get_option' , 'tc_img_smart_load' ) ) ) {
           add_filter( 'the_content'                       , array( $this , 'tc_parse_imgs' ) );
           add_filter( 'tc_display_post_thumbnail'         , array( $this , 'tc_parse_imgs' ) );
+          add_filter( 'tc_grid_thumbnail_html'            , array( $this , 'tc_parse_imgs' ) );
         }
         add_filter( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
       }
