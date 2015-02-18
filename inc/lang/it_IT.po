@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.1\n"
 "POT-Creation-Date: 2015-02-17 14:29+0100\n"
-"PO-Revision-Date: 2015-02-18 12:43+0100\n"
+"PO-Revision-Date: 2015-02-18 13:44+0100\n"
 "Last-Translator: Rocco Aliberti\n"
 "Language-Team: ElectricFeet <contact@themesandco.com>\n"
 "Language: it\n"
@@ -30,9 +30,10 @@ msgid ""
 "think it helped you in any way to build a better web presence, please "
 "support it's continued development with a donation of $20, $50, ..."
 msgstr ""
-"<strong>Noi abbiamo fatto di tutto per darti un tema perfetto, gratis.</"
-"strong><br/> Aiutaci a continuare lo sviluppo con una donazione di €20, "
-"€50, ..."
+"<strong>Faccio del mio meglio per rendere Customizr il tema perfetto er te.</"
+"strong><br/> Se pensi che Customizr ti abbia in qualche modo aiutato a "
+"migliorare la tua presenza sul web, per favore sostieni il suo continuo "
+"sviluppo con una donazione di €20, €50, ..."
 
 #: ../admin/class-admin-customize.php:372
 msgid "Make a donation for Customizr"
@@ -605,7 +606,7 @@ msgstr "Nero"
 
 #: ../class-fire-init.php:81
 msgid "Flat black"
-msgstr ""
+msgstr "Nero pastello"
 
 #: ../class-fire-init.php:82
 msgid "Grey"
@@ -617,7 +618,7 @@ msgstr "Grigio chiaro"
 
 #: ../class-fire-init.php:84
 msgid "Flat purple"
-msgstr ""
+msgstr "Viola pastello"
 
 #: ../class-fire-init.php:85
 msgid "Purple"
@@ -625,7 +626,7 @@ msgstr "Viola"
 
 #: ../class-fire-init.php:86
 msgid "Flat red"
-msgstr ""
+msgstr "Rosso pastello"
 
 #: ../class-fire-init.php:87
 msgid "Red"
@@ -637,7 +638,7 @@ msgstr "Arancione"
 
 #: ../class-fire-init.php:89
 msgid "Flat orange"
-msgstr ""
+msgstr "Arancione pastello"
 
 #: ../class-fire-init.php:90
 msgid "Yellow"
@@ -645,7 +646,7 @@ msgstr "Giallo"
 
 #: ../class-fire-init.php:91
 msgid "Flat yellow"
-msgstr ""
+msgstr "Giallo pastello"
 
 #: ../class-fire-init.php:92
 msgid "Green"
