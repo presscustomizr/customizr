@@ -186,7 +186,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	          	'timerOnScrollAllBrowsers' => apply_filters( 'tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
               'extLinksStyle'       => esc_attr( tc__f( '__get_option' , 'tc_ext_link_style' ) ),
               'extLinksTargetExt'   => esc_attr( tc__f( '__get_option' , 'tc_ext_link_target' ) ),
-              'extLinksSkipSelectors'   => apply_filters( 'tc_ext_links_skip_selectors' , array( 'classes' => array('btn') , 'id' => array() ) ),
+              'extLinksSkipSelectors'   => apply_filters( 'tc_ext_links_skip_selectors' , array( 'classes' => array('btn') , 'ids' => array() ) ),
               'dropcapEnabled'      => esc_attr( tc__f( '__get_option' , 'tc_enable_dropcap' ) ),
               'dropcapWhere'      => array( 'post' => esc_attr( tc__f( '__get_option' , 'tc_post_dropcap' ) ) , 'page' => esc_attr( tc__f( '__get_option' , 'tc_page_dropcap' ) ) ),
               'dropcapMinWords'     => esc_attr( tc__f( '__get_option' , 'tc_dropcap_minwords' ) ),

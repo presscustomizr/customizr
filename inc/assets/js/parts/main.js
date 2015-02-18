@@ -11,7 +11,7 @@ jQuery(function ($) {
       $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts) > 0 || {} );
     }
 
-    //Drop Caps
+    //DROP CAPS
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
       $.each( _p.dropcapWhere , function( ind, val ) {
         if ( 1 == val ) {
@@ -23,10 +23,10 @@ jQuery(function ($) {
       });
     }
 
+    //EXT LINKS
     //May be add (check if activated by user) external class + target="_blank" to relevant links
     //images are excluded by default
     //links inside post/page content
-    console.log('OPTS in MAIN' , _p.extLinksStyle , _p.extLinksTargetExt, _p.extLinksSkipSelectors );
     if ( _p.extLinksStyle || _p.extLinksTargetExt ) {
       $('a' , '.entry-content').extLinks({
         addIcon : _p.extLinksStyle,
@@ -37,7 +37,8 @@ jQuery(function ($) {
 
 
 
-    //fancybox with localized script variables
+    //FANCYBOX
+    //Fancybox with localized script variables
     var b = _p.FancyBoxState,
         c = _p.FancyBoxAutoscale;
     if ( 1 == b ) {

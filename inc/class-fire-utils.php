@@ -65,6 +65,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * hook : the_content
+      * Inspired from Unveil Lazy Load plugin : https://wordpress.org/plugins/unveil-lazy-load/ by @marubon
+      *
       * @return string
       * @package Customizr
       * @since Customizr 3.3.0
@@ -73,7 +75,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if( is_feed() || is_preview() || wp_is_mobile() )
           return $_html;
 
-        if (strpos( $_html, 'data-src' ) !== false)
+        if ( strpos( $_html, 'data-src' ) !== false )
           return $_html;
 
         return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'tc_regex_callback' ) , $_html);
@@ -82,6 +84,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * callback of preg_replace_callback in tc_parse_imgs
+      * Inspired from Unveil Lazy Load plugin : https://wordpress.org/plugins/unveil-lazy-load/ by @marubon
+      *
       * @return string
       * @package Customizr
       * @since Customizr 3.3.0

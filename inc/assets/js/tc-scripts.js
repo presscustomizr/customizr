@@ -2669,22 +2669,16 @@ var TCParams = TCParams || {};
           skipChildTags : ['IMG']//skip those tags if they are direct children of the current link element
         };
 
+
     function Plugin( element, options ) {
       this.$_el     = $(element);
       this.options  = $.extend( {}, defaults, options) ;
       this._href    = $.trim( this.$_el.attr( 'href' ) );
-
-      console.log('OPTS IN PLUGIN : ' , this.options );
-
       this.init();
     }
 
+
     Plugin.prototype.init = function() {
-      console.log( this._href, this._is_external( this._href ), this._is_eligible() );
-      console.log( 'CHILD ?' , this.$_el.children() );
-      if ( this.$_el.children().first().length ) {
-          console.log( 'CHILDREN : ' , this.$_el.children().first()[0].tagName, this.$_el.children().first()[0]);
-      }
       if ( ! this._is_eligible() )
         return;
 
@@ -2699,19 +2693,20 @@ var TCParams = TCParams || {};
     * @return boolean
     */
     Plugin.prototype._is_eligible = function() {
+      var self = this;
       if ( ! this._is_external( this._href ) )
         return;
 
       //is first child tag allowed ?
-      //'IMG' != this.$_el.children().first().prop("tagName")
-      if ( ! this._is_first_child_tag_allowed ( this.$_el, this.options.skipChildTags) )
+      if ( ! this._is_first_child_tag_allowed () )
         return;
-      // //is class allowed ?
-      // if ( _.isArray(this.options.skipSelectors.classes) && this.$_el.attr('class') && 0 !== _.intersection( this.$_el.attr('class').split(' '), this.options.skipSelectors.classes ).length )
-      //   return;
-      // //is id allowed ?
-      // if ( _.isArray(this.options.skipSelectors.classes) && this.$_el.attr('id') && -1 != $.inArray( this.$_el.attr('id').split(' ') , this.options.skipSelectors.ids ) )
-      //   return;
+
+      //are ids and classes selectors allowed ?
+      //all type of selectors (in the array) must pass the filter test
+      if ( 2 != ( ['ids', 'classes'].filter( function( sel_type) { return self._is_selector_allowed(sel_type); } ) ).length )
+        return;
+
+      return true;
     };
 
 
@@ -2719,32 +2714,70 @@ var TCParams = TCParams || {};
     * HELPERS
     *********/
     /*
-    * @params $(element)
-    * @params array of non authorized tags
+    * @params string : ids or classes
+    * @return boolean
     */
-    Plugin.prototype._is_first_child_tag_allowed = function( $_el, _tags_to_skip ) {
-      var self = this;
-      // console.log( 'in _is_first_child_tag_allowed' , $.isArray( this.options.skipChildTags ) );
-      // console.log( 'FILTER TEST' , this.options.skipChildTags.filter( function( _tag , _ind ){
-      //   console.log( 'tag et ind' , _tag , _ind  );
-      // } ) );
+    Plugin.prototype._is_selector_allowed = function( requested_sel_type ) {
+      var sel_type = 'ids' == requested_sel_type ? 'id' : 'class';
+      //has requested sel ?
+      if ( ! this.$_el.attr( sel_type ) )
+        return true;
 
+      //check if option is well formed
+      if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[requested_sel_type] || ! $.isArray( this.options.skipSelectors[requested_sel_type] )  )
+        return true;
 
-      //is first child tag allowed ?
-      // if ( $.isArray( this.options.skipChildTags ) && this.$_el.children().first().length && -1 != _.indexOf( _.map( this.options.skipChildTags , function(_tag) { return _tag.toUpperCase(); } ), this.$_el.children().first()[0].tagName ) )
-      //   return;
+      var _elSels       = this.$_el.attr( sel_type ).split(' '),
+          _selsToSkip   = this.options.skipSelectors[requested_sel_type],
+          _filtered     = _elSels.filter( function(classe) { return -1 != $.inArray( classe , _selsToSkip ) ;});
+
+      //check if the filtered selectors array with the non authorized selectors is empty or not
+      //if empty => all selectors are allowed
+      //if not, at least one is not allowed
+      return 0 === _filtered.length;
     };
 
-    //@return : number
+
+
+    /*
+    * @return boolean
+    */
+    Plugin.prototype._is_first_child_tag_allowed = function() {
+      //has children ?
+      if ( 0 === this.$_el.children().length )
+        return true;
+
+      var tagName     = this.$_el.children().first()[0].tagName,
+          _tagToSkip  = this.options.skipChildTags;
+
+      //check if tag to skip option is an array
+      if ( ! $.isArray( _tagToSkip ) )
+        return true;
+
+      //make sure tags in option are all in uppercase
+      _tagToSkip = _tagToSkip.map( function( _tag ) { return _tag.toUpperCase(); });
+      return -1 == $.inArray( tagName , _tagToSkip );
+    };
+
+
+
+    /*
+    * @return boolean
+    */
     Plugin.prototype._is_external = function( _href  ) {
-      var _url_comp     = (location.host.replace('www.' , '')).split('.'),
-          _nakedDomain  = new RegExp( _url_comp[0] + "." + _url_comp[1] );
+      //gets main domain and extension, no matter if it is a n level sub domain
+      //works also with localhost or numeric urls
+      var _main_domain = (location.host).split('.').slice(-2).join('.'),
+          _reg = new RegExp( _main_domain );
 
       if ( _href !== '' && _href != '#' && this._isValidURL( _href ) )
-        return ! _nakedDomain.test( _href ) ? true : false;
+        return ! _reg.test( _href );
     };
 
 
+    /*
+    * @return boolean
+    */
     Plugin.prototype._isValidURL = function( _url ){
       var _pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
       if ( _pattern.test( _url ) )
@@ -2776,7 +2809,7 @@ jQuery(function ($) {
       $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts) > 0 || {} );
     }
 
-    //Drop Caps
+    //DROP CAPS
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
       $.each( _p.dropcapWhere , function( ind, val ) {
         if ( 1 == val ) {
@@ -2788,10 +2821,10 @@ jQuery(function ($) {
       });
     }
 
+    //EXT LINKS
     //May be add (check if activated by user) external class + target="_blank" to relevant links
     //images are excluded by default
     //links inside post/page content
-    console.log('OPTS in MAIN' , _p.extLinksStyle , _p.extLinksTargetExt, _p.extLinksSkipSelectors );
     if ( _p.extLinksStyle || _p.extLinksTargetExt ) {
       $('a' , '.entry-content').extLinks({
         addIcon : _p.extLinksStyle,
@@ -2802,7 +2835,8 @@ jQuery(function ($) {
 
 
 
-    //fancybox with localized script variables
+    //FANCYBOX
+    //Fancybox with localized script variables
     var b = _p.FancyBoxState,
         c = _p.FancyBoxAutoscale;
     if ( 1 == b ) {
