@@ -313,8 +313,18 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             )
           );
           $_figure_height = isset($_grid_column_height[$_cols_class]) ? $_grid_column_height[$_cols_class] : 350;
+          $_expanded_featured_css = '';
 
-          $_css = sprintf("%s\n%s",
+
+          //ADD THE HEIGHT FOR EXP FEATURED POST
+          $_height = isset($_grid_column_height['grid-cols-1']) ? $_grid_column_height['grid-cols-1'] : 350;
+          $_expanded_featured_css = "
+          .grid-cols-1 figure {
+              height:{$_height}px;
+          }";
+
+          $_css = sprintf("%s\n%s\n%s",
+              $_expanded_featured_css,
               $_css,
               "
               /*.tc-post-list-grid figure {

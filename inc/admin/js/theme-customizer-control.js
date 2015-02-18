@@ -149,8 +149,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         callback: function (to) {
           return 'grid' == to;
         }
-      },
-      hide : {
+      }
+      /*hide : {
         controls: [
           'tc_post_list_thumb_shape',
           'tc_post_list_thumb_position',
@@ -166,7 +166,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         tc_post_list_thumb_shape : { master : 'tc_post_list_grid' , value : 'default' },
         tc_post_list_thumb_alternate : { master : 'tc_post_list_grid' , value : 'default' },
         tc_post_list_thumb_position : { master : 'tc_post_list_grid' , value : 'default' }
-      }
+      }*/
     },
     'tc_post_list_show_thumb' : {
       controls: [
@@ -183,11 +183,11 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       },
       //display dependant if master setting value == value
       cross: {
-        tc_post_list_thumb_height : { master : 'tc_post_list_grid' , value : 'default' },
-        tc_post_list_thumb_shape : { master : 'tc_post_list_grid' , value : 'default' },
-        tc_post_list_thumb_alternate : { master : 'tc_post_list_grid' , value : 'default' },
-        tc_post_list_thumb_position : { master : 'tc_post_list_grid' , value : 'default' },
-        tc_post_list_grid_thumb_height : { master : 'tc_post_list_grid' , value : 'grid' }
+        tc_post_list_thumb_height : { master : 'tc_post_list_thumb_shape' , callback : function (to) { return to.indexOf('rectangular') > -1; } },
+        // tc_post_list_thumb_shape : { master : 'tc_post_list_grid' , value : 'default' },
+        // tc_post_list_thumb_alternate : { master : 'tc_post_list_grid' , value : 'default' },
+        // tc_post_list_thumb_position : { master : 'tc_post_list_grid' , value : 'default' },
+        //tc_post_list_grid_thumb_height : { master : 'tc_post_list_grid' , value : 'grid' }
       }
     },
     'tc_post_list_thumb_shape' : {
@@ -378,13 +378,14 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     var _dependants = _controlDependencies[setId];
     if ( ! _dependants.cross || ! _dependants.cross[depSetId] )
       return true;
-    var _cross = _dependants.cross[depSetId],
-        _id   = _cross.master,
-        _val  = _cross.value;
+    var _cross  = _dependants.cross[depSetId],
+        _id     = _cross.master,
+        _cb     = _cross.callback;
 
     _id = _build_setId(_id);
-    //if current master val == _val => show
-    return _val == api.instance(_id).get();
+    console.log( );
+    //if _cb returns true => show
+    return _cb( api.instance(_id).get() );
   };
 
   /*

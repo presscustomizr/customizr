@@ -29,7 +29,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           //update setting_control_map
           add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_update_setting_control_map'), 100 );
           //update setting_control_map with post list design, v3.2.18+
-          add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_post_list_grid_map'), 101 );
+          add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_grid_map'), 101 );
           //declare a private property to check wp version >= 4.0
           global $wp_version;
           $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
@@ -1772,9 +1772,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number'),
                                 'priority'      =>  73,
               ),
+
               'tc_theme_options[tc_post_list_thumb_shape]'  =>  array(
                                 'default'       => 'rounded',
                                 'control'     => 'TC_controls' ,
+                                'title'         => __( 'Thumbnails options for the classical layout' , 'customizr' ),
                                 'label'         => __( "Thumbnails shape" , "customizr" ),
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'      =>  'select' ,
@@ -1787,7 +1789,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'rectangular-blurred'   => __( 'Rectangular with blur effect on hover' , 'customizr'  ),
                                         'rectangular-unblurred' => __( 'Rectangular with unblur effect on hover' , 'customizr'),
                                 ),
-                                'priority'      => 75
+                                'priority'      => 77
               ),
               'tc_theme_options[tc_post_list_thumb_height]' => array(
                                 'default'       => 250,
@@ -2089,23 +2091,23 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.2.18
     */
-    function tc_post_list_grid_map( $_map ) {
+    function tc_grid_map( $_map ) {
         $_new_settings = array(
           'tc_theme_options[tc_post_list_grid]'  =>  array(
-                            'default'       => 'default',
+                            'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.18' ) ? 'classical' : 'grid',
                             'control'       => 'TC_controls' ,
                             'title'         => __( 'Post List Design' , 'customizr' ),
                             'label'         => __( 'Select a Layout' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'select',
                             'choices'       => array(
-                                    'default'            => __( 'Default' , 'customizr'),
-                                    'grid'               => __( 'Grid Layout' , 'customizr')
+                                    'classical'       => __( 'Classical' , 'customizr'),
+                                    'grid'            => __( 'Grid Layout' , 'customizr')
                             ),
                             'priority'      => 40,
-                            'notice'    => __( 'When you select the grid Layout, the post content will be forced to excerpt' , 'customizr' ),
+                            'notice'    => __( 'When you select the grid Layout, the post content will be limited to the excerpt' , 'customizr' ),
           ),
-          'tc_theme_options[tc_post_list_grid_columns]'  =>  array(
+          'tc_theme_options[tc_grid_columns]'  =>  array(
                             'default'       => '2',
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Number of columns per row' , "customizr" ),
@@ -2119,7 +2121,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             ),
                             'priority'      => 45
           ),
-          'tc_theme_options[tc_post_list_grid_expand_featured]'  =>  array(
+          'tc_theme_options[tc_grid_expand_featured]'  =>  array(
                             'default'       => 1,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Expand the featured posts (for home and blog page only)' , "customizr" ),
@@ -2127,7 +2129,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'checkbox',
                             'priority'      => 50
           ),
-          'tc_theme_options[tc_post_list_grid_in_blog]'  =>  array(
+          'tc_theme_options[tc_grid_in_blog]'  =>  array(
                             'default'       => 1,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Apply the grid layout to Home/Blog' , "customizr" ),
@@ -2135,7 +2137,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'checkbox',
                             'priority'      => 55
           ),
-          'tc_theme_options[tc_post_list_grid_in_archive]'  =>  array(
+          'tc_theme_options[tc_grid_in_archive]'  =>  array(
                             'default'       => 0,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Apply the grid layout to Archives (archives, categories, author posts)' , "customizr" ),
@@ -2143,24 +2145,26 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'checkbox',
                             'priority'      => 60
           ),
-          'tc_theme_options[tc_post_list_grid_in_search]'  =>  array(
+          'tc_theme_options[tc_grid_in_search]'  =>  array(
                             'default'       => 0,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 65
+                            'priority'      => 65,
+                            'notice'    => __( 'Uncheck contexts are displayed with the classical layout.' , 'customizr' ),
            ),
-          'tc_theme_options[tc_post_list_grid_thumb_height]' => array(
+          'tc_theme_options[tc_grid_thumb_height]' => array(
                             'default'       => 350,
                             'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                             'control'   => 'TC_controls' ,
+                            'title'         => __( 'Thumbnails max height for the grid layout' , 'customizr' ),
                             'label'       => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
                             'section'     => 'tc_post_list_settings' ,
                             'type'        => 'number' ,
                             'step'      => 1,
                             'min'     => 0,
-                            'priority'      => 85
+                            'priority'      => 73
                             //'transport'   => 'postMessage'
           )
         );//$_new_settings

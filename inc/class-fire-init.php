@@ -72,11 +72,11 @@ if ( ! class_exists( 'TC_init' ) ) :
           );
 
           //Default images sizes
-          $this -> tc_thumb_size      = array('width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
-          $this -> slider_full_size   = array('width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
-          $this -> slider_size        = array('width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
-          $this -> tc_grid_full_size = array('width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
-          $this -> tc_grid_size = array('width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
+          $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
+          $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
+          $this -> slider_size        = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
+          $this -> tc_grid_full_size  = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
+          $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
 
 
           //Default skins array
