@@ -64,13 +64,14 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_post_formats_with_no_heading', '__return_empty_array');
 
           // SINGLE POST CONTENT IN GRID
-          $_content_priorities = apply_filters('tc_grid_post_content_priorities' , array( 'featured_title' => 10, 'content' => 20, 'link' =>30 ));
-          add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_expanded_post_title'), $_content_priorities['featured_title'] );
+          $_content_priorities = apply_filters('tc_grid_post_content_priorities' , array( 'content' => 20, 'link' =>30 ));
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_figcaption_content') , $_content_priorities['content'] );
-          add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_post_link')          , $_content_priorities['link'] );
+          add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_post_link'), $_content_priorities['link'] );
+          //expanded featured post : filter the figcaption content to include the post title
+          add_filter( 'tc_grid_display_figcaption_content' , array( $this, 'tc_grid_set_expanded_post_title') );
 
           //SECTION CSS CLASSES TO HANDLE EFFECT LIKE SHADOWS
-          add_filter( 'tc_grid_section_class'  , array( $this, 'tc_grid_section_set_classes' ) );
+          add_filter( 'tc_grid_section_class'         , array( $this, 'tc_grid_section_set_classes' ) );
         }
 
 
@@ -160,12 +161,29 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_grid_section_set_classes( $_classes ) {
           if ( ! apply_filters( 'tc-grid-apply-shadow' , true ) )
             return $_classes;
-          return array_merge( $_classes , array( 'tc-grid-shadow' ) );
+          return array_merge( $_classes , array( 'tc-grid-shadow', 'tc-grid-border' ) );
         }
 
         // function tc_change_tumbnail_inline_css_width($_style, $width, $height){
         //   return sprintf('width:100%%;height:auto;');
         // }
+
+
+        /**
+        * hook : __grid_single_post_content
+        * @return  html string
+        */
+        function tc_grid_set_expanded_post_title( $_html ){
+          if ( ! $this -> tc_force_current_post_expansion() )
+              return $_html;
+          global $post;
+          $_html = sprintf('%1$s<h2 class="entry-title">%2$s</h2>',
+              $_html,
+              $post->post_title
+          );
+          return apply_filters( 'tc_grid_expanded_title', $_html );
+        }
+
 
 
 
@@ -230,7 +248,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-        /*
+        /**
         * hook : __grid_single_post_content
         */
         function tc_grid_display_post_link(){
@@ -243,33 +261,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /*
         * hook : __grid_single_post_content
         */
-        function tc_grid_display_expanded_post_title(){
-          if ( ! $this -> tc_force_current_post_expansion() )
-              return;
-          global $post;
-          $title = sprintf('<%1$s class="%2$s">%3$s</%1$s>',
-              apply_filters( 'tc_grid_caption_title_tag', 'h1'),
-              implode( ' ' , apply_filters( 'tc_grid_caption_title_class', array('tcd-title') ) ),
-              $post->post_title
-          );
-          echo apply_filters( 'tc_grid_caption_title', $title );
-        }
-
-
-
-        /*
-        * hook : __grid_single_post_content
-        */
-        function tc_grid_display_figcaption_content(){
-          ob_start();
+        function tc_grid_display_figcaption_content() {
           ?>
               <div class="entry-summary">
-                  <?php the_excerpt(); ?>
+                  <?php echo apply_filters( 'tc_grid_display_figcaption_content' , get_the_excerpt() ); ?>
               </div>
           <?php
-          $html = ob_get_contents();
-          if ($html) ob_end_clean();
-          echo apply_filters('tc_grid_display_figcaption_content', $html);
         }
 
 
@@ -337,6 +334,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_expanded_featured_css = "
           .grid-cols-1 figure {
               height:{$_height}px;
+              max-height:{$_height}px;
           }";
 
           $_css = sprintf("%s\n%s\n%s",
@@ -351,6 +349,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               }*/
               .{$_cols_class} figure {
                   height:{$_figure_height}px;
+                  max-height:{$_height}px;
               }
               @media (max-width: 767px){
                   .tc-post-list-grid header,
