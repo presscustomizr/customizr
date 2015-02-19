@@ -69,7 +69,6 @@
   });
 
 
-
   /*
   * Main control dependencies object
   */
@@ -279,7 +278,7 @@
   * simple helper to build the setting id name
   */
   var _build_setId = function ( name ) {
-    return [ 'tc_theme_options[' , name  , ']' ].join('');
+    return -1 == name.indexOf( 'tc_theme_options') ? [ 'tc_theme_options[' , name  , ']' ].join('') : name;
   };
 
 

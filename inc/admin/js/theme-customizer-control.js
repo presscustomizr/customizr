@@ -113,7 +113,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   });
 
 
-
   /*
   * Main control dependencies object
   */
@@ -323,7 +322,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   * simple helper to build the setting id name
   */
   var _build_setId = function ( name ) {
-    return [ 'tc_theme_options[' , name  , ']' ].join('');
+    return -1 == name.indexOf( 'tc_theme_options') ? [ 'tc_theme_options[' , name  , ']' ].join('') : name;
   };
 
 
