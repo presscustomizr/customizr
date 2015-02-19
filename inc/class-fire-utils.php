@@ -345,7 +345,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_get_current_screen_layout ( $post_id , $sidebar_or_class) {
+      function tc_get_current_screen_layout ( $post_id , $sidebar_or_class = 'class' ) {
           $__options                    = tc__f ( '__options' );
 
           global $post;
@@ -413,8 +413,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
               'class'   => $class_tab
             );
           }
-
-
 
         return apply_filters( 'tc_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }

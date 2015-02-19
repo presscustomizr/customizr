@@ -34,11 +34,18 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               return;
 
           do_action( '__post_list_grid' );
+
+          //Various CSS filters
           add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
+          add_filter( 'tc_grid_figure_height'       , array( $this , 'tc_set_grid_column_height'), 10, 2 );
+          add_filter( 'tc_grid_title_sizes'         , array( $this , 'tc_set_grid_title_size'), 10, 2 );
+
           // pre loop hooks
           add_action( '__before_article_container'  , array( $this, 'tc_set_grid_before_loop_hooks'), 5 );
           // loop hooks
           add_action( '__before_article'            , array( $this, 'tc_set_grid_loop_hooks'), 0 );
+          add_action( '__before_article'            , array( $this, 'tc_set_grid_loop_hooks'), 0 );
+          add_filter( 'tc_grid_section_cols'        , array( $this, 'tc_set_grid_section_cols'), 20 , 2 );
         }
 
 
@@ -81,11 +88,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_set_grid_loop_hooks(){
           add_action( '__before_article'            , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
-          add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 0 );
-
+          add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
+          add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
           remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_post_list_display') );
           add_action( '__loop'                      , array( $this, 'tc_grid_single_post_display') );
         }
+
 
 
 
@@ -106,7 +114,26 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-        /*
+        /**
+        * Grid columns = fn(current-layout)
+        */
+        function tc_set_grid_section_cols( $_cols, $_current_layout ) {
+          $_map = apply_filters(
+            'tc_grid_col_layout_map',
+            array(
+              'span12'  => '4',
+              'span9'   => '3',
+              'span6'   => '2'
+            )
+          );
+          if ( (int) $_map[$_current_layout] >= (int) $_cols )
+            return (string) $_cols;
+          return (string) $_map[$_current_layout];
+        }
+
+
+
+        /**
         * Apply proper class to articles selectors to control articles width
         * hook : tc_post_list_selectors
         */
@@ -172,6 +199,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /**
         * hook : __grid_single_post_content
         * @return  html string
+        * hook : tc_grid_display_figcaption_content
         */
         function tc_grid_set_expanded_post_title( $_html ){
           if ( ! $this -> tc_force_current_post_expansion() )
@@ -179,11 +207,49 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           global $post;
           $_html = sprintf('%1$s<h2 class="entry-title">%2$s</h2>',
               $_html,
-              $post->post_title
+              apply_filters( 'tc_the_title', $post->post_title )
           );
           return apply_filters( 'tc_grid_expanded_title', $_html );
         }
 
+
+        /**
+        * @param (number) $_height, (string) $col_layout
+        * @return array
+        * hook : tc_grid_figure_height
+        */
+        function tc_set_grid_column_height( $_height, $_cols_class ) {
+          $_grid_col_height_map =  apply_filters(
+              'tc_grid_col_height_map',
+              array(
+                'grid-cols-1' => 350,
+                'grid-cols-2' => 350,
+                'grid-cols-3' => 225,
+                'grid-cols-4' => 165
+              )
+          );
+          return isset( $_grid_col_height_map[$_cols_class] ) ? $_grid_col_height_map[$_cols_class] : $_height;
+        }
+
+
+
+        /**
+        * @param (array) $_sizes, (string) $col_layout
+        * @return array
+        * hook :tc_grid_title_sizes
+        */
+        function tc_set_grid_title_size( $_sizes, $_cols_class ) {
+          $_grid_col_height_map =  apply_filters(
+              'tc_grid_col_title_map',
+              array(
+                'grid-cols-1' => array( 'font-size' => 32 , 'line-height' => 40 ),
+                'grid-cols-2' => array( 'font-size' => 25 , 'line-height' => 30 ),
+                'grid-cols-3' => array( 'font-size' => 20 , 'line-height' => 24 ),
+                'grid-cols-4' => array( 'font-size' => 16 , 'line-height' => 22 )
+              )
+          );
+          return isset( $_grid_col_height_map[$_cols_class] ) ? $_grid_col_height_map[$_cols_class] : $_sizes;
+        }
 
 
 
@@ -222,7 +288,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * display single post content + thumbnail
         */
         function tc_grid_single_post_display(){
-          //creates vars $_single_grid_post_wrapper_class, $_thumb_html, $_post_content_html
+          //creates vars $_classes, $_thumb_html, $_post_content_html
           extract( $this -> tc_prepare_grid_single_post_content() , EXTR_OVERWRITE );
 
           ob_start();
@@ -230,16 +296,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
               echo apply_filters( 'tc_grid_single_post_thumb_content',
                 sprintf('<section class="tc-grid-post"><figure class="%1$s">%2$s %3$s</figure></section>',
-                  $_single_grid_post_wrapper_class,
+                  $_classes,
                   $_thumb_html,
                   $_post_content_html
                 )
               );
-
-
             do_action('__after_grid_single_post');//<= close </section> and maybe display title + metas
-            //renders the hr separator after each article
-            echo apply_filters( 'tc_post_list_separator', '<hr class="featurette-divider '.current_filter().'">' );
 
           $html = ob_get_contents();
           if ($html) ob_end_clean();
@@ -264,7 +326,13 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_grid_display_figcaption_content() {
           ?>
               <div class="entry-summary">
-                  <?php echo apply_filters( 'tc_grid_display_figcaption_content' , get_the_excerpt() ); ?>
+                <?php
+                  echo apply_filters( 'tc_grid_display_figcaption_content',
+                    sprintf('<div class="tc-grid-excerpt-content">%s</div>',
+                      get_the_excerpt()
+                    )
+                  );
+                ?>
               </div>
           <?php
         }
@@ -312,20 +380,15 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           if ( ! is_numeric($thumb_size['width']*$thumb_size['height']*$thumb_full_size['width']*$thumb_full_size['height']) )
             return $_css;
 
+          // DEFINITIONS
           $thumb_width      = $thumb_size['width'];
           $thumb_full_ratio = $thumb_full_size['height'] / $thumb_full_size['width'] * 100;
           $thumb_ratio      = $thumb_size['height'] / $thumb_size['width'] * 100;
           $_cols_class      = sprintf('grid-cols-%s' , $this -> tc_get_grid_section_cols() );
-          $_grid_column_height = apply_filters(
-            'tc_grid_figure_height' ,
-            array(
-              'grid-cols-1' => 350,
-              'grid-cols-2' => 350,
-              'grid-cols-3' => 225,
-              'grid-cols-4' => 165
-            )
-          );
-          $_figure_height = isset($_grid_column_height[$_cols_class]) ? $_grid_column_height[$_cols_class] : 350;
+          $_figure_height   = apply_filters( 'tc_grid_figure_height' , 350 , $_cols_class );
+          $_title_sizes     = apply_filters( 'tc_grid_title_sizes', array( 'font-size' => 32 , 'line-height' => 40 ) , $_cols_class );
+          $_font_size       = $_title_sizes['font-size'];
+          $_line_height     = $_title_sizes['line-height'];
           $_expanded_featured_css = '';
 
 
@@ -335,33 +398,21 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           .grid-cols-1 figure {
               height:{$_height}px;
               max-height:{$_height}px;
+              line-height:{$_height}px;
           }";
 
           $_css = sprintf("%s\n%s\n%s",
               $_expanded_featured_css,
               $_css,
               "
-              /*.tc-post-list-grid figure {
-                  height: 0;
-                  width: 100%;
-                  padding-bottom: {$thumb_ratio}%;
-                  max-width : {$thumb_width}px;
-              }*/
               .{$_cols_class} figure {
                   height:{$_figure_height}px;
-                  max-height:{$_height}px;
+                  max-height:{$_figure_height}px;
+                  line-height:{$_figure_height}px;
               }
-              @media (max-width: 767px){
-                  .tc-post-list-grid header,
-                  .tc-post-list-grid .tc-grid-post{
-                      margin: 0 auto !important;
-                      float: none;
-                      width: auto;
-                      max-width : {$thumb_width}px;
-                  }
-                  .tc-post-list-grid.cols1 .tc-grid-post {
-                      max-width: ${thumb_full_width}px;
-                  }
+              .{$_cols_class} .entry-title {
+                  font-size:{$_font_size}px;
+                  line-height:{$_line_height}px;
               }
               \n
               "
@@ -370,6 +421,15 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           return $_css;
         }
 
+
+        /* Separator after each grid article
+        * hook : __after_article (declared in index.php)
+        * print a separator after each article => revealed in responsive mode
+        */
+        function tc_print_article_sep() {
+          //renders the hr separator after each article
+          echo apply_filters( 'tc_grid_single_post_sep', '<hr class="featurette-divider '.current_filter().'">' );
+        }
 
 
 
@@ -405,11 +465,18 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_post_content_html               = apply_filters( 'tc_grid_content_html' , $this -> tc_grid_get_single_post_html( isset( $_layout['content']) ? $_layout['content'] : 'span6' ) );
 
           // WRAPPER CLASS : build single grid post wrapper class
-          $_tc_show_thumb                   = ( empty($_thumb_data[0]) || ! esc_attr( tc__f('__get_option', 'tc_post_list_show_thumb') ) ) ? false : true;
-          $_single_grid_post_wrapper_class  = implode( ' ' , apply_filters('tc_single_grid_post_wrapper_class', array('tc-grid-figure') ) );
-          $_single_grid_post_wrapper_class  = ( $_tc_show_thumb ) ? $_single_grid_post_wrapper_class : sprintf( '%s no-thumb' , $_single_grid_post_wrapper_class );
+          $_classes  = array('tc-grid-figure');
 
-          return apply_filters( 'tc_prepare_grid_single_post_content' , compact( '_single_grid_post_wrapper_class', '_thumb_html', '_post_content_html') );
+          $_tc_show_thumb                   = ( empty($_thumb_data[0]) || ! esc_attr( tc__f('__get_option', 'tc_post_list_show_thumb') ) ) ? false : true;
+          if ( ! $_tc_show_thumb )
+            array_push( $_classes, 'no-thumb' );
+          //if 1 col layout or current post is the expanded => golden ratio should be disabled
+          if ( ( '1' == $this -> tc_get_post_list_cols() || $this -> tc_force_current_post_expansion() ) && ! wp_is_mobile() )
+            array_push( $_classes, 'no-gold-ratio' );
+
+          $_classes  = implode( ' ' , apply_filters('tc_single_grid_post_wrapper_class', $_classes ) );
+
+          return apply_filters( 'tc_prepare_grid_single_post_content' , compact( '_classes', '_thumb_html', '_post_content_html') );
         }
 
 
@@ -506,27 +573,29 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /*
         * @return bool
         */
-        private function tc_is_grid_enabled(){
+        private function tc_is_grid_enabled() {
           return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( tc__f('__get_option', 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
         }
 
 
         /* retrieves number of cols option, and wrap it into a filter */
-        private function tc_get_post_list_cols(){
+        private function tc_get_post_list_cols() {
           return apply_filters( 'tc_grid_columns', esc_attr( tc__f('__get_option', 'tc_grid_columns') ) );
         }
 
 
         /* returns articles wrapper section columns */
-        private function tc_get_grid_section_cols(){
+        private function tc_get_grid_section_cols() {
           return apply_filters( 'tc_grid_section_cols',
-            $this -> tc_force_current_post_expansion() ? '1' : $this -> tc_get_post_list_cols()
+            $this -> tc_force_current_post_expansion() ? '1' : $this -> tc_get_post_list_cols(),
+            TC_utils::$instance -> tc_get_current_screen_layout( get_the_ID() , 'class' )
           );
         }
 
 
+
         /* returns the type of post list we're in if any, an empty string otherwise */
-        private function tc_get_grid_context(){
+        private function tc_get_grid_context() {
           global $wp_query;
           if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
                   $wp_query->is_posts_page )

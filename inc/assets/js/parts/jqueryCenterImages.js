@@ -17,7 +17,9 @@
         oncustom : [],//list of event here
         imgSel : 'img',
         enableGoldenRatio : false,
-        goldenRatioVal : 1.618
+        goldenRatioVal : 1.618,
+        skipGoldenRatioClasses : ['no-gold-ratio'],
+        disableGRUnder : 767//in pixels
       };
 
   function Plugin( element, options ) {
@@ -53,11 +55,30 @@
     if ( ! this.options.enableGoldenRatio )
       return;
 
+    //make sure the container has not a forbidden class
+    if ( ! this._is_selector_allowed() )
+      return;
+    //check if golden ratio can be applied under custom width
+    if ( ! this._is_window_width_allowed() ) {
+      //reset inline style for the container
+      $(this.container).attr('style' , '');
+      return;
+    }
+
     if ( ! this.options.goldenRatioVal || 0 === this.options.goldenRatioVal )
       return;
 
     var new_height = Math.round( $(this.container).width() / this.options.goldenRatioVal );
     $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } );
+  };
+
+
+  /*
+  * @params string : ids or classes
+  * @return boolean
+  */
+  Plugin.prototype._is_window_width_allowed = function() {
+    return $(window).width() > this.options.disableGRUnder - 15;
   };
 
 
@@ -139,6 +160,32 @@
     $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , 'auto' )
         .addClass( _p.class ).removeClass( _not_p.class )
         .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, 0 );
+  };
+
+  /********
+  * HELPERS
+  *********/
+  /*
+  * @params string : ids or classes
+  * @return boolean
+  */
+  Plugin.prototype._is_selector_allowed = function() {
+    //has requested sel ?
+    if ( ! $(this.container).attr( 'class' ) )
+      return true;
+
+    //check if option is well formed
+    if ( ! this.options.skipGoldenRatioClasses || ! $.isArray( this.options.skipGoldenRatioClasses )  )
+      return true;
+
+    var _elSels       = $(this.container).attr( 'class' ).split(' '),
+        _selsToSkip   = this.options.skipGoldenRatioClasses,
+        _filtered     = _elSels.filter( function(classe) { return -1 != $.inArray( classe , _selsToSkip ) ;});
+
+    //check if the filtered selectors array with the non authorized selectors is empty or not
+    //if empty => all selectors are allowed
+    //if not, at least one is not allowed
+    return 0 === _filtered.length;
   };
 
 

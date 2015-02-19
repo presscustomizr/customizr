@@ -6296,6 +6296,9 @@ video {
   /* For IE 8 */
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#ccc')";
 }
+.tc-post-list-grid .featurette-divider.__after_article {
+  display: none;
+}
 .tc-grid-figure {
   position: relative;
   overflow: hidden;
@@ -6344,7 +6347,6 @@ video {
   max-width: 50%;
   height: auto;
   margin-left: 11%;
-  padding: 1%;
   background: none;
 }
 .tc-grid .entry-header {
@@ -6379,21 +6381,20 @@ video {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  z-index: 10;
+  position: relative;
+  text-rendering: geometricPrecision;
 }
 .tc-post-list-grid .expanded .entry-summary {
   background: #fafafa;
   background: rgba(0, 0, 0, 0.4);
 }
 .tc-post-list-grid .expanded .entry-title {
-  color: #fff;
   text-align: left;
   text-shadow: none;
 }
-.tc-grid-excerpt p {
-  height: 100%;
-  overflow: hidden;
-  text-rendering: geometricPrecision;
-  margin: 0;
+.tc-post-list-grid .expanded .entry-title a {
+  color: #fff;
 }
 /* HOVER */
 .tc-post-list-grid .hover:not(.expanded) figcaption,
@@ -6419,7 +6420,7 @@ video {
 }
 .tc-post-list-grid figcaption > a {
   position: absolute;
-  z-index: 10;
+  z-index: 9;
   top: 0;
   left: 0;
   width: 100%;
@@ -8633,11 +8634,20 @@ li#wp-admin-bar-tc-customizr a {
   .featurette-divider.post-list-grid {
     display: none;
   }
-  .tc-post-list-grid .featurette-divider.__loop {
+  .tc-post-list-grid .featurette-divider.__after_article {
     display: block;
   }
   .tc-post-list-grid .entry-summary {
     padding: 5%;
+  }
+  .expanded .tc-grid-post figcaption {
+    max-width: none;
+    margin-left: 0;
+  }
+  [class*=grid-cols-] .tc-grid-post figure {
+    height: 225px;
+    max-height: 225px;
+    line-height: 225px;
   }
 }
 @media (max-width: 480px) {
@@ -8719,6 +8729,11 @@ li#wp-admin-bar-tc-customizr a {
   }
   .navbar-inner .social-block a {
     padding-right: 6px;
+  }
+  /* GRID */
+  .tc-grid-excerpt-content {
+    max-height: 80px;
+    overflow: hidden;
   }
 }
 @media (max-width: 320px) {

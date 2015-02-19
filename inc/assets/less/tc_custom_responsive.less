@@ -569,11 +569,20 @@
   .featurette-divider.post-list-grid{
       display: none;
   }
-  .tc-post-list-grid .featurette-divider.__loop{
+  .tc-post-list-grid .featurette-divider.__after_article{
       display: block;
   }
   .tc-post-list-grid .entry-summary {
     padding: 5%;
+  }
+  .expanded .tc-grid-post figcaption {
+    max-width: none;
+    margin-left: 0;
+  }
+  [class*=grid-cols-] .tc-grid-post figure {
+    height: 225px;
+    max-height: 225px;
+    line-height: 225px;
   }
 }
 
@@ -651,6 +660,11 @@
   }
   .navbar-inner .social-block a {
     padding-right: 6px;
+  }
+  /* GRID */
+  .tc-grid-excerpt-content {
+    max-height: 80px;
+    overflow: hidden;
   }
 }
 

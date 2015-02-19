@@ -1724,6 +1724,10 @@ max-width: 100%;
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#ccc')";
 }
 
+.tc-post-list-grid .featurette-divider.__after_article{
+  display: none;
+}
+
 .tc-grid-figure {
   position: relative;
   overflow: hidden;
@@ -1774,7 +1778,6 @@ max-width: 100%;
     max-width: 50%;
     height: auto;
     margin-left: 11%;
-    padding: 1%;
     background: none;
 }
 
@@ -1811,22 +1814,22 @@ max-width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    z-index: 10;
+    position: relative;
+    text-rendering: geometricPrecision;
 }
 .tc-post-list-grid .expanded .entry-summary{
   background: rgb(250, 250, 250);
   background: rgba(0, 0, 0, 0.4);
 }
 .tc-post-list-grid .expanded .entry-title {
-  color: #fff;
   text-align: left;
   text-shadow: none;
 }
-.tc-grid-excerpt p {
-    height: 100%;
-    overflow: hidden;
-    text-rendering: geometricPrecision;
-    margin: 0;
+.tc-post-list-grid .expanded .entry-title a {
+  color: #fff;
 }
+
 
 /* HOVER */
 .tc-post-list-grid .hover:not(.expanded) figcaption , .tc-post-list-grid .expanded.hover .entry-summary {
@@ -1852,7 +1855,7 @@ max-width: 100%;
 }
 .tc-post-list-grid figcaption > a {
     position: absolute;
-    z-index: 10;
+    z-index: 9;
     top: 0;
     left: 0;
     width: 100%;
