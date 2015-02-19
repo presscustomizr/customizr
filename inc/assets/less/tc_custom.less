@@ -1734,11 +1734,11 @@ max-width: 100%;
   opacity: 1;
   width: 100%;
   height: auto;
-  -webkit-transition: opacity, left, top .20s;
-  -moz-transition: opacity, left, top .20s;
-  -ms-transition: opacity, left, top .20s;
-  -o-transition: opacity, left, top .20s;
-  transition: opacity, left, top .20s;
+  -webkit-transition: opacity .2s, left .2s, top .2s;
+  -moz-transition: opacity .2s, left .2s, top .2s;
+  -ms-transition: opacity .2s, left .2s, top .2s;
+  -o-transition: opacity .2s, left .2s, top .2s;
+  transition: opacity .2s, left .2s, top .2s;
   position: relative;
 }
 
@@ -1762,7 +1762,7 @@ max-width: 100%;
     position: absolute;
     opacity: 0;
     width: 100%;
-    color: #000;
+    color: #fff;
     -webkit-transition: opacity .15s;
     -moz-transition: opacity .15s;
     -ms-transition: opacity .15s;
@@ -1772,11 +1772,10 @@ max-width: 100%;
 .expanded .tc-grid-post figcaption{
     opacity: 1;
     max-width: 50%;
-    line-height: 0.8em;
     height: auto;
-    top: 5%;
     margin-left: 11%;
     padding: 1%;
+    background: none;
 }
 
 .tc-grid .entry-header {
@@ -1786,12 +1785,18 @@ max-width: 100%;
 /* this is for testing, just opacify the thumb and don't apply background for normal posts
 *  but apply it to .expanded caption and .no-thumb caption
 */
+.expanded figcaption {
+  background: rgb(250, 250, 250);
+  background: rgba(0,0,0,.4);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
+}
+.no-thumb figcaption {
+  color: inherit;
+  background: none;
+  opacity: 1;
+}
 .expanded figcaption,
-.no-thumb figcaption{
-    opacity: 1;
-    background: rgb(250, 250, 250);
-    background: rgba(0,0,0,.1);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
+.no-thumb figcaption {
     -webkit-transition: background .15s;
     -moz-transition: background .15s;
     -ms-transition: background .15s;
@@ -1799,14 +1804,22 @@ max-width: 100%;
     transition: background .15s;
 }
 .tc-post-list-grid .entry-summary{
-    height: 100%;
+    line-height: 20px;
+    vertical-align: middle;
+    display: inline-block;
     padding: 8%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.tc-post-list-grid .expanded .tcd-title{
-    padding: 0 9%;
+.tc-post-list-grid .expanded .entry-summary{
+  background: rgb(250, 250, 250);
+  background: rgba(0, 0, 0, 0.4);
+}
+.tc-post-list-grid .expanded .entry-title {
+  color: #fff;
+  text-align: left;
+  text-shadow: none;
 }
 .tc-grid-excerpt p {
     height: 100%;
@@ -1816,17 +1829,19 @@ max-width: 100%;
 }
 
 /* HOVER */
-.tc-post-list-grid .hover figcaption{
+.tc-post-list-grid .hover:not(.expanded) figcaption , .tc-post-list-grid .expanded.hover .entry-summary {
     opacity: 1;
     background: rgb(250, 250, 250);
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.6);
 }
+
 .hover .tc-grid-figure img {
-    opacity: 0.5;
+    opacity: 0.7;
 }
 .hover .expanded figcaption, .hover .no-thumb figcaption {
     background: rgb(250, 250, 250);
-    background: rgba(0,0,0,.2);
+    background: rgba(0,0,0,.6);
+    color: #fff;
 }
 
 .tc-post-list-grid article.sticky{
