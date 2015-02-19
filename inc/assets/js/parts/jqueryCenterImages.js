@@ -15,6 +15,7 @@
       defaults = {
         onresize : true,
         oncustom : [],//list of event here
+        imgSel : 'img',
       };
 
   function Plugin( element, options ) {
@@ -28,21 +29,39 @@
   //can access this.element and this.option
   //@return void
   Plugin.prototype.init = function () {
-    var $_imgs = ! this.options.imgclass ? $( 'img' , this.container ) : $( ['.', this.options.imgclass].join('') , this.container );
+    var $_imgs = $( this.options.imgSel , this.container );
     if ( ! $_imgs.length  )
       return;
 
     this._parse_imgs($_imgs);
-    var self = this;
-    if ( this.options.onresize )
-      $(window).resize(function(){ self._parse_imgs($_imgs); });
   };
 
 
   //@return void
   Plugin.prototype._parse_imgs = function( $_imgs ) {
     var self = this;
-    $_imgs.each(function ( ind, img ) { self._pre_img_cent( $(img) ); });
+
+    $_imgs.each(function ( ind, img ) {
+      self._pre_img_cent( $(img) );
+      self._bind_evt ( $(img) );
+    });
+  };
+
+
+  //@return void
+  //map custom events if any
+  Plugin.prototype._bind_evt = function( $_img ) {
+    var self = this,
+        _customEvt = $.isArray(this.options.oncustom) ? this.options.oncustom : this.options.oncustom.split(' ');
+
+    if ( this.options.onresize )
+      $(window).resize(function(){ self._pre_img_cent( $_img ); });
+
+    _customEvt.map( function( evt ) {
+      $_img.bind( evt, {} , function(evt ) {
+        self._pre_img_cent( $_img );
+      } );
+    } );
   };
 
 
@@ -51,6 +70,7 @@
     var _state = this._get_current_state($_img);
     this._maybe_center_img( $_img, _state );
   };
+
 
 
   //@return object with initial conditions

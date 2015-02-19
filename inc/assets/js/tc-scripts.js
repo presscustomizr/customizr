@@ -2551,7 +2551,7 @@ var TCParams = TCParams || {};
         load_all_images_on_first_scroll : false,
         attribute : 'data-src',
         threshold : 200,
-        fadeIn_options : {}
+        fadeIn_options : { duration : 400 }
       };
 
 
@@ -2650,8 +2650,13 @@ var TCParams = TCParams || {};
     .hide()
     .removeAttr( this.options.attribute )
     .attr('src' , _src )
-    .fadeIn( this.options.fadeIn_options )
-    .trigger('smartload');
+    .fadeIn( this.options.fadeIn_options );
+    //trigger the smartload event on the current img after a small delay (=> time to http get the image)
+    setTimeout( function() {
+      $_img.trigger('smartload');
+      },
+      400
+    );
   };
 
 
@@ -2822,6 +2827,7 @@ var TCParams = TCParams || {};
       defaults = {
         onresize : true,
         oncustom : [],//list of event here
+        imgSel : 'img',
       };
 
   function Plugin( element, options ) {
@@ -2835,21 +2841,39 @@ var TCParams = TCParams || {};
   //can access this.element and this.option
   //@return void
   Plugin.prototype.init = function () {
-    var $_imgs = ! this.options.imgclass ? $( 'img' , this.container ) : $( ['.', this.options.imgclass].join('') , this.container );
+    var $_imgs = $( this.options.imgSel , this.container );
     if ( ! $_imgs.length  )
       return;
 
     this._parse_imgs($_imgs);
-    var self = this;
-    if ( this.options.onresize )
-      $(window).resize(function(){ self._parse_imgs($_imgs); });
   };
 
 
   //@return void
   Plugin.prototype._parse_imgs = function( $_imgs ) {
     var self = this;
-    $_imgs.each(function ( ind, img ) { self._pre_img_cent( $(img) ); });
+
+    $_imgs.each(function ( ind, img ) {
+      self._pre_img_cent( $(img) );
+      self._bind_evt ( $(img) );
+    });
+  };
+
+
+  //@return void
+  //map custom events if any
+  Plugin.prototype._bind_evt = function( $_img ) {
+    var self = this,
+        _customEvt = $.isArray(this.options.oncustom) ? this.options.oncustom : this.options.oncustom.split(' ');
+
+    if ( this.options.onresize )
+      $(window).resize(function(){ self._pre_img_cent( $_img ); });
+
+    _customEvt.map( function( evt ) {
+      $_img.bind( evt, {} , function(evt ) {
+        self._pre_img_cent( $_img );
+      } );
+    } );
   };
 
 
@@ -2858,6 +2882,7 @@ var TCParams = TCParams || {};
     var _state = this._get_current_state($_img);
     this._maybe_center_img( $_img, _state );
   };
+
 
 
   //@return object with initial conditions
@@ -3181,13 +3206,13 @@ jQuery(function ($) {
         $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
 
         setTimeout( function() {
-            $( '.carousel .carousel-inner').centerImages( '.carousel .item .carousel-image img' );
+            $( '.carousel .carousel-inner').centerImages( { imgSel : '.carousel .item .carousel-image img' } );
             $('.tc-slider-loader-wrapper').hide();
         } , 50);
 
         $(window).resize(function(){
             setTimeout( function() {
-                $( '.carousel .carousel-inner').centerImages( '.carousel .item .carousel-image img' );
+                $( '.carousel .carousel-inner').centerImages( { imgSel : '.carousel .item .carousel-image img' } );
             }, 50);
         });
     }//end of center slides
@@ -3210,9 +3235,9 @@ jQuery(function ($) {
     //on load
     setTimeout( function() {
         //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages('.tc-rectangular-thumb > img' );
+        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
         //POST GRID IMAGES
-        $('.tc-grid-figure').centerImages();
+        $('.tc-grid-figure').centerImages( { oncustom : 'smartload' } );
     }, 300 );
     //on resize
    /* $(window).resize(function(){
@@ -3224,7 +3249,7 @@ jQuery(function ($) {
     //bind 'refresh-height' event (triggered from the customizer)
     $('.tc-rectangular-thumb').on('refresh-height' , function(){
         //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages('.tc-rectangular-thumb > img' );
+        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
     });
 
 

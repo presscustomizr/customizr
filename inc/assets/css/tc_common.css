@@ -6298,11 +6298,11 @@ video {
   opacity: 1;
   width: 100%;
   height: auto;
-  -webkit-transition: opacity .15s;
-  -moz-transition: opacity .15s;
-  -ms-transition: opacity .15s;
-  -o-transition: opacity .15s;
-  transition: opacity .15s;
+  -webkit-transition: opacity, left, top .20s;
+  -moz-transition: opacity, left, top .20s;
+  -ms-transition: opacity, left, top .20s;
+  -o-transition: opacity, left, top .20s;
+  transition: opacity, left, top .20s;
   position: relative;
 }
 .tc-grid-figure img.h-centered {

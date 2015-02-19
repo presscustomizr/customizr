@@ -272,13 +272,13 @@ jQuery(function ($) {
         $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
 
         setTimeout( function() {
-            $( '.carousel .carousel-inner').centerImages( '.carousel .item .carousel-image img' );
+            $( '.carousel .carousel-inner').centerImages( { imgSel : '.carousel .item .carousel-image img' } );
             $('.tc-slider-loader-wrapper').hide();
         } , 50);
 
         $(window).resize(function(){
             setTimeout( function() {
-                $( '.carousel .carousel-inner').centerImages( '.carousel .item .carousel-image img' );
+                $( '.carousel .carousel-inner').centerImages( { imgSel : '.carousel .item .carousel-image img' } );
             }, 50);
         });
     }//end of center slides
@@ -301,9 +301,9 @@ jQuery(function ($) {
     //on load
     setTimeout( function() {
         //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages('.tc-rectangular-thumb > img' );
+        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
         //POST GRID IMAGES
-        $('.tc-grid-figure').centerImages();
+        $('.tc-grid-figure').centerImages( { oncustom : 'smartload' } );
     }, 300 );
     //on resize
    /* $(window).resize(function(){
@@ -315,7 +315,7 @@ jQuery(function ($) {
     //bind 'refresh-height' event (triggered from the customizer)
     $('.tc-rectangular-thumb').on('refresh-height' , function(){
         //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages('.tc-rectangular-thumb > img' );
+        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
     });
 
 
