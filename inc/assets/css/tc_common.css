@@ -6289,6 +6289,13 @@ video {
   width: 100%;
 }
 /* POST GRID */
+.tc-grid-shadow .tc-grid {
+  -moz-box-shadow: 0px 0px 6px 2px #ccc;
+  -webkit-box-shadow: 0px 0px 6px 2px #cccccc;
+  box-shadow: 0px 0px 6px 2px #cccccc;
+  /* For IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#ccc')";
+}
 .tc-grid-figure {
   position: relative;
   overflow: hidden;
@@ -6341,6 +6348,9 @@ video {
   margin-left: 11%;
   padding: 1%;
 }
+.tc-grid .entry-header {
+  padding: 0 7%;
+}
 /* this is for testing, just opacify the thumb and don't apply background for normal posts
 *  but apply it to .expanded caption and .no-thumb caption
 */
@@ -6358,7 +6368,7 @@ video {
 }
 .tc-post-list-grid .entry-summary {
   height: 100%;
-  padding: 8% 9%;
+  padding: 8%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -6369,6 +6379,7 @@ video {
 .tc-grid-excerpt p {
   height: 100%;
   overflow: hidden;
+  text-rendering: geometricPrecision;
   margin: 0;
 }
 /* HOVER */
@@ -6417,14 +6428,6 @@ video {
 }
 .tc-is-mobile article:not([class*=expanded]).hover figure:not([class*=no-thumb]) figcaption > a {
   width: 100%;
-}
-@media (max-width: 767px) {
-  .featurette-divider.post-list-grid {
-    display: none;
-  }
-  .tc-post-list-grid .featurette-divider.__loop {
-    display: block;
-  }
 }
 /* WP CSS
     -------------------------------------------------- */
@@ -8610,6 +8613,16 @@ li#wp-admin-bar-tc-customizr a {
   }
   .sticky-enabled .navbar .btn-navbar {
     margin: 9px 0px;
+  }
+  /* POST GRID */
+  .featurette-divider.post-list-grid {
+    display: none;
+  }
+  .tc-post-list-grid .featurette-divider.__loop {
+    display: block;
+  }
+  .tc-post-list-grid .entry-summary {
+    padding: 5%;
   }
 }
 @media (max-width: 480px) {

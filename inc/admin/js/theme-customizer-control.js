@@ -382,7 +382,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         _cb     = _cross.callback;
 
     _id = _build_setId(_id);
-    console.log( );
     //if _cb returns true => show
     return _cb( api.instance(_id).get() );
   };

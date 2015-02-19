@@ -68,9 +68,13 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_expanded_post_title'), $_content_priorities['featured_title'] );
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_figcaption_content') , $_content_priorities['content'] );
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_post_link')          , $_content_priorities['link'] );
+
+          //SECTION CSS CLASSES TO HANDLE EFFECT LIKE SHADOWS
+          add_filter( 'tc_grid_section_class'  , array( $this, 'tc_grid_section_set_classes' ) );
         }
 
-        /*
+
+        /**
         * hook : __before_article
         * inside loop
         */
@@ -147,6 +151,18 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           return TC_init::$instance -> $thumb;
         }
 
+
+        /**
+        * hook : tc_grid_grid_section_class
+        * inside loop
+        * add custom classes to each grid section
+        */
+        function tc_grid_section_set_classes( $_classes ) {
+          if ( ! apply_filters( 'tc-grid-apply-shadow' , true ) )
+            return $_classes;
+          return array_merge( $_classes , array( 'tc-grid-shadow' ) );
+        }
+
         // function tc_change_tumbnail_inline_css_width($_style, $width, $height){
         //   return sprintf('width:100%%;height:auto;');
         // }
@@ -162,24 +178,24 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_print_row_fluid_section_wrapper(){
           global $wp_query;
-          $current_post = $wp_query -> current_post;
-          $start_post = $this -> has_expanded_featured ? 1 : 0;
-          $cols = $this -> tc_get_grid_section_cols();
-          $current_filter = current_filter();
+          $current_post   = $wp_query -> current_post;
+          $start_post     = $this -> has_expanded_featured ? 1 : 0;
+          $cols           = $this -> tc_get_grid_section_cols();
 
-          if ( '__before_article' == $current_filter &&
+          if ( '__before_article' == current_filter() &&
               ( $start_post == $current_post ||
-                  0 == ( $current_post - $start_post ) % $cols ) )
-                  echo apply_filters( 'tc_grid_grid_section',
-                      '<section class="tc-post-list-grid row-fluid grid-cols-'.$cols.'">' );
-          elseif ( '__after_article' == $current_filter &&
+                  0 == ( $current_post - $start_post ) % $cols ) ) {
+            printf( '<section class="%s">',
+              implode( " ", apply_filters( 'tc_grid_section_class' ,  array( "tc-post-list-grid", "row-fluid", "grid-cols-{$cols}" ) ) )
+            );
+          }
+          elseif ( '__after_article' == current_filter() &&
                     ( $wp_query->post_count == ( $current_post + 1 ) ||
                     0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) {
-
-              echo '</section><!--end section.tc-post-list-grid.row-fluid-->';
-              echo apply_filters( 'tc_grid_separator',
-                  '<hr class="featurette-divider post-list-grid">' );
-          }
+              printf( '</section><!--end section.tc-post-list-grid.row-fluid-->%s',
+                apply_filters( 'tc_grid_separator', '<hr class="featurette-divider post-list-grid">')
+              );
+          }//end if
         }
 
 

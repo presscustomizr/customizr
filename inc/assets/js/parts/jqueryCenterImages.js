@@ -16,6 +16,8 @@
         onresize : true,
         oncustom : [],//list of event here
         imgSel : 'img',
+        enableGoldenRatio : false,
+        goldenRatioVal : 1.618
       };
 
   function Plugin( element, options ) {
@@ -29,11 +31,33 @@
   //can access this.element and this.option
   //@return void
   Plugin.prototype.init = function () {
+    var self = this;
+    //applies golden ratio to all containers ( even if there are no images in container )
+    this._maybe_apply_golden_r();
+
+    //parses imgs ( if any ) in current container
     var $_imgs = $( this.options.imgSel , this.container );
-    if ( ! $_imgs.length  )
+
+    //if no images, only handle the resize golden ratio
+    if ( ! $_imgs.length  ) {
+      //creates a golden ratio fn on resize
+      $(window).bind( 'resize' , {} , function( evt ) { self._maybe_apply_golden_r( evt ); });
+    } else {
+      this._parse_imgs($_imgs);
+    }
+  };
+
+
+  //@return void
+  Plugin.prototype._maybe_apply_golden_r = function( evt ) {
+    if ( ! this.options.enableGoldenRatio )
       return;
 
-    this._parse_imgs($_imgs);
+    if ( ! this.options.goldenRatioVal || 0 === this.options.goldenRatioVal )
+      return;
+
+    var new_height = Math.round( $(this.container).width() / this.options.goldenRatioVal );
+    $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } );
   };
 
 
@@ -54,9 +78,17 @@
     var self = this,
         _customEvt = $.isArray(this.options.oncustom) ? this.options.oncustom : this.options.oncustom.split(' ');
 
-    if ( this.options.onresize )
-      $(window).resize(function(){ self._pre_img_cent( $_img ); });
+    //WINDOW RESIZE EVENT ACTIONS
+    //GOLDEN RATIO (before image centering)
+    $(window).bind( 'resize' , {} , function( evt ) { self._maybe_apply_golden_r( evt ); });
 
+    //IMG CENTERING FN
+    if ( this.options.onresize )
+      $(window).resize(function() {
+        self._pre_img_cent( $_img );
+      });
+
+    //CUSTOM EVENTS ACTIONS
     _customEvt.map( function( evt ) {
       $_img.bind( evt, {} , function(evt ) {
         self._pre_img_cent( $_img );

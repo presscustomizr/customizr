@@ -128,7 +128,7 @@
     setTimeout( function() {
       $_img.trigger('smartload');
       },
-      400
+      500
     );
   };
 

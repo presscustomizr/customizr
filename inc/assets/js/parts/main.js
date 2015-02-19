@@ -6,6 +6,41 @@
 //ON DOM READY
 jQuery(function ($) {
     var _p = TCParams;
+
+    //CENTER VARIOUS IMAGES
+    //return void
+    // var _grid_golden_ratio = function() {
+    //    $('.tc-grid-figure').each( function() {
+    //     //golden ratio
+    //     var new_height = $(this).width() / 1.618;
+    //     $(this).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px'} );
+    //   } );
+    // };
+
+    //on load
+    setTimeout( function() {
+        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
+        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
+        //POST GRID IMAGES
+        $('.tc-grid-figure').centerImages( {
+          oncustom : 'smartload',
+          enableGoldenRatio : true
+        } );
+    }, 300 );
+
+   /* $(window).resize(function(){
+        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
+        $('.tc-rectangular-thumb').centerImages( '.tc-rectangular-thumb > img' );
+        //POST GRID IMAGES
+        $('.tc-grid-figure').centerImages();
+    });*/
+    //bind 'refresh-height' event (triggered from the customizer)
+    $('.tc-rectangular-thumb').on('refresh-height' , function(){
+        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
+        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
+    });
+
+
     //Img Smart Load
     if ( 1 == _p.imgSmartLoadEnabled ) {
       $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts) > 0 || {} );
@@ -296,28 +331,6 @@ jQuery(function ($) {
         _center_slider_arrows();
     });
     _center_slider_arrows();
-
-    //CENTER VARIOUS IMAGES
-    //on load
-    setTimeout( function() {
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
-        //POST GRID IMAGES
-        $('.tc-grid-figure').centerImages( { oncustom : 'smartload' } );
-    }, 300 );
-    //on resize
-   /* $(window).resize(function(){
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( '.tc-rectangular-thumb > img' );
-        //POST GRID IMAGES
-        $('.tc-grid-figure').centerImages();
-    });*/
-    //bind 'refresh-height' event (triggered from the customizer)
-    $('.tc-rectangular-thumb').on('refresh-height' , function(){
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
-    });
-
 
 
     //Slider swipe support with hammer.js
