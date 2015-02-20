@@ -6385,6 +6385,12 @@ video {
   position: relative;
   text-rendering: geometricPrecision;
 }
+.tc-post-list-grid article:not(.expanded) .entry-summary {
+  margin: 10%;
+  max-height: 70%;
+  overflow: hidden;
+  padding: 0%;
+}
 .tc-post-list-grid .expanded .entry-summary {
   background: #fafafa;
   background: rgba(0, 0, 0, 0.4);
