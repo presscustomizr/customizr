@@ -4663,6 +4663,7 @@ a.badge:focus {
  => FEATURED PAGES
  => POST STUFF
  => POST THUMBNAILS
+ => POST GRID
  => WP SPECIFICS
  => FOOTER
  => ADMIN BAR
@@ -5938,6 +5939,9 @@ article.hover .round-div {
 .post h2 {
   display: inline-block;
 }
+.entry-header {
+  clear: both;
+}
 h1.entry-title,
 h2.entry-title {
   width: 100%;
@@ -6282,6 +6286,169 @@ video {
   -ms-filter: blur(0px);
   filter: blur(0px);
   opacity: 1!important;
+  width: 100%;
+}
+/* POST GRID */
+.tc-grid-shadow .tc-grid {
+  -moz-box-shadow: 0px 0px 6px 2px #ccc;
+  -webkit-box-shadow: 0px 0px 6px 2px #cccccc;
+  box-shadow: 0px 0px 6px 2px #cccccc;
+  /* For IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#ccc')";
+}
+.tc-post-list-grid .featurette-divider.__after_article {
+  display: none;
+}
+.tc-grid-figure {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+.tc-grid-figure img {
+  opacity: 1;
+  width: 100%;
+  height: auto;
+  -webkit-transition: opacity .2s, left .2s, top .2s;
+  -moz-transition: opacity .2s, left .2s, top .2s;
+  -ms-transition: opacity .2s, left .2s, top .2s;
+  -o-transition: opacity .2s, left .2s, top .2s;
+  transition: opacity .2s, left .2s, top .2s;
+  position: relative;
+}
+.tc-grid-figure img.h-centered {
+  width: auto;
+  max-width: none;
+}
+.tc-grid-figure img.v-centered {
+  height: auto;
+  max-height: none;
+}
+.tc-grid-post figcaption {
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* this is commented for testing, just opacify the thumb and don't apply background for normal posts */
+  /*
+    background: rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
+    */
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  color: #fff;
+  -webkit-transition: opacity .15s;
+  -moz-transition: opacity .15s;
+  -ms-transition: opacity .15s;
+  -o-transition: opacity .15s;
+  transition: opacity .15s;
+}
+.expanded .tc-grid-post figcaption {
+  opacity: 1;
+  max-width: 50%;
+  height: auto;
+  margin-left: 11%;
+  background: none;
+}
+.tc-grid .entry-header {
+  padding: 0 7%;
+}
+/* this is for testing, just opacify the thumb and don't apply background for normal posts
+*  but apply it to .expanded caption and .no-thumb caption
+*/
+.expanded figcaption {
+  background: #fafafa;
+  background: rgba(0, 0, 0, 0.4);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
+}
+.no-thumb figcaption {
+  color: inherit;
+  background: none;
+  opacity: 1;
+}
+.expanded figcaption,
+.no-thumb figcaption {
+  -webkit-transition: background .15s;
+  -moz-transition: background .15s;
+  -ms-transition: background .15s;
+  -o-transition: background .15s;
+  transition: background .15s;
+}
+.tc-post-list-grid .entry-summary {
+  line-height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  padding: 8%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 10;
+  position: relative;
+  text-rendering: geometricPrecision;
+}
+.tc-post-list-grid article:not(.expanded) .entry-summary {
+  margin: 10%;
+  max-height: 70%;
+  overflow: hidden;
+  padding: 0%;
+}
+.tc-post-list-grid .expanded .entry-summary {
+  background: #fafafa;
+  background: rgba(0, 0, 0, 0.4);
+}
+.tc-post-list-grid .expanded .entry-title {
+  text-align: left;
+  text-shadow: none;
+}
+.tc-post-list-grid .expanded .entry-title a {
+  color: #fff;
+}
+/* HOVER */
+.tc-post-list-grid .hover:not(.expanded) figcaption,
+.tc-post-list-grid .expanded.hover .entry-summary {
+  opacity: 1;
+  background: #fafafa;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.hover .tc-grid-figure img {
+  opacity: 0.7;
+}
+.hover .expanded figcaption,
+.hover .no-thumb figcaption {
+  background: #fafafa;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+.tc-post-list-grid article.sticky {
+  text-align: justify;
+}
+.tc-post-list-grid .featurette-divider.__loop {
+  display: none;
+}
+.tc-post-list-grid figcaption > a {
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.tc-grid .entry-title {
+  text-align: center;
+}
+.tc-is-mobile .tc-post-list-grid article.tc-grid figure figcaption > a {
+  -webkit-transition-property: width;
+  -webkit-transition-duration: 0.1s;
+  -webkit-transition-timing-function: linear;
+  -webkit-transition-delay: 1s;
+  transition-property: width;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+  transition-delay: 0.5s;
+}
+.tc-is-mobile article:not([class*=expanded]) figure:not([class*=no-thumb]) figcaption > a {
+  width: 0;
+}
+.tc-is-mobile article:not([class*=expanded]).hover figure:not([class*=no-thumb]) figcaption > a {
   width: 100%;
 }
 /* WP CSS
@@ -8469,6 +8636,25 @@ li#wp-admin-bar-tc-customizr a {
   .sticky-enabled .navbar .btn-navbar {
     margin: 9px 0px;
   }
+  /* POST GRID */
+  .featurette-divider.post-list-grid {
+    display: none;
+  }
+  .tc-post-list-grid .featurette-divider.__after_article {
+    display: block;
+  }
+  .tc-post-list-grid .entry-summary {
+    padding: 5%;
+  }
+  .expanded .tc-grid-post figcaption {
+    max-width: none;
+    margin-left: 0;
+  }
+  [class*=grid-cols-] .tc-grid-post figure {
+    height: 225px;
+    max-height: 225px;
+    line-height: 225px;
+  }
 }
 @media (max-width: 480px) {
   .span6.article-container .thumb-wrapper img,
@@ -8549,6 +8735,11 @@ li#wp-admin-bar-tc-customizr a {
   }
   .navbar-inner .social-block a {
     padding-right: 6px;
+  }
+  /* GRID */
+  .tc-grid-excerpt-content {
+    max-height: 80px;
+    overflow: hidden;
   }
 }
 @media (max-width: 320px) {

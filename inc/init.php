@@ -112,6 +112,7 @@ if ( ! class_exists( 'TC___' ) ) :
                                     array('inc/parts', 'post_thumbnails'),
                                     array('inc/parts', 'post'),
                                     array('inc/parts', 'post_list'),
+                                    array('inc/parts', 'post_list_grid'),
                                     array('inc/parts', 'post_metas'),
                                     array('inc/parts', 'post_navigation'),
                                     array('inc/parts', 'sidebar'),

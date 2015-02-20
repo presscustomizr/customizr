@@ -58,6 +58,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if ( esc_attr( tc__f( '__get_option' , 'tc_img_smart_load' ) ) ) {
           add_filter( 'the_content'                       , array( $this , 'tc_parse_imgs' ) );
           add_filter( 'tc_display_post_thumbnail'         , array( $this , 'tc_parse_imgs' ) );
+          add_filter( 'tc_grid_thumbnail_html'            , array( $this , 'tc_parse_imgs' ) );
         }
         add_filter( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
       }
@@ -65,6 +66,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * hook : the_content
+      * Inspired from Unveil Lazy Load plugin : https://wordpress.org/plugins/unveil-lazy-load/ by @marubon
+      *
       * @return string
       * @package Customizr
       * @since Customizr 3.3.0
@@ -73,7 +76,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if( is_feed() || is_preview() || wp_is_mobile() )
           return $_html;
 
-        if (strpos( $_html, 'data-src' ) !== false)
+        if ( strpos( $_html, 'data-src' ) !== false )
           return $_html;
 
         return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'tc_regex_callback' ) , $_html);
@@ -82,6 +85,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * callback of preg_replace_callback in tc_parse_imgs
+      * Inspired from Unveil Lazy Load plugin : https://wordpress.org/plugins/unveil-lazy-load/ by @marubon
+      *
       * @return string
       * @package Customizr
       * @since Customizr 3.3.0
@@ -340,7 +345,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_get_current_screen_layout ( $post_id , $sidebar_or_class) {
+      function tc_get_current_screen_layout ( $post_id , $sidebar_or_class = 'class' ) {
           $__options                    = tc__f ( '__options' );
 
           global $post;
@@ -408,8 +413,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
               'class'   => $class_tab
             );
           }
-
-
 
         return apply_filters( 'tc_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }

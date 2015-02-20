@@ -24,7 +24,7 @@
         load_all_images_on_first_scroll : false,
         attribute : 'data-src',
         threshold : 200,
-        fadeIn_options : {}
+        fadeIn_options : { duration : 400 }
       };
 
 
@@ -123,8 +123,13 @@
     .hide()
     .removeAttr( this.options.attribute )
     .attr('src' , _src )
-    .fadeIn( this.options.fadeIn_options )
-    .trigger('smartload');
+    .fadeIn( this.options.fadeIn_options );
+    //trigger the smartload event on the current img after a small delay (=> time to http get the image)
+    setTimeout( function() {
+      $_img.trigger('smartload');
+      },
+      700
+    );
   };
 
 

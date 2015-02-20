@@ -2,7 +2,7 @@
 /**
 * Comments actions
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
@@ -15,13 +15,15 @@ if ( ! class_exists( 'TC_comments' ) ) :
   class TC_comments {
       static $instance;
       function __construct () {
-          self::$instance =& $this;
-          add_action ( '__after_loop'                       , array( $this , 'tc_comments' ), 10 );
-          add_action ( '__comment'                          , array( $this , 'tc_comment_title' ), 10 );
-          add_action ( '__comment'                          , array( $this , 'tc_comment_list' ), 20 );
-          add_action ( '__comment'                          , array( $this , 'tc_comment_navigation' ), 30 );
-          add_action ( '__comment'                          , array( $this , 'tc_comment_close' ), 40 );
-          add_filter ('comment_form_defaults'               , array( $this , 'tc_set_comment_title') );
+        self::$instance =& $this;
+        add_action ( '__after_loop'                       , array( $this , 'tc_comments' ), 10 );
+        add_action ( '__comment'                          , array( $this , 'tc_comment_title' ), 10 );
+        add_action ( '__comment'                          , array( $this , 'tc_comment_list' ), 20 );
+        add_action ( '__comment'                          , array( $this , 'tc_comment_navigation' ), 30 );
+        add_action ( '__comment'                          , array( $this , 'tc_comment_close' ), 40 );
+        add_filter ('comment_form_defaults'               , array( $this , 'tc_set_comment_title') );
+        //Add comment bubble
+        add_filter( 'tc_the_title'                        , array( $this , 'tc_display_comment_bubble' ), 1 );
       }
 
 
@@ -35,7 +37,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
       function tc_comments() {
         //By default not displayed on home, for protected posts, and if no comments for page option is checked
         $comments_bool    =  ( post_password_required() || tc__f( '__is_home' ) || ( is_page() && 1 != esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) ) ) ? false : true;
-        
+
         if ( ! apply_filters('tc_show_comments', $comments_bool ) )
           return;
 
@@ -44,11 +46,11 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
 
 
-              
+
       /**
         * Comment title rendering
         *
-        * 
+        *
         * @package Customizr
         * @since Customizr 3.0
        */
@@ -61,7 +63,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
           echo apply_filters( 'tc_comment_title' ,
                 sprintf( '<h2 id="tc-comment-title" class="comments-title">%1$s &ldquo;%2$s&rdquo;</h2>' ,
-                  $_title, 
+                  $_title,
                   '<span>' . get_the_title() . '</span>'
                 )
           );
@@ -98,7 +100,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         * Used as a callback by wp_list_comments() for displaying the comments.
         *  Inspired from Twenty Twelve 1.0
         * @package Customizr
-        * @since Customizr 1.0 
+        * @since Customizr 1.0
         */
        function tc_comment_callback( $comment, $args, $depth ) {
 
@@ -125,7 +127,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
           global $post;
         ?>
         <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-          
+
             <?php
               //when do we display the comment content?
               $tc_show_comment_content = 1 == get_option( 'thread_comments' ) && ($depth < $max_comments_depth) && comments_open();
@@ -141,14 +143,14 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
                   $tc_show_comment_content ? sprintf('<div class="%1$s">%2$s</div>',
                                             apply_filters( 'tc_comment_reply_btn_class', 'reply btn btn-small' ),
-                                            get_comment_reply_link( array_merge( 
-                                                                        $args, 
-                                                                        array(  'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>', 
-                                                                                'depth' => $depth, 
+                                            get_comment_reply_link( array_merge(
+                                                                        $args,
+                                                                        array(  'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>',
+                                                                                'depth' => $depth,
                                                                                 'max_depth' => $args['max_depth'] ,
                                                                                 'add_below' => apply_filters( 'tc_comment_reply_below' , 'li-comment' )
-                                                                              ) 
-                                                                  ) 
+                                                                              )
+                                                                  )
                                             )
                   ) : '',
 
@@ -168,9 +170,9 @@ if ( ! class_exists( 'TC_comments' ) ) :
                   ),
 
                   ( '0' == $comment->comment_approved ) ? sprintf('<p class="comment-awaiting-moderation">%1$s</p>',
-                    __( 'Your comment is awaiting moderation.' , 'customizr' )                                  
+                    __( 'Your comment is awaiting moderation.' , 'customizr' )
                     ) : '',
-                 
+
                   sprintf('<section class="comment-content comment">%1$s</section>',
                     apply_filters( 'comment_text', $comment_text, $comment, $args )
                   ),
@@ -190,82 +192,125 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
 
 
-        /**
-        * Comments navigation rendering
-        *
-        * @package Customizr
-        * @since Customizr 3.0
+    /**
+    * Comments navigation rendering
+    *
+    * @package Customizr
+    * @since Customizr 3.0
+   */
+    function tc_comment_navigation () {
+      if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through
+
+        ob_start();
+
+        ?>
+        <nav id="comment-nav-below" class="navigation" role="navigation">
+          <h3 class="assistive-text section-heading"><?php _e( 'Comment navigation' , 'customizr' ); ?></h3>
+          <ul class="pager">
+
+            <?php if(get_previous_comments_link() != null) : ?>
+
+              <li class="previous">
+                <span class="nav-previous"><?php previous_comments_link( __( '<span class="meta-nav">&larr;</span> Older Comments' , 'customizr' ) ); ?></span>
+              </li>
+
+            <?php endif; ?>
+
+            <?php if(get_next_comments_link() != null) : ?>
+
+              <li class="next">
+                <span class="nav-next"><?php next_comments_link( __( 'Newer Comments <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?></span>
+              </li>
+
+            <?php endif; ?>
+
+          </ul>
+        </nav>
+        <?php
+
+        $html = ob_get_contents();
+        ob_end_clean();
+        echo apply_filters( 'tc_comment_navigation' , $html );
+
+      endif; // check for comment navigation
+
+    }
+
+
+
+    /**
+    * Comment close rendering
+    *
+    * @package Customizr
+    * @since Customizr 3.0
+    */
+    function tc_comment_close() {
+      /* If there are no comments and comments are closed, let's leave a note.
+       * But we only want the note on posts and pages that had comments in the first place.
        */
-        function tc_comment_navigation () {
-          if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through
-          
-            ob_start();
-            
-            ?>
-            <nav id="comment-nav-below" class="navigation" role="navigation">
-              <h3 class="assistive-text section-heading"><?php _e( 'Comment navigation' , 'customizr' ); ?></h3>
-              <ul class="pager">
+      if ( ! comments_open() && get_comments_number() ) :
+        echo apply_filters( 'tc_comment_close' ,
+          sprintf('<p class="nocomments">%1$s</p>',
+            __( 'Comments are closed.' , 'customizr' )
+          )
+        );
 
-                <?php if(get_previous_comments_link() != null) : ?>
+      endif;
+    }
 
-                  <li class="previous">
-                    <span class="nav-previous"><?php previous_comments_link( __( '<span class="meta-nav">&larr;</span> Older Comments' , 'customizr' ) ); ?></span>
-                  </li>
 
-                <?php endif; ?>
-
-                <?php if(get_next_comments_link() != null) : ?>
-
-                  <li class="next">
-                    <span class="nav-next"><?php next_comments_link( __( 'Newer Comments <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?></span>
-                  </li>
-
-                <?php endif; ?>
-
-              </ul>
-            </nav>
-            <?php
-
-            $html = ob_get_contents();
-            ob_end_clean();
-            echo apply_filters( 'tc_comment_navigation' , $html );
-
-          endif; // check for comment navigation
-
-        }
+    /**
+    * Comment title override (comment_form_defaults filter)
+    *
+    * @package Customizr
+    * @since Customizr 3.2.0
+    */
+    function tc_set_comment_title($_defaults) {
+      $_defaults['title_reply'] =  __( 'Leave a comment' , 'customizr' );
+      return $_defaults;
+    }
 
 
 
-        /**
-        * Comment close rendering
-        *
-        * @package Customizr
-        * @since Customizr 3.0
-        */
-        function tc_comment_close() {
-          /* If there are no comments and comments are closed, let's leave a note.
-           * But we only want the note on posts and pages that had comments in the first place.
-           */
-          if ( ! comments_open() && get_comments_number() ) : 
-            echo apply_filters( 'tc_comment_close' ,
-              sprintf('<p class="nocomments">%1$s</p>',
-                __( 'Comments are closed.' , 'customizr' )
-              )
-            );
+    /**
+    * Callback for tc_the_title
+    * @return  string
+    *
+    * @package Customizr
+    * @since Customizr 3.2.6
+    */
+    function tc_display_comment_bubble( $_title ) {
 
-          endif;
-        }
+      //Must be in the loop and enabled by user
+      if ( ! in_the_loop() || 0 == esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) )
+        return $_title;
 
+      //when are we showing the comments number in title?
+      //1) comments are enabled
+      //2) post type is in the eligible post type list : default = post
+      $comments_enabled                  = ( 1 == esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
+      $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
 
-        /**
-        * Comment title override (comment_form_defaults filter)
-        *
-        * @package Customizr
-        * @since Customizr 3.2.0
-        */
-        function tc_set_comment_title($_defaults) {
-          $_defaults['title_reply'] =  __( 'Leave a comment' , 'customizr' );
-          return $_defaults;
-        }
+      if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled )
+        || ! in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) ) )
+        return $_title;
+
+      $_default_bubble_comment                    = apply_filters(
+        'tc_bubble_comment',
+        sprintf('<span class="tc-comment-bubble fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
+          apply_filters( 'tc_comment_bubble_style' , ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'' ),
+          get_comments_number()
+        )
+      );
+
+      //checks if comments are opened AND if there are any comments to display
+      return sprintf('%1$s <span class="comments-link"><a href="%2$s#tc-comment-title" title="%3$s %4$s">%5$s</a></span>',
+        $_title,
+        is_singular() ? '' : get_permalink(),
+        __( 'Comment(s) on' , 'customizr' ),
+        esc_attr( strip_tags( $_title ) ),
+        $_default_bubble_comment
+      );
+    }
   }//end class
 endif;

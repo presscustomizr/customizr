@@ -76,8 +76,6 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_filter ( 'tc_headings_content_html'       , array( $this , 'tc_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
         add_filter( 'tc_the_title'                    , array( $this , 'tc_content_heading_title' ) , 0 );
-        //Add comment bubble
-        add_filter( 'tc_the_title'                    , array( $this , 'tc_add_comment_bubble_after_title' ), 1 );
         //Add edit link
         add_filter( 'tc_the_title'                    , array( $this , 'tc_add_edit_link_after_title' ), 2 );
 
@@ -177,48 +175,6 @@ if ( ! class_exists( 'TC_headings' ) ) :
       }
 
 
-
-
-      /**
-      * Callback for tc_the_title
-      * @return  string
-      *
-      * @package Customizr
-      * @since Customizr 3.2.6
-      */
-      function tc_add_comment_bubble_after_title( $_title ) {
-
-        //Must be in the loop and enabled by user
-        if ( ! in_the_loop() || 0 == esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) )
-          return $_title;
-
-        //when are we showing the comments number in title?
-        //1) comments are enabled
-        //2) post type is in the eligible post type list : default = post
-        $comments_enabled                  = ( 1 == esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
-        $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
-
-        if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled )
-          || ! in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) ) )
-          return $_title;
-
-        $_default_bubble_comment                    = apply_filters(
-          'tc_bubble_comment',
-          sprintf('<span class="tc-comment-bubble fs1 icon-bubble" %1$s></span><span class="inner">%2$s</span>',
-            apply_filters( 'tc_comment_bubble_style' , ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'' ),
-            get_comments_number()
-          )
-        );
-
-        //checks if comments are opened AND if there are any comments to display
-        return sprintf('%1$s <span class="comments-link"><a href="%2$s#tc-comment-title" title="%3$s %4$s">%5$s</a></span>',
-          $_title,
-          is_singular() ? '' : get_permalink(),
-          __( 'Comment(s) on' , 'customizr' ),
-          esc_attr( strip_tags( $_title ) ),
-          $_default_bubble_comment
-        );
-      }
 
 
 

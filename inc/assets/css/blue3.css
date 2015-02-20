@@ -459,3 +459,7 @@ h3.assistive-text {
 footer#footer .colophon a.back-to-top {
   color: #27cda5;
 }
+/* GRID */
+.tc-grid-border .tc-grid {
+  border-bottom: 3px solid #27cda5;
+}
