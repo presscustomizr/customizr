@@ -42,6 +42,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
           // pre loop hooks
           add_action( '__before_article_container'  , array( $this, 'tc_set_grid_before_loop_hooks'), 5 );
+
           // loop hooks
           add_action( '__before_article'            , array( $this, 'tc_set_grid_loop_hooks'), 0 );
           add_action( '__before_article'            , array( $this, 'tc_set_grid_loop_hooks'), 0 );
@@ -49,7 +50,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-        /*
+        /* PRE LOOP HOOKS
         * hook : __before_article_container
         * before loop
         */
@@ -78,7 +79,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_grid_display_figcaption_content' , array( $this, 'tc_grid_set_expanded_post_title') );
 
           //SECTION CSS CLASSES TO HANDLE EFFECT LIKE SHADOWS
-          add_filter( 'tc_grid_section_class'         , array( $this, 'tc_grid_section_set_classes' ) );
+          add_filter( 'tc_grid_section_class'       , array( $this, 'tc_grid_section_set_classes' ) );
+
+          //COMMENT BUBBLE
+          remove_filter( 'tc_the_title'             , array( TC_comments::$instance, 'tc_display_comment_bubble' ) );
+          add_action( 'tc_grid_section_class'       , array( $this, 'tc_grid_display_comment_bubble' ) );
         }
 
 
@@ -86,7 +91,17 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : __before_article
         * inside loop
         */
-        function tc_set_grid_loop_hooks(){
+        function tc_grid_display_comment_bubble() {
+
+        }
+
+
+
+        /**
+        * hook : __before_article
+        * inside loop
+        */
+        function tc_set_grid_loop_hooks() {
           add_action( '__before_article'            , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
           add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
           add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );

@@ -22,9 +22,66 @@ if ( ! class_exists( 'TC_comments' ) ) :
         add_action ( '__comment'                          , array( $this , 'tc_comment_navigation' ), 30 );
         add_action ( '__comment'                          , array( $this , 'tc_comment_close' ), 40 );
         add_filter ('comment_form_defaults'               , array( $this , 'tc_set_comment_title') );
+
+        //wp hooks => wp_query is built
+        add_action ( 'wp'                                 , array( $this , 'tc_comments_set_hooks' ) );
+      }
+
+
+      /**
+      * Set various comment hooks
+      * hook : wp
+      * @package Customizr
+      * @since Customizr 3.3.2
+      */
+      function tc_comments_set_hooks() {
         //Add comment bubble
         add_filter( 'tc_the_title'                        , array( $this , 'tc_display_comment_bubble' ), 1 );
+        //Custom Bubble comment since 3.2.6
+        add_filter( 'tc_bubble_comment'                   , array( $this , 'tc_custom_bubble_comment') );
+        //Add comment bubble color type class to the headings <header> wrapper element
+        add_filter( 'tc_content_header_class'             , array( $this , 'tc_set_bubble_comment_color_type') );
       }
+
+
+      /**
+      * Callback of tc_bubble_comment
+      * @return string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_custom_bubble_comment( $_default ) {
+        $_bubble_shape = esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) );
+        if ( 'default' == $_bubble_shape )
+          return $_default;
+        if ( 0 == get_comments_number() )
+          return '';
+
+        return sprintf('<span class="tc-comment-bubble %3$s">%1$s %2$s</span>',
+                  get_comments_number(),
+                  sprintf( _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ),
+                    number_format_i18n( get_comments_number(), 'customizr' )
+                  ),
+                  $_bubble_shape
+        );
+      }
+
+
+
+
+      /**
+      * Callback of tc_content_header_class
+      * @return array of css classes
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function tc_set_bubble_comment_color_type( $_class ) {
+        $_bubble_color_type   = esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color_type' ) );
+        return ( 'skin' == $_bubble_color_type ) ? array_merge( $_class , array('tc-skin-bubble-comment-color') ) : $_class;
+      }
+
 
 
 

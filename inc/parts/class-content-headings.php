@@ -388,54 +388,12 @@ if ( ! class_exists( 'TC_headings' ) ) :
         if ( apply_filters('tc_display_customizr_headings',  is_feed() ) )
           return;
 
-        //Custom Bubble comment since 3.2.6
-        add_filter( 'tc_bubble_comment'             , array( $this , 'tc_custom_bubble_comment') );
-        //Add comment bubble color type class to the headings <header> wrapper element
-        add_filter( 'tc_content_header_class'       , array( $this , 'tc_set_bubble_comment_color_type') );
         //Set user defined various inline stylings
         add_filter( 'tc_user_options_style'         , array( $this , 'tc_write_headings_inline_css' ) );
         //Add update status next to the title (@since 3.2.6)
         add_filter( 'tc_the_title'                  , array( $this , 'tc_add_update_notice_in_title'), 20);
       }
 
-
-
-      /**
-      * Callback of tc_content_header_class
-      * @return array of css classes
-      *
-      * @package Customizr
-      * @since Customizr 3.2.6
-      */
-      function tc_set_bubble_comment_color_type( $_class ) {
-        $_bubble_color_type   = esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color_type' ) );
-        return ( 'skin' == $_bubble_color_type ) ? array_merge( $_class , array('tc-skin-bubble-comment-color') ) : $_class;
-      }
-
-
-
-      /**
-      * Callback of tc_bubble_comment
-      * @return string
-      *
-      * @package Customizr
-      * @since Customizr 3.2.6
-      */
-      function tc_custom_bubble_comment( $_default ) {
-        $_bubble_shape = esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) );
-        if ( 'default' == $_bubble_shape )
-          return $_default;
-        if ( 0 == get_comments_number() )
-          return '';
-
-        return sprintf('<span class="tc-comment-bubble %3$s">%1$s %2$s</span>',
-                  get_comments_number(),
-                  sprintf( _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ),
-                    number_format_i18n( get_comments_number(), 'customizr' )
-                  ),
-                  $_bubble_shape
-        );
-      }
 
 
       /*
