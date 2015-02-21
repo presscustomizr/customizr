@@ -125,14 +125,18 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	    	//when do we display this block ?
 	        //1) if customizing always. (is hidden if empty of disabled)
 	        //2) if not customizing : must be enabled and have social networks.
+	    	$_nothing_to_render = ( 0 == esc_attr( tc__f( '__get_option', 'tc_social_in_footer') ) ) || ! tc__f( '__get_socials' );
+	    	$_hide_socials = $_nothing_to_render && TC_utils::$instance -> tc_is_customizing();
+	    	$_nothing_to_render = $_nothing_to_render && ! TC_utils::$instance -> tc_is_customizing();
+
 	      	echo apply_filters(
 	      		'tc_colophon_left_block',
 	      		sprintf('<div class="%1$s">%2$s</div>',
 	      			apply_filters( 'tc_colophon_left_block_class', 'span4 social-block pull-left' ),
-	      			sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
-	      				( TC_utils::$instance -> tc_is_customizing() && 0 == tc__f( '__get_option', 'tc_social_in_footer') ) ? 'style="display:none"' : '',
+	      			( ! $_nothing_to_render ) ? sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
+	      				( $_hide_socials ) ? 'style="display:none"' : '',
 	      				tc__f( '__get_socials' )
-	      			)
+	      			) : ''
 	      		)
 	      	);
 	    }
