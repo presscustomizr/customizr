@@ -17,6 +17,7 @@
         oncustom : [],//list of event here
         imgSel : 'img',
         enableGoldenRatio : false,
+        goldenRatioLimitHeightTo : 350,
         goldenRatioVal : 1.618,
         skipGoldenRatioClasses : ['no-gold-ratio'],
         disableGRUnder : 767//in pixels
@@ -52,23 +53,23 @@
 
   //@return void
   Plugin.prototype._maybe_apply_golden_r = function( evt ) {
-    if ( ! this.options.enableGoldenRatio )
+    //check if options are valids
+    if ( ! this.options.enableGoldenRatio || ! this.options.goldenRatioVal || 0 === this.options.goldenRatioVal )
       return;
 
     //make sure the container has not a forbidden class
     if ( ! this._is_selector_allowed() )
       return;
-    //check if golden ratio can be applied under custom width
+    //check if golden ratio can be applied under custom window width
     if ( ! this._is_window_width_allowed() ) {
       //reset inline style for the container
       $(this.container).attr('style' , '');
       return;
     }
 
-    if ( ! this.options.goldenRatioVal || 0 === this.options.goldenRatioVal )
-      return;
-
     var new_height = Math.round( $(this.container).width() / this.options.goldenRatioVal );
+    //check if the new height does not exceed the goldenRatioLimitHeightTo option
+    new_height = new_height > this.options.goldenRatioLimitHeightTo ? this.options.goldenRatioLimitHeightTo : new_height;
     $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } );
   };
 

@@ -24,7 +24,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
         /***************************************
-        * HOOKS SETTINGS $$*********************
+        * HOOKS SETTINGS ***********************
         ****************************************/
         /*
         * hook : wp
@@ -87,15 +87,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-        /**
-        * hook : __before_article
-        * inside loop
-        */
-        function tc_grid_display_comment_bubble( $_html ) {
-          return TC_comments::$instance -> tc_display_comment_bubble() . $_html;
-        }
-
-
 
         /**
         * hook : __before_article
@@ -115,6 +106,16 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /******************************************
         * SET VARIOUS VALUES **********************
         ******************************************/
+        /**
+        * hook : pre_get_posts
+        * exclude the first sticky post
+        */
+        function tc_maybe_excl_first_sticky( $query ){
+          if ( $this -> tc_is_grid_enabled() &&
+                   $this -> tc_is_sticky_expanded( $query ) )
+              $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
+        }
+
 
         /* Layout
         * hook : tc_post_list_layout
@@ -368,16 +369,13 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
 
-        /*
-        * hook : pre_get_posts
-        * exclude the first sticky post
+        /**
+        * hook : tc_grid_get_single_post_html
+        * inside loop
         */
-        function tc_maybe_excl_first_sticky( $query ){
-          if ( $this -> tc_is_grid_enabled() &&
-                   $this -> tc_is_sticky_expanded( $query ) )
-              $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
+        function tc_grid_display_comment_bubble( $_html ) {
+          return TC_comments::$instance -> tc_display_comment_bubble() . $_html;
         }
-
 
         /*
         * @return css string

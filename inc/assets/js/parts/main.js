@@ -22,9 +22,11 @@ jQuery(function ($) {
         //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
         $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
         //POST GRID IMAGES
+        console.log( '_p.gridGoldenRatioLimit' , _p.gridGoldenRatioLimit);
         $('.tc-grid-figure').centerImages( {
           oncustom : 'smartload',
-          enableGoldenRatio : true
+          enableGoldenRatio : true,
+          goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
         } );
     }, 300 );
 

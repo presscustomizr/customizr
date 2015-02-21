@@ -2182,18 +2182,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
                             'priority'      => 65,
-                            'notice'    => __( 'Uncheck contexts are displayed with the classical layout.' , 'customizr' ),
+                            'notice'        => __( 'Uncheck contexts are displayed with the classical layout.' , 'customizr' ),
            ),
           'tc_theme_options[tc_grid_thumb_height]' => array(
                             'default'       => 350,
                             'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
-                            'control'   => 'TC_controls' ,
+                            'control'       => 'TC_controls' ,
                             'title'         => __( 'Thumbnails max height for the grid layout' , 'customizr' ),
-                            'label'       => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
-                            'section'     => 'tc_post_list_settings' ,
-                            'type'        => 'number' ,
-                            'step'      => 1,
-                            'min'     => 0,
+                            'label'         => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'number' ,
+                            'step'          => 1,
+                            'min'           => 0,
                             'priority'      => 73
                             //'transport'   => 'postMessage'
           )

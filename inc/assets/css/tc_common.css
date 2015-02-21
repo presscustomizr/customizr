@@ -6339,20 +6339,10 @@ video {
   top: 0;
   left: 0;
   height: 100%;
-  /* this is commented for testing, just opacify the thumb and don't apply background for normal posts */
-  /*
-    background: rgba(0,0,0,.1);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
-    */
   position: absolute;
   opacity: 0;
   width: 100%;
   color: #fff;
-  -webkit-transition: opacity .15s;
-  -moz-transition: opacity .15s;
-  -ms-transition: opacity .15s;
-  -o-transition: opacity .15s;
-  transition: opacity .15s;
 }
 .expanded .tc-grid-post figcaption {
   opacity: 1;
@@ -6378,12 +6368,14 @@ video {
   opacity: 1;
 }
 .expanded figcaption,
-.no-thumb figcaption {
-  -webkit-transition: background .15s;
-  -moz-transition: background .15s;
-  -ms-transition: background .15s;
-  -o-transition: background .15s;
-  transition: background .15s;
+.no-thumb figcaption,
+.tc-grid-post figcaption {
+  webkit-transition-property: opacity,background,color;
+  transition-property: opacity,background,color;
+  -webkit-transition-duration: .20s;
+  transition-duration: .20s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
 }
 .tc-post-list-grid .entry-summary {
   line-height: 20px;
@@ -6398,10 +6390,10 @@ video {
   text-rendering: geometricPrecision;
 }
 .tc-post-list-grid article:not(.expanded) .entry-summary {
-  margin: 10%;
-  max-height: 70%;
+  max-height: 75%;
+  margin: 0 8%;
   overflow: hidden;
-  padding: 0%;
+  padding: 0;
 }
 .tc-post-list-grid .expanded .entry-summary {
   background: #fafafa;
