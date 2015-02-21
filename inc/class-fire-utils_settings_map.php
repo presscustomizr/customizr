@@ -1941,7 +1941,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               'tc_theme_options[tc_comment_bubble_color_type]' => array(
-                                'default'     => 'custom',
+                                'default'     => TC_utils::$instance -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'custom' : 'skin',
                                 'control'     => 'TC_controls',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'tc_comments_settings',
@@ -1954,7 +1954,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               'tc_theme_options[tc_comment_bubble_color]' => array(
-                                'default'     => '#F00',
+                                'default'     => TC_utils::$instance -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : TC_utils::$instance -> tc_get_skin_color(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'tc_comments_settings',
