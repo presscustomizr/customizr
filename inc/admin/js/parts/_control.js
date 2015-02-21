@@ -99,7 +99,7 @@
           'tc_post_list_grid_in_blog',
           'tc_post_list_grid_in_archive',
           'tc_post_list_grid_in_search',
-          'tc_post_list_grid_thumb_height'
+          'tc_grid_thumb_height'
         ],
         callback: function (to) {
           return 'grid' == to;
@@ -131,7 +131,7 @@
         'tc_post_list_thumb_alternate',
         'tc_post_list_thumb_position',
         'tc_post_list_thumb_height',
-        'tc_post_list_grid_thumb_height'
+        'tc_grid_thumb_height'
       ],
       callback: function (to) {
         return '1' == to;
@@ -142,7 +142,7 @@
         // tc_post_list_thumb_shape : { master : 'tc_post_list_grid' , value : 'default' },
         // tc_post_list_thumb_alternate : { master : 'tc_post_list_grid' , value : 'default' },
         // tc_post_list_thumb_position : { master : 'tc_post_list_grid' , value : 'default' },
-        //tc_post_list_grid_thumb_height : { master : 'tc_post_list_grid' , value : 'grid' }
+        //tc_grid_thumb_height : { master : 'tc_post_list_grid' , value : 'grid' }
       }
     },
     'tc_post_list_thumb_shape' : {
