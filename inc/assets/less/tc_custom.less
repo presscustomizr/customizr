@@ -1503,30 +1503,41 @@ article .author-info h2 , .archive-header .author-info h2 {
   position: relative;
   bottom: 10px;
 }
-.comments-link .fs1 {
-  font-size: 40px;
-  line-height: initial;
-  vertical-align: inherit;
-  margin: 0px;
-  display: inline;
+/* default bubble */
+.comments-link .default-bubble {
+  position: relative;
+  bottom: 20px;
+  right: 2px;
+  padding: 2px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  font-size: 10px;
+  line-height: 19px;
+  text-align: center;
   background: none;
-  height: inherit;
-  /*float: left;*/
-  z-index: 1;
-  width: 34px;
-  opacity: 0.8
+  -webkit-transition: bottom .3s ease;
+  -moz-transition: bottom .3s ease;
+  -ms-transition: bottom .3s ease;
+  -o-transition: bottom .3s ease;
+  transition: bottom .3s ease;
 }
-.comments-link .tc-comment-bubble {
-  color: @CommentsLink;
+.comments-link .default-bubble:hover {
+  bottom: 22px;
 }
-
-/* custom bubble */
-.comments-link .custom-bubble-one {
-  color: @CommentsLink;
-  border: 2px solid @CommentsLink;
-}
-.comments-link .custom-bubble-one:before {
-  border-color: @CommentsLink rgba(0, 0, 0, 0);
+.comments-link .default-bubble:before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: -6px;
+  background: @Customizrbackground;
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 10px;
 }
 
 
@@ -1882,6 +1893,25 @@ max-width: 100%;
     width: 100%;
 }
 
+/* comment bubbles in grid */
+.tc-grid-figure .comments-link {
+  position: absolute;
+  z-index: 100;
+  top: 10%;
+  right: 1%;
+}
+.tc-post-list-grid .comments-link .tc-comment-bubble {
+  background: #FAFAFA;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+.tc-post-list-grid .default-bubble:before {
+  background: #FAFAFA;
+  background: rgba(0, 0, 0, 0.4);
+}
+.tc-post-list-grid .comments-link .custom-bubble-one:after, .tc-post-list-grid .comments-link .custom-bubble-one:before {
+  border: none;
+}
 /* WP CSS
     -------------------------------------------------- */
 

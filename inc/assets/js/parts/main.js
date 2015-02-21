@@ -1,6 +1,6 @@
 /* !
  * Customizr WordPress theme Javascript code
- * Copyright (c) 2014 Nicolas GUILLAUME (@nicguillaume), Themes & Co.
+ * Copyright (c) 2014-2015 Nicolas GUILLAUME (@nicguillaume), Themes & Co.
  * GPL2+ Licensed
 */
 //ON DOM READY

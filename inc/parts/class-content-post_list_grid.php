@@ -82,8 +82,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_grid_section_class'       , array( $this, 'tc_grid_section_set_classes' ) );
 
           //COMMENT BUBBLE
-          remove_filter( 'tc_the_title'             , array( TC_comments::$instance, 'tc_display_comment_bubble' ) );
-          add_action( 'tc_grid_section_class'       , array( $this, 'tc_grid_display_comment_bubble' ) );
+          remove_filter( 'tc_the_title'             , array( TC_comments::$instance, 'tc_display_comment_bubble' ) , 1 );
+          add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'tc_grid_display_comment_bubble' ) );
         }
 
 
@@ -91,8 +91,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : __before_article
         * inside loop
         */
-        function tc_grid_display_comment_bubble() {
-
+        function tc_grid_display_comment_bubble( $_html ) {
+          return TC_comments::$instance -> tc_display_comment_bubble() . $_html;
         }
 
 
@@ -477,7 +477,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_thumb_html                      = apply_filters( 'tc_grid_thumbnail_html' , isset($_thumb_data[0]) ? $_thumb_data[0] : '' );
 
           // CONTENT : get the figcaption content => post content
-          $_post_content_html               = apply_filters( 'tc_grid_content_html' , $this -> tc_grid_get_single_post_html( isset( $_layout['content']) ? $_layout['content'] : 'span6' ) );
+          $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content'] ) ? $_layout['content'] : 'span6' );
 
           // WRAPPER CLASS : build single grid post wrapper class
           $_classes  = array('tc-grid-figure');
@@ -534,17 +534,17 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return the figcation content as a string
         * inside loop
         */
-        private function tc_grid_get_single_post_html($post_list_content_class){
+        private function tc_grid_get_single_post_html( $post_list_content_class ) {
           global $post;
           ob_start();
           ?>
-          <figcaption class="<?php echo $post_list_content_class ?>">
-            <?php do_action( '__grid_single_post_content' ) ?>
-          </figcaption>
+            <figcaption class="<?php echo $post_list_content_class ?>">
+              <?php do_action( '__grid_single_post_content' ) ?>
+            </figcaption>
           <?php
           $html = ob_get_contents();
           if ($html) ob_end_clean();
-          return apply_filters('tc_grid_get_single_post_html', $html, $post_list_content_class, $post -> ID);
+          return apply_filters( 'tc_grid_get_single_post_html', $html, $post_list_content_class );
         }
 
 
