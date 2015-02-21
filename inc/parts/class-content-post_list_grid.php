@@ -237,8 +237,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_grid_col_height_map =  apply_filters(
               'tc_grid_col_height_map',
               array(
-                'grid-cols-1' => 350,
-                'grid-cols-2' => 350,
+                'grid-cols-1' => $this -> tc_get_user_thumb_height(),
+                'grid-cols-2' => $this -> tc_get_user_thumb_height(),
                 'grid-cols-3' => 225,
                 'grid-cols-4' => 165
               )
@@ -329,6 +329,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : __grid_single_post_content
         */
         function tc_grid_display_post_link(){
+          if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
+            return;
           printf( '<a href="%1$s" title="%2s"></a>',
               get_permalink( get_the_ID() ),
               esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
@@ -400,7 +402,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $thumb_full_ratio = $thumb_full_size['height'] / $thumb_full_size['width'] * 100;
           $thumb_ratio      = $thumb_size['height'] / $thumb_size['width'] * 100;
           $_cols_class      = sprintf('grid-cols-%s' , $this -> tc_get_grid_section_cols() );
-          $_figure_height   = apply_filters( 'tc_grid_figure_height' , 350 , $_cols_class );
+          $_figure_height   = apply_filters( 'tc_grid_figure_height' , $this -> tc_get_user_thumb_height() , $_cols_class );
           $_title_sizes     = apply_filters( 'tc_grid_title_sizes', array( 'font-size' => 32 , 'line-height' => 40 ) , $_cols_class );
           $_font_size       = $_title_sizes['font-size'];
           $_line_height     = $_title_sizes['line-height'];
@@ -408,7 +410,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
           //ADD THE HEIGHT FOR EXP FEATURED POST
-          $_height = isset($_grid_column_height['grid-cols-1']) ? $_grid_column_height['grid-cols-1'] : 350;
+          $_height = isset($_grid_column_height['grid-cols-1']) ? $_grid_column_height['grid-cols-1'] : $this -> tc_get_user_thumb_height();
           $_expanded_featured_css = "
           .grid-cols-1 figure {
               height:{$_height}px;
@@ -482,7 +484,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           // WRAPPER CLASS : build single grid post wrapper class
           $_classes  = array('tc-grid-figure');
 
-          $_tc_show_thumb                   = ( empty($_thumb_data[0]) || ! esc_attr( tc__f('__get_option', 'tc_post_list_show_thumb') ) ) ? false : true;
+          $_tc_show_thumb                   = ! empty($_thumb_data[0]);
+
           if ( ! $_tc_show_thumb )
             array_push( $_classes, 'no-thumb' );
           //if 1 col layout or current post is the expanded => golden ratio should be disabled
@@ -552,6 +555,15 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /******************************
         ***** HELPERS *****************
         *******************************/
+        /**
+        * @return (number) customizer user defined height for the grid thumbnails
+        */
+        private function tc_get_user_thumb_height() {
+          $_opt = esc_attr( tc__f('__get_option' , 'tc_grid_thumb_height') );
+          return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
+        }
+
+
         /*
         * @return bool
         * check if we have to expand the first sticky post
