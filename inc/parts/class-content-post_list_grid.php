@@ -386,11 +386,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_grid_write_inline_css( $_css){
           /* retrieve the height/width ratios */
-          $thumb_full_size  = apply_filters( 'tc_grid_full_size',
-                                  TC_init::$instance -> tc_grid_full_size );
+          $thumb_full_size  = apply_filters( 'tc_grid_full_size', TC_init::$instance -> tc_grid_full_size );
           $thumb_full_width = $thumb_full_size['width'];
-          $thumb_size       = apply_filters( 'tc_grid_size',
-                                  TC_init::$instance -> tc_grid_size );
+          $thumb_size       = apply_filters( 'tc_grid_size', TC_init::$instance -> tc_grid_size );
 
           if ( ! isset($thumb_size['width']) || ! isset($thumb_size['height']) || ! isset($thumb_full_size['width']) || !isset($thumb_full_size['height']) )
             return $_css;
