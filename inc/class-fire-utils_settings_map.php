@@ -1695,7 +1695,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               'tc_theme_options[tc_post_metas_update_notice_in_title]'  =>  array(
-                                'default'       => 1,
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
                                 'control'       => 'TC_controls',
                                 'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
@@ -1762,7 +1762,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 68,
-                                'notice'    => __( 'When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ...' , 'customizr' ),
+                                'notice'        => sprintf( '%s %s' , __( 'When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ...' , 'customizr' ), __( 'Note : thumbnails are always displayed when the grid layout is choosen.' , 'customizr') )
               ),
               'tc_theme_options[tc_post_list_use_attachment_as_thumb]'  =>  array(
                                 'default'       => 1,
