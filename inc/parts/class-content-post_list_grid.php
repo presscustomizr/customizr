@@ -474,16 +474,23 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_thumb_data                      = $this -> tc_get_grid_thumb_data( TC_post_thumbnails::$instance -> tc_get_thumbnail_data() );
           $_thumb_html                      = apply_filters( 'tc_grid_thumbnail_html' , isset($_thumb_data[0]) ? $_thumb_data[0] : '' );
 
+          //may be print format icon
+          if ( empty($_thumb_data[0]) )
+            $_thumb_html = sprintf('<div class="tc-grid-icon format-icon"></div>',
+              get_post_format()
+            );
+
+
           // CONTENT : get the figcaption content => post content
           $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content'] ) ? $_layout['content'] : 'span6' );
 
           // WRAPPER CLASS : build single grid post wrapper class
           $_classes  = array('tc-grid-figure');
 
-          $_tc_show_thumb                   = ! empty($_thumb_data[0]);
-
-          if ( ! $_tc_show_thumb )
+          //may be add class no-thumb
+          if ( empty($_thumb_data[0]) )
             array_push( $_classes, 'no-thumb' );
+
           //if 1 col layout or current post is the expanded => golden ratio should be disabled
           if ( ( '1' == $this -> tc_get_post_list_cols() || $this -> tc_force_current_post_expansion() ) && ! wp_is_mobile() )
             array_push( $_classes, 'no-gold-ratio' );

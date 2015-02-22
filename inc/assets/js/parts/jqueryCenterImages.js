@@ -16,6 +16,7 @@
         onresize : true,
         oncustom : [],//list of event here
         imgSel : 'img',
+        topAdjust : -2,//<= top ajustement for h-centered
         enableGoldenRatio : false,
         goldenRatioLimitHeightTo : 350,
         goldenRatioVal : 1.618,
@@ -156,11 +157,12 @@
   Plugin.prototype._maybe_center_img = function( $_img, _state ) {
     var _case  = _state.current,
         _p     = _state.prop[_case],
-        _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'];
+        _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'],
+        _not_p_dir_val = 'h' == _case ? this.options.topAdjust : 0;
 
     $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , 'auto' )
         .addClass( _p.class ).removeClass( _not_p.class )
-        .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, 0 );
+        .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
   };
 
   /********

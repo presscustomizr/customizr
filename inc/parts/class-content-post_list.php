@@ -2,7 +2,7 @@
 /**
 * Posts content actions
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0.5
@@ -55,13 +55,13 @@ if ( ! class_exists( 'TC_post_list' ) ) :
           return;
 
         global $wp_query;
-        
+
         //When do we show the post excerpt?
         //1) when set in options
         //2) + other filters conditions
         $tc_show_post_list_excerpt      = ( 'full' == esc_attr( tc__f( '__get_option' , 'tc_post_list_length' )) ) ? false : true;
         $tc_show_post_list_excerpt      = apply_filters( 'tc_show_post_list_excerpt', $tc_show_post_list_excerpt );
-       
+
         //get the thumbnail data (src, width, height) if any
         $thumb_data                     = TC_post_thumbnails::$instance -> tc_get_thumbnail_data();
 
@@ -77,7 +77,7 @@ if ( ! class_exists( 'TC_post_list' ) ) :
         $tc_show_post_list_thumb        = empty($thumb_data[0]) ? false : $tc_show_post_list_thumb;
         $tc_show_post_list_thumb        = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_list_show_thumb' ) ) ) ? false : $tc_show_post_list_thumb;
         $tc_show_post_list_thumb        = apply_filters( 'tc_show_post_list_thumb', $tc_show_post_list_thumb );
-       
+
         //what is determining the layout ? if no thumbnail then full width + filter's conditions
         $post_list_content_class        = $tc_show_post_list_thumb  ? $layout['content'] : 'span12';
         $post_list_content_class        = implode( " " , apply_filters( 'tc_post_list_content_class', array($post_list_content_class) , $tc_show_post_list_thumb , $layout ) );
@@ -95,7 +95,7 @@ if ( ! class_exists( 'TC_post_list' ) ) :
         } else if ( isset($layout['show_thumb_first']) && !$layout['show_thumb_first'] ) {
             $this -> tc_display_post_content($post_list_content_class, $tc_show_post_list_excerpt);
             $tc_show_post_list_thumb ? TC_post_thumbnails::$instance -> tc_display_post_thumbnail( $thumb_data , $layout['thumb'] ) : false;
-         
+
         }
         else {
           $tc_show_post_list_thumb ? TC_post_thumbnails::$instance -> tc_display_post_thumbnail( $thumb_data , $layout['thumb'] ) : false;
@@ -123,12 +123,12 @@ if ( ! class_exists( 'TC_post_list' ) ) :
         ?>
         <section class="tc-content <?php echo $post_list_content_class; ?>">
             <?php do_action( '__before_content' ); ?>
-            
+
             <?php //display an icon for div if there is no title
                     $icon_class = in_array(get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' )) ? apply_filters( 'tc_post_list_content_icon', 'format-icon' ) :'';
                 ?>
-            <?php if ( apply_filters('tc_force_show_post_list_excerpt', !get_post_format() ) ) :  // Only display Excerpts for lists of posts with format different than quote, status, link, aside ?>
-                
+            <?php if ( apply_filters('tc_force_show_post_list_excerpt', ! get_post_format() ) ) :  // Only display Excerpts for lists of posts with format different than quote, status, link, aside ?>
+
                 <section class="entry-summary">
                     <?php if ( !$tc_show_post_list_excerpt ) : ?>
                       <?php the_content(); ?>
@@ -136,15 +136,15 @@ if ( ! class_exists( 'TC_post_list' ) ) :
                       <?php the_excerpt(); ?>
                     <?php endif; ?>
                 </section><!-- .entry-summary -->
-            
-            <?php elseif ( in_array(get_post_format(), array( 'image' , 'gallery' ))) : ?>
-                
+
+            <?php elseif ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) ) : ?>
+
                 <section class="entry-content">
                     <p class="format-icon"></p>
                 </section><!-- .entry-content -->
-            
+
             <?php else : ?>
-            
+
                 <section class="entry-content <?php echo $icon_class ?>">
                     <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
                     <?php wp_link_pages( array( 'before' => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>
@@ -170,7 +170,7 @@ if ( ! class_exists( 'TC_post_list' ) ) :
       * @since Customizr 3.1.20
       */
       function tc_include_cpt_in_lists($query) {
-        if ( 
+        if (
           is_admin()
           || ! $query->is_main_query()
           || ! apply_filters('tc_include_cpt_in_archives' , false)
@@ -180,7 +180,7 @@ if ( ! class_exists( 'TC_post_list' ) ) :
 
         //filter the post types to include, they must be public and not excluded from search
         $post_types     = get_post_types( array( 'public' => true, 'exclude_from_search' => false) );
-        
+
         $query->set('post_type', $post_types );
       }
 
@@ -194,21 +194,21 @@ if ( ! class_exists( 'TC_post_list' ) ) :
       */
       function tc_include_attachments_in_search( $query ) {
           if (! is_search() || ! apply_filters( 'tc_include_attachments_in_search_results' , true ) )
-            return $query;    
+            return $query;
 
-          // add post status 'inherit' 
+          // add post status 'inherit'
           $post_status = $query->get( 'post_status' );
           if ( ! $post_status || 'publish' == $post_status )
             $post_status = array( 'publish', 'inherit' );
-          if ( is_array( $post_status ) ) 
+          if ( is_array( $post_status ) )
             $post_status[] = 'inherit';
 
           $query->set( 'post_status', $post_status );
-         
+
           return $query;
       }
 
-      
+
       /**
       * Set hooks for the customizer options
       * callback of template_redirect hook
@@ -224,7 +224,7 @@ if ( ! class_exists( 'TC_post_list' ) ) :
         add_filter ( 'excerpt_length'                 , array( $this , 'tc_set_excerpt_length') , 999 );
         add_filter ( 'post_class'                     , array( $this , 'tc_add_thumb_shape_name'));
       }
-      
+
 
 
       /**

@@ -432,7 +432,7 @@ td {
 .page-links button.btn {
   color: #27cda5;
 }
-/* Comment bubbles*/
+/* Comment bubbles */
 .comments-link .tc-comment-bubble {
   color: #27cda5;
 }
@@ -465,4 +465,8 @@ footer#footer .colophon a.back-to-top {
 /* GRID */
 .tc-grid-border .tc-grid {
   border-bottom: 3px solid #27cda5;
+}
+/* Grid icons */
+.tc-grid-icon:before {
+  color: #27cda5;
 }
