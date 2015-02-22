@@ -379,8 +379,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       function tc_user_defined_tinymce_css( $init ) {
         if ( ! apply_filters( 'tc_add_custom_fonts_to_editor' , true ) )
           return $init;
-
+        //fonts
         $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
+        //icons
+        $_css .= TC_resources::$instance -> tc_get_inline_font_icons_css();
        ?>
 
           <script type="text/javascript">
