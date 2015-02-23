@@ -298,7 +298,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         }
 
         //author's posts page
-        if ( !is_singular() && is_author() ) {
+        if ( ! is_singular() && is_author() ) {
           //gets the user ID
           $user_id = get_query_var( 'author' );
           $_header_class   = array('archive-header');
@@ -343,7 +343,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         }
 
         //tag archives
-        if ( !is_singular() && is_tag() ) {
+        if ( ! is_singular() && is_tag() ) {
           $_header_class   = array('archive-header');
           $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                 apply_filters( 'tc_archive_icon', 'format-icon' ),

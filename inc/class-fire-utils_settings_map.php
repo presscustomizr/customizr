@@ -2135,7 +2135,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     'grid'            => __( 'Grid layout' , 'customizr')
                             ),
                             'priority'      => 40,
-                            'notice'    => __( 'When you select the grid Layout, the post content will be limited to the excerpt' , 'customizr' ),
+                            'notice'    => __( 'When you select the grid Layout, the post content is limited to the excerpt.' , 'customizr' ),
           ),
           'tc_theme_options[tc_grid_columns]'  =>  array(
                             'default'       => '2',

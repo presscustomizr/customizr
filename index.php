@@ -11,14 +11,14 @@
 <div id="main-wrapper" class="<?php echo apply_filters( 'tc_main_wrapper_classes' , 'container' ) ?>">
 
     <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
-    
+
     <div class="container" role="main">
         <div class="<?php echo apply_filters( 'tc_column_content_wrapper_classes' , 'row column-content-wrapper' ) ?>">
 
             <?php do_action( '__before_article_container'); ##hook of left sidebar?>
-                
+
                 <div id="content" class="<?php echo tc__f( '__screen_layout' , tc__f ( '__ID' ) , 'class' ) ?> article-container">
-                    
+
                     <?php do_action ('__before_loop');##hooks the heading of the list of post : archive, search... ?>
 
                         <?php if ( tc__f('__is_no_results') || is_404() ) : ##no search results or 404 cases ?>
@@ -26,10 +26,10 @@
                             <article <?php tc__f('__article_selectors') ?>>
                                 <?php do_action( '__loop' ); ?>
                             </article>
-                            
+
                         <?php endif; ?>
 
-                        <?php if ( have_posts() && !is_404() ) : ?>
+                        <?php if ( have_posts() && ! is_404() ) : ?>
                             <?php while ( have_posts() ) : ##all other cases for single and lists: post, custom post type, page, archives, search, 404 ?>
                                 <?php the_post(); ?>
 

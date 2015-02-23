@@ -44,9 +44,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_action( '__before_article_container'  , array( $this, 'tc_set_grid_before_loop_hooks'), 5 );
 
           // loop hooks
-          add_action( '__before_article'            , array( $this, 'tc_set_grid_loop_hooks'), 0 );
-          add_action( '__before_article'            , array( $this, 'tc_set_grid_loop_hooks'), 0 );
-          add_filter( 'tc_grid_section_cols'        , array( $this, 'tc_set_grid_section_cols'), 20 , 2 );
+          add_action( '__before_loop'               , array( $this, 'tc_set_grid_loop_hooks'), 0 );
         }
 
 
@@ -69,7 +67,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_post_thumb_inline_style'  , '__return_false' );
 
           // force title displaying for all post types
-          add_filter( 'tc_post_formats_with_no_heading', '__return_empty_array');
+          //add_filter( 'tc_post_formats_with_no_heading', '__return_empty_array');
 
           // SINGLE POST CONTENT IN GRID
           $_content_priorities = apply_filters('tc_grid_post_content_priorities' , array( 'content' => 20, 'link' =>30 ));
@@ -84,18 +82,75 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //COMMENT BUBBLE
           remove_filter( 'tc_the_title'             , array( TC_comments::$instance, 'tc_display_comment_bubble' ) , 1 );
           add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'tc_grid_display_comment_bubble' ) );
+
+          //POST METAS
+          //modify default single term meta views
+          add_filter( 'tc_meta_terms_glue'           , array( $this, 'tc_grid_set_term_meta_glue' ) );
+          add_filter( 'tc_meta_tax_class'            , '__return_empty_array' );
+          remove_filter( 'tc_meta_utility_text'      , array( TC_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
+
+          add_filter( 'tc_post_tax_metas_html'       , array( $this, 'tc_grid_set_tax_metas' ), 10, 2 );
+          add_filter( 'tc_post_date_metas_html'      , array( $this, 'tc_grid_set_date_metas' ), 20, 2 );
+          add_filter( 'tc_post_author_metas_html'    , array( $this, 'tc_grid_set_author_metas' ), 10 , 2 );
+
+          add_filter( 'tc_set_metas_content'         , array( $this, 'tc_grid_set_metas' ), 10, 2 );
+        }
+
+
+
+        public function tc_grid_set_term_meta_glue() {
+          return ' / ';
+        }
+
+
+        function tc_grid_set_tax_metas( $_html , $_tax = array() ) {
+          if ( empty($_tax) )
+            return $_html;
+          //extract "_show_cats" , "_show_tags" , "cat_list", "tag_list"
+          extract($_tax);
+          $cat_list = ! empty($cat_list) && $_show_cats ? sprintf( '&nbsp;%s %s' , __('in' , 'customizr') , $cat_list ) : '';
+          $tag_list = ! empty($tag_list) && $_show_tags ? sprintf( '&nbsp;%s %s' , __('tagged' , 'customizr') , $tag_list ) : '';
+          return sprintf( '%s%s' , $cat_list, $tag_list );
+        }
+
+
+        function tc_grid_set_date_metas( $_html, $_pubdate = '' ) {
+          if ( empty($_pubdate))
+            return $_html;
+          return TC_post_metas::$instance -> tc_get_meta_date( 'publication' , 'short' );
+        }
+
+
+        function tc_grid_set_author_metas( $_html , $_auth = '' ) {
+          if ( empty($_auth) )
+            return $_html;
+
+          return sprintf( '<span class="by-author"> %s %s</span>' , __('by' , 'customizr'), $_auth );
+        }
+
+
+        function tc_grid_set_metas( $_html, $_parts = array() ) {
+          if ( empty($_parts) )
+            return $_html;
+          //extract $_tax_text , $_date_text, $_author_text, $_update_text
+          extract($_parts);
+          return sprintf( '%1$s %2$s %3$s %4$s' , $_date_text, $_tax_text , $_author_text, $_update_text );
         }
 
 
 
         /**
-        * hook : __before_article
-        * inside loop
+        * hook : __before_loop
+        * actions and filters inside loop
+        * @return  void
         */
         function tc_set_grid_loop_hooks() {
           add_action( '__before_article'            , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
           add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
           add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
+
+          add_filter( 'tc_grid_section_cols'        , array( $this, 'tc_set_grid_section_cols'), 20 , 2 );
+
           remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_post_list_display') );
           add_action( '__loop'                      , array( $this, 'tc_grid_single_post_display') );
         }
@@ -357,11 +412,19 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
         /*
-        * hook : {$hook_prefix}_grid_single_post
+        * hook : {before or after}_grid_single_post
+        *
         */
         function tc_grid_display_title_metas(){
+          // if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
+          //   return;
+          ?>
+            <pre>
+              <?php print_r(get_post_format()); ?>
+            </pre>
+          <?php
           ob_start();
-              do_action('__before_content');
+              //do_action('__before_content');
           $html = ob_get_contents();
           if ($html) ob_end_clean();
           echo apply_filters('tc_grid_display_title_metas', $html);
@@ -467,7 +530,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               if ( $_layout['show_thumb_first'] )
                   $hook_prefix = '__after';
 
-              add_action( "{$hook_prefix}_grid_single_post",  array( $this, 'tc_grid_display_title_metas' ) );
+              add_action( "{$hook_prefix}_grid_single_post",  array( TC_headings::$instance, 'tc_render_headings_view' ) );
           }
 
           // THUMBNAIL : get the thumbnail data (src, width, height) if any
