@@ -84,8 +84,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
         if ( ! is_singular() )
           add_filter( 'tc_content_headings_separator' , '__return_false' );
 
-        //No heading if post with no heading
-        add_filter( 'tc_render_headings_view'        , array( $this, 'tc_post_formats_heading') , 100 );
+        //No headings for some post formats
+        add_filter( 'tc_headings_content_html'        , array( $this, 'tc_post_formats_heading') , 100 );
 
       }
 
@@ -93,7 +93,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return string or boolean
       * Returns the heading html content or false
-      * callback of tc_headings_content_html
+      * callback of tc_headings_{$_heading_type}_html where $_heading_type = content when in the loop
       *
       * @package Customizr
       * @since Customizr 3.2.9
