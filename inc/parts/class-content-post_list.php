@@ -15,25 +15,58 @@ if ( ! class_exists( 'TC_post_list' ) ) :
   class TC_post_list {
       static $instance;
       function __construct () {
-          self::$instance =& $this;
-          //displays the article with filtered layout : content + thumbnail
-          add_action ( '__loop'                         , array( $this , 'tc_post_list_display'));
-          //Include attachments in search results
-          add_filter ( 'pre_get_posts'                  , array( $this , 'tc_include_attachments_in_search' ));
-          //Include all post types in archive pages
-          add_filter ( 'pre_get_posts'                  , array( $this , 'tc_include_cpt_in_lists' ));
-          //Set customizer options (since 3.2.0)
-          add_action( 'template_redirect'               , array( $this, 'tc_set_post_list_options'));
+        self::$instance =& $this;
+        //Set customizer options (since 3.2.0)
+        add_action( 'wp'                              , array( $this, 'tc_set_post_list_options'));
+        //displays the article with filtered layout : content + thumbnail
+        add_action ( '__loop'                         , array( $this , 'tc_post_list_display'));
+        //Include attachments in search results
+        add_filter ( 'pre_get_posts'                  , array( $this , 'tc_include_attachments_in_search' ));
+        //Include all post types in archive pages
+        add_filter ( 'pre_get_posts'                  , array( $this , 'tc_include_cpt_in_lists' ));
       }
 
 
       /**
+      * Set various filters
+      * hook : wp
+      *
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function tc_set_post_list_options() {
+        if ( ! $this -> tc_post_list_controller() )
+          return;
+        //based on customizer user options
+        add_filter( 'tc_post_list_layout'   , array( $this , 'tc_set_post_list_layout') );
+        add_filter( 'post_class'            , array( $this , 'tc_set_content_class') );
+        add_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
+        add_filter( 'post_class'            , array( $this , 'tc_add_thumb_shape_name') );
+
+        //add current context to the body class
+        add_filter( 'body_class'            , array( $this , 'tc_add_post_list_context') );
+      }
+
+
+      /**
+      * Callback of the body_class filter
+      *
+      * @package Customizr
+      * @since Customizr 3.3.2
+      */
+      function tc_add_post_list_context( $_classes ) {
+        return array_merge( $_classes , array( 'tc-post-list-context' ) );
+      }
+
+
+      /**
+      * @return  bool
       * Controller of the posts list view
       *
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function tc_post_list_controller() {
+      public function tc_post_list_controller() {
         global $wp_query;
         //must be archive or search result. Returns false if home is empty in options.
         return ! is_singular()
@@ -206,23 +239,6 @@ if ( ! class_exists( 'TC_post_list' ) ) :
           $query->set( 'post_status', $post_status );
 
           return $query;
-      }
-
-
-      /**
-      * Set hooks for the customizer options
-      * callback of template_redirect hook
-      *
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      function tc_set_post_list_options() {
-        if ( ! $this -> tc_post_list_controller() )
-          return;
-        add_filter ( 'tc_post_list_layout'            , array( $this , 'tc_set_post_list_layout'));
-        add_filter ( 'post_class'                     , array( $this , 'tc_set_content_class'));
-        add_filter ( 'excerpt_length'                 , array( $this , 'tc_set_excerpt_length') , 999 );
-        add_filter ( 'post_class'                     , array( $this , 'tc_add_thumb_shape_name'));
       }
 
 
