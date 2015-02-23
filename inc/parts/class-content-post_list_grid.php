@@ -36,9 +36,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           do_action( '__post_list_grid' );
 
           //Various CSS filters
-          add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
           add_filter( 'tc_grid_figure_height'       , array( $this , 'tc_set_grid_column_height'), 10, 2 );
           add_filter( 'tc_grid_title_sizes'         , array( $this , 'tc_set_grid_title_size'), 10, 2 );
+          add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
+
+          //Layout filter
+          add_filter( 'tc_get_grid_cols'            , array( $this, 'tc_set_grid_section_cols'), 20 , 2 );
 
           // pre loop hooks
           add_action( '__before_article_container'  , array( $this, 'tc_set_grid_before_loop_hooks'), 5 );
@@ -148,8 +151,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_action( '__before_article'            , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
           add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
           add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
-
-          add_filter( 'tc_grid_section_cols'        , array( $this, 'tc_set_grid_section_cols'), 20 , 2 );
 
           remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_post_list_display') );
           add_action( '__loop'                      , array( $this, 'tc_grid_single_post_display') );
@@ -555,7 +556,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             array_push( $_classes, 'no-thumb' );
 
           //if 1 col layout or current post is the expanded => golden ratio should be disabled
-          if ( ( '1' == $this -> tc_get_post_list_cols() || $this -> tc_force_current_post_expansion() ) && ! wp_is_mobile() )
+          if ( ( '1' == $this -> tc_get_grid_cols() || $this -> tc_force_current_post_expansion() ) && ! wp_is_mobile() )
             array_push( $_classes, 'no-gold-ratio' );
 
           $_classes  = implode( ' ' , apply_filters('tc_single_grid_post_wrapper_class', $_classes ) );
@@ -672,16 +673,18 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
         /* retrieves number of cols option, and wrap it into a filter */
-        private function tc_get_post_list_cols() {
-          return apply_filters( 'tc_grid_columns', esc_attr( tc__f('__get_option', 'tc_grid_columns') ) );
+        private function tc_get_grid_cols() {
+          return apply_filters( 'tc_get_grid_cols',
+            esc_attr( tc__f('__get_option', 'tc_grid_columns') ),
+            TC_utils::$instance -> tc_get_current_screen_layout( get_the_ID() , 'class' )
+          );
         }
 
 
         /* returns articles wrapper section columns */
         private function tc_get_grid_section_cols() {
           return apply_filters( 'tc_grid_section_cols',
-            $this -> tc_force_current_post_expansion() ? '1' : $this -> tc_get_post_list_cols(),
-            TC_utils::$instance -> tc_get_current_screen_layout( get_the_ID() , 'class' )
+            $this -> tc_force_current_post_expansion() ? '1' : $this -> tc_get_grid_cols()
           );
         }
 
