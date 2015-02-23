@@ -41,7 +41,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return;
 
         //Headings for archives, authors, search, 404
-        add_action ( '__before_loop'                  , array( $this , 'tc_prepare_headings_view' ) );
+        add_action ( '__before_loop'                  , array( $this , 'tc_render_headings_view' ) );
         //Set archive icon with customizer options (since 3.2.0)
         add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ) );
 
@@ -71,7 +71,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         //Set single post/page icon with customizer options (since 3.2.0)
         add_filter ( 'tc_content_title_icon'          , array( $this , 'tc_set_post_page_icon' ) );
         //Prepare the headings for post, page, attachment
-        add_action ( '__before_content'               , array( $this , 'tc_prepare_headings_view' ) );
+        add_action ( '__before_content'               , array( $this , 'tc_render_headings_view' ) );
         //Populate heading with default content
         add_filter ( 'tc_headings_content_html'       , array( $this , 'tc_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
@@ -85,7 +85,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           add_filter( 'tc_content_headings_separator' , '__return_false' );
 
         //No heading if post with no heading
-        add_filter( 'tc_prepare_headings_view'        , array( $this, 'tc_post_formats_heading') , 100 );
+        add_filter( 'tc_render_headings_view'        , array( $this, 'tc_post_formats_heading') , 100 );
 
       }
 
@@ -108,12 +108,13 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * Generic heading view : archives, author, search, 404 and the post page heading (if not font page)
       * This is the place where every heading content blocks are hooked
+      * hook : __before_content AND __before_loop (for post lists)
       *
       * @package Customizr
       * @since Customizr 3.1.0
       */
-      function tc_prepare_headings_view() {
-        $_heading_type = ( '__before_content' == current_filter() ) ? 'content' : 'archive';
+      function tc_render_headings_view() {
+        $_heading_type = in_the_loop() ? 'content' : 'archive';
         ob_start();
         ?>
         <header class="<?php echo implode( ' ' , apply_filters( "tc_{$_heading_type}_header_class", array('entry-header'), $_return_class = true ) ); ?>">
@@ -128,7 +129,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'tc_prepare_headings_view', $html );
+        echo apply_filters( 'tc_render_headings_view', $html );
       }//end of function
 
 
