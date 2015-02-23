@@ -49,7 +49,8 @@ if ( ! class_exists( 'TC_post_list' ) ) :
 
 
       /**
-      * Callback of the body_class filter
+      * hook : body_class
+      * @return  array of classes
       *
       * @package Customizr
       * @since Customizr 3.3.2

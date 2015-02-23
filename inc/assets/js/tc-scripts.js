@@ -2552,7 +2552,8 @@ var TCParams = TCParams || {};
         load_all_images_on_first_scroll : false,
         attribute : 'data-src',
         threshold : 200,
-        fadeIn_options : { duration : 400 }
+        fadeIn_options : { duration : 400 },
+        delaySmartLoadEvent : 0
       };
 
 
@@ -2645,19 +2646,22 @@ var TCParams = TCParams || {};
   */
   Plugin.prototype._load_img = function( _img ) {
     var $_img = $(_img),
-        _src  = $_img.attr( this.options.attribute );
+        _src  = $_img.attr( this.options.attribute ),
+        self = this;
+
+    $_img.parent().addClass('smart-loading');
 
     $_img.unbind('load_img')
     .hide()
     .removeAttr( this.options.attribute )
     .attr('src' , _src )
-    .fadeIn( this.options.fadeIn_options );
-    //trigger the smartload event on the current img after a small delay (=> time to http get the image)
-    setTimeout( function() {
-      $_img.trigger('smartload');
-      },
-      700
-    );
+    .load( function () {
+      $_img.fadeIn(self.options.fadeIn_options).trigger('smartload');
+    });//<= create a load() fn
+    //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
+    if ( $_img[0].complete )
+      $_img.load();
+    $_img.parent().removeClass('smart-loading');
   };
 
 
@@ -3060,9 +3064,8 @@ jQuery(function ($) {
 
 
     //Img Smart Load
-    if ( 1 == _p.imgSmartLoadEnabled ) {
-      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts) > 0 || {} );
-    }
+    if ( 1 == _p.imgSmartLoadEnabled )
+      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
 
     //DROP CAPS
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {

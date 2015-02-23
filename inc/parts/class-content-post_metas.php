@@ -457,7 +457,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @since Customizr 3.2.0
         */
         function tc_hide_post_metas( $_classes ) {
-            return array_merge($_classes , array('hide-post-metas') );
+          return array_merge($_classes , array('hide-post-metas') );
         }
 
     }//end of class

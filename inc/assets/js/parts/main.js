@@ -43,9 +43,8 @@ jQuery(function ($) {
 
 
     //Img Smart Load
-    if ( 1 == _p.imgSmartLoadEnabled ) {
-      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts) > 0 || {} );
-    }
+    if ( 1 == _p.imgSmartLoadEnabled )
+      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
 
     //DROP CAPS
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
