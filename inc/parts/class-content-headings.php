@@ -85,7 +85,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           add_filter( 'tc_content_headings_separator' , '__return_false' );
 
         //No heading if post with no heading
-        add_filter( 'tc_prepare_headings_view'        , array( $this, 'tc_post_formats_heading') , 100 );
+        add_filter( 'tc_prepare_headings_view'        , array( $this, 'tc_post_formats_heading') , 100, 2 );
 
       }
 
@@ -98,10 +98,10 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.9
       */
-      function tc_post_formats_heading( $_html ) {
-        if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
-          return;
-        return $_html;
+      function tc_post_formats_heading( $_html, $current_filter ) {
+        if( '__before_content' != $current_filter || ! in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
+          return $_html;
+        return;
       }
 
 
@@ -113,7 +113,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.1.0
       */
       function tc_prepare_headings_view() {
-        $_heading_type = ( '__before_content' == current_filter() ) ? 'content' : 'archive';
+        $current_filter = current_filter();  
+        $_heading_type = ( '__before_content' == $current_filter ) ? 'content' : 'archive';
         ob_start();
         ?>
         <header class="<?php echo implode( ' ' , apply_filters( "tc_{$_heading_type}_header_class", array('entry-header'), $_return_class = true ) ); ?>">
@@ -122,13 +123,13 @@ if ( ! class_exists( 'TC_headings' ) ) :
             echo apply_filters( "tc_headings_{$_heading_type}_html", '' , $_heading_type );
             do_action( "__after_{$_heading_type}_title" );
 
-            echo apply_filters( "tc_{$_heading_type}_headings_separator", '<hr class="featurette-divider '.current_filter(). '">' );
+            echo apply_filters( "tc_{$_heading_type}_headings_separator", '<hr class="featurette-divider '. $current_filter . '">' );
           ?>
         </header>
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'tc_prepare_headings_view', $html );
+        echo apply_filters( 'tc_prepare_headings_view', $html, $current_filter );
       }//end of function
 
 
