@@ -6355,17 +6355,19 @@ video {
 }
 .expanded .tc-grid-post figcaption {
   opacity: 1;
-  max-width: 50%;
+  max-width: 65%;
   height: auto;
-  margin-left: 11%;
+  margin-left: 8%;
   background: none;
+}
+.span6.article-container .expanded figcaption,
+.span9.article-container .expanded figcaption {
+  max-width: none;
+  margin-left: 0;
 }
 .tc-grid .entry-header {
   padding: 0 7%;
 }
-/* this is for testing, just opacify the thumb and don't apply background for normal posts
-*  but apply it to .expanded caption and .no-thumb caption
-*/
 .expanded figcaption {
   background: #fafafa;
   background: rgba(0, 0, 0, 0.4);
