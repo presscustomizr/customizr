@@ -1,6 +1,6 @@
 //Falls back to default params
 var TCParams = TCParams || {
-	CenterSlides: 1,
+	centerAllImg: 1,
 	FancyBoxAutoscale: 1,
 	FancyBoxState: 1,
 	HasComments: "",
@@ -1938,6 +1938,9 @@ var TCParams = TCParams || {};
       if ($.support.transition && this.$element.hasClass('slide')) {
         this.$element.trigger(e)
         if (e.isDefaultPrevented()) return
+        //tc addon => trigger slide event to img
+        if ( 0 !== $next.find('img').length )
+          $next.find('img').trigger('slide');
         $next.addClass(type)
         $next[0].offsetWidth // force reflow
         $active.addClass(direction)
@@ -1946,7 +1949,12 @@ var TCParams = TCParams || {};
           $next.removeClass([type, direction].join(' ')).addClass('active')
           $active.removeClass(['active', direction].join(' '))
           that.sliding = false
-          setTimeout(function () { that.$element.trigger('slid') }, 0)
+          setTimeout(function () {
+            that.$element.trigger('slid');
+            //tc addon => trigger slid event to img
+            if ( 0 !== $next.find('img').length )
+              $next.find('img').trigger('slid');
+          }, 0)
         })
       } else if(!$.support.transition && this.$element.hasClass('slide')) {
           this.$element.trigger(e)
@@ -2656,7 +2664,7 @@ var TCParams = TCParams || {};
     .removeAttr( this.options.attribute )
     .attr('src' , _src )
     .load( function () {
-      $_img.fadeIn(self.options.fadeIn_options).trigger('smartload');
+      $_img.fadeIn(self.options.fadeIn_options).css("display","inline-block").trigger('smartload');
     });//<= create a load() fn
     //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
     if ( $_img[0].complete )
@@ -2829,9 +2837,11 @@ var TCParams = TCParams || {};
   //defaults
   var pluginName = 'centerImages',
       defaults = {
+        enableCentering : true,
         onresize : true,
         oncustom : [],//list of event here
         imgSel : 'img',
+        defaultCSSVal : { width : 'auto' , height : 'auto' },
         topAdjust : -2,//<= top ajustement for h-centered
         enableGoldenRatio : false,
         goldenRatioLimitHeightTo : 350,
@@ -2858,8 +2868,8 @@ var TCParams = TCParams || {};
     //parses imgs ( if any ) in current container
     var $_imgs = $( this.options.imgSel , this.container );
 
-    //if no images, only handle the resize golden ratio
-    if ( ! $_imgs.length  ) {
+    //if no images or centering is not active, only handle the golden ratio on resize event
+    if ( ! $_imgs.length || ! this.options.enableCentering ) {
       //creates a golden ratio fn on resize
       $(window).bind( 'resize' , {} , function( evt ) { self._maybe_apply_golden_r( evt ); });
     } else {
@@ -2976,7 +2986,7 @@ var TCParams = TCParams || {};
         _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'],
         _not_p_dir_val = 'h' == _case ? this.options.topAdjust : 0;
 
-    $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , 'auto' )
+    $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , this.options.defaultCSSVal[_not_p.dim.name] || 'auto' )
         .addClass( _p.class ).removeClass( _not_p.class )
         .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
   };
@@ -3028,43 +3038,47 @@ jQuery(function ($) {
     var _p = TCParams;
 
     //CENTER VARIOUS IMAGES
-    //return void
-    // var _grid_golden_ratio = function() {
-    //    $('.tc-grid-figure').each( function() {
-    //     //golden ratio
-    //     var new_height = $(this).width() / 1.618;
-    //     $(this).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px'} );
-    //   } );
-    // };
-
-    //on load
     setTimeout( function() {
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
-        //POST GRID IMAGES
-        $('.tc-grid-figure').centerImages( {
-          oncustom : 'smartload',
-          enableGoldenRatio : true,
-          goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
-        } );
+      //POST LIST THUMBNAILS
+      //bind 'refresh-height' event (triggered to the the customizer preview frame)
+      $('.thumb-wrapper').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : 0 !== $(this).find('.tc-rectagular-thumb') ? true : false
+        //imgSel : '.tc-rectangular-thumb > img',
+        //oncustom : 'refresh-height',
+      });
+
+      //SINGLE POST THUMBNAILS
+
+
+      //POST GRID IMAGES
+      $('.tc-grid-figure').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        oncustom : 'smartload',
+        enableGoldenRatio : true,
+        goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
+      } );
     }, 300 );
 
-   /* $(window).resize(function(){
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( '.tc-rectangular-thumb > img' );
-        //POST GRID IMAGES
-        $('.tc-grid-figure').centerImages();
-    });*/
-    //bind 'refresh-height' event (triggered from the customizer)
-    $('.tc-rectangular-thumb').on('refresh-height' , function(){
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
-    });
+    //SLIDER
+    //adds a specific class to the carousel when automatic centering is enabled
+    $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
+
+    setTimeout( function() {
+      $( '.carousel .carousel-inner').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        imgSel : '.item .carousel-image img',
+        oncustom : ['slid'],
+        defaultCSSVal : { width : '100%' , height : 'auto' }
+      } );
+      $('.tc-slider-loader-wrapper').hide();
+    } , 50);
 
 
     //Img Smart Load
     if ( 1 == _p.imgSmartLoadEnabled )
       $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
+
 
     //DROP CAPS
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
@@ -3318,26 +3332,7 @@ jQuery(function ($) {
         });
     }
 
-
-
-    //SLIDER
-    //Enable slides centering if option is checked in the customizer.
-    if ( 1 == _p.CenterSlides ) {
-        //adds a specific class to the carousel when automatic centering is enabled
-        $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
-
-        setTimeout( function() {
-            $( '.carousel .carousel-inner').centerImages( { imgSel : '.carousel .item .carousel-image img' } );
-            $('.tc-slider-loader-wrapper').hide();
-        } , 50);
-
-        $(window).resize(function(){
-            setTimeout( function() {
-                $( '.carousel .carousel-inner').centerImages( { imgSel : '.carousel .item .carousel-image img' } );
-            }, 50);
-        });
-    }//end of center slides
-
+    //SLIDER ARROWS
     function _center_slider_arrows() {
         if ( 0 === $('.carousel').length )
             return;

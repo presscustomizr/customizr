@@ -1113,10 +1113,16 @@ footer#footer .colophon .social-block a {
   top: 0;
   left: 0;
   min-width: 100%;
-  /* height: 500px; */
+  max-height: 100%;
 }
 .carousel-image img {
   width: 100%;
+  webkit-transition-property: width,height,top,left;
+  transition-property: width,height,top,left;
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
   /* max-height: 100%; */
 }
 .carousel-image.slider-full img {
@@ -1731,6 +1737,16 @@ max-width: 100%;
 }
 
 
+/* JS IMAGE CENTERING */
+img.h-centered {
+  width: auto!important;
+  max-width: none!important;
+}
+img.v-centered {
+  height: auto!important;
+  max-height: none!important;
+}
+
 
 /* POST GRID */
 .tc-grid {
@@ -1766,14 +1782,6 @@ max-width: 100%;
   position: relative;
 }
 
-.tc-grid-figure img.h-centered {
-  width: auto;
-  max-width: none;
-}
-.tc-grid-figure img.v-centered {
-  height: auto;
-  max-height: none;
-}
 .tc-grid-post figcaption{
   top: 0;
   left: 0;

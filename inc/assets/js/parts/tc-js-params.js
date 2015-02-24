@@ -1,6 +1,6 @@
 //Falls back to default params
 var TCParams = TCParams || {
-	CenterSlides: 1,
+	centerAllImg: 1,
 	FancyBoxAutoscale: 1,
 	FancyBoxState: 1,
 	HasComments: "",

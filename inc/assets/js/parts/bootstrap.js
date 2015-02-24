@@ -1902,6 +1902,9 @@ var TCParams = TCParams || {};
       if ($.support.transition && this.$element.hasClass('slide')) {
         this.$element.trigger(e)
         if (e.isDefaultPrevented()) return
+        //tc addon => trigger slide event to img
+        if ( 0 !== $next.find('img').length )
+          $next.find('img').trigger('slide');
         $next.addClass(type)
         $next[0].offsetWidth // force reflow
         $active.addClass(direction)
@@ -1910,7 +1913,12 @@ var TCParams = TCParams || {};
           $next.removeClass([type, direction].join(' ')).addClass('active')
           $active.removeClass(['active', direction].join(' '))
           that.sliding = false
-          setTimeout(function () { that.$element.trigger('slid') }, 0)
+          setTimeout(function () {
+            that.$element.trigger('slid');
+            //tc addon => trigger slid event to img
+            if ( 0 !== $next.find('img').length )
+              $next.find('img').trigger('slid');
+          }, 0)
         })
       } else if(!$.support.transition && this.$element.hasClass('slide')) {
           this.$element.trigger(e)

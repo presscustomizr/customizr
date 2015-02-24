@@ -5731,10 +5731,16 @@ footer#footer .colophon .social-block a {
   top: 0;
   left: 0;
   min-width: 100%;
-  /* height: 500px; */
+  max-height: 100%;
 }
 .carousel-image img {
   width: 100%;
+  webkit-transition-property: width,height,top,left;
+  transition-property: width,height,top,left;
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
   /* max-height: 100%; */
 }
 .carousel-image.slider-full img {
@@ -6306,6 +6312,15 @@ video {
   opacity: 1!important;
   width: 100%;
 }
+/* JS IMAGE CENTERING */
+img.h-centered {
+  width: auto!important;
+  max-width: none!important;
+}
+img.v-centered {
+  height: auto!important;
+  max-height: none!important;
+}
 /* POST GRID */
 .tc-grid {
   border: 1px solid #EEE;
@@ -6335,14 +6350,6 @@ video {
   -o-transition: opacity .2s, left .2s, top .2s;
   transition: opacity .2s, left .2s, top .2s;
   position: relative;
-}
-.tc-grid-figure img.h-centered {
-  width: auto;
-  max-width: none;
-}
-.tc-grid-figure img.v-centered {
-  height: auto;
-  max-height: none;
 }
 .tc-grid-post figcaption {
   top: 0;

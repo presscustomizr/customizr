@@ -8,15 +8,6 @@ jQuery(function ($) {
     var _p = TCParams;
 
     //CENTER VARIOUS IMAGES
-    //return void
-    // var _grid_golden_ratio = function() {
-    //    $('.tc-grid-figure').each( function() {
-    //     //golden ratio
-    //     var new_height = $(this).width() / 1.618;
-    //     $(this).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px'} );
-    //   } );
-    // };
-
     //on load
     setTimeout( function() {
         //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
@@ -303,19 +294,17 @@ jQuery(function ($) {
     //SLIDER
     //Enable slides centering if option is checked in the customizer.
     if ( 1 == _p.CenterSlides ) {
-        //adds a specific class to the carousel when automatic centering is enabled
-        $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
+      //adds a specific class to the carousel when automatic centering is enabled
+      $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
 
-        setTimeout( function() {
-            $( '.carousel .carousel-inner').centerImages( { imgSel : '.carousel .item .carousel-image img' } );
-            $('.tc-slider-loader-wrapper').hide();
-        } , 50);
-
-        $(window).resize(function(){
-            setTimeout( function() {
-                $( '.carousel .carousel-inner').centerImages( { imgSel : '.carousel .item .carousel-image img' } );
-            }, 50);
-        });
+      setTimeout( function() {
+          $( '.carousel .carousel-inner').centerImages( {
+            imgSel : '.item .carousel-image img',
+            oncustom : ['slid'],
+            defaultCSSVal : { width : '100%' , height : 'auto' }
+          } );
+          $('.tc-slider-loader-wrapper').hide();
+      } , 50);
     }//end of center slides
 
     function _center_slider_arrows() {
