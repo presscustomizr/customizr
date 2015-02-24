@@ -94,34 +94,17 @@
     'tc_post_list_grid' : {
       show: {
         controls: [
-          'tc_post_list_grid_columns',
-          'tc_post_list_grid_expand_featured',
-          'tc_post_list_grid_in_blog',
-          'tc_post_list_grid_in_archive',
-          'tc_post_list_grid_in_search',
+          'tc_grid_columns',
+          'tc_grid_expand_featured',
+          'tc_grid_in_blog',
+          'tc_grid_in_archive',
+          'tc_grid_in_search',
           'tc_grid_thumb_height'
         ],
         callback: function (to) {
           return 'grid' == to;
         }
       }
-      /*hide : {
-        controls: [
-          'tc_post_list_thumb_shape',
-          'tc_post_list_thumb_position',
-          'tc_post_list_thumb_alternate',
-          'tc_post_list_thumb_height'
-        ],
-        callback: function (to) {
-          return 'grid' == to;
-        }
-      },
-      cross: {
-        tc_post_list_thumb_height : { master : 'tc_post_list_grid' , value : 'default' },
-        tc_post_list_thumb_shape : { master : 'tc_post_list_grid' , value : 'default' },
-        tc_post_list_thumb_alternate : { master : 'tc_post_list_grid' , value : 'default' },
-        tc_post_list_thumb_position : { master : 'tc_post_list_grid' , value : 'default' }
-      }*/
     },
     'tc_post_list_show_thumb' : {
       controls: [
@@ -139,10 +122,6 @@
       //display dependant if master setting value == value
       cross: {
         tc_post_list_thumb_height : { master : 'tc_post_list_thumb_shape' , callback : function (to) { return to.indexOf('rectangular') > -1; } },
-        // tc_post_list_thumb_shape : { master : 'tc_post_list_grid' , value : 'default' },
-        // tc_post_list_thumb_alternate : { master : 'tc_post_list_grid' , value : 'default' },
-        // tc_post_list_thumb_position : { master : 'tc_post_list_grid' , value : 'default' },
-        //tc_grid_thumb_height : { master : 'tc_post_list_grid' , value : 'grid' }
       }
     },
     'tc_post_list_thumb_shape' : {

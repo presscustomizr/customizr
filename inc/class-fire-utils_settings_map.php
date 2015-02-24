@@ -1757,7 +1757,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
               /* Post list layout */
               'tc_theme_options[tc_post_list_excerpt_length]'  =>  array(
-                                'default'       => 55,
+                                'default'       => 50,
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Set the excerpt length (in number of words) " , "customizr" ),
