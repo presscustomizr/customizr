@@ -15,17 +15,18 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
     class TC_post_metas {
         static $instance;
         function __construct () {
-            self::$instance =& $this;
-            //Show / hide metas based on customizer user options (@since 3.2.0)
-            add_action( 'wp'                                , array( $this , 'tc_set_post_metas_visibility' ) , 10 );
-            //Show / hide metas based on customizer user options (@since 3.2.0)
-            add_action( 'wp'                                , array( $this , 'tc_set_post_metas_hooks' ), 20 );
+          self::$instance =& $this;
+          //Show / hide metas based on customizer user options (@since 3.2.0)
+          add_action( 'wp'                                , array( $this , 'tc_set_post_metas_visibility' ) , 10 );
+          //Show / hide metas based on customizer user options (@since 3.2.0)
+          add_action( '__after_content_title'             , array( $this , 'tc_set_post_metas_hooks' ), 20 );
 
         }
 
 
         /**
         * Set the post metas visibility based on Customizer options
+        * uses hooks tc_show_post_metas, body_class
         * hook : wp
         *
         * @package Customizr
@@ -77,108 +78,135 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
         /**
-        * Register the post metas views
-        * hook : wp
-        *
+        * Default metas visibility controller
+        * tc_show_post_metas gets filtered by tc_set_post_metas_visibility() called early in wp
+        * @return  boolean
+        * @package Customizr
+        * @since Customizr 3.2.6
+        */
+        private function tc_show_post_metas() {
+          global $post;
+          //when do we display the metas ?
+          //1) default is : not on home page, 404, search page
+          //2) +filter conditions
+          return apply_filters(
+              'tc_show_post_metas',
+              ! tc__f('__is_home')
+              && ! is_404()
+              && ! 'page' == $post -> post_type
+              && in_array( get_post_type(), apply_filters('tc_show_metas_for_post_types' , array( 'post') ) )
+          );
+        }
+
+
+
+        /**
+        * Build the metas models
+        * Render the view based on filters
+        * hook : __after_content_title
+        * @return void
         * @package Customizr
         * @since Customizr 3.2.2
         */
         function tc_set_post_metas_hooks() {
-          if ( ! $this -> tc_post_metas_controller() )
-                return;
-          //init the post metas view
-          add_action( '__after_content_title'     , array( $this , 'tc_post_metas' ));
-          //Set metas content based on customizer user options (@since 3.2.6)
-          add_filter( 'tc_meta_utility_text'      , array( $this , 'tc_set_meta_content'), 10 , 2);
-          //filter metas content with default theme settings
-          add_filter( 'tc_meta_utility_text'      , array( $this , 'tc_add_link_to_post_after_metas'), 20);
+          if ( ! $this -> tc_show_post_metas() )
+            return;
+          global $post;
+          $_model = array();
+          //BUILD MODEL
+          //Two cases : attachment and not attachment
+          if ( 'attachment' == $post -> post_type ) {
+            $_model = $this -> tc_build_attachment_post_metas_model();
+          } else {
+            $_model = $this -> tc_build_post_post_metas_model();
+            //Set metas content based on customizer user options (@since 3.2.6)
+            add_filter( 'tc_meta_utility_text'      , array( $this , 'tc_set_post_metas_elements'), 10 , 2 );
+            //filter metas content with default theme settings
+            add_filter( 'tc_meta_utility_text'      , array( $this , 'tc_add_link_to_post_after_metas'), 20 );
+          }
+
+          //RENDER VIEW
+          $this -> tc_render_metas_view( $_model );
         }
 
 
 
-
         /**
-        * HELPER
-        * Post metas controller
-        *
+        * Post metas model
+        * @return model array
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        private function tc_post_metas_controller() {
-            global $post;
-            //when do we display the metas ?
-            //1) default is : not on home page, 404, search page
-            //2) +filter conditions
-            return apply_filters(
-                'tc_show_post_metas',
-                ! tc__f('__is_home')
-                && ! is_404()
-                && ! 'page' == $post -> post_type
-                && in_array( get_post_type(), apply_filters('tc_show_metas_for_post_types' , array( 'post') ) )
-            );
+        private function tc_build_post_post_metas_model() {
+          $cat_list   = $this -> tc_meta_generate_tax_list( true );
+          $tag_list   = $this -> tc_meta_generate_tax_list( false );
+          $pub_date   = $this -> tc_get_meta_date( 'publication' );
+          $auth       = $this -> tc_get_meta_author();
+          $upd_date   = $this -> tc_get_meta_date( 'update' );
+
+          $_args      = compact( 'cat_list' ,'tag_list', 'pub_date', 'auth', 'upd_date' );
+          $_html      = sprintf( __( 'This entry was posted on %1$s<span class="by-author"> by %2$s</span>.' , 'customizr' ),
+            $this -> tc_get_meta_date('publication'),
+            $this -> tc_get_meta_author()
+          );
+          return apply_filters( 'tc_post_metas_model' , compact( "_html" , "_args" ) );
         }
 
 
 
         /**
-        * Metas views router
-        * hook : __after_content_title
-        * @return  void
+        * Attachment metas model
+        * @return model array
         * @package Customizr
-        * @since Customizr 1.0
+        * @since Customizr 3.3.2
         */
-        function tc_post_metas() {
-            global $post;
-            //Two cases : attachment and not attachment
-            if ( 'attachment' == $post -> post_type )
-                $this -> tc_attachment_post_metas_view();
-            else
-                $this -> tc_post_post_metas_view();
+        private function tc_build_attachment_post_metas_model() {
+          global $post;
+          $metadata       = wp_get_attachment_metadata();
+          $_html = sprintf( '%1$s <span class="entry-date"><time class="entry-date updated" datetime="%2$s">%3$s</time></span> %4$s %5$s',
+              '<span class="meta-prep meta-prep-entry-date">'.__('Published' , 'customizr').'</span>',
+              apply_filters('tc_use_the_post_modified_date' , false ) ? esc_attr( get_the_date( 'c' ) ) : esc_attr( get_the_modified_date('c') ),
+              esc_html( get_the_date() ),
+              ( isset($metadata['width']) && isset($metadata['height']) ) ? __('at dimensions' , 'customizr').'<a href="'.esc_url( wp_get_attachment_url() ).'" title="'.__('Link to full-size image' , 'customizr').'"> '.$metadata['width'].' &times; '.$metadata['height'].'</a>' : '',
+              __('in' , 'customizr').'<a href="'.esc_url( get_permalink( $post->post_parent ) ).'" title="'.__('Return to ' , 'customizr').esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ).'" rel="gallery"> '.get_the_title( $post->post_parent ).'</a>.'
+          );
+          return apply_filters( 'tc_attachment_metas_model' , compact( "_html" ) );
         }
-
 
 
 
         /**
-        * Default post metas view
-        *
+        * Customizr metas view
+        * @return  html string
         * @package Customizr
-        * @since Customizr 3.2.6
+        * @since Customizr 3.3.2
         */
-        function tc_post_post_metas_view() {
-            $cat_list   = $this -> tc_meta_generate_tax_list( true );
-            $tag_list   = $this -> tc_meta_generate_tax_list( false );
-            $pub_date   = $this -> tc_get_meta_date( 'publication' );
-            $auth       = $this -> tc_get_meta_author();
-            $upd_date   = $this -> tc_get_meta_date( 'update' );
-
-            $_args      = compact('cat_list' ,'tag_list', 'pub_date', 'auth', 'upd_date');
-            $_default_txt = sprintf( __( 'This entry was posted on %1$s<span class="by-author"> by %2$s</span>.' , 'customizr' ),
-              $this -> tc_get_meta_date('publication'),
-              $this -> tc_get_meta_author()
-            );
-            //echoes all filtered metas components
-            echo apply_filters(
-              'tc_post_metas',
-              sprintf( '<div class="entry-meta">%s</div>',
-                apply_filters( 'tc_meta_utility_text', $_default_txt , $_args )
-              )
-            );
+        private function tc_render_metas_view( $_model ) {
+          if ( empty($_model) )
+            return;
+          //extract $_html , $_args
+          extract( $_model );
+          $_html = isset($_html) ? $_html : '';
+          $_args = isset($_args) ? $_args : array();
+          //echoes all filtered metas components
+          echo apply_filters(
+            'tc_post_metas',
+            sprintf( '<div class="entry-meta">%s</div>',
+              apply_filters( 'tc_meta_utility_text', $_html , $_args )
+            )
+          );
         }
-
 
 
 
         /**
         * Set meta content based on user options
         * hook : tc_meta_utility_text
-        *
+        * @return  html string as a wp filter
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        function tc_set_meta_content( $_default , $_args = array() ) {
-            if ( ! $this -> tc_post_metas_controller() )
-                return;
+        function tc_set_post_metas_elements( $_default , $_args = array() ) {
             $_show_cats         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_categories' ) ) && false != $this -> tc_meta_generate_tax_list( true );
             $_show_tags         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_tags' ) ) && false != $this -> tc_meta_generate_tax_list( false );
             $_show_pub_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_publication_date' ) );
@@ -257,39 +285,6 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
               compact( "_tax_text" , "_date_text", "_author_text", "_update_text" )
             );
         }
-
-
-
-
-        /**
-        * Attachment post metas view
-        *
-        *
-        * @package Customizr
-        * @since Customizr 3.2.6
-        */
-        function tc_attachment_post_metas_view() {
-          global $post;
-          ob_start();
-          ?>
-          <div class="entry-meta">
-              <?php
-                  $metadata       = wp_get_attachment_metadata();
-                  printf( '%1$s <span class="entry-date"><time class="entry-date updated" datetime="%2$s">%3$s</time></span> %4$s %5$s',
-                      '<span class="meta-prep meta-prep-entry-date">'.__('Published' , 'customizr').'</span>',
-                      apply_filters('tc_use_the_post_modified_date' , false ) ? esc_attr( get_the_date( 'c' ) ) : esc_attr( get_the_modified_date('c') ),
-                      esc_html( get_the_date() ),
-                      ( isset($metadata['width']) && isset($metadata['height']) ) ? __('at dimensions' , 'customizr').'<a href="'.esc_url( wp_get_attachment_url() ).'" title="'.__('Link to full-size image' , 'customizr').'"> '.$metadata['width'].' &times; '.$metadata['height'].'</a>' : '',
-                      __('in' , 'customizr').'<a href="'.esc_url( get_permalink( $post->post_parent ) ).'" title="'.__('Return to ' , 'customizr').esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ).'" rel="gallery"> '.get_the_title( $post->post_parent ).'</a>.'
-                  );
-              ?>
-          </div><!-- .entry-meta -->
-          <?php
-          $html = ob_get_contents();
-          if ($html) ob_end_clean();
-          echo apply_filters( 'tc_post_metas', $html );
-        }
-
 
 
 
@@ -386,7 +381,6 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         }
 
 
-
         /**
         * Helper
         * Return the date post metas
@@ -408,8 +402,6 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         }
 
 
-
-
         /**
         * Helper
         * Return the post author metas
@@ -417,7 +409,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        public function tc_get_meta_author() {
+        private function tc_get_meta_author() {
             return apply_filters(
                 'tc_author_meta',
                 sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
@@ -432,7 +424,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         /**
         * @return  string
         * Return the filter post metas for specific post formats
-        * Callback of tc_meta_utility_text
+        * hook tc_meta_utility_text
         * @package Customizr
         * @since Customizr 3.2.9
         */
@@ -451,7 +443,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
         /**
-        * Callback of the body_class filter
+        * hook body_class filter
         *
         * @package Customizr
         * @since Customizr 3.2.0
