@@ -87,57 +87,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'tc_grid_display_comment_bubble' ) );
 
           //POST METAS
-          //modify default single term meta views
-          add_filter( 'tc_meta_terms_glue'           , array( $this, 'tc_grid_set_term_meta_glue' ) );
-          add_filter( 'tc_meta_tax_class'            , '__return_empty_array' );
           remove_filter( 'tc_meta_utility_text'      , array( TC_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
-
-          add_filter( 'tc_post_tax_metas_html'       , array( $this, 'tc_grid_set_tax_metas' ), 10, 2 );
-          add_filter( 'tc_post_date_metas_html'      , array( $this, 'tc_grid_set_date_metas' ), 20, 2 );
-          add_filter( 'tc_post_author_metas_html'    , array( $this, 'tc_grid_set_author_metas' ), 10 , 2 );
-
-          add_filter( 'tc_set_metas_content'         , array( $this, 'tc_grid_set_metas' ), 10, 2 );
-        }
-
-
-
-        public function tc_grid_set_term_meta_glue() {
-          return ' / ';
-        }
-
-
-        function tc_grid_set_tax_metas( $_html , $_tax = array() ) {
-          if ( empty($_tax) )
-            return $_html;
-          //extract "_show_cats" , "_show_tags" , "cat_list", "tag_list"
-          extract($_tax);
-          $cat_list = ! empty($cat_list) && $_show_cats ? sprintf( '&nbsp;%s %s' , __('in' , 'customizr') , $cat_list ) : '';
-          $tag_list = ! empty($tag_list) && $_show_tags ? sprintf( '&nbsp;%s %s' , __('tagged' , 'customizr') , $tag_list ) : '';
-          return sprintf( '%s%s' , $cat_list, $tag_list );
-        }
-
-
-        function tc_grid_set_date_metas( $_html, $_pubdate = '' ) {
-          if ( empty($_pubdate))
-            return $_html;
-          return TC_post_metas::$instance -> tc_get_meta_date( 'publication' , 'short' );
-        }
-
-
-        function tc_grid_set_author_metas( $_html , $_auth = '' ) {
-          if ( empty($_auth) )
-            return $_html;
-
-          return sprintf( '<span class="by-author"> %s %s</span>' , __('by' , 'customizr'), $_auth );
-        }
-
-
-        function tc_grid_set_metas( $_html, $_parts = array() ) {
-          if ( empty($_parts) )
-            return $_html;
-          //extract $_tax_text , $_date_text, $_author_text, $_update_text
-          extract($_parts);
-          return sprintf( '%1$s %2$s %3$s %4$s' , $_date_text, $_tax_text , $_author_text, $_update_text );
         }
 
 

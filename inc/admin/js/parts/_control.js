@@ -180,6 +180,7 @@
     'tc_show_post_metas' : {
       controls: [
         'tc_show_post_metas_home',
+        'tc_post_metas_design',
         'tc_show_post_metas_single_post',
         'tc_show_post_metas_post_lists',
         'tc_show_post_metas_categories',

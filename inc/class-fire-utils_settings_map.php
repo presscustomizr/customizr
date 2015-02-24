@@ -1607,6 +1607,19 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 5,
                                 'transport'   => 'postMessage'
               ),
+              'tc_theme_options[tc_post_metas_design]'  =>  array(
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'buttons' : 'no-buttons',
+                                'control'     => 'TC_controls' ,
+                                'title'         => __( 'Metas Design' , 'customizr' ),
+                                'label'         => __( "Select a design for the post metas" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings' ,
+                                'type'          =>  'select' ,
+                                'choices'       => array(
+                                    'buttons'     => __( 'Buttons and text' , 'customizr' ),
+                                    'no-buttons'  => __( 'Text only' , 'customizr' )
+                                ),
+                                'priority'      => 10
+              ),
               'tc_theme_options[tc_show_post_metas_home]'  =>  array(
                                 'default'       => 0,
                                 'control'     => 'TC_controls' ,
