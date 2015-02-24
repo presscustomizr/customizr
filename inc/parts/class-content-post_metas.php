@@ -17,13 +17,18 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         function __construct () {
           self::$instance =& $this;
           //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( 'wp'                                , array( $this , 'tc_set_post_metas_visibility' ) , 10 );
+          add_action( 'wp'                            , array( $this , 'tc_set_visibility_options' ) , 10 );
+           //Show / hide metas based on customizer user options (@since 3.2.0)
+          add_action( 'wp'                            , array( $this , 'tc_set_design_options' ) , 20 );
           //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( '__after_content_title'             , array( $this , 'tc_set_post_metas_hooks' ), 20 );
+          add_action( '__after_content_title'         , array( $this , 'tc_set_post_metas_hooks' ), 20 );
 
         }
 
 
+        /***********************
+        * VISIBILITY HOOK SETUP
+        ***********************/
         /**
         * Set the post metas visibility based on Customizer options
         * uses hooks tc_show_post_metas, body_class
@@ -32,7 +37,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.0
         */
-        function tc_set_post_metas_visibility() {
+        function tc_set_visibility_options() {
           //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
           if ( is_singular() && ! is_page() && ! tc__f('__is_home') ) {
               if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_single_post' ) ) ) {
@@ -79,7 +84,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
         /**
         * Default metas visibility controller
-        * tc_show_post_metas gets filtered by tc_set_post_metas_visibility() called early in wp
+        * tc_show_post_metas gets filtered by tc_set_visibility_options() called early in wp
         * @return  boolean
         * @package Customizr
         * @since Customizr 3.2.6
@@ -100,6 +105,26 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
 
+        /***********************
+        * DESIGN HOOK SETUP
+        ***********************/
+        function tc_set_design_options() {
+          if ( 'buttons' == esc_attr( tc__f( '__get_option' , 'tc_post_metas_design' ) ) )
+            return;
+
+          add_filter( 'tc_meta_terms_glue'           , array( $this, 'tc_set_term_meta_glue' ) );
+          add_filter( 'tc_meta_tax_class'            , '__return_empty_array' );
+
+          add_filter( 'tc_post_tax_metas_html'       , array( $this, 'tc_set_tax_metas' ), 10, 2 );
+          add_filter( 'tc_post_date_metas_html'      , array( $this, 'tc_set_date_metas' ), 10, 2 );
+          add_filter( 'tc_post_author_metas_html'    , array( $this, 'tc_set_author_metas' ), 10 , 2 );
+          add_filter( 'tc_set_metas_content'         , array( $this, 'tc_set_metas' ), 10, 2 );
+        }
+
+
+        /*****************
+        * MODELS
+        *****************/
         /**
         * Build the metas models
         * Render the view based on filters
@@ -175,6 +200,9 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
 
+        /*****************
+        * VIEW
+        *****************/
         /**
         * Customizr metas view
         * @return  html string
@@ -199,6 +227,10 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
 
 
+
+        /*****************
+        * SETTERS / GETTERS / HELPERS
+        *****************/
         /**
         * Set meta content based on user options
         * hook : tc_meta_utility_text
@@ -452,6 +484,63 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
           return array_merge($_classes , array('hide-post-metas') );
         }
 
+
+                /**
+        * hook : tc_meta_terms_glue
+        * @return  string
+        */
+        public function tc_set_term_meta_glue() {
+          return ' / ';
+        }
+
+
+        /**
+        * hook : tc_post_tax_metas_html
+        * @return  string
+        */
+        function tc_set_tax_metas( $_html , $_tax = array() ) {
+          if ( empty($_tax) )
+            return $_html;
+          //extract "_show_cats" , "_show_tags" , "cat_list", "tag_list"
+          extract($_tax);
+          $cat_list = ! empty($cat_list) && $_show_cats ? sprintf( '&nbsp;%s %s' , __('in' , 'customizr') , $cat_list ) : '';
+          $tag_list = ! empty($tag_list) && $_show_tags ? sprintf( '&nbsp;%s %s' , __('tagged' , 'customizr') , $tag_list ) : '';
+          return sprintf( '%s%s' , $cat_list, $tag_list );
+        }
+
+
+        /**
+        * hook : tc_post_date_metas_html
+        * @return  string
+        */
+        function tc_set_date_metas( $_html, $_pubdate = '' ) {
+          if ( empty($_pubdate))
+            return $_html;
+          return TC_post_metas::$instance -> tc_get_meta_date( 'publication' , 'short' );
+        }
+
+        /**
+        * hook : tc_post_author_metas_html
+        * @return  string
+        */
+        function tc_set_author_metas( $_html , $_auth = '' ) {
+          if ( empty($_auth) )
+            return $_html;
+
+          return sprintf( '<span class="by-author"> %s %s</span>' , __('by' , 'customizr'), $_auth );
+        }
+
+        /**
+        * hook : tc_set_metas_content
+        * @return  string
+        */
+        function tc_set_metas( $_html, $_parts = array() ) {
+          if ( empty($_parts) )
+            return $_html;
+          //extract $_tax_text , $_date_text, $_author_text, $_update_text
+          extract($_parts);
+          return sprintf( '%1$s %2$s %3$s %4$s' , $_date_text, $_tax_text , $_author_text, $_update_text );
+        }
     }//end of class
 endif;
 
