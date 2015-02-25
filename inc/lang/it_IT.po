@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.1\n"
-"POT-Creation-Date: 2015-02-20 18:31+0100\n"
-"PO-Revision-Date: 2015-02-20 18:31+0100\n"
+"POT-Creation-Date: 2015-02-25 11:30+0100\n"
+"PO-Revision-Date: 2015-02-25 11:36+0100\n"
 "Last-Translator: Rocco Aliberti\n"
 "Language-Team: ElectricFeet <contact@themesandco.com>\n"
 "Language: it\n"
@@ -295,9 +295,9 @@ msgstr "Link del pulsante"
 #: ../parts/class-content-breadcrumb.php:678
 #: ../parts/class-content-breadcrumb.php:693
 #: ../parts/class-content-breadcrumb.php:721
-#: ../parts/class-content-comments.php:162
+#: ../parts/class-content-comments.php:179
 #: ../parts/class-content-featured_pages.php:251
-#: ../parts/class-content-headings.php:203
+#: ../parts/class-content-headings.php:204
 #: ../parts/class-content-slider.php:359
 msgid "Edit"
 msgstr "Modifica"
@@ -879,15 +879,15 @@ msgstr ""
 msgid "Discover the features"
 msgstr "Scopri le funzionalità"
 
-#: ../class-fire-init.php:482
+#: ../class-fire-init.php:495
 msgid "Main Menu"
 msgstr "Menu principale"
 
-#: ../class-fire-init.php:892
+#: ../class-fire-init.php:896
 msgid "Help"
 msgstr "Aiuto"
 
-#: ../class-fire-init.php:895
+#: ../class-fire-init.php:899
 msgid "Need help with Customizr? Click here!"
 msgstr "Hai bisogno di aiuto con Customizr? Clicca qui!"
 
@@ -1039,7 +1039,7 @@ msgstr "Impostazioni commenti"
 
 #: ../class-fire-utils_settings_map.php:320
 #: ../class-fire-utils_settings_map.php:1024
-#: ../class-fire-utils_settings_map.php:2034
+#: ../class-fire-utils_settings_map.php:2047
 msgid "Social links"
 msgstr "Social links"
 
@@ -1111,12 +1111,12 @@ msgid "Choose a predefined skin"
 msgstr "Scegli un skin predefinito"
 
 #: ../class-fire-utils_settings_map.php:414
-#: ../class-fire-utils_settings_map.php:2062
+#: ../class-fire-utils_settings_map.php:2075
 msgid "Performance : use the minified CSS stylesheet"
 msgstr "Performance: usa i fogli di stile CSS minimizzati"
 
 #: ../class-fire-utils_settings_map.php:417
-#: ../class-fire-utils_settings_map.php:2065
+#: ../class-fire-utils_settings_map.php:2078
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
@@ -1316,7 +1316,7 @@ msgid "Choose the pages default layout"
 msgstr "Scegli il layout predefinito delle pagine"
 
 #: ../class-fire-utils_settings_map.php:705
-#: ../class-fire-utils_settings_map.php:1972
+#: ../class-fire-utils_settings_map.php:1985
 msgid "Enable comments on pages"
 msgstr "Abilita i commenti sulle pagine"
 
@@ -1330,22 +1330,22 @@ msgstr ""
 "pagine."
 
 #: ../class-fire-utils_settings_map.php:723
-#: ../class-fire-utils_settings_map.php:1998
+#: ../class-fire-utils_settings_map.php:2011
 msgid "Social links in header"
 msgstr "Social links nella testata"
 
 #: ../class-fire-utils_settings_map.php:732
-#: ../class-fire-utils_settings_map.php:2016
+#: ../class-fire-utils_settings_map.php:2029
 msgid "Social links in left sidebar"
 msgstr "Social links nella barra laterale a sinistra"
 
 #: ../class-fire-utils_settings_map.php:741
-#: ../class-fire-utils_settings_map.php:2026
+#: ../class-fire-utils_settings_map.php:2039
 msgid "Social links in right sidebar"
 msgstr "Social links nella barra laterale a destra"
 
 #: ../class-fire-utils_settings_map.php:749
-#: ../class-fire-utils_settings_map.php:2007
+#: ../class-fire-utils_settings_map.php:2020
 msgid "Social links in footer"
 msgstr "Social links nel piè di pagina"
 
@@ -1452,13 +1452,13 @@ msgstr ""
 "verticalmente che orizzontalmente in ogni dispositivo."
 
 #: ../class-fire-utils_settings_map.php:861
-#: ../class-fire-utils_settings_map.php:2047
+#: ../class-fire-utils_settings_map.php:2060
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Aggiungi qui il tuo custom css e disegna dal vivo! (per utenti avanzati)"
 
 #: ../class-fire-utils_settings_map.php:865
-#: ../class-fire-utils_settings_map.php:2051
+#: ../class-fire-utils_settings_map.php:2064
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -1468,12 +1468,12 @@ msgstr ""
 "style.css di un"
 
 #: ../class-fire-utils_settings_map.php:866
-#: ../class-fire-utils_settings_map.php:2052
+#: ../class-fire-utils_settings_map.php:2065
 msgid "child theme."
 msgstr "tema figlio."
 
 #: ../class-fire-utils_settings_map.php:867
-#: ../class-fire-utils_settings_map.php:2053
+#: ../class-fire-utils_settings_map.php:2066
 msgid "How to create and use a child theme ?"
 msgstr "Come creare e usare un tema figlio?"
 
@@ -1881,48 +1881,64 @@ msgstr ""
 "dell'articolo."
 
 #: ../class-fire-utils_settings_map.php:1613
+msgid "Metas Design"
+msgstr "Design dei Metadati"
+
+#: ../class-fire-utils_settings_map.php:1614
+msgid "Select a design for the post metas"
+msgstr "Scegli il design per i metadati"
+
+#: ../class-fire-utils_settings_map.php:1618
+msgid "Buttons and text"
+msgstr "Pulsanti e testo"
+
+#: ../class-fire-utils_settings_map.php:1619
+msgid "Text only"
+msgstr "Solo testo"
+
+#: ../class-fire-utils_settings_map.php:1626
 msgid "Select the contexts"
 msgstr "Seleziona i contesti"
 
-#: ../class-fire-utils_settings_map.php:1614
+#: ../class-fire-utils_settings_map.php:1627
 msgid "Display posts metas on home"
 msgstr "Mostra i metadati degli articoli nella pagina iniziale"
 
-#: ../class-fire-utils_settings_map.php:1623
+#: ../class-fire-utils_settings_map.php:1636
 msgid "Display posts metas for single posts"
 msgstr "Mostra i metadati degli articoli nei singoli articoli"
 
-#: ../class-fire-utils_settings_map.php:1632
+#: ../class-fire-utils_settings_map.php:1645
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr ""
 "Mostra i metadati degli articoli nelle liste di articoli (archivi, pagina "
 "articoli)"
 
-#: ../class-fire-utils_settings_map.php:1642
+#: ../class-fire-utils_settings_map.php:1655
 msgid "Select the metas to display"
 msgstr "Seleziona i metadati da mostrare"
 
-#: ../class-fire-utils_settings_map.php:1643
+#: ../class-fire-utils_settings_map.php:1656
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr "Mostra tassonomie gerarchiche (come le categorie)"
 
-#: ../class-fire-utils_settings_map.php:1652
+#: ../class-fire-utils_settings_map.php:1665
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr "Mostra tassonomie non gerarchice (come i tag)"
 
-#: ../class-fire-utils_settings_map.php:1661
+#: ../class-fire-utils_settings_map.php:1674
 msgid "Display the publication date"
 msgstr "Mostra la data di pubblicazione"
 
-#: ../class-fire-utils_settings_map.php:1669
+#: ../class-fire-utils_settings_map.php:1682
 msgid "Display the author"
 msgstr "Mostra l'autore"
 
-#: ../class-fire-utils_settings_map.php:1677
+#: ../class-fire-utils_settings_map.php:1690
 msgid "Display the update date"
 msgstr "Mostra la data dell'ultimo aggiornamento"
 
-#: ../class-fire-utils_settings_map.php:1681
+#: ../class-fire-utils_settings_map.php:1694
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
@@ -1932,27 +1948,27 @@ msgstr ""
 "riguardo la data dell'ultimo aggiornamento (non verrà mostrato nulla se "
 "l'articolo non è mai stato aggiornato)"
 
-#: ../class-fire-utils_settings_map.php:1687
+#: ../class-fire-utils_settings_map.php:1700
 msgid "Select the last update format"
 msgstr "Seleziona il formato per l'ultimo aggiornamento"
 
-#: ../class-fire-utils_settings_map.php:1691
+#: ../class-fire-utils_settings_map.php:1704
 msgid "Nb of days since last update"
 msgstr "Num di giorni dall'ultimo aggiornamento"
 
-#: ../class-fire-utils_settings_map.php:1692
+#: ../class-fire-utils_settings_map.php:1705
 msgid "Date of the last update"
 msgstr "Data dell'ultimo aggiornamento"
 
-#: ../class-fire-utils_settings_map.php:1700
+#: ../class-fire-utils_settings_map.php:1713
 msgid "Recent update notice after post titles"
 msgstr "Notifica di aggiornamento recente dopo il titolo degl'articoli"
 
-#: ../class-fire-utils_settings_map.php:1701
+#: ../class-fire-utils_settings_map.php:1714
 msgid "Display a recent update notice"
 msgstr "Mostra la notifica di un aggiornamento recente"
 
-#: ../class-fire-utils_settings_map.php:1705
+#: ../class-fire-utils_settings_map.php:1718
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
@@ -1960,13 +1976,13 @@ msgstr ""
 "Spuntando questa opzione, mostrerai una notifica personalizzabile riguardo "
 "l'aggiornamento recente, accanto al titolo dell'articolo."
 
-#: ../class-fire-utils_settings_map.php:1711
+#: ../class-fire-utils_settings_map.php:1724
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 "Mostra una notifica se l'ultimo aggiornamento è più recente di n giorni."
 
-#: ../class-fire-utils_settings_map.php:1717
+#: ../class-fire-utils_settings_map.php:1730
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
@@ -1974,51 +1990,51 @@ msgstr ""
 "Imposta un intervallo massimo (in giorno) durante il quale verrà mostrata la "
 "notifica di aggiornamento recente."
 
-#: ../class-fire-utils_settings_map.php:1720
+#: ../class-fire-utils_settings_map.php:1733
 msgid "Recently updated !"
 msgstr "Aggiornato recentemente!"
 
-#: ../class-fire-utils_settings_map.php:1722
+#: ../class-fire-utils_settings_map.php:1735
 msgid "Update notice text"
 msgstr "Testo della notifica di aggiormento"
 
-#: ../class-fire-utils_settings_map.php:1731
+#: ../class-fire-utils_settings_map.php:1744
 msgid "Update notice style"
 msgstr "Stile della notifica di aggiormento"
 
-#: ../class-fire-utils_settings_map.php:1735
+#: ../class-fire-utils_settings_map.php:1748
 msgid "Default (grey)"
 msgstr "Default (grigio)"
 
-#: ../class-fire-utils_settings_map.php:1736
+#: ../class-fire-utils_settings_map.php:1749
 msgid "Success (green)"
 msgstr "Successo (verde)"
 
-#: ../class-fire-utils_settings_map.php:1737
+#: ../class-fire-utils_settings_map.php:1750
 msgid "Alert (orange)"
 msgstr "Allarme (arancione)"
 
-#: ../class-fire-utils_settings_map.php:1738
+#: ../class-fire-utils_settings_map.php:1751
 msgid "Important (red)"
 msgstr "Importante (rosso)"
 
-#: ../class-fire-utils_settings_map.php:1739
+#: ../class-fire-utils_settings_map.php:1752
 msgid "Info (blue)"
 msgstr "Info (blu)"
 
-#: ../class-fire-utils_settings_map.php:1750
+#: ../class-fire-utils_settings_map.php:1763
 msgid "Set the excerpt length (in number of words) "
 msgstr "Imposta la dimensione (in numero di parole) dell'estratto"
 
-#: ../class-fire-utils_settings_map.php:1760
+#: ../class-fire-utils_settings_map.php:1773
 msgid "Thumbnails options"
 msgstr "Opzioni delle immaigni in miniatura"
 
-#: ../class-fire-utils_settings_map.php:1761
+#: ../class-fire-utils_settings_map.php:1774
 msgid "Display the post thumbnails"
 msgstr "Mostra l'immagine in miniatura"
 
-#: ../class-fire-utils_settings_map.php:1765
+#: ../class-fire-utils_settings_map.php:1778
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
@@ -2027,115 +2043,121 @@ msgstr ""
 "mostrate in tutte le liste di articoli: blog, archivi, pagina dell'autore, "
 "pagine di ricerca, ..."
 
-#: ../class-fire-utils_settings_map.php:1770
+#: ../class-fire-utils_settings_map.php:1778
+msgid "Note : thumbnails are always displayed when the grid layout is choosen."
+msgstr ""
+"Nota: scegliendo il layout a griglia, le immagini in miniature verranno "
+"sempre mostrate"
+
+#: ../class-fire-utils_settings_map.php:1783
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
 "Se non è stata impostata alcuna immagine in evidenza, usa l'ultima immagine "
 "allegata a questo articolo."
 
-#: ../class-fire-utils_settings_map.php:1777
+#: ../class-fire-utils_settings_map.php:1790
 msgid "Upload a default thumbnail"
 msgstr "Carica un'immagine in miniatura di default"
 
-#: ../class-fire-utils_settings_map.php:1787
-msgid "Thumbnails options for the classical layout"
-msgstr "Opzioni delle miniature per il layout classico"
+#: ../class-fire-utils_settings_map.php:1800
+msgid "Thumbnails options for the alternate thumbnails layout"
+msgstr "Opzioni delle miniature per il layout a miniature alterne"
 
-#: ../class-fire-utils_settings_map.php:1788
+#: ../class-fire-utils_settings_map.php:1801
 msgid "Thumbnails shape"
 msgstr "Forma delle miniature"
 
-#: ../class-fire-utils_settings_map.php:1792
+#: ../class-fire-utils_settings_map.php:1805
 msgid "Rounded, expand on hover"
 msgstr "Arrotondata, espandi al passaggio del mouse"
 
-#: ../class-fire-utils_settings_map.php:1793
+#: ../class-fire-utils_settings_map.php:1806
 msgid "Rounded, no expansion"
 msgstr "Arrotondata, nessuna espansione"
 
-#: ../class-fire-utils_settings_map.php:1794
+#: ../class-fire-utils_settings_map.php:1807
 msgid "Squared, expand on hover"
 msgstr "Quadrata, espandi al passaggio del mouse"
 
-#: ../class-fire-utils_settings_map.php:1795
+#: ../class-fire-utils_settings_map.php:1808
 msgid "Squared, no expansion"
 msgstr "Quadrata, nessuna espansione"
 
-#: ../class-fire-utils_settings_map.php:1796
+#: ../class-fire-utils_settings_map.php:1809
 msgid "Rectangular with no effect"
 msgstr "Rettangolare senza effetti"
 
-#: ../class-fire-utils_settings_map.php:1797
+#: ../class-fire-utils_settings_map.php:1810
 msgid "Rectangular with blur effect on hover"
 msgstr "Rettangolare con sfocamento al passaggio del mouse"
 
-#: ../class-fire-utils_settings_map.php:1798
+#: ../class-fire-utils_settings_map.php:1811
 msgid "Rectangular with unblur effect on hover"
 msgstr "Rettangolare con messa a fuoco al passaggio del mouse"
 
-#: ../class-fire-utils_settings_map.php:1806
-#: ../class-fire-utils_settings_map.php:1855
+#: ../class-fire-utils_settings_map.php:1819
+#: ../class-fire-utils_settings_map.php:1868
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Imposta la massima altezza delle miniature in pixel"
 
-#: ../class-fire-utils_settings_map.php:1818
+#: ../class-fire-utils_settings_map.php:1831
 msgid "Thumbnails position"
 msgstr "Posizione miniature"
 
-#: ../class-fire-utils_settings_map.php:1822
+#: ../class-fire-utils_settings_map.php:1835
 msgid "Top"
 msgstr "Sopra"
 
-#: ../class-fire-utils_settings_map.php:1823
+#: ../class-fire-utils_settings_map.php:1836
 msgid "Right"
 msgstr "Droite"
 
-#: ../class-fire-utils_settings_map.php:1824
+#: ../class-fire-utils_settings_map.php:1837
 msgid "Bottom"
 msgstr "Sotto"
 
-#: ../class-fire-utils_settings_map.php:1825
+#: ../class-fire-utils_settings_map.php:1838
 msgid "Left"
 msgstr "Gauche"
 
-#: ../class-fire-utils_settings_map.php:1832
+#: ../class-fire-utils_settings_map.php:1845
 msgid "Alternate thumbnail/content"
 msgstr "Alterna miniatura/contenuto"
 
-#: ../class-fire-utils_settings_map.php:1840
+#: ../class-fire-utils_settings_map.php:1853
 msgid "Post thumbnail position"
 msgstr "Posizione delle miniature negli articoli"
 
-#: ../class-fire-utils_settings_map.php:1844
+#: ../class-fire-utils_settings_map.php:1857
 msgid "Don't display"
 msgstr "Non mostrare nulla"
 
-#: ../class-fire-utils_settings_map.php:1845
+#: ../class-fire-utils_settings_map.php:1858
 msgid "Before the title in full width"
 msgstr "Prima del titolo a tutta pagina"
 
-#: ../class-fire-utils_settings_map.php:1846
+#: ../class-fire-utils_settings_map.php:1859
 msgid "Before the title boxed"
 msgstr "Prima del titolo, in un box"
 
-#: ../class-fire-utils_settings_map.php:1847
+#: ../class-fire-utils_settings_map.php:1860
 msgid "After the title"
 msgstr "Dopo il titolo"
 
-#: ../class-fire-utils_settings_map.php:1867
+#: ../class-fire-utils_settings_map.php:1880
 msgid "Drop caps"
 msgstr "Capilettera"
 
-#: ../class-fire-utils_settings_map.php:1868
+#: ../class-fire-utils_settings_map.php:1881
 msgid "Enable drop caps"
 msgstr "Abilita i capilettera"
 
-#: ../class-fire-utils_settings_map.php:1870
+#: ../class-fire-utils_settings_map.php:1883
 msgid "Apply a drop cap to the first paragraph of your post / page content."
 msgstr ""
 "Applica il capolettera al primo paragrafo del contenuto di articoli / pagine"
 
-#: ../class-fire-utils_settings_map.php:1879
+#: ../class-fire-utils_settings_map.php:1892
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
@@ -2143,78 +2165,78 @@ msgstr ""
 "Applica il capolettera quando il paragrafo include almeno il seguente numero "
 "di parole :"
 
-#: ../class-fire-utils_settings_map.php:1880
+#: ../class-fire-utils_settings_map.php:1893
 msgid "(number of words)"
 msgstr "(numero di parole)"
 
-#: ../class-fire-utils_settings_map.php:1890
+#: ../class-fire-utils_settings_map.php:1903
 msgid "Drop cap style"
 msgstr "Stile del capolettera"
 
-#: ../class-fire-utils_settings_map.php:1894
+#: ../class-fire-utils_settings_map.php:1907
 msgid "Skin color with shadow"
 msgstr "Colore della skin con ombre"
 
-#: ../class-fire-utils_settings_map.php:1895
+#: ../class-fire-utils_settings_map.php:1908
 msgid "Simple black"
 msgstr "Nero semplice"
 
-#: ../class-fire-utils_settings_map.php:1901
+#: ../class-fire-utils_settings_map.php:1914
 msgid "Enable drop caps in posts"
 msgstr "Abilita i capilettera negli articoli"
 
-#: ../class-fire-utils_settings_map.php:1903
+#: ../class-fire-utils_settings_map.php:1916
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr "Applica il capolettera al primo paragrafo dei singoli articoli"
 
-#: ../class-fire-utils_settings_map.php:1910
+#: ../class-fire-utils_settings_map.php:1923
 msgid "Enable drop caps in pages"
 msgstr "Abilita i capilettera nelle pagine"
 
-#: ../class-fire-utils_settings_map.php:1912
+#: ../class-fire-utils_settings_map.php:1925
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr "Applica il capolettera al primo paragrafo delle pagine"
 
-#: ../class-fire-utils_settings_map.php:1922
+#: ../class-fire-utils_settings_map.php:1935
 msgid "Comments bubbles"
 msgstr "Nuvoletta dei commenti"
 
-#: ../class-fire-utils_settings_map.php:1924
+#: ../class-fire-utils_settings_map.php:1937
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr ""
 "Mostra il numero dei commenti in una nuvoletta accanto al titolo "
 "dell'articolo"
 
-#: ../class-fire-utils_settings_map.php:1933
+#: ../class-fire-utils_settings_map.php:1946
 msgid "Comments bubble shape"
 msgstr "Forma della nuvoletta dei commenti"
 
-#: ../class-fire-utils_settings_map.php:1937
+#: ../class-fire-utils_settings_map.php:1950
 msgid "Small bubbles"
 msgstr "Nuvoletta piccola"
 
-#: ../class-fire-utils_settings_map.php:1938
+#: ../class-fire-utils_settings_map.php:1951
 msgid "Large bubbles"
 msgstr "Nuvoletta grande"
 
-#: ../class-fire-utils_settings_map.php:1946
 #: ../class-fire-utils_settings_map.php:1959
+#: ../class-fire-utils_settings_map.php:1972
 msgid "Comments bubble color"
 msgstr "Colore della nuvoletta dei commenti"
 
-#: ../class-fire-utils_settings_map.php:1950
+#: ../class-fire-utils_settings_map.php:1963
 msgid "Skin color"
 msgstr "Colore della skin"
 
-#: ../class-fire-utils_settings_map.php:1951
+#: ../class-fire-utils_settings_map.php:1964
 msgid "Custom"
 msgstr "Personalizzato"
 
-#: ../class-fire-utils_settings_map.php:1971
+#: ../class-fire-utils_settings_map.php:1984
 msgid "Other comments settings"
 msgstr "Impostazioni commenti"
 
-#: ../class-fire-utils_settings_map.php:1977
+#: ../class-fire-utils_settings_map.php:1990
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
@@ -2223,31 +2245,31 @@ msgstr ""
 "disabilitare i commenti per una pagina individuale utilizzando Modifica "
 "Rapida dalla lista delle pagine."
 
-#: ../class-fire-utils_settings_map.php:1978
+#: ../class-fire-utils_settings_map.php:1991
 msgid "Change other comments settings in the"
 msgstr "Modifica le altrei impostazioni dei commenti nella"
 
-#: ../class-fire-utils_settings_map.php:1980
+#: ../class-fire-utils_settings_map.php:1993
 msgid "discussion settings page."
 msgstr "pagina delle impostazioni della Discussione."
 
-#: ../class-fire-utils_settings_map.php:1988
+#: ../class-fire-utils_settings_map.php:2001
 msgid "Display a back to top arrow on scroll"
 msgstr "Mostra una freccia che punta all'inizio della pagina mentre scrolli"
 
-#: ../class-fire-utils_settings_map.php:2035
+#: ../class-fire-utils_settings_map.php:2048
 msgid "Social link title in sidebars"
 msgstr "Social links nelle barre laterali"
 
-#: ../class-fire-utils_settings_map.php:2041
+#: ../class-fire-utils_settings_map.php:2054
 msgid "Will be hidden if empty"
 msgstr "Non verrà mostrato se vuoto"
 
-#: ../class-fire-utils_settings_map.php:2069
+#: ../class-fire-utils_settings_map.php:2082
 msgid "Load images on scroll"
 msgstr "Carica le immagini quando scrolli la pagina"
 
-#: ../class-fire-utils_settings_map.php:2074
+#: ../class-fire-utils_settings_map.php:2087
 msgid ""
 "Check this option to delay the loading of non visible images. Images below "
 "the viewport will be loaded dynamically on scroll. This can boost "
@@ -2259,19 +2281,19 @@ msgstr ""
 "migliorare le performance del tuo sito riducendo il peso di grandi pagine "
 "web con immagini."
 
-#: ../class-fire-utils_settings_map.php:2083
+#: ../class-fire-utils_settings_map.php:2096
 msgid "Set slider's height in pixels"
 msgstr "Inserisci l'altezza della slider in pixel"
 
-#: ../class-fire-utils_settings_map.php:2093
+#: ../class-fire-utils_settings_map.php:2106
 msgid "Apply this height to all sliders"
 msgstr "Apllica quest'altezza a tutte le slider"
 
-#: ../class-fire-utils_settings_map.php:2101
+#: ../class-fire-utils_settings_map.php:2114
 msgid "Replace the default image slider's height"
 msgstr "Ridefinisci l'altezza predefinita delle immagini della slider"
 
-#: ../class-fire-utils_settings_map.php:2107
+#: ../class-fire-utils_settings_map.php:2120
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -2280,83 +2302,82 @@ msgstr ""
 "ridimensionate con l'altezza personalizzata. Ciò impatterà positivamente "
 "sulle performance di caricamento del tuo sito."
 
-#: ../class-fire-utils_settings_map.php:2108
+#: ../class-fire-utils_settings_map.php:2121
 msgid "You might want to regenerate your thumbnails."
 msgstr "Potresti voler rigenerare le tue immagini in miniatura."
 
-#: ../class-fire-utils_settings_map.php:2129
+#: ../class-fire-utils_settings_map.php:2142
 msgid "Post List Design"
 msgstr "Design delle Liste di Articoli"
 
-#: ../class-fire-utils_settings_map.php:2130
+#: ../class-fire-utils_settings_map.php:2143
 msgid "Select a Layout"
 msgstr "Scegli un Layout"
 
-#: ../class-fire-utils_settings_map.php:2134
-msgid "Classical"
-msgstr "Classico"
+#: ../class-fire-utils_settings_map.php:2147
+msgid "Alternate thumbnails layout"
+msgstr "Layout a miniature alterne"
 
-#: ../class-fire-utils_settings_map.php:2135
-msgid "Grid Layout"
+#: ../class-fire-utils_settings_map.php:2148
+msgid "Grid layout"
 msgstr "Layout a Griglia"
 
-#: ../class-fire-utils_settings_map.php:2138
+#: ../class-fire-utils_settings_map.php:2151
 msgid ""
-"When you select the grid Layout, the post content will be limited to the "
-"excerpt"
+"When you select the grid Layout, the post content is limited to the excerpt."
 msgstr ""
 "Selezionando il Layout a griglia, il contenuto dell'articolo verrà limitato "
-"all'estratto"
+"all'estratto."
 
-#: ../class-fire-utils_settings_map.php:2143
+#: ../class-fire-utils_settings_map.php:2156
 msgid "Number of columns per row"
 msgstr "Numero di colonne per riga"
 
-#: ../class-fire-utils_settings_map.php:2147
+#: ../class-fire-utils_settings_map.php:2160
 msgid "1"
 msgstr "1"
 
-#: ../class-fire-utils_settings_map.php:2148
+#: ../class-fire-utils_settings_map.php:2161
 msgid "2"
 msgstr "2"
 
-#: ../class-fire-utils_settings_map.php:2149
+#: ../class-fire-utils_settings_map.php:2162
 msgid "3"
 msgstr "3"
 
-#: ../class-fire-utils_settings_map.php:2150
+#: ../class-fire-utils_settings_map.php:2163
 msgid "4"
 msgstr "4"
 
-#: ../class-fire-utils_settings_map.php:2157
+#: ../class-fire-utils_settings_map.php:2170
 msgid "Expand the featured posts (for home and blog page only)"
 msgstr "Espandi l'articolo in evidenza (solo nella pagina inizale e nel blog)"
 
-#: ../class-fire-utils_settings_map.php:2165
+#: ../class-fire-utils_settings_map.php:2178
 msgid "Apply the grid layout to Home/Blog"
 msgstr "Applica il layout a griglia alla Pagina Iniziale / Blog"
 
-#: ../class-fire-utils_settings_map.php:2173
+#: ../class-fire-utils_settings_map.php:2186
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr ""
 "Applica il layout a griglia agli Archivi (archivi, categorie, articoli "
 "dell'autore)"
 
-#: ../class-fire-utils_settings_map.php:2181
+#: ../class-fire-utils_settings_map.php:2194
 msgid "Apply the grid layout to Search results"
 msgstr "Applica il layout a griglia ai risultati della Ricerca"
 
-#: ../class-fire-utils_settings_map.php:2185
-msgid "Uncheck contexts are displayed with the classical layout."
+#: ../class-fire-utils_settings_map.php:2198
+msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr ""
-"Nei contesti non spuntati gli articoli verrano visualizzati con il layout "
-"classico."
+"Nei contesti non spuntati gli articoli verrano visualizzati con il layout a "
+"miniature alterne."
 
-#: ../class-fire-utils_settings_map.php:2191
+#: ../class-fire-utils_settings_map.php:2204
 msgid "Thumbnails max height for the grid layout"
 msgstr "Massima altezza delle miniature per il layout a griglia"
 
-#: ../class-fire-utils_settings_map.php:2192
+#: ../class-fire-utils_settings_map.php:2205
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr ""
 "Imposta la massima altezza delle miniature, per il layout a griglia, in pixel"
@@ -2447,63 +2468,67 @@ msgstr "Separa"
 msgid "Merge"
 msgstr "Unisci "
 
-#: ../parts/class-content-comments.php:59
+#: ../parts/class-content-comments.php:76
 msgid "One thought on"
 msgstr "Un commento su"
 
-#: ../parts/class-content-comments.php:61
+#: ../parts/class-content-comments.php:78
 msgid "thoughts on"
 msgstr "commenti su"
 
-#: ../parts/class-content-comments.php:121
+#: ../parts/class-content-comments.php:138
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: ../parts/class-content-comments.php:121
+#: ../parts/class-content-comments.php:138
 msgid "(Edit)"
 msgstr "(Modifica)"
 
-#: ../parts/class-content-comments.php:148
+#: ../parts/class-content-comments.php:165
 msgid "Reply"
 msgstr "Rispondi"
 
-#: ../parts/class-content-comments.php:161
+#: ../parts/class-content-comments.php:178
 msgid "Post author"
 msgstr "L'autore dell'articolo"
 
 #. translators: 1: date, 2: time
-#: ../parts/class-content-comments.php:168
+#: ../parts/class-content-comments.php:185
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s a %2$s"
 
-#: ../parts/class-content-comments.php:173
+#: ../parts/class-content-comments.php:190
 msgid "Your comment is awaiting moderation."
 msgstr "Il tuo commento è in attesa di moderazione"
 
-#: ../parts/class-content-comments.php:208
+#: ../parts/class-content-comments.php:225
 msgid "Comment navigation"
 msgstr "Navigazione commenti"
 
-#: ../parts/class-content-comments.php:214
+#: ../parts/class-content-comments.php:231
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Commenti più vecchi"
 
-#: ../parts/class-content-comments.php:222
+#: ../parts/class-content-comments.php:239
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Commenti più recenti <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-comments.php:254
+#: ../parts/class-content-comments.php:271
 msgid "Comments are closed."
 msgstr "I commenti sono chiusi."
 
-#: ../parts/class-content-comments.php:269
+#: ../parts/class-content-comments.php:286
 msgid "Leave a comment"
 msgstr "Lascia un commento"
 
-#: ../parts/class-content-comments.php:310
+#: ../parts/class-content-comments.php:320
 msgid "Comment(s) on"
 msgstr "Commento(i) su"
+
+#: ../parts/class-content-comments.php:339
+msgid "comment"
+msgstr "commento"
 
 #: ../parts/class-content-featured_pages.php:127
 msgid "Customizer screen"
@@ -2530,75 +2555,71 @@ msgstr ""
 msgid "Missing Attachment"
 msgstr "Allegato mancante"
 
-#: ../parts/class-content-headings.php:168
-#: ../parts/class-content-headings.php:173
+#: ../parts/class-content-headings.php:169
+#: ../parts/class-content-headings.php:174
 msgid "{no title} Read the post &raquo;"
 msgstr "{nessun titolo} Leggi l'articolo &raquo;"
 
-#: ../parts/class-content-headings.php:172
+#: ../parts/class-content-headings.php:173
 #, php-format
 msgid "Permalink to %s"
 msgstr "Permalink a %s"
 
-#: ../parts/class-content-headings.php:279
+#: ../parts/class-content-headings.php:280
 msgid "Ooops, page not found"
 msgstr "Ooops, pagina non trovata"
 
-#: ../parts/class-content-headings.php:290
+#: ../parts/class-content-headings.php:291
 msgid "No"
 msgstr "Nessun"
 
-#: ../parts/class-content-headings.php:291
+#: ../parts/class-content-headings.php:292
 msgid "Search Results for :"
 msgstr "risultato per:"
 
-#: ../parts/class-content-headings.php:306
+#: ../parts/class-content-headings.php:307
 msgid "Author Archives :"
 msgstr "Archivi autore:"
 
-#: ../parts/class-content-headings.php:320 ../parts/class-content-post.php:161
+#: ../parts/class-content-headings.php:321 ../parts/class-content-post.php:161
 #, php-format
 msgid "About %s"
 msgstr "Informazioni su %s"
 
-#: ../parts/class-content-headings.php:333
+#: ../parts/class-content-headings.php:334
 msgid "Category Archives :"
 msgstr "Archivi categoria:"
 
-#: ../parts/class-content-headings.php:349
+#: ../parts/class-content-headings.php:350
 msgid "Tag Archives :"
 msgstr "Archivi tag:"
 
-#: ../parts/class-content-headings.php:362
+#: ../parts/class-content-headings.php:363
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Archivi giornalieri: %s"
 
-#: ../parts/class-content-headings.php:362
+#: ../parts/class-content-headings.php:363
 msgid "Archives"
 msgstr "Archivi"
 
-#: ../parts/class-content-headings.php:363
+#: ../parts/class-content-headings.php:364
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Archivi mensili: %s"
 
-#: ../parts/class-content-headings.php:364
+#: ../parts/class-content-headings.php:365
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Archivi annuali: %s"
 
-#: ../parts/class-content-headings.php:433
-msgid "comment"
-msgstr "commento"
-
 #: ../parts/class-content-page.php:42 ../parts/class-content-post.php:120
-#: ../parts/class-content-post_list.php:149
+#: ../parts/class-content-post_list.php:183
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Continua a leggere <span class=\"meta-nav\">&rarr;</span>"
 
 #: ../parts/class-content-page.php:44 ../parts/class-content-post.php:121
-#: ../parts/class-content-post_list.php:150
+#: ../parts/class-content-post_list.php:184
 msgid "Pages:"
 msgstr "Pagine:"
 
@@ -2607,103 +2628,111 @@ msgstr "Pagine:"
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Vedi tutti gli articoli di %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-post_metas.php:87
+#: ../parts/class-content-post_metas.php:173
 #, php-format
-msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
-msgstr "Pubblicato il %3$s<span class=\"by-author\"> da %4$s</span>."
+msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
+msgstr "Pubblicato il %1$s<span class=\"by-author\"> da %2$s</span>."
 
-#: ../parts/class-content-post_metas.php:120
+#: ../parts/class-content-post_metas.php:192
 msgid "Published"
 msgstr "Pubblicato"
 
-#: ../parts/class-content-post_metas.php:123
+#: ../parts/class-content-post_metas.php:195
 msgid "at dimensions"
 msgstr "alle dimensioni"
 
-#: ../parts/class-content-post_metas.php:123
+#: ../parts/class-content-post_metas.php:195
 msgid "Link to full-size image"
 msgstr "Collegamento all'immagine alla grandezza massima"
 
-#: ../parts/class-content-post_metas.php:124
+#: ../parts/class-content-post_metas.php:196
+#: ../parts/class-content-post_metas.php:506
 msgid "in"
 msgstr "in"
 
-#: ../parts/class-content-post_metas.php:124
+#: ../parts/class-content-post_metas.php:196
 msgid "Return to "
 msgstr "Torna a"
 
-#: ../parts/class-content-post_metas.php:152
-#: ../parts/class-content-post_metas.php:180
-#, php-format
-msgid "View all posts in %s"
-msgstr "Vedi tutti gli articoli nel %s"
-
-#: ../parts/class-content-post_metas.php:274
-#, php-format
-msgid "View all posts by %s"
-msgstr "Vedi tutti gli articoli di %s"
-
-#: ../parts/class-content-post_metas.php:294
-msgid "Open"
-msgstr "Apri"
-
-#: ../parts/class-content-post_metas.php:387
+#: ../parts/class-content-post_metas.php:258
 #, php-format
 msgid "This entry was posted in %1$s and tagged %2$s"
 msgstr "Pubblicato in %1$s con tag %2$s"
 
-#: ../parts/class-content-post_metas.php:389
+#: ../parts/class-content-post_metas.php:260
 #, php-format
 msgid "This entry was posted in %1$s"
 msgstr "Pubblicato in %1$s"
 
-#: ../parts/class-content-post_metas.php:391
+#: ../parts/class-content-post_metas.php:262
 #, php-format
 msgid "This entry was tagged %2$s"
 msgstr "Pubblicato con tag %2$s"
 
-#: ../parts/class-content-post_metas.php:396
+#: ../parts/class-content-post_metas.php:271
 #, php-format
-msgid "This entry was posted on %3$s"
-msgstr "Pubblicato il %3$s"
+msgid "This entry was posted on %1$s"
+msgstr "Pubblicato il %1$s"
 
-#: ../parts/class-content-post_metas.php:398
+#: ../parts/class-content-post_metas.php:273
 #, php-format
-msgid "on %3$s"
-msgstr "in %3$s"
+msgid "on %1$s"
+msgstr "in %1$s"
 
-#: ../parts/class-content-post_metas.php:400
+#: ../parts/class-content-post_metas.php:275
 #, php-format
-msgid "and posted on %3$s"
-msgstr "e con tag %3$s"
+msgid "and posted on %1$s"
+msgstr "e con tag %1$s"
 
-#: ../parts/class-content-post_metas.php:407
+#: ../parts/class-content-post_metas.php:287
 msgid "This entry was posted"
 msgstr "Articolo pubblicato"
 
-#: ../parts/class-content-post_metas.php:407
-#: ../parts/class-content-post_metas.php:409
+#: ../parts/class-content-post_metas.php:287
+#: ../parts/class-content-post_metas.php:289
 #, php-format
-msgid "by %4$s"
-msgstr "da %4$s"
+msgid "by %1$s"
+msgstr "da %1$s"
 
-#: ../parts/class-content-post_metas.php:418
+#: ../parts/class-content-post_metas.php:303
 msgid "(updated today)"
 msgstr "(aggiornato oggi)"
 
-#: ../parts/class-content-post_metas.php:418
+#: ../parts/class-content-post_metas.php:303
 #, php-format
-msgid "(updated %1$s days ago)"
-msgstr "(aggiornato %1$s giorni fa)"
+msgid "(updated %s days ago)"
+msgstr "(aggiornato %s giorni fa)"
 
-#: ../parts/class-content-post_metas.php:419
+#: ../parts/class-content-post_metas.php:304
 msgid "(updated 1 day ago)"
 msgstr "(aggiornato 1 giorno fa)"
 
-#: ../parts/class-content-post_metas.php:422
+#: ../parts/class-content-post_metas.php:307
 #, php-format
-msgid "(updated on %5$s)"
-msgstr "(aggiornato il %5$s)"
+msgid "(updated on %1$s)"
+msgstr "(aggiornato il %1$s)"
+
+#: ../parts/class-content-post_metas.php:358
+#, php-format
+msgid "View all posts in %s"
+msgstr "Vedi tutti gli articoli nel %s"
+
+#: ../parts/class-content-post_metas.php:449
+#, php-format
+msgid "View all posts by %s"
+msgstr "Vedi tutti gli articoli di %s"
+
+#: ../parts/class-content-post_metas.php:469
+msgid "Open"
+msgstr "Apri"
+
+#: ../parts/class-content-post_metas.php:507
+msgid "tagged"
+msgstr "con tag"
+
+#: ../parts/class-content-post_metas.php:530
+msgid "by"
+msgstr "da"
 
 #: ../parts/class-content-post_navigation.php:54
 #: ../parts/class-content-post_navigation.php:109
@@ -2718,7 +2747,7 @@ msgstr "<span class=\"meta-nav\">&larr;</span> Articoli più vecchi"
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Articoli più recenti <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-footer-footer_main.php:177
+#: ../parts/class-footer-footer_main.php:181
 msgid "Back to top"
 msgstr "Inizio pagina"
 
@@ -2729,6 +2758,9 @@ msgstr "Pagina iniziale"
 #: ../parts/class-header-menu.php:129
 msgid "Add a menu"
 msgstr "Aggiungi un menu"
+
+#~ msgid "Classical"
+#~ msgstr "Classico"
 
 #~ msgid "Customiz'it!"
 #~ msgstr "Customiz'it!"
