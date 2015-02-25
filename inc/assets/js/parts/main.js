@@ -1,6 +1,6 @@
 /* !
  * Customizr WordPress theme Javascript code
- * Copyright (c) 2014 Nicolas GUILLAUME (@nicguillaume), Themes & Co.
+ * Copyright (c) 2014-2015 Nicolas GUILLAUME (@nicguillaume), Themes & Co.
  * GPL2+ Licensed
 */
 //ON DOM READY
@@ -24,7 +24,8 @@ jQuery(function ($) {
         //POST GRID IMAGES
         $('.tc-grid-figure').centerImages( {
           oncustom : 'smartload',
-          enableGoldenRatio : true
+          enableGoldenRatio : true,
+          goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
         } );
     }, 300 );
 
@@ -42,9 +43,8 @@ jQuery(function ($) {
 
 
     //Img Smart Load
-    if ( 1 == _p.imgSmartLoadEnabled ) {
-      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts) > 0 || {} );
-    }
+    if ( 1 == _p.imgSmartLoadEnabled )
+      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
 
     //DROP CAPS
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {

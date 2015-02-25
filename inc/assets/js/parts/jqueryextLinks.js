@@ -115,6 +115,7 @@
 
       if ( _href !== '' && _href != '#' && this._isValidURL( _href ) )
         return ! _reg.test( _href );
+      return;
     };
 
 
@@ -123,9 +124,7 @@
     */
     Plugin.prototype._isValidURL = function( _url ){
       var _pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-      if ( _pattern.test( _url ) )
-        return true;
-      return false;
+      return _pattern.test( _url );
     };
 
 

@@ -1607,6 +1607,19 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 5,
                                 'transport'   => 'postMessage'
               ),
+              'tc_theme_options[tc_post_metas_design]'  =>  array(
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'buttons' : 'no-buttons',
+                                'control'     => 'TC_controls' ,
+                                'title'         => __( 'Metas Design' , 'customizr' ),
+                                'label'         => __( "Select a design for the post metas" , "customizr" ),
+                                'section'       => 'tc_post_metas_settings' ,
+                                'type'          =>  'select' ,
+                                'choices'       => array(
+                                    'buttons'     => __( 'Buttons and text' , 'customizr' ),
+                                    'no-buttons'  => __( 'Text only' , 'customizr' )
+                                ),
+                                'priority'      => 10
+              ),
               'tc_theme_options[tc_show_post_metas_home]'  =>  array(
                                 'default'       => 0,
                                 'control'     => 'TC_controls' ,
@@ -1695,7 +1708,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               'tc_theme_options[tc_post_metas_update_notice_in_title]'  =>  array(
-                                'default'       => 1,
+                                'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
                                 'control'       => 'TC_controls',
                                 'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
@@ -1762,7 +1775,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 68,
-                                'notice'    => __( 'When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ...' , 'customizr' ),
+                                'notice'        => sprintf( '%s %s' , __( 'When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ...' , 'customizr' ), __( 'Note : thumbnails are always displayed when the grid layout is choosen.' , 'customizr') )
               ),
               'tc_theme_options[tc_post_list_use_attachment_as_thumb]'  =>  array(
                                 'default'       => 1,
@@ -1784,7 +1797,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_post_list_thumb_shape]'  =>  array(
                                 'default'       => 'rounded',
                                 'control'     => 'TC_controls' ,
-                                'title'         => __( 'Thumbnails options for the classical layout' , 'customizr' ),
+                                'title'         => __( 'Thumbnails options for the alternate thumbnails layout' , 'customizr' ),
                                 'label'         => __( "Thumbnails shape" , "customizr" ),
                                 'section'       => 'tc_post_list_settings' ,
                                 'type'      =>  'select' ,
@@ -1941,7 +1954,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               'tc_theme_options[tc_comment_bubble_color_type]' => array(
-                                'default'     => 'custom',
+                                'default'     => TC_utils::$instance -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'custom' : 'skin',
                                 'control'     => 'TC_controls',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'tc_comments_settings',
@@ -1954,7 +1967,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               'tc_theme_options[tc_comment_bubble_color]' => array(
-                                'default'     => '#F00',
+                                'default'     => TC_utils::$instance -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : TC_utils::$instance -> tc_get_skin_color(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'tc_comments_settings',
@@ -2124,18 +2137,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     function tc_grid_map( $_map ) {
         $_new_settings = array(
           'tc_theme_options[tc_post_list_grid]'  =>  array(
-                            'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.18' ) ? 'classical' : 'grid',
+                            'default'       => TC_utils::$instance -> tc_user_started_before_version( '3.2.18' ) ? 'alternate' : 'grid',
                             'control'       => 'TC_controls' ,
                             'title'         => __( 'Post List Design' , 'customizr' ),
                             'label'         => __( 'Select a Layout' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'select',
                             'choices'       => array(
-                                    'classical'       => __( 'Classical' , 'customizr'),
-                                    'grid'            => __( 'Grid Layout' , 'customizr')
+                                    'alternate'       => __( 'Alternate thumbnails layout' , 'customizr'),
+                                    'grid'            => __( 'Grid layout' , 'customizr')
                             ),
                             'priority'      => 40,
-                            'notice'    => __( 'When you select the grid Layout, the post content will be limited to the excerpt' , 'customizr' ),
+                            'notice'    => __( 'When you select the grid Layout, the post content is limited to the excerpt.' , 'customizr' ),
           ),
           'tc_theme_options[tc_grid_columns]'  =>  array(
                             'default'       => '2',
@@ -2168,7 +2181,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'priority'      => 55
           ),
           'tc_theme_options[tc_grid_in_archive]'  =>  array(
-                            'default'       => 0,
+                            'default'       => 1,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Apply the grid layout to Archives (archives, categories, author posts)' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
@@ -2176,24 +2189,24 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'priority'      => 60
           ),
           'tc_theme_options[tc_grid_in_search]'  =>  array(
-                            'default'       => 0,
+                            'default'       => 1,
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
                             'priority'      => 65,
-                            'notice'    => __( 'Uncheck contexts are displayed with the classical layout.' , 'customizr' ),
+                            'notice'        => __( 'Unchecked contexts are displayed with the alternate thumbnails layout.' , 'customizr' ),
            ),
           'tc_theme_options[tc_grid_thumb_height]' => array(
                             'default'       => 350,
                             'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
-                            'control'   => 'TC_controls' ,
+                            'control'       => 'TC_controls' ,
                             'title'         => __( 'Thumbnails max height for the grid layout' , 'customizr' ),
-                            'label'       => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
-                            'section'     => 'tc_post_list_settings' ,
-                            'type'        => 'number' ,
-                            'step'      => 1,
-                            'min'     => 0,
+                            'label'         => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'number' ,
+                            'step'          => 1,
+                            'min'           => 0,
                             'priority'      => 73
                             //'transport'   => 'postMessage'
           )

@@ -1503,30 +1503,47 @@ article .author-info h2 , .archive-header .author-info h2 {
   position: relative;
   bottom: 10px;
 }
-.comments-link .fs1 {
-  font-size: 40px;
-  line-height: initial;
-  vertical-align: inherit;
-  margin: 0px;
-  display: inline;
+/* default bubble */
+.comments-link .default-bubble {
+  position: relative;
+  bottom: 20px;
+  right: 2px;
+  padding: 1px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border-radius: 18px;
+  width: auto;
+  min-width: 18px;
+  height: auto;
+  min-height: 18px;
+  display: inline-block;
+  font-size: 10px;
+  line-height: 17px;
+  text-align: center;
   background: none;
-  height: inherit;
-  /*float: left;*/
-  z-index: 1;
-  width: 34px;
-  opacity: 0.8
+  -webkit-transition: bottom .3s ease;
+  -moz-transition: bottom .3s ease;
+  -ms-transition: bottom .3s ease;
+  -o-transition: bottom .3s ease;
+  transition: bottom .3s ease;
 }
-.comments-link .tc-comment-bubble {
-  color: @CommentsLink;
+.comments-link .default-bubble:hover {
+  bottom: 22px;
+  color: #FFF!important;
+  background: @Customizrbackground;
+  background: rgba(0, 0, 0, 0.4)!important;
 }
-
-/* custom bubble */
-.comments-link .custom-bubble-one {
-  color: @CommentsLink;
-  border: 2px solid @CommentsLink;
-}
-.comments-link .custom-bubble-one:before {
-  border-color: @CommentsLink rgba(0, 0, 0, 0);
+.comments-link .default-bubble:before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: -7px;
+  background: @Customizrbackground;
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 10px;
 }
 
 
@@ -1716,6 +1733,9 @@ max-width: 100%;
 
 
 /* POST GRID */
+.tc-grid {
+  border: 1px solid #EEE;
+}
 .tc-grid-shadow .tc-grid {
   -moz-box-shadow: 0px 0px 6px 2px #ccc;
   -webkit-box-shadow: 0px 0px 6px 2px rgb(204, 204, 204);
@@ -1755,39 +1775,30 @@ max-width: 100%;
   max-height: none;
 }
 .tc-grid-post figcaption{
-    top: 0;
-    left: 0;
-    height: 100%;
-    /* this is commented for testing, just opacify the thumb and don't apply background for normal posts */
-    /*
-    background: rgba(0,0,0,.1);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
-    */
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    color: #fff;
-    -webkit-transition: opacity .15s;
-    -moz-transition: opacity .15s;
-    -ms-transition: opacity .15s;
-    -o-transition: opacity .15s;
-    transition: opacity .15s;
+  top: 0;
+  left: 0;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  color: #fff;
 }
 .expanded .tc-grid-post figcaption{
-    opacity: 1;
-    max-width: 50%;
-    height: auto;
-    margin-left: 11%;
-    background: none;
+  opacity: 1;
+  max-width: 65%;
+  height: auto;
+  margin-left: 8%;
+  background: none;
 }
 
+.span6.article-container .expanded figcaption, .span9.article-container .expanded figcaption {
+  max-width: none;
+  margin-left: 0;
+}
 .tc-grid .entry-header {
   padding: 0 7%;
 }
 
-/* this is for testing, just opacify the thumb and don't apply background for normal posts
-*  but apply it to .expanded caption and .no-thumb caption
-*/
 .expanded figcaption {
   background: rgb(250, 250, 250);
   background: rgba(0,0,0,.4);
@@ -1798,13 +1809,13 @@ max-width: 100%;
   background: none;
   opacity: 1;
 }
-.expanded figcaption,
-.no-thumb figcaption {
-    -webkit-transition: background .15s;
-    -moz-transition: background .15s;
-    -ms-transition: background .15s;
-    -o-transition: background .15s;
-    transition: background .15s;
+.expanded figcaption, .no-thumb figcaption, .tc-grid-post figcaption {
+  webkit-transition-property: opacity,background,color;
+  transition-property: opacity,background,color;
+  -webkit-transition-duration: .20s;
+  transition-duration: .20s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
 }
 .tc-post-list-grid .entry-summary{
     line-height: 20px;
@@ -1819,10 +1830,10 @@ max-width: 100%;
     text-rendering: geometricPrecision;
 }
 .tc-post-list-grid article:not(.expanded) .entry-summary{
-  margin: 10%;
-  max-height: 70%;
+  max-height: 75%;
+  margin: 0 8%;
   overflow: hidden;
-  padding:0%;
+  padding:0;
 }
 
 .tc-post-list-grid .expanded .entry-summary{
@@ -1862,7 +1873,7 @@ max-width: 100%;
 }
 .tc-post-list-grid figcaption > a {
     position: absolute;
-    z-index: 9;
+    z-index: 10;
     top: 0;
     left: 0;
     width: 100%;
@@ -1889,6 +1900,52 @@ max-width: 100%;
     width: 100%;
 }
 
+/* comment bubbles in grid */
+.tc-grid-figure .comments-link {
+  position: absolute;
+  z-index: 11;
+  top: 10%;
+  right: 1%;
+}
+.tc-post-list-grid .comments-link .tc-comment-bubble {
+  background: #FAFAFA;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+.tc-post-list-grid .default-bubble:before {
+  background: #FAFAFA;
+  background: rgba(0, 0, 0, 0.4);
+}
+.tc-post-list-grid .no-thumb .comments-link .tc-comment-bubble {
+  background: none;
+  color: inherit;
+}
+.tc-post-list-grid .no-thumb .default-bubble:before {
+  background: none;
+  color: inherit;
+}
+.tc-post-list-grid .comments-link .custom-bubble-one:after, .tc-post-list-grid .comments-link .custom-bubble-one:before {
+  border: none;
+}
+
+/* Grid icons */
+.tc-grid-icon {
+  text-align: center;
+  position: relative;
+}
+.format-quote .tc-grid-icon, .format-status .tc-grid-icon {
+  top: -15%;
+}
+.tc-grid-icon:before {
+  font-size: 90px!important;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 29px!important;
+  top: inherit!important;
+}
+.format-quote .tc-grid-icon:before, .format-status .tc-grid-icon:before {
+  font-size: 138px!important;
+}
 /* WP CSS
     -------------------------------------------------- */
 

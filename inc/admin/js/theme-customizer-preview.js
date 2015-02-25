@@ -436,11 +436,10 @@
 			$('#custom-bubble-color').remove();
 			var $style_element	= $('<style>' , { id : 'custom-bubble-color'}),
 				bubble_live_css = '';
-			//default bubble
-			bubble_live_css += '.comments-link .fs1 {color:' + to + ';}';
+
 			//custom bubble
-			bubble_live_css += '.comments-link .custom-bubble-one {border-color:' + to + ';color:' + to + '}';
-			bubble_live_css += '.comments-link .custom-bubble-one:before {border-color:' + to + ' rgba(0, 0, 0, 0);}';
+			bubble_live_css += '.comments-link .tc-comment-bubble {border-color:' + to + ';color:' + to + '}';
+			bubble_live_css += '.comments-link .tc-comment-bubble:before {border-color:' + to + '}';
 			$('head').append($style_element.html(bubble_live_css));
 		} );
 	} );

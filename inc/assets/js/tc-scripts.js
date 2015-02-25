@@ -32,7 +32,8 @@ var TCParams = TCParams || {
     ids : []
   },
   imgSmartLoadEnabled:0,
-  imgSmartLoadOpts: {}
+  imgSmartLoadOpts: {},
+  gridGoldenRatioLimit : 350
 };;/* ===================================================
  * bootstrap-transition.js v2.3.2
  * http://getbootstrap.com/2.3.2/javascript.html#transitions
@@ -2551,7 +2552,8 @@ var TCParams = TCParams || {};
         load_all_images_on_first_scroll : false,
         attribute : 'data-src',
         threshold : 200,
-        fadeIn_options : { duration : 400 }
+        fadeIn_options : { duration : 400 },
+        delaySmartLoadEvent : 0
       };
 
 
@@ -2644,19 +2646,22 @@ var TCParams = TCParams || {};
   */
   Plugin.prototype._load_img = function( _img ) {
     var $_img = $(_img),
-        _src  = $_img.attr( this.options.attribute );
+        _src  = $_img.attr( this.options.attribute ),
+        self = this;
+
+    $_img.parent().addClass('smart-loading');
 
     $_img.unbind('load_img')
     .hide()
     .removeAttr( this.options.attribute )
     .attr('src' , _src )
-    .fadeIn( this.options.fadeIn_options );
-    //trigger the smartload event on the current img after a small delay (=> time to http get the image)
-    setTimeout( function() {
-      $_img.trigger('smartload');
-      },
-      700
-    );
+    .load( function () {
+      $_img.fadeIn(self.options.fadeIn_options).trigger('smartload');
+    });//<= create a load() fn
+    //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
+    if ( $_img[0].complete )
+      $_img.load();
+    $_img.parent().removeClass('smart-loading');
   };
 
 
@@ -2786,6 +2791,7 @@ var TCParams = TCParams || {};
 
       if ( _href !== '' && _href != '#' && this._isValidURL( _href ) )
         return ! _reg.test( _href );
+      return;
     };
 
 
@@ -2794,9 +2800,7 @@ var TCParams = TCParams || {};
     */
     Plugin.prototype._isValidURL = function( _url ){
       var _pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-      if ( _pattern.test( _url ) )
-        return true;
-      return false;
+      return _pattern.test( _url );
     };
 
 
@@ -2828,7 +2832,9 @@ var TCParams = TCParams || {};
         onresize : true,
         oncustom : [],//list of event here
         imgSel : 'img',
+        topAdjust : -2,//<= top ajustement for h-centered
         enableGoldenRatio : false,
+        goldenRatioLimitHeightTo : 350,
         goldenRatioVal : 1.618,
         skipGoldenRatioClasses : ['no-gold-ratio'],
         disableGRUnder : 767//in pixels
@@ -2864,23 +2870,23 @@ var TCParams = TCParams || {};
 
   //@return void
   Plugin.prototype._maybe_apply_golden_r = function( evt ) {
-    if ( ! this.options.enableGoldenRatio )
+    //check if options are valids
+    if ( ! this.options.enableGoldenRatio || ! this.options.goldenRatioVal || 0 === this.options.goldenRatioVal )
       return;
 
     //make sure the container has not a forbidden class
     if ( ! this._is_selector_allowed() )
       return;
-    //check if golden ratio can be applied under custom width
+    //check if golden ratio can be applied under custom window width
     if ( ! this._is_window_width_allowed() ) {
       //reset inline style for the container
       $(this.container).attr('style' , '');
       return;
     }
 
-    if ( ! this.options.goldenRatioVal || 0 === this.options.goldenRatioVal )
-      return;
-
     var new_height = Math.round( $(this.container).width() / this.options.goldenRatioVal );
+    //check if the new height does not exceed the goldenRatioLimitHeightTo option
+    new_height = new_height > this.options.goldenRatioLimitHeightTo ? this.options.goldenRatioLimitHeightTo : new_height;
     $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } );
   };
 
@@ -2967,11 +2973,12 @@ var TCParams = TCParams || {};
   Plugin.prototype._maybe_center_img = function( $_img, _state ) {
     var _case  = _state.current,
         _p     = _state.prop[_case],
-        _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'];
+        _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'],
+        _not_p_dir_val = 'h' == _case ? this.options.topAdjust : 0;
 
     $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , 'auto' )
         .addClass( _p.class ).removeClass( _not_p.class )
-        .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, 0 );
+        .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
   };
 
   /********
@@ -3013,7 +3020,7 @@ var TCParams = TCParams || {};
 
 })( jQuery, window, document );;/* !
  * Customizr WordPress theme Javascript code
- * Copyright (c) 2014 Nicolas GUILLAUME (@nicguillaume), Themes & Co.
+ * Copyright (c) 2014-2015 Nicolas GUILLAUME (@nicguillaume), Themes & Co.
  * GPL2+ Licensed
 */
 //ON DOM READY
@@ -3037,7 +3044,8 @@ jQuery(function ($) {
         //POST GRID IMAGES
         $('.tc-grid-figure').centerImages( {
           oncustom : 'smartload',
-          enableGoldenRatio : true
+          enableGoldenRatio : true,
+          goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
         } );
     }, 300 );
 
@@ -3055,9 +3063,8 @@ jQuery(function ($) {
 
 
     //Img Smart Load
-    if ( 1 == _p.imgSmartLoadEnabled ) {
-      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts) > 0 || {} );
-    }
+    if ( 1 == _p.imgSmartLoadEnabled )
+      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
 
     //DROP CAPS
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {

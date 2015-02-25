@@ -16,7 +16,9 @@
         onresize : true,
         oncustom : [],//list of event here
         imgSel : 'img',
+        topAdjust : -2,//<= top ajustement for h-centered
         enableGoldenRatio : false,
+        goldenRatioLimitHeightTo : 350,
         goldenRatioVal : 1.618,
         skipGoldenRatioClasses : ['no-gold-ratio'],
         disableGRUnder : 767//in pixels
@@ -52,23 +54,23 @@
 
   //@return void
   Plugin.prototype._maybe_apply_golden_r = function( evt ) {
-    if ( ! this.options.enableGoldenRatio )
+    //check if options are valids
+    if ( ! this.options.enableGoldenRatio || ! this.options.goldenRatioVal || 0 === this.options.goldenRatioVal )
       return;
 
     //make sure the container has not a forbidden class
     if ( ! this._is_selector_allowed() )
       return;
-    //check if golden ratio can be applied under custom width
+    //check if golden ratio can be applied under custom window width
     if ( ! this._is_window_width_allowed() ) {
       //reset inline style for the container
       $(this.container).attr('style' , '');
       return;
     }
 
-    if ( ! this.options.goldenRatioVal || 0 === this.options.goldenRatioVal )
-      return;
-
     var new_height = Math.round( $(this.container).width() / this.options.goldenRatioVal );
+    //check if the new height does not exceed the goldenRatioLimitHeightTo option
+    new_height = new_height > this.options.goldenRatioLimitHeightTo ? this.options.goldenRatioLimitHeightTo : new_height;
     $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } );
   };
 
@@ -155,11 +157,12 @@
   Plugin.prototype._maybe_center_img = function( $_img, _state ) {
     var _case  = _state.current,
         _p     = _state.prop[_case],
-        _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'];
+        _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'],
+        _not_p_dir_val = 'h' == _case ? this.options.topAdjust : 0;
 
     $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , 'auto' )
         .addClass( _p.class ).removeClass( _not_p.class )
-        .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, 0 );
+        .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
   };
 
   /********

@@ -199,6 +199,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
               'dropcapSkipSelectors'       => apply_filters( 'tc_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'), 'classes' => array() , 'id' => array() ) ),
               'imgSmartLoadEnabled' => esc_attr( tc__f( '__get_option' , 'tc_img_smart_load' ) ),
               'imgSmartLoadOpts'    => apply_filters( 'tc_img_smart_load_options' , array() ),
+              'gridGoldenRatioLimit' => esc_attr( tc__f( '__get_option' , 'tc_grid_thumb_height' ) )
 	        	),
 	        	tc__f('__ID')
 		    )//end of filter
@@ -235,35 +236,46 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 		/**
 	    * Write the font icon in head
-	    *
+	    * hook : wp_head
 	    * @package Customizr
 	    * @since Customizr 3.2.3
 	    */
 		function tc_write_inline_font_icons_css() {
-			$_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
 			echo apply_filters(
-				'tc_inline_font_icons' ,
+				'tc_inline_font_icons',
 				sprintf('<style type="text/css" id="customizr-inline-fonts">%1$s</style>',
-					"@font-face{font-family:genericons;src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot');src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.woff') format('woff'),url('{$_path}/fonts/fonts/genericons-regular-webfont.ttf') format('truetype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg')}@font-face{font-family:entypo;src:url('{$_path}/fonts/fonts/entypo.eot);src:url({$_path}/fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/entypo.woff') format('woff'),url('{$_path}/fonts/fonts/entypo.ttf') format('truetype'),url('{$_path}/fonts/fonts/entypo.svg#genericonsregular') format('svg')}"
+					$this -> tc_get_inline_font_icons_css()
 				)
 			);
 		}
 
 
 
-	    /**
-	    * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
-	    *
-	    * @package Customizr
-	    * @since Customizr 2.0.7
-	    */
-	    function tc_write_custom_css() {
-	        $tc_custom_css      	= esc_html( tc__f( '__get_option' , 'tc_custom_css') );
-	        if ( isset($tc_custom_css) && ! empty($tc_custom_css) )
-	        	printf( '<style id="option-custom-css" type="text/css">%1$s</style>',
-	        		html_entity_decode($tc_custom_css)
-	        	);
-	    }//end of function
+    /**
+    * @return string of css font icons
+    *
+    * @package Customizr
+    * @since Customizr 3.3.2
+    */
+    public function tc_get_inline_font_icons_css() {
+      $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+      return "@font-face{font-family:genericons;src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot');src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.woff') format('woff'),url('{$_path}/fonts/fonts/genericons-regular-webfont.ttf') format('truetype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg')}@font-face{font-family:entypo;src:url('{$_path}/fonts/fonts/entypo.eot);src:url({$_path}/fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/entypo.woff') format('woff'),url('{$_path}/fonts/fonts/entypo.ttf') format('truetype'),url('{$_path}/fonts/fonts/entypo.svg#genericonsregular') format('svg')}";
+    }
+
+
+    /**
+    * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
+    *
+    * @package Customizr
+    * @since Customizr 2.0.7
+    */
+    function tc_write_custom_css() {
+        $tc_custom_css      	= esc_html( tc__f( '__get_option' , 'tc_custom_css') );
+        if ( isset($tc_custom_css) && ! empty($tc_custom_css) )
+        	printf( '<style id="option-custom-css" type="text/css">%1$s</style>',
+        		html_entity_decode($tc_custom_css)
+        	);
+    }//end of function
 
 
 

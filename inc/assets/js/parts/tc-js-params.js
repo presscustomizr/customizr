@@ -32,5 +32,6 @@ var TCParams = TCParams || {
     ids : []
   },
   imgSmartLoadEnabled:0,
-  imgSmartLoadOpts: {}
+  imgSmartLoadOpts: {},
+  gridGoldenRatioLimit : 350
 };
