@@ -69,9 +69,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //remove inline style for grid thumbs (handled in javascript on page load)
           add_filter( 'tc_post_thumb_inline_style'  , '__return_false' );
 
-          // force title displaying for all post types
-          //add_filter( 'tc_post_formats_with_no_heading', '__return_empty_array');
-
           // SINGLE POST CONTENT IN GRID
           $_content_priorities = apply_filters('tc_grid_post_content_priorities' , array( 'content' => 20, 'link' =>30 ));
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_figcaption_content') , $_content_priorities['content'] );
@@ -98,19 +95,176 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return  void
         */
         function tc_set_grid_loop_hooks() {
-          add_action( '__before_article'            , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
-          add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
-          add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
+          add_action( '__before_article'       , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
+          add_action( '__after_article'        , array( $this, 'tc_print_article_sep' ), 0 );
+          add_action( '__after_article'        , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
 
-          remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_post_list_display') );
-          add_action( '__loop'                      , array( $this, 'tc_grid_single_post_display') );
+          remove_action( '__loop'              , array( TC_post_list::$instance, 'tc_prepare_section_view') );
+          add_action( '__loop'                 , array( $this, 'tc_grid_prepare_single_post') );
         }
 
 
 
+        /******************************************
+        * PREPARE AND RENDER VIEWS ****************
+        ******************************************/
+        /*
+        * hook : __before_article
+        * Wrap articles in a grid section
+        */
+        function tc_print_row_fluid_section_wrapper(){
+          global $wp_query;
+          $current_post   = $wp_query -> current_post;
+          $start_post     = $this -> has_expanded_featured ? 1 : 0;
+          $cols           = $this -> tc_get_grid_section_cols();
+
+          if ( '__before_article' == current_filter() &&
+              ( $start_post == $current_post ||
+                  0 == ( $current_post - $start_post ) % $cols ) ) {
+            printf( '<section class="%s">',
+              implode( " ", apply_filters( 'tc_grid_section_class' ,  array( "tc-post-list-grid", "row-fluid", "grid-cols-{$cols}" ) ) )
+            );
+          }
+          elseif ( '__after_article' == current_filter() &&
+                    ( $wp_query->post_count == ( $current_post + 1 ) ||
+                    0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) {
+              printf( '</section><!--end section.tc-post-list-grid.row-fluid-->%s',
+                apply_filters( 'tc_grid_separator', '<hr class="featurette-divider post-list-grid">')
+              );
+          }//end if
+        }
+
+
+
+        /**
+        * hook : __loop
+        * Prepare single post view model
+        * inject it in the single post view
+        * @return the figcation content parts as an array of html strings
+        * inside loop
+        */
+        function tc_grid_prepare_single_post() {
+          global $post;
+          if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_is_grid_context_matching() , $post ) )
+            return;
+
+          // get the filtered post list layout
+          $_layout   = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
+
+          // SET HOOKS FOR POST TITLES AND METAS (only for non featured post)
+          if ( ! $this -> tc_force_current_post_expansion() ){
+              $hook_prefix = '__before';
+              if ( $_layout['show_thumb_first'] )
+                  $hook_prefix = '__after';
+
+              add_action( "{$hook_prefix}_grid_single_post",  array( TC_headings::$instance, 'tc_render_headings_view' ) );
+          }
+
+          // THUMBNAIL : get the thumbnail data (src, width, height) if any
+          $_thumb_html     = '';
+          //may be print format icon
+          if ( ! TC_post_thumbnails::$instance -> tc_has_thumb() )
+            $_thumb_html = sprintf('<div class="tc-grid-icon format-icon"></div>',
+              get_post_format()
+            );
+          else {
+            $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
+            $_thumb_html  = $_thumb_model['tc_thumb'];
+          }
+
+          // CONTENT : get the figcaption content => post content
+          $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content'] ) ? $_layout['content'] : 'span6' );
+
+          // WRAPPER CLASS : build single grid post wrapper class
+          $_classes  = array('tc-grid-figure');
+
+          //may be add class no-thumb
+          if ( ! TC_post_thumbnails::$instance -> tc_has_thumb() )
+            array_push( $_classes, 'no-thumb' );
+
+          //if 1 col layout or current post is the expanded => golden ratio should be disabled
+          if ( ( '1' == $this -> tc_get_grid_cols() || $this -> tc_force_current_post_expansion() ) && ! wp_is_mobile() )
+            array_push( $_classes, 'no-gold-ratio' );
+
+          $_classes  = implode( ' ' , apply_filters('tc_single_grid_post_wrapper_class', $_classes ) );
+
+          //RENDER VIEW
+          $this -> tc_grid_render_single_post( $_classes, $_thumb_html, $_post_content_html );
+          //return apply_filters( 'tc_prepare_grid_single_post_content' , compact( '_classes', '_thumb_html', '_post_content_html') );
+        }
+
+
+
+        /**
+        * Single post view in the grid
+        * display single post content + thumbnail
+        * @return html string
+        *
+        */
+        private function tc_grid_render_single_post( $_classes, $_thumb_html, $_post_content_html ) {
+          ob_start();
+            do_action( '__before_grid_single_post');//<= open <section> and maybe display title + metas
+
+              echo apply_filters( 'tc_grid_single_post_thumb_content',
+                sprintf('<section class="tc-grid-post"><figure class="%1$s">%2$s %3$s</figure></section>',
+                  $_classes,
+                  $_thumb_html,
+                  $_post_content_html
+                )
+              );
+            do_action('__after_grid_single_post');//<= close </section> and maybe display title + metas
+
+          $html = ob_get_contents();
+          if ($html) ob_end_clean();
+
+          echo apply_filters('tc_grid_display', $html);
+        }
+
+
+        /**
+        * hook : __grid_single_post_content
+        */
+        function tc_grid_display_post_link(){
+          if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
+            return;
+          printf( '<a href="%1$s" title="%2s"></a>',
+              get_permalink( get_the_ID() ),
+              esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
+        }
+
+
+        /*
+        * hook : __grid_single_post_content
+        */
+        function tc_grid_display_figcaption_content() {
+          ?>
+              <div class="entry-summary">
+                <?php
+                  echo apply_filters( 'tc_grid_display_figcaption_content',
+                    sprintf('<div class="tc-grid-excerpt-content">%s</div>',
+                      get_the_excerpt()
+                    )
+                  );
+                ?>
+              </div>
+          <?php
+        }
+
+
+        /**
+        * Separator after each grid article
+        * hook : __after_article (declared in index.php)
+        * print a separator after each article => revealed in responsive mode
+        */
+        function tc_print_article_sep() {
+          //renders the hr separator after each article
+          echo apply_filters( 'tc_grid_single_post_sep', '<hr class="featurette-divider '.current_filter().'">' );
+        }
+
+
 
         /******************************************
-        * SET VARIOUS VALUES **********************
+        * SETTERS / GETTTERS / CALLBACKS
         ******************************************/
         /**
         * hook : pre_get_posts
@@ -213,9 +367,34 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           return array_merge( $_classes , array( 'tc-grid-shadow', 'tc-grid-border' ) );
         }
 
-        // function tc_change_tumbnail_inline_css_width($_style, $width, $height){
-        //   return sprintf('width:100%%;height:auto;');
-        // }
+
+        /**
+        * @return the figcation content as a string
+        * inside loop
+        */
+        private function tc_grid_get_single_post_html( $post_list_content_class ) {
+          global $post;
+          ob_start();
+          ?>
+            <figcaption class="<?php echo $post_list_content_class ?>">
+              <?php do_action( '__grid_single_post_content' ) ?>
+            </figcaption>
+          <?php
+          $html = ob_get_contents();
+          if ($html) ob_end_clean();
+          return apply_filters( 'tc_grid_get_single_post_html', $html, $post_list_content_class );
+        }
+
+
+        /**
+        * hook : tc_grid_get_single_post_html
+        * @return the comment_bubble as a string
+        * inside loop
+        */
+        function tc_grid_display_comment_bubble( $_html ) {
+          return TC_comments::$instance -> tc_display_comment_bubble() . $_html;
+        }
+
 
 
         /**
@@ -273,123 +452,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           return isset( $_grid_col_height_map[$_cols_class] ) ? $_grid_col_height_map[$_cols_class] : $_sizes;
         }
 
-
-
-        /******************************************
-        * RENDER VIEWS ****************************
-        ******************************************/
-        /*
-        * hook : __before_article
-        * Wrap articles in a grid section
-        */
-        function tc_print_row_fluid_section_wrapper(){
-          global $wp_query;
-          $current_post   = $wp_query -> current_post;
-          $start_post     = $this -> has_expanded_featured ? 1 : 0;
-          $cols           = $this -> tc_get_grid_section_cols();
-
-          if ( '__before_article' == current_filter() &&
-              ( $start_post == $current_post ||
-                  0 == ( $current_post - $start_post ) % $cols ) ) {
-            printf( '<section class="%s">',
-              implode( " ", apply_filters( 'tc_grid_section_class' ,  array( "tc-post-list-grid", "row-fluid", "grid-cols-{$cols}" ) ) )
-            );
-          }
-          elseif ( '__after_article' == current_filter() &&
-                    ( $wp_query->post_count == ( $current_post + 1 ) ||
-                    0 == ( ( $current_post - $start_post + 1 ) % $cols ) ) ) {
-              printf( '</section><!--end section.tc-post-list-grid.row-fluid-->%s',
-                apply_filters( 'tc_grid_separator', '<hr class="featurette-divider post-list-grid">')
-              );
-          }//end if
-        }
-
-
-        /*
-        * hook : __loop
-        * display single post content + thumbnail
-        */
-        function tc_grid_single_post_display(){
-          //creates vars $_classes, $_thumb_html, $_post_content_html
-          extract( $this -> tc_prepare_grid_single_post_content() , EXTR_OVERWRITE );
-
-          ob_start();
-            do_action( '__before_grid_single_post');//<= open <section> and maybe display title + metas
-
-              echo apply_filters( 'tc_grid_single_post_thumb_content',
-                sprintf('<section class="tc-grid-post"><figure class="%1$s">%2$s %3$s</figure></section>',
-                  $_classes,
-                  $_thumb_html,
-                  $_post_content_html
-                )
-              );
-            do_action('__after_grid_single_post');//<= close </section> and maybe display title + metas
-
-          $html = ob_get_contents();
-          if ($html) ob_end_clean();
-
-          echo apply_filters('tc_grid_display', $html);
-        }
-
-
-        /**
-        * hook : __grid_single_post_content
-        */
-        function tc_grid_display_post_link(){
-          if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
-            return;
-          printf( '<a href="%1$s" title="%2s"></a>',
-              get_permalink( get_the_ID() ),
-              esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
-        }
-
-
-        /*
-        * hook : __grid_single_post_content
-        */
-        function tc_grid_display_figcaption_content() {
-          ?>
-              <div class="entry-summary">
-                <?php
-                  echo apply_filters( 'tc_grid_display_figcaption_content',
-                    sprintf('<div class="tc-grid-excerpt-content">%s</div>',
-                      get_the_excerpt()
-                    )
-                  );
-                ?>
-              </div>
-          <?php
-        }
-
-
-        /*
-        * hook : {before or after}_grid_single_post
-        *
-        */
-        function tc_grid_display_title_metas(){
-          // if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
-          //   return;
-          ?>
-            <pre>
-              <?php print_r(get_post_format()); ?>
-            </pre>
-          <?php
-          ob_start();
-              //do_action('__before_content');
-          $html = ob_get_contents();
-          if ($html) ob_end_clean();
-          echo apply_filters('tc_grid_display_title_metas', $html);
-        }
-
-
-
-        /**
-        * hook : tc_grid_get_single_post_html
-        * inside loop
-        */
-        function tc_grid_display_comment_bubble( $_html ) {
-          return TC_comments::$instance -> tc_display_comment_bubble() . $_html;
-        }
 
         /*
         * @return css string
@@ -449,128 +511,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-        /* Separator after each grid article
-        * hook : __after_article (declared in index.php)
-        * print a separator after each article => revealed in responsive mode
-        */
-        function tc_print_article_sep() {
-          //renders the hr separator after each article
-          echo apply_filters( 'tc_grid_single_post_sep', '<hr class="featurette-divider '.current_filter().'">' );
-        }
-
-
-
-        /**********************************************
-        * PREPARE VARIOUS HTML CONTENT ****************
-        ***********************************************/
-        /*
-        * @return the figcation content parts as an array of html strings
-        * inside loop
-        */
-        private function tc_prepare_grid_single_post_content() {
-          global $post;
-          if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_is_grid_context_matching() , $post ) )
-            return;
-
-          // get the filtered post list layout
-          $_layout                          = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
-
-          // SET HOOKS FOR POST TITLES AND METAS (only for non featured post)
-          if ( ! $this -> tc_force_current_post_expansion() ){
-              $hook_prefix = '__before';
-              if ( $_layout['show_thumb_first'] )
-                  $hook_prefix = '__after';
-
-              add_action( "{$hook_prefix}_grid_single_post",  array( TC_headings::$instance, 'tc_render_headings_view' ) );
-          }
-
-          // THUMBNAIL : get the thumbnail data (src, width, height) if any
-          $_thumb_data                      = $this -> tc_get_grid_thumb_data( TC_post_thumbnails::$instance -> tc_get_thumbnail_data() );
-          $_thumb_html                      = apply_filters( 'tc_grid_thumbnail_html' , isset($_thumb_data[0]) ? $_thumb_data[0] : '' );
-
-          //may be print format icon
-          if ( empty($_thumb_data[0]) )
-            $_thumb_html = sprintf('<div class="tc-grid-icon format-icon"></div>',
-              get_post_format()
-            );
-
-
-          // CONTENT : get the figcaption content => post content
-          $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content'] ) ? $_layout['content'] : 'span6' );
-
-          // WRAPPER CLASS : build single grid post wrapper class
-          $_classes  = array('tc-grid-figure');
-
-          //may be add class no-thumb
-          if ( empty($_thumb_data[0]) )
-            array_push( $_classes, 'no-thumb' );
-
-          //if 1 col layout or current post is the expanded => golden ratio should be disabled
-          if ( ( '1' == $this -> tc_get_grid_cols() || $this -> tc_force_current_post_expansion() ) && ! wp_is_mobile() )
-            array_push( $_classes, 'no-gold-ratio' );
-
-          $_classes  = implode( ' ' , apply_filters('tc_single_grid_post_wrapper_class', $_classes ) );
-
-          return apply_filters( 'tc_prepare_grid_single_post_content' , compact( '_classes', '_thumb_html', '_post_content_html') );
-        }
-
-
-        /*
-        * hook : tc_grid_thumb_data
-        */
-        private function tc_get_grid_thumb_data( $_thumb_data ){
-          if ( ! empty($_thumb_data[0]) )
-              return $_thumb_data;
-
-          $default_thumb_id = apply_filters('tc_grid_default_thumb',
-              esc_attr( tc__f( '__get_option', 'tc_grid_default_thumb' ) ) );
-
-          if ( ! $default_thumb_id )
-              return $_thumb_data;
-
-          $tc_thumb_size = apply_filters( 'tc_thumb_size_name' , 'tc-thumb' );
-          $image = wp_get_attachment_image_src( $default_thumb_id, $tc_thumb_size);
-
-          if ( empty( $image[0] ) )
-              return $_thumb_data;
-
-          $_class_attr = array( 'class' => "attachment-{$tc_thumb_size} tc-grid-default-thumb");
-
-          $tc_thumb               = wp_get_attachment_image( $default_thumb_id, $tc_thumb_size, false, $_class_attr );
-          $tc_thumb_height        = '';
-          $tc_thumb_width         = '';
-
-          //get height and width if not empty
-          if ( ! empty($image[1]) && ! empty($image[2]) ) {
-              $tc_thumb_height        = $image[2];
-              $tc_thumb_width         = $image[1];
-          }
-
-          return array($tc_thumb, $tc_thumb_height, $tc_thumb_width);
-        }
-
-
-        /*
-        * @return the figcation content as a string
-        * inside loop
-        */
-        private function tc_grid_get_single_post_html( $post_list_content_class ) {
-          global $post;
-          ob_start();
-          ?>
-            <figcaption class="<?php echo $post_list_content_class ?>">
-              <?php do_action( '__grid_single_post_content' ) ?>
-            </figcaption>
-          <?php
-          $html = ob_get_contents();
-          if ($html) ob_end_clean();
-          return apply_filters( 'tc_grid_get_single_post_html', $html, $post_list_content_class );
-        }
-
-
 
         /******************************
-        ***** HELPERS *****************
+        HELPERS
         *******************************/
         /**
         * @return (number) customizer user defined height for the grid thumbnails

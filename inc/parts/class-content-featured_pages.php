@@ -271,7 +271,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
                                       $featured_page_link,
                                       $featured_page_title,
                                       $tc_fp_button_text
-                                    
+
                   );
                   echo apply_filters( 'tc_fp_button_block' , $tc_fp_button_block , $featured_page_link , $featured_page_title , $fp_single_id, $featured_page_id );
                 }

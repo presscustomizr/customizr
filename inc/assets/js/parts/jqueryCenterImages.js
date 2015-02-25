@@ -13,6 +13,7 @@
   //defaults
   var pluginName = 'centerImages',
       defaults = {
+        enableCentering : true,
         onresize : true,
         oncustom : [],//list of event here
         imgSel : 'img',
@@ -37,14 +38,15 @@
   //@return void
   Plugin.prototype.init = function () {
     var self = this;
+
     //applies golden ratio to all containers ( even if there are no images in container )
     this._maybe_apply_golden_r();
 
     //parses imgs ( if any ) in current container
     var $_imgs = $( this.options.imgSel , this.container );
 
-    //if no images, only handle the resize golden ratio
-    if ( ! $_imgs.length  ) {
+    //if no images or centering is not active, only handle the golden ratio on resize event
+    if ( ! $_imgs.length || ! this.options.enableCentering ) {
       //creates a golden ratio fn on resize
       $(window).bind( 'resize' , {} , function( evt ) { self._maybe_apply_golden_r( evt ); });
     } else {
@@ -114,7 +116,7 @@
 
     //CUSTOM EVENTS ACTIONS
     _customEvt.map( function( evt ) {
-      $_img.bind( evt, {} , function(evt ) {
+      $_img.bind( evt, {} , function( evt ) {
         self._pre_img_cent( $_img );
       } );
     } );

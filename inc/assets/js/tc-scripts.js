@@ -2862,6 +2862,7 @@ var TCParams = TCParams || {};
   //@return void
   Plugin.prototype.init = function () {
     var self = this;
+
     //applies golden ratio to all containers ( even if there are no images in container )
     this._maybe_apply_golden_r();
 
@@ -2939,7 +2940,7 @@ var TCParams = TCParams || {};
 
     //CUSTOM EVENTS ACTIONS
     _customEvt.map( function( evt ) {
-      $_img.bind( evt, {} , function(evt ) {
+      $_img.bind( evt, {} , function( evt ) {
         self._pre_img_cent( $_img );
       } );
     } );
@@ -3039,17 +3040,29 @@ jQuery(function ($) {
 
     //CENTER VARIOUS IMAGES
     setTimeout( function() {
-      //POST LIST THUMBNAILS
-      //bind 'refresh-height' event (triggered to the the customizer preview frame)
+      //POST LIST THUMBNAILS + FEATURED PAGES
+      //Squared, rounded
       $('.thumb-wrapper').centerImages( {
         enableCentering : 1 == _p.centerAllImg,
-        enableGoldenRatio : 0 !== $(this).find('.tc-rectagular-thumb') ? true : false
-        //imgSel : '.tc-rectangular-thumb > img',
-        //oncustom : 'refresh-height',
+        enableGoldenRatio : false,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+      });
+
+      //rectangulars
+      $('.tc-rectangular-thumb').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : true,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        oncustom : 'refresh-height', //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
       //SINGLE POST THUMBNAILS
-
+      $('.single .tc-rectangular-thumb').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : false,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        oncustom : 'refresh-height', //bind 'refresh-height' event (triggered to the the customizer preview frame)
+      });
 
       //POST GRID IMAGES
       $('.tc-grid-figure').centerImages( {

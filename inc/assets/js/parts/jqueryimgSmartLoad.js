@@ -128,7 +128,7 @@
     .removeAttr( this.options.attribute )
     .attr('src' , _src )
     .load( function () {
-      $_img.fadeIn(self.options.fadeIn_options).trigger('smartload');
+      $_img.fadeIn(self.options.fadeIn_options).css("display","inline-block").trigger('smartload');
     });//<= create a load() fn
     //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
     if ( $_img[0].complete )

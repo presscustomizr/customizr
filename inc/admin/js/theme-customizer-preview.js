@@ -207,7 +207,9 @@
 	});
 	wp.customize( 'tc_theme_options[tc_post_list_thumb_height]' , function( value ) {
 		value.bind( function( to ) {
-			$('.tc-rectangular-thumb').css('max-height' , to + 'px').trigger('refresh-height');
+			$('.tc-rectangular-thumb').css('max-height' , to + 'px');
+      if ( 0 !== $('.tc-rectangular-thumb').find('img').length )
+        $('.tc-rectangular-thumb').find('img').trigger('refresh-height');//listened by the jsimgcentering $ plugin
 		} );
 	});
 	wp.customize( 'tc_theme_options[tc_single_post_thumb_height]' , function( value ) {

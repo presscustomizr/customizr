@@ -8,34 +8,59 @@ jQuery(function ($) {
     var _p = TCParams;
 
     //CENTER VARIOUS IMAGES
-    //on load
     setTimeout( function() {
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
-        //POST GRID IMAGES
-        $('.tc-grid-figure').centerImages( {
-          oncustom : 'smartload',
-          enableGoldenRatio : true,
-          goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
-        } );
+      //POST LIST THUMBNAILS + FEATURED PAGES
+      //Squared, rounded
+      $('.thumb-wrapper').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : false,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+      });
+
+      //rectangulars
+      $('.tc-rectangular-thumb').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : true,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        oncustom : 'refresh-height', //bind 'refresh-height' event (triggered to the the customizer preview frame)
+      });
+
+      //SINGLE POST THUMBNAILS
+      $('.single .tc-rectangular-thumb').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : false,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        oncustom : 'refresh-height', //bind 'refresh-height' event (triggered to the the customizer preview frame)
+      });
+
+      //POST GRID IMAGES
+      $('.tc-grid-figure').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        oncustom : 'smartload',
+        enableGoldenRatio : true,
+        goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
+      } );
     }, 300 );
 
-   /* $(window).resize(function(){
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( '.tc-rectangular-thumb > img' );
-        //POST GRID IMAGES
-        $('.tc-grid-figure').centerImages();
-    });*/
-    //bind 'refresh-height' event (triggered from the customizer)
-    $('.tc-rectangular-thumb').on('refresh-height' , function(){
-        //RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-        $('.tc-rectangular-thumb').centerImages( { imgSel : '.tc-rectangular-thumb > img' } );
-    });
+    //SLIDER
+    //adds a specific class to the carousel when automatic centering is enabled
+    $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
+
+    setTimeout( function() {
+      $( '.carousel .carousel-inner').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        imgSel : '.item .carousel-image img',
+        oncustom : ['slid'],
+        defaultCSSVal : { width : '100%' , height : 'auto' }
+      } );
+      $('.tc-slider-loader-wrapper').hide();
+    } , 50);
 
 
     //Img Smart Load
     if ( 1 == _p.imgSmartLoadEnabled )
       $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
+
 
     //DROP CAPS
     if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
@@ -289,24 +314,7 @@ jQuery(function ($) {
         });
     }
 
-
-
-    //SLIDER
-    //Enable slides centering if option is checked in the customizer.
-    if ( 1 == _p.CenterSlides ) {
-      //adds a specific class to the carousel when automatic centering is enabled
-      $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
-
-      setTimeout( function() {
-          $( '.carousel .carousel-inner').centerImages( {
-            imgSel : '.item .carousel-image img',
-            oncustom : ['slid'],
-            defaultCSSVal : { width : '100%' , height : 'auto' }
-          } );
-          $('.tc-slider-loader-wrapper').hide();
-      } , 50);
-    }//end of center slides
-
+    //SLIDER ARROWS
     function _center_slider_arrows() {
         if ( 0 === $('.carousel').length )
             return;

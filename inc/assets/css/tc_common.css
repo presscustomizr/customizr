@@ -5838,6 +5838,7 @@ footer#footer .colophon .social-block a {
 }
 .thumb-wrapper img {
   z-index: 90;
+  position: relative;
 }
 .thumb-wrapper.no-effect img {
   min-height: initial;
@@ -6320,6 +6321,7 @@ img.h-centered {
 img.v-centered {
   height: auto!important;
   max-height: none!important;
+  vertical-align: top;
 }
 /* POST GRID */
 .tc-grid {
@@ -6453,9 +6455,6 @@ img.v-centered {
   left: 0;
   width: 100%;
   height: 100%;
-}
-.tc-grid .entry-title {
-  text-align: center;
 }
 .tc-is-mobile .tc-post-list-grid article.tc-grid figure figcaption > a {
   -webkit-transition-property: width;

@@ -12,290 +12,465 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_post_list' ) ) :
-  class TC_post_list {
-      static $instance;
-      function __construct () {
-        self::$instance =& $this;
-        //Set customizer options (since 3.2.0)
-        add_action( 'wp'                              , array( $this, 'tc_set_post_list_options'));
-        //displays the article with filtered layout : content + thumbnail
-        add_action ( '__loop'                         , array( $this , 'tc_post_list_display'));
-        //Include attachments in search results
-        add_filter ( 'pre_get_posts'                  , array( $this , 'tc_include_attachments_in_search' ));
-        //Include all post types in archive pages
-        add_filter ( 'pre_get_posts'                  , array( $this , 'tc_include_cpt_in_lists' ));
+class TC_post_list {
+  static $instance;
+  function __construct () {
+    self::$instance =& $this;
+    //Set new image size can be set here ( => wp hook would be too late) (since 3.2.0)
+    add_action( 'init'                    , array( $this, 'tc_set_thumb_early_options') );
+    //modify the query with pre_get_posts
+    add_action( 'wp_loaded'               , array( $this, 'tc_set_early_hooks') );
+    //Set __loop hooks and customizer options (since 3.2.0)
+    add_action( 'wp'                      , array( $this, 'tc_set_post_list_hooks'));
+  }
+
+
+
+  /***************************
+  * POST LIST HOOK SETUP
+  ****************************/
+  /**
+  * hook : init
+  * @return void
+  *
+  * @package Customizr
+  * @since Customizr 3.2.6
+  */
+  function tc_set_thumb_early_options() {
+    //Set thumb size depending on the customizer thumbnail position options (since 3.2.0)
+    add_filter ( 'tc_thumb_size_name'             , array( $this , 'tc_set_thumb_size') );
+  }
+
+
+  /**
+  * Set __loop hooks and various filters based on customizer options
+  * hook : wp_loaded
+  *
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_set_early_hooks() {
+    //Include attachments in search results
+    add_filter ( 'pre_get_posts'         , array( $this , 'tc_include_attachments_in_search' ));
+    //Include all post types in archive pages
+    add_filter ( 'pre_get_posts'         , array( $this , 'tc_include_cpt_in_lists' ));
+  }
+
+
+  /**
+  * Set __loop hooks and various filters based on customizer options
+  * hook : wp
+  *
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_set_post_list_hooks() {
+    if ( ! $this -> tc_post_list_controller() )
+      return;
+    //displays the article with filtered layout : content + thumbnail
+    add_action ( '__loop'               , array( $this , 'tc_prepare_section_view'));
+
+    //based on customizer user options
+    add_filter( 'tc_post_list_layout'   , array( $this , 'tc_set_post_list_layout') );
+    add_filter( 'post_class'            , array( $this , 'tc_set_content_class') );
+    add_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
+    add_filter( 'post_class'            , array( $this , 'tc_add_thumb_shape_name') );
+
+    //add current context to the body class
+    add_filter( 'body_class'            , array( $this , 'tc_add_post_list_context') );
+    //Set thumb shape with customizer options (since 3.2.0)
+    add_filter( 'tc_post_thumb_wrapper' , array( $this , 'tc_set_thumb_shape'), 10 , 2 );
+    //Set thumbnail specific design based on user options
+    add_filter( 'tc_user_options_style'       , array( $this , 'tc_write_thumbnail_inline_css') );
+    // => filter the thumbnail inline style tc_post_thumb_inline_style and replace width:auto by width:100%
+    // 3 args = $style, $_width, $_height
+    add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'tc_change_thumbnail_inline_css_width'), 10, 3 );
+  }
+
+
+  /***************************
+  * POST LIST MODEL
+  ****************************/
+  /**
+  * Prepare default posts lists view
+  * hook : __loop
+  * inside loop
+  * @package Customizr
+  * @since Customizr 3.0.10
+  */
+  function tc_prepare_section_view() {
+    global $post;
+    if ( ! isset( $post ) || empty( $post ) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_post_list_controller() , $post ) )
+      return;
+
+    //get the filtered post list layout
+    $_layout        = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
+    $_content_model = $this -> tc_get_content_model( $_layout );
+    $_thumb_model   = $this -> tc_show_thumb() ? TC_post_thumbnails::$instance -> tc_get_thumbnail_model() : array();
+
+    $this -> tc_render_section_view( $_layout, $_content_model, $_thumb_model );
+  }
+
+
+  /**
+  * Return the default post list model for the content
+  * inside loop
+  * @return array() "_layout" , "_show_thumb" , "_css_class"
+  * @package Customizr
+  * @since Customizr 3.3.2
+  */
+  private function tc_get_content_model($_layout) {
+    $_content      = $this -> tc_show_excerpt() ? get_the_excerpt() : get_the_content();
+
+    //what is determining the layout ? if no thumbnail then full width + filter's conditions
+    $_layout_class = $this -> tc_show_thumb() ? $_layout['content'] : 'span12';
+    $_layout_class = implode( " " , apply_filters( 'tc_post_list_content_class', array($_layout_class) , $this -> tc_show_thumb() , $_layout ) );
+
+    //display an icon for div if there is no title
+    $_icon_class    = in_array(get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' )) ? apply_filters( 'tc_post_list_content_icon', 'format-icon' ) :'';
+
+    return compact( "_layout_class" , "_icon_class" , "_content" );
+  }
+
+
+
+
+  /**
+  * @return boolean whether excerpt instead of full content
+  * @package Customizr
+  * @since Customizr 3.3.2
+  */
+  private function tc_show_excerpt() {
+    //When do we show the post excerpt?
+    //1) when set in options
+    //2) + other filters conditions
+    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( tc__f( '__get_option' , 'tc_post_list_length' ) ) );
+  }
+
+
+  /**
+  * @return boolean
+  * @package Customizr
+  * @since Customizr 3.3.2
+  */
+  private function tc_show_thumb() {
+    //when do we display the thumbnail ?
+    //1) there must be a thumbnail
+    //2) the excerpt option is not set to full
+    //3) user settings in customizer
+    //4) filter's conditions
+    return apply_filters( 'tc_show_thumb', array_product(
+        array(
+          $this -> tc_show_excerpt(),
+          TC_post_thumbnails::$instance -> tc_has_thumb(),
+          0 != esc_attr( tc__f( '__get_option' , 'tc_post_list_show_thumb' ) )
+        )
+      )
+    );
+  }
+
+
+  /***************************
+  * POST LIST VIEW
+  ****************************/
+  /**
+  * Render each post list section view
+  *
+  * @package Customizr
+  * @since Customizr 3.0.10
+  */
+  private function tc_render_section_view( $_layout, $_content_model, $_thumb_model ) {
+    global $wp_query;
+    //Renders the filtered layout for content + thumbnail
+    if ( isset($_layout['alternate']) && $_layout['alternate'] ) {
+      if ( 0 == $wp_query->current_post % 2 ) {
+        $this -> tc_render_content_view( $_content_model ) ;
+        TC_post_thumbnails::$instance -> tc_render_thumb_view( $_thumb_model , $_layout['thumb'] );
       }
-
-
-      /**
-      * Set various filters
-      * hook : wp
-      *
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      function tc_set_post_list_options() {
-        if ( ! $this -> tc_post_list_controller() )
-          return;
-        //based on customizer user options
-        add_filter( 'tc_post_list_layout'   , array( $this , 'tc_set_post_list_layout') );
-        add_filter( 'post_class'            , array( $this , 'tc_set_content_class') );
-        add_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
-        add_filter( 'post_class'            , array( $this , 'tc_add_thumb_shape_name') );
-
-        //add current context to the body class
-        add_filter( 'body_class'            , array( $this , 'tc_add_post_list_context') );
+      else {
+        TC_post_thumbnails::$instance -> tc_render_thumb_view( $_thumb_model , $_layout['thumb'] );
+        $this -> tc_render_content_view( $_content_model );
       }
+    }
+    else if ( isset($_layout['show_thumb_first']) && ! $_layout['show_thumb_first'] ) {
+        $this -> tc_render_content_view( $_content_model );
+        TC_post_thumbnails::$instance -> tc_render_thumb_view( $_thumb_model , $_layout['thumb'] );
+    }
+    else {
+      TC_post_thumbnails::$instance -> tc_render_thumb_view( $_thumb_model , $_layout['thumb'] );
+      $this -> tc_render_content_view( $_content_model );
+    }
 
-
-      /**
-      * hook : body_class
-      * @return  array of classes
-      *
-      * @package Customizr
-      * @since Customizr 3.3.2
-      */
-      function tc_add_post_list_context( $_classes ) {
-        return array_merge( $_classes , array( 'tc-post-list-context' ) );
-      }
-
-
-      /**
-      * @return  bool
-      * Controller of the posts list view
-      *
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      public function tc_post_list_controller() {
-        global $wp_query;
-        //must be archive or search result. Returns false if home is empty in options.
-        return ! is_singular()
-              && ! is_404()
-              && 0 != $wp_query -> post_count
-              && ! tc__f( '__is_home_empty');
-      }
-
-
-      /**
-      * The default template for displaying posts lists.
-      *
-      * @package Customizr
-      * @since Customizr 3.0.10
-      */
-      function tc_post_list_display() {
-        global $post;
-        if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_post_list_controller() , $post ) )
-          return;
-
-        global $wp_query;
-
-        //When do we show the post excerpt?
-        //1) when set in options
-        //2) + other filters conditions
-        $tc_show_post_list_excerpt      = ( 'full' == esc_attr( tc__f( '__get_option' , 'tc_post_list_length' )) ) ? false : true;
-        $tc_show_post_list_excerpt      = apply_filters( 'tc_show_post_list_excerpt', $tc_show_post_list_excerpt );
-
-        //get the thumbnail data (src, width, height) if any
-        $thumb_data                     = TC_post_thumbnails::$instance -> tc_get_thumbnail_data();
-
-        //get the filtered post list layout
-        $layout                         = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
-
-        //when do we display the thumbnail ?
-        //1) there must be a thumbnail
-        //2) the excerpt option is not set to full
-        //3) user settings in customizer
-        //4) filter's conditions
-        $tc_show_post_list_thumb        = $tc_show_post_list_excerpt ? true : false;
-        $tc_show_post_list_thumb        = empty($thumb_data[0]) ? false : $tc_show_post_list_thumb;
-        $tc_show_post_list_thumb        = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_list_show_thumb' ) ) ) ? false : $tc_show_post_list_thumb;
-        $tc_show_post_list_thumb        = apply_filters( 'tc_show_post_list_thumb', $tc_show_post_list_thumb );
-
-        //what is determining the layout ? if no thumbnail then full width + filter's conditions
-        $post_list_content_class        = $tc_show_post_list_thumb  ? $layout['content'] : 'span12';
-        $post_list_content_class        = implode( " " , apply_filters( 'tc_post_list_content_class', array($post_list_content_class) , $tc_show_post_list_thumb , $layout ) );
-
-        //Renders the filtered layout for content + thumbnail
-        if ( isset($layout['alternate']) && $layout['alternate'] ) {
-          if ( 0 == $wp_query->current_post % 2 ) {
-            $this -> tc_display_post_content($post_list_content_class, $tc_show_post_list_excerpt);
-            $tc_show_post_list_thumb ? TC_post_thumbnails::$instance -> tc_display_post_thumbnail( $thumb_data , $layout['thumb'] ) : false;
-          }
-          else {
-            $tc_show_post_list_thumb ? TC_post_thumbnails::$instance -> tc_display_post_thumbnail( $thumb_data , $layout['thumb'] ) : false;
-            $this -> tc_display_post_content($post_list_content_class, $tc_show_post_list_excerpt);
-          }
-        } else if ( isset($layout['show_thumb_first']) && !$layout['show_thumb_first'] ) {
-            $this -> tc_display_post_content($post_list_content_class, $tc_show_post_list_excerpt);
-            $tc_show_post_list_thumb ? TC_post_thumbnails::$instance -> tc_display_post_thumbnail( $thumb_data , $layout['thumb'] ) : false;
-
-        }
-        else {
-          $tc_show_post_list_thumb ? TC_post_thumbnails::$instance -> tc_display_post_thumbnail( $thumb_data , $layout['thumb'] ) : false;
-          $this -> tc_display_post_content($post_list_content_class, $tc_show_post_list_excerpt);
-        }
-
-        //renders the hr separator after each article
-        echo apply_filters( 'tc_post_list_separator', '<hr class="featurette-divider '.current_filter().'">' );
-
-      }
+    //renders the hr separator after each article
+    echo apply_filters( 'tc_post_list_separator', '<hr class="featurette-divider '.current_filter().'">' );
+  }
 
 
 
+  /**
+  * Displays the posts list content
+  *
+  * @package Customizr
+  * @since Customizr 3.0
+  */
+  private function tc_render_content_view( $_content_model ) {
+    //extract "_layout_class" , "_icon_class" , "_content"
+    extract($_content_model);
+    $_sub_class = 'entry-summary';
+
+    if ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) )
+    {
+      $_sub_class = 'entry-content';
+      $_content   = '<p class="format-icon"></p>';
+    }
+    elseif ( in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside' ) ) )
+    {
+      $_sub_class = sprintf( 'entry-content %s' , $_icon_class );
+      $_content   = sprintf( '%1$s%2$s',
+        get_the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ),
+        wp_link_pages( array(
+          'before'  => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ),
+          'after'   => '</div>',
+          'echo'    => 0
+          ) )
+      );
+    }
+
+    ob_start();
+    ?>
+    <section class="tc-content <?php echo $_layout_class; ?>">
+      <?php
+        do_action( '__before_content' );
+
+          printf('<section class="%1$s">%2$s</section>',
+            $_sub_class,
+            $_content
+          );
+
+        do_action( '__after_content' );
+    ?>
+    </section>
+    <?php
+    $_html = ob_get_contents();
+    if ($_html) ob_end_clean();
+    echo apply_filters( 'tc_post_list_content', $_html, $_content_model );
+  }
 
 
 
-      /**
-      * Displays the posts list content
-      *
-      * @package Customizr
-      * @since Customizr 3.0
-      */
-      function tc_display_post_content( $post_list_content_class, $tc_show_post_list_excerpt ) {
-        ob_start();
-        ?>
-        <section class="tc-content <?php echo $post_list_content_class; ?>">
-            <?php do_action( '__before_content' ); ?>
+  /******************************
+  * SETTERS / HELPERS / CALLBACKS
+  *******************************/
+  /**
+  * hook : tc_post_thumb_wrapper
+  * ! 2 cases here : posts lists and single posts
+  *
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
+    $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
 
-            <?php //display an icon for div if there is no title
-                    $icon_class = in_array(get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' )) ? apply_filters( 'tc_post_list_content_icon', 'format-icon' ) :'';
-                ?>
-            <?php if ( apply_filters('tc_force_show_post_list_excerpt', ! get_post_format() ) ) :  // Only display Excerpts for lists of posts with format different than quote, status, link, aside ?>
+    //1) check if shape is rounded, squared on rectangular
+    if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
+      return $thumb_wrapper;
 
-                <section class="entry-summary">
-                    <?php if ( !$tc_show_post_list_excerpt ) : ?>
-                      <?php the_content(); ?>
-                    <?php else : ?>
-                      <?php the_excerpt(); ?>
-                    <?php endif; ?>
-                </section><!-- .entry-summary -->
-
-            <?php elseif ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) ) : ?>
-
-                <section class="entry-content">
-                    <p class="format-icon"></p>
-                </section><!-- .entry-content -->
-
-            <?php else : ?>
-
-                <section class="entry-content <?php echo $icon_class ?>">
-                    <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
-                    <?php wp_link_pages( array( 'before' => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>
-                </section><!-- .entry-content -->
-            <?php endif; ?>
-
-            <?php do_action( '__after_content' ) ?>
-
-        </section>
-
-        <?php
-        $html = ob_get_contents();
-        if ($html) ob_end_clean();
-        echo apply_filters( 'tc_post_list_content', $html, $post_list_content_class, $tc_show_post_list_excerpt );
-      }
+    $_position = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
+    return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
+          get_permalink( get_the_ID() ),
+          esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
+          $thumb_img,
+          ( 'top' == $_position || 'bottom' == $_position ) ? '' : implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('') ) )
+    );
+  }
 
 
-      /**
-      * Includes Custom Posts Types (set to public and excluded_from_search_result = false) in archives and search results
-      * In archives, it handles the case where a CPT has been registered and associated with an existing built-in taxonomy like category or post_tag
-      *
-      * @package Customizr
-      * @since Customizr 3.1.20
-      */
-      function tc_include_cpt_in_lists($query) {
-        if (
-          is_admin()
-          || ! $query->is_main_query()
-          || ! apply_filters('tc_include_cpt_in_archives' , false)
-          || ! ( $query->is_search || $query->is_archive )
-          )
-          return;
-
-        //filter the post types to include, they must be public and not excluded from search
-        $post_types     = get_post_types( array( 'public' => true, 'exclude_from_search' => false) );
-
-        $query->set('post_type', $post_types );
-      }
+  /**
+  * hook : body_class
+  * @return  array of classes
+  *
+  * @package Customizr
+  * @since Customizr 3.3.2
+  */
+  function tc_add_post_list_context( $_classes ) {
+    return array_merge( $_classes , array( 'tc-post-list-context' ) );
+  }
 
 
-
-      /**
-      * Includes attachments in search results
-      *
-      * @package Customizr
-      * @since Customizr 3.0.10
-      */
-      function tc_include_attachments_in_search( $query ) {
-          if (! is_search() || ! apply_filters( 'tc_include_attachments_in_search_results' , true ) )
-            return $query;
-
-          // add post status 'inherit'
-          $post_status = $query->get( 'post_status' );
-          if ( ! $post_status || 'publish' == $post_status )
-            $post_status = array( 'publish', 'inherit' );
-          if ( is_array( $post_status ) )
-            $post_status[] = 'inherit';
-
-          $query->set( 'post_status', $post_status );
-
-          return $query;
-      }
+  /**
+  * @return  bool
+  * Controller of the posts list view
+  *
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  public function tc_post_list_controller() {
+    global $wp_query;
+    //must be archive or search result. Returns false if home is empty in options.
+    return ! is_singular()
+          && ! is_404()
+          && 0 != $wp_query -> post_count
+          && ! tc__f( '__is_home_empty');
+  }
 
 
+  /**
+  * hook : pre_get_posts
+  * Includes Custom Posts Types (set to public and excluded_from_search_result = false) in archives and search results
+  * In archives, it handles the case where a CPT has been registered and associated with an existing built-in taxonomy like category or post_tag
+  * @return modified query object
+  * @package Customizr
+  * @since Customizr 3.1.20
+  */
+  function tc_include_cpt_in_lists( $query ) {
+    if (
+      is_admin()
+      || ! $query->is_main_query()
+      || ! apply_filters('tc_include_cpt_in_archives' , false)
+      || ! ( $query->is_search || $query->is_archive )
+      )
+      return;
 
-      /**
-      * Callback of filter post_class
-      *
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      function tc_add_thumb_shape_name( $_classes ) {
-        return array_merge( $_classes , array(esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') ) ) );
-      }
+    //filter the post types to include, they must be public and not excluded from search
+    $post_types     = get_post_types( array( 'public' => true, 'exclude_from_search' => false) );
 
-
-
-      /**
-      * callback of excerpt_length hook
-      *
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      function tc_set_excerpt_length( $length ) {
-        $_custom = esc_attr( tc__f( '__get_option' , 'tc_post_list_excerpt_length' ) );
-        return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
-      }
-
+    $query->set('post_type', $post_types );
+  }
 
 
-      /**
-      * Callback of filter tc_post_list_layout
-      *
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      function tc_set_post_list_layout($layout) {
-        $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
-        $layout['alternate']        = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_alternate' ) ) ) ? false : true;
-        $layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
-        $layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $layout['content'] : 'span12';
-        $layout['thumb']            = ( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $layout['thumb'];
-        return $layout;
-      }
+  /**
+  * hook : pre_get_posts
+  * Includes attachments in search results
+  * @return modified query object
+  * @package Customizr
+  * @since Customizr 3.0.10
+  */
+  function tc_include_attachments_in_search( $query ) {
+      if (! is_search() || ! apply_filters( 'tc_include_attachments_in_search_results' , true ) )
+        return $query;
+
+      // add post status 'inherit'
+      $post_status = $query->get( 'post_status' );
+      if ( ! $post_status || 'publish' == $post_status )
+        $post_status = array( 'publish', 'inherit' );
+      if ( is_array( $post_status ) )
+        $post_status[] = 'inherit';
+
+      $query->set( 'post_status', $post_status );
+
+      return $query;
+  }
 
 
+  /**
+  * Callback of filter post_class
+  * @return  array() of classes
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_add_thumb_shape_name( $_classes ) {
+    return array_merge( $_classes , array(esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') ) ) );
+  }
 
-      /**
-      * Callback of WP filter post_class
-      *
-      * @package Customizr
-      * @since Customizr 3.2.0
-      */
-      function tc_set_content_class( $_classes ) {
-        $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
-        return array_merge($_classes , array( "thumb-position-{$_position}"));
-      }
 
-  }//end of class
+  /**
+  * hook : excerpt_length hook
+  * @return string
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_set_excerpt_length( $length ) {
+    $_custom = esc_attr( tc__f( '__get_option' , 'tc_post_list_excerpt_length' ) );
+    return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
+  }
+
+
+  /**
+  * hook : tc_post_list_layout
+  * @return array() of layout data
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_set_post_list_layout( $_layout ) {
+    $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
+    $_layout['alternate']        = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_alternate' ) ) ) ? false : true;
+    $_layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
+    $_layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
+    $_layout['thumb']            = ( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $_layout['thumb'];
+    return $_layout;
+  }
+
+
+  /**
+  * hook : WP filter post_class
+  * @return array() of classes
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_set_content_class( $_classes ) {
+    $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
+    return array_merge( $_classes , array( "thumb-position-{$_position}") );
+  }
+
+
+  /**
+  * hook tc_post_thumb_inline_style (declared in TC_post_thumbnails)
+  * Replace default widht:auto by width:100%
+  * @param array of args passed by apply_filters_ref_array method
+  * @return  string
+  *
+  * @package Customizr
+  * @since Customizr 3.2.6
+  */
+  function tc_change_thumbnail_inline_css_width( $_style, $_width, $_height) {
+    //handled with javascript if tc_center_img activated
+    if ( esc_attr( tc__f( '__get_option' , 'tc_center_img') ) )
+      return $_style;
+
+    $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
+    $_is_rectangular = ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') ? false : true;
+    if ( ! is_single() && ! $_is_rectangular )
+      return $_style;
+
+    return sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width:100%%;max-height: none;', $_width, $_height );
+  }
+
+
+  /**
+  * hook : tc_user_options_style
+  * @return css string
+  *
+  * @package Customizr
+  * @since Customizr 3.2.6
+  */
+  function tc_write_thumbnail_inline_css( $_css ) {
+    $_list_thumb_height     = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_height' ) );
+    $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
+
+    return sprintf("%s\n%s",
+      $_css,
+      ".tc-rectangular-thumb {
+        max-height: {$_list_thumb_height}px;
+        height :{$_list_thumb_height}px
+      }\n"
+    );
+  }
+
+
+  /**
+  * hook : tc_thumb_size_name (declared in TC_post_thumbnails)
+  *
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_set_thumb_size( $_default_size ) {
+    $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
+    if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
+      return $_default_size;
+
+    $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
+    return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
+  }
+
+}//end of class
 endif;
