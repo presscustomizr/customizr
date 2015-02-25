@@ -803,6 +803,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'When checked, this option displays a loading icon when the slides are being setup.' , 'customizr' ),
+              ),
+              'tc_theme_options[tc_center_img]'  =>  array(
+                                'default'       => 1,
+                                'control'   => 'TC_controls' ,
+                                'label'       => __( "Enable/disable dynamic image centering on any devices" , "customizr" ),
+                                'section'     => 'tc_image_settings' ,
+                                'type'        => 'checkbox' ,
+                                'notice'    => __( 'This option dynamically centers your images on any devices vertically or horizontally (without stretching them) according to their initial dimensions.' , 'customizr' ),
               )
       );//end of images options
       $images_option_map = apply_filters( 'tc_images_option_map', $images_option_map , $get_default );
@@ -835,17 +843,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'tc_responsive' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'On responsive mode, for smartphone viewport, the sidebars are moved after the main content block.' , 'customizr' ),
-              ),
-
-              'tc_theme_options[tc_center_slides]'  =>  array(
-                                'default'       => 1,
-                                'control'   => 'TC_controls' ,
-                                'label'       => __( "Enable/disable slider's slides centering on any devices" , "customizr" ),
-                                'section'     => 'tc_responsive' ,
-                                'type'        => 'checkbox' ,
-                                'notice'    => __( 'This option centers your slider (carousel) pictures vertically and horizontally on any devices when displayed in full width mode' , 'customizr' ),
               )
-
       );//end of links options
       $responsive_option_map = apply_filters( 'tc_responsive_option_map', $responsive_option_map , $get_default );
 

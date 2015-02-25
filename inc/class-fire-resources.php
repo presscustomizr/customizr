@@ -181,7 +181,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	          	'SliderHover'			=> apply_filters( 'tc_stop_slider_hover', true ),
 	          	'SmoothScroll'			=> $smooth_scroll,
 	          	'ReorderBlocks' 		=> esc_attr( tc__f( '__get_option' , 'tc_block_reorder') ),
-	          	'CenterSlides' 			=> esc_attr( tc__f( '__get_option' , 'tc_center_slides') ),
+	          	'centerAllImg' 			=> esc_attr( tc__f( '__get_option' , 'tc_center_img') ),
 	          	'HasComments' 			=> $has_post_comments,
 	          	'LeftSidebarClass' 		=> $left_sb_class,
 	          	'RightSidebarClass' 	=> $right_sb_class,
