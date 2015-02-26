@@ -28,7 +28,7 @@ var TCParams = TCParams || {
   dropcapMinWords:50,
   dropcapSkipSelectors: {
     tags : ['IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'],
-    classes : [],
+    classes : ['btn'],
     ids : []
   },
   imgSmartLoadEnabled:0,
