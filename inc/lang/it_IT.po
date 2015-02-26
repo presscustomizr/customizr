@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.1\n"
-"POT-Creation-Date: 2015-02-26 10:53+0100\n"
-"PO-Revision-Date: 2015-02-26 10:55+0100\n"
+"POT-Creation-Date: 2015-02-26 19:12+0100\n"
+"PO-Revision-Date: 2015-02-26 19:17+0100\n"
 "Last-Translator: Rocco Aliberti\n"
 "Language-Team: ElectricFeet <contact@themesandco.com>\n"
 "Language: it\n"
@@ -326,37 +326,38 @@ msgstr "Carica"
 msgid "Remove"
 msgstr "Elimina"
 
-#: ../admin/class-fire-admin_init.php:84 ../admin/class-fire-admin_init.php:85
+#: ../admin/class-fire-admin_init.php:108
+#: ../admin/class-fire-admin_init.php:109
 msgid "Upgrade WP"
 msgstr "Aggiorna WordPress"
 
-#: ../admin/class-fire-admin_init.php:104
+#: ../admin/class-fire-admin_init.php:128
 msgid "This theme requires WordPress 3.4+"
 msgstr "Questo tema richiede WordPress versione 3.4+"
 
-#: ../admin/class-fire-admin_init.php:107
-#: ../admin/class-fire-admin_init.php:108
+#: ../admin/class-fire-admin_init.php:131
+#: ../admin/class-fire-admin_init.php:132
 msgid "Upgrade Wordpress Now"
 msgstr "Aggiorna WordPress adesso"
 
-#: ../admin/class-fire-admin_init.php:125
-#: ../admin/class-fire-admin_init.php:126
+#: ../admin/class-fire-admin_init.php:149
+#: ../admin/class-fire-admin_init.php:150
 #: ../admin/class-fire-admin_page.php:40
 msgid "About Customizr"
 msgstr "Informazioni su Customizr"
 
-#: ../admin/class-fire-admin_init.php:148
+#: ../admin/class-fire-admin_init.php:172
 #: ../admin/class-fire-admin_page.php:68
 msgid "Need help with Customizr ?"
 msgstr "Hai bisogno di aiuto con Customizr?"
 
-#: ../admin/class-fire-admin_init.php:150
+#: ../admin/class-fire-admin_init.php:174
 #: ../admin/class-fire-admin_page.php:70
 #, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Benvenuto a Customizr %s"
 
-#: ../admin/class-fire-admin_init.php:157
+#: ../admin/class-fire-admin_init.php:181
 #: ../admin/class-fire-admin_page.php:78
 #, php-format
 msgid ""
@@ -374,26 +375,26 @@ msgstr ""
 "bug e apporta miglioramenti. Quindi è probabile che troverai una soluzione "
 "nel forum degli utenti o fra le domande frequenti."
 
-#: ../admin/class-fire-admin_init.php:165
+#: ../admin/class-fire-admin_init.php:189
 #: ../admin/class-fire-admin_page.php:86
 msgid "Read the documentation"
 msgstr "Leggi la documentazione"
 
-#: ../admin/class-fire-admin_init.php:169
+#: ../admin/class-fire-admin_init.php:193
 #: ../admin/class-fire-admin_page.php:90
 msgid "Check the FAQ"
 msgstr "Controlla le domande frequenti"
 
-#: ../admin/class-fire-admin_init.php:174
+#: ../admin/class-fire-admin_init.php:198
 #: ../admin/class-fire-admin_page.php:95
 msgid "Code snippets"
 msgstr "Frammenti di codice"
 
-#: ../admin/class-fire-admin_init.php:177
+#: ../admin/class-fire-admin_init.php:201
 msgid "Discuss in the user forum"
 msgstr "Dialoga nel forum degli utenti"
 
-#: ../admin/class-fire-admin_init.php:185
+#: ../admin/class-fire-admin_init.php:209
 #: ../admin/class-fire-admin_page.php:106
 #, php-format
 msgid ""
@@ -410,7 +411,7 @@ msgstr ""
 "ispirazione nella <a href=\"#showcase\">vetrina di Customizr</a>.<br/"
 ">Divertiti! "
 
-#: ../admin/class-fire-admin_init.php:199
+#: ../admin/class-fire-admin_init.php:223
 #: ../admin/class-fire-admin_page.php:120
 #, php-format
 msgid ""
@@ -420,12 +421,12 @@ msgstr ""
 "Stai usando un child theme di Customizr %1$s : controlla sempre il %2$s dopo "
 "l'aggiornamento per vedere se un function o un template è stato deprecato."
 
-#: ../admin/class-fire-admin_init.php:214
+#: ../admin/class-fire-admin_init.php:238
 #: ../admin/class-fire-admin_page.php:137
 msgid "We need sponsors!"
 msgstr "Diventa sponsor!"
 
-#: ../admin/class-fire-admin_init.php:215
+#: ../admin/class-fire-admin_init.php:239
 #: ../admin/class-fire-admin_page.php:138
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
@@ -436,12 +437,12 @@ msgstr ""
 "strong><br/> Aiutaci a continuare lo sviluppo con una donazione di €20, €50, "
 "o €100."
 
-#: ../admin/class-fire-admin_init.php:222
+#: ../admin/class-fire-admin_init.php:246
 #: ../admin/class-fire-admin_page.php:145
 msgid "Happy user of Customizr?"
 msgstr "Utente soddisfatto di Customizr?"
 
-#: ../admin/class-fire-admin_init.php:223
+#: ../admin/class-fire-admin_init.php:247
 #: ../admin/class-fire-admin_page.php:146
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
@@ -450,29 +451,29 @@ msgstr ""
 "Se sei soddisfatto di Customizr, dillo su wordpress.org scrivendo una "
 "recensione favorevole!"
 
-#: ../admin/class-fire-admin_init.php:228
+#: ../admin/class-fire-admin_init.php:252
 #: ../admin/class-fire-admin_page.php:151
 msgid "Follow us"
 msgstr "Seguici"
 
-#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_init.php:260
 #: ../admin/class-fire-admin_page.php:160
 msgid "Customizr's extensions"
 msgstr "Estensioni di Customizr"
 
-#: ../admin/class-fire-admin_init.php:239
-#: ../admin/class-fire-admin_init.php:248
+#: ../admin/class-fire-admin_init.php:263
+#: ../admin/class-fire-admin_init.php:272
 #: ../admin/class-fire-admin_page.php:163
 #: ../admin/class-fire-admin_page.php:172
 msgid "Visit the extension's page"
 msgstr "Vai alla pagina delle estensioni"
 
-#: ../admin/class-fire-admin_init.php:240
+#: ../admin/class-fire-admin_init.php:264
 #: ../admin/class-fire-admin_page.php:164
 msgid "Easily take your web design one step further"
 msgstr "Fai fare un passo avanti al tuo web design, è facile!"
 
-#: ../admin/class-fire-admin_init.php:241
+#: ../admin/class-fire-admin_init.php:265
 #: ../admin/class-fire-admin_page.php:165
 msgid ""
 "The Customizr's extensions are plugins developed to extend the Customizr "
@@ -485,7 +486,7 @@ msgstr ""
 "possono essere tranquillamente abilitate/disabilitate senza effetti "
 "collaterali per le impostazioni, o le personalizzazioni, preesistenti"
 
-#: ../admin/class-fire-admin_init.php:243
+#: ../admin/class-fire-admin_init.php:267
 #: ../admin/class-fire-admin_page.php:167
 msgid ""
 "These modules are designed to be simple to use for everyone. They are a good "
@@ -496,7 +497,7 @@ msgstr ""
 "Sono un'ottima soluzione per aggiungere personalizzazioni creative senza il "
 "bisogno di immergersi nel codice."
 
-#: ../admin/class-fire-admin_init.php:245
+#: ../admin/class-fire-admin_init.php:269
 #: ../admin/class-fire-admin_page.php:169
 msgid ""
 "Customizr's extensions are installed and upgraded from your WordPress admin, "
@@ -508,24 +509,24 @@ msgstr ""
 "facilmente estensibili con gli hooks e hanno un forum di supporto dedicato "
 "su themesandco.com"
 
-#: ../admin/class-fire-admin_init.php:254
+#: ../admin/class-fire-admin_init.php:278
 #: ../admin/class-fire-admin_page.php:179
 msgid "Customizr Showcase"
 msgstr "Vetrina di Customizr"
 
-#: ../admin/class-fire-admin_init.php:257
-#: ../admin/class-fire-admin_init.php:264
+#: ../admin/class-fire-admin_init.php:281
+#: ../admin/class-fire-admin_init.php:288
 #: ../admin/class-fire-admin_page.php:182
 #: ../admin/class-fire-admin_page.php:189
 msgid "Visit the showcase"
 msgstr "Visita la vetrina di Customizr"
 
-#: ../admin/class-fire-admin_init.php:258
+#: ../admin/class-fire-admin_init.php:282
 #: ../admin/class-fire-admin_page.php:183
 msgid "Find inspiration for your next Customizr based website!"
 msgstr "Trova ispirazione per il prossimo sito basato su Customizr!"
 
-#: ../admin/class-fire-admin_init.php:259
+#: ../admin/class-fire-admin_init.php:283
 #: ../admin/class-fire-admin_page.php:184
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
@@ -534,7 +535,7 @@ msgstr ""
 "Questa vetrina di Customizr mostra quello che puoi fare con Customizr e "
 "aiuta a trovare ispirazione per nuovi disegni."
 
-#: ../admin/class-fire-admin_init.php:261
+#: ../admin/class-fire-admin_init.php:285
 #: ../admin/class-fire-admin_page.php:186
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
@@ -543,18 +544,18 @@ msgstr ""
 "Credi di aver realizzato un sito straordinario che può ispirare gli altri? "
 "Inoltrare il tuo sito per una recensione è facile e veloce."
 
-#: ../admin/class-fire-admin_init.php:271
+#: ../admin/class-fire-admin_init.php:295
 #: ../admin/class-fire-admin_page.php:256
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Changelog della version %1$s"
 
-#: ../admin/class-fire-admin_init.php:280
+#: ../admin/class-fire-admin_init.php:304
 #: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Vai alla bacheca &rarr; Home"
 
-#: ../admin/class-fire-admin_init.php:280
+#: ../admin/class-fire-admin_init.php:304
 #: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard"
 msgstr "Vai alla bacheca"
@@ -1350,8 +1351,8 @@ msgid "Social links in footer"
 msgstr "Social links nel piè di pagina"
 
 #: ../class-fire-utils_settings_map.php:770
-msgid "Enable/disable lightbox effect on images"
-msgstr "Abilita/disabilita l'effetto lightbox per le immagini"
+msgid "Lightbox effect on images"
+msgstr "Effetto lightbox per le immagini"
 
 #: ../class-fire-utils_settings_map.php:773
 msgid ""
@@ -1373,8 +1374,8 @@ msgstr ""
 "immagini nella finestra"
 
 #: ../class-fire-utils_settings_map.php:788
-msgid "Enable/disable retina support"
-msgstr "Abilita/disabilita il supporto retina"
+msgid "High resolution (Retina) support"
+msgstr "Supporto per le immagini ad alta risoluzione (Retina)"
 
 #: ../class-fire-utils_settings_map.php:792
 msgid ""
@@ -1414,9 +1415,8 @@ msgstr ""
 "fase di setup delle diapositive."
 
 #: ../class-fire-utils_settings_map.php:810
-msgid "Enable/disable dynamic image centering on any devices"
-msgstr ""
-"Abilita/disabilita il centraggio delle immagini per qualsiasi dispositivo"
+msgid "Dynamic image centering on any devices"
+msgstr "Centraggio dinamico delle immagini per qualsiasi dispositivo"
 
 #: ../class-fire-utils_settings_map.php:813
 msgid ""
@@ -1428,8 +1428,8 @@ msgstr ""
 "dimensioni iniziali."
 
 #: ../class-fire-utils_settings_map.php:826
-msgid "Enable/disable smooth scroll on click"
-msgstr "Abilita/disabilita lo scorrimento morbido al click del mouse"
+msgid "Smooth scroll on click"
+msgstr "Scorrimento morbido al click del mouse"
 
 #: ../class-fire-utils_settings_map.php:829
 msgid ""
@@ -1440,16 +1440,17 @@ msgstr ""
 "quando clicchi su un collegamento ad un'ancora della stessa pagina."
 
 #: ../class-fire-utils_settings_map.php:842
-msgid "Enable/disable blocks reordering on small devices"
-msgstr "Abilita/disabilita il riordinamento dei blocchi su piccoli dispositivi"
+msgid "Dynamic sidebar reordering on small devices"
+msgstr ""
+"Riordinamento dinamico delle barre laterali su dispositivi a schermo ridotto"
 
 #: ../class-fire-utils_settings_map.php:845
 msgid ""
-"On responsive mode, for smartphone viewport, the sidebars are moved after "
-"the main content block."
+"Activate this option to move the sidebars (if any) after the main content "
+"block, for smartphones or tablets viewport."
 msgstr ""
-"In modalità responsive, sugli smartphone per esempio, le barre laterali "
-"vengono spostate al di sotto del blocco del contenuto principale."
+"Attiva questa opzione per spostare le barre laterali (se presenti) al di "
+"sotto del blocco principale, negli smarphones o nei tablet."
 
 #: ../class-fire-utils_settings_map.php:859
 #: ../class-fire-utils_settings_map.php:2058
@@ -2758,6 +2759,16 @@ msgstr "Pagina iniziale"
 #: ../parts/class-header-menu.php:129
 msgid "Add a menu"
 msgstr "Aggiungi un menu"
+
+#~ msgid "Enable/disable retina support"
+#~ msgstr "Abilita/disabilita il supporto retina"
+
+#~ msgid ""
+#~ "On responsive mode, for smartphone viewport, the sidebars are moved after "
+#~ "the main content block."
+#~ msgstr ""
+#~ "In modalità responsive, sugli smartphone per esempio, le barre laterali "
+#~ "vengono spostate al di sotto del blocco del contenuto principale."
 
 #~ msgid ""
 #~ "This option centers your slider (carousel) pictures vertically and "
