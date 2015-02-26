@@ -393,11 +393,11 @@ if ( ! class_exists( 'TC_utils' ) ) :
           global $wp_query;
           //if we are displaying an attachement, we use the parent post/page layout
           if ( $post && 'attachment' == $post -> post_type ) {
-            $tc_specific_post_layout  = esc_attr(get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ));
+            $tc_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
           }
           //for a singular post or page OR for the posts page
           elseif ( is_singular() || $wp_query -> is_posts_page ) {
-            $tc_specific_post_layout  = esc_attr(get_post_meta( $post_id, $key = 'layout_key' , $single = true ));
+            $tc_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
           }
 
           //checks if we display home page, either posts or static page and apply the customizer option
@@ -520,7 +520,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_get_post_type() {
         global $post;
 
-        if ( !isset($post) )
+        if ( ! isset($post) )
           return;
 
         return $post -> post_type;

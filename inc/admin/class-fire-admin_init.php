@@ -36,6 +36,30 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         add_action( 'after_setup_theme'                   , array( $this, 'tc_add_editor_style') );
 
         add_filter( 'tiny_mce_before_init'                , array( $this, 'tc_user_defined_tinymce_css') );
+        //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
+        add_action ( 'save_post'                          , array( $this , 'tc_refresh_thumbnail') );
+      }
+
+
+
+      /*
+      * @return void
+      * updates the tc-thumb-fld post meta with the relevant thumb id and type
+      * @package Customizr
+      * @since Customizr 3.3.2
+      */
+      function tc_refresh_thumbnail( $post_id ) {
+        // If this is just a revision, don't send the email.
+        if ( wp_is_post_revision( $post_id ) )
+          return;
+        if ( ! class_exists( 'TC_post_thumbnails' ) ) {
+          if ( TC___::$instance -> tc_is_child() && file_exists( TC_BASE_CHILD . 'inc/parts/class-content-post_thumbnails.php' ) )
+            require_once ( TC_BASE_CHILD . 'inc/parts/class-content-post_thumbnails.php' ) ;
+          else
+            require_once ( TC_BASE . 'inc/parts/class-content-post_thumbnails.php' );
+        }
+        new TC_post_thumbnails;
+        TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id, true );
       }
 
 
