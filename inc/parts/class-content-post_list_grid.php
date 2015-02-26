@@ -66,8 +66,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           remove_filter( 'tc_thumb_size_name'       , array( TC_post_thumbnails::$instance, 'tc_set_thumb_size') );
           add_filter( 'tc_thumb_size_name'          , array( $this, 'tc_set_thumb_size_name') );
           add_filter( 'tc_thumb_size'               , array( $this, 'tc_set_thumb_size') );
-          //remove inline style for grid thumbs (handled in javascript on page load)
-          add_filter( 'tc_post_thumb_inline_style'  , '__return_false' );
 
           // SINGLE POST CONTENT IN GRID
           $_content_priorities = apply_filters('tc_grid_post_content_priorities' , array( 'content' => 20, 'link' =>30 ));
@@ -160,16 +158,14 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               add_action( "{$hook_prefix}_grid_single_post",  array( TC_headings::$instance, 'tc_render_headings_view' ) );
           }
 
-          // THUMBNAIL : get the thumbnail data (src, width, height) if any
-          $_thumb_html     = '';
-          //may be print format icon
-          if ( ! TC_post_thumbnails::$instance -> tc_has_thumb() )
-            $_thumb_html = sprintf('<div class="tc-grid-icon format-icon"></div>',
+          // THUMBNAIL : cache the post format icon first
+          $_thumb_html     = sprintf('<div class="tc-grid-icon format-icon"></div>',
               get_post_format()
-            );
-          else {
+          );
+          //add thumbnail html (src, width, height) if any
+          if ( TC_post_thumbnails::$instance -> tc_has_thumb() ) {
             $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
-            $_thumb_html  = $_thumb_model['tc_thumb'];
+            $_thumb_html  .= $_thumb_model['tc_thumb'];
           }
 
           // CONTENT : get the figcaption content => post content

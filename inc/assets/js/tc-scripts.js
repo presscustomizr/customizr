@@ -1687,6 +1687,9 @@ var TCParams = TCParams || {};
 
       //@tc adddon
       //give the revealed sub menu the height of the visible viewport
+      if ( ! this.$element.hasClass('nav-collapse') )
+          return;
+
       if ( 1 == TCParams.dropdowntoViewport )
       {
         var tcVisible = $('body').hasClass('sticky-enabled') ? $(window).height() : ($(window).height() - $('.navbar-wrapper').offset().top);

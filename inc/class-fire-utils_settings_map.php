@@ -767,7 +767,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_fancybox]' =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
-                                'label'       => __( 'Enable/disable lightbox effect on images' , 'customizr' ),
+                                'label'       => __( 'Lightbox effect on images' , 'customizr' ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'If enabled, this option activate a popin window whith a zoom effect when an image is clicked. This will not apply to image gallery.' , 'customizr' ),
@@ -785,7 +785,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_retina_support]' =>  array(
                                 'default'       => 0,
                                 'control'   => 'TC_controls' ,
-                                'label'       => __( 'Enable/disable retina support' , 'customizr' ),
+                                'label'       => __( 'High resolution (Retina) support' , 'customizr' ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => sprintf('%1$s <strong>%2$s</strong> : <a href="%4$splugin-install.php?tab=plugin-information&plugin=regenerate-thumbnails" title="%5$s" target="_blank">%3$s</a>.',
@@ -807,7 +807,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_center_img]'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
-                                'label'       => __( "Enable/disable dynamic image centering on any devices" , "customizr" ),
+                                'label'       => __( "Dynamic image centering on any devices" , "customizr" ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'This option dynamically centers your images on any devices vertically or horizontally (without stretching them) according to their initial dimensions.' , 'customizr' ),
@@ -823,7 +823,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_link_scroll]'  =>  array(
                                 'default'       => 0,
                                 'control'   => 'TC_controls' ,
-                                'label'       => __( 'Enable/disable smooth scroll on click' , 'customizr' ),
+                                'label'       => __( 'Smooth scroll on click' , 'customizr' ),
                                 'section'     => 'tc_links_settings' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ),
@@ -839,10 +839,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_block_reorder]'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
-                                'label'       => __( 'Enable/disable blocks reordering on small devices' , 'customizr' ),
+                                'label'       => __( 'Dynamic sidebar reordering on small devices' , 'customizr' ),
                                 'section'     => 'tc_responsive' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'On responsive mode, for smartphone viewport, the sidebars are moved after the main content block.' , 'customizr' ),
+                                'notice'    => __( 'Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport.' , 'customizr' ),
               )
       );//end of links options
       $responsive_option_map = apply_filters( 'tc_responsive_option_map', $responsive_option_map , $get_default );
@@ -2149,7 +2149,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'notice'    => __( 'When you select the grid Layout, the post content is limited to the excerpt.' , 'customizr' ),
           ),
           'tc_theme_options[tc_grid_columns]'  =>  array(
-                            'default'       => '2',
+                            'default'       => '3',
                             'control'       => 'TC_controls' ,
                             'label'         => __( 'Number of columns per row' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
