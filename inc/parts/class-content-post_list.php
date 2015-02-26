@@ -84,7 +84,7 @@ class TC_post_list {
     add_filter( 'tc_user_options_style'       , array( $this , 'tc_write_thumbnail_inline_css') );
     // => filter the thumbnail inline style tc_post_thumb_inline_style and replace width:auto by width:100%
     // 3 args = $style, $_width, $_height
-    add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'tc_change_thumbnail_inline_css_width'), 10, 3 );
+    add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'tc_change_thumbnail_inline_css_width'), 20, 3 );
   }
 
 
@@ -422,12 +422,24 @@ class TC_post_list {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  function tc_change_thumbnail_inline_css_width( $_style, $_width, $_height) {
-    //handled with javascript if tc_center_img activated
-    if ( esc_attr( tc__f( '__get_option' , 'tc_center_img') ) )
+  function tc_change_thumbnail_inline_css_width( $_style,  $image, $_filtered_thumb_size) {
+    //conditions :
+    //note : handled with javascript if tc_center_img option enabled
+    $_bool = array_product(
+      array(
+        ! esc_attr( tc__f( '__get_option' , 'tc_center_img') ),
+        false != $image,
+        ! empty($image),
+        isset($_filtered_thumb_size['width']),
+        isset($_filtered_thumb_size['height'])
+      )
+    );
+    if ( ! $_bool )
       return $_style;
 
-    $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
+    $_width     = $_filtered_thumb_size['width'];
+    $_height    = $_filtered_thumb_size['height'];
+    $_shape     = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
     $_is_rectangular = ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') ? false : true;
     if ( ! is_single() && ! $_is_rectangular )
       return $_style;

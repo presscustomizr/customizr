@@ -1940,6 +1940,9 @@ img.v-centered {
 .tc-grid-icon {
   text-align: center;
   position: relative;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
 }
 .format-quote .tc-grid-icon, .format-status .tc-grid-icon {
   top: -15%;
@@ -1953,6 +1956,22 @@ img.v-centered {
 }
 .format-quote .tc-grid-icon:before, .format-status .tc-grid-icon:before {
   font-size: 138px!important;
+}
+
+.tc-grid-post .no-thumb .format-icon:before {
+  opacity: 0.2;
+}
+.tc-grid-post .format-icon:before {
+  opacity: 0;
+  webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: .5s;
+  transition-duration: .5s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+.hover .tc-grid-post .format-icon:before {
+  opacity: .3;
 }
 /* WP CSS
     -------------------------------------------------- */
