@@ -1687,13 +1687,16 @@ var TCParams = TCParams || {};
 
       //@tc adddon
       //give the revealed sub menu the height of the visible viewport
-      if ( 1 == TCParams.dropdowntoViewport )
+      if ( ! this.$element.hasClass('nav-collapse') )
+          return;
+
+      if ( TCParams && 1 == TCParams.dropdowntoViewport )
       {
         var tcVisible = $('body').hasClass('sticky-enabled') ? $(window).height() : ($(window).height() - $('.navbar-wrapper').offset().top);
         tcVisible = ( tcVisible - 90 ) > 80 ? tcVisible - 90 : 300;
         this.$element.css('max-height' , tcVisible + 'px');
       }
-      else if ( 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader )
+      else if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader )
       {
         //trigger click on back to top if sticky enabled
         if ( 0 != $('.back-to-top').length ) {
@@ -1718,7 +1721,7 @@ var TCParams = TCParams || {};
       this.$element[dimension](0)
 
       //@tc adddon
-      if ( 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader ) {
+      if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader ) {
         $('body').addClass('tc-sticky-header');
       }
     }
