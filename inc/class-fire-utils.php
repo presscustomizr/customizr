@@ -57,8 +57,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
         add_filter( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ) );
         if ( esc_attr( tc__f( '__get_option' , 'tc_img_smart_load' ) ) ) {
           add_filter( 'the_content'                       , array( $this , 'tc_parse_imgs' ) );
-          add_filter( 'tc_display_post_thumbnail'         , array( $this , 'tc_parse_imgs' ) );
-          add_filter( 'tc_grid_thumbnail_html'            , array( $this , 'tc_parse_imgs' ) );
+          add_filter( 'tc_thumb_html'                     , array( $this , 'tc_parse_imgs' ) );
+          add_filter( 'post_gallery'                      , array( $this , 'tc_parse_imgs' ), 30 );
         }
         add_filter( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
       }

@@ -79,6 +79,8 @@ class TC_post_thumbnails {
         $tc_thumb_height        = $image[2];
         $tc_thumb_width         = $image[1];
       }
+      //used for smart load when enabled
+      $tc_thumb = apply_filters( 'tc_thumb_html', $tc_thumb, $requested_size, $_post_id, $_custom_thumb_id );
 
       return apply_filters( 'tc_get_thumbnail_model',
         isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" ) : array(),
