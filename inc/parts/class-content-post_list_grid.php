@@ -338,8 +338,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : tc_thumb_size_name
         */
         function tc_set_thumb_size_name(){
-          return  ( $this-> tc_get_grid_section_cols() == '1' ) ?
-                          'tc-grid-full' : 'tc-grid';
+          return ( $this -> tc_get_grid_section_cols() == '1' ) ? 'tc-grid-full' : 'tc-grid';
         }
 
         /*

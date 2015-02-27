@@ -50,11 +50,3 @@ require_once( get_template_directory() . '/inc/init.php' );
 * You can add functions here but they will be lost on upgrade. If you use a child theme, you are safe!
 * More informations on how to create a child theme with Customizr here : http://themesandco.com/customizr/#child-theme
 */
-
-/*add_action('__after_header' , function() {
-  ?>
-    <pre>
-      <?php print_r(get_option('tc_theme_options')); ?>
-    </pre>
-  <?php
-});*/

@@ -33,11 +33,12 @@ class TC_post_thumbnails {
     * @package Customizr
     * @since Customizr 1.0
     */
-    function tc_get_thumbnail_model( $requested_size = null ) {
-      if ( ! $this -> tc_has_thumb() )
+    function tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null ) {
+      if ( ! $this -> tc_has_thumb( $_post_id, $_custom_thumb_id ) )
         return array();
 
-      $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'tc_thumb_size_name' , 'tc-thumb' ) : $requested_size ;
+      $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'tc_thumb_size_name' , 'tc-thumb' ) : $requested_size;
+      $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
       $_filtered_thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size );
       $_model                     = array();
       $_img_attr                  = array();
@@ -45,8 +46,8 @@ class TC_post_thumbnails {
       $tc_thumb_width             = '';
 
       //try to extract $_thumb_id and $_thumb_type
-      extract( $this -> tc_get_thumb_info() );
-      if ( ! isset($_thumb_id) || ! $_thumb_id )
+      extract( $this -> tc_get_thumb_info( $_post_id, $_custom_thumb_id ) );
+      if ( ! isset($_thumb_id) || ! $_thumb_id || is_null($_thumb_id) )
         return array();
 
       //Try to get the image
@@ -66,9 +67,9 @@ class TC_post_thumbnails {
       $_img_attr              = apply_filters( 'tc_post_thumbnail_img_attributes' , $_img_attr );
 
       //get the thumb html
-      if ( has_post_thumbnail() )
+      if ( is_null($_custom_thumb_id) && has_post_thumbnail( $_post_id ) )
         //get_the_post_thumbnail( $post_id, $size, $attr )
-        $tc_thumb = get_the_post_thumbnail( get_the_ID(), $tc_thumb_size , $_img_attr);
+        $tc_thumb = get_the_post_thumbnail( $_post_id , $tc_thumb_size , $_img_attr);
       else
         //wp_get_attachment_image( $attachment_id, $size, $icon, $attr )
         $tc_thumb = wp_get_attachment_image( $_thumb_id, $tc_thumb_size, false, $_img_attr );
@@ -80,17 +81,21 @@ class TC_post_thumbnails {
       }
 
       return apply_filters( 'tc_get_thumbnail_model',
-        isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" ) : array()
+        isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" ) : array(),
+        $_post_id,
+        $_thumb_id
       );
     }
 
 
 
-    /*
+    /**
     * inside loop
+    * @return array( "_thumb_id" , "_thumb_type" )
     */
-    private function tc_get_thumb_info() {
-      $_meta_thumb = get_post_meta( get_the_ID() , 'tc-thumb-fld', true );
+    private function tc_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
+      $_post_id     = is_null($_post_id) ? get_the_ID() : $_post_id;
+      $_meta_thumb  = get_post_meta( $_post_id , 'tc-thumb-fld', true );
       //get_post_meta( $post_id, $key, $single );
       //always refresh the thumb meta if user logged in and current_user_can('upload_files')
       //When do we refresh ?
@@ -99,33 +104,56 @@ class TC_post_thumbnails {
       $_refresh_bool = empty( $_meta_thumb ) || ! $_meta_thumb;
       $_refresh_bool = ! isset($_meta_thumb["_thumb_id"]) || ! isset($_meta_thumb["_thumb_type"]);
       $_refresh_bool = ( is_user_logged_in() && current_user_can('upload_files') ) ? true : $_refresh_bool;
+      //if a custom $_thumb_id is requested => always refresh
+      $_refresh_bool = ! is_null( $_thumb_id ) ? true : $_refresh_bool;
 
       if ( ! $_refresh_bool )
         return $_meta_thumb;
 
-      return $this -> tc_set_thumb_info( get_the_ID() , true);
+      return $this -> tc_set_thumb_info( $_post_id , $_thumb_id, true );
+    }
+
+    /**************************
+    * EXPOSED HELPERS / SETTERS
+    **************************/
+    public function tc_has_thumb( $_post_id = null , $_thumb_id = null ) {
+      $_post_id  = is_null($_post_id) ? get_the_ID() : $_post_id;
+      //try to extract (OVERWRITE) $_thumb_id and $_thumb_type
+      extract( $this -> tc_get_thumb_info( $_post_id, $_thumb_id ) );
+      return isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id);
     }
 
 
-    public function tc_set_thumb_info( $post_id = null , $_return = false ) {
+    /**
+    * update the thumb meta and maybe return the info
+    * public because also fired from admin on save_post
+    * @param post_id and (bool) return
+    * @return void or array( "_thumb_id" , "_thumb_type" )
+    */
+    public function tc_set_thumb_info( $post_id = null , $_thumb_id = null, $_return = false ) {
       $post_id      = is_null($post_id) ? get_the_ID() : $post_id;
       $_thumb_type  = 'none';
-      if ( has_post_thumbnail( $post_id ) ) {
+      if ( ! is_null( $_thumb_id ) && false !== $_thumb_id ) {
+        $_thumb_type  = false !== $_thumb_id ? 'custom' : $_thumb_type;
+      }
+      else if ( is_null($_thumb_id) && has_post_thumbnail( $post_id ) ) {
         $_thumb_id    = get_post_thumbnail_id( $post_id );
-        $_thumb_type  = false != $_thumb_id ? 'thumb' : $_thumb_type;
+        $_thumb_type  = false !== $_thumb_id ? 'thumb' : $_thumb_type;
       } else {
         $_thumb_id    = $this -> tc_get_id_from_attachment( $post_id );
-        $_thumb_type  = false != $_thumb_id ? 'attachment' : $_thumb_type;
+        $_thumb_type  = false !== $_thumb_id ? 'attachment' : $_thumb_type;
       }
-      if ( ! $_thumb_id || empty($_thumb_id) ) {
+      if ( ! $_thumb_id || empty( $_thumb_id ) ) {
         $_thumb_id    = esc_attr( tc__f( '__get_option', 'tc_post_list_default_thumb' ) );
-        $_thumb_type  = ( false != $_thumb_id && ! empty($_thumb_id) ) ? 'default' : $_thumb_type;
+        $_thumb_type  = ( false !== $_thumb_id && ! empty($_thumb_id) ) ? 'default' : $_thumb_type;
       }
+
       $_thumb_id = ( ! $_thumb_id || empty($_thumb_id) || ! is_numeric($_thumb_id) ) ? false : $_thumb_id;
+
       //update_post_meta($post_id, $meta_key, $meta_value, $prev_value);
-      update_post_meta( get_the_ID(), 'tc-thumb-fld', compact( "_thumb_id" , "_thumb_type" ) );
+      update_post_meta( $post_id , 'tc-thumb-fld', compact( "_thumb_id" , "_thumb_type" ) );
       if ( $_return )
-        return compact( "_thumb_id" , "_thumb_type" );
+        return apply_filters( 'tc_set_thumb_info' , compact( "_thumb_id" , "_thumb_type" ), $post_id );
     }
 
 
@@ -152,17 +180,16 @@ class TC_post_thumbnails {
             'order'                   => 'DESC'
           )
         );
-
         $attachments              = get_posts( $tc_args );
       }
+
       //case were we display an attachment (in search results for example)
-      elseif ( 'attachment' == tc__f('__post_type') && wp_attachment_is_image( $post_id ) ) {
+      elseif ( 'attachment' == get_post_type( $post_id ) && wp_attachment_is_image( $post_id ) ) {
         $attachments = array( get_post( $post_id ) );
       }
 
       if ( ! isset($attachments) || empty($attachments ) )
         return;
-
       return isset( $attachments[0] ) && isset( $attachments[0] -> ID ) ? $attachments[0] -> ID : false;
     }//end of fn
 
@@ -215,6 +242,7 @@ class TC_post_thumbnails {
     }//end of function
 
 
+
     /**********************
     * SETTER CALLBACK
     **********************/
@@ -257,14 +285,5 @@ class TC_post_thumbnails {
       return $_new_style;
     }
 
-
-    /**********************
-    * EXPOSED HELPER
-    **********************/
-    public function tc_has_thumb() {
-      //try to extract $_thumb_id and $_thumb_type
-      extract( $this -> tc_get_thumb_info() );
-      return isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id);
-    }
 }//end of class
 endif;

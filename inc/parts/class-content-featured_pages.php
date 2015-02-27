@@ -169,56 +169,19 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
               //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
               $fp_img_size                    = apply_filters( 'tc_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
               //allow user to specify a custom image id
-              $fp_custom_img_id               = apply_filters( 'fp_img_id', false , $fp_single_id , $featured_page_id );
+              $fp_custom_img_id               = apply_filters( 'fp_img_id', null , $fp_single_id , $featured_page_id );
 
-              if ( has_post_thumbnail( $featured_page_id ) && ! $fp_custom_img_id ) {
-                    $fp_img_id                = get_post_thumbnail_id( $featured_page_id );
-
-                    //check if tc-thumb size exists for attachment and return large if not
-                    $image                    = wp_get_attachment_image_src( $fp_img_id , $fp_img_size );
-                    $fp_img_size              = ( isset($image[3]) && null == $image[3] ) ? 'medium' : $fp_img_size ;
-
-                    $fp_img                   = get_the_post_thumbnail( $featured_page_id , $fp_img_size);
-                    //get height and width if set
-                    if ( ! empty($image[1]) && ! empty($image[2]) ) {
-                      $fp_img_height            = $image[2];
-                      $fp_img_width             = $image[1];
-                    }
-              }
-
-              //If not uses the first attached image
-              else {
-                  //look for attachements
-                  $tc_args = array(
-                    'numberposts'           =>  1,
-                    'post_type'             =>  'attachment' ,
-                    'post_status'           =>  null,
-                    'post_parent'           =>  $featured_page_id,
-                    'post_mime_type'        =>  array( 'image/jpeg' , 'image/gif' , 'image/jpg' , 'image/png' )
-                    );
-
-                    $attachments            =  ! $fp_custom_img_id ? get_posts( $tc_args) : get_post( $fp_custom_img_id );
-
-                    if ( $attachments) {
-
-                        foreach ( $attachments as $attachment) {
-                           //check if tc-thumb size exists for attachment and return large if not
-                          $image            = wp_get_attachment_image_src( $attachment->ID, $fp_img_size );
-                          $fp_img_size      = ( isset($image[3]) && false == $image[3] ) ? 'medium' : $fp_img_size;
-                          $fp_img           = wp_get_attachment_image( $attachment->ID, $fp_img_size );
-                          //get height and width
-                          if ( ! empty($image[1]) && ! empty($image[2]) ) {
-                            $fp_img_height            = $image[2];
-                            $fp_img_width             = $image[1];
-                          }
-                        }//end foreach
-
-                    }//end if
-
-              }
+              //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
+              //tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
+              $_fp_img_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
 
               //finally we define a default holder if no thumbnail found or page is protected
-              $fp_img                 = apply_filters ('fp_img_src' , ( ! isset( $fp_img) || post_password_required($featured_page_id) ) ? $fp_holder_img : $fp_img , $fp_single_id , $featured_page_id );
+              if ( isset( $_fp_img_model["tc_thumb"]) && ! empty( $_fp_img_model["tc_thumb"] ) && ! post_password_required( $featured_page_id ) )
+                $fp_img = $_fp_img_model["tc_thumb"];
+              else
+                $fp_img = $fp_holder_img;
+
+              $fp_img                 = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
             }//end if
 
             //Let's render this

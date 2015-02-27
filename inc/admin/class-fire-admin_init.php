@@ -59,7 +59,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
             require_once ( TC_BASE . 'inc/parts/class-content-post_thumbnails.php' );
         }
         new TC_post_thumbnails;
-        TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id, true );
+        TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
       }
 
 
