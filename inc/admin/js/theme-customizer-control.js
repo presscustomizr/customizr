@@ -135,21 +135,21 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         return '0' !== to;
       }
     },
-    'tc_post_list_grid' : {
-      show: {
-        controls: [
-          'tc_grid_columns',
-          'tc_grid_expand_featured',
-          'tc_grid_in_blog',
-          'tc_grid_in_archive',
-          'tc_grid_in_search',
-          'tc_grid_thumb_height'
-        ],
-        callback: function (to) {
-          return 'grid' == to;
-        }
-      }
-    },
+    // 'tc_post_list_grid' : {
+    //   show: {
+    //     controls: [
+    //       'tc_grid_columns',
+    //       'tc_grid_expand_featured',
+    //       'tc_grid_in_blog',
+    //       'tc_grid_in_archive',
+    //       'tc_grid_in_search',
+    //       'tc_grid_thumb_height'
+    //     ],
+    //     callback: function (to) {
+    //       return 'grid' == to;
+    //     }
+    //   }
+    // },
     'tc_post_list_show_thumb' : {
       controls: [
         'tc_post_list_use_attachment_as_thumb',
@@ -527,9 +527,41 @@ jQuery(function ($) {
 //2) ADD SOME COOL STUFFS
 //3) SPECIFIC CONTROLS ACTIONS
 (function (wp, $) {
-  var api = wp.customize || api;
-
   $( function($) {
+    var api = wp.customize || api;
+    /* GRID */
+    var _build_setId = function ( name ) {
+      return -1 == name.indexOf( 'tc_theme_options') ? [ 'tc_theme_options[' , name  , ']' ].join('') : name;
+    };
+    var _grid_design_controls = [
+      'tc_grid_in_blog',
+      'tc_grid_in_archive',
+      'tc_grid_in_search',
+      'tc_grid_thumb_height',
+      'tc_grid_shadow',
+      'tc_grid_bottom_border',
+      'tc_grid_icons'
+    ];
+
+    var _build_control_id = function( _control ) {
+      return [ '#' , 'customize-control-tc_theme_options-', _control ].join('');
+    };
+
+    var _get_grid_design_controls = function() {
+      return $( _grid_design_controls.map( function( _control ) {
+        return _build_control_id( _control );
+      }).join(',') );
+    };
+
+    //hide design controls on load
+    $( _get_grid_design_controls() ).addClass('tc-grid-design').hide();
+
+    $('.tc-grid-toggle-controls').click( function() {
+      $( _get_grid_design_controls() ).slideToggle('fast');
+      $(this).toggleClass('open');
+    } );
+
+
 
     /* RECENTER CURRENT SECTIONS */
     $('.accordion-section').not('.control-panel').click( function () {

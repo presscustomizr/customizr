@@ -2192,8 +2192,35 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 65,
+                            'priority'      => 62,
                             'notice'        => __( 'Unchecked contexts are displayed with the alternate thumbnails layout.' , 'customizr' ),
+           ),
+          'tc_theme_options[tc_grid_shadow]'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Apply a shadow to each grid items' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'checkbox',
+                            'priority'      => 63,
+                            'transport'   => 'postMessage'
+           ),
+          'tc_theme_options[tc_grid_bottom_border]'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Apply a colored bottom border to each grid items' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'checkbox',
+                            'priority'      => 64,
+                            'transport'   => 'postMessage'
+           ),
+          'tc_theme_options[tc_grid_icons]'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Display post format icons in the background' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'checkbox',
+                            'priority'      => 65,
+                            'transport'   => 'postMessage'
            ),
           'tc_theme_options[tc_grid_thumb_height]' => array(
                             'default'       => 350,
@@ -2205,7 +2232,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'number' ,
                             'step'          => 1,
                             'min'           => 0,
-                            'priority'      => 73
+                            'priority'      => 66
                             //'transport'   => 'postMessage'
           )
         );//$_new_settings

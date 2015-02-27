@@ -20,6 +20,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             $this -> has_expanded_featured = false;
             add_action ( 'pre_get_posts'            , array( $this , 'tc_maybe_excl_first_sticky') );
             add_action ( 'wp'                       , array( $this , 'tc_set_grid_hooks') );
+            //customizer
+            add_action( '__after_setting_control'   , array( $this , 'tc_render_grid_control_link') );
         }
 
 
@@ -36,9 +38,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           do_action( '__post_list_grid' );
 
           //Various CSS filters
-          add_filter( 'tc_grid_figure_height'       , array( $this , 'tc_set_grid_column_height'), 10, 2 );
-          add_filter( 'tc_grid_title_sizes'         , array( $this , 'tc_set_grid_title_size'), 10, 2 );
-          add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
+          add_filter( 'tc_grid_figure_height'       , array( $this, 'tc_set_grid_column_height'), 10, 2 );
+          add_filter( 'tc_grid_title_sizes'         , array( $this, 'tc_set_grid_title_size'), 10, 2 );
+          add_filter( 'tc_user_options_style'       , array( $this, 'tc_grid_write_inline_css'), 100 );
+
+          //icon option
+          add_filter( 'tc-grid-thumb-html'          , array( $this, 'tc_set_grid_icon_visibility') );
 
           //Layout filter
           add_filter( 'tc_get_grid_cols'            , array( $this, 'tc_set_grid_section_cols'), 20 , 2 );
@@ -159,14 +164,14 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           }
 
           // THUMBNAIL : cache the post format icon first
-          $_thumb_html     = sprintf('<div class="tc-grid-icon format-icon"></div>',
-              get_post_format()
-          );
           //add thumbnail html (src, width, height) if any
+          $_thumb_html = '';
           if ( TC_post_thumbnails::$instance -> tc_has_thumb() ) {
             $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
-            $_thumb_html  .= $_thumb_model['tc_thumb'];
+            $_thumb_html  = $_thumb_model['tc_thumb'];
           }
+          $_thumb_html = apply_filters( 'tc-grid-thumb-html' , $_thumb_html );
+
 
           // CONTENT : get the figcaption content => post content
           $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content'] ) ? $_layout['content'] : 'span6' );
@@ -188,7 +193,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $this -> tc_grid_render_single_post( $_classes, $_thumb_html, $_post_content_html );
           //return apply_filters( 'tc_prepare_grid_single_post_content' , compact( '_classes', '_thumb_html', '_post_content_html') );
         }
-
 
 
         /**
@@ -357,9 +361,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * add custom classes to each grid section
         */
         function tc_grid_section_set_classes( $_classes ) {
-          if ( ! apply_filters( 'tc-grid-apply-shadow' , true ) )
-            return $_classes;
-          return array_merge( $_classes , array( 'tc-grid-shadow', 'tc-grid-border' ) );
+          if ( esc_attr( tc__f('__get_option' , 'tc_grid_shadow') ) )
+            array_push( $_classes, 'tc-grid-shadow' );
+          if ( esc_attr( tc__f('__get_option' , 'tc_grid_bottom_border') ) )
+            array_push( $_classes, 'tc-grid-border' );
+          return $_classes;
         }
 
 
@@ -506,6 +512,26 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
+        /**
+        * hook : tc-grid-thumb-html
+        * @return modified html string
+        */
+        function tc_set_grid_icon_visibility( $_html ) {
+          $_icon_enabled = (bool) esc_attr( tc__f('__get_option' , 'tc_grid_icons') );
+          if ( TC_utils::$instance -> tc_is_customizing() )
+            return sprintf('<div class="tc-grid-icon format-icon" style="display:%1$s"></div>%2$s',
+                $_icon_enabled ? 'inline-block' : 'none',
+                $_html
+            );
+          if ( $_icon_enabled )
+            return sprintf('<div class="tc-grid-icon format-icon"></div>%1$s',
+                $_html
+            );
+          else
+            return $_html;
+        }
+
+
 
         /******************************
         HELPERS
@@ -598,6 +624,16 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_type = $this -> tc_get_grid_context();
           $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( tc__f('__get_option', 'tc_grid_in_' . $_type ) ) );
           return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
+        }
+
+
+        /**
+        * hook __after_setting_control (declared in class-controls.php)
+        * @echo link
+        */
+        function tc_render_grid_control_link( $set_id ) {
+          if ( false !== strpos( $set_id, 'tc_grid_expand_featured' ) )
+            printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
         }
 
   }//end of class

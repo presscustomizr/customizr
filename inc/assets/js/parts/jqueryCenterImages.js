@@ -18,7 +18,7 @@
         oncustom : [],//list of event here
         imgSel : 'img',
         defaultCSSVal : { width : 'auto' , height : 'auto' },
-        topAdjust : -2,//<= top ajustement for h-centered
+        topAdjust : -3,//<= top ajustement for h-centered
         enableGoldenRatio : false,
         goldenRatioLimitHeightTo : 350,
         goldenRatioVal : 1.618,

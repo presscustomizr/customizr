@@ -767,3 +767,63 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 .in-sub-panel .tc-cta-wrap {
   left: -300px;
 }
+.tc-grid-control-section {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-bottom: 8px;
+}
+.tc-grid-toggle-controls {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  clear: both;
+  display: block;
+  float: left;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #1ABC9C;
+}
+.tc-grid-toggle-controls::before {
+  content: '+';
+  font-size: 21px;
+  display: block;
+  float: left;
+  background: #1ABC9C;
+  padding: 5px;
+  line-height: 12px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  color: #FFF;
+  margin-right: 5px;
+  bottom: 2px;
+  width: 12px;
+  height: 12px;
+  text-align: center;
+  position: relative;
+}
+
+.tc-grid-toggle-controls.open::before {
+  content: '-';
+  line-height: 11px;
+}
+.tc-grid-design-controls {
+  border-left: 2px dotted #1ABC9C;
+  width: 89%;
+  float: left;
+  background: #F5F5F5;
+  -webkit-border-radius: 0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+}
+.appended > .tc-grid-design-controls {
+  padding: 5%;
+}
+.tc-grid-design {
+  border-left: 2px dotted #1ABC9C;
+  margin-left: 3%;
+  padding-left: 3%;
+  width: 93%;
+  font-style: italic;
+}

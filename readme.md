@@ -1,4 +1,4 @@
-# Customizr v3.3.2 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=better-fp-thumb)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.2 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=grid-design-options)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 

@@ -558,8 +558,6 @@
       }
     } );
   } );
-
-
   wp.customize( 'tc_theme_options[tc_ext_link_target]' , function( value ) {
     value.bind( function( to ) {
       if ( false !== to ) {
@@ -575,7 +573,30 @@
     } );
   } );
 
-
-
+  //GRID
+  wp.customize( 'tc_theme_options[tc_grid_shadow]' , function( value ) {
+    value.bind( function( to ) {
+      if ( false !== to )
+        $('.tc-post-list-grid').each( function() { $(this).addClass('tc-grid-shadow'); } );
+      else
+        $('.tc-post-list-grid').each( function() { $(this).removeClass('tc-grid-shadow'); } );
+    } );
+  });
+  wp.customize( 'tc_theme_options[tc_grid_bottom_border]' , function( value ) {
+    value.bind( function( to ) {
+      if ( false !== to )
+        $('.tc-post-list-grid').each( function() { $(this).addClass('tc-grid-border'); } );
+      else
+        $('.tc-post-list-grid').each( function() { $(this).removeClass('tc-grid-border'); } );
+    } );
+  });
+  wp.customize( 'tc_theme_options[tc_grid_icons]' , function( value ) {
+    value.bind( function( to ) {
+      if ( false === to )
+        $('.tc-grid-icon').each( function() { $(this).fadeOut(); } );
+      else
+        $('.tc-grid-icon').each( function() { $(this).fadeIn(); } );
+    } );
+  });
 
 } )( jQuery );

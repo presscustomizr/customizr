@@ -91,21 +91,21 @@
         return '0' !== to;
       }
     },
-    'tc_post_list_grid' : {
-      show: {
-        controls: [
-          'tc_grid_columns',
-          'tc_grid_expand_featured',
-          'tc_grid_in_blog',
-          'tc_grid_in_archive',
-          'tc_grid_in_search',
-          'tc_grid_thumb_height'
-        ],
-        callback: function (to) {
-          return 'grid' == to;
-        }
-      }
-    },
+    // 'tc_post_list_grid' : {
+    //   show: {
+    //     controls: [
+    //       'tc_grid_columns',
+    //       'tc_grid_expand_featured',
+    //       'tc_grid_in_blog',
+    //       'tc_grid_in_archive',
+    //       'tc_grid_in_search',
+    //       'tc_grid_thumb_height'
+    //     ],
+    //     callback: function (to) {
+    //       return 'grid' == to;
+    //     }
+    //   }
+    // },
     'tc_post_list_show_thumb' : {
       controls: [
         'tc_post_list_use_attachment_as_thumb',
