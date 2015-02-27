@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.1
+ * Customizr v3.3.2
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -432,16 +432,19 @@ td {
 .page-links button.btn {
   color: #e79b5d;
 }
-/* Comments */
-.tc-skin-bubble-comment-color .comments-link .tc-comment-bubble {
+/* Comment bubbles */
+.comments-link .tc-comment-bubble {
   color: #e79b5d;
 }
-.tc-skin-bubble-comment-color .custom-bubble-one {
+.comments-link .default-bubble:before {
+  border: solid 2px #e79b5d;
+}
+.comments-link .tc-comment-bubble {
   color: #e79b5d;
   border: 2px solid #e79b5d;
 }
-.tc-skin-bubble-comment-color .custom-bubble-one:before {
-  border-color: #e79b5d rgba(0, 0, 0, 0);
+.comments-link .custom-bubble-one:before {
+  border-color: #e79b5d;
 }
 /* POST NAVIGATION*/
 h3.assistive-text {
@@ -457,5 +460,13 @@ h3.assistive-text {
 }
 /* FOOTER */
 footer#footer .colophon a.back-to-top {
+  color: #e79b5d;
+}
+/* GRID */
+.tc-grid-border .tc-grid {
+  border-bottom: 3px solid #e79b5d;
+}
+/* Grid icons */
+.tc-grid-icon:before {
   color: #e79b5d;
 }
