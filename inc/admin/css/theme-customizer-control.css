@@ -827,3 +827,11 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   width: 93%;
   font-style: italic;
 }
+.customize-control .tc-navigate-to-post-list {
+  color: #1ABC9C;
+  font-weight: bold;
+  float: left;
+  clear: both;
+  width: 100%;
+  margin-bottom: 8px;
+}

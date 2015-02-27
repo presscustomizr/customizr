@@ -481,12 +481,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $front_page_option_map = array(
               //title
               'homecontent_title'         => array(
-                                'setting_type'  =>  null,
-                                'control'   =>  'TC_controls' ,
-                                'title'       => __( 'Choose content and layout' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
-                                'type'      => 'title' ,
-                                'priority'      => 0,
+                      'setting_type'  =>  null,
+                      'control'   =>  'TC_controls' ,
+                      'title'       => __( 'Choose content and layout' , 'customizr' ),
+                      'section'     => 'tc_frontpage_settings' ,
+                      'type'      => 'title' ,
+                      'priority'      => 0,
               ),
 
               //show on front
@@ -521,11 +521,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //layout
               'tc_theme_options[tc_front_layout]' => array(
                                 'default'       => 'f' ,//Default layout for home page is full width
-                                'label'     =>  __( 'Set up the front page layout' , 'customizr' ),
+                                'label'       =>  __( 'Set up the front page layout' , 'customizr' ),
                                 'section'     => 'tc_frontpage_settings' ,
+                                'control'     => 'TC_controls' ,
                                 'type'        => 'select' ,
-                                'choices'   => $this -> tc_layout_choices(),
-                                'priority'       => 2,
+                                'choices'     => $this -> tc_layout_choices(),
+                                'priority'    => 2,
               ),
 
               //select slider
@@ -804,10 +805,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'When checked, this option displays a loading icon when the slides are being setup.' , 'customizr' ),
               ),
+               'tc_theme_options[tc_center_slider_img]'  =>  array(
+                                'default'       => 1,
+                                'control'   => 'TC_controls' ,
+                                'label'       => __( "Dynamic slider images centering on any devices" , "customizr" ),
+                                'section'     => 'tc_image_settings' ,
+                                'type'        => 'checkbox' ,
+                                //'notice'    => __( 'This option dynamically centers your images on any devices vertically or horizontally (without stretching them) according to their initial dimensions.' , 'customizr' ),
+              ),
               'tc_theme_options[tc_center_img]'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
-                                'label'       => __( "Dynamic image centering on any devices" , "customizr" ),
+                                'label'       => __( "Dynamic thumbnails centering on any devices" , "customizr" ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'This option dynamically centers your images on any devices vertically or horizontally (without stretching them) according to their initial dimensions.' , 'customizr' ),

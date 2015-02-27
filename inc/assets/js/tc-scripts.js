@@ -12,6 +12,7 @@ var TCParams = TCParams || {
 	SliderDelay: +5000,
 	SliderHover: 1,
 	SliderName: "demo",
+  centerSliderImg : 1,
 	SmoothScroll: "linear",
 	stickyCustomOffset: 0,
 	stickyHeader: 1,
@@ -3150,7 +3151,7 @@ jQuery(function ($) {
 
     setTimeout( function() {
       $( '.carousel .carousel-inner').centerImages( {
-        enableCentering : 1 == _p.centerAllImg,
+        enableCentering : 1 == _p.centerSliderImg,
         imgSel : '.item .carousel-image img',
         oncustom : ['slid'],
         defaultCSSVal : { width : '100%' , height : 'auto' }

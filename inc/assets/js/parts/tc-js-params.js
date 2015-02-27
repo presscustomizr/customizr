@@ -12,6 +12,7 @@ var TCParams = TCParams || {
 	SliderDelay: +5000,
 	SliderHover: 1,
 	SliderName: "demo",
+  centerSliderImg : 1,
 	SmoothScroll: "linear",
 	stickyCustomOffset: 0,
 	stickyHeader: 1,

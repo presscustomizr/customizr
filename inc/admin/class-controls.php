@@ -27,7 +27,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	    public $icon;
 
 	    public function render_content()  {
-	    	do_action( '__before_setting_control' , $this-> id );
+	    	do_action( '__before_setting_control' , $this -> id );
 
         switch ( $this -> type) {
 	        	case 'hr':

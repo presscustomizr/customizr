@@ -22,6 +22,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             add_action ( 'wp'                       , array( $this , 'tc_set_grid_hooks') );
             //customizer
             add_action( '__after_setting_control'   , array( $this , 'tc_render_grid_control_link') );
+            add_action( '__before_setting_control'  , array( $this , 'tc_render_link_to_grid') );
         }
 
 
@@ -634,6 +635,15 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_render_grid_control_link( $set_id ) {
           if ( false !== strpos( $set_id, 'tc_grid_expand_featured' ) )
             printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
+        }
+
+        /**
+        * hook __before_setting_control (declared in class-controls.php)
+        * @echo link
+        */
+        function tc_render_link_to_grid( $set_id ) {
+          if ( false !== strpos( $set_id, 'tc_front_layout' ) )
+            printf('<span class="button tc-navigate-to-post-list" title="%1$s">%1$s &raquo;</span>' , __('Jump to the blog design options' , 'customizr') );
         }
 
   }//end of class

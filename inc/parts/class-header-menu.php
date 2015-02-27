@@ -44,7 +44,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
           add_action( '__after_header'                , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
         add_filter( 'tc_navbar_wrapper_class'       , array( $this, 'tc_set_menu_style_options'), 0 );
 
-        if ( apply_filters( 'tc_menu_item_style_first_letter' , TC_utils::$instance -> tc_user_started_before_version( '3.3.0' ) ? true : false ) )
+        if ( apply_filters( 'tc_menu_item_style_first_letter' , TC_utils::$instance -> tc_user_started_before_version( '3.2.0' , '1.0.0' ) ? true : false ) )
           //Set thumbnail specific design based on user options
           add_filter( 'tc_user_options_style'   , array( $this , 'tc_menu_item_style_first_letter_css') );
       }

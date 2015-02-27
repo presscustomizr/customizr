@@ -48,7 +48,7 @@ jQuery(function ($) {
 
     setTimeout( function() {
       $( '.carousel .carousel-inner').centerImages( {
-        enableCentering : 1 == _p.centerAllImg,
+        enableCentering : 1 == _p.centerSliderImg,
         imgSel : '.item .carousel-image img',
         oncustom : ['slid'],
         defaultCSSVal : { width : '100%' , height : 'auto' }
