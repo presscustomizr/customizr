@@ -3161,8 +3161,10 @@ jQuery(function ($) {
 
 
     //Img Smart Load
+    //hentry covers all post / pagecontent : single and list
+    //__before_main_wrapper covers the single post thumbnail case
     if ( 1 == _p.imgSmartLoadEnabled )
-      $( '.hentry' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
+      $( '.hentry, .__before_main_wrapper' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
 
 
     //DROP CAPS
