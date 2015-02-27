@@ -590,7 +590,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           function tc_bbpress_disable_thumbnail($bool) {
              return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
           }
-          add_filter( 'tc_show_post_list_excerpt', 'tc_bbpress_disable_excerpt' );
+          add_filter( 'tc_show_excerpt', 'tc_bbpress_disable_excerpt' );
           function tc_bbpress_disable_excerpt($bool) {
              return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
           }
@@ -608,8 +608,14 @@ if ( ! class_exists( 'TC_init' ) ) :
           }
 
           //disables post metas
-          add_filter( 'tc_show_post_metas', 'tc_bbpress_disable_post_metas' );
+          add_filter( 'tc_show_post_metas', 'tc_bbpress_disable_post_metas', 100);
           function tc_bbpress_disable_post_metas($bool) {
+             return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+          }
+
+          //disable the grid
+          add_filter( 'tc_is_grid_enabled' , 'tc_bbpress_disable_grid', 100 );
+          function tc_bbpress_disable_grid($bool) {
              return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
           }
         }//end if bbpress on
