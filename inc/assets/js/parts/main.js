@@ -9,9 +9,16 @@ jQuery(function ($) {
 
     //CENTER VARIOUS IMAGES
     setTimeout( function() {
+      //Featured Pages
+      $('.widget-front .thumb-wrapper, .fpc-widget-front .thumb-wrapper').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : false,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        topAdjust : 0,
+      });
       //POST LIST THUMBNAILS + FEATURED PAGES
       //Squared, rounded
-      $('.thumb-wrapper').centerImages( {
+      $('.hentry .thumb-wrapper').centerImages( {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
@@ -61,7 +68,7 @@ jQuery(function ($) {
     //hentry covers all post / pagecontent : single and list
     //__before_main_wrapper covers the single post thumbnail case
     if ( 1 == _p.imgSmartLoadEnabled )
-      $( '.hentry, .__before_main_wrapper' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
+      $( '.hentry, .__before_main_wrapper, .widget-front, .fpc-widget-front' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
 
 
     //DROP CAPS
