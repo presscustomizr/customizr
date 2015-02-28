@@ -2169,7 +2169,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     '3'                     => __( '3' , 'customizr'),
                                     '4'                     => __( '4' , 'customizr')
                             ),
-                            'priority'      => 45
+                            'priority'      => 45,
+                            'notice'        => __( 'Note : columns are limited to 3 for single sidebar layouts and to 2 for double sidebar layouts.' , 'customizr' )
           ),
           'tc_theme_options[tc_grid_expand_featured]'  =>  array(
                             'default'       => 1,
