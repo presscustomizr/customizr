@@ -15,7 +15,8 @@ jQuery(function ($) {
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         zeroTopAdjust : 1,
-        leftAdjust : 2.5
+        leftAdjust : 2.5,
+        oncustom : ['smartload']
       });
       //POST LIST THUMBNAILS + FEATURED PAGES
       //Squared, rounded
@@ -23,6 +24,7 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        oncustom : ['smartload']
       });
 
       //rectangulars
@@ -30,7 +32,7 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : true,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
-        oncustom : 'refresh-height', //bind 'refresh-height' event (triggered to the the customizer preview frame)
+        oncustom : ['smartload', 'refresh-height'], //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
       //SINGLE POST THUMBNAILS
@@ -38,7 +40,7 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
-        oncustom : 'refresh-height', //bind 'refresh-height' event (triggered to the the customizer preview frame)
+        oncustom : ['smartload', 'refresh-height'], //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
       //POST GRID IMAGES

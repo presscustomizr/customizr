@@ -50,3 +50,22 @@ require_once( get_template_directory() . '/inc/init.php' );
 * You can add functions here but they will be lost on upgrade. If you use a child theme, you are safe!
 * More informations on how to create a child theme with Customizr here : http://themesandco.com/customizr/#child-theme
 */
+
+add_filter( 'preprocess_comment', 'set_max_comment_length' );
+
+function set_max_comment_length( $commentdata ) {
+  $_max_words = 150;
+  if ( count( explode( " ",  trim( $commentdata['comment_content'] ) ) ) < $_max_words )
+    return $commentdata;
+  $_title = "We're sorry, your comment is too long !";
+  $_mess = sprintf( '<h1>%4$s</h1></br><strong>We limit comments to maximum length of %1$s words</strong>. Your comment contains <strong>%5$s</strong> words.</br> If you need to post a long chunk of code, you\'ll want to use online services like %2$s or %3$s.</br></br>Thanks ! :)',
+    $_max_words,
+    '<a href="https://gist.github.com/" title="GitHub Gist" target="_blank">GitHub Gist</a>',
+    '<a href="http://pastebin.com/" title="Pastebin" target="_blank">Pastebin</a>',
+    $_title,
+    count( explode( " ",  trim( $commentdata['comment_content'] ) ) )
+  );
+
+  wp_die( $_mess, $_title, array( 'back_link' => true ) );
+}
+?>
