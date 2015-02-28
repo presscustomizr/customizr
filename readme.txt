@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.5 February 28th 2015 =
+improved : trigger simple_load event (=> fire centering) on relevant img if smartload disabled
+
 = 3.3.4 February 28th 2015 =
 fix : ignore tc_sliders option on contx check
 
