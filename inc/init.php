@@ -126,13 +126,10 @@ if ( ! class_exists( 'TC___' ) ) :
             );//end of filters
 
             //check the context
-            if ( file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && 'customizr-pro' == self::$theme_name ) {
+            if ( file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && 'customizr-pro' == self::$theme_name )
               require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
-              self::$tc_option_group = 'tc_theme_options';
-            } else {
-              self::$tc_option_group = 'tc_theme_options';
-            }
 
+            self::$tc_option_group = 'tc_theme_options';
             //theme class groups instanciation
             $this -> tc__ ( $this -> tc_core );
         }//end of __construct()
