@@ -39,6 +39,12 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.3 February 28th 2015 =
+improved hover transition for expanded grid post
+added a note about the grid column forced for specific sidebar(s) layout
+fix minor bubble comment css issues
+added js custom smartload event to trigger image centerering
+
 = 3.3.2 February 28th 2015 =
 added : TC___::tc_doing_customizer_ajax()
 added contx retro compat

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.3.2\n"
-"POT-Creation-Date: 2015-02-27 19:16+0100\n"
-"PO-Revision-Date: 2015-02-27 19:18+0100\n"
+"Project-Id-Version: * Customizr v3.3.3\n"
+"POT-Creation-Date: 2015-02-28 18:42+0100\n"
+"PO-Revision-Date: 2015-02-28 18:43+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Customizr translation contributors <contact@themesandco.com>\n"
 "Language: English\n"
@@ -310,15 +310,15 @@ msgstr ""
 msgid "Main Menu"
 msgstr ""
 
-#: ../class-fire-init.php:896
+#: ../class-fire-init.php:902
 msgid "Help"
 msgstr ""
 
-#: ../class-fire-init.php:899
+#: ../class-fire-init.php:905
 msgid "Need help with Customizr? Click here!"
 msgstr ""
 
-#: ../class-fire-utils.php:476
+#: ../class-fire-utils.php:462
 #, php-format
 msgid "Page %s"
 msgstr ""
@@ -1658,43 +1658,49 @@ msgstr ""
 msgid "4"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2177
+#: ../class-fire-utils_settings_map.php:2173
+msgid ""
+"Note : columns are limited to 3 for single sidebar layouts and to 2 for "
+"double sidebar layouts."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2178
 msgid "Expand the featured posts (for home and blog page only)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2185
+#: ../class-fire-utils_settings_map.php:2186
 msgid "Apply the grid layout to Home/Blog"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2193
+#: ../class-fire-utils_settings_map.php:2194
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2201
+#: ../class-fire-utils_settings_map.php:2202
 msgid "Apply the grid layout to Search results"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2205
+#: ../class-fire-utils_settings_map.php:2206
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2210
+#: ../class-fire-utils_settings_map.php:2211
 msgid "Apply a shadow to each grid items"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2219
+#: ../class-fire-utils_settings_map.php:2220
 msgid "Apply a colored bottom border to each grid items"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2228
+#: ../class-fire-utils_settings_map.php:2229
 msgid "Display post format icons in the background"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2238
+#: ../class-fire-utils_settings_map.php:2239
 msgid "Thumbnails max height for the grid layout"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2239
+#: ../class-fire-utils_settings_map.php:2240
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr ""
 

@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.2
+ * Customizr v3.3.3
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -6399,6 +6399,14 @@ img.v-centered {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
+.tc-post-list-grid .expanded .entry-summary {
+  webkit-transition-property: opacity,background,color;
+  transition-property: opacity,background,color;
+  -webkit-transition-duration: .2s;
+  transition-duration: .2s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
 .tc-post-list-grid .entry-summary {
   line-height: 20px;
   vertical-align: middle;
@@ -6478,8 +6486,11 @@ img.v-centered {
 .tc-grid-figure .comments-link {
   position: absolute;
   z-index: 11;
-  top: 10%;
+  top: 15%;
   right: 1%;
+}
+.expanded .tc-grid-figure .comments-link {
+  top: 7%;
 }
 .tc-post-list-grid .comments-link .tc-comment-bubble {
   background: #FAFAFA;
