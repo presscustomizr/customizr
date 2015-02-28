@@ -6476,8 +6476,11 @@ img.v-centered {
 .tc-grid-figure .comments-link {
   position: absolute;
   z-index: 11;
-  top: 10%;
+  top: 15%;
   right: 1%;
+}
+.expanded .tc-grid-figure .comments-link {
+  top: 7%;
 }
 .tc-post-list-grid .comments-link .tc-comment-bubble {
   background: #FAFAFA;

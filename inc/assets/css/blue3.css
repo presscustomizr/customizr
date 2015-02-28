@@ -444,7 +444,7 @@ td {
   border: 2px solid #27cda5;
 }
 .comments-link .custom-bubble-one:before {
-  border-color: #27cda5;
+  border-color: #27cda5 rgba(0, 0, 0, 0);
 }
 /* POST NAVIGATION*/
 h3.assistive-text {
