@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.4 February 28th 2015 =
+fix : ignore tc_sliders option on contx check
+
 = 3.3.3 February 28th 2015 =
 improved hover transition for expanded grid post
 added a note about the grid column forced for specific sidebar(s) layout

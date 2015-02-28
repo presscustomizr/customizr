@@ -279,9 +279,13 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $__options      = wp_parse_args( $_db_options, $_defaults );
         //$options            = array_intersect_key( $_db_options , $defaults);
         $_single_opt    = isset($__options[$option_name]) ? $__options[$option_name] : false;
+
         //contx retro compat
-        if ( is_array($_single_opt) && ! class_exists( 'TC_contx' ) )
-          $_single_opt = isset($_single_opt['def']) ? $_single_opt['def'] : false;
+        //important note : tc_slider is not impacted by contx
+        if ( $option_name != 'tc_sliders' ) {
+          if ( is_array( $_single_opt ) && ! class_exists( 'TC_contx' ) )
+            $_single_opt = isset($_single_opt['all_cx']) ? $_single_opt['all_cx'] : false;
+        }
 
         return apply_filters( 'tc_opt' , $_single_opt , $option_name , $option_group );
       }
