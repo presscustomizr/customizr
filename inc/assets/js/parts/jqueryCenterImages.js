@@ -18,7 +18,10 @@
         oncustom : [],//list of event here
         imgSel : 'img',
         defaultCSSVal : { width : 'auto' , height : 'auto' },
-        topAdjust : -3,//<= top ajustement for h-centered
+        leftAdjust : 0,
+        zeroLeftAdjust : 0,
+        topAdjust : 0,
+        zeroTopAdjust : -2,//<= top ajustement for h-centered
         enableGoldenRatio : false,
         goldenRatioLimitHeightTo : 350,
         goldenRatioVal : 1.618,
@@ -143,12 +146,12 @@
         prop    = {
           h : {
             dim : { name : 'height', val : c_y },
-            dir : { name : 'left', val : ( c_x - up_i_x ) / 2 },
+            dir : { name : 'left', val : ( c_x - up_i_x ) / 2 + ( this.options.leftAdjust || 0 ) },
             class : 'h-centered'
           },
           v : {
             dim : { name : 'width', val : c_x },
-            dir : { name : 'top', val : ( c_y - up_i_y ) / 2 },
+            dir : { name : 'top', val : ( c_y - up_i_y ) / 2 + ( this.options.topAdjust || 0 ) },
             class : 'v-centered'
           }
         };
@@ -161,7 +164,7 @@
     var _case  = _state.current,
         _p     = _state.prop[_case],
         _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'],
-        _not_p_dir_val = 'h' == _case ? this.options.topAdjust : 0;
+        _not_p_dir_val = 'h' == _case ? ( this.options.zeroTopAdjust || 0 ) : ( this.options.zeroLeftAdjust || 0 );
 
     $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , this.options.defaultCSSVal[_not_p.dim.name] || 'auto' )
         .addClass( _p.class ).removeClass( _not_p.class )

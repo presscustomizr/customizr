@@ -14,7 +14,8 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
-        topAdjust : 0,
+        zeroTopAdjust : 1,
+        leftAdjust : 4
       });
       //POST LIST THUMBNAILS + FEATURED PAGES
       //Squared, rounded
