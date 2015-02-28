@@ -16,7 +16,7 @@ jQuery(function ($) {
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         zeroTopAdjust : 1,
         leftAdjust : 2.5,
-        oncustom : ['smartload']
+        oncustom : ['smartload', 'simple_load']
       });
       //POST LIST THUMBNAILS + FEATURED PAGES
       //Squared, rounded
@@ -24,7 +24,7 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
-        oncustom : ['smartload']
+        oncustom : ['smartload', 'simple_load']
       });
 
       //rectangulars
@@ -32,7 +32,7 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : true,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
-        oncustom : ['smartload', 'refresh-height'], //bind 'refresh-height' event (triggered to the the customizer preview frame)
+        oncustom : ['smartload', 'refresh-height', 'simple_load'], //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
       //SINGLE POST THUMBNAILS
@@ -40,19 +40,35 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
-        oncustom : ['smartload', 'refresh-height'], //bind 'refresh-height' event (triggered to the the customizer preview frame)
+        oncustom : ['smartload', 'refresh-height', 'simple_load'], //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
       //POST GRID IMAGES
       $('.tc-grid-figure').centerImages( {
         enableCentering : 1 == _p.centerAllImg,
-        oncustom : 'smartload',
+        oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : true,
         goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
       } );
     }, 300 );
 
-    //SLIDER
+    //helper to trigger a simple load
+    //=> allow centering when smart load not triggered by smartload
+    var _trigger_simple_load = function( $_imgs ) {
+      if ( 0 === $_imgs.length )
+        return;
+
+      $_imgs.map( function( _ind, _img ) {
+        $(_img).load( function () {
+            $(_img).trigger('simple_load');
+        });//end load
+        if ( $(_img)[0] && $(_img)[0].complete )
+          $(_img).load();
+      } );//end map
+    };//end of fn
+
+
+    //SLIDER IMG + VARIOUS
     //adds a specific class to the carousel when automatic centering is enabled
     $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
 
@@ -60,18 +76,25 @@ jQuery(function ($) {
       $( '.carousel .carousel-inner').centerImages( {
         enableCentering : 1 == _p.centerSliderImg,
         imgSel : '.item .carousel-image img',
-        oncustom : ['slid'],
+        oncustom : ['slid', 'simple_load'],
         defaultCSSVal : { width : '100%' , height : 'auto' }
       } );
       $('.tc-slider-loader-wrapper').hide();
     } , 50);
 
+    _trigger_simple_load( $( '.carousel .carousel-inner').find('img') );
 
-    //Img Smart Load
+
+    //IMG SMART LOAD
     //hentry covers all post / pagecontent : single and list
     //__before_main_wrapper covers the single post thumbnail case
     if ( 1 == _p.imgSmartLoadEnabled )
       $( '.hentry, .__before_main_wrapper, .widget-front, .fpc-widget-front' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
+    else {
+      //if smart load not enabled => trigger the load event on img load
+      var $_to_center = $( '.hentry, .__before_main_wrapper, .widget-front, .fpc-widget-front' ).find('img');
+      _trigger_simple_load($_to_center);
+    }//end else
 
 
     //DROP CAPS
