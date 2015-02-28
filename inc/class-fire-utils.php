@@ -268,18 +268,22 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 1.0
       */
       function tc_opt( $option_name , $option_group = null ) {
-          //do we have to look in a specific group of option (plugin?)
-          $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
-          if ( TC___::$instance -> tc_is_customizing() || is_admin() )
-            $_db_options = (array) get_option( $option_group );
-          else
-            $_db_options = empty($this-> db_options) ? $this -> tc_cache_db_options($option_group) : $this-> db_options;
+        //do we have to look for a specific group of option (plugin?)
+        $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
+        if ( TC___::$instance -> tc_is_customizing() || is_admin() )
+          $_db_options = (array) get_option( $option_group );
+        else
+          $_db_options = empty($this-> db_options) ? $this -> tc_cache_db_options($option_group) : $this-> db_options;
 
-          $_defaults          = $this -> default_options;
-          $__options          = wp_parse_args( $_db_options, $_defaults );
-          //$options            = array_intersect_key( $_db_options , $defaults);
-          $returned_option    = isset($__options[$option_name]) ? $__options[$option_name] : false;
-        return apply_filters( 'tc_opt' , $returned_option , $option_name , $option_group );
+        $_defaults      = $this -> default_options;
+        $__options      = wp_parse_args( $_db_options, $_defaults );
+        //$options            = array_intersect_key( $_db_options , $defaults);
+        $_single_opt    = isset($__options[$option_name]) ? $__options[$option_name] : false;
+        //contx retro compat
+        if ( is_array($_single_opt) && ! class_exists( 'TC_contx' ) )
+          $_single_opt = isset($_single_opt['def']) ? $_single_opt['def'] : false;
+
+        return apply_filters( 'tc_opt' , $_single_opt , $option_name , $option_group );
       }
 
 
