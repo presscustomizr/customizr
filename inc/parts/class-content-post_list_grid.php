@@ -519,7 +519,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_set_grid_icon_visibility( $_html ) {
           $_icon_enabled = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_icons') );
-          if ( TC_utils::$inst -> tc_is_customizing() )
+          if ( TC___::$instance -> tc_is_customizing() )
             return sprintf('<div class="tc-grid-icon format-icon" style="display:%1$s"></div>%2$s',
                 $_icon_enabled ? 'inline-block' : 'none',
                 $_html

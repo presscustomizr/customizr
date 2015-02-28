@@ -45,7 +45,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                   return;
               }
 
-              if ( TC_utils::$inst -> tc_is_customizing() ) {
+              if ( TC___::$instance -> tc_is_customizing() ) {
                   add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
@@ -59,7 +59,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                   return;
               }
 
-                  if ( TC_utils::$inst -> tc_is_customizing() ) {
+                  if ( TC___::$instance -> tc_is_customizing() ) {
                       add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
                       add_filter( 'tc_show_post_metas' , '__return_true' );
                   }
@@ -71,7 +71,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
-              if ( TC_utils::$inst -> tc_is_customizing() ) {
+              if ( TC___::$instance -> tc_is_customizing() ) {
                   add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }

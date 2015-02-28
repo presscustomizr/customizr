@@ -921,7 +921,7 @@ if ( ! class_exists( 'TC_init' ) ) :
         $_to_add = array();
         if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_link_hover_effect' ) ) )
           $_to_add[] = 'tc-fade-hover-links';
-        if ( TC_utils::$inst -> tc_is_customizing() )
+        if ( TC___::$instance -> tc_is_customizing() )
           $_to_add[] = 'is-customizing';
         if ( wp_is_mobile() )
           $_to_add[] = 'tc-is-mobile';

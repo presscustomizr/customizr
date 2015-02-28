@@ -122,7 +122,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.2.3
       */
       function tc_init_properties() {
-        $this -> is_customizing   = $this -> tc_is_customizing();
+        $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
         $this -> default_options  = $this -> tc_get_default_options();
         $this -> db_options       = (array) get_option( TC___::$tc_option_group );
         $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
@@ -167,26 +167,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
           break;
         }
         return apply_filters( 'tc_get_skin_color' , $_to_return , $_what );
-      }
-
-
-
-      /**
-      * Returns a boolean on the customizer's state
-      *
-      * @package Customizr
-      * @since Customizr 3.1.11
-      */
-      function tc_is_customizing() {
-        //checks if is customizing : two contexts, admin and front (preview frame)
-        global $pagenow;
-        $is_customizing = false;
-        if ( is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow ) {
-                $is_customizing = true;
-        } else if ( ! is_admin() && isset($_REQUEST['wp_customize']) ) {
-                $is_customizing = true;
-        }
-        return $is_customizing;
       }
 
 
@@ -290,7 +270,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_opt( $option_name , $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
           $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
-          if ( $this -> tc_is_customizing() || is_admin() )
+          if ( TC___::$instance -> tc_is_customizing() || is_admin() )
             $_db_options = (array) get_option( $option_group );
           else
             $_db_options = empty($this-> db_options) ? $this -> tc_cache_db_options($option_group) : $this-> db_options;

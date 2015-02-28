@@ -126,8 +126,8 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	        //1) if customizing always. (is hidden if empty of disabled)
 	        //2) if not customizing : must be enabled and have social networks.
 	    	$_nothing_to_render = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_social_in_footer') ) ) || ! tc__f( '__get_socials' );
-	    	$_hide_socials = $_nothing_to_render && TC_utils::$inst -> tc_is_customizing();
-	    	$_nothing_to_render = $_nothing_to_render && ! TC_utils::$inst -> tc_is_customizing();
+	    	$_hide_socials = $_nothing_to_render && TC___::$instance -> tc_is_customizing();
+	    	$_nothing_to_render = $_nothing_to_render && ! TC___::$instance -> tc_is_customizing();
 
 	      	echo apply_filters(
 	      		'tc_colophon_left_block',

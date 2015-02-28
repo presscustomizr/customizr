@@ -109,7 +109,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks set.
         $_nothing_to_render = ( 0 == esc_attr( TC_utils::$inst->tc_opt( $option) ) ) || ! tc__f( '__get_socials' );
-        if ( ! TC_utils::$inst -> tc_is_customizing() && $_nothing_to_render )
+        if ( ! TC___::$instance -> tc_is_customizing() && $_nothing_to_render )
             return;
         $_title = esc_attr( TC_utils::$inst->tc_opt( 'tc_social_in_sidebar_title') );
         $html = sprintf('<aside class="%1$s" %2$s>%3$s%4$s</aside>',

@@ -390,7 +390,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks.
         $_nothing_to_render = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_social_in_header') ) ) || ! tc__f( '__get_socials' );
-        if ( ! TC_utils::$inst -> tc_is_customizing() && $_nothing_to_render )
+        if ( ! TC___::$instance -> tc_is_customizing() && $_nothing_to_render )
         	return;
 
         //class added if not resp
@@ -476,7 +476,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 		    }
 
 	     //STICKY HEADER
-		    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) || TC_utils::$inst -> tc_is_customizing() ) {
+		    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) || TC___::$instance -> tc_is_customizing() ) {
 		    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
 
 		    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
@@ -605,10 +605,10 @@ if ( ! class_exists( 'TC_header_main' ) ) :
    	*/
 		function tc_set_tagline_visibility($html) {
 			//if customizing just hide it
-			if ( TC_utils::$inst -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) )
+			if ( TC___::$instance -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) )
 				return str_replace('site-description"', 'site-description" style="display:none"', $html);
 			//live context, don't paint it at all
-			if ( ! TC_utils::$inst -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) )
+			if ( ! TC___::$instance -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) )
 				return '';
 			return $html;
 		}

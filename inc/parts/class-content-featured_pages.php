@@ -226,7 +226,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
                 //button block
                 $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
 
-                if ( $tc_fp_button_text || TC_utils::$inst -> tc_is_customizing() ){
+                if ( $tc_fp_button_text || TC___::$instance -> tc_is_customizing() ){
                   $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
                   $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
                   $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
