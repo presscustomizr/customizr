@@ -18,7 +18,7 @@ jQuery(function ($) {
       });
       //POST LIST THUMBNAILS + FEATURED PAGES
       //Squared, rounded
-      $('.hentry .thumb-wrapper').centerImages( {
+      $('.thumb-wrapper', '.hentry' ).centerImages( {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
@@ -33,7 +33,7 @@ jQuery(function ($) {
       });
 
       //SINGLE POST THUMBNAILS
-      $('.single .tc-rectangular-thumb').centerImages( {
+      $('.tc-rectangular-thumb' , '.single').centerImages( {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
