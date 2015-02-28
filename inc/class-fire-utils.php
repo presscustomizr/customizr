@@ -289,7 +289,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_opt( $option_name , $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
-          $option_group       = is_null($option_group) ? 'tc_theme_options' : $option_group;
+          $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
           if ( $this -> tc_is_customizing() || is_admin() )
             $_db_options = (array) get_option( $option_group );
           else
