@@ -100,7 +100,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 	    * @since Customizr 3.0
 	    */
 	    function tc_favicon_display() {
-	       	$_fav_option  			= esc_attr( tc__f( '__get_option' , 'tc_fav_upload') );
+	       	$_fav_option  			= esc_attr( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
 	       	if ( ! $_fav_option || is_null($_fav_option) )
 	       		return;
 
@@ -111,7 +111,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 	       		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'large' ) );
 	       		$_fav_src 			= $_attachment_data[0];
 	       	} else { //old treatment
-	       		$_saved_path 		= esc_url ( tc__f( '__get_option' , 'tc_fav_upload') );
+	       		$_saved_path 		= esc_url ( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
 	       		//rebuild the path : check if the full path is already saved in DB. If not, then rebuild it.
 		       	$upload_dir 		= wp_upload_dir();
 		       	$_fav_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
@@ -162,7 +162,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
           $_width 				= false;
           $_height 				= false;
           $_attachement_id 		= false;
-          $_logo_option  			= esc_attr( tc__f( '__get_option' , "tc{$logo_type}logo_upload") );
+          $_logo_option  			= esc_attr( TC_utils::$inst->tc_opt( "tc{$logo_type}logo_upload") );
           //check if option is an attachement id or a path (for backward compatibility)
           if ( is_numeric($_logo_option) ) {
               $_attachement_id 	= $_logo_option;
@@ -173,15 +173,15 @@ if ( ! class_exists( 'TC_header_main' ) ) :
           } else { //old treatment
               //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
               $upload_dir 			= wp_upload_dir();
-              $_saved_path 			= esc_url ( tc__f( '__get_option' , "tc{$logo_type}logo_upload") );
+              $_saved_path 			= esc_url ( TC_utils::$inst->tc_opt( "tc{$logo_type}logo_upload") );
               $_logo_src 				= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
           }
 
           //hook + makes ssl compliant
           $_logo_src    			= apply_filters( "tc{$logo_type}logo_src" , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
 
-          $logo_resize 			= ( $logo_type == '_' ) ? esc_attr( tc__f( '__get_option' , 'tc_logo_resize') ) : '';
-          $filetype 				= TC_utils::$instance -> tc_check_filetype ($_logo_src);
+          $logo_resize 			= ( $logo_type == '_' ) ? esc_attr( TC_utils::$inst->tc_opt( 'tc_logo_resize') ) : '';
+          $filetype 				= TC_utils::$inst -> tc_check_filetype ($_logo_src);
           if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) ) {
               $_args 		= array(
                       'logo_src' 				=> $_logo_src,
@@ -260,7 +260,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
                                 apply_filters( 'tc_logo_max_width', 250 ),
                                 apply_filters( 'tc_logo_max_height', 100 )
                                 ) : '',
-        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) ),
+        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == TC_utils::$inst->tc_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) ),
         $logo_type,
         $logo_attachment_id ? sprintf( 'attachment-%1$s', $logo_attachment_id ) : ''
       );
@@ -389,8 +389,8 @@ if ( ! class_exists( 'TC_header_main' ) ) :
         //when do we display this block ?
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render = ( 0 == esc_attr( tc__f( '__get_option', 'tc_social_in_header') ) ) || ! tc__f( '__get_socials' );
-        if ( ! TC_utils::$instance -> tc_is_customizing() && $_nothing_to_render )
+        $_nothing_to_render = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_social_in_header') ) ) || ! tc__f( '__get_socials' );
+        if ( ! TC_utils::$inst -> tc_is_customizing() && $_nothing_to_render )
         	return;
 
         //class added if not resp
@@ -468,7 +468,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     * @since Customizr 3.2.6
     */
 		function tc_write_header_inline_css( $_css ) {
-			if ( 1 != esc_attr( tc__f( '__get_option' , 'tc_top_border') ) ) {
+			if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_top_border') ) ) {
 				$_css = sprintf("%s\n%s",
 					$_css,
 					"header.tc-header {border-top: none;}\n"
@@ -476,7 +476,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 		    }
 
 	     //STICKY HEADER
-		    if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_shrink_title_logo') ) || TC_utils::$instance -> tc_is_customizing() ) {
+		    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) || TC_utils::$inst -> tc_is_customizing() ) {
 		    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
 
 		    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
@@ -509,8 +509,8 @@ if ( ! class_exists( 'TC_header_main' ) ) :
       }
 
 			//HEADER Z-INDEX
-	    if ( 100 != esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') ) ) {
-	    	$_custom_z_index 	= esc_attr( tc__f( '__get_option' , 'tc_sticky_z_index') );
+	    if ( 100 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_z_index') ) ) {
+	    	$_custom_z_index 	= esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_z_index') );
 		    $_css = sprintf("%s\n%s",
   		      $_css,
   		      ".tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
@@ -531,10 +531,10 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     */
     function tc_add_body_classes($_classes) {
       //STICKY HEADER
-    	if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ) ) {
+    	if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
        		$_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );
        		//STICKY TRANSPARENT ON SCROLL
-	       	if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_transparent_on_scroll' ) ) )
+	       	if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_transparent_on_scroll' ) ) )
 	       		$_classes = array_merge( $_classes, array('tc-transparent-on-scroll') );
 	       	else
 	       		$_classes = array_merge( $_classes, array('tc-solid-color-on-scroll') );
@@ -560,12 +560,12 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-			$_show_tagline 			= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_tagline') );
-      $_show_title_logo 		= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_title_logo') );
+			$_show_tagline 			= 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_tagline') );
+      $_show_title_logo 		= 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') );
       $_use_sticky_logo 		= $this -> tc_use_sticky_logo();
-			$_shrink_title_logo 	= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_shrink_title_logo') );
-			$_show_menu 			  = 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_menu') );
-			$_header_layout 		= "logo-" . esc_attr( tc__f( '__get_option' , 'tc_header_layout' ) );
+			$_shrink_title_logo 	= 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') );
+			$_show_menu 			  = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') );
+			$_header_layout 		= "logo-" . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) );
 			$_add_classes 			= array(
 				$_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',
         $_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
@@ -586,10 +586,10 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     * @since Customizr 3.2.9
     */
     function tc_use_sticky_logo(){
-        if ( ! esc_attr( tc__f( '__get_option' , "tc_sticky_logo_upload") ) )
+        if ( ! esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_logo_upload") ) )
             return false;
-        if ( ! ( esc_attr( tc__f( '__get_option' , "tc_sticky_header") ) &&
-                     esc_attr( tc__f( '__get_option' , 'tc_sticky_show_title_logo') )
+        if ( ! ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") ) &&
+                     esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') )
                )
         )
             return false;
@@ -605,10 +605,10 @@ if ( ! class_exists( 'TC_header_main' ) ) :
    	*/
 		function tc_set_tagline_visibility($html) {
 			//if customizing just hide it
-			if ( TC_utils::$instance -> tc_is_customizing() && 0 == esc_attr( tc__f( '__get_option' , 'tc_show_tagline') ) )
+			if ( TC_utils::$inst -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) )
 				return str_replace('site-description"', 'site-description" style="display:none"', $html);
 			//live context, don't paint it at all
-			if ( ! TC_utils::$instance -> tc_is_customizing() && 0 == esc_attr( tc__f( '__get_option' , 'tc_show_tagline') ) )
+			if ( ! TC_utils::$inst -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) )
 				return '';
 			return $html;
 		}
@@ -625,7 +625,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-			$_layout = esc_attr( tc__f( '__get_option' , 'tc_header_layout') );
+			$_layout = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
 			switch ($_layout) {
 				case 'left':
 					$_classes = array('brand', 'span3' , 'pull-left');

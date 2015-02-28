@@ -40,12 +40,12 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         function tc_set_visibility_options() {
           //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
           if ( is_singular() && ! is_page() && ! tc__f('__is_home') ) {
-              if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_single_post' ) ) ) {
+              if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
 
-              if ( TC_utils::$instance -> tc_is_customizing() ) {
+              if ( TC_utils::$inst -> tc_is_customizing() ) {
                   add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
@@ -54,12 +54,12 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
           }
           if ( ! is_singular() && ! tc__f('__is_home') && ! is_page() ) {
-              if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_post_lists' ) ) ) {
+              if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
 
-                  if ( TC_utils::$instance -> tc_is_customizing() ) {
+                  if ( TC_utils::$inst -> tc_is_customizing() ) {
                       add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
                       add_filter( 'tc_show_post_metas' , '__return_true' );
                   }
@@ -67,11 +67,11 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
                       add_filter( 'tc_show_post_metas' , '__return_false' );
           }
           if ( tc__f('__is_home') ) {
-              if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_home' ) ) ) {
+              if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
-              if ( TC_utils::$instance -> tc_is_customizing() ) {
+              if ( TC_utils::$inst -> tc_is_customizing() ) {
                   add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
@@ -109,7 +109,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * DESIGN HOOK SETUP
         ***********************/
         function tc_set_design_options() {
-          if ( 'buttons' == esc_attr( tc__f( '__get_option' , 'tc_post_metas_design' ) ) )
+          if ( 'buttons' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_design' ) ) )
             return;
 
           add_filter( 'tc_meta_terms_glue'           , array( $this, 'tc_set_term_meta_glue' ) );
@@ -239,13 +239,13 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @since Customizr 3.2.6
         */
         function tc_set_post_metas_elements( $_default , $_args = array() ) {
-            $_show_cats         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_categories' ) ) && false != $this -> tc_meta_generate_tax_list( true );
-            $_show_tags         = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_tags' ) ) && false != $this -> tc_meta_generate_tax_list( false );
-            $_show_pub_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_publication_date' ) );
-            $_show_upd_date     = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_update_date' ) ) && false !== TC_utils::$instance -> tc_post_has_update();
-            $_show_upd_in_days  = 'days' == esc_attr( tc__f( '__get_option' , 'tc_post_metas_update_date_format' ) );
+            $_show_cats         = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_categories' ) ) && false != $this -> tc_meta_generate_tax_list( true );
+            $_show_tags         = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_tags' ) ) && false != $this -> tc_meta_generate_tax_list( false );
+            $_show_pub_date     = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) );
+            $_show_upd_date     = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_update_date' ) ) && false !== TC_utils::$inst -> tc_post_has_update();
+            $_show_upd_in_days  = 'days' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_date_format' ) );
             $_show_date         = $_show_pub_date || $_show_upd_date;
-            $_show_author       = 0 != esc_attr( tc__f( '__get_option' , 'tc_show_post_metas_author' ) );
+            $_show_author       = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_author' ) );
 
             //extract cat_list, tag_list, pub_date, auth, upd_date from $args if not empty
             if ( empty($_args) )
@@ -299,7 +299,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             $_update_text = '';
             if ( $_show_upd_date ) {
               if ( $_show_upd_in_days ) {
-                $_update_days = TC_utils::$instance -> tc_post_has_update();
+                $_update_days = TC_utils::$inst -> tc_post_has_update();
                 $_update_text = ( 0 == $_update_days ) ? __( '(updated today)' , 'customizr' ) : sprintf( __( '(updated %s days ago)' , 'customizr' ), $_update_days );
                 $_update_text = ( 1 == $_update_days ) ? __( '(updated 1 day ago)' , 'customizr' ) : $_update_text;
               }

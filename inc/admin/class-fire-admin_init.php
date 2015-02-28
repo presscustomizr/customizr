@@ -70,7 +70,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       * @since Customizr 3.2.10
       */
       function tc_maybe_add_gfonts_to_editor() {
-        $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
+        $_font_pair         = esc_attr( TC_utils::$inst->tc_opt('tc_fonts') );
         $_all_font_pairs    = TC_init::$instance -> font_pairs;
         if ( false === strpos($_font_pair,'_g_') )
           return;
@@ -79,7 +79,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
           str_replace(
             ',',
             '%2C',
-            sprintf( '//fonts.googleapis.com/css?family=%s', TC_utils::$instance -> tc_get_font( 'single' , $_font_pair ) )
+            sprintf( '//fonts.googleapis.com/css?family=%s', TC_utils::$inst -> tc_get_font( 'single' , $_font_pair ) )
           )
         );
       }

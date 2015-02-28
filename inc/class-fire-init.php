@@ -539,8 +539,8 @@ if ( ! class_exists( 'TC_init' ) ) :
       * @since Customizr 3.0.15
       */
       function tc_get_style_src( $_wot = 'skin' ) {
-        $_sheet    = ( 'skin' == $_wot ) ? esc_attr( tc__f( '__get_option' , 'tc_skin' ) ) : 'tc_common.css';
-        if ( esc_attr( tc__f( '__get_option' , 'tc_minified_skin' ) ) )
+        $_sheet    = ( 'skin' == $_wot ) ? esc_attr( TC_utils::$inst->tc_opt( 'tc_skin' ) ) : 'tc_common.css';
+        if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_minified_skin' ) ) )
           $_sheet  = str_replace('.css', '.min.css', $_sheet);
 
         //Finds the good path : are we in a child theme and is there a skin to override?
@@ -796,7 +796,7 @@ if ( ! class_exists( 'TC_init' ) ) :
      */
       function tc_add_retina_support( $metadata, $attachment_id ) {
         //checks if retina is enabled in options
-        if ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) )
+        if ( 0 == TC_utils::$inst->tc_opt( 'tc_retina_support' ) )
           return $metadata;
 
         if ( ! is_array($metadata) )
@@ -865,7 +865,7 @@ if ( ! class_exists( 'TC_init' ) ) :
      */
       function tc_clean_retina_images( $attachment_id ) {
         //checks if retina is enabled in options
-        if ( 0 == tc__f( '__get_option' , 'tc_retina_support' ) )
+        if ( 0 == TC_utils::$inst->tc_opt( 'tc_retina_support' ) )
           return;
 
         $meta = wp_get_attachment_metadata( $attachment_id );
@@ -919,14 +919,14 @@ if ( ! class_exists( 'TC_init' ) ) :
       */
       function tc_set_body_classes( $_classes ) {
         $_to_add = array();
-        if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_link_hover_effect' ) ) )
+        if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_link_hover_effect' ) ) )
           $_to_add[] = 'tc-fade-hover-links';
-        if ( TC_utils::$instance -> tc_is_customizing() )
+        if ( TC_utils::$inst -> tc_is_customizing() )
           $_to_add[] = 'is-customizing';
         if ( wp_is_mobile() )
           $_to_add[] = 'tc-is-mobile';
-        if ( 0 != esc_attr( tc__f( '__get_option' , 'tc_enable_dropcap' ) ) )
-          $_to_add[] = esc_attr( tc__f( '__get_option' , 'tc_dropcap_design' ) );
+        if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_enable_dropcap' ) ) )
+          $_to_add[] = esc_attr( TC_utils::$inst->tc_opt( 'tc_dropcap_design' ) );
 
         return array_merge( $_classes , $_to_add );
       }

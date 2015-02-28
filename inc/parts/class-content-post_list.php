@@ -144,7 +144,7 @@ class TC_post_list {
     //When do we show the post excerpt?
     //1) when set in options
     //2) + other filters conditions
-    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( tc__f( '__get_option' , 'tc_post_list_length' ) ) );
+    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) );
   }
 
 
@@ -163,7 +163,7 @@ class TC_post_list {
         array(
           $this -> tc_show_excerpt(),
           TC_post_thumbnails::$instance -> tc_has_thumb(),
-          0 != esc_attr( tc__f( '__get_option' , 'tc_post_list_show_thumb' ) )
+          0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) )
         )
       )
     );
@@ -269,13 +269,13 @@ class TC_post_list {
   * @since Customizr 3.2.0
   */
   function tc_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
-    $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
+    $_shape = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
 
     //1) check if shape is rounded, squared on rectangular
     if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
       return $thumb_wrapper;
 
-    $_position = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
+    $_position = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
     return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
           get_permalink( get_the_ID() ),
           esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
@@ -369,7 +369,7 @@ class TC_post_list {
   * @since Customizr 3.2.0
   */
   function tc_add_thumb_shape_name( $_classes ) {
-    return array_merge( $_classes , array(esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') ) ) );
+    return array_merge( $_classes , array(esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') ) ) );
   }
 
 
@@ -380,7 +380,7 @@ class TC_post_list {
   * @since Customizr 3.2.0
   */
   function tc_set_excerpt_length( $length ) {
-    $_custom = esc_attr( tc__f( '__get_option' , 'tc_post_list_excerpt_length' ) );
+    $_custom = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_excerpt_length' ) );
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
@@ -392,8 +392,8 @@ class TC_post_list {
   * @since Customizr 3.2.0
   */
   function tc_set_post_list_layout( $_layout ) {
-    $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
-    $_layout['alternate']        = ( 0 == esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_alternate' ) ) ) ? false : true;
+    $_position                  = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
+    $_layout['alternate']        = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_alternate' ) ) ) ? false : true;
     $_layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
     $_layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
     $_layout['thumb']            = ( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $_layout['thumb'];
@@ -408,7 +408,7 @@ class TC_post_list {
   * @since Customizr 3.2.0
   */
   function tc_set_content_class( $_classes ) {
-    $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
     return array_merge( $_classes , array( "thumb-position-{$_position}") );
   }
 
@@ -427,7 +427,7 @@ class TC_post_list {
     //note : handled with javascript if tc_center_img option enabled
     $_bool = array_product(
       array(
-        ! esc_attr( tc__f( '__get_option' , 'tc_center_img') ),
+        ! esc_attr( TC_utils::$inst->tc_opt( 'tc_center_img') ),
         false != $image,
         ! empty($image),
         isset($_filtered_thumb_size['width']),
@@ -439,7 +439,7 @@ class TC_post_list {
 
     $_width     = $_filtered_thumb_size['width'];
     $_height    = $_filtered_thumb_size['height'];
-    $_shape     = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
+    $_shape     = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
     $_is_rectangular = ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') ? false : true;
     if ( ! is_single() && ! $_is_rectangular )
       return $_style;
@@ -456,7 +456,7 @@ class TC_post_list {
   * @since Customizr 3.2.6
   */
   function tc_write_thumbnail_inline_css( $_css ) {
-    $_list_thumb_height     = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_height' ) );
+    $_list_thumb_height     = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_height' ) );
     $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
 
     return sprintf("%s\n%s",
@@ -476,11 +476,11 @@ class TC_post_list {
   * @since Customizr 3.2.0
   */
   function tc_set_thumb_size( $_default_size ) {
-    $_shape = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_shape') );
+    $_shape = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
     if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
       return $_default_size;
 
-    $_position                  = esc_attr( tc__f( '__get_option' , 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
     return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
   }
 

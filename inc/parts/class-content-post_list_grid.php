@@ -362,9 +362,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * add custom classes to each grid section
         */
         function tc_grid_section_set_classes( $_classes ) {
-          if ( esc_attr( tc__f('__get_option' , 'tc_grid_shadow') ) )
+          if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
             array_push( $_classes, 'tc-grid-shadow' );
-          if ( esc_attr( tc__f('__get_option' , 'tc_grid_bottom_border') ) )
+          if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_bottom_border') ) )
             array_push( $_classes, 'tc-grid-border' );
           return $_classes;
         }
@@ -518,8 +518,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return modified html string
         */
         function tc_set_grid_icon_visibility( $_html ) {
-          $_icon_enabled = (bool) esc_attr( tc__f('__get_option' , 'tc_grid_icons') );
-          if ( TC_utils::$instance -> tc_is_customizing() )
+          $_icon_enabled = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_icons') );
+          if ( TC_utils::$inst -> tc_is_customizing() )
             return sprintf('<div class="tc-grid-icon format-icon" style="display:%1$s"></div>%2$s',
                 $_icon_enabled ? 'inline-block' : 'none',
                 $_html
@@ -541,7 +541,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return (number) customizer user defined height for the grid thumbnails
         */
         private function tc_get_user_thumb_height() {
-          $_opt = esc_attr( tc__f('__get_option' , 'tc_grid_thumb_height') );
+          $_opt = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height') );
           return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
         }
 
@@ -560,7 +560,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
                   $wp_query->is_posts_page ) )
               return false;
 
-          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( tc__f('__get_option', 'tc_grid_expand_featured') ) );
+          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
           if ( ! ( $_expand_feat_post_opt &&
                   isset( get_option ('sticky_posts')[0]) ) )
               return false;
@@ -583,15 +583,15 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return bool
         */
         private function tc_is_grid_enabled() {
-          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( tc__f('__get_option', 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
+          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
         }
 
 
         /* retrieves number of cols option, and wrap it into a filter */
         private function tc_get_grid_cols() {
           return apply_filters( 'tc_get_grid_cols',
-            esc_attr( tc__f('__get_option', 'tc_grid_columns') ),
-            TC_utils::$instance -> tc_get_current_screen_layout( get_the_ID() , 'class' )
+            esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_columns') ),
+            TC_utils::$inst -> tc_get_current_screen_layout( get_the_ID() , 'class' )
           );
         }
 
@@ -623,7 +623,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
          * and the post list we're in */
         private function tc_is_grid_context_matching() {
           $_type = $this -> tc_get_grid_context();
-          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( tc__f('__get_option', 'tc_grid_in_' . $_type ) ) );
+          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_in_' . $_type ) ) );
           return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
         }
 

@@ -235,7 +235,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		        apply_filters('tc_js_customizer_control_params' ,
 			        array(
 			        	'themeFolder' 		=> get_template_directory_uri(),
-                'fontPairs'       => TC_utils::$instance -> tc_get_font( 'list' ),
+                'fontPairs'       => TC_utils::$inst -> tc_get_font( 'list' ),
                 'fontSelectors'   => TC_init::$instance -> font_selectors
 			        )
 			       )
@@ -306,8 +306,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 			        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
                 'themeName'     => TC___::$theme_name,
-                'HideDonate'    => tc__f('__get_option' ,'tc_hide_donate'),
-                'ShowCTA'       => ( true == tc__f('__get_option' ,'tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false
+                'HideDonate'    => TC_utils::$inst->tc_opt('tc_hide_donate'),
+                'ShowCTA'       => ( true == TC_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false
 			        )
 			    )
 	        );

@@ -53,7 +53,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
      */
       function tc_comments() {
         //By default not displayed on home, for protected posts, and if no comments for page option is checked
-        $comments_bool    =  ( post_password_required() || tc__f( '__is_home' ) || ( is_page() && 1 != esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) ) ) ? false : true;
+        $comments_bool    =  ( post_password_required() || tc__f( '__is_home' ) || ( is_page() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) ) ) ? false : true;
 
         if ( ! apply_filters('tc_show_comments', $comments_bool ) )
           return;
@@ -299,13 +299,13 @@ if ( ! class_exists( 'TC_comments' ) ) :
     function tc_display_comment_bubble( $_title = null ) {
 
       //Must be in the loop and enabled by user
-      if ( ! in_the_loop() || 0 == esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) )
+      if ( ! in_the_loop() || 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ) )
         return $_title;
 
       //when are we showing the comments number in title?
       //1) comments are enabled
       //2) post type is in the eligible post type list : default = post
-      $comments_enabled                  = ( 1 == esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
+      $comments_enabled                  = ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
       $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
 
       if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled )
@@ -319,7 +319,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         is_singular() ? '' : get_permalink(),
         sprintf( '%1$s %2$s' , get_comments_number(), __( 'Comment(s) on' , 'customizr' ) ),
         is_null($_title) ? esc_attr( strip_tags( $post -> post_title ) ) : esc_attr( strip_tags( $_title ) ),
-        0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) ) ) : ''
+        0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) ) : ''
       );
     }
 
@@ -352,13 +352,13 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @since Customizr 3.3.2
     */
     function tc_comment_bubble_inline_css( $_css ) {
-      if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_comment_show_bubble' ) ) )
+      if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ) )
         return $_css;
 
       //apply custom color only if type custom
       //if color type is skin => bubble color is defined in the skin stylesheet
-      if ( 'skin' != esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color_type' ) ) ) {
-        $_custom_bubble_color = esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_color' ) );
+      if ( 'skin' != esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color_type' ) ) ) {
+        $_custom_bubble_color = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color' ) );
         $_css .= "
           .comments-link .tc-comment-bubble {
             color: {$_custom_bubble_color};
@@ -370,7 +370,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         ";
       }
 
-      if ( 'default' == esc_attr( tc__f( '__get_option' , 'tc_comment_bubble_shape' ) ) )
+      if ( 'default' == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) )
         return $_css;
 
       $_css .= "

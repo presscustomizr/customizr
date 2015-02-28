@@ -63,12 +63,12 @@ if ( ! class_exists( 'TC_slider' ) ) :
     function tc_write_slider_inline_css( $_css ) {
       // 1) Do we have a custom height ?
       // 2) check if the setting must be applied to all context
-      $_custom_height     = esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') );
+      $_custom_height     = esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') );
       $_slider_inline_css = "";
 
       if ( 500 != $_custom_height
         && ( tc__f('__is_home')
-            || 0 != esc_attr( tc__f( '__get_option' , 'tc_slider_default_height_apply_all') )
+            || 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height_apply_all') )
         ) ) {
         $_resp_shrink_ratios = apply_filters( 'tc_slider_resp_shrink_ratios',
           array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )
@@ -126,7 +126,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
     *
     */
     function tc_set_slider_wrapper_class($_classes) {
-      if ( ! is_array($_classes) || 500 == esc_attr( tc__f( '__get_option' , 'tc_slider_default_height') ) )
+      if ( ! is_array($_classes) || 500 == esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) )
         return $_classes;
 
       return array_merge( $_classes , array('custom-slider-height') );
@@ -149,7 +149,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
         return apply_filters( 'tc_default_slides', TC_init::$instance -> default_slides );
 
       //if not demo, we get slides from options
-      $all_sliders              = tc__f('__get_option' , 'tc_sliders');
+      $all_sliders              = TC_utils::$inst->tc_opt( 'tc_sliders');
       $saved_slides             = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
 
       //if the slider not longer exists or exists but is empty, return false
@@ -247,7 +247,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
       global $wp_query;
 
       //gets the front slider if any
-      $tc_front_slider              = tc__f( '__get_option' , 'tc_front_slider' );
+      $tc_front_slider              = TC_utils::$inst->tc_opt( 'tc_front_slider' );
 
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
       if ( ! apply_filters( 'tc_show_slider' , !is_404() && !is_archive() && !is_search() || ( tc__f('__is_home') && $tc_front_slider ) ) )
@@ -269,7 +269,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
         return;
 
       //gets slider options if any
-      $layout_value                 = tc__f('__is_home') ? tc__f( '__get_option' , 'tc_slider_width' ) : esc_attr(get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ));
+      $layout_value                 = tc__f('__is_home') ? TC_utils::$inst->tc_opt( 'tc_slider_width' ) : esc_attr(get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ));
       $layout_value                 = apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
 
       //declares the layout vars
@@ -286,7 +286,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
       ob_start();
       ?>
       <div id="customizr-slider" class="<?php echo $layout_class ?> ">
-          <?php if ( 'demo' == $slider_name_id || ( 1 == esc_attr( tc__f( '__get_option' , 'tc_display_slide_loader') ) && apply_filters( 'tc_display_slider_loader' , true ) ) ) : ?>
+          <?php if ( 'demo' == $slider_name_id || ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ) && apply_filters( 'tc_display_slider_loader' , true ) ) ) : ?>
             <div class="tc-slider-loader-wrapper">
               <div class="tc-img-gif-loader">
                 <img data-no-retina src="<?php echo apply_filters('tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') ) ?>">

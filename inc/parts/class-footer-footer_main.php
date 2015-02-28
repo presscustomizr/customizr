@@ -49,7 +49,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 				return;
 
 			//hack to render white color icons if skin is grey or black
-			$skin_class 					= ( in_array( tc__f('__get_option' , 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
+			$skin_class 					= ( in_array( TC_utils::$inst->tc_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
 			$footer_widgets_wrapper_classes = implode(" ", apply_filters( 'tc_footer_widget_wrapper_class' , array('container' , 'footer-widgets', $skin_class) ) );
 			ob_start();
 			?>
@@ -125,9 +125,9 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	    	//when do we display this block ?
 	        //1) if customizing always. (is hidden if empty of disabled)
 	        //2) if not customizing : must be enabled and have social networks.
-	    	$_nothing_to_render = ( 0 == esc_attr( tc__f( '__get_option', 'tc_social_in_footer') ) ) || ! tc__f( '__get_socials' );
-	    	$_hide_socials = $_nothing_to_render && TC_utils::$instance -> tc_is_customizing();
-	    	$_nothing_to_render = $_nothing_to_render && ! TC_utils::$instance -> tc_is_customizing();
+	    	$_nothing_to_render = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_social_in_footer') ) ) || ! tc__f( '__get_socials' );
+	    	$_hide_socials = $_nothing_to_render && TC_utils::$inst -> tc_is_customizing();
+	    	$_nothing_to_render = $_nothing_to_render && ! TC_utils::$inst -> tc_is_customizing();
 
 	      	echo apply_filters(
 	      		'tc_colophon_left_block',
@@ -192,10 +192,10 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		* @since Customizr 3.2.0
 		*/
 		function tc_render_back_to_top() {
-			if ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_back_to_top' ) ) )
+			if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_back_to_top' ) ) )
 				return;
 			printf( '<div class="tc-btt-wrapper"><i class="btt-arrow" style="color:%1$s"></i></div>',
-				TC_utils::$instance -> tc_get_skin_color()
+				TC_utils::$inst -> tc_get_skin_color()
 			);
 		}
 
@@ -210,8 +210,8 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		function tc_set_widget_wrapper_class( $_original_classes ) {
 			$_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-			if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_show_footer_widget_icon' ) ) )
-				return ( 0 == esc_attr( tc__f( '__get_option' , 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+			if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_footer_widget_icon' ) ) )
+				return ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
 			 //last condition
           	return $_no_icons_classes;
 		}

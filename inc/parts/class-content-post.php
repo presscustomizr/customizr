@@ -51,12 +51,12 @@ if ( ! class_exists( 'TC_post' ) ) :
       //__before_content 0
       //__before_content 20
       if ( ! $this -> tc_single_post_display_controller()
-        || ! esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) )
-        || 'hide' == esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) )
+        || ! esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
+        || 'hide' == esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
         )
         return;
 
-      $_exploded_location   = explode('|', esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' )) );
+      $_exploded_location   = explode('|', esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' )) );
       $_hook                = isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content';
       $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
 
@@ -113,7 +113,7 @@ if ( ! class_exists( 'TC_post' ) ) :
       if ( ! $this -> tc_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
           return;
       //@todo check if some conditions below not redundant?
-      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( tc__f( '__get_option' , 'tc_show_author_info' ) ) )
+      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( TC_utils::$inst->tc_opt( 'tc_show_author_info' ) ) )
         return;
 
       $html = sprintf('<footer class="entry-meta">%1$s<div class="author-info"><div class="%2$s">%3$s %4$s</div></div></footer>',
@@ -146,7 +146,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     /**
     * Get Single post thumb model + view
     * Inject it in the view
-    * hook : esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) || '__before_content'
+    * hook : esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) || '__before_content'
     * @return  void
     * @package Customizr
     * @since Customizr 3.2.3
@@ -208,7 +208,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.2.3
     */
     private function tc_get_current_thumb_size() {
-      $_exploded_location   = explode( '|', esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_location' ) ) );
+      $_exploded_location   = explode( '|', esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) ) );
       $_hook                = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
       return '__before_main_wrapper' == $_hook ? 'slider-full' : 'slider';
     }
@@ -238,7 +238,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.2.6
     */
     function tc_write_thumbnail_inline_css( $_css ) {
-      $_single_thumb_height   = esc_attr( tc__f( '__get_option' , 'tc_single_post_thumb_height' ) );
+      $_single_thumb_height   = esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_height' ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,

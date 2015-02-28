@@ -70,7 +70,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
     								$_data_hex 	= '';
     								$_color_map = array();
     								if ( 'tc_theme_options[tc_skin]' == $this -> id ) {
-    									$_color_map = TC_utils::$instance -> tc_get_skin_color( 'all' );
+    									$_color_map = TC_utils::$inst -> tc_get_skin_color( 'all' );
     								}
                     switch ( $this -> id ) {
                       case 'tc_theme_options[tc_fonts]':

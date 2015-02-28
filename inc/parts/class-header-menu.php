@@ -35,16 +35,16 @@ if ( ! class_exists( 'TC_menu' ) ) :
       * @since Customizr 3.2.0
       */
       function tc_set_menu_options() {
-        if ( 1 != esc_attr( tc__f( '__get_option' , 'tc_display_boxed_navbar') ) )
+        if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
           add_filter( 'body_class'                  , array( $this, 'tc_set_no_navbar' ) );
         add_filter( 'tc_social_header_block_class'  , array( $this, 'tc_set_social_header_class') );
 
         //add a 100% wide container just after the sticky header to reset margin top
-        if ( 1 == esc_attr( tc__f( '__get_option' , 'tc_sticky_header' ) ) )
+        if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) )
           add_action( '__after_header'                , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
         add_filter( 'tc_navbar_wrapper_class'       , array( $this, 'tc_set_menu_style_options'), 0 );
 
-        if ( apply_filters( 'tc_menu_item_style_first_letter' , TC_utils::$instance -> tc_user_started_before_version( '3.2.0' , '1.0.0' ) ? true : false ) )
+        if ( apply_filters( 'tc_menu_item_style_first_letter' , TC_utils::$inst -> tc_user_started_before_version( '3.2.0' , '1.0.0' ) ? true : false ) )
           //Set thumbnail specific design based on user options
           add_filter( 'tc_user_options_style'   , array( $this , 'tc_menu_item_style_first_letter_css') );
       }
@@ -58,10 +58,10 @@ if ( ! class_exists( 'TC_menu' ) ) :
       * @since Customizr 3.2.0
       */
       function tc_set_menu_style_options( $_classes ) {
-        $_classes = ( ! wp_is_mobile() && 0 != esc_attr( tc__f( '__get_option', 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
-        $_classes = ( 0 != esc_attr( tc__f( '__get_option', 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
-        $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( tc__f( '__get_option' , 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
-        return array_merge( $_classes, array(esc_attr( tc__f( '__get_option', 'tc_menu_position') ) ) );
+        $_classes = ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
+        $_classes = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
+        $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
+        return array_merge( $_classes, array(esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) ) );
       }
 
 
@@ -168,13 +168,13 @@ if ( ! class_exists( 'TC_menu' ) ) :
           $menu_args = apply_filters( 'tc_menu_args',
                       array(
                         'theme_location'  => 'main',
-                        'menu_class'      => ( ! wp_is_mobile() && 'hover' == esc_attr( tc__f( '__get_option' , 'tc_menu_type' ) ) ) ? 'nav tc-hover-menu' : 'nav',
+                        'menu_class'      => ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav tc-hover-menu' : 'nav',
                         'fallback_cb'     => array( $this , 'tc_link_to_menu_editor' ),
                         'walker'          => TC_nav_walker::$instance,
                         'echo'            => false,
                     )
           );
-          $menu_wrapper_class   = ( ! wp_is_mobile() && 'hover' == esc_attr( tc__f( '__get_option' , 'tc_menu_type' ) ) ) ? 'nav-collapse collapse tc-hover-menu-wrapper' : 'nav-collapse collapse';
+          $menu_wrapper_class   = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav-collapse collapse tc-hover-menu-wrapper' : 'nav-collapse collapse';
           printf('<div class="%1$s">%2$s</div>',
               apply_filters( 'tc_menu_wrapper_class', $menu_wrapper_class ),
               wp_nav_menu( $menu_args )

@@ -31,8 +31,8 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       function tc_fp_block_display() {
 
       		//gets display options
-      		$tc_show_featured_pages 	      = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
-      		$tc_show_featured_pages_img     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
+      		$tc_show_featured_pages 	      = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
+      		$tc_show_featured_pages_img     = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) );
 
           if ( !apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && tc__f('__is_home') ) )
             return;
@@ -110,7 +110,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
         * @todo better area definition : dynamic
         */
         function tc_fp_single_display( $fp_single_id,$show_img) {
-          $_skin_color                        = TC_utils::$instance -> tc_get_skin_color();
+          $_skin_color                        = TC_utils::$inst -> tc_get_skin_color();
           $fp_holder_img                      = apply_filters (
             'tc_fp_holder_img' ,
             sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" />',
@@ -121,7 +121,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
           $featured_page_id                   = 0;
 
           //if fps are not set
-          if ( null == tc__f( '__get_option' , 'tc_featured_page_'.$fp_single_id ) || ! tc__f( '__get_option' , 'tc_featured_page_'.$fp_single_id ) ) {
+          if ( null == TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
               //admin link if user logged in
               $featured_page_link             = is_user_logged_in() ? apply_filters( 'tc_fp_link_url', admin_url().'customize.php' , $fp_single_id ) : '';
               $admin_link                     = is_user_logged_in() ? '<a href="'.admin_url().'customize.php" title="'.__( 'Customizer screen' , 'customizr' ).'">'.__( ' here' , 'customizr' ).'</a>' : '';
@@ -142,7 +142,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
           }
 
           else {
-              $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( tc__f( '__get_option' , 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
+              $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
 
               $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
 
@@ -152,7 +152,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
               $edit_enabled                   = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
               $edit_enabled                   = apply_filters( 'tc_edit_in_fp_title', $edit_enabled );
 
-              $featured_text                  = apply_filters( 'tc_fp_text', tc__f( '__get_option' , 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
+              $featured_text                  = apply_filters( 'tc_fp_text', TC_utils::$inst->tc_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
               $featured_text                  = apply_filters( 'tc_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
 
               //get the page/post object
@@ -224,9 +224,9 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
                 echo apply_filters( 'tc_fp_text_block' , $tc_fp_text_block , $fp_single_id , $text, $featured_page_id);
 
                 //button block
-                $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( tc__f( '__get_option' , 'tc_featured_page_button_text') ) , $fp_single_id );
+                $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
 
-                if ( $tc_fp_button_text || TC_utils::$instance -> tc_is_customizing() ){
+                if ( $tc_fp_button_text || TC_utils::$inst -> tc_is_customizing() ){
                   $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
                   $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
                   $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',

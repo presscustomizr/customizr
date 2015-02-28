@@ -146,7 +146,7 @@ class TC_post_thumbnails {
         $_thumb_type  = false !== $_thumb_id ? 'attachment' : $_thumb_type;
       }
       if ( ! $_thumb_id || empty( $_thumb_id ) ) {
-        $_thumb_id    = esc_attr( tc__f( '__get_option', 'tc_post_list_default_thumb' ) );
+        $_thumb_id    = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_default_thumb' ) );
         $_thumb_type  = ( false !== $_thumb_id && ! empty($_thumb_id) ) ? 'default' : $_thumb_type;
       }
 
@@ -163,7 +163,7 @@ class TC_post_thumbnails {
       //define a filtrable boolean to set if attached images can be used as thumbnails
       //1) must be a non single post context
       //2) user option should be checked in customizer
-      $_bool = 0 != esc_attr( tc__f( '__get_option' , 'tc_post_list_use_attachment_as_thumb' ) );
+      $_bool = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_use_attachment_as_thumb' ) );
       if ( ! is_admin() )
         $_bool == ! TC_post::$instance -> tc_single_post_display_controller() && $_bool;
       if ( ! apply_filters( 'tc_use_attachement_as_thumb' , $_bool ) )
@@ -262,7 +262,7 @@ class TC_post_thumbnails {
       //note : handled with javascript if tc_center_img option enabled
       $_bool = array_product(
         array(
-          ! esc_attr( tc__f( '__get_option' , 'tc_center_img') ),
+          ! esc_attr( TC_utils::$inst->tc_opt( 'tc_center_img') ),
           false != $image,
           ! empty($image),
           isset($_filtered_thumb_size['width']),

@@ -15,6 +15,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
   class TC_utils {
 
       //Access any method or var of the class with classname::$instance -> var or method():
+      static $inst;
       static $instance;
       public $default_options;
       public $db_options;
@@ -22,11 +23,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
       public $is_customizing;
 
       function __construct () {
+        self::$inst =& $this;
         self::$instance =& $this;
         //get all options
         add_filter( '__options'                           , array( $this , 'tc_get_theme_options' ), 10, 1);
         //get single option
-        add_filter( '__get_option'                        , array( $this , 'tc_get_option' ), 10, 2 );
+        add_filter( '__get_option'                        , array( $this , 'tc_opt' ), 10, 2 );
 
         //some useful filters
         add_filter( '__ID'                                , array( $this , 'tc_get_the_ID' ));
@@ -55,7 +57,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_wp_filters() {
         add_filter( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ) );
-        if ( esc_attr( tc__f( '__get_option' , 'tc_img_smart_load' ) ) ) {
+        if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ) ) {
           add_filter( 'the_content'                       , array( $this , 'tc_parse_imgs' ) );
           add_filter( 'tc_thumb_html'                     , array( $this , 'tc_parse_imgs' ) );
           add_filter( 'post_gallery'                      , array( $this , 'tc_parse_imgs' ), 30 );
@@ -285,7 +287,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_get_option( $option_name , $option_group = null ) {
+      function tc_opt( $option_name , $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
           $option_group       = is_null($option_group) ? 'tc_theme_options' : $option_group;
           if ( $this -> tc_is_customizing() || is_admin() )
@@ -297,7 +299,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
           $__options          = wp_parse_args( $_db_options, $_defaults );
           //$options            = array_intersect_key( $_db_options , $defaults);
           $returned_option    = isset($__options[$option_name]) ? $__options[$option_name] : false;
-        return apply_filters( 'tc_get_option' , $returned_option , $option_name , $option_group );
+        return apply_filters( 'tc_opt' , $returned_option , $option_name , $option_group );
       }
 
 
@@ -430,7 +432,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
        * @since Customizr 2.0.7
        */
       function tc_fancybox_content_filter( $content) {
-        $tc_fancybox = esc_attr( tc__f( '__get_option' , 'tc_fancybox' ) );
+        $tc_fancybox = esc_attr( TC_utils::$inst->tc_opt( 'tc_fancybox' ) );
 
         if ( 1 != $tc_fancybox )
           return $content;
