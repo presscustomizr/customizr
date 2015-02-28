@@ -3121,7 +3121,7 @@ jQuery(function ($) {
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         zeroTopAdjust : 1,
-        leftAdjust : 4
+        leftAdjust : 2.5
       });
       //POST LIST THUMBNAILS + FEATURED PAGES
       //Squared, rounded

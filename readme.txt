@@ -39,6 +39,32 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.2 February 28th 2015 =
+added : TC___::tc_doing_customizer_ajax()
+added contx retro compat
+replaced TC_utils::tc_is_customizing() by TC___::tc_is_customizing()
+updated : tc__f( '__get_option' ) replaced by TC_utils::$inst->tc_opt() method TC_utils::tc_get_option() replaced by TC_utils::tc_opt()
+added grid design option as a specific set to be revealed on click
+improved : featured pages thumbnails server side code
+improved : post and page thumbnails id are now stored in a post meta field
+Fix: amend conflicting actions when dropdowntoViewport false and link to an anchor clicked. Perform those actions just when clicking on the menu button (responsive modeFixed in drop cap : skip tags or selectors and parents of those
+improved : better structure for the code in thumbnails, post and post list
+added : new post metas design option in customizer
+improved : re-engineering of the post metas class with a cleaner model / view structure
+added : tc-post-list-context class to body when relevant
+Improved : cleaner post metas callback, adapted for the grid layout
+improved : display metas for post format with no titles (links for example)
+fixed : font icons genericons and entypo are now written in the wp admin editor iframe head
+Fix: hide/don't show social icons in footer when option unchecked
+Added : new comment bubbles
+changed tc_bubble_comment and tc_content_header_class now handled in TC_comment class
+updated : comment bubble callback moved in class-content-comments.php
+added : apply a dynamic js golden ratio for figure height / width on load + resize
+improved the _build_setId, fix the featured pages controls visibility in customizer
+improved : possible user defined tags, classes and ids to skip in js external links skip img tags and btn classes by default
+Fix quotes issue for web safe fonts inline css
+improved ext links options. Now handled with a separate jQuery plugin
+
 = 3.3.1 February 16th 2015 =
 added : pro parameter to the version check
 updated : menu open on hover by default if user started after v3.1+
