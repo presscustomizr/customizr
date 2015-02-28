@@ -221,6 +221,15 @@ if ( ! class_exists( 'TC___' ) ) :
           return $bool;
         }
 
+
+        /**
+        * Returns a boolean
+        * @since  3.3.2
+        */
+        function tc_doing_customizer_ajax() {
+          return isset( $_POST['customized'] ) && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
+        }
+
     }//end of class
 endif;
 
