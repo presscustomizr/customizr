@@ -185,7 +185,7 @@ jQuery(function ($) {
     var SmoothScroll = _p.SmoothScroll;
 
     if ('easeOutExpo' == SmoothScroll) {
-        $('a[href^="#"]', '#content').not('[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"]').click(function () {
+        $('a[href^="#"]', '#content').not('[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"]', '[class*=upme]').click(function () {
             var anchor_id = $(this).attr("href");
             if ('#' != anchor_id) {
                 $('html, body').animate({
