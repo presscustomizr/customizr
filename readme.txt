@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.6 March 2nd 2015 =
+fix a potential bug in the thumbnail types
+
 = 3.3.5 February 28th 2015 =
 improved : trigger simple_load event (=> fire centering) on relevant img if smartload disabled
 
