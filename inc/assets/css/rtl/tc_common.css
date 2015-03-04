@@ -5737,7 +5737,7 @@ footer#footer .colophon .social-block a {
 }
 .carousel-image img {
   width: 100%;
-  webkit-transition-property: width,height,top,left;
+  -webkit-transition-property: width,height,top,left;
   transition-property: width,height,top,left;
   -webkit-transition-duration: .25s;
   transition-duration: .25s;
@@ -6240,7 +6240,7 @@ video {
 }
 .tc-rectangular-thumb img {
   position: relative;
-  webkit-transition: -webkit-filter 0.4s ease;
+  -webkit-transition: -webkit-filter 0.4s ease;
   -moz-transition: -moz-filter 0.4s ease;
   -o-transition: -o-filter 0.4s ease;
   transition: -webkit-filter 0.4s ease;
@@ -6392,7 +6392,7 @@ img.v-centered {
 .expanded figcaption,
 .no-thumb figcaption,
 .tc-grid-post figcaption {
-  webkit-transition-property: opacity,background,color;
+  -webkit-transition-property: opacity,background,color;
   transition-property: opacity,background,color;
   -webkit-transition-duration: .20s;
   transition-duration: .20s;
@@ -6400,7 +6400,7 @@ img.v-centered {
   transition-timing-function: ease-in-out;
 }
 .tc-post-list-grid .expanded .entry-summary {
-  webkit-transition-property: opacity,background,color;
+  -webkit-transition-property: opacity,background,color;
   transition-property: opacity,background,color;
   -webkit-transition-duration: .2s;
   transition-duration: .2s;
@@ -6541,7 +6541,7 @@ img.v-centered {
 }
 .tc-grid-post .format-icon:before {
   opacity: 0;
-  webkit-transition-property: opacity;
+  -webkit-transition-property: opacity;
   transition-property: opacity;
   -webkit-transition-duration: .5s;
   transition-duration: .5s;
