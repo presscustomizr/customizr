@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.8 March 4th 2015 =
+Fix slider img centering bug
+
 = 3.3.7 March 4th 2015 =
 Fix: array dereferencing fix for PHP<5.4.0
 Fix: typos in webkit transition/transform properties
