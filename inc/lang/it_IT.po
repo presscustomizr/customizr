@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.8\n"
 "POT-Creation-Date: 2015-02-27 19:11+0100\n"
-"PO-Revision-Date: 2015-03-04 08:20-0800\n"
+"PO-Revision-Date: 2015-03-04 09:54-0800\n"
 "Last-Translator: Giorgio Riccardi <giorgio@griccardi.com>\n"
 "Language-Team: ElectricFeet <contact@themesandco.com>\n"
 "Language: it\n"
@@ -30,7 +30,7 @@ msgstr "2 barre laterali: a destra e a sinistra"
 
 #: ../class-fire-init.php:69 ../class-fire-init.php:70
 msgid "No sidebars : full width layout"
-msgstr "Nessuna barra laterale: Larghezza a tutta pagina"
+msgstr "Nessuna barra laterale: larghezza a tutta pagina"
 
 #: ../class-fire-init.php:84
 msgid "Blue"
@@ -223,7 +223,7 @@ msgstr "Barra laterale a destra"
 #: ../class-fire-init.php:266 ../class-fire-init.php:270
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr ""
-"Appare negli articoli, le pagine statiche, gli archivi e i moduli di ricerca"
+"Appare negli articoli, le pagine statiche, gli archivi ed i moduli di ricerca"
 
 #: ../class-fire-init.php:269
 msgid "Left Sidebar"
@@ -276,7 +276,7 @@ msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
 msgstr ""
-"Siamo spiacenti, non abbiamo trovato nessuna pagina che contiene le parole "
+"Siamo spiacenti, non abbiamo trovato nessuna pagina che contenga le parole "
 "ricercate. Vuoi riprovare con altre parole?"
 
 #: ../class-fire-init.php:327
@@ -572,7 +572,7 @@ msgstr "Deseleziona questa opzione per rimuovere il bordo colorato in alto."
 
 #: ../class-fire-utils_settings_map.php:439
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "Carica logo (formati supportati: .jpg, .png, .gif)"
+msgstr "Carica logo (formati supportati: .jpg, .png, .gif, .svg, .svgz)"
 
 #: ../class-fire-utils_settings_map.php:440
 msgid "LOGO"
@@ -591,7 +591,7 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:457
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "Carica logo sticky(formati supportati: .jpg, .png, .gif)"
+msgstr "Carica logo sticky (formati supportati: .jpg, .png, .gif, .svg, .svgz)"
 
 #: ../class-fire-utils_settings_map.php:461
 msgid ""
@@ -903,7 +903,7 @@ msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
 msgstr ""
-"Usa questo campo per testare piccolo porzioni di codice CSS. Per "
+"Usa questo campo per testare piccole porzioni di codice CSS. Per "
 "personalizzazioni più importanti del CSS, è consigliabile modificare il file "
 "style.css di un"
 
@@ -1815,15 +1815,15 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:2210
 msgid "Apply a shadow to each grid items"
-msgstr ""
+msgstr "Applica un'ombra ad ogni elemento della griglia"
 
 #: ../class-fire-utils_settings_map.php:2219
 msgid "Apply a colored bottom border to each grid items"
-msgstr ""
+msgstr "Applica un bordo inferiore colorato ad ogni elemento della griglia"
 
 #: ../class-fire-utils_settings_map.php:2228
 msgid "Display post format icons in the background"
-msgstr ""
+msgstr "Mostra il formato delle icone degli articoli sullo sfondo"
 
 #: ../class-fire-utils_settings_map.php:2238
 msgid "Thumbnails max height for the grid layout"
@@ -2646,7 +2646,7 @@ msgstr "Vedi tutti gli articoli di %s <span class=\"meta-nav\">&rarr;</span>"
 
 #: ../parts/class-content-post_list_grid.php:637
 msgid "More grid design options"
-msgstr ""
+msgstr "Piu' opzioni di design della griglia"
 
 #: ../parts/class-content-post_list_grid.php:646
 msgid "Jump to the blog design options"
