@@ -77,7 +77,8 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerSliderImg,
         imgSel : '.item .carousel-image img',
         oncustom : ['slid', 'simple_load'],
-        defaultCSSVal : { width : '100%' , height : 'auto' }
+        defaultCSSVal : { width : '100%' , height : 'auto' },
+        useImgAttr : true
       } );
       $('.tc-slider-loader-wrapper').hide();
     } , 50);

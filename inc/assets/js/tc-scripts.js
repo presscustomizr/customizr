@@ -2922,7 +2922,8 @@ var TCParams = TCParams || {};
         goldenRatioLimitHeightTo : 350,
         goldenRatioVal : 1.618,
         skipGoldenRatioClasses : ['no-gold-ratio'],
-        disableGRUnder : 767//in pixels
+        disableGRUnder : 767,//in pixels
+        useImgAttr:false//uses the img height and width attributes if not visible (typically used for the customizr slider hidden images)
       };
 
   function Plugin( element, options ) {
@@ -3034,24 +3035,47 @@ var TCParams = TCParams || {};
   Plugin.prototype._get_current_state = function( $_img ) {
     var c_x     = $_img.closest(this.container).outerWidth(),
         c_y     = $(this.container).outerHeight(),
-        i_x     = $_img.outerWidth(),
-        i_y     = $_img.outerHeight(),
+        i_x     = this._get_img_dim( $_img , 'x'),
+        i_y     = this._get_img_dim( $_img , 'y'),
         up_i_x  = Math.round( i_x / i_y * c_y ),
         up_i_y  = Math.round( i_y / i_x * c_x ),
-        current = ( c_y / c_x ) >= ( i_y / i_x ) ? 'h' : 'v',
-        prop    = {
-          h : {
-            dim : { name : 'height', val : c_y },
-            dir : { name : 'left', val : ( c_x - up_i_x ) / 2 + ( this.options.leftAdjust || 0 ) },
-            class : 'h-centered'
-          },
-          v : {
-            dim : { name : 'width', val : c_x },
-            dir : { name : 'top', val : ( c_y - up_i_y ) / 2 + ( this.options.topAdjust || 0 ) },
-            class : 'v-centered'
-          }
-        };
+        current = 'h';
+    //avoid dividing by zero if c_x or i_x === 0
+    if ( 0 !== c_x * i_x )
+      current = ( c_y / c_x ) >= ( i_y / i_x ) ? 'h' : 'v';
+
+    var prop    = {
+      h : {
+        dim : { name : 'height', val : c_y },
+        dir : { name : 'left', val : ( c_x - up_i_x ) / 2 + ( this.options.leftAdjust || 0 ) },
+        class : 'h-centered'
+      },
+      v : {
+        dim : { name : 'width', val : c_x },
+        dir : { name : 'top', val : ( c_y - up_i_y ) / 2 + ( this.options.topAdjust || 0 ) },
+        class : 'v-centered'
+      }
+    };
+
     return { current : current , prop : prop };
+  };
+
+
+  //@return img height or width
+  //uses the img height and width if not visible and set in options
+  Plugin.prototype._get_img_dim = function( $_img, _dim ) {
+    if ( ! this.options.useImgAttr )
+      return 'x' == _dim ? $_img.outerWidth() : $_img.outerHeight();
+
+    if ( $_img.is(":visible") )
+      return 'x' == _dim ? $_img.outerWidth() : $_img.outerHeight();
+    else {
+      if ( 'x' == _dim && $_img.attr('width') )
+        return $_img.attr('width');
+      if ( 'y' == _dim && $_img.attr('height') )
+        return $_img.attr('height');
+    }
+    return 0;
   };
 
 
@@ -3183,7 +3207,8 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerSliderImg,
         imgSel : '.item .carousel-image img',
         oncustom : ['slid', 'simple_load'],
-        defaultCSSVal : { width : '100%' , height : 'auto' }
+        defaultCSSVal : { width : '100%' , height : 'auto' },
+        useImgAttr : true
       } );
       $('.tc-slider-loader-wrapper').hide();
     } , 50);
