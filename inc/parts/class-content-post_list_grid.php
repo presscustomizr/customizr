@@ -156,7 +156,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_layout   = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
 
           // SET HOOKS FOR POST TITLES AND METAS (only for non featured post)
-          if ( ! $this -> tc_force_current_post_expansion() ){
+          if ( ! $this -> tc_force_tile_in_caption() ){
               $hook_prefix = '__before';
               if ( $_layout['show_thumb_first'] )
                   $hook_prefix = '__after';
@@ -581,8 +581,17 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
         /*
         * @return bool
+        * returns whether display the title in caption for the current post
         */
-        private function tc_is_grid_enabled() {
+        private function tc_force_title_in_caption(){
+          return apply_filters( 'tc_force_title_in_caption' , $this -> tc_force_current_post_expansion() );
+        }
+        
+        
+        /*
+        * @return bool
+        */
+        public function tc_is_grid_enabled() {
           return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
         }
 
