@@ -332,7 +332,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           global $wp_query;
           if ( ! ( $this -> tc_is_sticky_expanded() &&
                  $wp_query -> query_vars[ 'paged' ] == 0 ) ){
-            $this -> expanded_featured = null;     
+            $this -> expanded_featured = null;
             return;
           }
           // prepend the first sticky
@@ -564,10 +564,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               return false;
 
           $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
- 
+
           $_sticky_posts = get_option('sticky_posts');
           $this -> expanded_featured = ( is_array($_sticky_posts) && isset( $_sticky_posts[0] ) ) ? $_sticky_posts[0] : null;
- 
+
           if ( ! ( $_expand_feat_post_opt && $this -> expanded_featured ) )
               return false;
 

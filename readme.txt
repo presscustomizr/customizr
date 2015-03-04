@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.7 March 4th 2015 =
+Fix: array dereferencing fix for PHP<5.4.0
+
 = 3.3.6 March 2nd 2015 =
 fix a potential bug in the thumbnail types
 

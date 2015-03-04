@@ -1,4 +1,4 @@
-# Customizr v3.3.6 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.7 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,6 +92,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.7 March 4th 2015 =
+Fix: array dereferencing fix for PHP<5.4.0
+
 = 3.3.6 March 2nd 2015 =
 fix a potential bug in the thumbnail types
 
