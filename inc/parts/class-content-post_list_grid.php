@@ -156,7 +156,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_layout   = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
 
           // SET HOOKS FOR POST TITLES AND METAS (only for non featured post)
-          if ( ! $this -> tc_force_tile_in_caption() ){
+          if ( ! $this -> tc_force_title_in_caption() ){
               $hook_prefix = '__before';
               if ( $_layout['show_thumb_first'] )
                   $hook_prefix = '__after';
