@@ -3037,8 +3037,8 @@ var TCParams = TCParams || {};
         c_y     = $(this.container).outerHeight(),
         i_x     = this._get_img_dim( $_img , 'x'),
         i_y     = this._get_img_dim( $_img , 'y'),
-        up_i_x  = Math.round( i_x / i_y * c_y ),
-        up_i_y  = Math.round( i_y / i_x * c_x ),
+        up_i_x  = i_y * c_y !== 0 ? Math.round( i_x / i_y * c_y ) : c_x,
+        up_i_y  = i_x * c_x !== 0 ? Math.round( i_y / i_x * c_x ) : c_y,
         current = 'h';
     //avoid dividing by zero if c_x or i_x === 0
     if ( 0 !== c_x * i_x )
