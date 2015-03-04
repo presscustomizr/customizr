@@ -405,7 +405,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : tc_grid_display_figcaption_content
         */
         function tc_grid_set_expanded_post_title( $_html ){
-          if ( ! $this -> tc_force_current_post_expansion() )
+          if ( ! $this -> tc_force_title_in_caption() )
               return $_html;
           global $post;
           $_html = sprintf('%1$s<h2 class="entry-title">%2$s</h2>',
