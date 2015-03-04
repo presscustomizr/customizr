@@ -14,10 +14,12 @@
 if ( ! class_exists( 'TC_post_list_grid' ) ) :
     class TC_post_list_grid {
         static $instance;
-        private $has_expanded_featured;
+        private $expanded_featured;
+
         function __construct () {
             self::$instance =& $this;
-            $this -> has_expanded_featured = false;
+            $this -> expanded_featured = null;
+
             add_action ( 'pre_get_posts'            , array( $this , 'tc_maybe_excl_first_sticky') );
             add_action ( 'wp'                       , array( $this , 'tc_set_grid_hooks') );
             //customizer
@@ -119,7 +121,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_print_row_fluid_section_wrapper(){
           global $wp_query;
           $current_post   = $wp_query -> current_post;
-          $start_post     = $this -> has_expanded_featured ? 1 : 0;
+          $start_post     = $this -> expanded_featured ? 1 : 0;
           $cols           = $this -> tc_get_grid_section_cols();
 
           if ( '__before_article' == current_filter() &&
@@ -274,7 +276,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_maybe_excl_first_sticky( $query ){
           if ( $this -> tc_is_grid_enabled() &&
                    $this -> tc_is_sticky_expanded( $query ) )
-              $query->set('post__not_in', array(get_option('sticky_posts')[0]) );
+            $query->set('post__not_in', array( $this -> expanded_featured ) );
         }
 
 
@@ -329,13 +331,14 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_grid_prepare_expand_featured(){
           global $wp_query;
           if ( ! ( $this -> tc_is_sticky_expanded() &&
-                 $wp_query -> query_vars[ 'paged' ] == 0 ) )
-              return;
+                 $wp_query -> query_vars[ 'paged' ] == 0 ) ){
+            $this -> expanded_featured = null;     
+            return;
+          }
           // prepend the first sticky
-          $first_sticky = get_post( get_option( 'sticky_posts' )[0] );
+          $first_sticky = get_post( $this -> expanded_featured );
           array_unshift( $wp_query -> posts, $first_sticky );
           $wp_query -> post_count = $wp_query -> post_count + 1;
-          $this -> has_expanded_featured = true;
         }
 
 
@@ -561,8 +564,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               return false;
 
           $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
-          if ( ! ( $_expand_feat_post_opt &&
-                  isset( get_option ('sticky_posts')[0]) ) )
+ 
+          $_sticky_posts = get_option('sticky_posts');
+          $this -> expanded_featured = ( is_array($_sticky_posts) && isset( $_sticky_posts[0] ) ) ? $_sticky_posts[0] : null;
+ 
+          if ( ! ( $_expand_feat_post_opt && $this -> expanded_featured ) )
               return false;
 
           return true;
@@ -575,7 +581,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         private function tc_force_current_post_expansion(){
           global $wp_query;
-          return ( $this -> has_expanded_featured && 0 == $wp_query -> current_post );
+          return ( $this -> expanded_featured && 0 == $wp_query -> current_post );
         }
 
 
