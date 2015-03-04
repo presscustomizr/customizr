@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.8\n"
 "POT-Creation-Date: 2015-02-27 19:11+0100\n"
-"PO-Revision-Date: 2015-02-27 19:12+0100\n"
-"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"PO-Revision-Date: 2015-03-04 08:20-0800\n"
+"Last-Translator: Giorgio Riccardi <giorgio@griccardi.com>\n"
 "Language-Team: ElectricFeet <contact@themesandco.com>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -824,12 +824,12 @@ msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
 msgstr ""
-"Consigliamo fortemente di rigenerare le immagini della tua libreria media in "
-"alta definizione, con l'ausilio di questo plugin gratuito"
+"Consigliamo fortemente di rigenerare le immagini della tua libreria in alta "
+"definizione, con l'ausilio di questo plugin gratuito"
 
 #: ../class-fire-utils_settings_map.php:795
 msgid "regenerate thumbnails"
-msgstr "regenerate thumbnails"
+msgstr "rigenera miniature"
 
 #: ../class-fire-utils_settings_map.php:797
 msgid "Open the description page of the Regenerate thumbnails plugin"
@@ -851,11 +851,11 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:811
 msgid "Dynamic slider images centering on any devices"
-msgstr ""
+msgstr "Centra dinamicamente le slides su tutti i dispositivi"
 
 #: ../class-fire-utils_settings_map.php:819
 msgid "Dynamic thumbnails centering on any devices"
-msgstr ""
+msgstr "Centra dinamicamente le miniature su tutti i dispositivi"
 
 #: ../class-fire-utils_settings_map.php:822
 msgid ""
@@ -903,8 +903,8 @@ msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
 msgstr ""
-"Usa questo campot per testare piccoli pezzi di codice CSS. Per "
-"personalizzazioni più importanti del CSS, è consigliato modificare il file "
+"Usa questo campo per testare piccolo porzioni di codice CSS. Per "
+"personalizzazioni più importanti del CSS, è consigliabile modificare il file "
 "style.css di un"
 
 #: ../class-fire-utils_settings_map.php:873
@@ -919,7 +919,7 @@ msgstr "Come creare e usare un tema figlio?"
 
 #: ../class-fire-utils_settings_map.php:1008
 msgid "Site Title & Tagline"
-msgstr "Titolo del sito e Motto"
+msgstr "Titolo del sito e motto"
 
 #: ../class-fire-utils_settings_map.php:1025
 msgid "Fonts"
@@ -1550,7 +1550,7 @@ msgstr "Sopra"
 
 #: ../class-fire-utils_settings_map.php:1843
 msgid "Right"
-msgstr "Droite"
+msgstr "Destra"
 
 #: ../class-fire-utils_settings_map.php:1844
 msgid "Bottom"
@@ -1558,7 +1558,7 @@ msgstr "Sotto"
 
 #: ../class-fire-utils_settings_map.php:1845
 msgid "Left"
-msgstr "Gauche"
+msgstr "Sinistra"
 
 #: ../class-fire-utils_settings_map.php:1852
 msgid "Alternate thumbnail/content"
@@ -2223,9 +2223,9 @@ msgid ""
 "href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
 msgstr ""
 "Congratulazioni, hai installato l'ultima versione di Customizr! Customizr "
-"%1$s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog\">"
-"(vedi changelog)</a> per aiutarti a creare un sito straordinario! Guarda il "
-"<a href=\"%2$s\" target=\"_blank\">video d'introduzione</a> e trova "
+"%1$s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog"
+"\">(vedi changelog)</a> per aiutarti a creare un sito straordinario! Guarda "
+"il <a href=\"%2$s\" target=\"_blank\">video d'introduzione</a> e trova "
 "ispirazione nella <a href=\"#showcase\">vetrina di Customizr</a>.<br/"
 ">Divertiti! "
 
@@ -2650,7 +2650,7 @@ msgstr ""
 
 #: ../parts/class-content-post_list_grid.php:646
 msgid "Jump to the blog design options"
-msgstr ""
+msgstr "Vai alle opzioni di design del blog"
 
 #: ../parts/class-content-post_metas.php:173
 #, php-format
@@ -2926,8 +2926,8 @@ msgstr "Aggiungi un menu"
 #~ "inspiration in the <a href=\"#showcase\">showcase</a>.<br/> Enjoy it! "
 #~ msgstr ""
 #~ "Congratulazioni, hai installato l'ultima versione di Customizr! Customizr "
-#~ "%s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog\">"
-#~ "(vedi changelog)</a> per aiutarti a creare un sito straordinario!"
+#~ "%s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog"
+#~ "\">(vedi changelog)</a> per aiutarti a creare un sito straordinario!"
 
 #~ msgid "We need coffee..."
 #~ msgstr "Diventa sponsor!"
