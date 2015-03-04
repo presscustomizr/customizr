@@ -4691,17 +4691,13 @@ body {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-.tc-fade-hover-links a:not([class*=round-div]),
-.tc-fade-hover-links a:visited,
-.tc-fade-hover-links button,
-.tc-fade-hover-links input[type="button"],
-.tc-fade-hover-links input[type="submit"] {
-  -webkit-transition-property: border, background, color;
-  transition-property: border, background, color;
-  -webkit-transition-duration: .15s;
-  transition-duration: .15s;
-  -webkit-transition-timing-function: ease-in-out;
-  transition-timing-function: ease-in-out;
+.tc-fade-hover-links a.tc-carousel-control {
+  -webkit-transition-property: none;
+  transition-property: none;
+  -webkit-transition-duration: 0;
+  transition-duration: 0;
+  -webkit-transition-timing-function: none;
+  transition-timing-function: none;
 }
 .tc-fade-hover-links a.btn:focus,
 .tc-fade-hover-links a.btn:hover {
