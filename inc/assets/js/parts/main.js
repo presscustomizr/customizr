@@ -500,7 +500,7 @@ jQuery(function ($) {
             logosH[$i]  = $(this).attr('height');
 
             //check that all numbers are valid before using division
-            if ( 0 === _.size( _.filter( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber(num) && 0 !== num; } ) ) )
+            if ( 0 === _.size( _.filter( [ logosW[$i], logosH[$i] ], function(num){ num = parseInt(num); return _.isNumber(num) && 0 !== num; } ) ) )
               return;
 
             logosRatio[$i]  = logosW[$i] / logosH[$i];
@@ -510,7 +510,7 @@ jQuery(function ($) {
 
     //LOADING ACTIONS
     if ( _is_sticky_enabled() )
-        setTimeout( function() { _set_sticky_offsets(); _scrolling_actions(); } , 20 );
+        setTimeout( function() { _refresh(); _scrolling_actions(); } , 20 );
 
     //RESIZING ACTIONS
     $(window).resize(function() {
