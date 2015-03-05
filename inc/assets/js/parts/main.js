@@ -510,7 +510,7 @@ jQuery(function ($) {
 
     //LOADING ACTIONS
     if ( _is_sticky_enabled() )
-        setTimeout( function() { _refresh(); } , 20 );
+        setTimeout( function() { _set_sticky_offsets(); _scrolling_actions(); } , 20 );
 
     //RESIZING ACTIONS
     $(window).resize(function() {
