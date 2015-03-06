@@ -311,7 +311,7 @@ class TC_post_list {
     return apply_filters( 'tc_post_list_controller', ! is_singular()
           && ! is_404()
           && 0 != $wp_query -> post_count
-          && ! tc__f( '__is_home_empty');
+          && ! tc__f( '__is_home_empty') );
   }
 
 
