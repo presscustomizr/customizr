@@ -308,7 +308,7 @@ class TC_post_list {
   public function tc_post_list_controller() {
     global $wp_query;
     //must be archive or search result. Returns false if home is empty in options.
-    return ! is_singular()
+    return apply_filters( 'tc_post_list_controller', ! is_singular()
           && ! is_404()
           && 0 != $wp_query -> post_count
           && ! tc__f( '__is_home_empty');
