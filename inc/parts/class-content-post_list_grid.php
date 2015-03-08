@@ -332,7 +332,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_grid_set_article_selectors($selectors){
           $_class = sprintf( '%1$s tc-grid span%2$s',
-            $this -> tc_force_current_post_expansion() ? 'expanded' : '',
+            apply_filters( 'tc_grid_add_expanded_class', $this -> tc_force_current_post_expansion() ) ? 'expanded' : '',
             is_numeric($this -> tc_get_grid_section_cols()) ? 12 / $this -> tc_get_grid_section_cols() : 6
           );
           return str_replace( 'row-fluid', $_class, $selectors );
