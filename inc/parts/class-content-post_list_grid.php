@@ -588,7 +588,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /*
         * @return bool
         */
-        private function tc_is_grid_enabled() {
+        public function tc_is_grid_enabled() {
           return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
         }
 
