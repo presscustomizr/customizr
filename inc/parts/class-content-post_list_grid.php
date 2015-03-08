@@ -79,7 +79,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_content_priorities = apply_filters('tc_grid_post_content_priorities' , array( 'content' => 20, 'link' =>30 ));
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_figcaption_content') , $_content_priorities['content'] );
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_post_link'), $_content_priorities['link'] );
-          //expanded featured post : filter the figcaption content to include the post title
+          //expanded sticky post : filter the figcaption content to include the post title
           add_filter( 'tc_grid_display_figcaption_content' , array( $this, 'tc_grid_set_expanded_post_title') );
 
           //SECTION CSS CLASSES TO HANDLE EFFECT LIKE SHADOWS
@@ -157,8 +157,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           // get the filtered post list layout
           $_layout   = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
 
-          // SET HOOKS FOR POST TITLES AND METAS (only for non featured post)
-          if ( ! $this -> tc_force_current_post_expansion() ){
+          // SET HOOKS FOR POST TITLES AND METAS
+          // Default condition : must be a non sticky post
+          if ( apply_filters( 'tc_render_grid_headings_view' , ! $this -> tc_force_current_post_expansion() ) ) {
               $hook_prefix = '__before';
               if ( $_layout['show_thumb_first'] )
                   $hook_prefix = '__after';
@@ -230,7 +231,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_grid_display_post_link(){
           if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
             return;
-          printf( '<a href="%1$s" title="%2s"></a>',
+          printf( '<a class="tc-grid-bg-link" href="%1$s" title="%2s"></a>',
               get_permalink( get_the_ID() ),
               esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
         }
@@ -486,7 +487,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_expanded_featured_css = '';
 
 
-          //ADD THE HEIGHT FOR EXP FEATURED POST
+          //ADD THE HEIGHT FOR EXPanded sticky post
           $_height = isset($_grid_column_height['grid-cols-1']) ? $_grid_column_height['grid-cols-1'] : $this -> tc_get_user_thumb_height();
           $_expanded_featured_css = "
           .grid-cols-1 figure {

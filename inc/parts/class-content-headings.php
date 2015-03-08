@@ -142,7 +142,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function tc_post_page_title_callback( $_content , $_heading_type ) {
+      function tc_post_page_title_callback( $_content = null , $_heading_type = null ) {
         return sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
               apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
               apply_filters( 'tc_content_title_icon', 'format-icon' ),
