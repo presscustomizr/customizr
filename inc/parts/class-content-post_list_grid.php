@@ -187,6 +187,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //may be add class no-thumb
           if ( ! TC_post_thumbnails::$instance -> tc_has_thumb() )
             array_push( $_classes, 'no-thumb' );
+          else
+            array_push( $_classes, 'has-thumb' );
 
           //if 1 col layout or current post is the expanded => golden ratio should be disabled
           if ( ( '1' == $this -> tc_get_grid_cols() || $this -> tc_force_current_post_expansion() ) && ! wp_is_mobile() )
