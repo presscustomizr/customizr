@@ -79,6 +79,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_content_priorities = apply_filters('tc_grid_post_content_priorities' , array( 'content' => 20, 'link' =>30 ));
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_figcaption_content') , $_content_priorities['content'] );
           add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_post_link'), $_content_priorities['link'] );
+          add_action( '__grid_single_post_content'  , array( $this, 'tc_grid_display_fade_excerpt'), 100 );
           //expanded sticky post : filter the figcaption content to include the post title
           add_filter( 'tc_grid_display_figcaption_content' , array( $this, 'tc_grid_set_expanded_post_title') );
 
@@ -235,6 +236,18 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               get_permalink( get_the_ID() ),
               esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
         }
+
+
+
+        /**
+        * hook : __grid_single_post_content
+        */
+        function tc_grid_display_fade_excerpt(){
+          if ( ! apply_filters( 'tc_grid_fade_excerpt' , ! $this -> tc_force_current_post_expansion() ) )
+            return;
+          printf( '<span class="tc-grid-fade_expt"></span>' );
+        }
+
 
 
         /*

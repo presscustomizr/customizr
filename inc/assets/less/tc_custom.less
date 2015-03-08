@@ -1846,17 +1846,24 @@ img.v-centered {
     z-index: 10;
     position: relative;
     text-rendering: geometricPrecision;
+    max-height: 75%;
+    margin: 0 8%;
+    padding: 0;
+    overflow: hidden;
 }
-.tc-post-list-grid article:not(.expanded) .entry-summary{
+/*.tc-post-list-grid article:not(.expanded) .entry-summary{
   max-height: 75%;
   margin: 0 8%;
   overflow: hidden;
   padding:0;
-}
+}*/
 
-.tc-post-list-grid .expanded .entry-summary{
+.tc-post-list-grid article.expanded .entry-summary{
   background: rgb(250, 250, 250);
   background: rgba(0, 0, 0, 0.4);
+  padding: 8%;
+  margin: 0;
+  max-height: none;
 }
 .tc-post-list-grid .expanded .entry-title {
   text-align: left;
@@ -1889,9 +1896,9 @@ img.v-centered {
 .tc-post-list-grid .featurette-divider.__loop{
     display: none;
 }
-.tc-post-list-grid figcaption > a {
+.tc-post-list-grid figcaption > a.tc-grid-bg-link {
     position: absolute;
-    z-index: 10;
+    z-index: 12;
     top: 0;
     left: 0;
     width: 100%;
@@ -1985,6 +1992,26 @@ img.v-centered {
 .hover .tc-grid-post .format-icon:before {
   opacity: .3;
 }
+
+/* Fade Excerpt */
+.no-thumb .tc-grid-fade_expt {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  text-align: center;
+  margin: 0;
+  /*padding: 44px 0;*/
+  background-image: -moz-linear-gradient(top,transparent,@Customizrbackground);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,rgba(0, 0, 0, 0)),color-stop(1,@Customizrbackground));
+  z-index: 11;
+}
+.hover .tc-grid-fade_expt {
+  background-image: none;
+  background-image: none;
+}
+
 /* WP CSS
     -------------------------------------------------- */
 
