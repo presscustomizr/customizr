@@ -1,4 +1,4 @@
-# Customizr v3.3.10 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.11 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,6 +92,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.11 March 9th 2015 =
+fix : bbpress issue with single user profiles not showing up ( initially reported here : https://wordpress.org/support/topic/bbpress-problems-with-versions-avove-3217?replies=7#post-6669693 )
+
 = 3.3.10 March 9th 2015 =
 fixed : better insertion of font icons and custom css in the custom inline stylesheet
 fixed : bbpress conflict with the post grid
