@@ -540,9 +540,10 @@ jQuery(function ($) {
         _set_header_top_offset();
         //process scrolling actions
         if ( $(window).scrollTop() > triggerHeight ) {
-            $('body').addClass("sticky-enabled").removeClass("sticky-disabled");
+            if ( $('body').hasClass('sticky-disabled') )
+                $('body').addClass("sticky-enabled").removeClass("sticky-disabled");
         }
-        else {
+        else if ( $('body').hasClass('sticky-enabled') ){
             $('body').removeClass("sticky-enabled").addClass("sticky-disabled");
             setTimeout( function() { _refresh();} ,
               $('body').hasClass('is-customizing') ? 100 : 20
