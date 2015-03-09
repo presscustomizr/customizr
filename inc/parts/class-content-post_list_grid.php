@@ -479,7 +479,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : tc_user_options_style
         * @since Customizr 3.2.18
         */
-        function tc_grid_write_inline_css( $_css){
+        function tc_grid_write_inline_css( $_css ){
           /* retrieve the height/width ratios */
           $thumb_full_size  = apply_filters( 'tc_grid_full_size', TC_init::$instance -> tc_grid_full_size );
           $thumb_full_width = $thumb_full_size['width'];
