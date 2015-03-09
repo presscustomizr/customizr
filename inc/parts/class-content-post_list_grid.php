@@ -35,7 +35,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : wp
         */
         function tc_set_grid_hooks(){
-          if ( ! $this -> tc_is_grid_enabled() )
+          if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> tc_is_grid_enabled() ) )
               return;
 
           do_action( '__post_list_grid' );
