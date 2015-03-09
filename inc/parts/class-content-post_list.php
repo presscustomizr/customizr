@@ -120,7 +120,11 @@ class TC_post_list {
   * @since Customizr 3.3.2
   */
   private function tc_get_content_model($_layout) {
-    $_content      = $this -> tc_show_excerpt() ? get_the_excerpt() : get_the_content();
+    $_content      = '';
+    if ( $this -> tc_show_excerpt() )
+      $_content = apply_filters( 'the_excerpt', get_the_excerpt() );
+    else
+      $_content = str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', get_the_content() ) );
 
     //what is determining the layout ? if no thumbnail then full width + filter's conditions
     $_layout_class = $this -> tc_show_thumb() ? $_layout['content'] : 'span12';
@@ -307,10 +311,12 @@ class TC_post_list {
   public function tc_post_list_controller() {
     global $wp_query;
     //must be archive or search result. Returns false if home is empty in options.
-    return ! is_singular()
-          && ! is_404()
-          && 0 != $wp_query -> post_count
-          && ! tc__f( '__is_home_empty');
+    return apply_filters( 'tc_post_list_controller',
+      ! is_singular()
+      && ! is_404()
+      && 0 != $wp_query -> post_count
+      && ! tc__f( '__is_home_empty')
+    );
   }
 
 
