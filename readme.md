@@ -1,4 +1,4 @@
-# Customizr v3.3.9 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.10 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,6 +92,10 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.10 March 9th 2015 =
+fixed : better insertion of font icons and custom css in the custom inline stylesheet
+fixed : bbpress conflict with the post grid
+
 = 3.3.9 March 9th 2015 =
 fixed : the_content and the_excerpt WP filters missing in post list content model
 fixed : smart load issue when .hentry class is missing (in WooCommerce search results for example)
