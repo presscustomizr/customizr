@@ -31,9 +31,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
           //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
 	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
-
-
-
 	    }
 
 
