@@ -19,15 +19,21 @@ class TC_post_list {
     //Set new image size can be set here ( => wp hook would be too late) (since 3.2.0)
     add_action( 'init'                    , array( $this, 'tc_set_thumb_early_options') );
     //modify the query with pre_get_posts
+    //! wp_loaded is fired after WordPress is fully loaded but before the query is set
     add_action( 'wp_loaded'               , array( $this, 'tc_set_early_hooks') );
     //Set __loop hooks and customizer options (since 3.2.0)
     add_action( 'wp'                      , array( $this, 'tc_set_post_list_hooks'));
+    //append inline style to the custom stylesheet
+    //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
+    //fired on hook : wp_enqueue_scripts
+    //Set thumbnail specific design based on user options
+    add_filter( 'tc_user_options_style'       , array( $this , 'tc_write_thumbnail_inline_css') );
   }
 
 
 
   /***************************
-  * POST LIST HOOK SETUP
+  * POST LIST HOOKS SETUP
   ****************************/
   /**
   * hook : init
@@ -68,7 +74,7 @@ class TC_post_list {
     if ( ! $this -> tc_post_list_controller() )
       return;
     //displays the article with filtered layout : content + thumbnail
-    add_action ( '__loop'               , array( $this , 'tc_prepare_section_view'));
+    add_action ( '__loop'               , array( $this , 'tc_prepare_section_view') );
 
     //based on customizer user options
     add_filter( 'tc_post_list_layout'   , array( $this , 'tc_set_post_list_layout') );
@@ -80,8 +86,7 @@ class TC_post_list {
     add_filter( 'body_class'            , array( $this , 'tc_add_post_list_context') );
     //Set thumb shape with customizer options (since 3.2.0)
     add_filter( 'tc_post_thumb_wrapper' , array( $this , 'tc_set_thumb_shape'), 10 , 2 );
-    //Set thumbnail specific design based on user options
-    add_filter( 'tc_user_options_style'       , array( $this , 'tc_write_thumbnail_inline_css') );
+
     // => filter the thumbnail inline style tc_post_thumb_inline_style and replace width:auto by width:100%
     // 3 args = $style, $_width, $_height
     add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'tc_change_thumbnail_inline_css_width'), 20, 3 );
@@ -462,6 +467,8 @@ class TC_post_list {
   * @since Customizr 3.2.6
   */
   function tc_write_thumbnail_inline_css( $_css ) {
+    if ( ! $this -> tc_post_list_controller() )
+      return $_css;
     $_list_thumb_height     = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_height' ) );
     $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
 
