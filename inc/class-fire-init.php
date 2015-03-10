@@ -619,11 +619,6 @@ if ( ! class_exists( 'TC_init' ) ) :
              return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
           }
 
-          //display single user context
-          add_filter( 'tc_show_single_post_content' , 'tc_bbpress_single_user', 100 );
-          function tc_bbpress_single_user($bool) {
-             return ( function_exists('bbp_is_single_user') && bbp_is_single_user() ) ? true : $bool;
-          }
         }//end if bbpress on
 
 
