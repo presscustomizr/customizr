@@ -22,12 +22,12 @@ class TC_post_list {
     //! wp_loaded is fired after WordPress is fully loaded but before the query is set
     add_action( 'wp_loaded'               , array( $this, 'tc_set_early_hooks') );
     //Set __loop hooks and customizer options (since 3.2.0)
-    add_action( 'wp'                      , array( $this, 'tc_set_post_list_hooks'));
+    add_action( 'wp_head'                 , array( $this, 'tc_set_post_list_hooks'));
     //append inline style to the custom stylesheet
     //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
     //fired on hook : wp_enqueue_scripts
     //Set thumbnail specific design based on user options
-    add_filter( 'tc_user_options_style'       , array( $this , 'tc_write_thumbnail_inline_css') );
+    add_filter( 'tc_user_options_style'   , array( $this , 'tc_write_thumbnail_inline_css') );
   }
 
 
@@ -44,7 +44,7 @@ class TC_post_list {
   */
   function tc_set_thumb_early_options() {
     //Set thumb size depending on the customizer thumbnail position options (since 3.2.0)
-    add_filter ( 'tc_thumb_size_name'             , array( $this , 'tc_set_thumb_size') );
+    add_filter ( 'tc_thumb_size_name'     , array( $this , 'tc_set_thumb_size') );
   }
 
 
@@ -65,7 +65,7 @@ class TC_post_list {
 
   /**
   * Set __loop hooks and various filters based on customizer options
-  * hook : wp
+  * hook : wp_head
   *
   * @package Customizr
   * @since Customizr 3.2.0
