@@ -64,47 +64,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
     					<?php endif; ?>
     					<label>
     						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-    						<select <?php $this->link(); ?>>
-    							<?php
-    								//IF SKIN, THEN DEFINE SOME VARS
-    								$_data_hex 	= '';
-    								$_color_map = array();
-    								if ( 'tc_theme_options[tc_skin]' == $this -> id ) {
-    									$_color_map = TC_utils::$inst -> tc_get_skin_color( 'all' );
-    								}
-                    switch ( $this -> id ) {
-                      case 'tc_theme_options[tc_fonts]':
-                        foreach ( $this -> choices as $_opt_group => $_opt_list ) {
-                          $_options = array();
-                          foreach ( $_opt_list['list'] as $label => $value ) {
-                            $_options[] = sprintf('<option value="%1$s" %2$s>%3$s</option>',
-                              esc_attr( $label ),
-                              selected( $this->value(), $value, false ),
-                              $value
-                            );
-                          }
-                          printf('<optgroup label="%1$s">%2$s</optgroup>',
-                            $_opt_list['name'],
-                            implode($_options)
-                          );
-                        }
-                      break;
-
-                      default:
-                        foreach ( $this->choices as $value => $label ) {
-                          $_data_hex  = isset($_color_map[esc_attr( $value )][0]) ? sprintf( 'data-hex="%s"', $_color_map[esc_attr( $value )][0] ) : '';
-                          printf('<option value="%1$s" %2$s %4$s>%3$s</option>',
-                            esc_attr( $value ),
-                            selected( $this->value(), $value, false ),
-                            $label,
-                            $_data_hex
-                          );
-                        }
-                      break;
-                    }
-
-    								?>
-    						</select>
+    						<?php $this -> tc_print_select_control() ?>
                 <?php if(!empty( $this -> notice)) : ?>
                   <span class="tc-notice"><?php echo $this -> notice ?></span>
                 <?php endif; ?>
@@ -216,6 +176,72 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	        }//end switch
 	        do_action( '__after_setting_control' , $this -> id );
 		 }//end function
+
+
+
+
+    private function tc_print_select_control() {
+      printf('<select %1$s>%2$s</select>',
+        $this -> get_link(),
+        $this -> tc_get_select_options()
+      );
+    }
+
+
+    private function tc_get_select_options() {
+      $_options_html = '';
+      switch ( $this -> id ) {
+        case 'tc_theme_options[tc_fonts]':
+          foreach ( $this -> choices as $_opt_group => $_opt_list ) {
+            $_options = array();
+            foreach ( $_opt_list['list'] as $label => $value ) {
+              $_options[] = sprintf('<option value="%1$s" %2$s>%3$s</option>',
+                esc_attr( $label ),
+                selected( $this->value(), $value, false ),
+                $value
+              );
+            }
+            $_options_html .= sprintf('<optgroup label="%1$s">%2$s</optgroup>',
+              $_opt_list['name'],
+              implode($_options)
+            );
+          }
+        break;
+
+        case 'tc_theme_options[tc_skin]':
+          $_data_hex  = '';
+          $_color_map = TC_utils::$inst -> tc_get_skin_color( 'all' );
+          //Get the color map array structured as follow
+          // array(
+          //       'blue.css'        =>  array( '#08c', '#005580' ),
+          //       ...
+          // )
+          foreach ( $this->choices as $value => $label ) {
+            if ( is_array($_color_map) && isset( $_color_map[esc_attr( $value )] ) )
+              $_data_hex       = isset( $_color_map[esc_attr( $value )][0] ) ? $_color_map[esc_attr( $value )][0] : '';
+
+            $_options_html .= sprintf('<option value="%1$s" %2$s data-hex="%4$s">%3$s</option>',
+              esc_attr( $value ),
+              selected( $this->value(), $value, false ),
+              $label,
+              $_data_hex
+            );
+          }
+        break;
+
+        default:
+          foreach ( $this->choices as $value => $label ) {
+            $_options_html .= sprintf('<option value="%1$s" %2$s>%3$s</option>',
+              esc_attr( $value ),
+              selected( $this->value(), $value, false ),
+              $label
+            );
+          }
+        break;
+      }//end switch
+      return $_options_html;
+    }//end of fn
+
 	}//end of class
 endif;
 

@@ -235,6 +235,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		        apply_filters('tc_js_customizer_control_params' ,
 			        array(
 			        	'themeFolder' 		=> get_template_directory_uri(),
+                //can be hacked to override the preview params when a custom skin is used
+                //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
+                'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
                 'fontPairs'       => TC_utils::$inst -> tc_get_font( 'list' ),
                 'fontSelectors'   => TC_init::$instance -> font_selectors
 			        )
