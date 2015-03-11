@@ -36,5 +36,12 @@ module.exports = {
 		src: ['*.css', '!*.min.css'],
 		dest: '<%= paths.admin_css %>',
 		ext: '.min.css'
-	}
+	},
+  custom_skin : {
+    expand: true,
+    cwd: 'custom-skins/',
+    src: ['*.css', '!*.min.css'],
+    dest: 'custom-skins/',
+    ext: '.min.css'
+  }
 };
