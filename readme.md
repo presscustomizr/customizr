@@ -1,4 +1,4 @@
-# Customizr v3.3.12 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.13 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,6 +92,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.13 March 11th 2015 =
+added : customizer previewer filter for custom skins
+
 = 3.3.12 March 9th 2015 =
 fixed : smooth scroll new excluded selectors not properly set
 

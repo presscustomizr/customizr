@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 			}
 		}
 	};
-  console.log('color ? ' , typeof(grunt.option.flags() ), grunt.option.flags()[0], grunt.option.flags()[0] ? grunt.option.flags()[0].replace(/-/g, '') : 'no-color');//grunt.option.flags().replace(/&nbsp;/g, ''), grunt.option.flags().replace(/&nbsp;/g, '').length
+
 	// LOAD GRUNT PACKAGES AND CONFIGS
 	// https://www.npmjs.org/package/load-grunt-config
 	require( 'load-grunt-config' )( grunt , global_config );
