@@ -417,6 +417,18 @@ if ( ! class_exists( 'TC_customize' ) ) :
           ?>
         </div>
       </script>
+      <script type="text/template" id="footer_cta">
+        <div class="tc-cta tc-in-control-cta-wrap">
+        <hr/>
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Customize your footer credits with Customizr Pro" , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Discover Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
       <?php
     }
 
