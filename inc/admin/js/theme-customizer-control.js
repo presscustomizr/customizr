@@ -549,7 +549,8 @@ jQuery(function ($) {
       'tc_grid_thumb_height',
       'tc_grid_shadow',
       'tc_grid_bottom_border',
-      'tc_grid_icons'
+      'tc_grid_icons',
+      'tc_grid_num_words'
     ];
 
     var _build_control_id = function( _control ) {

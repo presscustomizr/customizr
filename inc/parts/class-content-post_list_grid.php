@@ -93,9 +93,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'tc_grid_display_comment_bubble' ) );
 
           //POST METAS
-          remove_filter( 'tc_meta_utility_text'      , array( TC_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
-        }
+          remove_filter( 'tc_meta_utility_text'     , array( TC_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
 
+          //TITLE LENGTH
+          add_filter( 'tc_title_text'               , array( $this, 'tc_grid_set_title_length' ) );
+        }
 
 
         /**
@@ -288,6 +290,29 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * SETTERS / GETTTERS / CALLBACKS
         ******************************************/
         /**
+        * hook : tc_title_text
+        * Limits the length of the post titles in grids to a custom number of characters
+        * @return string
+        */
+        function tc_grid_set_title_length( $_title ) {
+          $_max = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_num_words') );
+          $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
+          $_max = $_max <= 0 ? 1 : $_max;
+
+          if ( empty($_title) || ! is_string($_title) )
+            return $_title;
+
+          if ( count( explode( ' ', $_title ) ) > $_max ) {
+            $_words = array_slice( explode( ' ', $_title ), 0, $_max );
+            $_title = sprintf( '%s ...',
+              implode( ' ', $_words )
+            );
+          }
+          return $_title;
+        }
+
+
+        /**
         * hook : pre_get_posts
         * exclude the first sticky post
         */
@@ -323,6 +348,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               'span6'   => '2'
             )
           );
+          if ( ! isset($_map[$_current_layout]) )
+            return $_cols;
           if ( (int) $_map[$_current_layout] >= (int) $_cols )
             return (string) $_cols;
           return (string) $_map[$_current_layout];
