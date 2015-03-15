@@ -344,8 +344,17 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             'tc_grid_col_layout_map',
             array(
               'span12'  => '4',
+              'span11'  => '4',
+              'span10'  => '4',
               'span9'   => '3',
-              'span6'   => '2'
+              'span8'   => '3',
+              'span7'   => '2',
+              'span6'   => '2',
+              'span5'   => '2',
+              'span4'   => '1',
+              'span3'   => '1',
+              'span2'   => '1',
+              'span1'   => '1',
             )
           );
           if ( ! isset($_map[$_current_layout]) )
@@ -364,7 +373,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_grid_set_article_selectors($selectors){
           $_class = sprintf( '%1$s tc-grid span%2$s',
             apply_filters( 'tc_grid_add_expanded_class', $this -> tc_force_current_post_expansion() ) ? 'expanded' : '',
-            is_numeric($this -> tc_get_grid_section_cols()) ? 12 / $this -> tc_get_grid_section_cols() : 6
+            is_numeric( $this -> tc_get_grid_section_cols() ) ? 12 / $this -> tc_get_grid_section_cols() : 6
           );
           return str_replace( 'row-fluid', $_class, $selectors );
         }
@@ -526,7 +535,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $thumb_width      = $thumb_size['width'];
           $thumb_full_ratio = $thumb_full_size['height'] / $thumb_full_size['width'] * 100;
           $thumb_ratio      = $thumb_size['height'] / $thumb_size['width'] * 100;
-          $_cols_class      = sprintf('grid-cols-%s' , $this -> tc_get_grid_section_cols() );
+          $_cols_class      = sprintf( 'grid-cols-%s' , $this -> tc_get_grid_section_cols() );
           $_figure_height   = apply_filters( 'tc_grid_figure_height' , $this -> tc_get_user_thumb_height() , $_cols_class );
           $_title_sizes     = apply_filters( 'tc_grid_title_sizes', array( 'font-size' => 32 , 'line-height' => 40 ) , $_cols_class );
           $_font_size       = $_title_sizes['font-size'];
