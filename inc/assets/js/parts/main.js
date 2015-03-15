@@ -189,18 +189,25 @@ jQuery(function ($) {
         return;
 
       var _excl_sels = ( _p.SmoothScrollExclude && _.isArray( _p.SmoothScrollExclude ) ) ? _p.SmoothScrollExclude.join(',') : '';
-      $('a[href^="#"]', '#content').not( _excl_sels ).click(function () {
-          var anchor_id = $(this).attr("href");
+      //event delegation
+      $('#content').on('click', 'a[href^="#"]', function () {
 
-          //anchor el exists ?
-          if ( ! $(anchor_id).length )
+          //exclude some selectors
+          if ( $(this).is(_excl_sels) )
+            return;
+          
+          var anchor_id = $(this).attr("href"),
+              $anchor = $(anchor_id);
+          
+          //anchor el exists and is visible?
+          if ( ! ( anchor_id != '#' && $anchor.length && $anchor.is(':visible') ) )
             return;
 
-          if ('#' != anchor_id) {
-              $('html, body').animate({
-                  scrollTop: $(anchor_id).offset().top
-              }, 700, _p.SmoothScroll);
-          }
+
+          $('html, body').animate({
+            scrollTop: $anchor.offset().top
+          }, 700, _p.SmoothScroll);
+          
           return false;
       });//end click
     };
