@@ -87,13 +87,14 @@ jQuery(function ($) {
 
 
     //IMG SMART LOAD
-    //hentry covers all post / pagecontent : single and list
+    //.article-container covers all post / page content : single and list
     //__before_main_wrapper covers the single post thumbnail case
+    //.widget-front handles the featured pages
     if ( 1 == _p.imgSmartLoadEnabled )
-      $( '.hentry, .__before_main_wrapper, .widget-front' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
+      $( '.article-container, .__before_main_wrapper, .widget-front' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
     else {
       //if smart load not enabled => trigger the load event on img load
-      var $_to_center = $( '.hentry, .__before_main_wrapper, .widget-front, .fpc-widget-front' ).find('img');
+      var $_to_center = $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
       _trigger_simple_load($_to_center);
     }//end else
 
@@ -186,7 +187,7 @@ jQuery(function ($) {
     var SmoothScroll = _p.SmoothScroll;
 
     if ('easeOutExpo' == SmoothScroll) {
-        $('a[href^="#"]', '#content').not('[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"]').click(function () {
+        $('a[href^="#"]', '#content').not( '[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"], [class*=upme]' ).click(function () {
             var anchor_id = $(this).attr("href");
             if ('#' != anchor_id) {
                 $('html, body').animate({
@@ -550,7 +551,7 @@ jQuery(function ($) {
             //additional refresh for some edge cases like big logos
             setTimeout( function() { _refresh(); } , 200 );
         }
-    }
+    }//end of fn
 
     $(window).scroll(function() {
         if ( ! _is_sticky_enabled() )

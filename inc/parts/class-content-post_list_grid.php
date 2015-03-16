@@ -17,14 +17,25 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         private $expanded_featured;
 
         function __construct () {
-            self::$instance =& $this;
-            $this -> expanded_featured = null;
+          self::$instance =& $this;
+          $this -> expanded_featured = null;
 
-            add_action ( 'pre_get_posts'            , array( $this , 'tc_maybe_excl_first_sticky') );
-            add_action ( 'wp'                       , array( $this , 'tc_set_grid_hooks') );
-            //customizer
-            add_action( '__after_setting_control'   , array( $this , 'tc_render_grid_control_link') );
-            add_action( '__before_setting_control'  , array( $this , 'tc_render_link_to_grid') );
+          add_action ( 'pre_get_posts'              , array( $this , 'tc_maybe_excl_first_sticky') );
+          add_action ( 'wp'                         , array( $this , 'tc_set_grid_hooks') );
+
+          //Various CSS filters
+          //those filters are fired on hook : tc_user_options_style => fired on hook : wp_enqueue_scripts
+          add_filter( 'tc_grid_figure_height'       , array( $this , 'tc_set_grid_column_height'), 10, 2 );
+          add_filter( 'tc_grid_title_sizes'         , array( $this , 'tc_set_grid_title_size'), 10, 2 );
+
+          //append inline style to the custom stylesheet
+          //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
+          //fired on hook : wp_enqueue_scripts
+          add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
+
+          //customizer
+          add_action( '__after_setting_control'     , array( $this , 'tc_render_grid_control_link') );
+          add_action( '__before_setting_control'    , array( $this , 'tc_render_link_to_grid') );
         }
 
 
@@ -35,26 +46,17 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : wp
         */
         function tc_set_grid_hooks(){
-          if ( ! $this -> tc_is_grid_enabled() )
+          if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> tc_is_grid_enabled() ) )
               return;
 
           do_action( '__post_list_grid' );
-
-          //Various CSS filters
-          add_filter( 'tc_grid_figure_height'       , array( $this, 'tc_set_grid_column_height'), 10, 2 );
-          add_filter( 'tc_grid_title_sizes'         , array( $this, 'tc_set_grid_title_size'), 10, 2 );
-          add_filter( 'tc_user_options_style'       , array( $this, 'tc_grid_write_inline_css'), 100 );
-
           //icon option
           add_filter( 'tc-grid-thumb-html'          , array( $this, 'tc_set_grid_icon_visibility') );
-
           //Layout filter
           add_filter( 'tc_get_grid_cols'            , array( $this, 'tc_set_grid_section_cols'), 20 , 2 );
-
-          // pre loop hooks
+          //pre loop hooks
           add_action( '__before_article_container'  , array( $this, 'tc_set_grid_before_loop_hooks'), 5 );
-
-          // loop hooks
+          //loop hooks
           add_action( '__before_loop'               , array( $this, 'tc_set_grid_loop_hooks'), 0 );
         }
 
@@ -102,12 +104,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return  void
         */
         function tc_set_grid_loop_hooks() {
-          add_action( '__before_article'       , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
-          add_action( '__after_article'        , array( $this, 'tc_print_article_sep' ), 0 );
-          add_action( '__after_article'        , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
+          add_action( '__before_article'            , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
+          add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
+          add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
 
-          remove_action( '__loop'              , array( TC_post_list::$instance, 'tc_prepare_section_view') );
-          add_action( '__loop'                 , array( $this, 'tc_grid_prepare_single_post') );
+          remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_prepare_section_view') );
+          add_action( '__loop'                      , array( $this, 'tc_grid_prepare_single_post') );
         }
 
 
@@ -479,7 +481,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : tc_user_options_style
         * @since Customizr 3.2.18
         */
-        function tc_grid_write_inline_css( $_css){
+        function tc_grid_write_inline_css( $_css ){
+          if ( ! $this -> tc_is_grid_enabled() )
+            return $_css;
+
           /* retrieve the height/width ratios */
           $thumb_full_size  = apply_filters( 'tc_grid_full_size', TC_init::$instance -> tc_grid_full_size );
           $thumb_full_width = $thumb_full_size['width'];

@@ -39,6 +39,29 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.12 March 9th 2015 =
+fixed : smooth scroll new excluded selectors not properly set
+
+= 3.3.11 March 9th 2015 =
+fix : tc_set_post_list_hooks hooked on wp_head. wp was too early => fixes bbpress compatibility
+improved : tc_user_options_style filter now declared in the classes constructor
+fix : bbpress issue with single user profiles not showing up ( initially reported here : https://wordpress.org/support/topic/bbpress-problems-with-versions-avove-3217?replies=7#post-6669693 )
+
+= 3.3.10 March 9th 2015 =
+fixed : better insertion of font icons and custom css in the custom inline stylesheet
+fixed : bbpress conflict with the post grid
+
+= 3.3.9 March 9th 2015 =
+fixed : the_content and the_excerpt WP filters missing in post list content model
+fixed : smart load issue when .hentry class is missing (in WooCommerce search results for example)
+added : has-thumb class to the grid > figure element
+added : make the expanded class optional with a filter : tc_grid_add_expanded_class
+added : fade background effect for the excerpt in the no-thumbs grid blocks
+fixes : adjustments for the grid customizer
+changed : TC_post_list_grid::tc_is_grid_enabled shifted from private to public
+improved : jqueryextLinks.js check if the tc-external element already exists before appending it
+fixed : .tc-grid-icon:before better centering
+
 = 3.3.8 March 4th 2015 =
 Fix slider img centering bug
 

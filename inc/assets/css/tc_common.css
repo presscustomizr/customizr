@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.8
+ * Customizr v3.3.12
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -6534,6 +6534,7 @@ img.v-centered {
   vertical-align: middle;
   line-height: 29px!important;
   top: inherit!important;
+  padding-right: 0;
 }
 .format-quote .tc-grid-icon:before,
 .format-status .tc-grid-icon:before {

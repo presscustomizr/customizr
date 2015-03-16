@@ -16,15 +16,21 @@ if ( ! class_exists( 'TC_comments' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
-        add_action ( '__after_loop'                       , array( $this , 'tc_comments' ), 10 );
-        add_action ( '__comment'                          , array( $this , 'tc_comment_title' ), 10 );
-        add_action ( '__comment'                          , array( $this , 'tc_comment_list' ), 20 );
-        add_action ( '__comment'                          , array( $this , 'tc_comment_navigation' ), 30 );
-        add_action ( '__comment'                          , array( $this , 'tc_comment_close' ), 40 );
-        add_filter ('comment_form_defaults'               , array( $this , 'tc_set_comment_title') );
+        add_action ( '__after_loop'           , array( $this , 'tc_comments' ), 10 );
+        add_action ( '__comment'              , array( $this , 'tc_comment_title' ), 10 );
+        add_action ( '__comment'              , array( $this , 'tc_comment_list' ), 20 );
+        add_action ( '__comment'              , array( $this , 'tc_comment_navigation' ), 30 );
+        add_action ( '__comment'              , array( $this , 'tc_comment_close' ), 40 );
+        add_filter ( 'comment_form_defaults'  , array( $this , 'tc_set_comment_title') );
 
         //wp hooks => wp_query is built
-        add_action ( 'wp'                                 , array( $this , 'tc_comments_set_hooks' ) );
+        add_action ( 'wp'                     , array( $this , 'tc_comments_set_hooks' ) );
+
+        //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
+        //fired on hook : wp_enqueue_scripts
+        //Set thumbnail specific design based on user options
+        //Set user defined various inline stylings
+        add_filter( 'tc_user_options_style'   , array( $this , 'tc_comment_bubble_inline_css' ) );
       }
 
 
@@ -36,11 +42,9 @@ if ( ! class_exists( 'TC_comments' ) ) :
       */
       function tc_comments_set_hooks() {
         //Add comment bubble
-        add_filter( 'tc_the_title'                        , array( $this , 'tc_display_comment_bubble' ), 1 );
+        add_filter( 'tc_the_title'            , array( $this , 'tc_display_comment_bubble' ), 1 );
         //Custom Bubble comment since 3.2.6
-        add_filter( 'tc_bubble_comment'                   , array( $this , 'tc_custom_bubble_comment'), 10, 2 );
-        //Set user defined various inline stylings
-        add_filter( 'tc_user_options_style'               , array( $this , 'tc_comment_bubble_inline_css' ) );
+        add_filter( 'tc_bubble_comment'       , array( $this , 'tc_custom_bubble_comment'), 10, 2 );
       }
 
 

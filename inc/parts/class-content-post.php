@@ -19,11 +19,17 @@ if ( ! class_exists( 'TC_post' ) ) :
       add_action( 'wp'                , array( $this , 'tc_set_single_post_hooks' ));
       //Set single post thumbnail with customizer options (since 3.2.0)
       add_action( 'wp'                , array( $this , 'tc_set_single_post_thumbnail_hooks' ));
+
+      //append inline style to the custom stylesheet
+      //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
+      //fired on hook : wp_enqueue_scripts
+      //Set thumbnail specific design based on user options
+      add_filter( 'tc_user_options_style'    , array( $this , 'tc_write_thumbnail_inline_css') );
     }
 
 
     /***************************
-    * SINGLE POST HOOK SETUP
+    * SINGLE POST AND THUMB HOOKS SETUP
     ****************************/
     /**
     * hook : wp
@@ -50,10 +56,7 @@ if ( ! class_exists( 'TC_post' ) ) :
       //__before_main_wrapper, 200
       //__before_content 0
       //__before_content 20
-      if ( ! $this -> tc_single_post_display_controller()
-        || ! esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
-        || 'hide' == esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
-        )
+      if ( ! $this -> tc_show_single_post_thumbnail() )
         return;
 
       $_exploded_location   = explode('|', esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' )) );
@@ -64,9 +67,9 @@ if ( ! class_exists( 'TC_post' ) ) :
       add_action( $_hook, array($this , 'tc_single_post_prepare_thumb') , $_priority );
       //Set thumb shape with customizer options (since 3.2.0)
       add_filter( 'tc_post_thumb_wrapper'      , array( $this , 'tc_set_thumb_shape'), 10 , 2 );
-      //Set thumbnail specific design based on user options
-      add_filter( 'tc_user_options_style'       , array( $this , 'tc_write_thumbnail_inline_css') );
     }
+
+
 
 
 
@@ -203,6 +206,19 @@ if ( ! class_exists( 'TC_post' ) ) :
 
     /**
     * HELPER
+    * @return boolean
+    * @package Customizr
+    * @since Customizr 3.2.11
+    */
+    function tc_show_single_post_thumbnail() {
+      return $this -> tc_single_post_display_controller()
+        && 'hide' != esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
+        && apply_filters( 'tc_show_single_post_thumbnail' , true );
+    }
+
+
+    /**
+    * HELPER
     * @return size string
     * @package Customizr
     * @since Customizr 3.2.3
@@ -238,6 +254,8 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.2.6
     */
     function tc_write_thumbnail_inline_css( $_css ) {
+      if ( ! $this -> tc_show_single_post_thumbnail() )
+        return $_css;
       $_single_thumb_height   = esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_height' ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",

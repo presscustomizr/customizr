@@ -614,10 +614,11 @@ if ( ! class_exists( 'TC_init' ) ) :
           }
 
           //disable the grid
-          add_filter( 'tc_is_grid_enabled' , 'tc_bbpress_disable_grid', 100 );
+          add_filter( 'tc_set_grid_hooks' , 'tc_bbpress_disable_grid', 100 );
           function tc_bbpress_disable_grid($bool) {
              return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
           }
+
         }//end if bbpress on
 
 

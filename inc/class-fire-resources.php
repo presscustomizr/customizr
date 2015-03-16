@@ -20,22 +20,22 @@ if ( ! class_exists( 'TC_resources' ) ) :
           add_action( 'wp_enqueue_scripts'            , array( $this , 'tc_enqueue_gfonts' ) , 0 );
 	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
 	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
-	        //Write font icon
-	        add_action( 'wp_head'                 		  , array( $this , 'tc_write_inline_font_icons_css' ), apply_filters( 'tc_font_icon_priority', 0 ) );
+          //Custom Stylesheets
+          //Write font icon
+          add_filter('tc_user_options_style'          , array( $this , 'tc_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
 	        //Custom CSS
-	        add_action( 'wp_head'                 			, array( $this , 'tc_write_custom_css' ), apply_filters( 'tc_custom_css_priority', 20 ) );
-
-	        //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
-	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
-	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
-
+          add_filter('tc_user_options_style'          , array( $this , 'tc_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_fonts_inline_css') );
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_dropcap_inline_css') );
+
+          //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
+	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
+	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
 	    }
 
 
 
-	    /**
+	   /**
 		* Registers and enqueues Customizr stylesheets
 		* @package Customizr
 		* @since Customizr 1.1
@@ -47,7 +47,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		    wp_enqueue_style( 'customizr-skin' );
 		    //Customizr stylesheet (style.css)
 		    wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
-		    //Customizer user defined style options
+
+		    //Customizer user defined style options : the custom CSS is written with a high priority here
 		    wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , '' ) );
 		}
 
@@ -236,19 +237,18 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 
 		/**
-	    * Write the font icon in head
-	    * hook : wp_head
-	    * @package Customizr
-	    * @since Customizr 3.2.3
-	    */
-		function tc_write_inline_font_icons_css() {
-			echo apply_filters(
-				'tc_inline_font_icons',
-				sprintf('<style type="text/css" id="customizr-inline-fonts">%1$s</style>',
-					$this -> tc_get_inline_font_icons_css()
-				)
-			);
-		}
+    * Write the font icon in the custom stylesheet at the very beginning
+    * hook : tc_user_options_style
+    * @package Customizr
+    * @since Customizr 3.2.3
+    */
+		function tc_write_inline_font_icons_css( $_css = null ) {
+      $_css               = isset($_css) ? $_css : '';
+      return apply_filters( 'tc_write_inline_font_icons',
+        $this -> tc_get_inline_font_icons_css() . "\n" . $_css,
+        $_css
+      );
+    }//end of function
 
 
 
@@ -260,22 +260,48 @@ if ( ! class_exists( 'TC_resources' ) ) :
     */
     public function tc_get_inline_font_icons_css() {
       $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
-      return "@font-face{font-family:genericons;src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot');src:url('{$_path}/fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.woff') format('woff'),url('{$_path}/fonts/fonts/genericons-regular-webfont.ttf') format('truetype'),url('{$_path}/fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg')}@font-face{font-family:entypo;src:url('{$_path}/fonts/fonts/entypo.eot);src:url({$_path}/fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'),url('{$_path}/fonts/fonts/entypo.woff') format('woff'),url('{$_path}/fonts/fonts/entypo.ttf') format('truetype'),url('{$_path}/fonts/fonts/entypo.svg#genericonsregular') format('svg')}";
+      ob_start();
+        ?>
+        @font-face {
+          font-family: 'genericons';
+          src:url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.eot');
+          src:url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
+              url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.woff') format('woff'),
+              url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.ttf') format('truetype'),
+              url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg');
+        }
+        @font-face {
+          font-family: 'entypo';
+          src:url('<?php echo $_path ?>/fonts/fonts/entypo.eot');
+          src:url('<?php echo $_path ?>/fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'),
+          url('<?php echo $_path ?>/fonts/fonts/entypo.woff') format('woff'),
+          url('<?php echo $_path ?>/fonts/fonts/entypo.ttf') format('truetype'),
+          url('<?php echo $_path ?>/fonts/fonts/entypo.svg#genericonsregular') format('svg');
+        }
+        <?php
+      $_font_css = ob_get_contents();
+      if ($_font_css) ob_end_clean();
+      return $_font_css;
     }
 
 
     /**
-    * Get the sanitized custom CSS from options array : fonts, custom css, and echoes the stylesheet
-    *
+    * Writes the sanitized custom CSS from options array into the custom user stylesheet, at the very end (priority 9999)
+    * hook : tc_user_options_style
     * @package Customizr
     * @since Customizr 2.0.7
     */
-    function tc_write_custom_css() {
-        $tc_custom_css      	= esc_html( TC_utils::$inst->tc_opt( 'tc_custom_css') );
-        if ( isset($tc_custom_css) && ! empty($tc_custom_css) )
-        	printf( '<style id="option-custom-css" type="text/css">%1$s</style>',
-        		html_entity_decode($tc_custom_css)
-        	);
+    function tc_write_custom_css( $_css = null ) {
+      $_css               = isset($_css) ? $_css : '';
+      $tc_custom_css      = esc_html( TC_utils::$inst->tc_opt( 'tc_custom_css') );
+      if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
+        return $_css;
+
+      return apply_filters( 'tc_write_custom_css',
+        $_css . "\n" . html_entity_decode( $tc_custom_css ),
+        $_css,
+        TC_utils::$inst->tc_opt( 'tc_custom_css')
+      );
     }//end of function
 
 
