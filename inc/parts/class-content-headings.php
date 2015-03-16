@@ -143,10 +143,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.2.6
       */
       function tc_post_page_title_callback( $_content = null , $_heading_type = null ) {
+        $_title = apply_filters( 'tc_title_text', get_the_title() );
         return sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
               apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
               apply_filters( 'tc_content_title_icon', 'format-icon' ),
-              apply_filters( 'tc_the_title', get_the_title() )
+              apply_filters( 'tc_the_title', $_title )
         );
       }
 
@@ -170,7 +171,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         else
           return sprintf('<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
             get_permalink(),
-            sprintf( apply_filters( 'tc_post_link_title' , __( 'Permalink to %s' , 'customizr' ) ) , esc_attr( strip_tags( $_title ) ) ),
+            sprintf( apply_filters( 'tc_post_link_title' , __( 'Permalink to %s' , 'customizr' ) ) , esc_attr( strip_tags( get_the_title() ) ) ),
             is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title
           );//end sprintf
       }

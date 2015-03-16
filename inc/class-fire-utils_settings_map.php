@@ -2123,7 +2123,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'tc_frontpage_settings' ,
                                 'type'        => 'checkbox' ,
                                 'priority'       => 54,
-                                'notice'    => sprintf('%1$s <a href="http://themesandco.com/customizr/#images" target="_blank">%2$s</a>',
+                                'notice'    => sprintf('%1$s <a href="http://doc.themesandco.com/customizr/recommended-plugins/#images" target="_blank">%2$s</a>',
                                     __( "If this option is checked, your images will be resized with your custom height on upload. This is better for your overall loading performance." , 'customizr' ),
                                     __( "You might want to regenerate your thumbnails." , 'customizr')
                                 ),
@@ -2232,6 +2232,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'priority'      => 65,
                             'transport'   => 'postMessage'
            ),
+          'tc_theme_options[tc_grid_num_words]'  =>  array(
+                            'default'       => 10,
+                            'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                            'control'       => 'TC_controls' ,
+                            'label'         => __( 'Max. length for post titles (in words)' , "customizr" ),
+                            'section'       => 'tc_post_list_settings' ,
+                            'type'          => 'number' ,
+                            'step'          => 1,
+                            'min'           => 1,
+                            'priority'      => 66
+           ),
           'tc_theme_options[tc_grid_thumb_height]' => array(
                             'default'       => 350,
                             'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
@@ -2242,7 +2253,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'number' ,
                             'step'          => 1,
                             'min'           => 0,
-                            'priority'      => 66
+                            'priority'      => 67
                             //'transport'   => 'postMessage'
           )
         );//$_new_settings

@@ -21,8 +21,9 @@ module.exports = function(grunt) {
 			},
 			//default less modifiers
 			is_rtl: 'true',
-			skin_name : "blue3",
-			skin_color : '#394143',
+      //check if a custom color is requested
+			skin_name : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? [ 'custom-skin-' , grunt.option.flags()[0].replace(/-|#/g, '') ].join('') : "blue3",
+			skin_color : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? grunt.option.flags()[0].replace(/-/g, '') : "blue3",
 			//https://www.npmjs.org/package/grunt-ssh
 			//Check if the context var is set and == travis => avoid travis error with ftpauth no found
 			credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
@@ -41,7 +42,10 @@ module.exports = function(grunt) {
 				'customizr_build' : ['prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
 
 				//TRAVIS ci virtual machine build check on js @todo check other resources?
-				'travis' : ['jshint']
+				'travis' : ['jshint'],
+
+        //CUSTOM SKIN : call it with grunt custom_skin --#hexcolor
+        'custom_skin' : ['less:custom_skin' , 'cssmin:custom_skin' ],
 			},
 			uglify_requested_paths : {
 				src : '' || grunt.option('src'),

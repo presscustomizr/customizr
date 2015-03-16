@@ -14,6 +14,7 @@ var TCParams = TCParams || {
 	SliderName: "demo",
   centerSliderImg : 1,
 	SmoothScroll: "linear",
+  SmoothScrollExclude : ['[class*=edd]', '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]'],
 	stickyCustomOffset: 0,
 	stickyHeader: 1,
 	dropdowntoViewport: 1,
@@ -2778,12 +2779,18 @@ var TCParams = TCParams || {};
 
 
     Plugin.prototype.init = function() {
-      if ( ! this._is_eligible() )
+      //if not eligible, then remove any remaining icon element and return
+      //important => the element to remove is right after the current link element ( => use of '+' CSS operator )
+      if ( ! this._is_eligible() ) {
+        if ( $( 'a[href*="' + this._href +'"] + .tc-external' ).length )
+          $( 'a[href*="' + this._href +'"] + .tc-external' ).remove();
         return;
+      }
 
       //add the icon link, if not already there
-      if ( this.options.addIcon && 0 === this.$_el.siblings('.tc-external').length )
+      if ( this.options.addIcon && ! $( 'a[href*="' + this._href +'"] + .tc-external' ).length ) {
         this.$_el.after('<span class="tc-external">');
+      }
       if ( this.options.newTab )
         this.$_el.attr('target' , '_blank');
     };
@@ -3314,20 +3321,30 @@ jQuery(function ($) {
         }
     );
 
-    //Smooth scroll but not on bootstrap buttons. Checks if php localized option is active first.
-    var SmoothScroll = _p.SmoothScroll;
+    //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
+    var _maybe_apply_smooth_scroll = function() {
+      if ( ! _p.SmoothScroll || 'easeOutExpo' != _p.SmoothScroll )
+        return;
 
-    if ('easeOutExpo' == SmoothScroll) {
-        $('a[href^="#"]', '#content').not( '[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"], [class*=upme]' ).click(function () {
-            var anchor_id = $(this).attr("href");
-            if ('#' != anchor_id) {
-                $('html, body').animate({
-                    scrollTop: $(anchor_id).offset().top
-                }, 700, SmoothScroll);
-            }
-            return false;
-        });
-    }
+      var _excl_sels = ( _p.SmoothScrollExclude && _.isArray( _p.SmoothScrollExclude ) ) ? _p.SmoothScrollExclude.join(',') : '';
+      $('a[href^="#"]', '#content').not( _excl_sels ).click(function () {
+          var anchor_id = $(this).attr("href");
+
+          //anchor el exists ?
+          if ( ! $(anchor_id).length )
+            return;
+
+          if ('#' != anchor_id) {
+              $('html, body').animate({
+                  scrollTop: $(anchor_id).offset().top
+              }, 700, _p.SmoothScroll);
+          }
+          return false;
+      });//end click
+    };
+    //Fire smooth scroll
+    _maybe_apply_smooth_scroll();
+
 
     //BACK TO TOP
     function g($) {
