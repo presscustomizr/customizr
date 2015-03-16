@@ -13,8 +13,15 @@
 		value.bind( function( to ) {
 			if ( TCPreviewParams && TCPreviewParams.themeFolder ) {
 				//add a new link to the live stylesheet instead of replacing the actual skin link => avoid the flash of unstyle content during the skin load
-				var $skin_style_element = ( 0 === $('#live-skin-css').length ) ? $('<link>' , { id : 'live-skin-css' , rel : 'stylesheet'}) : $('#live-skin-css');
-				$skin_style_element.attr('href' , [ TCPreviewParams.themeFolder , '/inc/assets/css/' , to.replace('.css' , '.min.css') ].join('') );
+				var $skin_style_element = ( 0 === $('#live-skin-css').length ) ? $('<link>' , { id : 'live-skin-css' , rel : 'stylesheet'}) : $('#live-skin-css'),
+            skinName = to.replace('.css' , '.min.css'),
+            skinURL = [ TCPreviewParams.themeFolder , '/inc/assets/css/' , skinName ].join('');
+
+        //check if the customSkin param is filtered
+        if ( TCPreviewParams.customSkin && TCPreviewParams.customSkin.skinName && TCPreviewParams.customSkin.fullPath )
+          skinURL = to == TCPreviewParams.customSkin.skinName ? TCPreviewParams.customSkin.fullPath : skinURL;
+
+        $skin_style_element.attr('href' , skinURL );
 				if (  0 === $('#live-skin-css').length )
 					$('head').append($skin_style_element);
 			}

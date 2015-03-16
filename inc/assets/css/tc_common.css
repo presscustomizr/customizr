@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.12
+ * Customizr v3.3.13
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -6565,12 +6565,24 @@ img.v-centered {
   text-align: center;
   margin: 0;
   /*padding: 44px 0;*/
-  background-image: -moz-linear-gradient(top, transparent, #fafafa);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0)), color-stop(1, #fafafa));
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #fafafa 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #fafafa));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #fafafa 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #fafafa 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #fafafa 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fafafa 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#fafafa', GradientType=0);
+  /* IE6-9 */
   z-index: 11;
 }
 .hover .tc-grid-fade_expt {
-  background-image: none;
+  background: none;
 }
 /* WP CSS
     -------------------------------------------------- */

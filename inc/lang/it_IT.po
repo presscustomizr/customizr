@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.3.12\n"
+"Project-Id-Version: * Customizr v3.3.13\n"
 "POT-Creation-Date: 2015-02-27 19:11+0100\n"
-"PO-Revision-Date: 2015-02-27 19:12+0100\n"
-"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"PO-Revision-Date: 2015-03-09 08:37-0800\n"
+"Last-Translator: Giorgio Riccardi <giorgio@griccardi.com>\n"
 "Language-Team: ElectricFeet <contact@themesandco.com>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -30,7 +30,7 @@ msgstr "2 barre laterali: a destra e a sinistra"
 
 #: ../class-fire-init.php:69 ../class-fire-init.php:70
 msgid "No sidebars : full width layout"
-msgstr "Nessuna barra laterale: Larghezza a tutta pagina"
+msgstr "Nessuna barra laterale: larghezza a tutta pagina"
 
 #: ../class-fire-init.php:84
 msgid "Blue"
@@ -223,7 +223,7 @@ msgstr "Barra laterale a destra"
 #: ../class-fire-init.php:266 ../class-fire-init.php:270
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr ""
-"Appare negli articoli, le pagine statiche, gli archivi e i moduli di ricerca"
+"Appare negli articoli, le pagine statiche, gli archivi ed i moduli di ricerca"
 
 #: ../class-fire-init.php:269
 msgid "Left Sidebar"
@@ -276,7 +276,7 @@ msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
 msgstr ""
-"Siamo spiacenti, non abbiamo trovato nessuna pagina che contiene le parole "
+"Siamo spiacenti, non abbiamo trovato nessuna pagina che contenga le parole "
 "ricercate. Vuoi riprovare con altre parole?"
 
 #: ../class-fire-init.php:327
@@ -572,7 +572,7 @@ msgstr "Deseleziona questa opzione per rimuovere il bordo colorato in alto."
 
 #: ../class-fire-utils_settings_map.php:439
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "Carica logo (formati supportati: .jpg, .png, .gif)"
+msgstr "Carica logo (formati supportati: .jpg, .png, .gif, .svg, .svgz)"
 
 #: ../class-fire-utils_settings_map.php:440
 msgid "LOGO"
@@ -591,7 +591,7 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:457
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "Carica logo sticky(formati supportati: .jpg, .png, .gif)"
+msgstr "Carica logo sticky (formati supportati: .jpg, .png, .gif, .svg, .svgz)"
 
 #: ../class-fire-utils_settings_map.php:461
 msgid ""
@@ -824,12 +824,12 @@ msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
 msgstr ""
-"Consigliamo fortemente di rigenerare le immagini della tua libreria media in "
-"alta definizione, con l'ausilio di questo plugin gratuito"
+"Consigliamo fortemente di rigenerare le immagini della tua libreria in alta "
+"definizione, con l'ausilio di questo plugin gratuito"
 
 #: ../class-fire-utils_settings_map.php:795
 msgid "regenerate thumbnails"
-msgstr "regenerate thumbnails"
+msgstr "rigenera miniature"
 
 #: ../class-fire-utils_settings_map.php:797
 msgid "Open the description page of the Regenerate thumbnails plugin"
@@ -851,11 +851,11 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:811
 msgid "Dynamic slider images centering on any devices"
-msgstr ""
+msgstr "Centra dinamicamente le slides su tutti i dispositivi"
 
 #: ../class-fire-utils_settings_map.php:819
 msgid "Dynamic thumbnails centering on any devices"
-msgstr ""
+msgstr "Centra dinamicamente le miniature su tutti i dispositivi"
 
 #: ../class-fire-utils_settings_map.php:822
 msgid ""
@@ -903,8 +903,8 @@ msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
 msgstr ""
-"Usa questo campot per testare piccoli pezzi di codice CSS. Per "
-"personalizzazioni più importanti del CSS, è consigliato modificare il file "
+"Usa questo campo per testare piccole porzioni di codice CSS. Per "
+"personalizzazioni più importanti del CSS, è consigliabile modificare il file "
 "style.css di un"
 
 #: ../class-fire-utils_settings_map.php:873
@@ -919,7 +919,7 @@ msgstr "Come creare e usare un tema figlio?"
 
 #: ../class-fire-utils_settings_map.php:1008
 msgid "Site Title & Tagline"
-msgstr "Titolo del sito e Motto"
+msgstr "Titolo del sito e motto"
 
 #: ../class-fire-utils_settings_map.php:1025
 msgid "Fonts"
@@ -1468,7 +1468,7 @@ msgstr "Imposta la dimensione (in numero di parole) dell'estratto"
 
 #: ../class-fire-utils_settings_map.php:1780
 msgid "Thumbnails options"
-msgstr "Opzioni delle immaigni in miniatura"
+msgstr "Opzioni delle immagini in miniatura"
 
 #: ../class-fire-utils_settings_map.php:1781
 msgid "Display the post thumbnails"
@@ -1550,7 +1550,7 @@ msgstr "Sopra"
 
 #: ../class-fire-utils_settings_map.php:1843
 msgid "Right"
-msgstr "Droite"
+msgstr "Destra"
 
 #: ../class-fire-utils_settings_map.php:1844
 msgid "Bottom"
@@ -1558,7 +1558,7 @@ msgstr "Sotto"
 
 #: ../class-fire-utils_settings_map.php:1845
 msgid "Left"
-msgstr "Gauche"
+msgstr "Sinistra"
 
 #: ../class-fire-utils_settings_map.php:1852
 msgid "Alternate thumbnail/content"
@@ -1715,7 +1715,7 @@ msgid ""
 "the viewport will be loaded dynamically on scroll. This can boost "
 "performances by reducing the weight of long web pages with images."
 msgstr ""
-"Spunta questa opzione per ritardare il caricamento delle imagini non "
+"Spunta questa opzione per ritardare il caricamento delle immagini non "
 "visibili. Le immagini al di sotto della parte di finestra visibile verranno "
 "caricate automaticamente scorrendo la pagina. Ciò può notevelmente "
 "migliorare le performance del tuo sito riducendo il peso di grandi pagine "
@@ -1731,14 +1731,14 @@ msgstr "Apllica quest'altezza a tutte le slider"
 
 #: ../class-fire-utils_settings_map.php:2121
 msgid "Replace the default image slider's height"
-msgstr "Ridefinisci l'altezza predefinita delle immagini della slider"
+msgstr "Ridefinisci l'altezza predefinita delle immagini dello slider"
 
 #: ../class-fire-utils_settings_map.php:2127
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
 msgstr ""
-"Spuntando questa opzione, le tue immagini, in fase di upload, verrano "
+"Spuntando questa opzione, le tue immagini, in fase di caricamento, verrano "
 "ridimensionate con l'altezza personalizzata. Ciò impatterà positivamente "
 "sulle performance di caricamento del tuo sito."
 
@@ -1815,15 +1815,15 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:2210
 msgid "Apply a shadow to each grid items"
-msgstr ""
+msgstr "Applica un'ombra ad ogni elemento della griglia"
 
 #: ../class-fire-utils_settings_map.php:2219
 msgid "Apply a colored bottom border to each grid items"
-msgstr ""
+msgstr "Applica un bordo inferiore colorato ad ogni elemento della griglia"
 
 #: ../class-fire-utils_settings_map.php:2228
 msgid "Display post format icons in the background"
-msgstr ""
+msgstr "Mostra il formato delle icone degli articoli sullo sfondo"
 
 #: ../class-fire-utils_settings_map.php:2238
 msgid "Thumbnails max height for the grid layout"
@@ -2223,9 +2223,9 @@ msgid ""
 "href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
 msgstr ""
 "Congratulazioni, hai installato l'ultima versione di Customizr! Customizr "
-"%1$s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog\">"
-"(vedi changelog)</a> per aiutarti a creare un sito straordinario! Guarda il "
-"<a href=\"%2$s\" target=\"_blank\">video d'introduzione</a> e trova "
+"%1$s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog"
+"\">(vedi changelog)</a> per aiutarti a creare un sito straordinario! Guarda "
+"il <a href=\"%2$s\" target=\"_blank\">video d'introduzione</a> e trova "
 "ispirazione nella <a href=\"#showcase\">vetrina di Customizr</a>.<br/"
 ">Divertiti! "
 
@@ -2646,11 +2646,11 @@ msgstr "Vedi tutti gli articoli di %s <span class=\"meta-nav\">&rarr;</span>"
 
 #: ../parts/class-content-post_list_grid.php:637
 msgid "More grid design options"
-msgstr ""
+msgstr "Piu' opzioni di design della griglia"
 
 #: ../parts/class-content-post_list_grid.php:646
 msgid "Jump to the blog design options"
-msgstr ""
+msgstr "Vai alle opzioni di design del blog"
 
 #: ../parts/class-content-post_metas.php:173
 #, php-format
@@ -2926,8 +2926,8 @@ msgstr "Aggiungi un menu"
 #~ "inspiration in the <a href=\"#showcase\">showcase</a>.<br/> Enjoy it! "
 #~ msgstr ""
 #~ "Congratulazioni, hai installato l'ultima versione di Customizr! Customizr "
-#~ "%s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog\">"
-#~ "(vedi changelog)</a> per aiutarti a creare un sito straordinario!"
+#~ "%s ha più funzionalità ed è più stabile <a href=\"#customizr-changelog"
+#~ "\">(vedi changelog)</a> per aiutarti a creare un sito straordinario!"
 
 #~ msgid "We need coffee..."
 #~ msgstr "Diventa sponsor!"

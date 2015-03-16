@@ -22,12 +22,18 @@
 
 
     Plugin.prototype.init = function() {
-      if ( ! this._is_eligible() )
+      //if not eligible, then remove any remaining icon element and return
+      //important => the element to remove is right after the current link element ( => use of '+' CSS operator )
+      if ( ! this._is_eligible() ) {
+        if ( $( 'a[href*="' + this._href +'"] + .tc-external' ).length )
+          $( 'a[href*="' + this._href +'"] + .tc-external' ).remove();
         return;
+      }
 
       //add the icon link, if not already there
-      if ( this.options.addIcon && 0 === this.$_el.siblings('.tc-external').length )
+      if ( this.options.addIcon && ! $( 'a[href*="' + this._href +'"] + .tc-external' ).length ) {
         this.$_el.after('<span class="tc-external">');
+      }
       if ( this.options.newTab )
         this.$_el.attr('target' , '_blank');
     };
