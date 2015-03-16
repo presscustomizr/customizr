@@ -156,6 +156,23 @@ if ( ! class_exists( 'TC_menu' ) ) :
     */
     function tc_menu_display($resp = null) {
       ob_start();
+        //menu setup
+        $menu_args = apply_filters( 'tc_menu_args',
+                    array(
+                      'theme_location'  => 'main',
+                      'menu_class'      => ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav tc-hover-menu' : 'nav',
+                      'fallback_cb'     => array( $this , 'tc_link_to_menu_editor' ),
+                      'walker'          => TC_nav_walker::$instance,
+                      'echo'            => false,
+                  )
+        );
+        $menu = wp_nav_menu( $menu_args );
+
+        if ( ! $menu )
+          return;
+
+        $menu_wrapper_class   = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav-collapse collapse tc-hover-menu-wrapper' : 'nav-collapse collapse';
+
         //renders the responsive button
         if ( 'resp' == $resp ) { //resp is an argument of do_action ('__navbar' , 'resp')
           $button = sprintf('<button type="button" class="%1$s" data-toggle="collapse" data-target=".nav-collapse">%2$s%2$s%2$s</button>',
@@ -166,21 +183,11 @@ if ( ! class_exists( 'TC_menu' ) ) :
         }
 
         //renders the menu
-        $menu_args = apply_filters( 'tc_menu_args',
-                    array(
-                      'theme_location'  => 'main',
-                      'menu_class'      => ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav tc-hover-menu' : 'nav',
-                      'fallback_cb'     => array( $this , 'tc_link_to_menu_editor' ),
-                      'walker'          => TC_nav_walker::$instance,
-                      'echo'            => false,
-                  )
-        );
-        $menu_wrapper_class   = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav-collapse collapse tc-hover-menu-wrapper' : 'nav-collapse collapse';
         printf('<div class="%1$s">%2$s</div>',
             apply_filters( 'tc_menu_wrapper_class', $menu_wrapper_class ),
-            wp_nav_menu( $menu_args )
+            $menu
         );
-
+        
       $html = ob_get_contents();
       if ($html) ob_end_clean();
       echo apply_filters( 'tc_menu_display', $html, $resp );
