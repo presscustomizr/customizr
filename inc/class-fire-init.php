@@ -322,37 +322,23 @@ if ( ! class_exists( 'TC_init' ) ) :
                                               'link_url'      =>  null,
                                               'active'        =>  'active',
                                               'color_style'   =>  '',
-                                              'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="" alt="%2$s" />',
-                                                                          TC_BASE_URL.'inc/assets/img/customizr.jpg',
+                                              'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                                                          TC_BASE_URL.'inc/assets/img/slide-1.png',
                                                                           __( 'Customizr is a clean responsive theme' , 'customizr' )
                                                                   )
                                             ),
 
                                             2 => array(
-                                              'title'         =>  __( 'Style your WordPress site live!' , 'customizr' ),
-                                              'text'          =>  __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' ),
-                                              'button_text'   =>  __( 'Just try it!' , 'customizr' ),
+                                              'title'         =>  '',
+                                              'text'          =>  '',
+                                              'button_text'   =>  '',
                                               'link_id'       =>  null,
                                               'link_url'      =>  null,
                                               'active'        =>  '',
                                               'color_style'   =>  '',
-                                              'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="" alt="%2$s" />',
-                                                                          TC_BASE_URL.'inc/assets/img/phare.jpg',
-                                                                          __( 'Style your WordPress site live!' , 'customizr' )
-                                                                  )
-                                            ),
-
-                                            3 => array(
-                                              'title'         =>  __( 'Create beautiful sliders' , 'customizr' ),
-                                              'text'          =>  __( 'Customizr comes with a cool slider generator : add a slider to any post or page!' , 'customizr' ),
-                                              'button_text'   =>  __( 'Discover the features' , 'customizr' ),
-                                              'link_id'       =>  null,
-                                              'link_url'      =>  null,
-                                              'active'        =>  '',
-                                              'color_style'   =>  '',
-                                              'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="" alt="%2$s" />',
-                                                                          TC_BASE_URL.'inc/assets/img/chevrolet.jpg',
-                                                                          __( 'Create beautiful sliders' , 'customizr' )
+                                              'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                                                          TC_BASE_URL.'inc/assets/img/slide-2.png',
+                                                                          __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                                                                   )
                                             )
           );///end of slides array

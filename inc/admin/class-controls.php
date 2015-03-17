@@ -78,9 +78,14 @@ if ( ! class_exists( 'TC_controls' ) ) :
     			    	}
 
     					if ( 'tc_theme_options[tc_front_slider]' == $this -> id  && empty( $sliders ) ) {
-    						 echo '<div style="width:99%; padding: 5px;">';
-    		                  echo '<p class="description">'.__("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ).'<br/><a class="button-primary" href="'.admin_url( 'upload.php' ).'" target="_blank">'.__( 'Create a slider' , 'customizr' ).'</a></p>
-    		              </div>';
+    						printf('<div style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="http://%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',
+                  __("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ),
+                  admin_url( 'upload.php' ),
+                  __( 'Create a slider' , 'customizr' ),
+                  __( 'Need help to create a slider ?' , 'customizr' ),
+                  "doc.themesandco.com/",
+                  __( 'Check the documentation' , 'customizr' )
+                );
     					}
 
     				break;

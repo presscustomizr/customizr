@@ -1,13 +1,13 @@
 <?php
 /**
-* Slider actions
+* Slider Model / Views / Helpers Class
 *
 *
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
 * @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
+* @copyright    Copyright (c) 2013 - 2015 , Nicolas GUILLAUME
 * @link         http://themesandco.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
@@ -18,16 +18,16 @@ class TC_slider {
 
   function __construct () {
     self::$instance =& $this;
-    add_action('template_redirect'         , array($this, 'tc_set_slider_hooks') );
-
+    add_action( 'template_redirect'        , array($this, 'tc_set_slider_hooks') );
     //set user customizer options. @since v3.2.0
     add_filter( 'tc_slider_layout_class'   , array( $this , 'tc_set_slider_wrapper_class' ) );
-
     //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
     //fired on hook : wp_enqueue_scripts
     //Set thumbnail specific design based on user options
     //Set user defined height
     add_filter( 'tc_user_options_style'    , array( $this , 'tc_write_slider_inline_css' ) );
+    //tc_slider_height is fired in TC_slider::tc_write_slider_inline_css()
+    add_filter( 'tc_slider_height'         , array( $this, 'tc_set_demo_slider_height') );
   }//end of construct
 
 
@@ -57,56 +57,6 @@ class TC_slider {
   MODELS
   *******************************/
   /**
-  * Return the slides model from option or default
-  * Returns and array of slides with data
-  *
-  * @package Customizr
-  * @since Customizr 3.0.15
-  *
-  */
-  private function tc_get_slides_model( $slider_name_id, $img_size ) {
-
-    //returns the default slider if requested
-    if ( 'demo' == $slider_name_id )
-      return apply_filters( 'tc_default_slides', TC_init::$instance -> default_slides );
-
-    //if not demo, we get slides from options
-    $all_sliders              = TC_utils::$inst->tc_opt( 'tc_sliders');
-    $saved_slides             = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
-
-    //if the slider not longer exists or exists but is empty, return false
-    if ( !isset($saved_slides) || !is_array($saved_slides) || empty($saved_slides) )
-      return;
-
-    //inititalize the slides array
-    $slides   = array();
-
-    //init slide active state index
-    $_loop_index        = 0;
-
-    foreach ( $saved_slides as $s ) {
-      $slide_object           = get_post( $s);
-
-      //next loop if attachment does not exist anymore (has been deleted for example)
-      if (! isset( $slide_object) )
-        continue;
-
-      $id                     = $slide_object -> ID;
-      if ( ! $this -> tc_get_single_slide_model( $_loop_index, $id ) )
-        continue;
-
-      $slides[$id] = $this -> tc_get_single_slide_model( $_loop_index, $id );
-
-      $_loop_index++;
-    }//end of slides loop
-
-    //returns the slides or false if nothing
-    return ( !empty($slides) ) ? $slides : false;
-  }
-
-
-
-  /**
   * Return a single slide model
   * Returns and array of slides with data
   *
@@ -114,7 +64,7 @@ class TC_slider {
   * @since Customizr 3.0.15
   *
   */
-  private function tc_get_single_slide_model( $_loop_index , $id ) {
+  private function tc_get_single_slide_model( $_loop_index , $id , $img_size ) {
     //check if slider enabled for this attachment and go to next slide if not
     $slider_checked         = esc_attr(get_post_meta( $id, $key = 'slider_check_key' , $single = true ));
     if ( !isset( $slider_checked) || $slider_checked != 1 )
@@ -153,7 +103,7 @@ class TC_slider {
     if ( !isset($slide_background) || empty($slide_background) )
       return;
 
-     return array(
+    return array(
       'title'               =>  $title,
       'text'                =>  $text,
       'button_text'         =>  $button_text,
@@ -166,8 +116,58 @@ class TC_slider {
   }
 
 
+
   /**
-  * return the slider model
+  * Helper
+  * Return an array of the slide models from option or default
+  * Returns and array of slides with data
+  *
+  * @package Customizr
+  * @since Customizr 3.0.15
+  *
+  */
+  private function tc_get_the_slides( $slider_name_id, $img_size ) {
+    //returns the default slider if requested
+    if ( 'demo' == $slider_name_id )
+      return apply_filters( 'tc_default_slides', TC_init::$instance -> default_slides );
+
+    //if not demo, we get slides from options
+    $all_sliders    = TC_utils::$inst -> tc_opt( 'tc_sliders');
+    $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
+
+    //if the slider not longer exists or exists but is empty, return false
+    if ( !isset($saved_slides) || !is_array($saved_slides) || empty($saved_slides) )
+      return;
+
+    //inititalize the slides array
+    $slides   = array();
+
+    //init slide active state index
+    $_loop_index        = 0;
+
+    //GENERATE SLIDES ARRAY
+    foreach ( $saved_slides as $s ) {
+      $slide_object           = get_post($s);
+      //next loop if attachment does not exist anymore (has been deleted for example)
+      if ( ! isset( $slide_object) )
+
+        continue;
+      $id                     = $slide_object -> ID;
+      if ( ! $this -> tc_get_single_slide_model( $_loop_index, $id, $img_size ) )
+        continue;
+
+      $slides[$id] = $this -> tc_get_single_slide_model( $_loop_index, $id , $img_size );
+
+      $_loop_index++;
+    }//end of slides loop
+    //returns the slides or false if nothing
+    return ! empty($slides) ? $slides : false;
+  }
+
+
+
+  /**
+  * return the slider block model
   * @return  array($slider_name_id, $slides, $layout_class)
   *
   * @package Customizr
@@ -185,11 +185,11 @@ class TC_slider {
       return array() ;
 
     //gets the actual page id if we are displaying the posts page
-    $queried_id                   = tc_get_real_id();
+    $queried_id                   = $this -> tc_get_real_id();
 
-    $slider_name_id               = $this -> tc_get_current_slider($queried_id);
+    $slider_name_id               = $this -> tc_get_current_slider( $queried_id );
 
-    if ( ! $this -> tc_is_slider_active($queried_id) )
+    if ( ! $this -> tc_is_slider_active( $queried_id) )
       return array();
 
     //gets slider options if any
@@ -201,9 +201,9 @@ class TC_slider {
     $img_size                     = apply_filters( 'tc_slider_img_size' , ( 0 == $layout_value ) ? 'slider' : 'slider-full');
 
     //get slides
-    $slides                       = $this-> tc_get_slides_model( $slider_name_id , $img_size );
+    $slides                       = $this -> tc_get_the_slides( $slider_name_id , $img_size );
 
-    return compact( $slider_name_id, $slides, $layout_class);
+    return compact( "slider_name_id", "slides", "layout_class" , "img_size" );
   }
 
 
@@ -226,11 +226,10 @@ class TC_slider {
   */
   function tc_slider_display() {
     //get slides model
-    //extract $slider_name_id, $slides, $layout_class
+    //extract $slider_name_id, $slides, $layout_class, $img_size
     extract( $this -> tc_get_slider_model() );
-
     //returns nothing if no slides to display
-    if ( ! $slides )
+    if ( ! isset($slides) || ! $slides )
       return;
 
     ob_start();
@@ -249,8 +248,9 @@ class TC_slider {
 
         <div class="carousel-inner">
           <?php
-            foreach ($slides as $id => $data)
-              $this -> tc_render_single_slide_view( $id, $data , $slider_name_id )
+            foreach ($slides as $id => $data) {
+              $this -> tc_render_single_slide_view( $id, $data , $slider_name_id, $img_size );
+            }
           ?>
         </div><!-- /.carousel-inner -->
 
@@ -265,8 +265,15 @@ class TC_slider {
   }
 
 
-
-  public function tc_render_single_slide_view( $id, $data , $slider_name_id ) {
+  /**
+  * Single slide view
+  * Renders a single slide
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  *
+  */
+  public function tc_render_single_slide_view( $id, $data , $slider_name_id, $img_size ) {
       $slide_class = sprintf('%1$s %2$s',
         $data['active'],
         'slide-'.$id
@@ -337,6 +344,7 @@ class TC_slider {
   }
 
 
+
   /*
   * Slider controls view
   * @param slides
@@ -387,7 +395,8 @@ class TC_slider {
   */
   private function tc_get_current_slider($queried_id) {
     //gets the current slider id
-    $slider_name_id               = ( tc__f('__is_home') && $tc_front_slider ) ? TC_utils::$inst->tc_opt( 'tc_front_slider' ) : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
+    $_home_slider     = TC_utils::$inst->tc_opt( 'tc_front_slider' );
+    $slider_name_id   = ( tc__f('__is_home') && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
     return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id);
   }
 
@@ -411,18 +420,47 @@ class TC_slider {
   *
   */
   private function tc_is_slider_active( $queried_id ) {
-    $_bool = false;
     //is the slider set to on for the queried id?
     if ( tc__f('__is_home') && TC_utils::$inst->tc_opt( 'tc_front_slider' ) )
-      $_bool = true;
-    if ( esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) ) )
-      $_bool = ! empty( esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) ) );
+      return apply_filters( 'tc_slider_active_status', true , $queried_id );
 
-    return apply_filters( 'tc_slider_active_status', $_bool , $queried_id );
+    $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
+    if ( ! empty( $_slider_on ) && $_slider_on )
+      return apply_filters( 'tc_slider_active_status', true , $queried_id );
+
+    return apply_filters( 'tc_slider_active_status', false , $queried_id );
   }
 
 
-  /*
+
+  /**
+  * hook : tc_slider_height, fired in tc_user_options_style
+  * @return number height value
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  */
+  function tc_set_demo_slider_height( $_h ) {
+    //this custom demo height is applied when :
+    //1) current slider is demo
+    if ( 'demo' != $this -> tc_get_current_slider( $this -> tc_get_real_id() ) )
+      return $_h;
+
+    //2) height option has not been changed by user yet
+    //the possible customization context must be taken into account here
+    if ( TC___::$instance -> tc_is_customizing() ) {
+      if ( 500 != esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) )
+        return $_h;
+    } else {
+      if ( false !== (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height', TC___::$tc_option_group, $use_default = false ) ) )
+        return $_h;
+    }
+
+    return apply_filters( 'tc_set_demo_slider_height' , 750 );
+  }
+
+
+  /**
   * Callback of tc_user_options_style hook
   * @return css string
   *
@@ -432,7 +470,7 @@ class TC_slider {
   function tc_write_slider_inline_css( $_css ) {
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
-    $_custom_height     = esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') );
+    $_custom_height     = apply_filters( 'tc_slider_height' , esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) );
     $_slider_inline_css = "";
 
     //When shall we append custom slider style to the global custom inline stylesheet?
