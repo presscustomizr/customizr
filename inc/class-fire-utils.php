@@ -273,7 +273,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if ( TC___::$instance -> tc_is_customizing() || is_admin() )
           $_db_options = (array) get_option( $option_group );
         else
-          $_db_options = empty($this-> db_options) ? $this -> tc_cache_db_options($option_group) : $this-> db_options;
+          $_db_options = empty($this -> db_options) ? $this -> tc_cache_db_options($option_group) : $this -> db_options;
 
         //do we have to use the default ?
          $__options = $_db_options;

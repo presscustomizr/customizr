@@ -171,8 +171,8 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
           $_args      = compact( 'cat_list' ,'tag_list', 'pub_date', 'auth', 'upd_date' );
           $_html      = sprintf( __( 'This entry was posted on %1$s<span class="by-author"> by %2$s</span>.' , 'customizr' ),
-            $this -> tc_get_meta_date('publication'),
-            $this -> tc_get_meta_author()
+            $pub_date,
+            $auth
           );
           return apply_filters( 'tc_post_metas_model' , compact( "_html" , "_args" ) );
         }
@@ -421,15 +421,18 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @since Customizr 3.2.6
         */
         public function tc_get_meta_date( $pub_or_update = 'publication', $_format = 'long' ) {
-            $_format = 'long' == $_format ? 'F j, Y' : 'j M, Y';
+            $_format = apply_filters( 'tc_meta_date_format' , 'long' == $_format ? 'F j, Y' : 'j M, Y' );
+            $_use_post_mod_date = apply_filters( 'tc_use_the_post_modified_date' , 'publication' != $pub_or_update );
             return apply_filters(
                 'tc_date_meta',
                 sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
                     esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
                     esc_attr( get_the_time() ),
-                    apply_filters( 'tc_use_the_post_modified_date' , 'publication' != $pub_or_update ) ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
-                    apply_filters( 'tc_use_the_post_modified_date' , 'publication' != $pub_or_update ) ? esc_html( get_the_modified_date( $_format ) ) : esc_html( get_the_date( $_format ) )
-                )
+                    $_use_post_mod_date ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
+                    $_use_post_mod_date ? esc_html( get_the_modified_date( $_format ) ) : esc_html( get_the_date( $_format ) )
+                ),
+                $_use_post_mod_date,
+                $_format
             );//end filter
         }
 
