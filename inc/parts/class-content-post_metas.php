@@ -420,8 +420,11 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        public function tc_get_meta_date( $pub_or_update = 'publication', $_format = 'long' ) {
-            $_format = apply_filters( 'tc_meta_date_format' , 'long' == $_format ? 'F j, Y' : 'j M, Y' );
+        public function tc_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
+            if ( 'short' == $_format )
+              $_format = 'j M, Y';
+
+            $_format = apply_filters( 'tc_meta_date_format' , $_format );
             $_use_post_mod_date = apply_filters( 'tc_use_the_post_modified_date' , 'publication' != $pub_or_update );
             return apply_filters(
                 'tc_date_meta',
