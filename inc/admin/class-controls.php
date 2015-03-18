@@ -150,7 +150,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	        			! empty( $this -> icon) ? $this -> icon : '',
 	        			esc_html( $this->label ),
 	        			esc_url( $this->value() ),
-	        			call_user_func( array( $this, 'get_link' ) )
+	        			call_user_func( array( $this, 'get'.'_'.'link' ) )
 	        		);
 		        	break;
 
@@ -187,7 +187,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
 
     private function tc_print_select_control() {
       printf('<select %1$s>%2$s</select>',
-        $this -> get_link(),
+        call_user_func( array( $this, 'get'.'_'.'link' ) ),
         $this -> tc_get_select_options()
       );
     }

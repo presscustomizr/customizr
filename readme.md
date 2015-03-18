@@ -73,7 +73,7 @@ There are two main tasks : `customizr_dev` and `customizr_build`, using *sub tas
 Unless otherwise specified, all the theme files, scripts and images
 are licensed under GNU General Public License version 2, see file license.txt.
 The exceptions to this license are as follows:
-* Bootstrap by Twitter and the Glyphicon set are licensed under the GPL-compatible [http://www.apache.org/licenses/LICENSE-2.0 Apache License v2.0]
+* Bootstrap by Twitter <http://twitter.github.com/bootstrap/>, and the Glyphicons Halflings set <http://www.glyphicons.com/> in inc/assets/img/glyphicons-halflings.., are licensed under the GPL-compatible [http://www.apache.org/licenses/LICENSE-2.0 Apache License v2.0]
 * bootstrap-carousel.js v2.3.0 is licensed under the Apache License
 * holder.js v1.9 is licensed under the Apache License
 * modernizr.js is dual licensed under the BSD and MIT licenses
@@ -85,15 +85,38 @@ The exceptions to this license are as follows:
 * stepper v3.0.5 - 2014-02-06, Copyright 2014 Ben Plum, MIT Licensed
 * Hammer.JS - v2.0.4 - Copyright (c) 2014 Jorik Tangelder, MIT license
 * Icon Set: Entypo is licensed under SIL Open-Font License
-* The image phare.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:Ca_1941_DAF_%27Rijdende_regenjas%27_pic7.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
-* The image chevrolet.jpg is a free public picture from Wikimedia, copyright 2013 Alf van Beem (http://commons.wikimedia.org/wiki/File:%2755_Chevrolet_ornament.JPG) , and distributed under the terms of the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/deed.en)
-* The image customizr.jpg is a creation of Nicolas Guillaume licensed under GPL v2+.
-* The image slider-loader.gif is released under the WTFPL license (http://www.wtfpl.net/, GPL compatible), generated on http://ajaxload.info/.
+* The images screenshot.png, inc/assets/img/customizr-theme-customizer.png, inc/assets/img/customizr-theme-responsive.png are creations of Nicolas Guillaume and licensed under GPL v2+
+* The image slider-loader.gif is released under the WTFPL license (http://www.wtfpl.net/, GPL compatible), generated on http://ajaxload.info/
 
 
 ## Changelog
-= 3.3.13 March 11th 2015 =
+= 3.3.13 March 18th 2015 =
+fixed : potential 'division by zero' issue with the grid layout if users applies a custom layout Initially reported here : https://wordpress.org/support/topic/division-by-zero-5
 added : customizer previewer filter for custom skins
+improved : various js code improvement for scrolling actions
+improved : allow user to use their custom date format (defined in settings > general) for post metas date
+improved : menu caret alignment
+added : tc_carousel_inner_classes with .center-slides-enabled when option is checked by user
+fixed : tc_set_grid_hooks are fired in 'wp_head' => 'wp' was too early
+added : user can set a custom logo alt attr with the filter 'tc_logo_alt'
+fixed : missing global wp_query declaration
+updated : screenshot and demo slide#1
+added : user can specify a custom meta date format with filter 'tc_meta_date_format'
+changed : navbar not boxed by default anymore for users starting with v3.3.13
+improved : translated few strings in Italian thanks to https://github.com/giorgioriccardi
+fixed : CenterImages js avoid using ir8 'class' reserved words
+fixed : social icon unwanted underline text-decoration on hover
+added : a use_default boolean param to TC_utils::tc_opt()
+improved : slider php class better code structure
+improved : js smoothscroll disabled if #anchor element doesn't exist.
+added : new filter 'tc_title_text' for easier and safer pre processing before tc_the_title => avoid filter priority potential issues
+added : new option to set the max length of post titles (in # of words) in grid
+fixed : firefox and old browsers compatibility issue with the .tc-grid-fade_expt background
+added : cta button in customizer footer section
+improved : jqueryextLinks : if link not eligible, then remove any remaining icon element and return //important => the element to remove is right after the current link element ( => use of '+' CSS operator )
+added : Galician Spanish translation. Thanks to <a href="http://rubenas.com">Ruben</a>
+added : custom skins customizer preview hack
+added : custom skins grunt code
 
 = 3.3.12 March 9th 2015 =
 fixed : smooth scroll new excluded selectors not properly set
