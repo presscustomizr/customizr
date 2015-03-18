@@ -371,6 +371,10 @@
     position: relative;
     z-index: 1;
   }
+  /* do not display menu button when sticky enabled and tc-menu-off enabled */
+  .sticky-enabled .tc-menu-off .btn-navbar {
+    display: none;
+  }
 
   .no-navbar .nav-collapse, .nav-collapse.collapse {
     /* default fallback */
