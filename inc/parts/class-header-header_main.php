@@ -282,7 +282,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
       extract($_args);
       $_html = sprintf('<img src="%1$s" alt="%2$s" %3$s %4$s %5$s %6$s class="%7$s %8$s"/>',
         $logo_src,
-      	__( 'Back Home' , 'customizr' ),
+      	apply_filters( 'tc_logo_alt', __( 'Back Home' , 'customizr' ) ),
         $logo_width ? sprintf( 'width="%1$s"', $logo_width ) : '',
         $logo_height ? sprintf( 'height="%1$s"', $logo_height ) : '',
         ( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
