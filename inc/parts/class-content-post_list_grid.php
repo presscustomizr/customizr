@@ -21,7 +21,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $this -> expanded_featured = null;
 
           add_action ( 'pre_get_posts'              , array( $this , 'tc_maybe_excl_first_sticky') );
-          add_action ( 'wp'                         , array( $this , 'tc_set_grid_hooks') );
+          add_action ( 'wp_head'                    , array( $this , 'tc_set_grid_hooks') );
 
           //Various CSS filters
           //those filters are fired on hook : tc_user_options_style => fired on hook : wp_enqueue_scripts
