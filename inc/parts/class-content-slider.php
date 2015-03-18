@@ -44,8 +44,18 @@ class TC_slider {
   * @return  void
   */
   function tc_set_slider_hooks() {
+    //get slides model
+    //extract $slider_name_id, $slides, $layout_class, $img_size
+    extract( $this -> tc_get_slider_model() );
+    //returns nothing if no slides to display
+    if ( ! isset($slides) || ! $slides )
+      return;
+
     add_action( '__after_header'           , array( $this , 'tc_slider_display' ) );
     add_action( '__after_carousel_inner'   , array( $this , 'tc_slider_control_view' ) );
+
+    //adds the center-slides-enabled css class
+    add_filter( 'tc_carousel_inner_classes', array( $this, 'tc_set_inner_class') );
   }
 
 
@@ -67,7 +77,7 @@ class TC_slider {
   private function tc_get_single_slide_model( $_loop_index , $id , $img_size ) {
     //check if slider enabled for this attachment and go to next slide if not
     $slider_checked         = esc_attr(get_post_meta( $id, $key = 'slider_check_key' , $single = true ));
-    if ( !isset( $slider_checked) || $slider_checked != 1 )
+    if ( ! isset( $slider_checked) || $slider_checked != 1 )
       return;
 
     //title
@@ -210,9 +220,6 @@ class TC_slider {
 
 
 
-
-
-
   /******************************
   VIEWS
   *******************************/
@@ -232,6 +239,9 @@ class TC_slider {
     if ( ! isset($slides) || ! $slides )
       return;
 
+    //define carousel inner classes
+    $_inner_classes = implode( ' ' , apply_filters( 'tc_carousel_inner_classes' , array( 'carousel-inner' ) ) );
+
     ob_start();
     ?>
     <div id="customizr-slider" class="<?php echo $layout_class ?> ">
@@ -244,9 +254,9 @@ class TC_slider {
           </div>
         <?php endif; ?>
 
-        <?php  do_action( '__before_carousel_inner' , $slides )  ?>
+        <?php do_action( '__before_carousel_inner' , $slides )  ?>
 
-        <div class="carousel-inner">
+        <div class="<?php echo $_inner_classes?>">
           <?php
             foreach ($slides as $id => $data) {
               $this -> tc_render_single_slide_view( $id, $data , $slider_name_id, $img_size );
@@ -543,6 +553,20 @@ class TC_slider {
     return array_merge( $_classes , array('custom-slider-height') );
   }
 
+
+  /**
+  * hook : tc_carousel_inner_classes fired in the slider view
+  * @return  array of css classes
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  */
+  function tc_set_inner_class( $_classes ) {
+    if( ! (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_center_slider_img') ) || ! is_array($_classes) )
+      return $_classes;
+    array_push( $_classes, 'center-slides-enabled' );
+    return $_classes;
+  }
 
 
 } //end of class
