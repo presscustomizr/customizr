@@ -672,6 +672,10 @@ if ( ! class_exists( 'TC_init' ) ) :
           add_action('woocommerce_before_main_content', 'tc_woocommerce_wrappers', 10);
           add_action('woocommerce_after_main_content', 'tc_woocommerce_wrappers', 10);
 
+          //disable WooCommerce default breadcrumb
+          if ( apply_filters( 'tc_disable_woocommerce_breadcrumb', true ) )
+            remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+
           function tc_woocommerce_wrappers() {
             switch ( current_filter() ) {
               case 'woocommerce_before_main_content':
@@ -717,12 +721,15 @@ if ( ! class_exists( 'TC_init' ) ) :
           }//end of nested function
 
           // use Customizr title
+          // initially used to display the edit button
           add_filter( 'the_title', 'tc_woocommerce_the_title' );
           function tc_woocommerce_the_title( $_title ){
             if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
-                return apply_filters( 'tc_the_title', $_title );
+                return apply_filters( 'tc_title_text', $_title );
             return $_title;
           }
+
+          //
 
           //handles the woocomerce sidebar : removes action if sidebars not active
           if ( !is_active_sidebar( 'shop') ) {

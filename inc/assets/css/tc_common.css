@@ -5507,7 +5507,7 @@ li.dropdown.active > .dropdown-toggle,
 /* BREADCUMB
   -------------------------------------------------- */
 .tc-hot-crumble {
-  margin-top: 5px;
+  margin-top: 5px 0 10px 0;
   position: relative;
   z-index: 10;
 }
@@ -6494,7 +6494,7 @@ img.v-centered {
 /* comment bubbles in grid */
 .tc-grid-figure .comments-link {
   position: absolute;
-  z-index: 11;
+  z-index: 15;
   top: 15%;
   right: 1%;
 }

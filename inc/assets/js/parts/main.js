@@ -528,7 +528,7 @@ jQuery(function ($) {
             logosH[$i]  = $(this).attr('height');
 
             //check that all numbers are valid before using division
-            if ( 0 === _.size( _.filter( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber(num) && 0 !== num; } ) ) )
+            if ( 0 === _.size( _.filter( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
               return;
 
             logosRatio[$i]  = logosW[$i] / logosH[$i];
