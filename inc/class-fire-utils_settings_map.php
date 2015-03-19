@@ -1328,7 +1328,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'     => 'postMessage'
               ),
               'tc_theme_options[tc_display_boxed_navbar]'  =>  array(
-                                'default'       => 1,
+                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display menu in a box" , "customizr" ),
                                 'section'       => 'tc_header_layout' ,

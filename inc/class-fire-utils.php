@@ -267,17 +267,22 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_opt( $option_name , $option_group = null ) {
+      function tc_opt( $option_name , $option_group = null, $use_default = true ) {
         //do we have to look for a specific group of option (plugin?)
         $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
         if ( TC___::$instance -> tc_is_customizing() || is_admin() )
           $_db_options = (array) get_option( $option_group );
         else
-          $_db_options = empty($this-> db_options) ? $this -> tc_cache_db_options($option_group) : $this-> db_options;
+          $_db_options = empty($this -> db_options) ? $this -> tc_cache_db_options($option_group) : $this -> db_options;
 
-        $_defaults      = $this -> default_options;
-        $__options      = wp_parse_args( $_db_options, $_defaults );
-        //$options            = array_intersect_key( $_db_options , $defaults);
+        //do we have to use the default ?
+         $__options = $_db_options;
+        if ( $use_default ) {
+          $_defaults      = $this -> default_options;
+          $__options      = wp_parse_args( $_db_options, $_defaults );
+        }
+
+        //return false boolean if does not exist, just like WP does
         $_single_opt    = isset($__options[$option_name]) ? $__options[$option_name] : false;
 
         //contx retro compat

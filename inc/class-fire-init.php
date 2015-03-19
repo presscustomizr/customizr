@@ -191,108 +191,108 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           //Default social networks
           $this -> socials            = array(
-                                      'tc_rss'            => array(
-                                                              'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
-                                                              'option_label'  => __( 'RSS feed (default is the wordpress feed)' , 'customizr' ),
-                                                              'default'       => get_bloginfo( 'rss_url' )
-                                                            ),
-                                      'tc_twitter'        => array(
-                                                              'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
-                                                              'option_label'  => __( 'Twitter profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_facebook'       => array(
-                                                              'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
-                                                              'option_label'  => __( 'Facebook profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_google'         => array(
-                                                              'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
-                                                              'option_label'  => __( 'Google+ profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_instagram'      => array(
-                                                              'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
-                                                              'option_label'  => __( 'Instagram profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_tumblr'       => array(
-                                                              'link_title'    => __( 'Follow me on Tumblr' , 'customizr' ),
-                                                              'option_label'  => __( 'Tumblr url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_flickr'       => array(
-                                                              'link_title'    => __( 'Follow me on Flickr' , 'customizr' ),
-                                                              'option_label'  => __( 'Flickr url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_wordpress'      => array(
-                                                              'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
-                                                              'option_label'  => __( 'WordPress profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_youtube'        => array(
-                                                              'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
-                                                              'option_label'  => __( 'Youtube profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_pinterest'      => array(
-                                                              'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
-                                                              'option_label'  => __( 'Pinterest profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_github'         => array(
-                                                              'link_title'    => __( 'Follow me on Github' , 'customizr' ),
-                                                              'option_label'  => __( 'Github profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_dribbble'       => array(
-                                                              'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
-                                                              'option_label'  => __( 'Dribbble profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            ),
-                                      'tc_linkedin'       => array(
-                                                              'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
-                                                              'option_label'  => __( 'LinkedIn profile url' , 'customizr' ),
-                                                              'default'       => null
-                                                            )
+            'tc_rss'            => array(
+                                    'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
+                                    'option_label'  => __( 'RSS feed (default is the wordpress feed)' , 'customizr' ),
+                                    'default'       => get_bloginfo( 'rss_url' )
+                                  ),
+            'tc_twitter'        => array(
+                                    'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
+                                    'option_label'  => __( 'Twitter profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_facebook'       => array(
+                                    'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
+                                    'option_label'  => __( 'Facebook profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_google'         => array(
+                                    'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
+                                    'option_label'  => __( 'Google+ profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_instagram'      => array(
+                                    'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
+                                    'option_label'  => __( 'Instagram profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_tumblr'       => array(
+                                    'link_title'    => __( 'Follow me on Tumblr' , 'customizr' ),
+                                    'option_label'  => __( 'Tumblr url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_flickr'       => array(
+                                    'link_title'    => __( 'Follow me on Flickr' , 'customizr' ),
+                                    'option_label'  => __( 'Flickr url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_wordpress'      => array(
+                                    'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
+                                    'option_label'  => __( 'WordPress profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_youtube'        => array(
+                                    'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
+                                    'option_label'  => __( 'Youtube profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_pinterest'      => array(
+                                    'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
+                                    'option_label'  => __( 'Pinterest profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_github'         => array(
+                                    'link_title'    => __( 'Follow me on Github' , 'customizr' ),
+                                    'option_label'  => __( 'Github profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_dribbble'       => array(
+                                    'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
+                                    'option_label'  => __( 'Dribbble profile url' , 'customizr' ),
+                                    'default'       => null
+                                  ),
+            'tc_linkedin'       => array(
+                                    'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
+                                    'option_label'  => __( 'LinkedIn profile url' , 'customizr' ),
+                                    'default'       => null
+                                  )
           );//end of social array
 
 
           //Default sidebar widgets
           $this -> sidebar_widgets    = array(
-                                            'right'         => array(
-                                                            'name'                 => __( 'Right Sidebar' , 'customizr' ),
-                                                            'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
-                                            ),
-                                            'left'          => array(
-                                                            'name'                 => __( 'Left Sidebar' , 'customizr' ),
-                                                            'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
-                                            )
+            'right'         => array(
+                            'name'                 => __( 'Right Sidebar' , 'customizr' ),
+                            'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
+            ),
+            'left'          => array(
+                            'name'                 => __( 'Left Sidebar' , 'customizr' ),
+                            'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
+            )
           );//end of array
 
           //Default footer widgets
           $this -> footer_widgets     = array(
-                                            'footer_one'    => array(
-                                                            'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
-                                                            'description'          => __( 'Just use it as you want !' , 'customizr' )
-                                            ),
-                                            'footer_two'    => array(
-                                                            'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
-                                                            'description'          => __( 'Just use it as you want !' , 'customizr' )
-                                            ),
-                                            'footer_three'   => array(
-                                                            'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
-                                                            'description'          => __( 'Just use it as you want !' , 'customizr' )
-                                            )
+            'footer_one'    => array(
+                            'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
+                            'description'          => __( 'Just use it as you want !' , 'customizr' )
+            ),
+            'footer_two'    => array(
+                            'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
+                            'description'          => __( 'Just use it as you want !' , 'customizr' )
+            ),
+            'footer_three'   => array(
+                            'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
+                            'description'          => __( 'Just use it as you want !' , 'customizr' )
+            )
           );//end of array
 
           //Default post list layout
           $this -> post_list_layout   = array(
-                                          'content'           => 'span8',
-                                          'thumb'             => 'span4',
-                                          'show_thumb_first'  => false,
-                                          'alternate'         => true
+            'content'           => 'span8',
+            'thumb'             => 'span4',
+            'show_thumb_first'  => false,
+            'alternate'         => true
           );
 
           //Defines post formats with no headers
@@ -300,61 +300,47 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           //Default 404 content
           $this -> content_404        = array(
-                                          'quote'             => __( 'Speaking the Truth in times of universal deceit is a revolutionary act.' , 'customizr' ),
-                                          'author'            => __( 'George Orwell' , 'customizr' ),
-                                          'text'              => __( 'Sorry, but the requested page is not found. You might try a search below.' , 'customizr' )
+            'quote'             => __( 'Speaking the Truth in times of universal deceit is a revolutionary act.' , 'customizr' ),
+            'author'            => __( 'George Orwell' , 'customizr' ),
+            'text'              => __( 'Sorry, but the requested page is not found. You might try a search below.' , 'customizr' )
           );
 
           //Default no search result content
           $this -> content_no_results = array(
-                                          'quote'             => __( 'Success is the ability to go from one failure to another with no loss of enthusiasm...' , 'customizr' ),
-                                          'author'            => __( 'Sir Winston Churchill' , 'customizr' ),
-                                          'text'              => __( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.' , 'customizr' )
+            'quote'             => __( 'Success is the ability to go from one failure to another with no loss of enthusiasm...' , 'customizr' ),
+            'author'            => __( 'Sir Winston Churchill' , 'customizr' ),
+            'text'              => __( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.' , 'customizr' )
           );
 
           //Default slides content
           $this -> default_slides     = array(
-                                            1 => array(
-                                              'title'         =>  '',
-                                              'text'          =>  '',
-                                              'button_text'   =>  '',
-                                              'link_id'       =>  null,
-                                              'link_url'      =>  null,
-                                              'active'        =>  'active',
-                                              'color_style'   =>  '',
-                                              'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="" alt="%2$s" />',
-                                                                          TC_BASE_URL.'inc/assets/img/customizr.jpg',
-                                                                          __( 'Customizr is a clean responsive theme' , 'customizr' )
-                                                                  )
-                                            ),
+            1 => array(
+              'title'         =>  '',
+              'text'          =>  '',
+              'button_text'   =>  '',
+              'link_id'       =>  null,
+              'link_url'      =>  null,
+              'active'        =>  'active',
+              'color_style'   =>  '',
+              'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                          TC_BASE_URL.'inc/assets/img/customizr-theme-responsive.png',
+                                          __( 'Customizr is a clean responsive theme' , 'customizr' )
+                                  )
+            ),
 
-                                            2 => array(
-                                              'title'         =>  __( 'Style your WordPress site live!' , 'customizr' ),
-                                              'text'          =>  __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' ),
-                                              'button_text'   =>  __( 'Just try it!' , 'customizr' ),
-                                              'link_id'       =>  null,
-                                              'link_url'      =>  null,
-                                              'active'        =>  '',
-                                              'color_style'   =>  '',
-                                              'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="" alt="%2$s" />',
-                                                                          TC_BASE_URL.'inc/assets/img/phare.jpg',
-                                                                          __( 'Style your WordPress site live!' , 'customizr' )
-                                                                  )
-                                            ),
-
-                                            3 => array(
-                                              'title'         =>  __( 'Create beautiful sliders' , 'customizr' ),
-                                              'text'          =>  __( 'Customizr comes with a cool slider generator : add a slider to any post or page!' , 'customizr' ),
-                                              'button_text'   =>  __( 'Discover the features' , 'customizr' ),
-                                              'link_id'       =>  null,
-                                              'link_url'      =>  null,
-                                              'active'        =>  '',
-                                              'color_style'   =>  '',
-                                              'slide_background'       =>  sprintf('<img width="1200" height="500" src="%1$s" class="" alt="%2$s" />',
-                                                                          TC_BASE_URL.'inc/assets/img/chevrolet.jpg',
-                                                                          __( 'Create beautiful sliders' , 'customizr' )
-                                                                  )
-                                            )
+            2 => array(
+              'title'         =>  '',
+              'text'          =>  '',
+              'button_text'   =>  '',
+              'link_id'       =>  null,
+              'link_url'      =>  null,
+              'active'        =>  '',
+              'color_style'   =>  '',
+              'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                          TC_BASE_URL.'inc/assets/img/customizr-theme-customizer.png',
+                                          __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
+                                  )
+            )
           );///end of slides array
 
           //Set image options set by user @since v3.2.0

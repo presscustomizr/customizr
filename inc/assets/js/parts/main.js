@@ -183,6 +183,10 @@ jQuery(function ($) {
         }
     );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d0aa445d55fd7514aab517d6a00095c7fccec16a
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     var _maybe_apply_smooth_scroll = function() {
       if ( ! _p.SmoothScroll || 'easeOutExpo' != _p.SmoothScroll )
@@ -207,6 +211,10 @@ jQuery(function ($) {
     //Fire smooth scroll
     _maybe_apply_smooth_scroll();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d0aa445d55fd7514aab517d6a00095c7fccec16a
 
     //BACK TO TOP
     function g($) {

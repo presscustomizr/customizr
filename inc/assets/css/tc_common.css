@@ -4800,6 +4800,10 @@ section {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
+.social-block a:hover {
+  text-decoration: none;
+  opacity: 1;
+}
 .icon-google:before {
   content: "\f206";
 }
@@ -8570,6 +8574,10 @@ li#wp-admin-bar-tc-customizr a {
   .sticky-enabled .navbar-wrapper {
     position: relative;
     z-index: 1;
+  }
+  /* do not display menu button when sticky enabled and tc-menu-off enabled */
+  .sticky-enabled .tc-menu-off .btn-navbar {
+    display: none;
   }
   .no-navbar .nav-collapse,
   .nav-collapse.collapse {
