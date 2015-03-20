@@ -14,19 +14,19 @@
 if ( ! class_exists( 'TC_post_list_grid' ) ) :
     class TC_post_list_grid {
         static $instance;
-        private $expanded_featured;
+        private $expanded_sticky;
 
         function __construct () {
           self::$instance =& $this;
-          $this -> expanded_featured = null;
+          $this -> expanded_sticky = null;
 
           add_action ( 'pre_get_posts'              , array( $this , 'tc_maybe_excl_first_sticky') );
           add_action ( 'wp_head'                    , array( $this , 'tc_set_grid_hooks') );
 
           //Various CSS filters
           //those filters are fired on hook : tc_user_options_style => fired on hook : wp_enqueue_scripts
-          add_filter( 'tc_grid_figure_height'       , array( $this , 'tc_set_grid_column_height'), 10, 2 );
           add_filter( 'tc_grid_title_sizes'         , array( $this , 'tc_set_grid_title_size'), 10, 2 );
+          add_filter( 'tc_grid_p_sizes'             , array( $this , 'tc_set_grid_p_size'), 10, 2 );
 
           //append inline style to the custom stylesheet
           //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
@@ -126,7 +126,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_print_row_fluid_section_wrapper(){
           global $wp_query;
           $current_post   = $wp_query -> current_post;
-          $start_post     = $this -> expanded_featured ? 1 : 0;
+          $start_post     = $this -> expanded_sticky ? 1 : 0;
           $cols           = $this -> tc_get_grid_section_cols();
 
           if ( '__before_article' == current_filter() &&
@@ -317,9 +317,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * exclude the first sticky post
         */
         function tc_maybe_excl_first_sticky( $query ){
-          if ( $this -> tc_is_grid_enabled() &&
-                   $this -> tc_is_sticky_expanded( $query ) )
-            $query->set('post__not_in', array( $this -> expanded_featured ) );
+          if ( $this -> tc_is_grid_enabled() && $this -> tc_is_sticky_expanded( $query ) )
+            $query->set('post__not_in', array( $this -> expanded_sticky ) );
         }
 
 
@@ -386,11 +385,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           global $wp_query;
           if ( ! ( $this -> tc_is_sticky_expanded() &&
                  $wp_query -> query_vars[ 'paged' ] == 0 ) ){
-            $this -> expanded_featured = null;
+            $this -> expanded_sticky = null;
             return;
           }
           // prepend the first sticky
-          $first_sticky = get_post( $this -> expanded_featured );
+          $first_sticky = get_post( $this -> expanded_sticky );
           array_unshift( $wp_query -> posts, $first_sticky );
           $wp_query -> post_count = $wp_query -> post_count + 1;
         }
@@ -407,8 +406,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : tc_thumb_size
         */
         function tc_set_thumb_size(){
-          $thumb = ( $this -> tc_get_grid_section_cols() == '1' ) ?
-                          'tc_grid_full_size' : 'tc_grid_size';
+          $thumb = ( $this -> tc_get_grid_section_cols() == '1' ) ? 'tc_grid_full_size' : 'tc_grid_size';
           return TC_init::$instance -> $thumb;
         }
 
@@ -434,11 +432,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         private function tc_grid_get_single_post_html( $post_list_content_class ) {
           global $post;
           ob_start();
-          ?>
-            <figcaption class="<?php echo $post_list_content_class ?>">
-              <?php do_action( '__grid_single_post_content' ) ?>
-            </figcaption>
-          <?php
+            ?>
+              <figcaption class="<?php echo $post_list_content_class ?>">
+                <?php do_action( '__grid_single_post_content' ) ?>
+              </figcaption>
+            <?php
           $html = ob_get_contents();
           if ($html) ob_end_clean();
           return apply_filters( 'tc_grid_get_single_post_html', $html, $post_list_content_class );
@@ -473,46 +471,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-        /**
-        * @param (number) $_height, (string) $col_layout
-        * @return array
-        * hook : tc_grid_figure_height
-        */
-        function tc_set_grid_column_height( $_height, $_cols_class ) {
-          $_grid_col_height_map =  apply_filters(
-              'tc_grid_col_height_map',
-              array(
-                'grid-cols-1' => $this -> tc_get_user_thumb_height(),
-                'grid-cols-2' => $this -> tc_get_user_thumb_height(),
-                'grid-cols-3' => 225,
-                'grid-cols-4' => 165
-              )
-          );
-          return isset( $_grid_col_height_map[$_cols_class] ) ? $_grid_col_height_map[$_cols_class] : $_height;
-        }
-
-
 
         /**
-        * @param (array) $_sizes, (string) $col_layout
-        * @return array
-        * hook :tc_grid_title_sizes
-        */
-        function tc_set_grid_title_size( $_sizes, $_cols_class ) {
-          $_grid_col_height_map =  apply_filters(
-              'tc_grid_col_title_map',
-              array(
-                'grid-cols-1' => array( 'font-size' => 32 , 'line-height' => 40 ),
-                'grid-cols-2' => array( 'font-size' => 25 , 'line-height' => 30 ),
-                'grid-cols-3' => array( 'font-size' => 20 , 'line-height' => 24 ),
-                'grid-cols-4' => array( 'font-size' => 16 , 'line-height' => 22 )
-              )
-          );
-          return isset( $_grid_col_height_map[$_cols_class] ) ? $_grid_col_height_map[$_cols_class] : $_sizes;
-        }
-
-
-        /*
         * @return css string
         * hook : tc_user_options_style
         * @since Customizr 3.2.18
@@ -521,56 +481,27 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           if ( ! $this -> tc_is_grid_enabled() )
             return $_css;
 
-          /* retrieve the height/width ratios */
-          $thumb_full_size  = apply_filters( 'tc_grid_full_size', TC_init::$instance -> tc_grid_full_size );
-          $thumb_full_width = $thumb_full_size['width'];
-          $thumb_size       = apply_filters( 'tc_grid_size', TC_init::$instance -> tc_grid_size );
+          $_col_nb  = $this -> tc_get_grid_cols();
 
-          if ( ! isset($thumb_size['width']) || ! isset($thumb_size['height']) || ! isset($thumb_full_size['width']) || !isset($thumb_full_size['height']) )
-            return $_css;
-          if ( ! is_numeric($thumb_size['width']*$thumb_size['height']*$thumb_full_size['width']*$thumb_full_size['height']) )
-            return $_css;
+          //GENERATE THE FIGURE HEIGHT CSS
+          $_current_col_figure_css  = $this -> tc_grid_get_figure_css( $_col_nb );
 
-          // DEFINITIONS
-          $thumb_width      = $thumb_size['width'];
-          $thumb_full_ratio = $thumb_full_size['height'] / $thumb_full_size['width'] * 100;
-          $thumb_ratio      = $thumb_size['height'] / $thumb_size['width'] * 100;
-          $_cols_class      = sprintf( 'grid-cols-%s' , $this -> tc_get_grid_section_cols() );
-          $_figure_height   = apply_filters( 'tc_grid_figure_height' , $this -> tc_get_user_thumb_height() , $_cols_class );
-          $_title_sizes     = apply_filters( 'tc_grid_title_sizes', array( 'font-size' => 32 , 'line-height' => 40 ) , $_cols_class );
-          $_font_size       = $_title_sizes['font-size'];
-          $_line_height     = $_title_sizes['line-height'];
-          $_expanded_featured_css = '';
+          //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
+          $_current_col_media_css = $this -> tc_get_grid_font_css( $_col_nb );
 
-
-          //ADD THE HEIGHT FOR EXPanded sticky post
-          $_height = isset($_grid_column_height['grid-cols-1']) ? $_grid_column_height['grid-cols-1'] : $this -> tc_get_user_thumb_height();
-          $_expanded_featured_css = "
-          .grid-cols-1 figure {
-              height:{$_height}px;
-              max-height:{$_height}px;
-              line-height:{$_height}px;
-          }";
-
-          $_css = sprintf("%s\n%s\n%s",
-              $_expanded_featured_css,
+          $_css = sprintf("%s\n%s\n%s\n",
               $_css,
-              "
-              .{$_cols_class} figure {
-                  height:{$_figure_height}px;
-                  max-height:{$_figure_height}px;
-                  line-height:{$_figure_height}px;
-              }
-              .{$_cols_class} .entry-title {
-                  font-size:{$_font_size}px;
-                  line-height:{$_line_height}px;
-              }
-              \n
-              "
+              $_current_col_media_css,
+              $_current_col_figure_css
           );
-
+         /* ?>
+            <pre>
+              <?php print_r($_css); ?>
+            </pre>
+          <?php*/
           return $_css;
         }
+
 
 
         /**
@@ -594,13 +525,193 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
 
+
+
+
         /******************************
         HELPERS
         *******************************/
         /**
+        * @param (string) $col_layout
+        * @return css media query string
+        * Returns the grid paragraph and title media queries for a given string layout
+        */
+        private function tc_get_grid_font_css($_col = '3') {
+          $_rules = $this -> tc_get_grid_font_matrix($_col);
+          $_media_queries_css = '';
+          foreach ($_rules as $_query => $_css) {
+            $_rules = $this -> tc_grid_get_font_rules( $_query , $_css );
+            $_media_queries_css .= "
+              @media {$_query} {{$_rules}}
+            ";
+          }
+          return $_media_queries_css;
+        }
+
+
+
+        /**
+        * @return css string
+        * @since Customizr 3.3+
+        * @param $_media_query = string of current media query. $_css_array = array of css rules for paragraph and titles for a given column layout
+        * adds the one column css if (OR) :
+        * 1) there's a sticky post
+        * 2) user layout is one column
+        */
+        private function tc_grid_get_font_rules( $_media_query, $_css_array ) {
+          $_css = '';
+          //Add one column font rules if there's a sticky post
+          if ( $this -> tc_is_sticky_expanded() || '1' == $_col_nb ) {
+            $_one_col_rules = $this -> tc_get_grid_font_matrix('1');
+            $_h_one_col = $this -> tc_get_css_rules_from_array( $_one_col_rules[$_media_query]['h'] );
+            $_p_one_col = $this -> tc_get_css_rules_from_array( $_one_col_rules[$_media_query]['p'] );
+            $_css .= "
+                .tc-post-list-grid.grid-cols-1 .entry-title {{$_h_one_col}}
+                .tc-post-list-grid.grid-cols-1 .tc-grid-excerpt-content {{$_p_one_col}}
+            ";
+          }
+          $_h = $this -> tc_get_css_rules_from_array( $_css_array['h'] );
+          $_p = $this -> tc_get_css_rules_from_array( $_css_array['p'] );
+          $_css .= "
+              .tc-post-list-grid .entry-title {{$_h}}
+              .tc-post-list-grid .tc-grid-excerpt-content {{$_p}}
+          ";
+          return $_css;
+        }
+
+
+
+        /**
+        * @return css string
+        * @since Customizr 3.3+
+        * adds the one column css if (OR) :
+        * 1) there's a sticky post
+        * 2) user layout is one column
+        */
+        private function tc_grid_get_figure_css( $_col_nb = '3' ) {
+          $_height = $this -> tc_get_grid_column_height( $_col_nb );
+          $_cols_class      = sprintf( 'grid-cols-%s' , $_col_nb );
+          $_css = '';
+          //Add one column height if there's a sticky post
+          if ( $this -> tc_is_sticky_expanded() && '1' != $_col_nb ) {
+            $_height_col_one = $this -> tc_get_grid_column_height( '1' );
+            $_css .= ".grid-cols-1 figure {
+                  height:{$_height_col_onet}px;
+                  max-height:{$_height_col_one}px;
+                  line-height:{$_height_col_one}px;
+            }";
+          }
+          $_css .= "
+            .{$_cols_class} figure {
+                  height:{$_height}px;
+                  max-height:{$_height}px;
+                  line-height:{$_height}px;
+            }";
+          return $_css;
+        }
+
+
+        /**
+        * @param (string) $col_layout
+        * @return string
+        *
+        */
+        private function tc_get_grid_column_height( $_cols_nb = '3' ) {
+          $_height = $this -> tc_grid_get_thumb_height();
+          $_grid_col_height_map =  apply_filters(
+              'tc_grid_col_height_map',
+              array(
+                '1' => $_height,
+                '2' => $_height,
+                '3' => 225,
+                '4' => 165
+              )
+          );
+          $_height = isset( $_grid_col_height_map[$_cols_nb] ) ? $_grid_col_height_map[$_cols_nb] : $_height;
+          return apply_filters( 'tc_get_grid_column_height' , $_height, $_cols_nb );
+        }
+
+
+
+        /**
+        * @param (string) $col_layout
+        * @return associate array of media query rules for a given layout
+        *
+        */
+        private function tc_get_grid_font_matrix( $_cols = '3' ) {
+          //1200 / 1199-980 / 979-768 / 767 / 480
+          $_col_media_matrix = array(
+            '1' => array( 'xxxl' , 'xxl' , 'xl' , 'l', 'm' ),
+            '2' => array( 'xxl' , 'xl' , 'l', 'l', 'm' ),
+            '3' => array( 'xl' , 'l' , 'm', 'l', 'm' ),
+            '4' => array( 'l' , 'm' , 's', 'l', 'm' )
+          );
+
+          $_col_sizes = $_col_media_matrix[$_cols];
+
+          $_h_font_rules = array(
+            'xxxl' => array( 'font-size' => 32 , 'line-height' => 40 ),
+            'xxl' => array( 'font-size' => 28 , 'line-height' => 36 ),
+            'xl' => array( 'font-size' => 25 , 'line-height' => 30 ),
+            'l' => array( 'font-size' => 22 , 'line-height' => 26 ),
+            'm' => array( 'font-size' => 19 , 'line-height' => 23 ),
+            's' => array( 'font-size' => 16 , 'line-height' => 22 )
+          );
+          //@to do : use user defined font-size
+          $_p_font_rules = array(
+            'xxl' => array( 'font-size' => 15 , 'line-height' => 20 ),
+            'xxl' => array( 'font-size' => 15 , 'line-height' => 20 ),
+            'xl' => array( 'font-size' => 15 , 'line-height' => 20 ),
+            'l' => array( 'font-size' => 14 , 'line-height' => 18 ),
+            'm' => array( 'font-size' => 13 , 'line-height' => 16 ),
+            's' => array( 'font-size' => 13 , 'line-height' => 16 )
+          );
+
+          $_media_queries = array(
+            '(min-width: 1200px)', '(max-width: 1199px) and (min-width: 980px)', '(max-width: 979px) and (min-width: 768px)', '(max-width: 767px)', '(max-width: 480px)'
+          );
+
+          $_col_rules = array();
+          //flatten the matrix
+          foreach ($_media_queries as $key => $_size) {
+            $_cur_key = $_col_sizes[$key];
+            $_col_rules[$_size] = array(
+              'h' => $_h_font_rules[$_cur_key] ,
+              'p' => $_p_font_rules[$_cur_key]
+            ) ;
+          }
+          return apply_filters( 'tc_grid_font_rules' , $_col_rules , $_cols ) ;
+        }
+
+
+
+        /**
+        * @param (string) $col_layout
+        * @return css string
+        * return a string of css rules
+        * only used for font-size and line-height
+        */
+        private function tc_get_css_rules_from_array( $_array ) {
+          if ( ! is_array($_array) )
+            return '';
+
+          $_json = json_encode($_array);
+          $_json = str_replace( '"','', substr($_json, 1, -1) );
+          $_json = explode(',', $_json);
+          $_new  = array();
+          foreach ($_json as $_ind => $_val) {
+            $_new[$_ind] = $_val .'px';
+          }
+          $_new = implode(';' , $_new);
+          return $_new .';';
+        }
+
+
+
+        /**
         * @return (number) customizer user defined height for the grid thumbnails
         */
-        private function tc_get_user_thumb_height() {
+        private function tc_grid_get_thumb_height() {
           $_opt = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height') );
           return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
         }
@@ -623,9 +734,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
 
           $_sticky_posts = get_option('sticky_posts');
-          $this -> expanded_featured = ( is_array($_sticky_posts) && isset( $_sticky_posts[0] ) ) ? $_sticky_posts[0] : null;
+          $this -> expanded_sticky = ( is_array($_sticky_posts) && isset( $_sticky_posts[0] ) ) ? $_sticky_posts[0] : null;
 
-          if ( ! ( $_expand_feat_post_opt && $this -> expanded_featured ) )
+          if ( ! ( $_expand_feat_post_opt && $this -> expanded_sticky ) )
               return false;
 
           return true;
@@ -638,7 +749,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         private function tc_force_current_post_expansion(){
           global $wp_query;
-          return ( $this -> expanded_featured && 0 == $wp_query -> current_post );
+          return ( $this -> expanded_sticky && 0 == $wp_query -> current_post );
         }
 
 
