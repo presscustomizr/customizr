@@ -2144,7 +2144,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     function tc_grid_map( $_map ) {
         $_new_settings = array(
           'tc_theme_options[tc_post_list_grid]'  =>  array(
-                            'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.2.18' ) ? 'alternate' : 'grid',
+                            'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.2.18', '1.0.13' ) ? 'alternate' : 'grid',
                             'control'       => 'TC_controls' ,
                             'title'         => __( 'Post List Design' , 'customizr' ),
                             'label'         => __( 'Select a Layout' , "customizr" ),
