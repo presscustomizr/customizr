@@ -2186,7 +2186,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Apply the grid layout to Home/Blog' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 55
+                            'priority'      => 54
           ),
           'tc_theme_options[tc_grid_in_archive]'  =>  array(
                             'default'       => 1,
@@ -2194,7 +2194,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Apply the grid layout to Archives (archives, categories, author posts)' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 60
+                            'priority'      => 58
           ),
           'tc_theme_options[tc_grid_in_search]'  =>  array(
                             'default'       => 1,
@@ -2202,7 +2202,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 62,
+                            'priority'      => 60,
                             'notice'        => __( 'Unchecked contexts are displayed with the alternate thumbnails layout.' , 'customizr' ),
            ),
           'tc_theme_options[tc_grid_shadow]'  =>  array(
@@ -2211,7 +2211,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Apply a shadow to each grid items' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 63,
+                            'priority'      => 61,
                             'transport'   => 'postMessage'
            ),
           'tc_theme_options[tc_grid_bottom_border]'  =>  array(
@@ -2220,7 +2220,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Apply a colored bottom border to each grid items' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 64,
+                            'priority'      => 62,
                             'transport'   => 'postMessage'
            ),
           'tc_theme_options[tc_grid_icons]'  =>  array(
@@ -2229,7 +2229,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Display post format icons in the background' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 65,
+                            'priority'      => 63,
                             'transport'   => 'postMessage'
            ),
           'tc_theme_options[tc_grid_num_words]'  =>  array(
@@ -2241,7 +2241,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'number' ,
                             'step'          => 1,
                             'min'           => 1,
-                            'priority'      => 66
+                            'priority'      => 64
            ),
           'tc_theme_options[tc_grid_thumb_height]' => array(
                             'default'       => 350,
@@ -2253,7 +2253,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'number' ,
                             'step'          => 1,
                             'min'           => 0,
-                            'priority'      => 67
+                            'priority'      => 69
                             //'transport'   => 'postMessage'
           )
         );//$_new_settings
