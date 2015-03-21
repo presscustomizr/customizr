@@ -238,7 +238,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_grid_display_post_link(){
           if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
             return;
-          printf( '<a class="tc-grid-bg-link" href="%1$s" title="%2s"></a>',
+          printf( '<a class="tc-grid-bg-link" href="%1$s" title="%2$s"></a>',
               get_permalink( get_the_ID() ),
               esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
         }
@@ -563,18 +563,14 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
         // return the array of sizes (ordered by @media queries) for a given column layout
         //size array must have the same length of the media query array
-        //=> matrix col nb / media queries
-        //      1200 | 1199-980 | 979-768 | 767   | 480
-        // '1' 'xxxl' , 'xxl'   , 'xl'    , 'l'   , 'm',
-        // '2' 'xxl'  , 'xl'    , 'l'     , 'l'   , 'm',
-        // '3' 'xl'   , 'l'     , 'm'     , 'l'   , 'm',
-        // '4' 'l'    , 'm'     , 's'     , 'l'   , 'm',
         private function tc_get_layout_font_sizes( $_cols = '3', $_requested_media_size = null ) {
           $_col_media_matrix = apply_filters( 'tc_grid_font_matrix' , array(
-              '1' => array( 'xxxl' , 'xxl' , 'xl' , 'xl', 'l' ),
-              '2' => array( 'xxl' , 'xl' , 'l', 'xl', 'l' ),
-              '3' => array( 'xl' , 'l' , 'm', 'xl', 'l' ),
-              '4' => array( 'l' , 'm' , 's', 'xl', 'l' )
+              //=> matrix col nb / media queries
+              //            1200 | 1199-980 | 979-768 | 767   | 480
+              '1' => array( 'xxxl', 'xxl'   , 'xl'    , 'xl'  , 'l' ),
+              '2' => array( 'xxl' , 'xl'    , 'l'     , 'xl'  , 'l' ),
+              '3' => array( 'xl'  , 'l'     , 'm'     , 'xl'  , 'l' ),
+              '4' => array( 'l'   , 'm'     , 's'     , 'xl'  , 'l' )
             )
           );
           //if a specific media query is requested, return a string
@@ -602,7 +598,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               'xl' => array( 'h' => 1.66, 'p' => 1 ),
               'l' => array( 'h' => 1.46, 'p' => 0.93 ),
               'm' => array( 'h' => 1.26, 'p' => 0.86 ),
-              's' => array( 'h' => 1.06, 'p' => 0.86 )
+              's' => array( 'h' => 1.0, 'p' => 0.80 )
             )
           );
           if ( isset($_ratios[$_size]) && isset($_ratios[$_size][$_sel]) )
