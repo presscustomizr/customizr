@@ -402,6 +402,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           return ( $this -> tc_get_grid_section_cols() == '1' ) ? 'tc-grid-full' : 'tc-grid';
         }
 
+
         /*
         * hook : tc_thumb_size
         */
@@ -471,7 +472,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-
         /**
         * @return css string
         * hook : tc_user_options_style
@@ -487,18 +487,13 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_current_col_figure_css  = $this -> tc_grid_get_figure_css( $_col_nb );
 
           //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
-          $_current_col_media_css = $this -> tc_get_grid_font_css( $_col_nb );
+          $_current_col_media_css   = $this -> tc_get_grid_font_css( $_col_nb );
 
           $_css = sprintf("%s\n%s\n%s\n",
               $_css,
               $_current_col_media_css,
               $_current_col_figure_css
           );
-         /* ?>
-            <pre>
-              <?php print_r($_css); ?>
-            </pre>
-          <?php*/
           return $_css;
         }
 
@@ -525,53 +520,120 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
 
-
-
-
         /******************************
-        HELPERS
+        HELPERS FOR INLINE CSS
         *******************************/
         /**
         * @param (string) $col_layout
         * @return css media query string
-        * Returns the grid paragraph and title media queries for a given string layout
+        * Returns the paragraph and title media queries for a given layout
         */
-        private function tc_get_grid_font_css($_col = '3') {
-          $_rules = $this -> tc_get_grid_font_matrix($_col);
+        private function tc_get_grid_font_css($_cols = '3') {
+          $_media_queries     = $this -> tc_get_grid_media_queries();//returns the simple array of media queries
+          $_layout_font_sizes = $this -> tc_get_layout_font_sizes( $_cols );//return the array of sizes (ordered by @media queries) for a given column layout
+          $_col_rules         = array();
           $_media_queries_css = '';
-          foreach ($_rules as $_query => $_css) {
-            $_rules = $this -> tc_grid_get_font_rules( $_query , $_css );
+
+          //flatten the matrix
+          foreach ($_media_queries as $key => $_med_query_sizes ) {
+            $_size = $_layout_font_sizes[$key];//=> size like 'xxl'
+            $_css_prop = array(
+              'h' => $this -> tc_grid_build_css_rules( $_size , 'h' ),
+              'p' => $this -> tc_grid_build_css_rules( $_size , 'p' )
+            );
+            $_rules = $this -> tc_grid_assign_css_rules_to_selectors( $_med_query_sizes , $_css_prop );
             $_media_queries_css .= "
-              @media {$_query} {{$_rules}}
+              @media {$_med_query_sizes} {{$_rules}}
             ";
           }
           return $_media_queries_css;
         }
 
 
+        /**
+        * @return simple array of media queries
+        */
+        private function tc_get_grid_media_queries() {
+          return apply_filters( 'tc_grid_media_queries' ,  array(
+              '(min-width: 1200px)', '(max-width: 1199px) and (min-width: 980px)', '(max-width: 979px) and (min-width: 768px)', '(max-width: 767px)', '(max-width: 480px)'
+            )
+          );
+        }
+
+
+        // return the array of sizes (ordered by @media queries) for a given column layout
+        //size array must have the same length of the media query array
+        //=> matrix col nb / media queries
+        //      1200 | 1199-980 | 979-768 | 767   | 480
+        // '1' 'xxxl' , 'xxl'   , 'xl'    , 'l'   , 'm',
+        // '2' 'xxl'  , 'xl'    , 'l'     , 'l'   , 'm',
+        // '3' 'xl'   , 'l'     , 'm'     , 'l'   , 'm',
+        // '4' 'l'    , 'm'     , 's'     , 'l'   , 'm',
+        private function tc_get_layout_font_sizes( $_cols = '3', $_requested_media_size = null ) {
+          $_col_media_matrix = apply_filters( 'tc_grid_font_matrix' , array(
+              '1' => array( 'xxxl' , 'xxl' , 'xl' , 'xl', 'l' ),
+              '2' => array( 'xxl' , 'xl' , 'l', 'xl', 'l' ),
+              '3' => array( 'xl' , 'l' , 'm', 'xl', 'l' ),
+              '4' => array( 'l' , 'm' , 's', 'xl', 'l' )
+            )
+          );
+          //if a specific media query is requested, return a string
+          if ( ! is_null($_requested_media_size) ) {
+            $_media_queries = $this -> tc_get_grid_media_queries();
+            //get the key = position of requested size in the current layout
+            $_key = array_search( $_requested_media_size, $_media_queries);
+            return isset($_col_media_matrix[$_cols][$_key]) ? $_col_media_matrix[$_cols][$_key] : 'xl';
+          }
+
+          return isset($_col_media_matrix[$_cols]) ? $_col_media_matrix[$_cols] : array( 'xl' , 'l' , 'm', 'l', 'm' );
+        }
+
 
         /**
         * @return css string
-        * @since Customizr 3.3+
-        * @param $_media_query = string of current media query. $_css_array = array of css rules for paragraph and titles for a given column layout
-        * adds the one column css if (OR) :
+        * @param size string
+        * @param selector type string
+        * returns ratio of size / body size for a given selector type ( headings or paragraphs )
+        */
+        private function tc_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
+          $_ratios =  apply_filters( 'tc_get_grid_font_ratios' , array(
+              'xxxl' => array( 'h' => 2.13, 'p' => 1 ),
+              'xxl' => array( 'h' => 1.86, 'p' => 1 ),
+              'xl' => array( 'h' => 1.66, 'p' => 1 ),
+              'l' => array( 'h' => 1.46, 'p' => 0.93 ),
+              'm' => array( 'h' => 1.26, 'p' => 0.86 ),
+              's' => array( 'h' => 1.06, 'p' => 0.86 )
+            )
+          );
+          if ( isset($_ratios[$_size]) && isset($_ratios[$_size][$_sel]) )
+            return $_ratios[$_size][$_sel];
+          return 1;
+        }
+
+
+        /**
+        * @return css string
+        * @param $_media_query = string of current media query.
+        * @param $_css_prop = array of css rules for paragraph and titles for a given column layout
+        * Assigns css rules to predefined grid selectors for headings and paragraphs
+        * adds the '1' column css if (OR) :
         * 1) there's a sticky post
         * 2) user layout is one column
         */
-        private function tc_grid_get_font_rules( $_media_query, $_css_array ) {
+        private function tc_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop ) {
           $_css = '';
           //Add one column font rules if there's a sticky post
           if ( $this -> tc_is_sticky_expanded() || '1' == $_col_nb ) {
-            $_one_col_rules = $this -> tc_get_grid_font_matrix('1');
-            $_h_one_col = $this -> tc_get_css_rules_from_array( $_one_col_rules[$_media_query]['h'] );
-            $_p_one_col = $this -> tc_get_css_rules_from_array( $_one_col_rules[$_media_query]['p'] );
+            $_size      = $this -> tc_get_layout_font_sizes( $_cols = '1', $_media_query );//size like xxl
+            $_h_one_col = $this -> tc_grid_build_css_rules( $_size , 'h' );
+            $_p_one_col = $this -> tc_grid_build_css_rules( $_size , 'p' );
             $_css .= "
                 .tc-post-list-grid.grid-cols-1 .entry-title {{$_h_one_col}}
                 .tc-post-list-grid.grid-cols-1 .tc-grid-excerpt-content {{$_p_one_col}}
             ";
           }
-          $_h = $this -> tc_get_css_rules_from_array( $_css_array['h'] );
-          $_p = $this -> tc_get_css_rules_from_array( $_css_array['p'] );
+          $_h = $_css_prop['h'];
+          $_p = $_css_prop['p'];
           $_css .= "
               .tc-post-list-grid .entry-title {{$_h}}
               .tc-post-list-grid .tc-grid-excerpt-content {{$_p}}
@@ -580,10 +642,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-
         /**
         * @return css string
-        * @since Customizr 3.3+
+        * @param column layout (string)
         * adds the one column css if (OR) :
         * 1) there's a sticky post
         * 2) user layout is one column
@@ -596,7 +657,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           if ( $this -> tc_is_sticky_expanded() && '1' != $_col_nb ) {
             $_height_col_one = $this -> tc_get_grid_column_height( '1' );
             $_css .= ".grid-cols-1 figure {
-                  height:{$_height_col_onet}px;
+                  height:{$_height_col_one}px;
                   max-height:{$_height_col_one}px;
                   line-height:{$_height_col_one}px;
             }";
@@ -611,6 +672,30 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
+        /**
+        * @return string
+        * @param size string
+        * @param selector type string
+        * returns the font-size and line-height css rules
+        */
+        private function tc_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
+          $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.28 ); //line-height / font-size
+          $_ratio = $this -> tc_get_grid_font_ratios( $_size , $_wot );
+          //body font size
+          $_bs = esc_attr( TC_utils::$inst->tc_opt( 'tc_body_font_size') );
+          $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
+
+          return sprintf( 'font-size:%spx;line-height:%spx;' ,
+            ceil( $_bs * $_ratio ),
+            ceil( $_bs * $_ratio * $_lh_ratio )
+          );
+        }
+
+
+
+        /******************************
+        VARIOUS HELPERS
+        *******************************/
         /**
         * @param (string) $col_layout
         * @return string
@@ -629,81 +714,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           );
           $_height = isset( $_grid_col_height_map[$_cols_nb] ) ? $_grid_col_height_map[$_cols_nb] : $_height;
           return apply_filters( 'tc_get_grid_column_height' , $_height, $_cols_nb );
-        }
-
-
-
-        /**
-        * @param (string) $col_layout
-        * @return associate array of media query rules for a given layout
-        *
-        */
-        private function tc_get_grid_font_matrix( $_cols = '3' ) {
-          //1200 / 1199-980 / 979-768 / 767 / 480
-          $_col_media_matrix = array(
-            '1' => array( 'xxxl' , 'xxl' , 'xl' , 'l', 'm' ),
-            '2' => array( 'xxl' , 'xl' , 'l', 'l', 'm' ),
-            '3' => array( 'xl' , 'l' , 'm', 'l', 'm' ),
-            '4' => array( 'l' , 'm' , 's', 'l', 'm' )
-          );
-
-          $_col_sizes = $_col_media_matrix[$_cols];
-
-          $_h_font_rules = array(
-            'xxxl' => array( 'font-size' => 32 , 'line-height' => 40 ),
-            'xxl' => array( 'font-size' => 28 , 'line-height' => 36 ),
-            'xl' => array( 'font-size' => 25 , 'line-height' => 30 ),
-            'l' => array( 'font-size' => 22 , 'line-height' => 26 ),
-            'm' => array( 'font-size' => 19 , 'line-height' => 23 ),
-            's' => array( 'font-size' => 16 , 'line-height' => 22 )
-          );
-          //@to do : use user defined font-size
-          $_p_font_rules = array(
-            'xxl' => array( 'font-size' => 15 , 'line-height' => 20 ),
-            'xxl' => array( 'font-size' => 15 , 'line-height' => 20 ),
-            'xl' => array( 'font-size' => 15 , 'line-height' => 20 ),
-            'l' => array( 'font-size' => 14 , 'line-height' => 18 ),
-            'm' => array( 'font-size' => 13 , 'line-height' => 16 ),
-            's' => array( 'font-size' => 13 , 'line-height' => 16 )
-          );
-
-          $_media_queries = array(
-            '(min-width: 1200px)', '(max-width: 1199px) and (min-width: 980px)', '(max-width: 979px) and (min-width: 768px)', '(max-width: 767px)', '(max-width: 480px)'
-          );
-
-          $_col_rules = array();
-          //flatten the matrix
-          foreach ($_media_queries as $key => $_size) {
-            $_cur_key = $_col_sizes[$key];
-            $_col_rules[$_size] = array(
-              'h' => $_h_font_rules[$_cur_key] ,
-              'p' => $_p_font_rules[$_cur_key]
-            ) ;
-          }
-          return apply_filters( 'tc_grid_font_rules' , $_col_rules , $_cols ) ;
-        }
-
-
-
-        /**
-        * @param (string) $col_layout
-        * @return css string
-        * return a string of css rules
-        * only used for font-size and line-height
-        */
-        private function tc_get_css_rules_from_array( $_array ) {
-          if ( ! is_array($_array) )
-            return '';
-
-          $_json = json_encode($_array);
-          $_json = str_replace( '"','', substr($_json, 1, -1) );
-          $_json = explode(',', $_json);
-          $_new  = array();
-          foreach ($_json as $_ind => $_val) {
-            $_new[$_ind] = $_val .'px';
-          }
-          $_new = implode(';' , $_new);
-          return $_new .';';
         }
 
 
