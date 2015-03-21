@@ -54,6 +54,9 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
 
+      /******************************************
+      * HOOK SETTINGS ***************************
+      ******************************************/
       /**
       * @return void
       * set up hooks for post and page headings
@@ -90,21 +93,10 @@ if ( ! class_exists( 'TC_headings' ) ) :
       }
 
 
-      /**
-      * @return string or boolean
-      * Returns the heading html content or false
-      * callback of tc_headings_{$_heading_type}_html where $_heading_type = content when in the loop
-      *
-      * @package Customizr
-      * @since Customizr 3.2.9
-      */
-      function tc_post_formats_heading( $_html ) {
-        if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
-          return;
-        return $_html;
-      }
 
-
+      /******************************************
+      * VIEWS ***********************************
+      ******************************************/
       /**
       * Generic heading view : archives, author, search, 404 and the post page heading (if not font page)
       * This is the place where every heading content blocks are hooked
@@ -135,6 +127,25 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
 
+
+      /******************************************
+      * HELPERS / SETTERS / CALLBACKS ***********
+      ******************************************/
+      /**
+      * @return string or boolean
+      * Returns the heading html content or false
+      * callback of tc_headings_{$_heading_type}_html where $_heading_type = content when in the loop
+      *
+      * @package Customizr
+      * @since Customizr 3.2.9
+      */
+      function tc_post_formats_heading( $_html ) {
+        if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
+          return;
+        return $_html;
+      }
+
+
       /**
       * Callback for tc_headings_content_html
       * @return  string
@@ -150,8 +161,6 @@ if ( ! class_exists( 'TC_headings' ) ) :
               apply_filters( 'tc_the_title', $_title )
         );
       }
-
-
 
       /**
       * Callback for tc_the_title
@@ -177,10 +186,6 @@ if ( ! class_exists( 'TC_headings' ) ) :
       }
 
 
-
-
-
-
       /**
       * Callback for tc_the_title
       * @return  string
@@ -193,24 +198,50 @@ if ( ! class_exists( 'TC_headings' ) ) :
         if ( ! in_the_loop() )
           return $_title;
 
-        //when are we displaying the edit link?
-        $edit_enabled                      = ( (is_user_logged_in()) && is_page() && current_user_can('edit_pages') ) ? true : false;
-        $edit_enabled                      = ( (is_user_logged_in()) && 0 !== get_the_ID() && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;
-        if ( ! apply_filters( 'tc_edit_in_title', $edit_enabled ) )
+        if ( ! apply_filters( 'tc_edit_in_title', $this -> tc_is_edit_enabled() ) )
           return $_title;
 
-        return sprintf('%1$s <span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="%2$s" title="%3$s">%3$s</a></span>',
+        return sprintf('%1$s %2$s',
           $_title,
-          get_edit_post_link(),
-          __( 'Edit' , 'customizr' )
+          $this -> tc_render_edit_link_view( $_echo = false )
         );
 
       }
 
 
+      /**
+      * Helper Boolean
+      * @return boolean
+      * @package Customizr
+      * @since Customizr 3.3+
+      */
+      public function tc_is_edit_enabled() {
+        //when are we displaying the edit link?
+        $edit_enabled = ( (is_user_logged_in()) && is_page() && current_user_can('edit_pages') ) ? true : false;
+        return ( (is_user_logged_in()) && 0 !== get_the_ID() && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;
+      }
+
+
 
       /**
-      * Filter tc_content_title_icon
+      * Returns the edit link html string
+      * @return  string
+      * @package Customizr
+      * @since Customizr 3.3+
+      */
+      function tc_render_edit_link_view( $_echo = true ) {
+        $_view = sprintf('<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="%1$s" title="%2$s">%2$s</a></span>',
+          get_edit_post_link(),
+          __( 'Edit' , 'customizr' )
+        );
+        if ( ! $_echo )
+          return $_view;
+        echo $_view;
+      }
+
+
+      /**
+      * hook tc_content_title_icon
       * @return  boolean
       *
       * @package Customizr
@@ -229,9 +260,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
 
-
       /**
-      * Filter tc_archive_icon
+      * hook tc_archive_icon
       * @return  boolean
       *
       * @package Customizr
@@ -248,6 +278,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
       /**
       * Return 1) the archive title html content OR 2) the archive title class OR 3) the boolean
+      * hook : tc_display_customizr_headings
       * @return  boolean
       *
       * @package Customizr
@@ -398,6 +429,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
       /**
       * Callback of the tc_the_title => add an updated status
+      * @return string
       * User option based
       *
       * @package Customizr
