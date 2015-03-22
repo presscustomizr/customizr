@@ -338,7 +338,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /**
         * Grid columns = fn(current-layout)
         */
-        function tc_set_grid_section_cols( $_cols, $_current_layout ) {
+        function tc_set_grid_section_cols( $_col_nb, $_current_layout ) {
           $_map = apply_filters(
             'tc_grid_col_layout_map',
             array(
@@ -357,9 +357,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             )
           );
           if ( ! isset($_map[$_current_layout]) )
-            return $_cols;
-          if ( (int) $_map[$_current_layout] >= (int) $_cols )
-            return (string) $_cols;
+            return $_col_nb;
+          if ( (int) $_map[$_current_layout] >= (int) $_col_nb )
+            return (string) $_col_nb;
           return (string) $_map[$_current_layout];
         }
 
@@ -528,9 +528,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return css media query string
         * Returns the paragraph and title media queries for a given layout
         */
-        private function tc_get_grid_font_css($_cols = '3') {
+        private function tc_get_grid_font_css( $_col_nb = '3' ) {
           $_media_queries     = $this -> tc_get_grid_media_queries();//returns the simple array of media queries
-          $_layout_font_sizes = $this -> tc_get_layout_font_sizes( $_cols );//return the array of sizes (ordered by @media queries) for a given column layout
+          $_layout_font_sizes = $this -> tc_get_layout_font_sizes( $_col_nb );//return the array of sizes (ordered by @media queries) for a given column layout
           $_col_rules         = array();
           $_media_queries_css = '';
 
@@ -541,7 +541,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               'h' => $this -> tc_grid_build_css_rules( $_size , 'h' ),
               'p' => $this -> tc_grid_build_css_rules( $_size , 'p' )
             );
-            $_rules = $this -> tc_grid_assign_css_rules_to_selectors( $_med_query_sizes , $_css_prop );
+            $_rules = $this -> tc_grid_assign_css_rules_to_selectors( $_med_query_sizes , $_css_prop, $_col_nb );
             $_media_queries_css .= "
               @media {$_med_query_sizes} {{$_rules}}
             ";
@@ -563,7 +563,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
         // return the array of sizes (ordered by @media queries) for a given column layout
         //size array must have the same length of the media query array
-        private function tc_get_layout_font_sizes( $_cols = '3', $_requested_media_size = null ) {
+        private function tc_get_layout_font_sizes( $_col_nb = '3', $_requested_media_size = null ) {
           $_col_media_matrix = apply_filters( 'tc_grid_font_matrix' , array(
               //=> matrix col nb / media queries
               //            1200 | 1199-980 | 979-768 | 767   | 480
@@ -578,10 +578,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             $_media_queries = $this -> tc_get_grid_media_queries();
             //get the key = position of requested size in the current layout
             $_key = array_search( $_requested_media_size, $_media_queries);
-            return isset($_col_media_matrix[$_cols][$_key]) ? $_col_media_matrix[$_cols][$_key] : 'xl';
+            return isset($_col_media_matrix[$_col_nb][$_key]) ? $_col_media_matrix[$_col_nb][$_key] : 'xl';
           }
 
-          return isset($_col_media_matrix[$_cols]) ? $_col_media_matrix[$_cols] : array( 'xl' , 'l' , 'm', 'l', 'm' );
+          return isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' );
         }
 
 
@@ -593,9 +593,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         private function tc_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
           $_ratios =  apply_filters( 'tc_get_grid_font_ratios' , array(
-              'xxxl' => array( 'h' => 2.13, 'p' => 1 ),
+              'xxxl' => array( 'h' => 2.10, 'p' => 1 ),
               'xxl' => array( 'h' => 1.86, 'p' => 1 ),
-              'xl' => array( 'h' => 1.66, 'p' => 1 ),
+              'xl' => array( 'h' => 1.60, 'p' => 1 ),
               'l' => array( 'h' => 1.46, 'p' => 0.93 ),
               'm' => array( 'h' => 1.15, 'p' => 0.86 ),
               's' => array( 'h' => 1.0, 'p' => 0.80 )
@@ -611,16 +611,17 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return css string
         * @param $_media_query = string of current media query.
         * @param $_css_prop = array of css rules for paragraph and titles for a given column layout
+        * @param $_col_nb = current column layout
         * Assigns css rules to predefined grid selectors for headings and paragraphs
         * adds the '1' column css if (OR) :
         * 1) there's a sticky post
         * 2) user layout is one column
         */
-        private function tc_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop ) {
+        private function tc_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
           $_css = '';
           //Add one column font rules if there's a sticky post
           if ( $this -> tc_is_sticky_expanded() || '1' == $_col_nb ) {
-            $_size      = $this -> tc_get_layout_font_sizes( $_cols = '1', $_media_query );//size like xxl
+            $_size      = $this -> tc_get_layout_font_sizes( $_col_nb = '1', $_media_query );//size like xxl
             $_h_one_col = $this -> tc_grid_build_css_rules( $_size , 'h' );
             $_p_one_col = $this -> tc_grid_build_css_rules( $_size , 'p' );
             $_css .= "
