@@ -45,21 +45,21 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 		*/
     function tc_set_header_hooks() {
     	//html > head actions
-        add_action ( '__before_body'	  , array( $this , 'tc_head_display' ));
-        add_action ( 'wp_head'     		  , array( $this , 'tc_favicon_display' ));
+      add_action ( '__before_body'	  , array( $this , 'tc_head_display' ));
+      add_action ( 'wp_head'     		  , array( $this , 'tc_favicon_display' ));
 
-        //html > header actions
-        add_action ( '__before_main_wrapper'	, 'get_header');
-        add_action ( '__header' 				, array( $this , 'tc_prepare_logo_title_display' ) , 10 );
-        add_action ( '__header' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
-        add_action ( '__header' 				, array( $this , 'tc_navbar_display' ) , 30 );
+      //html > header actions
+      add_action ( '__before_main_wrapper'	, 'get_header');
+      add_action ( '__header' 				, array( $this , 'tc_prepare_logo_title_display' ) , 10 );
+      add_action ( '__header' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
+      add_action ( '__header' 				, array( $this , 'tc_navbar_display' ) , 30 );
 
-        //New menu view (since 3.2.0)
-        add_filter ( 'tc_navbar_display', array( $this , 'tc_new_menu_view'), 10, 2);
+      //New menu view (since 3.2.0)
+      add_filter ( 'tc_navbar_display', array( $this , 'tc_new_menu_view'), 10, 2);
 
-        //body > header > navbar actions ordered by priority
-        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
-        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
+      //body > header > navbar actions ordered by priority
+      add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
+      add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
     }
 
 
@@ -542,18 +542,22 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     function tc_add_body_classes($_classes) {
       //STICKY HEADER
     	if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
-       		$_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );
-       		//STICKY TRANSPARENT ON SCROLL
-	       	if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_transparent_on_scroll' ) ) )
-	       		$_classes = array_merge( $_classes, array('tc-transparent-on-scroll') );
-	       	else
-	       		$_classes = array_merge( $_classes, array('tc-solid-color-on-scroll') );
-	       }
-       	else {
-       		$_classes = array_merge( $_classes, array('tc-no-sticky-header') );
-       	}
+     		$_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );
+     		//STICKY TRANSPARENT ON SCROLL
+       	if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_transparent_on_scroll' ) ) )
+       		$_classes = array_merge( $_classes, array('tc-transparent-on-scroll') );
+       	else
+       		$_classes = array_merge( $_classes, array('tc-solid-color-on-scroll') );
+       }
+     	else {
+     		$_classes = array_merge( $_classes, array('tc-no-sticky-header') );
+     	}
 
-       	return $_classes;
+      //SKIN CLASS
+      $_skin = sprintf( 'skin-%s' , basename( TC_init::$instance -> tc_get_style_src() ) );
+      array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
+
+      return $_classes;
     }
 
 
