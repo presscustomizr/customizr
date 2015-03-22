@@ -34,7 +34,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
 
           //customizer
-          add_action( '__after_setting_control'     , array( $this , 'tc_render_grid_control_link') );
+          add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );
           add_action( '__before_setting_control'    , array( $this , 'tc_render_link_to_grid') );
         }
 
@@ -264,7 +264,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               <div class="entry-summary">
                 <?php
                   echo apply_filters( 'tc_grid_display_figcaption_content',
-                    sprintf('<div class="tc-grid-excerpt-content">%s</div>',
+                    sprintf('<div class="tc-g-cont">%s</div>',
                       get_the_excerpt()
                     )
                   );
@@ -597,7 +597,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               'xxl' => array( 'h' => 1.86, 'p' => 1 ),
               'xl' => array( 'h' => 1.66, 'p' => 1 ),
               'l' => array( 'h' => 1.46, 'p' => 0.93 ),
-              'm' => array( 'h' => 1.26, 'p' => 0.86 ),
+              'm' => array( 'h' => 1.15, 'p' => 0.86 ),
               's' => array( 'h' => 1.0, 'p' => 0.80 )
             )
           );
@@ -625,14 +625,14 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             $_p_one_col = $this -> tc_grid_build_css_rules( $_size , 'p' );
             $_css .= "
                 .tc-post-list-grid.grid-cols-1 .entry-title {{$_h_one_col}}
-                .tc-post-list-grid.grid-cols-1 .tc-grid-excerpt-content {{$_p_one_col}}
+                .tc-post-list-grid.grid-cols-1 .tc-g-cont {{$_p_one_col}}
             ";
           }
           $_h = $_css_prop['h'];
           $_p = $_css_prop['p'];
           $_css .= "
               .tc-post-list-grid .entry-title {{$_h}}
-              .tc-post-list-grid .tc-grid-excerpt-content {{$_p}}
+              .tc-post-list-grid .tc-g-cont {{$_p}}
           ";
           return $_css;
         }
@@ -809,11 +809,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
         /**
-        * hook __after_setting_control (declared in class-controls.php)
-        * @echo link
+        * hook __before_setting_control (declared in class-controls.php)
+        * @echo clickable text
         */
         function tc_render_grid_control_link( $set_id ) {
-          if ( false !== strpos( $set_id, 'tc_grid_expand_featured' ) )
+          if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
             printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
         }
 

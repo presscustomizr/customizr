@@ -2178,7 +2178,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Expand the featured posts (for home and blog page only)' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 50
+                            'priority'      => 47
           ),
           'tc_theme_options[tc_grid_in_blog]'  =>  array(
                             'default'       => 1,
@@ -2186,7 +2186,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'label'         => __( 'Apply the grid layout to Home/Blog' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
-                            'priority'      => 54
+                            'priority'      => 57
           ),
           'tc_theme_options[tc_grid_in_archive]'  =>  array(
                             'default'       => 1,
@@ -2253,7 +2253,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'type'          => 'number' ,
                             'step'          => 1,
                             'min'           => 0,
-                            'priority'      => 69
+                            'priority'      => 65
                             //'transport'   => 'postMessage'
           )
         );//$_new_settings
