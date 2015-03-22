@@ -8882,7 +8882,7 @@ li#wp-admin-bar-tc-customizr a {
     padding-right: 6px;
   }
   /* GRID */
-  .tc-grid-excerpt-content {
+  .tc-g-cont {
     max-height: 80px;
     overflow: hidden;
   }
