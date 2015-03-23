@@ -17,9 +17,9 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         function __construct () {
           self::$instance =& $this;
           //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( 'wp'                            , array( $this , 'tc_set_visibility_options' ) , 10 );
+          add_action( 'wp_head'                            , array( $this , 'tc_set_visibility_options' ) , 10 );
            //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( 'wp'                            , array( $this , 'tc_set_design_options' ) , 20 );
+          add_action( 'wp_head'                            , array( $this , 'tc_set_design_options' ) , 20 );
           //Show / hide metas based on customizer user options (@since 3.2.0)
           add_action( '__after_content_title'         , array( $this , 'tc_set_post_metas_hooks' ), 20 );
 
