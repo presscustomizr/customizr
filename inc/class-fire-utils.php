@@ -276,7 +276,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
           $_db_options = empty($this -> db_options) ? $this -> tc_cache_db_options($option_group) : $this -> db_options;
 
         //do we have to use the default ?
-         $__options = $_db_options;
+        $__options = $_db_options;
         if ( $use_default ) {
           $_defaults      = $this -> default_options;
           $__options      = wp_parse_args( $_db_options, $_defaults );
