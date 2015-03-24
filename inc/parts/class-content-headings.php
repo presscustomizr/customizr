@@ -17,11 +17,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function __construct () {
         self::$instance =& $this;
         //set actions and filters for posts and page headings
-        add_action( 'wp'                            , array( $this , 'tc_set_post_page_heading_hooks') );
+        add_action( 'template_redirect'                            , array( $this , 'tc_set_post_page_heading_hooks') );
         //set actions and filters for archives headings
-        add_action( 'wp'                            , array( $this , 'tc_set_archives_heading_hooks') );
+        add_action( 'template_redirect'                            , array( $this , 'tc_set_archives_heading_hooks') );
         //Set headings user options
-        add_action( 'wp'                            , array( $this , 'tc_set_headings_options') );
+        add_action( 'template_redirect'                            , array( $this , 'tc_set_headings_options') );
       }
 
 
@@ -29,7 +29,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return void
       * set up hooks for archives headings
-      * callback of wp
+      * callback of template_redirect
       *
       * @package Customizr
       * @since Customizr 3.2.6
@@ -60,7 +60,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return void
       * set up hooks for post and page headings
-      * callback of wp
+      * callback of template_redirect
       *
       * @package Customizr
       * @since Customizr 3.2.6
@@ -411,7 +411,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return void
       * set up user defined options
-      * callback of wp
+      * callback of template_redirect
       *
       * @package Customizr
       * @since Customizr 3.2.6
