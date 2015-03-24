@@ -596,7 +596,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               'xxxl' => array( 'h' => 2.10, 'p' => 1 ),
               'xxl' => array( 'h' => 1.86, 'p' => 1 ),
               'xl' => array( 'h' => 1.60, 'p' => 1 ),
-              'l' => array( 'h' => 1.46, 'p' => 0.93 ),
+              'l' => array( 'h' => 1.30, 'p' => 0.93 ),
               'm' => array( 'h' => 1.15, 'p' => 0.86 ),
               's' => array( 'h' => 1.0, 'p' => 0.80 )
             )
