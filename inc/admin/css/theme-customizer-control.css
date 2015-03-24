@@ -1,24 +1,24 @@
 /* OVERRIDE WP CUSTOMIZER */
 /* LAYOUT */
 .wp-customizer .wp-full-overlay.expanded {
-  margin-left: 450px;
+  margin-left: 440px;
 }
 .wp-customizer .wp-full-overlay-sidebar {
-  width: 450px;
+  width: 440px;
 }
 .in-sub-panel #customize-info,
 .in-sub-panel #customize-theme-controls > ul > .accordion-section {
-  left: -450px;
-  width: 450px;
+  left: -440px;
+  width: 440px;
 }
 #customize-theme-controls .control-section.current-panel > h3.accordion-section-title {
-  left: -450px;
+  left: -440px;
 }
 .accordion-sub-container.control-panel-content {
-  left: 450px;
+  left: 440px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1400px) {
   .wp-customizer .wp-full-overlay.expanded {
     margin-left: 380px;
   }
@@ -36,7 +36,6 @@
   .accordion-sub-container.control-panel-content {
     left: 380px;
   }
-  /* CUSTOM CTA */
   .in-sub-panel #tc-donate-customizer,
   .in-sub-panel .tc-cta-wrap {
     left: -380px;
@@ -61,7 +60,6 @@
   .accordion-sub-container.control-panel-content {
     left: 300px;
   }
-  /* CUSTOM CTA */
   .in-sub-panel #tc-donate-customizer,
   .in-sub-panel .tc-cta-wrap {
     left: -300px;
