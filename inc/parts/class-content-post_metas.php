@@ -32,7 +32,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         /**
         * Set the post metas visibility based on Customizer options
         * uses hooks tc_show_post_metas, body_class
-        * hook : wp
+        * hook : template_redirect
         *
         * @package Customizr
         * @since Customizr 3.2.0
@@ -84,7 +84,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
         /**
         * Default metas visibility controller
-        * tc_show_post_metas gets filtered by tc_set_visibility_options() called early in wp
+        * tc_show_post_metas gets filtered by tc_set_visibility_options() called early in template_redirect
         * @return  boolean
         * @package Customizr
         * @since Customizr 3.2.6

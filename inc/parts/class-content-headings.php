@@ -29,7 +29,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return void
       * set up hooks for archives headings
-      * callback of wp
+      * callback of template_redirect
       *
       * @package Customizr
       * @since Customizr 3.2.6
@@ -60,7 +60,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return void
       * set up hooks for post and page headings
-      * callback of wp
+      * callback of template_redirect
       *
       * @package Customizr
       * @since Customizr 3.2.6
@@ -411,7 +411,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       /**
       * @return void
       * set up user defined options
-      * callback of wp
+      * callback of template_redirect
       *
       * @package Customizr
       * @since Customizr 3.2.6
