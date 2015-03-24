@@ -99,6 +99,10 @@
 	//Icons : page
 	wp.customize( 'tc_theme_options[tc_show_page_title_icon]' , function( value ) {
 		value.bind( function( to ) {
+      //disable if grid customizer on
+      if ( $('section.tc-gc').length )
+        return;
+
 			if ( false === to ) {
 				$('.entry-title' , '.page').removeClass('format-icon');
 			}
@@ -123,6 +127,9 @@
 	//Icons : Archive title
 	wp.customize( 'tc_theme_options[tc_show_archive_title_icon]' , function( value ) {
 		value.bind( function( to ) {
+      //disable if grid customizer on
+      if ( $('section.tc-gc').length )
+        return;
 			if ( false === to ) {
 				$('archive h1.entry-title, .blog h1.entry-title, .search h1, .author h1').removeClass('format-icon');
 			}
@@ -135,6 +142,10 @@
 	//Icons : Posts in lists titles
 	wp.customize( 'tc_theme_options[tc_show_post_list_title_icon]' , function( value ) {
 		value.bind( function( to ) {
+      //disable if grid customizer on
+      if ( $('section.tc-gc').length )
+        return;
+
 			if ( false === to ) {
 				$('.archive article .entry-title, .blog article .entry-title, .search article .entry-title, .author article .entry-title').removeClass('format-icon');
 			}
