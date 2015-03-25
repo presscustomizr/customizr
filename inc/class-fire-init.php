@@ -922,8 +922,25 @@ if ( ! class_exists( 'TC_init' ) ) :
         if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_enable_dropcap' ) ) )
           $_to_add[] = esc_attr( TC_utils::$inst->tc_opt( 'tc_dropcap_design' ) );
 
+        $_to_add[] = $this -> tc_get_layout_body_class();
+
         return array_merge( $_classes , $_to_add );
       }
-
+    
+      /**
+      * Retrieve the body class for the current screen layout.
+      *
+      * @package Customizr
+      * @since Customizr 3.3.1
+      */
+      function tc_get_layout_body_class() {
+        $layout = tc__f( '__screen_layout', tc__f('__ID'), 'sidebar' );
+        switch ( $layout ){
+          case 'b' : return 'tc-layout-both-sidebars';
+          case 'l' : return 'tc-layout-left-sidebar';
+          case 'r' : return 'tc-layout-rigth-sidebar';
+          default : return 'tc-layout-full';
+        }
+      }
   }//end of class
 endif;
