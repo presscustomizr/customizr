@@ -1870,7 +1870,7 @@ var TCParams = TCParams || {};
     }
 
   , slide: function (type, next) {
-      if(!$.support.transition && this.$element.hasClass('slide')) {
+      if(!$.support.transition && this.$element.hasClass('customizr-slide')) {
          this.$element.find('.item').stop(true, true); //Finish animation and jump to end.
       }
       var $active = this.$element.find('.item.active')
@@ -1902,7 +1902,7 @@ var TCParams = TCParams || {};
         })
       }
 
-      if ($.support.transition && this.$element.hasClass('slide')) {
+      if ($.support.transition && this.$element.hasClass('customizr-slide')) {
         this.$element.trigger(e)
         if (e.isDefaultPrevented()) return
         //tc addon => trigger slide event to img
@@ -1923,7 +1923,7 @@ var TCParams = TCParams || {};
               $next.find('img').trigger('slid');
           }, 0)
         })
-      } else if(!$.support.transition && this.$element.hasClass('slide')) {
+      } else if(!$.support.transition && this.$element.hasClass('customizr-slide')) {
           this.$element.trigger(e)
           if (e.isDefaultPrevented()) return
           $active.animate({left: (direction == 'right' ? '100%' : '-100%')}, 600, function(){
