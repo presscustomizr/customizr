@@ -1974,17 +1974,21 @@ img.v-centered {
 .format-quote .tc-grid-icon, .format-status .tc-grid-icon {
   top: -15%;
 }
-.tc-grid-icon:before {
-  font-size: 90px!important;
+.tc-post-list-grid article .tc-grid-icon:before {
+  font-size: 90px;
   display: inline-block;
   vertical-align: middle;
   line-height: 29px!important;
   top: inherit!important;
   padding-right: 0;
 }
-.format-quote .tc-grid-icon:before, .format-status .tc-grid-icon:before {
-  font-size: 138px!important;
+.tc-post-list-grid article.format-quote .tc-grid-icon:before, .tc-post-list-grid article.format-status .tc-grid-icon:before {
+  font-size: 138px;
 }
+.tc-b-sidebar .tc-post-list-grid article .tc-grid-icon:before, .tc-b-sidebar .tc-post-list-grid article.format-quote .tc-grid-icon:before, .tc-b-sidebar .tc-post-list-grid article.format-status .tc-grid-icon:before, {
+  font-size: 60px;
+}
+
 
 .tc-grid-post .no-thumb .format-icon:before {
   opacity: 0.2;
