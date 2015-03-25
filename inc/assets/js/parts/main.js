@@ -459,7 +459,7 @@ jQuery(function ($) {
           isCustomizing   = $('body').hasClass('is-customizing'),
           customOffset    = +_p.stickyCustomOffset,
           $sticky_logo    = $('img.sticky', '.site-logo'),
-          logo            = 0 == $sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
+          logo            = 0 === $sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
 
     function _is_scrolling() {
         return $('body').hasClass('sticky-enabled') ? true : false;
