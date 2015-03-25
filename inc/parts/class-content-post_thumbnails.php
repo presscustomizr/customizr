@@ -219,12 +219,12 @@ class TC_post_thumbnails {
       //extract "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       extract( $_thumb_model );
       $thumb_img        = ! isset( $_thumb_model) ? false : $tc_thumb;
-      $thumb_img        = apply_filters( 'tc_post_thumb_img', $thumb_img, tc__f('__ID') );
+      $thumb_img        = apply_filters( 'tc_post_thumb_img', $thumb_img, TC_utils::tc_id() );
       if ( ! $thumb_img )
         return;
 
       //handles the case when the image dimensions are too small
-      $thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size, tc__f('__ID')  );
+      $thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size, TC_utils::tc_id()  );
       $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['width']) ) ? 'no-effect' : '';
       $no_effect_class  = ( ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
@@ -237,7 +237,7 @@ class TC_post_thumbnails {
                                     implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('thumb-wrapper') ) )
       );
 
-      $thumb_wrapper    = apply_filters_ref_array( 'tc_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, tc__f('__ID') ) );
+      $thumb_wrapper    = apply_filters_ref_array( 'tc_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, TC_utils::tc_id() ) );
 
       //cache the thumbnail view
       $html             = sprintf('<section class="tc-thumbnail %1$s">%2$s</section>',

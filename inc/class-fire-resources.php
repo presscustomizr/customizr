@@ -150,8 +150,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
       //carousel options
       //gets slider options if any for home/front page or for others posts/pages
-      $js_slidername      = tc__f('__is_home') ? TC_utils::$inst->tc_opt( 'tc_front_slider' ) : get_post_meta( tc__f('__ID') , $key = 'post_slider_key' , $single = true );
-      $js_sliderdelay     = tc__f('__is_home') ? TC_utils::$inst->tc_opt( 'tc_slider_delay' ) : get_post_meta( tc__f('__ID') , $key = 'slider_delay_key' , $single = true );
+      $js_slidername      = tc__f('__is_home') ? TC_utils::$inst->tc_opt( 'tc_front_slider' ) : get_post_meta( TC_utils::tc_id() , $key = 'post_slider_key' , $single = true );
+      $js_sliderdelay     = tc__f('__is_home') ? TC_utils::$inst->tc_opt( 'tc_slider_delay' ) : get_post_meta( TC_utils::tc_id() , $key = 'slider_delay_key' , $single = true );
 
 			//has the post comments ? adds a boolean parameter in js
 			global $wp_query;
@@ -163,7 +163,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 				wp_enqueue_script('jquery-effects-core');
 
 			//gets current screen layout
-    	$screen_layout      = tc__f( '__screen_layout' , tc__f ( '__ID' ) , 'sidebar'  );
+    	$screen_layout      = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
     	//gets the global layout settings
     	$global_layout      = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
     	$sidebar_layout     = isset($global_layout[$screen_layout]['sidebar']) ? $global_layout[$screen_layout]['sidebar'] : false;
@@ -205,7 +205,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
               'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
               'gridGoldenRatioLimit' => esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height' ) )
 	        	),
-	        	tc__f('__ID')
+	        	TC_utils::tc_id()
 		    )//end of filter
 	     );
 

@@ -49,7 +49,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
 
 
         //gets current screen layout
-        $screen_layout        = tc__f( '__screen_layout' , tc__f ( '__ID' ) , 'sidebar'  );
+        $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
 
         //gets position from current hook and checks the context
         $position             = apply_filters(

@@ -28,11 +28,11 @@ if ( ! class_exists( 'TC_utils' ) ) :
         //get all options
         add_filter( '__options'                           , array( $this , 'tc_get_theme_options' ), 10, 1);
         //get single option
-        add_filter( '__get_option'                        , array( $this , 'tc_opt' ), 10, 2 );
+        add_filter( '__get_option'                        , array( $this , 'tc_opt' ), 10, 2 );//deprecated
 
         //some useful filters
-        add_filter( '__ID'                                , array( $this , 'tc_get_the_ID' ));
-        add_filter( '__screen_layout'                     , array( $this , 'tc_get_current_screen_layout' ) , 10 , 2 );
+        add_filter( '__ID'                                , array( $this , 'tc_id' ));//deprecated
+        add_filter( '__screen_layout'                     , array( $this , 'tc_get_layout' ) , 10 , 2 );//deprecated
         add_filter( '__is_home'                           , array( $this , 'tc_is_home' ) );
         add_filter( '__is_home_empty'                     , array( $this , 'tc_is_home_empty' ) );
         add_filter( '__post_type'                         , array( $this , 'tc_get_post_type' ) );
@@ -319,7 +319,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_get_the_ID()  {
+      public static function tc_id()  {
         global $wp_version;
         if ( in_the_loop() || version_compare( $wp_version, '3.4.1', '<=' ) ) {
           $tc_id            = get_the_ID();
@@ -340,7 +340,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_get_current_screen_layout ( $post_id , $sidebar_or_class = 'class' ) {
+      public static function tc_get_layout( $post_id , $sidebar_or_class = 'class' ) {
           $__options                    = tc__f ( '__options' );
 
           global $post;
@@ -349,19 +349,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
           $global_layout                = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
 
           /* DEFAULT LAYOUTS */
-          //get the global default layout
-          $tc_sidebar_global_layout     = $__options['tc_sidebar_global_layout'];
-          //get the post default layout
-          $tc_sidebar_post_layout       = $__options['tc_sidebar_post_layout'];
-          //get the page default layout
-          $tc_sidebar_page_layout       = $__options['tc_sidebar_page_layout'];
-
           //what is the default layout we want to apply? By default we apply the global default layout
-          $tc_sidebar_default_layout    = $tc_sidebar_global_layout;
+          $tc_sidebar_default_layout    = esc_attr( $__options['tc_sidebar_global_layout'] );
           if ( is_single() )
-            $tc_sidebar_default_layout  = $tc_sidebar_post_layout;
+            $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_post_layout'] );
           if ( is_page() )
-            $tc_sidebar_default_layout  = $tc_sidebar_page_layout;
+            $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_page_layout'] );
 
           //builds the default layout option array including layout and article class
           $class_tab  = $global_layout[$tc_sidebar_default_layout];
