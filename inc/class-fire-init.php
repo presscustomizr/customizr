@@ -905,42 +905,30 @@ if ( ! class_exists( 'TC_init' ) ) :
 
 
       /**
-      * Add various classes on the body element.
+      * Adds various classes on the body element.
       * cb of body_class
       *
       * @package Customizr
       * @since Customizr 3.2.0
       */
       function tc_set_body_classes( $_classes ) {
-        $_to_add = array();
         if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_link_hover_effect' ) ) )
-          $_to_add[] = 'tc-fade-hover-links';
+          array_push( $_classes, 'tc-fade-hover-links' );
         if ( TC___::$instance -> tc_is_customizing() )
-          $_to_add[] = 'is-customizing';
+          array_push( $_classes, 'is-customizing' );
         if ( wp_is_mobile() )
-          $_to_add[] = 'tc-is-mobile';
+          array_push( $_classes, 'tc-is-mobile' );
         if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_enable_dropcap' ) ) )
-          $_to_add[] = esc_attr( TC_utils::$inst->tc_opt( 'tc_dropcap_design' ) );
+          array_push( $_classes, esc_attr( TC_utils::$inst->tc_opt( 'tc_dropcap_design' ) ) );
 
-        $_to_add[] = $this -> tc_get_layout_body_class();
-
-        return array_merge( $_classes , $_to_add );
-      }
-    
-      /**
-      * Retrieve the body class for the current screen layout.
-      *
-      * @package Customizr
-      * @since Customizr 3.3.1
-      */
-      function tc_get_layout_body_class() {
-        $layout = tc__f( '__screen_layout', tc__f('__ID'), 'sidebar' );
-        switch ( $layout ){
-          case 'b' : return 'tc-layout-both-sidebars';
-          case 'l' : return 'tc-layout-left-sidebar';
-          case 'r' : return 'tc-layout-rigth-sidebar';
-          default : return 'tc-layout-full';
+        //adds the layout
+        $_layout = TC_utils::tc_get_layout( get_the_ID() , 'sidebar' );
+        if ( in_array( $_layout, array('b', 'l', 'r' , 'f') ) ) {
+          array_push( $_classes, sprintf( 'tc-%s-sidebar',
+            'f' == $_layout ? 'no' : $_layout
+          ) );
         }
+        return $_classes;
       }
   }//end of class
 endif;
