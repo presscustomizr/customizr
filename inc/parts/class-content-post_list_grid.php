@@ -54,6 +54,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               return;
 
           do_action( '__post_list_grid' );
+          //Disable icon titles
+          add_filter( 'tc_archive_icon'             , '__return_false', 50 );
+          add_filter( 'tc_content_title_icon'       , '__return_false', 50 );
           //icon option
           add_filter( 'tc-grid-thumb-html'          , array( $this, 'tc_set_grid_icon_visibility') );
           //Layout filter
@@ -765,18 +768,51 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         *
         */
         private function tc_get_grid_column_height( $_cols_nb = '3' ) {
-          $_height = $this -> tc_grid_get_thumb_height();
+          $_h               = $this -> tc_grid_get_thumb_height();
+          $_current_layout  = TC_utils::tc_get_layout( get_the_ID() , 'sidebar' );
+          $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
+          $_key             = 3;//default value == full
+          if ( in_array( $_current_layout, $_layouts ) )
+            //get the key = position of requested size in the current layout
+            $_key = array_search( $_current_layout , $_layouts );
+
           $_grid_col_height_map =  apply_filters(
               'tc_grid_col_height_map',
-              array(
-                '1' => $_height,
-                '2' => $_height,
-                '3' => 225,
-                '4' => 165
+              array(        // 'b'  'l'  'r'  'f'
+                '1' => array( 225 , 225, 225, $_h ),
+                '2' => array( 225 , 225, $_h, $_h ),
+                '3' => array( 225 , 225, 225, 225 ),
+                '4' => array( 165 , 165, 165, 165 )
               )
           );
-          $_height = isset( $_grid_col_height_map[$_cols_nb] ) ? $_grid_col_height_map[$_cols_nb] : $_height;
-          return apply_filters( 'tc_get_grid_column_height' , $_height, $_cols_nb );
+          //are we ok ?
+          if ( ! isset( $_grid_col_height_map[$_cols_nb] ) )
+            return $_h;
+
+          //parse the array to ensure that all values are <= user height
+          foreach ( $_grid_col_height_map as $_c => $_heights ) {
+            $_grid_col_height_map[$_c] = $this -> tc_set_max_col_height ( $_heights ,$_h );
+          }
+
+          $_h = isset( $_grid_col_height_map[$_cols_nb][$_key] ) ? $_grid_col_height_map[$_cols_nb][$_key] : $_h;
+          return apply_filters( 'tc_get_grid_column_height' , $_h, $_cols_nb, $_current_layout );
+        }
+
+
+
+        /**
+        * parse the array to ensure that all values are <= user height
+        * @param (array) grid_col_height_map
+        * @param  (num) user defined max height in pixel
+        * @return string
+        *
+        */
+        private function tc_set_max_col_height( $_heights ,$_h ) {
+          $_return = array();
+          foreach ($_heights as $_value) {
+            $_return[] = $_value >= $_h ? $_h : $_value;
+          }
+          return $_return;
         }
 
 

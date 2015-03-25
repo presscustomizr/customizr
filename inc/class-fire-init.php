@@ -906,7 +906,7 @@ if ( ! class_exists( 'TC_init' ) ) :
 
       /**
       * Adds various classes on the body element.
-      * cb of body_class
+      * hook body_class
       *
       * @package Customizr
       * @since Customizr 3.2.0
