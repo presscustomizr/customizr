@@ -35,5 +35,6 @@ var TCParams = TCParams || {
   },
   imgSmartLoadEnabled:0,
   imgSmartLoadOpts: {},
+  goldenRatio : 1.618,
   gridGoldenRatioLimit : 350
 };

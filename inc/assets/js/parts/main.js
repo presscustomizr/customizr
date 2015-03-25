@@ -47,6 +47,7 @@ jQuery(function ($) {
       $('.tc-rectangular-thumb').centerImages( {
         enableCentering : 1 == _p.centerAllImg,
         enableGoldenRatio : true,
+        goldenRatioVal : _p.goldenRatio || 1.618,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
@@ -64,6 +65,7 @@ jQuery(function ($) {
         enableCentering : 1 == _p.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : true,
+        goldenRatioVal : _p.goldenRatio || 1.618,
         goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
       } );
     }, 300 );
