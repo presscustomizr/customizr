@@ -373,7 +373,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         */
         public function tc_get_term_of_tax_type( $hierarchical = true ) {
           //var declaration
-          $post_type              = get_post_type( tc__f('__ID') );
+          $post_type              = get_post_type( TC_utils::tc_id() );
           $tax_list               = get_object_taxonomies( $post_type, 'object' );
           $_tax_type_list         = array();
           $_tax_type_terms_list   = array();
@@ -384,7 +384,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
           //filter the post taxonomies
           while ( $el = current($tax_list) ) {
               //skip the post format taxinomy
-              if ( in_array( key($tax_list) , apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , tc__f('__ID') ) ) ) ) {
+              if ( in_array( key($tax_list) , apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , TC_utils::tc_id() ) ) ) ) {
                   next($tax_list);
                   continue;
               }
@@ -398,7 +398,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
           //fill the post terms array
           foreach ($_tax_type_list as $tax_name => $data ) {
-              $_current_tax_terms = get_the_terms( tc__f('__ID') , $tax_name );
+              $_current_tax_terms = get_the_terms( TC_utils::tc_id() , $tax_name );
 
               //If current post support this tax but no terms has been assigned yet = continue
               if ( ! $_current_tax_terms )

@@ -100,7 +100,7 @@
 	wp.customize( 'tc_theme_options[tc_show_page_title_icon]' , function( value ) {
 		value.bind( function( to ) {
       //disable if grid customizer on
-      if ( $('section.tc-gc').length )
+      if ( $('.tc-gc').length )
         return;
 
 			if ( false === to ) {
@@ -128,7 +128,7 @@
 	wp.customize( 'tc_theme_options[tc_show_archive_title_icon]' , function( value ) {
 		value.bind( function( to ) {
       //disable if grid customizer on
-      if ( $('section.tc-gc').length )
+      if ( $('.tc-gc').length )
         return;
 			if ( false === to ) {
 				$('archive h1.entry-title, .blog h1.entry-title, .search h1, .author h1').removeClass('format-icon');
@@ -143,7 +143,7 @@
 	wp.customize( 'tc_theme_options[tc_show_post_list_title_icon]' , function( value ) {
 		value.bind( function( to ) {
       //disable if grid customizer on
-      if ( $('section.tc-gc').length )
+      if ( $('.tc-gc').length )
         return;
 
 			if ( false === to ) {
@@ -595,17 +595,17 @@
   wp.customize( 'tc_theme_options[tc_grid_shadow]' , function( value ) {
     value.bind( function( to ) {
       if ( false !== to )
-        $('.tc-post-list-grid').each( function() { $(this).addClass('tc-grid-shadow'); } );
+        $('.article-container').addClass('tc-grid-shadow');
       else
-        $('.tc-post-list-grid').each( function() { $(this).removeClass('tc-grid-shadow'); } );
+        $('.article-container').removeClass('tc-grid-shadow');
     } );
   });
   wp.customize( 'tc_theme_options[tc_grid_bottom_border]' , function( value ) {
     value.bind( function( to ) {
       if ( false !== to )
-        $('.tc-post-list-grid').each( function() { $(this).addClass('tc-grid-border'); } );
+        $('.article-container').addClass('tc-grid-border');
       else
-        $('.tc-post-list-grid').each( function() { $(this).removeClass('tc-grid-border'); } );
+        $('.article-container').removeClass('tc-grid-border');
     } );
   });
   wp.customize( 'tc_theme_options[tc_grid_icons]' , function( value ) {
