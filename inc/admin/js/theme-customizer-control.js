@@ -135,21 +135,26 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         return '0' !== to;
       }
     },
-    // 'tc_post_list_grid' : {
-    //   show: {
-    //     controls: [
-    //       'tc_grid_columns',
-    //       'tc_grid_expand_featured',
-    //       'tc_grid_in_blog',
-    //       'tc_grid_in_archive',
-    //       'tc_grid_in_search',
-    //       'tc_grid_thumb_height'
-    //     ],
-    //     callback: function (to) {
-    //       return 'grid' == to;
-    //     }
-    //   }
-    // },
+    'tc_post_list_grid' : {
+      show: {
+        controls: [
+          'tc_grid_columns',
+          'tc_grid_expand_featured',
+          'tc_grid_in_blog',
+          'tc_grid_in_archive',
+          'tc_grid_in_search',
+          'tc_grid_thumb_height',
+          'tc_grid_bottom_border',
+          'tc_grid_shadow',
+          'tc_grid_icons',
+          'tc_grid_num_words'
+
+        ],
+        callback: function (to) {
+          return 'grid' == to;
+        }
+      }
+    },
     'tc_post_list_show_thumb' : {
       controls: [
         'tc_post_list_use_attachment_as_thumb',
@@ -416,12 +421,33 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   };
 
 
-  //bind to wp.customize ready event
+  /*
+  * Specific Grid action : handles the visibility of the "MORE GRID DESIGN OPTIONS" link
+  * @to do => find a way to include several callbacks in the _controlDependencies object => include the one below
+  */
+  var _handle_grid_dependencies = function() {
+    //apply visibility on ready
+    var _is_grid_enabled = api.instance('tc_theme_options[tc_post_list_grid]').get() == 'grid';
+    $('.tc-grid-toggle-controls').toggle( _is_grid_enabled );
+
+    //bind visibility on setting changes
+    api.instance('tc_theme_options[tc_post_list_grid]').bind( function(to) {
+      $('.tc-grid-toggle-controls').toggle( 'grid' == to );
+
+      if ( 'grid' == to )
+        $('.tc-grid-toggle-controls').trigger('click').toggleClass('open');
+    } );
+  };
+
+
+  //bind all actions to wp.customize ready event
   //map each setting with its dependencies
   api.bind( 'ready' , function() {
     _.map( _controlDependencies , function( opts , setId ) {
         _prepare_visibilities( setId, opts );
     });
+    //additional grid action
+    _handle_grid_dependencies();
   } );
 
 })( wp, jQuery);;/**
