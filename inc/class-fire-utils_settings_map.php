@@ -1854,6 +1854,47 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 95
               ),
+
+              /* ARCHIVE TITLES */
+              'tc_theme_options[tc_cat_title]'  =>  array(
+                                'default'       => __( 'Category Archives :' , 'customizr' ),
+                                'title'         => __( 'Archive titles' , 'customizr' ),
+                                'label'       => __( 'Category pages titles' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'tc_post_list_settings' ,
+                                'type'        => 'text' ,
+                                'priority'       => 100
+                                //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
+              ),
+              'tc_theme_options[tc_tag_title]'  =>  array(
+                                'default'         => __( 'Tag Archives :' , 'customizr' ),
+                                'label'       => __( 'Tag pages titles' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'tc_post_list_settings' ,
+                                'type'        => 'text' ,
+                                'priority'       => 105
+                                //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
+              ),
+              'tc_theme_options[tc_author_title]'  =>  array(
+                                'default'         => __( 'Author Archives :' , 'customizr' ),
+                                'label'       => __( 'Author pages titles' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'tc_post_list_settings' ,
+                                'type'        => 'text' ,
+                                'priority'       => 110
+                                //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
+              ),
+              'tc_theme_options[tc_search_title]'  =>  array(
+                                'default'         => __( 'Search Results for :' , 'customizr' ),
+                                'label'       => __( 'Search results page titles' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'tc_post_list_settings' ,
+                                'type'        => 'text' ,
+                                'priority'       => 115
+                                //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
+              ),
+
+              /* SINGLE POST SETTINGS */
               'tc_theme_options[tc_single_post_thumb_location]'  =>  array(
                                 'default'       => 'hide',
                                 'control'     => 'TC_controls' ,

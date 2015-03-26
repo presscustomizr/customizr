@@ -72,15 +72,21 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return;
 
         //Set single post/page icon with customizer options (since 3.2.0)
-        add_filter ( 'tc_content_title_icon'          , array( $this , 'tc_set_post_page_icon' ) );
+        add_filter ( 'tc_content_title_icon'    , array( $this , 'tc_set_post_page_icon' ) );
         //Prepare the headings for post, page, attachment
-        add_action ( '__before_content'               , array( $this , 'tc_render_headings_view' ) );
+        add_action ( '__before_content'         , array( $this , 'tc_render_headings_view' ) );
         //Populate heading with default content
-        add_filter ( 'tc_headings_content_html'       , array( $this , 'tc_post_page_title_callback'), 10, 2 );
+        add_filter ( 'tc_headings_content_html' , array( $this , 'tc_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
-        add_filter( 'tc_the_title'                    , array( $this , 'tc_content_heading_title' ) , 0 );
+        add_filter( 'tc_the_title'              , array( $this , 'tc_content_heading_title' ) , 0 );
         //Add edit link
-        add_filter( 'tc_the_title'                    , array( $this , 'tc_add_edit_link_after_title' ), 2 );
+        add_filter( 'tc_the_title'              , array( $this , 'tc_add_edit_link_after_title' ), 2 );
+        //Set user defined archive titles
+        add_filter( 'tc_category_archive_title' , array( $this , 'tc_set_archive_custom_title' ) );
+        add_filter( 'tc_tag_archive_title'      , array( $this , 'tc_set_archive_custom_title' ) );
+        add_filter( 'tc_search_results_title'   , array( $this , 'tc_set_archive_custom_title' ) );
+        add_filter( 'tc_author_archive_title'   , array( $this , 'tc_set_archive_custom_title' ) );
+
 
         //SOME DEFAULT OPTIONS
         //No hr if not singular
@@ -88,10 +94,9 @@ if ( ! class_exists( 'TC_headings' ) ) :
           add_filter( 'tc_content_headings_separator' , '__return_false' );
 
         //No headings for some post formats
-        add_filter( 'tc_headings_content_html'        , array( $this, 'tc_post_formats_heading') , 100 );
+        add_filter( 'tc_headings_content_html'  , array( $this, 'tc_post_formats_heading') , 100 );
 
       }
-
 
 
       /******************************************
@@ -337,7 +342,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                   apply_filters( 'tc_archive_icon', 'format-icon' ),
                   apply_filters( 'tc_author_archive_title' , __( 'Author Archives :' , 'customizr' ) ),
-                  '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( $user_id ) ) . '" title="' . esc_attr( get_the_author_meta( 'display_name' , $user_id ) ) . '" rel="me">' . get_the_author_meta( 'display_name' , $user_id ) . '</a></span>'
+                  '<span class="vcard">' . get_the_author_meta( 'display_name' , $user_id ) . '</span>'
           );
           if ( apply_filters ( 'tc_show_author_meta' , get_the_author_meta( 'description', $user_id  ) ) ) {
             $content    .= sprintf('%1$s<div class="author-info"><div class="%2$s">%3$s</div></div>',
@@ -379,7 +384,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           $_header_class   = array('archive-header');
           $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                 apply_filters( 'tc_archive_icon', 'format-icon' ),
-                apply_filters( 'tag_archive_title' , __( 'Tag Archives :' , 'customizr' ) ),
+                apply_filters( 'tc_tag_archive_title' , __( 'Tag Archives :' , 'customizr' ) ),
                 '<span>' . single_tag_title( '' , false ) . '</span>'
           );
           if ( apply_filters ( 'tc_show_tag_description' , tag_description() ) ) {
@@ -468,6 +473,34 @@ if ( ! class_exists( 'TC_headings' ) ) :
                   esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_format' ) )
               )
           );
+      }
+
+
+      /**
+      * hooks : 'tc_category_archive_title', 'tc_tag_archive_title', 'tc_search_results_title', 'tc_author_archive_title'
+      * @param default title string
+      * @return string of user defined title
+      * @since Customizr 3.3+
+      */
+      function tc_set_archive_custom_title( $_title ) {
+        switch ( current_filter() ) {
+          case 'tc_category_archive_title' :
+            return esc_attr( TC_utils::$inst->tc_opt( 'tc_cat_title' ) );
+          break;
+
+          case 'tc_tag_archive_title' :
+            return esc_attr( TC_utils::$inst->tc_opt( 'tc_tag_title' ) );
+          break;
+
+          case 'tc_search_results_title' :
+            return esc_attr( TC_utils::$inst->tc_opt( 'tc_search_title' ) );
+          break;
+
+          case 'tc_author_archive_title' :
+            return esc_attr( TC_utils::$inst->tc_opt( 'tc_author_title' ) );
+          break;
+        }
+        return $_title;
       }
 
   }//end of class
