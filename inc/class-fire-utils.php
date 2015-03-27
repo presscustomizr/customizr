@@ -365,12 +365,11 @@ if ( ! class_exists( 'TC_utils' ) ) :
           );
 
           //checks if the 'force default layout' option is checked and return the default layout before any specific layout
-          $force_layout = $__options['tc_sidebar_force_layout'];
-          if( $force_layout == 1) {
-            $class_tab  = $global_layout[$tc_sidebar_global_layout];
+          if( isset($__options['tc_sidebar_force_layout']) && 1 == $__options['tc_sidebar_force_layout'] ) {
+            $class_tab  = $global_layout[$tc_sidebar_default_layout];
             $class_tab  = $class_tab['content'];
             $tc_screen_layout = array(
-              'sidebar' => $tc_sidebar_global_layout,
+              'sidebar' => $tc_sidebar_default_layout,
               'class'   => $class_tab
             );
             return $tc_screen_layout[$sidebar_or_class];
