@@ -351,6 +351,19 @@ if ( ! class_exists( 'TC_utils' ) ) :
           /* DEFAULT LAYOUTS */
           //what is the default layout we want to apply? By default we apply the global default layout
           $tc_sidebar_default_layout    = esc_attr( $__options['tc_sidebar_global_layout'] );
+
+          //checks if the 'force default layout' option is checked and return the default layout before any specific layout
+          $force_layout = $__options['tc_sidebar_force_layout'];
+          if( $force_layout == 1) {
+            $class_tab  = $global_layout[$tc_sidebar_default_layout];
+            $class_tab  = $class_tab['content'];
+            $tc_screen_layout = array(
+              'sidebar' => $tc_sidebar_default_layout,
+              'class'   => $class_tab
+            );
+            return $tc_screen_layout[$sidebar_or_class];
+          }
+
           if ( is_single() )
             $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_post_layout'] );
           if ( is_page() )
@@ -363,18 +376,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
                       'sidebar' => $tc_sidebar_default_layout,
                       'class'   => $class_tab
           );
-
-          //checks if the 'force default layout' option is checked and return the default layout before any specific layout
-          $force_layout = $__options['tc_sidebar_force_layout'];
-          if( $force_layout == 1) {
-            $class_tab  = $global_layout[$tc_sidebar_global_layout];
-            $class_tab  = $class_tab['content'];
-            $tc_screen_layout = array(
-              'sidebar' => $tc_sidebar_global_layout,
-              'class'   => $class_tab
-            );
-            return $tc_screen_layout[$sidebar_or_class];
-          }
 
           //The following lines set the post specific layout if any, and if not keeps the default layout previously defined
           $tc_specific_post_layout    = false;
