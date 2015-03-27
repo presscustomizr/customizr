@@ -916,3 +916,18 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   width: 100%;
   margin-bottom: 8px;
 }
+
+.tc-sub-control {
+  padding-left: 13%;
+  max-width: 87%;
+  position: relative;
+}
+
+.tc-sub-control:before {
+  content: '';
+  height: 116%;
+  background: #1ABC9C;
+  width: 2%;
+  position: absolute;
+  left: 7%;
+}

@@ -76,7 +76,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           // LAYOUT
           add_filter( 'tc_post_list_layout'         , array( $this, 'tc_grid_set_content_layout') );
           add_filter( 'tc_post_list_selectors'      , array( $this, 'tc_grid_set_article_selectors') );
-          add_action( '__before_article_container'  , array( $this, 'tc_grid_prepare_expand_featured' ) );
+          add_action( '__before_article_container'  , array( $this, 'tc_grid_prepare_expand_sticky' ) );
 
           // THUMBNAILS
           remove_filter( 'post_class'               , array( TC_post_list::$instance , 'tc_add_thumb_shape_name'));
@@ -393,7 +393,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /*
         * hook : __before_article_container
         */
-        function tc_grid_prepare_expand_featured(){
+        function tc_grid_prepare_expand_sticky(){
           global $wp_query;
           if ( ! ( $this -> tc_is_sticky_expanded() &&
                  $wp_query -> query_vars[ 'paged' ] == 0 ) ){
