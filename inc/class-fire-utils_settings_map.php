@@ -771,7 +771,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Lightbox effect on images' , 'customizr' ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'If enabled, this option activate a popin window whith a zoom effect when an image is clicked. This will not apply to image gallery.' , 'customizr' ),
+                                'notice'    => __( 'If enabled, this option activates a popin window whith a zoom effect when an image is clicked. Note : to enable this effect on the images of your pages and posts, images have to be linked to the Media File.' , 'customizr' ),
               ),
 
               'tc_theme_options[tc_fancybox_autoscale]' =>  array(
@@ -819,7 +819,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( "Dynamic thumbnails centering on any devices" , "customizr" ),
                                 'section'     => 'tc_image_settings' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'This option dynamically centers your images on any devices vertically or horizontally (without stretching them) according to their initial dimensions.' , 'customizr' ),
+                                'notice'    => __( 'This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio.' , 'customizr' ),
               )
       );//end of images options
       $images_option_map = apply_filters( 'tc_images_option_map', $images_option_map , $get_default );
@@ -2216,7 +2216,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
           'tc_theme_options[tc_grid_expand_featured]'  =>  array(
                             'default'       => 1,
                             'control'       => 'TC_controls' ,
-                            'label'         => __( 'Expand the featured posts (for home and blog page only)' , "customizr" ),
+                            'label'         => __( 'Expand the last sticky post (for home and blog page only)' , "customizr" ),
                             'section'       => 'tc_post_list_settings' ,
                             'type'          => 'checkbox',
                             'priority'      => 47
