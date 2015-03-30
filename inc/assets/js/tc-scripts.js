@@ -3139,7 +3139,7 @@ var TCParams = TCParams || {};
 
 })( jQuery, window, document );;/* !
  * Customizr WordPress theme Javascript code
- * Copyright (c) 2014-2015 Nicolas GUILLAUME (@nicguillaume), Themes & Co.
+ * Copyright (c) 2014-2015 Nicolas GUILLAUME (@nicguillaume), Press Customizr.
  * GPL2+ Licensed
 */
 //ON DOM READY
@@ -3647,9 +3647,9 @@ jQuery(function ($) {
     function _set_logo_height(){
         if ( logo && 0 === logo._logo.length || ! logo._ratio )
             return;
-        
+
         logo._logo.css('height' , logo._logo.width() / logo._ratio );
-        
+
         setTimeout( function() {
             _set_sticky_offsets();
             _set_header_top_offset();

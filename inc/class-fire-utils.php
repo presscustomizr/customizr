@@ -6,9 +6,9 @@
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
 * @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_utils' ) ) :
@@ -351,7 +351,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
           /* DEFAULT LAYOUTS */
           //what is the default layout we want to apply? By default we apply the global default layout
           $tc_sidebar_default_layout    = esc_attr( $__options['tc_sidebar_global_layout'] );
- 
+
           //checks if the 'force default layout' option is checked and return the default layout before any specific layout
           if( isset($__options['tc_sidebar_force_layout']) && 1 == $__options['tc_sidebar_force_layout'] ) {
             $class_tab  = $global_layout[$tc_sidebar_default_layout];
