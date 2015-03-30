@@ -18,6 +18,27 @@
   left: 440px;
 }
 
+/* RTL*/
+.rtl.wp-customizer .wp-full-overlay.expanded {
+  margin-right: 440px;
+  margin-left: 0;
+}
+.rtl.wp-customizer .wp-full-overlay-sidebar {
+  width: 440px;
+}
+.rtl .in-sub-panel #customize-info,
+.rtl .in-sub-panel #customize-theme-controls > ul > .accordion-section {
+  right: -440px;
+  width: 440px;
+}
+.rtl #customize-theme-controls .control-section.current-panel > h3.accordion-section-title {
+  right: -440px;
+}
+.rtl .accordion-sub-container.control-panel-content {
+  right: 440px;
+}
+
+
 @media screen and (max-width: 1400px) {
   .wp-customizer .wp-full-overlay.expanded {
     margin-left: 380px;
@@ -40,7 +61,29 @@
   .in-sub-panel .tc-cta-wrap {
     left: -380px;
   }
-
+  /* RTL */
+  .rtl.wp-customizer .wp-full-overlay.expanded {
+    margin-right: 380px;
+    margin-left: 0;
+  }
+  .rtl.wp-customizer .wp-full-overlay-sidebar {
+    width: 380px;
+  }
+  .rtl .in-sub-panel #customize-info,
+  .rtl .in-sub-panel #customize-theme-controls > ul > .accordion-section {
+    right: -380px;
+    width: 380px;
+  }
+  .rtl #customize-theme-controls .control-section.current-panel > h3.accordion-section-title {
+    right: -380px;
+  }
+  .rtl .accordion-sub-container.control-panel-content {
+    right: 380px;
+  }
+  .rtl .in-sub-panel #tc-donate-customizer,
+  .rtl .in-sub-panel .tc-cta-wrap {
+    right: -380px;
+  }
 }
 @media screen and (max-width: 979px) {
   .wp-customizer .wp-full-overlay.expanded {
@@ -63,6 +106,30 @@
   .in-sub-panel #tc-donate-customizer,
   .in-sub-panel .tc-cta-wrap {
     left: -300px;
+  }
+
+  /* RTL */
+  .rtl.wp-customizer .wp-full-overlay.expanded {
+    margin-right: 300px;
+    margin-left: 0;
+  }
+  .rtl.wp-customizer .wp-full-overlay-sidebar {
+    width: 300px;
+  }
+  .rtl .in-sub-panel #customize-info,
+  .rtl .in-sub-panel #customize-theme-controls > ul > .accordion-section {
+    right: -300px;
+    width: 300px;
+  }
+  .rtl #customize-theme-controls .control-section.current-panel > h3.accordion-section-title {
+    right: -300px;
+  }
+  .rtl .accordion-sub-container.control-panel-content {
+    right: 300px;
+  }
+  .rtl .in-sub-panel #tc-donate-customizer,
+  .rtl .in-sub-panel .tc-cta-wrap {
+    right: -300px;
   }
 }
 
@@ -401,7 +468,7 @@ span.tc-notice {
 /* RTL position fix */
 .rtl .tc-check-label {
 	float: right;
-} 
+}
 input[type=checkbox], input[type=radio] {
 	float: right;
 	min-height: 18px;
