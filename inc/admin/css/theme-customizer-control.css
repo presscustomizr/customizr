@@ -398,6 +398,10 @@ span.tc-notice {
 	float: left;
 	max-width: 85%;
 }
+/* RTL position fix */
+.rtl .tc-check-label {
+	float: right;
+} 
 input[type=checkbox], input[type=radio] {
 	float: right;
 	min-height: 18px;
@@ -433,7 +437,10 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
     top: 4px;
     float: right;
 }
-
+/* RTL fix of check box position */
+.rtl .icheckbox_flat-green {
+	float: left;
+}
 .icheckbox_flat-green {
     background-position: 0 0;
 }
