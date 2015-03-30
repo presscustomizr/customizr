@@ -56,10 +56,15 @@ if ( ! class_exists( 'TC_comments' ) ) :
       * @since Customizr 3.0.10
      */
       function tc_comments() {
+        global $post;
         //By default not displayed on home, for protected posts, and if no comments for page option is checked
-        $comments_bool    =  ( post_password_required() || tc__f( '__is_home' ) || ( is_page() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) ) ) ? false : true;
+        $_bool = ( post_password_required() || tc__f( '__is_home' ) )  ? false : true;
+        $_bool = ( is_page() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) ) ? false : $_bool;
+        //if user has enabled comment for this specific page then force true
+        //@todo contx : update default value user's value)
+        $_bool = ( is_page() && 'closed' != $post -> comment_status ) ? true : $_bool;
 
-        if ( ! apply_filters('tc_show_comments', $comments_bool ) )
+        if ( ! apply_filters('tc_show_comments', $_bool ) )
           return;
 
         comments_template( '' , true );
