@@ -1909,7 +1909,7 @@ var TCParams = TCParams || {};
     }
 
   , slide: function (type, next) {
-      if(!$.support.transition && this.$element.hasClass('slide')) {
+      if(!$.support.transition && this.$element.hasClass('customizr-slide')) {
          this.$element.find('.item').stop(true, true); //Finish animation and jump to end.
       }
       var $active = this.$element.find('.item.active')
@@ -1941,7 +1941,7 @@ var TCParams = TCParams || {};
         })
       }
 
-      if ($.support.transition && this.$element.hasClass('slide')) {
+      if ($.support.transition && this.$element.hasClass('customizr-slide')) {
         this.$element.trigger(e)
         if (e.isDefaultPrevented()) return
         //tc addon => trigger slide event to img
@@ -1962,7 +1962,7 @@ var TCParams = TCParams || {};
               $next.find('img').trigger('slid');
           }, 0)
         })
-      } else if(!$.support.transition && this.$element.hasClass('slide')) {
+      } else if(!$.support.transition && this.$element.hasClass('customizr-slide')) {
           this.$element.trigger(e)
           if (e.isDefaultPrevented()) return
           $active.animate({left: (direction == 'right' ? '100%' : '-100%')}, 600, function(){
@@ -2738,7 +2738,7 @@ var TCParams = TCParams || {};
     .removeAttr( this.options.attribute )
     .attr('src' , _src )
     .load( function () {
-      $_img.fadeIn(self.options.fadeIn_options).css("display","inline-block").trigger('smartload');
+      $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded').trigger('smartload');
     });//<= create a load() fn
     //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
     if ( $_img[0].complete )
@@ -3599,9 +3599,8 @@ jQuery(function ($) {
           isUserLogged    = $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
           isCustomizing   = $('body').hasClass('is-customizing'),
           customOffset    = +_p.stickyCustomOffset,
-          logosH     = [],
-          logosW      = [],
-          logosRatio      = [];
+          $sticky_logo    = $('img.sticky', '.site-logo'),
+          logo            = 0 === $sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
 
     function _is_scrolling() {
         return $('body').hasClass('sticky-enabled') ? true : false;
@@ -3646,14 +3645,11 @@ jQuery(function ($) {
 
 
     function _set_logo_height(){
-        if ( 0 === $('img' , '.site-logo').length )
+        if ( logo && 0 === logo._logo.length || ! logo._ratio )
             return;
-        $.each($('img', '.site-logo'), function( $i ){
-            if ( ! logosRatio[$i] )
-              return;
-            var logoHeight   = $(this).width() / logosRatio[$i];
-            $(this).css('height' , logoHeight );
-        });
+        
+        logo._logo.css('height' , logo._logo.width() / logo._ratio );
+        
         setTimeout( function() {
             _set_sticky_offsets();
             _set_header_top_offset();
@@ -3663,18 +3659,16 @@ jQuery(function ($) {
 
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
-    if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
-        $.each($('img', '.site-logo'), function( $i ){
-            logosW[$i]  = $(this).attr('width');
-            logosH[$i]  = $(this).attr('height');
+    if ( _is_sticky_enabled() && logo && 0 !== logo._logo.length ) {
+        var logoW = logo._logo.attr('width'),
+            logoH = logo._logo.attr('height');
 
-            //check that all numbers are valid before using division
-            if ( 0 === _.size( _.filter( [ logosW[$i], logosH[$i] ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
-              return;
+        //check that all numbers are valid before using division
+        if ( 0 === _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
+          return;
 
-            logosRatio[$i]  = logosW[$i] / logosH[$i];
-            $(this).css('height' , logosH[$i]  ).css('width' , logosW[$i] );
-        });
+        logo._ratio  = logoW / logoH;
+        logo._logo.css('height' , logoH  ).css('width' , logoW );
     }
 
     //LOADING ACTIONS
@@ -3711,7 +3705,7 @@ jQuery(function ($) {
         if ( $(window).scrollTop() > triggerHeight ) {
             $('body').addClass("sticky-enabled").removeClass("sticky-disabled");
         }
-        else if ( $('body').hasClass('sticky-enabled') ) {
+        else if ( _is_scrolling() ) {
             $('body').removeClass("sticky-enabled").addClass("sticky-disabled");
             setTimeout( function() { _sticky_refresh();} ,
               $('body').hasClass('is-customizing') ? 100 : 20
