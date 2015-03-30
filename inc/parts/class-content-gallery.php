@@ -135,12 +135,18 @@ if ( ! class_exists( 'TC_gallery' ) ) :
           $i = 0;
           foreach ( $attachments as $id => $attachment ) {
 
-            $link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+            if ( isset($attr['link']) && 'file' == $attr['link'] )
+              $img = wp_get_attachment_link($id, $size, false, false);
+            elseif ( isset($attr['link'] ) )
+              // case link == none
+              $img =  wp_get_attachment_image($id, $size);
+            else // link to the attachment page
+              $img = wp_get_attachment_link($id, $size, true, false);
 
             $output .= "<{$itemtag} class='gallery-item'>";
             $output .= "
               <{$icontag} class='gallery-icon'>
-                $link
+                $img
               </{$icontag}>";
             if ( $captiontag && trim($attachment->post_excerpt) ) {
               $output .= "
