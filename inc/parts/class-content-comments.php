@@ -169,7 +169,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
                                                                         array(  'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>',
                                                                                 'depth' => $depth,
                                                                                 'max_depth' => $args['max_depth'] ,
-                                                                                'add_below' => apply_filters( 'tc_comment_reply_below' , 'li-comment' )
+                                                                                'add_below' => apply_filters( 'tc_comment_reply_below' , 'comment' )
                                                                               )
                                                                   )
                                             )
