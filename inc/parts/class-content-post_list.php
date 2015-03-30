@@ -357,7 +357,7 @@ class TC_post_list {
   * @since Customizr 3.0.10
   */
   function tc_include_attachments_in_search( $query ) {
-      if (! is_search() || ! apply_filters( 'tc_include_attachments_in_search_results' , true ) )
+      if (! is_search() || ! apply_filters( 'tc_include_attachments_in_search_results' , false ) )
         return $query;
 
       // add post status 'inherit'
