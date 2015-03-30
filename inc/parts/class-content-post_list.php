@@ -57,9 +57,9 @@ class TC_post_list {
   */
   function tc_set_early_hooks() {
     //Include attachments in search results
-    add_filter ( 'pre_get_posts'         , array( $this , 'tc_include_attachments_in_search' ));
+    add_action ( 'pre_get_posts'         , array( $this , 'tc_include_attachments_in_search' ));
     //Include all post types in archive pages
-    add_filter ( 'pre_get_posts'         , array( $this , 'tc_include_cpt_in_lists' ));
+    add_action ( 'pre_get_posts'         , array( $this , 'tc_include_cpt_in_lists' ));
   }
 
 
