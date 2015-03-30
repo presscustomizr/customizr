@@ -6712,7 +6712,7 @@ ul.children {
   margin: 0 0 20px 0;
   font-size: 14px;
 }
-.reply {
+#content .reply {
   float: right;
   margin-right: 10px;
 }
