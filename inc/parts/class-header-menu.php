@@ -182,16 +182,13 @@ if ( ! class_exists( 'TC_menu' ) ) :
         echo apply_filters( 'resp_menu_button', $button );
       }
 
-      ob_start();
-        //renders the menu
-        printf('<div class="%1$s">%2$s</div>',
+      //renders the menu
+      $menu = sprintf('<div class="%1$s">%2$s</div>',
             apply_filters( 'tc_menu_wrapper_class', $menu_wrapper_class ),
             $menu
-        );
+      );
         
-      $html = ob_get_contents();
-      if ($html) ob_end_clean();
-      echo apply_filters( 'tc_menu_display', $html, $resp );
+      echo apply_filters( 'tc_menu_display', $menu, $resp );
     } //end of funtion()
 
 
