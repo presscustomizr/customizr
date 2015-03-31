@@ -155,35 +155,40 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * @since Customizr 3.0
     */
     function tc_menu_display($resp = null) {
-      ob_start();
-        //renders the responsive button
-        if ( 'resp' == $resp ) { //resp is an argument of do_action ('__navbar' , 'resp')
-          $button = sprintf('<button type="button" class="%1$s" data-toggle="collapse" data-target=".nav-collapse">%2$s%2$s%2$s</button>',
+      //menu setup
+      $menu_args = apply_filters( 'tc_menu_args',
+                 array(
+                   'theme_location'  => 'main',
+                   'menu_class'      => ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav tc-hover-menu' : 'nav',
+                   'fallback_cb'     => array( $this , 'tc_link_to_menu_editor' ),
+                   'walker'          => TC_nav_walker::$instance,
+                   'echo'            => false,
+                 )
+      );
+
+      $menu = wp_nav_menu( $menu_args );
+
+      if ( ! $menu )
+        return;
+      
+      $menu_wrapper_class   = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav-collapse collapse tc-hover-menu-wrapper' : 'nav-collapse collapse';
+
+      //renders the responsive button
+      if ( 'resp' == $resp ) { //resp is an argument of do_action ('__navbar' , 'resp')
+        $button = sprintf('<button type="button" class="%1$s" data-toggle="collapse" data-target=".nav-collapse">%2$s%2$s%2$s</button>',
             apply_filters( 'tc_menu_button_class', 'btn btn-navbar' ),
             '<span class="icon-bar"></span>'
-          );
-          echo apply_filters( 'resp_menu_button', $button );
-        }
-
-        //renders the menu
-        $menu_args = apply_filters( 'tc_menu_args',
-                    array(
-                      'theme_location'  => 'main',
-                      'menu_class'      => ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav tc-hover-menu' : 'nav',
-                      'fallback_cb'     => array( $this , 'tc_link_to_menu_editor' ),
-                      'walker'          => TC_nav_walker::$instance,
-                      'echo'            => false,
-                  )
         );
-        $menu_wrapper_class   = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? 'nav-collapse collapse tc-hover-menu-wrapper' : 'nav-collapse collapse';
-        printf('<div class="%1$s">%2$s</div>',
+        echo apply_filters( 'resp_menu_button', $button );
+      }
+
+      //renders the menu
+      $menu = sprintf('<div class="%1$s">%2$s</div>',
             apply_filters( 'tc_menu_wrapper_class', $menu_wrapper_class ),
-            wp_nav_menu( $menu_args )
-        );
-
-      $html = ob_get_contents();
-      if ($html) ob_end_clean();
-      echo apply_filters( 'tc_menu_display', $html, $resp );
+            $menu
+      );
+        
+      echo apply_filters( 'tc_menu_display', $menu, $resp );
     } //end of funtion()
 
 
