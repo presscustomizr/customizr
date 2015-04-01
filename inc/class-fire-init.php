@@ -349,7 +349,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails
           add_action ( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ), 20 );
 
-          //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
+          //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate-X, Polylang, Woocommerce, The Event Calendar ...)
           add_action ( 'after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 30 );
 
           //add retina support for high resolution devices
@@ -552,7 +552,7 @@ if ( ! class_exists( 'TC_init' ) ) :
 
 
       /**
-     * This function handles the following plugins compatibility : Jetpack (for the carousel addon), Bbpress, Qtranslate, Woocommerce
+     * This function handles the following plugins compatibility : Jetpack (for the carousel addon), Bbpress, Qtranslate-X, Polylang, Woocommerce
      *
      * @package Customizr
      * @since Customizr 3.0.15
@@ -731,7 +731,7 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           }// end pll_tc_strings_setup function
           
-          // Front end
+          // Front
           // If Polylang is active, translate/swap featured page buttons/text/link and slider
           if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
 
@@ -760,7 +760,7 @@ if ( ! class_exists( 'TC_init' ) ) :
               add_filter( 'tc_fp_text', 'pll__' );
          
             }
-          }
+          }//end Front
         }//end Polylang
 
 
