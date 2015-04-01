@@ -508,6 +508,7 @@ if ( ! class_exists( 'TC_init' ) ) :
         add_theme_support( 'jetpack' );
         add_theme_support( 'bbpress' );
         add_theme_support( 'qtranslate-x' );
+        add_theme_support( 'polylang' );
         add_theme_support( 'woocommerce' );
         add_theme_support( 'the-events-calendar' );
 
@@ -650,8 +651,8 @@ if ( ! class_exists( 'TC_init' ) ) :
 
 
 
-          // QtranslateX for FP when no FPC or FPU running (they share the same utils class name where comp code is defined)
-          if ( ! class_exists('TC_utils_fpu') ) {
+          // QtranslateX for FP when no FPC or FPU running
+          if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
             //outputs correct urls for current language : fp
             add_filter( 'tc_fp_link_url' , 'tc_url_lang');
             //outputs the qtranslate translation for featured pages
@@ -675,6 +676,92 @@ if ( ! class_exists( 'TC_init' ) ) :
             add_filter( 'tc_featured_text_three_customizer_set' , 'tc_change_transport', 20, 2);
           }
         }//end QtranslateX
+
+
+
+        /*
+         * Polylang
+         * Credits : @ElectricFeet, https://wordpress.org/support/profile/electricfeet
+         */
+        if ( current_theme_supports( 'polylang' ) && is_plugin_active('polylang/polylang.php') ) {
+            
+          // If Polylang is active, hook function on the admin pages
+          if ( function_exists( 'pll_register_string' ) ) 
+            add_action( 'admin_init', 'pll_tc_strings_setup' );
+
+          function pll_tc_strings_setup() {
+              
+            // grab theme options
+            $pll_tc_options = tc__f('__options');
+
+            // grab settings map, useful for some options labels
+            $tc_settings_map = TC_utils_settings_map::$instance -> tc_customizer_map( $get_default = true );
+            $tc_controls_map = $tc_settings_map['add_setting_control'];
+
+            // set $polylang_group;
+            $polylang_group = 'customizr-pro' == TC___::$theme_name ? 'Customizr-Pro' : 'Customizr';
+
+                
+            // Add front page slider name to Polylang's string translation panel
+            if ( isset( $pll_tc_options['tc_front_slider'] ) )
+              pll_register_string( 'Front page slider name', esc_attr($pll_tc_options['tc_front_slider']), $polylang_group );
+
+
+            // Add archive title strings to Polylang's string translation panel
+            $archive_titles_settings =  array( 'tc_tag_title', 'tc_cat_title', 'tc_author_title', 'tc_search_title');
+
+            foreach ( $archive_titles_settings as $archive_title_setting_name )
+              if ( isset( $pll_tc_options[$archive_title_setting_name] ) )
+                pll_register_string( $tc_controls_map["tc_theme_options[$archive_title_setting_name]"]["label"], esc_attr($pll_tc_options[$archive_title_setting_name]), $polylang_group );
+
+            // Featured Pages
+            if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
+
+              $pll_tc_fp_areas = TC_init::$instance -> fp_ids;
+              // Add featured pages button text to Polylang's string translation panel
+              if ( isset( $pll_tc_options[ 'tc_featured_page_button_text'] ) )
+                pll_register_string( $tc_controls_map["tc_theme_options[tc_featured_page_button_text]"]["label"], esc_attr($pll_tc_options[ 'tc_featured_page_button_text']), $polylang_group );
+ 
+              // Add featured pages excerpt text to Polylang's string translation panel
+              foreach ( $pll_tc_fp_areas as $area )
+                if ( isset( $pll_tc_options["tc_featured_text_$area"] ) )
+                  pll_register_string( $tc_controls_map["tc_theme_options[tc_featured_text_$area]"]["label"], esc_attr($pll_tc_options['tc_featured_text_'.$area]), $polylang_group );
+            
+            } //end Featured Pages
+
+          }// end pll_tc_strings_setup function
+          
+          // Front end
+          // If Polylang is active, translate/swap featured page buttons/text/link and slider
+          if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
+
+            // Substitute any registered slider name
+            add_filter( 'tc_slider_name_id', 'pll__' );
+
+            // Substitue archive titles
+            $pll_tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results');
+            
+            foreach ( $pll_tc_archive_titles as $title )
+              add_filter("tc_{$title}_title", 'pll__' , 20);
+
+            // Featured Pages
+            if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
+
+              // Substitute any page id with the equivalent page in current language (if found)
+              add_filter( 'tc_fp_id', 'pll_tc_page_id' );
+              function pll_tc_page_id( $fp_page_id ) {
+                return is_int( pll_get_post( $fp_page_id ) ) ? pll_get_post( $fp_page_id ) : $fp_page_id;
+              }
+         
+              // Substitute the featured page button text with the current language button text
+              add_filter( 'tc_fp_button_text', 'pll__' );
+         
+              // Substitute the featured page text with the translated featured page text
+              add_filter( 'tc_fp_text', 'pll__' );
+         
+            }
+          }
+        }//end Polylang
 
 
 
