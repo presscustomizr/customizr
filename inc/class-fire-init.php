@@ -507,7 +507,7 @@ if ( ! class_exists( 'TC_init' ) ) :
         //add support for plugins (added in v3.1+)
         add_theme_support( 'jetpack' );
         add_theme_support( 'bbpress' );
-        add_theme_support( 'qtranslate' );
+        add_theme_support( 'qtranslate-x' );
         add_theme_support( 'woocommerce' );
         add_theme_support( 'the-events-calendar' );
 
@@ -609,56 +609,72 @@ if ( ! class_exists( 'TC_init' ) ) :
 
 
         /*
-        * QTranslate
+        * QTranslateX
         * Credits : @acub, http://websiter.ro
         */
-        if ( current_theme_supports( 'qtranslate' ) && is_plugin_active('qtranslate/qtranslate.php') ) {
-          //outputs correct urls for current language : in logo, slider
-          add_filter( 'tc_slide_link_url' , 'tc_url_lang' );
-          add_filter( 'tc_logo_link_url' , 'tc_url_lang');
-          add_filter( 'tc_fp_link_url' , 'tc_url_lang');
+        if ( current_theme_supports( 'qtranslate-x' ) && is_plugin_active('qtranslate-x/qtranslate.php') ) {
+
           function tc_url_lang($url) {
             return ( function_exists( 'qtrans_convertURL' ) ) ? qtrans_convertURL($url) : $url;
           }
+          function tc_apply_qtranslate ($text) {
+            return call_user_func(  '__' , $text );
+          }
+          function tc_remove_char_limit() {
+            return 99999;
+          }
+          function tc_change_transport( $value , $set ) {
+            return ('transport' == $set) ? 'refresh' : $value;
+          }
 
-          //outputs the qtranslate translation for slider, featured pages
+          //outputs correct urls for current language : in logo, slider
+          add_filter( 'tc_slide_link_url' , 'tc_url_lang' );
+          add_filter( 'tc_logo_link_url' , 'tc_url_lang');
+
+          //outputs the qtranslate translation for slider
           add_filter( 'tc_slide_title', 'tc_apply_qtranslate' );
           add_filter( 'tc_slide_text', 'tc_apply_qtranslate' );
           add_filter( 'tc_slide_button_text', 'tc_apply_qtranslate' );
           add_filter( 'tc_slide_background_alt', 'tc_apply_qtranslate' );
-          add_filter( 'tc_fp_text', 'tc_apply_qtranslate' );
-          add_filter( 'tc_fp_button_text', 'tc_apply_qtranslate' );
-          function tc_apply_qtranslate ($text) {
-            return call_user_func(  '__' , $text );
-          }
+          
+          //outputs the qtranslate translation for archive titles;
+          $tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results');
+          foreach ( $tc_archive_titles as $title )
+            add_filter("tc_{$title}_title", 'tc_apply_qtranslate' , 20);
 
-
-          //sets no character limit for slider (title, lead text and button title) and featured pages (text) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
+          //sets no character limit for slider (title, lead text and button title) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
           add_filter( 'tc_slide_title_length'  , 'tc_remove_char_limit');
           add_filter( 'tc_slide_text_length'   , 'tc_remove_char_limit');
           add_filter( 'tc_slide_button_length' , 'tc_remove_char_limit');
-          add_filter( 'tc_fp_text_length' , 'tc_remove_char_limit');
-          function tc_remove_char_limit() {
-            return 99999;
-          }
 
-          //modify the page excerpt=> uses the wp page excerpt instead of the generated excerpt with the_content
-          add_filter( 'tc_fp_text', 'tc_use_page_excerpt', 10, 3 );
-          function tc_use_page_excerpt( $featured_text , $fp_id , $page_id ) {
-            $page = get_post($page_id);
-            return ( empty($featured_text) && !post_password_required($page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_excerpt )) : $featured_text ;
-          }
 
-          //modify the customizer transport from post message to null for some options
-          add_filter( 'tc_featured_page_button_text_customizer_set' , 'tc_change_transport', 10, 2);
-          add_filter( 'tc_featured_text_one_customizer_set' , 'tc_change_transport', 10, 2);
-          add_filter( 'tc_featured_text_two_customizer_set' , 'tc_change_transport', 10, 2);
-          add_filter( 'tc_featured_text_three_customizer_set' , 'tc_change_transport', 10, 2);
-          function tc_change_transport( $value , $set ) {
-            return ('transport' == $set) ? null : $value;
-          }
 
-        }//end Qtranslate
+
+          // QtranslateX for FP when no FPC or FPU running (they share the same utils class name where comp code is defined)
+          if ( ! class_exists('TC_utils_fpu') ) {
+            //outputs correct urls for current language : fp
+            add_filter( 'tc_fp_link_url' , 'tc_url_lang');
+            //outputs the qtranslate translation for featured pages
+            add_filter( 'tc_fp_text', 'tc_apply_qtranslate' );
+            add_filter( 'tc_fp_button_text', 'tc_apply_qtranslate' );
+   
+            //sets no character limit for featured pages (text) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
+            add_filter( 'tc_fp_text_length' , 'tc_remove_char_limit');
+            //modify the page excerpt=> uses the wp page excerpt instead of the generated excerpt with the_content
+            add_filter( 'tc_fp_text', 'tc_use_page_excerpt', 20, 3 );
+            function tc_use_page_excerpt( $featured_text , $fp_id , $page_id ) {
+              $page = get_post($page_id);
+              return ( empty($featured_text) && !post_password_required($page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_excerpt )) : $featured_text ;
+            }
+
+            /* The following is pretty useless at the momment since we should inhibit preview js code */
+            //modify the customizer transport from post message to null for some options
+            add_filter( 'tc_featured_page_button_text_customizer_set' , 'tc_change_transport', 20, 2);
+            add_filter( 'tc_featured_text_one_customizer_set' , 'tc_change_transport', 20, 2);
+            add_filter( 'tc_featured_text_two_customizer_set' , 'tc_change_transport', 20, 2);
+            add_filter( 'tc_featured_text_three_customizer_set' , 'tc_change_transport', 20, 2);
+          }
+        }//end QtranslateX
 
 
 
