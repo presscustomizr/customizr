@@ -687,9 +687,9 @@ if ( ! class_exists( 'TC_init' ) ) :
             
           // If Polylang is active, hook function on the admin pages
           if ( function_exists( 'pll_register_string' ) ) 
-            add_action( 'admin_init', 'pll_tc_strings_setup' );
+            add_action( 'admin_init', '_pll_tc_strings_setup' );
 
-          function pll_tc_strings_setup() {
+          function _pll_tc_strings_setup() {
               
             // grab theme options
             $pll_tc_options = tc__f('__options');
