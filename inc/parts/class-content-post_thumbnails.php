@@ -227,6 +227,7 @@ class TC_post_thumbnails {
       $thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size, TC_utils::tc_id()  );
       $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
       $no_effect_class  = ( ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
+      $no_effect_class  = esc_attr( TC_utils::$inst->tc_opt( 'tc_center_img') ) ? '' : $no_effect_class;
 
       //default hover effect
       $thumb_wrapper    = sprintf('<div class="%5$s %1$s"><div class="round-div %1$s"></div><a class="round-div %1$s" href="%2$s" title="%3$s"></a>%4$s</div>',
