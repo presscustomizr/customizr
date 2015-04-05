@@ -380,11 +380,11 @@ msgstr "&mdash; סליידר לדוגמא &mdash;"
 
 #: ../class-fire-utils_settings_map.php:244
 msgid "Global settings"
-msgstr "הגדות כלליות"
+msgstr "הגדרות כלליות"
 
 #: ../class-fire-utils_settings_map.php:245
 msgid "Global settings for the Customizr theme :skin, socials, links..."
-msgstr "הגדות כלליות לתבנית Customizr: מעטפת,רשתות חברתיות, קישורים..."
+msgstr "הגדרות כלליות לתבנית Customizr: מעטפת,רשתות חברתיות, קישורים..."
 
 #: ../class-fire-utils_settings_map.php:250
 msgid "Header"
@@ -1014,7 +1014,7 @@ msgstr "הערה: הגדרת פריסת דף הבית מתבצעת בחלק של
 
 #: ../class-fire-utils_settings_map.php:1251
 msgid "Global Post Lists Settings"
-msgstr "הגדות כלליות לרשימות פוסטים"
+msgstr "הגדרות כלליות לרשימות פוסטים"
 
 #: ../class-fire-utils_settings_map.php:1277
 msgid "Display an author box after each single post content"
@@ -1626,7 +1626,7 @@ msgstr "שינוי הגדרות נוספות לתגובות ב"
 
 #: ../class-fire-utils_settings_map.php:2000
 msgid "discussion settings page."
-msgstr "דף הגדות דיון"
+msgstr "דף הגדרות דיון"
 
 #: ../class-fire-utils_settings_map.php:2008
 msgid "Display a back to top arrow on scroll"
