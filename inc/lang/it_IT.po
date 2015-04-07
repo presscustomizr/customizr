@@ -2,7 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.15\n"
 "POT-Creation-Date: 2015-02-27 19:11+0100\n"
-"PO-Revision-Date: 2015-03-09 08:37-0800\n"
+<<<<<<< HEAD
+"PO-Revision-Date: 2015-04-06 17:07-0800\n"
+=======
+"PO-Revision-Date: 2015-03-18 07:49-0800\n"
+>>>>>>> 659dcc5a4157e18ad13cef1996010d5ce8189849
 "Last-Translator: Giorgio Riccardi <giorgio@griccardi.com>\n"
 "Language-Team: ElectricFeet <contact@presscustomizr.com>\n"
 "Language: it\n"
@@ -544,12 +548,12 @@ msgstr "Espandi sottomenu al passaggio del mouse"
 
 #: ../class-fire-utils_settings_map.php:404
 msgid "Choose a predefined skin"
-msgstr "Scegli un skin predefinito"
+msgstr "Scegli una skin predefinita"
 
 #: ../class-fire-utils_settings_map.php:414
 #: ../class-fire-utils_settings_map.php:2082
 msgid "Performance : use the minified CSS stylesheet"
-msgstr "Performance: usa i fogli di stile CSS minimizzati"
+msgstr "Prestazioni: usa i fogli di stile CSS minimizzati"
 
 #: ../class-fire-utils_settings_map.php:417
 #: ../class-fire-utils_settings_map.php:2085
@@ -557,8 +561,8 @@ msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
 msgstr ""
-"Usando la versione minimizzata della skin accelererai il tempo di "
-"caricamente della tua pagina web."
+"Usando la versione minimizzata della skin diminuirai il tempo di caricamente "
+"della tua pagina web."
 
 #: ../class-fire-utils_settings_map.php:423
 #: ../class-fire-utils_settings_map.php:1314
@@ -689,7 +693,7 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:597
 msgid "Read more &raquo;"
-msgstr "Scopri di più &raquo;"
+msgstr "Leggi &raquo;"
 
 #: ../class-fire-utils_settings_map.php:599
 msgid "Button text"
@@ -703,7 +707,7 @@ msgstr "Mostra Breadcrumb"
 #: ../class-fire-utils_settings_map.php:630
 #: ../class-fire-utils_settings_map.php:1208
 msgid "Choose the global default layout"
-msgstr "Scegli il layout globale predefinito"
+msgstr "Scegli il layout generale predefinito"
 
 #: ../class-fire-utils_settings_map.php:641
 #: ../class-fire-utils_settings_map.php:1220
@@ -838,7 +842,7 @@ msgstr "Apri la pagina della descrizione del plugin Regenerate thumbnails"
 #: ../class-fire-utils_settings_map.php:803
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr ""
-"Sliders: mostra un'icona di caricamento prima che le diapositive vengano "
+"Sliders: mostra un'icona di caricamento prima che le slides vengano "
 "visualizzate"
 
 #: ../class-fire-utils_settings_map.php:806
@@ -1727,7 +1731,7 @@ msgstr "Inserisci l'altezza della slider in pixel"
 
 #: ../class-fire-utils_settings_map.php:2113
 msgid "Apply this height to all sliders"
-msgstr "Apllica quest'altezza a tutte le slider"
+msgstr "Applica quest'altezza a tutte le slides"
 
 #: ../class-fire-utils_settings_map.php:2121
 msgid "Replace the default image slider's height"
@@ -1848,8 +1852,8 @@ msgid ""
 "think it helped you in any way to build a better web presence, please "
 "support it's continued development with a donation of $20, $50, ..."
 msgstr ""
-"<strong>Faccio del mio meglio per rendere Customizr il tema perfetto er te.</"
-"strong><br/> Se pensi che Customizr ti abbia in qualche modo aiutato a "
+"<strong>Faccio del mio meglio per rendere Customizr il tema perfetto per te."
+"</strong><br/> Se pensi che Customizr ti abbia in qualche modo aiutato a "
 "migliorare la tua presenza sul web, per favore sostieni il suo continuo "
 "sviluppo con una donazione di €20, €50, ..."
 
@@ -2005,7 +2009,7 @@ msgstr ""
 
 #: ../admin/class-admin-meta_boxes.php:312
 msgid "Slider Layout : set the slider in full width"
-msgstr "Slider larghezza: a tutta pagina"
+msgstr "Larghezza slider: a tutta pagina"
 
 #: ../admin/class-admin-meta_boxes.php:329
 #: ../admin/class-admin-meta_boxes.php:697
@@ -2173,7 +2177,7 @@ msgstr "Hai bisogno di aiuto con Customizr?"
 #: ../admin/class-fire-admin_page.php:70
 #, php-format
 msgid "Welcome to Customizr %s"
-msgstr "Benvenuto a Customizr %s"
+msgstr "Benvenuto in Customizr %s"
 
 #: ../admin/class-fire-admin_init.php:181
 #: ../admin/class-fire-admin_page.php:78
@@ -2210,7 +2214,7 @@ msgstr "Frammenti di codice"
 
 #: ../admin/class-fire-admin_init.php:201
 msgid "Discuss in the user forum"
-msgstr "Dialoga nel forum degli utenti"
+msgstr "Discuti sul forum degli utenti"
 
 #: ../admin/class-fire-admin_init.php:209
 #: ../admin/class-fire-admin_page.php:106
@@ -2237,7 +2241,7 @@ msgid ""
 "upgrading to see if a function or a template has been deprecated."
 msgstr ""
 "Stai usando un child theme di Customizr %1$s : controlla sempre il %2$s dopo "
-"l'aggiornamento per vedere se un function o un template è stato deprecato."
+"l'aggiornamento per vedere se una funzione o un template è stato deprecato."
 
 #: ../admin/class-fire-admin_init.php:238
 #: ../admin/class-fire-admin_page.php:137
@@ -2366,7 +2370,7 @@ msgstr ""
 #: ../admin/class-fire-admin_page.php:256
 #, php-format
 msgid "Changelog in version %1$s"
-msgstr "Changelog della version %1$s"
+msgstr "Changelog della versione %1$s"
 
 #: ../admin/class-fire-admin_init.php:304
 #: ../admin/class-fire-admin_page.php:198
