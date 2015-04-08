@@ -1026,3 +1026,25 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   position: absolute;
   left: 7%;
 }
+
+/* Rate link */
+#customize-footer-actions .collapse-sidebar-label {
+  display: none;
+}
+.tc-rate-link {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 4px 12px;
+  font-size: 10px;
+  line-height: 14px;
+  width: 90%;
+  text-align: right;
+}
+.wp-full-overlay.collapsed .tc-rate-link {
+  display: none;
+}
+.tc-rate-link .tc-stars {
+  color: #E6B800;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.6);
+}
