@@ -36,6 +36,14 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.16 April 8th 2015 =
+added : better customizer options for comments. Allow more controls on comment display. Page comments are disabled by default.
+added : customizer link to ratings
+fixed : Few corrections in the Italian translation
+Updated : he_IL.po Hebrew translation
+fixed : allow customizr slider in the woocommerce shop page
+fixed : collapsed customizer panel
+
 = 3.3.15 March 30th 2015 =
 updated : readme changelog
 
