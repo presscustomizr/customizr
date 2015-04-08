@@ -907,7 +907,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                           </td>
                           <td style="vertical-align:middle" class="">
                               <?php if( $button_text != null) : ?>
-                                <p class="btn btn-large btn-primary"><?php echo $button_text; ?></a>
+                                <p class="btn btn-large btn-primary"><?php echo $button_text; ?></p>
                               <?php endif; ?>
                           </td>
                            <td style="vertical-align:middle" class="">
