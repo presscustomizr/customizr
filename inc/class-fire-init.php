@@ -744,7 +744,7 @@ if ( ! class_exists( 'TC_init' ) ) :
 
 
           //removes post comment action on after_loop hook
-          add_filter( 'tc_show_comments', 'tc_woocommerce_disable_comments' );
+          add_filter( 'tc_are_comments_enabled', 'tc_woocommerce_disable_comments' );
           function tc_woocommerce_disable_comments($bool) {
              return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
           }

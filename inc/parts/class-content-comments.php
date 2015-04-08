@@ -16,14 +16,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
-        add_action ( '__after_loop'           , array( $this , 'tc_comments' ), 10 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_title' ), 10 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_list' ), 20 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_navigation' ), 30 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_close' ), 40 );
-        add_filter ( 'comment_form_defaults'  , array( $this , 'tc_set_comment_title') );
-
-        //wp hooks => wp_query is built
+        //wp hook => wp_query is built
         add_action ( 'wp'                     , array( $this , 'tc_comments_set_hooks' ) );
 
         //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
@@ -34,6 +27,10 @@ if ( ! class_exists( 'TC_comments' ) ) :
       }
 
 
+
+      /***************************
+      * HOOK SETUP
+      ****************************/
       /**
       * Set various comment hooks
       * hook : wp
@@ -41,6 +38,20 @@ if ( ! class_exists( 'TC_comments' ) ) :
       * @since Customizr 3.3.2
       */
       function tc_comments_set_hooks() {
+        //Maybe fires the comment's template
+        add_action ( '__after_loop'           , array( $this , 'tc_comments' ), 10 );
+
+        //Apply a filter on the comment list ( comment list user defined option )
+        //the filter tc_display_comment_list is fired in the comments.php template
+        add_filter( 'tc_display_comment_list' , array( $this , 'tc_set_comment_list_display' ) );
+
+        //Add actions in the comment's template
+        add_action ( '__comment'              , array( $this , 'tc_comment_title' ), 10 );
+        add_action ( '__comment'              , array( $this , 'tc_comment_list' ), 20 );
+        add_action ( '__comment'              , array( $this , 'tc_comment_navigation' ), 30 );
+        add_action ( '__comment'              , array( $this , 'tc_comment_close' ), 40 );
+        add_filter ( 'comment_form_defaults'  , array( $this , 'tc_set_comment_title') );
+
         //Add comment bubble
         add_filter( 'tc_the_title'            , array( $this , 'tc_display_comment_bubble' ), 1 );
         //Custom Bubble comment since 3.2.6
@@ -49,6 +60,10 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
 
 
+
+      /***************************
+      * VIEWS
+      ****************************/
      /**
       * Main commments template
       *
@@ -56,15 +71,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
       * @since Customizr 3.0.10
      */
       function tc_comments() {
-        global $post;
-        //By default not displayed on home, for protected posts, and if no comments for page option is checked
-        $_bool = ( post_password_required() || tc__f( '__is_home' ) )  ? false : true;
-        $_bool = ( is_page() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) ) ? false : $_bool;
-        //if user has enabled comment for this specific page then force true
-        //@todo contx : update default value user's value)
-        $_bool = ( is_page() && 'closed' != $post -> comment_status ) ? true : $_bool;
-
-        if ( ! apply_filters('tc_show_comments', $_bool ) )
+        if ( ! $this -> tc_are_comments_enabled() )
           return;
 
         comments_template( '' , true );
@@ -285,6 +292,26 @@ if ( ! class_exists( 'TC_comments' ) ) :
     }
 
 
+
+
+
+    /***************************
+    * CALLBACKS
+    ****************************/
+    /**
+    * Do we display the comment list ?
+    * hook : tc_display_comment_list
+    * @return  bool
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    function tc_set_comment_list_display() {
+      return (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_show_comment_list' ) );
+    }
+
+
+
     /**
     * Comment title override (comment_form_defaults filter)
     *
@@ -306,19 +333,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @since Customizr 3.2.6
     */
     function tc_display_comment_bubble( $_title = null ) {
-
-      //Must be in the loop and enabled by user
-      if ( ! in_the_loop() || 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ) )
-        return $_title;
-
-      //when are we showing the comments number in title?
-      //1) comments are enabled
-      //2) post type is in the eligible post type list : default = post
-      $comments_enabled                  = ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() && is_page() ) ? true : false;
-      $comments_enabled                  = ( comments_open() && get_comments_number() != 0 && !post_password_required() && !is_page() ) ? true : $comments_enabled;
-
-      if ( ! apply_filters( 'tc_comments_in_title', $comments_enabled )
-        || ! in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) ) )
+      if ( ! $this -> tc_is_bubble_enabled() )
         return $_title;
 
       global $post;
@@ -419,6 +434,72 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
       return $_css;
     }//end of fn
+
+
+
+    /***************************
+    * HELPERS
+    ****************************/
+    /**
+    * 1) if the page / post is password protected OR if is_home OR ! is_singular() => false
+    * 2) if comment_status == 'closed' => false
+    * 3) if user defined comment option in customizer == false => false
+    *
+    * By default, comments are globally disabled in pages and enabled in posts
+    *
+    * @return  boolean
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_are_comments_enabled() {
+      global $post;
+      // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
+      $_bool = ( post_password_required() || tc__f( '__is_home' ) || ! is_singular() )  ? false : true;
+
+      //2) if user has enabled comment for this specific post / page => true
+      //@todo contx : update default value user's value)
+      $_bool = ( 'closed' != $post -> comment_status ) ? true : $_bool;
+
+      //3) check global user options for pages and posts
+      if ( is_page() )
+        $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
+      else
+        $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
+
+      return apply_filters( 'tc_are_comments_enabled', $_bool );
+    }
+
+
+
+
+    /**
+    * When are we displaying the comment bubble ?
+    * - Must be in the loop
+    * - Bubble must be enabled by user
+    * - comments are enabled
+    * - there is at least one comment
+    * - the comment list option is enabled
+    * - post type is in the eligible post type list : default = post
+    * - tc_comments_in_title boolean filter is true
+    *
+    * @return  boolean
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_is_bubble_enabled() {
+      $_bool_arr = array(
+        in_the_loop(),
+        (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ),
+        $this -> tc_are_comments_enabled(),
+        get_comments_number() != 0,
+        (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_show_comment_list' ) ),
+        (bool) apply_filters( 'tc_comments_in_title', true ),
+        in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) )
+      );
+      return (bool) array_product($_bool_arr);
+    }
 
   }//end class
 endif;

@@ -2034,12 +2034,37 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'tc_comments_settings',
                                 'type'        => 'checkbox',
                                 'priority'    => 40,
-                                'notice'      => sprintf('%1$s %2$s <a href="%3$s" target="_blank">%4$s</a>',
+                                'notice'      => sprintf('%1$s<br/> %2$s <a href="%3$s" target="_blank">%4$s</a>',
                                     __( 'If checked, this option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen.' , 'customizr' ),
-                                    __( "Change other comments settings in the" , 'customizr'),
+                                    __( "You can also change other comments settings in the" , 'customizr'),
                                     admin_url() . 'options-discussion.php',
                                     __( 'discussion settings page.' , 'customizr' )
                                 ),
+              ),
+              'tc_theme_options[tc_post_comments]'  =>  array(
+                                'default'     => 1,
+                                'control'     => 'TC_controls',
+                                'label'       => __( 'Enable comments on posts' , 'customizr' ),
+                                'section'     => 'tc_comments_settings',
+                                'type'        => 'checkbox',
+                                'priority'    => 45,
+                                'notice'      => sprintf('%1$s <a href="%2$s" target="_blank">%3$s</a>.<br/>%4$s <a href="%5$s" target="_blank">%6$s</a>',
+                                    __( 'If checked, this option enables comments on all types of single posts. You can disable comments for a single post in quick edit mode from the' , 'customizr' ),
+                                    'http://codex.wordpress.org/Posts_Screen',
+                                    __( 'post screen', 'customizr'),
+                                    __( "You can also change other comments settings in the" , 'customizr'),
+                                    admin_url() . 'options-discussion.php',
+                                    __( 'discussion settings page.' , 'customizr' )
+                                ),
+              ),
+              'tc_theme_options[tc_show_comment_list]'  =>  array(
+                                'default'     => 1,
+                                'control'     => 'TC_controls',
+                                'label'       => __( 'Display the comment list' , 'customizr' ),
+                                'section'     => 'tc_comments_settings',
+                                'type'        => 'checkbox',
+                                'priority'    => 50,
+                                'notice'      =>__( 'By default, WordPress displays the past comments, even if comments are disabled in posts or pages. Unchecking this option allows you to not display this comment history.' , 'customizr' )
               ),
 
               /* Footer */
