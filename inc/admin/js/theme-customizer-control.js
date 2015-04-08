@@ -458,23 +458,31 @@ jQuery(function ($) {
   /* CONTRIBUTION TO CUSTOMIZR */
   var donate_displayed  = false,
       is_pro            = 'customizr-pro' == TCControlParams.themeName;
-  if ( is_pro )
-    return;
 
-  if (  ! TCControlParams.HideDonate ) {
+  if (  ! TCControlParams.HideDonate && ! is_pro ) {
     _render_donate_block();
     donate_displayed = true;
   }
 
   //Main call to action
-  if ( TCControlParams.ShowCTA && ! donate_displayed ) {
+  if ( TCControlParams.ShowCTA && ! donate_displayed && ! is_pro ) {
    _render_main_cta();
   }
 
   //In controls call to action
-  _render_wfc_cta();
-  _render_fpu_cta();
-  _render_footer_cta();
+  if ( ! is_pro ) {
+    _render_wfc_cta();
+    _render_fpu_cta();
+    _render_footer_cta();
+  }
+  _render_rate_czr();
+
+  function _render_rate_czr() {
+    var _cta = _.template(
+        $( "script#rate-czr" ).html()
+    );
+    $('#customize-footer-actions').append( _cta() );
+  }
 
   function _render_donate_block() {
     // Grab the HTML out of our template tag and pre-compile it.
