@@ -25,7 +25,9 @@ if ( ! class_exists( 'TC_headings' ) ) :
       }
 
 
-
+      /******************************************
+      * HOOK SETTINGS ***************************
+      ******************************************/
       /**
       * @return void
       * set up hooks for archives headings
@@ -53,10 +55,6 @@ if ( ! class_exists( 'TC_headings' ) ) :
       }
 
 
-
-      /******************************************
-      * HOOK SETTINGS ***************************
-      ******************************************/
       /**
       * @return void
       * set up hooks for post and page headings

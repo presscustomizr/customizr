@@ -19,25 +19,43 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
   class TC_sidebar {
       static $instance;
       function __construct () {
-          self::$instance =& $this;
-          //displays left sidebar
-          add_action ( '__before_article_container'            , array( $this , 'tc_sidebar_display' ) );
-          add_action ( '__before_left_sidebar'                 , array( $this , 'tc_social_in_sidebar' ) );
+        self::$instance =& $this;
+        add_action ( 'wp'       , array( $this , 'tc_set_sidebar_hooks' ) );
+      }
 
-          //displays right sidebar
-          add_action ( '__after_article_container'             , array( $this , 'tc_sidebar_display' ) );
-          add_action ( '__before_right_sidebar'                , array( $this , 'tc_social_in_sidebar' ) );
 
-          //since 3.2.0 show/hode the WP built-in widget icons
-          add_filter ( 'tc_left_sidebar_class'                 , array( $this , 'tc_set_sidebar_wrapper_widget_class' ) );
-          add_filter ( 'tc_right_sidebar_class'                , array( $this , 'tc_set_sidebar_wrapper_widget_class' ) );
+      /******************************************
+      * HOOK
+      ******************************************/
+      /**
+      * Set sidebar hooks
+      * hook : wp
+      *
+      * @since Customizr 3.3+
+      */
+      function tc_set_sidebar_hooks() {
+        //displays left sidebar
+        add_action ( '__before_article_container'  , array( $this , 'tc_sidebar_display' ) );
+        add_action ( '__before_left_sidebar'       , array( $this , 'tc_social_in_sidebar' ) );
+
+        //displays right sidebar
+        add_action ( '__after_article_container'   , array( $this , 'tc_sidebar_display' ) );
+        add_action ( '__before_right_sidebar'      , array( $this , 'tc_social_in_sidebar' ) );
+
+        //since 3.2.0 show/hode the WP built-in widget icons
+        add_filter ( 'tc_left_sidebar_class'       , array( $this , 'tc_set_sidebar_wrapper_widget_class' ) );
+        add_filter ( 'tc_right_sidebar_class'      , array( $this , 'tc_set_sidebar_wrapper_widget_class' ) );
       }
 
 
 
-
+      /******************************************
+      * VIEW
+      ******************************************/
       /**
-      * Returns the sidebar or the front page featured pages area
+      * Displays the sidebar or the front page featured pages area
+      * If no widgets are set, displays a placeholder
+      *
       * @param Name of the widgetized area
       * @package Customizr
       * @since Customizr 1.0
@@ -46,8 +64,6 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
         //first check if home and no content option is choosen
         if ( tc__f( '__is_home_empty') )
           return;
-
-
         //gets current screen layout
         $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
 
@@ -66,22 +82,22 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
         $sidebar_layout       = $global_layout[$screen_layout];
 
         //defines the sidebar wrapper class
-        /*$class                = sprintf('%1$s %2$s tc-sidebar',
-                              apply_filters( "tc_{$position}_sidebar_class", $sidebar_layout['sidebar'] ),
-                              $position
-        );*/
         $class                = implode(" ", apply_filters( "tc_{$position}_sidebar_class" , array( $sidebar_layout['sidebar'] , $position , 'tc-sidebar' ) ) );
-
         ob_start();
         ?>
 
         <div class="<?php echo $class  ?>">
            <div id="<?php echo $position ?>" class="widget-area" role="complementary">
-                <?php do_action( "__before_{$position}_sidebar" );##hook of social icons ?>
-                  <?php if ( is_active_sidebar( $position ) ) : ?>
-                    <?php get_sidebar( $position ) ?>
-                  <?php endif; ?>
-                <?php do_action( "__after_{$position}_sidebar" ); ?>
+              <?php
+                do_action( "__before_{$position}_sidebar" );##hook of social icons
+
+                if ( is_active_sidebar( $position ) )
+                  get_sidebar( $position );
+                else
+                  $this -> tc_display_sidebar_placeholder($position);
+
+                do_action( "__after_{$position}_sidebar" );
+              ?>
             </div><!-- #left or #right-->
         </div><!--.tc-sidebar -->
 
@@ -91,6 +107,54 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
         echo apply_filters( 'tc_sidebar_display', $html, $sidebar_layout, $position );
       }//end of function
 
+
+
+
+      /**
+      * When do we display this placeholder ?
+      * -User logged in
+      * -Admin
+      * -User did not dismiss the notice
+      * @param : string position left or right
+      * @since Customizr 3.3
+      */
+      private function tc_display_sidebar_placeholder( $position ) {
+        if ( ! is_user_logged_in() || ! current_user_can('edit_theme_options') || 'disabled' == get_transient( 'tc_widget_placehold_sidebar' ) || ! apply_filters('tc_display_widget_placeholders' , true ) )
+          return;
+        ?>
+        <aside class="tc-widget-placeholder">
+          <?php
+            printf('<span class="tc-admin-notice">%1$s</span>',
+              __( 'This block is visible for admin users only.', 'customizr')
+            );
+
+            printf('<h4>%1$s %2$s %3$s</h4>',
+              __( 'The', 'customizr'),
+              $position,
+              __( 'sidebar has no widgets' ,'customizr')
+            );
+
+            printf('<p>%1s <a href="%2$s" title="%3$s" target="blank">%4$s</a></p>',
+              __( 'You can add widgets to this sidebar in :', 'customizr' ),
+              admin_url( 'widgets.php' ),
+              __( 'Add widgets' , 'customizr'),
+              __( 'appearance > widgets' , 'customizr' )
+            );
+
+            printf('<p><i>%1s <a href="http:%2$s" title="%3$s" target="blank">%4$s</a></i></p>',
+              __( 'You can also remove this sidebar by changing the current page layout.', 'customizr' ),
+              '//doc.presscustomizr.com/customizr/content-options/#pages-and-posts-layout',
+              __( 'Changing the layout in the Customizr theme' , 'customizr'),
+              __( 'See the theme documentation.' , 'customizr' )
+            );
+
+            printf('<a class="tc-dismiss-notice" data-position="sidebar" href="#" title="%1$s">%1$s x</a>',
+              __( 'dismiss notice', 'customizr')
+            );
+        ?>
+        </aside>
+        <?php
+      }
 
 
 

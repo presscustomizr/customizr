@@ -13,40 +13,44 @@
 */
 if ( ! class_exists( 'TC_footer_main' ) ) :
 	class TC_footer_main {
-	    static $instance;
-	    function __construct () {
-	        self::$instance =& $this;
-	        //html > footer actions
-	        add_action ( '__after_main_wrapper'		, 'get_footer');
-	        //footer actions
-	        add_action ( '__footer'					, array( $this , 'tc_widgets_footer' ), 10 );
-	        add_action ( '__footer'					, array( $this , 'tc_colophon_display' ), 20 );
-	        add_action ( '__colophon'				, array( $this , 'tc_colophon_left_block' ), 10 );
-	        add_action ( '__colophon'				, array( $this , 'tc_colophon_center_block' ), 20 );
-	        add_action ( '__colophon'				, array( $this , 'tc_colophon_right_block' ), 30 );
-	        //since v3.2.0, Show back to top from the Customizer option panel
-	        add_action ( '__after_footer' 			, array( $this , 'tc_render_back_to_top') );
-	        //since v3.2.0, set no widget icons from the Customizer option panel
-	        add_filter ( 'tc_footer_widget_wrapper_class' , array( $this , 'tc_set_widget_wrapper_class') );
-	    }
+    static $instance;
+    function __construct () {
+        self::$instance =& $this;
+        //html > footer actions
+        add_action ( '__after_main_wrapper'		, 'get_footer');
+        //footer actions
+        add_action ( '__footer'					, array( $this , 'tc_widgets_footer' ), 10 );
+        add_action ( '__footer'					, array( $this , 'tc_colophon_display' ), 20 );
+        add_action ( '__colophon'				, array( $this , 'tc_colophon_left_block' ), 10 );
+        add_action ( '__colophon'				, array( $this , 'tc_colophon_center_block' ), 20 );
+        add_action ( '__colophon'				, array( $this , 'tc_colophon_right_block' ), 30 );
+        //since v3.2.0, Show back to top from the Customizer option panel
+        add_action ( '__after_footer' 			, array( $this , 'tc_render_back_to_top') );
+        //since v3.2.0, set no widget icons from the Customizer option panel
+        add_filter ( 'tc_footer_widget_wrapper_class' , array( $this , 'tc_set_widget_wrapper_class') );
+    }
 
 
-	    /**
-		 * Displays the footer widgets areas
-		 *
-		 *
-		 * @package Customizr
-		 * @since Customizr 3.0.10
-		 */
-	    function tc_widgets_footer() {
-	    	//checks if there's at least one active widget area in footer.php.php
-	    	$status 					= false;
-	    	$footer_widgets 			= apply_filters( 'tc_footer_widgets', TC_init::$instance -> footer_widgets );
-	    	foreach ( $footer_widgets as $key => $area ) {
-	    		$status = is_active_sidebar( $key ) ? true : $status;
-	    	}
-			if ( !$status )
-				return;
+	  /**
+		* Displays the footer widgets areas
+		*
+		*
+		* @package Customizr
+		* @since Customizr 3.0.10
+		*/
+	  function tc_widgets_footer() {
+    	//checks if there's at least one active widget area in footer.php.php
+    	$status 					= false;
+    	$footer_widgets 			= apply_filters( 'tc_footer_widgets', TC_init::$instance -> footer_widgets );
+    	foreach ( $footer_widgets as $key => $area ) {
+    		$status = is_active_sidebar( $key ) ? true : $status;
+    	}
+
+      //if no active widget area yet, display the footer widget placeholder
+			if ( ! $status ) {
+        $this -> tc_display_footer_placeholder();
+        return;
+      }
 
 			//hack to render white color icons if skin is grey or black
 			$skin_class 					= ( in_array( TC_utils::$inst->tc_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
@@ -80,10 +84,46 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 
 
 
+    /**
+    * When do we display this placeholder ?
+    * -User logged in
+    * -Admin
+    * -User did not dismiss the notice
+    * @param : string position left or right
+    * @since Customizr 3.3
+    */
+    private function tc_display_footer_placeholder() {
+      if ( ! is_user_logged_in() || ! current_user_can('edit_theme_options') || 'disabled' == get_transient( 'tc_widget_placehold_footer' ) || ! apply_filters('tc_display_widget_placeholders' , true ) )
+          return;
+      ?>
+      <aside class="tc-widget-placeholder">
+        <?php
+          printf('<span class="tc-admin-notice">%1$s</span>',
+            __( 'This block is visible for admin users only.', 'customizr')
+          );
+
+          printf('<h4>%1$s</h4>',
+            __( 'The footer has no widgets', 'customizr')
+          );
+
+          printf('<p>%1s <a href="%2$s" title="%3$s" target="blank">%4$s</a></p>',
+            __( 'You can add widgets to the footer in :', 'customizr' ),
+            admin_url( 'widgets.php' ),
+            __( 'Add widgets' , 'customizr'),
+            __( 'appearance > widgets' , 'customizr' )
+          );
+
+          printf('<a class="tc-dismiss-notice" data-position="footer" href="#" title="%1$s">%1$s x</a>',
+              __( 'dismiss notice', 'customizr')
+          );
+      ?>
+      </aside>
+      <?php
+    }
 
 
 
-	    /**
+	   /**
 		 * Displays the colophon (block below the widgets areas).
 		 *
 		 *
