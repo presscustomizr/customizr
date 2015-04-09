@@ -331,6 +331,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
     	$options['tc_hide_donate'] = true;
     	update_option( 'tc_theme_options', $options );
       set_transient( 'tc_cta', 'cta_waiting' , 60*60*24 );
+      wp_die();
     }
 
 
