@@ -2036,9 +2036,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'    => 40,
                                 'notice'      => sprintf('%1$s<br/> %2$s <a href="%3$s" target="_blank">%4$s</a>',
                                     __( 'If checked, this option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen.' , 'customizr' ),
-                                    __( "You can also change other comments settings in the" , 'customizr'),
+                                    __( "You can also change other comments settings in :" , 'customizr'),
                                     admin_url() . 'options-discussion.php',
-                                    __( 'discussion settings page.' , 'customizr' )
+                                    __( 'the discussion settings page.' , 'customizr' )
                                 ),
               ),
               'tc_theme_options[tc_post_comments]'  =>  array(

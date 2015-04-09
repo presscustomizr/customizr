@@ -128,10 +128,10 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
               __( 'This block is visible for admin users only.', 'customizr')
             );
 
-            printf('<h4>%1$s %2$s %3$s</h4>',
-              __( 'The', 'customizr'),
+            printf('<h4>%1$s %2$s, %3$s</h4>',
+              __( 'The sidebar : ', 'customizr'),
               $position,
-              __( 'sidebar has no widgets' ,'customizr')
+              __( 'has no widgets' ,'customizr')
             );
 
             printf('<p>%1s <a href="%2$s" title="%3$s" target="blank">%4$s</a></p>',

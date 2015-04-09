@@ -5510,7 +5510,7 @@ li.dropdown.active > .dropdown-toggle,
 /* BREADCUMB
   -------------------------------------------------- */
 .tc-hot-crumble {
-  margin-top: 5px 0 10px 0;
+  margin: 5px 0 10px 0;
   position: relative;
   z-index: 10;
 }
@@ -8418,8 +8418,8 @@ li#wp-admin-bar-tc-customizr a {
     float: none;
     width: 100%;
   }
-  .navbar-wrapper .navbar h2 {
-    display: none;
+  .navbar-wrapper .navbar .site-description {
+    display: none !important;
   }
   .navbar-inner .tc-nav-button {
     display: block;
@@ -8621,10 +8621,6 @@ li#wp-admin-bar-tc-customizr a {
     padding-left: 10px;
     position: relative;
     z-index: 2;
-  }
-  /* HIDE TAGLINE SINCE V3.2.0*/
-  .navbar-wrapper .navbar h2 {
-    display: none!important;
   }
   .sticky-enabled .tc-header {
     min-height: 40px;

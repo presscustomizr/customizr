@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.16\n"
-"POT-Creation-Date: 2015-02-27 18:59+0100\n"
-"PO-Revision-Date: 2015-02-27 18:59+0100\n"
-"Last-Translator: Nicolas <contact@presscustomizr.com>\n"
+"POT-Creation-Date: 2015-04-09 15:58+0100\n"
+"PO-Revision-Date: 2015-04-09 15:58+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -101,232 +101,208 @@ msgstr "綠色"
 msgid "Light blue "
 msgstr "淺藍色"
 
-#: ../class-fire-init.php:128
+#: ../class-fire-init.php:127
 msgid "Google fonts pairs"
 msgstr ""
 
-#: ../class-fire-init.php:148
+#: ../class-fire-init.php:147
 msgid "Web safe fonts pairs"
 msgstr ""
 
-#: ../class-fire-init.php:157
+#: ../class-fire-init.php:156
 #, fuzzy
 msgid "Single fonts"
 msgstr "單篇文章"
 
-#: ../class-fire-init.php:195
+#: ../class-fire-init.php:194
 msgid "Subscribe to my rss feed"
 msgstr "訂閱我的 RSS"
 
-#: ../class-fire-init.php:196
+#: ../class-fire-init.php:195
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "RSS 訂閱（預設是訂閱 wordpress 內容）"
 
-#: ../class-fire-init.php:200
+#: ../class-fire-init.php:199
 msgid "Follow me on Twitter"
 msgstr "在Twitter上關注我"
 
-#: ../class-fire-init.php:201
+#: ../class-fire-init.php:200
 msgid "Twitter profile url"
 msgstr "Twitter上的個人頁面位址"
 
-#: ../class-fire-init.php:205
+#: ../class-fire-init.php:204
 msgid "Follow me on Facebook"
 msgstr "在Facebook上關注我"
 
-#: ../class-fire-init.php:206
+#: ../class-fire-init.php:205
 msgid "Facebook profile url"
 msgstr "Facebook上的個人頁面位址"
 
-#: ../class-fire-init.php:210
+#: ../class-fire-init.php:209
 msgid "Follow me on Google+"
 msgstr "在Google+上關注我"
 
-#: ../class-fire-init.php:211
+#: ../class-fire-init.php:210
 msgid "Google+ profile url"
 msgstr "Google+上的個人頁面位址"
 
-#: ../class-fire-init.php:215
+#: ../class-fire-init.php:214
 msgid "Follow me on Instagram"
 msgstr "在Instagram上關注我"
 
-#: ../class-fire-init.php:216
+#: ../class-fire-init.php:215
 msgid "Instagram profile url"
 msgstr "Instagram上的個人頁面位址"
 
-#: ../class-fire-init.php:220
+#: ../class-fire-init.php:219
 msgid "Follow me on Tumblr"
 msgstr "在Tumblr上關注我"
 
-#: ../class-fire-init.php:221
+#: ../class-fire-init.php:220
 msgid "Tumblr url"
 msgstr "Tumblr 網址"
 
-#: ../class-fire-init.php:225
+#: ../class-fire-init.php:224
 msgid "Follow me on Flickr"
 msgstr "在Flickr上關注我"
 
-#: ../class-fire-init.php:226
+#: ../class-fire-init.php:225
 msgid "Flickr url"
 msgstr "Flickr 網址"
 
-#: ../class-fire-init.php:230
+#: ../class-fire-init.php:229
 msgid "Follow me on WordPress"
 msgstr "在WordPress上關注我"
 
-#: ../class-fire-init.php:231
+#: ../class-fire-init.php:230
 msgid "WordPress profile url"
 msgstr "WordPress上的個人頁面位址"
 
-#: ../class-fire-init.php:235
+#: ../class-fire-init.php:234
 msgid "Follow me on Youtube"
 msgstr "在YouTube上關注我"
 
-#: ../class-fire-init.php:236
+#: ../class-fire-init.php:235
 msgid "Youtube profile url"
 msgstr "YouTube上的個人頁面位址"
 
-#: ../class-fire-init.php:240
+#: ../class-fire-init.php:239
 msgid "Pin me on Pinterest"
 msgstr "在Pinterest上關注我"
 
-#: ../class-fire-init.php:241
+#: ../class-fire-init.php:240
 msgid "Pinterest profile url"
 msgstr "Pinterest上的個人頁面位址"
 
-#: ../class-fire-init.php:245
+#: ../class-fire-init.php:244
 msgid "Follow me on Github"
 msgstr "在Github上關注我"
 
-#: ../class-fire-init.php:246
+#: ../class-fire-init.php:245
 msgid "Github profile url"
 msgstr "Github上的個人頁面位址"
 
-#: ../class-fire-init.php:250
+#: ../class-fire-init.php:249
 msgid "Follow me on Dribbble"
 msgstr "在Dribbble上關注我"
 
-#: ../class-fire-init.php:251
+#: ../class-fire-init.php:250
 msgid "Dribbble profile url"
 msgstr "Dribbble上的個人頁面位址"
 
-#: ../class-fire-init.php:255
+#: ../class-fire-init.php:254
 msgid "Follow me on LinkedIn"
 msgstr "在LinkedIn上關注我"
 
-#: ../class-fire-init.php:256
+#: ../class-fire-init.php:255
 msgid "LinkedIn profile url"
 msgstr "LinkedIn上的個人頁面位址"
 
-#: ../class-fire-init.php:265
+#: ../class-fire-init.php:264
 msgid "Right Sidebar"
 msgstr "右邊欄"
 
-#: ../class-fire-init.php:266 ../class-fire-init.php:270
+#: ../class-fire-init.php:265 ../class-fire-init.php:269
 #, fuzzy
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "出現在文章，靜態頁面，歸檔和搜尋網頁面中"
 
-#: ../class-fire-init.php:269
+#: ../class-fire-init.php:268
 msgid "Left Sidebar"
 msgstr "左邊欄"
 
-#: ../class-fire-init.php:277
+#: ../class-fire-init.php:276
 #, fuzzy
 msgid "Footer Widget Area One"
 msgstr "頁腳小工具區域一"
 
-#: ../class-fire-init.php:278 ../class-fire-init.php:282
-#: ../class-fire-init.php:286
+#: ../class-fire-init.php:277 ../class-fire-init.php:281
+#: ../class-fire-init.php:285
 msgid "Just use it as you want !"
 msgstr "隨意使用吧！"
 
-#: ../class-fire-init.php:281
+#: ../class-fire-init.php:280
 msgid "Footer Widget Area Two"
 msgstr "頁腳小工具區域二"
 
-#: ../class-fire-init.php:285
+#: ../class-fire-init.php:284
 msgid "Footer Widget Area Three"
 msgstr "頁腳小工具區域三"
 
-#: ../class-fire-init.php:303
+#: ../class-fire-init.php:302
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr "在大欺騙的時代，說出真相才是革命性的舉動"
 
-#: ../class-fire-init.php:304
+#: ../class-fire-init.php:303
 msgid "George Orwell"
 msgstr "喬治・歐威爾"
 
-#: ../class-fire-init.php:305
+#: ../class-fire-init.php:304
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr "抱歉，您申請的頁面沒找到，您可以在下方嘗試搜索。"
 
-#: ../class-fire-init.php:310
+#: ../class-fire-init.php:309
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
 msgstr "成功就是具備從在失敗中也不放棄的精神。"
 
-#: ../class-fire-init.php:311
+#: ../class-fire-init.php:310
 msgid "Sir Winston Churchill"
 msgstr "溫斯頓・邱吉爾爵士"
 
-#: ../class-fire-init.php:312
+#: ../class-fire-init.php:311
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
 msgstr "對不起，但是沒有找到符合您搜索詞彙的內容。請使用其他搜索詞彙再次嘗試。"
 
-#: ../class-fire-init.php:327
+#: ../class-fire-init.php:326
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr 是一個清新交互的主題"
 
-#: ../class-fire-init.php:332 ../class-fire-init.php:341
-#, fuzzy
-msgid "Style your WordPress site live!"
-msgstr "個性定制您的網站並同時查看效果"
-
-#: ../class-fire-init.php:333
+#: ../class-fire-init.php:340
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
 msgstr ""
 "在WordPress中的個性化定制中很多樣式和設計選項都可用，等著看您的網站成果啦！"
 
-#: ../class-fire-init.php:334
-#, fuzzy
-msgid "Just try it!"
-msgstr "開始動手做吧！"
-
-#: ../class-fire-init.php:346 ../class-fire-init.php:355
-msgid "Create beautiful sliders"
-msgstr "創建美麗的滑塊"
-
-#: ../class-fire-init.php:347
-msgid ""
-"Customizr comes with a cool slider generator : add a slider to any post or "
-"page!"
-msgstr "Customizr 中包含一個很酷的滑塊生成器：添加滑塊到任何文章和頁面！"
-
-#: ../class-fire-init.php:348
-msgid "Discover the features"
-msgstr "發現特色功能"
-
-#: ../class-fire-init.php:495
+#: ../class-fire-init.php:480
 #, fuzzy
 msgid "Main Menu"
 msgstr "主菜單"
 
-#: ../class-fire-init.php:896
+#: ../class-fire-init.php:904
 msgid "Help"
 msgstr "幫助"
 
-#: ../class-fire-init.php:899
+#: ../class-fire-init.php:907
 msgid "Need help with Customizr? Click here!"
 msgstr "需要獲得關於 Customizr 的説明嗎？點擊此處！"
 
-#: ../class-fire-utils.php:476
+#: ../class-fire-utils.php:465
 #, php-format
 msgid "Page %s"
 msgstr "頁面 %s"
@@ -477,7 +453,7 @@ msgstr "配置樣式選項"
 
 #: ../class-fire-utils_settings_map.php:320
 #: ../class-fire-utils_settings_map.php:1031
-#: ../class-fire-utils_settings_map.php:2054
+#: ../class-fire-utils_settings_map.php:2120
 msgid "Social links"
 msgstr "社會化連結"
 
@@ -552,12 +528,12 @@ msgid "Choose a predefined skin"
 msgstr "選擇一款預設皮膚"
 
 #: ../class-fire-utils_settings_map.php:414
-#: ../class-fire-utils_settings_map.php:2082
+#: ../class-fire-utils_settings_map.php:2148
 msgid "Performance : use the minified CSS stylesheet"
 msgstr "性能：使用精簡版的CSS檔"
 
 #: ../class-fire-utils_settings_map.php:417
-#: ../class-fire-utils_settings_map.php:2085
+#: ../class-fire-utils_settings_map.php:2151
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
@@ -761,7 +737,7 @@ msgid "Choose the pages default layout"
 msgstr "選擇文章預設樣式"
 
 #: ../class-fire-utils_settings_map.php:706
-#: ../class-fire-utils_settings_map.php:1992
+#: ../class-fire-utils_settings_map.php:2033
 #, fuzzy
 msgid "Enable comments on pages"
 msgstr "在頁面上啟用評論功能"
@@ -775,22 +751,22 @@ msgstr ""
 "評論功能。"
 
 #: ../class-fire-utils_settings_map.php:724
-#: ../class-fire-utils_settings_map.php:2018
+#: ../class-fire-utils_settings_map.php:2084
 msgid "Social links in header"
 msgstr "在頁頭顯示社會化連結"
 
 #: ../class-fire-utils_settings_map.php:733
-#: ../class-fire-utils_settings_map.php:2036
+#: ../class-fire-utils_settings_map.php:2102
 msgid "Social links in left sidebar"
 msgstr "在左邊欄顯示社會化連結"
 
 #: ../class-fire-utils_settings_map.php:742
-#: ../class-fire-utils_settings_map.php:2046
+#: ../class-fire-utils_settings_map.php:2112
 msgid "Social links in right sidebar"
 msgstr "在右邊欄顯示社會化連結"
 
 #: ../class-fire-utils_settings_map.php:750
-#: ../class-fire-utils_settings_map.php:2027
+#: ../class-fire-utils_settings_map.php:2093
 msgid "Social links in footer"
 msgstr "在頁腳顯示社會化連結"
 
@@ -800,9 +776,11 @@ msgid "Lightbox effect on images"
 msgstr "在圖片上啟用/停用燈箱效果"
 
 #: ../class-fire-utils_settings_map.php:774
+#, fuzzy
 msgid ""
-"If enabled, this option activate a popin window whith a zoom effect when an "
-"image is clicked. This will not apply to image gallery."
+"If enabled, this option activates a popin window whith a zoom effect when an "
+"image is clicked. Note : to enable this effect on the images of your pages "
+"and posts, images have to be linked to the Media File."
 msgstr ""
 "如果啟用此項，當圖片被點擊時會自動跳出具有縮放功能的彈窗。該功能並不會適用於"
 "圖像畫廊。"
@@ -863,8 +841,8 @@ msgstr "開啟或關閉幻燈片圖片在所有設備上居中顯示"
 
 #: ../class-fire-utils_settings_map.php:822
 msgid ""
-"This option dynamically centers your images on any devices vertically or "
-"horizontally (without stretching them) according to their initial dimensions."
+"This option dynamically centers your images on any devices, vertically or "
+"horizontally according to their initial aspect ratio."
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:835
@@ -890,24 +868,24 @@ msgid ""
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:868
-#: ../class-fire-utils_settings_map.php:2067
+#: ../class-fire-utils_settings_map.php:2133
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr "在此處添加個性化 CSS 並同時查看效果！（適用於高級用戶）"
 
 #: ../class-fire-utils_settings_map.php:872
-#: ../class-fire-utils_settings_map.php:2071
+#: ../class-fire-utils_settings_map.php:2137
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:873
-#: ../class-fire-utils_settings_map.php:2072
+#: ../class-fire-utils_settings_map.php:2138
 msgid "child theme."
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:874
-#: ../class-fire-utils_settings_map.php:2073
+#: ../class-fire-utils_settings_map.php:2139
 msgid "How to create and use a child theme ?"
 msgstr ""
 
@@ -1525,7 +1503,7 @@ msgid "Rectangular with unblur effect on hover"
 msgstr "矩形的，在滑鼠懸停是由模糊變得清晰的效果"
 
 #: ../class-fire-utils_settings_map.php:1826
-#: ../class-fire-utils_settings_map.php:1875
+#: ../class-fire-utils_settings_map.php:1916
 msgid "Set the thumbnail's max height in pixels"
 msgstr "以圖元為單位設置縮略圖的最大高度"
 
@@ -1555,128 +1533,173 @@ msgid "Alternate thumbnail/content"
 msgstr "另外的縮略圖或內容"
 
 #: ../class-fire-utils_settings_map.php:1860
+#: ../parts/class-content-headings.php:369
+msgid "Category Archives :"
+msgstr "分類目錄:"
+
+#: ../class-fire-utils_settings_map.php:1861
+#, fuzzy
+msgid "Archive titles"
+msgstr "歸檔"
+
+#: ../class-fire-utils_settings_map.php:1862
+#, fuzzy
+msgid "Category pages titles"
+msgstr "分類目錄: %s"
+
+#: ../class-fire-utils_settings_map.php:1870
+#: ../parts/class-content-headings.php:385
+msgid "Tag Archives :"
+msgstr "標籤歸檔:"
+
+#: ../class-fire-utils_settings_map.php:1871
+msgid "Tag pages titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1879
+#: ../parts/class-content-headings.php:342
+msgid "Author Archives :"
+msgstr "作者歸檔:"
+
+#: ../class-fire-utils_settings_map.php:1880
+#, fuzzy
+msgid "Author pages titles"
+msgstr "關於 %s"
+
+#: ../class-fire-utils_settings_map.php:1888
+#: ../parts/class-content-headings.php:327
+#, fuzzy
+msgid "Search Results for :"
+msgstr "%1s搜尋結果: %2s"
+
+#: ../class-fire-utils_settings_map.php:1889
+#, fuzzy
+msgid "Search results page titles"
+msgstr "%1s搜尋結果: %2s"
+
+#: ../class-fire-utils_settings_map.php:1901
 #, fuzzy
 msgid "Post thumbnail position"
 msgstr "文章導航"
 
-#: ../class-fire-utils_settings_map.php:1864
+#: ../class-fire-utils_settings_map.php:1905
 #, fuzzy
 msgid "Don't display"
 msgstr "首頁顯示"
 
-#: ../class-fire-utils_settings_map.php:1865
+#: ../class-fire-utils_settings_map.php:1906
 #, fuzzy
 msgid "Before the title in full width"
 msgstr "滑塊樣式：設定滑塊寬度為滿頁寬度"
 
-#: ../class-fire-utils_settings_map.php:1866
+#: ../class-fire-utils_settings_map.php:1907
 msgid "Before the title boxed"
 msgstr "在標題之前"
 
-#: ../class-fire-utils_settings_map.php:1867
+#: ../class-fire-utils_settings_map.php:1908
 #, fuzzy
 msgid "After the title"
 msgstr "關於 %s"
 
-#: ../class-fire-utils_settings_map.php:1887
+#: ../class-fire-utils_settings_map.php:1928
 msgid "Drop caps"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1888
+#: ../class-fire-utils_settings_map.php:1929
 #, fuzzy
 msgid "Enable drop caps"
 msgstr "啟用"
 
-#: ../class-fire-utils_settings_map.php:1890
+#: ../class-fire-utils_settings_map.php:1931
 msgid "Apply a drop cap to the first paragraph of your post / page content."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1899
+#: ../class-fire-utils_settings_map.php:1940
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1900
+#: ../class-fire-utils_settings_map.php:1941
 msgid "(number of words)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1910
+#: ../class-fire-utils_settings_map.php:1951
 msgid "Drop cap style"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1914
+#: ../class-fire-utils_settings_map.php:1955
 #, fuzzy
 msgid "Skin color with shadow"
 msgstr "提示圖示顏色"
 
-#: ../class-fire-utils_settings_map.php:1915
+#: ../class-fire-utils_settings_map.php:1956
 #, fuzzy
 msgid "Simple black"
 msgstr "黑色"
 
-#: ../class-fire-utils_settings_map.php:1921
+#: ../class-fire-utils_settings_map.php:1962
 msgid "Enable drop caps in posts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1923
+#: ../class-fire-utils_settings_map.php:1964
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1930
+#: ../class-fire-utils_settings_map.php:1971
 #, fuzzy
 msgid "Enable drop caps in pages"
 msgstr "在頁面上啟用評論功能"
 
-#: ../class-fire-utils_settings_map.php:1932
+#: ../class-fire-utils_settings_map.php:1973
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1942
+#: ../class-fire-utils_settings_map.php:1983
 #, fuzzy
 msgid "Comments bubbles"
 msgstr "評論"
 
-#: ../class-fire-utils_settings_map.php:1944
+#: ../class-fire-utils_settings_map.php:1985
 #, fuzzy
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr "在單篇文章標題旁顯示文章圖示"
 
-#: ../class-fire-utils_settings_map.php:1953
+#: ../class-fire-utils_settings_map.php:1994
 #, fuzzy
 msgid "Comments bubble shape"
 msgstr "評論"
 
-#: ../class-fire-utils_settings_map.php:1957
+#: ../class-fire-utils_settings_map.php:1998
 msgid "Small bubbles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1958
+#: ../class-fire-utils_settings_map.php:1999
 msgid "Large bubbles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1966
-#: ../class-fire-utils_settings_map.php:1979
+#: ../class-fire-utils_settings_map.php:2007
+#: ../class-fire-utils_settings_map.php:2020
 #, fuzzy
 msgid "Comments bubble color"
 msgstr "評論已經關閉"
 
-#: ../class-fire-utils_settings_map.php:1970
+#: ../class-fire-utils_settings_map.php:2011
 #, fuzzy
 msgid "Skin color"
 msgstr "提示圖示顏色"
 
-#: ../class-fire-utils_settings_map.php:1971
+#: ../class-fire-utils_settings_map.php:2012
 #, fuzzy
 msgid "Custom"
 msgstr "個性化定制 CSS"
 
-#: ../class-fire-utils_settings_map.php:1991
+#: ../class-fire-utils_settings_map.php:2032
 #, fuzzy
 msgid "Other comments settings"
 msgstr "配置評論選項"
 
-#: ../class-fire-utils_settings_map.php:1997
+#: ../class-fire-utils_settings_map.php:2038
 #, fuzzy
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
@@ -1685,54 +1708,95 @@ msgstr ""
 "此項將在頁面上啟用評論功能。您可以在頁面清單屏的編輯模式上單獨為某個頁面停用"
 "評論功能。"
 
-#: ../class-fire-utils_settings_map.php:1998
+#: ../class-fire-utils_settings_map.php:2039
 #, fuzzy
-msgid "Change other comments settings in the"
+msgid "You can also change other comments settings in :"
 msgstr "配置評論選項"
 
-#: ../class-fire-utils_settings_map.php:2000
+#: ../class-fire-utils_settings_map.php:2041
+#, fuzzy
+msgid "the discussion settings page."
+msgstr "標題圖片設置"
+
+#: ../class-fire-utils_settings_map.php:2047
+#, fuzzy
+msgid "Enable comments on posts"
+msgstr "在頁面上啟用評論功能"
+
+#: ../class-fire-utils_settings_map.php:2052
+#, fuzzy
+msgid ""
+"If checked, this option enables comments on all types of single posts. You "
+"can disable comments for a single post in quick edit mode from the"
+msgstr ""
+"此項將在頁面上啟用評論功能。您可以在頁面清單屏的編輯模式上單獨為某個頁面停用"
+"評論功能。"
+
+#: ../class-fire-utils_settings_map.php:2054
+#, fuzzy
+msgid "post screen"
+msgstr "個性定制螢幕"
+
+#: ../class-fire-utils_settings_map.php:2055
+#, fuzzy
+msgid "You can also change other comments settings in the"
+msgstr "配置評論選項"
+
+#: ../class-fire-utils_settings_map.php:2057
 #, fuzzy
 msgid "discussion settings page."
 msgstr "標題圖片設置"
 
-#: ../class-fire-utils_settings_map.php:2008
+#: ../class-fire-utils_settings_map.php:2063
+#, fuzzy
+msgid "Display the comment list"
+msgstr "顯示上方邊框"
+
+#: ../class-fire-utils_settings_map.php:2067
+msgid ""
+"By default, WordPress displays the past comments, even if comments are "
+"disabled in posts or pages. Unchecking this option allows you to not display "
+"this comment history."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2074
 msgid "Display a back to top arrow on scroll"
 msgstr "在滑鼠滾動頁面時顯示一個回到頂部的向上按鈕"
 
-#: ../class-fire-utils_settings_map.php:2055
+#: ../class-fire-utils_settings_map.php:2121
 #, fuzzy
 msgid "Social link title in sidebars"
 msgstr "在左邊欄顯示社會化連結"
 
-#: ../class-fire-utils_settings_map.php:2061
+#: ../class-fire-utils_settings_map.php:2127
 msgid "Will be hidden if empty"
 msgstr "如果沒有內容將會被隱藏"
 
-#: ../class-fire-utils_settings_map.php:2089
+#: ../class-fire-utils_settings_map.php:2155
 #, fuzzy
 msgid "Load images on scroll"
 msgstr "圖片縮放時自動調整大小"
 
-#: ../class-fire-utils_settings_map.php:2094
+#: ../class-fire-utils_settings_map.php:2160
 msgid ""
 "Check this option to delay the loading of non visible images. Images below "
 "the viewport will be loaded dynamically on scroll. This can boost "
 "performances by reducing the weight of long web pages with images."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2103
+#: ../class-fire-utils_settings_map.php:2169
 msgid "Set slider's height in pixels"
 msgstr "以圖元為單位設置幻燈片的高度"
 
-#: ../class-fire-utils_settings_map.php:2113
+#: ../class-fire-utils_settings_map.php:2179
 msgid "Apply this height to all sliders"
 msgstr "應用此高度到所有幻燈片中"
 
-#: ../class-fire-utils_settings_map.php:2121
+#: ../class-fire-utils_settings_map.php:2187
 msgid "Replace the default image slider's height"
 msgstr "替換預設幻燈片圖片的高度"
 
-#: ../class-fire-utils_settings_map.php:2127
+#: ../class-fire-utils_settings_map.php:2193
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1740,108 +1804,118 @@ msgstr ""
 "選中此項後，您上傳的幻燈片圖片尺寸將被重置為您設定的高度，這樣做的目的是加快"
 "整體頁面載入速度。"
 
-#: ../class-fire-utils_settings_map.php:2128
+#: ../class-fire-utils_settings_map.php:2194
 msgid "You might want to regenerate your thumbnails."
 msgstr "您可能需要重新生成您的縮略圖。"
 
-#: ../class-fire-utils_settings_map.php:2149
+#: ../class-fire-utils_settings_map.php:2215
 #, fuzzy
 msgid "Post List Design"
 msgstr "全域設置"
 
-#: ../class-fire-utils_settings_map.php:2150
+#: ../class-fire-utils_settings_map.php:2216
 msgid "Select a Layout"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2154
+#: ../class-fire-utils_settings_map.php:2220
 #, fuzzy
 msgid "Alternate thumbnails layout"
 msgstr "另外的縮略圖或內容"
 
-#: ../class-fire-utils_settings_map.php:2155
+#: ../class-fire-utils_settings_map.php:2221
 #, fuzzy
 msgid "Grid layout"
 msgstr "選擇內容和樣式"
 
-#: ../class-fire-utils_settings_map.php:2158
+#: ../class-fire-utils_settings_map.php:2224
 msgid ""
 "When you select the grid Layout, the post content is limited to the excerpt."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2163
+#: ../class-fire-utils_settings_map.php:2229
 #, fuzzy
 msgid "Number of columns per row"
 msgstr "配置評論選項"
 
-#: ../class-fire-utils_settings_map.php:2167
+#: ../class-fire-utils_settings_map.php:2233
 msgid "1"
 msgstr "1"
 
-#: ../class-fire-utils_settings_map.php:2168
+#: ../class-fire-utils_settings_map.php:2234
 msgid "2"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2169
+#: ../class-fire-utils_settings_map.php:2235
 msgid "3"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2170
+#: ../class-fire-utils_settings_map.php:2236
 msgid "4"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2177
-msgid "Expand the featured posts (for home and blog page only)"
+#: ../class-fire-utils_settings_map.php:2239
+msgid ""
+"Note : columns are limited to 3 for single sidebar layouts and to 2 for "
+"double sidebar layouts."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2185
+#: ../class-fire-utils_settings_map.php:2244
+msgid "Expand the last sticky post (for home and blog page only)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2252
 msgid "Apply the grid layout to Home/Blog"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2193
+#: ../class-fire-utils_settings_map.php:2260
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2201
+#: ../class-fire-utils_settings_map.php:2268
 msgid "Apply the grid layout to Search results"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2205
+#: ../class-fire-utils_settings_map.php:2272
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2210
+#: ../class-fire-utils_settings_map.php:2277
 msgid "Apply a shadow to each grid items"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2219
+#: ../class-fire-utils_settings_map.php:2286
 msgid "Apply a colored bottom border to each grid items"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2228
+#: ../class-fire-utils_settings_map.php:2295
 #, fuzzy
 msgid "Display post format icons in the background"
 msgstr "在首頁顯示文章屬性"
 
-#: ../class-fire-utils_settings_map.php:2238
+#: ../class-fire-utils_settings_map.php:2305
+msgid "Max. length for post titles (in words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2316
 msgid "Thumbnails max height for the grid layout"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2239
+#: ../class-fire-utils_settings_map.php:2317
 #, fuzzy
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr "以圖元為單位設置縮略圖的最大高度"
 
-#: ../admin/class-admin-customize.php:364
+#: ../admin/class-admin-customize.php:368
 #, fuzzy
 msgid "Hi! This is"
 msgstr "編輯此幻燈片"
 
-#: ../admin/class-admin-customize.php:365
+#: ../admin/class-admin-customize.php:369
 #, fuzzy
 msgid ", developer of the Customizr theme"
 msgstr "Customizr 主題的高級設置"
 
-#: ../admin/class-admin-customize.php:368
+#: ../admin/class-admin-customize.php:372
 #, fuzzy
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
@@ -1851,12 +1925,12 @@ msgstr ""
 "<strong> 為幫助您建設網站，我們竭盡全力開發 Customizr ，使它接近完美！</"
 "strong><br/>請同我們一道維繫該項目。你可以選擇給我們捐助 $20，$50，或者$100。"
 
-#: ../admin/class-admin-customize.php:372
+#: ../admin/class-admin-customize.php:376
 #, fuzzy
 msgid "Make a donation for Customizr"
 msgstr "為 Customizr 選擇一款皮膚"
 
-#: ../admin/class-admin-customize.php:375
+#: ../admin/class-admin-customize.php:379
 msgid ""
 "Once clicked the 'Hide forever' button, this donation block will not be "
 "displayed anymore.<br/>Either you are using Customizr for personal or "
@@ -1865,33 +1939,65 @@ msgid ""
 "Live long and prosper with Customizr!</strong>"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:376
+#: ../admin/class-admin-customize.php:380
 msgid "Hide forever"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:377
+#: ../admin/class-admin-customize.php:381
 msgid "Let me think twice"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:386
+#: ../admin/class-admin-customize.php:390
 msgid "Need more customizations options and premium support ?"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:388
-#: ../admin/class-admin-customize.php:400
-#: ../admin/class-admin-customize.php:412
+#: ../admin/class-admin-customize.php:392
+#: ../admin/class-admin-customize.php:404
+#: ../admin/class-admin-customize.php:416
+#: ../admin/class-admin-customize.php:428
 #, fuzzy
 msgid "Discover Customizr Pro"
 msgstr "Customizr 發現之旅：快速介紹視頻"
 
-#: ../admin/class-admin-customize.php:398
+#: ../admin/class-admin-customize.php:402
 msgid ""
 "Need more control on your fonts ? Style any text in live preview ( size, "
 "color, font family, effect, ...) with the Customizr Pro theme."
 msgstr ""
 
-#: ../admin/class-admin-customize.php:410
+#: ../admin/class-admin-customize.php:414
 msgid "Add unlimited featured pages with Customizr Pro"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:426
+msgid "Customize your footer credits with Customizr Pro"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:437
+msgid "If you like"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:438
+#, fuzzy
+msgid "the Customizr theme"
+msgstr "Customizr 主題的高級設置"
+
+#: ../admin/class-admin-customize.php:438
+#, fuzzy
+msgid "the Customizr pro theme"
+msgstr "Customizr 主題的高級設置"
+
+#: ../admin/class-admin-customize.php:439
+msgid "we would love to receive a"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:441
+#, fuzzy
+msgid "Review the Customizr theme"
+msgstr "Customizr 主題的高級設置"
+
+#: ../admin/class-admin-customize.php:443
+msgid "rating. Thanks :) !"
 msgstr ""
 
 #: ../admin/class-admin-meta_boxes.php:87
@@ -2016,7 +2122,7 @@ msgstr "此滑塊將被永久刪除（包含在其中的圖片，宣傳語以及
 msgid "Delete slider"
 msgstr "刪除滑塊"
 
-#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:122
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:82
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -2104,10 +2210,10 @@ msgstr "按鈕連結"
 #: ../parts/class-content-breadcrumb.php:678
 #: ../parts/class-content-breadcrumb.php:693
 #: ../parts/class-content-breadcrumb.php:721
-#: ../parts/class-content-comments.php:179
+#: ../parts/class-content-comments.php:195
 #: ../parts/class-content-featured_pages.php:214
-#: ../parts/class-content-headings.php:204
-#: ../parts/class-content-slider.php:359
+#: ../parts/class-content-headings.php:238
+#: ../parts/class-content-slider.php:347
 msgid "Edit"
 msgstr "編輯"
 
@@ -2126,17 +2232,27 @@ msgstr "編輯此幻燈片"
 msgid "Current slide"
 msgstr "當前幻燈片"
 
-#: ../admin/class-controls.php:122
+#: ../admin/class-controls.php:84
 #, fuzzy
 msgid "Create a slider"
 msgstr "創建美麗的滑塊"
 
-#: ../admin/class-controls.php:284
+#: ../admin/class-controls.php:85
+#, fuzzy
+msgid "Need help to create a slider ?"
+msgstr "創建美麗的滑塊"
+
+#: ../admin/class-controls.php:87
+#, fuzzy
+msgid "Check the documentation"
+msgstr "閱讀幫助文檔"
+
+#: ../admin/class-controls.php:315
 #, fuzzy
 msgid "Upload"
 msgstr "滑塊圖片"
 
-#: ../admin/class-controls.php:285
+#: ../admin/class-controls.php:316
 #, fuzzy
 msgid "Remove"
 msgstr "滑塊圖片"
@@ -2323,8 +2439,8 @@ msgid ""
 msgstr ""
 "Customizr's 主題的擴展外掛程式是從您 WordPress 管理員介面中安裝和升級的，就像"
 "其他的 WordPress 外掛程式一樣，這些主題外掛程式也是有些好的説明文檔可供外掛程"
-"式，並且可以輕鬆增加他們的用途，因為他們在 presscustomizr.com 網站上有一個專門的"
-"用戶使用支持論壇。"
+"式，並且可以輕鬆增加他們的用途，因為他們在 presscustomizr.com 網站上有一個專"
+"門的用戶使用支持論壇。"
 
 #: ../admin/class-fire-admin_init.php:278
 #: ../admin/class-fire-admin_page.php:179
@@ -2483,66 +2599,66 @@ msgstr "分開"
 msgid "Merge"
 msgstr "合併"
 
-#: ../parts/class-content-comments.php:76
+#: ../parts/class-content-comments.php:92
 msgid "One thought on"
 msgstr ""
 
-#: ../parts/class-content-comments.php:78
+#: ../parts/class-content-comments.php:94
 msgid "thoughts on"
 msgstr ""
 
-#: ../parts/class-content-comments.php:138
+#: ../parts/class-content-comments.php:154
 msgid "Pingback:"
 msgstr "廣播:"
 
-#: ../parts/class-content-comments.php:138
+#: ../parts/class-content-comments.php:154
 msgid "(Edit)"
 msgstr "（編輯）"
 
-#: ../parts/class-content-comments.php:165
+#: ../parts/class-content-comments.php:181
 msgid "Reply"
 msgstr "回復"
 
-#: ../parts/class-content-comments.php:178
+#: ../parts/class-content-comments.php:194
 msgid "Post author"
 msgstr "文章作者"
 
-#: ../parts/class-content-comments.php:185
+#: ../parts/class-content-comments.php:201
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s 於 %2$s"
 
-#: ../parts/class-content-comments.php:190
+#: ../parts/class-content-comments.php:206
 msgid "Your comment is awaiting moderation."
 msgstr "您的評論正在等待審核"
 
-#: ../parts/class-content-comments.php:225
+#: ../parts/class-content-comments.php:241
 msgid "Comment navigation"
 msgstr "評論導航"
 
-#: ../parts/class-content-comments.php:231
+#: ../parts/class-content-comments.php:247
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> 舊評論"
 
-#: ../parts/class-content-comments.php:239
+#: ../parts/class-content-comments.php:255
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "新評論 <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-comments.php:271
+#: ../parts/class-content-comments.php:287
 msgid "Comments are closed."
 msgstr "評論已經關閉"
 
-#: ../parts/class-content-comments.php:286
+#: ../parts/class-content-comments.php:322
 #, fuzzy
 msgid "Leave a comment"
 msgstr "發表評論"
 
-#: ../parts/class-content-comments.php:320
+#: ../parts/class-content-comments.php:344
 #, fuzzy
 msgid "Comment(s) on"
 msgstr "評論開啟"
 
-#: ../parts/class-content-comments.php:339
+#: ../parts/class-content-comments.php:363
 #, fuzzy
 msgid "comment"
 msgstr "評論"
@@ -2569,91 +2685,74 @@ msgid ""
 msgstr ""
 "特色頁面文字：使用頁面摘錄或者在Customizr螢幕%s上設定您自己的個性化文字"
 
-#: ../parts/class-content-gallery.php:187
+#: ../parts/class-content-gallery.php:193
 msgid "Missing Attachment"
 msgstr "附件丟失"
 
-#: ../parts/class-content-headings.php:169
-#: ../parts/class-content-headings.php:174
+#: ../parts/class-content-headings.php:182
+#: ../parts/class-content-headings.php:187
 msgid "{no title} Read the post &raquo;"
 msgstr "{no title} 閱讀此文章 &raquo;"
 
-#: ../parts/class-content-headings.php:173
+#: ../parts/class-content-headings.php:186
 #, php-format
 msgid "Permalink to %s"
 msgstr "永久連結 %s"
 
-#: ../parts/class-content-headings.php:280
+#: ../parts/class-content-headings.php:315
 #, fuzzy
 msgid "Ooops, page not found"
 msgstr "唉，沒找到頁面"
 
-#: ../parts/class-content-headings.php:291
+#: ../parts/class-content-headings.php:326
 msgid "No"
 msgstr "沒有"
 
-#: ../parts/class-content-headings.php:292
-#, fuzzy
-msgid "Search Results for :"
-msgstr "%1s搜尋結果: %2s"
-
-#: ../parts/class-content-headings.php:307
-msgid "Author Archives :"
-msgstr "作者歸檔:"
-
-#: ../parts/class-content-headings.php:321 ../parts/class-content-post.php:131
+#: ../parts/class-content-headings.php:356 ../parts/class-content-post.php:134
 #, php-format
 msgid "About %s"
 msgstr "關於 %s"
 
-#: ../parts/class-content-headings.php:334
-msgid "Category Archives :"
-msgstr "分類目錄:"
-
-#: ../parts/class-content-headings.php:350
-msgid "Tag Archives :"
-msgstr "標籤歸檔:"
-
-#: ../parts/class-content-headings.php:363
+#: ../parts/class-content-headings.php:398
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "每日歸檔: %s"
 
-#: ../parts/class-content-headings.php:363
+#: ../parts/class-content-headings.php:398
 msgid "Archives"
 msgstr "歸檔"
 
-#: ../parts/class-content-headings.php:364
+#: ../parts/class-content-headings.php:399
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "每月歸檔: %ss"
 
-#: ../parts/class-content-headings.php:365
+#: ../parts/class-content-headings.php:400
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "每年歸檔: %s"
 
-#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:93
-#: ../parts/class-content-post_list.php:230
+#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:96
+#: ../parts/class-content-post_list.php:239
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "繼續閱讀 <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:94
-#: ../parts/class-content-post_list.php:232
+#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:97
+#: ../parts/class-content-post_list.php:241
 msgid "Pages:"
 msgstr "頁面"
 
-#: ../parts/class-content-post.php:135
+#: ../parts/class-content-post.php:138
 #, php-format
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "參看所有文章 %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-post_list_grid.php:637
+#: ../parts/class-content-post_list_grid.php:920
 #, fuzzy
 msgid "More grid design options"
 msgstr "特色頁面"
 
-#: ../parts/class-content-post_list_grid.php:646
+#: ../parts/class-content-post_list_grid.php:929
 #, fuzzy
 msgid "Jump to the blog design options"
 msgstr "配置樣式選項"
@@ -2676,7 +2775,7 @@ msgid "Link to full-size image"
 msgstr "連結到滿幅圖片"
 
 #: ../parts/class-content-post_metas.php:196
-#: ../parts/class-content-post_metas.php:506
+#: ../parts/class-content-post_metas.php:512
 msgid "in"
 msgstr "在"
 
@@ -2748,20 +2847,20 @@ msgstr ""
 msgid "View all posts in %s"
 msgstr "參看所有文章 %s"
 
-#: ../parts/class-content-post_metas.php:449
+#: ../parts/class-content-post_metas.php:455
 #, php-format
 msgid "View all posts by %s"
 msgstr "參看所有文章 %s"
 
-#: ../parts/class-content-post_metas.php:469
+#: ../parts/class-content-post_metas.php:475
 msgid "Open"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:507
+#: ../parts/class-content-post_metas.php:513
 msgid "tagged"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:530
+#: ../parts/class-content-post_metas.php:536
 msgid "by"
 msgstr ""
 
@@ -2778,19 +2877,95 @@ msgstr "<span class=\"meta-nav\">&larr;</span> 舊文章"
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "新文章 <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-footer-footer_main.php:181
+#: ../parts/class-content-sidebar.php:128
+#: ../parts/class-footer-footer_main.php:102
+msgid "This block is visible for admin users only."
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:132
+#, fuzzy
+msgid "The sidebar : "
+msgstr "左邊欄"
+
+#: ../parts/class-content-sidebar.php:134
+#, fuzzy
+msgid "has no widgets"
+msgstr "Gérer les widgets"
+
+#: ../parts/class-content-sidebar.php:138
+msgid "You can add widgets to this sidebar in :"
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:140
+#: ../parts/class-footer-footer_main.php:112
+#, fuzzy
+msgid "Add widgets"
+msgstr "添加一個滑塊"
+
+#: ../parts/class-content-sidebar.php:141
+#: ../parts/class-footer-footer_main.php:113
+msgid "appearance > widgets"
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:145
+msgid "You can also remove this sidebar by changing the current page layout."
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:147
+#, fuzzy
+msgid "Changing the layout in the Customizr theme"
+msgstr "Customizr 主題的內容設置"
+
+#: ../parts/class-content-sidebar.php:148
+#, fuzzy
+msgid "See the theme documentation."
+msgstr "閱讀幫助文檔"
+
+#: ../parts/class-content-sidebar.php:152
+#: ../parts/class-footer-footer_main.php:117
+msgid "dismiss notice"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:106
+msgid "The footer has no widgets"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:110
+msgid "You can add widgets to the footer in :"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:221
 msgid "Back to top"
 msgstr "回到頂端"
 
-#: ../parts/class-header-header_main.php:256
+#: ../parts/class-header-header_main.php:285
 #, fuzzy
 msgid "Back Home"
 msgstr "首頁"
 
-#: ../parts/class-header-menu.php:129
+#: ../parts/class-header-menu.php:130
 #, fuzzy
 msgid "Add a menu"
 msgstr "添加一個功能表"
+
+#, fuzzy
+#~ msgid "Style your WordPress site live!"
+#~ msgstr "個性定制您的網站並同時查看效果"
+
+#, fuzzy
+#~ msgid "Just try it!"
+#~ msgstr "開始動手做吧！"
+
+#~ msgid "Create beautiful sliders"
+#~ msgstr "創建美麗的滑塊"
+
+#~ msgid ""
+#~ "Customizr comes with a cool slider generator : add a slider to any post "
+#~ "or page!"
+#~ msgstr "Customizr 中包含一個很酷的滑塊生成器：添加滑塊到任何文章和頁面！"
+
+#~ msgid "Discover the features"
+#~ msgstr "發現特色功能"
 
 #, fuzzy
 #~ msgid "Enable/disable retina support"
@@ -3118,10 +3293,6 @@ msgstr "添加一個功能表"
 #~ msgstr "評論"
 
 #, fuzzy
-#~ msgid "Categories"
-#~ msgstr "分類目錄: %s"
-
-#, fuzzy
 #~ msgid "Managing Pages"
 #~ msgstr "Gérer les widgets"
 
@@ -3412,10 +3583,6 @@ msgstr "添加一個功能表"
 #, fuzzy
 #~ msgid "Search Users"
 #~ msgstr "Rechercher dans les diapositives"
-
-#, fuzzy
-#~ msgid "Missing Widgets"
-#~ msgstr "Gérer les widgets"
 
 #, fuzzy
 #~ msgid "Inactive Widgets"
@@ -4561,10 +4728,6 @@ msgstr "添加一個功能表"
 #, fuzzy
 #~ msgid "Add an Image"
 #~ msgstr "添加一個功能表"
-
-#, fuzzy
-#~ msgid "Add Video"
-#~ msgstr "添加一個滑塊"
 
 #, fuzzy
 #~ msgid "Delete Gallery"

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.16\n"
-"POT-Creation-Date: 2015-02-27 19:17+0100\n"
-"PO-Revision-Date: 2015-02-27 19:18+0100\n"
-"Last-Translator: Nicolas <contact@presscustomizr.com>\n"
+"POT-Creation-Date: 2015-04-09 15:47+0100\n"
+"PO-Revision-Date: 2015-04-09 15:47+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Jaume Albaigès <jaumealbaiges@hotmail.com>\n"
 "Language: Català\n"
 "MIME-Version: 1.0\n"
@@ -100,167 +100,167 @@ msgstr "Verd turquesa"
 msgid "Light blue "
 msgstr "Blau cel"
 
-#: ../class-fire-init.php:128
+#: ../class-fire-init.php:127
 msgid "Google fonts pairs"
 msgstr ""
 
-#: ../class-fire-init.php:148
+#: ../class-fire-init.php:147
 msgid "Web safe fonts pairs"
 msgstr ""
 
-#: ../class-fire-init.php:157
+#: ../class-fire-init.php:156
 msgid "Single fonts"
 msgstr ""
 
-#: ../class-fire-init.php:195
+#: ../class-fire-init.php:194
 msgid "Subscribe to my rss feed"
 msgstr "Subscriu-te al meu canal RSS"
 
-#: ../class-fire-init.php:196
+#: ../class-fire-init.php:195
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "Canal RSS (el valor per defecte &eacute;s el canal wordpress)"
 
-#: ../class-fire-init.php:200
+#: ../class-fire-init.php:199
 msgid "Follow me on Twitter"
 msgstr "Segueix-me a Twitter"
 
-#: ../class-fire-init.php:201
+#: ../class-fire-init.php:200
 msgid "Twitter profile url"
 msgstr "Url del perfil de Twitter"
 
-#: ../class-fire-init.php:205
+#: ../class-fire-init.php:204
 msgid "Follow me on Facebook"
 msgstr "Segueix-me a Facebook"
 
-#: ../class-fire-init.php:206
+#: ../class-fire-init.php:205
 msgid "Facebook profile url"
 msgstr "Url del perfil de Facebook"
 
-#: ../class-fire-init.php:210
+#: ../class-fire-init.php:209
 msgid "Follow me on Google+"
 msgstr "Segueix-me a Google+"
 
-#: ../class-fire-init.php:211
+#: ../class-fire-init.php:210
 msgid "Google+ profile url"
 msgstr "Url del perfil de Google+"
 
-#: ../class-fire-init.php:215
+#: ../class-fire-init.php:214
 msgid "Follow me on Instagram"
 msgstr "Segueix-me a Instagram"
 
-#: ../class-fire-init.php:216
+#: ../class-fire-init.php:215
 msgid "Instagram profile url"
 msgstr "Url del perfil d'Instagram"
 
-#: ../class-fire-init.php:220
+#: ../class-fire-init.php:219
 msgid "Follow me on Tumblr"
 msgstr "Segueix-me a Tumblr"
 
-#: ../class-fire-init.php:221
+#: ../class-fire-init.php:220
 msgid "Tumblr url"
 msgstr "Url de Tumblr"
 
-#: ../class-fire-init.php:225
+#: ../class-fire-init.php:224
 msgid "Follow me on Flickr"
 msgstr "Segueix-me a Flickr"
 
-#: ../class-fire-init.php:226
+#: ../class-fire-init.php:225
 msgid "Flickr url"
 msgstr "Url de Flickr"
 
-#: ../class-fire-init.php:230
+#: ../class-fire-init.php:229
 msgid "Follow me on WordPress"
 msgstr "Segueix-me a Wordpress"
 
-#: ../class-fire-init.php:231
+#: ../class-fire-init.php:230
 msgid "WordPress profile url"
 msgstr "Url del perfil de WordPress"
 
-#: ../class-fire-init.php:235
+#: ../class-fire-init.php:234
 msgid "Follow me on Youtube"
 msgstr "Segueix-me a Youtube"
 
-#: ../class-fire-init.php:236
+#: ../class-fire-init.php:235
 msgid "Youtube profile url"
 msgstr "Url del perfil de Youtube"
 
-#: ../class-fire-init.php:240
+#: ../class-fire-init.php:239
 msgid "Pin me on Pinterest"
 msgstr "Crea un pin a Pinterest"
 
-#: ../class-fire-init.php:241
+#: ../class-fire-init.php:240
 msgid "Pinterest profile url"
 msgstr "Url del perfil de Pinterest"
 
-#: ../class-fire-init.php:245
+#: ../class-fire-init.php:244
 msgid "Follow me on Github"
 msgstr "Segueix-me a Github"
 
-#: ../class-fire-init.php:246
+#: ../class-fire-init.php:245
 msgid "Github profile url"
 msgstr "Url del perfil de Github"
 
-#: ../class-fire-init.php:250
+#: ../class-fire-init.php:249
 msgid "Follow me on Dribbble"
 msgstr "Segueix-me a Dribble"
 
-#: ../class-fire-init.php:251
+#: ../class-fire-init.php:250
 msgid "Dribbble profile url"
 msgstr "Url del perfil de Dribbble"
 
-#: ../class-fire-init.php:255
+#: ../class-fire-init.php:254
 msgid "Follow me on LinkedIn"
 msgstr "Segueix-me a LinkedIn"
 
-#: ../class-fire-init.php:256
+#: ../class-fire-init.php:255
 msgid "LinkedIn profile url"
 msgstr "Url del perfil de LinkedIn"
 
-#: ../class-fire-init.php:265
+#: ../class-fire-init.php:264
 msgid "Right Sidebar"
 msgstr "Barra lateral dreta"
 
-#: ../class-fire-init.php:266 ../class-fire-init.php:270
+#: ../class-fire-init.php:265 ../class-fire-init.php:269
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "Apareix a entrades, p&agrave;ginas, arxius i resultats de cerca"
 
-#: ../class-fire-init.php:269
+#: ../class-fire-init.php:268
 msgid "Left Sidebar"
 msgstr "Barra lateral esquerra"
 
-#: ../class-fire-init.php:277
+#: ../class-fire-init.php:276
 msgid "Footer Widget Area One"
 msgstr "&Agrave;rea de widgets 1 del peu de p&agrave;gina"
 
-#: ../class-fire-init.php:278 ../class-fire-init.php:282
-#: ../class-fire-init.php:286
+#: ../class-fire-init.php:277 ../class-fire-init.php:281
+#: ../class-fire-init.php:285
 msgid "Just use it as you want !"
 msgstr "Fes-lo servir com vulguis!"
 
-#: ../class-fire-init.php:281
+#: ../class-fire-init.php:280
 msgid "Footer Widget Area Two"
 msgstr "&Agrave;rea de widgets 2 del peu de p&agrave;gina"
 
-#: ../class-fire-init.php:285
+#: ../class-fire-init.php:284
 msgid "Footer Widget Area Three"
 msgstr "&Agrave;rea de widgets 3 del peu de p&agrave;gina"
 
-#: ../class-fire-init.php:303
+#: ../class-fire-init.php:302
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr "Dir la veritat en temps d'engany universal és un acte revolucionari."
 
-#: ../class-fire-init.php:304
+#: ../class-fire-init.php:303
 msgid "George Orwell"
 msgstr "George Orwell"
 
-#: ../class-fire-init.php:305
+#: ../class-fire-init.php:304
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
 "Ens sap greu però la pàgina sol·licitada no s'ha trobat. Proveu una nova "
 "cerca a la casella de sota."
 
-#: ../class-fire-init.php:310
+#: ../class-fire-init.php:309
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
@@ -268,11 +268,11 @@ msgstr ""
 "L'èxit és la capacitat d'anar de fracàs en fracàs sense perdre "
 "l'entusiasme..."
 
-#: ../class-fire-init.php:311
+#: ../class-fire-init.php:310
 msgid "Sir Winston Churchill"
 msgstr "Sir Winston Churchill"
 
-#: ../class-fire-init.php:312
+#: ../class-fire-init.php:311
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
@@ -280,15 +280,11 @@ msgstr ""
 "Ens sap greu, però no hi ha resultats per a la vostra cerca. Si us plau, "
 "proveu-ho una altra vegada amb paraules clau diferents."
 
-#: ../class-fire-init.php:327
+#: ../class-fire-init.php:326
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr és un tema adaptable net."
 
-#: ../class-fire-init.php:332 ../class-fire-init.php:341
-msgid "Style your WordPress site live!"
-msgstr "Estilitzeu el vostre lloc WordPress en viu! "
-
-#: ../class-fire-init.php:333
+#: ../class-fire-init.php:340
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -296,39 +292,19 @@ msgstr ""
 "Moltes de les opcions de disposició i disseny estan disponibles a la "
 "pantalla de personalització de Wordpress: vegeu els vostres canvis en viu!"
 
-#: ../class-fire-init.php:334
-msgid "Just try it!"
-msgstr "Proveu-lo!"
-
-#: ../class-fire-init.php:346 ../class-fire-init.php:355
-msgid "Create beautiful sliders"
-msgstr "Creeu sliders bonics"
-
-#: ../class-fire-init.php:347
-msgid ""
-"Customizr comes with a cool slider generator : add a slider to any post or "
-"page!"
-msgstr ""
-"Customizr inclou un generador d'sliders: afegiu un slider a qualsevol "
-"entrada o pàgina!"
-
-#: ../class-fire-init.php:348
-msgid "Discover the features"
-msgstr "Descobriu-ne la funcionalitat"
-
-#: ../class-fire-init.php:495
+#: ../class-fire-init.php:480
 msgid "Main Menu"
 msgstr "Men&uacute; Principal"
 
-#: ../class-fire-init.php:896
+#: ../class-fire-init.php:904
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../class-fire-init.php:899
+#: ../class-fire-init.php:907
 msgid "Need help with Customizr? Click here!"
 msgstr "Necessiteu ajuda amb Customizr? Feu clic aquí!"
 
-#: ../class-fire-utils.php:476
+#: ../class-fire-utils.php:465
 #, php-format
 msgid "Page %s"
 msgstr "P&agrave;gina %s"
@@ -477,7 +453,7 @@ msgstr "Configura les opcions dels comentaris"
 
 #: ../class-fire-utils_settings_map.php:320
 #: ../class-fire-utils_settings_map.php:1031
-#: ../class-fire-utils_settings_map.php:2054
+#: ../class-fire-utils_settings_map.php:2120
 msgid "Social links"
 msgstr "Enllaços socials"
 
@@ -551,12 +527,12 @@ msgid "Choose a predefined skin"
 msgstr "Escull un estil predefinit"
 
 #: ../class-fire-utils_settings_map.php:414
-#: ../class-fire-utils_settings_map.php:2082
+#: ../class-fire-utils_settings_map.php:2148
 msgid "Performance : use the minified CSS stylesheet"
 msgstr "Rendiment: fes servir el full d'estils CSS minimitzat"
 
 #: ../class-fire-utils_settings_map.php:417
-#: ../class-fire-utils_settings_map.php:2085
+#: ../class-fire-utils_settings_map.php:2151
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
@@ -760,7 +736,7 @@ msgid "Choose the pages default layout"
 msgstr "Seleccioneu la disposici&oacute; per defecte de les p&agrave;gines"
 
 #: ../class-fire-utils_settings_map.php:706
-#: ../class-fire-utils_settings_map.php:1992
+#: ../class-fire-utils_settings_map.php:2033
 msgid "Enable comments on pages"
 msgstr "Permet els comentaris a les p&agrave;gines"
 
@@ -774,22 +750,22 @@ msgstr ""
 "d'edici&oacute; r&agrave;pida de la pantalla de llista de p&agrave;gines."
 
 #: ../class-fire-utils_settings_map.php:724
-#: ../class-fire-utils_settings_map.php:2018
+#: ../class-fire-utils_settings_map.php:2084
 msgid "Social links in header"
 msgstr "Enllaços socials a la capçalera"
 
 #: ../class-fire-utils_settings_map.php:733
-#: ../class-fire-utils_settings_map.php:2036
+#: ../class-fire-utils_settings_map.php:2102
 msgid "Social links in left sidebar"
 msgstr "Enllaços socials a la barra lateral esquerra"
 
 #: ../class-fire-utils_settings_map.php:742
-#: ../class-fire-utils_settings_map.php:2046
+#: ../class-fire-utils_settings_map.php:2112
 msgid "Social links in right sidebar"
 msgstr "Enllaços socials a la barra lateral dreta"
 
 #: ../class-fire-utils_settings_map.php:750
-#: ../class-fire-utils_settings_map.php:2027
+#: ../class-fire-utils_settings_map.php:2093
 msgid "Social links in footer"
 msgstr "Enllaços socials al peu de p&agrave;gina"
 
@@ -799,9 +775,11 @@ msgid "Lightbox effect on images"
 msgstr "Activa/desactiva l'efecte lightbox a les imatges"
 
 #: ../class-fire-utils_settings_map.php:774
+#, fuzzy
 msgid ""
-"If enabled, this option activate a popin window whith a zoom effect when an "
-"image is clicked. This will not apply to image gallery."
+"If enabled, this option activates a popin window whith a zoom effect when an "
+"image is clicked. Note : to enable this effect on the images of your pages "
+"and posts, images have to be linked to the Media File."
 msgstr ""
 "Si s'activa aquesta opci&oacute;, es mostra una finestra amb efecte zoom "
 "quan es fa clic a la imatge. Això no s'aplica a les galeries d'imatges."
@@ -874,8 +852,8 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:822
 msgid ""
-"This option dynamically centers your images on any devices vertically or "
-"horizontally (without stretching them) according to their initial dimensions."
+"This option dynamically centers your images on any devices, vertically or "
+"horizontally according to their initial aspect ratio."
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:835
@@ -903,14 +881,14 @@ msgid ""
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:868
-#: ../class-fire-utils_settings_map.php:2067
+#: ../class-fire-utils_settings_map.php:2133
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Afegiu el vostre CSS personalitzat aqu&iacute; i dissenyeu en viu! (usuaris "
 "avançats)"
 
 #: ../class-fire-utils_settings_map.php:872
-#: ../class-fire-utils_settings_map.php:2071
+#: ../class-fire-utils_settings_map.php:2137
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -919,12 +897,12 @@ msgstr ""
 "personalitzacions importants del CSS, modifiqueu l'arxiu style.css d'un"
 
 #: ../class-fire-utils_settings_map.php:873
-#: ../class-fire-utils_settings_map.php:2072
+#: ../class-fire-utils_settings_map.php:2138
 msgid "child theme."
 msgstr "tema fill."
 
 #: ../class-fire-utils_settings_map.php:874
-#: ../class-fire-utils_settings_map.php:2073
+#: ../class-fire-utils_settings_map.php:2139
 msgid "How to create and use a child theme ?"
 msgstr "Com es crea i es fa servir un tema fill?"
 
@@ -1536,7 +1514,7 @@ msgid "Rectangular with unblur effect on hover"
 msgstr "Rectangular amb efecte \"unblur\" al passar-hi per sobre"
 
 #: ../class-fire-utils_settings_map.php:1826
-#: ../class-fire-utils_settings_map.php:1875
+#: ../class-fire-utils_settings_map.php:1916
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Indica l'alçada màxima en píxels de la miniatura"
 
@@ -1565,118 +1543,162 @@ msgid "Alternate thumbnail/content"
 msgstr "Miniatura / contingut alternatiu"
 
 #: ../class-fire-utils_settings_map.php:1860
+#: ../parts/class-content-headings.php:369
+msgid "Category Archives :"
+msgstr "Arxius de la categoria:"
+
+#: ../class-fire-utils_settings_map.php:1861
+#, fuzzy
+msgid "Archive titles"
+msgstr "Arxiu"
+
+#: ../class-fire-utils_settings_map.php:1862
+#, fuzzy
+msgid "Category pages titles"
+msgstr "Després del títol"
+
+#: ../class-fire-utils_settings_map.php:1870
+#: ../parts/class-content-headings.php:385
+msgid "Tag Archives :"
+msgstr "Arxius de l'etiqueta:"
+
+#: ../class-fire-utils_settings_map.php:1871
+msgid "Tag pages titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1879
+#: ../parts/class-content-headings.php:342
+msgid "Author Archives :"
+msgstr "Arxius de l'autor:"
+
+#: ../class-fire-utils_settings_map.php:1880
+#, fuzzy
+msgid "Author pages titles"
+msgstr "Després del títol"
+
+#: ../class-fire-utils_settings_map.php:1888
+#: ../parts/class-content-headings.php:327
+msgid "Search Results for :"
+msgstr "Resultats de cerca per a:"
+
+#: ../class-fire-utils_settings_map.php:1889
+#, fuzzy
+msgid "Search results page titles"
+msgstr "Resultats de cerca per a:"
+
+#: ../class-fire-utils_settings_map.php:1901
 msgid "Post thumbnail position"
 msgstr "Posició de les miniatures de les entrades"
 
-#: ../class-fire-utils_settings_map.php:1864
+#: ../class-fire-utils_settings_map.php:1905
 msgid "Don't display"
 msgstr "No ho mostris"
 
-#: ../class-fire-utils_settings_map.php:1865
+#: ../class-fire-utils_settings_map.php:1906
 msgid "Before the title in full width"
 msgstr "Abans del títol amb amplada completa"
 
-#: ../class-fire-utils_settings_map.php:1866
+#: ../class-fire-utils_settings_map.php:1907
 msgid "Before the title boxed"
 msgstr "Abans del títol encapsat"
 
-#: ../class-fire-utils_settings_map.php:1867
+#: ../class-fire-utils_settings_map.php:1908
 msgid "After the title"
 msgstr "Després del títol"
 
-#: ../class-fire-utils_settings_map.php:1887
+#: ../class-fire-utils_settings_map.php:1928
 msgid "Drop caps"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1888
+#: ../class-fire-utils_settings_map.php:1929
 msgid "Enable drop caps"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1890
+#: ../class-fire-utils_settings_map.php:1931
 msgid "Apply a drop cap to the first paragraph of your post / page content."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1899
+#: ../class-fire-utils_settings_map.php:1940
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1900
+#: ../class-fire-utils_settings_map.php:1941
 msgid "(number of words)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1910
+#: ../class-fire-utils_settings_map.php:1951
 msgid "Drop cap style"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1914
+#: ../class-fire-utils_settings_map.php:1955
 #, fuzzy
 msgid "Skin color with shadow"
 msgstr "Color de la pell"
 
-#: ../class-fire-utils_settings_map.php:1915
+#: ../class-fire-utils_settings_map.php:1956
 #, fuzzy
 msgid "Simple black"
 msgstr "Negre pla"
 
-#: ../class-fire-utils_settings_map.php:1921
+#: ../class-fire-utils_settings_map.php:1962
 msgid "Enable drop caps in posts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1923
+#: ../class-fire-utils_settings_map.php:1964
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1930
+#: ../class-fire-utils_settings_map.php:1971
 #, fuzzy
 msgid "Enable drop caps in pages"
 msgstr "Permet els comentaris a les p&agrave;gines"
 
-#: ../class-fire-utils_settings_map.php:1932
+#: ../class-fire-utils_settings_map.php:1973
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1942
+#: ../class-fire-utils_settings_map.php:1983
 msgid "Comments bubbles"
 msgstr "Bombolles dels comentaris"
 
-#: ../class-fire-utils_settings_map.php:1944
+#: ../class-fire-utils_settings_map.php:1985
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr ""
 "Mostra una bombolla amb el nombre de comentaris al costat del títol de "
 "l'entrada"
 
-#: ../class-fire-utils_settings_map.php:1953
+#: ../class-fire-utils_settings_map.php:1994
 msgid "Comments bubble shape"
 msgstr "Forma de la bombolla dels comentaris"
 
-#: ../class-fire-utils_settings_map.php:1957
+#: ../class-fire-utils_settings_map.php:1998
 msgid "Small bubbles"
 msgstr "Bombolles petites"
 
-#: ../class-fire-utils_settings_map.php:1958
+#: ../class-fire-utils_settings_map.php:1999
 msgid "Large bubbles"
 msgstr "Bombolles grans"
 
-#: ../class-fire-utils_settings_map.php:1966
-#: ../class-fire-utils_settings_map.php:1979
+#: ../class-fire-utils_settings_map.php:2007
+#: ../class-fire-utils_settings_map.php:2020
 msgid "Comments bubble color"
 msgstr "Color de la bombolla dels comentaris"
 
-#: ../class-fire-utils_settings_map.php:1970
+#: ../class-fire-utils_settings_map.php:2011
 msgid "Skin color"
 msgstr "Color de la pell"
 
-#: ../class-fire-utils_settings_map.php:1971
+#: ../class-fire-utils_settings_map.php:2012
 msgid "Custom"
 msgstr "Personalitzat"
 
-#: ../class-fire-utils_settings_map.php:1991
+#: ../class-fire-utils_settings_map.php:2032
 msgid "Other comments settings"
 msgstr "Altres opcions dels comentaris"
 
-#: ../class-fire-utils_settings_map.php:1997
+#: ../class-fire-utils_settings_map.php:2038
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
@@ -1685,51 +1707,94 @@ msgstr ""
 "Podeu desactivar-los per a una pàgina concreta en el mode d'edició ràpida de "
 "la pantalla del llistat de pàgines."
 
-#: ../class-fire-utils_settings_map.php:1998
-msgid "Change other comments settings in the"
+#: ../class-fire-utils_settings_map.php:2039
+#, fuzzy
+msgid "You can also change other comments settings in :"
 msgstr "Canvia altres opcions dels comentaris a"
 
-#: ../class-fire-utils_settings_map.php:2000
+#: ../class-fire-utils_settings_map.php:2041
+#, fuzzy
+msgid "the discussion settings page."
+msgstr "pàgina de configuració de la discussió."
+
+#: ../class-fire-utils_settings_map.php:2047
+#, fuzzy
+msgid "Enable comments on posts"
+msgstr "Permet els comentaris a les p&agrave;gines"
+
+#: ../class-fire-utils_settings_map.php:2052
+#, fuzzy
+msgid ""
+"If checked, this option enables comments on all types of single posts. You "
+"can disable comments for a single post in quick edit mode from the"
+msgstr ""
+"Si està activada, aquesta opció habilitarà els comentaris a les pàgines. "
+"Podeu desactivar-los per a una pàgina concreta en el mode d'edició ràpida de "
+"la pantalla del llistat de pàgines."
+
+#: ../class-fire-utils_settings_map.php:2054
+#, fuzzy
+msgid "post screen"
+msgstr "Pantalla de personalització"
+
+#: ../class-fire-utils_settings_map.php:2055
+#, fuzzy
+msgid "You can also change other comments settings in the"
+msgstr "Canvia altres opcions dels comentaris a"
+
+#: ../class-fire-utils_settings_map.php:2057
 msgid "discussion settings page."
 msgstr "pàgina de configuració de la discussió."
 
-#: ../class-fire-utils_settings_map.php:2008
+#: ../class-fire-utils_settings_map.php:2063
+#, fuzzy
+msgid "Display the comment list"
+msgstr "Mostra el contingut sencer"
+
+#: ../class-fire-utils_settings_map.php:2067
+msgid ""
+"By default, WordPress displays the past comments, even if comments are "
+"disabled in posts or pages. Unchecking this option allows you to not display "
+"this comment history."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2074
 msgid "Display a back to top arrow on scroll"
 msgstr "Durant el desplaçament, mostra una fletxa de tornar a dalt"
 
-#: ../class-fire-utils_settings_map.php:2055
+#: ../class-fire-utils_settings_map.php:2121
 msgid "Social link title in sidebars"
 msgstr "Títol dels enllaços socials a les barres laterals"
 
-#: ../class-fire-utils_settings_map.php:2061
+#: ../class-fire-utils_settings_map.php:2127
 msgid "Will be hidden if empty"
 msgstr "S'amagarà si està buit"
 
-#: ../class-fire-utils_settings_map.php:2089
+#: ../class-fire-utils_settings_map.php:2155
 #, fuzzy
 msgid "Load images on scroll"
 msgstr "Escala automàticament les imatges al zoom"
 
-#: ../class-fire-utils_settings_map.php:2094
+#: ../class-fire-utils_settings_map.php:2160
 msgid ""
 "Check this option to delay the loading of non visible images. Images below "
 "the viewport will be loaded dynamically on scroll. This can boost "
 "performances by reducing the weight of long web pages with images."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2103
+#: ../class-fire-utils_settings_map.php:2169
 msgid "Set slider's height in pixels"
 msgstr "Indica l'alçada en píxels de l'slider"
 
-#: ../class-fire-utils_settings_map.php:2113
+#: ../class-fire-utils_settings_map.php:2179
 msgid "Apply this height to all sliders"
 msgstr "Aplica aquesta alçada a tots els sliders"
 
-#: ../class-fire-utils_settings_map.php:2121
+#: ../class-fire-utils_settings_map.php:2187
 msgid "Replace the default image slider's height"
 msgstr "Substitueix l'alçada de la imatge per defecte de l'slider"
 
-#: ../class-fire-utils_settings_map.php:2127
+#: ../class-fire-utils_settings_map.php:2193
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1738,106 +1803,116 @@ msgstr ""
 "càrrega d'acord amb l'alçada personalitzada. Això és millor per afavorir el "
 "rendiment durant la càrrega del web."
 
-#: ../class-fire-utils_settings_map.php:2128
+#: ../class-fire-utils_settings_map.php:2194
 msgid "You might want to regenerate your thumbnails."
 msgstr "Probablement voldreu regenerar les vostres miniatures."
 
-#: ../class-fire-utils_settings_map.php:2149
+#: ../class-fire-utils_settings_map.php:2215
 #, fuzzy
 msgid "Post List Design"
 msgstr "Configuració global "
 
-#: ../class-fire-utils_settings_map.php:2150
+#: ../class-fire-utils_settings_map.php:2216
 msgid "Select a Layout"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2154
+#: ../class-fire-utils_settings_map.php:2220
 #, fuzzy
 msgid "Alternate thumbnails layout"
 msgstr "Miniatura / contingut alternatiu"
 
-#: ../class-fire-utils_settings_map.php:2155
+#: ../class-fire-utils_settings_map.php:2221
 #, fuzzy
 msgid "Grid layout"
 msgstr "Disseny i disposició"
 
-#: ../class-fire-utils_settings_map.php:2158
+#: ../class-fire-utils_settings_map.php:2224
 msgid ""
 "When you select the grid Layout, the post content is limited to the excerpt."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2163
+#: ../class-fire-utils_settings_map.php:2229
 msgid "Number of columns per row"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2167
+#: ../class-fire-utils_settings_map.php:2233
 msgid "1"
 msgstr "1"
 
-#: ../class-fire-utils_settings_map.php:2168
+#: ../class-fire-utils_settings_map.php:2234
 msgid "2"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2169
+#: ../class-fire-utils_settings_map.php:2235
 msgid "3"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2170
+#: ../class-fire-utils_settings_map.php:2236
 msgid "4"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2177
-msgid "Expand the featured posts (for home and blog page only)"
+#: ../class-fire-utils_settings_map.php:2239
+msgid ""
+"Note : columns are limited to 3 for single sidebar layouts and to 2 for "
+"double sidebar layouts."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2185
+#: ../class-fire-utils_settings_map.php:2244
+msgid "Expand the last sticky post (for home and blog page only)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2252
 msgid "Apply the grid layout to Home/Blog"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2193
+#: ../class-fire-utils_settings_map.php:2260
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2201
+#: ../class-fire-utils_settings_map.php:2268
 msgid "Apply the grid layout to Search results"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2205
+#: ../class-fire-utils_settings_map.php:2272
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2210
+#: ../class-fire-utils_settings_map.php:2277
 msgid "Apply a shadow to each grid items"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2219
+#: ../class-fire-utils_settings_map.php:2286
 msgid "Apply a colored bottom border to each grid items"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2228
+#: ../class-fire-utils_settings_map.php:2295
 #, fuzzy
 msgid "Display post format icons in the background"
 msgstr "Mostra metadades de les entrades a la pàgina d'inici"
 
-#: ../class-fire-utils_settings_map.php:2238
+#: ../class-fire-utils_settings_map.php:2305
+msgid "Max. length for post titles (in words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2316
 msgid "Thumbnails max height for the grid layout"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:2239
+#: ../class-fire-utils_settings_map.php:2317
 #, fuzzy
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr "Indica l'alçada màxima en píxels de la miniatura"
 
-#: ../admin/class-admin-customize.php:364
+#: ../admin/class-admin-customize.php:368
 msgid "Hi! This is"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:365
+#: ../admin/class-admin-customize.php:369
 #, fuzzy
 msgid ", developer of the Customizr theme"
 msgstr "Configuració avançada de Customizr."
 
-#: ../admin/class-admin-customize.php:368
+#: ../admin/class-admin-customize.php:372
 #, fuzzy
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
@@ -1848,12 +1923,12 @@ msgstr ""
 "perfecte per a vosaltres.</strong><br /> Si us plau, ajudeu-nos a mantenir i "
 "continuar el desenvolupament amb una donació de $20, $50 o fins i tot $100."
 
-#: ../admin/class-admin-customize.php:372
+#: ../admin/class-admin-customize.php:376
 #, fuzzy
 msgid "Make a donation for Customizr"
 msgstr "Escull un estil per a Customizr"
 
-#: ../admin/class-admin-customize.php:375
+#: ../admin/class-admin-customize.php:379
 msgid ""
 "Once clicked the 'Hide forever' button, this donation block will not be "
 "displayed anymore.<br/>Either you are using Customizr for personal or "
@@ -1862,33 +1937,65 @@ msgid ""
 "Live long and prosper with Customizr!</strong>"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:376
+#: ../admin/class-admin-customize.php:380
 msgid "Hide forever"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:377
+#: ../admin/class-admin-customize.php:381
 msgid "Let me think twice"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:386
+#: ../admin/class-admin-customize.php:390
 msgid "Need more customizations options and premium support ?"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:388
-#: ../admin/class-admin-customize.php:400
-#: ../admin/class-admin-customize.php:412
+#: ../admin/class-admin-customize.php:392
+#: ../admin/class-admin-customize.php:404
+#: ../admin/class-admin-customize.php:416
+#: ../admin/class-admin-customize.php:428
 #, fuzzy
 msgid "Discover Customizr Pro"
 msgstr "Descobriu Customizr: vídeo d'introducció ràpida"
 
-#: ../admin/class-admin-customize.php:398
+#: ../admin/class-admin-customize.php:402
 msgid ""
 "Need more control on your fonts ? Style any text in live preview ( size, "
 "color, font family, effect, ...) with the Customizr Pro theme."
 msgstr ""
 
-#: ../admin/class-admin-customize.php:410
+#: ../admin/class-admin-customize.php:414
 msgid "Add unlimited featured pages with Customizr Pro"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:426
+msgid "Customize your footer credits with Customizr Pro"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:437
+msgid "If you like"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:438
+#, fuzzy
+msgid "the Customizr theme"
+msgstr "Configuració avançada de Customizr."
+
+#: ../admin/class-admin-customize.php:438
+#, fuzzy
+msgid "the Customizr pro theme"
+msgstr "Configuració avançada de Customizr."
+
+#: ../admin/class-admin-customize.php:439
+msgid "we would love to receive a"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:441
+#, fuzzy
+msgid "Review the Customizr theme"
+msgstr "Configuració avançada de Customizr."
+
+#: ../admin/class-admin-customize.php:443
+msgid "rating. Thanks :) !"
 msgstr ""
 
 #: ../admin/class-admin-meta_boxes.php:87
@@ -2011,7 +2118,7 @@ msgstr ""
 msgid "Delete slider"
 msgstr "Elimina l'slider"
 
-#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:122
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:82
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -2100,10 +2207,10 @@ msgstr "Enllaç del botó"
 #: ../parts/class-content-breadcrumb.php:678
 #: ../parts/class-content-breadcrumb.php:693
 #: ../parts/class-content-breadcrumb.php:721
-#: ../parts/class-content-comments.php:179
+#: ../parts/class-content-comments.php:195
 #: ../parts/class-content-featured_pages.php:214
-#: ../parts/class-content-headings.php:204
-#: ../parts/class-content-slider.php:359
+#: ../parts/class-content-headings.php:238
+#: ../parts/class-content-slider.php:347
 msgid "Edit"
 msgstr "Edita"
 
@@ -2119,15 +2226,25 @@ msgstr "Edita aquest slide"
 msgid "Current slide"
 msgstr "Slide actual"
 
-#: ../admin/class-controls.php:122
+#: ../admin/class-controls.php:84
 msgid "Create a slider"
 msgstr "Crea un slider"
 
-#: ../admin/class-controls.php:284
+#: ../admin/class-controls.php:85
+#, fuzzy
+msgid "Need help to create a slider ?"
+msgstr "Crea un slider"
+
+#: ../admin/class-controls.php:87
+#, fuzzy
+msgid "Check the documentation"
+msgstr "Llegiu la documentació"
+
+#: ../admin/class-controls.php:315
 msgid "Upload"
 msgstr "Carrega"
 
-#: ../admin/class-controls.php:285
+#: ../admin/class-controls.php:316
 msgid "Remove"
 msgstr "Elimina"
 
@@ -2475,64 +2592,64 @@ msgstr "Divideix"
 msgid "Merge"
 msgstr "Combina"
 
-#: ../parts/class-content-comments.php:76
+#: ../parts/class-content-comments.php:92
 msgid "One thought on"
 msgstr "Un comentari a"
 
-#: ../parts/class-content-comments.php:78
+#: ../parts/class-content-comments.php:94
 msgid "thoughts on"
 msgstr "comentaris a"
 
-#: ../parts/class-content-comments.php:138
+#: ../parts/class-content-comments.php:154
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: ../parts/class-content-comments.php:138
+#: ../parts/class-content-comments.php:154
 msgid "(Edit)"
 msgstr "(Edita)"
 
-#: ../parts/class-content-comments.php:165
+#: ../parts/class-content-comments.php:181
 msgid "Reply"
 msgstr "Resposta"
 
-#: ../parts/class-content-comments.php:178
+#: ../parts/class-content-comments.php:194
 msgid "Post author"
 msgstr "Autor de l'entrada"
 
-#: ../parts/class-content-comments.php:185
+#: ../parts/class-content-comments.php:201
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s a les %2$s"
 
-#: ../parts/class-content-comments.php:190
+#: ../parts/class-content-comments.php:206
 msgid "Your comment is awaiting moderation."
 msgstr "El vostre comentari està pendent de moderació."
 
-#: ../parts/class-content-comments.php:225
+#: ../parts/class-content-comments.php:241
 msgid "Comment navigation"
 msgstr "Navegació dels comentaris"
 
-#: ../parts/class-content-comments.php:231
+#: ../parts/class-content-comments.php:247
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Comentaris més antics"
 
-#: ../parts/class-content-comments.php:239
+#: ../parts/class-content-comments.php:255
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Comentarios més recents <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-comments.php:271
+#: ../parts/class-content-comments.php:287
 msgid "Comments are closed."
 msgstr "Comentaris tancats."
 
-#: ../parts/class-content-comments.php:286
+#: ../parts/class-content-comments.php:322
 msgid "Leave a comment"
 msgstr "Deixa un comentari"
 
-#: ../parts/class-content-comments.php:320
+#: ../parts/class-content-comments.php:344
 msgid "Comment(s) on"
 msgstr "Comentari(s) a"
 
-#: ../parts/class-content-comments.php:339
+#: ../parts/class-content-comments.php:363
 msgid "comment"
 msgstr "comentari"
 
@@ -2557,90 +2674,74 @@ msgstr ""
 "Descripció de la p&agrave;gina destacada: utilitzeu l'extracte de la "
 "p&agrave;gina o escriviu el vostre propi text a la pantalla de Customizr % s."
 
-#: ../parts/class-content-gallery.php:187
+#: ../parts/class-content-gallery.php:193
 msgid "Missing Attachment"
 msgstr "Falta l'arxiu adjunt"
 
-#: ../parts/class-content-headings.php:169
-#: ../parts/class-content-headings.php:174
+#: ../parts/class-content-headings.php:182
+#: ../parts/class-content-headings.php:187
 msgid "{no title} Read the post &raquo;"
 msgstr "{no title} Llegeix l'entrada &raquo;"
 
-#: ../parts/class-content-headings.php:173
+#: ../parts/class-content-headings.php:186
 #, php-format
 msgid "Permalink to %s"
 msgstr "Enllaç permanent a %s"
 
-#: ../parts/class-content-headings.php:280
+#: ../parts/class-content-headings.php:315
 msgid "Ooops, page not found"
 msgstr "Ooops, pàgina no trobada"
 
-#: ../parts/class-content-headings.php:291
+#: ../parts/class-content-headings.php:326
 msgid "No"
 msgstr "No hi ha"
 
-#: ../parts/class-content-headings.php:292
-msgid "Search Results for :"
-msgstr "Resultats de cerca per a:"
-
-#: ../parts/class-content-headings.php:307
-msgid "Author Archives :"
-msgstr "Arxius de l'autor:"
-
-#: ../parts/class-content-headings.php:321 ../parts/class-content-post.php:131
+#: ../parts/class-content-headings.php:356 ../parts/class-content-post.php:134
 #, php-format
 msgid "About %s"
 msgstr "Quant a %s"
 
-#: ../parts/class-content-headings.php:334
-msgid "Category Archives :"
-msgstr "Arxius de la categoria:"
-
-#: ../parts/class-content-headings.php:350
-msgid "Tag Archives :"
-msgstr "Arxius de l'etiqueta:"
-
-#: ../parts/class-content-headings.php:363
+#: ../parts/class-content-headings.php:398
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Arxiu diari: %s"
 
-#: ../parts/class-content-headings.php:363
+#: ../parts/class-content-headings.php:398
 msgid "Archives"
 msgstr "Arxiu"
 
-#: ../parts/class-content-headings.php:364
+#: ../parts/class-content-headings.php:399
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Arxiu mensual: %s"
 
-#: ../parts/class-content-headings.php:365
+#: ../parts/class-content-headings.php:400
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Arxiu anual: %s"
 
-#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:93
-#: ../parts/class-content-post_list.php:230
+#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:96
+#: ../parts/class-content-post_list.php:239
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Segueix llegint <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:94
-#: ../parts/class-content-post_list.php:232
+#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:97
+#: ../parts/class-content-post_list.php:241
 msgid "Pages:"
 msgstr "P&agrave;gines:"
 
-#: ../parts/class-content-post.php:135
+#: ../parts/class-content-post.php:138
 #, php-format
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 "Mostra totes les entrades per %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-post_list_grid.php:637
+#: ../parts/class-content-post_list_grid.php:920
 #, fuzzy
 msgid "More grid design options"
 msgstr "Opcions de p&agrave;gines destacades"
 
-#: ../parts/class-content-post_list_grid.php:646
+#: ../parts/class-content-post_list_grid.php:929
 #, fuzzy
 msgid "Jump to the blog design options"
 msgstr "Configura les opcions de les icones dels títols"
@@ -2663,7 +2764,7 @@ msgid "Link to full-size image"
 msgstr "Enllaç a la imatge de mida completa"
 
 #: ../parts/class-content-post_metas.php:196
-#: ../parts/class-content-post_metas.php:506
+#: ../parts/class-content-post_metas.php:512
 msgid "in"
 msgstr "a"
 
@@ -2734,20 +2835,20 @@ msgstr ""
 msgid "View all posts in %s"
 msgstr "Mostra totes les entrades a %s"
 
-#: ../parts/class-content-post_metas.php:449
+#: ../parts/class-content-post_metas.php:455
 #, php-format
 msgid "View all posts by %s"
 msgstr "Mostra totes les entrades per %s"
 
-#: ../parts/class-content-post_metas.php:469
+#: ../parts/class-content-post_metas.php:475
 msgid "Open"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:507
+#: ../parts/class-content-post_metas.php:513
 msgid "tagged"
 msgstr ""
 
-#: ../parts/class-content-post_metas.php:530
+#: ../parts/class-content-post_metas.php:536
 msgid "by"
 msgstr ""
 
@@ -2764,17 +2865,94 @@ msgstr "<span class=\"meta-nav\">&larr;</span> Entrades més antigues"
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Entrades més recents <span class=\"meta-nav\">&rarr;</span"
 
-#: ../parts/class-footer-footer_main.php:181
+#: ../parts/class-content-sidebar.php:128
+#: ../parts/class-footer-footer_main.php:102
+msgid "This block is visible for admin users only."
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:132
+#, fuzzy
+msgid "The sidebar : "
+msgstr "Barra lateral esquerra"
+
+#: ../parts/class-content-sidebar.php:134
+#, fuzzy
+msgid "has no widgets"
+msgstr "Administrar widgets"
+
+#: ../parts/class-content-sidebar.php:138
+msgid "You can add widgets to this sidebar in :"
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:140
+#: ../parts/class-footer-footer_main.php:112
+#, fuzzy
+msgid "Add widgets"
+msgstr "Administrar widgets"
+
+#: ../parts/class-content-sidebar.php:141
+#: ../parts/class-footer-footer_main.php:113
+#, fuzzy
+msgid "appearance > widgets"
+msgstr "Administrar widgets"
+
+#: ../parts/class-content-sidebar.php:145
+msgid "You can also remove this sidebar by changing the current page layout."
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:147
+#, fuzzy
+msgid "Changing the layout in the Customizr theme"
+msgstr "Configuració del contingut de Customizr."
+
+#: ../parts/class-content-sidebar.php:148
+#, fuzzy
+msgid "See the theme documentation."
+msgstr "Llegiu la documentació"
+
+#: ../parts/class-content-sidebar.php:152
+#: ../parts/class-footer-footer_main.php:117
+msgid "dismiss notice"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:106
+msgid "The footer has no widgets"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:110
+msgid "You can add widgets to the footer in :"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:221
 msgid "Back to top"
 msgstr "Torna a dalt"
 
-#: ../parts/class-header-header_main.php:256
+#: ../parts/class-header-header_main.php:285
 msgid "Back Home"
 msgstr "Torna a l'inici"
 
-#: ../parts/class-header-menu.php:129
+#: ../parts/class-header-menu.php:130
 msgid "Add a menu"
 msgstr "Afegeix un menú"
+
+#~ msgid "Style your WordPress site live!"
+#~ msgstr "Estilitzeu el vostre lloc WordPress en viu! "
+
+#~ msgid "Just try it!"
+#~ msgstr "Proveu-lo!"
+
+#~ msgid "Create beautiful sliders"
+#~ msgstr "Creeu sliders bonics"
+
+#~ msgid ""
+#~ "Customizr comes with a cool slider generator : add a slider to any post "
+#~ "or page!"
+#~ msgstr ""
+#~ "Customizr inclou un generador d'sliders: afegiu un slider a qualsevol "
+#~ "entrada o pàgina!"
+
+#~ msgid "Discover the features"
+#~ msgstr "Descobriu-ne la funcionalitat"
 
 #~ msgid "Enable/disable retina support"
 #~ msgstr "Activa/desactiva suport per a retina"
@@ -3048,9 +3226,6 @@ msgstr "Afegeix un menú"
 
 #~ msgid "%"
 #~ msgstr "%"
-
-#~ msgid "Manage widgets"
-#~ msgstr "Administrar widgets"
 
 #~ msgid "Edit the slide text"
 #~ msgstr "Editar el texto del slide"

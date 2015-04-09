@@ -36,7 +36,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
-= 3.3.16 April 8th 2015 =
+= 3.3.16 April 9th 2015 =
+fixed : minor hotcrumble css margin bug fix
+fixed : use the css class instead of h2 and remove duplicate
 fixed : Few corrections in the Italian translation
 fixed : allow customizr slider in the woocommerce shop page
 fixed : collapsed customizer panel
