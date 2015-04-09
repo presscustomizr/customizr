@@ -4662,6 +4662,7 @@ a.badge:focus {
  => SLIDER
  => FEATURED PAGES
  => POST STUFF
+ => SIDEBARS STUFF
  => POST THUMBNAILS
  => POST GRID
  => WP SPECIFICS
@@ -6232,6 +6233,56 @@ video {
 }
 .hide-post-metas .entry-header .entry-meta {
   display: none;
+}
+/* SIDEBARS STUFF
+      -------------------------------------------------- */
+.tc-widget-placeholder {
+  padding: 19px;
+  background-color: #F5F5F5;
+  border: 1px solid #E3E3E3;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.tc-sidebar .tc-widget-placeholder {
+  margin-top: 15px;
+}
+.tc-widget-placeholder p {
+  font-style: italic;
+  font-size: 80%;
+  color: #5A5A5A!important;
+}
+#footer .tc-widget-placeholder h4 {
+  color: #5A5A5A;
+}
+#footer .tc-widget-placeholder a,
+.tc-sidebar .tc-widget-placeholder a {
+  color: #5A5A5A;
+  text-decoration: underline;
+}
+.tc-admin-notice {
+  font-size: 12px;
+  font-weight: bold;
+  color: #5A5A5A!important;
+}
+.tc-dismiss-notice {
+  font-size: 11px;
+  font-weight: bold;
+  position: absolute;
+  top: 1px;
+  right: 6px;
+}
+.tc-admin-notice:before {
+  content: '\f427';
+  font-family: 'genericons';
+  font-size: 21px;
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  padding-right: 3px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 /* POST THUMBNAILS
       -------------------------------------------------- */

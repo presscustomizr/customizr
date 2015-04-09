@@ -1,4 +1,4 @@
-# Customizr v3.3.16 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=widget-placeholders)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.16 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -95,6 +95,7 @@ fixed : Few corrections in the Italian translation
 fixed : allow customizr slider in the woocommerce shop page
 fixed : collapsed customizer panel
 fixed : gallery - handle the case "link to none" (was previously linked to the attachment page)
+added : sidebar and footer widgets removable placeholders
 added : better customizer options for comments. Allow more controls on comment display. Page comments are disabled by default.
 added : customizer link to ratings
 updated : he_IL.po Hebrew translation

@@ -41,6 +41,7 @@ fixed : Few corrections in the Italian translation
 fixed : allow customizr slider in the woocommerce shop page
 fixed : collapsed customizer panel
 fixed : gallery - handle the case "link to none" (was previously linked to the attachment page)
+added : sidebar and footer widgets removable placeholders
 added : better customizer options for comments. Allow more controls on comment display. Page comments are disabled by default.
 added : customizer link to ratings
 updated : he_IL.po Hebrew translation
