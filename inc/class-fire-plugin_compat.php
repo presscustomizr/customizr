@@ -36,18 +36,17 @@ if ( ! class_exists( 'TC_plugin_compat' ) ) :
         add_theme_support( 'woocommerce' );
         add_theme_support( 'the-events-calendar' );
 
-        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
         /* JETPACK */
         //adds compatibilty with the jetpack image carousel
-        if ( current_theme_supports( 'jetpack' ) && is_plugin_active('jetpack/jetpack.php') ) {
+        if ( current_theme_supports( 'jetpack' ) && tc_is_plugin_active('jetpack/jetpack.php') ) {
           add_filter( 'tc_gallery_bool', '__return_false' );
         }
 
 
         /* BBPRESS */
         //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
-        if ( current_theme_supports( 'bbpress' ) && is_plugin_active('bbpress/bbpress.php') ) {
+        if ( current_theme_supports( 'bbpress' ) && tc_is_plugin_active('bbpress/bbpress.php') ) {
           //disables thumbnails and excerpt for post lists
           add_filter( 'tc_show_post_list_thumb', 'tc_bbpress_disable_thumbnail' );
           function tc_bbpress_disable_thumbnail($bool) {
@@ -90,7 +89,7 @@ if ( ! class_exists( 'TC_plugin_compat' ) ) :
         * QTranslate
         * Credits : @acub, http://websiter.ro
         */
-        if ( current_theme_supports( 'qtranslate' ) && is_plugin_active('qtranslate/qtranslate.php') ) {
+        if ( current_theme_supports( 'qtranslate' ) && tc_is_plugin_active('qtranslate/qtranslate.php') ) {
           //outputs correct urls for current language : in logo, slider
           add_filter( 'tc_slide_link_url' , 'tc_url_lang' );
           add_filter( 'tc_logo_link_url' , 'tc_url_lang');
@@ -141,7 +140,7 @@ if ( ! class_exists( 'TC_plugin_compat' ) ) :
 
 
         /* Woocommerce */
-        if ( current_theme_supports( 'woocommerce' ) && is_plugin_active('woocommerce/woocommerce.php') ) {
+        if ( current_theme_supports( 'woocommerce' ) && tc_is_plugin_active('woocommerce/woocommerce.php') ) {
 
           //unkooks the default woocommerce wrappersv and add customizr's content wrapper and action hooks
           remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
@@ -243,7 +242,47 @@ if ( ! class_exists( 'TC_plugin_compat' ) ) :
           }
 
         }//end if woocommerce
-
       }//end of plugin compatibility function
+
+
+
+
+      /**
+      * HELPER
+      * Check whether the plugin is active by checking the active_plugins list.
+      * copy of is_plugin_active declared in wp-admin/includes/plugin.php
+      *
+      * @since 3.3+
+      *
+      * @param string $plugin Base plugin path from plugins directory.
+      * @return bool True, if in the active plugins list. False, not in the list.
+      */
+      function tc_is_plugin_active( $plugin ) {
+        return in_array( $plugin, (array) get_option( 'active_plugins', array() ) ) || tc_is_plugin_active_for_network( $plugin );
+      }
+
+
+      /**
+      * HELPER
+      * Check whether the plugin is active for the entire network.
+      * copy of is_plugin_active_for_network declared in wp-admin/includes/plugin.php
+      *
+      * @since 3.3+
+      *
+      * @param string $plugin Base plugin path from plugins directory.
+      * @return bool True, if active for the network, otherwise false.
+      */
+      function tc_is_plugin_active_for_network( $plugin ) {
+        if ( ! is_multisite() )
+          return false;
+
+        $plugins = get_site_option( 'active_sitewide_plugins');
+        if ( isset($plugins[$plugin]) )
+          return true;
+
+        return false;
+      }
+
+
   }//end of class
 endif;
