@@ -30,8 +30,8 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
 
             //loads and instanciates the activation / updates classes
             foreach ( $_classes as $name => $params ) {
-                //don't load activation classes if not admin
-                if ( ! is_admin() && false !== strpos($params[0], 'activation-key') )
+                //don't load activation classes if not admin or in customize
+                if ( ( TC___::$instance -> is_customizing || ! is_admin() ) && false !== strpos($params[0], 'activation-key') )
                   continue;
 
                 $_file_path =  dirname( dirname( __FILE__ ) ) . $params[0];

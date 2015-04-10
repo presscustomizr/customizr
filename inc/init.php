@@ -65,6 +65,9 @@ if ( ! class_exists( 'TC___' ) ) :
 
             self::$theme_name                 = sanitize_file_name( strtolower($tc_base_data['title']) );
 
+            //checks if is customizing : two context, admin and front (preview frame)
+            $this -> is_customizing = $this -> tc_is_customizing();
+
             //CUSTOMIZR_VER is the Version
             if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
             //TC_BASE is the root server path of the parent theme
@@ -153,8 +156,9 @@ if ( ! class_exists( 'TC___' ) ) :
             foreach ( $load as $group => $files ) {
                 foreach ($files as $path_suffix ) {
 
-                    //don't load admin classes if not admin && not customizing
-                    if ( is_admin() && ! $this -> is_customizing ) {
+                    // don't load admin classes if not admin && not customizing
+                    // load front-end classes in admin
+                    if ( is_admin() ) {
                         if ( false !== strpos($path_suffix[0], 'parts') )
                             continue;
                     }
