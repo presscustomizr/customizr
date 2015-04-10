@@ -1,4 +1,4 @@
-# Customizr v3.3.16 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.17 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -90,6 +90,12 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.17 April 10th 2015 =
+fix: reset navbar-inner padding-right when logo centered
+added : helpers tc_is_plugin_active to avoid the inclusion of wp-admin/includes/plugin.php on front end
+added : new class file dedicated to plugin compatibility class-fire-plugin_compat.php
+updated : copyright dates
+
 = 3.3.16 April 9th 2015 =
 fixed : minor hotcrumble css margin bug fix
 fixed : use the css class instead of h2 and remove duplicate

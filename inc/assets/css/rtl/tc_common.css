@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.16
+ * Customizr v3.3.17
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5283,6 +5283,10 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
 .tc-no-sticky-header .logo-centered .brand,
 .sticky-disabled .logo-centered .brand {
   width: 100%;
+}
+.tc-no-sticky-header .logo-centered .navbar-inner,
+.sticky-disabled .logo-centered .navbar-inner {
+  padding-right: 5px;
 }
 .tc-header .outside {
   display: none;
