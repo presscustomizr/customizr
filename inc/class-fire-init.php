@@ -349,9 +349,6 @@ if ( ! class_exists( 'TC_init' ) ) :
           //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails
           add_action ( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ), 20 );
 
-          //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate-X, Polylang, Woocommerce, The Event Calendar ...)
-          add_action ( 'after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 30 );
-
           //add retina support for high resolution devices
           add_filter ( 'wp_generate_attachment_metadata'        , array( $this , 'tc_add_retina_support') , 10 , 2 );
           add_filter ( 'delete_attachment'                      , array( $this , 'tc_clean_retina_images') );

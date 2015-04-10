@@ -86,7 +86,7 @@ if ( ! class_exists( 'TC___' ) ) :
                 array(
                     'fire'      =>   array(
                                     array('inc' , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
-                                    array('inc' , 'plugin_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
+                                    array('inc' , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
                                     array('inc' , 'utils_settings_map'),//customizer setting map
                                     array('inc' , 'utils'),//helpers used everywhere
                                     array('inc' , 'resources'),//loads style (skins) and scripts
