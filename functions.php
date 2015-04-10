@@ -15,7 +15,7 @@
 * @subpackage 	functions
 * @since     	1.0
 * @author    	Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright 	Copyright (c) 2013, Nicolas GUILLAUME
+* @copyright 	Copyright (c) 2013-2015, Nicolas GUILLAUME
 * @link      	http://themesandco.com/customizr
 * @license   	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */

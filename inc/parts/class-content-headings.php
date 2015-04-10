@@ -7,7 +7,7 @@
 * @subpackage   classes
 * @since        3.1.0
 * @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
