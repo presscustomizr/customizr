@@ -17,21 +17,21 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     function __construct () {
       self::$instance =& $this;
       //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
-      add_action ('after_setup_theme'                      , array( $this , 'tc_set_plugin_supported'), 20 );
+      add_action ('after_setup_theme'                      , array( $this , 'tc_set_plugins_supported'), 20 );
       add_action ('after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 30 );
     }//end of constructor
 
 
 
     /**
-    * Set plugin supported ( before the plugin compat function is fired )
+    * Set plugins supported ( before the plugin compat function is fired )
     * => allows to easily remove support by firing remove_theme_support() (with a priority < tc_plugins_compatibility) on hook 'after_setup_theme'
     * hook : after_setup_theme
     *
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_set_plugin_supported() {
+    function tc_set_plugins_supported() {
       //add support for plugins (added in v3.1+)
       add_theme_support( 'jetpack' );
       add_theme_support( 'bbpress' );
