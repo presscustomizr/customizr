@@ -38,6 +38,7 @@ The exceptions to this license are as follows:
 #######################  Changelog ######################
 = 3.3.17 April 10th 2015 =
 fix: reset navbar-inner padding-right when logo centered
+fix: override bootstrap thumbnails left margin for woocommerce ones
 added : helpers tc_is_plugin_active to avoid the inclusion of wp-admin/includes/plugin.php on front end
 added : new class file dedicated to plugin compatibility class-fire-plugin_compat.php
 updated : copyright dates

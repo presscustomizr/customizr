@@ -6660,6 +6660,10 @@ img.v-centered {
 .hover .tc-grid-fade_expt {
   background: none;
 }
+/* Woocommerce thumbnails */
+.woocommerce .thumbnails {
+  margin-left: 0;
+}
 /* WP CSS
     -------------------------------------------------- */
 .wp-caption {
