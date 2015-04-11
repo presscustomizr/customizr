@@ -52,28 +52,32 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     function tc_plugins_compatibility() {
       /* JETPACK */
       //adds compatibilty with the jetpack image carousel
-      if ( current_theme_supports( 'jetpack' ) && $this -> tc_is_plugin_active('jetpack/jetpack.php') ) {
+      if ( current_theme_supports( 'jetpack' ) && $this -> tc_is_plugin_active('jetpack/jetpack.php') )
         add_filter( 'tc_gallery_bool', '__return_false' );
-      }
 
       /* BBPRESS */
       //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
-      if ( current_theme_supports( 'bbpress' ) && $this -> tc_is_plugin_active('bbpress/bbpress.php') ) {
+      if ( current_theme_supports( 'bbpress' ) && $this -> tc_is_plugin_active('bbpress/bbpress.php') )
         $this -> tc_set_bbpress_compat();
-      }//end if bbpress on
 
       /*
-      * QTranslate
+      * QTranslatex
       * Credits : @acub, http://websiter.ro
       */
-      if ( current_theme_supports( 'qtranslate' ) && $this -> tc_is_plugin_active('qtranslate/qtranslate.php') ) {
-        $this -> tc_set_qtranslate_compat();
-      }//end Qtranslate
+      if ( current_theme_supports( 'qtranslate-x' ) && $this -> tc_is_plugin_active('qtranslate-x/qtranslate.php') )
+        $this -> tc_set_qtranslatex_compat();
+
+      /*
+      * Polylang
+      * Credits : Rocco Aliberti
+      */
+      if ( current_theme_supports( 'polylang' ) && $this -> tc_is_plugin_active('polylang/polylang.php') )
+        $this -> tc_set_polylang_compat();
 
       /* Woocommerce */
-      if ( current_theme_supports( 'woocommerce' ) && $this -> tc_is_plugin_active('woocommerce/woocommerce.php') ) {
+      if ( current_theme_supports( 'woocommerce' ) && $this -> tc_is_plugin_active('woocommerce/woocommerce.php') )
         $this -> tc_set_woocomerce_compat();
-      }//end if woocommerce
+
     }//end of plugin compatibility function
 
 
@@ -123,57 +127,139 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
 
     /**
-    * Qtranslate compat hooks
+    * QtranslateX compat hooks
     *
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_set_qtranslate_compat() {
-      //outputs correct urls for current language : in logo, slider
-      add_filter( 'tc_slide_link_url' , 'tc_url_lang' );
-      add_filter( 'tc_logo_link_url' , 'tc_url_lang');
-      add_filter( 'tc_fp_link_url' , 'tc_url_lang');
+    private function tc_set_qtranslatex_compat() {
       function tc_url_lang($url) {
         return ( function_exists( 'qtrans_convertURL' ) ) ? qtrans_convertURL($url) : $url;
       }
-
-      //outputs the qtranslate translation for slider, featured pages
+      function tc_apply_qtranslate ($text) {
+        return call_user_func(  '__' , $text );
+      }
+      function tc_remove_char_limit() {
+        return 99999;
+      }
+      function tc_change_transport( $value , $set ) {
+        return ('transport' == $set) ? 'refresh' : $value;
+      }
+      //outputs correct urls for current language : in logo, slider
+      add_filter( 'tc_slide_link_url' , 'tc_url_lang' );
+      add_filter( 'tc_logo_link_url' , 'tc_url_lang');
+      //outputs the qtranslate translation for slider
       add_filter( 'tc_slide_title', 'tc_apply_qtranslate' );
       add_filter( 'tc_slide_text', 'tc_apply_qtranslate' );
       add_filter( 'tc_slide_button_text', 'tc_apply_qtranslate' );
       add_filter( 'tc_slide_background_alt', 'tc_apply_qtranslate' );
-      add_filter( 'tc_fp_text', 'tc_apply_qtranslate' );
-      add_filter( 'tc_fp_button_text', 'tc_apply_qtranslate' );
-      function tc_apply_qtranslate ($text) {
-        return call_user_func(  '__' , $text );
-      }
 
-
-      //sets no character limit for slider (title, lead text and button title) and featured pages (text) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
+      //outputs the qtranslate translation for archive titles;
+      $tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results');
+      foreach ( $tc_archive_titles as $title )
+        add_filter("tc_{$title}_title", 'tc_apply_qtranslate' , 20);
+      //sets no character limit for slider (title, lead text and button title) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
       add_filter( 'tc_slide_title_length'  , 'tc_remove_char_limit');
       add_filter( 'tc_slide_text_length'   , 'tc_remove_char_limit');
       add_filter( 'tc_slide_button_length' , 'tc_remove_char_limit');
-      add_filter( 'tc_fp_text_length' , 'tc_remove_char_limit');
-      function tc_remove_char_limit() {
-        return 99999;
-      }
+      // QtranslateX for FP when no FPC or FPU running
+      if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
+        //outputs correct urls for current language : fp
+        add_filter( 'tc_fp_link_url' , 'tc_url_lang');
+        //outputs the qtranslate translation for featured pages
+        add_filter( 'tc_fp_text', 'tc_apply_qtranslate' );
+        add_filter( 'tc_fp_button_text', 'tc_apply_qtranslate' );
 
-      //modify the page excerpt=> uses the wp page excerpt instead of the generated excerpt with the_content
-      add_filter( 'tc_fp_text', 'tc_use_page_excerpt', 10, 3 );
-      function tc_use_page_excerpt( $featured_text , $fp_id , $page_id ) {
-        $page = get_post($page_id);
-        return ( empty($featured_text) && !post_password_required($page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_excerpt )) : $featured_text ;
-      }
-
-      //modify the customizer transport from post message to null for some options
-      add_filter( 'tc_featured_page_button_text_customizer_set' , 'tc_change_transport', 10, 2);
-      add_filter( 'tc_featured_text_one_customizer_set' , 'tc_change_transport', 10, 2);
-      add_filter( 'tc_featured_text_two_customizer_set' , 'tc_change_transport', 10, 2);
-      add_filter( 'tc_featured_text_three_customizer_set' , 'tc_change_transport', 10, 2);
-      function tc_change_transport( $value , $set ) {
-        return ('transport' == $set) ? null : $value;
+        //sets no character limit for featured pages (text) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
+        add_filter( 'tc_fp_text_length' , 'tc_remove_char_limit');
+        //modify the page excerpt=> uses the wp page excerpt instead of the generated excerpt with the_content
+        add_filter( 'tc_fp_text', 'tc_use_page_excerpt', 20, 3 );
+        function tc_use_page_excerpt( $featured_text , $fp_id , $page_id ) {
+          $page = get_post($page_id);
+          return ( empty($featured_text) && !post_password_required($page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_excerpt )) : $featured_text ;
+        }
+        /* The following is pretty useless at the momment since we should inhibit preview js code */
+        //modify the customizer transport from post message to null for some options
+        add_filter( 'tc_featured_page_button_text_customizer_set' , 'tc_change_transport', 20, 2);
+        add_filter( 'tc_featured_text_one_customizer_set' , 'tc_change_transport', 20, 2);
+        add_filter( 'tc_featured_text_two_customizer_set' , 'tc_change_transport', 20, 2);
+        add_filter( 'tc_featured_text_three_customizer_set' , 'tc_change_transport', 20, 2);
       }
     }
+
+
+    /**
+    * Polylang compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_polylang_compat() {
+      // If Polylang is active, hook function on the admin pages
+      if ( function_exists( 'pll_register_string' ) )
+        add_action( 'admin_init', 'tc_pll_strings_setup' );
+      function tc_pll_strings_setup() {
+
+        // grab theme options
+        $pll_tc_options = tc__f('__options');
+        // grab settings map, useful for some options labels
+        $tc_settings_map = TC_utils_settings_map::$instance -> tc_customizer_map( $get_default = true );
+        $tc_controls_map = $tc_settings_map['add_setting_control'];
+        // set $polylang_group;
+        $polylang_group = 'customizr-pro' == TC___::$theme_name ? 'Customizr-Pro' : 'Customizr';
+
+        // Add front page slider name to Polylang's string translation panel
+        if ( isset( $pll_tc_options['tc_front_slider'] ) )
+          pll_register_string( 'Front page slider name', esc_attr($pll_tc_options['tc_front_slider']), $polylang_group );
+        // Add archive title strings to Polylang's string translation panel
+        $archive_titles_settings =  array( 'tc_tag_title', 'tc_cat_title', 'tc_author_title', 'tc_search_title');
+        foreach ( $archive_titles_settings as $archive_title_setting_name )
+          if ( isset( $pll_tc_options[$archive_title_setting_name] ) )
+            pll_register_string( $tc_controls_map["tc_theme_options[$archive_title_setting_name]"]["label"], esc_attr($pll_tc_options[$archive_title_setting_name]), $polylang_group );
+        // Featured Pages
+        if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
+          $pll_tc_fp_areas = TC_init::$instance -> fp_ids;
+          // Add featured pages button text to Polylang's string translation panel
+          if ( isset( $pll_tc_options[ 'tc_featured_page_button_text'] ) )
+            pll_register_string( $tc_controls_map["tc_theme_options[tc_featured_page_button_text]"]["label"], esc_attr($pll_tc_options[ 'tc_featured_page_button_text']), $polylang_group );
+
+          // Add featured pages excerpt text to Polylang's string translation panel
+          foreach ( $pll_tc_fp_areas as $area )
+            if ( isset( $pll_tc_options["tc_featured_text_$area"] ) )
+              pll_register_string( $tc_controls_map["tc_theme_options[tc_featured_text_$area]"]["label"], esc_attr($pll_tc_options['tc_featured_text_'.$area]), $polylang_group );
+
+        } //end Featured Pages
+      }// end tc_pll_strings_setup function
+
+      // Front
+      // If Polylang is active, translate/swap featured page buttons/text/link and slider
+      if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
+        // Substitute any registered slider name
+        add_filter( 'tc_slider_name_id', 'pll__' );
+        // Substitue archive titles
+        $pll_tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results');
+
+        foreach ( $pll_tc_archive_titles as $title )
+          add_filter("tc_{$title}_title", 'pll__' , 20);
+        // Featured Pages
+        if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
+          // Substitute any page id with the equivalent page in current language (if found)
+          add_filter( 'tc_fp_id', 'pll_tc_page_id' );
+          function pll_tc_page_id( $fp_page_id ) {
+            return is_int( pll_get_post( $fp_page_id ) ) ? pll_get_post( $fp_page_id ) : $fp_page_id;
+          }
+
+          // Substitute the featured page button text with the current language button text
+          add_filter( 'tc_fp_button_text', 'pll__' );
+
+          // Substitute the featured page text with the translated featured page text
+          add_filter( 'tc_fp_text', 'pll__' );
+
+        }
+      }//end Front
+    }//end polylang compat
+
+
 
 
     /**
