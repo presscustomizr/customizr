@@ -17,6 +17,14 @@ if ( ! class_exists( 'TC_customize' ) ) :
     public $control_translations;
 
     function __construct () {
+      global $wp_version;
+      //check if WP version >= 3.4 to include customizer functions
+      //Shall we really keep this ?
+      if ( ! version_compare( $wp_version, '3.4' , '>=' ) ) {
+        add_action( 'admin_menu'                    , array( $this , 'tc_add_fallback_page' ));
+        return;
+      }
+
       self::$instance =& $this;
   		//add control class
   		add_action ( 'customize_register'				                , array( $this , 'tc_add_controls_class' ) ,10,1);
@@ -444,6 +452,47 @@ if ( ! class_exists( 'TC_customize' ) ) :
           );
         ?>
       </script>
+      <?php
+    }
+
+
+
+    /**
+    * Add fallback admin page.
+    * @package Customizr
+    * @since Customizr 1.1
+    */
+    function tc_add_fallback_page() {
+        $theme_page = add_theme_page(
+            __( 'Upgrade WP' , 'customizr' ),   // Name of page
+            __( 'Upgrade WP' , 'customizr' ),   // Label in menu
+            'edit_theme_options' ,          // Capability required
+            'upgrade_wp.php' ,             // Menu slug, used to uniquely identify the page
+            array( $this , 'tc_fallback_admin_page' )         //function to be called to output the content of this page
+        );
+    }
+
+
+
+
+    /**
+    * Render fallback admin page.
+    * @package Customizr
+    * @since Customizr 1.1
+    */
+    function tc_fallback_admin_page() {
+      ?>
+        <div class="wrap upgrade_wordpress">
+          <div id="icon-options-general" class="icon32"><br></div>
+          <h2><?php _e( 'This theme requires WordPress 3.4+' , 'customizr' ) ?> </h2>
+          <br />
+          <p style="text-align:center">
+            <a style="padding: 8px" class="button-primary" href="<?php echo admin_url().'update-core.php' ?>" title="<?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?>">
+            <?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?></a>
+            <br /><br />
+          <img src="<?php echo TC_BASE_URL . 'screenshot.png' ?>" alt="Customizr" />
+          </p>
+        </div>
       <?php
     }
 

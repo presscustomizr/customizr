@@ -16,18 +16,6 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
-        global $wp_version;
-        //check WP version to include customizer functions, must be >= 3.4
-        if ( version_compare( $wp_version, '3.4' , '>=' ) ) {
-            //require_once( TC_BASE.'inc/admin/tc_customize.php' );
-            TC___::$instance -> tc__( array ('admin' => array( array( 'inc/admin' , 'customize'))) );
-        }
-        else {
-              //adds an information page if version < 3.4
-              add_action( 'admin_menu'                    , array( $this , 'tc_add_fallback_page' ));
-        }
-        //load the meta boxes
-        add_action( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
         //enqueue additional styling for admin screens
         add_action( 'admin_init'                          , array( $this , 'tc_admin_style' ) );
 
@@ -82,59 +70,6 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
             sprintf( '//fonts.googleapis.com/css?family=%s', TC_utils::$inst -> tc_get_font( 'single' , $_font_pair ) )
           )
         );
-      }
-
-
-
-      /**
-      *  load the meta boxes for pages, posts and attachment
-      *
-      * @package Customizr
-      * @since Customizr 3.0.4
-      */
-      function tc_load_meta_boxes()  {
-         //loads meta boxes
-            TC___::$instance -> tc__( array ('admin' => array( array( 'inc/admin' , 'meta_boxes'))) );
-      }
-
-
-      /**
-       * Add fallback admin page.
-       * @package Customizr
-       * @since Customizr 1.1
-       */
-        function tc_add_fallback_page() {
-            $theme_page = add_theme_page(
-                __( 'Upgrade WP' , 'customizr' ),   // Name of page
-                __( 'Upgrade WP' , 'customizr' ),   // Label in menu
-                'edit_theme_options' ,          // Capability required
-                'upgrade_wp.php' ,             // Menu slug, used to uniquely identify the page
-                array( $this , 'tc_fallback_admin_page' )         //function to be called to output the content of this page
-            );
-        }
-
-
-
-
-      /**
-     * Render fallback admin page.
-     * @package Customizr
-     * @since Customizr 1.1
-     */
-      function tc_fallback_admin_page() {
-        ?>
-          <div class="wrap upgrade_wordpress">
-            <div id="icon-options-general" class="icon32"><br></div>
-            <h2><?php _e( 'This theme requires WordPress 3.4+' , 'customizr' ) ?> </h2>
-            <br />
-            <p style="text-align:center">
-              <a style="padding: 8px" class="button-primary" href="<?php echo admin_url().'update-core.php' ?>" title="<?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?>">
-              <?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?></a>
-              <br /><br />
-            <img src="<?php echo TC_BASE_URL . 'screenshot.png' ?>" alt="Customizr" />
-            </p>
-          </div>
-        <?php
       }
 
 
