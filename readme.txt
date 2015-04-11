@@ -36,6 +36,12 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.18 April 11th 2015 =
+added : support for polylang and qtranslate-x
+improved : load only necessary classes depending on the context : admin / front / customize
+changed : class-admin-customize.php and class-admin-meta_boxes.php now loaded from init.php.
+updated site name
+
 = 3.3.17 April 10th 2015 =
 fix: reset navbar-inner padding-right when logo centered
 fix: override bootstrap thumbnails left margin for woocommerce ones
