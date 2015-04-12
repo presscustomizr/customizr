@@ -139,6 +139,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
       self::$tc_option_group = 'tc_theme_options';
 
+      //set files to load according to the context : admin / front / customize
       add_filter( 'tc_get_files_to_load' , array( $this , 'tc_set_files_to_load' ) );
 
       //theme class groups instanciation
@@ -228,6 +229,7 @@ if ( ! class_exists( 'TC___' ) ) :
         }
       return $_to_load;
     }
+
 
 
     /**
