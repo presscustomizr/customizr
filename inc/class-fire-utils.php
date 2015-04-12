@@ -430,7 +430,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
         $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$6>';
-        $content = preg_replace( $pattern, $replacement, $content);
+        $r_content = preg_replace( $pattern, $replacement, $content);
+        $content = $r_content ? $r_content : $content;
         return apply_filters( 'tc_fancybox_content_filter', $content );
       }
 
