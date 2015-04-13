@@ -36,6 +36,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.19 April 13th 2015 =
+fixed : Black Studio TinyMCE Plugin issue. Load TC_resource class when tinymcs_css callback is fired from the customizer
+
 = 3.3.18 April 11th 2015 =
 added : support for polylang and qtranslate-x
 improved : load only necessary classes depending on the context : admin / front / customize
