@@ -158,10 +158,10 @@ if ( ! class_exists( 'TC___' ) ) :
     *
     * @since Customizr 3.0
     */
-    function tc__( $_to_load = array() ) {
+    function tc__( $_to_load = array(), $_no_filter = false ) {
       static $instances;
-
-      $_to_load = apply_filters( 'tc_get_files_to_load' , $_to_load );
+      //do we apply a filter ? optional boolean can force no filter
+      $_to_load = $_no_filter ? $_to_load : apply_filters( 'tc_get_files_to_load' , $_to_load );
       if ( empty($_to_load) )
         return;
 

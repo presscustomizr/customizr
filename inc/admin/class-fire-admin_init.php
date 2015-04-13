@@ -40,13 +40,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         // If this is just a revision, don't send the email.
         if ( wp_is_post_revision( $post_id ) )
           return;
-        if ( ! class_exists( 'TC_post_thumbnails' ) ) {
-          if ( TC___::$instance -> tc_is_child() && file_exists( TC_BASE_CHILD . 'inc/parts/class-content-post_thumbnails.php' ) )
-            require_once ( TC_BASE_CHILD . 'inc/parts/class-content-post_thumbnails.php' ) ;
-          else
-            require_once ( TC_BASE . 'inc/parts/class-content-post_thumbnails.php' );
-        }
-        new TC_post_thumbnails;
+
+        if ( ! class_exists( 'TC_post_thumbnails' ) )
+          TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+
         TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
       }
 
@@ -338,6 +335,11 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       function tc_user_defined_tinymce_css( $init ) {
         if ( ! apply_filters( 'tc_add_custom_fonts_to_editor' , true ) )
           return $init;
+        //some plugins fire tiny mce editor in the customizer
+        //in this case, the TC_resource class has to be loaded
+        if ( ! class_exists('TC_resources') )
+          TC___::$instance -> tc__( array('fire' => array( array('inc' , 'resources') ) ), true );
+
         //fonts
         $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
         //icons
