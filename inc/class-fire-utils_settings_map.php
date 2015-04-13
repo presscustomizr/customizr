@@ -71,7 +71,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         $fp_setting_control['tc_theme_options[tc_featured_page_'. $id.']']    =  array(
                       'label'       => isset($default['dropdown'][$id]) ? $default['dropdown'][$id] :  sprintf( __('Custom featured page %1$s' , 'customizr' ) , $id ),
                       'section'     => 'tc_frontpage_settings' ,
-                      'type'        => 'dropdown-pages' ,
+                      'control'     => 'TC_Customize_Content_Picker',
                       'priority'      => $priority
                     );
         $incr += 10;
@@ -506,7 +506,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'page_on_front'           => array(
                                 'label'     =>  __( 'Front page' , 'customizr'  ),
                                 'section'     => 'tc_frontpage_settings' ,
-                                'type'        => 'dropdown-pages' ,
+                                'control'        => 'TC_Customize_Content_Picker' ,
                                 'priority'      => 1,
               ),
 
@@ -514,7 +514,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'page_for_posts'          => array(
                                 'label'     =>  __( 'Posts page' , 'customizr'  ),
                                 'section'     => 'tc_frontpage_settings' ,
-                                'type'        => 'dropdown-pages' ,
+                                'control'        => 'TC_Customize_Content_Picker' ,
                                 'priority'      => 1,
               ),
 

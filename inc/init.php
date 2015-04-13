@@ -97,7 +97,8 @@ if ( ! class_exists( 'TC___' ) ) :
             ),
             'admin'     => array(
               array('inc/admin' , 'customize'),//loads customizer actions and resources
-              array('inc/admin' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
+              array('inc/admin' , 'meta_boxes'),//loads the meta boxes for pages, posts and attachment : slider and layout settings
+              array('inc/admin' , 'content_picker')//loads the meta boxes for pages, posts and attachment : slider and layout settings
             ),
             //the following files/classes define the action hooks for front end rendering : header, main content, footer
             'header'    =>   array(

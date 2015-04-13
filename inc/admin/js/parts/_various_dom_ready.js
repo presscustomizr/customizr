@@ -132,6 +132,8 @@
     /* NUMBER */
     $('input[type="number"]').stepper();
 
+    /* Content Pickers */
+    $('.tc-cp').selectContentPicker();
   });//end of $( function($) ) dom ready
 
 })( wp, jQuery);

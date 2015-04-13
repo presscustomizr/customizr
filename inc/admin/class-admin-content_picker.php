@@ -1,4 +1,4 @@
-<?
+<?php
 /**    
 *  Content Picker lib
 *  
