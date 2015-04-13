@@ -162,7 +162,7 @@ if ( ! class_exists( 'TC_Content_Picker' ) ) :
 
         wp_enqueue_style(
             'tc-content-picker-style',
-            sprintf('%1$s/inc/admin/css/tc-content-picker%2$s.css' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+            sprintf('%1$s/inc/admin/css/t__content_picker%2$s.css' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
             $is_customize ? array( 'customize-controls' ) : array(),
             '',
             $media = 'all'
