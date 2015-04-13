@@ -246,7 +246,9 @@ endif;
 if ( ! class_exists( 'TC_Customize_Content_Picker' ) && class_exists('WP_Customize_Control') ) :
     
   class TC_Customize_Content_Picker extends WP_Customize_Control {
-    
+
+    public $type = 'page';
+
     public function render_content()  {
       do_action( '__before_setting_control' , $this -> id );
 
