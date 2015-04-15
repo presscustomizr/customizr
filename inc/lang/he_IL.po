@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.19\n"
 "POT-Creation-Date: 2015-04-09 15:50+0100\n"
-"PO-Revision-Date: 2015-04-09 15:51+0100\n"
-"Last-Translator: Nicolas <contact@presscustomizr.com>\n"
-"Language-Team: Yaacov Glezer <jakets69@gmail.com>\n"
+"PO-Revision-Date: 2015-04-15 22:24+0200\n"
+"Last-Translator: Yaacov Glezer <jakets69@gmail.com>\n"
+"Language-Team: Yaacov Glezer (www.glezer.co.il) <jakets69@gmail.com>\n"
 "Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -752,13 +752,13 @@ msgid "Lightbox effect on images"
 msgstr "אפקט לייטבוקס על תמונות"
 
 #: ../class-fire-utils_settings_map.php:774
-#, fuzzy
 msgid ""
 "If enabled, this option activates a popin window whith a zoom effect when an "
 "image is clicked. Note : to enable this effect on the images of your pages "
 "and posts, images have to be linked to the Media File."
 msgstr ""
-"אפשרות זו תפעיל חלון עם אפקט זום כשמקליקים על תמונה. לא יחול על גלריית תמונות"
+"אפשרות זו תפעיל חלון עם אפקט זום כשמקליקים על תמונה. הערה : כדי להחיל אפקט "
+"זה על תמונות בדפים ובעמודים, יש לקשר את התמונה לקובץ המדיה שלה."
 
 #: ../class-fire-utils_settings_map.php:780
 msgid "Autoscale images on zoom"
@@ -813,13 +813,12 @@ msgid "Dynamic thumbnails centering on any devices"
 msgstr "מירכוז דינאמי של תמונות ממוזערות לכל המכשירים"
 
 #: ../class-fire-utils_settings_map.php:822
-#, fuzzy
 msgid ""
 "This option dynamically centers your images on any devices, vertically or "
 "horizontally according to their initial aspect ratio."
 msgstr ""
-"אפשרות זו ממרכזת בצורה דינאמית את התמונות בכל מכשיר, במאונזן או במאונך (ללא "
-"מתיחתן) על-פי המימדים המקוריים שלהן"
+"אפשרות זו ממרכזת בצורה דינאמית את התמונות בכל מכשיר, במאונזן או במאונך על-פי "
+"יחס רוחב/גובה המקורי שלהן"
 
 #: ../class-fire-utils_settings_map.php:835
 msgid "Smooth scroll on click"
@@ -1489,14 +1488,12 @@ msgid "Category Archives :"
 msgstr "ארכיון הקטגוריה :"
 
 #: ../class-fire-utils_settings_map.php:1861
-#, fuzzy
 msgid "Archive titles"
-msgstr "ארכיון"
+msgstr "כותרות ארכיון"
 
 #: ../class-fire-utils_settings_map.php:1862
-#, fuzzy
 msgid "Category pages titles"
-msgstr "אחרי הכותרת"
+msgstr "כותרות דפי קטגוריה"
 
 #: ../class-fire-utils_settings_map.php:1870
 #: ../parts/class-content-headings.php:385
@@ -1505,7 +1502,7 @@ msgstr "ארכיון התגית : "
 
 #: ../class-fire-utils_settings_map.php:1871
 msgid "Tag pages titles"
-msgstr ""
+msgstr "כותרות דפי תגיות"
 
 #: ../class-fire-utils_settings_map.php:1879
 #: ../parts/class-content-headings.php:342
@@ -1513,9 +1510,8 @@ msgid "Author Archives :"
 msgstr "ארכיון מחבר:"
 
 #: ../class-fire-utils_settings_map.php:1880
-#, fuzzy
 msgid "Author pages titles"
-msgstr "אחרי הכותרת"
+msgstr "כותרות דפי מחבר"
 
 #: ../class-fire-utils_settings_map.php:1888
 #: ../parts/class-content-headings.php:327
@@ -1523,9 +1519,8 @@ msgid "Search Results for :"
 msgstr "תוצאות חיפוש של:"
 
 #: ../class-fire-utils_settings_map.php:1889
-#, fuzzy
 msgid "Search results page titles"
-msgstr "תוצאות חיפוש של:"
+msgstr "כותרות דפי תוצאות חיפוש"
 
 #: ../class-fire-utils_settings_map.php:1901
 msgid "Post thumbnail position"
@@ -1644,47 +1639,40 @@ msgstr ""
 "מהירה במסך רשימת העמודים."
 
 #: ../class-fire-utils_settings_map.php:2039
-#, fuzzy
 msgid "You can also change other comments settings in :"
-msgstr "שינוי הגדרות נוספות לתגובות ב"
+msgstr "ניתן לשנות הגדרות נוספות לתגובות ב :"
 
 #: ../class-fire-utils_settings_map.php:2041
-#, fuzzy
 msgid "the discussion settings page."
 msgstr "דף הגדרות דיון"
 
 #: ../class-fire-utils_settings_map.php:2047
-#, fuzzy
 msgid "Enable comments on posts"
-msgstr "אפשר תגובות על עמודים"
+msgstr "אפשר תגובות על פוסטים"
 
 #: ../class-fire-utils_settings_map.php:2052
-#, fuzzy
 msgid ""
 "If checked, this option enables comments on all types of single posts. You "
 "can disable comments for a single post in quick edit mode from the"
 msgstr ""
-"אפשרות זו תאפשר תגובות על עמודים. תוכלו להשבית תגובות לעמוד בודד במצב עריכה "
-"מהירה במסך רשימת העמודים."
+"אפשרות זו תאפשר תגובות על כל סוגי הפוסטים הבודדים. תוכלו להשבית תגובות לפוסט "
+"בודד במצב עריכה מהירה"
 
 #: ../class-fire-utils_settings_map.php:2054
-#, fuzzy
 msgid "post screen"
-msgstr "מסך התאמות"
+msgstr "מסך פוסטים"
 
 #: ../class-fire-utils_settings_map.php:2055
-#, fuzzy
 msgid "You can also change other comments settings in the"
-msgstr "שינוי הגדרות נוספות לתגובות ב"
+msgstr "ניתן לשנות הגדרות נוספות לתגובות ב"
 
 #: ../class-fire-utils_settings_map.php:2057
 msgid "discussion settings page."
 msgstr "דף הגדרות דיון"
 
 #: ../class-fire-utils_settings_map.php:2063
-#, fuzzy
 msgid "Display the comment list"
-msgstr "הצג את כל התוכן"
+msgstr "הצגת רשימת התגובות את כל התוכן"
 
 #: ../class-fire-utils_settings_map.php:2067
 msgid ""
@@ -1692,6 +1680,8 @@ msgid ""
 "disabled in posts or pages. Unchecking this option allows you to not display "
 "this comment history."
 msgstr ""
+"כברירת מחדל, וורדפרס מציג תגובות, גם כאשר התגובות חסומות לדף או לפוסט. ביטול "
+"סימון אפשרות זו תאפשר לכם למנוע הצגת הסטוריית התגובות."
 
 #: ../class-fire-utils_settings_map.php:2074
 msgid "Display a back to top arrow on scroll"
@@ -1789,11 +1779,12 @@ msgid ""
 "Note : columns are limited to 3 for single sidebar layouts and to 2 for "
 "double sidebar layouts."
 msgstr ""
+"הערה: עמודות מוגבלות ל-3 בפריסת סרגל צדדי יחיד, ול-2 בפריסת שני סרגלים "
+"צדדיים."
 
 #: ../class-fire-utils_settings_map.php:2244
-#, fuzzy
 msgid "Expand the last sticky post (for home and blog page only)"
-msgstr "הרחבת הדפים המובלטים (לדף הבית ובלוג בלבד)"
+msgstr "הרחבת הפוסט הדביק האחרון (לדף הבית ובלוג בלבד)"
 
 #: ../class-fire-utils_settings_map.php:2252
 msgid "Apply the grid layout to Home/Blog"
@@ -1825,7 +1816,7 @@ msgstr "הצג סמלילי פורמט פוסט ברקע"
 
 #: ../class-fire-utils_settings_map.php:2305
 msgid "Max. length for post titles (in words)"
-msgstr ""
+msgstr "אורך מירבי של כותרת פוסט (במילים)"
 
 #: ../class-fire-utils_settings_map.php:2316
 msgid "Thumbnails max height for the grid layout"
@@ -1902,36 +1893,32 @@ msgid "Add unlimited featured pages with Customizr Pro"
 msgstr "הוסף דפים מובלטים ללא הגבלה עם Customizr Pro"
 
 #: ../admin/class-admin-customize.php:426
-#, fuzzy
 msgid "Customize your footer credits with Customizr Pro"
-msgstr "הוסף דפים מובלטים ללא הגבלה עם Customizr Pro"
+msgstr "התאימו בעצמכם את שורת הקרדיט בכותרת התחתית עם Customizr Pro"
 
 #: ../admin/class-admin-customize.php:437
 msgid "If you like"
-msgstr ""
+msgstr "אם תרצו"
 
 #: ../admin/class-admin-customize.php:438
-#, fuzzy
 msgid "the Customizr theme"
-msgstr ", המפתח של תבנית Customizr"
+msgstr "תבנית Customizr"
 
 #: ../admin/class-admin-customize.php:438
-#, fuzzy
 msgid "the Customizr pro theme"
-msgstr ", המפתח של תבנית Customizr"
+msgstr "תבנית Customizr Pro"
 
 #: ../admin/class-admin-customize.php:439
 msgid "we would love to receive a"
-msgstr ""
+msgstr "אנו שנמח לקבל"
 
 #: ../admin/class-admin-customize.php:441
-#, fuzzy
 msgid "Review the Customizr theme"
-msgstr ", המפתח של תבנית Customizr"
+msgstr "דרגו את תבנית Customizr"
 
 #: ../admin/class-admin-customize.php:443
 msgid "rating. Thanks :) !"
-msgstr ""
+msgstr "דירוג. תודה :-) !"
 
 #: ../admin/class-admin-meta_boxes.php:87
 msgid "Layout Options"
@@ -2158,14 +2145,12 @@ msgid "Create a slider"
 msgstr "יצירת סליידר"
 
 #: ../admin/class-controls.php:85
-#, fuzzy
 msgid "Need help to create a slider ?"
-msgstr "יצירת סליידר"
+msgstr "זקוקים לעזרה ביצירת סליידר?"
 
 #: ../admin/class-controls.php:87
-#, fuzzy
 msgid "Check the documentation"
-msgstr "קראו את התיעוד"
+msgstr "בדקו את התיעוד"
 
 #: ../admin/class-controls.php:315
 msgid "Upload"
@@ -2599,7 +2584,7 @@ msgstr "חסר הקובץ המצורף"
 #: ../parts/class-content-headings.php:182
 #: ../parts/class-content-headings.php:187
 msgid "{no title} Read the post &raquo;"
-msgstr ""
+msgstr "{ללא כותרת} קראו את הפוסט >"
 
 #: ../parts/class-content-headings.php:186
 #, php-format
@@ -2738,7 +2723,7 @@ msgstr "(עודכן לפני %s ימים)"
 
 #: ../parts/class-content-post_metas.php:304
 msgid "(updated 1 day ago)"
-msgstr "(עודכן לפני יום אחד)"
+msgstr "(עודכן אתמול)"
 
 #: ../parts/class-content-post_metas.php:307
 #, php-format
@@ -2757,7 +2742,7 @@ msgstr "צפיה בכל הפוסטים של %s"
 
 #: ../parts/class-content-post_metas.php:475
 msgid "Open"
-msgstr ""
+msgstr "לפתוח"
 
 #: ../parts/class-content-post_metas.php:513
 msgid "tagged"
@@ -2783,60 +2768,54 @@ msgstr "פוסטים חדשים יותר <span class=\"meta-nav\">&larr;</span>"
 #: ../parts/class-content-sidebar.php:128
 #: ../parts/class-footer-footer_main.php:102
 msgid "This block is visible for admin users only."
-msgstr ""
+msgstr "בלוק זה מוצג רק למשתמשים ברמת מנהל (Admin)"
 
 #: ../parts/class-content-sidebar.php:132
-#, fuzzy
 msgid "The sidebar : "
-msgstr "סרגל צדדי שמאלי"
+msgstr "סרגל צדדי :"
 
 #: ../parts/class-content-sidebar.php:134
-#, fuzzy
 msgid "has no widgets"
-msgstr "Gérer les widgets"
+msgstr "לא מכיל וידג'טים"
 
 #: ../parts/class-content-sidebar.php:138
 msgid "You can add widgets to this sidebar in :"
-msgstr ""
+msgstr "תוכלו להוסיף ווידג'טים לסרגל צדדי זה ב :"
 
 #: ../parts/class-content-sidebar.php:140
 #: ../parts/class-footer-footer_main.php:112
-#, fuzzy
 msgid "Add widgets"
-msgstr "Gérer les widgets"
+msgstr "הוספת ווידג'טים"
 
 #: ../parts/class-content-sidebar.php:141
 #: ../parts/class-footer-footer_main.php:113
-#, fuzzy
 msgid "appearance > widgets"
-msgstr "Gérer les widgets"
+msgstr "עיצוב > וידג'טים"
 
 #: ../parts/class-content-sidebar.php:145
 msgid "You can also remove this sidebar by changing the current page layout."
-msgstr ""
+msgstr "תוכלו להסיר סרגל צדדי זה באמצעות שינוי פריסת העמוד הנוכחי"
 
 #: ../parts/class-content-sidebar.php:147
-#, fuzzy
 msgid "Changing the layout in the Customizr theme"
-msgstr "הגדרות תוכן לתבנית Customizr."
+msgstr "שינוי הפריסנ בתבנית Customizr"
 
 #: ../parts/class-content-sidebar.php:148
-#, fuzzy
 msgid "See the theme documentation."
-msgstr "קראו את התיעוד"
+msgstr "ראו בתיעוד התבנית."
 
 #: ../parts/class-content-sidebar.php:152
 #: ../parts/class-footer-footer_main.php:117
 msgid "dismiss notice"
-msgstr ""
+msgstr "ביטול הודעה"
 
 #: ../parts/class-footer-footer_main.php:106
 msgid "The footer has no widgets"
-msgstr ""
+msgstr "הכותרת התחתית (פוטר) לא מכילה ווידג'טים"
 
 #: ../parts/class-footer-footer_main.php:110
 msgid "You can add widgets to the footer in :"
-msgstr ""
+msgstr "תוכלו להוסיף ווידג'טים לכותרת התחתית ב :"
 
 #: ../parts/class-footer-footer_main.php:221
 msgid "Back to top"
