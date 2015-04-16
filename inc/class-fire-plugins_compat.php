@@ -281,46 +281,12 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
       function tc_woocommerce_wrappers() {
         switch ( current_filter() ) {
-          case 'woocommerce_before_main_content':
-
-          ?>
-            <div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">
-
-            <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
-
-            <div class="container" role="main">
-                <div class="<?php echo implode(' ', apply_filters( 'tc_column_content_wrapper_classes' , array('row' ,'column-content-wrapper') ) ) ?>">
-
-                    <?php do_action( '__before_article_container'); ##hook of left sidebar?>
-
-                        <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
-
-                            <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
-          <?php
-
-            break;
-
-          case 'woocommerce_after_main_content':
-
-          ?>
-                            <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
-
-                        </div><!--.article-container -->
-
-                    <?php do_action( '__after_article_container'); ##hook of left sidebar?>
-
-                </div><!--.row -->
-            </div><!-- .container role: main -->
-
-            <?php do_action( '__after_main_container' ); ?>
-
-          </div><!--#main-wrapper"-->
-
-          <?php
-            break;
+          case 'woocommerce_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
+                                                  break;
+                                    
+          case 'woocommerce_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
+                                                  break;
         }//end of switch on hook
-        ?>
-        <?php
       }//end of nested function
 
       // use Customizr title
@@ -367,6 +333,48 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_woocommerce_change_meta_boxes_priority($priority , $screen) {
          return ( 'product' == $screen ) ? 'default' : $priority ;
       }
+    }
+
+    /**
+    * CUSTOMIZR WRAPPERS
+    * print the customizr wrappers 
+    *
+    * @since 3.3+
+    * 
+    * originally used for woocommerce compatibility
+    */
+    function tc_mainwrapper_start() {
+      ?>
+      <div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">
+
+        <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
+
+        <div class="container" role="main">
+          <div class="<?php echo implode(' ', apply_filters( 'tc_column_content_wrapper_classes' , array('row' ,'column-content-wrapper') ) ) ?>">
+
+            <?php do_action( '__before_article_container'); ##hook of left sidebar?>
+
+              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
+
+                <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
+      <?php
+    }
+    
+    function tc_mainwrapper_end() {
+      ?>
+                <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
+
+              </div><!--.article-container -->
+
+              <?php do_action( '__after_article_container'); ##hook of left sidebar?>
+
+            </div><!--.row -->
+        </div><!-- .container role: main -->
+
+        <?php do_action( '__after_main_container' ); ?>
+
+      </div><!--#main-wrapper"-->
+      <?php
     }
 
 
