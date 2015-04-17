@@ -27,7 +27,12 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
       self::$instance =& $this;
   		//add control class
-  		add_action ( 'customize_register'				                , array( $this , 'tc_add_controls_class' ) ,10,1);
+  		add_action ( 'customize_register'				                , array( $this , 'tc_add_controls_class' ) ,10,1);        
+
+  		//add grid/post list buttons
+  		add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );
+  		add_action( '__before_setting_control'    , array( $this , 'tc_render_link_to_grid') );
+
   		//control scripts and style
   		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
   		//add the customizer built with the builder below
@@ -218,7 +223,23 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		}//end of customize generator function
 
 
+        /**
+        * hook __before_setting_control (declared in class-controls.php)
+        * @echo clickable text
+        */
+        function tc_render_grid_control_link( $set_id ) {
+          if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
+            printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
+        }
 
+        /**
+        * hook __before_setting_control (declared in class-controls.php)
+        * @echo link
+        */
+        function tc_render_link_to_grid( $set_id ) {
+          if ( false !== strpos( $set_id, 'tc_front_layout' ) )
+            printf('<span class="button tc-navigate-to-post-list" title="%1$s">%1$s &raquo;</span>' , __('Jump to the blog design options' , 'customizr') );
+        }
 
 
 		/**
