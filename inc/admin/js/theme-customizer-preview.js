@@ -178,25 +178,20 @@
 	//Post metas
 	wp.customize( 'tc_theme_options[tc_show_post_metas]' , function( value ) {
 		value.bind( function( to ) {
-			if ( false === to ) {
+			if ( false === to )
 				$('.entry-header .entry-meta' , '.article-container').hide('slow');
-
-			}
-			else if (! $('body').hasClass('hide-post-metas') ) {
+            else if (! $('body').hasClass('hide-post-metas') ){
 				$('.entry-header .entry-meta' , '.article-container').show('fast');
-			}
+                $('body').removeClass('hide-all-post-metas');
+            }
 		} );
 	} );
 	wp.customize( 'tc_theme_options[tc_show_post_metas_home]' , function( value ) {
 		value.bind( function( to ) {
-			if ( false === to ) {
+			if ( false === to )
 				$('.entry-header .entry-meta' , '.home .article-container').hide('slow');
-				$('body').addClass('hide-post-metas');
-			}
-			else {
-				$('body').removeClass('hide-post-metas');
+			else
 				$('.entry-header .entry-meta' , '.home .article-container').show('fast');
-			}
 		} );
 	});
 	wp.customize( 'tc_theme_options[tc_show_post_metas_single_post]' , function( value ) {
