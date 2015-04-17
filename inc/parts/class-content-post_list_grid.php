@@ -36,10 +36,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
           //fired on hook : wp_enqueue_scripts
           add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
-
-          //customizer
-          add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );
-          add_action( '__before_setting_control'    , array( $this , 'tc_render_link_to_grid') );
         }
 
 
@@ -908,25 +904,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_type = $this -> tc_get_grid_context();
           $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_in_' . $_type ) ) );
           return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
-        }
-
-
-        /**
-        * hook __before_setting_control (declared in class-controls.php)
-        * @echo clickable text
-        */
-        function tc_render_grid_control_link( $set_id ) {
-          if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
-            printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
-        }
-
-        /**
-        * hook __before_setting_control (declared in class-controls.php)
-        * @echo link
-        */
-        function tc_render_link_to_grid( $set_id ) {
-          if ( false !== strpos( $set_id, 'tc_front_layout' ) )
-            printf('<span class="button tc-navigate-to-post-list" title="%1$s">%1$s &raquo;</span>' , __('Jump to the blog design options' , 'customizr') );
         }
 
   }//end of class
