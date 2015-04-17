@@ -1,4 +1,4 @@
-# Customizr v3.3.19 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.20 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -90,6 +90,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.20 April 17th 2015 =
+Fix: in the customizer display other grid options
+
 = 3.3.19 April 13th 2015 =
 fixed : Black Studio TinyMCE Plugin issue. Load TC_resource class when tinymce_css callback is fired from the customizer
 

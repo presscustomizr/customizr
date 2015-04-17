@@ -36,6 +36,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.20 April 17th 2015 =
+Fix: in the customizer display other grid options
+
 = 3.3.19 April 13th 2015 =
 fixed : Black Studio TinyMCE Plugin issue. Load TC_resource class when tinymce_css callback is fired from the customizer
 
