@@ -121,7 +121,7 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                         $next_posts_link_args      = apply_filters(
                           'tc_next_posts_link_args' ,
                           array(
-                            'label'        => apply_filters( 'tc_list_nav_next_text', __( '<span class="meta-nav">'.$prev_arrow.'</span> Older posts' , 'customizr' ) ),
+                            'label'        => apply_filters( 'tc_list_nav_next_text', __( '<span class="meta-nav">&larr;</span> Older posts' , 'customizr' ) ),
                             'max_pages'    => 0
                           )
                         );
@@ -141,7 +141,7 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                         $previous_posts_link_args      = apply_filters(
                           'tc_previous_posts_link_args' ,
                           array(
-                            'label'        => apply_filters( 'tc_list_nav_previous_text', __( 'Newer posts <span class="meta-nav">'.$next_arrow.'</span>' , 'customizr' ) ),
+                            'label'        => apply_filters( 'tc_list_nav_previous_text', __( 'Newer posts <span class="meta-nav">&rarr;</span>' , 'customizr' ) ),
                             'max_pages'    => 0
                           )
                         );
