@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.19\n"
 "POT-Creation-Date: 2015-04-09 15:50+0100\n"
-"PO-Revision-Date: 2015-04-15 22:24+0200\n"
+"PO-Revision-Date: 2015-04-19 08:50+0200\n"
 "Last-Translator: Yaacov Glezer <jakets69@gmail.com>\n"
 "Language-Team: Yaacov Glezer (www.glezer.co.il) <jakets69@gmail.com>\n"
 "Language: he_IL\n"
@@ -2411,11 +2411,11 @@ msgstr ""
 
 #: ../parts/class-content-attachment.php:41
 msgid "&larr; Previous"
-msgstr "&larr; הקודם"
+msgstr "&rarr; הקודם"
 
 #: ../parts/class-content-attachment.php:42
 msgid "Next &rarr;"
-msgstr "הבא &rarr;"
+msgstr "הבא &larr;"
 
 #: ../parts/class-content-breadcrumb.php:38
 #: ../parts/class-content-breadcrumb.php:50
