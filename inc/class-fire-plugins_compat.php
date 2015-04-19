@@ -39,6 +39,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_theme_support( 'polylang' );
       add_theme_support( 'woocommerce' );
       add_theme_support( 'the-events-calendar' );
+      add_theme_support( 'nextgen-gallery' );
     }
 
 
@@ -77,6 +78,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       /* Woocommerce */
       if ( current_theme_supports( 'woocommerce' ) && $this -> tc_is_plugin_active('woocommerce/woocommerce.php') )
         $this -> tc_set_woocomerce_compat();
+
+      /* Nextgen gallery */
+      if ( current_theme_supports( 'nextgen-gallery') && $this -> tc_is_plugin_active('nextgen-gallery/nggallery.php') )
+        $this -> tc_set_nggallery_compat();
 
     }//end of plugin compatibility function
 
@@ -260,7 +265,25 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     }//end polylang compat
 
 
-
+    /**
+    * NextGen Gallery compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_nggallery_compat() { 
+      /* Make Customizr smart load work with nextgen galleries and fix small bug which resulted in displaying plain image attributes */  
+     add_action('wp_head', 'tc_content_parse_imgs_rehook');
+     function tc_content_parse_imgs_rehook(){
+       // smartload doesn't work at all for nggalleries in pages, looks like they add "data-src" to their images in pages .. mah
+       if ( is_page() || is_admin() || 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ) )
+        return;
+       
+       remove_filter('the_content', array(TC_utils::$instance, 'tc_parse_imgs') );
+       // they add the actual images filtering the content with priority PHP_INT_MAX -1 
+       add_filter('the_content'   , array(TC_utils::$instance, 'tc_parse_imgs'), PHP_INT_MAX );
+     }
+    }
 
     /**
     * Woocommerce compat hooks
