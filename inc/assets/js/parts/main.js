@@ -497,9 +497,9 @@ jQuery(function ($) {
         $resetMarginTop.css('margin-top' , '' ).show();
 
         //What is the initial offset of the header ?
-        var headerHeight    = $tcHeader.height();
+        var headerHeight    = $tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
         //set initial margin-top = initial offset + header's height
-        $resetMarginTop.css('margin-top' , ( +headerHeight + customOffset ) + 10 + 'px' ); //10 = header bottom border
+        $resetMarginTop.css('margin-top' , ( +headerHeight + customOffset ) + 'px');
     }
 
 
