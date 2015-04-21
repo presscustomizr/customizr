@@ -35,6 +35,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //add support for plugins (added in v3.1+)
       add_theme_support( 'jetpack' );
       add_theme_support( 'bbpress' );
+      add_theme_support( 'buddy-press' );
       add_theme_support( 'qtranslate-x' );
       add_theme_support( 'polylang' );
       add_theme_support( 'woocommerce' );
@@ -59,7 +60,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
       if ( current_theme_supports( 'bbpress' ) && $this -> tc_is_plugin_active('bbpress/bbpress.php') )
         $this -> tc_set_bbpress_compat();
-
+ 
+      /* BUDDYPRESS */
+      //if buddypress is installed and activated, we can check the existence of the contextual boolean function is_buddypress() to execute some code
+      // we have to use buddy-press instead of buddypress as string for theme support as buddypress makes some checks on current_theme_supports('buddypress') which result in not using its templates
+      if ( current_theme_supports( 'buddy-press' ) && $this -> tc_is_plugin_active('buddypress/bp-loader.php') )
+        $this -> tc_set_buddypress_compat();
+ 
       /*
       * QTranslatex
       * Credits : @acub, http://websiter.ro
@@ -124,7 +131,18 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       }
     }
 
-
+    /**
+    * BuddyPress compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_buddypress_compat() {
+      add_filter( 'tc_are_comments_enabled', 'tc_buddypress_disable_comments' );
+      function tc_buddypress_disable_comments($bool){
+        return ( is_page() && function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
+      }
+    }
 
     /**
     * QtranslateX compat hooks
