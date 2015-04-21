@@ -617,4 +617,14 @@
     } );
   });
 
+  //GALLERY
+  wp.customize( 'tc_theme_options[tc_gallery_style]' , function( value ) {
+    value.bind( function( to ) {
+      if ( false !== to )
+        $('.article-container').addClass('tc-gallery-style');
+      else
+        $('.article-container').removeClass('tc-gallery-style');
+    } );
+  });
+ 
 } )( jQuery );

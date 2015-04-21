@@ -17,24 +17,21 @@ if ( ! class_exists( 'TC_gallery' ) ) :
       function __construct () {
         self::$instance =& $this;
         
-        if ( ! apply_filters('tc_enable_gallery', esc_attr( TC_utils::$inst -> tc_opt('tc_enable_gallery') ) ) )
-          return;
-
-        add_filter ( 'body_class'             , array( $this, 'tc_add_gallery_class' ), 20 );
+        add_filter ( 'tc_article_container_class' , array( $this, 'tc_add_gallery_class' ), 20 );
         //adds a filter for link markup (allow lightbox)
-        add_filter ( 'wp_get_attachment_link' , array( $this, 'tc_modify_attachment_link') , 20, 6 );
+        add_filter ( 'wp_get_attachment_link'     , array( $this, 'tc_modify_attachment_link') , 20, 6 );
       }
 
       /**
        *
-       * Add a class to the body to apply Customizr galleries on hover effects
+       * Add a class to the article-container to apply Customizr galleries on hover effects
        *
        * @package Customizr
        * @since Customizr 3.3.21
        *
        */
       function tc_add_gallery_class( $_classes ){
-        if ( apply_filters( 'tc_gallery_style', esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_style' ) ) ) )  
+        if (  $this -> tc_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_style' ) ) ) )  
           array_push($_classes, 'tc-gallery-style');
         return $_classes;    
       }
@@ -49,6 +46,9 @@ if ( ! class_exists( 'TC_gallery' ) ) :
        *
        */
       function tc_modify_attachment_link( $markup, $id, $size, $permalink, $icon, $text ) {
+
+        if ( ! $this -> tc_is_gallery_enabled() )
+          return $markup;
 
         $tc_fancybox = esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_fancybox' ) );
 
@@ -81,6 +81,13 @@ if ( ! class_exists( 'TC_gallery' ) ) :
 
 
         return $markup;
+      }
+
+      /*
+       * HELPERS
+       */
+      function tc_is_gallery_enabled(){
+        return apply_filters('tc_enable_gallery', esc_attr( TC_utils::$inst -> tc_opt('tc_enable_gallery') ) );
       }
   }//end of class
 endif;
