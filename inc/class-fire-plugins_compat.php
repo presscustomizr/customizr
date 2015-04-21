@@ -287,7 +287,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       }
      
       /* Remove fancybox loading icon*/
-      add_action('wp_footer','op_remove_fancyboxloading');  
+      add_action('wp_footer','tc_op_remove_fancyboxloading');  
       function tc_op_remove_fancyboxloading(){
         echo "<script>
                 if (typeof(opjq) !== 'undefined') {
