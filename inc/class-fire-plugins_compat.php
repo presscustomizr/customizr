@@ -39,6 +39,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_theme_support( 'polylang' );
       add_theme_support( 'woocommerce' );
       add_theme_support( 'the-events-calendar' );
+      add_theme_support( 'optimize-press' );
     }
 
 
@@ -73,6 +74,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       */
       if ( current_theme_supports( 'polylang' ) && $this -> tc_is_plugin_active('polylang/polylang.php') )
         $this -> tc_set_polylang_compat();
+ 
+      /* Optimize Press */
+      if ( current_theme_supports( 'optimize-press' ) && $this -> tc_is_plugin_active('optimizePressPlugin/optimizepress.php') )
+        $this -> tc_set_optimizepress_compat();
 
       /* Woocommerce */
       if ( current_theme_supports( 'woocommerce' ) && $this -> tc_is_plugin_active('woocommerce/woocommerce.php') )
@@ -259,6 +264,40 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       }//end Front
     }//end polylang compat
 
+
+
+    /**
+    * OptimizePress compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_optimizepress_compat() {
+      add_action('wp_print_scripts', 'tc_op_dequeue_fancybox_js');
+      function tc_op_dequeue_fancybox_js(){
+        if ( function_exists('is_le_page') ){
+          /* Op Back End: Dequeue tc-scripts */  
+          if ( is_le_page() || defined('OP_LIVEEDITOR') )
+            wp_dequeue_script('tc-scripts');
+          else
+            /* Front End: Dequeue op fancybox already embedded in customizr */  
+            wp_dequeue_script(OP_SN.'-fancybox');
+       
+        }
+      }
+     
+      /* Remove fancybox loading icon*/
+      add_action('wp_footer','op_remove_fancyboxloading');  
+      function tc_op_remove_fancyboxloading(){
+        echo "<script>
+                if (typeof(opjq) !== 'undefined') {
+                  opjq(document).ready(function(){
+                    opjq('#fancybox-loading').remove();
+                  });
+                }
+             </script>";
+      }
+    }//end optimizepress compat
 
 
 
