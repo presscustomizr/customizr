@@ -60,6 +60,10 @@ body {
   -o-transition: background-position .1s linear;
   transition: background-position .1s linear;
 }
+/* IE fix for navbar first level items */
+.ie.tc-fade-hover-links .nav > li > a {
+  transition: none !important;
+}
 
 /* External Links style */
 a + span.tc-external:after {
