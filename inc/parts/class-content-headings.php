@@ -178,8 +178,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return $_title;
 
         //gets the post/page title
-        if ( is_singular() || ! apply_filters('tc_display_link_for_post_titles' , true ) )
-          return is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title;
+        if ( is_singular() || ! apply_filters('tc_display_link_for_post_titles' , true ) ){ return $_title;
+          return is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title;}
         else
           return sprintf('<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
             get_permalink(),
@@ -290,14 +290,17 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function tc_archive_title_and_class_callback( $_title = null, $_return_class = false ) {
         //declares variables to return
         $content          = false;
-        $_header_class     = array();
-
+        $_header_class    = false;
+        
         //case page for posts but not on front
         global $wp_query;
         if ( $wp_query -> is_posts_page && ! is_front_page() ) {
           //get page for post ID
           $page_for_post_id = get_option('page_for_posts');
           $_header_class   = array('entry-header');
+          if ( $_return_class )
+            return $_header_class;    
+ 
           $content        = sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
                 apply_filters( 'tc_content_title_tag' , 'h1' ),
                 apply_filters( 'tc_content_title_icon', 'format-icon' ),
@@ -308,8 +311,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
 
 
         //404
-        if ( is_404() ) {
+        else if ( is_404() ) {
           $_header_class   = array('entry-header');
+          if ( $_return_class )
+            return $_header_class;    
+
           $content        = sprintf('<h1 class="entry-title %1$s">%2$s</h1>',
                 apply_filters( 'tc_archive_icon', '' ),
                 apply_filters( 'tc_404_title' , __( 'Ooops, page not found' , 'customizr' ) )
@@ -318,8 +324,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
         }
 
         //search results
-        if ( is_search() && !is_singular() ) {
+        else  if ( is_search() && ! is_singular() ) {
           $_header_class   = array('search-header');
+          if ( $_return_class )
+            return $_header_class;    
+
           $content        = sprintf( '<div class="row-fluid"><div class="%1$s"><h1 class="%2$s">%3$s%4$s %5$s </h1></div><div class="%6$s">%7$s</div></div>',
                 apply_filters( 'tc_search_result_header_title_class', 'span8' ),
                 apply_filters( 'tc_archive_icon', 'format-icon' ),
@@ -331,80 +340,95 @@ if ( ! class_exists( 'TC_headings' ) ) :
           );
           $content       = apply_filters( 'tc_search_results_header_content', $content );
         }
-
-        //author's posts page
-        if ( ! is_singular() && is_author() ) {
-          //gets the user ID
-          $user_id = get_query_var( 'author' );
+        // all archives
+        else if ( is_archive() ){
           $_header_class   = array('archive-header');
-          $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
+          if ( $_return_class )
+            return $_header_class;    
+
+          //author's posts page
+          if ( is_author() ) {
+            //gets the user ID
+            $user_id = get_query_var( 'author' );
+            $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                   apply_filters( 'tc_archive_icon', 'format-icon' ),
                   apply_filters( 'tc_author_archive_title' , __( 'Author Archives :' , 'customizr' ) ),
                   '<span class="vcard">' . get_the_author_meta( 'display_name' , $user_id ) . '</span>'
-          );
-          if ( apply_filters ( 'tc_show_author_meta' , get_the_author_meta( 'description', $user_id  ) ) ) {
-            $content    .= sprintf('%1$s<div class="author-info"><div class="%2$s">%3$s</div></div>',
-
-              apply_filters( 'tc_author_meta_separator', '<hr class="featurette-divider '.current_filter().'">' ),
-
-              apply_filters( 'tc_author_meta_wrapper_class', 'row-fluid' ),
-
-              sprintf('<div class="%1$s">%2$s</div><div class="%3$s"><h2>%4$s</h2><p>%5$s</p></div>',
-                  apply_filters( 'tc_author_meta_avatar_class', 'comment-avatar author-avatar span2'),
-                  get_avatar( get_the_author_meta( 'user_email', $user_id ), apply_filters( 'tc_author_bio_avatar_size' , 100 ) ),
-                  apply_filters( 'tc_author_meta_content_class', 'author-description span10' ),
-                  sprintf( __( 'About %s' , 'customizr' ), get_the_author() ),
-                  get_the_author_meta( 'description' , $user_id  )
-              )
             );
-          }
-          $content       = apply_filters( 'tc_author_header_content', $content );
-        }
+            if ( apply_filters ( 'tc_show_author_meta' , get_the_author_meta( 'description', $user_id  ) ) ) {
+              $content    .= sprintf('%1$s<div class="author-info"><div class="%2$s">%3$s</div></div>',
 
-        //category archives
-        if ( !is_singular() && is_category() ) {
-          $_header_class   = array('archive-header');
-          $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
+                  apply_filters( 'tc_author_meta_separator', '<hr class="featurette-divider '.current_filter().'">' ),
+
+                  apply_filters( 'tc_author_meta_wrapper_class', 'row-fluid' ),
+
+                  sprintf('<div class="%1$s">%2$s</div><div class="%3$s"><h2>%4$s</h2><p>%5$s</p></div>',
+                      apply_filters( 'tc_author_meta_avatar_class', 'comment-avatar author-avatar span2'),
+                      get_avatar( get_the_author_meta( 'user_email', $user_id ), apply_filters( 'tc_author_bio_avatar_size' , 100 ) ),
+                      apply_filters( 'tc_author_meta_content_class', 'author-description span10' ),
+                      sprintf( __( 'About %s' , 'customizr' ), get_the_author() ),
+                      get_the_author_meta( 'description' , $user_id  )
+                  )
+              );
+            }
+            $content       = apply_filters( 'tc_author_header_content', $content );
+          }
+
+          //category archives
+          else if ( is_category() ) {
+            $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                 apply_filters( 'tc_archive_icon', 'format-icon' ),
                 apply_filters( 'tc_category_archive_title' , __( 'Category Archives :' , 'customizr' ) ),
                 '<span>' . single_cat_title( '' , false ) . '</span>'
-          );
-          if ( apply_filters ( 'tc_show_cat_description' , category_description() ) ) {
-            $content    .= sprintf('<div class="archive-meta">%1$s</div>',
-              category_description()
             );
+            if ( apply_filters ( 'tc_show_cat_description' , category_description() ) ) {
+              $content    .= sprintf('<div class="archive-meta">%1$s</div>',
+                category_description()
+              );
+            }
+            $content       = apply_filters( 'tc_category_archive_header_content', $content );
           }
-          $content       = apply_filters( 'tc_category_archive_header_content', $content );
-        }
 
-        //tag archives
-        if ( ! is_singular() && is_tag() ) {
-          $_header_class   = array('archive-header');
-          $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
+          //tag archives
+          else if ( is_tag() ) {
+            $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                 apply_filters( 'tc_archive_icon', 'format-icon' ),
                 apply_filters( 'tc_tag_archive_title' , __( 'Tag Archives :' , 'customizr' ) ),
                 '<span>' . single_tag_title( '' , false ) . '</span>'
-          );
-          if ( apply_filters ( 'tc_show_tag_description' , tag_description() ) ) {
-            $content    .= sprintf('<div class="archive-meta">%1$s</div>',
-              tag_description()
             );
-                              }
-          $content       = apply_filters( 'tc_tag_archive_header_content', $content );
-        }
+            if ( apply_filters ( 'tc_show_tag_description' , tag_description() ) ) {
+              $content    .= sprintf('<div class="archive-meta">%1$s</div>',
+                tag_description()
+              );
+            }
+            $content       = apply_filters( 'tc_tag_archive_header_content', $content );
+          }
 
-        //time archives
-        if ( ! is_singular() && ( is_day() || is_month() || is_year() ) ) {
-          $archive_type   = is_day() ? sprintf( __( 'Daily Archives: %s' , 'customizr' ), '<span>' . get_the_date() . '</span>' ) : __( 'Archives' , 'customizr' );
-          $archive_type   = is_month() ? sprintf( __( 'Monthly Archives: %s' , 'customizr' ), '<span>' . get_the_date( _x( 'F Y' , 'monthly archives date format' , 'customizr' ) ) . '</span>' ) : $archive_type;
-          $archive_type   = is_year() ? sprintf( __( 'Yearly Archives: %s' , 'customizr' ), '<span>' . get_the_date( _x( 'Y' , 'yearly archives date format' , 'customizr' ) ) . '</span>' ) : $archive_type;
-          $_header_class   = array('archive-header');
-          $content        = sprintf('<h1 class="%1$s">%2$s</h1>',
-            apply_filters( 'tc_archive_icon', 'format-icon' ),
-            $archive_type
-          );
-          $content        = apply_filters( 'tc_time_archive_header_content', $content );
-        }
+          //time archives
+          else if ( is_day() || is_month() || is_year() ) {
+            $archive_type   = is_day() ? sprintf( __( 'Daily Archives: %s' , 'customizr' ), '<span>' . get_the_date() . '</span>' ) : __( 'Archives' , 'customizr' );
+            $archive_type   = is_month() ? sprintf( __( 'Monthly Archives: %s' , 'customizr' ), '<span>' . get_the_date( _x( 'F Y' , 'monthly archives date format' , 'customizr' ) ) . '</span>' ) : $archive_type;
+            $archive_type   = is_year() ? sprintf( __( 'Yearly Archives: %s' , 'customizr' ), '<span>' . get_the_date( _x( 'Y' , 'yearly archives date format' , 'customizr' ) ) . '</span>' ) : $archive_type;
+            $content        = sprintf('<h1 class="%1$s">%2$s</h1>',
+              apply_filters( 'tc_archive_icon', 'format-icon' ),
+              $archive_type
+            );
+            $content        = apply_filters( 'tc_time_archive_header_content', $content );
+          }
+          // all other archivers ( such as custom tax archives )
+          else {
+            $content   = sprintf('<h1 class="%1$s">%2$s</h1>',
+                apply_filters( 'tc_archive_icon', 'format-icon' ), /* handle tax icon? */
+                apply_filters( 'tc_tax_archive_title',	get_the_archive_title() )
+            );
+            $tax_description = get_the_archive_description();
+            if ( apply_filters( 'tc_show_tax_description', $tax_description ) )
+              $content   .=  sprintf('<div class="archive-meta">%1$s</div>',
+                $tax_description
+              );
+            $content        = apply_filters( 'tc_tax_archive_header_content', $content );
+          }
+        }// end all archives 
 
         return $_return_class ? $_header_class : $content;
 
