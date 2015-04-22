@@ -178,8 +178,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
           return $_title;
 
         //gets the post/page title
-        if ( is_singular() || ! apply_filters('tc_display_link_for_post_titles' , true ) ){
-          return is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title;}
+        if ( is_singular() || ! apply_filters('tc_display_link_for_post_titles' , true ) )
+          return is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title;
         else
           return sprintf('<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
             get_permalink(),
