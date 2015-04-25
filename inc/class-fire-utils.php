@@ -292,7 +292,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
             $_single_opt = isset($_single_opt['all_cx']) ? $_single_opt['all_cx'] : false;
         }
 
-        return apply_filters( 'tc_opt' , $_single_opt , $option_name , $option_group );
+        return apply_filters( "tc_opt_{$option_name}" , $_single_opt , $option_name , $option_group );
       }
 
 
