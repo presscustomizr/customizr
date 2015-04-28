@@ -339,10 +339,7 @@ a.thumbnail:focus {
   background-color: #768d44;
   background-position: 0 -30px;
 }
-.navbar-wrapper .navbar h2 {
-  color: #9db668;
-}
-h2.site-description {
+.site-description {
   color: #9db668;
 }
 .navbar .nav > li.current-menu-item > a,
