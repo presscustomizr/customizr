@@ -254,6 +254,15 @@
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_enable_gallery' : {
+      controls: [
+        'tc_gallery_fancybox',
+        'tc_gallery_style',
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
     }
   };
 
