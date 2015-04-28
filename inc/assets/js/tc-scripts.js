@@ -3677,7 +3677,7 @@ jQuery(function ($) {
 
     //LOADING ACTIONS
     if ( _is_sticky_enabled() )
-        setTimeout( function() { _refresh(); _scrolling_actions(); } , 20 );
+        setTimeout( function() { _sticky_refresh(); _sticky_header_scrolling_actions(); } , 20 );
 
     //RESIZING ACTIONS
     $_window.resize(function() {
@@ -3707,13 +3707,13 @@ jQuery(function ($) {
         _set_header_top_offset();
         //process scrolling actions
         if ( $_window.scrollTop() > triggerHeight ) {
-            if ( $_body.hasClass('sticky-disabled') )
+            if ( ! _is_scrolling() )
                 $_body.addClass("sticky-enabled").removeClass("sticky-disabled");
         }
-        else if ( $_body.hasClass('sticky-enabled') ){
+        else if ( _is_scrolling() ){
             $_body.removeClass("sticky-enabled").addClass("sticky-disabled");
-            setTimeout( function() { _refresh();} ,
-              $_body.hasClass('is-customizing') ? 100 : 20
+            setTimeout( function() { _sticky_refresh(); } ,
+              isCustomizing ? 100 : 20
             );
             //additional refresh for some edge cases like big logos
             setTimeout( function() { _sticky_refresh(); } , 200 );
