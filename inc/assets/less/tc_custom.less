@@ -553,6 +553,12 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
     -o-transition: all 0.15s;
     transition: all 0.15s;
 }
+.tc-sticky-header #tc-reset-margin-top{
+  display: block;
+}
+.sticky-disabled .tc-header {
+  top: 0;
+}
 .sticky-enabled .tc-header {
   height: auto!important;
   /* default fallback */
