@@ -33,6 +33,8 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
         //1) we don"t show post navigation for pages by default
         //2) + filter conditions
         $post_navigation_bool         = is_page( TC_utils::tc_id() ) ? false : true ;
+    		$prev_arrow = is_rtl() ? '&rarr;' : '&larr;' ;
+    		$next_arrow = is_rtl() ? '&larr;' : '&rarr;' ;
 
         if( ! apply_filters( 'tc_show_post_navigation' , $post_navigation_bool ) )
           return;
@@ -59,7 +61,7 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                   <li class="previous">
                     <span class="nav-previous">
                       <?php
-                        $singular_nav_previous_text   = apply_filters( 'tc_singular_nav_previous_text', _x( '&larr;' , 'Previous post link' , 'customizr' ) );
+                        $singular_nav_previous_text   = apply_filters( 'tc_singular_nav_previous_text', _x( $prev_arrow , 'Previous post link' , 'customizr' ) );
                         $previous_post_link_args      = apply_filters(
                           'tc_previous_single_post_link_args' ,
                           array(
@@ -80,7 +82,7 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                   <li class="next">
                     <span class="nav-next">
                         <?php
-                        $singular_nav_next_text       = apply_filters( 'tc_singular_nav_next_text', _x( '&rarr;' , 'Next post link' , 'customizr' ) );
+                        $singular_nav_next_text       = apply_filters( 'tc_singular_nav_next_text', _x( $next_arrow , 'Next post link' , 'customizr' ) );
                         $next_post_link_args      = apply_filters(
                           'tc_next_single_post_link_args' ,
                           array(
