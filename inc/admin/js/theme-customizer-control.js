@@ -298,6 +298,15 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_enable_gallery' : {
+      controls: [
+        'tc_gallery_fancybox',
+        'tc_gallery_style',
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
     }
   };
 
@@ -450,7 +459,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     _handle_grid_dependencies();
   } );
 
-})( wp, jQuery);;/**
+})( wp, jQuery);
+;/**
  * Call to actions
  */
 jQuery(function ($) {

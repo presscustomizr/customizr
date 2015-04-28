@@ -1707,7 +1707,7 @@ var TCParams = TCParams || {};
         }
         else {
           ('html, body').animate({
-                  scrollTop: $(anchor_id).offset().top
+                  scrollTop: 0
               }, 700);
         }
         $('body').removeClass('sticky-enabled').removeClass('tc-sticky-header');
@@ -3596,28 +3596,32 @@ jQuery(function ($) {
     var   _p              = TCParams,
           $tcHeader       = $('.tc-header'),
           elToHide        = [], //[ '.social-block' , '.site-description' ],
-          isUserLogged    = $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
-          isCustomizing   = $('body').hasClass('is-customizing'),
+          $_window        = $(window),
+          $_body          = $('body'),
+          $wpadminbar     = $('#wpadminbar'),
+          isUserLogged    = $_body.hasClass('logged-in') || 0 !== $wpadminbar.length,
+          isCustomizing   = $_body.hasClass('is-customizing'),
           customOffset    = +_p.stickyCustomOffset,
           $sticky_logo    = $('img.sticky', '.site-logo'),
+          $resetMarginTop = $('#tc-reset-margin-top'),   
           logo            = 0 === $sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
 
     function _is_scrolling() {
-        return $('body').hasClass('sticky-enabled') ? true : false;
+        return $_body.hasClass('sticky-enabled') ? true : false;
     }
 
     function _is_sticky_enabled() {
-        return $('body').hasClass('tc-sticky-header') ? true : false;
+        return $_body.hasClass('tc-sticky-header') ? true : false;
     }
 
     function _get_initial_offset() {
         //initialOffset     = ( 1 == isUserLogged &&  580 < $(window).width() ) ? $('#wpadminbar').height() : 0;
         var initialOffset   = 0;
         if ( 1 == isUserLogged && ! isCustomizing ) {
-            if ( 580 < $(window).width() )
-                initialOffset = $('#wpadminbar').height();
+            if ( 580 < $_window.width() )
+                initialOffset = $wpadminbar.height();
             else
-                initialOffset = ! _is_scrolling() ? $('#wpadminbar').height() : 0;
+                initialOffset = ! _is_scrolling() ? $wpadminbar.height() : 0;
         }
         return initialOffset + customOffset;
     }
@@ -3628,13 +3632,13 @@ jQuery(function ($) {
 
         //Reset all values first
         $tcHeader.css('top' , '');
-        $('.tc-header').css('height' , 'auto' );
-        $('#tc-reset-margin-top').css('margin-top' , '' ).show();
+        $tcHeader.css('height' , 'auto' );
+        $resetMarginTop.css('margin-top' , '' ).show();
 
         //What is the initial offset of the header ?
-        var headerHeight    = $tcHeader.height();
+        var headerHeight    = $tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
         //set initial margin-top = initial offset + header's height
-        $('#tc-reset-margin-top').css('margin-top' , ( +headerHeight + customOffset ) + 10 + 'px' ); //10 = header bottom border
+        $resetMarginTop.css('margin-top' , ( +headerHeight + customOffset ) + 'px');
     }
 
 
@@ -3676,7 +3680,7 @@ jQuery(function ($) {
         setTimeout( function() { _sticky_refresh(); _sticky_header_scrolling_actions(); } , 20 );
 
     //RESIZING ACTIONS
-    $(window).resize(function() {
+    $_window.resize(function() {
         if ( ! _is_sticky_enabled() )
             return;
         _set_sticky_offsets();
@@ -3689,7 +3693,7 @@ jQuery(function ($) {
             _set_sticky_offsets();
             _set_header_top_offset();
         } , 20 );
-        $(window).trigger('resize');
+        $_window.trigger('resize');
     }
 
     //SCROLLING ACTIONS
@@ -3702,20 +3706,20 @@ jQuery(function ($) {
     function _sticky_header_scrolling_actions() {
         _set_header_top_offset();
         //process scrolling actions
-        if ( $(window).scrollTop() > triggerHeight ) {
-            $('body').addClass("sticky-enabled").removeClass("sticky-disabled");
+        if ( $_window.scrollTop() > triggerHeight ) {
+            $_body.addClass("sticky-enabled").removeClass("sticky-disabled");
         }
         else if ( _is_scrolling() ) {
-            $('body').removeClass("sticky-enabled").addClass("sticky-disabled");
+            $_body.removeClass("sticky-enabled").addClass("sticky-disabled");
             setTimeout( function() { _sticky_refresh();} ,
-              $('body').hasClass('is-customizing') ? 100 : 20
+              isCustomizing ? 100 : 20
             );
             //additional refresh for some edge cases like big logos
             setTimeout( function() { _sticky_refresh(); } , 200 );
         }
     }//end of fn
 
-    $(window).scroll(function() {
+    $_window.scroll(function() {
         if ( ! _is_sticky_enabled() )
             return;
         //use a timer
@@ -3728,7 +3732,7 @@ jQuery(function ($) {
             timer = window.setTimeout(function() {
                 _sticky_header_scrolling_actions();
              }, increment > 5 ? 50 : 0 );
-         } else if ( $('body').hasClass('ie') ) {
+         } else if ( $_body.hasClass('ie') ) {
              timer = window.setTimeout(function() {
                 _sticky_header_scrolling_actions();
              }, increment > 5 ? 50 : 0 );
