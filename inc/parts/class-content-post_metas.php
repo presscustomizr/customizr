@@ -384,7 +384,8 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
           //filter the post taxonomies
           while ( $el = current($tax_list) ) {
               //skip the post format taxinomy
-              if ( in_array( key($tax_list) , apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , TC_utils::tc_id() ) ) ) ) {
+              if ( in_array( key($tax_list) , apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , TC_utils::tc_id() ) ) )  || 
+                 ( false === (bool) $el -> public && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $el -> public, TC_utils::tc_id() ) ) ) ){
                   next($tax_list);
                   continue;
               }
