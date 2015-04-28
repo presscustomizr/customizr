@@ -455,17 +455,20 @@ if ( ! class_exists( 'TC_comments' ) ) :
     private function tc_are_comments_enabled() {
       global $post;
       // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
-      $_bool = ( post_password_required() || tc__f( '__is_home' ) || ! is_singular() )  ? false : true;
+      if ( isset( $post ) ){
+        $_bool = ( post_password_required() || tc__f( '__is_home' ) || ! is_singular() )  ? false : true;
 
-      //2) if user has enabled comment for this specific post / page => true
-      //@todo contx : update default value user's value)
-      $_bool = ( 'closed' != $post -> comment_status ) ? true : $_bool;
+        //2) if user has enabled comment for this specific post / page => true
+        //@todo contx : update default value user's value)
+        $_bool = ( 'closed' != $post -> comment_status ) ? true : $_bool;
 
-      //3) check global user options for pages and posts
-      if ( is_page() )
-        $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
-      else
-        $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
+        //3) check global user options for pages and posts
+        if ( is_page() )
+          $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
+        else
+          $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
+      }else
+        $_bool = false;
 
       return apply_filters( 'tc_are_comments_enabled', $_bool );
     }
