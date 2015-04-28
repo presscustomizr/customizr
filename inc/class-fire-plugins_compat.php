@@ -41,6 +41,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_theme_support( 'woocommerce' );
       add_theme_support( 'the-events-calendar' );
       add_theme_support( 'nextgen-gallery' );
+      add_theme_support( 'optimize-press' );
     }
 
 
@@ -61,13 +62,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
       if ( current_theme_supports( 'bbpress' ) && $this -> tc_is_plugin_active('bbpress/bbpress.php') )
         $this -> tc_set_bbpress_compat();
- 
+
       /* BUDDYPRESS */
       //if buddypress is installed and activated, we can check the existence of the contextual boolean function is_buddypress() to execute some code
       // we have to use buddy-press instead of buddypress as string for theme support as buddypress makes some checks on current_theme_supports('buddypress') which result in not using its templates
       if ( current_theme_supports( 'buddy-press' ) && $this -> tc_is_plugin_active('buddypress/bp-loader.php') )
         $this -> tc_set_buddypress_compat();
- 
+
       /*
       * QTranslatex
       * Credits : @acub, http://websiter.ro
@@ -81,6 +82,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       */
       if ( current_theme_supports( 'polylang' ) && $this -> tc_is_plugin_active('polylang/polylang.php') )
         $this -> tc_set_polylang_compat();
+
+      /* Optimize Press */
+      if ( current_theme_supports( 'optimize-press' ) && $this -> tc_is_plugin_active('optimizePressPlugin/optimizepress.php') )
+        $this -> tc_set_optimizepress_compat();
 
       /* Woocommerce */
       if ( current_theme_supports( 'woocommerce' ) && $this -> tc_is_plugin_active('woocommerce/woocommerce.php') )
@@ -285,23 +290,56 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
     /**
     * NextGen Gallery compat hooks
-    *
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_set_nggallery_compat() { 
-      /* Make Customizr smart load work with nextgen galleries and fix small bug which resulted in displaying plain image attributes */  
+    private function tc_set_nggallery_compat() {
+      /* Make Customizr smart load work with nextgen galleries and fix small bug which resulted in displaying plain image attributes */
      add_action('wp_head', 'tc_content_parse_imgs_rehook');
      function tc_content_parse_imgs_rehook(){
        // smartload doesn't work at all for nggalleries in pages, looks like they add "data-src" to their images in pages .. mah
        if ( is_page() || is_admin() || 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ) )
         return;
-       
+
        remove_filter('the_content', array(TC_utils::$instance, 'tc_parse_imgs') );
-       // they add the actual images filtering the content with priority PHP_INT_MAX -1 
+       // they add the actual images filtering the content with priority PHP_INT_MAX -1
        add_filter('the_content'   , array(TC_utils::$instance, 'tc_parse_imgs'), PHP_INT_MAX );
      }
     }
+
+
+    /**
+    * OptimizePress compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_optimizepress_compat() {
+      add_action('wp_print_scripts', 'tc_op_dequeue_fancybox_js');
+      function tc_op_dequeue_fancybox_js(){
+        if ( function_exists('is_le_page') ){
+          /* Op Back End: Dequeue tc-scripts */
+          if ( is_le_page() || defined('OP_LIVEEDITOR') )
+            wp_dequeue_script('tc-scripts');
+          else
+            /* Front End: Dequeue op fancybox already embedded in customizr */
+            wp_dequeue_script(OP_SN.'-fancybox');
+        }
+      }
+
+      /* Remove fancybox loading icon*/
+      add_action('wp_footer','tc_op_remove_fancyboxloading');
+      function tc_op_remove_fancyboxloading(){
+        echo "<script>
+                if (typeof(opjq) !== 'undefined') {
+                  opjq(document).ready(function(){
+                    opjq('#fancybox-loading').remove();
+                  });
+                }
+             </script>";
+      }
+    }//end optimizepress compat
+
 
     /**
     * Woocommerce compat hooks
@@ -324,7 +362,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         switch ( current_filter() ) {
           case 'woocommerce_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
                                                   break;
-                                    
+
           case 'woocommerce_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
                                                   break;
         }//end of switch on hook
@@ -378,10 +416,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
     /**
     * CUSTOMIZR WRAPPERS
-    * print the customizr wrappers 
+    * print the customizr wrappers
     *
     * @since 3.3+
-    * 
+    *
     * originally used for woocommerce compatibility
     */
     function tc_mainwrapper_start() {
@@ -400,7 +438,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                 <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
       <?php
     }
-    
+
     function tc_mainwrapper_end() {
       ?>
                 <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
