@@ -42,6 +42,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_theme_support( 'the-events-calendar' );
       add_theme_support( 'nextgen-gallery' );
       add_theme_support( 'optimize-press' );
+      add_theme_support( 'sensei' );
     }
 
 
@@ -94,7 +95,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       /* Nextgen gallery */
       if ( current_theme_supports( 'nextgen-gallery') && $this -> tc_is_plugin_active('nextgen-gallery/nggallery.php') )
         $this -> tc_set_nggallery_compat();
-
+      
+      /* Sensei woocommerce addon */
+      if ( current_theme_supports( 'sensei') && $this -> tc_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
+        $this -> tc_set_sensei_compat();
     }//end of plugin compatibility function
 
 
@@ -339,6 +343,48 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
              </script>";
       }
     }//end optimizepress compat
+
+
+
+    /**
+    * Sensei compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_sensei_compat() {
+      //unkooks the default sensei wrappers and add customizr's content wrapper and action hooks
+      global $woothemes_sensei;
+      remove_action( 'sensei_before_main_content', array( $woothemes_sensei->frontend, 'sensei_output_content_wrapper' ), 10 );
+      remove_action( 'sensei_after_main_content', array( $woothemes_sensei->frontend, 'sensei_output_content_wrapper_end' ), 10 ); 
+
+      add_action('sensei_before_main_content', 'tc_sensei_wrappers', 10);
+      add_action('sensei_after_main_content', 'tc_sensei_wrappers', 10);
+
+      
+      function tc_sensei_wrappers() {
+        switch ( current_filter() ) {
+          case 'sensei_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
+                                             break;
+                                    
+          case 'sensei_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
+                                             break;
+        }//end of switch on hook
+      }//end of nested function
+      
+      //disables post navigation
+      add_filter( 'tc_show_post_navigation', 'tc_sensei_disable_post_navigation' );
+      function tc_sensei_disable_post_navigation($bool) {
+        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+      }
+      //removes post comment action on after_loop hook
+      add_filter( 'tc_are_comments_enabled', 'tc_sensei_disable_comments' );
+      function tc_sensei_disable_comments($bool) {
+        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+      }
+    }//end sensei compat
+
+
 
 
     /**
