@@ -195,33 +195,30 @@ jQuery(function ($) {
     }
 
 
-
     //FANCYBOX
     //Fancybox with localized script variables
-    var b = _p.FancyBoxState,
-        c = _p.FancyBoxAutoscale;
-    if ( 1 == b ) {
-            $("a.grouped_elements").fancybox({
-            transitionOut: "elastic",
-            transitionIn: "elastic",
-            speedIn: 200,
-            speedOut: 200,
-            overlayShow: !1,
-            autoScale: 1 == c ? "true" : "false",
-            changeFade: "fast",
-            enableEscapeButton: !0
-         });
-         //replace title by img alt field
-         $('a[rel*=tc-fancybox-group]').each( function() {
-            var title = $(this).find('img').prop('title');
-            var alt = $(this).find('img').prop('alt');
-            if (typeof title !== 'undefined' && 0 !== title.length) {
-                $(this).attr('title',title);
-            }
-            else if (typeof alt !== 'undefined' &&  0 !== alt.length) {
-                $(this).attr('title',alt);
-            }
-         });
+    if ( 1 == _p.FancyBoxState && 'function' === typeof($.fn.fancybox) ) {
+      $("a.grouped_elements").fancybox({
+        transitionOut: "elastic",
+        transitionIn: "elastic",
+        speedIn: 200,
+        speedOut: 200,
+        overlayShow: !1,
+        autoScale: 1 == _p.FancyBoxAutoscale ? "true" : "false",
+        changeFade: "fast",
+        enableEscapeButton: !0
+      });
+      //replace title by img alt field
+      $('a[rel*=tc-fancybox-group]').each( function() {
+        var title = $(this).find('img').prop('title');
+        var alt = $(this).find('img').prop('alt');
+        if (typeof title !== 'undefined' && 0 !== title.length) {
+            $(this).attr('title',title);
+        }
+        else if (typeof alt !== 'undefined' &&  0 !== alt.length) {
+            $(this).attr('title',alt);
+        }
+      });
     }
 
 

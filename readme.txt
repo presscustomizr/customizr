@@ -39,6 +39,10 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.3.21 April 28th 2015 =
+Improved : jquery.fancybox.js loaded separately when required
+Updated : underscore to 1.8.3
+Added : helper methods to normalize the front scripts enqueuing args
+Updated : name of front enqueue scripts / style callbacks
 Fix: use amatic weight 400 instead of 700, workaround for missing question mark
 Fix: remove reference to the tag, use site-description tag
 Fix: amend typo in the latest commit, again

@@ -15,6 +15,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	class TC_resources {
 	    //Access any method or var of the class with classname::$instance -> var or method():
 	    static $instance;
+      public $tc_script_map;
+
 	    function __construct () {
 	        self::$instance =& $this;
           add_action( 'wp_enqueue_scripts'            , array( $this , 'tc_enqueue_gfonts' ) , 0 );
@@ -31,6 +33,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
           //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
 	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
+
+          //stores the front scripts map in a property
+          $this -> tc_script_map = $this -> tc_get_script_map();
 	    }
 
 
@@ -41,15 +46,15 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		* @since Customizr 1.1
 		*/
 		function tc_enqueue_front_styles() {
-		    wp_enqueue_style( 'customizr-common', TC_init::$instance -> tc_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
-        //Customizr active skin
-		    wp_register_style( 'customizr-skin', TC_init::$instance -> tc_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
-		    wp_enqueue_style( 'customizr-skin' );
-		    //Customizr stylesheet (style.css)
-		    wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
+	    wp_enqueue_style( 'customizr-common', TC_init::$instance -> tc_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
+      //Customizr active skin
+	    wp_register_style( 'customizr-skin', TC_init::$instance -> tc_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
+	    wp_enqueue_style( 'customizr-skin' );
+	    //Customizr stylesheet (style.css)
+	    wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
 
-		    //Customizer user defined style options : the custom CSS is written with a high priority here
-		    wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , '' ) );
+	    //Customizer user defined style options : the custom CSS is written with a high priority here
+	    wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , '' ) );
 		}
 
 
@@ -74,28 +79,21 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
       //customizr scripts and libs
 	   	if ( apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('TC_DEV')  || ( defined('TC_DEV') && false == TC_DEV ) ) )	{
-		    //tc-scripts.min.js includes :
-		    //1) Twitter Bootstrap scripts
-		    //2) FancyBox - jQuery Plugin
-		    //3) Customizr scripts
-		    wp_enqueue_script(
-		    	'tc-scripts' ,
-		    	sprintf( '%1$sinc/assets/js/%2$s' , TC_BASE_URL , ( defined('WP_DEBUG') && true === WP_DEBUG ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
-		    	array( 'jquery' ),
-		    	CUSTOMIZR_VER,
-		    	apply_filters('tc_load_script_in_footer' , false)
-		    );
+        if ( $this -> tc_is_fancyboxjs_required() )
+          $this -> tc_enqueue_script( 'tc-fancybox' );
+        //!!tc-scripts includes underscore
+        $this -> tc_enqueue_script( 'tc-scripts' );
 			}
 			else {
-        foreach ( $this -> tc_get_front_script_map() as $_handle => $_params ) {
-          call_user_func_array( 'wp_enqueue_script',  $this -> tc_prepare_script_args( $_handle, $_params ) );
-        }//end for each
+        wp_enqueue_script( 'underscore' );
+        //!!mind the dependencies
+        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-bootstrap' ) );
+
+        if ( $this -> tc_is_fancyboxjs_required() )
+          $this -> tc_enqueue_script( 'tc-fancybox' );
+
+        $this -> tc_enqueue_script( array( 'tc-dropcap' , 'tc-img-smartload', 'tc-ext-links', 'tc-center-images', 'tc-main-front' ) );
 			}//end of load concatenate script if
-
-
-		  //fancybox options
-			$tc_fancybox 		= ( 1 == TC_utils::$inst->tc_opt( 'tc_fancybox' ) ) ? true : false;
-			$autoscale 			= ( 1 == TC_utils::$inst->tc_opt( 'tc_fancybox_autoscale') ) ? true : false ;
 
       //carousel options
       //gets slider options if any for home/front page or for others posts/pages
@@ -124,11 +122,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        ( ! apply_filters('tc_load_concatenated_front_scripts' , true ) ) ? 'tc-js-params' : 'tc-scripts',
 	        'TCParams',
 	        apply_filters( 'tc_customizr_script_params' , array(
-	          	'FancyBoxState' 		=> $tc_fancybox,
-	          	'FancyBoxAutoscale' 	=> $autoscale,
-	          	'SliderName' 			=> $js_slidername,
+	          	'FancyBoxState' 		=> $this -> tc_is_fancyboxjs_required(),
+	          	'FancyBoxAutoscale' => ( 1 == TC_utils::$inst->tc_opt( 'tc_fancybox_autoscale') ) ? true : false,
+	          	'SliderName' 			  => $js_slidername,
 	          	'SliderDelay' 			=> $js_sliderdelay,
-	          	'SliderHover'			=> apply_filters( 'tc_stop_slider_hover', true ),
+	          	'SliderHover'			  => apply_filters( 'tc_stop_slider_hover', true ),
 	          	'centerSliderImg'   => esc_attr( TC_utils::$inst->tc_opt( 'tc_center_slider_img') ),
               'SmoothScroll'			=> $smooth_scroll,
               'SmoothScrollExclude' => apply_filters( 'tc_smoothscroll_excl' , array( '[class*=edd]' , '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]' ) ),
@@ -159,13 +157,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	     );
 
 	    //fancybox style
-	    if ( $tc_fancybox )
-	      	wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.css' );
+	    if ( $this -> tc_is_fancyboxjs_required() )
+	      wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.css' );
 
 	    //holder.js is loaded when featured pages are enabled AND FP are set to show images
 	    $tc_show_featured_pages 	    = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
-    		$tc_show_featured_pages_img     = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) );
-    		if ( 0 != $tc_show_featured_pages && 0 != $tc_show_featured_pages_img ) {
+    	$tc_show_featured_pages_img   = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) );
+    	if ( 0 != $tc_show_featured_pages && 0 != $tc_show_featured_pages_img ) {
 	    	wp_enqueue_script(
 	    		'holder',
 	    		sprintf( '%1$sinc/assets/js/holder.min.js' , TC_BASE_URL ),
@@ -453,11 +451,10 @@ if ( ! class_exists( 'TC_resources' ) ) :
     /**
     * Helper to get all front end script
     *
-    * @uses wp_enqueue_script() to manage script dependencies
     * @package Customizr
-    * @since Customizr 1.0
+    * @since Customizr 3.3+
     */
-    private function tc_get_front_script_map( $_handle = null ) {
+    private function tc_get_script_map( $_handles = array() ) {
       $_map = array(
         'tc-js-params' => array(
           'path' => 'inc/assets/js/parts/',
@@ -494,30 +491,66 @@ if ( ! class_exists( 'TC_resources' ) ) :
           'files' => array( 'jqueryCenterImages.js' ),
           'dependencies' => array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
+        //!!no fancybox dependency if fancybox not required!
         'tc-main-front' => array(
           'path' => 'inc/assets/js/parts/',
           'files' => array( 'main.js' , 'main.min.js' ),
-          'dependencies' => array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' , 'underscore' )
+          'dependencies' => $this -> tc_is_fancyboxjs_required() ? array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-bootstrap' , 'underscore' )
+        ),
+        'tc-scripts' => array(
+          'path' => 'inc/assets/js/',
+          'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
+          'dependencies' =>  array( 'jquery' )
         )
       );//end of scripts map
 
-      if ( ! is_null($_handle) && isset($_map[$_handle]) )
-        $_scripts = array( $_handle => $_map[$_handle] );
-      else
-        $_scripts = $_map;
+      return apply_filters('tc_get_script_map' , $_map, $_handles );
+    }
 
-      return apply_filters('tc_get_front_scripts_map' , $_map, $_handle );
+
+
+    /**
+    * Convenient method to normalize script enqueueing in the Customizr theme
+    * @return  void
+    * @uses wp_enqueue_script() to manage script dependencies
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    function tc_enqueue_script( $_handles = array() ) {
+      if ( empty($_handles) )
+        return;
+
+      $_map = $this -> tc_script_map;
+      //Picks the requested handles from map
+      if ( 'string' == gettype($_handles) && isset($_map[$_handles]) ) {
+        $_scripts = array( $_handles => $_map[$_handles] );
+      }
+      else {
+        $_scripts = array();
+        foreach ( $_handles as $_hand ) {
+          if ( !isset( $_map[$_hand]) )
+            continue;
+          $_scripts[$_hand] = $_map[$_hand];
+        }
+      }
+
+      //Enqueue the scripts with normalizes args
+      foreach ( $_scripts as $_hand => $_params )
+        call_user_func_array( 'wp_enqueue_script',  $this -> tc_normalize_script_args( $_hand, $_params ) );
+
     }//end of fn
 
 
 
     /**
     * Helper to normalize the arguments passed to wp_enqueue_script()
+    * Also handles the minified version of the file
+    *
     * @return array of arguments for wp_enqueue_script
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_prepare_script_args( $_handle, $_params ) {
+    private function tc_normalize_script_args( $_handle, $_params ) {
       //Do we load the minified version if available ?
       if ( count( $_params['files'] ) > 1 )
         $_filename = ( defined('WP_DEBUG') && true === WP_DEBUG ) ? $_params['files'][0] : $_params['files'][1];
@@ -534,6 +567,18 @@ if ( ! class_exists( 'TC_resources' ) ) :
     }
 
 
+
+    /**
+    * Helper to check if we need fancybox or not on front
+    *
+    * @return boolean
+    * @package Customizr
+    * @since
+    */
+    private function tc_is_fancyboxjs_required() {
+      //wp_die();
+      return TC_utils::$inst -> tc_opt( 'tc_fancybox' ) || TC_utils::$inst -> tc_opt( 'tc_gallery_fancybox');
+    }
 
 	}//end of TC_ressources
 endif;
