@@ -181,21 +181,19 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           // THUMBNAIL : cache the post format icon first
           //add thumbnail html (src, width, height) if any
           $_thumb_html = '';
-          if ( TC_post_thumbnails::$instance -> tc_has_thumb() ) {
+          if ( $this -> tc_grid_show_thumb() ) {
             $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
             $_thumb_html  = $_thumb_model['tc_thumb'];
           }
           $_thumb_html = apply_filters( 'tc-grid-thumb-html' , $_thumb_html );
 
-
           // CONTENT : get the figcaption content => post content
           $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content'] ) ? $_layout['content'] : 'span6' );
 
-          // WRAPPER CLASS : build single grid post wrapper class
+          // ADD A WRAPPER CLASS : build single grid post wrapper class
           $_classes  = array('tc-grid-figure');
-
           //may be add class no-thumb
-          if ( ! TC_post_thumbnails::$instance -> tc_has_thumb() )
+          if ( ! $this -> tc_grid_show_thumb() )
             array_push( $_classes, 'no-thumb' );
           else
             array_push( $_classes, 'has-thumb' );
@@ -909,5 +907,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
         }
 
+
+        /**
+        * @return  boolean
+        */
+        private function tc_grid_show_thumb() {
+          return TC_post_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+        }
   }//end of class
 endif;
