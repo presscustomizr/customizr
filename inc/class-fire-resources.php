@@ -59,8 +59,79 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 
 
+    /**
+    * Helper to get all front end script
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_get_script_map( $_handles = array() ) {
+      $_map = array(
+        'tc-js-params' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'tc-js-params.js' ),
+          'dependencies' => array( 'jquery' )
+        ),
+        //adds support for map method in array prototype for old ie browsers <ie9
+        'tc-js-arraymap-proto' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'arrayPrototypeMap.min.js' ),
+          'dependencies' => array()
+        ),
+        'tc-bootstrap' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'bootstrap.js' , 'bootstrap.min.js' ),
+          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery', 'tc-js-params' )
+        ),
+        'tc-dropcap' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'jqueryaddDropCap.js' ),
+          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+        ),
+        'tc-img-smartload' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'jqueryimgSmartLoad.js' ),
+          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+        ),
+        'tc-ext-links' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'jqueryextLinks.js' ),
+          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+        ),
+        'tc-center-images' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'jqueryCenterImages.js' ),
+          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+        ),
+        //!!no fancybox dependency if fancybox not required!
+        'tc-main-front' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'main.js' , 'main.min.js' ),
+          'dependencies' => $this -> tc_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-bootstrap' , 'underscore' )
+        ),
+        //loaded separately => not included in tc-script.js
+        'tc-fancybox' => array(
+          'path' => 'inc/assets/js/fancybox/',
+          'files' => array( 'jquery.fancybox-1.3.4.min.js' ),
+          'dependencies' => $this -> tc_load_concatenated_front_scripts() ? array( 'jquery' ) : array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap' )
+        ),
+        //concats all scripts except fancybox
+        'tc-scripts' => array(
+          'path' => 'inc/assets/js/',
+          'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
+          'dependencies' =>  $this -> tc_is_fancyboxjs_required() ? array( 'jquery', 'tc-fancybox' ) : array( 'jquery' )
+        )
+      );//end of scripts map
+
+      return apply_filters('tc_get_script_map' , $_map, $_handles );
+    }
+
+
+
 		/**
-		* Loads Customizr and JS script in footer for better time load.
+		* Loads Customizr front scripts
+    * Dependencies are defined in the script map property
+    *
 		* @return  void()
 		* @uses wp_enqueue_script() to manage script dependencies
 		* @package Customizr
@@ -78,16 +149,16 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, true);
 
       //customizr scripts and libs
-	   	if ( apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('TC_DEV')  || ( defined('TC_DEV') && false == TC_DEV ) ) )	{
+	   	if ( $this -> tc_load_concatenated_front_scripts() )	{
         if ( $this -> tc_is_fancyboxjs_required() )
           $this -> tc_enqueue_script( 'tc-fancybox' );
-        //!!tc-scripts includes underscore
+        //!!tc-scripts includes underscore, tc-js-arraymap-proto
         $this -> tc_enqueue_script( 'tc-scripts' );
 			}
 			else {
         wp_enqueue_script( 'underscore' );
         //!!mind the dependencies
-        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-bootstrap' ) );
+        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-bootstrap' ) );
 
         if ( $this -> tc_is_fancyboxjs_required() )
           $this -> tc_enqueue_script( 'tc-fancybox' );
@@ -447,68 +518,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
     }
 
 
-
-    /**
-    * Helper to get all front end script
-    *
-    * @package Customizr
-    * @since Customizr 3.3+
-    */
-    private function tc_get_script_map( $_handles = array() ) {
-      $_map = array(
-        'tc-js-params' => array(
-          'path' => 'inc/assets/js/parts/',
-          'files' => array( 'tc-js-params.js' ),
-          'dependencies' => array( 'jquery' )
-        ),
-        'tc-bootstrap' => array(
-          'path' => 'inc/assets/js/parts/',
-          'files' => array( 'bootstrap.js' , 'bootstrap.min.js' ),
-          'dependencies' => array( 'jquery', 'tc-js-params' )
-        ),
-        'tc-fancybox' => array(
-          'path' => 'inc/assets/js/fancybox/',
-          'files' => array( 'jquery.fancybox-1.3.4.min.js' ),
-          'dependencies' => array( 'jquery' , 'tc-js-params', 'tc-bootstrap' )
-        ),
-        'tc-dropcap' => array(
-          'path' => 'inc/assets/js/parts/',
-          'files' => array( 'jqueryaddDropCap.js' ),
-          'dependencies' => array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-        ),
-        'tc-img-smartload' => array(
-          'path' => 'inc/assets/js/parts/',
-          'files' => array( 'jqueryimgSmartLoad.js' ),
-          'dependencies' => array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-        ),
-        'tc-ext-links' => array(
-          'path' => 'inc/assets/js/parts/',
-          'files' => array( 'jqueryextLinks.js' ),
-          'dependencies' => array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-        ),
-        'tc-center-images' => array(
-          'path' => 'inc/assets/js/parts/',
-          'files' => array( 'jqueryCenterImages.js' ),
-          'dependencies' => array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-        ),
-        //!!no fancybox dependency if fancybox not required!
-        'tc-main-front' => array(
-          'path' => 'inc/assets/js/parts/',
-          'files' => array( 'main.js' , 'main.min.js' ),
-          'dependencies' => $this -> tc_is_fancyboxjs_required() ? array( 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-bootstrap' , 'underscore' )
-        ),
-        'tc-scripts' => array(
-          'path' => 'inc/assets/js/',
-          'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
-          'dependencies' =>  array( 'jquery' )
-        )
-      );//end of scripts map
-
-      return apply_filters('tc_get_script_map' , $_map, $_handles );
-    }
-
-
-
     /**
     * Convenient method to normalize script enqueueing in the Customizr theme
     * @return  void
@@ -566,17 +575,25 @@ if ( ! class_exists( 'TC_resources' ) ) :
       );
     }
 
-
+    /**
+    * Helper
+    *
+    * @return boolean
+    * @package Customizr
+    * @since v3.3+
+    */
+    function tc_load_concatenated_front_scripts() {
+      return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('TC_DEV')  || ( defined('TC_DEV') && false == TC_DEV ) );
+    }
 
     /**
     * Helper to check if we need fancybox or not on front
     *
     * @return boolean
     * @package Customizr
-    * @since
+    * @since v3.3+
     */
     private function tc_is_fancyboxjs_required() {
-      //wp_die();
       return TC_utils::$inst -> tc_opt( 'tc_fancybox' ) || TC_utils::$inst -> tc_opt( 'tc_gallery_fancybox');
     }
 

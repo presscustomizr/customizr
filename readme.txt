@@ -39,6 +39,7 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.3.21 April 29th 2015 =
+added: support for the map method in the array prototype for old ie browsers -ie8
 Fix: use the correct post id when retrieving the grid layout
 Improved : jquery.fancybox.js loaded separately when required
 Updated : underscore to 1.8.3
@@ -46,8 +47,6 @@ Added : helper methods to normalize the front scripts enqueuing args
 Updated : name of front enqueue scripts / style callbacks
 Fix: use amatic weight 400 instead of 700, workaround for missing question mark
 Fix: remove reference to the tag, use site-description tag
-Fix: amend typo in the latest commit, again
-Fix: amend typo in the latest commit
 Fix: display unknown archive types headings; use if/else statement when retrieving archive headings/classes immediatily return the archive class when asked for and achiFix: amend typo in the last commit
 Fix: disable fade hover links for first level menu items in ie
 Fix: add customize code and fix previous errors
