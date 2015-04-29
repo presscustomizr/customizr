@@ -54,7 +54,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
           do_action( '__post_list_grid' );
           //Disable icon titles
-          add_filter( 'tc_archive_icon'             , '__return_false', 50 );
+          //add_filter( 'tc_archive_icon'             , '__return_false', 50 );
           add_filter( 'tc_content_title_icon'       , '__return_false', 50 );
           //icon option
           add_filter( 'tc-grid-thumb-html'          , array( $this, 'tc_set_grid_icon_visibility') );
