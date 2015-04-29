@@ -39,6 +39,7 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.3.21 April 29th 2015 =
+fix : no post thumbnail option was not working for the post grid layout
 added: support for the map method in the array prototype for old ie browsers -ie8
 Fix: use the correct post id when retrieving the grid layout
 Improved : jquery.fancybox.js loaded separately when required
