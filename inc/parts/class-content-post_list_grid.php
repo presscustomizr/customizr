@@ -15,6 +15,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
     class TC_post_list_grid {
         static $instance;
         private $expanded_sticky;
+        private $post_id;
 
         function __construct () {
           self::$instance =& $this;
@@ -48,6 +49,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_set_grid_hooks(){
           if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> tc_is_grid_enabled() ) )
               return;
+
+          $this -> post_id = TC_utils::tc_id();
 
           do_action( '__post_list_grid' );
           //Disable icon titles
@@ -605,7 +608,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
             $_col_nb,
             $_col_media_matrix,
-            TC_utils::tc_get_layout( get_the_ID() , 'class' )
+            TC_utils::tc_get_layout( $this -> post_id , 'class' )
           );
         }
 
@@ -765,7 +768,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         private function tc_get_grid_column_height( $_cols_nb = '3' ) {
           $_h               = $this -> tc_grid_get_thumb_height();
-          $_current_layout  = TC_utils::tc_get_layout( get_the_ID() , 'sidebar' );
+          $_current_layout  = TC_utils::tc_get_layout( $this -> post_id , 'sidebar' );
           $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
           $_key             = 3;//default value == full
           if ( in_array( $_current_layout, $_layouts ) )
@@ -870,7 +873,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         private function tc_get_grid_cols() {
           return apply_filters( 'tc_get_grid_cols',
             esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_columns') ),
-            TC_utils::tc_get_layout( get_the_ID() , 'class' )
+            TC_utils::tc_get_layout( $this -> post_id , 'class' )
           );
         }
 
