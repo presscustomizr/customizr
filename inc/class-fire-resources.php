@@ -18,8 +18,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    function __construct () {
 	        self::$instance =& $this;
           add_action( 'wp_enqueue_scripts'            , array( $this , 'tc_enqueue_gfonts' ) , 0 );
-	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_styles' ) );
-	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_customizr_scripts' ) );
+	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_styles' ) );
+	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_scripts' ) );
           //Custom Stylesheets
           //Write font icon
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
@@ -40,7 +40,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		* @package Customizr
 		* @since Customizr 1.1
 		*/
-		function tc_enqueue_customizr_styles() {
+		function tc_enqueue_front_styles() {
 		    wp_enqueue_style( 'customizr-common', TC_init::$instance -> tc_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
         //Customizr active skin
 		    wp_register_style( 'customizr-skin', TC_init::$instance -> tc_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
@@ -54,6 +54,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 
 
+
+
 		/**
 		* Loads Customizr and JS script in footer for better time load.
 		*
@@ -61,7 +63,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		* @package Customizr
 		* @since Customizr 1.0
 		*/
-		function tc_enqueue_customizr_scripts() {
+		function tc_enqueue_front_scripts() {
 	    //wp scripts
 	  	if ( is_singular() && get_option( 'thread_comments' ) )
 		    wp_enqueue_script( 'comment-reply' );
@@ -70,6 +72,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    //load modernizr.js in footer
 	    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, true);
 
+
+      //
 	   	if ( apply_filters('tc_load_concatenated_front_scripts' , true ) )
 	   	{
 		    //tc-scripts.min.js includes :
