@@ -1863,7 +1863,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
               /* ARCHIVE TITLES */
               'tc_theme_options[tc_cat_title]'  =>  array(
-                                'default'       => __( 'Category Archives :' , 'customizr' ),
+                                'default'       => '',
                                 'title'         => __( 'Archive titles' , 'customizr' ),
                                 'label'       => __( 'Category pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
@@ -1873,7 +1873,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
               ),
               'tc_theme_options[tc_tag_title]'  =>  array(
-                                'default'         => __( 'Tag Archives :' , 'customizr' ),
+                                'default'         => '',
                                 'label'       => __( 'Tag pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
                                 'section'     => 'tc_post_list_settings' ,
@@ -1882,7 +1882,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
               ),
               'tc_theme_options[tc_author_title]'  =>  array(
-                                'default'         => __( 'Author Archives :' , 'customizr' ),
+                                'default'         => '',
                                 'label'       => __( 'Author pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
                                 'section'     => 'tc_post_list_settings' ,
@@ -1936,7 +1936,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_galleries_settings' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1
-              ),             
+              ),
               'tc_theme_options[tc_gallery_fancybox]'=>  array(
                                 'default'       => 1,
                                 'label'         => __('Enable Lightbox effect in galleries' , 'customizr'),
@@ -1945,7 +1945,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'tc_galleries_settings' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1
-              ), 
+              ),
               'tc_theme_options[tc_gallery_style]'=>  array(
                                 'default'       => 1,
                                 'label'         => __('Enable Customizr effects on hover' , 'customizr'),
