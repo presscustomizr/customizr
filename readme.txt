@@ -38,7 +38,8 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
-= 3.3.21 April 28th 2015 =
+= 3.3.21 April 29th 2015 =
+Fix: use the correct post id when retrieving the grid layout
 Improved : jquery.fancybox.js loaded separately when required
 Updated : underscore to 1.8.3
 Added : helper methods to normalize the front scripts enqueuing args
