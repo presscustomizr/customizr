@@ -37,6 +37,8 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $content_no_results;
       public $default_slides;
 
+      public $current_random_skin;
+
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
 
@@ -355,6 +357,9 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
           add_filter ('body_class'                              , array( $this , 'tc_set_body_classes') );
+
+          //set random skin
+          add_filter ('tc_opt_tc_skin'                          , array( $this, 'tc_set_random_skin' ) );
 
       }//end of constructor
 
@@ -706,5 +711,27 @@ if ( ! class_exists( 'TC_init' ) ) :
         }
         return $_classes;
       }
+
+
+
+
+      /**
+      * Set random skin
+      * hook tc_opt_tc_skin
+      *
+      * @package Customizr
+      * @since Customizr 3.3.22
+      */
+      function tc_set_random_skin ( $_skin ) {
+        if ( false == esc_attr( TC_utils::$inst -> tc_opt( 'tc_skin_random' ) ) )
+          return $_skin;
+
+        /* Generate the random skin just once !*/
+        if ( ! $this -> current_random_skin )
+          $this -> current_random_skin = array_rand( $this -> skins, 1 );
+        
+        return $this -> current_random_skin;
+      }
+
   }//end of class
 endif;
