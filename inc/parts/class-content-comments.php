@@ -168,12 +168,19 @@ if ( ! class_exists( 'TC_comments' ) ) :
               //gets the comment text => filter parameter!
               $comment_text = get_comment_text( $comment->comment_ID , $args );
 
-              printf('<article id="comment-%9$s" class="comment"><div class="%1$s"><div class="%2$s">%3$s</div><div class="%4$s">%5$s %6$s %7$s %8$s</div></div></article>',
+              //gets the comment link
+              $comment_link = esc_url( get_comment_link( $comment->comment_ID ) );
+
+              printf('<article id="comment-%10$s" class="comment"><div class="%1$s"><div class="%2$s">%3$s</div><div class="%4$s">%5$s %6$s %7$s %8$s %9$s</div></div></article>',
                   apply_filters( 'tc_comment_wrapper_class', 'row-fluid' ),
                   apply_filters( 'tc_comment_avatar_class', 'comment-avatar span2' ),
                   get_avatar( $comment, apply_filters( 'tc_comment_avatar_size', 80 ) ),
                   apply_filters( 'tc_comment_content_class', 'span10' ),
-
+                  apply_filters( 'tc_show_comment_anchor', true) ? sprintf('<a class="%1$s" href="%2$s"></a>',
+                                                                   apply_filters( 'tc_comment_anchor_class',  'tc-comment-anchor' ),
+                                                                   $comment_link
+                                                                    
+                  ) : '',
                   $tc_show_comment_content ? sprintf('<div class="%1$s">%2$s</div>',
                                             apply_filters( 'tc_comment_reply_btn_class', 'reply btn btn-small' ),
                                             get_comment_reply_link( array_merge(
@@ -195,7 +202,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
                             current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
                         ),
                         sprintf( '<a class="comment-date" href="%1$s"><time datetime="%2$s">%3$s</time></a>' ,
-                            esc_url( get_comment_link( $comment->comment_ID ) ),
+                            $comment_link,
                             get_comment_time( 'c' ),
                             /* translators: 1: date, 2: time */
                             sprintf( __( '%1$s at %2$s' , 'customizr' ), get_comment_date(), get_comment_time() )

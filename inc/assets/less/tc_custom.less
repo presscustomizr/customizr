@@ -1523,6 +1523,9 @@ article .author-info h2 , .archive-header .author-info h2 {
 
 #respond #comment {
   width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .comments-link {
   display: inline-block;
@@ -2242,6 +2245,20 @@ ul.children {
   padding: 0.142857143rem 0.357142857rem;
   font-size: 10px;
   font-size: 0.714285714rem;
+}
+.tc-comment-anchor {
+  float: right;
+  display: block;
+}
+.tc-comment-anchor:hover {
+  text-decoration: none;
+}
+.tc-comment-anchor:before {
+  content: '\1F517';
+  font-family: entypo;
+  position: relative;
+  font-size: 3.5em;
+  top: 0.05em;
 }
 /* Images */
 
