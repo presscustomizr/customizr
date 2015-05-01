@@ -203,7 +203,16 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
         echo apply_filters( 'tc_post_nav' , $html );
       }
 
-      /*HELPER*/
+
+
+      /******************************
+      VARIOUS HELPERS
+      *******************************/
+      /**
+      * 
+      * @return string or bool
+      *
+      */
       function tc_get_context(){
           
         if ( is_page() )
@@ -216,14 +225,21 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
         return false;
 
       }
-
+    
+      /*
+      * @param (string or bool) the context
+      * @return bool
+      */
       function tc_is_post_navigation_context_enabled( $_context ) {
         return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );     
       }
 
+      /*
+      * @return bool
+      */
       function tc_is_post_navigation_enabled(){
         return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ; 
-//              && $this -> tc_is_post_navigation_context_enabled( $_context ) );
       }
+
   }//end of class
 endif;
