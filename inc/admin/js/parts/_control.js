@@ -263,6 +263,16 @@
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_show_post_navigation' : {
+      controls: [
+        'tc_show_post_navigation_page',
+        'tc_show_post_navigation_single',
+        'tc_show_post_navigation_archive'
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
     }
   };
 
