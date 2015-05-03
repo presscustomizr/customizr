@@ -392,8 +392,13 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
 
           //filter the post taxonomies
           while ( $el = current($tax_list) ) {
+              // cast $el stdClass object in an array to access its property 'public'
+              // fix for PHP version < 5.3 (?)
+              $_el = (array) $el;
+
               //skip the post format taxinomy
-              if ( in_array( key($tax_list) , apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , TC_utils::tc_id() ) ) ) ) {
+              if ( in_array( key($tax_list) , apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , TC_utils::tc_id() ) ) )  || 
+                 ( false === (bool) $_el['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_el['public'], TC_utils::tc_id() ) ) ) ){
                   next($tax_list);
                   continue;
               }
