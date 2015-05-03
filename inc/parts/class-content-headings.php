@@ -416,7 +416,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
             $content        = apply_filters( 'tc_time_archive_header_content', $content );
           }
           // all other archivers ( such as custom tax archives )
-          else {
+          else if ( apply_filters('tc_show_tax_archive_title', true) ){
             $content   = sprintf('<h1 class="%1$s">%2$s</h1>',
                 apply_filters( 'tc_archive_icon', 'format-icon' ), /* handle tax icon? */
                 apply_filters( 'tc_tax_archive_title',	get_the_archive_title() )
