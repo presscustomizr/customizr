@@ -187,14 +187,9 @@ class TC_slider {
   private function tc_get_slider_model() {
     global $wp_query;
 
-    //gets the front slider if any
-    $tc_front_slider              = esc_attr(TC_utils::$inst->tc_opt( 'tc_front_slider' ) );
-    
-    //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
-    $tc_show_slider = tc__f('__is_home') ? 0 != $tc_front_slider : ! is_404() && ! is_archive() && ! is_search();
-    
-    if ( ! apply_filters( 'tc_show_slider' , $tc_show_slider ) )
-      return array() ;
+    //Do we have a slider to display in this context ?
+    if ( ! $this -> tc_is_slider_possible() )
+      return array();
 
     //gets the actual page id if we are displaying the posts page
     $queried_id                   = $this -> tc_get_real_id();
@@ -228,7 +223,7 @@ class TC_slider {
   /**
   * Slider View
   * Displays the slider based on the context : home, post/page.
-  *
+  * hook : __after_header
   * @package Customizr
   * @since Customizr 1.0
   *
@@ -399,6 +394,25 @@ class TC_slider {
   /******************************
   HELPERS / SETTERS / CALLBACKS
   *******************************/
+  /**
+  * Helper
+  * @return  boolean
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  *
+  */
+  private function tc_is_slider_possible() {
+    //gets the front slider if any
+    $tc_front_slider              = esc_attr(TC_utils::$inst->tc_opt( 'tc_front_slider' ) );
+    //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
+    $_show_slider = tc__f('__is_home') ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
+
+    return apply_filters( 'tc_show_slider' , $_show_slider );
+  }
+
+
+
   /**
   * helper
   * returns the slider name id
