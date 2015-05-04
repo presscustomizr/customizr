@@ -188,10 +188,12 @@ class TC_slider {
     global $wp_query;
 
     //gets the front slider if any
-    $tc_front_slider              = TC_utils::$inst->tc_opt( 'tc_front_slider' );
-
+    $tc_front_slider              = esc_attr(TC_utils::$inst->tc_opt( 'tc_front_slider' ) );
+    
     //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
-    if ( ! apply_filters( 'tc_show_slider' , ! is_404() && ! is_archive() && ! is_search() || ( tc__f('__is_home') && $tc_front_slider ) ) )
+    $tc_show_slider = tc__f('__is_home') ? 0 != $tc_front_slider : ! is_404() && ! is_archive() && ! is_search();
+    
+    if ( ! apply_filters( 'tc_show_slider' , $tc_show_slider ) )
       return array() ;
 
     //gets the actual page id if we are displaying the posts page
