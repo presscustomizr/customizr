@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.19
+ * Customizr v3.3.22
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4709,6 +4709,10 @@ body {
   -o-transition: background-position 0.1s linear;
   transition: background-position 0.1s linear;
 }
+/* IE fix for navbar first level items */
+.ie.tc-fade-hover-links .nav > li > a {
+  transition: none !important;
+}
 /* External Links style */
 a + span.tc-external:after {
   font-family: 'genericons';
@@ -5180,6 +5184,12 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
   -ms-transition: all 0.15s;
   -o-transition: all 0.15s;
   transition: all 0.15s;
+}
+.tc-sticky-header #tc-reset-margin-top {
+  display: block;
+}
+.sticky-disabled .tc-header {
+  top: 0;
 }
 .sticky-enabled .tc-header {
   height: auto!important;
@@ -5898,7 +5908,7 @@ footer#footer .colophon .social-block a {
   opacity: 1;
 }
 .widget-front.hover .round-div,
-article.hover .round-div {
+article.hover .tc-thumbnail .round-div {
   -webkit-transform: scale(1.4);
   -moz-transform: scale(1.4);
   -ms-transform: scale(1.4);
@@ -6233,6 +6243,7 @@ object,
 video {
   max-width: 100%;
 }
+.hide-all-post-metas .entry-header .entry-meta,
 .hide-post-metas .entry-header .entry-meta {
   display: none;
 }
@@ -6672,7 +6683,7 @@ img.v-centered {
   padding: 4px;
 }
 .wp-caption .wp-caption-text,
-.gallery-caption,
+.tc-gallery-style .gallery-caption,
 .entry-caption {
   font-style: italic;
   font-size: 12px;
@@ -6680,14 +6691,14 @@ img.v-centered {
   line-height: 1.3em;
   color: #757575;
 }
-.gallery-item img {
+.tc-gallery-style .gallery-item img {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   -moz-transition: -moz-transform 3s ease;
   -webkit-transition: -webkit-transform 3s ease;
   -o-transition: -o-transform 3s ease;
   transition: transform 3s ease;
 }
-.gallery-icon img:hover {
+.tc-gallery-style .gallery-icon img:hover {
   -moz-transform: scale(1.08);
   -webkit-transform: scale(1.08);
   -o-transform: scale(1.08);
@@ -8545,7 +8556,7 @@ li#wp-admin-bar-tc-customizr a {
   }
   /*featured pages */
   .widget-front.hover .round-div,
-  article.hover .round-div {
+  article.hover .tc-thumbnail .round-div {
     -webkit-transform: scale(1.3);
     -moz-transform: scale(1.3);
     -ms-transform: scale(1.3);

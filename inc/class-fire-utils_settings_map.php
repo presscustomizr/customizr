@@ -1122,6 +1122,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'description' =>  __( 'Set up post metas options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
+                        'tc_galleries_settings'        => array(
+                                            'title'     =>  __( 'Galleries' , 'customizr' ),
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 20 : 55,
+                                            'description' =>  __( 'Set up gallery options' , 'customizr' ),
+                                            'panel'   => 'tc-content-panel'
+                        ),
                         'tc_paragraphs_settings'        => array(
                                             'title'     =>  __( 'Paragraphs' , 'customizr' ),
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 20 : 55,
@@ -1857,7 +1863,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
               /* ARCHIVE TITLES */
               'tc_theme_options[tc_cat_title]'  =>  array(
-                                'default'       => __( 'Category Archives :' , 'customizr' ),
+                                'default'       => '',
                                 'title'         => __( 'Archive titles' , 'customizr' ),
                                 'label'       => __( 'Category pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
@@ -1867,7 +1873,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
               ),
               'tc_theme_options[tc_tag_title]'  =>  array(
-                                'default'         => __( 'Tag Archives :' , 'customizr' ),
+                                'default'         => '',
                                 'label'       => __( 'Tag pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
                                 'section'     => 'tc_post_list_settings' ,
@@ -1876,7 +1882,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
               ),
               'tc_theme_options[tc_author_title]'  =>  array(
-                                'default'         => __( 'Author Archives :' , 'customizr' ),
+                                'default'         => '',
                                 'label'       => __( 'Author pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
                                 'section'     => 'tc_post_list_settings' ,
@@ -1921,7 +1927,35 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
               ),
-
+              /* Galleries */
+              'tc_theme_options[tc_enable_gallery]'  =>  array(
+                                'default'       => 1,
+                                'label'         => __('Enable Customizr galleries' , 'customizr'),
+                                'control'       => 'TC_controls' ,
+                                'notice'         => __( "Apply Customizr effects to galleries images" , "customizr" ),
+                                'section'       => 'tc_galleries_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 1
+              ),
+              'tc_theme_options[tc_gallery_fancybox]'=>  array(
+                                'default'       => 1,
+                                'label'         => __('Enable Lightbox effect in galleries' , 'customizr'),
+                                'control'       => 'TC_controls' ,
+                                'notice'         => __( "Apply lightbox effects to galleries images ( if the Lightbox options is enabled in Global Settings > Image Settings)." , "customizr" ),
+                                'section'       => 'tc_galleries_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 1
+              ),
+              'tc_theme_options[tc_gallery_style]'=>  array(
+                                'default'       => 1,
+                                'label'         => __('Enable Customizr effects on hover' , 'customizr'),
+                                'control'       => 'TC_controls' ,
+                                'notice'         => __( "Apply nice on hover expansion effect to the galleries images" , "customizr" ),
+                                'section'       => 'tc_galleries_settings' ,
+                                'type'          => 'checkbox',
+                                'transport'     => 'postMessage',
+                                'priority'      => 1
+              ),
               /* Paragraphs */
               'tc_theme_options[tc_enable_dropcap]'  =>  array(
                                 'default'       => 0,

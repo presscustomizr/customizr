@@ -15,6 +15,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
     class TC_post_list_grid {
         static $instance;
         private $expanded_sticky;
+        private $post_id;
 
         function __construct () {
           self::$instance =& $this;
@@ -36,10 +37,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
           //fired on hook : wp_enqueue_scripts
           add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
-
-          //customizer
-          add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );
-          add_action( '__before_setting_control'    , array( $this , 'tc_render_link_to_grid') );
         }
 
 
@@ -53,9 +50,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> tc_is_grid_enabled() ) )
               return;
 
+          $this -> post_id = TC_utils::tc_id();
+
           do_action( '__post_list_grid' );
           //Disable icon titles
-          add_filter( 'tc_archive_icon'             , '__return_false', 50 );
+          //add_filter( 'tc_archive_icon'             , '__return_false', 50 );
           add_filter( 'tc_content_title_icon'       , '__return_false', 50 );
           //icon option
           add_filter( 'tc-grid-thumb-html'          , array( $this, 'tc_set_grid_icon_visibility') );
@@ -182,21 +181,19 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           // THUMBNAIL : cache the post format icon first
           //add thumbnail html (src, width, height) if any
           $_thumb_html = '';
-          if ( TC_post_thumbnails::$instance -> tc_has_thumb() ) {
+          if ( $this -> tc_grid_show_thumb() ) {
             $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
             $_thumb_html  = $_thumb_model['tc_thumb'];
           }
           $_thumb_html = apply_filters( 'tc-grid-thumb-html' , $_thumb_html );
 
-
           // CONTENT : get the figcaption content => post content
           $_post_content_html               = $this -> tc_grid_get_single_post_html( isset( $_layout['content'] ) ? $_layout['content'] : 'span6' );
 
-          // WRAPPER CLASS : build single grid post wrapper class
+          // ADD A WRAPPER CLASS : build single grid post wrapper class
           $_classes  = array('tc-grid-figure');
-
           //may be add class no-thumb
-          if ( ! TC_post_thumbnails::$instance -> tc_has_thumb() )
+          if ( ! $this -> tc_grid_show_thumb() )
             array_push( $_classes, 'no-thumb' );
           else
             array_push( $_classes, 'has-thumb' );
@@ -609,7 +606,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
             $_col_nb,
             $_col_media_matrix,
-            TC_utils::tc_get_layout( get_the_ID() , 'class' )
+            TC_utils::tc_get_layout( $this -> post_id , 'class' )
           );
         }
 
@@ -769,7 +766,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         private function tc_get_grid_column_height( $_cols_nb = '3' ) {
           $_h               = $this -> tc_grid_get_thumb_height();
-          $_current_layout  = TC_utils::tc_get_layout( get_the_ID() , 'sidebar' );
+          $_current_layout  = TC_utils::tc_get_layout( $this -> post_id , 'sidebar' );
           $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
           $_key             = 3;//default value == full
           if ( in_array( $_current_layout, $_layouts ) )
@@ -874,7 +871,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         private function tc_get_grid_cols() {
           return apply_filters( 'tc_get_grid_cols',
             esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_columns') ),
-            TC_utils::tc_get_layout( get_the_ID() , 'class' )
+            TC_utils::tc_get_layout( $this -> post_id , 'class' )
           );
         }
 
@@ -912,22 +909,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
 
         /**
-        * hook __before_setting_control (declared in class-controls.php)
-        * @echo clickable text
+        * @return  boolean
         */
-        function tc_render_grid_control_link( $set_id ) {
-          if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
-            printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
+        private function tc_grid_show_thumb() {
+          return TC_post_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
         }
-
-        /**
-        * hook __before_setting_control (declared in class-controls.php)
-        * @echo link
-        */
-        function tc_render_link_to_grid( $set_id ) {
-          if ( false !== strpos( $set_id, 'tc_front_layout' ) )
-            printf('<span class="button tc-navigate-to-post-list" title="%1$s">%1$s &raquo;</span>' , __('Jump to the blog design options' , 'customizr') );
-        }
-
   }//end of class
 endif;

@@ -1,19 +1,21 @@
-# Customizr v3.3.19 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.22 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Navigate to Appearance, Customize. Design in live preview, save and enjoy a beautiful, fast and responsive website compatible with all browsers. For developers, Customizr offers a well documented and modular code, easy to extend with hooks.
 
 ## Copyright
-**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Themes and Co](http://presscustomizr.com>)) 
+**Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Press Customizer](http://presscustomizr.com>)) 
 Feel free to use, modify and redistribute this theme as you like.
 You may remove any copyright references (unless required by third party components) and crediting is not necessary, but very appreciated... ;-D. 
 Customizr is distributed under the terms of the [GNU GPL v2.0 or later](http://www.gnu.org/licenses/gpl-3.0.en.html)
 
 
-## Documentation and FAQs
+## Demo, Documentation, FAQs and Support
+* DEMO : http://demo.presscustomizr.com/
 * DOCUMENTATION : http://doc.presscustomizr.com/customizr
 * FAQs : http://doc.presscustomizr.com/customizr/faq
+* SUPPORT : https://wordpress.org/support/theme/customizr
 * SNIPPETS : http://presscustomizr.com/code-snippets/
 * HOOKS API : http://presscustomizr.com/customizr/hooks-api/
 
@@ -90,8 +92,45 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.22 May 3rd 2015 =
+fix : revert private taxonomy not printed. Needs more tests.
+
+= 3.3.21 April 29th 2015 =
+fix : no post thumbnail option was not working for the post grid layout
+added: support for the map method in the array prototype for old ie browsers -ie8
+Fix: use the correct post id when retrieving the grid layout
+Improved : jquery.fancybox.js loaded separately when required
+Updated : underscore to 1.8.3
+Added : helper methods to normalize the front scripts enqueuing args
+Updated : name of front enqueue scripts / style callbacks
+Fix: use amatic weight 400 instead of 700, workaround for missing question mark
+Fix: remove reference to the tag, use site-description tag
+Fix: display unknown archive types headings; use if/else statement when retrieving archive headings/classes immediatily return the archive class when asked for and achiFix: amend typo in the last commit
+Fix: disable fade hover links for first level menu items in ie
+Fix: add customize code and fix previous errors
+Fix: add gallery options, remove useless rewrite of gallery code
+Fix: scroll top when no dropdown menu sized to viewport and no back-to-top, don't refer to not existing variable
+Fix: consider both header borders and eventual margins when retrieving its height
+Fix : RTL-ing Pre-Phase : setting the correct direction of arrows
+Fix: disabling global tc_post_metas didn't hide metas
+Fix: cache and use cached common jquery elements
+Fix: don't print private taxonomies in post metas tags
+Fix: display other grid options and jumb to the blog design options in customize
+Add: sensei woothemes addon compatibility
+improved : single options can now be filtered individually with tc_opt_{$option_name}
+Add: optimizepress compatibility
+Add: basic buddypress support (don't show comments in buddypress pages)
+Add: partial nextgen gallery compatibility
+Add: tc-mainwrappers methods for plugin compatibilities
+Updated: class-content-post_navigation.php
+changed: method TC___::tc_unset_core_classes set to public
+Correcting arrows on tranlated phrases
+
+= 3.3.20 April 17th 2015 =
+Fix: in the customizer display other grid options
+
 = 3.3.19 April 13th 2015 =
-fixed : Black Studio TinyMCE Plugin issue. Load TC_resource class when tinymcs_css callback is fired from the customizer
+fixed : Black Studio TinyMCE Plugin issue. Load TC_resource class when tinymce_css callback is fired from the customizer
 
 = 3.3.18 April 11th 2015 =
 added : support for polylang and qtranslate-x

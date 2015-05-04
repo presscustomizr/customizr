@@ -240,7 +240,7 @@ if ( ! class_exists( 'TC___' ) ) :
     *
     * @since  Customizr 3.0.11
     */
-    private function tc_unset_core_classes( $_tree, $_groups = array(), $_files = array() ) {
+    public function tc_unset_core_classes( $_tree, $_groups = array(), $_files = array() ) {
       if ( empty($_tree) )
         return array();
       if ( ! empty($_groups) ) {

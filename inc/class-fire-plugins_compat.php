@@ -35,10 +35,14 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //add support for plugins (added in v3.1+)
       add_theme_support( 'jetpack' );
       add_theme_support( 'bbpress' );
+      add_theme_support( 'buddy-press' );
       add_theme_support( 'qtranslate-x' );
       add_theme_support( 'polylang' );
       add_theme_support( 'woocommerce' );
       add_theme_support( 'the-events-calendar' );
+      add_theme_support( 'nextgen-gallery' );
+      add_theme_support( 'optimize-press' );
+      add_theme_support( 'sensei' );
     }
 
 
@@ -60,6 +64,12 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( current_theme_supports( 'bbpress' ) && $this -> tc_is_plugin_active('bbpress/bbpress.php') )
         $this -> tc_set_bbpress_compat();
 
+      /* BUDDYPRESS */
+      //if buddypress is installed and activated, we can check the existence of the contextual boolean function is_buddypress() to execute some code
+      // we have to use buddy-press instead of buddypress as string for theme support as buddypress makes some checks on current_theme_supports('buddypress') which result in not using its templates
+      if ( current_theme_supports( 'buddy-press' ) && $this -> tc_is_plugin_active('buddypress/bp-loader.php') )
+        $this -> tc_set_buddypress_compat();
+
       /*
       * QTranslatex
       * Credits : @acub, http://websiter.ro
@@ -74,10 +84,21 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( current_theme_supports( 'polylang' ) && $this -> tc_is_plugin_active('polylang/polylang.php') )
         $this -> tc_set_polylang_compat();
 
+      /* Optimize Press */
+      if ( current_theme_supports( 'optimize-press' ) && $this -> tc_is_plugin_active('optimizePressPlugin/optimizepress.php') )
+        $this -> tc_set_optimizepress_compat();
+
       /* Woocommerce */
       if ( current_theme_supports( 'woocommerce' ) && $this -> tc_is_plugin_active('woocommerce/woocommerce.php') )
         $this -> tc_set_woocomerce_compat();
 
+      /* Nextgen gallery */
+      if ( current_theme_supports( 'nextgen-gallery') && $this -> tc_is_plugin_active('nextgen-gallery/nggallery.php') )
+        $this -> tc_set_nggallery_compat();
+
+      /* Sensei woocommerce addon */
+      if ( current_theme_supports( 'sensei') && $this -> tc_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
+        $this -> tc_set_sensei_compat();
     }//end of plugin compatibility function
 
 
@@ -124,7 +145,18 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       }
     }
 
-
+    /**
+    * BuddyPress compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_buddypress_compat() {
+      add_filter( 'tc_are_comments_enabled', 'tc_buddypress_disable_comments' );
+      function tc_buddypress_disable_comments($bool){
+        return ( is_page() && function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
+      }
+    }
 
     /**
     * QtranslateX compat hooks
@@ -260,6 +292,103 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     }//end polylang compat
 
 
+    /**
+    * NextGen Gallery compat hooks
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_nggallery_compat() {
+      /* Make Customizr smart load work with nextgen galleries and fix small bug which resulted in displaying plain image attributes */
+     add_action('wp_head', 'tc_content_parse_imgs_rehook');
+     function tc_content_parse_imgs_rehook(){
+       // smartload doesn't work at all for nggalleries in pages, looks like they add "data-src" to their images in pages .. mah
+       if ( is_page() || is_admin() || 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ) )
+        return;
+
+       remove_filter('the_content', array(TC_utils::$instance, 'tc_parse_imgs') );
+       // they add the actual images filtering the content with priority PHP_INT_MAX -1
+       add_filter('the_content'   , array(TC_utils::$instance, 'tc_parse_imgs'), PHP_INT_MAX );
+     }
+    }
+
+
+    /**
+    * OptimizePress compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_optimizepress_compat() {
+      add_action('wp_print_scripts', 'tc_op_dequeue_fancybox_js');
+      function tc_op_dequeue_fancybox_js(){
+        if ( function_exists('is_le_page') ){
+          /* Op Back End: Dequeue tc-scripts */
+          if ( is_le_page() || defined('OP_LIVEEDITOR') ) {
+            wp_dequeue_script('tc-scripts');
+            wp_dequeue_script('tc-fancybox');
+          }
+          else {
+            /* Front End: Dequeue Fancybox maybe already embedded in Customizr */
+            wp_dequeue_script('tc-fancybox');
+            //wp_dequeue_script(OP_SN.'-fancybox');
+          }
+        }
+      }
+
+      /* Remove fancybox loading icon*/
+      add_action('wp_footer','tc_op_remove_fancyboxloading');
+      function tc_op_remove_fancyboxloading(){
+        echo "<script>
+                if (typeof(opjq) !== 'undefined') {
+                  opjq(document).ready(function(){
+                    opjq('#fancybox-loading').remove();
+                  });
+                }
+             </script>";
+      }
+    }//end optimizepress compat
+
+
+
+    /**
+    * Sensei compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    private function tc_set_sensei_compat() {
+      //unkooks the default sensei wrappers and add customizr's content wrapper and action hooks
+      global $woothemes_sensei;
+      remove_action( 'sensei_before_main_content', array( $woothemes_sensei->frontend, 'sensei_output_content_wrapper' ), 10 );
+      remove_action( 'sensei_after_main_content', array( $woothemes_sensei->frontend, 'sensei_output_content_wrapper_end' ), 10 );
+
+      add_action('sensei_before_main_content', 'tc_sensei_wrappers', 10);
+      add_action('sensei_after_main_content', 'tc_sensei_wrappers', 10);
+
+
+      function tc_sensei_wrappers() {
+        switch ( current_filter() ) {
+          case 'sensei_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
+                                             break;
+
+          case 'sensei_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
+                                             break;
+        }//end of switch on hook
+      }//end of nested function
+
+      //disables post navigation
+      add_filter( 'tc_show_post_navigation', 'tc_sensei_disable_post_navigation' );
+      function tc_sensei_disable_post_navigation($bool) {
+        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+      }
+      //removes post comment action on after_loop hook
+      add_filter( 'tc_are_comments_enabled', 'tc_sensei_disable_comments' );
+      function tc_sensei_disable_comments($bool) {
+        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+      }
+    }//end sensei compat
+
+
 
 
     /**
@@ -281,46 +410,12 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
       function tc_woocommerce_wrappers() {
         switch ( current_filter() ) {
-          case 'woocommerce_before_main_content':
+          case 'woocommerce_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
+                                                  break;
 
-          ?>
-            <div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">
-
-            <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
-
-            <div class="container" role="main">
-                <div class="<?php echo implode(' ', apply_filters( 'tc_column_content_wrapper_classes' , array('row' ,'column-content-wrapper') ) ) ?>">
-
-                    <?php do_action( '__before_article_container'); ##hook of left sidebar?>
-
-                        <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
-
-                            <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
-          <?php
-
-            break;
-
-          case 'woocommerce_after_main_content':
-
-          ?>
-                            <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
-
-                        </div><!--.article-container -->
-
-                    <?php do_action( '__after_article_container'); ##hook of left sidebar?>
-
-                </div><!--.row -->
-            </div><!-- .container role: main -->
-
-            <?php do_action( '__after_main_container' ); ?>
-
-          </div><!--#main-wrapper"-->
-
-          <?php
-            break;
+          case 'woocommerce_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
+                                                  break;
         }//end of switch on hook
-        ?>
-        <?php
       }//end of nested function
 
       // use Customizr title
@@ -367,6 +462,48 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_woocommerce_change_meta_boxes_priority($priority , $screen) {
          return ( 'product' == $screen ) ? 'default' : $priority ;
       }
+    }
+
+    /**
+    * CUSTOMIZR WRAPPERS
+    * print the customizr wrappers
+    *
+    * @since 3.3+
+    *
+    * originally used for woocommerce compatibility
+    */
+    function tc_mainwrapper_start() {
+      ?>
+      <div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">
+
+        <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
+
+        <div class="container" role="main">
+          <div class="<?php echo implode(' ', apply_filters( 'tc_column_content_wrapper_classes' , array('row' ,'column-content-wrapper') ) ) ?>">
+
+            <?php do_action( '__before_article_container'); ##hook of left sidebar?>
+
+              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
+
+                <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
+      <?php
+    }
+
+    function tc_mainwrapper_end() {
+      ?>
+                <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
+
+              </div><!--.article-container -->
+
+              <?php do_action( '__after_article_container'); ##hook of left sidebar?>
+
+            </div><!--.row -->
+        </div><!-- .container role: main -->
+
+        <?php do_action( '__after_main_container' ); ?>
+
+      </div><!--#main-wrapper"-->
+      <?php
     }
 
 

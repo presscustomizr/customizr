@@ -1668,7 +1668,7 @@ var TCParams = TCParams || {};
         }
         else {
           ('html, body').animate({
-                  scrollTop: $(anchor_id).offset().top
+                  scrollTop: 0
               }, 700);
         }
         $('body').removeClass('sticky-enabled').removeClass('tc-sticky-header');
