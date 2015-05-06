@@ -1147,6 +1147,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'description' =>  __( 'Set up comments options' , 'customizr' ),
                                             'panel'   => 'tc-content-panel'
                         ),
+                        'tc_post_navigation_settings'          => array(
+                                            'title'     =>  __( 'Post/Page Navigation' , 'customizr' ),
+                                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 30 : 65,
+                                            'description' =>  __( 'Set up post/page navigation options' , 'customizr' ),
+                                            'panel'   => 'tc-content-panel'
+                        ),
                         'tc_footer_global_settings'          => array(
                                             'title'     =>  __( 'Footer global settings' , 'customizr' ),
                                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
@@ -2108,6 +2114,45 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'      =>__( 'By default, WordPress displays the past comments, even if comments are disabled in posts or pages. Unchecking this option allows you to not display this comment history.' , 'customizr' )
               ),
 
+              /* Post navigation */
+              'tc_theme_options[tc_show_post_navigation]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls' ,
+                                'label'         => __( "Display posts navigation" , "customizr" ),
+                                'section'       => 'tc_post_navigation_settings' ,
+                                'type'          => 'checkbox',
+                                'notice'    => __( 'When this option is checked, the posts navigation is displayed below the posts' , 'customizr' ),
+                                'priority'      => 5,
+                                'transport'   => 'postMessage'
+              ),
+              'tc_theme_options[tc_show_post_navigation_page]'  =>  array(
+                                'default'       => 0,
+                                'control'     => 'TC_controls' ,
+                                'title'         => __( 'Select the contexts' , 'customizr' ),
+                                'label'         => __( "Display navigation in pages" , "customizr" ),
+                                'section'       => 'tc_post_navigation_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 10,
+                                'transport'   => 'postMessage'
+              ),
+              'tc_theme_options[tc_show_post_navigation_single]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls' ,
+                                'label'         => __( "Display posts navigation in single posts" , "customizr" ),
+                                'section'       => 'tc_post_navigation_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 20,
+                                'transport'   => 'postMessage'
+              ),
+              'tc_theme_options[tc_show_post_navigation_archive]'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls' ,
+                                'label'         => __( "Display posts navigation in post lists (archives, blog page, categories, search results ..)" , "customizr" ),
+                                'section'       => 'tc_post_navigation_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 25,
+                                'transport'   => 'postMessage'
+              ),
               /* Footer */
               'tc_theme_options[tc_show_back_to_top]'  =>  array(
                                 'default'       => 1,
