@@ -20,57 +20,6 @@ Customizr is distributed under the terms of the [GNU GPL v2.0 or later](http://w
 * HOOKS API : http://presscustomizr.com/customizr/hooks-api/
 
 
-## Setting up the Grunt dev environment
-
-### Grunt setup (first time Grunt users)
-! Before starting this, you must have installed Node.js on your system.
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide.
-
-To work with Grunt, you need two files in the current working directory : gruntfile.js + package.json (can be created simply with `npm init`)
-
-1) Open your System Command Prompt and navigate to your project folder
-
-2) Install Grunt Command Line Interface globally (-g) => this will make the grunt command available in any folder of your system
-```shell
-npm install -g grunt-cli
-```
-3) Install Grunt locally and include the dependency in package.json with the --save-dev command :
-```shell
-npm install grunt --save-dev
-```
-This will create a node_modules folder in the root folder
-
-4) If you are using git, create a `.gitignore` file and add /node_modules to ignore it in your commits
-
-5) Run ```shell npm install ``` => it will install all the Grunt dependencies for the project based on the package.json file
-
-5bis) if you need to install a grunt modules and add the dependencies in the package.json with `--save-dev`, run for example :
-```shell
-npm install grunt-contrib-less --save-dev
-```
-6) In your project root folder, create a `.ftpauth` file including the credential to your FTP remote server. Used to automate the FTP pushs. This file should be written like this :
-```js
-{
-  "path": "/remote-ftp-path/",
-  "host": "ftp.yourserver.com",
-  "nikeo": {
-    "username": "webmaster@yourserver.com",
-    "password": "password"
-  }
-}
-```
-**don't forget to add this file in your `.gitignore` file if you plan to share this project.
-
-7) In your system command prompt, run grunt : grunt [taskname], for example run
-```shell
-grunt customizr_dev
-```
-### Running the Grunt tasks
-All tasks are declared in the `gruntfile.js` in the customizr_tasks object.
-There are two main tasks : `customizr_dev` and `customizr_build`, using *sub tasks*.
-*  `customizr_dev` uses the watch event to triggers all the development tasks (less compiling, jshint, ...) and reload the browser page.
-*  `customizr_build` is run just before releasing a new version of the Customizr theme
-
 ## Licenses
 Unless otherwise specified, all the theme files, scripts and images
 are licensed under GNU General Public License version 2, see file license.txt.
