@@ -93,8 +93,8 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     * @since Customizr 3.3
     */
     private function tc_display_footer_placeholder() {
-      if ( ! is_user_logged_in() || ! current_user_can('edit_theme_options') || 'disabled' == get_transient( 'tc_widget_placehold_footer' ) || ! apply_filters('tc_display_widget_placeholders' , true ) )
-          return;
+      if ( ! TC_widgets::$instance -> tc_is_widget_placeholder_enabled( 'footer' ) )
+        return;
       ?>
       <aside class="tc-widget-placeholder">
         <?php

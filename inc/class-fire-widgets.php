@@ -24,7 +24,6 @@ if ( ! class_exists( 'TC_widgets' ) ) :
       add_action( 'init'                            , array( $this , 'tc_set_footer_hooks') );
       //widgets actions
       add_action( 'widgets_init'                    , array( $this , 'tc_widgets_factory' ) );
-
     }
 
 
@@ -95,9 +94,7 @@ if ( ! class_exists( 'TC_widgets' ) ) :
     * @since Customizr 3.3+
     */
     function tc_set_footer_hooks() {
-      if ( ! is_user_logged_in() || ! current_user_can('edit_theme_options') || ! apply_filters('tc_display_widget_placeholders' , true ) )
-        return;
-      if ( 'disabled' == get_transient( 'tc_widget_placehold_sidebar' ) && 'disabled' == get_transient( 'tc_widget_placehold_footer' ) )
+      if ( 'disabled' == get_transient( 'tc_widget_placehold_sidebar' ) && 'disabled' == get_transient( 'tc_widget_placehold_footer' ) && ! $this -> tc_is_widget_placeholder_enabled() )
         return;
 
       add_action( 'wp_footer'                       , array( $this, 'tc_widget_placeholder_script'), 100 );
@@ -168,6 +165,26 @@ if ( ! class_exists( 'TC_widgets' ) ) :
       //20 years transient
       set_transient( "tc_widget_placehold_{$_pos}", 'disabled' , 60*60*24*365*20 );
       wp_die();
+    }
+
+
+    /******************************************
+    * HELPERS
+    ******************************************/
+    /**
+    * Public helper, state if we can display a widget placeholder to the current user.
+    * @return  bool
+    * @since Customizr 3.3+
+    */
+    function tc_is_widget_placeholder_enabled( $_position = null ) {
+      //always display in DEV mode
+      if ( defined('TC_DEV') && true === TC_DEV )
+        return true;
+
+      $_position = is_null($_position) ? 'sidebar' : $_position;
+      return apply_filters( "tc_display_widget_placeholders",
+        is_user_logged_in() && current_user_can('edit_theme_options') && 'disabled' != get_transient( "tc_widget_placehold_{$_position}" )
+      );
     }
 
   }//end of class

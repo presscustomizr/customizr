@@ -119,7 +119,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
       * @since Customizr 3.3
       */
       private function tc_display_sidebar_placeholder( $position ) {
-        if ( ! is_user_logged_in() || ! current_user_can('edit_theme_options') || 'disabled' == get_transient( 'tc_widget_placehold_sidebar' ) || ! apply_filters('tc_display_widget_placeholders' , true ) )
+        if ( ! TC_widgets::$instance -> tc_is_widget_placeholder_enabled( 'sidebar' ) )
           return;
         ?>
         <aside class="tc-widget-placeholder">
