@@ -407,7 +407,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'choices'    =>  $this -> tc_build_skin_list(),
                                 'transport'   =>  'postMessage',
               ),
-
+              'tc_theme_options[tc_skin_random]' => array(
+                                'default'   => 0,
+                                'control'   => 'TC_controls',
+                                'label'     => __('Randomize the skin', 'customizr'),
+                                'section'   => 'tc_skins_settings',
+                                'type'      => 'checkbox',
+                                'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
+              ),
               'tc_theme_options[tc_minified_skin]'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,

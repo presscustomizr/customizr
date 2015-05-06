@@ -263,6 +263,17 @@
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_skin_random' : { /* hack */
+      controls: [
+        'tc_skin',
+      ],
+      callback: function (to) {
+        var $_skin_select = $('select[data-customize-setting-link="tc_theme_options[tc_skin]"]');
+
+        $_skin_select.prop('disabled', '1' == to ? 'disabled' : '' );
+        return true;
+      }
     }
   };
 
