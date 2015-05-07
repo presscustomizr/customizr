@@ -110,6 +110,12 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function tc_set_bbpress_compat() {
+      // hide tax archive title
+      add_filter( 'tc_show_tax_archive_title', 'tc_bbpress_disable_tax_archive_title');
+      function tc_bbpress_disable_tax_archive_title( $bool ){
+        return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+      }
+
       //disables thumbnails and excerpt for post lists
       add_filter( 'tc_show_post_list_thumb', 'tc_bbpress_disable_thumbnail' );
       function tc_bbpress_disable_thumbnail($bool) {
@@ -376,6 +382,12 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         }//end of switch on hook
       }//end of nested function
 
+      // hide tax archive title
+      add_filter( 'tc_show_tax_archive_title', 'tc_sensei_disable_tax_archive_title');
+      function tc_sensei_disable_tax_archive_title( $bool ){
+        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+      }
+
       //disables post navigation
       add_filter( 'tc_show_post_navigation', 'tc_sensei_disable_post_navigation' );
       function tc_sensei_disable_post_navigation($bool) {
@@ -425,6 +437,12 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
             return apply_filters( 'tc_title_text', $_title );
         return $_title;
+      }
+
+      // hide tax archive title
+      add_filter( 'tc_show_tax_archive_title', 'tc_woocommerce_disable_tax_archive_title');
+      function tc_woocommerce_disable_tax_archive_title( $bool ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
       //allow slider in the woocommerce shop page
