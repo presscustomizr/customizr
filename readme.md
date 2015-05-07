@@ -1,4 +1,4 @@
-# Customizr v3.3.22 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.3.23 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -92,6 +92,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.3.23 May 4th 2015 =
+fix : don't show slider in home when no home slider is set
+
 = 3.3.22 May 3rd 2015 =
 fix : revert private taxonomy not printed. Needs more tests.
 
