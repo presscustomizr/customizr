@@ -27,7 +27,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
       self::$instance =& $this;
   		//add control class
-  		add_action ( 'customize_register'				                , array( $this , 'tc_add_controls_class' ) ,10,1);        
+  		add_action ( 'customize_register'				                , array( $this , 'tc_add_controls_class' ) ,10,1);
 
   		//add grid/post list buttons
   		add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );

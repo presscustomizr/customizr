@@ -670,7 +670,8 @@ jQuery(function ($) {
       var AjaxUrl         = TCControlParams.AjaxUrl,
       query = {
           action  : 'hide_donate',
-          TCnonce :  TCControlParams.TCNonce
+          TCnonce :  TCControlParams.TCNonce,
+          wp_customize : 'on'
       },
       request = $.post( AjaxUrl, query );
       request.done( function( response ) {
