@@ -407,6 +407,16 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         $_skin_select.prop('disabled', '1' == to ? 'disabled' : '' );
         return true;
       }
+    },
+    'tc_show_post_navigation' : {
+      controls: [
+        'tc_show_post_navigation_page',
+        'tc_show_post_navigation_single',
+        'tc_show_post_navigation_archive'
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
     }
   };
 
@@ -660,7 +670,8 @@ jQuery(function ($) {
       var AjaxUrl         = TCControlParams.AjaxUrl,
       query = {
           action  : 'hide_donate',
-          TCnonce :  TCControlParams.TCNonce
+          TCnonce :  TCControlParams.TCNonce,
+          wp_customize : 'on'
       },
       request = $.post( AjaxUrl, query );
       request.done( function( response ) {
