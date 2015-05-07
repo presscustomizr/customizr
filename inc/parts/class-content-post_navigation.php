@@ -33,8 +33,8 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
         //1) we don"t show post navigation for pages by default
         //2) + filter conditions
         $post_navigation_bool         = is_page( TC_utils::tc_id() ) ? false : true ;
-    		$prev_arrow = is_rtl() ? '&rarr;' : '&larr;' ;
-    		$next_arrow = is_rtl() ? '&larr;' : '&rarr;' ;
+        $prev_arrow = is_rtl() ? '&rarr;' : '&larr;' ;
+        $next_arrow = is_rtl() ? '&larr;' : '&rarr;' ;
 
         if( ! apply_filters( 'tc_show_post_navigation' , $post_navigation_bool ) )
           return;

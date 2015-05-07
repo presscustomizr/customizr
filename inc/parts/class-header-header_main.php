@@ -58,8 +58,15 @@ if ( ! class_exists( 'TC_header_main' ) ) :
       add_filter ( 'tc_navbar_display', array( $this , 'tc_new_menu_view'), 10, 2);
 
       //body > header > navbar actions ordered by priority
+	  // GY : switch order for RTL sites 
+	  if (is_rtl()) {
+      add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 20, 2 );
+      add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 10, 1 );
+	  }
+	  else {
       add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
       add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
+	  }
     }
 
 
@@ -395,7 +402,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
               		<?php
                 		do_action( '__navbar' , 'resp' ); //hook of social, menu, ordered by priorities 10, 20
               		?>
-          			</div>
+          			</div><!-- /.row-fluid -->
           		</div><!-- /.navbar-inner -->
         	</div><!-- /.navbar resp -->
       	</div><!-- /.navbar-wrapper -->
