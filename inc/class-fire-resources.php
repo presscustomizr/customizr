@@ -194,7 +194,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    $right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
 			wp_localize_script(
-	        ( ! apply_filters('tc_load_concatenated_front_scripts' , true ) ) ? 'tc-js-params' : 'tc-scripts',
+	        $this -> tc_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
 	        'TCParams',
 	        apply_filters( 'tc_customizr_script_params' , array(
 	          	'FancyBoxState' 		=> $this -> tc_is_fancyboxjs_required(),
