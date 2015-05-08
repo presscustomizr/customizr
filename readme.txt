@@ -38,6 +38,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.23 May 4th 2015 =
+fix : don't show slider in home when no home slider is set
+
 = 3.3.22 May 3rd 2015 =
 fix : revert private taxonomy not printed. Needs more tests.
 
