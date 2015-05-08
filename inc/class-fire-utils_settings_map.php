@@ -44,6 +44,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * hook : tc_remove_section_map
     */
     function tc_set_theme_switcher_visibility( $_sections) {
+      //Don't do anything is in preview frame
+      //=> because once the preview is ready, a postMessage is sent to the panel frame to refresh the sections and panels
+      if ( TC___::$instance -> tc_is_customize_preview_frame() )
+        return $_sections;
+
       //when user access the theme switcher from the admin bar
       $_theme_switcher_requested = false;
       if ( isset( $_GET['autofocus'] ) ) {
@@ -59,6 +64,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       array_push( $_sections['remove_section'] , 'themes' );
       return $_sections;
     }
+
 
 
     /**

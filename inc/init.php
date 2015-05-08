@@ -314,7 +314,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @return  boolean
     * @since  3.3+
     */
-    private function tc_is_customize_left_panel() {
+    function tc_is_customize_left_panel() {
       global $pagenow;
       return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
     }
@@ -325,7 +325,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @return  boolean
     * @since  3.3+
     */
-    private function tc_is_customize_preview_frame() {
+    function tc_is_customize_preview_frame() {
       return ! is_admin() && isset($_REQUEST['wp_customize']);
     }
 

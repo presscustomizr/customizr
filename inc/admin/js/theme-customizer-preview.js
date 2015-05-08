@@ -219,7 +219,7 @@
 		} );
 	});
     //Posts navigation
-    var _post_nav_context = [ 
+    var _post_nav_context = [
           { _context : 'page', _selector : 'body.page' },
           { _context : 'single', _selector: 'body.single'},
           { _context : 'archive', _selector: 'body.archive'}
@@ -652,5 +652,5 @@
         $('.article-container').removeClass('tc-gallery-style');
     } );
   });
- 
+
 } )( jQuery );
