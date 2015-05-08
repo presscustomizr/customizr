@@ -15,25 +15,50 @@
 if ( ! class_exists( 'TC_utils_settings_map' ) ) :
   class TC_utils_settings_map {
 
-      //Access any method or var of the class with classname::$instance -> var or method():
-      static $instance;
-      private $is_wp_version_before_4_0;
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $instance;
+    private $is_wp_version_before_4_0;
 
-      function __construct () {
-          self::$instance =& $this;
+    function __construct () {
+        self::$instance =& $this;
 
-          //update remove section map, since 3.2.0
-          add_filter ( 'tc_remove_section_map'                , array( $this , 'tc_update_remove_sections') );
-          //update section map, since 3.2.0
-          add_filter ( 'tc_add_section_map'                   , array( $this , 'tc_update_section_map') );
-          //update setting_control_map
-          add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_update_setting_control_map'), 100 );
-          //update setting_control_map with post list design, v3.2.18+
-          add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_grid_map'), 101 );
-          //declare a private property to check wp version >= 4.0
-          global $wp_version;
-          $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
-      }//end of construct
+        //update remove section map, since 3.2.0
+        add_filter ( 'tc_remove_section_map'                , array( $this , 'tc_update_remove_sections') );
+        //theme switcher's enabled when user opened the customizer from the theme's page
+        add_filter ( 'tc_remove_section_map'                , array( $this , 'tc_set_theme_switcher_visibility') );
+        //update section map, since 3.2.0
+        add_filter ( 'tc_add_section_map'                   , array( $this , 'tc_update_section_map') );
+        //update setting_control_map
+        add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_update_setting_control_map'), 100 );
+        //update setting_control_map with post list design, v3.2.18+
+        add_filter ( 'tc_add_setting_control_map'           , array( $this , 'tc_grid_map'), 101 );
+        //declare a private property to check wp version >= 4.0
+        global $wp_version;
+        $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
+    }//end of construct
+
+
+
+    /**
+    * Print the themes section (themes switcher) when previewing the themes from wp-admin/themes.php
+    * hook : tc_remove_section_map
+    */
+    function tc_set_theme_switcher_visibility( $_sections) {
+      //when user access the theme switcher from the admin bar
+      $_theme_switcher_requested = false;
+      if ( isset( $_GET['autofocus'] ) ) {
+        $autofocus = wp_unslash( $_GET['autofocus'] );
+        if ( is_array( $autofocus ) && isset($autofocus['section']) ) {
+          $_theme_switcher_requested = 'themes' == $autofocus['section'];
+        }
+      }
+
+      if ( isset($_GET['theme']) || ! isset($_sections['remove_section']) || $_theme_switcher_requested )
+        return $_sections;
+
+      array_push( $_sections['remove_section'] , 'themes' );
+      return $_sections;
+    }
 
 
     /**
@@ -979,6 +1004,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /**
     * Update initial remove section map defined in class-fire-utils.php.
     * (nav and title_tagline sections are added back in tc_update_section_map() )
+    * hook : tc_remove_section_map
     * @package Customizr
     * @since Customizr 3.2.0
     */
@@ -1000,6 +1026,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /**
     * Update initial section map defined in class-fire-utils.php.
     * Add panel parameter (since WP4.0)
+    * hook : tc_add_section_map
     * @package Customizr
     * @since Customizr 3.2.0
     */
@@ -1178,7 +1205,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
 
     /**
-    * Update initial setting_control map defined in class-fire-utils.php.
+    * Update initial setting_control map
+    * hook : tc_add_setting_control_map
     *
     * @package Customizr
     * @since Customizr 3.2.0
