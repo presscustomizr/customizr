@@ -706,5 +706,6 @@ if ( ! class_exists( 'TC_init' ) ) :
         }
         return $_classes;
       }
+
   }//end of class
 endif;

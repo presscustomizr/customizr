@@ -14,9 +14,11 @@ custom-skins/
 # PATCHES
 patches/
 
-# GRUNT #
+# GRUNT
 node_modules/
 .ftpauth
+grunt-tasks-config/
+gruntfile.js
 
 # PHP_CodeSniffer
 PHP_CodeSniffer/

@@ -13,13 +13,50 @@
 */
 if ( ! class_exists( 'TC_post_navigation' ) ) :
   class TC_post_navigation {
-      static $instance;
+      static  $instance;
+     
       function __construct () {
-          self::$instance =& $this;
-          add_action  ( '__after_loop'                         , array( $this , 'tc_post_nav' ), 20 );
+        self::$instance =& $this;
+
+        add_action ( '__after_loop'             , array( $this , 'tc_post_nav' ), 20 );
+
       }
 
 
+      /***********************
+      * VISIBILITY SETUP
+      ***********************/
+      /**
+      * Set the post navigation visibility based on Customizer options
+      * 
+      * returns an array which contains, @bool whether or not show the navigation , @array css classes of the navigation, @string the context
+      * @package Customizr
+      * @since Customizr 3.3.22
+      */
+      function tc_set_visibility_options(){
+    
+        $_nav_classes              = array('navigation');
+        $_context                  = $this -> tc_get_context();  
+        $_post_nav_enabled         = $this -> tc_is_post_navigation_enabled();
+        $_post_nav_context_enabled = $this -> tc_is_post_navigation_context_enabled( $_context );
+
+        $_is_customizing           = TC___::$instance -> tc_is_customizing() ;
+
+        if ( $_is_customizing ){
+          if ( ! $_post_nav_enabled )
+            array_push( $_nav_classes, 'hide-all-post-navigation' );
+          if ( ! $_post_nav_context_enabled )
+            array_push( $_nav_classes, 'hide-post-navigation' );
+          $_post_nav_enabled       = true;  
+        }else
+          $_post_nav_enabled       = $_post_nav_enabled && $_post_nav_context_enabled;
+        
+        return array(
+            apply_filters( 'tc_show_post_navigation', $_post_nav_enabled ),
+            implode( ' ', apply_filters( 'tc_show_post_navigation_class' , $_nav_classes ) ),
+            $_context
+        );
+      }
 
       /**
        * The template part for displaying nav links
@@ -29,28 +66,29 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
        */
       function tc_post_nav() {
 
-        // When do we display navigation ?
-        //1) we don"t show post navigation for pages by default
-        //2) + filter conditions
-        $post_navigation_bool         = is_page( TC_utils::tc_id() ) ? false : true ;
-    		$prev_arrow = is_rtl() ? '&rarr;' : '&larr;' ;
-    		$next_arrow = is_rtl() ? '&larr;' : '&rarr;' ;
+        list( $post_navigation_bool, $post_nav_class, $_context) = $this -> tc_set_visibility_options();
 
-        if( ! apply_filters( 'tc_show_post_navigation' , $post_navigation_bool ) )
-          return;
+        
+        if( ! $post_navigation_bool )
+          return;      
+        
 
-        global $wp_query;
+        $prev_arrow           = is_rtl() ? '&rarr;' : '&larr;' ;
+    	$next_arrow           = is_rtl() ? '&larr;' : '&rarr;' ;
+
 
         $html_id = 'nav-below';
-
+        
+        global $wp_query;
+        
         ob_start();
         ?>
 
-        <?php if ( is_singular() ) : ?>
+        <?php if ( in_array($_context, array('single', 'page') ) ) : ?>
 
           <?php echo apply_filters( 'tc_singular_nav_separator' , '<hr class="featurette-divider '.current_filter().'">'); ?>
 
-          <nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
+        <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>" role="navigation">
 
               <h3 class="assistive-text">
                 <?php echo apply_filters( 'tc_singular_nav_title', __( 'Post navigation' , 'customizr' ) ) ; ?>
@@ -103,9 +141,9 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
 
           </nav><!-- #<?php echo $html_id; ?> .navigation -->
 
-        <?php elseif ( $wp_query->max_num_pages > 1 && !is_404() && !tc__f( '__is_home_empty') ) : ?>
+        <?php elseif ( $wp_query->max_num_pages > 1 &&  'archive' == $_context ) : ?>
 
-          <nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
+          <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>" role="navigation">
 
             <h3 class="assistive-text">
               <?php echo apply_filters( 'tc_list_nav_title', __( 'Post navigation' , 'customizr' ) ) ; ?>
@@ -164,5 +202,44 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
         if ($html) ob_end_clean();
         echo apply_filters( 'tc_post_nav' , $html );
       }
+
+
+
+      /******************************
+      VARIOUS HELPERS
+      *******************************/
+      /**
+      * 
+      * @return string or bool
+      *
+      */
+      function tc_get_context(){
+          
+        if ( is_page() )
+          return 'page';
+        if ( is_single() && ! is_attachment() )
+          return 'single'; // exclude attachments
+        if ( !is_404() && !tc__f( '__is_home_empty') )
+          return 'archive';
+
+        return false;
+
+      }
+    
+      /*
+      * @param (string or bool) the context
+      * @return bool
+      */
+      function tc_is_post_navigation_context_enabled( $_context ) {
+        return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );     
+      }
+
+      /*
+      * @return bool
+      */
+      function tc_is_post_navigation_enabled(){
+        return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ; 
+      }
+
   }//end of class
 endif;

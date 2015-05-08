@@ -16,6 +16,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    //Access any method or var of the class with classname::$instance -> var or method():
 	    static $instance;
       public $tc_script_map;
+      public $current_random_skin;
 
 	    function __construct () {
 	        self::$instance =& $this;
@@ -29,6 +30,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_fonts_inline_css') );
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_dropcap_inline_css') );
+
+          //set random skin
+          add_filter ('tc_opt_tc_skin'                , array( $this, 'tc_set_random_skin' ) );
 
           //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
@@ -489,6 +493,24 @@ if ( ! class_exists( 'TC_resources' ) ) :
       return $_css;
     }
 
+
+    /**
+    * Set random skin
+    * hook tc_opt_tc_skin
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    function tc_set_random_skin ( $_skin ) {
+      if ( false == esc_attr( TC_utils::$inst -> tc_opt( 'tc_skin_random' ) ) )
+        return $_skin;
+
+      /* Generate the random skin just once !*/
+      if ( ! $this -> current_random_skin || ! is_array( TC_init::$instance -> skins ) )
+        $this -> current_random_skin = array_rand( TC_init::$instance -> skins, 1 );
+
+      return $this -> current_random_skin;
+    }
 
 
 
