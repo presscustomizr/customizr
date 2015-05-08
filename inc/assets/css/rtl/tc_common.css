@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.23
+ * Customizr v3.3.??
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -761,8 +761,8 @@ dd {
 .dl-horizontal dt {
   float: right; /* GY :  changed from float:left */
   width: 160px;
-  clear: right; /* GY ?*/
-  text-align: left; /* GY ?*/
+  clear: right; /* GY :  changed from float:left*/
+  text-align: left; /* GY :  changed from float:left*/
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -7313,7 +7313,7 @@ li#wp-admin-bar-tc-customizr a {
     box-sizing: border-box;
     float: right; /* GY :  changed from float:left */
     margin-left: 2.56410256%; 
-    *margin-left: 2.51091107%;  */
+    *margin-left: 2.51091107%;
  /*   margin-right: 2.56410256%; /* GY : changed from margin-left: */
  /*   *margin-right: 2.51091107%; /* GY : changed from margin-left: */
  /*   margin-left: 0; /* GY : added rule */
