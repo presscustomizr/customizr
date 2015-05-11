@@ -371,6 +371,7 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         }
 
 
+
         /**
         * Helper to return the current post terms of specified taxonomy type : hierarchical or not
         *
@@ -391,15 +392,28 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
               return false;
 
           //filter the post taxonomies
-          while ( $el = current($tax_list) ) {
-              //skip the post format taxinomy
-              if ( in_array( key($tax_list) , apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , TC_utils::tc_id() ) ) ) ) {
-                  next($tax_list);
-                  continue;
-              }
-              if ( (bool) $hierarchical === (bool) $el -> hierarchical )
-                  $_tax_type_list[key($tax_list)] = $el;
+          while ( $_tax_object = current($tax_list) ) {
+            // cast $_tax_object stdClass object in an array to access its property 'public'
+            // fix for PHP version < 5.3 (?)
+            $_tax_object = (array) $_tax_object;
+
+            //Is the object well defined ?
+            if ( ! isset($_tax_object['name']) ) {
               next($tax_list);
+              continue;
+            }
+
+            $_tax_name = $_tax_object['name'];
+
+            //skip the post format taxinomy
+            if ( ! $this -> tc_is_tax_authorized( $_tax_object, $post_type ) ) {
+              next($tax_list);
+              continue;
+            }
+
+            if ( (bool) $hierarchical === (bool) $_tax_object['hierarchical'] )
+                $_tax_type_list[$_tax_name] = $_tax_object;
+            next($tax_list);
           }
 
           if ( empty($_tax_type_list) )
@@ -419,6 +433,30 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
               }
           }
           return empty($_tax_type_terms_list) ? false : apply_filters( "tc_tax_meta_list" , $_tax_type_terms_list , $hierarchical );
+        }
+
+
+
+        /**
+        * Helper : check if a given tax is allowed in the post metas or not
+        * A tax is authorized if :
+        * 1) not in the exclude list
+        * 2) AND not private
+        *
+        * @return boolean (false)
+        * @param  $post_type, $_tax_object
+        * @package Customizr
+        * @since Customizr 3.3+
+        *
+        */
+        public function tc_is_tax_authorized( $_tax_object , $post_type ) {
+          $_in_exclude_list = in_array(
+            $_tax_object['name'],
+            apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , TC_utils::tc_id() ) )
+          );
+
+          $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], TC_utils::tc_id() ) );
+          return ! $_in_exclude_list && ! $_is_private;
         }
 
 
