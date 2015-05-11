@@ -87,6 +87,8 @@ class TC_post_list {
     //Set thumb shape with customizer options (since 3.2.0)
     add_filter( 'tc_post_thumb_wrapper' , array( $this , 'tc_set_thumb_shape'), 10 , 2 );
 
+    add_filter( 'tc_the_content'        , array( $this , 'tc_add_support_for_shortcode_special_chars') );
+
     // => filter the thumbnail inline style tc_post_thumb_inline_style and replace width:auto by width:100%
     // 3 args = $style, $_width, $_height
     add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'tc_change_thumbnail_inline_css_width'), 20, 3 );
@@ -129,7 +131,7 @@ class TC_post_list {
     if ( $this -> tc_show_excerpt() )
       $_content = apply_filters( 'the_excerpt', get_the_excerpt() );
     else
-      $_content = str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', get_the_content() ) );
+      $_content = apply_filters( 'tc_the_content', get_the_content() );
 
     //what is determining the layout ? if no thumbnail then full width + filter's conditions
     $_layout_class = $this -> tc_show_thumb() ? $_layout['content'] : 'span12';
@@ -236,7 +238,7 @@ class TC_post_list {
     {
       $_sub_class = sprintf( 'entry-content %s' , $_icon_class );
       $_content   = sprintf( '%1$s%2$s',
-        get_the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ),
+        apply_filters( 'tc_the_content', get_the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ) ),
         wp_link_pages( array(
           'before'  => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ),
           'after'   => '</div>',
@@ -495,6 +497,21 @@ class TC_post_list {
 
     $_position                  = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
     return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
+  }
+
+
+  /**
+  * hook : tc_the_content
+  * Applies tc_the_content filter to the passed string
+  *
+  * @param string
+  * @return  string
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  */
+  function tc_add_support_for_shortcode_special_chars( $_content ) {
+    return str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', $_content ) );
   }
 
 }//end of class
