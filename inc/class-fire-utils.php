@@ -102,12 +102,11 @@ if ( ! class_exists( 'TC_utils' ) ) :
             $matches[3]
           );
         else
-          return sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s><noscript><img %1$s src="%5$s" %4$s></noscript>',
+          return sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s>',
             $matches[1],
             $_placeholder,
             $matches[2],
-            $matches[3],
-            $matches[0]
+            $matches[3]
           );
       }
 
