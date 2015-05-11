@@ -1988,7 +1988,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'label'         => __('Enable Lightbox effect in galleries' , 'customizr'),
                                 'control'       => 'TC_controls' ,
-                                'notice'         => __( "Apply lightbox effects to galleries images ( if the Lightbox options is enabled in Global Settings > Image Settings)." , "customizr" ),
+                                'notice'         => __( "Apply lightbox effects to galleries images" , "customizr" ),
                                 'section'       => 'tc_galleries_settings' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1
@@ -2009,7 +2009,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'title'         => __( 'Drop caps', 'customizr'),
                                 'label'         => __('Enable drop caps' , 'customizr'),
                                 'control'       => 'TC_controls' ,
-                                'notice'         => __( "Apply a drop cap to the first paragraph of your post / page content." , "customizr" ),
+                                'notice'         => __( "Apply a drop cap to the first paragraph of your post / page content" , "customizr" ),
                                 'section'       => 'tc_paragraphs_settings' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1

@@ -16,7 +16,7 @@ if ( ! class_exists( 'TC_gallery' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
-        
+
         add_filter ( 'tc_article_container_class' , array( $this, 'tc_add_gallery_class' ), 20 );
         //adds a filter for link markup (allow lightbox)
         add_filter ( 'wp_get_attachment_link'     , array( $this, 'tc_modify_attachment_link') , 20, 6 );
@@ -31,9 +31,9 @@ if ( ! class_exists( 'TC_gallery' ) ) :
        *
        */
       function tc_add_gallery_class( $_classes ){
-        if (  $this -> tc_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_style' ) ) ) )  
+        if (  $this -> tc_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_style' ) ) ) )
           array_push($_classes, 'tc-gallery-style');
-        return $_classes;    
+        return $_classes;
       }
 
 
@@ -50,9 +50,7 @@ if ( ! class_exists( 'TC_gallery' ) ) :
         if ( ! $this -> tc_is_gallery_enabled() )
           return $markup;
 
-        $tc_fancybox = esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_fancybox' ) );
-
-        $tc_gallery_fancybox = apply_filters( 'tc_gallery_fancybox', esc_attr( TC_utils::$inst->tc_opt( 'tc_gallery_fancybox' ) && $tc_fancybox ) , $id );
+        $tc_gallery_fancybox = apply_filters( 'tc_gallery_fancybox', esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_fancybox' ) ) , $id );
 
         if ( $tc_gallery_fancybox == 1 && $permalink == false ) //add the filter only if link to the attachment file/image
           {
