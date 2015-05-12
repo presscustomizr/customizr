@@ -569,8 +569,8 @@ if ( ! class_exists( 'TC_header_main' ) ) :
    	* @package Customizr
    	* @since Customizr 3.2.0
    	*/
-		function tc_set_header_classes( $_classes ) {
-			//backward compatibility (was not handled has an array in previous versions)
+        function tc_set_header_classes( $_classes ) {
+            //backward compatibility (was not handled has an array in previous versions)
 			if ( ! is_array($_classes) )
 				return $_classes;
 
@@ -579,17 +579,20 @@ if ( ! class_exists( 'TC_header_main' ) ) :
       $_use_sticky_logo 		= $this -> tc_use_sticky_logo();
 			$_shrink_title_logo 	= 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') );
 			$_show_menu 			  = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') );
-			$_header_layout 		= "logo-" . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) );
+            $_header_layout 		= "logo-" . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) );
+            $_mobile_min            = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_mobile_min') );
 			$_add_classes 			= array(
 				$_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',
         $_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
         $_use_sticky_logo ? 'tc-sticky-logo-on' : '',
 				$_shrink_title_logo ? 'tc-shrink-on' : 'tc-shrink-off',
 				$_show_menu ? 'tc-menu-on' : 'tc-menu-off',
-				$_header_layout
+                $_header_layout,
+				$_mobile_min ? 'tc-mobile-min' : ''
 			);
-			return array_merge( $_classes , $_add_classes );
-		}
+            
+            return array_merge( $_classes , $_add_classes );
+	}
 
 
 
