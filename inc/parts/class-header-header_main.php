@@ -569,38 +569,30 @@ if ( ! class_exists( 'TC_header_main' ) ) :
    	* @package Customizr
    	* @since Customizr 3.2.0
    	*/
-		function tc_set_header_classes( $_classes ) {
-			//backward compatibility (was not handled has an array in previous versions)
+        function tc_set_header_classes( $_classes ) {
+            //backward compatibility (was not handled has an array in previous versions)
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-<<<<<<< HEAD
-			$_show_tagline 			= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_tagline') );
-            $_show_title_logo 		= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_title_logo') );
-            $_use_sticky_logo 		= $this -> tc_use_sticky_logo();
-			$_shrink_title_logo 	= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_shrink_title_logo') );
-			$_show_menu 			= 0 != esc_attr( tc__f( '__get_option' , 'tc_sticky_show_menu') );
-            $_header_layout 		= "logo-" . esc_attr( tc__f( '__get_option' , 'tc_header_layout' ) );
-            $_mobile_min            = 0 != esc_attr( tc__f( '__get_option' , 'tc_header_mobile_min') );
-=======
 			$_show_tagline 			= 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_tagline') );
       $_show_title_logo 		= 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') );
       $_use_sticky_logo 		= $this -> tc_use_sticky_logo();
 			$_shrink_title_logo 	= 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') );
 			$_show_menu 			  = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') );
-			$_header_layout 		= "logo-" . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) );
->>>>>>> ec2da9e89022d4cf438f92c81a93d985e70b9b08
+            $_header_layout 		= "logo-" . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) );
+            $_mobile_min            = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_mobile_min') );
 			$_add_classes 			= array(
 				$_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',
-                $_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
-                $_use_sticky_logo ? 'tc-sticky-logo-on' : '',
+        $_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
+        $_use_sticky_logo ? 'tc-sticky-logo-on' : '',
 				$_shrink_title_logo ? 'tc-shrink-on' : 'tc-shrink-off',
 				$_show_menu ? 'tc-menu-on' : 'tc-menu-off',
-				$_header_layout,
+                $_header_layout,
 				$_mobile_min ? 'tc-mobile-min' : ''
 			);
-			return array_merge( $_classes , $_add_classes );
-		}
+            
+            return array_merge( $_classes , $_add_classes );
+	}
 
 
 

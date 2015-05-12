@@ -308,7 +308,7 @@
 		} );
 	});
     wp.customize( 'tc_theme_options[tc_header_mobile_min]' , function( value ) {
-        value.bind( function( to ) { console.log(to);
+        value.bind( function( to ) { 
             if ( to === false )
                 $('.tc-header').removeClass('tc-mobile-min');
             else
