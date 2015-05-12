@@ -19,7 +19,8 @@ module.exports = {
 			'!readme.md',
 			'!**/*.db',
       '!patches/**',
-      '!inc/init-pro.php'
+      '!inc/init-pro.php',
+      '!custom-skins/**'
 		],
 		dest: 'build/free/<%= pkg.name %>/'
 	},
@@ -45,7 +46,8 @@ module.exports = {
       '!readme.md',
       '!readme.txt',
       '!screenshot.png',
-      '!style.css'
+      '!style.css',
+      '!custom-skins/**'
     ],
     dest: '../customizr-pro/'
   }

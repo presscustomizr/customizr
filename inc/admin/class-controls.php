@@ -6,9 +6,9 @@
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_controls' ) ) :
@@ -27,7 +27,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	    public $icon;
 
 	    public function render_content()  {
-	    	do_action( '__before_setting_control' , $this-> id );
+	    	do_action( '__before_setting_control' , $this -> id );
 
         switch ( $this -> type) {
 	        	case 'hr':
@@ -64,47 +64,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
     					<?php endif; ?>
     					<label>
     						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-    						<select <?php $this->link(); ?>>
-    							<?php
-    								//IF SKIN, THEN DEFINE SOME VARS
-    								$_data_hex 	= '';
-    								$_color_map = array();
-    								if ( 'tc_theme_options[tc_skin]' == $this -> id ) {
-    									$_color_map = TC_utils::$instance -> tc_get_skin_color( 'all' );
-    								}
-                    switch ( $this -> id ) {
-                      case 'tc_theme_options[tc_fonts]':
-                        foreach ( $this -> choices as $_opt_group => $_opt_list ) {
-                          $_options = array();
-                          foreach ( $_opt_list['list'] as $label => $value ) {
-                            $_options[] = sprintf('<option value="%1$s" %2$s>%3$s</option>',
-                              esc_attr( $label ),
-                              selected( $this->value(), $value, false ),
-                              $value
-                            );
-                          }
-                          printf('<optgroup label="%1$s">%2$s</optgroup>',
-                            $_opt_list['name'],
-                            implode($_options)
-                          );
-                        }
-                      break;
-
-                      default:
-                        foreach ( $this->choices as $value => $label ) {
-                          $_data_hex  = isset($_color_map[esc_attr( $value )][0]) ? sprintf( 'data-hex="%s"', $_color_map[esc_attr( $value )][0] ) : '';
-                          printf('<option value="%1$s" %2$s %4$s>%3$s</option>',
-                            esc_attr( $value ),
-                            selected( $this->value(), $value, false ),
-                            $label,
-                            $_data_hex
-                          );
-                        }
-                      break;
-                    }
-
-    								?>
-    						</select>
+    						<?php $this -> tc_print_select_control() ?>
                 <?php if(!empty( $this -> notice)) : ?>
                   <span class="tc-notice"><?php echo $this -> notice ?></span>
                 <?php endif; ?>
@@ -118,9 +78,14 @@ if ( ! class_exists( 'TC_controls' ) ) :
     			    	}
 
     					if ( 'tc_theme_options[tc_front_slider]' == $this -> id  && empty( $sliders ) ) {
-    						 echo '<div style="width:99%; padding: 5px;">';
-    		                  echo '<p class="description">'.__("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ).'<br/><a class="button-primary" href="'.admin_url( 'upload.php' ).'" target="_blank">'.__( 'Create a slider' , 'customizr' ).'</a></p>
-    		              </div>';
+    						printf('<div style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="http://%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',
+                  __("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ),
+                  admin_url( 'upload.php' ),
+                  __( 'Create a slider' , 'customizr' ),
+                  __( 'Need help to create a slider ?' , 'customizr' ),
+                  "doc.presscustomizr.com/",
+                  __( 'Check the documentation' , 'customizr' )
+                );
     					}
 
     				break;
@@ -185,7 +150,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	        			! empty( $this -> icon) ? $this -> icon : '',
 	        			esc_html( $this->label ),
 	        			esc_url( $this->value() ),
-	        			call_user_func( array( $this, 'get_link' ) )
+	        			call_user_func( array( $this, 'get'.'_'.'link' ) )
 	        		);
 		        	break;
 
@@ -216,6 +181,72 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	        }//end switch
 	        do_action( '__after_setting_control' , $this -> id );
 		 }//end function
+
+
+
+
+    private function tc_print_select_control() {
+      printf('<select %1$s>%2$s</select>',
+        call_user_func( array( $this, 'get'.'_'.'link' ) ),
+        $this -> tc_get_select_options()
+      );
+    }
+
+
+    private function tc_get_select_options() {
+      $_options_html = '';
+      switch ( $this -> id ) {
+        case 'tc_theme_options[tc_fonts]':
+          foreach ( $this -> choices as $_opt_group => $_opt_list ) {
+            $_options = array();
+            foreach ( $_opt_list['list'] as $label => $value ) {
+              $_options[] = sprintf('<option value="%1$s" %2$s>%3$s</option>',
+                esc_attr( $label ),
+                selected( $this->value(), $value, false ),
+                $value
+              );
+            }
+            $_options_html .= sprintf('<optgroup label="%1$s">%2$s</optgroup>',
+              $_opt_list['name'],
+              implode($_options)
+            );
+          }
+        break;
+
+        case 'tc_theme_options[tc_skin]':
+          $_data_hex  = '';
+          $_color_map = TC_utils::$inst -> tc_get_skin_color( 'all' );
+          //Get the color map array structured as follow
+          // array(
+          //       'blue.css'        =>  array( '#08c', '#005580' ),
+          //       ...
+          // )
+          foreach ( $this->choices as $value => $label ) {
+            if ( is_array($_color_map) && isset( $_color_map[esc_attr( $value )] ) )
+              $_data_hex       = isset( $_color_map[esc_attr( $value )][0] ) ? $_color_map[esc_attr( $value )][0] : '';
+
+            $_options_html .= sprintf('<option value="%1$s" %2$s data-hex="%4$s">%3$s</option>',
+              esc_attr( $value ),
+              selected( $this->value(), $value, false ),
+              $label,
+              $_data_hex
+            );
+          }
+        break;
+
+        default:
+          foreach ( $this->choices as $value => $label ) {
+            $_options_html .= sprintf('<option value="%1$s" %2$s>%3$s</option>',
+              esc_attr( $value ),
+              selected( $this->value(), $value, false ),
+              $label
+            );
+          }
+        break;
+      }//end switch
+      return $_options_html;
+    }//end of fn
+
 	}//end of class
 endif;
 

@@ -1,4 +1,93 @@
-/*! iCheck v1.0.1 by Damir Sultanov, http://git.io/arlzeA, MIT Licensed */
+//map was added to the ECMA-262 standard in the 5th edition; as such it may not be present in all implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of map in implementations which do not natively support it. This algorithm is exactly the one specified in ECMA-262, 5th edition, assuming Object, TypeError, and Array have their original values and that callback.call evaluates to the original value of Function.prototype.call.
+// Production steps of ECMA-262, Edition 5, 15.4.4.19
+// Reference: http://es5.github.io/#x15.4.4.19
+if (!Array.prototype.map) {
+
+  Array.prototype.map = function(callback, thisArg) {
+
+    var T, A, k;
+
+    if (this == null) {
+      throw new TypeError(' this is null or not defined');
+    }
+
+    // 1. Let O be the result of calling ToObject passing the |this|
+    //    value as the argument.
+    var O = Object(this);
+
+    // 2. Let lenValue be the result of calling the Get internal
+    //    method of O with the argument "length".
+    // 3. Let len be ToUint32(lenValue).
+    var len = O.length >>> 0;
+
+    // 4. If IsCallable(callback) is false, throw a TypeError exception.
+    // See: http://es5.github.com/#x9.11
+    if (typeof callback !== 'function') {
+      throw new TypeError(callback + ' is not a function');
+    }
+
+    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    if (arguments.length > 1) {
+      T = thisArg;
+    }
+
+    // 6. Let A be a new array created as if by the expression new Array(len)
+    //    where Array is the standard built-in constructor with that name and
+    //    len is the value of len.
+    A = new Array(len);
+
+    // 7. Let k be 0
+    k = 0;
+
+    // 8. Repeat, while k < len
+    while (k < len) {
+
+      var kValue, mappedValue;
+
+      // a. Let Pk be ToString(k).
+      //   This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty internal
+      //    method of O with argument Pk.
+      //   This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+
+        // i. Let kValue be the result of calling the Get internal
+        //    method of O with argument Pk.
+        kValue = O[k];
+
+        // ii. Let mappedValue be the result of calling the Call internal
+        //     method of callback with T as the this value and argument
+        //     list containing kValue, k, and O.
+        mappedValue = callback.call(T, kValue, k, O);
+
+        // iii. Call the DefineOwnProperty internal method of A with arguments
+        // Pk, Property Descriptor
+        // { Value: mappedValue,
+        //   Writable: true,
+        //   Enumerable: true,
+        //   Configurable: true },
+        // and false.
+
+        // In browsers that support Object.defineProperty, use the following:
+        // Object.defineProperty(A, k, {
+        //   value: mappedValue,
+        //   writable: true,
+        //   enumerable: true,
+        //   configurable: true
+        // });
+
+        // For best browser support, use the following:
+        A[k] = mappedValue;
+      }
+      // d. Increase k by 1.
+      k++;
+    }
+
+    // 9. return A
+    return A;
+  };
+};/*! iCheck v1.0.1 by Damir Sultanov, http://git.io/arlzeA, MIT Licensed */
 if ( 'function' != typeof(jQuery.fn.iCheck) ) {
   !function(a){function b(a,b,e){var f=a[0],g=/er/.test(e)?p:/bl/.test(e)?n:l,h=e==q?{checked:f[l],disabled:f[n],indeterminate:"true"==a.attr(p)||"false"==a.attr(o)}:f[g];if(/^(ch|di|in)/.test(e)&&!h)c(a,g);else if(/^(un|en|de)/.test(e)&&h)d(a,g);else if(e==q)for(g in h)h[g]?c(a,g,!0):d(a,g,!0);else b&&"toggle"!=e||(b||a[u]("ifClicked"),h?f[r]!==k&&d(a,g):c(a,g))}function c(b,c,e){var q=b[0],u=b.parent(),v=c==l,x=c==p,y=c==n,z=x?o:v?m:"enabled",A=f(b,z+g(q[r])),B=f(b,c+g(q[r]));if(!0!==q[c]){if(!e&&c==l&&q[r]==k&&q.name){var C=b.closest("form"),D='input[name="'+q.name+'"]',D=C.length?C.find(D):a(D);D.each(function(){this!==q&&a(this).data(i)&&d(a(this),c)})}x?(q[c]=!0,q[l]&&d(b,l,"force")):(e||(q[c]=!0),v&&q[p]&&d(b,p,!1)),h(b,v,c,e)}q[n]&&f(b,w,!0)&&u.find("."+j).css(w,"default"),u[s](B||f(b,c)||""),y?u.attr("aria-disabled","true"):u.attr("aria-checked",x?"mixed":"true"),u[t](A||f(b,z)||"")}function d(a,b,c){var d=a[0],e=a.parent(),i=b==l,k=b==p,q=b==n,u=k?o:i?m:"enabled",v=f(a,u+g(d[r])),x=f(a,b+g(d[r]));!1!==d[b]&&((k||!c||"force"==c)&&(d[b]=!1),h(a,i,u,c)),!d[n]&&f(a,w,!0)&&e.find("."+j).css(w,"pointer"),e[t](x||f(a,b)||""),q?e.attr("aria-disabled","false"):e.attr("aria-checked","false"),e[s](v||f(a,u)||"")}function e(b,c){b.data(i)&&(b.parent().html(b.attr("style",b.data(i).s||"")),c&&b[u](c),b.off(".i").unwrap(),a(v+'[for="'+b[0].id+'"]').add(b.closest(v)).off(".i"))}function f(a,b,c){return a.data(i)?a.data(i).o[b+(c?"":"Class")]:void 0}function g(a){return a.charAt(0).toUpperCase()+a.slice(1)}function h(a,b,c,d){d||(b&&a[u]("ifToggled"),a[u]("ifChanged")[u]("if"+g(c)))}var i="iCheck",j=i+"-helper",k="radio",l="checked",m="un"+l,n="disabled",o="determinate",p="in"+o,q="update",r="type",s="addClass",t="removeClass",u="trigger",v="label",w="cursor",x=/ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);a.fn[i]=function(f,g){var h='input[type="checkbox"], input[type="'+k+'"]',m=a(),o=function(b){b.each(function(){var b=a(this);m=b.is(h)?m.add(b):m.add(b.find(h))})};if(/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|destroy)$/i.test(f))return f=f.toLowerCase(),o(this),m.each(function(){var c=a(this);"destroy"==f?e(c,"ifDestroyed"):b(c,!0,f),a.isFunction(g)&&g()});if("object"!=typeof f&&f)return this;var w=a.extend({checkedClass:l,disabledClass:n,indeterminateClass:p,labelHover:!0,aria:!1},f),y=w.handle,z=w.hoverClass||"hover",A=w.focusClass||"focus",B=w.activeClass||"active",C=!!w.labelHover,D=w.labelHoverClass||"hover",E=0|(""+w.increaseArea).replace("%","");return("checkbox"==y||y==k)&&(h='input[type="'+y+'"]'),-50>E&&(E=-50),o(this),m.each(function(){var f=a(this);e(f);var g=this,h=g.id,m=-E+"%",o=100+2*E+"%",o={position:"absolute",top:m,left:m,display:"block",width:o,height:o,margin:0,padding:0,background:"#fff",border:0,opacity:0},m=x?{position:"absolute",visibility:"hidden"}:E?o:{position:"absolute",opacity:0},p="checkbox"==g[r]?w.checkboxClass||"icheckbox":w.radioClass||"i"+k,y=a(v+'[for="'+h+'"]').add(f.closest(v)),F=!!w.aria,G=i+"-"+Math.random().toString(36).substr(2,6),H='<div class="'+p+'" '+(F?'role="'+g[r]+'" ':"");F&&y.each(function(){H+='aria-labelledby="',this.id?H+=this.id:(this.id=G,H+=G),H+='"'}),H=f.wrap(H+"/>")[u]("ifCreated").parent().append(w.insert),o=a('<ins class="'+j+'"/>').css(o).appendTo(H),f.data(i,{o:w,s:f.attr("style")}).css(m),w.inheritClass&&H[s](g.className||""),w.inheritID&&h&&H.attr("id",i+"-"+h),"static"==H.css("position")&&H.css("position","relative"),b(f,!0,q),y.length&&y.on("click.i mouseover.i mouseout.i touchbegin.i touchend.i",function(c){var d=c[r],e=a(this);if(!g[n]){if("click"==d){if(a(c.target).is("a"))return;b(f,!1,!0)}else C&&(/ut|nd/.test(d)?(H[t](z),e[t](D)):(H[s](z),e[s](D)));if(!x)return!1;c.stopPropagation()}}),f.on("click.i focus.i blur.i keyup.i keydown.i keypress.i",function(a){var b=a[r];return a=a.keyCode,"click"==b?!1:"keydown"==b&&32==a?(g[r]==k&&g[l]||(g[l]?d(f,l):c(f,l)),!1):("keyup"==b&&g[r]==k?!g[l]&&c(f,l):/us|ur/.test(b)&&H["blur"==b?t:s](A),void 0)}),o.on("click mousedown mouseup mouseover mouseout touchbegin.i touchend.i",function(a){var c=a[r],d=/wn|up/.test(c)?B:z;if(!g[n]){if("click"==c?b(f,!1,!0):(/wn|er|in/.test(c)?H[s](d):H[t](d+" "+B),y.length&&C&&d==z&&y[/ut|nd/.test(c)?t:s](D)),!x)return!1;a.stopPropagation()}})})}}(window.jQuery||window.Zepto);
 }
@@ -48,7 +137,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
  * @since Customizr 1.0
  */
 (function (wp, $) {
-
   var api = wp.customize;
 
   /**
@@ -109,183 +197,560 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   });
 
 
-
   $.extend( api.controlConstructor, {
     tc_upload : api.TCUploadControl
   });
 
 
-  $.each({
-    'tc_theme_options[tc_show_featured_pages]': {
+  /*
+  * Main control dependencies object
+  */
+  var _controlDependencies = {
+    'tc_show_featured_pages': {
       controls: TCControlParams.FPControls,
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_front_slider]': {
+    'tc_front_slider': {
       controls: [
-        'tc_theme_options[tc_slider_width]',
-        'tc_theme_options[tc_slider_delay]',
-        'tc_theme_options[tc_slider_default_height]',
-        'tc_theme_options[tc_slider_default_height_apply_all]',
-        'tc_theme_options[tc_slider_change_default_img_size]'
+        'tc_slider_width',
+        'tc_slider_delay',
+        'tc_slider_default_height',
+        'tc_slider_default_height_apply_all',
+        'tc_slider_change_default_img_size'
       ],
       callback: function (to) {
         return '0' !== to;
       }
     },
-    'tc_theme_options[tc_post_list_show_thumb]' : {
+    'tc_post_list_grid' : {
+      show: {
+        controls: [
+          'tc_grid_columns',
+          'tc_grid_expand_featured',
+          'tc_grid_in_blog',
+          'tc_grid_in_archive',
+          'tc_grid_in_search',
+          'tc_grid_thumb_height',
+          'tc_grid_bottom_border',
+          'tc_grid_shadow',
+          'tc_grid_icons',
+          'tc_grid_num_words'
+
+        ],
+        callback: function (to) {
+          return 'grid' == to;
+        }
+      }
+    },
+    'tc_post_list_show_thumb' : {
       controls: [
-        'tc_theme_options[tc_post_list_use_attachment_as_thumb]',
-        'tc_theme_options[tc_post_list_thumb_shape]',
-        'tc_theme_options[tc_post_list_thumb_alternate]',
-        'tc_theme_options[tc_post_list_thumb_position]'
+        'tc_post_list_use_attachment_as_thumb',
+        'tc_post_list_default_thumb',
+        'tc_post_list_thumb_shape',
+        'tc_post_list_thumb_alternate',
+        'tc_post_list_thumb_position',
+        'tc_post_list_thumb_height',
+        'tc_grid_thumb_height'
       ],
       callback: function (to) {
         return '1' == to;
+      },
+      //display dependant if master setting value == value
+      cross: {
+        tc_post_list_thumb_height : { master : 'tc_post_list_thumb_shape' , callback : function (to) { return to.indexOf('rectangular') > -1; } },
       }
     },
-    'tc_theme_options[tc_post_list_thumb_shape]' : {
+    'tc_post_list_thumb_shape' : {
       controls: [
-        'tc_theme_options[tc_post_list_thumb_height]'
+        'tc_post_list_thumb_height'
       ],
       callback: function (to) {
         return to.indexOf('rectangular') > -1;
       }
     },
-    'tc_theme_options[tc_breadcrumb]' : {
+    'tc_breadcrumb' : {
       controls: [
-        'tc_theme_options[tc_show_breadcrumb_home]',
-        'tc_theme_options[tc_show_breadcrumb_in_pages]',
-        'tc_theme_options[tc_show_breadcrumb_in_single_posts]',
-        'tc_theme_options[tc_show_breadcrumb_in_post_lists]'
+        'tc_show_breadcrumb_home',
+        'tc_show_breadcrumb_in_pages',
+        'tc_show_breadcrumb_in_single_posts',
+        'tc_show_breadcrumb_in_post_lists'
       ],
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_show_title_icon]' : {
+    'tc_show_title_icon' : {
       controls: [
-        'tc_theme_options[tc_show_page_title_icon]',
-        'tc_theme_options[tc_show_post_title_icon]',
-        'tc_theme_options[tc_show_archive_title_icon]',
-        'tc_theme_options[tc_show_post_list_title_icon]',
-        'tc_theme_options[tc_show_sidebar_widget_icon]',
-        'tc_theme_options[tc_show_footer_widget_icon]'
+        'tc_show_page_title_icon',
+        'tc_show_post_title_icon',
+        'tc_show_archive_title_icon',
+        'tc_show_post_list_title_icon',
+        'tc_show_sidebar_widget_icon',
+        'tc_show_footer_widget_icon'
       ],
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_show_post_metas]' : {
+    'tc_show_post_metas' : {
       controls: [
-        'tc_theme_options[tc_show_post_metas_home]',
-        'tc_theme_options[tc_show_post_metas_single_post]',
-        'tc_theme_options[tc_show_post_metas_post_lists]',
-        'tc_theme_options[tc_show_post_metas_categories]',
-        'tc_theme_options[tc_show_post_metas_tags]',
-        'tc_theme_options[tc_show_post_metas_publication_date]',
-        'tc_theme_options[tc_show_post_metas_update_date]',
-        'tc_theme_options[tc_post_metas_update_notice_text]',
-        'tc_theme_options[tc_post_metas_update_notice_interval]',
-        'tc_theme_options[tc_show_post_metas_author]'
+        'tc_show_post_metas_home',
+        'tc_post_metas_design',
+        'tc_show_post_metas_single_post',
+        'tc_show_post_metas_post_lists',
+        'tc_show_post_metas_categories',
+        'tc_show_post_metas_tags',
+        'tc_show_post_metas_publication_date',
+        'tc_show_post_metas_update_date',
+        'tc_post_metas_update_notice_text',
+        'tc_post_metas_update_notice_interval',
+        'tc_show_post_metas_author'
       ],
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_show_post_metas_update_date]' : {
+    'tc_show_post_metas_update_date' : {
       controls: [
-        'tc_theme_options[tc_post_metas_update_date_format]',
+        'tc_post_metas_update_date_format',
       ],
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_post_metas_update_notice_in_title]' : {
+    'tc_post_metas_update_notice_in_title' : {
       controls: [
-        'tc_theme_options[tc_post_metas_update_notice_text]',
-        'tc_theme_options[tc_post_metas_update_notice_format]',
-        'tc_theme_options[tc_post_metas_update_notice_interval]'
+        'tc_post_metas_update_notice_text',
+        'tc_post_metas_update_notice_format',
+        'tc_post_metas_update_notice_interval'
       ],
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_post_list_length]' : {
+    'tc_post_list_length' : {
       controls: [
-        'tc_theme_options[tc_post_list_excerpt_length]',
+        'tc_post_list_excerpt_length',
       ],
       callback: function (to) {
         return 'excerpt' == to;
       }
     },
-    'tc_theme_options[tc_sticky_show_title_logo]' : {
+    'tc_sticky_show_title_logo' : {
       controls: [
-        'tc_theme_options[tc_sticky_logo_upload]',
+        'tc_sticky_logo_upload',
       ],
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_sticky_header]' : {
+    'tc_sticky_header' : {
       controls: [
-        'tc_theme_options[tc_sticky_show_tagline]',
-        'tc_theme_options[tc_sticky_show_title_logo]',
-        'tc_theme_options[tc_sticky_shrink_title_logo]',
-        'tc_theme_options[tc_sticky_show_menu]',
-        'tc_theme_options[tc_sticky_transparent_on_scroll]',
-        'tc_theme_options[tc_sticky_logo_upload]'
+        'tc_sticky_show_tagline',
+        'tc_sticky_show_title_logo',
+        'tc_sticky_shrink_title_logo',
+        'tc_sticky_show_menu',
+        'tc_sticky_transparent_on_scroll',
+        'tc_sticky_logo_upload'
       ],
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_comment_bubble_color_type]' : {
+    'tc_comment_bubble_color_type' : {
       controls: [
-        'tc_theme_options[tc_comment_bubble_color]',
+        'tc_comment_bubble_color',
       ],
       callback: function (to) {
         return 'custom' == to;
       }
     },
-    'tc_theme_options[tc_comment_show_bubble]' : {
+    'tc_comment_show_bubble' : {
       controls: [
-        'tc_theme_options[tc_comment_bubble_shape]',
-        'tc_theme_options[tc_comment_bubble_color_type]',
-        'tc_theme_options[tc_comment_bubble_color]'
+        'tc_comment_bubble_shape',
+        'tc_comment_bubble_color_type',
+        'tc_comment_bubble_color'
       ],
       callback: function (to) {
         return '1' == to;
       }
     },
-    'tc_theme_options[tc_enable_dropcap]' : {
+    'tc_enable_dropcap' : {
       controls: [
-        'tc_theme_options[tc_dropcap_minwords]',
-        'tc_theme_options[tc_dropcap_design]',
-        'tc_theme_options[tc_post_dropcap]',
-        'tc_theme_options[tc_page_dropcap]'
+        'tc_dropcap_minwords',
+        'tc_dropcap_design',
+        'tc_post_dropcap',
+        'tc_page_dropcap'
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
+    },
+    'tc_enable_gallery' : {
+      controls: [
+        'tc_gallery_fancybox',
+        'tc_gallery_style',
+      ],
+      callback: function (to) {
+        return '1' == to;
+      }
+    },
+    'tc_skin_random' : { /* hack */
+      controls: [
+        'tc_skin',
+      ],
+      callback: function (to) {
+        var $_skin_select = $('select[data-customize-setting-link="tc_theme_options[tc_skin]"]');
+
+        $_skin_select.prop('disabled', '1' == to ? 'disabled' : '' );
+        return true;
+      }
+    },
+    'tc_show_post_navigation' : {
+      controls: [
+        'tc_show_post_navigation_page',
+        'tc_show_post_navigation_single',
+        'tc_show_post_navigation_archive'
       ],
       callback: function (to) {
         return '1' == to;
       }
     }
-  }, function (settingId, o) {
-    api(settingId, function (setting) {
-      $.each(o.controls, function (i, controlId) {
-        api.control(controlId, function (control) {
-          var visibility = function (to) {
-            control.container.toggle(o.callback(to));
-          };
-          visibility(setting.get());
-          setting.bind(visibility);
-        });
-      });
-    });
-  });
+  };
 
-  //DOM READY SPECIFIC CONTROLS ACTIONS
+
+  /*
+  * @return string
+  * simple helper to build the setting id name
+  */
+  var _build_setId = function ( name ) {
+    return -1 == name.indexOf( 'tc_theme_options') ? [ 'tc_theme_options[' , name  , ']' ].join('') : name;
+  };
+
+
+  /*
+  * find the setId key in the _controlDependencies object
+  * get the controls, merge show and hide if needed
+  * return an []
+  */
+  var _get_dependants = function( setId ) {
+    if ( ! _controlDependencies[setId] )
+      return [];
+    var _dependants = _controlDependencies[setId];
+
+    if ( _dependants.show && _dependants.hide )
+      return _.union(_dependants.show.controls , _dependants.hide.controls);
+    if ( _dependants.show && ! _dependants.hide )
+      return _dependants.show.controls;
+    if ( ! _dependants.show && _dependants.hide )
+      return _dependants.hide.controls;
+
+    return _dependants.controls;
+  };
+
+  /*
+  * @return string hide or show. default is hide
+  */
+  var _get_visibility_action = function ( setId , depSetId ) {
+    if ( ! _controlDependencies[setId] )
+      return 'both';
+    var _dependants = _controlDependencies[setId];
+    if ( _dependants.show && -1 != _.indexOf( _dependants.show.controls, depSetId ) )
+      return 'show';
+    if ( _dependants.hide && -1 != _.indexOf( _dependants.hide.controls, depSetId ) )
+      return 'hide';
+    return 'both';
+  };
+
+
+  var _get_visibility_cb = function( setId , _action ) {
+    if ( ! _controlDependencies[setId] )
+      return;
+    var _dependants = _controlDependencies[setId];
+    if ( ! _dependants[_action] )
+      return _dependants.callback;
+    return (_dependants[_action]).callback;
+  };
+
+
+  var _check_cross_dependant = function( setId, depSetId ) {
+    if ( ! _controlDependencies[setId] )
+      return true;
+    var _dependants = _controlDependencies[setId];
+    if ( ! _dependants.cross || ! _dependants.cross[depSetId] )
+      return true;
+    var _cross  = _dependants.cross[depSetId],
+        _id     = _cross.master,
+        _cb     = _cross.callback;
+
+    _id = _build_setId(_id);
+    //if _cb returns true => show
+    return _cb( api.instance(_id).get() );
+  };
+
+  /*
+  * @return void
+  * show or hide setting according to the dependency + callback pair
+  */
+  var _prepare_visibilities = function( setId, o ) {
+    api( _build_setId(setId) , function (setting) {
+      var _params = {
+        setting   : setting,
+        setId : setId,
+        controls  : _get_dependants(setId),
+      };
+
+      _.map( _params.controls , function( depSetId ) {
+        _set_single_dependant_control_visibility( depSetId , _params);
+      } );
+    });
+  };
+
+
+  /*
+  *
+  */
+  var _set_single_dependant_control_visibility = function( depSetId , _params ) {
+    api.control( _build_setId(depSetId) , function (control) {
+      var _visibility = function (to) {
+        var _action   = _get_visibility_action( _params.setId , depSetId ),
+            _callback = _get_visibility_cb( _params.setId , _action ),
+            _bool     = false;
+
+        if ( 'show' == _action && _callback(to) )
+          _bool = true;
+        if ( 'hide' == _action && _callback(to) )
+          _bool = false;
+        if ( 'both' == _action )
+          _bool = _callback(to);
+
+        //check if there are any cross dependencies to look at
+        //_check_cross_dependant return true if there are no cross dependencies.
+        //if cross dependency :
+        //1) return true if we must show, false if not.
+        _bool = _check_cross_dependant( _params.setId, depSetId ) && _bool;
+        control.container.toggle( _bool );
+      };
+
+      _visibility( _params.setting.get() );
+      _params.setting.bind( _visibility );
+    });
+  };
+
+
+  /*
+  * Specific Grid action : handles the visibility of the "MORE GRID DESIGN OPTIONS" link
+  * @to do => find a way to include several callbacks in the _controlDependencies object => include the one below
+  */
+  var _handle_grid_dependencies = function() {
+    //apply visibility on ready
+    var _is_grid_enabled = api.instance('tc_theme_options[tc_post_list_grid]').get() == 'grid';
+    $('.tc-grid-toggle-controls').toggle( _is_grid_enabled );
+
+    //bind visibility on setting changes
+    api.instance('tc_theme_options[tc_post_list_grid]').bind( function(to) {
+      $('.tc-grid-toggle-controls').toggle( 'grid' == to );
+
+      if ( 'grid' == to )
+        $('.tc-grid-toggle-controls').trigger('click').toggleClass('open');
+    } );
+  };
+
+
+  //bind all actions to wp.customize ready event
+  //map each setting with its dependencies
+  api.bind( 'ready' , function() {
+    _.map( _controlDependencies , function( opts , setId ) {
+        _prepare_visibilities( setId, opts );
+    });
+    //additional grid action
+    _handle_grid_dependencies();
+  } );
+
+})( wp, jQuery);
+;/**
+ * Call to actions
+ */
+jQuery(function ($) {
+
+  /* CONTRIBUTION TO CUSTOMIZR */
+  var donate_displayed  = false,
+      is_pro            = 'customizr-pro' == TCControlParams.themeName;
+  console.log('TCControlParams.HideDonate' , TCControlParams.HideDonate );
+  if (  ! TCControlParams.HideDonate && ! is_pro ) {
+    _render_donate_block();
+    donate_displayed = true;
+  }
+
+  //Main call to action
+  if ( TCControlParams.ShowCTA && ! donate_displayed && ! is_pro ) {
+   _render_main_cta();
+  }
+
+  //In controls call to action
+  if ( ! is_pro ) {
+    _render_wfc_cta();
+    _render_fpu_cta();
+    _render_footer_cta();
+  }
+  _render_rate_czr();
+
+  function _render_rate_czr() {
+    var _cta = _.template(
+        $( "script#rate-czr" ).html()
+    );
+    $('#customize-footer-actions').append( _cta() );
+  }
+
+  function _render_donate_block() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var donate_template = _.template(
+        $( "script#donate_template" ).html()
+    );
+
+    $('#customize-info').after( donate_template() );
+
+     //BIND EVENTS
+    $('.tc-close-request').click( function(e) {
+      $('.donate-alert').slideToggle("fast");
+      $(this).hide();
+    });
+
+    $('.tc-hide-donate').click( function(e) {
+      _ajax_save();
+      setTimeout(function(){
+          $('#tc-donate-customizer').slideToggle("fast");
+      }, 200);
+    });
+
+    $('.tc-cancel-hide-donate').click( function(e) {
+      $('.donate-alert').slideToggle("fast");
+      setTimeout(function(){
+          $('.tc-close-request').show();
+      }, 200);
+    });
+  }//end of donate block
+
+
+  function _render_main_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var _cta = _.template(
+        $( "script#main_cta" ).html()
+    );
+    $('#customize-info').after( _cta() );
+  }
+
+  function _render_wfc_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var _cta = _.template(
+        $( "script#wfc_cta" ).html()
+    );
+    $('li[id*="tc_body_font_size"]').append( _cta() );
+  }
+
+  function _render_fpu_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var _cta = _.template(
+        $( "script#fpu_cta" ).html()
+    );
+    $('li[id*="tc_featured_text_three"]').append( _cta() );
+  }
+
+  function _render_footer_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var _cta = _.template(
+        $( "script#footer_cta" ).html()
+    );
+    $('li[id*="tc_show_back_to_top"]').append( _cta() );
+  }
+
+  function _ajax_save() {
+      var AjaxUrl         = TCControlParams.AjaxUrl,
+      query = {
+          action  : 'hide_donate',
+          TCnonce :  TCControlParams.TCNonce,
+          wp_customize : 'on'
+      },
+      request = $.post( AjaxUrl, query );
+      request.done( function( response ) {
+          // Check if the user is logged out.
+          if ( '0' === response ) {
+              return;
+          }
+          // Check for cheaters.
+          if ( '-1' === response ) {
+              return;
+          }
+      });
+  }//end of function
+});
+;//DOM READY :
+//1) FIRE SPECIFIC INPUT PLUGINS
+//2) ADD SOME COOL STUFFS
+//3) SPECIFIC CONTROLS ACTIONS
+(function (wp, $) {
   $( function($) {
+    var api = wp.customize || api;
+    /* GRID */
+    var _build_setId = function ( name ) {
+      return -1 == name.indexOf( 'tc_theme_options') ? [ 'tc_theme_options[' , name  , ']' ].join('') : name;
+    };
+    var _grid_design_controls = [
+      'tc_grid_in_blog',
+      'tc_grid_in_archive',
+      'tc_grid_in_search',
+      'tc_grid_thumb_height',
+      'tc_grid_shadow',
+      'tc_grid_bottom_border',
+      'tc_grid_icons',
+      'tc_grid_num_words'
+    ];
+
+    var _build_control_id = function( _control ) {
+      return [ '#' , 'customize-control-tc_theme_options-', _control ].join('');
+    };
+
+    var _get_grid_design_controls = function() {
+      return $( _grid_design_controls.map( function( _control ) {
+        return _build_control_id( _control );
+      }).join(',') );
+    };
+
+    //hide design controls on load
+    $( _get_grid_design_controls() ).addClass('tc-grid-design').hide();
+
+    $('.tc-grid-toggle-controls').click( function() {
+      $( _get_grid_design_controls() ).slideToggle('fast');
+      $(this).toggleClass('open');
+    } );
+
+    /* BUTTON JUMP TO POST LIST */
+    $('.tc-navigate-to-post-list').click( function() {
+      $('#accordion-section-tc_post_list_settings > .accordion-section-title').trigger('click');
+    });
+
+    /* RECENTER CURRENT SECTIONS */
+    $('.accordion-section').not('.control-panel').click( function () {
+      _recenter_current_section($(this));
+    });
+
+    function _recenter_current_section( section ) {
+      var $siblings               = section.siblings( '.open' );
+      //check if clicked element is above or below sibling with offset.top
+      if ( 0 !== $siblings.length &&  $siblings.offset().top < 0 ) {
+        $('.wp-full-overlay-sidebar-content').animate({
+              scrollTop:  - $('#customize-theme-controls').offset().top - $siblings.height() + section.offset().top + $('.wp-full-overlay-sidebar-content').offset().top
+        }, 700);
+      }
+    }//end of fn
+
+    /* ADD GOOGLE IN TITLE */
+    $g_logo = $('<img>' , {class : 'tc-title-google-logo' , src : 'http://www.google.com/images/logos/google_logo_41.png' , height : 20 });
+    $('#accordion-section-tc_fonts').prepend($g_logo);
+
+
     /* CHECK */
     //init icheck only if not already initiated
     //exclude widget inputs
@@ -354,128 +819,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
 
     /* NUMBER */
     $('input[type="number"]').stepper();
-  });
 
-})( wp, jQuery );;/**
- * Call to actions
- */
-jQuery(function ($) {
+  });//end of $( function($) ) dom ready
 
-  /* CONTRIBUTION TO CUSTOMIZR */
-  var donate_displayed  = false,
-      is_pro            = 'customizr-pro' == TCControlParams.themeName;
-  if ( is_pro )
-    return;
-
-  if (  ! TCControlParams.HideDonate ) {
-    _render_donate_block();
-    donate_displayed = true;
-  }
-
-  //Main call to action
-  if ( TCControlParams.ShowCTA && ! donate_displayed ) {
-   _render_main_cta();
-  }
-
-  //In controls call to action
-  _render_wfc_cta();
-  _render_fpu_cta();
-
-  function _render_donate_block() {
-    // Grab the HTML out of our template tag and pre-compile it.
-    var donate_template = _.template(
-        $( "script#donate_template" ).html()
-    );
-
-    $('#customize-info').after( donate_template() );
-
-     //BIND EVENTS
-    $('.tc-close-request').click( function(e) {
-      $('.donate-alert').slideToggle("fast");
-      $(this).hide();
-    });
-
-    $('.tc-hide-donate').click( function(e) {
-      _ajax_save();
-      setTimeout(function(){
-          $('#tc-donate-customizer').slideToggle("fast");
-      }, 200);
-    });
-
-    $('.tc-cancel-hide-donate').click( function(e) {
-      $('.donate-alert').slideToggle("fast");
-      setTimeout(function(){
-          $('.tc-close-request').show();
-      }, 200);
-    });
-  }//end of donate block
-
-
-  function _render_main_cta() {
-    // Grab the HTML out of our template tag and pre-compile it.
-    var main_cta = _.template(
-        $( "script#main_cta" ).html()
-    );
-    $('#customize-info').after( main_cta() );
-  }
-
-  function _render_wfc_cta() {
-    // Grab the HTML out of our template tag and pre-compile it.
-    var wfc_cta = _.template(
-        $( "script#wfc_cta" ).html()
-    );
-    $('li[id*="tc_body_font_size"]').append( wfc_cta() );
-  }
-
-  function _render_fpu_cta() {
-    // Grab the HTML out of our template tag and pre-compile it.
-    var fpu_cta = _.template(
-        $( "script#fpu_cta" ).html()
-    );
-    $('li[id*="tc_featured_text_three"]').append( fpu_cta() );
-  }
-
-  function _ajax_save() {
-      var AjaxUrl         = TCControlParams.AjaxUrl,
-      query = {
-          action  : 'hide_donate',
-          TCnonce :  TCControlParams.TCNonce
-      },
-      request = $.post( AjaxUrl, query );
-      request.done( function( response ) {
-          // Check if the user is logged out.
-          if ( '0' === response ) {
-              return;
-          }
-          // Check for cheaters.
-          if ( '-1' === response ) {
-              return;
-          }
-      });
-  }//end of function
-});
-;//DOM READY :
-//1) FIRE SPECIFIC INPUT PLUGINS
-//2) ADD SOME COOL STUFFS
-jQuery(function ($) {
-
-  /* RECENTER CURRENT SECTIONS */
-  $('.accordion-section').not('.control-panel').click( function () {
-    _recenter_current_section($(this));
-  });
-
-  function _recenter_current_section( section ) {
-    var $siblings               = section.siblings( '.open' );
-    //check if clicked element is above or below sibling with offset.top
-    if ( 0 !== $siblings.length &&  $siblings.offset().top < 0 ) {
-      $('.wp-full-overlay-sidebar-content').animate({
-            scrollTop:  - $('#customize-theme-controls').offset().top - $siblings.height() + section.offset().top + $('.wp-full-overlay-sidebar-content').offset().top
-      }, 700);
-    }
-  }//end of fn
-
-  /* ADD GOOGLE IN TITLE */
-  $g_logo = $('<img>' , {class : 'tc-title-google-logo' , src : 'http://www.google.com/images/logos/google_logo_41.png' , height : 20 });
-  $('#accordion-section-tc_fonts').prepend($g_logo);
-
-});
+})( wp, jQuery);

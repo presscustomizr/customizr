@@ -6,9 +6,9 @@
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_meta_boxes' ) ) :
@@ -131,7 +131,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             }
 
             //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr( tc__f( '__get_option' , 'tc_sidebar_global_layout' ) );
+            $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_global_layout') );
 
             //get the lists of eligible post types + normal posts (not pages!)
             $args                 = array(
@@ -146,16 +146,16 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //eligible posts (and custom posts types) default layout
             if ( in_array($post->post_type , $eligible_posts ) ) {
-              $tc_sidebar_default_layout  = esc_attr( tc__f( '__get_option' , 'tc_sidebar_post_layout') );
+              $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_post_layout') );
             }
 
             //page default layout
             if ( $post->post_type == 'page' ) {
-              $tc_sidebar_default_layout  = esc_attr( tc__f( '__get_option' , 'tc_sidebar_page_layout') );
+              $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_page_layout') );
             }
 
             //check if the 'force default layout' option is checked
-            $force_layout                 = esc_attr( tc__f( '__get_option' , 'tc_sidebar_force_layout') );
+            $force_layout                 = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_force_layout') );
 
 
             ?>
@@ -907,7 +907,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                           </td>
                           <td style="vertical-align:middle" class="">
                               <?php if( $button_text != null) : ?>
-                                <p class="btn btn-large btn-primary"><?php echo $button_text; ?></a>
+                                <p class="btn btn-large btn-primary"><?php echo $button_text; ?></p>
                               <?php endif; ?>
                           </td>
                            <td style="vertical-align:middle" class="">

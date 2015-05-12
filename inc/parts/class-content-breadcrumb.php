@@ -2,15 +2,15 @@
 /**
 * Breadcrumb for Customizr
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
 * @uses 		Breadcrumb Trail - A breadcrumb menu script for WordPress.
 * @author    	Justin Tadlock <justin@justintadlock.com>
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
@@ -66,13 +66,13 @@ class TC_breadcrumb {
 
     function tc_set_breadcrumb_display_in_context( $_bool ) {
     	if ( tc__f('__is_home') )
-	  		return 1 != esc_attr( tc__f( '__get_option' , 'tc_show_breadcrumb_home' ) ) ? false : true;
+	  		return 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
 	  	else {
-		  	if ( is_page() && 1 != esc_attr( tc__f( '__get_option' , 'tc_show_breadcrumb_in_pages' ) ) )
+		  	if ( is_page() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_pages' ) ) )
 		  		return false;
-		  	if ( is_single() && 1 != esc_attr( tc__f( '__get_option' , 'tc_show_breadcrumb_in_single_posts' ) ) )
+		  	if ( is_single() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
 		  		return false;
-		  	if ( ! is_page() && ! is_single() && 1 != esc_attr( tc__f( '__get_option' , 'tc_show_breadcrumb_in_post_lists' ) ) )
+		  	if ( ! is_page() && ! is_single() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
 		  		return false;
 		}
 		return $_bool;
@@ -80,25 +80,25 @@ class TC_breadcrumb {
 
 
 	/**
-    * 
+    *
     * @package Customizr
-    * @since Customizr 1.0 
+    * @since Customizr 1.0
     */
     function tc_breadcrumb_display() {
-	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( tc__f( '__get_option' , 'tc_breadcrumb') ) ) )
+	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_breadcrumb') ) ) )
 	      return;
 
 	  	if ( ! apply_filters( 'tc_show_breadcrumb_in_context' , true ) )
 	      return;
 
-	  	if ( tc__f('__is_home')  && 1 != esc_attr( tc__f( '__get_option' , 'tc_show_breadcrumb_home' ) ) )
+	  	if ( tc__f('__is_home')  && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_home' ) ) )
 	  		return;
 
 	  	//set the args properties
         $this -> args = $this -> _get_args();
 
-	  	echo apply_filters( 
-	  			'tc_breadcrumb_display' , 
+	  	echo apply_filters(
+	  			'tc_breadcrumb_display' ,
 				sprintf('<div class="tc-hot-crumble container" role="navigation"><div class="row"><div class="%1$s">%2$s</div></div></div>',
 					apply_filters( 'tc_breadcrumb_class', 'span12' ),
 					$this -> tc_breadcrumb_trail( $this -> args )
@@ -111,9 +111,9 @@ class TC_breadcrumb {
      /**
 	 * Breadcrumb Trail - A breadcrumb menu script for WordPress.
 	 *
-	 * Breadcrumb Trail is a script for showing a breadcrumb trail for any type of page.  It tries to 
-	 * anticipate any type of structure and display the best possible trail that matches your site's 
-	 * permalink structure.  While not perfect, it attempts to fill in the gaps left by many other 
+	 * Breadcrumb Trail is a script for showing a breadcrumb trail for any type of page.  It tries to
+	 * anticipate any type of structure and display the best possible trail that matches your site's
+	 * permalink structure.  While not perfect, it attempts to fill in the gaps left by many other
 	 * breadcrumb scripts.
 	 *
 	 *
@@ -129,8 +129,8 @@ class TC_breadcrumb {
 
 
 	/**
-	 * Shows a breadcrumb for all types of pages.  This function is formatting the final output of the 
-	 * breadcrumb trail.  The breadcrumb_trail_get_items() function returns the items and this function 
+	 * Shows a breadcrumb for all types of pages.  This function is formatting the final output of the
+	 * breadcrumb trail.  The breadcrumb_trail_get_items() function returns the items and this function
 	 * formats those items.
 	 *
 	 * @since 0.1.0
@@ -168,7 +168,7 @@ class TC_breadcrumb {
 
 			/* Join the individual trail items into a single string. */
 			$breadcrumb .= join( " {$separator} ", $trail );
-			
+
 
 			/* If $after was set, wrap it in a container. */
 			$breadcrumb .= ( !empty( $args['after'] ) ? ' <span class="trail-after">' . $args['after'] . '</span>' : '' );
@@ -188,7 +188,7 @@ class TC_breadcrumb {
 	}
 
 	/**
-	 * Gets the items for the breadcrumb trail.  This is the heart of the script.  It checks the current page 
+	 * Gets the items for the breadcrumb trail.  This is the heart of the script.  It checks the current page
 	 * being viewed and decided based on the information provided by WordPress what items should be
 	 * added to the breadcrumb trail.
 	 *
@@ -426,7 +426,7 @@ class TC_breadcrumb {
 
 					/**
 					 * If any post types are found, loop through them to find one that matches.
-					 * The reason for this is because WP doesn't match the 'has_archive' string 
+					 * The reason for this is because WP doesn't match the 'has_archive' string
 					 * exactly when calling get_post_types(). I'm assuming it just matches 'true'.
 					 */
 					if ( !empty( $post_types ) ) {
@@ -730,7 +730,7 @@ class TC_breadcrumb {
 
 	/**
 	 * Turns %tag% from permalink structures into usable links for the breadcrumb trail.  This feels kind of
-	 * hackish for now because we're checking for specific %tag% examples and only doing it for the 'post' 
+	 * hackish for now because we're checking for specific %tag% examples and only doing it for the 'post'
 	 * post type.  In the future, maybe it'll handle a wider variety of possibilities, especially for custom post
 	 * types.
 	 *
@@ -742,7 +742,7 @@ class TC_breadcrumb {
 	 * @return array $trail Array of links to the post breadcrumb.
 	 */
 	function tc_breadcrumb_trail_map_rewrite_tags( $post_id = '' , $path = '' , $args = array() ) {
-		
+
 		/* Set up an empty $trail array. */
 		$trail = array();
 
@@ -801,8 +801,8 @@ class TC_breadcrumb {
 	}
 
 	/**
-	 * Gets parent pages of any post type or taxonomy by the ID or Path.  The goal of this function is to create 
-	 * a clear path back to home given what would normally be a "ghost" directory.  If any page matches the given 
+	 * Gets parent pages of any post type or taxonomy by the ID or Path.  The goal of this function is to create
+	 * a clear path back to home given what would normally be a "ghost" directory.  If any page matches the given
 	 * path, it'll be added.  But, it's also just a way to check for a hierarchy with hierarchical post types.
 	 *
 	 * @since 0.3.0
@@ -893,7 +893,7 @@ class TC_breadcrumb {
 
 		$first_parent_post 	= get_post($parent_key);
 		$args				= $this -> args;
-		
+
 		/*if (  isset($args["singular_breadcrumb_taxonomy"]) && $args["singular_breadcrumb_taxonomy"] )
 			$trail 	= $this -> tc_add_first_term_from_hierarchical_taxinomy( $trail , $parent_key );*/
 
@@ -907,7 +907,7 @@ class TC_breadcrumb {
 
 
 	/**
-	 * Searches for term parents of hierarchical taxonomies.  This function is similar to the WordPress 
+	 * Searches for term parents of hierarchical taxonomies.  This function is similar to the WordPress
 	 * function get_category_parents() but handles any type of taxonomy.
 	 *
 	 * @since 0.3.0

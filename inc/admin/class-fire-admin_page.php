@@ -6,9 +6,9 @@
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_admin_page' ) ) :
@@ -149,7 +149,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
                 <div class="last-feature">
                   <h3><?php _e( 'Follow us','customizr' ); ?></h3>
-                  <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Themes and co" /></a></p>
+                  <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Press Customizr" /></a></p>
                   <!-- Place this tag where you want the widget to render. -->
 
                 </div><!-- .feature-section -->
@@ -166,7 +166,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
               </p>
               <p style="text-align: left"><?php _e("These modules are designed to be simple to use for everyone. They are a good solution to add some creative customizations whitout needing to dive into the code." , 'customizr') ?>
               </p>
-              <p style="text-align: left"><?php _e("Customizr's extensions are installed and upgraded from your WordPress admin, like any other WordPress plugins. Well documented and easily extendable with hooks, they come with a dedicated support forum on themesandco.com." , 'customizr') ?>
+              <p style="text-align: left"><?php _e("Customizr's extensions are installed and upgraded from your WordPress admin, like any other WordPress plugins. Well documented and easily extendable with hooks, they come with a dedicated support forum on presscustomizr.com." , 'customizr') ?>
               </p>
               <p style="text-align:left">
                   <a class="button-primary review-customizr" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/extend/" target="_blank"><?php _e("Visit the extension's page",'customizr') ?> &raquo;</a>
@@ -278,7 +278,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 # HOME_URL:                 <?php echo home_url() . "\n"; ?>
 # IS MULTISITE :            <?php echo is_multisite() ? 'Yes' . "\n" : 'No' . "\n" ?>
 
-# THEME | VERSION :         <?php echo 'Customizr | v' . CUSTOMIZR_VER . "\n"; ?>
+# THEME | VERSION :         <?php printf( '%1$s | v%2$s', TC___::$theme_name , CUSTOMIZR_VER ) . "\n"; ?>
 # WP VERSION :              <?php echo get_bloginfo( 'version' ) . "\n"; ?>
 # PERMALINK STRUCTURE :     <?php echo get_option( 'permalink_structure' ) . "\n"; ?>
 

@@ -1,0 +1,2907 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: * Customizr v3.3.23\n"
+"POT-Creation-Date: 2015-05-11 08:48+0100\n"
+"PO-Revision-Date: 2015-05-11 08:48+0100\n"
+"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"Language-Team: Customizr translation contributors <contact@presscustomizr."
+"com>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;__;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../class-fire-init.php:51 ../class-fire-init.php:52
+msgid "Right sidebar"
+msgstr "右サイドバー"
+
+#: ../class-fire-init.php:57 ../class-fire-init.php:58
+msgid "Left sidebar"
+msgstr "左サイドバー"
+
+#: ../class-fire-init.php:63 ../class-fire-init.php:64
+msgid "2 sidebars : Right and Left"
+msgstr "両サイドバー"
+
+#: ../class-fire-init.php:69 ../class-fire-init.php:70
+msgid "No sidebars : full width layout"
+msgstr "サイドバーなし"
+
+#: ../class-fire-init.php:84
+msgid "Blue"
+msgstr "青"
+
+#: ../class-fire-init.php:85
+msgid "Black"
+msgstr "黒"
+
+#: ../class-fire-init.php:86
+msgid "Flat black"
+msgstr "フラットブラック"
+
+#: ../class-fire-init.php:87
+msgid "Grey"
+msgstr "灰色"
+
+#: ../class-fire-init.php:88
+msgid "Ligth grey"
+msgstr "薄灰色"
+
+#: ../class-fire-init.php:89
+msgid "Flat purple"
+msgstr "フラットパープル"
+
+#: ../class-fire-init.php:90
+msgid "Purple"
+msgstr "紫"
+
+#: ../class-fire-init.php:91
+msgid "Flat red"
+msgstr "フラットレッド"
+
+#: ../class-fire-init.php:92
+msgid "Red"
+msgstr "赤"
+
+#: ../class-fire-init.php:93
+msgid "Orange"
+msgstr "オレンジ"
+
+#: ../class-fire-init.php:94
+msgid "Flat orange"
+msgstr "フラットオレンジ"
+
+#: ../class-fire-init.php:95
+msgid "Yellow"
+msgstr "黄色"
+
+#: ../class-fire-init.php:96
+msgid "Flat yellow"
+msgstr "フラットイエロー"
+
+#: ../class-fire-init.php:97
+msgid "Green"
+msgstr "緑"
+
+#: ../class-fire-init.php:98
+msgid "Light green"
+msgstr "薄緑"
+
+#: ../class-fire-init.php:99
+msgid "Green blue"
+msgstr "青緑"
+
+#: ../class-fire-init.php:100
+msgid "Light blue "
+msgstr "薄青"
+
+#: ../class-fire-init.php:127
+msgid "Google fonts pairs"
+msgstr "Googleフォント"
+
+#: ../class-fire-init.php:147
+msgid "Web safe fonts pairs"
+msgstr "Web safeフォント"
+
+#: ../class-fire-init.php:156
+msgid "Single fonts"
+msgstr "単一フォント"
+
+#: ../class-fire-init.php:194
+msgid "Subscribe to my rss feed"
+msgstr "RSSフィード購読"
+
+#: ../class-fire-init.php:195
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "RSSフィード(標準はwordpressフィード)"
+
+#: ../class-fire-init.php:199
+msgid "Follow me on Twitter"
+msgstr "Twitterでフォロー"
+
+#: ../class-fire-init.php:200
+msgid "Twitter profile url"
+msgstr "TwitterのプロフィールURL"
+
+#: ../class-fire-init.php:204
+msgid "Follow me on Facebook"
+msgstr "Facebookでフォロー"
+
+#: ../class-fire-init.php:205
+msgid "Facebook profile url"
+msgstr "FacebookプロフィールのURL"
+
+#: ../class-fire-init.php:209
+msgid "Follow me on Google+"
+msgstr "Google+でフォロー"
+
+#: ../class-fire-init.php:210
+msgid "Google+ profile url"
+msgstr "Google+プロファイルのURL"
+
+#: ../class-fire-init.php:214
+msgid "Follow me on Instagram"
+msgstr "Instagramでフォロー"
+
+#: ../class-fire-init.php:215
+msgid "Instagram profile url"
+msgstr "InstagramプロファイルのURL"
+
+#: ../class-fire-init.php:219
+msgid "Follow me on Tumblr"
+msgstr "Tumblrでフォロー"
+
+#: ../class-fire-init.php:220
+msgid "Tumblr url"
+msgstr "TumblrのURL"
+
+#: ../class-fire-init.php:224
+msgid "Follow me on Flickr"
+msgstr "Flickrでフォロー"
+
+#: ../class-fire-init.php:225
+msgid "Flickr url"
+msgstr "FlickrのURL"
+
+#: ../class-fire-init.php:229
+msgid "Follow me on WordPress"
+msgstr "WordPressでフォロー"
+
+#: ../class-fire-init.php:230
+msgid "WordPress profile url"
+msgstr "WordPressプロファイルのURL"
+
+#: ../class-fire-init.php:234
+msgid "Follow me on Youtube"
+msgstr "Youtubeでフォロー"
+
+#: ../class-fire-init.php:235
+msgid "Youtube profile url"
+msgstr "YoutubeプロファイルのURL"
+
+#: ../class-fire-init.php:239
+msgid "Pin me on Pinterest"
+msgstr "PinterestでPin"
+
+#: ../class-fire-init.php:240
+msgid "Pinterest profile url"
+msgstr "PinterestプロファイルのURL"
+
+#: ../class-fire-init.php:244
+msgid "Follow me on Github"
+msgstr "Githubでフォロー"
+
+#: ../class-fire-init.php:245
+msgid "Github profile url"
+msgstr "GithubプロファイルのURL"
+
+#: ../class-fire-init.php:249
+msgid "Follow me on Dribbble"
+msgstr "Dribbbleでフォロー"
+
+#: ../class-fire-init.php:250
+msgid "Dribbble profile url"
+msgstr "DribbbleプロファイルのURL"
+
+#: ../class-fire-init.php:254
+msgid "Follow me on LinkedIn"
+msgstr "LinkedInでフォロー"
+
+#: ../class-fire-init.php:255
+msgid "LinkedIn profile url"
+msgstr "LinkedInプロファイルのURL"
+
+#: ../class-fire-init.php:264
+msgid "Right Sidebar"
+msgstr "右サイドバー"
+
+#: ../class-fire-init.php:265 ../class-fire-init.php:269
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "投稿，固定ページ，アーカイブ，検索ページに表示"
+
+#: ../class-fire-init.php:268
+msgid "Left Sidebar"
+msgstr "左サイドバー"
+
+#: ../class-fire-init.php:276
+msgid "Footer Widget Area One"
+msgstr "フッタウィジェット1"
+
+#: ../class-fire-init.php:277 ../class-fire-init.php:281
+#: ../class-fire-init.php:285
+msgid "Just use it as you want !"
+msgstr "自由にお使いください"
+
+#: ../class-fire-init.php:280
+msgid "Footer Widget Area Two"
+msgstr "フッタウィジェット2"
+
+#: ../class-fire-init.php:284
+msgid "Footer Widget Area Three"
+msgstr "フッタウィジェット3"
+
+#: ../class-fire-init.php:302
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr ""
+"誰もが嘘をついたり騙したりしている時代に、真実を述べるというのは革命的な行動"
+"である。"
+
+#: ../class-fire-init.php:303
+msgid "George Orwell"
+msgstr "ジョージ・オーウェル"
+
+#: ../class-fire-init.php:304
+msgid ""
+"Sorry, but the requested page is not found. You might try a search below."
+msgstr ""
+"すみません．要求されたページは見つかりませんでした．検索を試してください．"
+
+#: ../class-fire-init.php:309
+msgid ""
+"Success is the ability to go from one failure to another with no loss of "
+"enthusiasm..."
+msgstr "成功とは、失敗から失敗へと情熱を失わずに進むことである。"
+
+#: ../class-fire-init.php:310
+msgid "Sir Winston Churchill"
+msgstr "ウィンストン・チャーチル"
+
+#: ../class-fire-init.php:311
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"すみません．検索条件にあうものはありません．他のキーワードを試してみてくださ"
+"い．"
+
+#: ../class-fire-init.php:326
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizrはきれいで応答の早いテーマです"
+
+#: ../class-fire-init.php:340
+msgid ""
+"Many layout and design options are available from the WordPress customizer "
+"screen : see your changes live !"
+msgstr ""
+"様々なレイアウト，デザインオプションがWordPressのカスタマイズ画面にありま"
+"す : その場で変更を確認！"
+
+#: ../class-fire-init.php:477
+msgid "Main Menu"
+msgstr "メインメニュー"
+
+#: ../class-fire-init.php:672
+msgid "Help"
+msgstr "ヘルプ"
+
+#: ../class-fire-init.php:675
+msgid "Need help with Customizr? Click here!"
+msgstr "Customizrのヘルプが必要ですか？ここをクリック！"
+
+#: ../class-fire-utils.php:466
+#, php-format
+msgid "Page %s"
+msgstr "固定ページ %s"
+
+#: ../class-fire-utils_settings_map.php:80
+msgid "Home featured page one"
+msgstr "おすすめページ1"
+
+#: ../class-fire-utils_settings_map.php:81
+msgid "Home featured page two"
+msgstr "おすすめページ2"
+
+#: ../class-fire-utils_settings_map.php:82
+msgid "Home featured page three"
+msgstr "おすすめページ3"
+
+#: ../class-fire-utils_settings_map.php:85
+msgid "Featured text one (200 car. max)"
+msgstr "おすすめ1テキスト(最大200字)"
+
+#: ../class-fire-utils_settings_map.php:86
+msgid "Featured text two (200 car. max)"
+msgstr "おすすめ2テキスト(最大200字)"
+
+#: ../class-fire-utils_settings_map.php:87
+msgid "Featured text three (200 car. max)"
+msgstr "おすすめ3テキスト(最大200字)"
+
+#: ../class-fire-utils_settings_map.php:103
+#, php-format
+msgid "Custom featured page %1$s"
+msgstr "カスタムおすすめページ%1$s"
+
+#: ../class-fire-utils_settings_map.php:119
+#, php-format
+msgid "Featured text %1$s (200 car. max)"
+msgstr "おすすめ%1$s(最大200字)"
+
+#: ../class-fire-utils_settings_map.php:122
+msgid ""
+"You need to select a page first. Leave this field empty if you want to use "
+"the page excerpt."
+msgstr "まずページを選択．もし抜粋テキストを使いたい場合は空欄のままにする．"
+
+#: ../class-fire-utils_settings_map.php:233
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; スライダなし &mdash;"
+
+#: ../class-fire-utils_settings_map.php:234
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; スライダーのデモ &mdash;"
+
+#: ../class-fire-utils_settings_map.php:275
+msgid "Global settings"
+msgstr "全般設定"
+
+#: ../class-fire-utils_settings_map.php:276
+msgid "Global settings for the Customizr theme :skin, socials, links..."
+msgstr "Customizrテーマの全般設定:スキン，SNS，リンク..."
+
+#: ../class-fire-utils_settings_map.php:281
+msgid "Header"
+msgstr "ヘッダー"
+
+#: ../class-fire-utils_settings_map.php:282
+msgid "Header settings for the Customizr theme."
+msgstr "Customizrテーマのヘッダー設定"
+
+#: ../class-fire-utils_settings_map.php:287
+msgid "Content : home, posts, ..."
+msgstr "コンテンツ：ホーム，投稿..."
+
+#: ../class-fire-utils_settings_map.php:288
+msgid "Content settings for the Customizr theme."
+msgstr "Customizrテーマのコンテンツ設定"
+
+#: ../class-fire-utils_settings_map.php:293
+msgid "Footer"
+msgstr "フッター"
+
+#: ../class-fire-utils_settings_map.php:294
+msgid "Footer settings for the Customizr theme."
+msgstr "Customizrテーマのフッター設定"
+
+#: ../class-fire-utils_settings_map.php:299
+msgid "Advanced options"
+msgstr "詳細設定"
+
+#: ../class-fire-utils_settings_map.php:300
+msgid "Advanced settings for the Customizr theme."
+msgstr "Customizrテーマの詳細設定"
+
+#: ../class-fire-utils_settings_map.php:321
+#: ../class-fire-utils_settings_map.php:1059
+msgid "Skin"
+msgstr "スキン"
+
+#: ../class-fire-utils_settings_map.php:323
+#: ../class-fire-utils_settings_map.php:1061
+msgid "Select a skin for Customizr"
+msgstr "Customizrのスキンを選択"
+
+#: ../class-fire-utils_settings_map.php:327
+#: ../class-fire-utils_settings_map.php:1053
+msgid "Logo &amp; Favicon"
+msgstr "サイトロゴ &amp; アイコン(Favicon) "
+
+#: ../class-fire-utils_settings_map.php:329
+#: ../class-fire-utils_settings_map.php:1055
+msgid "Set up logo and favicon options"
+msgstr "サイトロゴとアイコンの設定"
+
+#: ../class-fire-utils_settings_map.php:333
+#: ../class-fire-utils_settings_map.php:1120
+msgid "Front Page"
+msgstr "トップページ"
+
+#: ../class-fire-utils_settings_map.php:335
+#: ../class-fire-utils_settings_map.php:1122
+msgid "Set up front page options"
+msgstr "トップページ設定"
+
+#: ../class-fire-utils_settings_map.php:339
+#: ../class-fire-utils_settings_map.php:1127
+msgid "Pages &amp; Posts Layout"
+msgstr "固定ページ &amp; 投稿レイアウト"
+
+#: ../class-fire-utils_settings_map.php:341
+#: ../class-fire-utils_settings_map.php:1129
+msgid "Set up layout options"
+msgstr "レイアウトオプション設定"
+
+#: ../class-fire-utils_settings_map.php:345
+#: ../class-fire-utils_settings_map.php:1178
+msgid "Comments"
+msgstr "コメント"
+
+#: ../class-fire-utils_settings_map.php:347
+#: ../class-fire-utils_settings_map.php:1180
+msgid "Set up comments options"
+msgstr "コメントオプション設定"
+
+#: ../class-fire-utils_settings_map.php:351
+#: ../class-fire-utils_settings_map.php:1071
+#: ../class-fire-utils_settings_map.php:2240
+msgid "Social links"
+msgstr "ソーシャルリンク"
+
+#: ../class-fire-utils_settings_map.php:353
+#: ../class-fire-utils_settings_map.php:1073
+msgid "Set up your social links"
+msgstr "サイトのソーシャルリンク設定"
+
+#: ../class-fire-utils_settings_map.php:357
+msgid "Images"
+msgstr "画像"
+
+#: ../class-fire-utils_settings_map.php:359
+#: ../class-fire-utils_settings_map.php:1091
+msgid "Various images settings"
+msgstr "各種画像設定"
+
+#: ../class-fire-utils_settings_map.php:363
+msgid "Links"
+msgstr "リンク"
+
+#: ../class-fire-utils_settings_map.php:365
+#: ../class-fire-utils_settings_map.php:1079
+msgid "Various links settings"
+msgstr "各種リンク設定"
+
+#: ../class-fire-utils_settings_map.php:369
+#: ../class-fire-utils_settings_map.php:1196
+msgid "Custom CSS"
+msgstr "カスタムCSS"
+
+#: ../class-fire-utils_settings_map.php:371
+#: ../class-fire-utils_settings_map.php:1198
+msgid "Add your own CSS"
+msgstr "独自CSS追加"
+
+#: ../class-fire-utils_settings_map.php:375
+#: ../class-fire-utils_settings_map.php:1095
+msgid "Responsive settings"
+msgstr "応答の設定"
+
+#: ../class-fire-utils_settings_map.php:377
+#: ../class-fire-utils_settings_map.php:1097
+msgid "Various settings for responsive display"
+msgstr "各種表示応答の設定"
+
+#: ../class-fire-utils_settings_map.php:406
+msgid "Manage menus"
+msgstr "メニュー管理"
+
+#: ../class-fire-utils_settings_map.php:413
+msgid "Design and effects"
+msgstr "デザインと効果"
+
+#: ../class-fire-utils_settings_map.php:414
+msgid "Select a submenu expansion option"
+msgstr "サブメニュー展開オプション選択"
+
+#: ../class-fire-utils_settings_map.php:418
+msgid "Expand submenus on click"
+msgstr "クリックでサブメニューを展開"
+
+#: ../class-fire-utils_settings_map.php:419
+msgid "Expand submenus on hover"
+msgstr "マウスを重ねるとサブメニュー展開"
+
+#: ../class-fire-utils_settings_map.php:435
+msgid "Choose a predefined skin"
+msgstr "既定のスキンを選択"
+
+#: ../class-fire-utils_settings_map.php:444
+msgid "Randomize the skin"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:447
+msgid "Apply a random color skin on each page load."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:452
+#: ../class-fire-utils_settings_map.php:2268
+msgid "Performance : use the minified CSS stylesheet"
+msgstr "パフォーマンス：圧縮CSSスタイルシートを使う"
+
+#: ../class-fire-utils_settings_map.php:455
+#: ../class-fire-utils_settings_map.php:2271
+msgid ""
+"Using the minified version of the skin stylesheet will speed up your webpage "
+"load time."
+msgstr ""
+"スキン用圧縮スタイルシートを使うとウェブページの表示時間が早くなります．"
+
+#: ../class-fire-utils_settings_map.php:461
+#: ../class-fire-utils_settings_map.php:1367
+msgid "Display top border"
+msgstr "上の境界を表示"
+
+#: ../class-fire-utils_settings_map.php:465
+#: ../class-fire-utils_settings_map.php:1371
+msgid "Uncheck this option to remove the colored top border."
+msgstr "色つきの上部境界を表示しないときチェックを外す"
+
+#: ../class-fire-utils_settings_map.php:477
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "サイトロゴのアップロード（サポート形式 : .jpg, .png, .gif, svg, svgz)"
+
+#: ../class-fire-utils_settings_map.php:478
+msgid "LOGO"
+msgstr "サイトロゴ"
+
+#: ../class-fire-utils_settings_map.php:487
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "ロゴのサイズを強制的に幅250px，高さ100pxにする"
+
+#: ../class-fire-utils_settings_map.php:491
+msgid "Uncheck this option to keep your original logo dimensions."
+msgstr "オリジナルの寸法で使いたいときはチェックをしない"
+
+#: ../class-fire-utils_settings_map.php:495
+msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr ""
+"フロート時用サイトロゴアップロード（サポート形式： .jpg, .png, .gif, svg, "
+"svgz）"
+
+#: ../class-fire-utils_settings_map.php:499
+msgid ""
+"Use this upload control to specify a different logo on sticky header mode."
+msgstr "ヘッダーフロートの時に別の画像を使う場合はここにアップロード"
+
+#: ../class-fire-utils_settings_map.php:505
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "サイトアイコンをアップロード(サポートする形式 : .ico, .png, .gif)"
+
+#: ../class-fire-utils_settings_map.php:506
+msgid "FAVICON"
+msgstr "サイトアイコン"
+
+#: ../class-fire-utils_settings_map.php:524
+msgid "Choose content and layout"
+msgstr "コンテンツとレイアウトを選択"
+
+#: ../class-fire-utils_settings_map.php:532
+msgid "Front page displays"
+msgstr "トップページを表示"
+
+#: ../class-fire-utils_settings_map.php:537
+msgid "Don't show any posts or page"
+msgstr "投稿や固定ページを表示しない"
+
+#: ../class-fire-utils_settings_map.php:538
+msgid "Your latest posts"
+msgstr "最新の投稿"
+
+#: ../class-fire-utils_settings_map.php:539
+msgid "A static page"
+msgstr "固定ページ"
+
+#: ../class-fire-utils_settings_map.php:545
+msgid "Front page"
+msgstr "トップページ"
+
+#: ../class-fire-utils_settings_map.php:553
+msgid "Posts page"
+msgstr "投稿ページ"
+
+#: ../class-fire-utils_settings_map.php:562
+msgid "Set up the front page layout"
+msgstr "トップページのレイアウトを設定"
+
+#: ../class-fire-utils_settings_map.php:574
+msgid "Slider options"
+msgstr "スライダーオプション"
+
+#: ../class-fire-utils_settings_map.php:575
+msgid "Select front page slider"
+msgstr "トップページのスライダーを選択"
+
+#: ../class-fire-utils_settings_map.php:587
+msgid "Full width slider"
+msgstr "スライダーをページ全幅にする"
+
+#: ../class-fire-utils_settings_map.php:598
+msgid "Delay between each slides"
+msgstr "スライドの表示時間間隔"
+
+#: ../class-fire-utils_settings_map.php:603
+msgid "in ms : 1000ms = 1s"
+msgstr "単位ms：1000ms = 1s"
+
+#: ../class-fire-utils_settings_map.php:611
+msgid "Featured pages options"
+msgstr "おすすめページのオプション"
+
+#: ../class-fire-utils_settings_map.php:612
+msgid "Display home featured pages area"
+msgstr "おすすめページをトップページに表示"
+
+#: ../class-fire-utils_settings_map.php:616
+msgid "Enable"
+msgstr "有効"
+
+#: ../class-fire-utils_settings_map.php:617
+msgid "Disable"
+msgstr "無効"
+
+#: ../class-fire-utils_settings_map.php:626
+msgid "Show images"
+msgstr "画像を表示"
+
+#: ../class-fire-utils_settings_map.php:629
+msgid ""
+"The images are set with the \"featured image\" of each pages (in the page "
+"edit screen). Uncheck the option above to disable the featured page images."
+msgstr ""
+"画像は投稿の\"アイキャッチ画像\"に設定される．(投稿編集ページ参照)おすすめ"
+"ページの画像を無効にするときはチェックを外す"
+
+#: ../class-fire-utils_settings_map.php:635
+msgid "Read more &raquo;"
+msgstr "もっと &raquo;"
+
+#: ../class-fire-utils_settings_map.php:637
+msgid "Button text"
+msgstr "ボタンテキスト"
+
+#: ../class-fire-utils_settings_map.php:658
+#: ../class-fire-utils_settings_map.php:1251
+msgid "Display Breadcrumb"
+msgstr "パンくず表示"
+
+#: ../class-fire-utils_settings_map.php:668
+#: ../class-fire-utils_settings_map.php:1261
+msgid "Choose the global default layout"
+msgstr "デフォルトレイアウトを選択"
+
+#: ../class-fire-utils_settings_map.php:679
+#: ../class-fire-utils_settings_map.php:1273
+msgid "Force default layout everywhere"
+msgstr "デフォルトレイアウトをすべてのページで強制的に使用"
+
+#: ../class-fire-utils_settings_map.php:682
+#: ../class-fire-utils_settings_map.php:1276
+msgid ""
+"This option will override the specific layouts on all posts/pages, including "
+"the front page."
+msgstr ""
+"このオプションはトップページを含むすべての投稿/固定ページの固有のレイアウトを"
+"上書きします．"
+
+#: ../class-fire-utils_settings_map.php:689
+#: ../class-fire-utils_settings_map.php:1282
+msgid "Choose the posts default layout"
+msgstr "投稿のデフォルトレイアウトを選択"
+
+#: ../class-fire-utils_settings_map.php:701
+#: ../class-fire-utils_settings_map.php:1305
+msgid "Maximum number of posts per page"
+msgstr "ページあたりの投稿表示数"
+
+#: ../class-fire-utils_settings_map.php:712
+#: ../class-fire-utils_settings_map.php:1315
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "リスト（トップ，検索，アーカイブ）での投稿数を選択"
+
+#: ../class-fire-utils_settings_map.php:716
+#: ../class-fire-utils_settings_map.php:1319
+msgid "Display the excerpt"
+msgstr "抜粋を表示"
+
+#: ../class-fire-utils_settings_map.php:717
+#: ../class-fire-utils_settings_map.php:1320
+msgid "Display the full content"
+msgstr "すべてのコンテンツを表示"
+
+#: ../class-fire-utils_settings_map.php:725
+#: ../class-fire-utils_settings_map.php:1291
+msgid "Choose the pages default layout"
+msgstr "ページの標準レイアウトを選択"
+
+#: ../class-fire-utils_settings_map.php:744
+#: ../class-fire-utils_settings_map.php:2114
+msgid "Enable comments on pages"
+msgstr "投稿へのコメントを許可"
+
+#: ../class-fire-utils_settings_map.php:748
+msgid ""
+"This option will enable comments on pages. You can disable comments for a "
+"single page in the quick edit mode of the page list screen."
+msgstr ""
+"このオプションで投稿コメントを許可します．個別のページのコメントは投稿リスト"
+"の画面のクイック編集モードで停止できます．"
+
+#: ../class-fire-utils_settings_map.php:762
+#: ../class-fire-utils_settings_map.php:2204
+msgid "Social links in header"
+msgstr "ヘッダーのソーシャルリンク"
+
+#: ../class-fire-utils_settings_map.php:771
+#: ../class-fire-utils_settings_map.php:2222
+msgid "Social links in left sidebar"
+msgstr "左サイドバーのソーシャルリンク"
+
+#: ../class-fire-utils_settings_map.php:780
+#: ../class-fire-utils_settings_map.php:2232
+msgid "Social links in right sidebar"
+msgstr "右サイドバーのソーシャルリンク"
+
+#: ../class-fire-utils_settings_map.php:788
+#: ../class-fire-utils_settings_map.php:2213
+msgid "Social links in footer"
+msgstr "フッターのソーシャルリンク"
+
+#: ../class-fire-utils_settings_map.php:809
+msgid "Lightbox effect on images"
+msgstr "画像にLightbox効果"
+
+#: ../class-fire-utils_settings_map.php:812
+msgid ""
+"If enabled, this option activates a popin window whith a zoom effect when an "
+"image is clicked. Note : to enable this effect on the images of your pages "
+"and posts, images have to be linked to the Media File."
+msgstr ""
+"有効時，画像をクリックするとpopinウィンドウが出て拡大効果が機能します．注意："
+"固定ページや投稿の画像にこの効果を用いるときはメディアファイルに画像がリンク"
+"していなければなりません．"
+
+#: ../class-fire-utils_settings_map.php:818
+msgid "Autoscale images on zoom"
+msgstr "拡大時に画像を自動スケール"
+
+#: ../class-fire-utils_settings_map.php:821
+msgid ""
+"If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr "有効時，Lightbox拡大時に画像を画面に合わせて表示します"
+
+#: ../class-fire-utils_settings_map.php:827
+msgid "High resolution (Retina) support"
+msgstr "高解像度(Retina)対応"
+
+#: ../class-fire-utils_settings_map.php:831
+msgid ""
+"If enabled, your website will include support for high resolution devices."
+msgstr "有効時，高解像度のデバイスに対応します"
+
+#: ../class-fire-utils_settings_map.php:832
+msgid ""
+"It is strongly recommended to regenerate your media library images in high "
+"definition with this free plugin"
+msgstr ""
+"このフリープラグインを高解像度のメディアライブラリ画像を再生成することをお勧"
+"めします"
+
+#: ../class-fire-utils_settings_map.php:833
+msgid "regenerate thumbnails"
+msgstr "サムネイルを再生成"
+
+#: ../class-fire-utils_settings_map.php:835
+msgid "Open the description page of the Regenerate thumbnails plugin"
+msgstr "サムネイル再生成プラグインの詳細ページを開く"
+
+#: ../class-fire-utils_settings_map.php:841
+msgid "Sliders : display on loading icon before rendering the slides"
+msgstr "スライダー：スライドを表示する前にローディングアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:844
+msgid ""
+"When checked, this option displays a loading icon when the slides are being "
+"setup."
+msgstr "チェック時，スライドを設定中にローディングアイコンを表示します．"
+
+#: ../class-fire-utils_settings_map.php:849
+msgid "Dynamic slider images centering on any devices"
+msgstr "スライダー画像を中央に動的に表示"
+
+#: ../class-fire-utils_settings_map.php:857
+msgid "Dynamic thumbnails centering on any devices"
+msgstr "サムネイルを動的に中央に表示"
+
+#: ../class-fire-utils_settings_map.php:860
+msgid ""
+"This option dynamically centers your images on any devices, vertically or "
+"horizontally according to their initial aspect ratio."
+msgstr ""
+"このオプションは画像を表示デバイスに合わせ，元のアスペクト比で水平，垂直方向"
+"に中央に表示します．"
+
+#: ../class-fire-utils_settings_map.php:873
+msgid "Smooth scroll on click"
+msgstr "クリック時スムーズスクロール"
+
+#: ../class-fire-utils_settings_map.php:876
+msgid ""
+"If enabled, this option activates a smooth page scroll when clicking on a "
+"link to an anchor of the same page."
+msgstr ""
+"有効時，同じページのアンカヘのリンクをクリックするとスムーズにスクロールしま"
+"す．"
+
+#: ../class-fire-utils_settings_map.php:889
+msgid "Dynamic sidebar reordering on small devices"
+msgstr "小型の端末でサイドバーを動的に再配置します．"
+
+#: ../class-fire-utils_settings_map.php:892
+msgid ""
+"Activate this option to move the sidebars (if any) after the main content "
+"block, for smartphones or tablets viewport."
+msgstr ""
+"スマートフォンやタブレットの表示画面でサイドバーをメインコンテンツの後に表示"
+"させます．"
+
+#: ../class-fire-utils_settings_map.php:906
+#: ../class-fire-utils_settings_map.php:2253
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr ""
+"独自のCSSを追加して活動的なページをデザインしてください！（慣れた人向け）"
+
+#: ../class-fire-utils_settings_map.php:910
+#: ../class-fire-utils_settings_map.php:2257
+msgid ""
+"Use this field to test small chunks of CSS code. For important CSS "
+"customizations, you'll want to modify the style.css file of a"
+msgstr ""
+"このフィールドをCSSの変更に使ってください．重要なCSSのカスタマイズはsytle.css"
+"ファイルを変更してください．"
+
+#: ../class-fire-utils_settings_map.php:911
+#: ../class-fire-utils_settings_map.php:2258
+msgid "child theme."
+msgstr "子テーマ"
+
+#: ../class-fire-utils_settings_map.php:912
+#: ../class-fire-utils_settings_map.php:2259
+msgid "How to create and use a child theme ?"
+msgstr "子テーマの作成，利用方法は?"
+
+#: ../class-fire-utils_settings_map.php:1048
+msgid "Site Title & Tagline"
+msgstr "サイト名とキャッチコピー"
+
+#: ../class-fire-utils_settings_map.php:1065
+msgid "Fonts"
+msgstr "フォント"
+
+#: ../class-fire-utils_settings_map.php:1067
+msgid "Set up the font global settings"
+msgstr "フォントの全般設定"
+
+#: ../class-fire-utils_settings_map.php:1077
+msgid "Links style and effects"
+msgstr "リンクスタイルと効果"
+
+#: ../class-fire-utils_settings_map.php:1083
+msgid "Titles icons settings"
+msgstr "タイトルアイコン設定"
+
+#: ../class-fire-utils_settings_map.php:1085
+msgid "Set up the titles icons options"
+msgstr "タイトルアイコンのオプション設定"
+
+#: ../class-fire-utils_settings_map.php:1089
+msgid "Image settings"
+msgstr "画像設定"
+
+#: ../class-fire-utils_settings_map.php:1101
+msgid "Authors"
+msgstr "著者"
+
+#: ../class-fire-utils_settings_map.php:1103
+msgid "Post authors settings"
+msgstr "投稿著者の設定"
+
+#: ../class-fire-utils_settings_map.php:1107
+#: ../class-fire-utils_settings_map.php:1366
+msgid "Header design and layout"
+msgstr "ヘッダーデザインとレイアウト"
+
+#: ../class-fire-utils_settings_map.php:1107
+msgid "Design and layout"
+msgstr "デザインとレイアウト"
+
+#: ../class-fire-utils_settings_map.php:1112
+msgid "Navigation"
+msgstr "ナビゲーション"
+
+#: ../class-fire-utils_settings_map.php:1115
+#, php-format
+msgid "Your theme supports %s menu. Select which menu you would like to use."
+msgstr "このテーマは%sメニューをサポートします．メニューを選択"
+
+#: ../class-fire-utils_settings_map.php:1115
+msgid ""
+"You can edit your menu content on the Menus screen in the Appearance section."
+msgstr "外観設定のメニュー画面でメニュー項目は編集できます．"
+
+#: ../class-fire-utils_settings_map.php:1134
+msgid "Post lists : blog, archives, ..."
+msgstr "投稿リスト：ブログ，アーカイブ，..."
+
+#: ../class-fire-utils_settings_map.php:1136
+msgid "Set up post lists options"
+msgstr "投稿リストオプション設定"
+
+#: ../class-fire-utils_settings_map.php:1140
+msgid "Single posts"
+msgstr "投稿"
+
+#: ../class-fire-utils_settings_map.php:1142
+msgid "Set up single posts options"
+msgstr "投稿表示オプション"
+
+#: ../class-fire-utils_settings_map.php:1146
+msgid "Breadcrumb"
+msgstr "パンくず"
+
+#: ../class-fire-utils_settings_map.php:1148
+msgid "Set up breadcrumb options"
+msgstr "パンくずのオプション設定"
+
+#: ../class-fire-utils_settings_map.php:1160
+msgid "Post metas (category, tags, custom taxonomies)"
+msgstr "投稿属性（カテゴリ，タグ，カスタム分類）"
+
+#: ../class-fire-utils_settings_map.php:1162
+msgid "Set up post metas options"
+msgstr "投稿属性のオプション設定"
+
+#: ../class-fire-utils_settings_map.php:1166
+msgid "Galleries"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1168
+msgid "Set up gallery options"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1172
+msgid "Paragraphs"
+msgstr "段落"
+
+#: ../class-fire-utils_settings_map.php:1174
+msgid "Set up paragraphs options"
+msgstr "段落オプションの設定"
+
+#: ../class-fire-utils_settings_map.php:1184
+msgid "Post/Page Navigation"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1186
+msgid "Set up post/page navigation options"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1190
+msgid "Footer global settings"
+msgstr "フッター全般設定"
+
+#: ../class-fire-utils_settings_map.php:1192
+msgid "Set up footer global options"
+msgstr "フッターの全般オプション設定"
+
+#: ../class-fire-utils_settings_map.php:1202
+msgid "Website Performances"
+msgstr "サイトのパフォーマンス"
+
+#: ../class-fire-utils_settings_map.php:1204
+msgid ""
+"On the web, speed is key ! Improve the load time of your pages with those "
+"options."
+msgstr "ウェブはスピードが命!オプションを設定して表示時間を改善してください．"
+
+#: ../class-fire-utils_settings_map.php:1265
+msgid "Note : the home page layout has to be set in the home page section"
+msgstr "注意：トップページのレイアウトはトップページの項で設定"
+
+#: ../class-fire-utils_settings_map.php:1304
+msgid "Global Post Lists Settings"
+msgstr "投稿リストの全般設定"
+
+#: ../class-fire-utils_settings_map.php:1330
+msgid "Display an author box after each single post content"
+msgstr "それぞれの投稿コンテンツの後に著者を表示"
+
+#: ../class-fire-utils_settings_map.php:1334
+msgid ""
+"Check this option to display an author info block after each single post "
+"content. Note : the Biographical info field must be filled out in the user "
+"profile."
+msgstr ""
+"このオプションを有効時，投稿コンテンツの後に著者の情報が表示されます．注意："
+"ユーザプロファイルで情報を設定すること．"
+
+#: ../class-fire-utils_settings_map.php:1340
+msgid ""
+"Select a beautiful font pair (headings &amp; default fonts) or single font "
+"for your website."
+msgstr ""
+"美しいフォントの組み合わせ(タイトル&amp;標準フォント)か単一フォントかを選択"
+
+#: ../class-fire-utils_settings_map.php:1347
+msgid ""
+"This font picker allows you to preview and select among a handy selection of "
+"font pairs and single fonts. If you choose a pair, the first font will be "
+"applied to the site main headings : site name, site description, titles h1, "
+"h2, h3., while the second will be the default font of your website for any "
+"texts or paragraphs."
+msgstr ""
+"フォント設定ではフォントの組み合わせまたは単一フォントを選択しプレビューでき"
+"ます．もし組み合わせを選ぶと第1フォントは主なタイトル（サイト名，サイト説明，"
+"h1,h2,h3ヘッダ），第2フォントはテキストや段落用の標準フォントになります．"
+
+#: ../class-fire-utils_settings_map.php:1352
+msgid "Set your website default font size in pixels."
+msgstr "標準フォントサイズをピクセルで設定"
+
+#: ../class-fire-utils_settings_map.php:1360
+msgid ""
+"This option sets the default font size applied to any text element of your "
+"website, when no font size is already applied."
+msgstr ""
+"ウェブサイトでサイズが指定されていないすべてのテキスト要素の標準フォントサイ"
+"ズを設定します．"
+
+#: ../class-fire-utils_settings_map.php:1377
+msgid "Display the tagline"
+msgstr "キャッチコピー表示"
+
+#: ../class-fire-utils_settings_map.php:1386
+msgid "Display menu in a box"
+msgstr "メニューを枠内に表示"
+
+#: ../class-fire-utils_settings_map.php:1391
+msgid ""
+"If checked, this option wraps the header menu/tagline/social in a light grey "
+"box."
+msgstr ""
+"チェック時，ヘッダメニュー，キャッチコピー，ソシアルリンクが灰色の枠内に表示"
+"されます．"
+
+#: ../class-fire-utils_settings_map.php:1396
+msgid "Layout"
+msgstr "レイアウト"
+
+#: ../class-fire-utils_settings_map.php:1400
+msgid "Logo / title on the left"
+msgstr "ロゴ/タイトルを左に"
+
+#: ../class-fire-utils_settings_map.php:1401
+msgid "Logo / title centered"
+msgstr "ロゴ/タイトルを中央に"
+
+#: ../class-fire-utils_settings_map.php:1402
+msgid "Logo / title on the right"
+msgstr "ロゴ/タイトルを右に"
+
+#: ../class-fire-utils_settings_map.php:1410
+msgid "Sticky header settings"
+msgstr "フロートヘッダー設定"
+
+#: ../class-fire-utils_settings_map.php:1411
+msgid "Sticky on scroll"
+msgstr "スクロール時に移動"
+
+#: ../class-fire-utils_settings_map.php:1416
+msgid ""
+"If checked, this option makes the header stick to the top of the page on "
+"scroll down."
+msgstr "チェック時，ヘッダが画面の上に表示されたままスクロールします．"
+
+#: ../class-fire-utils_settings_map.php:1421
+msgid "Sticky header : display the tagline"
+msgstr "フロートヘッダー：キャッチコピー表示"
+
+#: ../class-fire-utils_settings_map.php:1430
+msgid "Sticky header : display the title / logo"
+msgstr "フロートヘッダー：タイトル/ロゴ表示"
+
+#: ../class-fire-utils_settings_map.php:1439
+msgid "Sticky header : shrink title / logo"
+msgstr "フロートヘッダー：タイトル/ロゴを縮小"
+
+#: ../class-fire-utils_settings_map.php:1448
+msgid "Sticky header : display the menu"
+msgstr "フロートヘッダー：メニュー表示"
+
+#: ../class-fire-utils_settings_map.php:1457
+msgid "Sticky header : semi-transparent on scroll"
+msgstr "フロートヘッダー：スクロール時半透明に"
+
+#: ../class-fire-utils_settings_map.php:1467
+msgid "Set the header z-index"
+msgstr "ヘッダーのz-index"
+
+#: ../class-fire-utils_settings_map.php:1475
+msgid "What is"
+msgstr "*"
+
+#: ../class-fire-utils_settings_map.php:1476
+msgid "the z-index"
+msgstr "z-indexとは?"
+
+#: ../class-fire-utils_settings_map.php:1484
+msgid "Menu position"
+msgstr "メニュー位置"
+
+#: ../class-fire-utils_settings_map.php:1488
+msgid "Menu on the left"
+msgstr "左メニュー"
+
+#: ../class-fire-utils_settings_map.php:1489
+msgid "Menu on the right"
+msgstr "右メニュー"
+
+#: ../class-fire-utils_settings_map.php:1497
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr "サブメニューをフェード効果で表示"
+
+#: ../class-fire-utils_settings_map.php:1506
+msgid "Hover move effect for the sub menu items"
+msgstr "サブメニュー項目にhover移動効果"
+
+#: ../class-fire-utils_settings_map.php:1515
+msgid ""
+"In responsive mode, limit the height of the dropdown menu block to the "
+"visible viewport"
+msgstr "responsiveモードでドロップダウンメニューの高さを画面の高さに制限する"
+
+#: ../class-fire-utils_settings_map.php:1525
+msgid "Fade effect on link hover"
+msgstr "リンクにマウスを合わせた時にフェード効果"
+
+#: ../class-fire-utils_settings_map.php:1535
+msgid "Display an icon next to external links"
+msgstr "外部リンクの後にアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1539
+#: ../class-fire-utils_settings_map.php:1550
+msgid ""
+"This will be applied to the links included in post or page content only."
+msgstr "投稿および固定ページのリンクにのみ適用"
+
+#: ../class-fire-utils_settings_map.php:1546
+msgid "Open external links in a new tab"
+msgstr "外部リンクを新しいタブで表示"
+
+#: ../class-fire-utils_settings_map.php:1557
+msgid "Display the breadcrumb on home page"
+msgstr "パンくずをトップケージに表示"
+
+#: ../class-fire-utils_settings_map.php:1565
+msgid "Display the breadcrumb in pages"
+msgstr "固定ページにパンくずを表示"
+
+#: ../class-fire-utils_settings_map.php:1574
+msgid "Display the breadcrumb in single posts"
+msgstr "投稿ページにパンくずを表示"
+
+#: ../class-fire-utils_settings_map.php:1583
+msgid ""
+"Display the breadcrumb in posts lists : blog page, archives, search "
+"results..."
+msgstr "投稿リストをパンくずを表示：ブログページ，アーカイブ，検索結果..."
+
+#: ../class-fire-utils_settings_map.php:1594
+msgid "Display icons next to titles"
+msgstr "タイトルの隣にアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1598
+msgid ""
+"When this option is checked, a contextual icon is displayed next to the "
+"titles of pages, posts, archives, and WP built-in widgets."
+msgstr ""
+"このオプションをチェック時，固定ページ，投稿，アーカイブ，及びWP組み込みの"
+"ウィジェットにコンテキストアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1604
+msgid "Display a page icon next to the page title"
+msgstr "固定ページのタイトルにアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1613
+msgid "Display a post icon next to the single post title"
+msgstr "投稿ページのタイトルにアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1622
+msgid "Display an icon next to the archive title"
+msgstr "アーカイブのタイトルにアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1625
+msgid ""
+"When this option is checked, an archive type icon is displayed in the "
+"heading of every types of archives, on the left of the title. An archive "
+"page can be : category, tag, author, date archive, custom taxonomies, search "
+"results."
+msgstr ""
+"このオプションのチェック時，タイトルの左にアーカイブアイコンが表示される．"
+"アーカイブページはカテゴリ，タグ，著者，投稿時，カスタムタグ，検索結果を含"
+"む．"
+
+#: ../class-fire-utils_settings_map.php:1632
+msgid "Display an icon next to each post title in an archive page"
+msgstr "アーカイブページの投稿タイトルの隣にアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1635
+msgid ""
+"When this option is checked, a post type icon is displayed on the left of "
+"each post titles in an archive page. An archive page can be : category, tag, "
+"author, date archive, custom taxonomies, search results."
+msgstr ""
+"このオプションのチェック時，タイトルの左に投稿アイコンが表示される．アーカイ"
+"ブページはカテゴリ，タグ，著者，投稿時，カスタムタグ，検索結果を含む．"
+
+#: ../class-fire-utils_settings_map.php:1642
+msgid "WP sidebar widgets : display icons next to titles"
+msgstr "WP サイドバーウィジェット：タイトルの隣にアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1651
+msgid "WP footer widgets : display icons next to titles"
+msgstr "WP フッターウィジェット：タイトルの隣にアイコンを表示"
+
+#: ../class-fire-utils_settings_map.php:1663
+msgid "Display posts metas"
+msgstr "投稿のメタタグを表示"
+
+#: ../class-fire-utils_settings_map.php:1666
+msgid ""
+"When this option is checked, the post metas (like taxonomies, date and "
+"author) are displayed below the post titles."
+msgstr ""
+"このオプションのチェック時，投稿メタタグ（キーワード，投稿日，著者）を投稿タ"
+"イトルの下に表示"
+
+#: ../class-fire-utils_settings_map.php:1673
+msgid "Metas Design"
+msgstr "メタタグデザイン"
+
+#: ../class-fire-utils_settings_map.php:1674
+msgid "Select a design for the post metas"
+msgstr "投稿メタタグのデザインを選択"
+
+#: ../class-fire-utils_settings_map.php:1678
+msgid "Buttons and text"
+msgstr "ボタンとテキスト"
+
+#: ../class-fire-utils_settings_map.php:1679
+msgid "Text only"
+msgstr "テキストのみ"
+
+#: ../class-fire-utils_settings_map.php:1686
+#: ../class-fire-utils_settings_map.php:2165
+msgid "Select the contexts"
+msgstr "コンテキストを選択"
+
+#: ../class-fire-utils_settings_map.php:1687
+msgid "Display posts metas on home"
+msgstr "トップページにメタタグを表示"
+
+#: ../class-fire-utils_settings_map.php:1696
+msgid "Display posts metas for single posts"
+msgstr "投稿ページにメタタグを表示"
+
+#: ../class-fire-utils_settings_map.php:1705
+msgid "Display posts metas in post lists (archives, blog page)"
+msgstr "投稿リスト（アーカイブ，ブログページ）にメタタグを表示"
+
+#: ../class-fire-utils_settings_map.php:1715
+msgid "Select the metas to display"
+msgstr "表示するメタタグを選択"
+
+#: ../class-fire-utils_settings_map.php:1716
+msgid "Display hierarchical taxonomies (like categories)"
+msgstr "階層分類（カテゴリ）を表示"
+
+#: ../class-fire-utils_settings_map.php:1725
+msgid "Display non-hierarchical taxonomies (like tags)"
+msgstr "非階層分類（タグ）を表示"
+
+#: ../class-fire-utils_settings_map.php:1734
+msgid "Display the publication date"
+msgstr "投稿日を表示"
+
+#: ../class-fire-utils_settings_map.php:1742
+msgid "Display the author"
+msgstr "投稿者を表示"
+
+#: ../class-fire-utils_settings_map.php:1750
+msgid "Display the update date"
+msgstr "更新日を表示"
+
+#: ../class-fire-utils_settings_map.php:1754
+msgid ""
+"If this option is checked, additional date informations about the the last "
+"post update can be displayed (nothing will show up if the post has never "
+"been updated)."
+msgstr ""
+"このオプションのチェック時，最終更新日を表示する（更新していない場合は非表"
+"示）"
+
+#: ../class-fire-utils_settings_map.php:1760
+msgid "Select the last update format"
+msgstr "再封更新日の表示形式を選択"
+
+#: ../class-fire-utils_settings_map.php:1764
+msgid "Nb of days since last update"
+msgstr "最終更新日からの日数"
+
+#: ../class-fire-utils_settings_map.php:1765
+msgid "Date of the last update"
+msgstr "最終更新日"
+
+#: ../class-fire-utils_settings_map.php:1773
+msgid "Recent update notice after post titles"
+msgstr "投稿タイトルの後の更新通知"
+
+#: ../class-fire-utils_settings_map.php:1774
+msgid "Display a recent update notice"
+msgstr "更新通知を表示"
+
+#: ../class-fire-utils_settings_map.php:1778
+msgid ""
+"If this option is checked, a customizable recent update notice is displayed "
+"next to the post title."
+msgstr ""
+"このオプションをチェック時，投稿タイトルの後にカスタマイズ可能な更新通知を表"
+"示"
+
+#: ../class-fire-utils_settings_map.php:1784
+msgid ""
+"Display the notice if the last update is less (strictly) than n days old"
+msgstr "通知をn日前までの更新について表示"
+
+#: ../class-fire-utils_settings_map.php:1790
+msgid ""
+"Set a maximum interval (in days) during which the last update notice will be "
+"displayed."
+msgstr "更新通知を表示する期間（日数）を設定"
+
+#: ../class-fire-utils_settings_map.php:1793
+msgid "Recently updated !"
+msgstr "更新しました！"
+
+#: ../class-fire-utils_settings_map.php:1795
+msgid "Update notice text"
+msgstr "更新通知文"
+
+#: ../class-fire-utils_settings_map.php:1804
+msgid "Update notice style"
+msgstr "更新通知スタイル"
+
+#: ../class-fire-utils_settings_map.php:1808
+msgid "Default (grey)"
+msgstr "既定(灰色)"
+
+#: ../class-fire-utils_settings_map.php:1809
+msgid "Success (green)"
+msgstr "成功(緑)"
+
+#: ../class-fire-utils_settings_map.php:1810
+msgid "Alert (orange)"
+msgstr "警告(オレンジ)"
+
+#: ../class-fire-utils_settings_map.php:1811
+msgid "Important (red)"
+msgstr "重要(赤)"
+
+#: ../class-fire-utils_settings_map.php:1812
+msgid "Info (blue)"
+msgstr "情報(青)"
+
+#: ../class-fire-utils_settings_map.php:1823
+msgid "Set the excerpt length (in number of words) "
+msgstr "抜粋の長さを設定(単語数)"
+
+#: ../class-fire-utils_settings_map.php:1833
+msgid "Thumbnails options"
+msgstr "サムネイルオプション"
+
+#: ../class-fire-utils_settings_map.php:1834
+msgid "Display the post thumbnails"
+msgstr "サムネイルを表示"
+
+#: ../class-fire-utils_settings_map.php:1838
+msgid ""
+"When this option is checked, the post thumbnails are displayed in all post "
+"lists : blog, archives, author page, search pages, ..."
+msgstr ""
+"このオプションのチェック時，投稿サムネイルをすべての投稿リストに表示：ブロ"
+"グ，アーカイブ，投稿者，検索結果..."
+
+#: ../class-fire-utils_settings_map.php:1838
+msgid "Note : thumbnails are always displayed when the grid layout is choosen."
+msgstr "注意：グリッドレイアウトを選択した場合はサムネイルは常に表示される"
+
+#: ../class-fire-utils_settings_map.php:1843
+msgid "If no featured image is set, use the last image attached to this post."
+msgstr "アイキャッチ画像が設定されていない場合，最後に添付した画像を使います．"
+
+#: ../class-fire-utils_settings_map.php:1850
+msgid "Upload a default thumbnail"
+msgstr "既定のサムネールをアップロード"
+
+#: ../class-fire-utils_settings_map.php:1860
+msgid "Thumbnails options for the alternate thumbnails layout"
+msgstr "他のサムネイルレイアウトのオプション"
+
+#: ../class-fire-utils_settings_map.php:1861
+msgid "Thumbnails shape"
+msgstr "サムネイル形状"
+
+#: ../class-fire-utils_settings_map.php:1865
+msgid "Rounded, expand on hover"
+msgstr "丸，マウス移動時拡大"
+
+#: ../class-fire-utils_settings_map.php:1866
+msgid "Rounded, no expansion"
+msgstr "丸，拡大なし"
+
+#: ../class-fire-utils_settings_map.php:1867
+msgid "Squared, expand on hover"
+msgstr "正方形，マウス移動時拡大"
+
+#: ../class-fire-utils_settings_map.php:1868
+msgid "Squared, no expansion"
+msgstr "正方形，拡大なし"
+
+#: ../class-fire-utils_settings_map.php:1869
+msgid "Rectangular with no effect"
+msgstr "長方形，効果なし"
+
+#: ../class-fire-utils_settings_map.php:1870
+msgid "Rectangular with blur effect on hover"
+msgstr "長方形，マウス移動時blur効果"
+
+#: ../class-fire-utils_settings_map.php:1871
+msgid "Rectangular with unblur effect on hover"
+msgstr "長方形，マウス移動時unblur効果"
+
+#: ../class-fire-utils_settings_map.php:1879
+#: ../class-fire-utils_settings_map.php:1969
+msgid "Set the thumbnail's max height in pixels"
+msgstr "サムネイルの最大高さを指定(ピクセル)"
+
+#: ../class-fire-utils_settings_map.php:1891
+msgid "Thumbnails position"
+msgstr "サムネイル位置"
+
+#: ../class-fire-utils_settings_map.php:1895
+msgid "Top"
+msgstr "上"
+
+#: ../class-fire-utils_settings_map.php:1896
+msgid "Right"
+msgstr "右"
+
+#: ../class-fire-utils_settings_map.php:1897
+msgid "Bottom"
+msgstr "下"
+
+#: ../class-fire-utils_settings_map.php:1898
+msgid "Left"
+msgstr "左"
+
+#: ../class-fire-utils_settings_map.php:1905
+msgid "Alternate thumbnail/content"
+msgstr "追加サムネール／コンテンツ"
+
+#: ../class-fire-utils_settings_map.php:1914
+msgid "Archive titles"
+msgstr "カテゴリタイトル"
+
+#: ../class-fire-utils_settings_map.php:1915
+msgid "Category pages titles"
+msgstr "カテゴリ"
+
+#: ../class-fire-utils_settings_map.php:1924
+msgid "Tag pages titles"
+msgstr "タグ"
+
+#: ../class-fire-utils_settings_map.php:1933
+msgid "Author pages titles"
+msgstr "著者の投稿"
+
+#: ../class-fire-utils_settings_map.php:1941
+#: ../parts/class-content-headings.php:336
+msgid "Search Results for :"
+msgstr "検索結果："
+
+#: ../class-fire-utils_settings_map.php:1942
+msgid "Search results page titles"
+msgstr "検索結果"
+
+#: ../class-fire-utils_settings_map.php:1954
+msgid "Post thumbnail position"
+msgstr "サムネールの配置"
+
+#: ../class-fire-utils_settings_map.php:1958
+msgid "Don't display"
+msgstr "表示しない"
+
+#: ../class-fire-utils_settings_map.php:1959
+msgid "Before the title in full width"
+msgstr "タイトルの前に最大幅で"
+
+#: ../class-fire-utils_settings_map.php:1960
+msgid "Before the title boxed"
+msgstr "タイトルの前，枠に囲んで"
+
+#: ../class-fire-utils_settings_map.php:1961
+msgid "After the title"
+msgstr "タイトルの後"
+
+#: ../class-fire-utils_settings_map.php:1980
+msgid "Enable Customizr galleries"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1982
+msgid "Apply Customizr effects to galleries images"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1989
+msgid "Enable Lightbox effect in galleries"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1991
+msgid ""
+"Apply lightbox effects to galleries images ( if the Lightbox options is "
+"enabled in Global Settings > Image Settings)."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1998
+msgid "Enable Customizr effects on hover"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2000
+msgid "Apply nice on hover expansion effect to the galleries images"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2009
+msgid "Drop caps"
+msgstr "文字見出し"
+
+#: ../class-fire-utils_settings_map.php:2010
+msgid "Enable drop caps"
+msgstr "文字見出しを有効に"
+
+#: ../class-fire-utils_settings_map.php:2012
+msgid "Apply a drop cap to the first paragraph of your post / page content."
+msgstr "投稿，固定ページの最初の段落に文字見出しを適用"
+
+#: ../class-fire-utils_settings_map.php:2021
+msgid ""
+"Apply a drop cap when the paragraph includes at least the following number "
+"of words :"
+msgstr "段落の単語数が次の数以上だった場合文字見出しを適用する："
+
+#: ../class-fire-utils_settings_map.php:2022
+msgid "(number of words)"
+msgstr "(単語数)"
+
+#: ../class-fire-utils_settings_map.php:2032
+msgid "Drop cap style"
+msgstr "文字見出しスタイル"
+
+#: ../class-fire-utils_settings_map.php:2036
+msgid "Skin color with shadow"
+msgstr "スキン色影文字"
+
+#: ../class-fire-utils_settings_map.php:2037
+msgid "Simple black"
+msgstr "黒"
+
+#: ../class-fire-utils_settings_map.php:2043
+msgid "Enable drop caps in posts"
+msgstr "投稿ページに文字見出しを有効"
+
+#: ../class-fire-utils_settings_map.php:2045
+msgid "Apply a drop cap to the first paragraph of your single posts content"
+msgstr "投稿ページの最初の段落に文字見出しを適用"
+
+#: ../class-fire-utils_settings_map.php:2052
+msgid "Enable drop caps in pages"
+msgstr "固定ページに文字見出しを有効にする"
+
+#: ../class-fire-utils_settings_map.php:2054
+msgid "Apply a drop cap to the first paragraph of your pages"
+msgstr "固定ページの最初の段落に文字見出しを適用"
+
+#: ../class-fire-utils_settings_map.php:2064
+msgid "Comments bubbles"
+msgstr "コメント風船で表示"
+
+#: ../class-fire-utils_settings_map.php:2066
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr "コメント数を投稿タイトルの隣に風船で表示"
+
+#: ../class-fire-utils_settings_map.php:2075
+msgid "Comments bubble shape"
+msgstr "コメント風船の形"
+
+#: ../class-fire-utils_settings_map.php:2079
+msgid "Small bubbles"
+msgstr "小さい風船"
+
+#: ../class-fire-utils_settings_map.php:2080
+msgid "Large bubbles"
+msgstr "大きい風船"
+
+#: ../class-fire-utils_settings_map.php:2088
+#: ../class-fire-utils_settings_map.php:2101
+msgid "Comments bubble color"
+msgstr "コメント風船の色"
+
+#: ../class-fire-utils_settings_map.php:2092
+msgid "Skin color"
+msgstr "スキンの色"
+
+#: ../class-fire-utils_settings_map.php:2093
+msgid "Custom"
+msgstr "ユーザ定義"
+
+#: ../class-fire-utils_settings_map.php:2113
+msgid "Other comments settings"
+msgstr "他のコメント設定"
+
+#: ../class-fire-utils_settings_map.php:2119
+msgid ""
+"If checked, this option will enable comments on pages. You can disable "
+"comments for a single page in the quick edit mode of the page list screen."
+msgstr ""
+"チェック時，固定ページにコメントを有効にする．コメントはページリスト画面のク"
+"イック編集画面で無効にできます．"
+
+#: ../class-fire-utils_settings_map.php:2120
+msgid "You can also change other comments settings in :"
+msgstr "他のコメント設定はここで変更可能です："
+
+#: ../class-fire-utils_settings_map.php:2122
+msgid "the discussion settings page."
+msgstr "ディスカッション設定ページ"
+
+#: ../class-fire-utils_settings_map.php:2128
+msgid "Enable comments on posts"
+msgstr "投稿へのコメントを有効にする"
+
+#: ../class-fire-utils_settings_map.php:2133
+msgid ""
+"If checked, this option enables comments on all types of single posts. You "
+"can disable comments for a single post in quick edit mode from the"
+msgstr ""
+"チェック時，すべての投稿ページでコメントを有効にする．コメントはページリスト"
+"画面のクイック編集画面で無効にできます．"
+
+#: ../class-fire-utils_settings_map.php:2135
+msgid "post screen"
+msgstr "投稿画面"
+
+#: ../class-fire-utils_settings_map.php:2136
+msgid "You can also change other comments settings in the"
+msgstr "他のコメント設定も変更できます："
+
+#: ../class-fire-utils_settings_map.php:2138
+msgid "discussion settings page."
+msgstr "ディスカッション設定ページ"
+
+#: ../class-fire-utils_settings_map.php:2144
+msgid "Display the comment list"
+msgstr "コメントリストを表示"
+
+#: ../class-fire-utils_settings_map.php:2148
+msgid ""
+"By default, WordPress displays the past comments, even if comments are "
+"disabled in posts or pages. Unchecking this option allows you to not display "
+"this comment history."
+msgstr ""
+"既定ではWordPressは投稿や固定ページで無効にしても過去のコメントを表示します．"
+"このオプションをオフにするとコメントの履歴を非表示にできます．"
+
+#: ../class-fire-utils_settings_map.php:2155
+msgid "Display posts navigation"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2158
+msgid ""
+"When this option is checked, the posts navigation is displayed below the "
+"posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2166
+msgid "Display navigation in pages"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2175
+msgid "Display posts navigation in single posts"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2184
+msgid ""
+"Display posts navigation in post lists (archives, blog page, categories, "
+"search results ..)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2194
+msgid "Display a back to top arrow on scroll"
+msgstr "スクロール時に「先頭に戻る」矢印を表示"
+
+#: ../class-fire-utils_settings_map.php:2241
+msgid "Social link title in sidebars"
+msgstr "サイドバーのソーシャルリンクタイトル"
+
+#: ../class-fire-utils_settings_map.php:2247
+msgid "Will be hidden if empty"
+msgstr "空の場合隠す"
+
+#: ../class-fire-utils_settings_map.php:2275
+msgid "Load images on scroll"
+msgstr "スクロール時画像を表示"
+
+#: ../class-fire-utils_settings_map.php:2280
+msgid ""
+"Check this option to delay the loading of non visible images. Images below "
+"the viewport will be loaded dynamically on scroll. This can boost "
+"performances by reducing the weight of long web pages with images."
+msgstr ""
+"チェック時非表示の画像を表示するのを遅延させる．表示画面より下の画像はスク"
+"ロール時に動的に表示されます．画像がある長いページの負荷を下げてパフォーマン"
+"スを向上します．"
+
+#: ../class-fire-utils_settings_map.php:2289
+msgid "Set slider's height in pixels"
+msgstr "スライダーの高さ（ピクセル）で競って"
+
+#: ../class-fire-utils_settings_map.php:2299
+msgid "Apply this height to all sliders"
+msgstr "すべてのスライダーにこの高さを適用"
+
+#: ../class-fire-utils_settings_map.php:2307
+msgid "Replace the default image slider's height"
+msgstr "既定の画像スライダーの高さを上書きする"
+
+#: ../class-fire-utils_settings_map.php:2313
+msgid ""
+"If this option is checked, your images will be resized with your custom "
+"height on upload. This is better for your overall loading performance."
+msgstr ""
+"チェック時，アップロード時に画像は設定された高さにリサイズされます．画像表示"
+"のパフォーマンスを改善します．"
+
+#: ../class-fire-utils_settings_map.php:2314
+msgid "You might want to regenerate your thumbnails."
+msgstr "サムネイルを再構築しなければならないかもしれません．"
+
+#: ../class-fire-utils_settings_map.php:2335
+msgid "Post List Design"
+msgstr "投稿リストのデザイン"
+
+#: ../class-fire-utils_settings_map.php:2336
+msgid "Select a Layout"
+msgstr "レイアウトを選択"
+
+#: ../class-fire-utils_settings_map.php:2340
+msgid "Alternate thumbnails layout"
+msgstr "サムネイルを交互に表示"
+
+#: ../class-fire-utils_settings_map.php:2341
+msgid "Grid layout"
+msgstr "グリッド表示"
+
+#: ../class-fire-utils_settings_map.php:2344
+msgid ""
+"When you select the grid Layout, the post content is limited to the excerpt."
+msgstr ""
+"グリッドレイアウトを選択した場合，投稿コンテンツは抜粋のみ表示されます．"
+
+#: ../class-fire-utils_settings_map.php:2349
+msgid "Number of columns per row"
+msgstr "1行当たりの列数"
+
+#: ../class-fire-utils_settings_map.php:2353
+msgid "1"
+msgstr "1"
+
+#: ../class-fire-utils_settings_map.php:2354
+msgid "2"
+msgstr "2"
+
+#: ../class-fire-utils_settings_map.php:2355
+msgid "3"
+msgstr "3"
+
+#: ../class-fire-utils_settings_map.php:2356
+msgid "4"
+msgstr "4"
+
+#: ../class-fire-utils_settings_map.php:2359
+msgid ""
+"Note : columns are limited to 3 for single sidebar layouts and to 2 for "
+"double sidebar layouts."
+msgstr ""
+"注意：片側にサイドバーをレイアウトした場合では3列に，両側にサイドバーを配置し"
+"た場合では2列に制限されます．"
+
+#: ../class-fire-utils_settings_map.php:2364
+msgid "Expand the last sticky post (for home and blog page only)"
+msgstr "最後のSticky投稿を拡大する(トップページ，ブログページのみ）"
+
+#: ../class-fire-utils_settings_map.php:2372
+msgid "Apply the grid layout to Home/Blog"
+msgstr "トップ，ブログにグリッドレイアウトを適用"
+
+#: ../class-fire-utils_settings_map.php:2380
+msgid "Apply the grid layout to Archives (archives, categories, author posts)"
+msgstr "アーカイブ（アーカイブ，カテゴリ，著者投稿）にグリッドレイアウトを適用"
+
+#: ../class-fire-utils_settings_map.php:2388
+msgid "Apply the grid layout to Search results"
+msgstr "検索結果にグリッドレイアウトを適用"
+
+#: ../class-fire-utils_settings_map.php:2392
+msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
+msgstr ""
+"チェックされていないコンテキストは交互サムネイルレイアウトで表示されます．"
+
+#: ../class-fire-utils_settings_map.php:2397
+msgid "Apply a shadow to each grid items"
+msgstr "グリッド要素に影を付ける"
+
+#: ../class-fire-utils_settings_map.php:2406
+msgid "Apply a colored bottom border to each grid items"
+msgstr "グリッド要素の下部に境界線を描く"
+
+#: ../class-fire-utils_settings_map.php:2415
+msgid "Display post format icons in the background"
+msgstr "投稿フォーマットアイコンを背景に表示する"
+
+#: ../class-fire-utils_settings_map.php:2425
+msgid "Max. length for post titles (in words)"
+msgstr "ポストタイトルの最大長さ（単語数）"
+
+#: ../class-fire-utils_settings_map.php:2436
+msgid "Thumbnails max height for the grid layout"
+msgstr "グリッド表示でのサムネイルの最大高さ"
+
+#: ../class-fire-utils_settings_map.php:2437
+msgid "Set the post grid thumbnail's max height in pixels"
+msgstr "投稿のグリッドサムネイルの最大高さをピクセルで設定"
+
+#: ../admin/class-admin-customize.php:232
+msgid "More grid design options"
+msgstr "グリッド配置の追加オプション"
+
+#: ../admin/class-admin-customize.php:241
+msgid "Jump to the blog design options"
+msgstr "ブログデザインのオプションへ"
+
+#: ../admin/class-admin-customize.php:412
+msgid "Hi! This is"
+msgstr "やあ！これは"
+
+#: ../admin/class-admin-customize.php:413
+msgid ", developer of the Customizr theme"
+msgstr "，Cusutomizrテーマの開発者"
+
+#: ../admin/class-admin-customize.php:416
+msgid ""
+"I'm doing my best to make Customizr the perfect free theme for you. If you "
+"think it helped you in any way to build a better web presence, please "
+"support it's continued development with a donation of $20, $50, ..."
+msgstr ""
+"Customizrを完全に無料のテーマであなたに送ります．このテーマでウェブの存在感が"
+"増したならば開発継続のための寄付($20, $50, ...)をお願いします．"
+
+#: ../admin/class-admin-customize.php:420
+msgid "Make a donation for Customizr"
+msgstr "Customizrに寄付"
+
+#: ../admin/class-admin-customize.php:423
+msgid ""
+"Once clicked the 'Hide forever' button, this donation block will not be "
+"displayed anymore.<br/>Either you are using Customizr for personal or "
+"business purposes, any kind of sponsorship will be appreciated to support "
+"this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> "
+"Live long and prosper with Customizr!</strong>"
+msgstr ""
+"「永久に隠す」ボタンをクリックすると二度と表示されません.<br/>Customizrを個"
+"人，商用目的で利用している場合，このフリーのテーマへのいかなる支援も感謝しま"
+"す.<br/><strong>寄付済みですか? 感謝します!<br/><br/> Customizrで繁栄を!</"
+"strong>"
+
+#: ../admin/class-admin-customize.php:424
+msgid "Hide forever"
+msgstr "永久に隠す"
+
+#: ../admin/class-admin-customize.php:425
+msgid "Let me think twice"
+msgstr "もう1回考えさせて"
+
+#: ../admin/class-admin-customize.php:434
+msgid "Need more customizations options and premium support ?"
+msgstr "追加のカスタマイズやプレミアムサポートは必要ですか？"
+
+#: ../admin/class-admin-customize.php:436
+#: ../admin/class-admin-customize.php:448
+#: ../admin/class-admin-customize.php:460
+#: ../admin/class-admin-customize.php:472
+msgid "Discover Customizr Pro"
+msgstr "Customizr Pro"
+
+#: ../admin/class-admin-customize.php:446
+msgid ""
+"Need more control on your fonts ? Style any text in live preview ( size, "
+"color, font family, effect, ...) with the Customizr Pro theme."
+msgstr ""
+"フォントをさらにカスタマイズしたいですか？Customizr Proテーマでテキストをライ"
+"ブプレビューで ( size, color, font family, effect, ...) 設定してください．"
+
+#: ../admin/class-admin-customize.php:458
+msgid "Add unlimited featured pages with Customizr Pro"
+msgstr "Customizr Proで無制限におすすめページを追加"
+
+#: ../admin/class-admin-customize.php:470
+msgid "Customize your footer credits with Customizr Pro"
+msgstr "Customizr Proでフッターのクレジットをカスタマイズ"
+
+#: ../admin/class-admin-customize.php:481
+msgid "If you like"
+msgstr "もしあなたが"
+
+#: ../admin/class-admin-customize.php:482
+msgid "the Customizr theme"
+msgstr "Customizrテーマ"
+
+#: ../admin/class-admin-customize.php:482
+msgid "the Customizr pro theme"
+msgstr "Customizr proテーマ"
+
+#: ../admin/class-admin-customize.php:483
+msgid "we would love to receive a"
+msgstr "をお気に入りでしたら，"
+
+#: ../admin/class-admin-customize.php:485
+msgid "Review the Customizr theme"
+msgstr "Customizrテーマを評価して"
+
+#: ../admin/class-admin-customize.php:487
+msgid "rating. Thanks :) !"
+msgstr "ください．ありがとう！"
+
+#: ../admin/class-admin-customize.php:503
+#: ../admin/class-admin-customize.php:504
+msgid "Upgrade WP"
+msgstr "WP更新"
+
+#: ../admin/class-admin-customize.php:523
+msgid "This theme requires WordPress 3.4+"
+msgstr "このテーマはWordPress 3.4以上が必要です"
+
+#: ../admin/class-admin-customize.php:526
+#: ../admin/class-admin-customize.php:527
+msgid "Upgrade Wordpress Now"
+msgstr "Wordpressを今図す更新"
+
+#: ../admin/class-admin-meta_boxes.php:87
+msgid "Layout Options"
+msgstr "レイアウトオプション"
+
+#: ../admin/class-admin-meta_boxes.php:95
+#: ../admin/class-admin-meta_boxes.php:466
+msgid "Slider Options"
+msgstr "スライダオプション"
+
+#: ../admin/class-admin-meta_boxes.php:164
+#, php-format
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "デフォルトの%1$s レイアウトを%2$sに設定"
+
+#: ../admin/class-admin-meta_boxes.php:164
+msgid "pages"
+msgstr "ページ"
+
+#: ../admin/class-admin-meta_boxes.php:164
+msgid "posts"
+msgstr "投稿"
+
+#: ../admin/class-admin-meta_boxes.php:169
+msgid ""
+"You have checked the <i>\"Force global default layout for all posts and pages"
+"\"</i>, you must unchecked this option to enable a specific layout for this "
+"post."
+msgstr ""
+"もし<i>\"強制的に既定のレイアウトをすべての投稿と固定ページに適用\"</i>を"
+"チェックした場合, あなたはこのオプションのチェックを外してこの投稿独自のレイ"
+"アウトを有効にしてください."
+
+#: ../admin/class-admin-meta_boxes.php:170
+msgid "Change layout options"
+msgstr "レイアウトオプションを変更します"
+
+#: ../admin/class-admin-meta_boxes.php:174
+#, php-format
+msgid ""
+"You can define a specific layout for %1$s by using the pre-defined left and "
+"right sidebars. The default layouts can be defined in the WordPress "
+"customizer screen %2$s.<br />"
+msgstr ""
+"初期設定の左右のサイドバーを使って%1$s用の独自のレイアウトを定義できます．こ"
+"の既定のレイアウトはワードプレスのカスタマイズ画面%2$sで定義できます．"
+
+#: ../admin/class-admin-meta_boxes.php:175
+#: ../admin/class-admin-meta_boxes.php:180
+msgid "this page"
+msgstr "このページ"
+
+#: ../admin/class-admin-meta_boxes.php:175
+#: ../admin/class-admin-meta_boxes.php:180
+msgid "this post"
+msgstr "この投稿"
+
+#: ../admin/class-admin-meta_boxes.php:176
+msgid "here"
+msgstr "こちら"
+
+#: ../admin/class-admin-meta_boxes.php:179
+#, php-format
+msgid "Select a specific layout for %1$s"
+msgstr "%1$s 用のレイアウトを選択してください"
+
+#: ../admin/class-admin-meta_boxes.php:183
+#, php-format
+msgid "Default layout %1s"
+msgstr "規定のレイアウト %1s"
+
+#: ../admin/class-admin-meta_boxes.php:225
+msgid "Add a slider to this post/page"
+msgstr "この投稿/ページにスライダーを追加する"
+
+#: ../admin/class-admin-meta_boxes.php:289
+#: ../admin/class-admin-meta_boxes.php:673
+msgid "Choose a slider"
+msgstr "スライダーを選択"
+
+#: ../admin/class-admin-meta_boxes.php:296
+#: ../admin/class-admin-meta_boxes.php:688
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; スライダーを選択 &mdash; "
+
+#: ../admin/class-admin-meta_boxes.php:301
+msgid ""
+"To create a new slider : open the media library, edit your images and add "
+"them to your new slider."
+msgstr ""
+"新しいスライダーを作成するには：メディアライブラリを開き，画像を編集し，新し"
+"いスライダーに追加してください．"
+
+#: ../admin/class-admin-meta_boxes.php:305
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "スライド更新間隔（デフォルト：5000ms）"
+
+#: ../admin/class-admin-meta_boxes.php:312
+msgid "Slider Layout : set the slider in full width"
+msgstr "スライダのレイアウト：スライダを幅全体に設定"
+
+#: ../admin/class-admin-meta_boxes.php:329
+#: ../admin/class-admin-meta_boxes.php:697
+msgid "Delete this slider"
+msgstr "スライダ削除"
+
+#: ../admin/class-admin-meta_boxes.php:334
+#: ../admin/class-admin-meta_boxes.php:701
+msgid ""
+"The slider will be deleted permanently (images, call to actions and link "
+"will be kept)."
+msgstr ""
+"このスライダは永久に削除されます（画像，call to actions とリンクは保存されま"
+"す)"
+
+#: ../admin/class-admin-meta_boxes.php:337
+#: ../admin/class-admin-meta_boxes.php:704
+msgid "Delete slider"
+msgstr "スライダ削除"
+
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:82
+msgid ""
+"You haven't create any slider yet. Go to the media library, edit your images "
+"and add them to your sliders."
+msgstr ""
+"スライダが一つもありません．メディアライブラリい移動して，画像を編集しスライ"
+"ダに追加してください．"
+
+#: ../admin/class-admin-meta_boxes.php:495
+msgid "Add to a slider"
+msgstr "スライダー追加"
+
+#: ../admin/class-admin-meta_boxes.php:497
+msgid "Add to a slider (create one if needed)"
+msgstr "スライダーに追加する (必要であれば作成)"
+
+#: ../admin/class-admin-meta_boxes.php:630
+msgid "Title text (80 car. max length)"
+msgstr "タイトル(最長80文字)"
+
+#: ../admin/class-admin-meta_boxes.php:637
+msgid "Description text (below the title, 250 car. max length)"
+msgstr "詳細テキスト(タイトルの下，最大250文字)"
+
+#: ../admin/class-admin-meta_boxes.php:644
+msgid "Title and text color"
+msgstr "タイトルとテキスト色"
+
+#: ../admin/class-admin-meta_boxes.php:652
+msgid "Button text (80 car. max length)"
+msgstr "ボタン(最大80文字)"
+
+#: ../admin/class-admin-meta_boxes.php:659
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "リンクした固定ページや投稿を選択（過去100ページより）"
+
+#: ../admin/class-admin-meta_boxes.php:664
+msgid "No link"
+msgstr "リンクなし"
+
+#: ../admin/class-admin-meta_boxes.php:694
+#: ../admin/class-admin-meta_boxes.php:723
+msgid "Add a slider"
+msgstr "スライダー追加"
+
+#: ../admin/class-admin-meta_boxes.php:721
+msgid ""
+"You haven't create any slider yet. Write a slider name and click on the "
+"button to add you first slider."
+msgstr ""
+"あなたはスライダーを作成していません．スライダー名を記入し，ボタンをクリック"
+"して新しいスライダーに追加してください．"
+
+#: ../admin/class-admin-meta_boxes.php:838
+msgid ""
+"This slider has not slides to show. Go to the media library and start adding "
+"images to it."
+msgstr ""
+"このスライダーは表示するスライドがありません．メディアライブラリーに移動し"
+"て，画像を追加してください．"
+
+#: ../admin/class-admin-meta_boxes.php:848
+msgid "Slide Image"
+msgstr "スライドイメージ"
+
+#: ../admin/class-admin-meta_boxes.php:849
+msgid "Title"
+msgstr "タイトル"
+
+#: ../admin/class-admin-meta_boxes.php:850
+msgid "Slide Text"
+msgstr "スライドのテキスト"
+
+#: ../admin/class-admin-meta_boxes.php:851
+msgid "Button Text"
+msgstr "ボタンテキスト"
+
+#: ../admin/class-admin-meta_boxes.php:852
+msgid "Button Link"
+msgstr "ボタンのリンク"
+
+#: ../admin/class-admin-meta_boxes.php:853
+#: ../parts/class-content-breadcrumb.php:645
+#: ../parts/class-content-breadcrumb.php:678
+#: ../parts/class-content-breadcrumb.php:693
+#: ../parts/class-content-breadcrumb.php:721
+#: ../parts/class-content-comments.php:195
+#: ../parts/class-content-featured_pages.php:214
+#: ../parts/class-content-headings.php:238
+#: ../parts/class-content-slider.php:344
+msgid "Edit"
+msgstr "編集"
+
+#: ../admin/class-admin-meta_boxes.php:894
+msgid "No Image Selected"
+msgstr "イメージ未選択"
+
+#: ../admin/class-admin-meta_boxes.php:920
+msgid "Edit this slide"
+msgstr "Modifier la diapositive"
+
+#: ../admin/class-admin-meta_boxes.php:922
+msgid "Current slide"
+msgstr "現在のスライド"
+
+#: ../admin/class-controls.php:84
+msgid "Create a slider"
+msgstr "スライダを作成"
+
+#: ../admin/class-controls.php:85
+msgid "Need help to create a slider ?"
+msgstr "スライダー作成方法?"
+
+#: ../admin/class-controls.php:87
+msgid "Check the documentation"
+msgstr "ドキュメントをチェック"
+
+#: ../admin/class-controls.php:315
+msgid "Upload"
+msgstr "アップロード"
+
+#: ../admin/class-controls.php:316
+msgid "Remove"
+msgstr "削除"
+
+#: ../admin/class-fire-admin_init.php:81 ../admin/class-fire-admin_init.php:82
+#: ../admin/class-fire-admin_page.php:40
+msgid "About Customizr"
+msgstr "Customizrについて"
+
+#: ../admin/class-fire-admin_init.php:104
+#: ../admin/class-fire-admin_page.php:68
+msgid "Need help with Customizr ?"
+msgstr "Customizrについて何か知りたいですか?"
+
+#: ../admin/class-fire-admin_init.php:106
+#: ../admin/class-fire-admin_page.php:70
+#, php-format
+msgid "Welcome to Customizr %s"
+msgstr "Customizr %s へようこそ"
+
+#: ../admin/class-fire-admin_init.php:113
+#: ../admin/class-fire-admin_page.php:78
+#, php-format
+msgid ""
+"You can start by watching the <a href=\"%1$s\" target=\"_blank"
+"\">introduction video</a> or by reading <a href=\"%2$s\" target=\"_blank"
+"\">the documentation</a>.<br/> If you don't find an answer to your issue, "
+"don't panic! Since Customizr is used by a growing community of webmasters "
+"reporting bugs and making continuous improvements, you will probably find a "
+"solution to your problem either in the FAQ or in the user forum."
+msgstr ""
+"<a href=\"%1$s\" target=\"_blank\">紹介ビデオ</a>を見るか，<a href=\"%2$s\" "
+"target=\"_blank\">ドキュメント</a>を読んでから始めてください.<br/> 問題の答え"
+"が見つからない場合，慌てないで！Customizr はたくさんのウェブ管理者に使われて"
+"いて，バグ報告，どんどん改良されていますから，FAQやユーザーフォーラムで答えを"
+"見つけることができるでしょう．"
+
+#: ../admin/class-fire-admin_init.php:121
+#: ../admin/class-fire-admin_page.php:86
+msgid "Read the documentation"
+msgstr "ドキュメントを読む"
+
+#: ../admin/class-fire-admin_init.php:125
+#: ../admin/class-fire-admin_page.php:90
+msgid "Check the FAQ"
+msgstr "FAQを調べる"
+
+#: ../admin/class-fire-admin_init.php:130
+#: ../admin/class-fire-admin_page.php:95
+msgid "Code snippets"
+msgstr "コードスニペット"
+
+#: ../admin/class-fire-admin_init.php:133
+msgid "Discuss in the user forum"
+msgstr "ユーザーフォーラムで議論"
+
+#: ../admin/class-fire-admin_init.php:141
+#: ../admin/class-fire-admin_page.php:106
+#, php-format
+msgid ""
+"Thank you for using Customizr! Customizr %1$s has more features, is safer "
+"and more stable than ever <a href=\"#customizr-changelog\">(see the "
+"changelog)</a> to help you build an awesome website. Watch the <a href=\"%2$s"
+"\" target=\"_blank\">introduction video</a> and find inspiration in the <a "
+"href=\"#showcase\">showcase</a>.<br/>Enjoy it! "
+msgstr ""
+"Customizr利用に感謝します!Customizr %1$sはたくさんの機能があり，以前<a href="
+"\"#customizr-changelog\">(changelogをみる)</a>よりもっと安全で安定になり，あ"
+"なたが最高のウェブサイトを作る手助けをします．<a href=\"%2$s\" target="
+"\"_blank\">紹介ビデオ</a>を見て，<a href=\"#showcase\">ショーケース</a>からア"
+"イデアを見つけてください.<br/>Enjoy it!"
+
+#: ../admin/class-fire-admin_init.php:155
+#: ../admin/class-fire-admin_page.php:120
+#, php-format
+msgid ""
+"You are using a child theme of Customizr %1$s : always check the %2$s after "
+"upgrading to see if a function or a template has been deprecated."
+msgstr ""
+"あなたはCursomizr %1$sの子テーマを使っています：アップグレード後は常に%2$sを"
+"チェックしテンプレートや関数が廃止されていないか確認してください．"
+
+#: ../admin/class-fire-admin_init.php:170
+#: ../admin/class-fire-admin_page.php:137
+msgid "We need sponsors!"
+msgstr "スポンサー募集中!"
+
+#: ../admin/class-fire-admin_init.php:171
+#: ../admin/class-fire-admin_page.php:138
+msgid ""
+"<strong>We do our best do make Customizr the perfect free theme for you!</"
+"strong><br/> Please help support it's continued development with a donation "
+"of $20, $50, or even $100."
+msgstr ""
+"<strong>Customizrをあなたのために完全なフリーテーマとするために最善を尽くして"
+"います!</strong><br/> 開発継続のための寄付$20, $50, $100での支援をお願いしま"
+"す．"
+
+#: ../admin/class-fire-admin_init.php:178
+#: ../admin/class-fire-admin_page.php:145
+msgid "Happy user of Customizr?"
+msgstr "Custoimzrのユーザで満足ですか？"
+
+#: ../admin/class-fire-admin_init.php:179
+#: ../admin/class-fire-admin_page.php:146
+msgid ""
+"If you are happy with the theme, say it on wordpress.org and give Customizr "
+"a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr ""
+"このテーマに満足していたら，wordpress.org でそれを表明して，Customizrでレ"
+"ビューを書いてください<br />(あなたのフィードバックをお願いします)"
+
+#: ../admin/class-fire-admin_init.php:184
+#: ../admin/class-fire-admin_page.php:151
+msgid "Follow us"
+msgstr "フォロー"
+
+#: ../admin/class-fire-admin_init.php:192
+#: ../admin/class-fire-admin_page.php:160
+msgid "Customizr's extensions"
+msgstr "Customizr's extensions"
+
+#: ../admin/class-fire-admin_init.php:195
+#: ../admin/class-fire-admin_init.php:204
+#: ../admin/class-fire-admin_page.php:163
+#: ../admin/class-fire-admin_page.php:172
+msgid "Visit the extension's page"
+msgstr "Customizr's extensionsのページへ"
+
+#: ../admin/class-fire-admin_init.php:196
+#: ../admin/class-fire-admin_page.php:164
+msgid "Easily take your web design one step further"
+msgstr "あなたのウェブのデザインをもっと良くします．"
+
+#: ../admin/class-fire-admin_init.php:197
+#: ../admin/class-fire-admin_page.php:165
+msgid ""
+"The Customizr's extensions are plugins developed to extend the Customizr "
+"theme with great features. Nicely integrated with the theme's built-in "
+"options, they can be enabled/disabled safely with no side effects on your "
+"existing settings or customizations."
+msgstr ""
+"Customizr's extensionsはCutsomizrテーマを強力な機能で拡張するために開発された"
+"プラグインです．テーマに含まれているオプションと連携して，設定済みのオプショ"
+"ンやカスタマイズへの影響なしに安全にこれらの機能を有効/無効化できます．"
+
+#: ../admin/class-fire-admin_init.php:199
+#: ../admin/class-fire-admin_page.php:167
+msgid ""
+"These modules are designed to be simple to use for everyone. They are a good "
+"solution to add some creative customizations whitout needing to dive into "
+"the code."
+msgstr ""
+"これらのモジュールは誰にでもつかえるようにシンプルに設計されています．プログ"
+"ラムに手を入れることなく創造的なカスタマイズを追加することができる方法です．"
+
+#: ../admin/class-fire-admin_init.php:201
+#: ../admin/class-fire-admin_page.php:169
+msgid ""
+"Customizr's extensions are installed and upgraded from your WordPress admin, "
+"like any other WordPress plugins. Well documented and easily extendable with "
+"hooks, they come with a dedicated support forum on presscustomizr.com."
+msgstr ""
+"Customizr's extensionsは他のWordPressプラグインと同様にWordPress管理画面から"
+"インストール，アップグレードできます．hookを使い，わかりやすく簡単な拡張で，"
+"presscustomizr.comのサポートフォーラムもあります．"
+
+#: ../admin/class-fire-admin_init.php:210
+#: ../admin/class-fire-admin_page.php:179
+msgid "Customizr Showcase"
+msgstr "Customizrショーケース"
+
+#: ../admin/class-fire-admin_init.php:213
+#: ../admin/class-fire-admin_init.php:220
+#: ../admin/class-fire-admin_page.php:182
+#: ../admin/class-fire-admin_page.php:189
+msgid "Visit the showcase"
+msgstr "ショーケースへ"
+
+#: ../admin/class-fire-admin_init.php:214
+#: ../admin/class-fire-admin_page.php:183
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "あなたの次のCustomizrを使ったウェブサイトのアイデアを探そう!"
+
+#: ../admin/class-fire-admin_init.php:215
+#: ../admin/class-fire-admin_page.php:184
+msgid ""
+"This showcase aims to show what can be done with Customizr and helping other "
+"users to find inspiration for their web design."
+msgstr ""
+"このショーケースはCusutomizrでできることを示すため，ウェブデザインのアイデア"
+"を探すためにあります．"
+
+#: ../admin/class-fire-admin_init.php:217
+#: ../admin/class-fire-admin_page.php:186
+msgid ""
+"Do you think you made an awesome website that can inspire people? Submitting "
+"a site for review is quick and easy to do."
+msgstr ""
+"人々に注目される最高のウェブサイトだと思っていますか？レビューにサイトを投稿"
+"するのが早くて簡単な方法です．"
+
+#: ../admin/class-fire-admin_init.php:227
+#: ../admin/class-fire-admin_page.php:256
+#, php-format
+msgid "Changelog in version %1$s"
+msgstr "Version %1$sの更新ログ"
+
+#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_page.php:198
+msgid "Go to Dashboard &rarr; Home"
+msgstr "ダッシュボード &rarr; トップへ"
+
+#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_page.php:198
+msgid "Go to Dashboard"
+msgstr "ダッシュボードへ"
+
+#: ../admin/class-fire-admin_page.php:98
+msgid "Get support in the forum"
+msgstr "フォーラムからサポートを受ける"
+
+#: ../admin/class-fire-admin_page.php:273
+msgid "System Informations"
+msgstr "システム情報"
+
+#: ../admin/class-fire-admin_page.php:274
+msgid "Please include the following informations when posting support requests"
+msgstr "サポートリクエストを投稿する場合は次の情報を記載してください．"
+
+#: ../admin/class-fire-admin_page.php:275
+msgid ""
+"To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
+"(Mac)."
+msgstr ""
+"システム情報をコピーするときは下記をクリックして Ctrl + C (PC) or Cmd + C "
+"(Mac)を入力．"
+
+#: ../parts/class-content-attachment.php:41
+msgid "&larr; Previous"
+msgstr "&larr; 前へ"
+
+#: ../parts/class-content-attachment.php:42
+msgid "Next &rarr;"
+msgstr "次へ &rarr;"
+
+#: ../parts/class-content-breadcrumb.php:38
+#: ../parts/class-content-breadcrumb.php:50
+msgid "Home"
+msgstr "ホーム"
+
+#: ../parts/class-content-breadcrumb.php:47
+msgid "Browse:"
+msgstr "閲覧"
+
+#: ../parts/class-content-breadcrumb.php:524
+msgid "g:i a"
+msgstr "g:i a"
+
+#: ../parts/class-content-breadcrumb.php:527
+#, php-format
+msgid "Minute %1$s"
+msgstr "分 %1$s"
+
+#: ../parts/class-content-breadcrumb.php:527
+msgid "i"
+msgstr "i"
+
+#: ../parts/class-content-breadcrumb.php:530
+msgid "g a"
+msgstr "g a"
+
+#: ../parts/class-content-breadcrumb.php:546
+#: ../parts/class-content-breadcrumb.php:556
+#: ../parts/class-content-breadcrumb.php:565
+#: ../parts/class-content-breadcrumb.php:576
+#: ../parts/class-content-breadcrumb.php:578
+#: ../parts/class-content-breadcrumb.php:777
+msgid "Y"
+msgstr "Y"
+
+#: ../parts/class-content-breadcrumb.php:547
+#: ../parts/class-content-breadcrumb.php:568
+#: ../parts/class-content-breadcrumb.php:570
+#: ../parts/class-content-breadcrumb.php:781
+msgid "F"
+msgstr "F"
+
+#: ../parts/class-content-breadcrumb.php:550
+#: ../parts/class-content-breadcrumb.php:552
+#: ../parts/class-content-breadcrumb.php:785
+msgid "d"
+msgstr "d"
+
+#: ../parts/class-content-breadcrumb.php:559
+#: ../parts/class-content-breadcrumb.php:561
+#, php-format
+msgid "Week %1$s"
+msgstr "Week %1$s"
+
+#: ../parts/class-content-breadcrumb.php:587
+#: ../parts/class-content-breadcrumb.php:589
+#, php-format
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "検索結果 &quot;%1$s&quot;"
+
+#: ../parts/class-content-breadcrumb.php:594
+msgid "404 Not Found"
+msgstr "404 Not Found"
+
+#: ../parts/class-content-breadcrumb.php:599
+#: ../parts/class-content-breadcrumb.php:601
+#, php-format
+msgid "Page %d"
+msgstr "ページ %d"
+
+#: ../parts/class-content-breadcrumb.php:670
+msgid "Split"
+msgstr "分割"
+
+#: ../parts/class-content-breadcrumb.php:674
+msgid "Merge"
+msgstr "結合"
+
+#: ../parts/class-content-comments.php:92
+msgid "One thought on"
+msgstr "One thought on"
+
+#: ../parts/class-content-comments.php:94
+msgid "thoughts on"
+msgstr "thoughts on"
+
+#: ../parts/class-content-comments.php:154
+msgid "Pingback:"
+msgstr "ピンバック"
+
+#: ../parts/class-content-comments.php:154
+msgid "(Edit)"
+msgstr "(編集)"
+
+#: ../parts/class-content-comments.php:181
+msgid "Reply"
+msgstr "返事"
+
+#: ../parts/class-content-comments.php:194
+msgid "Post author"
+msgstr "投稿者"
+
+#: ../parts/class-content-comments.php:201
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s， %2$s"
+
+#: ../parts/class-content-comments.php:206
+msgid "Your comment is awaiting moderation."
+msgstr "あなたのコメントはモデレート待ちです"
+
+#: ../parts/class-content-comments.php:241
+msgid "Comment navigation"
+msgstr "コメントナビゲーション"
+
+#: ../parts/class-content-comments.php:247
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> 以前のコメント"
+
+#: ../parts/class-content-comments.php:255
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "新しいコメント <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-comments.php:287
+msgid "Comments are closed."
+msgstr "コメントは終了"
+
+#: ../parts/class-content-comments.php:322
+msgid "Leave a comment"
+msgstr "コメントをする"
+
+#: ../parts/class-content-comments.php:344
+msgid "Comment(s) on"
+msgstr "コメント："
+
+#: ../parts/class-content-comments.php:363
+msgid "comment"
+msgstr "コメント"
+
+#: ../parts/class-content-featured_pages.php:127
+msgid "Customizer screen"
+msgstr "カスタマイズ画面"
+
+#: ../parts/class-content-featured_pages.php:127
+msgid " here"
+msgstr "ここ"
+
+#: ../parts/class-content-featured_pages.php:131
+msgid "Featured page"
+msgstr "おすすめページ"
+
+#: ../parts/class-content-featured_pages.php:134
+#, php-format
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the Customizr screen%s."
+msgstr ""
+"おすすめページの詳細テキスト：ページの抜粋を用いるかCustomizr画面%sのカスタム"
+"テキストを使います．"
+
+#: ../parts/class-content-gallery.php:63
+msgid "Missing Attachment"
+msgstr "添付リンク切れ"
+
+#: ../parts/class-content-headings.php:182
+#: ../parts/class-content-headings.php:187
+msgid "{no title} Read the post &raquo;"
+msgstr "{タイトルなし} 投稿を読む &raquo;"
+
+#: ../parts/class-content-headings.php:186
+#, php-format
+msgid "Permalink to %s"
+msgstr "%sへのパーマリンク"
+
+#: ../parts/class-content-headings.php:321
+msgid "Ooops, page not found"
+msgstr "おっと，ページが見つかりません．"
+
+#: ../parts/class-content-headings.php:335
+msgid "No"
+msgstr "いいえ"
+
+#: ../parts/class-content-headings.php:369 ../parts/class-content-post.php:134
+#, php-format
+msgid "About %s"
+msgstr "%s について"
+
+#: ../parts/class-content-headings.php:409
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "本日の投稿：%s"
+
+#: ../parts/class-content-headings.php:409
+msgid "Archives"
+msgstr "アーカイブ"
+
+#: ../parts/class-content-headings.php:410
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "今月の投稿： %s"
+
+#: ../parts/class-content-headings.php:411
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "今年の投稿：%s"
+
+#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:96
+#: ../parts/class-content-post_list.php:239
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "続きを読む <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:97
+#: ../parts/class-content-post_list.php:241
+msgid "Pages:"
+msgstr "固定ページ："
+
+#: ../parts/class-content-post.php:138
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%sのすべての投稿を表示 <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-post_metas.php:182
+#, php-format
+msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
+msgstr ""
+"この投稿は %1$s<span class=\"by-author\"> に %2$s</span>が投稿しました．"
+
+#: ../parts/class-content-post_metas.php:201
+msgid "Published"
+msgstr "公開"
+
+#: ../parts/class-content-post_metas.php:204
+msgid "at dimensions"
+msgstr "寸法"
+
+#: ../parts/class-content-post_metas.php:204
+msgid "Link to full-size image"
+msgstr "フルサイズ画像へのリンク"
+
+#: ../parts/class-content-post_metas.php:205
+#: ../parts/class-content-post_metas.php:533
+msgid "in"
+msgstr "in"
+
+#: ../parts/class-content-post_metas.php:205
+msgid "Return to "
+msgstr "戻る："
+
+#: ../parts/class-content-post_metas.php:267
+#, php-format
+msgid "This entry was posted in %1$s and tagged %2$s"
+msgstr "%1$s への投稿．タグ：%2$s"
+
+#: ../parts/class-content-post_metas.php:269
+#, php-format
+msgid "This entry was posted in %1$s"
+msgstr "%1$s への投稿"
+
+#: ../parts/class-content-post_metas.php:271
+#, php-format
+msgid "This entry was tagged %2$s"
+msgstr "タグ%2$s"
+
+#: ../parts/class-content-post_metas.php:280
+#, php-format
+msgid "This entry was posted on %1$s"
+msgstr "投稿日時:%1$s"
+
+#: ../parts/class-content-post_metas.php:282
+#, php-format
+msgid "on %1$s"
+msgstr "%1$s"
+
+#: ../parts/class-content-post_metas.php:284
+#, php-format
+msgid "and posted on %1$s"
+msgstr ", 投稿日時 %1$s"
+
+#: ../parts/class-content-post_metas.php:296
+msgid "This entry was posted"
+msgstr "この項目の"
+
+#: ../parts/class-content-post_metas.php:296
+#: ../parts/class-content-post_metas.php:298
+#, php-format
+msgid "by %1$s"
+msgstr "投稿者:%1$s"
+
+#: ../parts/class-content-post_metas.php:312
+msgid "(updated today)"
+msgstr "(今日更新)"
+
+#: ../parts/class-content-post_metas.php:312
+#, php-format
+msgid "(updated %s days ago)"
+msgstr "(%s日前に更新)"
+
+#: ../parts/class-content-post_metas.php:313
+msgid "(updated 1 day ago)"
+msgstr "(昨日更新)"
+
+#: ../parts/class-content-post_metas.php:316
+#, php-format
+msgid "(updated on %1$s)"
+msgstr "(%1$s更新)"
+
+#: ../parts/class-content-post_metas.php:367
+#, php-format
+msgid "View all posts in %s"
+msgstr "カテゴリ%sの投稿を表示"
+
+#: ../parts/class-content-post_metas.php:464
+#, php-format
+msgid "View all posts by %s"
+msgstr "%sの投稿を表示"
+
+#: ../parts/class-content-post_metas.php:484
+msgid "Open"
+msgstr "開く"
+
+#: ../parts/class-content-post_metas.php:534
+msgid "tagged"
+msgstr "タグ"
+
+#: ../parts/class-content-post_metas.php:557
+msgid "by"
+msgstr "by"
+
+#: ../parts/class-content-post_navigation.php:94
+#: ../parts/class-content-post_navigation.php:149
+msgid "Post navigation"
+msgstr "ナビゲーション"
+
+#: ../parts/class-content-post_navigation.php:162
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> 前の投稿"
+
+#: ../parts/class-content-post_navigation.php:182
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "次の投稿 <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../parts/class-content-sidebar.php:128
+#: ../parts/class-footer-footer_main.php:102
+msgid "This block is visible for admin users only."
+msgstr "このブロックは管理者のみ閲覧可能です．"
+
+#: ../parts/class-content-sidebar.php:132
+msgid "The sidebar : "
+msgstr "サイドバー："
+
+#: ../parts/class-content-sidebar.php:134
+msgid "has no widgets"
+msgstr "ウィジェットがありません．"
+
+#: ../parts/class-content-sidebar.php:138
+msgid "You can add widgets to this sidebar in :"
+msgstr "このサイドバーにウィジェットを追加："
+
+#: ../parts/class-content-sidebar.php:140
+#: ../parts/class-footer-footer_main.php:112
+msgid "Add widgets"
+msgstr "ウィジェット追加"
+
+#: ../parts/class-content-sidebar.php:141
+#: ../parts/class-footer-footer_main.php:113
+msgid "appearance > widgets"
+msgstr "外観 > ウィジェット"
+
+#: ../parts/class-content-sidebar.php:145
+msgid "You can also remove this sidebar by changing the current page layout."
+msgstr "ページレイアウトを変更することでサイドバーを削除できます．"
+
+#: ../parts/class-content-sidebar.php:147
+msgid "Changing the layout in the Customizr theme"
+msgstr "Customizrテーマのレイアウトを変更"
+
+#: ../parts/class-content-sidebar.php:148
+msgid "See the theme documentation."
+msgstr "テーマのドキュメントを読む．"
+
+#: ../parts/class-content-sidebar.php:152
+#: ../parts/class-footer-footer_main.php:117
+msgid "dismiss notice"
+msgstr "お知らせを削除"
+
+#: ../parts/class-footer-footer_main.php:106
+msgid "The footer has no widgets"
+msgstr "このフッターはウィジェットがありません．"
+
+#: ../parts/class-footer-footer_main.php:110
+msgid "You can add widgets to the footer in :"
+msgstr "フッターをウィジェットに追加できます："
+
+#: ../parts/class-footer-footer_main.php:221
+msgid "Back to top"
+msgstr "上に戻る"
+
+#: ../parts/class-header-header_main.php:285
+msgid "Back Home"
+msgstr "トップページへ戻る"
+
+#: ../parts/class-header-menu.php:130
+msgid "Add a menu"
+msgstr "メニュー追加"
+
+#~ msgid "Category Archives :"
+#~ msgstr "カテゴリ:"
+
+#~ msgid "Tag Archives :"
+#~ msgstr "タグの投稿："
+
+#~ msgid "Author Archives :"
+#~ msgstr "著者の投稿："

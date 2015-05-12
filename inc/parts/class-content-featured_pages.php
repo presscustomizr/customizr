@@ -6,9 +6,9 @@
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_featured_pages' ) ) :
@@ -31,8 +31,8 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       function tc_fp_block_display() {
 
       		//gets display options
-      		$tc_show_featured_pages 	      = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
-      		$tc_show_featured_pages_img     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
+      		$tc_show_featured_pages 	      = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
+      		$tc_show_featured_pages_img     = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) );
 
           if ( !apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && tc__f('__is_home') ) )
             return;
@@ -110,7 +110,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
         * @todo better area definition : dynamic
         */
         function tc_fp_single_display( $fp_single_id,$show_img) {
-          $_skin_color                        = TC_utils::$instance -> tc_get_skin_color();
+          $_skin_color                        = TC_utils::$inst -> tc_get_skin_color();
           $fp_holder_img                      = apply_filters (
             'tc_fp_holder_img' ,
             sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" />',
@@ -121,7 +121,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
           $featured_page_id                   = 0;
 
           //if fps are not set
-          if ( null == tc__f( '__get_option' , 'tc_featured_page_'.$fp_single_id ) || ! tc__f( '__get_option' , 'tc_featured_page_'.$fp_single_id ) ) {
+          if ( null == TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
               //admin link if user logged in
               $featured_page_link             = is_user_logged_in() ? apply_filters( 'tc_fp_link_url', admin_url().'customize.php' , $fp_single_id ) : '';
               $admin_link                     = is_user_logged_in() ? '<a href="'.admin_url().'customize.php" title="'.__( 'Customizer screen' , 'customizr' ).'">'.__( ' here' , 'customizr' ).'</a>' : '';
@@ -142,7 +142,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
           }
 
           else {
-              $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( tc__f( '__get_option' , 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
+              $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
 
               $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
 
@@ -152,7 +152,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
               $edit_enabled                   = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
               $edit_enabled                   = apply_filters( 'tc_edit_in_fp_title', $edit_enabled );
 
-              $featured_text                  = apply_filters( 'tc_fp_text', tc__f( '__get_option' , 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
+              $featured_text                  = apply_filters( 'tc_fp_text', TC_utils::$inst->tc_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
               $featured_text                  = apply_filters( 'tc_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
 
               //get the page/post object
@@ -169,56 +169,19 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
               //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
               $fp_img_size                    = apply_filters( 'tc_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
               //allow user to specify a custom image id
-              $fp_custom_img_id               = apply_filters( 'fp_img_id', false , $fp_single_id , $featured_page_id );
+              $fp_custom_img_id               = apply_filters( 'fp_img_id', null , $fp_single_id , $featured_page_id );
 
-              if ( has_post_thumbnail( $featured_page_id ) && ! $fp_custom_img_id ) {
-                    $fp_img_id                = get_post_thumbnail_id( $featured_page_id );
-
-                    //check if tc-thumb size exists for attachment and return large if not
-                    $image                    = wp_get_attachment_image_src( $fp_img_id , $fp_img_size );
-                    $fp_img_size              = ( isset($image[3]) && null == $image[3] ) ? 'medium' : $fp_img_size ;
-
-                    $fp_img                   = get_the_post_thumbnail( $featured_page_id , $fp_img_size);
-                    //get height and width if set
-                    if ( ! empty($image[1]) && ! empty($image[2]) ) {
-                      $fp_img_height            = $image[2];
-                      $fp_img_width             = $image[1];
-                    }
-              }
-
-              //If not uses the first attached image
-              else {
-                  //look for attachements
-                  $tc_args = array(
-                    'numberposts'           =>  1,
-                    'post_type'             =>  'attachment' ,
-                    'post_status'           =>  null,
-                    'post_parent'           =>  $featured_page_id,
-                    'post_mime_type'        =>  array( 'image/jpeg' , 'image/gif' , 'image/jpg' , 'image/png' )
-                    );
-
-                    $attachments            =  ! $fp_custom_img_id ? get_posts( $tc_args) : get_post( $fp_custom_img_id );
-
-                    if ( $attachments) {
-
-                        foreach ( $attachments as $attachment) {
-                           //check if tc-thumb size exists for attachment and return large if not
-                          $image            = wp_get_attachment_image_src( $attachment->ID, $fp_img_size );
-                          $fp_img_size      = ( isset($image[3]) && false == $image[3] ) ? 'medium' : $fp_img_size;
-                          $fp_img           = wp_get_attachment_image( $attachment->ID, $fp_img_size );
-                          //get height and width
-                          if ( ! empty($image[1]) && ! empty($image[2]) ) {
-                            $fp_img_height            = $image[2];
-                            $fp_img_width             = $image[1];
-                          }
-                        }//end foreach
-
-                    }//end if
-
-              }
+              //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
+              //tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
+              $_fp_img_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
 
               //finally we define a default holder if no thumbnail found or page is protected
-              $fp_img                 = apply_filters ('fp_img_src' , ( ! isset( $fp_img) || post_password_required($featured_page_id) ) ? $fp_holder_img : $fp_img , $fp_single_id , $featured_page_id );
+              if ( isset( $_fp_img_model["tc_thumb"]) && ! empty( $_fp_img_model["tc_thumb"] ) && ! post_password_required( $featured_page_id ) )
+                $fp_img = $_fp_img_model["tc_thumb"];
+              else
+                $fp_img = $fp_holder_img;
+
+              $fp_img                 = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
             }//end if
 
             //Let's render this
@@ -261,9 +224,9 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
                 echo apply_filters( 'tc_fp_text_block' , $tc_fp_text_block , $fp_single_id , $text, $featured_page_id);
 
                 //button block
-                $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( tc__f( '__get_option' , 'tc_featured_page_button_text') ) , $fp_single_id );
+                $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
 
-                if ( $tc_fp_button_text || TC_utils::$instance -> tc_is_customizing() ){
+                if ( $tc_fp_button_text || TC___::$instance -> tc_is_customizing() ){
                   $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
                   $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
                   $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
@@ -271,7 +234,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
                                       $featured_page_link,
                                       $featured_page_title,
                                       $tc_fp_button_text
-                                    
+
                   );
                   echo apply_filters( 'tc_fp_button_block' , $tc_fp_button_block , $featured_page_link , $featured_page_title , $fp_single_id, $featured_page_id );
                 }

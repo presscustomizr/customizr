@@ -6,9 +6,9 @@
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_customize' ) ) :
@@ -17,9 +17,22 @@ if ( ! class_exists( 'TC_customize' ) ) :
     public $control_translations;
 
     function __construct () {
+      global $wp_version;
+      //check if WP version >= 3.4 to include customizer functions
+      //Shall we really keep this ?
+      if ( ! version_compare( $wp_version, '3.4' , '>=' ) ) {
+        add_action( 'admin_menu'                    , array( $this , 'tc_add_fallback_page' ));
+        return;
+      }
+
       self::$instance =& $this;
   		//add control class
   		add_action ( 'customize_register'				                , array( $this , 'tc_add_controls_class' ) ,10,1);
+
+  		//add grid/post list buttons
+  		add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );
+  		add_action( '__before_setting_control'    , array( $this , 'tc_render_link_to_grid') );
+
   		//control scripts and style
   		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
   		//add the customizer built with the builder below
@@ -210,7 +223,23 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		}//end of customize generator function
 
 
+        /**
+        * hook __before_setting_control (declared in class-controls.php)
+        * @echo clickable text
+        */
+        function tc_render_grid_control_link( $set_id ) {
+          if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
+            printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
+        }
 
+        /**
+        * hook __before_setting_control (declared in class-controls.php)
+        * @echo link
+        */
+        function tc_render_link_to_grid( $set_id ) {
+          if ( false !== strpos( $set_id, 'tc_front_layout' ) )
+            printf('<span class="button tc-navigate-to-post-list" title="%1$s">%1$s &raquo;</span>' , __('Jump to the blog design options' , 'customizr') );
+        }
 
 
 		/**
@@ -235,7 +264,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		        apply_filters('tc_js_customizer_control_params' ,
 			        array(
 			        	'themeFolder' 		=> get_template_directory_uri(),
-                'fontPairs'       => TC_utils::$instance -> tc_get_font( 'list' ),
+                //can be hacked to override the preview params when a custom skin is used
+                //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
+                'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
+                'fontPairs'       => TC_utils::$inst -> tc_get_font( 'list' ),
                 'fontSelectors'   => TC_init::$instance -> font_selectors
 			        )
 			       )
@@ -306,13 +338,28 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 			        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
                 'themeName'     => TC___::$theme_name,
-                'HideDonate'    => tc__f('__get_option' ,'tc_hide_donate'),
-                'ShowCTA'       => ( true == tc__f('__get_option' ,'tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false
+                'HideDonate'    => $this -> tc_get_hide_donate_status(),
+                'ShowCTA'       => ( true == TC_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false
 			        )
 			    )
 	        );
 
 		}
+
+
+    /**
+    * Donate visibility
+    * callback of wp_ajax_hide_donate*
+    * @package Customizr
+    * @since Customizr 3.1.14
+    */
+    function tc_get_hide_donate_status() {
+      //is customizr the current active theme?
+      //=> check the existence of is_theme_active for backward compatibility (may be useless because introduced in 3.4... )
+      $_is_customizr_active = method_exists( $GLOBALS['wp_customize'], 'is_theme_active' ) && $GLOBALS['wp_customize'] -> is_theme_active();
+      //shall we hide donate ?
+      return empty( get_option('tc_theme_options') ) || ! $_is_customizr_active || TC_utils::$inst->tc_opt('tc_hide_donate');
+    }
 
 
 
@@ -328,6 +375,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
     	$options['tc_hide_donate'] = true;
     	update_option( 'tc_theme_options', $options );
       set_transient( 'tc_cta', 'cta_waiting' , 60*60*24 );
+      wp_die();
     }
 
 
@@ -414,6 +462,73 @@ if ( ! class_exists( 'TC_customize' ) ) :
           ?>
         </div>
       </script>
+      <script type="text/template" id="footer_cta">
+        <div class="tc-cta tc-in-control-cta-wrap">
+        <hr/>
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Customize your footer credits with Customizr Pro" , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Discover Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
+      <script type="text/template" id="rate-czr">
+        <?php
+        $_is_pro = 'customizr-pro' == TC___::$theme_name;
+          printf( '<span class="tc-rate-link">%1$s %2$s, <br/>%3$s <a href="%4$s" title="%5$s" class="tc-stars" target="_blank">%6$s</a> %7$s</span>',
+            __( 'If you like' , 'customizr' ),
+            ! $_is_pro ? __( 'the Customizr theme' , 'customizr') : __( 'the Customizr pro theme' , 'customizr'),
+            __( 'we would love to receive a' , 'customizr' ),
+            ! $_is_pro ? 'https://' . 'wordpress.org/support/view/theme-reviews/customizr?filter=5' : sprintf('%sextension/customizr-pro/#comments', TC_WEBSITE ),
+            __( 'Review the Customizr theme' , 'customizr' ),
+            '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            __( 'rating. Thanks :) !' , 'customizr')
+          );
+        ?>
+      </script>
+      <?php
+    }
+
+
+
+    /**
+    * Add fallback admin page.
+    * @package Customizr
+    * @since Customizr 1.1
+    */
+    function tc_add_fallback_page() {
+        $theme_page = add_theme_page(
+            __( 'Upgrade WP' , 'customizr' ),   // Name of page
+            __( 'Upgrade WP' , 'customizr' ),   // Label in menu
+            'edit_theme_options' ,          // Capability required
+            'upgrade_wp.php' ,             // Menu slug, used to uniquely identify the page
+            array( $this , 'tc_fallback_admin_page' )         //function to be called to output the content of this page
+        );
+    }
+
+
+
+
+    /**
+    * Render fallback admin page.
+    * @package Customizr
+    * @since Customizr 1.1
+    */
+    function tc_fallback_admin_page() {
+      ?>
+        <div class="wrap upgrade_wordpress">
+          <div id="icon-options-general" class="icon32"><br></div>
+          <h2><?php _e( 'This theme requires WordPress 3.4+' , 'customizr' ) ?> </h2>
+          <br />
+          <p style="text-align:center">
+            <a style="padding: 8px" class="button-primary" href="<?php echo admin_url().'update-core.php' ?>" title="<?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?>">
+            <?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?></a>
+            <br /><br />
+          <img src="<?php echo TC_BASE_URL . 'screenshot.png' ?>" alt="Customizr" />
+          </p>
+        </div>
       <?php
     }
 

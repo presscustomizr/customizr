@@ -1,82 +1,77 @@
 /* !
  * Customizr WordPress theme Javascript code
- * Copyright (c) 2014 Nicolas GUILLAUME (@nicguillaume), Themes & Co.
+ * Copyright (c) 2014-2015 Nicolas GUILLAUME (@nicguillaume), Press Customizr.
  * GPL2+ Licensed
 */
 //ON DOM READY
 jQuery(function ($) {
     var _p = TCParams;
-    //Drop Caps
-    if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
-      $.each( _p.dropcapWhere , function( ind, val ) {
-        if ( 1 == val ) {
-          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).children().first().addDropCap( {
-            minwords : _p.dropcapMinWords,//@todo check if number
-            skipSelectors : _.isObject(_p.skipSelectors) ? _p.skipSelectors : {}
-          });
-        }
+
+    //helper to trigger a simple load
+    //=> allow centering when smart load not triggered by smartload
+    var _trigger_simple_load = function( $_imgs ) {
+      if ( 0 === $_imgs.length )
+        return;
+
+      $_imgs.map( function( _ind, _img ) {
+        $(_img).load( function () {
+            $(_img).trigger('simple_load');
+        });//end load
+        if ( $(_img)[0] && $(_img)[0].complete )
+          $(_img).load();
+      } );//end map
+    };//end of fn
+
+
+    //CENTER VARIOUS IMAGES
+    setTimeout( function() {
+      //Featured Pages
+      $('.widget-front .thumb-wrapper').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : false,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        zeroTopAdjust : 1,
+        leftAdjust : 2.5,
+        oncustom : ['smartload', 'simple_load']
       });
-    }
+      //POST LIST THUMBNAILS + FEATURED PAGES
+      //Squared, rounded
+      $('.thumb-wrapper', '.hentry' ).centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : false,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        oncustom : ['smartload', 'simple_load']
+      });
+
+      //rectangulars
+      $('.tc-rectangular-thumb').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : true,
+        goldenRatioVal : _p.goldenRatio || 1.618,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
+      });
+
+      //SINGLE POST THUMBNAILS
+      $('.tc-rectangular-thumb' , '.single').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        enableGoldenRatio : false,
+        disableGRUnder : 0,//<= don't disable golden ratio when responsive
+        oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
+      });
+
+      //POST GRID IMAGES
+      $('.tc-grid-figure').centerImages( {
+        enableCentering : 1 == _p.centerAllImg,
+        oncustom : ['smartload', 'simple_load'],
+        enableGoldenRatio : true,
+        goldenRatioVal : _p.goldenRatio || 1.618,
+        goldenRatioLimitHeightTo : _p.gridGoldenRatioLimit || 350
+      } );
+    }, 300 );
 
 
-    //May be add (check if activated by user) external class + target="_blank" to relevant links
-    //images are excluded
-    var _url_comp     = (location.host).split('.'),
-      _nakedDomain  = new RegExp( _url_comp[1] + "." + _url_comp[2] );
-
-    function _is_external( _href  ) {
-      var _thisHref = $.trim( _href );
-      if ( _thisHref !== '' && _thisHref != '#' && _isValidURL(_thisHref) )
-          return ! _nakedDomain.test(_thisHref) ? true : false;
-    }
-
-    function _isValidURL(url){
-        var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-        if (pattern.test(url)){
-            return true;
-        }
-        return false;
-    }
-    //links inside post/page content
-    $('a' , '.entry-content').each( function() {
-      var _thisHref = $.trim( $(this).attr('href'));
-      if( _is_external( _thisHref ) && 'IMG' != $(this).children().first().prop("tagName") ) {
-        if ( _p.extLinksStyle )
-          $(this).after('<span class="tc-external">');
-        if ( _p.extLinksTargetExt )
-          $(this).attr('target' , '_blank');
-      }
-    });
-
-
-    //fancybox with localized script variables
-    var b = _p.FancyBoxState,
-        c = _p.FancyBoxAutoscale;
-    if ( 1 == b ) {
-            $("a.grouped_elements").fancybox({
-            transitionOut: "elastic",
-            transitionIn: "elastic",
-            speedIn: 200,
-            speedOut: 200,
-            overlayShow: !1,
-            autoScale: 1 == c ? "true" : "false",
-            changeFade: "fast",
-            enableEscapeButton: !0
-         });
-         //replace title by img alt field
-         $('a[rel*=tc-fancybox-group]').each( function() {
-            var title = $(this).find('img').prop('title');
-            var alt = $(this).find('img').prop('alt');
-            if (typeof title !== 'undefined' && 0 !== title.length) {
-                $(this).attr('title',title);
-            }
-            else if (typeof alt !== 'undefined' &&  0 !== alt.length) {
-                $(this).attr('title',alt);
-            }
-         });
-    }
-
-
+    //SLIDER
     //Slider with localized script variables
     var d = _p.SliderName,
         e = _p.SliderDelay;
@@ -106,20 +101,153 @@ jQuery(function ($) {
         }
     );
 
-    //Smooth scroll but not on bootstrap buttons. Checks if php localized option is active first.
-    var SmoothScroll = _p.SmoothScroll;
-
-    if ('easeOutExpo' == SmoothScroll) {
-        $('a[href^="#"]', '#content').not('[class*=edd], .tc-carousel-control, .carousel-control, [data-toggle="modal"], [data-toggle="dropdown"], [data-toggle="tooltip"], [data-toggle="popover"], [data-toggle="collapse"], [data-toggle="tab"]').click(function () {
-            var anchor_id = $(this).attr("href");
-            if ('#' != anchor_id) {
-                $('html, body').animate({
-                    scrollTop: $(anchor_id).offset().top
-                }, 700, SmoothScroll);
-            }
-            return false;
+    //SLIDER ARROWS
+    function _center_slider_arrows() {
+        if ( 0 === $('.carousel').length )
+            return;
+        $('.carousel').each( function() {
+            var _slider_height = $( '.carousel-inner' , $(this) ).height();
+            $('.tc-slider-controls', $(this) ).css("line-height", _slider_height +'px').css("max-height", _slider_height +'px');
         });
     }
+    //Recenter the slider arrows
+    $(window).resize(function(){
+        _center_slider_arrows();
+    });
+    _center_slider_arrows();
+
+
+    //Slider swipe support with hammer.js
+    if ( 'function' == typeof($.fn.hammer) ) {
+
+        //prevent propagation event from sensible children
+        $(".carousel input, .carousel button, .carousel textarea, .carousel select, .carousel a").
+            on("touchstart touchmove", function(ev) {
+                ev.stopPropagation();
+        });
+
+        $('.carousel' ).each( function() {
+            $(this).hammer().on('swipeleft tap', function() {
+                $(this).carousel('next');
+            });
+            $(this).hammer().on('swiperight', function(){
+                $(this).carousel('prev');
+            });
+        });
+    }
+
+    //SLIDER IMG + VARIOUS
+    setTimeout( function() {
+      $( '.carousel .carousel-inner').centerImages( {
+        enableCentering : 1 == _p.centerSliderImg,
+        imgSel : '.item .carousel-image img',
+        oncustom : ['slid', 'simple_load'],
+        defaultCSSVal : { width : '100%' , height : 'auto' },
+        useImgAttr : true
+      } );
+      $('.tc-slider-loader-wrapper').hide();
+    } , 50);
+
+    _trigger_simple_load( $( '.carousel .carousel-inner').find('img') );
+
+
+
+
+    //IMG SMART LOAD
+    //.article-container covers all post / page content : single and list
+    //__before_main_wrapper covers the single post thumbnail case
+    //.widget-front handles the featured pages
+    if ( 1 == _p.imgSmartLoadEnabled )
+      $( '.article-container, .__before_main_wrapper, .widget-front' ).imgSmartLoad( _.size( _p.imgSmartLoadOpts ) > 0 ? _p.imgSmartLoadOpts : {} );
+    else {
+      //if smart load not enabled => trigger the load event on img load
+      var $_to_center = $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
+      _trigger_simple_load($_to_center);
+    }//end else
+
+
+
+
+    //DROP CAPS
+    if ( _p.dropcapEnabled && 'object' == typeof( _p.dropcapWhere ) ) {
+      $.each( _p.dropcapWhere , function( ind, val ) {
+        if ( 1 == val ) {
+          $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).children().first().addDropCap( {
+            minwords : _p.dropcapMinWords,//@todo check if number
+            skipSelectors : _.isObject(_p.dropcapSkipSelectors) ? _p.dropcapSkipSelectors : {}
+          });
+        }
+      });
+    }
+
+
+
+    //EXT LINKS
+    //May be add (check if activated by user) external class + target="_blank" to relevant links
+    //images are excluded by default
+    //links inside post/page content
+    if ( _p.extLinksStyle || _p.extLinksTargetExt ) {
+      $('a' , '.entry-content').extLinks({
+        addIcon : _p.extLinksStyle,
+        newTab : _p.extLinksTargetExt,
+        skipSelectors : _.isObject(_p.extLinksSkipSelectors) ? _p.extLinksSkipSelectors : {}
+      });
+    }
+
+
+    //FANCYBOX
+    //Fancybox with localized script variables
+    if ( 1 == _p.FancyBoxState && 'function' === typeof($.fn.fancybox) ) {
+      $("a.grouped_elements").fancybox({
+        transitionOut: "elastic",
+        transitionIn: "elastic",
+        speedIn: 200,
+        speedOut: 200,
+        overlayShow: !1,
+        autoScale: 1 == _p.FancyBoxAutoscale ? "true" : "false",
+        changeFade: "fast",
+        enableEscapeButton: !0
+      });
+      //replace title by img alt field
+      $('a[rel*=tc-fancybox-group]').each( function() {
+        var title = $(this).find('img').prop('title');
+        var alt = $(this).find('img').prop('alt');
+        if (typeof title !== 'undefined' && 0 !== title.length) {
+            $(this).attr('title',title);
+        }
+        else if (typeof alt !== 'undefined' &&  0 !== alt.length) {
+            $(this).attr('title',alt);
+        }
+      });
+    }
+
+
+
+    //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
+    var _maybe_apply_smooth_scroll = function() {
+      if ( ! _p.SmoothScroll || 'easeOutExpo' != _p.SmoothScroll )
+        return;
+
+      var _excl_sels = ( _p.SmoothScrollExclude && _.isArray( _p.SmoothScrollExclude ) ) ? _p.SmoothScrollExclude.join(',') : '';
+      $('a[href^="#"]', '#content').not( _excl_sels ).click(function () {
+          var anchor_id = $(this).attr("href");
+
+          //anchor el exists ?
+          if ( ! $(anchor_id).length )
+            return;
+
+          if ('#' != anchor_id) {
+              $('html, body').animate({
+                  scrollTop: $(anchor_id).offset().top
+              }, 700, _p.SmoothScroll);
+          }
+          return false;
+      });//end click
+    };
+    //Fire smooth scroll
+    _maybe_apply_smooth_scroll();
+
+
 
     //BACK TO TOP
     function g($) {
@@ -172,7 +300,7 @@ jQuery(function ($) {
 
 
 
-    //Detects browser with CSS
+    //BROWSER DETECTION
     // Chrome is Webkit, but Webkit is also Safari. If browser = ie + strips out the .0 suffix
     if ( $.browser.chrome )
         $("body").addClass("chrome");
@@ -186,7 +314,7 @@ jQuery(function ($) {
         $("body").addClass($.browser.version);
 
 
-    //handle some dynamic hover effects
+    //VARIOUS HOVER ACTION
     $(".widget-front, article").hover(function () {
         $(this).addClass("hover");
     }, function () {
@@ -199,11 +327,17 @@ jQuery(function ($) {
         $(this).removeClass("on");
     });
 
+
+
+    //ATTACHMENT FADE EFFECT
     $("article.attachment img").delay(500).animate({
             opacity: 1
         }, 700, function () {}
     );
 
+
+
+    //COMMENTS
     //Change classes of the comment reply and edit to make the whole button clickable (no filters offered in WP to do that)
     if ( _p.HasComments ) {
        //edit
@@ -223,6 +357,7 @@ jQuery(function ($) {
     }
 
 
+    //DYNAMIC REORDERING
     //Detect layout and reorder content divs
     var LeftSidebarClass    = _p.LeftSidebarClass || '.span3.left.tc-sidebar',
         RightSidebarClass   = _p.RightSidebarClass || '.span3.right.tc-sidebar',
@@ -260,7 +395,6 @@ jQuery(function ($) {
             reordered = true; //this could stay in both if blocks instead
         }
     }//end function
-
     //Enable reordering if option is checked in the customizer.
     if ( 1 == _p.ReorderBlocks ) {
         //trigger the block positioning only when responsive
@@ -275,127 +409,7 @@ jQuery(function ($) {
     }
 
 
-    function centerImageInContainer(container , images){
-        if ( ! $(images).length  )
-            return;
 
-        $(images).each(function () {
-            var container_width    = $(this).closest(container).width(),
-                container_height    = $(container).height(),
-                // this will let us know the real img height
-                ratio = container_width / $(this).attr("width"),
-                real_img_height = ratio * $(this).attr("height");
-
-            // if our image has an height smaller than the container
-            // stretch it (h & w) proportionally to reach the container height
-            // and center it horizontally
-            if ( real_img_height < container_height ){
-                // set the image height as the container height
-                $(this).css("height", container_height);
-                // this will let us know the new image width
-                var img_ratio = container_height / real_img_height;
-                var new_img_width = img_ratio * container_width;
-                // set it
-                $(this).css("width", new_img_width).css("max-width", new_img_width);
-
-                // center it horizontally
-                var pos_left = ( (container_width - new_img_width ) / 2 );
-                $(this).css("left", pos_left);
-
-                // reset v-center flag and margin-top
-                if ( $(this).hasClass("v-center") ){
-                    $(this).removeClass("v-center")
-                    .css("top", "0px");
-                }
-
-                // add h-center class flag
-                $(this).addClass("h-center");
-
-            } else { // center it vertically
-                    // this covers also the case real_img_height == container_height
-                    // a differentiation here looks like pratically useless
-
-                // reset margin-left, width, height and h-center flag
-                if ( $(this).hasClass("h-center") ){
-                    $(this).css("width", "100%")
-                    .css("max-width", "100%")
-                    .css("left", "0px")
-                    .css("height", "auto")
-                    .removeClass("h-center");
-                }
-                // center it vertically
-                var pos_top = ( container_height - real_img_height ) / 2 ;
-                $(this).css("top", pos_top);
-                // add v-center class flag
-                $(this).addClass("v-center");
-            }// end if-else
-        });// end imgs each function
-
-    }// end centerImageInContainer
-
-     //Enable slides centering if option is checked in the customizer.
-    if ( 1 == _p.CenterSlides ) {
-        //adds a specific class to the carousel when automatic centering is enabled
-        $('#customizr-slider .carousel-inner').addClass('center-slides-enabled');
-
-        setTimeout( function() {
-            centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
-            $('.tc-slider-loader-wrapper').hide();
-        } , 50);
-
-        $(window).resize(function(){
-            setTimeout( function() {
-                centerImageInContainer( '.carousel .carousel-inner' , '.carousel .item .carousel-image img' );
-            }, 50);
-        });
-    }//end of center slides
-
-    function _center_slider_arrows() {
-        if ( 0 === $('.carousel').length )
-            return;
-        $('.carousel').each( function() {
-            var _slider_height = $( '.carousel-inner' , $(this) ).height();
-            $('.tc-slider-controls', $(this) ).css("line-height", _slider_height +'px').css("max-height", _slider_height +'px');
-        });
-    }
-    //Recenter the slider arrows
-    $(window).resize(function(){
-        _center_slider_arrows();
-    });
-    _center_slider_arrows();
-
-    //CENTER RECTANGULAR THUMBNAILS FOR POST LIST AND SINGLE POST VIEWS
-    //on load
-    setTimeout( function() {
-        centerImageInContainer( '.tc-rectangular-thumb' , '.tc-rectangular-thumb > img' );
-    }, 300 );
-    //on resize
-    $(window).resize(function(){
-            centerImageInContainer( '.tc-rectangular-thumb' , '.tc-rectangular-thumb > img' );
-    });
-    //bind 'refresh-height' event (triggered from the customizer)
-    $('.tc-rectangular-thumb').on('refresh-height' , function(){
-        centerImageInContainer( '.tc-rectangular-thumb' , '.tc-rectangular-thumb > img' );
-    });
-
-    //Slider swipe support with hammer.js
-    if ( 'function' == typeof($.fn.hammer) ) {
-
-        //prevent propagation event from sensible children
-        $(".carousel input, .carousel button, .carousel textarea, .carousel select, .carousel a").
-            on("touchstart touchmove", function(ev) {
-                ev.stopPropagation();
-        });
-
-        $('.carousel' ).each( function() {
-            $(this).hammer().on('swipeleft tap', function() {
-                $(this).carousel('next');
-            });
-            $(this).hammer().on('swiperight', function(){
-                $(this).carousel('prev');
-            });
-        });
-    }
 
     //Handle dropdown on click for multi-tier menus
     var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'),
@@ -434,31 +448,38 @@ jQuery(function ($) {
 });
 
 
+
 /* Sticky header since v3.2.0 */
 jQuery(function ($) {
     var   _p              = TCParams,
           $tcHeader       = $('.tc-header'),
           elToHide        = [], //[ '.social-block' , '.site-description' ],
-          isUserLogged    = $('body').hasClass('logged-in') || 0 !== $('#wpadminbar').length,
-          isCustomizing   = $('body').hasClass('is-customizing'),
-          customOffset    = +_p.stickyCustomOffset;
+          $_window        = $(window),
+          $_body          = $('body'),
+          $wpadminbar     = $('#wpadminbar'),
+          isUserLogged    = $_body.hasClass('logged-in') || 0 !== $wpadminbar.length,
+          isCustomizing   = $_body.hasClass('is-customizing'),
+          customOffset    = +_p.stickyCustomOffset,
+          $sticky_logo    = $('img.sticky', '.site-logo'),
+          $resetMarginTop = $('#tc-reset-margin-top'),
+          logo            = 0 === $sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
 
     function _is_scrolling() {
-        return $('body').hasClass('sticky-enabled') ? true : false;
+        return $_body.hasClass('sticky-enabled') ? true : false;
     }
 
     function _is_sticky_enabled() {
-        return $('body').hasClass('tc-sticky-header') ? true : false;
+        return $_body.hasClass('tc-sticky-header') ? true : false;
     }
 
     function _get_initial_offset() {
         //initialOffset     = ( 1 == isUserLogged &&  580 < $(window).width() ) ? $('#wpadminbar').height() : 0;
         var initialOffset   = 0;
         if ( 1 == isUserLogged && ! isCustomizing ) {
-            if ( 580 < $(window).width() )
-                initialOffset = $('#wpadminbar').height();
+            if ( 580 < $_window.width() )
+                initialOffset = $wpadminbar.height();
             else
-                initialOffset = ! _is_scrolling() ? $('#wpadminbar').height() : 0;
+                initialOffset = ! _is_scrolling() ? $wpadminbar.height() : 0;
         }
         return initialOffset + customOffset;
     }
@@ -469,51 +490,68 @@ jQuery(function ($) {
 
         //Reset all values first
         $tcHeader.css('top' , '');
-        $('.tc-header').css('height' , 'auto' );
-        $('#tc-reset-margin-top').css('margin-top' , '' ).show();
+        $tcHeader.css('height' , 'auto' );
+        $resetMarginTop.css('margin-top' , '' ).show();
 
         //What is the initial offset of the header ?
-        var headerHeight    = $tcHeader.height();
+        var headerHeight    = $tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
         //set initial margin-top = initial offset + header's height
-        $('#tc-reset-margin-top').css('margin-top' , ( +headerHeight + customOffset ) + 10 + 'px' ); //10 = header bottom border
+        $resetMarginTop.css('margin-top' , ( +headerHeight + customOffset ) + 'px');
     }
 
 
     function _set_header_top_offset() {
         //set header initial offset
-        $tcHeader.css('top' , _get_initial_offset() + 'px');
+        $tcHeader.css('top' , _get_initial_offset() );
     }
+
+
+    function _set_logo_height(){
+        if ( logo && 0 === logo._logo.length || ! logo._ratio )
+            return;
+
+        logo._logo.css('height' , logo._logo.width() / logo._ratio );
+
+        setTimeout( function() {
+            _set_sticky_offsets();
+            _set_header_top_offset();
+        } , 200 );
+    }
+
 
     //set site logo width and height if exists
     //=> allow the CSS3 transition to be enabled
-    if ( _is_sticky_enabled() && 0 !== $('img' , '.site-logo').length ) {
-        $.each($('img', '.site-logo'), function(){
-            var logoWidth   = $(this).attr('width'),
-                logoHeight  = $(this).attr('height');
-            $(this).css('height' , logoHeight +'px' ).css('width' , logoWidth +'px' );
-        });
+    if ( _is_sticky_enabled() && logo && 0 !== logo._logo.length ) {
+        var logoW = logo._logo.attr('width'),
+            logoH = logo._logo.attr('height');
+
+        //check that all numbers are valid before using division
+        if ( 0 === _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
+          return;
+
+        logo._ratio  = logoW / logoH;
+        logo._logo.css('height' , logoH  ).css('width' , logoW );
     }
 
     //LOADING ACTIONS
     if ( _is_sticky_enabled() )
-        setTimeout( function() { _refresh(); } , 20 );
-    if ( _is_sticky_enabled() && ! $('body').hasClass('sticky-enabled') )
-        $('body').addClass("sticky-disabled");
+        setTimeout( function() { _sticky_refresh(); _sticky_header_scrolling_actions(); } , 20 );
 
     //RESIZING ACTIONS
-    $(window).resize(function() {
+    $_window.resize(function() {
         if ( ! _is_sticky_enabled() )
             return;
         _set_sticky_offsets();
         _set_header_top_offset();
+        _set_logo_height();
     });
 
-    function _refresh() {
+    function _sticky_refresh() {
         setTimeout( function() {
             _set_sticky_offsets();
             _set_header_top_offset();
         } , 20 );
-        $(window).trigger('resize');
+        $_window.trigger('resize');
     }
 
     //SCROLLING ACTIONS
@@ -523,23 +561,24 @@ jQuery(function ($) {
     //var windowHeight = $(window).height();
     var triggerHeight = 20; //0.5 * windowHeight;
 
-    function _scrolling_actions() {
+    function _sticky_header_scrolling_actions() {
         _set_header_top_offset();
         //process scrolling actions
-        if ( $(window).scrollTop() > triggerHeight ) {
-            $('body').addClass("sticky-enabled").removeClass("sticky-disabled");
+        if ( $_window.scrollTop() > triggerHeight ) {
+            if ( ! _is_scrolling() )
+                $_body.addClass("sticky-enabled").removeClass("sticky-disabled");
         }
-        else {
-            $('body').removeClass("sticky-enabled").addClass("sticky-disabled");
-            setTimeout( function() { _refresh();} ,
-              $('body').hasClass('is-customizing') ? 100 : 20
+        else if ( _is_scrolling() ){
+            $_body.removeClass("sticky-enabled").addClass("sticky-disabled");
+            setTimeout( function() { _sticky_refresh(); } ,
+              isCustomizing ? 100 : 20
             );
             //additional refresh for some edge cases like big logos
-            setTimeout( function() { _refresh(); } , 200 );
+            setTimeout( function() { _sticky_refresh(); } , 200 );
         }
-    }
+    }//end of fn
 
-    $(window).scroll(function() {
+    $_window.scroll(function() {
         if ( ! _is_sticky_enabled() )
             return;
         //use a timer
@@ -550,11 +589,11 @@ jQuery(function ($) {
 
          if ( 1 == _p.timerOnScrollAllBrowsers ) {
             timer = window.setTimeout(function() {
-                _scrolling_actions();
+                _sticky_header_scrolling_actions();
              }, increment > 5 ? 50 : 0 );
-         } else if ( $('body').hasClass('ie') ) {
+         } else if ( $_body.hasClass('ie') ) {
              timer = window.setTimeout(function() {
-                _scrolling_actions();
+                _sticky_header_scrolling_actions();
              }, increment > 5 ? 50 : 0 );
         }
     });//end of window.scroll()

@@ -2,13 +2,13 @@
 /**
 * Attachments content actions
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0.5
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_attachment' ) ) :
@@ -41,7 +41,7 @@ if ( ! class_exists( 'TC_attachment' ) ) :
                 <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous' , 'customizr' ) ); ?></span>
                 <span class="next-image"><?php next_image_link( false, __( 'Next &rarr;' , 'customizr' ) ); ?></span>
             </nav><!-- #image-navigation -->
-              
+
             <section class="entry-content">
 
                 <div class="entry-attachment">
@@ -52,12 +52,12 @@ if ( ! class_exists( 'TC_attachment' ) ) :
                         $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
                         //did we activate the fancy box in customizer?
-                        $tc_fancybox = esc_attr( tc__f( '__get_option' , 'tc_fancybox' ) );
+                        $tc_fancybox = esc_attr( TC_utils::$inst->tc_opt( 'tc_fancybox' ) );
 
                         ?>
-                        
-                        <?php if ( $tc_fancybox == 0 ) : //fancy box not checked! ?> 
-                            
+
+                        <?php if ( $tc_fancybox == 0 ) : //fancy box not checked! ?>
+
                             <?php
                             /**
                             * Grab the IDs of all the image attachments in a gallery so we can get the URL of the next adjacent image in a gallery,
@@ -79,7 +79,7 @@ if ( ! class_exists( 'TC_attachment' ) ) :
                                     // get the URL of the next image attachment
                                     $next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
                                 }
-                                
+
                                 else {
                                     // or get the URL of the first image attachment
                                     $next_attachment_url = get_attachment_link( $attachments[ 0 ]->ID );
@@ -97,9 +97,9 @@ if ( ! class_exists( 'TC_attachment' ) ) :
                             $attachment_size = apply_filters( 'tc_customizr_attachment_size' , array( 960, 960 ) );
                             echo wp_get_attachment_image( $post->ID, $attachment_size );
                             ?></a>
-                        
+
                         <?php else : // if fancybox option checked ?>
-                            
+
                             <?php
                             //get attachement src
                             $attachment_infos       = wp_get_attachment_image_src( $post->ID , 'large' );
@@ -110,7 +110,7 @@ if ( ! class_exists( 'TC_attachment' ) ) :
                             $attachment_size = apply_filters( 'tc_customizr_attachment_size' , array( 960, 960 ) );
                             echo wp_get_attachment_image( $post->ID, $attachment_size );
                             ?></a>
-                            
+
                             <div id="hidden-attachment-list" style="display:none">
 
                                 <?php foreach ( $attachments as $k => $attachment ) : //get all related galery attachement for lightbox navigation ?>
@@ -121,7 +121,7 @@ if ( ! class_exists( 'TC_attachment' ) ) :
                                     ?>
 
                                     <a href="<?php echo $rel_attachment_src ; ?>" title="<?php printf('%1$s', !empty( $attachment->post_excerpt ) ? $attachment->post_excerpt :  $attachment->post_title ) ?>" class="grouped_elements" rel="tc-fancybox-group<?php echo $post -> ID ?>"><?php echo $rel_attachment_src ; ?></a>
-                                    
+
                                 <?php endforeach ?>
 
                             </div><!--/#hidden-attachment-list-->

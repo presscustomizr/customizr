@@ -36,4 +36,15 @@ module.exports = {
       {src: '<%= paths.less %>tc_common_gen.less', dest: '<%= paths.front_css %>rtl/tc_common.css'}
     ]
   },
+  custom_skin : {
+    options: {
+      modifyVars: {
+        lnkCol : '<%= skin_color %>',
+        is_rtl: false,
+      }
+    },
+    files: [
+      {src: '<%= paths.less %>tc_skin_gen.less', dest: 'custom-skins/<%= skin_name %>.css'}
+    ]
+  }
 };

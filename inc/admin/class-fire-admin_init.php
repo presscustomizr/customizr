@@ -6,9 +6,9 @@
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_admin_init' ) ) :
@@ -16,18 +16,6 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
-        global $wp_version;
-        //check WP version to include customizer functions, must be >= 3.4
-        if ( version_compare( $wp_version, '3.4' , '>=' ) ) {
-            //require_once( TC_BASE.'inc/admin/tc_customize.php' );
-            TC___::$instance -> tc__( array ('admin' => array( array( 'inc/admin' , 'customize'))) );
-        }
-        else {
-              //adds an information page if version < 3.4
-              add_action( 'admin_menu'                    , array( $this , 'tc_add_fallback_page' ));
-        }
-        //load the meta boxes
-        add_action( 'admin_init'                          , array( $this , 'tc_load_meta_boxes' ));
         //enqueue additional styling for admin screens
         add_action( 'admin_init'                          , array( $this , 'tc_admin_style' ) );
 
@@ -36,6 +24,27 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         add_action( 'after_setup_theme'                   , array( $this, 'tc_add_editor_style') );
 
         add_filter( 'tiny_mce_before_init'                , array( $this, 'tc_user_defined_tinymce_css') );
+        //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
+        add_action ( 'save_post'                          , array( $this , 'tc_refresh_thumbnail') );
+      }
+
+
+
+      /*
+      * @return void
+      * updates the tc-thumb-fld post meta with the relevant thumb id and type
+      * @package Customizr
+      * @since Customizr 3.3.2
+      */
+      function tc_refresh_thumbnail( $post_id ) {
+        // If this is just a revision, don't send the email.
+        if ( wp_is_post_revision( $post_id ) )
+          return;
+
+        if ( ! class_exists( 'TC_post_thumbnails' ) )
+          TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+
+        TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
       }
 
 
@@ -46,7 +55,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       * @since Customizr 3.2.10
       */
       function tc_maybe_add_gfonts_to_editor() {
-        $_font_pair         = esc_attr( tc__f( '__get_option' , 'tc_fonts' ) );
+        $_font_pair         = esc_attr( TC_utils::$inst->tc_opt('tc_fonts') );
         $_all_font_pairs    = TC_init::$instance -> font_pairs;
         if ( false === strpos($_font_pair,'_g_') )
           return;
@@ -55,62 +64,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
           str_replace(
             ',',
             '%2C',
-            sprintf( '//fonts.googleapis.com/css?family=%s', TC_utils::$instance -> tc_get_font( 'single' , $_font_pair ) )
+            sprintf( '//fonts.googleapis.com/css?family=%s', TC_utils::$inst -> tc_get_font( 'single' , $_font_pair ) )
           )
         );
-      }
-
-
-
-      /**
-      *  load the meta boxes for pages, posts and attachment
-      *
-      * @package Customizr
-      * @since Customizr 3.0.4
-      */
-      function tc_load_meta_boxes()  {
-         //loads meta boxes
-            TC___::$instance -> tc__( array ('admin' => array( array( 'inc/admin' , 'meta_boxes'))) );
-      }
-
-
-      /**
-       * Add fallback admin page.
-       * @package Customizr
-       * @since Customizr 1.1
-       */
-        function tc_add_fallback_page() {
-            $theme_page = add_theme_page(
-                __( 'Upgrade WP' , 'customizr' ),   // Name of page
-                __( 'Upgrade WP' , 'customizr' ),   // Label in menu
-                'edit_theme_options' ,          // Capability required
-                'upgrade_wp.php' ,             // Menu slug, used to uniquely identify the page
-                array( $this , 'tc_fallback_admin_page' )         //function to be called to output the content of this page
-            );
-        }
-
-
-
-
-      /**
-     * Render fallback admin page.
-     * @package Customizr
-     * @since Customizr 1.1
-     */
-      function tc_fallback_admin_page() {
-        ?>
-          <div class="wrap upgrade_wordpress">
-            <div id="icon-options-general" class="icon32"><br></div>
-            <h2><?php _e( 'This theme requires WordPress 3.4+' , 'customizr' ) ?> </h2>
-            <br />
-            <p style="text-align:center">
-              <a style="padding: 8px" class="button-primary" href="<?php echo admin_url().'update-core.php' ?>" title="<?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?>">
-              <?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?></a>
-              <br /><br />
-            <img src="<?php echo TC_BASE_URL . 'screenshot.png' ?>" alt="Customizr" />
-            </p>
-          </div>
-        <?php
       }
 
 
@@ -226,7 +182,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
 
               <div class="last-feature">
                 <h3><?php _e( 'Follow us','customizr' ); ?></h3>
-                <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Themes and co" /></a></p>
+                <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Press Customizr" /></a></p>
                 <!-- Place this tag where you want the widget to render. -->
 
           </div><!-- .feature-section -->
@@ -242,7 +198,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
             </p>
             <p style="text-align: left"><?php _e("These modules are designed to be simple to use for everyone. They are a good solution to add some creative customizations whitout needing to dive into the code." , 'customizr') ?>
             </p>
-            <p style="text-align: left"><?php _e("Customizr's extensions are installed and upgraded from your WordPress admin, like any other WordPress plugins. Well documented and easily extendable with hooks, they come with a dedicated support forum on themesandco.com." , 'customizr') ?>
+            <p style="text-align: left"><?php _e("Customizr's extensions are installed and upgraded from your WordPress admin, like any other WordPress plugins. Well documented and easily extendable with hooks, they come with a dedicated support forum on presscustomizr.com." , 'customizr') ?>
             </p>
             <p style="text-align:left">
                 <a class="button-primary review-customizr" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/extend/" target="_blank"><?php _e("Visit the extension's page",'customizr') ?> &raquo;</a>
@@ -379,8 +335,15 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       function tc_user_defined_tinymce_css( $init ) {
         if ( ! apply_filters( 'tc_add_custom_fonts_to_editor' , true ) )
           return $init;
+        //some plugins fire tiny mce editor in the customizer
+        //in this case, the TC_resource class has to be loaded
+        if ( ! class_exists('TC_resources') )
+          TC___::$instance -> tc__( array('fire' => array( array('inc' , 'resources') ) ), true );
 
+        //fonts
         $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
+        //icons
+        $_css .= TC_resources::$instance -> tc_get_inline_font_icons_css();
        ?>
 
           <script type="text/javascript">

@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.2.18
+ * Customizr v3.3.23
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -249,7 +249,6 @@ input[type="checkbox"]:focus {
   text-decoration: none;
 }
 .navbar .btn-navbar {
-  display: none;
   float: right;
   padding: 7px 10px;
   margin-left: 5px;
@@ -340,10 +339,7 @@ a.thumbnail:focus {
   background-color: #d87220;
   background-position: 0 -30px;
 }
-.navbar-wrapper .navbar h2 {
-  color: #e79b5d;
-}
-h2.site-description {
+.site-description {
   color: #e79b5d;
 }
 .navbar .nav > li.current-menu-item > a,
@@ -422,7 +418,6 @@ td {
 }
 .social-block a:hover {
   color: #e79b5d;
-  opacity: 1;
 }
 /* SLIDER CONTROLS */
 .tc-carousel-control:focus,
@@ -433,15 +428,18 @@ td {
 .page-links button.btn {
   color: #e79b5d;
 }
-/* Comments */
-.tc-skin-bubble-comment-color .comments-link .tc-comment-bubble {
+/* Comment bubbles */
+.comments-link .tc-comment-bubble {
   color: #e79b5d;
 }
-.tc-skin-bubble-comment-color .custom-bubble-one {
+.comments-link .default-bubble:before {
+  border: solid 2px #e79b5d;
+}
+.comments-link .tc-comment-bubble {
   color: #e79b5d;
   border: 2px solid #e79b5d;
 }
-.tc-skin-bubble-comment-color .custom-bubble-one:before {
+.comments-link .custom-bubble-one:before {
   border-color: #e79b5d rgba(0, 0, 0, 0);
 }
 /* POST NAVIGATION*/
@@ -458,5 +456,13 @@ h3.assistive-text {
 }
 /* FOOTER */
 footer#footer .colophon a.back-to-top {
+  color: #e79b5d;
+}
+/* GRID */
+.tc-grid-border .tc-grid {
+  border-bottom: 3px solid #e79b5d;
+}
+/* Grid icons */
+.tc-grid-icon:before {
   color: #e79b5d;
 }

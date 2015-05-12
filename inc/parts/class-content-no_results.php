@@ -2,13 +2,13 @@
 /**
 * No results content actions
 *
-* 
+*
 * @package      Customizr
 * @subpackage   classes
 * @since        3.0.5
-* @author       Nicolas GUILLAUME <nicolas@themesandco.com>
-* @copyright    Copyright (c) 2013, Nicolas GUILLAUME
-* @link         http://themesandco.com/customizr
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_no_results' ) ) :
@@ -29,7 +29,7 @@ if ( ! class_exists( 'TC_no_results' ) ) :
           global $wp_query;
           if ( !is_search() || (is_search() && 0 != $wp_query -> post_count) )
               return;
-          
+
           $content_no_results    = apply_filters( 'tc_no_results', TC_init::$instance -> content_no_results );
 
           echo apply_filters( 'tc_no_result_content',
@@ -42,7 +42,7 @@ if ( ! class_exists( 'TC_no_results' ) ) :
                                 call_user_func( '__' , $content_no_results['text'] , 'customizr' ),
                                 get_search_form( $echo = false )
                   ),
-                  apply_filters( 'tc_no_results_separator', '<hr class="featurette-divider '.current_filter().'">' ) 
+                  apply_filters( 'tc_no_results_separator', '<hr class="featurette-divider '.current_filter().'">' )
               )//end sprintf
           );//end filter
       }

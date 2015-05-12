@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.2.18\n"
+"Project-Id-Version: * Customizr v3.3.23\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-21 16:44+0100\n"
-"PO-Revision-Date: 2015-01-21 16:44+0100\n"
-"Last-Translator: Nicolas <contact@themesandco.com>\n"
+"POT-Creation-Date: 2015-04-09 15:51+0100\n"
+"PO-Revision-Date: 2015-04-09 15:55+0100\n"
+"Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: phritzy\n"
 "Language: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -21,263 +21,263 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../class-fire-init.php:49 ../class-fire-init.php:50
+#: ../class-fire-init.php:51 ../class-fire-init.php:52
 msgid "Right sidebar"
 msgstr "Jobb oldalsáv"
 
-#: ../class-fire-init.php:55 ../class-fire-init.php:56
+#: ../class-fire-init.php:57 ../class-fire-init.php:58
 msgid "Left sidebar"
 msgstr "Bal oldalsáv"
 
-#: ../class-fire-init.php:61 ../class-fire-init.php:62
+#: ../class-fire-init.php:63 ../class-fire-init.php:64
 msgid "2 sidebars : Right and Left"
 msgstr "2 oldalsáv: Jobb és Bal"
 
-#: ../class-fire-init.php:67 ../class-fire-init.php:68
+#: ../class-fire-init.php:69 ../class-fire-init.php:70
 msgid "No sidebars : full width layout"
 msgstr "Oldalsáv nélkül: teljes oldalszélesség"
 
-#: ../class-fire-init.php:79
+#: ../class-fire-init.php:84
 msgid "Blue"
 msgstr "Kék"
 
-#: ../class-fire-init.php:80
+#: ../class-fire-init.php:85
 msgid "Black"
 msgstr "Fekete"
 
-#: ../class-fire-init.php:81
+#: ../class-fire-init.php:86
 msgid "Flat black"
 msgstr "Fekete (flat design)"
 
-#: ../class-fire-init.php:82
+#: ../class-fire-init.php:87
 msgid "Grey"
 msgstr "Szürke"
 
-#: ../class-fire-init.php:83
+#: ../class-fire-init.php:88
 msgid "Ligth grey"
 msgstr "Világosszürke"
 
-#: ../class-fire-init.php:84
+#: ../class-fire-init.php:89
 msgid "Flat purple"
 msgstr "Lila (flat design)"
 
-#: ../class-fire-init.php:85
+#: ../class-fire-init.php:90
 msgid "Purple"
 msgstr "Bíbor"
 
-#: ../class-fire-init.php:86
+#: ../class-fire-init.php:91
 msgid "Flat red"
 msgstr "Vörös (flat design)"
 
-#: ../class-fire-init.php:87
+#: ../class-fire-init.php:92
 msgid "Red"
 msgstr "Vörös"
 
-#: ../class-fire-init.php:88
+#: ../class-fire-init.php:93
 msgid "Orange"
 msgstr "Narancs"
 
-#: ../class-fire-init.php:89
+#: ../class-fire-init.php:94
 msgid "Flat orange"
 msgstr "Narancs (flat design)"
 
-#: ../class-fire-init.php:90
+#: ../class-fire-init.php:95
 msgid "Yellow"
 msgstr "Sárga"
 
-#: ../class-fire-init.php:91
+#: ../class-fire-init.php:96
 msgid "Flat yellow"
 msgstr "Sárga (flat design)"
 
-#: ../class-fire-init.php:92
+#: ../class-fire-init.php:97
 msgid "Green"
 msgstr "Zöld"
 
-#: ../class-fire-init.php:93
+#: ../class-fire-init.php:98
 msgid "Light green"
 msgstr "Világoszöld"
 
-#: ../class-fire-init.php:94
+#: ../class-fire-init.php:99
 #, fuzzy
 msgid "Green blue"
 msgstr "Zöldeskék"
 
-#: ../class-fire-init.php:95
+#: ../class-fire-init.php:100
 msgid "Light blue "
 msgstr "Világoskék"
 
-#: ../class-fire-init.php:123
+#: ../class-fire-init.php:127
 msgid "Google fonts pairs"
 msgstr ""
 
-#: ../class-fire-init.php:143
+#: ../class-fire-init.php:147
 msgid "Web safe fonts pairs"
 msgstr ""
 
-#: ../class-fire-init.php:152
+#: ../class-fire-init.php:156
 #, fuzzy
 msgid "Single fonts"
 msgstr "Egyedi bejegyzés"
 
-#: ../class-fire-init.php:190
+#: ../class-fire-init.php:194
 msgid "Subscribe to my rss feed"
 msgstr "Iratkozz fel RSS csatornánkra"
 
-#: ../class-fire-init.php:191
+#: ../class-fire-init.php:195
 msgid "RSS feed (default is the wordpress feed)"
 msgstr "RSS csatorna (az alapcsatorna a Wordpress csatornája)"
 
-#: ../class-fire-init.php:195
+#: ../class-fire-init.php:199
 msgid "Follow me on Twitter"
 msgstr "Kövess a Twitteren"
 
-#: ../class-fire-init.php:196
+#: ../class-fire-init.php:200
 msgid "Twitter profile url"
 msgstr "Twitter profil"
 
-#: ../class-fire-init.php:200
+#: ../class-fire-init.php:204
 msgid "Follow me on Facebook"
 msgstr "Kövess a Facebook-on"
 
-#: ../class-fire-init.php:201
+#: ../class-fire-init.php:205
 msgid "Facebook profile url"
 msgstr "Facebook profil"
 
-#: ../class-fire-init.php:205
+#: ../class-fire-init.php:209
 msgid "Follow me on Google+"
 msgstr "Kövess a Google+-on"
 
-#: ../class-fire-init.php:206
+#: ../class-fire-init.php:210
 msgid "Google+ profile url"
 msgstr "Google+ profil"
 
-#: ../class-fire-init.php:210
+#: ../class-fire-init.php:214
 msgid "Follow me on Instagram"
 msgstr "Kövess az Instagram-on"
 
-#: ../class-fire-init.php:211
+#: ../class-fire-init.php:215
 msgid "Instagram profile url"
 msgstr "Instagram profil"
 
-#: ../class-fire-init.php:215
+#: ../class-fire-init.php:219
 msgid "Follow me on Tumblr"
 msgstr "Kövess a Tumblr-on"
 
-#: ../class-fire-init.php:216
+#: ../class-fire-init.php:220
 msgid "Tumblr url"
 msgstr "Tumblr link"
 
-#: ../class-fire-init.php:220
+#: ../class-fire-init.php:224
 msgid "Follow me on Flickr"
 msgstr "Kövess a Flickr-on"
 
-#: ../class-fire-init.php:221
+#: ../class-fire-init.php:225
 msgid "Flickr url"
 msgstr "Flickr url"
 
-#: ../class-fire-init.php:225
+#: ../class-fire-init.php:229
 msgid "Follow me on WordPress"
 msgstr "Kövess a Wordpress-en"
 
-#: ../class-fire-init.php:226
+#: ../class-fire-init.php:230
 msgid "WordPress profile url"
 msgstr "Wordpress profil"
 
-#: ../class-fire-init.php:230
+#: ../class-fire-init.php:234
 msgid "Follow me on Youtube"
 msgstr "Kövess a Youtube-on"
 
-#: ../class-fire-init.php:231
+#: ../class-fire-init.php:235
 msgid "Youtube profile url"
 msgstr "Youtube profil"
 
-#: ../class-fire-init.php:235
+#: ../class-fire-init.php:239
 msgid "Pin me on Pinterest"
 msgstr "Kitűzés Pinterest-re"
 
-#: ../class-fire-init.php:236
+#: ../class-fire-init.php:240
 msgid "Pinterest profile url"
 msgstr "Pinteres profil"
 
-#: ../class-fire-init.php:240
+#: ../class-fire-init.php:244
 msgid "Follow me on Github"
 msgstr "Kövess a Github-on"
 
-#: ../class-fire-init.php:241
+#: ../class-fire-init.php:245
 msgid "Github profile url"
 msgstr "Github profil"
 
-#: ../class-fire-init.php:245
+#: ../class-fire-init.php:249
 msgid "Follow me on Dribbble"
 msgstr "Kövess a Dribbble-n"
 
-#: ../class-fire-init.php:246
+#: ../class-fire-init.php:250
 msgid "Dribbble profile url"
 msgstr "Dribble profil"
 
-#: ../class-fire-init.php:250
+#: ../class-fire-init.php:254
 msgid "Follow me on LinkedIn"
 msgstr "Kövess a LinkedIn-en"
 
-#: ../class-fire-init.php:251
+#: ../class-fire-init.php:255
 msgid "LinkedIn profile url"
 msgstr "LinkedIn profil"
 
-#: ../class-fire-init.php:260
+#: ../class-fire-init.php:264
 msgid "Right Sidebar"
 msgstr "Jobb oldalsáv"
 
-#: ../class-fire-init.php:261 ../class-fire-init.php:265
+#: ../class-fire-init.php:265 ../class-fire-init.php:269
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr ""
 "Megjelenik a bejegyzésekben, statikus oldalakon, archívumokban és a kereső "
 "oldalakon"
 
-#: ../class-fire-init.php:264
+#: ../class-fire-init.php:268
 msgid "Left Sidebar"
 msgstr "Bal oldalsáv"
 
-#: ../class-fire-init.php:272
+#: ../class-fire-init.php:276
 msgid "Footer Widget Area One"
 msgstr "Lábléc widget - 1. zóna"
 
-#: ../class-fire-init.php:273 ../class-fire-init.php:277
-#: ../class-fire-init.php:281
+#: ../class-fire-init.php:277 ../class-fire-init.php:281
+#: ../class-fire-init.php:285
 msgid "Just use it as you want !"
 msgstr "Használd ízlés szerint!"
 
-#: ../class-fire-init.php:276
+#: ../class-fire-init.php:280
 msgid "Footer Widget Area Two"
 msgstr "Lábléc widget - 2. zóna"
 
-#: ../class-fire-init.php:280
+#: ../class-fire-init.php:284
 msgid "Footer Widget Area Three"
 msgstr "Lábléc widget - 3. zóna"
 
-#: ../class-fire-init.php:298
+#: ../class-fire-init.php:302
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr "Mindig van két lehetőség, vagy nincs."
 
-#: ../class-fire-init.php:299
+#: ../class-fire-init.php:303
 msgid "George Orwell"
 msgstr "Áron bá'"
 
-#: ../class-fire-init.php:300
+#: ../class-fire-init.php:304
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr "Elnézést, de a keresett oldal nem található. Próbáljon keresni."
 
-#: ../class-fire-init.php:305
+#: ../class-fire-init.php:309
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
 msgstr "Egy seggel csak egy lovat lehet megülni..."
 
-#: ../class-fire-init.php:306
+#: ../class-fire-init.php:310
 msgid "Sir Winston Churchill"
 msgstr "Mári néni"
 
-#: ../class-fire-init.php:307
+#: ../class-fire-init.php:311
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
@@ -285,92 +285,68 @@ msgstr ""
 "Elnézést, a kereset kifejezésre nincs találat. Próbáljon más kifejezésre "
 "keresni."
 
-#: ../class-fire-init.php:322
+#: ../class-fire-init.php:326
 msgid "Customizr is a clean responsive theme"
 msgstr "A Customizr egy egyszerű reszponzív téma"
 
-#: ../class-fire-init.php:327 ../class-fire-init.php:336
-msgid "Style your WordPress site live!"
-msgstr "Módosítsd élőben a Wordpress oldalad!"
-
-#: ../class-fire-init.php:328
+#: ../class-fire-init.php:340
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
 msgstr "A beállítások a Wordpress beállítási felületén érhetőek el."
 
-#: ../class-fire-init.php:329
-msgid "Just try it!"
-msgstr "Próbáld ki!"
-
-#: ../class-fire-init.php:341 ../class-fire-init.php:350
-msgid "Create beautiful sliders"
-msgstr "Gyönyörű lapozóképek készítése"
-
-#: ../class-fire-init.php:342
-msgid ""
-"Customizr comes with a cool slider generator : add a slider to any post or "
-"page!"
-msgstr ""
-"A Customizr egy lapozókép készítőt is tartalmaz, melyet bármilyen "
-"bejegyzéshez, vagy oldalhoz hozzáadhatsz!"
-
-#: ../class-fire-init.php:343
-msgid "Discover the features"
-msgstr "Fedezd fel a funkciókat"
-
-#: ../class-fire-init.php:455
+#: ../class-fire-init.php:480
 msgid "Main Menu"
 msgstr "Főmenü"
 
-#: ../class-fire-init.php:880
+#: ../class-fire-init.php:904
 msgid "Help"
 msgstr "Sugó"
 
-#: ../class-fire-init.php:883
+#: ../class-fire-init.php:907
 msgid "Need help with Customizr? Click here!"
 msgstr "Customizr-el kapcsolatos támogatásra van szükséged? Klikk ide!"
 
-#: ../class-fire-utils.php:417
+#: ../class-fire-utils.php:465
 #, php-format
 msgid "Page %s"
 msgstr "%s oldal"
 
-#: ../class-fire-utils_settings_map.php:47
+#: ../class-fire-utils_settings_map.php:49
 msgid "Home featured page one"
 msgstr "1. kiemelt oldal"
 
-#: ../class-fire-utils_settings_map.php:48
+#: ../class-fire-utils_settings_map.php:50
 msgid "Home featured page two"
 msgstr "2. kiemelt oldal"
 
-#: ../class-fire-utils_settings_map.php:49
+#: ../class-fire-utils_settings_map.php:51
 msgid "Home featured page three"
 msgstr "3. kiemelt oldal"
 
-#: ../class-fire-utils_settings_map.php:52
+#: ../class-fire-utils_settings_map.php:54
 msgid "Featured text one (200 car. max)"
 msgstr "1. kiemelt oldal szövege (max. 200 karakter)"
 
-#: ../class-fire-utils_settings_map.php:53
+#: ../class-fire-utils_settings_map.php:55
 msgid "Featured text two (200 car. max)"
 msgstr "2. kiemelt oldal szövege (max. 200 karakter)"
 
-#: ../class-fire-utils_settings_map.php:54
+#: ../class-fire-utils_settings_map.php:56
 msgid "Featured text three (200 car. max)"
 msgstr "3. kiemelt oldal szövege (max. 200 karakter)"
 
-#: ../class-fire-utils_settings_map.php:70
+#: ../class-fire-utils_settings_map.php:72
 #, php-format
 msgid "Custom featured page %1$s"
 msgstr "Egyéni oldal %1$s"
 
-#: ../class-fire-utils_settings_map.php:86
+#: ../class-fire-utils_settings_map.php:88
 #, php-format
 msgid "Featured text %1$s (200 car. max)"
 msgstr "Kiemelt szöveg %1$s (max. 200 kar.)"
 
-#: ../class-fire-utils_settings_map.php:89
+#: ../class-fire-utils_settings_map.php:91
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
@@ -378,305 +354,312 @@ msgstr ""
 "Egyszer az oldalt kell kiválasztani. Hagyd ezt a mezőt üresen, ha az "
 "oldalnál beállított kivonatszöveget akarod megjeleníteni."
 
-#: ../class-fire-utils_settings_map.php:200
+#: ../class-fire-utils_settings_map.php:202
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Nincs lapozókép &mdash;"
 
-#: ../class-fire-utils_settings_map.php:201
+#: ../class-fire-utils_settings_map.php:203
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Demó lapozókép &mdash;"
 
-#: ../class-fire-utils_settings_map.php:242
+#: ../class-fire-utils_settings_map.php:244
 msgid "Global settings"
 msgstr "Általános beállítások"
 
-#: ../class-fire-utils_settings_map.php:243
+#: ../class-fire-utils_settings_map.php:245
 msgid "Global settings for the Customizr theme :skin, socials, links..."
 msgstr ""
 "A Customizr téma általános beállításai: séma, közösségi oldalak, linkek..."
 
-#: ../class-fire-utils_settings_map.php:248
+#: ../class-fire-utils_settings_map.php:250
 msgid "Header"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:249
+#: ../class-fire-utils_settings_map.php:251
 msgid "Header settings for the Customizr theme."
 msgstr "Customizr téma fejléc beállításai."
 
-#: ../class-fire-utils_settings_map.php:254
+#: ../class-fire-utils_settings_map.php:256
 msgid "Content : home, posts, ..."
 msgstr "Tartalom: kezdőoldal, bejegyzések, ..."
 
-#: ../class-fire-utils_settings_map.php:255
+#: ../class-fire-utils_settings_map.php:257
 msgid "Content settings for the Customizr theme."
 msgstr "Customizr téma tartalom beállításai"
 
-#: ../class-fire-utils_settings_map.php:260
+#: ../class-fire-utils_settings_map.php:262
 msgid "Footer"
 msgstr "Lábléc"
 
-#: ../class-fire-utils_settings_map.php:261
+#: ../class-fire-utils_settings_map.php:263
 msgid "Footer settings for the Customizr theme."
 msgstr "Customizr téma lábléc beállításai"
 
-#: ../class-fire-utils_settings_map.php:266
+#: ../class-fire-utils_settings_map.php:268
 #, fuzzy
 msgid "Advanced options"
 msgstr "Haladó beállítások"
 
-#: ../class-fire-utils_settings_map.php:267
+#: ../class-fire-utils_settings_map.php:269
 msgid "Advanced settings for the Customizr theme."
 msgstr "Customizr téma haladó beállításai"
 
-#: ../class-fire-utils_settings_map.php:288
-#: ../class-fire-utils_settings_map.php:1009
+#: ../class-fire-utils_settings_map.php:290
+#: ../class-fire-utils_settings_map.php:1019
 msgid "Skin"
 msgstr "Téma"
 
-#: ../class-fire-utils_settings_map.php:290
-#: ../class-fire-utils_settings_map.php:1011
+#: ../class-fire-utils_settings_map.php:292
+#: ../class-fire-utils_settings_map.php:1021
 msgid "Select a skin for Customizr"
 msgstr "Customizr téma kiválasztása"
 
-#: ../class-fire-utils_settings_map.php:294
-#: ../class-fire-utils_settings_map.php:1003
+#: ../class-fire-utils_settings_map.php:296
+#: ../class-fire-utils_settings_map.php:1013
 msgid "Logo &amp; Favicon"
 msgstr "Logó és Favicon"
 
-#: ../class-fire-utils_settings_map.php:296
-#: ../class-fire-utils_settings_map.php:1005
+#: ../class-fire-utils_settings_map.php:298
+#: ../class-fire-utils_settings_map.php:1015
 msgid "Set up logo and favicon options"
 msgstr "Logó és Favicon beállításai"
 
-#: ../class-fire-utils_settings_map.php:300
-#: ../class-fire-utils_settings_map.php:1070
+#: ../class-fire-utils_settings_map.php:302
+#: ../class-fire-utils_settings_map.php:1080
 msgid "Front Page"
 msgstr "Főoldal"
 
-#: ../class-fire-utils_settings_map.php:302
-#: ../class-fire-utils_settings_map.php:1072
+#: ../class-fire-utils_settings_map.php:304
+#: ../class-fire-utils_settings_map.php:1082
 msgid "Set up front page options"
 msgstr "Főoldal beállításai"
 
-#: ../class-fire-utils_settings_map.php:306
-#: ../class-fire-utils_settings_map.php:1077
+#: ../class-fire-utils_settings_map.php:308
+#: ../class-fire-utils_settings_map.php:1087
 msgid "Pages &amp; Posts Layout"
 msgstr "Oldalak/bejegyzések oldalszerkezete"
 
-#: ../class-fire-utils_settings_map.php:308
-#: ../class-fire-utils_settings_map.php:1079
+#: ../class-fire-utils_settings_map.php:310
+#: ../class-fire-utils_settings_map.php:1089
 msgid "Set up layout options"
 msgstr "Oldalszerkezet beállítások"
 
-#: ../class-fire-utils_settings_map.php:312
-#: ../class-fire-utils_settings_map.php:1122
+#: ../class-fire-utils_settings_map.php:314
+#: ../class-fire-utils_settings_map.php:1132
 msgid "Comments"
 msgstr "Hozzászólások"
 
-#: ../class-fire-utils_settings_map.php:314
-#: ../class-fire-utils_settings_map.php:1124
+#: ../class-fire-utils_settings_map.php:316
+#: ../class-fire-utils_settings_map.php:1134
 msgid "Set up comments options"
 msgstr "Hozzászólások beállításai"
 
-#: ../class-fire-utils_settings_map.php:318
-#: ../class-fire-utils_settings_map.php:1021
-#: ../class-fire-utils_settings_map.php:2015
+#: ../class-fire-utils_settings_map.php:320
+#: ../class-fire-utils_settings_map.php:1031
+#: ../class-fire-utils_settings_map.php:2120
 msgid "Social links"
 msgstr "Közösségi linkek"
 
-#: ../class-fire-utils_settings_map.php:320
-#: ../class-fire-utils_settings_map.php:1023
+#: ../class-fire-utils_settings_map.php:322
+#: ../class-fire-utils_settings_map.php:1033
 msgid "Set up your social links"
 msgstr "Közösségi linkek beállítása"
 
-#: ../class-fire-utils_settings_map.php:324
+#: ../class-fire-utils_settings_map.php:326
 msgid "Images"
 msgstr "Képek"
 
-#: ../class-fire-utils_settings_map.php:326
-#: ../class-fire-utils_settings_map.php:1041
+#: ../class-fire-utils_settings_map.php:328
+#: ../class-fire-utils_settings_map.php:1051
 msgid "Various images settings"
 msgstr "Képbeállítások"
 
-#: ../class-fire-utils_settings_map.php:330
+#: ../class-fire-utils_settings_map.php:332
 msgid "Links"
 msgstr "Linkek"
 
-#: ../class-fire-utils_settings_map.php:332
-#: ../class-fire-utils_settings_map.php:1029
+#: ../class-fire-utils_settings_map.php:334
+#: ../class-fire-utils_settings_map.php:1039
 msgid "Various links settings"
 msgstr "Linkbeállítások"
 
-#: ../class-fire-utils_settings_map.php:336
-#: ../class-fire-utils_settings_map.php:1134
+#: ../class-fire-utils_settings_map.php:338
+#: ../class-fire-utils_settings_map.php:1144
 msgid "Custom CSS"
 msgstr "Saját CSS"
 
-#: ../class-fire-utils_settings_map.php:338
-#: ../class-fire-utils_settings_map.php:1136
+#: ../class-fire-utils_settings_map.php:340
+#: ../class-fire-utils_settings_map.php:1146
 msgid "Add your own CSS"
 msgstr "Írj saját CSS-t"
 
-#: ../class-fire-utils_settings_map.php:342
-#: ../class-fire-utils_settings_map.php:1045
+#: ../class-fire-utils_settings_map.php:344
+#: ../class-fire-utils_settings_map.php:1055
 msgid "Responsive settings"
 msgstr "Responsive beállítások"
 
-#: ../class-fire-utils_settings_map.php:344
-#: ../class-fire-utils_settings_map.php:1047
+#: ../class-fire-utils_settings_map.php:346
+#: ../class-fire-utils_settings_map.php:1057
 msgid "Various settings for responsive display"
 msgstr "Responsive viselkedés beállításai"
 
-#: ../class-fire-utils_settings_map.php:373
+#: ../class-fire-utils_settings_map.php:375
 msgid "Manage menus"
 msgstr "Menük beállítása"
 
-#: ../class-fire-utils_settings_map.php:380
+#: ../class-fire-utils_settings_map.php:382
 #, fuzzy
 msgid "Design and effects"
 msgstr "Tartalom és oldalszerkezet"
 
-#: ../class-fire-utils_settings_map.php:381
+#: ../class-fire-utils_settings_map.php:383
 msgid "Select a submenu expansion option"
 msgstr "Almenü megjelenítési opciók"
 
-#: ../class-fire-utils_settings_map.php:385
+#: ../class-fire-utils_settings_map.php:387
 msgid "Expand submenus on click"
 msgstr "Almenü megjelenítése klikkre"
 
-#: ../class-fire-utils_settings_map.php:386
+#: ../class-fire-utils_settings_map.php:388
 msgid "Expand submenus on hover"
 msgstr "Almenü megjelenítése kurzor fölévitelkor"
 
-#: ../class-fire-utils_settings_map.php:402
+#: ../class-fire-utils_settings_map.php:404
 msgid "Choose a predefined skin"
 msgstr "Téma kiválaszása"
 
-#: ../class-fire-utils_settings_map.php:412
+#: ../class-fire-utils_settings_map.php:414
+#: ../class-fire-utils_settings_map.php:2148
 msgid "Performance : use the minified CSS stylesheet"
 msgstr "Teljesítmény: minimalizált CSS alkalmazása"
 
-#: ../class-fire-utils_settings_map.php:415
+#: ../class-fire-utils_settings_map.php:417
+#: ../class-fire-utils_settings_map.php:2151
 msgid ""
 "Using the minified version of the skin stylesheet will speed up your webpage "
 "load time."
 msgstr ""
 "A minimalizát színséma css alkalmazása felgyorsítja a honlap betöltését "
 
-#: ../class-fire-utils_settings_map.php:421
-#: ../class-fire-utils_settings_map.php:1297
+#: ../class-fire-utils_settings_map.php:423
+#: ../class-fire-utils_settings_map.php:1314
 msgid "Display top border"
 msgstr "Felső szegély ki-/bekapcsolása"
 
-#: ../class-fire-utils_settings_map.php:425
-#: ../class-fire-utils_settings_map.php:1301
+#: ../class-fire-utils_settings_map.php:427
+#: ../class-fire-utils_settings_map.php:1318
 msgid "Uncheck this option to remove the colored top border."
 msgstr "Fejléc felső színes szegélyének ki-/bekacsolása"
 
-#: ../class-fire-utils_settings_map.php:437
+#: ../class-fire-utils_settings_map.php:439
 #, fuzzy
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Logó feltöltés (támogatott formátumok: .jpg, .png, .gif, svg, svgz)"
 
-#: ../class-fire-utils_settings_map.php:438
+#: ../class-fire-utils_settings_map.php:440
 msgid "LOGO"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:447
+#: ../class-fire-utils_settings_map.php:449
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Logó méret max-width:250px és max-height:100px kényszerítése"
 
-#: ../class-fire-utils_settings_map.php:454
+#: ../class-fire-utils_settings_map.php:453
+#, fuzzy
+msgid "Uncheck this option to keep your original logo dimensions."
+msgstr "Fejléc felső színes szegélyének ki-/bekacsolása"
+
+#: ../class-fire-utils_settings_map.php:457
 #, fuzzy
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Logó feltöltés (támogatott formátumok: .jpg, .png, .gif, svg, svgz)"
 
-#: ../class-fire-utils_settings_map.php:458
+#: ../class-fire-utils_settings_map.php:461
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:464
+#: ../class-fire-utils_settings_map.php:467
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Favicon feltöltése (támogatott formátumok: .ico, .png, .gif)"
 
-#: ../class-fire-utils_settings_map.php:465
+#: ../class-fire-utils_settings_map.php:468
 msgid "FAVICON"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:483
+#: ../class-fire-utils_settings_map.php:486
 msgid "Choose content and layout"
 msgstr "Tartalom és oldalszerkezet kiválasztása"
 
-#: ../class-fire-utils_settings_map.php:491
+#: ../class-fire-utils_settings_map.php:494
 msgid "Front page displays"
 msgstr "Főoldal beállításai"
 
-#: ../class-fire-utils_settings_map.php:496
+#: ../class-fire-utils_settings_map.php:499
 msgid "Don't show any posts or page"
 msgstr "Bejegyzések/oldalak elrejtése"
 
-#: ../class-fire-utils_settings_map.php:497
+#: ../class-fire-utils_settings_map.php:500
 msgid "Your latest posts"
 msgstr "Utolsó bejegyzés"
 
-#: ../class-fire-utils_settings_map.php:498
+#: ../class-fire-utils_settings_map.php:501
 msgid "A static page"
 msgstr "Statikus oldal"
 
-#: ../class-fire-utils_settings_map.php:504
+#: ../class-fire-utils_settings_map.php:507
 msgid "Front page"
 msgstr "Főoldal"
 
-#: ../class-fire-utils_settings_map.php:512
+#: ../class-fire-utils_settings_map.php:515
 msgid "Posts page"
 msgstr "Bejegyzések oldala (blogoldal)"
 
-#: ../class-fire-utils_settings_map.php:521
+#: ../class-fire-utils_settings_map.php:524
 msgid "Set up the front page layout"
 msgstr "Főoldal oldalszerkezete"
 
-#: ../class-fire-utils_settings_map.php:532
+#: ../class-fire-utils_settings_map.php:536
 msgid "Slider options"
 msgstr "Lapozókép beállítások"
 
-#: ../class-fire-utils_settings_map.php:533
+#: ../class-fire-utils_settings_map.php:537
 msgid "Select front page slider"
 msgstr "Főoldal lapozóképe"
 
-#: ../class-fire-utils_settings_map.php:545
+#: ../class-fire-utils_settings_map.php:549
 msgid "Full width slider"
 msgstr "Teljes szélességű lapozókép"
 
-#: ../class-fire-utils_settings_map.php:556
+#: ../class-fire-utils_settings_map.php:560
 msgid "Delay between each slides"
 msgstr "Lapozóképek közötti késleltetés"
 
-#: ../class-fire-utils_settings_map.php:561
+#: ../class-fire-utils_settings_map.php:565
 msgid "in ms : 1000ms = 1s"
 msgstr "ezredmp.: 1000ms = 1s"
 
-#: ../class-fire-utils_settings_map.php:569
+#: ../class-fire-utils_settings_map.php:573
 msgid "Featured pages options"
 msgstr "Kiemelt oldalak beállítása"
 
-#: ../class-fire-utils_settings_map.php:570
+#: ../class-fire-utils_settings_map.php:574
 msgid "Display home featured pages area"
 msgstr "Kiemelt oldalak ki-/bekapcsolása"
 
-#: ../class-fire-utils_settings_map.php:574
+#: ../class-fire-utils_settings_map.php:578
 msgid "Enable"
 msgstr "Bekapcsol"
 
-#: ../class-fire-utils_settings_map.php:575
+#: ../class-fire-utils_settings_map.php:579
 msgid "Disable"
 msgstr "Kikapcsol"
 
-#: ../class-fire-utils_settings_map.php:584
+#: ../class-fire-utils_settings_map.php:588
 msgid "Show images"
 msgstr "Képek mutatása"
 
-#: ../class-fire-utils_settings_map.php:587
+#: ../class-fire-utils_settings_map.php:591
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -684,73 +667,73 @@ msgstr ""
 "A kiemelt képek minden oldal „kiemelt kép\" részénél beállított képpel "
 "lesznek azonosak. Kapcsold ki ha nem akarod a kiemelt képeket megjeleníteni."
 
-#: ../class-fire-utils_settings_map.php:593
+#: ../class-fire-utils_settings_map.php:597
 msgid "Read more &raquo;"
 msgstr "Részletek &raquo;"
 
-#: ../class-fire-utils_settings_map.php:595
+#: ../class-fire-utils_settings_map.php:599
 msgid "Button text"
 msgstr "Nyomógomb szövege"
 
-#: ../class-fire-utils_settings_map.php:616
-#: ../class-fire-utils_settings_map.php:1181
+#: ../class-fire-utils_settings_map.php:620
+#: ../class-fire-utils_settings_map.php:1198
 msgid "Display Breadcrumb"
 msgstr "Nyomvonal ki-/bekapcsolása"
 
-#: ../class-fire-utils_settings_map.php:626
-#: ../class-fire-utils_settings_map.php:1191
+#: ../class-fire-utils_settings_map.php:630
+#: ../class-fire-utils_settings_map.php:1208
 msgid "Choose the global default layout"
 msgstr "Globális alap oldalszerkezet beállítása"
 
-#: ../class-fire-utils_settings_map.php:637
-#: ../class-fire-utils_settings_map.php:1203
+#: ../class-fire-utils_settings_map.php:641
+#: ../class-fire-utils_settings_map.php:1220
 msgid "Force default layout everywhere"
 msgstr "Alap oldalszerkezet kikényszerítése mindenhol"
 
-#: ../class-fire-utils_settings_map.php:640
-#: ../class-fire-utils_settings_map.php:1206
+#: ../class-fire-utils_settings_map.php:644
+#: ../class-fire-utils_settings_map.php:1223
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
 msgstr ""
 "Ez felülírja minden oldal/hozzászólás beállítását, beleértve a főoldalt is."
 
-#: ../class-fire-utils_settings_map.php:647
-#: ../class-fire-utils_settings_map.php:1212
+#: ../class-fire-utils_settings_map.php:651
+#: ../class-fire-utils_settings_map.php:1229
 msgid "Choose the posts default layout"
 msgstr "Bejegyzés alap oldalszerkezete"
 
-#: ../class-fire-utils_settings_map.php:659
-#: ../class-fire-utils_settings_map.php:1235
+#: ../class-fire-utils_settings_map.php:663
+#: ../class-fire-utils_settings_map.php:1252
 msgid "Maximum number of posts per page"
 msgstr "Maximum bejegyzés per oldal"
 
-#: ../class-fire-utils_settings_map.php:670
-#: ../class-fire-utils_settings_map.php:1245
+#: ../class-fire-utils_settings_map.php:674
+#: ../class-fire-utils_settings_map.php:1262
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "Bejegyzéslista hossza (kezdőlap, keresés, archívum, ...)"
 
-#: ../class-fire-utils_settings_map.php:674
-#: ../class-fire-utils_settings_map.php:1249
+#: ../class-fire-utils_settings_map.php:678
+#: ../class-fire-utils_settings_map.php:1266
 msgid "Display the excerpt"
 msgstr "Kivonatszöveg megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:675
-#: ../class-fire-utils_settings_map.php:1250
+#: ../class-fire-utils_settings_map.php:679
+#: ../class-fire-utils_settings_map.php:1267
 msgid "Display the full content"
 msgstr "Teljes tartalom megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:683
-#: ../class-fire-utils_settings_map.php:1221
+#: ../class-fire-utils_settings_map.php:687
+#: ../class-fire-utils_settings_map.php:1238
 msgid "Choose the pages default layout"
 msgstr "Oldal alap oldalszerkezetének beállítása"
 
-#: ../class-fire-utils_settings_map.php:702
-#: ../class-fire-utils_settings_map.php:1953
+#: ../class-fire-utils_settings_map.php:706
+#: ../class-fire-utils_settings_map.php:2033
 msgid "Enable comments on pages"
 msgstr "Hozzászólások engedélyezése az oldalakon"
 
-#: ../class-fire-utils_settings_map.php:706
+#: ../class-fire-utils_settings_map.php:710
 msgid ""
 "This option will enable comments on pages. You can disable comments for a "
 "single page in the quick edit mode of the page list screen."
@@ -758,60 +741,63 @@ msgstr ""
 "Ez engedélyezi a hozzászólást minden oldalon. Oldalanként, a "
 "„Gyorsszerkesztés\"  módban ez felülbírálható."
 
-#: ../class-fire-utils_settings_map.php:720
-#: ../class-fire-utils_settings_map.php:1979
+#: ../class-fire-utils_settings_map.php:724
+#: ../class-fire-utils_settings_map.php:2084
 msgid "Social links in header"
 msgstr "Közösségi linkek a fejlécben"
 
-#: ../class-fire-utils_settings_map.php:729
-#: ../class-fire-utils_settings_map.php:1997
+#: ../class-fire-utils_settings_map.php:733
+#: ../class-fire-utils_settings_map.php:2102
 msgid "Social links in left sidebar"
 msgstr "Közösségi linkek a bal oldalsávon"
 
-#: ../class-fire-utils_settings_map.php:738
-#: ../class-fire-utils_settings_map.php:2007
+#: ../class-fire-utils_settings_map.php:742
+#: ../class-fire-utils_settings_map.php:2112
 msgid "Social links in right sidebar"
 msgstr "Közösségi linkek a jobb oldalsávon"
 
-#: ../class-fire-utils_settings_map.php:746
-#: ../class-fire-utils_settings_map.php:1988
+#: ../class-fire-utils_settings_map.php:750
+#: ../class-fire-utils_settings_map.php:2093
 msgid "Social links in footer"
 msgstr "Közösségi linkek a láblécen"
 
-#: ../class-fire-utils_settings_map.php:767
-msgid "Enable/disable lightbox effect on images"
+#: ../class-fire-utils_settings_map.php:771
+#, fuzzy
+msgid "Lightbox effect on images"
 msgstr "Lightbox effektus ki-/bekapcsolása"
 
-#: ../class-fire-utils_settings_map.php:770
+#: ../class-fire-utils_settings_map.php:774
+#, fuzzy
 msgid ""
-"If enabled, this option activate a popin window whith a zoom effect when an "
-"image is clicked. This will not apply to image gallery."
+"If enabled, this option activates a popin window whith a zoom effect when an "
+"image is clicked. Note : to enable this effect on the images of your pages "
+"and posts, images have to be linked to the Media File."
 msgstr ""
 "Ha engedélyezed, egy felugró zoom effektusos ablak jelenik meg a képre "
 "klikkeléskor. Galériáknál nem működik."
 
-#: ../class-fire-utils_settings_map.php:776
+#: ../class-fire-utils_settings_map.php:780
 msgid "Autoscale images on zoom"
 msgstr "Képek automatikus skálázása zoomoláskor"
 
-#: ../class-fire-utils_settings_map.php:779
+#: ../class-fire-utils_settings_map.php:783
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "Ha engedélyezed, lightbox effektuskor a képek automatikusan a képernyőhöz "
 "skálázodnak"
 
-#: ../class-fire-utils_settings_map.php:785
-msgid "Enable/disable retina support"
-msgstr "Retina képernyők támogatásának ki-/bekapcsolása"
-
 #: ../class-fire-utils_settings_map.php:789
+msgid "High resolution (Retina) support"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:793
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr ""
 "Engedélyezés esetén, az oldal a nagy felbontású megjelenítőket is támogatja"
 
-#: ../class-fire-utils_settings_map.php:790
+#: ../class-fire-utils_settings_map.php:794
 msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
@@ -819,22 +805,22 @@ msgstr ""
 "A médiatár képeinek nagy felbontású újragenerálásához a következő ingyenes "
 "bővitmény használata ajánlott"
 
-#: ../class-fire-utils_settings_map.php:791
+#: ../class-fire-utils_settings_map.php:795
 #, fuzzy
 msgid "regenerate thumbnails"
 msgstr "Bélyegképek újragenerálása"
 
-#: ../class-fire-utils_settings_map.php:793
+#: ../class-fire-utils_settings_map.php:797
 msgid "Open the description page of the Regenerate thumbnails plugin"
 msgstr "Nyisd meg a Regenerate thumbnails bővítmény leírás lapját"
 
-#: ../class-fire-utils_settings_map.php:799
+#: ../class-fire-utils_settings_map.php:803
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr ""
 "Lapozóképek: betöltésállapotot jelző ikon megjelenítése a lapozókép "
 "betöltése közben"
 
-#: ../class-fire-utils_settings_map.php:802
+#: ../class-fire-utils_settings_map.php:806
 #, fuzzy
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
@@ -843,11 +829,28 @@ msgstr ""
 "Bekapcsolva engedélyezi a betöltésállapotot jelző ikon megjelenítését "
 "lapozókép beállításakor"
 
-#: ../class-fire-utils_settings_map.php:815
-msgid "Enable/disable smooth scroll on click"
+#: ../class-fire-utils_settings_map.php:811
+#, fuzzy
+msgid "Dynamic slider images centering on any devices"
+msgstr "Engedélyezi/tiltja a lapozóképek középre igazítását minden eszközön"
+
+#: ../class-fire-utils_settings_map.php:819
+#, fuzzy
+msgid "Dynamic thumbnails centering on any devices"
+msgstr "Engedélyezi/tiltja a lapozóképek középre igazítását minden eszközön"
+
+#: ../class-fire-utils_settings_map.php:822
+msgid ""
+"This option dynamically centers your images on any devices, vertically or "
+"horizontally according to their initial aspect ratio."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:835
+#, fuzzy
+msgid "Smooth scroll on click"
 msgstr " Finom görgetés ki-/bekapcsolása"
 
-#: ../class-fire-utils_settings_map.php:818
+#: ../class-fire-utils_settings_map.php:838
 msgid ""
 "If enabled, this option activates a smooth page scroll when clicking on a "
 "link to an anchor of the same page."
@@ -855,38 +858,25 @@ msgstr ""
 "Bekapcsolva engedélyezi az ugyanazon oldalon lévő linkre klikkelve az oldal "
 "finomgörgetését"
 
-#: ../class-fire-utils_settings_map.php:831
-msgid "Enable/disable blocks reordering on small devices"
+#: ../class-fire-utils_settings_map.php:851
+#, fuzzy
+msgid "Dynamic sidebar reordering on small devices"
 msgstr "Engedélyezi/tiltja a blokkok újrarendezését kis-képernyős eszközökön "
 
-#: ../class-fire-utils_settings_map.php:834
+#: ../class-fire-utils_settings_map.php:854
 msgid ""
-"On responsive mode, for smartphone viewport, the sidebars are moved after "
-"the main content block."
+"Activate this option to move the sidebars (if any) after the main content "
+"block, for smartphones or tablets viewport."
 msgstr ""
-"Responsive módban, mobil eszközökön, az oldalsávok a fő tartalom blokkja "
-"után lesznek beillesztve"
 
-#: ../class-fire-utils_settings_map.php:840
-msgid "Enable/disable slider's slides centering on any devices"
-msgstr "Engedélyezi/tiltja a lapozóképek középre igazítását minden eszközön"
-
-#: ../class-fire-utils_settings_map.php:843
-msgid ""
-"This option centers your slider (carousel) pictures vertically and "
-"horizontally on any devices when displayed in full width mode"
-msgstr ""
-"Ezzel vízszintesen és függőlegesen is középre lehet igazítani a lapozóképet "
-"minden eszközön, teljes szélesség (full width) módban "
-
-#: ../class-fire-utils_settings_map.php:858
-#: ../class-fire-utils_settings_map.php:2027
+#: ../class-fire-utils_settings_map.php:868
+#: ../class-fire-utils_settings_map.php:2133
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Élő szerkesztéshez írd ide saját CSS kódjaidat (haladó felhasználóknak)"
 
-#: ../class-fire-utils_settings_map.php:862
-#: ../class-fire-utils_settings_map.php:2031
+#: ../class-fire-utils_settings_map.php:872
+#: ../class-fire-utils_settings_map.php:2137
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -894,73 +884,73 @@ msgstr ""
 "Kisebb CSS kódok teszteléséhez használd ezt a mezőt. Nagyobb átalakításhoz "
 "inkább a style.css fájl módosítása ajánlott (lásd gyerek \"child\" téma)."
 
-#: ../class-fire-utils_settings_map.php:863
-#: ../class-fire-utils_settings_map.php:2032
+#: ../class-fire-utils_settings_map.php:873
+#: ../class-fire-utils_settings_map.php:2138
 msgid "child theme."
 msgstr "child („gyerek”) séma."
 
-#: ../class-fire-utils_settings_map.php:864
-#: ../class-fire-utils_settings_map.php:2033
+#: ../class-fire-utils_settings_map.php:874
+#: ../class-fire-utils_settings_map.php:2139
 msgid "How to create and use a child theme ?"
 msgstr "Hogyan hozzun létre saját child („gyerek”) sémát"
 
-#: ../class-fire-utils_settings_map.php:998
+#: ../class-fire-utils_settings_map.php:1008
 msgid "Site Title & Tagline"
 msgstr "Honlap címe "
 
-#: ../class-fire-utils_settings_map.php:1015
+#: ../class-fire-utils_settings_map.php:1025
 msgid "Fonts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1017
+#: ../class-fire-utils_settings_map.php:1027
 #, fuzzy
 msgid "Set up the font global settings"
 msgstr "Lábléc általános beállításai"
 
-#: ../class-fire-utils_settings_map.php:1027
+#: ../class-fire-utils_settings_map.php:1037
 msgid "Links style and effects"
 msgstr "Linkek stílusa és effektek"
 
-#: ../class-fire-utils_settings_map.php:1033
+#: ../class-fire-utils_settings_map.php:1043
 msgid "Titles icons settings"
 msgstr "Cím ikon beállításai"
 
-#: ../class-fire-utils_settings_map.php:1035
+#: ../class-fire-utils_settings_map.php:1045
 #, fuzzy
 msgid "Set up the titles icons options"
 msgstr "Címikonok beállításai"
 
-#: ../class-fire-utils_settings_map.php:1039
+#: ../class-fire-utils_settings_map.php:1049
 #, fuzzy
 msgid "Image settings"
 msgstr "Képbeállítások"
 
-#: ../class-fire-utils_settings_map.php:1051
+#: ../class-fire-utils_settings_map.php:1061
 msgid "Authors"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1053
+#: ../class-fire-utils_settings_map.php:1063
 #, fuzzy
 msgid "Post authors settings"
 msgstr "Bejegyzés szerzője"
 
-#: ../class-fire-utils_settings_map.php:1057
-#: ../class-fire-utils_settings_map.php:1296
+#: ../class-fire-utils_settings_map.php:1067
+#: ../class-fire-utils_settings_map.php:1313
 #, fuzzy
 msgid "Header design and layout"
 msgstr "Fejléc tartalma és oldalszerkezete"
 
-#: ../class-fire-utils_settings_map.php:1057
+#: ../class-fire-utils_settings_map.php:1067
 #, fuzzy
 msgid "Design and layout"
 msgstr "Tartalom és oldalszerkezet"
 
-#: ../class-fire-utils_settings_map.php:1062
+#: ../class-fire-utils_settings_map.php:1072
 #, fuzzy
 msgid "Navigation"
 msgstr "Navigálás"
 
-#: ../class-fire-utils_settings_map.php:1065
+#: ../class-fire-utils_settings_map.php:1075
 #, fuzzy, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgstr ""
@@ -968,95 +958,105 @@ msgstr ""
 "Plural:\n"
 "A témád %s menüt támogat. Válaszd ki, hogy melyik hol jelenjen meg."
 
-#: ../class-fire-utils_settings_map.php:1065
+#: ../class-fire-utils_settings_map.php:1075
 msgid ""
 "You can edit your menu content on the Menus screen in the Appearance section."
 msgstr "A menü tartalmát a Megjelenés főmenü Menük almenüjében szabályozhatod"
 
-#: ../class-fire-utils_settings_map.php:1084
+#: ../class-fire-utils_settings_map.php:1094
 msgid "Post lists : blog, archives, ..."
 msgstr "Bejegyzés listák: blog, archívum, ..."
 
-#: ../class-fire-utils_settings_map.php:1086
+#: ../class-fire-utils_settings_map.php:1096
 #, fuzzy
 msgid "Set up post lists options"
 msgstr "Bejegyzéslisták beállításai"
 
-#: ../class-fire-utils_settings_map.php:1090
+#: ../class-fire-utils_settings_map.php:1100
 msgid "Single posts"
 msgstr "Egyedi bejegyzés"
 
-#: ../class-fire-utils_settings_map.php:1092
+#: ../class-fire-utils_settings_map.php:1102
 #, fuzzy
 msgid "Set up single posts options"
 msgstr "Egyedi bejegyzés beállításai"
 
-#: ../class-fire-utils_settings_map.php:1096
+#: ../class-fire-utils_settings_map.php:1106
 #, fuzzy
 msgid "Breadcrumb"
 msgstr "Nyomvonal ki-/bekapcsolása"
 
-#: ../class-fire-utils_settings_map.php:1098
+#: ../class-fire-utils_settings_map.php:1108
 #, fuzzy
 msgid "Set up breadcrumb options"
 msgstr "Nyomvonal beállítások"
 
-#: ../class-fire-utils_settings_map.php:1110
+#: ../class-fire-utils_settings_map.php:1120
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr ""
 "Bejegyzés részletek, meta adatok (kategória, címkék, egyedi taxonómia stb.)"
 
-#: ../class-fire-utils_settings_map.php:1112
+#: ../class-fire-utils_settings_map.php:1122
 #, fuzzy
 msgid "Set up post metas options"
 msgstr "Bejegyzés részletek (meta adatok) beállításai"
 
-#: ../class-fire-utils_settings_map.php:1116
+#: ../class-fire-utils_settings_map.php:1126
 msgid "Paragraphs"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1118
+#: ../class-fire-utils_settings_map.php:1128
 #, fuzzy
 msgid "Set up paragraphs options"
 msgstr "Bejegyzés részletek (meta adatok) beállításai"
 
-#: ../class-fire-utils_settings_map.php:1128
+#: ../class-fire-utils_settings_map.php:1138
 msgid "Footer global settings"
 msgstr "Lábléc általános beállításai"
 
-#: ../class-fire-utils_settings_map.php:1130
+#: ../class-fire-utils_settings_map.php:1140
 #, fuzzy
 msgid "Set up footer global options"
 msgstr "Lábléc általános beállításai"
 
-#: ../class-fire-utils_settings_map.php:1195
+#: ../class-fire-utils_settings_map.php:1150
+msgid "Website Performances"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1152
+msgid ""
+"On the web, speed is key ! Improve the load time of your pages with those "
+"options."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1212
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr "Megjegyzés: a kezdőlapot célszerű a kezdőlap oldalon szabályozni"
 
-#: ../class-fire-utils_settings_map.php:1234
+#: ../class-fire-utils_settings_map.php:1251
 #, fuzzy
 msgid "Global Post Lists Settings"
 msgstr "Általános beállítások"
 
-#: ../class-fire-utils_settings_map.php:1260
+#: ../class-fire-utils_settings_map.php:1277
 #, fuzzy
 msgid "Display an author box after each single post content"
 msgstr "Bejegyzésikon megjelenítése bejegyzéscím mellett"
 
-#: ../class-fire-utils_settings_map.php:1264
+#: ../class-fire-utils_settings_map.php:1281
 msgid ""
 "Check this option to display an author info block after each single post "
 "content. Note : the Biographical info field must be filled out in the user "
 "profile."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1270
+#: ../class-fire-utils_settings_map.php:1287
 msgid ""
 "Select a beautiful font pair (headings &amp; default fonts) or single font "
 "for your website."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1277
+#: ../class-fire-utils_settings_map.php:1294
 msgid ""
 "This font picker allows you to preview and select among a handy selection of "
 "font pairs and single fonts. If you choose a pair, the first font will be "
@@ -1065,26 +1065,26 @@ msgid ""
 "texts or paragraphs."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1282
+#: ../class-fire-utils_settings_map.php:1299
 msgid "Set your website default font size in pixels."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1290
+#: ../class-fire-utils_settings_map.php:1307
 msgid ""
 "This option sets the default font size applied to any text element of your "
 "website, when no font size is already applied."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1307
+#: ../class-fire-utils_settings_map.php:1324
 #, fuzzy
 msgid "Display the tagline"
 msgstr "Mottó megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1316
+#: ../class-fire-utils_settings_map.php:1333
 msgid "Display menu in a box"
 msgstr "Menü megjelenítése box-ban"
 
-#: ../class-fire-utils_settings_map.php:1321
+#: ../class-fire-utils_settings_map.php:1338
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
@@ -1092,133 +1092,133 @@ msgstr ""
 "Bekapcsolva, a menüt/mottó/közösségi média linkeket egy szürke téglalapba "
 "zárja"
 
-#: ../class-fire-utils_settings_map.php:1326
+#: ../class-fire-utils_settings_map.php:1343
 #, fuzzy
 msgid "Layout"
 msgstr "Oldalszerkezet"
 
-#: ../class-fire-utils_settings_map.php:1330
+#: ../class-fire-utils_settings_map.php:1347
 msgid "Logo / title on the left"
 msgstr "Logó / cím a bal oldalon"
 
-#: ../class-fire-utils_settings_map.php:1331
+#: ../class-fire-utils_settings_map.php:1348
 msgid "Logo / title centered"
 msgstr "Logó / cím középre igazítva"
 
-#: ../class-fire-utils_settings_map.php:1332
+#: ../class-fire-utils_settings_map.php:1349
 msgid "Logo / title on the right"
 msgstr "Logó / cím a jobb oldalon"
 
-#: ../class-fire-utils_settings_map.php:1340
+#: ../class-fire-utils_settings_map.php:1357
 #, fuzzy
 msgid "Sticky header settings"
 msgstr "„Ragadós” fejléc: Mottó megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1341
+#: ../class-fire-utils_settings_map.php:1358
 msgid "Sticky on scroll"
 msgstr "Lapozáskor \"ragadós\" marad"
 
-#: ../class-fire-utils_settings_map.php:1346
+#: ../class-fire-utils_settings_map.php:1363
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr "Bekapcsolva, a fejléc az oldal tetejéhez \"ragad\" oldalgördítéskor"
 
-#: ../class-fire-utils_settings_map.php:1351
+#: ../class-fire-utils_settings_map.php:1368
 msgid "Sticky header : display the tagline"
 msgstr "„Ragadós” fejléc: Mottó megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1360
+#: ../class-fire-utils_settings_map.php:1377
 msgid "Sticky header : display the title / logo"
 msgstr "„Ragadós” fejléc: Logó / Cím megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1369
+#: ../class-fire-utils_settings_map.php:1386
 msgid "Sticky header : shrink title / logo"
 msgstr "„Ragadós” fejléc: Cím / logó összesűrítése"
 
-#: ../class-fire-utils_settings_map.php:1378
+#: ../class-fire-utils_settings_map.php:1395
 msgid "Sticky header : display the menu"
 msgstr "„Ragadós” fejléc: Menü megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1387
+#: ../class-fire-utils_settings_map.php:1404
 #, fuzzy
 msgid "Sticky header : semi-transparent on scroll"
 msgstr "„Ragadós” fejléc: Menü megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1397
+#: ../class-fire-utils_settings_map.php:1414
 msgid "Set the header z-index"
 msgstr "A fejléc z-index sorrendjének beállítása"
 
-#: ../class-fire-utils_settings_map.php:1405
+#: ../class-fire-utils_settings_map.php:1422
 msgid "What is"
 msgstr "mi"
 
-#: ../class-fire-utils_settings_map.php:1406
+#: ../class-fire-utils_settings_map.php:1423
 msgid "the z-index"
 msgstr "z-index"
 
-#: ../class-fire-utils_settings_map.php:1414
+#: ../class-fire-utils_settings_map.php:1431
 msgid "Menu position"
 msgstr "Menü pozíciója"
 
-#: ../class-fire-utils_settings_map.php:1418
+#: ../class-fire-utils_settings_map.php:1435
 msgid "Menu on the left"
 msgstr "Menü bal oldalon"
 
-#: ../class-fire-utils_settings_map.php:1419
+#: ../class-fire-utils_settings_map.php:1436
 msgid "Menu on the right"
 msgstr "Menü jobb oldalon"
 
-#: ../class-fire-utils_settings_map.php:1427
+#: ../class-fire-utils_settings_map.php:1444
 msgid "Reveal the sub-menus blocks with a fade effect"
 msgstr "Almenük megjelenítése áttűnés effekttel"
 
-#: ../class-fire-utils_settings_map.php:1436
+#: ../class-fire-utils_settings_map.php:1453
 msgid "Hover move effect for the sub menu items"
 msgstr "Hover effektus almenü megjelenítésekor"
 
-#: ../class-fire-utils_settings_map.php:1445
+#: ../class-fire-utils_settings_map.php:1462
 msgid ""
 "In responsive mode, limit the height of the dropdown menu block to the "
 "visible viewport"
 msgstr ""
 "Responzív módban, a viewport méretéhez igazítja a lenyíló menü magasságát"
 
-#: ../class-fire-utils_settings_map.php:1455
+#: ../class-fire-utils_settings_map.php:1472
 msgid "Fade effect on link hover"
 msgstr "Áttűnés effektus link kurzor felülvitelkor"
 
-#: ../class-fire-utils_settings_map.php:1465
+#: ../class-fire-utils_settings_map.php:1482
 #, fuzzy
 msgid "Display an icon next to external links"
 msgstr "Archívumikon megjelenítése archívumcím mellett"
 
-#: ../class-fire-utils_settings_map.php:1469
-#: ../class-fire-utils_settings_map.php:1480
+#: ../class-fire-utils_settings_map.php:1486
+#: ../class-fire-utils_settings_map.php:1497
 msgid ""
 "This will be applied to the links included in post or page content only."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1476
+#: ../class-fire-utils_settings_map.php:1493
 msgid "Open external links in a new tab"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1487
+#: ../class-fire-utils_settings_map.php:1504
 #, fuzzy
 msgid "Display the breadcrumb on home page"
 msgstr "Nyomvonal megjelenítése a kezdőlapon"
 
-#: ../class-fire-utils_settings_map.php:1495
+#: ../class-fire-utils_settings_map.php:1512
 #, fuzzy
 msgid "Display the breadcrumb in pages"
 msgstr "Nyomvonal megjelenítése az oldalakon"
 
-#: ../class-fire-utils_settings_map.php:1504
+#: ../class-fire-utils_settings_map.php:1521
 #, fuzzy
 msgid "Display the breadcrumb in single posts"
 msgstr "Nyomvonal megjelenítése az egyedi bejegyzéseknél"
 
-#: ../class-fire-utils_settings_map.php:1513
+#: ../class-fire-utils_settings_map.php:1530
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
@@ -1226,11 +1226,11 @@ msgstr ""
 "Nyomvonal megjelenítése a bejegyzés listákon: blog oldal, arcívum, keresési "
 "találatok, ..."
 
-#: ../class-fire-utils_settings_map.php:1524
+#: ../class-fire-utils_settings_map.php:1541
 msgid "Display icons next to titles"
 msgstr "Ikon megjelenítése cím mellett"
 
-#: ../class-fire-utils_settings_map.php:1528
+#: ../class-fire-utils_settings_map.php:1545
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
@@ -1238,19 +1238,19 @@ msgstr ""
 "Bekapcsolva, egy kontextuális ikon jelenik meg minden oldal, bejegyzés, "
 "archívum, WP beépített widget címe mellett"
 
-#: ../class-fire-utils_settings_map.php:1534
+#: ../class-fire-utils_settings_map.php:1551
 msgid "Display a page icon next to the page title"
 msgstr "Oldalikon megjelenítése oldalcím mellett"
 
-#: ../class-fire-utils_settings_map.php:1543
+#: ../class-fire-utils_settings_map.php:1560
 msgid "Display a post icon next to the single post title"
 msgstr "Bejegyzésikon megjelenítése bejegyzéscím mellett"
 
-#: ../class-fire-utils_settings_map.php:1552
+#: ../class-fire-utils_settings_map.php:1569
 msgid "Display an icon next to the archive title"
 msgstr "Archívumikon megjelenítése archívumcím mellett"
 
-#: ../class-fire-utils_settings_map.php:1555
+#: ../class-fire-utils_settings_map.php:1572
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -1261,11 +1261,11 @@ msgstr ""
 "mellett. Az archívum oldal lehet: kategória, címke, szerző, keresési "
 "eredmény stb."
 
-#: ../class-fire-utils_settings_map.php:1562
+#: ../class-fire-utils_settings_map.php:1579
 msgid "Display an icon next to each post title in an archive page"
 msgstr "Ikon megjelenítése bejegyzés címeknél az archívum oldalakon"
 
-#: ../class-fire-utils_settings_map.php:1565
+#: ../class-fire-utils_settings_map.php:1582
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -1275,20 +1275,20 @@ msgstr ""
 "archívum oldalakon. Az archívum oldal lehet: kategória, címke, szerző, \n"
 "archívum dátum, keresési eredmény stb."
 
-#: ../class-fire-utils_settings_map.php:1572
+#: ../class-fire-utils_settings_map.php:1589
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "WP oldalsáv widgetek: ikon megjelenítése a cím mellett"
 
-#: ../class-fire-utils_settings_map.php:1581
+#: ../class-fire-utils_settings_map.php:1598
 msgid "WP footer widgets : display icons next to titles"
 msgstr "WP lábléc widgetek: ikonok megjelenítése a szöveg mellett"
 
-#: ../class-fire-utils_settings_map.php:1593
+#: ../class-fire-utils_settings_map.php:1610
 #, fuzzy
 msgid "Display posts metas"
 msgstr "Bejegyzés meta adatok megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1596
+#: ../class-fire-utils_settings_map.php:1613
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
@@ -1296,52 +1296,70 @@ msgstr ""
 "Bekapcsolt állapotban a bejegyzés részletei (taxonómia, dátum, szerző stb.) "
 "a bejegyzés címe alatt fognak megjelenni"
 
-#: ../class-fire-utils_settings_map.php:1603
+#: ../class-fire-utils_settings_map.php:1620
+msgid "Metas Design"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1621
+#, fuzzy
+msgid "Select a design for the post metas"
+msgstr "Customizr téma kiválasztása"
+
+#: ../class-fire-utils_settings_map.php:1625
+#, fuzzy
+msgid "Buttons and text"
+msgstr "Nyomógomb szövege"
+
+#: ../class-fire-utils_settings_map.php:1626
+msgid "Text only"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1633
 msgid "Select the contexts"
 msgstr "Kontextus kiválasztása"
 
-#: ../class-fire-utils_settings_map.php:1604
+#: ../class-fire-utils_settings_map.php:1634
 msgid "Display posts metas on home"
 msgstr "Bejegyzés címének megjelenítése a kezdőoldalon"
 
-#: ../class-fire-utils_settings_map.php:1613
+#: ../class-fire-utils_settings_map.php:1643
 msgid "Display posts metas for single posts"
 msgstr "Bejegyzés részleteinek megjelenítése amikor csak egy bejegyzés látszik"
 
-#: ../class-fire-utils_settings_map.php:1622
+#: ../class-fire-utils_settings_map.php:1652
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr ""
 "Bejegyzés részleteinek megjelenítése a bejegyzés listákon (archívum, blog "
 "oldal stb.)"
 
-#: ../class-fire-utils_settings_map.php:1632
+#: ../class-fire-utils_settings_map.php:1662
 msgid "Select the metas to display"
 msgstr "Milyen meta címkéket jelenítsen meg"
 
-#: ../class-fire-utils_settings_map.php:1633
+#: ../class-fire-utils_settings_map.php:1663
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr "Hierarhikus taxonómia (mint a kategóriáknál)"
 
-#: ../class-fire-utils_settings_map.php:1642
+#: ../class-fire-utils_settings_map.php:1672
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr "Nem hierarhikus taxonómia (mint a címkéknél)"
 
-#: ../class-fire-utils_settings_map.php:1651
+#: ../class-fire-utils_settings_map.php:1681
 #, fuzzy
 msgid "Display the publication date"
 msgstr "Teljes tartalom megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1659
+#: ../class-fire-utils_settings_map.php:1689
 #, fuzzy
 msgid "Display the author"
 msgstr "Kivonatszöveg megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1667
+#: ../class-fire-utils_settings_map.php:1697
 #, fuzzy
 msgid "Display the update date"
 msgstr "Mottó megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1671
+#: ../class-fire-utils_settings_map.php:1701
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
@@ -1350,28 +1368,28 @@ msgstr ""
 "Több dátuminfó megjelenítése (amennyiben a bejegyzés nem volt frissítve, "
 "több infó nem jelenik meg)"
 
-#: ../class-fire-utils_settings_map.php:1677
+#: ../class-fire-utils_settings_map.php:1707
 msgid "Select the last update format"
 msgstr "Utolsó frissítési mód kiválasztása"
 
-#: ../class-fire-utils_settings_map.php:1681
+#: ../class-fire-utils_settings_map.php:1711
 msgid "Nb of days since last update"
 msgstr "Eltelt napok száma az utolsó frissítéstől számítva"
 
-#: ../class-fire-utils_settings_map.php:1682
+#: ../class-fire-utils_settings_map.php:1712
 msgid "Date of the last update"
 msgstr "Utolsó frissítés dátuma"
 
-#: ../class-fire-utils_settings_map.php:1690
+#: ../class-fire-utils_settings_map.php:1720
 msgid "Recent update notice after post titles"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1691
+#: ../class-fire-utils_settings_map.php:1721
 #, fuzzy
 msgid "Display a recent update notice"
 msgstr "Oldalikon megjelenítése oldalcím mellett"
 
-#: ../class-fire-utils_settings_map.php:1695
+#: ../class-fire-utils_settings_map.php:1725
 #, fuzzy
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
@@ -1380,66 +1398,66 @@ msgstr ""
 "Bekapcsolt állapotban a bejegyzés részletei (taxonómia, dátum, szerző stb.) "
 "a bejegyzés címe alatt fognak megjelenni"
 
-#: ../class-fire-utils_settings_map.php:1701
+#: ../class-fire-utils_settings_map.php:1731
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 "Figyelmeztetés megjelenítése, ha az utolsó frissítés óta eltelt idő kevesebb "
 "mint n nap"
 
-#: ../class-fire-utils_settings_map.php:1707
+#: ../class-fire-utils_settings_map.php:1737
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
 msgstr "Utoljára frissítve figyelmeztetés megjelenítése (napokban)"
 
-#: ../class-fire-utils_settings_map.php:1710
+#: ../class-fire-utils_settings_map.php:1740
 msgid "Recently updated !"
 msgstr "Frissítve!"
 
-#: ../class-fire-utils_settings_map.php:1712
+#: ../class-fire-utils_settings_map.php:1742
 msgid "Update notice text"
 msgstr "A figyelmeztetés szövege"
 
-#: ../class-fire-utils_settings_map.php:1721
+#: ../class-fire-utils_settings_map.php:1751
 msgid "Update notice style"
 msgstr "A figyelmeztetés stílusa"
 
-#: ../class-fire-utils_settings_map.php:1725
+#: ../class-fire-utils_settings_map.php:1755
 msgid "Default (grey)"
 msgstr "Alap (szürke)"
 
-#: ../class-fire-utils_settings_map.php:1726
+#: ../class-fire-utils_settings_map.php:1756
 msgid "Success (green)"
 msgstr "Sikeres (zöld)"
 
-#: ../class-fire-utils_settings_map.php:1727
+#: ../class-fire-utils_settings_map.php:1757
 #, fuzzy
 msgid "Alert (orange)"
 msgstr "Figyelmeztetés (narancs)"
 
-#: ../class-fire-utils_settings_map.php:1728
+#: ../class-fire-utils_settings_map.php:1758
 msgid "Important (red)"
 msgstr "Fontos (vörös)"
 
-#: ../class-fire-utils_settings_map.php:1729
+#: ../class-fire-utils_settings_map.php:1759
 msgid "Info (blue)"
 msgstr "Infó (kék)"
 
-#: ../class-fire-utils_settings_map.php:1740
+#: ../class-fire-utils_settings_map.php:1770
 msgid "Set the excerpt length (in number of words) "
 msgstr "Kivonatszöveg hossza (szavanként számolva)"
 
-#: ../class-fire-utils_settings_map.php:1750
+#: ../class-fire-utils_settings_map.php:1780
 msgid "Thumbnails options"
 msgstr "Bélyegkép beállítások"
 
-#: ../class-fire-utils_settings_map.php:1751
+#: ../class-fire-utils_settings_map.php:1781
 #, fuzzy
 msgid "Display the post thumbnails"
 msgstr "Bejegyzés bélyegképének megjelenítése"
 
-#: ../class-fire-utils_settings_map.php:1755
+#: ../class-fire-utils_settings_map.php:1785
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
@@ -1447,194 +1465,251 @@ msgstr ""
 "Bekapcsolva engedélyezi a bejegyzések bélyegképének megjelenítését minden "
 "bejegyzés helyen: blog, archívum, szerzőoldal, keresőoldal, ..."
 
-#: ../class-fire-utils_settings_map.php:1760
+#: ../class-fire-utils_settings_map.php:1785
+msgid "Note : thumbnails are always displayed when the grid layout is choosen."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1790
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
 "Ha nincs kiemelt kép beállítva, akkor a bejegyzésben használt utolsó kép "
 "jelenítődik meg"
 
-#: ../class-fire-utils_settings_map.php:1768
+#: ../class-fire-utils_settings_map.php:1797
+#, fuzzy
+msgid "Upload a default thumbnail"
+msgstr "Bejegyzés bélyegképének megjelenítése"
+
+#: ../class-fire-utils_settings_map.php:1807
+msgid "Thumbnails options for the alternate thumbnails layout"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1808
 msgid "Thumbnails shape"
 msgstr "Bélyegkép formája"
 
-#: ../class-fire-utils_settings_map.php:1772
+#: ../class-fire-utils_settings_map.php:1812
 msgid "Rounded, expand on hover"
 msgstr "Kerekített, kurzor felülvitelkor kitágul"
 
-#: ../class-fire-utils_settings_map.php:1773
+#: ../class-fire-utils_settings_map.php:1813
 msgid "Rounded, no expansion"
 msgstr "Kerekített, nincs tágulás"
 
-#: ../class-fire-utils_settings_map.php:1774
+#: ../class-fire-utils_settings_map.php:1814
 msgid "Squared, expand on hover"
 msgstr "Négyszögletes, kurzor felülvitelkor kitágul"
 
-#: ../class-fire-utils_settings_map.php:1775
+#: ../class-fire-utils_settings_map.php:1815
 msgid "Squared, no expansion"
 msgstr "Négyszögletes, nincs tágulás"
 
-#: ../class-fire-utils_settings_map.php:1776
+#: ../class-fire-utils_settings_map.php:1816
 msgid "Rectangular with no effect"
 msgstr "Téglalap, nincs effekt"
 
-#: ../class-fire-utils_settings_map.php:1777
+#: ../class-fire-utils_settings_map.php:1817
 msgid "Rectangular with blur effect on hover"
 msgstr "Téglalap, kurzor felülvitelkor blur hatás"
 
-#: ../class-fire-utils_settings_map.php:1778
+#: ../class-fire-utils_settings_map.php:1818
 msgid "Rectangular with unblur effect on hover"
 msgstr "Téglalap, kurzor felülvitelkor unblur hatás"
 
-#: ../class-fire-utils_settings_map.php:1786
-#: ../class-fire-utils_settings_map.php:1836
+#: ../class-fire-utils_settings_map.php:1826
+#: ../class-fire-utils_settings_map.php:1916
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Bélyegkép max. magassága pixelben"
 
-#: ../class-fire-utils_settings_map.php:1797
+#: ../class-fire-utils_settings_map.php:1838
 msgid "Thumbnails position"
 msgstr "Bélyegkép pozíciója"
 
-#: ../class-fire-utils_settings_map.php:1801
+#: ../class-fire-utils_settings_map.php:1842
 msgid "Top"
 msgstr "Fent"
 
-#: ../class-fire-utils_settings_map.php:1802
+#: ../class-fire-utils_settings_map.php:1843
 msgid "Right"
 msgstr "Jobbra"
 
-#: ../class-fire-utils_settings_map.php:1803
+#: ../class-fire-utils_settings_map.php:1844
 msgid "Bottom"
 msgstr "Lent"
 
-#: ../class-fire-utils_settings_map.php:1804
+#: ../class-fire-utils_settings_map.php:1845
 msgid "Left"
 msgstr "Balra"
 
-#: ../class-fire-utils_settings_map.php:1812
+#: ../class-fire-utils_settings_map.php:1852
 msgid "Alternate thumbnail/content"
 msgstr "Bélyegkép/tartalom váltakozva"
 
-#: ../class-fire-utils_settings_map.php:1821
+#: ../class-fire-utils_settings_map.php:1860
+#: ../parts/class-content-headings.php:369
+msgid "Category Archives :"
+msgstr "Kategória szerinti archívum:"
+
+#: ../class-fire-utils_settings_map.php:1861
+#, fuzzy
+msgid "Archive titles"
+msgstr "Archívum"
+
+#: ../class-fire-utils_settings_map.php:1862
+#, fuzzy
+msgid "Category pages titles"
+msgstr "Cím után"
+
+#: ../class-fire-utils_settings_map.php:1870
+#: ../parts/class-content-headings.php:385
+msgid "Tag Archives :"
+msgstr "Címke szerinti archívum:"
+
+#: ../class-fire-utils_settings_map.php:1871
+msgid "Tag pages titles"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:1879
+#: ../parts/class-content-headings.php:342
+msgid "Author Archives :"
+msgstr "Szerző szerinti  archívum:"
+
+#: ../class-fire-utils_settings_map.php:1880
+#, fuzzy
+msgid "Author pages titles"
+msgstr "Cím után"
+
+#: ../class-fire-utils_settings_map.php:1888
+#: ../parts/class-content-headings.php:327
+msgid "Search Results for :"
+msgstr "Keresési eredmény:"
+
+#: ../class-fire-utils_settings_map.php:1889
+#, fuzzy
+msgid "Search results page titles"
+msgstr "Keresési eredmény:"
+
+#: ../class-fire-utils_settings_map.php:1901
 #, fuzzy
 msgid "Post thumbnail position"
 msgstr "Bejegyzés bélyegképének pozíciója"
 
-#: ../class-fire-utils_settings_map.php:1825
+#: ../class-fire-utils_settings_map.php:1905
 #, fuzzy
 msgid "Don't display"
 msgstr "Elrejtés"
 
-#: ../class-fire-utils_settings_map.php:1826
+#: ../class-fire-utils_settings_map.php:1906
 #, fuzzy
 msgid "Before the title in full width"
 msgstr "Teljes oldalszélességkor cím elé"
 
-#: ../class-fire-utils_settings_map.php:1827
+#: ../class-fire-utils_settings_map.php:1907
 msgid "Before the title boxed"
 msgstr "Címzett box elé"
 
-#: ../class-fire-utils_settings_map.php:1828
+#: ../class-fire-utils_settings_map.php:1908
 msgid "After the title"
 msgstr "Cím után"
 
-#: ../class-fire-utils_settings_map.php:1848
+#: ../class-fire-utils_settings_map.php:1928
 msgid "Drop caps"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1849
+#: ../class-fire-utils_settings_map.php:1929
 msgid "Enable drop caps"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1851
+#: ../class-fire-utils_settings_map.php:1931
 msgid "Apply a drop cap to the first paragraph of your post / page content."
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1860
+#: ../class-fire-utils_settings_map.php:1940
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1861
+#: ../class-fire-utils_settings_map.php:1941
 msgid "(number of words)"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1871
+#: ../class-fire-utils_settings_map.php:1951
 msgid "Drop cap style"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1875
+#: ../class-fire-utils_settings_map.php:1955
 #, fuzzy
 msgid "Skin color with shadow"
 msgstr "Séma (skin) színe"
 
-#: ../class-fire-utils_settings_map.php:1876
+#: ../class-fire-utils_settings_map.php:1956
 #, fuzzy
 msgid "Simple black"
 msgstr "Fekete (flat design)"
 
-#: ../class-fire-utils_settings_map.php:1882
+#: ../class-fire-utils_settings_map.php:1962
 msgid "Enable drop caps in posts"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1884
+#: ../class-fire-utils_settings_map.php:1964
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1891
+#: ../class-fire-utils_settings_map.php:1971
 #, fuzzy
 msgid "Enable drop caps in pages"
 msgstr "Hozzászólások engedélyezése az oldalakon"
 
-#: ../class-fire-utils_settings_map.php:1893
+#: ../class-fire-utils_settings_map.php:1973
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr ""
 
-#: ../class-fire-utils_settings_map.php:1903
+#: ../class-fire-utils_settings_map.php:1983
 #, fuzzy
 msgid "Comments bubbles"
 msgstr "Hozzászólások buborékja"
 
-#: ../class-fire-utils_settings_map.php:1905
+#: ../class-fire-utils_settings_map.php:1985
 #, fuzzy
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr ""
 "Hozzászólások számának megjelenítése egy buborékban a bejegyzéscím mellett"
 
-#: ../class-fire-utils_settings_map.php:1914
+#: ../class-fire-utils_settings_map.php:1994
 #, fuzzy
 msgid "Comments bubble shape"
 msgstr "Hozzászólások buborékjának formája"
 
-#: ../class-fire-utils_settings_map.php:1918
+#: ../class-fire-utils_settings_map.php:1998
 msgid "Small bubbles"
 msgstr "Kis buborék"
 
-#: ../class-fire-utils_settings_map.php:1919
+#: ../class-fire-utils_settings_map.php:1999
 msgid "Large bubbles"
 msgstr "Nagy buborék"
 
-#: ../class-fire-utils_settings_map.php:1927
-#: ../class-fire-utils_settings_map.php:1940
+#: ../class-fire-utils_settings_map.php:2007
+#: ../class-fire-utils_settings_map.php:2020
 #, fuzzy
 msgid "Comments bubble color"
 msgstr "Hozzászólások buborékjának színe"
 
-#: ../class-fire-utils_settings_map.php:1931
+#: ../class-fire-utils_settings_map.php:2011
 msgid "Skin color"
 msgstr "Séma (skin) színe"
 
-#: ../class-fire-utils_settings_map.php:1932
+#: ../class-fire-utils_settings_map.php:2012
 #, fuzzy
 msgid "Custom"
 msgstr "Saját kód"
 
-#: ../class-fire-utils_settings_map.php:1952
+#: ../class-fire-utils_settings_map.php:2032
 #, fuzzy
 msgid "Other comments settings"
 msgstr "Egyéb hozzászólás beállítások"
 
-#: ../class-fire-utils_settings_map.php:1958
+#: ../class-fire-utils_settings_map.php:2038
 #, fuzzy
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
@@ -1643,41 +1718,95 @@ msgstr ""
 "Ez engedélyezi a hozzászólást minden oldalon. Oldalanként, a "
 "„Gyorsszerkesztés\"  módban ez felülbírálható."
 
-#: ../class-fire-utils_settings_map.php:1959
-msgid "Change other comments settings in the"
+#: ../class-fire-utils_settings_map.php:2039
+#, fuzzy
+msgid "You can also change other comments settings in :"
 msgstr "Más hozzászolás megváltoztatása"
 
-#: ../class-fire-utils_settings_map.php:1961
+#: ../class-fire-utils_settings_map.php:2041
+#, fuzzy
+msgid "the discussion settings page."
+msgstr "párbeszédek beállítás oldala"
+
+#: ../class-fire-utils_settings_map.php:2047
+#, fuzzy
+msgid "Enable comments on posts"
+msgstr "Hozzászólások engedélyezése az oldalakon"
+
+#: ../class-fire-utils_settings_map.php:2052
+#, fuzzy
+msgid ""
+"If checked, this option enables comments on all types of single posts. You "
+"can disable comments for a single post in quick edit mode from the"
+msgstr ""
+"Ez engedélyezi a hozzászólást minden oldalon. Oldalanként, a "
+"„Gyorsszerkesztés\"  módban ez felülbírálható."
+
+#: ../class-fire-utils_settings_map.php:2054
+#, fuzzy
+msgid "post screen"
+msgstr "Beállítási képernyő"
+
+#: ../class-fire-utils_settings_map.php:2055
+#, fuzzy
+msgid "You can also change other comments settings in the"
+msgstr "Más hozzászolás megváltoztatása"
+
+#: ../class-fire-utils_settings_map.php:2057
 #, fuzzy
 msgid "discussion settings page."
 msgstr "párbeszédek beállítás oldala"
 
-#: ../class-fire-utils_settings_map.php:1969
+#: ../class-fire-utils_settings_map.php:2063
+#, fuzzy
+msgid "Display the comment list"
+msgstr "Teljes tartalom megjelenítése"
+
+#: ../class-fire-utils_settings_map.php:2067
+msgid ""
+"By default, WordPress displays the past comments, even if comments are "
+"disabled in posts or pages. Unchecking this option allows you to not display "
+"this comment history."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2074
 msgid "Display a back to top arrow on scroll"
 msgstr "„Ugrás az oldal tetejére\" megjelenítése lapozáskor"
 
-#: ../class-fire-utils_settings_map.php:2016
+#: ../class-fire-utils_settings_map.php:2121
 #, fuzzy
 msgid "Social link title in sidebars"
 msgstr "Közösségi oldalak címe az oldalsávon"
 
-#: ../class-fire-utils_settings_map.php:2022
+#: ../class-fire-utils_settings_map.php:2127
 msgid "Will be hidden if empty"
 msgstr "Ha üres akkor rejtve marad"
 
-#: ../class-fire-utils_settings_map.php:2042
+#: ../class-fire-utils_settings_map.php:2155
+#, fuzzy
+msgid "Load images on scroll"
+msgstr "Képek automatikus skálázása zoomoláskor"
+
+#: ../class-fire-utils_settings_map.php:2160
+msgid ""
+"Check this option to delay the loading of non visible images. Images below "
+"the viewport will be loaded dynamically on scroll. This can boost "
+"performances by reducing the weight of long web pages with images."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2169
 msgid "Set slider's height in pixels"
 msgstr "Lapozókép magassága pixelben"
 
-#: ../class-fire-utils_settings_map.php:2052
+#: ../class-fire-utils_settings_map.php:2179
 msgid "Apply this height to all sliders"
 msgstr "Magasság alkalmazása minden lapozóképhez"
 
-#: ../class-fire-utils_settings_map.php:2060
+#: ../class-fire-utils_settings_map.php:2187
 msgid "Replace the default image slider's height"
 msgstr "Az alap lapozókép-magasság felülírása"
 
-#: ../class-fire-utils_settings_map.php:2066
+#: ../class-fire-utils_settings_map.php:2193
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1685,20 +1814,116 @@ msgstr ""
 "Bekapcsolva, a lapozókép a te általad beállított magassággal töltődik be. "
 "Jobb teljesítményt nyújt oldaltöltéskor."
 
-#: ../class-fire-utils_settings_map.php:2067
+#: ../class-fire-utils_settings_map.php:2194
 msgid "You might want to regenerate your thumbnails."
 msgstr "Bélyegképek újragenerálása"
 
-#: ../admin/class-admin-customize.php:364
+#: ../class-fire-utils_settings_map.php:2215
+#, fuzzy
+msgid "Post List Design"
+msgstr "Általános beállítások"
+
+#: ../class-fire-utils_settings_map.php:2216
+msgid "Select a Layout"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2220
+#, fuzzy
+msgid "Alternate thumbnails layout"
+msgstr "Bélyegkép/tartalom váltakozva"
+
+#: ../class-fire-utils_settings_map.php:2221
+#, fuzzy
+msgid "Grid layout"
+msgstr "Tartalom és oldalszerkezet"
+
+#: ../class-fire-utils_settings_map.php:2224
+msgid ""
+"When you select the grid Layout, the post content is limited to the excerpt."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2229
+msgid "Number of columns per row"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2233
+msgid "1"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2234
+msgid "2"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2235
+msgid "3"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2236
+msgid "4"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2239
+msgid ""
+"Note : columns are limited to 3 for single sidebar layouts and to 2 for "
+"double sidebar layouts."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2244
+msgid "Expand the last sticky post (for home and blog page only)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2252
+msgid "Apply the grid layout to Home/Blog"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2260
+msgid "Apply the grid layout to Archives (archives, categories, author posts)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2268
+msgid "Apply the grid layout to Search results"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2272
+msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2277
+msgid "Apply a shadow to each grid items"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2286
+msgid "Apply a colored bottom border to each grid items"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2295
+#, fuzzy
+msgid "Display post format icons in the background"
+msgstr "Bejegyzés címének megjelenítése a kezdőoldalon"
+
+#: ../class-fire-utils_settings_map.php:2305
+msgid "Max. length for post titles (in words)"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2316
+msgid "Thumbnails max height for the grid layout"
+msgstr ""
+
+#: ../class-fire-utils_settings_map.php:2317
+#, fuzzy
+msgid "Set the post grid thumbnail's max height in pixels"
+msgstr "Bélyegkép max. magassága pixelben"
+
+#: ../admin/class-admin-customize.php:368
 msgid "Hi! This is"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:365
+#: ../admin/class-admin-customize.php:369
 #, fuzzy
 msgid ", developer of the Customizr theme"
 msgstr "Customizr téma haladó beállításai"
 
-#: ../admin/class-admin-customize.php:368
+#: ../admin/class-admin-customize.php:372
 #, fuzzy
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
@@ -1709,12 +1934,12 @@ msgstr ""
 "téma maradjon.</strong><br/> Kérjük segítsd erőfeszítéseinket és adományoz "
 "számunkra  $20, $50, vagy akár  $100."
 
-#: ../admin/class-admin-customize.php:372
+#: ../admin/class-admin-customize.php:376
 #, fuzzy
 msgid "Make a donation for Customizr"
 msgstr "Customizr téma kiválasztása"
 
-#: ../admin/class-admin-customize.php:375
+#: ../admin/class-admin-customize.php:379
 msgid ""
 "Once clicked the 'Hide forever' button, this donation block will not be "
 "displayed anymore.<br/>Either you are using Customizr for personal or "
@@ -1723,33 +1948,65 @@ msgid ""
 "Live long and prosper with Customizr!</strong>"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:376
+#: ../admin/class-admin-customize.php:380
 msgid "Hide forever"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:377
+#: ../admin/class-admin-customize.php:381
 msgid "Let me think twice"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:386
+#: ../admin/class-admin-customize.php:390
 msgid "Need more customizations options and premium support ?"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:388
-#: ../admin/class-admin-customize.php:400
-#: ../admin/class-admin-customize.php:412
+#: ../admin/class-admin-customize.php:392
+#: ../admin/class-admin-customize.php:404
+#: ../admin/class-admin-customize.php:416
+#: ../admin/class-admin-customize.php:428
 #, fuzzy
 msgid "Discover Customizr Pro"
 msgstr "Üdvözlünk a Customizr %s világában"
 
-#: ../admin/class-admin-customize.php:398
+#: ../admin/class-admin-customize.php:402
 msgid ""
 "Need more control on your fonts ? Style any text in live preview ( size, "
 "color, font family, effect, ...) with the Customizr Pro theme."
 msgstr ""
 
-#: ../admin/class-admin-customize.php:410
+#: ../admin/class-admin-customize.php:414
 msgid "Add unlimited featured pages with Customizr Pro"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:426
+msgid "Customize your footer credits with Customizr Pro"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:437
+msgid "If you like"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:438
+#, fuzzy
+msgid "the Customizr theme"
+msgstr "Customizr téma haladó beállításai"
+
+#: ../admin/class-admin-customize.php:438
+#, fuzzy
+msgid "the Customizr pro theme"
+msgstr "Customizr téma haladó beállításai"
+
+#: ../admin/class-admin-customize.php:439
+msgid "we would love to receive a"
+msgstr ""
+
+#: ../admin/class-admin-customize.php:441
+#, fuzzy
+msgid "Review the Customizr theme"
+msgstr "Customizr téma haladó beállításai"
+
+#: ../admin/class-admin-customize.php:443
+msgid "rating. Thanks :) !"
 msgstr ""
 
 #: ../admin/class-admin-meta_boxes.php:87
@@ -1870,7 +2127,7 @@ msgstr "A lapozóképet véglegesen töröljük (a képek, linkek megmaradnak)"
 msgid "Delete slider"
 msgstr "Lapozókép törlése"
 
-#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:122
+#: ../admin/class-admin-meta_boxes.php:345 ../admin/class-controls.php:82
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -1955,10 +2212,10 @@ msgstr "Nyomógomb link"
 #: ../parts/class-content-breadcrumb.php:678
 #: ../parts/class-content-breadcrumb.php:693
 #: ../parts/class-content-breadcrumb.php:721
-#: ../parts/class-content-comments.php:160
-#: ../parts/class-content-featured_pages.php:251
-#: ../parts/class-content-headings.php:247
-#: ../parts/class-content-slider.php:359
+#: ../parts/class-content-comments.php:195
+#: ../parts/class-content-featured_pages.php:214
+#: ../parts/class-content-headings.php:238
+#: ../parts/class-content-slider.php:347
 msgid "Edit"
 msgstr "Szerkesztés"
 
@@ -1974,49 +2231,60 @@ msgstr "Lapozókép szerkesztése"
 msgid "Current slide"
 msgstr "Jelenlegi lapozókép"
 
-#: ../admin/class-controls.php:122
+#: ../admin/class-controls.php:84
 msgid "Create a slider"
 msgstr "Lapozókép létrehozása"
 
-#: ../admin/class-controls.php:284
+#: ../admin/class-controls.php:85
+#, fuzzy
+msgid "Need help to create a slider ?"
+msgstr "Lapozókép létrehozása"
+
+#: ../admin/class-controls.php:87
+#, fuzzy
+msgid "Check the documentation"
+msgstr "Olvasd el a dokumentációt"
+
+#: ../admin/class-controls.php:315
 msgid "Upload"
 msgstr "Feltöltés"
 
-#: ../admin/class-controls.php:285
+#: ../admin/class-controls.php:316
 msgid "Remove"
 msgstr "Eltávolítás"
 
-#: ../admin/class-fire-admin_init.php:84 ../admin/class-fire-admin_init.php:85
+#: ../admin/class-fire-admin_init.php:108
+#: ../admin/class-fire-admin_init.php:109
 msgid "Upgrade WP"
 msgstr "WP frissítése"
 
-#: ../admin/class-fire-admin_init.php:104
+#: ../admin/class-fire-admin_init.php:128
 msgid "This theme requires WordPress 3.4+"
 msgstr "Téma követelmény: Wordpress 3.4+"
 
-#: ../admin/class-fire-admin_init.php:107
-#: ../admin/class-fire-admin_init.php:108
+#: ../admin/class-fire-admin_init.php:131
+#: ../admin/class-fire-admin_init.php:132
 msgid "Upgrade Wordpress Now"
 msgstr "Frissítsd a Wordpress-t most"
 
-#: ../admin/class-fire-admin_init.php:125
-#: ../admin/class-fire-admin_init.php:126
+#: ../admin/class-fire-admin_init.php:149
+#: ../admin/class-fire-admin_init.php:150
 #: ../admin/class-fire-admin_page.php:40
 msgid "About Customizr"
 msgstr "Customizr névjegy"
 
-#: ../admin/class-fire-admin_init.php:148
+#: ../admin/class-fire-admin_init.php:172
 #: ../admin/class-fire-admin_page.php:68
 msgid "Need help with Customizr ?"
 msgstr "Customizr segítségre van szükséged?"
 
-#: ../admin/class-fire-admin_init.php:150
+#: ../admin/class-fire-admin_init.php:174
 #: ../admin/class-fire-admin_page.php:70
 #, php-format
 msgid "Welcome to Customizr %s"
 msgstr "Üdvözlünk a Customizr %s világában"
 
-#: ../admin/class-fire-admin_init.php:157
+#: ../admin/class-fire-admin_init.php:181
 #: ../admin/class-fire-admin_page.php:78
 #, php-format
 msgid ""
@@ -2034,26 +2302,26 @@ msgstr ""
 "fejlesztéseikből, sokat lehet tanulni. Több mint valószínű a GYIK között "
 "vagy a fórumokon megtalálod a megoldást."
 
-#: ../admin/class-fire-admin_init.php:165
+#: ../admin/class-fire-admin_init.php:189
 #: ../admin/class-fire-admin_page.php:86
 msgid "Read the documentation"
 msgstr "Olvasd el a dokumentációt"
 
-#: ../admin/class-fire-admin_init.php:169
+#: ../admin/class-fire-admin_init.php:193
 #: ../admin/class-fire-admin_page.php:90
 msgid "Check the FAQ"
 msgstr "Olvasd el a GYIK"
 
-#: ../admin/class-fire-admin_init.php:174
+#: ../admin/class-fire-admin_init.php:198
 #: ../admin/class-fire-admin_page.php:95
 msgid "Code snippets"
 msgstr "Kódrészletek"
 
-#: ../admin/class-fire-admin_init.php:177
+#: ../admin/class-fire-admin_init.php:201
 msgid "Discuss in the user forum"
 msgstr "Dumcsizás a fórumban"
 
-#: ../admin/class-fire-admin_init.php:185
+#: ../admin/class-fire-admin_init.php:209
 #: ../admin/class-fire-admin_page.php:106
 #, php-format
 msgid ""
@@ -2070,7 +2338,7 @@ msgstr ""
 "(angolul) <a href=\"%2$s\" target=\"_blank\"> itt találsz</a>, inspirációhoz "
 "meg the <a href=\"#showcase\">ezt</a> ajánljuk.<br/>Használd egészséggel!"
 
-#: ../admin/class-fire-admin_init.php:199
+#: ../admin/class-fire-admin_init.php:223
 #: ../admin/class-fire-admin_page.php:120
 #, php-format
 msgid ""
@@ -2081,12 +2349,12 @@ msgstr ""
 "mindig ellenőrizd a %2$s , s győződj meg róla, hogy mely funkciók és "
 "sablonok lettek elavulttá nyilvánítva."
 
-#: ../admin/class-fire-admin_init.php:214
+#: ../admin/class-fire-admin_init.php:238
 #: ../admin/class-fire-admin_page.php:137
 msgid "We need sponsors!"
 msgstr "Szponzorokra lenne szükségünk!"
 
-#: ../admin/class-fire-admin_init.php:215
+#: ../admin/class-fire-admin_init.php:239
 #: ../admin/class-fire-admin_page.php:138
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
@@ -2097,12 +2365,12 @@ msgstr ""
 "téma maradjon.</strong><br/> Kérjük segítsd erőfeszítéseinket és adományoz "
 "számunkra  $20, $50, vagy akár  $100."
 
-#: ../admin/class-fire-admin_init.php:222
+#: ../admin/class-fire-admin_init.php:246
 #: ../admin/class-fire-admin_page.php:145
 msgid "Happy user of Customizr?"
 msgstr "Elégedett Customizr felhasználó?"
 
-#: ../admin/class-fire-admin_init.php:223
+#: ../admin/class-fire-admin_init.php:247
 #: ../admin/class-fire-admin_page.php:146
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
@@ -2111,29 +2379,29 @@ msgstr ""
 "Akkor írjon egy pozitív véleményt a wordpress.org honlapjára. (Minden "
 "visszajelzésre ki vagyunk éhezve)"
 
-#: ../admin/class-fire-admin_init.php:228
+#: ../admin/class-fire-admin_init.php:252
 #: ../admin/class-fire-admin_page.php:151
 msgid "Follow us"
 msgstr "Kövess minket"
 
-#: ../admin/class-fire-admin_init.php:236
+#: ../admin/class-fire-admin_init.php:260
 #: ../admin/class-fire-admin_page.php:160
 msgid "Customizr's extensions"
 msgstr "Customizr kiterjesztések"
 
-#: ../admin/class-fire-admin_init.php:239
-#: ../admin/class-fire-admin_init.php:248
+#: ../admin/class-fire-admin_init.php:263
+#: ../admin/class-fire-admin_init.php:272
 #: ../admin/class-fire-admin_page.php:163
 #: ../admin/class-fire-admin_page.php:172
 msgid "Visit the extension's page"
 msgstr "Látogass el a kiterjesztések honlapjára"
 
-#: ../admin/class-fire-admin_init.php:240
+#: ../admin/class-fire-admin_init.php:264
 #: ../admin/class-fire-admin_page.php:164
 msgid "Easily take your web design one step further"
 msgstr "Egy lépéssel könnyebb a továbblépés :)"
 
-#: ../admin/class-fire-admin_init.php:241
+#: ../admin/class-fire-admin_init.php:265
 #: ../admin/class-fire-admin_page.php:165
 msgid ""
 "The Customizr's extensions are plugins developed to extend the Customizr "
@@ -2146,7 +2414,7 @@ msgstr ""
 "meglévő beállításaihoz és egyszerűen ki/be kapcsolhatóak anélkül, hogy "
 "hatással lennének a már meglévő funkció- és design beállításokra."
 
-#: ../admin/class-fire-admin_init.php:243
+#: ../admin/class-fire-admin_init.php:267
 #: ../admin/class-fire-admin_page.php:167
 msgid ""
 "These modules are designed to be simple to use for everyone. They are a good "
@@ -2156,37 +2424,37 @@ msgstr ""
 "Ezek a modulok a lehető legegyszerűbb beállítási felületet nyújtják, "
 "anélkül, hogy kódokat kellene bütykörészni."
 
-#: ../admin/class-fire-admin_init.php:245
+#: ../admin/class-fire-admin_init.php:269
 #: ../admin/class-fire-admin_page.php:169
 msgid ""
 "Customizr's extensions are installed and upgraded from your WordPress admin, "
 "like any other WordPress plugins. Well documented and easily extendable with "
-"hooks, they come with a dedicated support forum on themesandco.com."
+"hooks, they come with a dedicated support forum on presscustomizr.com."
 msgstr ""
 "A Customizr kiterjesztések a WordPress admin felületén keresztül "
 "telepíthetőek és frissíthetőek, ugyanúgy mint bármilyen egyéb WordPress "
 "plugin. Jól dokumentáltak és a bőséges hook lehetőségeket kihasználva "
-"könnyen bővíthetőek. A themesandco.com címen lévő dedikált fórumunkon "
+"könnyen bővíthetőek. A presscustomizr.com címen lévő dedikált fórumunkon "
 "további segítséget kérhet."
 
-#: ../admin/class-fire-admin_init.php:254
+#: ../admin/class-fire-admin_init.php:278
 #: ../admin/class-fire-admin_page.php:179
 msgid "Customizr Showcase"
 msgstr "Customizr bemutató"
 
-#: ../admin/class-fire-admin_init.php:257
-#: ../admin/class-fire-admin_init.php:264
+#: ../admin/class-fire-admin_init.php:281
+#: ../admin/class-fire-admin_init.php:288
 #: ../admin/class-fire-admin_page.php:182
 #: ../admin/class-fire-admin_page.php:189
 msgid "Visit the showcase"
 msgstr "Látogasd meg a bemutatót"
 
-#: ../admin/class-fire-admin_init.php:258
+#: ../admin/class-fire-admin_init.php:282
 #: ../admin/class-fire-admin_page.php:183
 msgid "Find inspiration for your next Customizr based website!"
 msgstr "Inspirálódj a mások által létrehozott Customizr alapú honlapokból! "
 
-#: ../admin/class-fire-admin_init.php:259
+#: ../admin/class-fire-admin_init.php:283
 #: ../admin/class-fire-admin_page.php:184
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
@@ -2195,7 +2463,7 @@ msgstr ""
 "Ez a bemutató megmutatja, mit lehet létrehozni a Customizr-el, és inspiráció "
 "lehet a te munkádhoz"
 
-#: ../admin/class-fire-admin_init.php:261
+#: ../admin/class-fire-admin_init.php:285
 #: ../admin/class-fire-admin_page.php:186
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
@@ -2204,18 +2472,18 @@ msgstr ""
 "Ha úgy találod, hogy egy érdekes honlapot hoztál létre, küld be hozzánk, "
 "hogy más is tanuljon belőle."
 
-#: ../admin/class-fire-admin_init.php:271
+#: ../admin/class-fire-admin_init.php:295
 #: ../admin/class-fire-admin_page.php:256
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Változások a %1$s verzióban"
 
-#: ../admin/class-fire-admin_init.php:280
+#: ../admin/class-fire-admin_init.php:304
 #: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Ugorj a Vezérlőpulthoz &rarr; Kezdőlap"
 
-#: ../admin/class-fire-admin_init.php:280
+#: ../admin/class-fire-admin_init.php:304
 #: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard"
 msgstr "Ugorj a Vezérlőpulthoz"
@@ -2327,58 +2595,67 @@ msgstr "Kettéoszt"
 msgid "Merge"
 msgstr "Összefűz"
 
-#: ../parts/class-content-comments.php:57
+#: ../parts/class-content-comments.php:92
 msgid "One thought on"
 msgstr "Egy kis gondolat"
 
-#: ../parts/class-content-comments.php:59
+#: ../parts/class-content-comments.php:94
 msgid "thoughts on"
 msgstr "Gondolat"
 
-#: ../parts/class-content-comments.php:119
+#: ../parts/class-content-comments.php:154
 msgid "Pingback:"
 msgstr "Visszapingelés"
 
-#: ../parts/class-content-comments.php:119
+#: ../parts/class-content-comments.php:154
 msgid "(Edit)"
 msgstr "(Szerkesztés)"
 
-#: ../parts/class-content-comments.php:146
+#: ../parts/class-content-comments.php:181
 msgid "Reply"
 msgstr "Válasz"
 
-#: ../parts/class-content-comments.php:159
+#: ../parts/class-content-comments.php:194
 msgid "Post author"
 msgstr "Bejegyzés szerzője"
 
-#: ../parts/class-content-comments.php:166
+#: ../parts/class-content-comments.php:201
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s : %2$s"
 
-#: ../parts/class-content-comments.php:171
+#: ../parts/class-content-comments.php:206
 msgid "Your comment is awaiting moderation."
 msgstr "Hozzászólásod moderálásra vár."
 
-#: ../parts/class-content-comments.php:206
+#: ../parts/class-content-comments.php:241
 msgid "Comment navigation"
 msgstr "Hozzászólás navigálás"
 
-#: ../parts/class-content-comments.php:212
+#: ../parts/class-content-comments.php:247
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Régebbi bejegyzések"
 
-#: ../parts/class-content-comments.php:220
+#: ../parts/class-content-comments.php:255
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Újabb bejegyzések <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-comments.php:252
+#: ../parts/class-content-comments.php:287
 msgid "Comments are closed."
 msgstr "Hozzászólások lezárva"
 
-#: ../parts/class-content-comments.php:267
+#: ../parts/class-content-comments.php:322
 msgid "Leave a comment"
 msgstr "Megjegyzés hozzáfűzése"
+
+#: ../parts/class-content-comments.php:344
+msgid "Comment(s) on"
+msgstr "Hozzászólás(ok)"
+
+#: ../parts/class-content-comments.php:363
+#, fuzzy
+msgid "comment"
+msgstr "hozzászólás"
 
 #: ../parts/class-content-featured_pages.php:127
 msgid "Customizer screen"
@@ -2401,194 +2678,187 @@ msgstr ""
 "Kiemelt oldal leíró szövege: használd az oldal kivonatszövegét, vagy írj egy "
 "sajátot a Beállítási képernyőn %s."
 
-#: ../parts/class-content-gallery.php:187
+#: ../parts/class-content-gallery.php:193
 msgid "Missing Attachment"
 msgstr "Hiányzó csatolmány"
 
-#: ../parts/class-content-headings.php:170
-#: ../parts/class-content-headings.php:175
+#: ../parts/class-content-headings.php:182
+#: ../parts/class-content-headings.php:187
 msgid "{no title} Read the post &raquo;"
 msgstr "{nincs cím} Olvasd el a bejegyzést &raquo;"
 
-#: ../parts/class-content-headings.php:174
+#: ../parts/class-content-headings.php:186
 #, php-format
 msgid "Permalink to %s"
 msgstr "Közvetlen hivatkozás: %s"
 
-#: ../parts/class-content-headings.php:217
-msgid "Comment(s) on"
-msgstr "Hozzászólás(ok)"
-
-#: ../parts/class-content-headings.php:323
+#: ../parts/class-content-headings.php:315
 msgid "Ooops, page not found"
 msgstr "Híjnye ez az oldal ejsze bésírült de sze' az ki se gyütt!"
 
-#: ../parts/class-content-headings.php:334
+#: ../parts/class-content-headings.php:326
 msgid "No"
 msgstr "Nem"
 
-#: ../parts/class-content-headings.php:335
-msgid "Search Results for :"
-msgstr "Keresési eredmény:"
-
-#: ../parts/class-content-headings.php:350
-msgid "Author Archives :"
-msgstr "Szerző szerinti  archívum:"
-
-#: ../parts/class-content-headings.php:364 ../parts/class-content-post.php:161
+#: ../parts/class-content-headings.php:356 ../parts/class-content-post.php:134
 #, php-format
 msgid "About %s"
 msgstr "Névjegy: %s"
 
-#: ../parts/class-content-headings.php:377
-msgid "Category Archives :"
-msgstr "Kategória szerinti archívum:"
-
-#: ../parts/class-content-headings.php:393
-msgid "Tag Archives :"
-msgstr "Címke szerinti archívum:"
-
-#: ../parts/class-content-headings.php:406
+#: ../parts/class-content-headings.php:398
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Nap szerinti archívum: %s"
 
-#: ../parts/class-content-headings.php:406
+#: ../parts/class-content-headings.php:398
 msgid "Archives"
 msgstr "Archívum"
 
-#: ../parts/class-content-headings.php:407
+#: ../parts/class-content-headings.php:399
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Hónap szerinti archívum: %s"
 
-#: ../parts/class-content-headings.php:408
+#: ../parts/class-content-headings.php:400
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Év szerinti archívum: %s"
 
-#: ../parts/class-content-headings.php:477
-#, fuzzy
-msgid "comment"
-msgstr "hozzászólás"
-
-#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:120
-#: ../parts/class-content-post_list.php:149
+#: ../parts/class-content-page.php:42 ../parts/class-content-post.php:96
+#: ../parts/class-content-post_list.php:239
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Olvasás folytatása <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:121
-#: ../parts/class-content-post_list.php:150
+#: ../parts/class-content-page.php:44 ../parts/class-content-post.php:97
+#: ../parts/class-content-post_list.php:241
 msgid "Pages:"
 msgstr "Oldalak:"
 
-#: ../parts/class-content-post.php:165
+#: ../parts/class-content-post.php:138
 #, php-format
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 "Minden bejegyzés megjelenítése: %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-content-post_metas.php:87
-#, php-format
-msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+#: ../parts/class-content-post_list_grid.php:920
+#, fuzzy
+msgid "More grid design options"
+msgstr "Kiemelt oldalak beállítása"
+
+#: ../parts/class-content-post_list_grid.php:929
+#, fuzzy
+msgid "Jump to the blog design options"
+msgstr "Címikonok beállításai"
+
+#: ../parts/class-content-post_metas.php:173
+#, fuzzy, php-format
+msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
 msgstr ""
 "Bejegyzés közölve: dátum: %3$s, szerző: <span class=\"by-author\">%4$s</"
 "span>."
 
-#: ../parts/class-content-post_metas.php:121
+#: ../parts/class-content-post_metas.php:192
 msgid "Published"
 msgstr "Közzétéve"
 
-#: ../parts/class-content-post_metas.php:124
+#: ../parts/class-content-post_metas.php:195
 msgid "at dimensions"
 msgstr "méretek"
 
-#: ../parts/class-content-post_metas.php:124
+#: ../parts/class-content-post_metas.php:195
 msgid "Link to full-size image"
 msgstr "Link a teljes méretű képhez"
 
-#: ../parts/class-content-post_metas.php:125
+#: ../parts/class-content-post_metas.php:196
+#: ../parts/class-content-post_metas.php:512
 msgid "in"
 msgstr ":"
 
-#: ../parts/class-content-post_metas.php:125
+#: ../parts/class-content-post_metas.php:196
 msgid "Return to "
 msgstr "Visszaküldés "
 
-#: ../parts/class-content-post_metas.php:153
-#: ../parts/class-content-post_metas.php:181
-#, php-format
-msgid "View all posts in %s"
-msgstr "Minden bejegyzés megjelenítése: %s"
-
-#: ../parts/class-content-post_metas.php:299
-#, php-format
-msgid "View all posts by %s"
-msgstr "Minden bejegyzés megjelenítése: %s"
-
-#: ../parts/class-content-post_metas.php:319
-msgid "Open"
-msgstr ""
-
-#: ../parts/class-content-post_metas.php:412
+#: ../parts/class-content-post_metas.php:258
 #, fuzzy, php-format
 msgid "This entry was posted in %1$s and tagged %2$s"
 msgstr ""
 "Bejegyzés közölve: %1$s, címkézve:  %2$s, dátum: %3$s, szerző: <span class="
 "\"by-author\">%4$s</span>."
 
-#: ../parts/class-content-post_metas.php:414
+#: ../parts/class-content-post_metas.php:260
 #, php-format
 msgid "This entry was posted in %1$s"
 msgstr "Minden bejegyzés megjelenítése: %s"
 
-#: ../parts/class-content-post_metas.php:416
+#: ../parts/class-content-post_metas.php:262
 #, php-format
 msgid "This entry was tagged %2$s"
 msgstr "Ezt a bejegyzést a %2$s látták el"
 
-#: ../parts/class-content-post_metas.php:421
-#, php-format
-msgid "This entry was posted on %3$s"
+#: ../parts/class-content-post_metas.php:271
+#, fuzzy, php-format
+msgid "This entry was posted on %1$s"
 msgstr "Ez a bejegyzés %3$s dátummal került közlésre"
 
-#: ../parts/class-content-post_metas.php:423
-#, php-format
-msgid "on %3$s"
+#: ../parts/class-content-post_metas.php:273
+#, fuzzy, php-format
+msgid "on %1$s"
 msgstr "%3$s"
 
-#: ../parts/class-content-post_metas.php:425
-#, php-format
-msgid "and posted on %3$s"
+#: ../parts/class-content-post_metas.php:275
+#, fuzzy, php-format
+msgid "and posted on %1$s"
 msgstr "közölve %3$s"
 
-#: ../parts/class-content-post_metas.php:432
+#: ../parts/class-content-post_metas.php:287
 msgid "This entry was posted"
 msgstr "A bejegyzés közölve lett."
 
-#: ../parts/class-content-post_metas.php:432
-#: ../parts/class-content-post_metas.php:434
-#, php-format
-msgid "by %4$s"
+#: ../parts/class-content-post_metas.php:287
+#: ../parts/class-content-post_metas.php:289
+#, fuzzy, php-format
+msgid "by %1$s"
 msgstr "szerző %4$s"
 
-#: ../parts/class-content-post_metas.php:442
+#: ../parts/class-content-post_metas.php:303
 msgid "(updated today)"
 msgstr "(frissítve ma)"
 
-#: ../parts/class-content-post_metas.php:442
-#, php-format
-msgid "(updated %6$s days ago)"
+#: ../parts/class-content-post_metas.php:303
+#, fuzzy, php-format
+msgid "(updated %s days ago)"
 msgstr "(frissítve %6$s nappal ezelőt)"
 
-#: ../parts/class-content-post_metas.php:443
+#: ../parts/class-content-post_metas.php:304
 msgid "(updated 1 day ago)"
 msgstr "(frissítve 1 nappal ezelőt)"
 
-#: ../parts/class-content-post_metas.php:446
-#, php-format
-msgid "(updated on %5$s)"
+#: ../parts/class-content-post_metas.php:307
+#, fuzzy, php-format
+msgid "(updated on %1$s)"
 msgstr "(frissítve %5$s dátummal)"
+
+#: ../parts/class-content-post_metas.php:358
+#, php-format
+msgid "View all posts in %s"
+msgstr "Minden bejegyzés megjelenítése: %s"
+
+#: ../parts/class-content-post_metas.php:455
+#, php-format
+msgid "View all posts by %s"
+msgstr "Minden bejegyzés megjelenítése: %s"
+
+#: ../parts/class-content-post_metas.php:475
+msgid "Open"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:513
+msgid "tagged"
+msgstr ""
+
+#: ../parts/class-content-post_metas.php:536
+msgid "by"
+msgstr ""
 
 #: ../parts/class-content-post_navigation.php:54
 #: ../parts/class-content-post_navigation.php:109
@@ -2603,17 +2873,109 @@ msgstr "<span class=\"meta-nav\">&larr;</span> Régebbi bejegyzések"
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Újabb bejegyzések <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../parts/class-footer-footer_main.php:177
+#: ../parts/class-content-sidebar.php:128
+#: ../parts/class-footer-footer_main.php:102
+msgid "This block is visible for admin users only."
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:132
+#, fuzzy
+msgid "The sidebar : "
+msgstr "Bal oldalsáv"
+
+#: ../parts/class-content-sidebar.php:134
+msgid "has no widgets"
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:138
+msgid "You can add widgets to this sidebar in :"
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:140
+#: ../parts/class-footer-footer_main.php:112
+#, fuzzy
+msgid "Add widgets"
+msgstr "Lapozókép létrehozás"
+
+#: ../parts/class-content-sidebar.php:141
+#: ../parts/class-footer-footer_main.php:113
+msgid "appearance > widgets"
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:145
+msgid "You can also remove this sidebar by changing the current page layout."
+msgstr ""
+
+#: ../parts/class-content-sidebar.php:147
+#, fuzzy
+msgid "Changing the layout in the Customizr theme"
+msgstr "Customizr téma tartalom beállításai"
+
+#: ../parts/class-content-sidebar.php:148
+#, fuzzy
+msgid "See the theme documentation."
+msgstr "Olvasd el a dokumentációt"
+
+#: ../parts/class-content-sidebar.php:152
+#: ../parts/class-footer-footer_main.php:117
+msgid "dismiss notice"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:106
+msgid "The footer has no widgets"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:110
+msgid "You can add widgets to the footer in :"
+msgstr ""
+
+#: ../parts/class-footer-footer_main.php:221
 msgid "Back to top"
 msgstr "Ugrás az oldal tetejére"
 
-#: ../parts/class-header-header_main.php:256
+#: ../parts/class-header-header_main.php:285
 msgid "Back Home"
 msgstr "Ugrás a kezdőlapra"
 
-#: ../parts/class-header-menu.php:129
+#: ../parts/class-header-menu.php:130
 msgid "Add a menu"
 msgstr "Menü hozzáadása"
+
+#~ msgid "Style your WordPress site live!"
+#~ msgstr "Módosítsd élőben a Wordpress oldalad!"
+
+#~ msgid "Just try it!"
+#~ msgstr "Próbáld ki!"
+
+#~ msgid "Create beautiful sliders"
+#~ msgstr "Gyönyörű lapozóképek készítése"
+
+#~ msgid ""
+#~ "Customizr comes with a cool slider generator : add a slider to any post "
+#~ "or page!"
+#~ msgstr ""
+#~ "A Customizr egy lapozókép készítőt is tartalmaz, melyet bármilyen "
+#~ "bejegyzéshez, vagy oldalhoz hozzáadhatsz!"
+
+#~ msgid "Discover the features"
+#~ msgstr "Fedezd fel a funkciókat"
+
+#~ msgid "Enable/disable retina support"
+#~ msgstr "Retina képernyők támogatásának ki-/bekapcsolása"
+
+#~ msgid ""
+#~ "On responsive mode, for smartphone viewport, the sidebars are moved after "
+#~ "the main content block."
+#~ msgstr ""
+#~ "Responsive módban, mobil eszközökön, az oldalsávok a fő tartalom blokkja "
+#~ "után lesznek beillesztve"
+
+#~ msgid ""
+#~ "This option centers your slider (carousel) pictures vertically and "
+#~ "horizontally on any devices when displayed in full width mode"
+#~ msgstr ""
+#~ "Ezzel vízszintesen és függőlegesen is középre lehet igazítani a "
+#~ "lapozóképet minden eszközön, teljes szélesség (full width) módban "
 
 #~ msgid "Header : title, logo, menu, ..."
 #~ msgstr "Fejléc: cím, logó, menü, ..."
