@@ -146,7 +146,7 @@
 
   /* Min mobile header */
   .tc-mobile-min {
-    border-bottom: none;
+    border-bottom: 2px solid #E9EAEE;
   }
   .tc-mobile-min.tc-header .social-block {
     display: none;
@@ -369,13 +369,13 @@
     text-align: left;
     padding-left: 10px;
     position: relative;
-    z-index: 2;
+    z-index: 100;
   }
   .tc-mobile-min.tc-header,
   .sticky-enabled .tc-header {
     min-height: 40px;
   }
-  .tc-mobile-min.tc-header,
+  .tc-mobile-min.tc-header .outside,
   .sticky-enabled .tc-header .outside {
     display: none;
   }
@@ -393,7 +393,7 @@
   .tc-mobile-min .navbar-wrapper,
   .sticky-enabled .navbar-wrapper {
     position: relative;
-    z-index: 1;
+    z-index: 99;
   }
   /* do not display menu button when sticky enabled and tc-menu-off enabled */
   .sticky-enabled .tc-menu-off .btn-navbar {
