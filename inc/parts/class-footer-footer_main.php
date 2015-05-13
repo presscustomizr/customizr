@@ -234,9 +234,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		function tc_render_back_to_top() {
 			if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_back_to_top' ) ) )
 				return;
-			printf( '<div class="tc-btt-wrapper"><i class="btt-arrow" style="color:%1$s"></i></div>',
-				TC_utils::$inst -> tc_get_skin_color()
-			);
+			echo '<div class="tc-btt-wrapper"><i class="btt-arrow"></i></div>';
 		}
 
 
