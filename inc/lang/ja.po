@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.3.23\n"
-"POT-Creation-Date: 2015-05-11 08:48+0100\n"
-"PO-Revision-Date: 2015-05-11 08:48+0100\n"
+"Project-Id-Version: * Customizr v3.3.24\n"
+"POT-Creation-Date: 2015-05-13 20:47+0100\n"
+"PO-Revision-Date: 2015-05-13 20:47+0100\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
 "com>\n"
@@ -304,7 +304,7 @@ msgstr "ヘルプ"
 msgid "Need help with Customizr? Click here!"
 msgstr "Customizrのヘルプが必要ですか？ここをクリック！"
 
-#: ../class-fire-utils.php:466
+#: ../class-fire-utils.php:465
 #, php-format
 msgid "Page %s"
 msgstr "固定ページ %s"
@@ -1569,10 +1569,9 @@ msgid "Enable Lightbox effect in galleries"
 msgstr ""
 
 #: ../class-fire-utils_settings_map.php:1991
-msgid ""
-"Apply lightbox effects to galleries images ( if the Lightbox options is "
-"enabled in Global Settings > Image Settings)."
-msgstr ""
+#, fuzzy
+msgid "Apply lightbox effects to galleries images"
+msgstr "画像にLightbox効果"
 
 #: ../class-fire-utils_settings_map.php:1998
 msgid "Enable Customizr effects on hover"
@@ -1591,7 +1590,8 @@ msgid "Enable drop caps"
 msgstr "文字見出しを有効に"
 
 #: ../class-fire-utils_settings_map.php:2012
-msgid "Apply a drop cap to the first paragraph of your post / page content."
+#, fuzzy
+msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr "投稿，固定ページの最初の段落に文字見出しを適用"
 
 #: ../class-fire-utils_settings_map.php:2021
@@ -2652,7 +2652,7 @@ msgstr ""
 "おすすめページの詳細テキスト：ページの抜粋を用いるかCustomizr画面%sのカスタム"
 "テキストを使います．"
 
-#: ../parts/class-content-gallery.php:63
+#: ../parts/class-content-gallery.php:61
 msgid "Missing Attachment"
 msgstr "添付リンク切れ"
 
@@ -2699,12 +2699,12 @@ msgid "Yearly Archives: %s"
 msgstr "今年の投稿：%s"
 
 #: ../parts/class-content-page.php:42 ../parts/class-content-post.php:96
-#: ../parts/class-content-post_list.php:239
+#: ../parts/class-content-post_list.php:241
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "続きを読む <span class=\"meta-nav\">&rarr;</span>"
 
 #: ../parts/class-content-page.php:44 ../parts/class-content-post.php:97
-#: ../parts/class-content-post_list.php:241
+#: ../parts/class-content-post_list.php:243
 msgid "Pages:"
 msgstr "固定ページ："
 
@@ -2732,7 +2732,7 @@ msgid "Link to full-size image"
 msgstr "フルサイズ画像へのリンク"
 
 #: ../parts/class-content-post_metas.php:205
-#: ../parts/class-content-post_metas.php:533
+#: ../parts/class-content-post_metas.php:571
 msgid "in"
 msgstr "in"
 
@@ -2803,20 +2803,20 @@ msgstr "(%1$s更新)"
 msgid "View all posts in %s"
 msgstr "カテゴリ%sの投稿を表示"
 
-#: ../parts/class-content-post_metas.php:464
+#: ../parts/class-content-post_metas.php:502
 #, php-format
 msgid "View all posts by %s"
 msgstr "%sの投稿を表示"
 
-#: ../parts/class-content-post_metas.php:484
+#: ../parts/class-content-post_metas.php:522
 msgid "Open"
 msgstr "開く"
 
-#: ../parts/class-content-post_metas.php:534
+#: ../parts/class-content-post_metas.php:572
 msgid "tagged"
 msgstr "タグ"
 
-#: ../parts/class-content-post_metas.php:557
+#: ../parts/class-content-post_metas.php:595
 msgid "by"
 msgstr "by"
 

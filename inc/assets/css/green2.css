@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.23
+ * Customizr v3.3.24
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -455,6 +455,8 @@ h3.assistive-text {
   color: white;
 }
 /* FOOTER */
+/* Back to top */
+.btt-arrow,
 footer#footer .colophon a.back-to-top {
   color: #26ce61;
 }

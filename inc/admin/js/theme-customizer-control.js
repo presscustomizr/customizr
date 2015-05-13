@@ -578,7 +578,6 @@ jQuery(function ($) {
   /* CONTRIBUTION TO CUSTOMIZR */
   var donate_displayed  = false,
       is_pro            = 'customizr-pro' == TCControlParams.themeName;
-  console.log('TCControlParams.HideDonate' , TCControlParams.HideDonate );
   if (  ! TCControlParams.HideDonate && ! is_pro ) {
     _render_donate_block();
     donate_displayed = true;
