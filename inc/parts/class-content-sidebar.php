@@ -35,14 +35,15 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
       */
       function tc_set_sidebar_hooks() {
         //displays left sidebar
-        add_action ( '__before_article_container'  , array( $this , 'tc_sidebar_display' ) );
-        add_action ( '__before_left_sidebar'       , array( $this , 'tc_social_in_sidebar' ) );
-
+		add_action ( '__before_article_container'  , array( $this , 'tc_sidebar_display' ) );
+		add_action ( '__before_left_sidebar'       , array( $this , 'tc_social_in_sidebar' ) );
+ 
         //displays right sidebar
-        add_action ( '__after_article_container'   , array( $this , 'tc_sidebar_display' ) );
-        add_action ( '__before_right_sidebar'      , array( $this , 'tc_social_in_sidebar' ) );
+		add_action ( '__after_article_container'   , array( $this , 'tc_sidebar_display' ) );
+		add_action ( '__before_right_sidebar'      , array( $this , 'tc_social_in_sidebar' ) );
 
-        //since 3.2.0 show/hode the WP built-in widget icons
+
+        //since 3.2.0 show/hide the WP built-in widget icons
         add_filter ( 'tc_left_sidebar_class'       , array( $this , 'tc_set_sidebar_wrapper_widget_class' ) );
         add_filter ( 'tc_right_sidebar_class'      , array( $this , 'tc_set_sidebar_wrapper_widget_class' ) );
       }
@@ -66,11 +67,13 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
           return;
         //gets current screen layout
         $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
-
+		// GY: add relative right and left for LTR/RTL sites
+        $rel_left = is_rtl() ? 'right' : 'left';
+        $rel_right = is_rtl() ? 'left' : 'right';
         //gets position from current hook and checks the context
         $position             = apply_filters(
                                 'tc_sidebar_position',
-                                strpos(current_filter(), 'before') ? 'left' : 'right'
+                                strpos(current_filter(), 'before') ? $rel_left : $rel_right
         );
         if ( 'left' == $position && $screen_layout != 'l' && $screen_layout != 'b' )
           return;

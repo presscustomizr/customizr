@@ -14,7 +14,7 @@
 if ( ! class_exists( 'TC_post_navigation' ) ) :
   class TC_post_navigation {
       static  $instance;
-     
+
       function __construct () {
         self::$instance =& $this;
 
@@ -28,15 +28,15 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
       ***********************/
       /**
       * Set the post navigation visibility based on Customizer options
-      * 
+      *
       * returns an array which contains, @bool whether or not show the navigation , @array css classes of the navigation, @string the context
       * @package Customizr
       * @since Customizr 3.3.22
       */
       function tc_set_visibility_options(){
-    
+
         $_nav_classes              = array('navigation');
-        $_context                  = $this -> tc_get_context();  
+        $_context                  = $this -> tc_get_context();
         $_post_nav_enabled         = $this -> tc_is_post_navigation_enabled();
         $_post_nav_context_enabled = $this -> tc_is_post_navigation_context_enabled( $_context );
 
@@ -47,10 +47,10 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
             array_push( $_nav_classes, 'hide-all-post-navigation' );
           if ( ! $_post_nav_context_enabled )
             array_push( $_nav_classes, 'hide-post-navigation' );
-          $_post_nav_enabled       = true;  
+          $_post_nav_enabled       = true;
         }else
           $_post_nav_enabled       = $_post_nav_enabled && $_post_nav_context_enabled;
-        
+
         return array(
             apply_filters( 'tc_show_post_navigation', $_post_nav_enabled ),
             implode( ' ', apply_filters( 'tc_show_post_navigation_class' , $_nav_classes ) ),
@@ -67,20 +67,19 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
       function tc_post_nav() {
 
         list( $post_navigation_bool, $post_nav_class, $_context) = $this -> tc_set_visibility_options();
+        // When do we display navigation ?
+        //1) we don"t show post navigation for pages by default
+        //2) + filter conditions
+        $post_navigation_bool         = is_page( TC_utils::tc_id() ) ? false : true ;
 
-        
         if( ! $post_navigation_bool )
-          return;      
-        
+          return;
 
-        $prev_arrow           = is_rtl() ? '&rarr;' : '&larr;' ;
-    	$next_arrow           = is_rtl() ? '&larr;' : '&rarr;' ;
-
-
+        $prev_arrow = is_rtl() ? '&rarr;' : '&larr;' ;
+        $next_arrow = is_rtl() ? '&larr;' : '&rarr;' ;
         $html_id = 'nav-below';
-        
         global $wp_query;
-        
+
         ob_start();
         ?>
 
@@ -209,12 +208,12 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
       VARIOUS HELPERS
       *******************************/
       /**
-      * 
+      *
       * @return string or bool
       *
       */
       function tc_get_context(){
-          
+
         if ( is_page() )
           return 'page';
         if ( is_single() && ! is_attachment() )
@@ -225,20 +224,20 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
         return false;
 
       }
-    
+
       /*
       * @param (string or bool) the context
       * @return bool
       */
       function tc_is_post_navigation_context_enabled( $_context ) {
-        return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );     
+        return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
       }
 
       /*
       * @return bool
       */
       function tc_is_post_navigation_enabled(){
-        return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ; 
+        return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
       }
 
   }//end of class

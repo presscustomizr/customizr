@@ -21,9 +21,16 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
         //footer actions
         add_action ( '__footer'					, array( $this , 'tc_widgets_footer' ), 10 );
         add_action ( '__footer'					, array( $this , 'tc_colophon_display' ), 20 );
-        add_action ( '__colophon'				, array( $this , 'tc_colophon_left_block' ), 10 );
-        add_action ( '__colophon'				, array( $this , 'tc_colophon_center_block' ), 20 );
-        add_action ( '__colophon'				, array( $this , 'tc_colophon_right_block' ), 30 );
+		if (is_rtl()) {
+	        add_action ( '__colophon'				, array( $this , 'tc_colophon_left_block' ), 30 );
+	        add_action ( '__colophon'				, array( $this , 'tc_colophon_center_block' ), 20 );
+	        add_action ( '__colophon'				, array( $this , 'tc_colophon_right_block' ), 10 );
+		}
+		else {
+	        add_action ( '__colophon'				, array( $this , 'tc_colophon_left_block' ), 10 );
+	        add_action ( '__colophon'				, array( $this , 'tc_colophon_center_block' ), 20 );
+	        add_action ( '__colophon'				, array( $this , 'tc_colophon_right_block' ), 30 );
+        }
         //since v3.2.0, Show back to top from the Customizer option panel
         add_action ( '__after_footer' 			, array( $this , 'tc_render_back_to_top') );
         //since v3.2.0, set no widget icons from the Customizer option panel
