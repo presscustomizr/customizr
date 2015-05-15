@@ -501,7 +501,7 @@ jQuery(function ($) {
         //set initial margin-top 
         $resetMarginTop.css('margin-top' , marginTop + 'px');
         //set trigger height as the half marginTop
-        triggerHeight       = martinTop/2;
+        triggerHeight       = marginTop && marginTop/2 > triggerHeight ? marginTop/2 : triggerHeight;
     }
 
 
