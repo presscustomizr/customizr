@@ -42,6 +42,8 @@ The exceptions to this license are as follows:
 
 ## Changelog
 = 3.3.24 May 15th 2015 =
+fix: store empty() function bool in a var to fix a PHP version compatibility issue
+fix: use proper priority for tc_parse_imgs callback of the_content filter
 fix: when deleting retina images don't forget the original attachment's retina version
 fix: remove btt-arrow inline style, rule moved in the skin css
 fix : fancybox in post images is 100% independant of fancybox in galleries
