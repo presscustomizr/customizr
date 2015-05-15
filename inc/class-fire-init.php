@@ -634,28 +634,24 @@ if ( ! class_exists( 'TC_init' ) ) :
      * @credits http://wp.tutsplus.com/author/chrisbavota/
      */
       function tc_clean_retina_images( $attachment_id ) {
-        //checks if retina is enabled in options
-        if ( 0 == TC_utils::$inst->tc_opt( 'tc_retina_support' ) )
-          return;
-
         $meta = wp_get_attachment_metadata( $attachment_id );
         if ( !isset( $meta['file']) )
           return;
 
         $upload_dir = wp_upload_dir();
         $path = pathinfo( $meta['file'] );
-        foreach ( $meta as $key => $value ) {
-            if ( 'sizes' === $key ) {
-                foreach ( $value as $sizes => $size ) {
-                    $original_filename = $upload_dir['basedir'] . '/' . $path['dirname'] . '/' . $size['file'];
-                    $retina_filename = substr_replace( $original_filename, '@2x.', strrpos( $original_filename, '.' ), strlen( '.' ) );
-                    if ( file_exists( $retina_filename ) )
-                        unlink( $retina_filename );
-                }
-            }
+        $sizes = $meta['sizes'];
+        // append to the sizes the original file
+        $sizes['original'] = array( 'file' => $path['basename'] );
+
+        foreach ( $sizes as $size ) {
+          $original_filename = $upload_dir['basedir'] . '/' . $path['dirname'] . '/' . $size['file'];
+          $retina_filename = substr_replace( $original_filename, '@2x.', strrpos( $original_filename, '.' ), strlen( '.' ) );
+
+          if ( file_exists( $retina_filename ) )
+            unlink( $retina_filename );
         }
       }//end of function
-
 
 
       /**
