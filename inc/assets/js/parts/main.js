@@ -495,9 +495,9 @@ jQuery(function ($) {
         $resetMarginTop.css('margin-top' , '' ).show();
 
         //What is the initial offset of the header ?
-        var headerHeight    = $tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
+        var headerHeight    = $tcHeader.outerHeight(true), /* include borders and eventual margins (true param)*/
             //initial margin-top = initial offset + header's height
-            marginTop       = initial headerHeight + customOffset;
+            marginTop       = headerHeight + customOffset;
         //set initial margin-top 
         $resetMarginTop.css('margin-top' , marginTop + 'px');
         //set trigger height as the half marginTop
