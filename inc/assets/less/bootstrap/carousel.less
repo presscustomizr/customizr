@@ -20,7 +20,7 @@
   > .item {
     display: none;
     position: relative;
-    .transition(.6s ease-in-out left);
+    .transition(.6s ease-in-out @floatDirection);
 
     // Account for jankitude on images
     > img,
@@ -35,7 +35,12 @@
   > .prev { display: block; }
 
   > .active {
-    left: 0;
+    & when (@is_rtl = true) {
+      right: 0;
+    }
+    & when (@is_rtl = false) {
+      left: 0;
+    }
   }
 
   > .next,
@@ -46,23 +51,47 @@
   }
 
   > .next {
-    left: 100%;
+    & when (@is_rtl = true) {
+      right: 100%;
+    }
+    & when (@is_rtl = false) {
+      left: 100%;
+    }
   }
   > .prev {
-    left: -100%;
+    & when (@is_rtl = true) {
+      right: -100%;
+    }
+    & when (@is_rtl = false) {
+      left: -100%;
+    }
   }
   > .next.left,
   > .prev.right {
-    left: 0;
+    & when (@is_rtl = true) {
+      right: 0;
+    }
+    & when (@is_rtl = false) {
+      left: 0;
+    }
   }
 
   > .active.left {
-    left: -100%;
+    & when (@is_rtl = true) {
+      right: -100%;
+    }
+    & when (@is_rtl = false) {
+      left: -100%;
+    }
   }
   > .active.right {
-    left: 100%;
+    & when (@is_rtl = true) {
+      right: 100%;
+    }
+    & when (@is_rtl = false) {
+      left: 100%;
+    }
   }
-
 }
 
 // Left/right controls for nav
@@ -111,7 +140,7 @@
 
   li {
     display: block;
-    float: left;
+    float: @floatDirection;
     width: 10px;
     height: 10px;
     margin-left: 5px;

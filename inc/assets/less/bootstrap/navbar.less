@@ -48,7 +48,7 @@
 // Brand: website or project name
 // -------------------------
 .navbar .brand {
-  float: left;
+  float: @floatDirection;
   display: block;
   // Vertically center the text given @navbarHeight
   padding: ((@navbarHeight - @baseLineHeight) / 2) 20px ((@navbarHeight - @baseLineHeight) / 2);
@@ -130,7 +130,7 @@
 // -------------------------
 .navbar-search {
   position: relative;
-  float: left;
+  float: @floatDirection;
   .navbarVerticalAlign(30px); // Vertically center in navbar
   margin-bottom: 0;
   .search-query {
@@ -218,7 +218,7 @@
   position: relative;
   left: 0;
   display: block;
-  float: left;
+  float: @floatDirection;
   margin: 0 10px 0 0;
 }
 .navbar .nav.pull-right {
@@ -226,14 +226,19 @@
   margin-right: 0; // remove margin on float right nav
 }
 .navbar .nav > li {
-  float: left;
+  float: @floatDirection;
 }
 
 // Links
 .navbar .nav > li > a {
   float: none;
   // Vertically center the text given @navbarHeight
-  padding: ((@navbarHeight - @baseLineHeight) / 2) 15px ((@navbarHeight - @baseLineHeight) / 2);
+  & when (@is_rtl = true) {
+    padding: ((@navbarHeight - @baseLineHeight) / 2) 0 ((@navbarHeight - @baseLineHeight) / 2) 15px;
+  }
+  & when (@is_rtl = false) {
+    padding: ((@navbarHeight - @baseLineHeight) / 2) 15px ((@navbarHeight - @baseLineHeight) / 2);
+  }
   color: @navbarLinkColor;
   text-decoration: none;
   text-shadow: 0 1px 0 @navbarBackgroundHighlight;
@@ -282,7 +287,12 @@
     border-bottom-color: @dropdownBorder;
     position: absolute;
     top: -7px;
-    left: 9px;
+    & when (@is_rtl = true) {
+      right: 9px;
+    }
+    & when (@is_rtl = false) {
+      left: 9px;
+    }
   }
   &:after {
     content: '';
@@ -292,7 +302,12 @@
     border-bottom: 6px solid @dropdownBackground;
     position: absolute;
     top: -6px;
-    left: 10px;
+    & when (@is_rtl = true) {
+      right: 10px;
+    }
+    & when (@is_rtl = false) {
+      left: 10px;
+    }
   }
 }
 // Menu position and menu caret support for dropups via extra dropup class

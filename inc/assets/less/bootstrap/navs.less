@@ -90,7 +90,7 @@
 }
 .nav-tabs > li,
 .nav-pills > li {
-  float: left;
+  float: @floatDirection;
 }
 .nav-tabs > li > a,
 .nav-pills > li > a {
@@ -350,7 +350,12 @@
 
 // Tabs on the right
 .tabs-right > .nav-tabs {
-  float: right;
+  & when (@is_rtl = true) {
+    float: left;
+  }
+  & when (@is_rtl = false) {
+    float: right;
+  }
   margin-left: 19px;
   border-left: 1px solid #ddd;
 }

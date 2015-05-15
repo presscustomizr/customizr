@@ -214,7 +214,7 @@
   }
 
   .tc-hover-menu.nav li {
-    text-align: left;
+    text-align: @textAlign;
     position: relative;
   }
   .tc-hover-menu.nav a:after {
@@ -232,7 +232,7 @@
 
   /* social blocks */
   .social-block {
-    float: left;
+    float: @floatDirection;
   }
 
   .social-block.widget {
@@ -340,9 +340,9 @@
   .sticky-enabled .site-logo img {
   }
   .sticky-enabled .brand {
-    float: left;
+    float: @floatDirection;
     width: 80%;
-    text-align: left;
+    text-align: @textAlign;
     padding-left: 10px;
     position: relative;
     z-index: 2;
@@ -400,11 +400,21 @@
   }
 
   .navbar .nav-collapse ul.nav > li li a {
-    padding-left: 30px;
+    & when (@is_rtl = true) {
+      padding-right: 30px;
+    }
+    & when (@is_rtl = false) {
+      padding-left: 30px;
+    }
   }
 
   .navbar .nav-collapse ul.nav > li li li a {
-    padding-left: 60px;
+     & when (@is_rtl = true) {
+      padding-right: 60px;
+    }
+    & when (@is_rtl = false) {
+      padding-left: 60px;
+    }
   }
 
   .dropdown-submenu>a:after {
@@ -420,7 +430,7 @@
   }
 
   .navbar .navbar-inner .nav li {
-    text-align: left;
+    text-align: @textAlign;
     position: relative;
   }
 
@@ -543,7 +553,7 @@
   /*force comment layout to be not responsive */
   .row-fluid .comment-avatar.span2 {
     width: 14.893617021%;
-    float: left;
+    float: @floatDirection;
     margin-right: 2.762430939%;
   }
   footer#footer {

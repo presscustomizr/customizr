@@ -33,7 +33,12 @@
 // Place the caret
 .dropdown .caret {
   margin-top: 8px;
-  margin-left: 2px;
+  & when (@is_rtl = true) {
+    margin-right: 2px;
+  }
+  & when (@is_rtl = false) {
+    margin-left: 2px;
+  }
 }
 
 // The dropdown menu (ul)
@@ -41,7 +46,12 @@
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  & when (@is_rtl = true) {
+    right: 0;
+  }
+  & when (@is_rtl = false) {
+    left: 0;
+  }
   z-index: @zindexDropdown;
   display: none; // none by default, but block on "open" of the menu
   float: left;
@@ -160,7 +170,12 @@
 // Default dropdowns
 .dropdown-submenu > .dropdown-menu {
   top: 0;
-  left: 100%;
+  & when (@is_rtl = true) {
+    right: 100%;
+  }
+  & when (@is_rtl = false) {
+    left: 100%;
+  }
   margin-top: -6px;
   margin-left: -1px;
   .border-radius(0 6px 6px 6px);
@@ -182,7 +197,12 @@
 .dropdown-submenu > a:after {
   display: block;
   content: " ";
-  float: right;
+  & when (@is_rtl = true) {
+    float: left;
+  }
+  & when (@is_rtl = false) {
+    float: right;
+  }
   width: 0;
   height: 0;
   border-color: transparent;

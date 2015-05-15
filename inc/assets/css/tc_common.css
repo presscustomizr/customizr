@@ -5438,9 +5438,9 @@ h2.site-description {
 .dropdown-submenu > .dropdown-menu {
   top: 110%;
   left: 30%;
-  top: 0%\9;
-  /* IE 8 and below */
   left: 30%\9;
+  /* IE 8 and below */
+  top: 0%\9;
   /* IE 8 and below */
   margin-top: -6px;
   margin-left: -1px;
@@ -6023,9 +6023,9 @@ article.format-chat .entry-content {
 article.format-quote .entry-content,
 article.error404 .entry-content {
   padding: 24px 24px 0;
+  border-left: 18px solid #afafaf;
   padding: 1.714285714rem;
   background: #c9c9c9;
-  border-left: 18px solid #afafaf;
 }
 article.format-quote .entry-content blockquote,
 article.error404 .entry-content blockquote {

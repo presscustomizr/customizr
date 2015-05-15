@@ -191,7 +191,7 @@ textarea {
 }
 .radio input[type="radio"],
 .checkbox input[type="checkbox"] {
-  float: left;
+  float: @floatDirection;
   margin-left: -20px;
 }
 
@@ -272,7 +272,7 @@ textarea[class*="span"],
 .controls-row [class*="span"],
 // Redeclare the fluid grid collapse since we undo the float for inputs
 .row-fluid .controls-row [class*="span"] {
-  float: left;
+  float: @floatDirection;
 }
 // Explicity set top padding on all checkboxes/radios, not just first-child
 .controls-row .checkbox[class*="span"],
@@ -586,7 +586,7 @@ input.search-query {
 .form-search .checkbox input[type="checkbox"],
 .form-inline .radio input[type="radio"],
 .form-inline .checkbox input[type="checkbox"] {
-  float: left;
+  float: @floatDirection;
   margin-right: 3px;
   margin-left: 0;
 }
@@ -614,10 +614,15 @@ legend + .control-group {
   }
   // Float the labels left
   .control-label {
-    float: left;
+    float: @floatDirection;
     width: @horizontalComponentOffset - 20;
     padding-top: 5px;
-    text-align: right;
+    & when (@is_rtl = true) {
+      text-align: left;
+    }
+    & when (@is_rtl = false) {
+      text-align: right;
+    }
   }
   // Move over all input controls and content
   .controls {
