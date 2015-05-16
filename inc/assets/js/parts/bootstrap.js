@@ -1687,6 +1687,7 @@ var TCParams = TCParams || {};
       //@tc adddon
       if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader ) {
         $('body').addClass('tc-sticky-header');
+        $(window).trigger('resize');
       }
     }
 

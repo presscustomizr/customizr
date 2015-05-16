@@ -462,7 +462,8 @@ jQuery(function ($) {
           customOffset    = +_p.stickyCustomOffset,
           $sticky_logo    = $('img.sticky', '.site-logo'),
           $resetMarginTop = $('#tc-reset-margin-top'),
-          logo            = 0 === $sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
+          logo            = 0 === $sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false,
+          triggerHeight   = 20;
 
     function _is_scrolling() {
         return $_body.hasClass('sticky-enabled') ? true : false;
@@ -479,7 +480,7 @@ jQuery(function ($) {
             if ( 580 < $_window.width() )
                 initialOffset = $wpadminbar.height();
             else
-                initialOffset = ! _is_scrolling() ? $wpadminbar.height() : 0;
+                initialOffset = ! $_window.scrollTop() ? $wpadminbar.height() : 0;
         }
         return initialOffset + customOffset;
     }
@@ -494,9 +495,13 @@ jQuery(function ($) {
         $resetMarginTop.css('margin-top' , '' ).show();
 
         //What is the initial offset of the header ?
-        var headerHeight    = $tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
-        //set initial margin-top = initial offset + header's height
-        $resetMarginTop.css('margin-top' , ( +headerHeight + customOffset ) + 'px');
+        var headerHeight    = $tcHeader.outerHeight(true), /* include borders and eventual margins (true param)*/
+            //initial margin-top = initial offset + header's height
+            marginTop       = headerHeight + customOffset;
+        //set initial margin-top 
+        $resetMarginTop.css('margin-top' , marginTop + 'px');
+        //set trigger height as the half marginTop
+        triggerHeight       = marginTop && marginTop/2 > triggerHeight ? marginTop/2 : triggerHeight;
     }
 
 
@@ -557,9 +562,6 @@ jQuery(function ($) {
     //SCROLLING ACTIONS
     var timer,
         increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
-
-    //var windowHeight = $(window).height();
-    var triggerHeight = 20; //0.5 * windowHeight;
 
     function _sticky_header_scrolling_actions() {
         _set_header_top_offset();
