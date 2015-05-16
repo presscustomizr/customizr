@@ -53,11 +53,9 @@ fix : hide donate button ajax action not triggered
 fix : change order of elements on RTL sites. using is_rtl() to determine the order of specific elements, instead of creating dedicated rules in CSSFIX : correcting the left/right css rules for RTL sited. Thanks to Yaacov Glezer.
 added : less files updated with new rtl vars and conditional statements
 improved : code handling RTL priority for colophon blocks
-updated : Spanish translation
+updated : Spanish es_ES translation. Thanks to Angel Calzado.
 improved : donate customizer call to action visibility
 improved : widget placeholder code
-improved : widget placeholder code
-updated : es_ES translation. Thanks to Angel Calzado.
 
 = 3.3.23 May 4th 2015 =
 fix : don't show slider in home when no home slider is set

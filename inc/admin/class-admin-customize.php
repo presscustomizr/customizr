@@ -358,9 +358,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
       //=> check the existence of is_theme_active for backward compatibility (may be useless because introduced in 3.4... )
       $_is_customizr_active = method_exists( $GLOBALS['wp_customize'], 'is_theme_active' ) && $GLOBALS['wp_customize'] -> is_theme_active();
       $_options = get_option('tc_theme_options');
+      $_user_started_customize = false !== $_options || ! empty( $_options );
 
       //shall we hide donate ?
-      return ! $_options || empty( $_options ) || ! $_is_customizr_active || TC_utils::$inst->tc_opt('tc_hide_donate');
+      return ! $_user_started_customize || ! $_is_customizr_active || TC_utils::$inst->tc_opt('tc_hide_donate');
     }
 
 
