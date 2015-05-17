@@ -175,41 +175,45 @@
 		} );
 	});
 
-	//Post metas
+    //Post metas
+    var _post_metas_context = [
+          { _context : 'home', _container : '.home' },
+          { _context : 'single_post', _container: '.single'},
+          { _context : 'post_lists', _container: 'body:not(.single, .home)'}
+        ];
+
 	wp.customize( 'tc_theme_options[tc_show_post_metas]' , function( value ) {
 		value.bind( function( to ) {
+            var $_entry_meta = $('.entry-header .entry-meta', '.article-container');
 			if ( false === to )
-				$('.entry-header .entry-meta' , '.article-container').hide('slow');
+				$_entry_meta.hide('slow');
             else if (! $('body').hasClass('hide-post-metas') ){
-				$('.entry-header .entry-meta' , '.article-container').show('fast');
+				$_entry_meta.show('fast');
                 $('body').removeClass('hide-all-post-metas');
             }
 		} );
 	} );
-	wp.customize( 'tc_theme_options[tc_show_post_metas_home]' , function( value ) {
-		value.bind( function( to ) {
-			if ( false === to )
-				$('.entry-header .entry-meta' , '.home .article-container').hide('slow');
-			else
-				$('.entry-header .entry-meta' , '.home .article-container').show('fast');
-		} );
-	});
-	wp.customize( 'tc_theme_options[tc_show_post_metas_single_post]' , function( value ) {
-		value.bind( function( to ) {
-			if ( false === to )
-				$('.entry-header .entry-meta' , '.single .article-container').hide('slow');
-			else
-				$('.entry-header .entry-meta' , '.single .article-container').show('fast');
-		} );
-	});
-	wp.customize( 'tc_theme_options[tc_show_post_metas_post_lists]' , function( value ) {
-		value.bind( function( to ) {
-			if ( false === to )
-				$('.entry-header .entry-meta' , '.article-container').not('.single').hide('slow');
-			else
-				$('.entry-header .entry-meta' , '.article-container').not('.single').show('fast');
-		} );
-	});
+    
+    $.each( _post_metas_context, function() {
+        var $_post_metas = $('.entry-header .entry-meta', this._container + ' .article-container' );
+        if ( $_post_metas.length > 0 ){
+            wp.customize( 'tc_theme_options[tc_show_post_metas_' + this._context + ']' , function( value ) {
+                value.bind( function( to ) {
+                    if ( false === to ){
+                      $_post_metas.hide('slow');
+                      $('body').addClass('hide-post-metas');
+                    }else{
+                      $_post_metas.show('fast');
+                      $('body').removeClass('hide-post-metas');
+                    }
+                } );
+            });
+            // if we matched a context break
+            return false;
+        }
+    }); /* end contextual post metas*/
+
+    // Link hover effect
 	wp.customize( 'tc_theme_options[tc_link_hover_effect]' , function( value ) {
 		value.bind( function( to ) {
 			if ( false === to )
@@ -218,11 +222,12 @@
 				$('body').addClass('tc-fade-hover-links');
 		} );
 	});
+
     //Posts navigation
     var _post_nav_context = [
-          { _context : 'page', _selector : 'body.page' },
-          { _context : 'single', _selector: 'body.single'},
-          { _context : 'archive', _selector: 'body.archive'}
+          { _context : 'page', _container : 'body.page' },
+          { _context : 'single', _container: 'body.single'},
+          { _context : 'archive', _container: 'body.archive'}
         ];
 
 	wp.customize( 'tc_theme_options[tc_show_post_navigation]' , function( value ) {
@@ -236,8 +241,8 @@
 	  } );
 
     $.each( _post_nav_context, function() {
-        var $_post_nav = $('#nav-below', this._selector );
-        if ( $_post_nav.length > 0 )
+        var $_post_nav = $('#nav-below', this._container );
+        if ( $_post_nav.length > 0 ){
             wp.customize( 'tc_theme_options[tc_show_post_navigation_' + this._context + ']' , function( value ) {
                 value.bind( function( to ) {
                     if ( false === to )
@@ -246,6 +251,9 @@
                       $_post_nav.show('fast').removeClass('hide-post-navigation');
                 } );
             });
+            // if we matched a context break
+            return false;
+        }
     }); /* end contextual post nav*/
 
     //Post thumbnails
