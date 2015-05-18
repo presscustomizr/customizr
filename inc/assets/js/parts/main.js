@@ -479,7 +479,7 @@ jQuery(function ($) {
             if ( 580 < $_window.width() )
                 initialOffset = $wpadminbar.height();
             else
-                initialOffset = ! _is_scrolling() ? $wpadminbar.height() : 0;
+                initialOffset = ! $_window.scrollTop() ? $wpadminbar.height() : 0;
         }
         return initialOffset + customOffset;
     }
