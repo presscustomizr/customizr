@@ -94,7 +94,7 @@ if ( ! class_exists( 'TC_widgets' ) ) :
     * @since Customizr 3.3+
     */
     function tc_set_footer_hooks() {
-      if ( 'disabled' == get_transient( 'tc_widget_placehold_sidebar' ) && 'disabled' == get_transient( 'tc_widget_placehold_footer' ) && ! $this -> tc_is_widget_placeholder_enabled() )
+      if ( ! $this -> tc_is_widget_placeholder_enabled() )
         return;
 
       add_action( 'wp_footer'                       , array( $this, 'tc_widget_placeholder_script'), 100 );
@@ -181,10 +181,19 @@ if ( ! class_exists( 'TC_widgets' ) ) :
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
 
-      $_position = is_null($_position) ? 'sidebar' : $_position;
+      $_position = is_null($_position) ? apply_filters('tc_widget_areas', array( 'sidebar', 'footer') ) : array($_position);
+
       return apply_filters( "tc_display_widget_placeholders",
-        is_user_logged_in() && current_user_can('edit_theme_options') && 'disabled' != get_transient( "tc_widget_placehold_{$_position}" )
+        is_user_logged_in() && current_user_can('edit_theme_options') && array_sum( array_map( array( $this , 'tc_check_widget_placeholder_transient'), $_position ) )
       );
+    }
+
+    /**
+    * @return  bool
+    * @since Customizr 3.3+
+    */
+    function tc_check_widget_placeholder_transient( $_position ){
+      return 'disabled' != get_transient("tc_widget_placehold_{$_position}");    
     }
 
   }//end of class
