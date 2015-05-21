@@ -419,7 +419,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       *
       */
       function tc_set_slider_img_height( $_default_size ) {
-        $_opt = esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height'] ) );
+        $_opt = esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height' ) );
         if ( 0 == $_opt )
           return $_default_size;
 
