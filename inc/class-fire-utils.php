@@ -120,6 +120,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.2.3
       */
       function tc_init_properties() {
+        do_action('__init_options');
         $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
         $this -> default_options  = $this -> tc_get_default_options();
         $this -> db_options       = (array) get_option( TC___::$tc_option_group );
@@ -139,34 +140,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
       }
 
 
-      /**
-      * Returns the current skin's primary color
-      *
-      * @package Customizr
-      * @since Customizr 3.1.23
-      */
-      function tc_get_skin_color( $_what = null ) {
-        $_color_map    = TC_init::$instance -> skin_color_map;
-        $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_get_style_src() ) );
-        //falls back to blue3 ( default #27CDA5 ) if not defined
-        $_to_return = array( '#27CDA5', '#1b8d71' );
-
-        switch ($_what) {
-          case 'all':
-            $_to_return = ( is_array($_color_map) ) ? $_color_map : array();
-          break;
-
-          case 'pair':
-            $_to_return = ( false != $_active_skin && is_array($_color_map[$_active_skin]) ) ? $_color_map[$_active_skin] : $_to_return;
-          break;
-
-          default:
-            $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
-          break;
-        }
-        return apply_filters( 'tc_get_skin_color' , $_to_return , $_what );
-      }
-
 
      /**
       * Returns the default options array
@@ -182,7 +155,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         // 2) customzing => takes into account if user has set a filter or added a new customizer setting
         // 3) theme version not defined
         // 4) versions are different
-        if ( is_user_logged_in() || ! $def_options || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
+        if ( is_user_logged_in() || ! did_action( '__init_options' ) || ! $def_options || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
           $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_customizer_map( $get_default_option = 'true' ) , TC___::$tc_option_group );
           //Adds the version
           $def_options['ver']   =  CUSTOMIZR_VER;
@@ -277,7 +250,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $_default_val = false;
         if ( $use_default ) {
           $_defaults      = $this -> default_options;
-          $_default_val   = isset($_default_val[$option_name]) ? $_default_val[$option_name] : $_default_val;
+          if ( isset($_defaults[$option_name]) )
+            $_default_val = $_defaults[$option_name];
           $__options      = wp_parse_args( $_db_options, $_defaults );
         }
 
@@ -334,6 +308,35 @@ if ( ! class_exists( 'TC_utils' ) ) :
         return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
       }
 
+
+
+      /**
+      * Returns the current skin's primary color
+      *
+      * @package Customizr
+      * @since Customizr 3.1.23
+      */
+      function tc_get_skin_color( $_what = null ) {
+        $_color_map    = TC_init::$instance -> skin_color_map;
+        $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_get_style_src() ) );
+        //falls back to blue3 ( default #27CDA5 ) if not defined
+        $_to_return = array( '#27CDA5', '#1b8d71' );
+
+        switch ($_what) {
+          case 'all':
+            $_to_return = ( is_array($_color_map) ) ? $_color_map : array();
+          break;
+
+          case 'pair':
+            $_to_return = ( false != $_active_skin && is_array($_color_map[$_active_skin]) ) ? $_color_map[$_active_skin] : $_to_return;
+          break;
+
+          default:
+            $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
+          break;
+        }
+        return apply_filters( 'tc_get_skin_color' , $_to_return , $_what );
+      }
 
 
 

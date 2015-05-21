@@ -103,7 +103,7 @@ function tc_get_admin_object( $screen ) {
 add_action('__after_header' , 'tc_display_options');
 function tc_display_options() {
   $_options = get_option('tc_theme_options');
-  $_option = tc__f('__get_option' , 'tc_test_context');
+  $_option = TC_utils::$inst->tc_opt('tc_skin');
   ?>
     <pre>
       <?php print_r( TC_contx::$instance -> tc_build_context() ); ?>
@@ -126,7 +126,7 @@ function tc_display_options() {
   <?php
   ?>
     <pre>
-      <?php print_r( $_option ); ?>
+      <?php print_r( 'Skin : ' . $_option ); ?>
     </pre>
   <?php
   ?>

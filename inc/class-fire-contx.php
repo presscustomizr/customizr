@@ -44,7 +44,7 @@ if ( ! class_exists( 'TC_contx' ) ) :
       add_filter( 'tc_js_customizer_control_params' , array( $this , 'tc_add_controljs_params' ) );
 
       ### FILTER OPTIONS ON GET (OUTSIDE CUSTOMIZER) ###
-      add_filter( 'tc_get_option'                 , array( $this , 'tc_contx_option'), 10 , 3 );
+      add_filter( 'tc_opt'                 , array( $this , 'tc_contx_option'), 10 , 4 );
 
       ### Add scripts in admin ###
       add_action( 'admin_footer'                  , array( $this , 'tc_render_contx_script') );
@@ -82,23 +82,31 @@ if ( ! class_exists( 'TC_contx' ) ) :
 
 
 
-    function tc_contx_option( $original , $option_name , $option_group ) {
-      $_context = TC_contx::$instance ->tc_get_context();
+    function tc_contx_option( $original , $option_name , $option_group, $_default_val ) {
+      $_ctx         = $this -> tc_get_context();
+      $_similar_ctx = $this -> tc_get_context( 'type');
+
       //make sure only tc_theme_options are filtered
       //if not an array then back to old way.
       if ( TC___::$tc_option_group != $option_group || ! is_array($original) )
         return $original;
 
-      //do we have a option for this context ?
-      if ( isset($original[$_context]) )
-        return $original[$_context];
+      //do we have a option for this specific context ?
+      if ( isset($original[$_ctx]) )
+        return $original[$_ctx];
+
+      //do we have an option for similar contexts ?
+      if ( isset($original["all_{$_similar_ctx}"]) )
+        return $original[$_ctx];
+
       //@to do add other all like all pages, all posts, all cat, all tags, all_authors
       //do we have all_contexts defined ?
-      if ( isset($original['all_contexts']) )
-        return $original['all_contexts'];
+      if ( isset($original['all_ctx']) )
+        return $original['all_ctx'];
 
-      return;
+      return $_default_val;
     }
+
 
 
     function tc_get_context( $_requesting_wot = null ) {

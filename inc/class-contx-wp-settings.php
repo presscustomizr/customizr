@@ -37,12 +37,12 @@ if ( ! class_exists( 'TC_Customize_Setting') ) :
       $_context       = TC_contx::$instance -> tc_get_context();
 
       if ( ! $_context || null == $_context )
-        return isset($_opt_values['all_contexts']) ? $_opt_values['all_contexts'] : $_opt_values;
+        return isset($_opt_values['all_ctx']) ? $_opt_values['all_ctx'] : $_opt_values;
 
       if ( isset($_opt_values[$_context]) )
         return $_opt_values[$_context];
-      else if ( isset($_opt_values['all_contexts']) )
-        return $_opt_values['all_contexts'];
+      else if ( isset($_opt_values['all_ctx']) )
+        return $_opt_values['all_ctx'];
       else
         return $_opt_values;
     }
@@ -84,10 +84,10 @@ if ( ! class_exists( 'TC_Customize_Setting') ) :
         if ( null != $_context )
           $_base_values[$_opt_name][$_context] = $value;
         else
-          $_base_values[$_opt_name]['all_contexts'] = $value;
+          $_base_values[$_opt_name]['all_ctx'] = $value;
 
-        //always make sure that the 'all_contexts' is present
-        //$_base_values[$_opt_name]['all_contexts'] =  isset($_base_values[$_opt_name]['all_contexts']) ? $_base_values[$_opt_name]['all_contexts'] : $value;
+        //always make sure that the 'all_ctx' is present
+        //$_base_values[$_opt_name]['all_ctx'] =  isset($_base_values[$_opt_name]['all_ctx']) ? $_base_values[$_opt_name]['all_ctx'] : $value;
         /*?>
           <pre>
             <?php print_r($_POST); ?>
