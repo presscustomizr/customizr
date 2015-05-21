@@ -5,7 +5,6 @@
  */
 (function (wp, $) {
   var api = wp.customize;
-
   /**
    * @constructor
    * @augments wp.customize.Control

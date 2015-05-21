@@ -64,6 +64,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
         //first check if home and no content option is choosen
         if ( tc__f( '__is_home_empty') )
           return;
+
         //gets current screen layout
         $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
 		    // GY: add relative right and left for LTR/RTL sites
@@ -86,6 +87,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
 
         //defines the sidebar wrapper class
         $class                = implode(" ", apply_filters( "tc_{$position}_sidebar_class" , array( $sidebar_layout['sidebar'] , $position , 'tc-sidebar' ) ) );
+
         ob_start();
         ?>
 

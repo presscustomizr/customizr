@@ -25,12 +25,13 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	    public $step;
 	    public $min;
 	    public $icon;
+      public $tc_context;
 
 	    public function render_content()  {
 	    	do_action( '__before_setting_control' , $this -> id );
 
         switch ( $this -> type) {
-	        	case 'hr':
+            case 'hr':
 	        		echo '<hr class="tc-customizer-separator" />';
 	        	break;
 
@@ -71,7 +72,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
     					</label>
     					<?php
     					//retrieve all sliders in option array
-    			        $options          = get_option( 'tc_theme_options' );
+    			        $options          = get_option( TC___::$tc_option_group );
     			        $sliders 					= array();
     			        if ( isset( $options['tc_sliders'])) {
     			        	$sliders        = $options['tc_sliders'];

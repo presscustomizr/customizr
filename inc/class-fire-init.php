@@ -369,7 +369,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       * @since Customizr 3.1.23
       */
       function tc_set_user_defined_settings() {
-        $_options = get_option('tc_theme_options');
+        $_options = get_option(TC___::$tc_option_group);
         //add "rectangular" image size
         if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
           $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
@@ -419,9 +419,12 @@ if ( ! class_exists( 'TC_init' ) ) :
       *
       */
       function tc_set_slider_img_height( $_default_size ) {
-        $_options = get_option('tc_theme_options');
+        $_opt = esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height'] ) );
+        if ( 0 == $_opt )
+          return $_default_size;
 
-        $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
+
+        $_default_size['height'] = $_opt;
         return $_default_size;
       }
 
@@ -435,9 +438,9 @@ if ( ! class_exists( 'TC_init' ) ) :
       *
       */
       function tc_set_grid_img_height( $_default_size ) {
-        $_options = get_option('tc_theme_options');
+        $_opt = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height' ) );
 
-        $_default_size['height'] =  esc_attr( $_options['tc_grid_thumb_height'] ) ;
+        $_default_size['height'] =  $_opt ;
         return $_default_size;
       }
 
@@ -688,6 +691,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           array_push( $_classes, 'tc-fade-hover-links' );
         if ( TC___::$instance -> tc_is_customizing() )
           array_push( $_classes, 'is-customizing' );
+
         if ( wp_is_mobile() )
           array_push( $_classes, 'tc-is-mobile' );
         if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_enable_dropcap' ) ) )

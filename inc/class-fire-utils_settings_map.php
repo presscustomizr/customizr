@@ -226,7 +226,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
      * @since Customizr 3.0.1
      */
     private function tc_slider_choices() {
-      $__options    =   get_option('tc_theme_options');
+      $__options    =   get_option(TC___::$tc_option_group);
       $slider_names   =   isset($__options['tc_sliders']) ? $__options['tc_sliders'] : array();
 
       $slider_choices = array(

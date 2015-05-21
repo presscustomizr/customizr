@@ -257,7 +257,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           $post_slider_check_value   = esc_attr(get_post_meta( $postid, $key = 'post_slider_check_key' , $single = true ));
 
          //retrieve all sliders in option array
-          $options                   = get_option( 'tc_theme_options' );
+          $options                   = get_option( TC___::$tc_option_group );
           if ( isset($options['tc_sliders']) ) {
             $sliders                   = $options['tc_sliders'];
           }
@@ -536,7 +536,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           $slider_id              = 'slider_field';
 
           //retrieve all sliders in option array
-          $options                = get_option( 'tc_theme_options' );
+          $options                = get_option( TC___::$tc_option_group );
           $sliders                = array();
           if ( isset( $options['tc_sliders'])) {
             $sliders              = $options['tc_sliders'];
@@ -967,7 +967,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //OPTION FIELDS
             //get options and some useful $_POST vars
-            $tc_options                 = get_option( 'tc_theme_options' );
+            $tc_options                 = get_option( TC___::$tc_option_group );
 
             if (isset( $_POST['tc_post_type']))
               $tc_post_type             = esc_attr( $_POST['tc_post_type']);
@@ -1006,7 +1006,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                     //in all cases, delete DB option
                     unset( $tc_options['tc_sliders'][$current_post_slider]);
                     //update DB with new slider array
-                    update_option( 'tc_theme_options' , $tc_options );
+                    update_option( TC___::$tc_option_group , $tc_options );
                   break;
 
 
@@ -1027,7 +1027,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                       $tc_options['tc_sliders'][$current_post_slider] = $newslider;
 
                        //update DB with new slider array
-                      update_option( 'tc_theme_options' , $tc_options );
+                      update_option( TC___::$tc_option_group , $tc_options );
                     break;
 
 
@@ -1049,7 +1049,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
                           $tc_options['tc_sliders'][$new_slider_name]      = array( $post_ID);
                           //adds the new slider name in DB options
-                          update_option( 'tc_theme_options' , $tc_options );
+                          update_option( TC___::$tc_option_group , $tc_options );
                         //associate the current post with the new saved slider
 
                         //looks for a previous slider entry and delete it
@@ -1067,11 +1067,11 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                           }
 
                           //update DB with clean option table
-                          update_option( 'tc_theme_options' , $tc_options );
+                          update_option( TC___::$tc_option_group , $tc_options );
 
                           //push new post value for the new slider and write in DB
                           array_push( $tc_options['tc_sliders'][$new_slider_name], $post_ID);
-                          update_option( 'tc_theme_options' , $tc_options );
+                          update_option( TC___::$tc_option_group , $tc_options );
 
                         }
 
@@ -1123,7 +1123,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                                 }//end for each
                               }
                               //update DB with clean option table
-                              update_option( 'tc_theme_options' , $tc_options );
+                              update_option( TC___::$tc_option_group , $tc_options );
 
                             //check if the selected slider is empty and set it as array
                             if( empty( $tc_options['tc_sliders'][$post_slider_name]) ) {
@@ -1132,7 +1132,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
                             //push new post value for the slider and write in DB
                               array_push( $tc_options['tc_sliders'][$post_slider_name], $post_ID);
-                              update_option( 'tc_theme_options' , $tc_options );
+                              update_option( TC___::$tc_option_group , $tc_options );
                         }//end if !empty( $post_slider_name)
 
                         //No slider selected
@@ -1149,7 +1149,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                               }
                             }
                             //update DB with clean option table
-                            update_option( 'tc_theme_options' , $tc_options );
+                            update_option( TC___::$tc_option_group , $tc_options );
                         }
                       break;
                   }//end switch
@@ -1214,7 +1214,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                                     }
                                   }
                                   //update DB with clean option table
-                                  update_option( 'tc_theme_options' , $tc_options );
+                                  update_option( TC___::$tc_option_group , $tc_options );
 
                               }//endif;
 

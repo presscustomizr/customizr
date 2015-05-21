@@ -204,7 +204,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
 					}
 
 					//add setting
-					$wp_customize	-> add_setting( $key, $option_settings );
+          if ( class_exists('TC_Customize_Setting') )
+					  $wp_customize	-> add_setting( new TC_Customize_Setting ( $wp_customize, $key, $option_settings ) );
+          else
+            $wp_customize -> add_setting( $key, $option_settings );
 
 					//generate controls array
 					$option_controls = array();
@@ -374,9 +377,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		*/
     function tc_hide_donate() {
     	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
-    	$options = get_option('tc_theme_options');
+    	$options = get_option(TC___::$tc_option_group);
     	$options['tc_hide_donate'] = true;
-    	update_option( 'tc_theme_options', $options );
+    	update_option( TC___::$tc_option_group, $options );
       set_transient( 'tc_cta', 'cta_waiting' , 60*60*24 );
       wp_die();
     }

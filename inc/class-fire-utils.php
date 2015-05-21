@@ -168,8 +168,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
       }
 
 
-
-
      /**
       * Returns the default options array
       *
@@ -185,7 +183,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         // 3) theme version not defined
         // 4) versions are different
         if ( is_user_logged_in() || ! $def_options || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
-          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
+          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_customizer_map( $get_default_option = 'true' ) , TC___::$tc_option_group );
           //Adds the version
           $def_options['ver']   =  CUSTOMIZR_VER;
           update_option( "tc_theme_defaults" , $def_options );
@@ -204,7 +202,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_generate_default_options( $map, $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
-          $option_group   = is_null($option_group) ? 'tc_theme_options' : $option_group;
+          $option_group   = is_null($option_group) ? TC___::$tc_option_group : $option_group;
 
           //initialize the default array with the sliders options
           $defaults = array();
@@ -248,7 +246,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_get_theme_options ( $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
-          $option_group       = is_null($option_group) ? 'tc_theme_options' : $option_group;
+          $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
           $saved              = (array) get_option( $option_group );
           $defaults           = $this -> default_options;
           $__options          = wp_parse_args( $saved, $defaults );
@@ -265,6 +263,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
+
       function tc_opt( $option_name , $option_group = null, $use_default = true ) {
         //do we have to look for a specific group of option (plugin?)
         $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
@@ -275,22 +274,28 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         //do we have to use the default ?
         $__options = $_db_options;
+        $_default_val = false;
         if ( $use_default ) {
           $_defaults      = $this -> default_options;
+          $_default_val   = isset($_default_val[$option_name]) ? $_default_val[$option_name] : $_default_val;
           $__options      = wp_parse_args( $_db_options, $_defaults );
         }
 
         //return false boolean if does not exist, just like WP does
         $_single_opt    = isset($__options[$option_name]) ? $__options[$option_name] : false;
 
-        //contx retro compat
+        //contx retro compat => falls back to default val if contx like option detected
         //important note : tc_slider is not impacted by contx
         if ( $option_name != 'tc_sliders' ) {
           if ( is_array( $_single_opt ) && ! class_exists( 'TC_contx' ) )
-            $_single_opt = isset($_single_opt['all_cx']) ? $_single_opt['all_cx'] : false;
+            $_single_opt = $_default_val;
         }
 
-        return apply_filters( "tc_opt_{$option_name}" , $_single_opt , $option_name , $option_group );
+        //allow contx filtering globally
+        $_single_opt = apply_filters( "tc_opt" , $_single_opt , $option_name , $option_group, $_default_val );
+
+        //allow single option filtering
+        return apply_filters( "tc_opt_{$option_name}" , $_single_opt , $option_name , $option_group, $_default_val );
       }
 
 

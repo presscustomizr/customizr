@@ -50,3 +50,88 @@ require_once( get_template_directory() . '/inc/init.php' );
 * You can add functions here but they will be lost on upgrade. If you use a child theme, you are safe!
 * More informations on how to create a child theme with Customizr here : http://presscustomizr.com/customizr/#child-theme
 */
+
+
+/**
+ * Get the meta_type with get_current_screen() ->
+ * meta_type for page => screen -> base = post
+ * meta_type for post => screen -> base = post
+ * meta_type for author => screen -> base = profile
+ * meta_type for tags => $_GET taxonomy
+ * meta_type for category => $_GET taxonomy
+ *
+ *
+ * Get the id with $_GET
+ * page, post and CPT => $_GET['post']
+ * all taxonomies $_GET['tag_ID']
+ * authors => $_GET['user_id']
+ *
+ *
+ * Get the post type with screen ->
+ *
+*/
+
+//add_action('current_screen' , 'tc_get_admin_object');
+//add_action( 'edit_form_after_title' , 'tc_get_admin_object' );
+function tc_get_admin_object( $screen ) {
+  if ( ! is_admin() )
+    return;
+
+  /*if ( null != $post ) :
+    ?>
+      <pre>
+        <?php print_r($post -> type . ' - ' . $post -> ID ); ?>
+      </pre>
+    <?php
+  endif;*/
+
+  ?>
+    <pre>
+      <?php print_r($_GET); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( $screen ); ?>
+    </pre>
+  <?php
+
+}
+
+
+
+add_action('__after_header' , 'tc_display_options');
+function tc_display_options() {
+  $_options = get_option('tc_theme_options');
+  $_option = tc__f('__get_option' , 'tc_test_context');
+  ?>
+    <pre>
+      <?php print_r( TC_contx::$instance -> tc_build_context() ); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( 'Context meta type: ' . TC_contx::$instance -> tc_get_context( 'meta_type' ) ); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( 'Context type: ' . TC_contx::$instance -> tc_get_context( 'type' ) ); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( 'Context: ' . TC_contx::$instance -> tc_get_context() ); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( $_option ); ?>
+    </pre>
+  <?php
+  ?>
+    <pre>
+      <?php print_r( $_options ); ?>
+    </pre>
+  <?php
+}

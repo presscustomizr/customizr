@@ -7,7 +7,7 @@ module.exports = {
 		dest: '<%= paths.front_js %>tc-scripts.js',
 	},
 	admin_control_js:{
-		src: ['<%= paths.front_js %>parts/arrayPrototypeMap.js', '<%= paths.admin_js %>lib/icheck.min.js', '<%= paths.admin_js %>lib/selecter.min.js', '<%= paths.admin_js %>lib/stepper.min.js', '<%= paths.admin_js %>lib/select2.min.js', '<%= paths.admin_js %>parts/_control.js', '<%= paths.admin_js %>parts/_call_to_actions.js' , '<%= paths.admin_js %>parts/_various_dom_ready.js'],
+		src: ['<%= paths.front_js %>parts/arrayPrototypeMap.js', '<%= paths.admin_js %>lib/icheck.min.js', '<%= paths.admin_js %>lib/selecter.min.js', '<%= paths.admin_js %>lib/stepper.min.js', '<%= paths.admin_js %>lib/select2.min.js', '<%= paths.admin_js %>parts/_control.js', '<%= paths.admin_js %>parts/_call_to_actions.js' , '<%= paths.admin_js %>parts/_various_dom_ready.js', '<%= paths.admin_js %>parts/_contextualizr.js'],
 		dest: '<%= paths.admin_js %>theme-customizer-control.js',
 	}
 };
