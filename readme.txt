@@ -38,6 +38,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.26 May 22nd 2015 =
+* fix : post-navigation regression introduced while merging rtl code
+
 = 3.3.25 May 21st 2015  | Customizr is 2 y/o ! =
 * fix: better check whether print or not the widget placeholder script
 * added : option filter and better contx retro compat to default
