@@ -1407,7 +1407,7 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:1785
 msgid "Note : thumbnails are always displayed when the grid layout is choosen."
-msgstr "הערה: תמונות ממוזערות מוצגות תמיד כשבולרים בפריסת מטריצה"
+msgstr "הערה: תמונות ממוזערות מוצגות תמיד כשבוחרים בפריסת מטריצה"
 
 #: ../class-fire-utils_settings_map.php:1790
 msgid "If no featured image is set, use the last image attached to this post."
