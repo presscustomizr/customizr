@@ -311,7 +311,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
        if ( is_page() || is_admin() || 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ) )
         return;
 
-       remove_filter('the_content', array(TC_utils::$instance, 'tc_parse_imgs') );
+       remove_filter('the_content', array(TC_utils::$instance, 'tc_parse_imgs'), 20 );
        // they add the actual images filtering the content with priority PHP_INT_MAX -1
        add_filter('the_content'   , array(TC_utils::$instance, 'tc_parse_imgs'), PHP_INT_MAX );
      }
