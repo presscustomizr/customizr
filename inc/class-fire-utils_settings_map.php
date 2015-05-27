@@ -410,7 +410,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_menu_type]'  => array(
                                 'default'   =>  TC_utils::$inst -> tc_user_started_before_version( '3.1.0' , '1.0.0' ) ? 'click' : 'hover',
                                 'control'   =>  'TC_controls' ,
-                                'title'     => __( 'Design and effects' , 'customizr'),
                                 'label'     =>  __( 'Select a submenu expansion option' , 'customizr' ),
                                 'section'   =>  'nav' ,
                                 'type'      =>  'select' ,
@@ -418,6 +417,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'click'   => __( 'Expand submenus on click' , 'customizr'),
                                         'hover'   => __( 'Expand submenus on hover' , 'customizr'  ),
                                 ),
+                                'priority'  => 20
               ),
       ); //end of navigation options
       $navigation_option_map = apply_filters( 'tc_navigation_option_map', $navigation_option_map , $get_default );
@@ -1478,6 +1478,19 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               /* Menu */
+               'tc_theme_options[tc_menu_style]'  =>  array(
+                              'default'       => 1,
+                              'control'       => 'TC_controls' ,
+                              'title'         => __( 'Design and effects' , 'customizr'),
+                              'label'         => __( 'Select a Layout' , 'customizr' ),
+                              'section'       => 'nav' ,
+                              'type'          => 'select',
+                              'choices'       => array(
+                                      'navbar'   => __( 'Regular'   ,  'customizr' ),
+                                      'aside'    => __( 'Side Menu' ,  'customizr' ),
+                              ),
+                              'priority'      => 10,
+              ),
               'tc_theme_options[tc_menu_position]'  =>  array(
                                 'default'       => 'left',
                                 'control'       => 'TC_controls' ,
