@@ -1,3 +1,222 @@
+var Obj = {
+  prop1 : 'joie',
+  method1 : function() {
+    return this.prop1;
+  },
+  SubObj : {
+    prop2 : this.prop1 + 'intense'
+  }
+}
+
+function MyClass() {
+  myClassproperty : 'myClassproperty value';
+  new MySubClass();
+}
+
+function MySubClass() {
+  this.mySubClassproperty = 'mySubClassproperty value'
+  this.subClassMethod();
+}
+
+MySubClass.prototype = Object.create( MyClass.prototype );
+MySubClass.prototype.constructor = MySubClass;
+
+MySubClass.prototype.subClassMethod = function() {
+  console.log('in subClassMethod', this, this.myClassproperty);
+}
+
+new MyClass();
+
+var Czr = function($) {
+  _czr_.init();
+},//constructor
+_czr_   = Czr.prototype,
+czr_localized = TCParams,//localized params
+$       = jQuery;
+
+
+_czr_.init = function() {
+  //do not nothing if no localized params loaded
+  this.joie = 'property defined in _czr_ init';
+  if ( ! czr_localized )
+    return;
+
+  //various properties definition
+  //_czr_.$_body = $('body');
+
+  //init constructors
+  new _czr_.Helpers();
+  new _czr_.Plugins();
+  new _czr_.Slider();
+  //new _czr_.Header();
+};
+
+
+/************************************************
+* JQUERY PLUGINS METHODS
+*************************************************/
+_czr_.Plugins= function() {
+  this.init();
+};//constructor
+var _plugins_ = _czr_.Plugins.prototype;
+
+_plugins_.init = function() {
+  setTimeout( this.center_images(), 300 );
+};
+
+
+/**
+ * CENTER VARIOUS IMAGES
+ * @return {void}
+ */
+_plugins_.center_images = function() {
+  //Featured Pages
+  $('.widget-front .thumb-wrapper').centerImages( {
+    enableCentering : 1 == czr_localized.centerAllImg,
+    enableGoldenRatio : false,
+    disableGRUnder : 0,//<= don't disable golden ratio when responsive
+    zeroTopAdjust : 1,
+    leftAdjust : 2.5,
+    oncustom : ['smartload', 'simple_load']
+  });
+  //POST LIST THUMBNAILS + FEATURED PAGES
+  //Squared, rounded
+  $('.thumb-wrapper', '.hentry' ).centerImages( {
+    enableCentering : 1 == czr_localized.centerAllImg,
+    enableGoldenRatio : false,
+    disableGRUnder : 0,//<= don't disable golden ratio when responsive
+    oncustom : ['smartload', 'simple_load']
+  });
+
+  //rectangulars
+  $('.tc-rectangular-thumb').centerImages( {
+    enableCentering : 1 == czr_localized.centerAllImg,
+    enableGoldenRatio : true,
+    goldenRatioVal : czr_localized.goldenRatio || 1.618,
+    disableGRUnder : 0,//<= don't disable golden ratio when responsive
+    oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
+  });
+
+  //SINGLE POST THUMBNAILS
+  $('.tc-rectangular-thumb' , '.single').centerImages( {
+    enableCentering : 1 == czr_localized.centerAllImg,
+    enableGoldenRatio : false,
+    disableGRUnder : 0,//<= don't disable golden ratio when responsive
+    oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
+  });
+
+  //POST GRID IMAGES
+  $('.tc-grid-figure').centerImages( {
+    enableCentering : 1 == czr_localized.centerAllImg,
+    oncustom : ['smartload', 'simple_load'],
+    enableGoldenRatio : true,
+    goldenRatioVal : czr_localized.goldenRatio || 1.618,
+    goldenRatioLimitHeightTo : czr_localized.gridGoldenRatioLimit || 350
+  } );
+};//center_images
+
+
+
+
+/************************************************
+* SLIDER ACTIONS
+*************************************************/
+_czr_.Slider= function() {
+  //_h_.emit( 'fireSliders' );
+};//constructor
+var _slider_ = _czr_.Slider.prototype;
+
+
+_slider_.fireSliders = function() {
+  //Slider with localized script variables
+  var _name   = czr_localized.SliderName,
+      _delay  = czr_localized.SliderDelay;
+      _hover  = czr_localized.SliderHover;
+
+  if ( 0 === _name.length )
+    return;
+
+  if ( 0 !== _delay.length && ! _hover ) {
+    $("#customizr-slider").carousel({
+        interval: _delay,
+        pause: "false"
+    });
+  } else if ( 0 !== _delay.length ) {
+    $("#customizr-slider").carousel({
+        interval: _delay
+    });
+  } else {
+    $("#customizr-slider").carousel();
+  }
+};
+
+_slider_.manageHoverClass = function() {
+  //add a class to the slider on hover => used to display the navigation arrow
+  $(".carousel").hover( function() {
+      $(this).addClass('tc-slid-hover');
+    },
+    function() {
+      $(this).removeClass('tc-slid-hover');
+    }
+  );
+};
+
+
+
+
+/************************************************
+* HELPERS
+*************************************************/
+_czr_.Helpers = function() {
+};//constructor
+var _h_ = _czr_.Helpers.prototype;
+
+
+//helper to trigger a simple load
+//=> allow centering when smart load not triggered by smartload
+_h_._trigger_simple_load = function( $_imgs ) {
+  if ( 0 === $_imgs.length )
+    return;
+
+  $_imgs.map( function( _ind, _img ) {
+    $(_img).load( function () {
+        $(_img).trigger('simple_load');
+    });//end load
+    if ( $(_img)[0] && $(_img)[0].complete )
+      $(_img).load();
+  } );//end map
+};//end of fn
+
+_h_.emit = function( _cb, _args ) {
+  console.log(this);
+  console.log('in _h_.emit', _cb );
+  console.log('type of' , typeof(_czr_[_cb])  , _czr_ , _slider_ );
+  $('body').trigger(_cb);
+  _czr_[_cb](_args);
+};
+
+
+
+
+/************************************************
+* LET'S DANCE
+*************************************************/
+jQuery(function ($) {
+  var CZR = new Czr($);
+  console.log('CZR' , CZR);
+});
+
+
+
+
+
+
+
+
+
+/************************************************
+* OLD
+*************************************************/
 /* !
  * Customizr WordPress theme Javascript code
  * Copyright (c) 2014-2015 Nicolas GUILLAUME (@nicguillaume), Press Customizr.
