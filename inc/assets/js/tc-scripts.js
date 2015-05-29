@@ -3227,14 +3227,17 @@ var TCParams = TCParams || {};
 
 })( jQuery, window, document );;var $ = jQuery,
     Czr_Base = function() {
+      //cache various jQuery el in base constructor
+      this.$_body           = $('body');
+      this.$_tcHeader       = $('.tc-header');
+      this.$_wpadminbar     = $('#wpadminbar');
+
       //various properties definition
-      this.joie = 'property defined in Czr_Base';
-      this.localized = TCParams;
-      this.$_body = $('body');
-
+      this.joie             = 'property defined in Czr_Base';
+      this.localized        = TCParams;
+      this.isUserLogged     = this.$_body.hasClass('logged-in') || 0 !== this.$_wpadminbar.length;
+      this.isCustomizing    = this.$_body.hasClass('is-customizing');
       this.reordered_blocks = false;//store the states of the sidebar layout
-
-      console.log('instanciated', this);
     },//parent class constructor
     _czr_ = Czr_Base.prototype;
 
@@ -3242,22 +3245,6 @@ var TCParams = TCParams || {};
 /************************************************
 * HELPERS
 *************************************************/
-//helper to trigger a simple load
-//=> allow centering when smart load not triggered by smartload
-_czr_.triggerSimpleLoad = function( $_imgs ) {
-  if ( 0 === $_imgs.length )
-    return;
-
-  $_imgs.map( function( _ind, _img ) {
-    $(_img).load( function () {
-      $(_img).trigger('simple_load');
-    });//end load
-    if ( $(_img)[0] && $(_img)[0].complete )
-      $(_img).load();
-  } );//end map
-};//end of fn
-
-
 /**
  * Fire a method and emit an event with the callback name on the body element
  * @param  cbs  : callback method or array of callbacks to fire in its subclass this context
@@ -3274,6 +3261,23 @@ _czr_.emit = function( cbs, args ) {
     }
   });//_.map
 };
+
+
+//helper to trigger a simple load
+//=> allow centering when smart load not triggered by smartload
+_czr_.triggerSimpleLoad = function( $_imgs ) {
+  if ( 0 === $_imgs.length )
+    return;
+
+  $_imgs.map( function( _ind, _img ) {
+    $(_img).load( function () {
+      $(_img).trigger('simple_load');
+    });//end load
+    if ( $(_img)[0] && $(_img)[0].complete )
+      $(_img).load();
+  } );//end map
+};//end of fn
+
 
 
 
@@ -3590,7 +3594,7 @@ var _userxp_ = Czr_UserExperience.prototype;
 
 _userxp_.init = function() {
   //on dom ready
-  this.emit( ['anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder' ] );
+  this.emit( ['anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler' ] );
 
   //@todo EVENT
   var self = this;
@@ -3774,6 +3778,244 @@ _userxp_.listenToSidebarReorderEvent = function( e, param ) {
 
 
 
+//Handle dropdown on click for multi-tier menus
+_userxp_.dropdownMenuEventsHandler = function() {
+  var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'),
+      $dropdown_submenus  = $('.tc-open-on-click .dropdown .dropdown-submenu');
+
+  //go to the link if submenu is already opened
+  $dropdown_ahrefs.on('tap click', function(evt) {
+    if ( ( $(this).next('.dropdown-menu').css('visibility') != 'hidden' &&
+            $(this).next('.dropdown-menu').is(':visible')  &&
+            ! $(this).parent().hasClass('dropdown-submenu') ) ||
+         ( $(this).next('.dropdown-menu').is(':visible') &&
+            $(this).parent().hasClass('dropdown-submenu') ) )
+        window.location = $(this).attr('href');
+  });//.on()
+
+  // make sub-submenus dropdown on click work
+  $dropdown_submenus.each(function(){
+    var $parent = $(this),
+        $children = $parent.children('[data-toggle="dropdown"]');
+    $children.on('tap click', function(){
+        var submenu   = $(this).next('.dropdown-menu'),
+            openthis  = false;
+        if ( ! $parent.hasClass('open') ) {
+          openthis = true;
+        }
+        // close opened submenus
+        $($parent.parent()).children('.dropdown-submenu').each(function(){
+            $(this).removeClass('open');
+        });
+        if ( openthis )
+            $parent.addClass('open');
+
+        return false;
+    });//.on()
+  });//.each()
+};
+
+
+
+
+/************************************************
+* STICKY HEADER SUB CLASS
+*************************************************/
+function Czr_StickyHeader() {
+  Czr_Base.call(this);//set the parent this
+  this.init();
+}//constructor
+
+//set the classical prototype chaining with inheritance
+Czr_StickyHeader.prototype = Object.create( Czr_Base.prototype );
+Czr_StickyHeader.prototype.constructor = Czr_StickyHeader;
+var _stickyheader_ = Czr_StickyHeader.prototype;
+
+
+_stickyheader_.init = function() {
+  //cache jQuery el
+  this.$_window         = $(window);
+  this.$_sticky_logo    = $('img.sticky', '.site-logo');
+  this.$_resetMarginTop = $('#tc-reset-margin-top');
+
+  //subclass properties
+  this.elToHide         = []; //[ '.social-block' , '.site-description' ],
+  this.customOffset     = +TCParams.stickyCustomOffset;
+  this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
+  this.timer            = 0;
+  this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
+  this.triggerHeight    = 20; //0.5 * windowHeight;
+
+  //on dom ready
+  this.emit( ['triggerStickyHeaderLoad', 'stickyHeaderEventListener'] );
+};//init()
+
+
+
+
+
+
+_stickyheader_.triggerStickyHeaderLoad = function() {
+  if ( ! this._is_sticky_enabled() )
+    return;
+
+  //LOADING ACTIONS
+  this.$_body.trigger( 'sticky-enabled-on-load' , { on : 'load' } );
+};
+
+
+_stickyheader_.stickyHeaderEventListener = function() {
+  //LOADING ACTIONS
+  var self = this;
+  this.$_body.on( 'sticky-enabled-on-load' , function() {
+    self.stickyHeaderEventHandler('on-load');
+  });//.on()
+
+  //RESIZING ACTIONS
+  this.$_window.resize( function() {
+    self.stickyHeaderEventHandler('resize');
+  });
+
+  this.$_window.scroll( function() {
+    self.stickyHeaderEventHandler('scroll');
+  });
+};
+
+
+
+_stickyheader_.stickyHeaderEventHandler = function(param ) {
+  if ( ! this._is_sticky_enabled() )
+    return;
+
+  var self = this;
+
+  switch ( param ) {
+    case 'on-load' :
+      setTimeout( function() {
+        self._sticky_refresh();
+        self._sticky_header_scrolling_actions();
+      } , 20 );//setTimeout()
+    break;
+
+    case 'scroll' :
+       //use a timer
+      if ( this.timer) {
+        this.increment++;
+        clearTimeout(self.timer);
+      }
+
+      if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+        timer = setTimeout( function() {
+          self._sticky_header_scrolling_actions();
+        }, self.increment > 5 ? 50 : 0 );
+      } else if ( this.$_body.hasClass('ie') ) {
+        timer = setTimeout( function() {
+          self._sticky_header_scrolling_actions();
+        }, self.increment > 5 ? 50 : 0 );
+      }
+    break;
+
+    case 'resize' :
+      self._set_sticky_offsets();
+      self._set_header_top_offset();
+      self._set_logo_height();
+    break;
+  }
+};
+
+
+
+
+//STICKY HEADER SUB CLASS HELPER (private like)
+_stickyheader_._is_scrolling = function() {
+  return this.$_body.hasClass('sticky-enabled') ? true : false;
+};
+
+//STICKY HEADER SUB CLASS HELPER (private like)
+_stickyheader_._is_sticky_enabled = function() {
+  return this.$_body.hasClass('tc-sticky-header') ? true : false;
+};
+
+//STICKY HEADER SUB CLASS HELPER (private like)
+_stickyheader_._get_initial_offset = function() {
+  //initialOffset     = ( 1 == isUserLogged &&  580 < $(window).width() ) ? $('#wpadminbar').height() : 0;
+  var initialOffset   = 0;
+  if ( 1 == this.isUserLogged && ! this.isCustomizing ) {
+    if ( 580 < this.$_window.width() )
+      initialOffset = this.$_wpadminbar.height();
+    else
+      initialOffset = ! this._is_scrolling() ? this.$_wpadminbar.height() : 0;
+  }
+  return initialOffset + this.customOffset;
+};
+
+//STICKY HEADER SUB CLASS HELPER (private like)
+_stickyheader_._set_sticky_offsets = function() {
+  var self = this;
+
+  //Reset all values first
+  this.$_tcHeader.css('top' , '');
+  this.$_tcHeader.css('height' , 'auto' );
+  this.$_resetMarginTop.css('margin-top' , '' ).show();
+
+  //What is the initial offset of the header ?
+  var headerHeight    = this.$_tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
+  //set initial margin-top = initial offset + header's height
+  this.$_resetMarginTop.css('margin-top' , ( + self.headerHeight + self.customOffset ) + 'px');
+};
+
+//STICKY HEADER SUB CLASS HELPER (private like)
+_stickyheader_._set_header_top_offset = function() {
+  var self = this;
+  //set header initial offset
+  this.$_tcHeader.css('top' , self._get_initial_offset() );
+};
+
+//STICKY HEADER SUB CLASS HELPER (private like)
+_stickyheader_._set_logo_height = function(){
+  if ( this.logo && 0 === this.logo._logo.length || ! this.logo._ratio )
+    return;
+  var self = this;
+  this.logo._logo.css('height' , self.logo._logo.width() / self.logo._ratio );
+
+  setTimeout( function() {
+      self._set_sticky_offsets();
+      self._set_header_top_offset();
+  } , 200 );
+};
+
+_stickyheader_._sticky_refresh = function() {
+  var self = this;
+  setTimeout( function() {
+      self._set_sticky_offsets();
+      self._set_header_top_offset();
+  } , 20 );
+  this.$_window.trigger('resize');
+};
+
+
+//SCROLLING ACTIONS
+_stickyheader_._sticky_header_scrolling_actions = function() {
+  this._set_header_top_offset();
+
+  var self = this;
+  //process scrolling actions
+  if ( this.$_window.scrollTop() > this.triggerHeight ) {
+    if ( ! this._is_scrolling() )
+        this.$_body.addClass("sticky-enabled").removeClass("sticky-disabled");
+  }
+  else if ( this._is_scrolling() ){
+    this.$_body.removeClass("sticky-enabled").addClass("sticky-disabled");
+    setTimeout( function() { self._sticky_refresh(); } ,
+      self.isCustomizing ? 100 : 20
+    );
+    //additional refresh for some edge cases like big logos
+    setTimeout( function() { self._sticky_refresh(); } , 200 );
+  }
+};
+
+
+
 
 /************************************************
 * LET'S DANCE
@@ -3786,4 +4028,5 @@ jQuery(function ($) {
   new Czr_Plugins();
   new Czr_Slider();
   new Czr_UserExperience();
+  new Czr_StickyHeader();
 });
