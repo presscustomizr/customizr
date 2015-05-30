@@ -127,11 +127,12 @@ jQuery(function ($) {
         });
 
         $('.carousel' ).each( function() {
+            var _is_rtl = $('body').hasClass('rtl');
             $(this).hammer().on('swipeleft tap', function() {
-                $(this).carousel('next');
+                $(this).carousel( ! _is_rtl ? 'next' : 'prev' );
             });
             $(this).hammer().on('swiperight', function(){
-                $(this).carousel('prev');
+                $(this).carousel( ! _is_rtl ? 'prev' : 'next' );
             });
         });
     }
