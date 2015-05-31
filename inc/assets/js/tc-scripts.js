@@ -3225,7 +3225,117 @@ var TCParams = TCParams || {};
       });
   };
 
-})( jQuery, window, document );;var $ = jQuery,
+})( jQuery, window, document );;//NEW @toimplement
+//@todo no need to assign a shortname to the proto anymore
+//@todo extend app with an method object for each child classes
+
+// var czrapp = czrapp || {};
+
+// (function($, czrapp) {
+//   // if ( ! TCParams || _.isEmpty(TCParams) )
+//   //   return;
+
+//   $.extend( czrapp, {
+//     //cache various jQuery el in base constructor
+//     // $_body           : $('body'),
+//     // $_tcHeader       : $('.tc-header'),
+//     // $_wpadminbar     : $('#wpadminbar'),
+
+//     //various properties definition
+//     instances        : {},
+//     proto_map        : {
+//       BrowserDetect : '_browser_detect_'
+//     },
+//     // joie             : 'property defined in Czr_Base',
+//     // localized        : TCParams,
+//     // isUserLogged     : this.$_body.hasClass('logged-in') || 0 !== this.$_wpadminbar.length,
+//     // isCustomizing    : this.$_body.hasClass('is-customizing'),
+//     // reordered_blocks : false,//store the states of the sidebar layout
+
+//     //parent class constructor
+//     Base : function() {
+//       this.joie = 'base class property';
+//     },
+
+//     //returns the prototype short name from map
+//     _getShortProtoName : function(classname) {
+//       return czrapp.proto_map[classname] || false;
+//     },
+
+//     _inherits : function( classname ) {
+//       console.log('inherits');
+//       //add the class to the czrapp and sets the parent this to it
+//       czrapp[classname] = function() {
+//         this.subclassprop = 'subclass prop';
+//         czrapp.Base.call(this);
+//       };
+
+//       //get proto name
+//       _proto = czrapp._getShortProtoName(classname);
+
+//       //set the classical prototype chaining with inheritance
+//       czrapp[classname].prototype = Object.create( czrapp.Base.prototype );
+//       czrapp[classname].prototype.constructor = czrapp[classname];
+
+//       //assigns a shorter name for the subclass prototype
+//       czrapp[_proto] = czrapp[classname].prototype;
+//       return czrapp;
+//     },
+
+//     _instanciates : function( classname, params ) {
+//       console.log('instanciates');
+//       czrapp.instances[classname] = czrapp.instances[classname] || new czrapp[classname](params);
+//       return czrapp;
+//     },
+
+//     _init : function(classname) {
+//       console.log('init');
+//       console.log(czrapp);
+//       if ( ! czrapp.instances[classname] )
+//         return;
+//       //init
+//       czrapp.instances[classname].init();
+//       return czrapp;
+//     },
+
+//     _addMethods : function(proto) {
+//       console.log('add methods');
+//       $.extend( czrapp[proto] , {
+//         init : function() {
+//           console.log('Init method in _browser_detect_', this);
+//         }
+//       });
+//       return czrapp;
+//     },
+
+//     load : function( args ) {
+//       _.each( args, function( value, key ) {
+//         czrapp._inherits(key)._instanciates(key, value)._addMethods()._init(key);
+//       });//_.each()
+//     }
+//   });//extend
+
+
+// })(jQuery, czrapp);
+
+// /************************************************
+// * LET'S DANCE
+// *************************************************/
+// jQuery(function ($) {
+//   var toLoad = {
+//     BrowserDetect : [],
+//     // Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
+//     // Czr_Slider
+//   };
+//   czrapp.load(toLoad);
+// });
+
+
+
+
+
+
+var $ = jQuery,
     Czr_Base = function() {
       //cache various jQuery el in base constructor
       this.$_body           = $('body');
@@ -3239,7 +3349,7 @@ var TCParams = TCParams || {};
       this.isCustomizing    = this.$_body.hasClass('is-customizing');
       this.reordered_blocks = false;//store the states of the sidebar layout
     },//parent class constructor
-    _czr_ = Czr_Base.prototype;
+    _base_ = Czr_Base.prototype;
 
 
 /************************************************
@@ -3251,7 +3361,7 @@ var TCParams = TCParams || {};
  * @param  args : array of args to pass to the callback
  * @return void
  */
-_czr_.emit = function( cbs, args ) {
+_base_.emit = function( cbs, args ) {
   cbs = _.isArray(cbs) ? cbs : [cbs];
   var self = this;
   _.map( cbs, function(cb) {
@@ -3265,7 +3375,7 @@ _czr_.emit = function( cbs, args ) {
 
 //helper to trigger a simple load
 //=> allow centering when smart load not triggered by smartload
-_czr_.triggerSimpleLoad = function( $_imgs ) {
+_base_.triggerSimpleLoad = function( $_imgs ) {
   if ( 0 === $_imgs.length )
     return;
 
@@ -3332,10 +3442,13 @@ Czr_Plugins.prototype.constructor = Czr_Plugins;
 var _plugs_ = Czr_Plugins.prototype;
 
 _plugs_.init = function() {
+  this.emit( ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'] );
+};
+
+
+_plugs_.centerImagesWithDelay = function() {
   //fire the center images plugin
   setTimeout( this.emit('CenterImages'), 300 );
-
-  this.emit( ['ImgSmartLoad' , 'DropCaps', 'ExtLinks' , 'FancyBox'] );
 };
 
 
@@ -3343,7 +3456,7 @@ _plugs_.init = function() {
 //.article-container covers all post / page content : single and list
 //__before_main_wrapper covers the single post thumbnail case
 //.widget-front handles the featured pages
-_plugs_.ImgSmartLoad = function() {
+_plugs_.imgSmartLoad = function() {
   if ( 1 == TCParams.imgSmartLoadEnabled )
     $( '.article-container, .__before_main_wrapper, .widget-front' ).imgSmartLoad( _.size( TCParams.imgSmartLoadOpts ) > 0 ? TCParams.imgSmartLoadOpts : {} );
   else {
@@ -3355,7 +3468,7 @@ _plugs_.ImgSmartLoad = function() {
 
 
 //FIRE DROP CAP PLUGIN
-_plugs_.DropCaps = function() {
+_plugs_.dropCaps = function() {
   if ( ! TCParams.dropcapEnabled || _.isObject( TCParams.dropcapWhere ) )
     return;
 
@@ -3374,7 +3487,7 @@ _plugs_.DropCaps = function() {
 //May be add (check if activated by user) external class + target="_blank" to relevant links
 //images are excluded by default
 //links inside post/page content
-_plugs_.ExtLinks = function() {
+_plugs_.extLinks = function() {
   if ( ! TCParams.extLinksStyle && ! TCParams.extLinksTargetExt )
     return;
   $('a' , '.entry-content').extLinks({
@@ -3386,7 +3499,7 @@ _plugs_.ExtLinks = function() {
 
 //FIRE FANCYBOX PLUGIN
 //Fancybox with localized script variables
-_plugs_.FancyBox = function() {
+_plugs_.fancyBox = function() {
   if ( 1 != TCParams.FancyBoxState || 'function' != typeof($.fn.fancybox) )
     return;
 
@@ -3497,7 +3610,7 @@ var _slider_ = Czr_Slider.prototype;
 
 //INIT
 _slider_.init = function() {
-  this.emit( ['fireSliders', 'manageHoverClass', 'CenterSliderArrows', 'addSwipeSupport'] );
+  this.emit( ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport'] );
 
   this.triggerSimpleLoad( $( '.carousel .carousel-inner').find('img') );
   var self = this;
@@ -3505,7 +3618,7 @@ _slider_.init = function() {
   //@todo EVENT
   //Recenter the slider arrows on resize
   $(window).resize( function(){
-      self.CenterSliderArrows();
+      self.centerSliderArrows();
   });
 };
 
@@ -3546,7 +3659,7 @@ _slider_.manageHoverClass = function() {
 };
 
 //SLIDER ARROWS
-_slider_.CenterSliderArrows = function() {
+_slider_.centerSliderArrows = function() {
   if ( 0 === $('.carousel').length )
       return;
   $('.carousel').each( function() {
@@ -3883,13 +3996,13 @@ _stickyheader_.stickyHeaderEventListener = function() {
 
 
 
-_stickyheader_.stickyHeaderEventHandler = function(param ) {
+_stickyheader_.stickyHeaderEventHandler = function( evt ) {
   if ( ! this._is_sticky_enabled() )
     return;
 
   var self = this;
 
-  switch ( param ) {
+  switch ( evt ) {
     case 'on-load' :
       setTimeout( function() {
         self._sticky_refresh();
@@ -4013,20 +4126,3 @@ _stickyheader_._sticky_header_scrolling_actions = function() {
     setTimeout( function() { self._sticky_refresh(); } , 200 );
   }
 };
-
-
-
-
-/************************************************
-* LET'S DANCE
-*************************************************/
-jQuery(function ($) {
-  if ( ! TCParams || _.isEmpty(TCParams) )
-    return;
-  //init constructors
-  new Czr_BrowserDetect();
-  new Czr_Plugins();
-  new Czr_Slider();
-  new Czr_UserExperience();
-  new Czr_StickyHeader();
-});
