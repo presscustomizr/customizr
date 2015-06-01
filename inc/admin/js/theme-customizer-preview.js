@@ -439,6 +439,16 @@
 			$('.tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header').css('z-index' , to);
 		} );
 	});
+    //Sticky footer
+	wp.customize( 'tc_theme_options[tc_sticky_footer]' , function( value ) {
+		value.bind( function( to ) {
+            if ( false !== to)
+			  $('body').addClass('tc-sticky-footer').trigger('refresh-sticky-footer');
+            else
+			  $('body').removeClass('tc-sticky-footer');
+		} );
+	});
+
 	wp.customize( 'tc_theme_options[tc_custom_css]' , function( value ) {
 		value.bind( function( to ) {
 			$('#option-custom-css').remove();

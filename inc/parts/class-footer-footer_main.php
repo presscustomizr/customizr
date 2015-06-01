@@ -19,6 +19,8 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
       //All footer hooks setup
       add_action( 'wp_head'                   , array( $this , 'tc_footer_hook_setup') );
 
+      // Sticky footer style
+      add_filter( 'tc_user_options_style'     , array( $this , 'tc_write_sticky_footer_inline_css' ) );
       //Handles RTL block order
       //takes 2 parameters : priority, location
       add_filter( 'tc_rtl_colophon_priority' , array( $this , 'tc_set_rtl_colophon_priority'), 10, 2 );
@@ -38,6 +40,12 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     * @since Customizr 3.3+
     */
     function tc_footer_hook_setup() {
+      //add sticky_footer body class  
+      add_filter ( 'body_class'             , array( $this, 'tc_add_sticky_footer_body_class' ) ); 
+
+      //print the sticky_footer push div
+      add_action ( '__after_main_container' , array( $this, 'tc_sticky_footer_push'), 100 );
+
       //html > footer actions
       add_action ( '__after_main_wrapper'   , 'get_footer');
       //footer actions
@@ -271,6 +279,60 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
       return 'right' == $_location ? 10 : 30;
     }
 
+    /*
+    * Callback of tc_user_options_style hook
+    * @return css string
+    *
+    * @package Customizr
+    * @since Customizr 3.3.27
+    */
+    function tc_write_sticky_footer_inline_css( $_css ){
+      if ( ! ( $this -> is_sticky_footer_enabled() || TC___::$instance -> tc_is_customizing() ) )
+        return $_css;
+
+      $_css = sprintf("%s\n%s",
+        $_css,
+        "#tc-push-footer {
+           display: none; 
+           visibility: hidden;
+         }
+         .tc-sticky-footer #tc-push-footer.sticky-footer-enabled { 
+             display: block;
+         }
+        \n"
+      );
+      return $_css;      
+    }
+    /*
+    * Callback of body_class hook
+    *
+    * @package Customizr
+    * @since Customizr 3.3.27
+    */
+    function tc_add_sticky_footer_body_class($_classes) {
+      if ( $this -> is_sticky_footer_enabled() )
+        $_classes = array_merge( $_classes, array( 'tc-sticky-footer') );
+      
+      return $_classes;
+    }
+
+    /**
+    * 
+    * Print hookable sticky footer push div
+    *
+    *
+    * @package Customizr
+    * @since Customizr 3.3.27
+    *
+    * @hook __after_main_container
+    *
+    */
+    function tc_sticky_footer_push() {
+      if ( ! ( $this -> is_sticky_footer_enabled() || TC___::$instance -> tc_is_customizing() ) )
+        return;
+      
+      echo '<div id="tc-push-footer"></div>';    
+    }
 
 
 		/**
@@ -301,6 +363,19 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 				return ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
 			 //last condition
           	return $_no_icons_classes;
-		}
-	}//end of class
+        }
+
+
+    /* Helpers */
+        
+    /*
+    *  Sticky footer enabled
+    *  
+    * @return bool
+    */
+    function is_sticky_footer_enabled() {
+      return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_sticky_footer') );
+    }
+
+  }//end of class
 endif;
