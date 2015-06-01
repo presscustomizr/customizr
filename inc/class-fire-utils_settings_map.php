@@ -2188,13 +2188,22 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               /* Footer */
+              'tc_theme_options[tc_sticky_footer]'  =>  array(
+                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.27' , '1.1.10' ) ? 0 : 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Stick the footer to the bottom of the page" , "customizr" ),
+                                'section'       => 'tc_footer_global_settings' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 1,
+                                'transport'     => 'postMessage'
+              ),
               'tc_theme_options[tc_show_back_to_top]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display a back to top arrow on scroll" , "customizr" ),
                                 'section'       => 'tc_footer_global_settings' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 1
+                                'priority'      => 5
               ),
 
               /* SOCIALS */

@@ -597,4 +597,83 @@ jQuery(function ($) {
              }, increment > 5 ? 50 : 0 );
         }
     });//end of window.scroll()
+
+});
+
+/* Sticky Footer since v3.3.27 */
+jQuery( function ($) { 
+   
+   //do nothing if option disabled
+   if ( 1 != TCParams.stickyFooter )
+     return;
+
+   var $_body    = $('body'),
+        $_page   = $('#tc-page-wrap'),
+        $_push   = $('#tc-push-footer'),
+        _class   = 'sticky-footer-enabled',
+        $_window = $(window);
+    __init();
+
+    function __init() {
+      __connect_events();
+
+      // maybe apply sticky footer on document ready if not sticky enabled otherwise will be fired on window resize
+      if ( 1 != TCParams.stickyHeader )
+        setTimeout( _maybe_apply_sticky_footer, 50 );
+    
+    }
+
+    function __connect_events() {
+      // maybe apply sticky footer on window resize
+      $_window.on( 'resize', function(){
+         // call with a certain delay (incrementally, step 50ms) for all the transitions we have on the images/ header
+         // this may cause the appearing of the vertical scrollbar for a small range of time
+         for ( var $i = 0; $i<5; $i++ ) /* I've seen something like that in twentyfifteen */
+           setTimeout( _maybe_apply_sticky_footer, 50 * $i);
+        
+      });
+      /* can be useful without exposing methods make it react to this event which could be externally fired */
+      $_body.on( 'refresh-sticky-footer', _maybe_apply_sticky_footer );
+    }
+
+    /* We apply the "sticky" footer by setting the height of the push div, and adding the proper class to show it */
+    function _maybe_apply_sticky_footer(){
+      if ( ! _is_sticky_footer_enabled() )
+        return;
+      
+      var  _f_height     = _get_full_height(),
+           _w_height     = $_window.height(),
+           _push_height  = _w_height - _f_height,
+           _event        = false;
+      
+      if ( _push_height > 0 ) {
+        $_push.css('height', _push_height).addClass(_class);
+        _event = 'sticky-footer-on';
+      }else if ( $_push.hasClass(_class) ) {
+        $_push.removeClass(_class);
+        _event = 'sticky-footer-off';
+      }
+
+      /* Fire an event which something might listen to */
+      if ( _event )
+        $_body.trigger(_event);    
+    }
+    
+    /* Helpers */
+    /*
+    * return @bool: whether apply or not the sticky-footer
+    */
+    function _is_sticky_footer_enabled(){
+      return $_body.hasClass('tc-sticky-footer');
+    }
+
+    /* 
+    * return @int: the potential height value of the page
+    */
+    function _get_full_height(){
+      var _full_height = $_page.outerHeight(true) + $_page.offset().top,
+          _push_height = 'block' == $_push.css('display') ? $_push.outerHeight() : 0;
+            
+      return _full_height - _push_height;
+    }
 });

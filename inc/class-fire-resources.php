@@ -225,7 +225,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
               'imgSmartLoadEnabled' => esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ),
               'imgSmartLoadOpts'    => apply_filters( 'tc_img_smart_load_options' , array() ),
               'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
-              'gridGoldenRatioLimit' => esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height' ) )
+              'gridGoldenRatioLimit' => esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height' ) ),
+              'stickyFooter'         => esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_footer' ) ) || TC___::$instance -> tc_is_customizing(),
 	        	),
 	        	TC_utils::tc_id()
 		    )//end of filter
