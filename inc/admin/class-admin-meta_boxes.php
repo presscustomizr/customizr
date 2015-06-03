@@ -227,7 +227,6 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
               </label>
             </div>
             <div class="meta-box-item-content">
-			  <div id="iphone_check_slider">
               <input name="tc_post_id" id="tc_post_id" type="hidden" value="<?php echo $post-> ID ?>"/>
                <?php
                  $post_slider_checked = false;
@@ -235,11 +234,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                   $post_slider_checked = true;
                 ?>
               <input name="<?php echo $post_slider_check_id; ?>" type="hidden" value="0"/>
-              <input name="<?php echo $post_slider_check_id; ?>" id="<?php echo $post_slider_check_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $post_slider_checked, $current = true, $echo = true ) ?>/>
-              </div> <!-- iphone_check_slider -->
-			  <div id="post_slider_infos">
+              <input name="<?php echo $post_slider_check_id ?>" id="<?php echo $post_slider_check_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $post_slider_checked, $current = true, $echo = true ) ?>/>
+            </div>
+            <div id="post_slider_infos">
               <?php do_action( '__post_slider_infos' , $post -> ID ); ?>
-              </div>
             </div>
           <?php
       }//end of function
