@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.3.26\n"
 "POT-Creation-Date: 2015-06-02 06:29+0200\n"
-"PO-Revision-Date: 2015-06-02 21:36+0200\n"
+"PO-Revision-Date: 2015-06-03 07:10+0200\n"
 "Last-Translator: Yaacov Glezer <jakets69@gmail.com>\n"
 "Language-Team: Yaacov Glezer (www.glezer.co.il) <jakets69@gmail.com>\n"
 "Language: he_IL\n"
@@ -31,7 +31,7 @@ msgstr "עבור לאפשרויות עיצוב הבלוג"
 #: inc/admin/class-admin-customize.php:415
 #: inc\admin/class-admin-customize.php:415
 msgid "Hi! This is"
-msgstr "היי! זה"
+msgstr "היי! זה אני,"
 
 #: inc/admin/class-admin-customize.php:416
 #: inc\admin/class-admin-customize.php:416
@@ -2183,7 +2183,7 @@ msgstr "טעינת תמונת ברירת מחדל ממוזערת"
 
 #: inc/class-fire-utils_settings_map.php:1860
 msgid "Thumbnails options for the alternate thumbnails layout"
-msgstr "אפשרויות תמונות ממוזערות עבור פריסת תמונת חלופיות"
+msgstr "אפשרויות תמונות ממוזערות עבור פריסת תמונת מתחלפות"
 
 #: inc/class-fire-utils_settings_map.php:1861
 msgid "Thumbnails shape"
@@ -2244,7 +2244,7 @@ msgstr "משמאל"
 
 #: inc/class-fire-utils_settings_map.php:1905
 msgid "Alternate thumbnail/content"
-msgstr "תוכן / תמונה ממוזערת חלופיים"
+msgstr "תוכן / תמונה ממוזערת מתחלפים"
 
 #: inc/class-fire-utils_settings_map.php:1914
 msgid "Archive titles"
@@ -2541,7 +2541,7 @@ msgstr "בחירת פריסה"
 
 #: inc/class-fire-utils_settings_map.php:2340
 msgid "Alternate thumbnails layout"
-msgstr "פריסת תמונות ממוזערות חלופית"
+msgstr "פריסת תמונות ממוזערות מתחלפות"
 
 #: inc/class-fire-utils_settings_map.php:2341
 msgid "Grid layout"
@@ -2598,7 +2598,7 @@ msgstr "הפעלת פריסת מטריצה על תוצאות חיפוש"
 
 #: inc/class-fire-utils_settings_map.php:2392
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
-msgstr "קונטקסטים לא מסומנים מוצגים בפריסת תמונה חלופית"
+msgstr "קונטקסטים לא מסומנים מוצגים בפריסת תמונה מתחלפת"
 
 #: inc/class-fire-utils_settings_map.php:2397
 msgid "Apply a shadow to each grid items"
