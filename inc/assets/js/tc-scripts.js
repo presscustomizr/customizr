@@ -3225,11 +3225,7 @@ var TCParams = TCParams || {};
       });
   };
 
-})( jQuery, window, document );//NEW @toimplement
-//@todo no need to assign a shortname to the proto anymore
-//@todo extend app with an method object for each child classes
-
-var czrapp = czrapp || {};
+})( jQuery, window, document );var czrapp = czrapp || {};
 
 (function($, czrapp) {
   // if ( ! TCParams || _.isEmpty(TCParams) )
@@ -3330,7 +3326,7 @@ var czrapp = czrapp || {};
      * @param  {[type]} args [description]
      * @return {[type]}      [description]
      */
-    load : function( args ) {
+    loadCzr : function( args ) {
       _.each( args, function( methods, key ) {
         czrapp._inherits(key)._instanciates(key)._addMethods(key)._init(key, methods);
       });//_.each()
@@ -4070,5 +4066,5 @@ jQuery(function ($) {
     Czr_UserExperience : ['anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler' ],
     Czr_StickyHeader : ['triggerStickyHeaderLoad', 'stickyHeaderEventListener']
   };
-  czrapp.cacheProp().load(toLoad);
+  czrapp.cacheProp().loadCzr(toLoad);
 });

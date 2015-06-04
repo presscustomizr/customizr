@@ -1,7 +1,3 @@
-//NEW @toimplement
-//@todo no need to assign a shortname to the proto anymore
-//@todo extend app with an method object for each child classes
-
 var czrapp = czrapp || {};
 
 (function($, czrapp) {
@@ -12,12 +8,9 @@ var czrapp = czrapp || {};
     methods          : {},//will store all subclasses methods
 
     //parent class constructor
-    Base : function() {
-      this.joie = 'base class property';
-    },
+    Base : function() {},
 
     _inherits : function( classname ) {
-      console.log('inherits');
       //add the class to the czrapp and sets the parent this to it
       czrapp[classname] = function() {
         ///////////////////
@@ -29,16 +22,15 @@ var czrapp = czrapp || {};
       //set the classical prototype chaining with inheritance
       czrapp[classname].prototype = Object.create( czrapp.Base.prototype );
       czrapp[classname].prototype.constructor = czrapp[classname];
-
       return czrapp;
     },
+
 
     _instanciates : function( classname) {
-      console.log('instanciates');
       czrapp.instances[classname] = czrapp.instances[classname] || new czrapp[classname]();
-
       return czrapp;
     },
+
 
     /**
      * [_init description]
@@ -48,9 +40,6 @@ var czrapp = czrapp || {};
      */
     _init : function(classname, methods) {
       var _instance = czrapp.instances[classname] || false;
-      console.log('in _init');
-      console.log('czrapp object' ,czrapp);
-      console.log('instance of ', classname, _instance);
       if ( ! _instance )
         return;
 
@@ -65,8 +54,8 @@ var czrapp = czrapp || {};
       return czrapp;
     },
 
+    //extend a classname prototype with a set of methods
     _addMethods : function(classname) {
-      console.log('add methods', classname, czrapp[classname].prototype  );
       $.extend( czrapp[classname].prototype , czrapp._getMethods(classname) );
       return czrapp;
     },
@@ -103,7 +92,7 @@ var czrapp = czrapp || {};
      * @param  {[type]} args [description]
      * @return {[type]}      [description]
      */
-    load : function( args ) {
+    loadCzr : function( args ) {
       _.each( args, function( methods, key ) {
         czrapp._inherits(key)._instanciates(key)._addMethods(key)._init(key, methods);
       });//_.each()
@@ -150,7 +139,7 @@ var czrapp = czrapp || {};
     },
 
     isCustomizing    : function() {
-      czrapp.$_body.hasClass('is-customizing');
+      return czrapp.$_body.hasClass('is-customizing');
     }
 
   };//_methods{}

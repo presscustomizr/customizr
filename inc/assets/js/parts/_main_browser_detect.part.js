@@ -18,7 +18,6 @@
     }
   };//_methods{}
 
-  czrapp.methods.BrowserDetect = {};
-  $.extend( czrapp.methods.BrowserDetect , _methods );
+  $.extend( czrapp.methods.BrowserDetect = {} , _methods );
 
 })(jQuery, czrapp);
