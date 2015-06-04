@@ -125,7 +125,7 @@ var czrapp = czrapp || {};
       //What is the initial offset of the header ?
       var headerHeight    = czrapp.$_tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
       //set initial margin-top = initial offset + header's height
-      this.$_resetMarginTop.css('margin-top' , ( + self.headerHeight + self.customOffset ) + 'px');
+      this.$_resetMarginTop.css('margin-top' , ( + headerHeight + self.customOffset ) + 'px');
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)

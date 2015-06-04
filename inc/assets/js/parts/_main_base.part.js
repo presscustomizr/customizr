@@ -13,9 +13,6 @@ var czrapp = czrapp || {};
     _inherits : function( classname ) {
       //add the class to the czrapp and sets the parent this to it
       czrapp[classname] = function() {
-        ///////////////////
-        this.subclassprop = classname + ' prop';
-        ///////////////////
         czrapp.Base.call(this);
       };
 
@@ -78,7 +75,6 @@ var czrapp = czrapp || {};
         $_wpadminbar     : $('#wpadminbar'),
 
         //various properties definition
-        joie             : 'property defined in Czr_Base',
         localized        : TCParams || {},
         reordered_blocks : false,//store the states of the sidebar layout
       });
@@ -110,7 +106,7 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods = {
     emit : function( cbs, args ) {
-      console.log('in emit :  cbs, args',  cbs, this);
+      //console.log('in emit :  cbs, args',  cbs, this);
       cbs = _.isArray(cbs) ? cbs : [cbs];
       var self = this;
       _.map( cbs, function(cb) {
@@ -135,7 +131,7 @@ var czrapp = czrapp || {};
     },//end of fn
 
     isUserLogged     : function() {
-      return czrapp.$_body.hasClass('logged-in') || 0 !== this.$_wpadminbar.length;
+      return czrapp.$_body.hasClass('logged-in') || 0 !== czrapp.$_wpadminbar.length;
     },
 
     isCustomizing    : function() {
