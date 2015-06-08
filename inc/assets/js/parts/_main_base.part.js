@@ -1,4 +1,20 @@
 var czrapp = czrapp || {};
+/* Object.create monkey patch ie8 http://stackoverflow.com/a/18020326
+ * Shoudl be probablly moved in a different file. 
+ * I think we can make an "old-browser-comp" file where to move this, arrayPrototype and further patches of the same kind
+ *
+ * */
+if ( !Object.create ) {
+  Object.create = function(proto, props) {
+    if (typeof props !== "undefined") {
+      throw "The multiple-argument version of Object.create is not provided by this browser and cannot be shimmed.";
+    }
+    function ctor() { }
+    
+    ctor.prototype = proto;
+    return new ctor();
+  };
+}
 
 (function($, czrapp) {
   // if ( ! TCParams || _.isEmpty(TCParams) )
@@ -111,7 +127,7 @@ var czrapp = czrapp || {};
       var self = this;
       _.map( cbs, function(cb) {
         if ( 'function' == typeof(self[cb]) ) {
-          self[cb].apply(self, args);
+          self[cb].apply(self, 'undefined' == typeof( args ) ? Array() : args );
           czrapp.$_body.trigger( cb, _.object( _.keys(args), args ) );
         }
       });//_.map
