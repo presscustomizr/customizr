@@ -70,6 +70,7 @@ var czrapp = czrapp || {};
       $.extend( czrapp, {
         //cache various jQuery el in czrapp obj
         $_window         : $(window),
+        $_html           : $('html'),
         $_body           : $('body'),
         $_tcHeader       : $('.tc-header'),
         $_wpadminbar     : $('#wpadminbar'),

@@ -87,6 +87,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
           'files' => array( 'bootstrap.js' , 'bootstrap.min.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery', 'tc-js-params' )
         ),
+        'tc-img-original-sizes' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'jqueryimgOriginalSizes.js' ),
+          'dependencies' => array('jquery')
+        ),
         'tc-dropcap' => array(
           'path' => 'inc/assets/js/parts/',
           'files' => array( 'jqueryaddDropCap.js' ),
@@ -105,13 +110,13 @@ if ( ! class_exists( 'TC_resources' ) ) :
         'tc-center-images' => array(
           'path' => 'inc/assets/js/parts/',
           'files' => array( 'jqueryCenterImages.js' ),
-          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
         ),
         //!!no fancybox dependency if fancybox not required!
         'tc-main-front' => array(
           'path' => 'inc/assets/js/parts/',
           'files' => array( 'main.js' , 'main.min.js' ),
-          'dependencies' => $this -> tc_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-bootstrap' , 'underscore' )
+          'dependencies' => $this -> tc_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
         ),
         //loaded separately => not included in tc-script.js
         'tc-fancybox' => array(
@@ -162,7 +167,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			else {
         wp_enqueue_script( 'underscore' );
         //!!mind the dependencies
-        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-bootstrap' ) );
+        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap' ) );
 
         if ( $this -> tc_is_fancyboxjs_required() )
           $this -> tc_enqueue_script( 'tc-fancybox' );
