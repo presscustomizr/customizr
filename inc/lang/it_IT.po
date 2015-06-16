@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: * Customizr v3.3.27\n"
 "POT-Creation-Date: 2015-04-09 15:55+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Rocco Aliberti\n"
+"Last-Translator: Giorgio Riccardi <giorgio@griccardi.com>\n"
 "Language-Team: \n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.6\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _n;_e;__\n"
@@ -243,7 +243,7 @@ msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
 msgstr ""
-"Questo slider sarà  cancellato definitivamente (le immagini, i pulsanti e i "
+"Questo slider sarà cancellato definitivamente (le immagini, i pulsanti e i "
 "collegamenti saranno conservati)."
 
 #: ../admin/class-admin-meta_boxes.php:337
@@ -1008,7 +1008,7 @@ msgstr "Skin"
 #: ../class-fire-utils_settings_map.php:292
 #: ../class-fire-utils_settings_map.php:1021
 msgid "Select a skin for Customizr"
-msgstr "Seleziona un skin per Customizr"
+msgstr "Seleziona una skin per Customizr"
 
 #: ../class-fire-utils_settings_map.php:296
 #: ../class-fire-utils_settings_map.php:1013
@@ -2070,7 +2070,7 @@ msgstr ""
 #: ../class-fire-utils_settings_map.php:1790
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
-"Se non Ã¨ stata impostata alcuna immagine in evidenza, usa l'ultima immagine "
+"Se non è stata impostata alcuna immagine in evidenza, usa l'ultima immagine "
 "allegata a questo articolo."
 
 #: ../class-fire-utils_settings_map.php:1797
