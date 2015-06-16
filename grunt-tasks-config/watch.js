@@ -18,7 +18,7 @@ module.exports = {
 	},
 	front_js : {
 		files : ['<%= paths.front_js %>parts/*.js', '!*.min.js'],
-		tasks : ['gitinfo' , 'replace:readme', 'concat:front_js', 'jshint:front', 'uglify:part_front_js' , 'uglify:main_front_js'],
+		tasks : ['gitinfo' , 'replace:readme', 'concat:front_main_parts_js', 'concat:front_js', 'jshint:front', 'uglify:part_front_js' , 'uglify:main_front_js'],
 		//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
 	},
 	//The customizer control has a special treatment => concatenation + FTP transfer of the built file

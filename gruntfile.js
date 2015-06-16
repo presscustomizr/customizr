@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 
 				//PROD
 				'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'cssmin:prod_common_rtl'],
-				'prod_front_js': ['jshint', 'concat:front_js', 'uglify:part_front_js' , 'uglify:main_front_js'],
+				'prod_front_js': ['jshint', 'concat:front_main_parts_js', 'concat:front_js',  'uglify:part_front_js' , 'uglify:main_front_js'],
 				'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js'],
 				//https://www.npmjs.org/package/grunt-gitinfo
 				//Get Git info from a working copy and populate grunt.config with the data
