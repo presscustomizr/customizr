@@ -174,12 +174,14 @@
     if ( $_img.is(":visible") )
       return 'x' == _dim ? $_img.outerWidth() : $_img.outerHeight();
     else {
-      if ( 'x' == _dim && $_img.attr('width') )
-        return $_img.attr('width');
-      if ( 'y' == _dim && $_img.attr('height') )
-        return $_img.attr('height');
+      if ( 'x' == _dim ){
+        var _width = $_img.originalWidth();  
+        return typeof _width === undefined ? 0 : _width;
+      }if ( 'y' == _dim ){
+        var _height = $_img.originalHeight();  
+        return typeof _height === undefined ? 0 : _height;
+      }
     }
-    return 0;
   };
 
 

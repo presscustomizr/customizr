@@ -5,8 +5,9 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods = {
     centerImagesWithDelay : function( delay ) {
+      var self = this;  
       //fire the center images plugin
-      setTimeout( this.emit('centerImages'), delay || 300 );
+      setTimeout( function(){ self.emit('centerImages'); }, delay || 300 );
     },
 
 

@@ -27,7 +27,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
       self::$instance =& $this;
   		//add control class
-  		add_action ( 'customize_register'				                , array( $this , 'tc_add_controls_class' ) ,10,1);
+  		add_action ( 'customize_register'				                , array( $this , 'tc_augment_customizer' ) ,10,1);
 
   		//add grid/post list buttons
   		add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );
@@ -51,12 +51,12 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 
 		/**
-		* Adds controls to customizer
+		* Augments wp customize controls and settings classes
 		* @package Customizr
 		* @since Customizr 1.0
 		*/
-		function tc_add_controls_class( $type) {
-			locate_template( 'inc/admin/class-controls.php' , $load = true, $require_once = true );
+		function tc_augment_customizer( $type) {
+			locate_template( 'inc/admin/class-tc-controls-settings.php' , $load = true, $require_once = true );
 		}
 
 
@@ -203,8 +203,11 @@ if ( ! class_exists( 'TC_customize' ) ) :
 						}
 					}
 
-					//add setting
-					$wp_customize	-> add_setting( $key, $option_settings );
+          //add setting
+          if ( class_exists('TC_Customize_Setting') )
+            $wp_customize -> add_setting( new TC_Customize_Setting ( $wp_customize, $key, $option_settings ) );
+          else
+            $wp_customize -> add_setting( $key, $option_settings );
 
 					//generate controls array
 					$option_controls = array();
