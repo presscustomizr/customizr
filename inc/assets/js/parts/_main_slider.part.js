@@ -72,6 +72,8 @@ var czrapp = czrapp || {};
           ev.stopPropagation();
       });
 
+      var _is_rtl = $('body').hasClass('rtl');
+
       $('.carousel' ).each( function() {
           $(this).hammer().on('swipeleft tap', function() {
               $(this).carousel('next');
