@@ -345,7 +345,10 @@ class TC_post_list {
       return;
 
     //filter the post types to include, they must be public and not excluded from search
-    $post_types     = get_post_types( array( 'public' => true, 'exclude_from_search' => false) );
+    //we also exclude the built-in types, to exclude pages and attachments, we'll add standard posts later
+    $post_types         = get_post_types( array( 'public' => true, 'exclude_from_search' => false, '_builtin' => false) );
+    //add standard post
+    $post_types['post'] = 'post';
 
     $query->set('post_type', $post_types );
   }
