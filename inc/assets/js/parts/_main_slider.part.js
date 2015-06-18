@@ -73,13 +73,12 @@ var czrapp = czrapp || {};
       });
 
       var _is_rtl = $('body').hasClass('rtl');
-
       $('.carousel' ).each( function() {
           $(this).hammer().on('swipeleft tap', function() {
-              $(this).carousel('next');
+              $(this).carousel( ! _is_rtl ? 'next' : 'prev' );
           });
           $(this).hammer().on('swiperight', function(){
-              $(this).carousel('prev');
+              $(this).carousel( ! _is_rtl ? 'prev' : 'next' );
           });
       });
     },

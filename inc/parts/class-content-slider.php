@@ -369,15 +369,13 @@ class TC_slider {
     $_html = '';
     $_html .= sprintf('<div class="tc-slider-controls %1$s">%2$s</div>',
       ! is_rtl() ? 'left' : 'right',
-      sprintf('<a class="tc-carousel-control" href="#customizr-slider" data-slide="%1$s">%2$s</a>',
-        ! is_rtl() ? 'prev' : 'next',
+      sprintf('<a class="tc-carousel-control" href="#customizr-slider" data-slide="prev">%1$s</a>',
         apply_filters( 'tc_slide_left_control', '&lsaquo;' )
       )
     );
     $_html .= sprintf('<div class="tc-slider-controls %1$s">%2$s</div>',
       ! is_rtl() ? 'right' : 'left',
-      sprintf('<a class="tc-carousel-control" href="#customizr-slider" data-slide="%1$s">%2$s</a>',
-        ! is_rtl() ? 'next' : 'prev',
+      sprintf('<a class="tc-carousel-control" href="#customizr-slider" data-slide="next">%1$s</a>',
         apply_filters( 'tc_slide_right_control', '&rsaquo;' )
       )
     );
