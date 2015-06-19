@@ -215,8 +215,6 @@ class TC_slider {
 
 
 
-
-
   /******************************
   * VIEWS
   *******************************/
@@ -243,13 +241,7 @@ class TC_slider {
     ?>
     <div id="customizr-slider" class="<?php echo $layout_class ?> ">
 
-      <?php if ( 'demo' == $slider_name_id || ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ) && apply_filters( 'tc_display_slider_loader' , true ) ) ) : ?>
-        <div class="tc-slider-loader-wrapper">
-          <div class="tc-img-gif-loader">
-            <img data-no-retina alt="loading" src="<?php echo apply_filters('tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') ) ?>">
-          </div>
-        </div>
-      <?php endif; ?>
+      <?php $this -> tc_render_slider_loader_view( $slider_name_id ); ?>
 
       <?php do_action( '__before_carousel_inner' , $slides )  ?>
 
@@ -298,6 +290,27 @@ class TC_slider {
         $this -> tc_render_slide_edit_link_view( $_view_model );
       ?>
     </div><!-- /.item -->
+    <?php
+  }
+
+
+  /**
+  * Slider loader view
+  * @param (string) $slider_name_id
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  *
+  */
+  function tc_render_slider_loader_view( $slider_name_id ) {
+    if ( 'demo' != $slider_name_id && ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ) || ! apply_filters( 'tc_display_slider_loader' , true ) ) )
+      return;
+    ?>
+      <div class="tc-slider-loader-wrapper">
+        <div class="tc-img-gif-loader">
+          <img data-no-retina alt="loading" src="<?php echo apply_filters('tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') ) ?>">
+        </div>
+      </div>
     <?php
   }
 
