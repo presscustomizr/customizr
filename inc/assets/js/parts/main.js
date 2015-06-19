@@ -1,6 +1,6 @@
 var czrapp = czrapp || {};
 /* Object.create monkey patch ie8 http://stackoverflow.com/a/18020326
- * Shoudl be probablly moved in a different file. 
+ * Shoudl be probablly moved in a different file.
  * I think we can make an "old-browser-comp" file where to move this, arrayPrototype and further patches of the same kind
  *
  * */
@@ -10,7 +10,7 @@ if ( !Object.create ) {
       throw "The multiple-argument version of Object.create is not provided by this browser and cannot be shimmed.";
     }
     function ctor() { }
-    
+
     ctor.prototype = proto;
     return new ctor();
   };
@@ -101,12 +101,37 @@ if ( !Object.create ) {
 
 
     /**
-     * [load description]
+     * Load the various { constructor [methods] }
+     *
+     * Constructors and methods can be disabled by passing a localized var TCParams._disabled (with the hook 'tc_disabled_front_js_parts' )
+     * Ex : add_filter('tc_disabled_front_js_parts', function() {
+     *   return array('Czr_Plugins' => array() , 'Czr_Slider' => array('addSwipeSupport') );
+     * });
+     * => will disabled all Czr_Plugin class (with all its methods) + will disabled the addSwipeSupport method from the Czr_Slider class
+     * @todo : check the classes dependencies and may be add a check if ( ! method_exits() )
+     *
      * @param  {[type]} args [description]
      * @return {[type]}      [description]
      */
     loadCzr : function( args ) {
+      var that = this,
+          _disabled = that.localized._disabled || {};
+
       _.each( args, function( methods, key ) {
+        //normalize methods into an array if string
+        methods = 'string' == typeof(methods) ? [methods] : methods;
+
+        //key is the constructor
+        //check if the constructor has been disabled => empty array of methods
+        if ( that.localized._disabled[key] && _.isEmpty(that.localized._disabled[key]) )
+          return;
+
+        if ( that.localized._disabled[key] && ! _.isEmpty(that.localized._disabled[key]) ) {
+          var _to_remove = that.localized._disabled[key];
+          _to_remove = 'string' == typeof(_to_remove) ? [_to_remove] : _to_remove;
+          methods = _.difference( methods, _to_remove );
+        }
+        //chain various treatments
         czrapp._inherits(key)._instanciates(key)._addMethods(key)._init(key, methods);
       });//_.each()
 

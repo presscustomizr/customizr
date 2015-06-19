@@ -243,7 +243,7 @@ msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
 msgstr ""
-"Questo slider sarà  cancellato definitivamente (le immagini, i pulsanti e i "
+"Questo slider sarà cancellato definitivamente (le immagini, i pulsanti e i "
 "collegamenti saranno conservati)."
 
 #: ../admin/class-admin-meta_boxes.php:337
@@ -1008,7 +1008,7 @@ msgstr "Skin"
 #: ../class-fire-utils_settings_map.php:292
 #: ../class-fire-utils_settings_map.php:1021
 msgid "Select a skin for Customizr"
-msgstr "Seleziona un skin per Customizr"
+msgstr "Seleziona una skin per Customizr"
 
 #: ../class-fire-utils_settings_map.php:296
 #: ../class-fire-utils_settings_map.php:1013
@@ -2070,7 +2070,7 @@ msgstr ""
 #: ../class-fire-utils_settings_map.php:1790
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
-"Se non Ã¨ stata impostata alcuna immagine in evidenza, usa l'ultima immagine "
+"Se non è stata impostata alcuna immagine in evidenza, usa l'ultima immagine "
 "allegata a questo articolo."
 
 #: ../class-fire-utils_settings_map.php:1797
