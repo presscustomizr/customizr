@@ -723,7 +723,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
     function tc_maybe_is_holder_js_required(){
       $bool = false;
     
-      if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) )
+      if ( ! TC_featured_pages::$instance -> tc_show_featured_pages_img() )
         return $bool;
 
       $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
