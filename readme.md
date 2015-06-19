@@ -60,6 +60,7 @@ The exceptions to this license are as follows:
 * added : js event handlers for sidebar reordering actions
 * added : cleaner class inheritance framework for front end js
 * added : a div#tc-page-wrap including header, content and footer
+* added : oldBrowserCompat.js file including map + object.create
 
 = 3.3.26 May 22nd 2015 =
 * fix : post-navigation regression introduced while merging rtl code

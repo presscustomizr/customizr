@@ -3297,10 +3297,14 @@ var TCParams = TCParams || {};
   };
 
 })( jQuery, window, document );
+//@global TCParams
 var czrapp = czrapp || {};
+
 (function($, czrapp) {
-  // if ( ! TCParams || _.isEmpty(TCParams) )
-  //   return;
+  //short name for the slice method from the built-in Array js prototype
+  //used to handle the event methods
+  var slice = Array.prototype.slice;
+
   $.extend( czrapp, {
     instances        : {},//will store all subclasses instances
     methods          : {},//will store all subclasses methods
@@ -3382,6 +3386,31 @@ var czrapp = czrapp || {};
     },
 
 
+    /***************************************************************************
+    * Event methods, offering the ability to bind to and trigger events.
+    * Inspired from the customize-base.js event manager object
+    * @uses slice method, alias of Array.prototype.slice
+    ****************************************************************************/
+    trigger: function( id ) {
+      if ( this.topics && this.topics[ id ] )
+        this.topics[ id ].fireWith( this, slice.call( arguments, 1 ) );
+      return this;
+    },
+
+    bind: function( id ) {
+      this.topics = this.topics || {};
+      this.topics[ id ] = this.topics[ id ] || $.Callbacks();
+      this.topics[ id ].add.apply( this.topics[ id ], slice.call( arguments, 1 ) );
+      return this;
+    },
+
+    unbind: function( id ) {
+      if ( this.topics && this.topics[ id ] )
+        this.topics[ id ].remove.apply( this.topics[ id ], slice.call( arguments, 1 ) );
+      return this;
+    },
+
+
     /**
      * Load the various { constructor [methods] }
      *
@@ -3417,8 +3446,9 @@ var czrapp = czrapp || {};
         czrapp._inherits(key)._instanciates(key)._addMethods(key)._init(key, methods);
       });//_.each()
 
-      czrapp.$_body.trigger('czrapp-ready');
-    }
+      czrapp.trigger('czrapp-ready', this);
+    }//loadCzr
+
   });//extend
 })(jQuery, czrapp);
 
@@ -3430,13 +3460,12 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods = {
     emit : function( cbs, args ) {
-      //console.log('in emit :  cbs, args',  cbs, this);
       cbs = _.isArray(cbs) ? cbs : [cbs];
       var self = this;
       _.map( cbs, function(cb) {
         if ( 'function' == typeof(self[cb]) ) {
           self[cb].apply(self, 'undefined' == typeof( args ) ? Array() : args );
-          czrapp.$_body.trigger( cb, _.object( _.keys(args), args ) );
+          czrapp.trigger( cb, _.object( _.keys(args), args ) );
         }
       });//_.map
     },
