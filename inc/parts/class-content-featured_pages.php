@@ -29,13 +29,11 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
     	* @since Customizr 3.0
     	*/
       function tc_fp_block_display() {
-
-      		//gets display options
-      		$tc_show_featured_pages 	      = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
-      		$tc_show_featured_pages_img     = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) );
-
-          if ( !apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && tc__f('__is_home') ) )
+          
+          if ( ! $this -> tc_show_featured_pages()  )
             return;
+
+          $tc_show_featured_pages_img     = $this -> tc_show_featured_pages_img();
 
       		//gets the featured pages array and sets the fp layout
       		$fp_ids                         = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
@@ -171,15 +169,8 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
               //allow user to specify a custom image id
               $fp_custom_img_id               = apply_filters( 'fp_img_id', null , $fp_single_id , $featured_page_id );
 
-              //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
-              //tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
-              $_fp_img_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
-
-              //finally we define a default holder if no thumbnail found or page is protected
-              if ( isset( $_fp_img_model["tc_thumb"]) && ! empty( $_fp_img_model["tc_thumb"] ) && ! post_password_required( $featured_page_id ) )
-                $fp_img = $_fp_img_model["tc_thumb"];
-              else
-                $fp_img = $fp_holder_img;
+              $fp_img = $this -> tc_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id);
+              $fp_img = $fp_img ? $fp_img : $fp_holder_img;
 
               $fp_img                 = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
             }//end if
@@ -247,6 +238,34 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
             if ($html) ob_end_clean();
             return apply_filters( 'tc_fp_single_display' , $html, $fp_single_id, $show_img, $fp_img, $featured_page_link, $featured_page_title, $text, $featured_page_id );
         }//end of function
+
+      /* HELPERS */
+
+      function tc_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
+        //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
+        //tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
+        $_fp_img_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
+
+        //finally we define a default holder if no thumbnail found or page is protected
+        if ( isset( $_fp_img_model["tc_thumb"]) && ! empty( $_fp_img_model["tc_thumb"] ) && ! post_password_required( $featured_page_id ) )
+          $fp_img = $_fp_img_model["tc_thumb"];
+        else
+          $fp_img = false;
+
+        return $fp_img;
+      }
+
+      function tc_show_featured_pages() {
+        //gets display fp option
+        $tc_show_featured_pages 	      = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
+
+        return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && tc__f('__is_home') );
+      }
+
+      function tc_show_featured_pages_img() {
+        //gets  display img option
+        return apply_filters( 'tc_show_featured_pages_img', esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) );
+      }
 
    }//end of class
 endif;
