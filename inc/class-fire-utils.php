@@ -74,7 +74,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.3.0
       */
       function tc_parse_imgs( $_html ) {
-        if( is_feed() || is_preview() || wp_is_mobile() )
+        if( is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('tc_disable_img_smart_load_mobiles', false ) ) )
           return $_html;
 
         if ( strpos( $_html, 'data-src' ) !== false )
