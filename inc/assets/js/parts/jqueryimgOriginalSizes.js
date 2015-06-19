@@ -27,7 +27,7 @@
           return this[0][ 'natural' + _prop ];
         } : 
         function () {
-          var _size = _getAttr( this, l_prop );
+          var _size = _getAttr( this, _lprop );
         
           if ( _size )
             return _size;
