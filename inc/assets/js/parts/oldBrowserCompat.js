@@ -1,3 +1,18 @@
+// Object.create monkey patch ie8 http://stackoverflow.com/a/18020326
+if ( !Object.create ) {
+  Object.create = function(proto, props) {
+    if (typeof props !== "undefined") {
+      throw "The multiple-argument version of Object.create is not provided by this browser and cannot be shimmed.";
+    }
+    function ctor() { }
+
+    ctor.prototype = proto;
+    return new ctor();
+  };
+}
+
+
+
 //map was added to the ECMA-262 standard in the 5th edition; as such it may not be present in all implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of map in implementations which do not natively support it. This algorithm is exactly the one specified in ECMA-262, 5th edition, assuming Object, TypeError, and Array have their original values and that callback.call evaluates to the original value of Function.prototype.call.
 // Production steps of ECMA-262, Edition 5, 15.4.4.19
 // Reference: http://es5.github.io/#x15.4.4.19

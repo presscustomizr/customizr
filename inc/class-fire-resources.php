@@ -79,7 +79,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
         //adds support for map method in array prototype for old ie browsers <ie9
         'tc-js-arraymap-proto' => array(
           'path' => 'inc/assets/js/parts/',
-          'files' => array( 'arrayPrototypeMap.min.js' ),
+          'files' => array( 'oldBrowserCompat.min.js' ),
           'dependencies' => array()
         ),
         'tc-bootstrap' => array(
