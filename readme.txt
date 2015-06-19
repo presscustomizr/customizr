@@ -59,6 +59,7 @@ The exceptions to this license are as follows:
 * added : cleaner class inheritance framework for front end js
 * added : a div#tc-page-wrap including header, content and footer
 * added : oldBrowserCompat.js file including map + object.create
+* added : filter method to the Array.prototype for old browsers
 * added : a simple event manager set of methods in the front czrapp js
 
 = 3.3.26 May 22nd 2015 =
