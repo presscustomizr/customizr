@@ -485,9 +485,9 @@ class TC_slider {
       break;
 
       case 2 :
-        $data['title']        = __( 'Easily create sliders and add them in any post or pages.', 'customizr' );
+        $data['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
         $data['link_url']     = implode('/', array('http:/','doc.presscustomizr.com' , 'customizr/creating-sliders/') );
-        $data['button_text']  = __( 'Check the slider documentation now &raquo;' , 'customizr');
+        $data['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
       break;
     };
 
