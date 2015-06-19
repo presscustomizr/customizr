@@ -528,7 +528,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
     * @since Customizr 3.3+
     */
     function tc_force_classic_smilies() {
-      if ( is_admin() || ! ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) ) &&  $this -> tc_maybe_is_holder_js_required() ) )
+      if ( apply_filters( 'tc_not_force_classic_smilies', is_admin() || ! ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) ) &&  $this -> tc_maybe_is_holder_js_required() ) ) )
         return;
 
       // put the classic smilies images back
