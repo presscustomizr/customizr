@@ -41,20 +41,26 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
-= 3.3.27 May 22nd 2015 =
+= 3.3.27 June 18th 2015 =
+* fix: do not add no-effect class to round-divs when center images on
+* fix: prevent hiding of selecter dropdown
+* fix: use original img sizes
+* fix: some ie8 fixes for the new front-js
 * fix : reset margin for sticky header was not using the right variable
 * fix : close tc-page-wrapper before wp_footer() to avoid issues with wp admin bar
-* added : split main front js into parts
-* added : czrapp extendable object
-* added : sticky header as a sub class of Czr_Base
-* added : js event handlers for sidebar reordering actions
-* added : first attempt for a cleaner class inheritance framework for front end js
-* added : a div#tc-page-wrap including header, content and footer
+* fix: when unhooking tc_parse_imgs for nextgen compatibility use proper priority
+* fix: better rtl slide controls and swiping(js)
 * changed : replace load function by loadCzr() => load might be a reserved word
-revrese changes
 * updated Hebrew translion for V 3.3.26
 * updated translations for v 3.3.26
 * updated Hebrew translations f v3.3.26
+* added : split main front js into parts
+* added : js czrapp extendable object
+* added : sticky header as a sub class of Czr_Base
+* added : js event handlers for sidebar reordering actions
+* added : cleaner class inheritance framework for front end js
+* added : a div#tc-page-wrap including header, content and footer
+* added : oldBrowserCompat.js file including map + object.create
 
 = 3.3.26 May 22nd 2015 =
 * fix : post-navigation regression introduced while merging rtl code

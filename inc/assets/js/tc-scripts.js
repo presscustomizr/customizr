@@ -1,6 +1,7 @@
 //Falls back to default params
 var TCParams = TCParams || {
-	centerAllImg: 1,
+	DisabledFeatures : {},
+  centerAllImg: 1,
 	FancyBoxAutoscale: 1,
 	FancyBoxState: 1,
 	HasComments: "",
@@ -37,7 +38,62 @@ var TCParams = TCParams || {
   imgSmartLoadOpts: {},
   goldenRatio : 1.618,
   gridGoldenRatioLimit : 350
-};//map was added to the ECMA-262 standard in the 5th edition; as such it may not be present in all implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of map in implementations which do not natively support it. This algorithm is exactly the one specified in ECMA-262, 5th edition, assuming Object, TypeError, and Array have their original values and that callback.call evaluates to the original value of Function.prototype.call.
+};// Object.create monkey patch ie8 http://stackoverflow.com/a/18020326
+if ( !Object.create ) {
+  Object.create = function(proto, props) {
+    if (typeof props !== "undefined") {
+      throw "The multiple-argument version of Object.create is not provided by this browser and cannot be shimmed.";
+    }
+    function ctor() { }
+
+    ctor.prototype = proto;
+    return new ctor();
+  };
+}
+
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+// filter() was added to the ECMA-262 standard in the 5th edition; as such it may not be present in all implementations of the standard.
+// You can work around this by inserting the following code at the beginning of your scripts, allowing use of filter() in ECMA-262 implementations which do not natively support it.
+// This algorithm is exactly the one specified in ECMA-262, 5th edition, assuming that fn.call evaluates to the original value of Function.prototype.call(), and that Array.prototype.push() has its original value.
+if (!Array.prototype.filter) {
+  Array.prototype.filter = function(fun/*, thisArg*/) {
+    'use strict';
+
+    if (this === void 0 || this === null) {
+      throw new TypeError();
+    }
+
+    var t = Object(this);
+    var len = t.length >>> 0;
+    if (typeof fun !== 'function') {
+      throw new TypeError();
+    }
+
+    var res = [];
+    var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+    for (var i = 0; i < len; i++) {
+      if (i in t) {
+        var val = t[i];
+
+        // NOTE: Technically this should Object.defineProperty at
+        //       the next index, as push can be affected by
+        //       properties on Object.prototype and Array.prototype.
+        //       But that method's new, and collisions should be
+        //       rare, so use the more-compatible alternative.
+        if (fun.call(thisArg, val, i, t)) {
+          res.push(val);
+        }
+      }
+    }
+
+    return res;
+  };
+}
+
+
+
+//map was added to the ECMA-262 standard in the 5th edition; as such it may not be present in all implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of map in implementations which do not natively support it. This algorithm is exactly the one specified in ECMA-262, 5th edition, assuming Object, TypeError, and Array have their original values and that callback.call evaluates to the original value of Function.prototype.call.
 // Production steps of ECMA-262, Edition 5, 15.4.4.19
 // Reference: http://es5.github.io/#x15.4.4.19
 if (!Array.prototype.map) {
@@ -3281,27 +3337,14 @@ var TCParams = TCParams || {};
   };
 
 })( jQuery, window, document );
+//@global TCParams
 var czrapp = czrapp || {};
-/* Object.create monkey patch ie8 http://stackoverflow.com/a/18020326
- * Shoudl be probablly moved in a different file. 
- * I think we can make an "old-browser-comp" file where to move this, arrayPrototype and further patches of the same kind
- *
- * */
-if ( !Object.create ) {
-  Object.create = function(proto, props) {
-    if (typeof props !== "undefined") {
-      throw "The multiple-argument version of Object.create is not provided by this browser and cannot be shimmed.";
-    }
-    function ctor() { }
-    
-    ctor.prototype = proto;
-    return new ctor();
-  };
-}
 
 (function($, czrapp) {
-  // if ( ! TCParams || _.isEmpty(TCParams) )
-  //   return;
+  //short name for the slice method from the built-in Array js prototype
+  //used to handle the event methods
+  var slice = Array.prototype.slice;
+
   $.extend( czrapp, {
     instances        : {},//will store all subclasses instances
     methods          : {},//will store all subclasses methods
@@ -3383,18 +3426,69 @@ if ( !Object.create ) {
     },
 
 
+    /***************************************************************************
+    * Event methods, offering the ability to bind to and trigger events.
+    * Inspired from the customize-base.js event manager object
+    * @uses slice method, alias of Array.prototype.slice
+    ****************************************************************************/
+    trigger: function( id ) {
+      if ( this.topics && this.topics[ id ] )
+        this.topics[ id ].fireWith( this, slice.call( arguments, 1 ) );
+      return this;
+    },
+
+    bind: function( id ) {
+      this.topics = this.topics || {};
+      this.topics[ id ] = this.topics[ id ] || $.Callbacks();
+      this.topics[ id ].add.apply( this.topics[ id ], slice.call( arguments, 1 ) );
+      return this;
+    },
+
+    unbind: function( id ) {
+      if ( this.topics && this.topics[ id ] )
+        this.topics[ id ].remove.apply( this.topics[ id ], slice.call( arguments, 1 ) );
+      return this;
+    },
+
+
     /**
-     * [load description]
+     * Load the various { constructor [methods] }
+     *
+     * Constructors and methods can be disabled by passing a localized var TCParams._disabled (with the hook 'tc_disabled_front_js_parts' )
+     * Ex : add_filter('tc_disabled_front_js_parts', function() {
+     *   return array('Czr_Plugins' => array() , 'Czr_Slider' => array('addSwipeSupport') );
+     * });
+     * => will disabled all Czr_Plugin class (with all its methods) + will disabled the addSwipeSupport method from the Czr_Slider class
+     * @todo : check the classes dependencies and may be add a check if ( ! method_exits() )
+     *
      * @param  {[type]} args [description]
      * @return {[type]}      [description]
      */
     loadCzr : function( args ) {
+      var that = this,
+          _disabled = that.localized._disabled || {};
+
       _.each( args, function( methods, key ) {
+        //normalize methods into an array if string
+        methods = 'string' == typeof(methods) ? [methods] : methods;
+
+        //key is the constructor
+        //check if the constructor has been disabled => empty array of methods
+        if ( that.localized._disabled[key] && _.isEmpty(that.localized._disabled[key]) )
+          return;
+
+        if ( that.localized._disabled[key] && ! _.isEmpty(that.localized._disabled[key]) ) {
+          var _to_remove = that.localized._disabled[key];
+          _to_remove = 'string' == typeof(_to_remove) ? [_to_remove] : _to_remove;
+          methods = _.difference( methods, _to_remove );
+        }
+        //chain various treatments
         czrapp._inherits(key)._instanciates(key)._addMethods(key)._init(key, methods);
       });//_.each()
 
-      czrapp.$_body.trigger('czrapp-ready');
-    }
+      czrapp.trigger('czrapp-ready', this);
+    }//loadCzr
+
   });//extend
 })(jQuery, czrapp);
 
@@ -3406,13 +3500,12 @@ if ( !Object.create ) {
 (function($, czrapp) {
   var _methods = {
     emit : function( cbs, args ) {
-      //console.log('in emit :  cbs, args',  cbs, this);
       cbs = _.isArray(cbs) ? cbs : [cbs];
       var self = this;
       _.map( cbs, function(cb) {
         if ( 'function' == typeof(self[cb]) ) {
           self[cb].apply(self, 'undefined' == typeof( args ) ? Array() : args );
-          czrapp.$_body.trigger( cb, _.object( _.keys(args), args ) );
+          czrapp.trigger( cb, _.object( _.keys(args), args ) );
         }
       });//_.map
     },

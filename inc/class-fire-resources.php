@@ -79,7 +79,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
         //adds support for map method in array prototype for old ie browsers <ie9
         'tc-js-arraymap-proto' => array(
           'path' => 'inc/assets/js/parts/',
-          'files' => array( 'arrayPrototypeMap.min.js' ),
+          'files' => array( 'oldBrowserCompat.min.js' ),
           'dependencies' => array()
         ),
         'tc-bootstrap' => array(
@@ -202,7 +202,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        $this -> tc_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
 	        'TCParams',
 	        apply_filters( 'tc_customizr_script_params' , array(
-	          	'FancyBoxState' 		=> $this -> tc_is_fancyboxjs_required(),
+	          	'_disabled'          => apply_filters( 'tc_disabled_front_js_parts', array() ),
+              'FancyBoxState' 		=> $this -> tc_is_fancyboxjs_required(),
 	          	'FancyBoxAutoscale' => ( 1 == TC_utils::$inst->tc_opt( 'tc_fancybox_autoscale') ) ? true : false,
 	          	'SliderName' 			  => $js_slidername,
 	          	'SliderDelay' 			=> $js_sliderdelay,
