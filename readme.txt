@@ -40,6 +40,7 @@ The exceptions to this license are as follows:
 #######################  Changelog ######################
 = 3.3.27 June 19th 2015 =
 * fix: allow img smartload in mobiles
+* fix: new emoji core script collision with svg tags => falls back to classic smileys if <svg> are loaded on the pages (by holder.js)
 * fix: do not add no-effect class to round-divs when center images on
 * fix: prevent hiding of selecter dropdown
 * fix: use original img sizes
