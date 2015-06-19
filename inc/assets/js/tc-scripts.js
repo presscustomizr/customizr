@@ -2781,10 +2781,11 @@ var TCParams = TCParams || {};
     return (_expr.split(' ')).length;
   };
 
+  //Remove all characters from string but alphanumeric and -
   //@return : string
   Plugin.prototype._removeSpecChars = function( _expr , _replaceBy ) {
     _replaceBy = _replaceBy || '';
-    return 'string' == typeof(_expr) ? _expr.replace(/[^\w]/g, _replaceBy ) : '';
+    return 'string' == typeof(_expr) ? _expr.replace(/[^\w-]/g, _replaceBy ) : '';
   };
 
   //@return : string or false
@@ -3565,7 +3566,7 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods = {
     centerImagesWithDelay : function( delay ) {
-      var self = this;  
+      var self = this;
       //fire the center images plugin
       setTimeout( function(){ self.emit('centerImages'); }, delay || 300 );
     },
@@ -3588,7 +3589,7 @@ var czrapp = czrapp || {};
 
     //FIRE DROP CAP PLUGIN
     dropCaps : function() {
-      if ( ! TCParams.dropcapEnabled || _.isObject( TCParams.dropcapWhere ) )
+      if ( ! TCParams.dropcapEnabled || ! _.isObject( TCParams.dropcapWhere ) )
         return;
 
       $.each( TCParams.dropcapWhere , function( ind, val ) {

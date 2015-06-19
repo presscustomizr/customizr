@@ -226,7 +226,7 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods = {
     centerImagesWithDelay : function( delay ) {
-      var self = this;  
+      var self = this;
       //fire the center images plugin
       setTimeout( function(){ self.emit('centerImages'); }, delay || 300 );
     },
@@ -249,7 +249,7 @@ var czrapp = czrapp || {};
 
     //FIRE DROP CAP PLUGIN
     dropCaps : function() {
-      if ( ! TCParams.dropcapEnabled || _.isObject( TCParams.dropcapWhere ) )
+      if ( ! TCParams.dropcapEnabled || ! _.isObject( TCParams.dropcapWhere ) )
         return;
 
       $.each( TCParams.dropcapWhere , function( ind, val ) {
