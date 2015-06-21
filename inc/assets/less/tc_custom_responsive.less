@@ -350,6 +350,12 @@
   .sticky-enabled .tc-header {
     min-height: 40px;
   }
+  .sticky-enabled .tc-header .brand {
+    & when (@is_rtl = true){
+    float: left;
+    text-align: left;
+    }
+  }
   .sticky-enabled .tc-header .outside {
     display: none;
   }
