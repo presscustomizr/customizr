@@ -15,6 +15,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
 class TC_slider {
 
   static $instance;
+  private $slider_model;
 
   function __construct () {
     self::$instance =& $this;
@@ -170,7 +171,7 @@ class TC_slider {
       $_loop_index++;
     }//end of slides loop
     //returns the slides or false if nothing
-    return ! empty($slides) ? $slides : false;
+    return apply_filters('tc_the_slides', ! empty($slides) ? $slides : false );
   }
 
 
@@ -185,6 +186,9 @@ class TC_slider {
   *
   */
   private function tc_get_slider_model() {
+    if ( isset( $this -> slider_model ) )
+      return $this -> slider_model;
+    
     global $wp_query;
 
     //Do we have a slider to display in this context ?
@@ -210,7 +214,9 @@ class TC_slider {
     //get slides
     $slides                       = $this -> tc_get_the_slides( $slider_name_id , $img_size );
 
-    return compact( "slider_name_id", "slides", "layout_class" , "img_size" );
+    $this -> slider_model         = compact( "slider_name_id", "slides", "layout_class" , "img_size" );
+
+    return $this -> slider_model;
   }
 
 
