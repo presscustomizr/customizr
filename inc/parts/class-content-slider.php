@@ -36,7 +36,7 @@ class TC_slider {
 
 
   /******************************
-  HOOK SETUP
+  * HOOK SETUP
   *******************************/
   /**
   * callback of template_redirect
@@ -51,20 +51,19 @@ class TC_slider {
     if ( ! isset($slides) || ! $slides )
       return;
 
-    add_action( '__after_header'           , array( $this , 'tc_slider_display' ) );
-    add_action( '__after_carousel_inner'   , array( $this , 'tc_slider_control_view' ) );
+    add_action( '__after_header'            , array( $this , 'tc_slider_display' ) );
+    add_action( '__after_carousel_inner'    , array( $this , 'tc_slider_control_view' ) );
 
     //adds the center-slides-enabled css class
-    add_filter( 'tc_carousel_inner_classes', array( $this, 'tc_set_inner_class') );
+    add_filter( 'tc_carousel_inner_classes' , array( $this, 'tc_set_inner_class') );
+
+    //adds infos in the caption data of the demo slider
+    add_filter( 'tc_slide_caption_data'     , array( $this, 'tc_set_demo_slide_data'), 10, 3 );
   }
 
 
-
-
-
-
   /******************************
-  MODELS
+  * MODELS
   *******************************/
   /**
   * Return a single slide model
@@ -176,6 +175,7 @@ class TC_slider {
 
 
 
+
   /**
   * return the slider block model
   * @return  array($slider_name_id, $slides, $layout_class)
@@ -215,10 +215,8 @@ class TC_slider {
 
 
 
-
-
   /******************************
-  VIEWS
+  * VIEWS
   *******************************/
   /**
   * Slider View
@@ -243,25 +241,20 @@ class TC_slider {
     ?>
     <div id="customizr-slider" class="<?php echo $layout_class ?> ">
 
-        <?php if ( 'demo' == $slider_name_id || ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ) && apply_filters( 'tc_display_slider_loader' , true ) ) ) : ?>
-          <div class="tc-slider-loader-wrapper">
-            <div class="tc-img-gif-loader">
-              <img data-no-retina alt="loading" src="<?php echo apply_filters('tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') ) ?>">
-            </div>
-          </div>
-        <?php endif; ?>
+      <?php $this -> tc_render_slider_loader_view( $slider_name_id ); ?>
 
-        <?php do_action( '__before_carousel_inner' , $slides )  ?>
+      <?php do_action( '__before_carousel_inner' , $slides )  ?>
 
-        <div class="<?php echo $_inner_classes?>">
-          <?php
-            foreach ($slides as $id => $data) {
-              $this -> tc_render_single_slide_view( $id, $data , $slider_name_id, $img_size );
-            }
-          ?>
-        </div><!-- /.carousel-inner -->
+      <div class="<?php echo $_inner_classes?>">
+        <?php
+          foreach ($slides as $id => $data) {
+            $_view_model = compact( "id", "data" , "slider_name_id", "img_size" );
+            $this -> tc_render_single_slide_view( $_view_model );
+          }
+        ?>
+      </div><!-- /.carousel-inner -->
 
-        <?php  do_action( '__after_carousel_inner' , $slides )  ?>
+      <?php  do_action( '__after_carousel_inner' , $slides )  ?>
 
     </div><!-- /#customizr-slider -->
 
@@ -272,82 +265,161 @@ class TC_slider {
   }
 
 
+
   /**
   * Single slide view
   * Renders a single slide
+  * @param $_view_model = array( $id, $data , $slider_name_id, $img_size )
   *
   * @package Customizr
   * @since Customizr 3.3+
   *
   */
-  public function tc_render_single_slide_view( $id, $data , $slider_name_id, $img_size ) {
-      $slide_class = sprintf('%1$s %2$s',
-        $data['active'],
-        'slide-'.$id
-      );
-      ?>
+  function tc_render_single_slide_view( $_view_model ) {
+    //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
+    extract( $_view_model );
+    $slide_class = sprintf('%1$s %2$s',
+      $data['active'],
+      'slide-'.$id
+    );
+    ?>
     <div class="item <?php echo $slide_class; ?>">
-
-      <div class="<?php echo apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) ); ?>">
-        <?php
-          do_action('__before_all_slides');
-          do_action_ref_array ("__before_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id ) );
-
-            echo apply_filters( 'tc_slide_background', $data['slide_background'], $data['link_url'], $id, $slider_name_id );
-
-          do_action_ref_array ("__after_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id ) );
-          do_action('__after_all_slides');
-        ?>
-      </div> <!-- .carousel-image -->
       <?php
-        if ( $data['title'] != null || $data['text'] != null || $data['button_text'] != null ) {
-          //apply filters first
-          $data['title']          = isset($data['title']) ? apply_filters( 'tc_slide_title', $data['title'] , $id, $slider_name_id ) : '';
-          $data['text']           = isset($data['text']) ? esc_html( apply_filters( 'tc_slide_text', $data['text'], $id, $slider_name_id ) ) : '';
-          $data['color_style']    = apply_filters( 'tc_slide_color', $data['color_style'], $id, $slider_name_id );
-          $data['link_id']        = apply_filters( 'tc_slide_link_id', $data['link_id'], $id, $slider_name_id );
-          $data['link_url']       = ( 'demo' == $slider_name_id && is_null($data['link_url']) ) ? admin_url().'customize.php' : $data['link_url'];
-          $data['link_url']       = apply_filters( 'tc_slide_link_url', $data['link_url'], $id, $slider_name_id );
-          $data['button_text']    = isset($data['button_text']) ? apply_filters( 'tc_slide_button_text', $data['button_text'], $id, $slider_name_id ) : '';
-
-          //computes the link
-          $button_link            = ( !is_user_logged_in() && 'demo' == $slider_name_id ) ? 'javascript:void(0)' : $data['link_url'];
-          $button_link            = ( $data['link_id'] != null && $data['link_url'] != null ) ? $data['link_url'] : $button_link;
-
-          printf('<div class="carousel-caption">%1$s %2$s %3$s</div>',
-            //title
-            ( $data['title'] != null ) ? sprintf('<%1$s %2$s>%3$s</%1$s>',
-                                  apply_filters( 'tc_slide_title_tag', 'h1', $slider_name_id ),
-                                  $data['color_style'],
-                                  $data['title']
-                                ) : '',
-            //lead text
-            ( $data['text'] != null ) ? sprintf('<p class="lead" %1$s>%2$s</p>',
-                                  $data['color_style'],
-                                  $data['text']
-                                ) : '',
-            //button call to action
-            ( $data['button_text'] != null) ? sprintf('<a class="%1$s" href="%2$s">%3$s</a>',
-                                        apply_filters( 'tc_slide_button_class', 'btn btn-large btn-primary', $slider_name_id ),
-                                        $button_link,
-                                        $data['button_text']
-                                      ) : ''
-          );
-        }//end if there content to show in caption
-
-        //display edit link for logged in users with edit posts capabilities
-        $show_edit_link         = ( is_user_logged_in() && current_user_can('upload_files') ) ? true : false;
-        $show_edit_link         = apply_filters('tc_show_slider_edit_link' , $show_edit_link && !is_null($data['link_id']) );
-        if ( $show_edit_link ) {
-          printf('<span class="slider edit-link btn btn-inverse"><a class="post-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
-            get_edit_post_link($id) . '#slider_sectionid',
-            __( 'Edit' , 'customizr' )
-          );
-        }//end edit attachment condition
+        $this -> tc_render_slide_background_view( $_view_model );
+        $this -> tc_render_slide_caption_view( $_view_model );
+        $this -> tc_render_slide_edit_link_view( $_view_model );
       ?>
-
     </div><!-- /.item -->
     <?php
+  }
+
+
+  /**
+  * Slider loader view
+  * @param (string) $slider_name_id
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  *
+  */
+  function tc_render_slider_loader_view( $slider_name_id ) {
+    if ( 'demo' != $slider_name_id && ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ) || ! apply_filters( 'tc_display_slider_loader' , true ) ) )
+      return;
+    ?>
+      <div class="tc-slider-loader-wrapper">
+        <div class="tc-img-gif-loader">
+          <img data-no-retina alt="loading" src="<?php echo apply_filters('tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') ) ?>">
+        </div>
+      </div>
+    <?php
+  }
+
+
+
+  /**
+  * Slide Background subview
+  * @param $_view_model = array( $id, $data , $slider_name_id, $img_size )
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  *
+  */
+  function tc_render_slide_background_view( $_view_model ) {
+    //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
+    extract( $_view_model );
+    ?>
+    <div class="<?php echo apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) ); ?>">
+      <?php
+        do_action('__before_all_slides');
+        do_action_ref_array ("__before_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id ) );
+
+          echo apply_filters( 'tc_slide_background', $data['slide_background'], $data['link_url'], $id, $slider_name_id );
+
+        do_action_ref_array ("__after_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id ) );
+        do_action('__after_all_slides');
+      ?>
+    </div> <!-- .carousel-image -->
+    <?php
+  }
+
+
+
+  /**
+  * Slide caption subview
+  * @param $_view_model = array( $id, $data , $slider_name_id, $img_size )
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  *
+  */
+  function tc_render_slide_caption_view( $_view_model ) {
+    //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
+    extract( $_view_model );
+    //filters the data before (=> used for demo for example )
+    $data                   = apply_filters( 'tc_slide_caption_data', $data, $slider_name_id, $id );
+
+    if ( $data['title'] == null && $data['text'] == null && $data['button_text'] == null )
+      return;
+
+    //apply filters first
+    $data['title']          = isset($data['title']) ? apply_filters( 'tc_slide_title', $data['title'] , $id, $slider_name_id ) : '';
+    $data['text']           = isset($data['text']) ? esc_html( apply_filters( 'tc_slide_text', $data['text'], $id, $slider_name_id ) ) : '';
+    $data['color_style']    = apply_filters( 'tc_slide_color', $data['color_style'], $id, $slider_name_id );
+    $data['link_id']        = apply_filters( 'tc_slide_link_id', $data['link_id'], $id, $slider_name_id );
+    $data['link_url']       = ( 'demo' == $slider_name_id && is_null($data['link_url']) ) ? admin_url().'customize.php' : $data['link_url'];
+    $data['link_url']       = apply_filters( 'tc_slide_link_url', $data['link_url'], $id, $slider_name_id );
+    $data['button_text']    = isset($data['button_text']) ? apply_filters( 'tc_slide_button_text', $data['button_text'], $id, $slider_name_id ) : '';
+    $data['target']         = apply_filters( 'tc_slide_link_target' , isset($data['target']) ? $data['target'] : '_self' , $id, $slider_name_id );
+
+    //computes the link
+    $button_link            = ( !is_user_logged_in() && 'demo' == $slider_name_id ) ? 'javascript:void(0)' : $data['link_url'];
+    $button_link            = ( $data['link_id'] != null && $data['link_url'] != null ) ? $data['link_url'] : $button_link;
+
+    printf('<div class="carousel-caption">%1$s %2$s %3$s</div>',
+      //title
+      ( $data['title'] != null ) ? sprintf('<%1$s %2$s>%3$s</%1$s>',
+                            apply_filters( 'tc_slide_title_tag', 'h1', $slider_name_id ),
+                            $data['color_style'],
+                            $data['title']
+                          ) : '',
+      //lead text
+      ( $data['text'] != null ) ? sprintf('<p class="lead" %1$s>%2$s</p>',
+                            $data['color_style'],
+                            $data['text']
+                          ) : '',
+      //button call to action
+      ( $data['button_text'] != null) ? sprintf('<a class="%1$s" href="%2$s" target="%3$s">%4$s</a>',
+                                  apply_filters( 'tc_slide_button_class', 'btn btn-large btn-primary', $slider_name_id ),
+                                  $button_link,
+                                  $data['target'],
+                                  $data['button_text']
+                                ) : ''
+    );
+  }
+
+
+
+  /**
+  * Slide edit link subview
+  * @param $_view_model = array( $id, $data , $slider_name_id, $img_size )
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  *
+  */
+  function tc_render_slide_edit_link_view( $_view_model ) {
+    //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
+    extract( $_view_model );
+    //display edit link for logged in users with edit posts capabilities
+    $show_edit_link         = ( is_user_logged_in() && current_user_can('upload_files') ) ? true : false;
+    $show_edit_link         = apply_filters('tc_show_slider_edit_link' , $show_edit_link && ! is_null($data['link_id']) );
+    if ( ! $show_edit_link )
+      return;
+
+    printf('<span class="slider edit-link btn btn-inverse"><a class="post-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
+      get_edit_post_link($id) . '#slider_sectionid',
+      __( 'Edit' , 'customizr' )
+    );
   }
 
 
@@ -390,8 +462,41 @@ class TC_slider {
 
 
   /******************************
-  HELPERS / SETTERS / CALLBACKS
+  * HELPERS / SETTERS / CALLBACKS
   *******************************/
+  /**
+  * Returns the modified caption data array with a link to the doc
+  * Only displayed for the demo slider and logged in users
+  * hook : tc_slide_caption_data
+  *
+  * @package Customizr
+  * @since Customizr 3.3.+
+  *
+  */
+  function tc_set_demo_slide_data( $data, $slider_name_id, $id ) {
+    if ( 'demo' != $slider_name_id || ! is_user_logged_in() )
+      return $data;
+
+    switch ( $id ) {
+      case 1 :
+        $data['title']        = __( 'Discover how to change or remove this demo slider.', 'customizr' );
+        $data['link_url']     = implode('/', array('http:/','doc.presscustomizr.com' , 'customizr/content-options/#slider-options') );
+        $data['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
+      break;
+
+      case 2 :
+        $data['title']        = __( 'Easily create sliders and add them in any post or pages.', 'customizr' );
+        $data['link_url']     = implode('/', array('http:/','doc.presscustomizr.com' , 'customizr/creating-sliders/') );
+        $data['button_text']  = __( 'Check the slider documentation now &raquo;' , 'customizr');
+      break;
+    };
+
+    $data['target'] = '_blank';
+    return $data;
+  }
+
+
+
   /**
   * Helper
   * @return  boolean

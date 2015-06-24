@@ -199,10 +199,11 @@
     return (_expr.split(' ')).length;
   };
 
+  //Remove all characters from string but alphanumeric and -
   //@return : string
   Plugin.prototype._removeSpecChars = function( _expr , _replaceBy ) {
     _replaceBy = _replaceBy || '';
-    return 'string' == typeof(_expr) ? _expr.replace(/[^\w]/g, _replaceBy ) : '';
+    return 'string' == typeof(_expr) ? _expr.replace(/[^\w-]/g, _replaceBy ) : '';
   };
 
   //@return : string or false

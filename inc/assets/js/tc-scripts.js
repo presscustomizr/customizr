@@ -39,7 +39,7 @@ var TCParams = TCParams || {
   goldenRatio : 1.618,
   gridGoldenRatioLimit : 350
 };// Object.create monkey patch ie8 http://stackoverflow.com/a/18020326
-if ( !Object.create ) {
+if ( ! Object.create ) {
   Object.create = function(proto, props) {
     if (typeof props !== "undefined") {
       throw "The multiple-argument version of Object.create is not provided by this browser and cannot be shimmed.";
@@ -56,7 +56,7 @@ if ( !Object.create ) {
 // filter() was added to the ECMA-262 standard in the 5th edition; as such it may not be present in all implementations of the standard.
 // You can work around this by inserting the following code at the beginning of your scripts, allowing use of filter() in ECMA-262 implementations which do not natively support it.
 // This algorithm is exactly the one specified in ECMA-262, 5th edition, assuming that fn.call evaluates to the original value of Function.prototype.call(), and that Array.prototype.push() has its original value.
-if (!Array.prototype.filter) {
+if ( ! Array.prototype.filter ) {
   Array.prototype.filter = function(fun/*, thisArg*/) {
     'use strict';
 
@@ -2556,7 +2556,7 @@ var TCParams = TCParams || {};
           return this[0][ 'natural' + _prop ];
         } : 
         function () {
-          var _size = _getAttr( this, l_prop );
+          var _size = _getAttr( this, _lprop );
         
           if ( _size )
             return _size;
@@ -2781,10 +2781,11 @@ var TCParams = TCParams || {};
     return (_expr.split(' ')).length;
   };
 
+  //Remove all characters from string but alphanumeric and -
   //@return : string
   Plugin.prototype._removeSpecChars = function( _expr , _replaceBy ) {
     _replaceBy = _replaceBy || '';
-    return 'string' == typeof(_expr) ? _expr.replace(/[^\w]/g, _replaceBy ) : '';
+    return 'string' == typeof(_expr) ? _expr.replace(/[^\w-]/g, _replaceBy ) : '';
   };
 
   //@return : string or false
@@ -3565,7 +3566,7 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods = {
     centerImagesWithDelay : function( delay ) {
-      var self = this;  
+      var self = this;
       //fire the center images plugin
       setTimeout( function(){ self.emit('centerImages'); }, delay || 300 );
     },
@@ -3588,7 +3589,7 @@ var czrapp = czrapp || {};
 
     //FIRE DROP CAP PLUGIN
     dropCaps : function() {
-      if ( ! TCParams.dropcapEnabled || _.isObject( TCParams.dropcapWhere ) )
+      if ( ! TCParams.dropcapEnabled || ! _.isObject( TCParams.dropcapWhere ) )
         return;
 
       $.each( TCParams.dropcapWhere , function( ind, val ) {
