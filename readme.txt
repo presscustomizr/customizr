@@ -38,6 +38,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.3.28 June 25th 2015 =
+* fix : re-introduce btt-arrow handling in new front js
+* fix : fix external link on multiple occurrences and exclude parents
+
 = 3.3.27 June 19th 2015 =
 * fix : drop cap not working with composed words including the '-' character
 * fix: allow img smartload in mobiles
