@@ -15,7 +15,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
 class TC_slider {
 
   static $instance;
-  private $slider_model;
+  private $sliders_model;
 
   function __construct () {
     self::$instance =& $this;
@@ -186,9 +186,6 @@ class TC_slider {
   *
   */
   private function tc_get_slider_model() {
-    if ( isset( $this -> slider_model ) )
-      return $this -> slider_model;
-    
     global $wp_query;
 
     //Do we have a slider to display in this context ?
@@ -203,6 +200,9 @@ class TC_slider {
     if ( ! $this -> tc_is_slider_active( $queried_id) )
       return array();
 
+    if ( ! empty( $this -> sliders_model ) && is_array( $this -> sliders_model ) && array_key_exists( $slider_name_id, $this -> sliders_model ) )
+      return $this -> sliders_model[ $slider_name_id ];
+
     //gets slider options if any
     $layout_value                 = tc__f('__is_home') ? TC_utils::$inst->tc_opt( 'tc_slider_width' ) : esc_attr(get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ));
     $layout_value                 = apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
@@ -214,9 +214,9 @@ class TC_slider {
     //get slides
     $slides                       = $this -> tc_get_the_slides( $slider_name_id , $img_size );
 
-    $this -> slider_model         = compact( "slider_name_id", "slides", "layout_class" , "img_size" );
+    $this -> sliders_model[ $slider_name_id ]         = compact( "slider_name_id", "slides", "layout_class" , "img_size" );
 
-    return $this -> slider_model;
+    return $this -> sliders_model[ $slider_name_id ];
   }
 
 
