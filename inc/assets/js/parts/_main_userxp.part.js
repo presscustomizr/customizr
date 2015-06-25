@@ -5,6 +5,53 @@ var czrapp = czrapp || {};
 *************************************************/
 (function($, czrapp) {
   var _methods =  {
+    init : function() {
+       this.timer = 0;
+       this.increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
+    },//init
+
+
+    //Event Listener
+    eventListener : function() {
+      var self = this;
+
+      czrapp.$_window.scroll( function() {
+        self.eventHandler( 'scroll' );
+      });
+
+    },//eventListener
+
+
+    //Event Handler
+    eventHandler : function ( evt ) {
+      var self = this;
+
+      switch ( evt ) {
+        case 'scroll' :
+          //react to window scroll only when we have the btt-arrow element
+          //I do this here 'cause I plan to pass the btt-arrow option as postMessage in customize
+          if ( 0 === $('.tc-btt-wrapper').length )
+            return;
+
+          //use a timer
+          if ( this.timer) {
+            this.increment++;
+            clearTimeout(self.timer);
+          }
+          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+            this.timer = setTimeout( function() {
+              self.bttArrowVisibility();
+            }, self.increment > 5 ? 50 : 0 );
+          } else if ( czrapp.$_body.hasClass('ie') ) {
+            this.timer = setTimeout( function() {
+              self.bttArrowVisibility();
+            }, self.increment > 5 ? 50 : 0 );
+          }
+        break;
+      }
+    },//eventHandler
+
+
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
       if ( ! TCParams.SmoothScroll || 'easeOutExpo' != TCParams.SmoothScroll )
@@ -26,6 +73,15 @@ var czrapp = czrapp || {};
         return false;
       });//click
     },
+
+    //Btt arrow visibility
+    bttArrowVisibility : function () {
+      if ( czrapp.$_window.scrollTop() > 100 )
+        $('.tc-btt-wrapper').addClass('show');
+      else
+        $('.tc-btt-wrapper').removeClass('show');
+    },//bttArrowVisibility
+
 
 
     //BACK TO TOP
