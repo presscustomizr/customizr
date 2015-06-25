@@ -13,8 +13,6 @@ var czrapp = czrapp || {};
       this.elToHide         = []; //[ '.social-block' , '.site-description' ],
       this.customOffset     = +TCParams.stickyCustomOffset;
       this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
-      this.timer            = 0;
-      this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
     },//init()
 
@@ -40,7 +38,7 @@ var czrapp = czrapp || {};
         self.stickyHeaderEventHandler('resize');
       });
 
-      czrapp.$_window.scroll( function() {
+      czrapp.$_window.on('tc_scroll', function() {
         self.stickyHeaderEventHandler('scroll');
       });
     },
@@ -63,21 +61,7 @@ var czrapp = czrapp || {};
         break;
 
         case 'scroll' :
-           //use a timer
-          if ( this.timer) {
-            this.increment++;
-            clearTimeout(self.timer);
-          }
-
-          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
-            timer = setTimeout( function() {
-              self._sticky_header_scrolling_actions();
-            }, self.increment > 5 ? 50 : 0 );
-          } else if ( czrapp.$_body.hasClass('ie') ) {
-            timer = setTimeout( function() {
-              self._sticky_header_scrolling_actions();
-            }, self.increment > 5 ? 50 : 0 );
-          }
+          self._sticky_header_scrolling_actions();
         break;
 
         case 'resize' :
