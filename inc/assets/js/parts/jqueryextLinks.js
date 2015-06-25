@@ -80,7 +80,7 @@
 
       //has a forbidden parent?
       if ( this.$_el.parents( _selsToSkip.map( function( _sel ){ return 'id' == sel_type ? '#' + _sel : '.' + _sel; } ).join(',') ).length > 0 )
-        return false;    
+        return false;
 
       //has requested sel ?
       if ( ! this.$_el.attr( sel_type ) )
