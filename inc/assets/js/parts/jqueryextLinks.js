@@ -22,19 +22,22 @@
 
 
     Plugin.prototype.init = function() {
+      var $_external_icon = this.$_el.next('.tc-external');
       //if not eligible, then remove any remaining icon element and return
       //important => the element to remove is right after the current link element ( => use of '+' CSS operator )
       if ( ! this._is_eligible() ) {
-        if ( $( 'a[href*="' + this._href +'"] + .tc-external' ).length )
-          $( 'a[href*="' + this._href +'"] + .tc-external' ).remove();
+        if ( $_external_icon.length )
+          $_external_icon.remove();
         return;
       }
 
       //add the icon link, if not already there
-      if ( this.options.addIcon && ! $( 'a[href*="' + this._href +'"] + .tc-external' ).length ) {
+      if ( this.options.addIcon && 0 === $_external_icon.length ) {
         this.$_el.after('<span class="tc-external">');
       }
-      if ( this.options.newTab )
+
+      //add the target _blank, if not already there
+      if ( this.options.newTab && '_blank' != this.$_el.attr('target') )
         this.$_el.attr('target' , '_blank');
     };
 
@@ -68,17 +71,22 @@
     * @return boolean
     */
     Plugin.prototype._is_selector_allowed = function( requested_sel_type ) {
-      var sel_type = 'ids' == requested_sel_type ? 'id' : 'class';
+      var sel_type = 'ids' == requested_sel_type ? 'id' : 'class',
+          _selsToSkip   = this.options.skipSelectors[requested_sel_type];
+
+      //check if option is well formed
+      if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[requested_sel_type] || ! $.isArray( this.options.skipSelectors[requested_sel_type] ) || 0 === this.options.skipSelectors[requested_sel_type].length )
+        return true;
+
+      //has a forbidden parent?
+      if ( this.$_el.parents( _selsToSkip.map( function( _sel ){ return 'id' == sel_type ? '#' + _sel : '.' + _sel; } ).join(',') ).length > 0 )
+        return false;    
+
       //has requested sel ?
       if ( ! this.$_el.attr( sel_type ) )
         return true;
 
-      //check if option is well formed
-      if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[requested_sel_type] || ! $.isArray( this.options.skipSelectors[requested_sel_type] )  )
-        return true;
-
       var _elSels       = this.$_el.attr( sel_type ).split(' '),
-          _selsToSkip   = this.options.skipSelectors[requested_sel_type],
           _filtered     = _elSels.filter( function(classe) { return -1 != $.inArray( classe , _selsToSkip ) ;});
 
       //check if the filtered selectors array with the non authorized selectors is empty or not
