@@ -70,11 +70,11 @@ var czrapp = czrapp || {};
           }
 
           if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
-            timer = setTimeout( function() {
+            this.timer = setTimeout( function() {
               self._sticky_header_scrolling_actions();
             }, self.increment > 5 ? 50 : 0 );
           } else if ( czrapp.$_body.hasClass('ie') ) {
-            timer = setTimeout( function() {
+            this.timer = setTimeout( function() {
               self._sticky_header_scrolling_actions();
             }, self.increment > 5 ? 50 : 0 );
           }
