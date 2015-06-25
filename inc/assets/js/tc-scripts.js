@@ -2978,19 +2978,22 @@ var TCParams = TCParams || {};
 
 
     Plugin.prototype.init = function() {
+      var $_external_icon = this.$_el.next('.tc-external');
       //if not eligible, then remove any remaining icon element and return
       //important => the element to remove is right after the current link element ( => use of '+' CSS operator )
       if ( ! this._is_eligible() ) {
-        if ( $( 'a[href*="' + this._href +'"] + .tc-external' ).length )
-          $( 'a[href*="' + this._href +'"] + .tc-external' ).remove();
+        if ( $_external_icon.length )
+          $_external_icon.remove();
         return;
       }
 
       //add the icon link, if not already there
-      if ( this.options.addIcon && ! $( 'a[href*="' + this._href +'"] + .tc-external' ).length ) {
+      if ( this.options.addIcon && 0 === $_external_icon.length ) {
         this.$_el.after('<span class="tc-external">');
       }
-      if ( this.options.newTab )
+
+      //add the target _blank, if not already there
+      if ( this.options.newTab && '_blank' != this.$_el.attr('target') )
         this.$_el.attr('target' , '_blank');
     };
 
@@ -3024,17 +3027,22 @@ var TCParams = TCParams || {};
     * @return boolean
     */
     Plugin.prototype._is_selector_allowed = function( requested_sel_type ) {
-      var sel_type = 'ids' == requested_sel_type ? 'id' : 'class';
+      var sel_type = 'ids' == requested_sel_type ? 'id' : 'class',
+          _selsToSkip   = this.options.skipSelectors[requested_sel_type];
+
+      //check if option is well formed
+      if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[requested_sel_type] || ! $.isArray( this.options.skipSelectors[requested_sel_type] ) || 0 === this.options.skipSelectors[requested_sel_type].length )
+        return true;
+
+      //has a forbidden parent?
+      if ( this.$_el.parents( _selsToSkip.map( function( _sel ){ return 'id' == sel_type ? '#' + _sel : '.' + _sel; } ).join(',') ).length > 0 )
+        return false;
+
       //has requested sel ?
       if ( ! this.$_el.attr( sel_type ) )
         return true;
 
-      //check if option is well formed
-      if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[requested_sel_type] || ! $.isArray( this.options.skipSelectors[requested_sel_type] )  )
-        return true;
-
       var _elSels       = this.$_el.attr( sel_type ).split(' '),
-          _selsToSkip   = this.options.skipSelectors[requested_sel_type],
           _filtered     = _elSels.filter( function(classe) { return -1 != $.inArray( classe , _selsToSkip ) ;});
 
       //check if the filtered selectors array with the non authorized selectors is empty or not
@@ -3101,7 +3109,8 @@ var TCParams = TCParams || {};
       });
     };
 
-})( jQuery, window, document );/* ===================================================
+})( jQuery, window, document );
+/* ===================================================
  * jqueryCenterImages.js v1.0.0
  * ===================================================
  * (c) 2015 Nicolas Guillaume, Nice, France
@@ -3815,6 +3824,53 @@ var czrapp = czrapp || {};
 *************************************************/
 (function($, czrapp) {
   var _methods =  {
+    init : function() {
+       this.timer = 0;
+       this.increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
+    },//init
+
+
+    //Event Listener
+    eventListener : function() {
+      var self = this;
+
+      czrapp.$_window.scroll( function() {
+        self.eventHandler( 'scroll' );
+      });
+
+    },//eventListener
+
+
+    //Event Handler
+    eventHandler : function ( evt ) {
+      var self = this;
+
+      switch ( evt ) {
+        case 'scroll' :
+          //react to window scroll only when we have the btt-arrow element
+          //I do this here 'cause I plan to pass the btt-arrow option as postMessage in customize
+          if ( 0 === $('.tc-btt-wrapper').length )
+            return;
+
+          //use a timer
+          if ( this.timer) {
+            this.increment++;
+            clearTimeout(self.timer);
+          }
+          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+            this.timer = setTimeout( function() {
+              self.bttArrowVisibility();
+            }, self.increment > 5 ? 50 : 0 );
+          } else if ( czrapp.$_body.hasClass('ie') ) {
+            this.timer = setTimeout( function() {
+              self.bttArrowVisibility();
+            }, self.increment > 5 ? 50 : 0 );
+          }
+        break;
+      }
+    },//eventHandler
+
+
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
       if ( ! TCParams.SmoothScroll || 'easeOutExpo' != TCParams.SmoothScroll )
@@ -3836,6 +3892,15 @@ var czrapp = czrapp || {};
         return false;
       });//click
     },
+
+    //Btt arrow visibility
+    bttArrowVisibility : function () {
+      if ( czrapp.$_window.scrollTop() > 100 )
+        $('.tc-btt-wrapper').addClass('show');
+      else
+        $('.tc-btt-wrapper').removeClass('show');
+    },//bttArrowVisibility
+
 
 
     //BACK TO TOP
@@ -4028,7 +4093,8 @@ var czrapp = czrapp || {};
   czrapp.methods.Czr_UserExperience = {};
   $.extend( czrapp.methods.Czr_UserExperience , _methods );
 
-})(jQuery, czrapp);var czrapp = czrapp || {};
+})(jQuery, czrapp);
+var czrapp = czrapp || {};
 /************************************************
 * STICKY HEADER SUB CLASS
 *************************************************/
@@ -4100,11 +4166,11 @@ var czrapp = czrapp || {};
           }
 
           if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
-            timer = setTimeout( function() {
+            this.timer = setTimeout( function() {
               self._sticky_header_scrolling_actions();
             }, self.increment > 5 ? 50 : 0 );
           } else if ( czrapp.$_body.hasClass('ie') ) {
-            timer = setTimeout( function() {
+            this.timer = setTimeout( function() {
               self._sticky_header_scrolling_actions();
             }, self.increment > 5 ? 50 : 0 );
           }
@@ -4242,7 +4308,7 @@ jQuery(function ($) {
     BrowserDetect : [],
     Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
     Czr_Slider : ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport', 'sliderTriggerSimpleLoad'],
-    Czr_UserExperience : ['anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler' ],
+    Czr_UserExperience : ['eventListener','anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler' ],
     Czr_StickyHeader : ['stickyHeaderEventListener', 'triggerStickyHeaderLoad' ]
   };
   czrapp.cacheProp().loadCzr(toLoad);
