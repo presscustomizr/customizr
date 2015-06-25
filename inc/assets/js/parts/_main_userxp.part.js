@@ -8,9 +8,9 @@ var czrapp = czrapp || {};
     init : function() {
        this.timer = 0;
        this.increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
-    },//init  
+    },//init
 
-    
+
     //Event Listener
     eventListener : function() {
       var self = this;
@@ -21,16 +21,16 @@ var czrapp = czrapp || {};
 
     },//eventListener
 
-    
+
     //Event Handler
     eventHandler : function ( evt ) {
       var self = this;
-      
+
       switch ( evt ) {
-        case 'scroll' : 
+        case 'scroll' :
           //react to window scroll only when we have the btt-arrow element
           //I do this here 'cause I plan to pass the btt-arrow option as postMessage in customize
-          if ( 0 === $('.tc-btt-wrapper').length )  
+          if ( 0 === $('.tc-btt-wrapper').length )
             return;
 
           //use a timer
@@ -51,7 +51,7 @@ var czrapp = czrapp || {};
       }
     },//eventHandler
 
-    
+
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
       if ( ! TCParams.SmoothScroll || 'easeOutExpo' != TCParams.SmoothScroll )
