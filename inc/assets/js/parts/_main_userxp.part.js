@@ -5,6 +5,11 @@ var czrapp = czrapp || {};
 *************************************************/
 (function($, czrapp) {
   var _methods =  {
+    init : function() {
+      this.timer     = 0;
+      this.increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
+    },//init
+
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
       if ( ! TCParams.SmoothScroll || 'easeOutExpo' != TCParams.SmoothScroll )
@@ -47,6 +52,47 @@ var czrapp = czrapp || {};
       });
     },
 
+
+    //Event Listener
+    eventListener : function() {
+      var self = this;
+      czrapp.$_window.scroll( function() {
+        self.eventHandler( 'scroll' );
+      });
+      
+      czrapp.$_window.on( 'tc_scroll' , function() {
+        self.eventHandler( 'tc_scroll' );
+      });
+    },
+
+    //Event Handler
+    eventHandler : function ( evt ) {
+      var self = this;
+      switch ( evt ) {
+        case 'scroll' :    
+          //use a timer
+          if ( this.timer) {
+            this.increment++;
+            clearTimeout(self.timer);
+          }
+
+          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+            this.timer = setTimeout( function() {
+              czrapp.$_window.trigger('tc_scroll');
+            }, self.increment > 5 ? 50 : 0 );
+          } else if ( czrapp.$_body.hasClass('ie') ) {
+            this.timer = setTimeout( function() {
+              czrapp.$_window.trigger('tc_scroll');
+            }, self.increment > 5 ? 50 : 0 );
+          }
+        break;    
+      
+        case 'tc_scroll' :
+          if ( $('.tc-btt-wrapper').length > 0 )  
+            this.bttArrowRender();
+        break;
+      }
+    },//eventHandler
 
     //VARIOUS HOVER ACTION
     widgetsHoverActions : function() {
@@ -212,7 +258,15 @@ var czrapp = czrapp || {};
             return false;
         });//.on()
       });//.each()
-    }
+    },
+
+    bttArrowRender : function () {
+      if ( czrapp.$_window.scrollTop() > 100 )
+        $('.tc-btt-wrapper').addClass('show');
+      else
+        $('.tc-btt-wrapper').removeClass('show');
+    }//bttArrowRender
+
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};
