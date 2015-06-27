@@ -31,7 +31,7 @@ if ( ! class_exists( 'TC_attachment' ) ) :
         function tc_attachment_content() {
             //check conditional tags
             global $post;
-            if (isset($post) && 'attachment' != $post -> post_type || !is_singular() )
+            if ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() )
                 return;
 
             ob_start();
