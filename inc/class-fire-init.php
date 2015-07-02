@@ -694,7 +694,7 @@ if ( ! class_exists( 'TC_init' ) ) :
           array_push( $_classes, esc_attr( TC_utils::$inst->tc_opt( 'tc_dropcap_design' ) ) );
 
         //adds the layout
-        $_layout = TC_utils::tc_get_layout( get_the_ID() , 'sidebar' );
+        $_layout = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar' );
         if ( in_array( $_layout, array('b', 'l', 'r' , 'f') ) ) {
           array_push( $_classes, sprintf( 'tc-%s-sidebar',
             'f' == $_layout ? 'no' : $_layout
