@@ -9,6 +9,10 @@ var czrapp = czrapp || {};
     //INIT
     init : function() {
       var self = this;
+
+      // cache jQuery el
+      this.$_sliders = $( 'div[id*="customizr-slider"]' );
+
       //@todo EVENT
       //Recenter the slider arrows on resize
       czrapp.$_window.resize( function(){
@@ -28,22 +32,22 @@ var czrapp = czrapp || {};
         return;
 
       if ( 0 !== _delay.length && ! _hover ) {
-        $("#customizr-slider").carousel({
+        this.$_sliders.carousel({
             interval: _delay,
             pause: "false"
         });
       } else if ( 0 !== _delay.length ) {
-        $("#customizr-slider").carousel({
+        this.$_sliders.carousel({
             interval: _delay
         });
       } else {
-        $("#customizr-slider").carousel();
+        this.$_sliders.carousel();
       }
     },
 
     manageHoverClass : function() {
       //add a class to the slider on hover => used to display the navigation arrow
-      $(".carousel").hover( function() {
+      this.$_sliders.hover( function() {
           $(this).addClass('tc-slid-hover');
         },
         function() {
@@ -54,9 +58,9 @@ var czrapp = czrapp || {};
 
     //SLIDER ARROWS
     centerSliderArrows : function() {
-      if ( 0 === $('.carousel').length )
+      if ( 0 === this.$_sliders.length )
           return;
-      $('.carousel').each( function() {
+      this.$_sliders.each( function() {
           var _slider_height = $( '.carousel-inner' , $(this) ).height();
           $('.tc-slider-controls', $(this) ).css("line-height", _slider_height +'px').css("max-height", _slider_height +'px');
       });
@@ -65,16 +69,17 @@ var czrapp = czrapp || {};
 
     //Slider swipe support with hammer.js
     addSwipeSupport : function() {
-      if ( 'function' != typeof($.fn.hammer) )
+      if ( 'function' != typeof($.fn.hammer) || 0 === this.$_sliders.length )
         return;
+      
       //prevent propagation event from sensible children
-      $(".carousel input, .carousel button, .carousel textarea, .carousel select, .carousel a").on("touchstart touchmove", function(ev) {
+      this.$_sliders.on('touchstart touchmove', 'input, button, textarea, select, a:not(".tc-slide-link")', function(ev) {
           ev.stopPropagation();
       });
 
-      var _is_rtl = $('body').hasClass('rtl');
-      $('.carousel' ).each( function() {
-          $(this).hammer().on('swipeleft tap', function() {
+      var _is_rtl = czrapp.$_body.hasClass('rtl');
+      this.$_sliders.each( function() {
+          $(this).hammer().on('swipeleft', function() {
               $(this).carousel( ! _is_rtl ? 'next' : 'prev' );
           });
           $(this).hammer().on('swiperight', function(){
@@ -86,7 +91,7 @@ var czrapp = czrapp || {};
     //Has to be fire on load after all other methods
     //@todo understand why...
     sliderTriggerSimpleLoad : function() {
-      this.triggerSimpleLoad( $( '.carousel .carousel-inner').find('img') );
+      this.triggerSimpleLoad( this.$_sliders.find('.carousel-inner img') );
     }
   };//methods {}
 
