@@ -437,6 +437,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'      =>  'select' ,
                                 'choices'    =>  $this -> tc_build_skin_list(),
                                 'transport'   =>  'postMessage',
+                                'notice'    => __( 'Disabled if the random option is on.' , 'customizr' )
               ),
               'tc_theme_options[tc_skin_random]' => array(
                                 'default'   => 0,
