@@ -325,12 +325,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 1.0
       */
       public static function tc_id()  {
-        global $wp_version;
-        if ( in_the_loop() || version_compare( $wp_version, '3.4.1', '<=' ) ) {
+        if ( in_the_loop() ) {
           $tc_id            = get_the_ID();
         } else {
+          global $post;  
           $queried_object   = get_queried_object();
-          $tc_id            = ! is_null( get_post() ) ? get_the_ID() : null;
+          $tc_id            = ( ! empty ( $post ) && isset($post -> ID) ) ? $post -> ID : null;
           $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
         }
         return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
