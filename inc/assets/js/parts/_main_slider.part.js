@@ -71,7 +71,7 @@ var czrapp = czrapp || {};
     addSwipeSupport : function() {
       if ( 'function' != typeof($.fn.hammer) || 0 === this.$_sliders.length )
         return;
-      
+
       //prevent propagation event from sensible children
       this.$_sliders.on('touchstart touchmove', 'input, button, textarea, select, a:not(".tc-slide-link")', function(ev) {
           ev.stopPropagation();

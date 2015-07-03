@@ -193,7 +193,7 @@
             }
 		} );
 	} );
-    
+
     $.each( _post_metas_context, function() {
         var $_post_metas = $('.entry-header .entry-meta', this._container + ' .article-container' );
         if ( $_post_metas.length > 0 ){

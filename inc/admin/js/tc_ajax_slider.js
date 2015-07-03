@@ -6,7 +6,7 @@
  */
 var CzrSlider;
 ( function($) {
-  
+
   "use strict";
   $( function(){
     CzrSlider = function() {
@@ -14,24 +14,24 @@ var CzrSlider;
         this.$body                    = $('body');
         this._action                  = 'slider_action';
         this._nonce                   = SliderAjax.SliderCheckNonce;
-        
+
         this.$_slider_section_box     = $('#slider_sectionid');
         this.$_slider_fields_box      = $('#slider-fields-box');
         this.$_tc_post_id             = $('input#tc_post_id');
 
         //context: attachment or post?
         this._check_field             = 'slider_check_field';
-        this._context                 = 'attachment'
+        this._context                 = 'attachment';
         if ( $('input#post_slider_check_field').length > 0 ) {
-          this._check_field           = 'post_slider_check_field'
-          this._context               = 'post'
+          this._check_field           = 'post_slider_check_field';
+          this._context               = 'post';
         }
 
-        this.$_slider_check_field     = $('input#' + this._check_field);  
+        this.$_slider_check_field     = $('input#' + this._check_field);
         this._color_picker_on         = 'post' == this.$_context ? false : true;
- 
+
         if ( this._color_picker_on )
-          this._color_picker_func = ( typeof jQuery.wp === 'object' && typeof jQuery.wp.wpColorPicker === 'function' ) ? 'wpColorPicker' : 'farbtastic' ;    
+          this._color_picker_func = ( typeof jQuery.wp === 'object' && typeof jQuery.wp.wpColorPicker === 'function' ) ? 'wpColorPicker' : 'farbtastic' ;
 
         // initial data to send over $_POST, the acual sent data will be an extension of this
         this._data                   = {
@@ -52,26 +52,26 @@ var CzrSlider;
         var self = this;
 
         // elements events
-        
+
         //enable slider
         this.$body.on('change', 'input#' + this._check_field, function(){
            self.ajax( self._build_data('enable') );
 
         //select different slider
         }).on( 'change', 'select#post_slider_field', function(){
-           self.ajax( self._build_data('select_slider') ); 
+           self.ajax( self._build_data('select_slider') );
 
         //sort slides
-        }).on( 'sortupdate', '#slider_sectionid #sortable',function(event, ui) { 
-           self.ajax( self._build_data('reorder_slides'), '_reorder_slides_response' ); 
+        }).on( 'sortupdate', '#slider_sectionid #sortable',function(event, ui) {
+           self.ajax( self._build_data('reorder_slides'), '_reorder_slides_response' );
 
         //create new slider
         }).on('click', '#tc_create_slider', function(){
-           self.ajax( self._build_data('new_slider') ); 
+           self.ajax( self._build_data('new_slider') );
 
         //delete slider
         }).on('click', '#delete-slider', function(){
-           self.ajax( self._build_data('delete_slider') ); 
+           self.ajax( self._build_data('delete_slider') );
         });
 
       },
@@ -88,7 +88,7 @@ var CzrSlider;
               self[_callback]( response );
               return;
             }
-            self._default_response( response );  
+            self._default_response( response );
           }
         );//end $.post
       },
@@ -113,14 +113,14 @@ var CzrSlider;
           });
         this.$_slider_fields_box.find('.spinner').hide();
         this._init_sortable();
-      },  
+      },
 
       //build the data to pass over $_POST depending on the event
       _build_data : function( _event ){
-        var _data = {};  
-        
+        var _data = {};
+
         switch ( _event ) {
-          case 'new_slider':  
+          case 'new_slider':
           case 'select_slider':
             _data = $.extend( {}, this._data, {
               'post_slider_name'    : $( 'select#post_slider_field').val(),
@@ -154,10 +154,10 @@ var CzrSlider;
               'currentpostslider'   : $( 'select#post_slider_field' ).val()
             });
           break;
-          default : 
+          default :
             _data = this._data;
 
-        }  
+        }
         _data[this._check_field] = this.$_slider_check_field.is(':checked') ? 1 : '';
         return _data;
       },
@@ -175,7 +175,7 @@ var CzrSlider;
           var $_slide_color_field = $('#slide_color_field');
           switch ( this._color_picker_func ){
             case 'farbtastic' :
-              $('#colorfield').farbtastic( $_slide_color_field );    
+              $('#colorfield').farbtastic( $_slide_color_field );
               break;
 
             default:
@@ -195,7 +195,7 @@ var CzrSlider;
           placeholder: "ui-state-highlight",
         }).disableSelection();
       }
-    });    
+    });
     new CzrSlider();
   });
 
