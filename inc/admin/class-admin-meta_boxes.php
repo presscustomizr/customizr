@@ -623,7 +623,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 );
               }
             };
- 
+
           //custom link field setup
           $custom_link_id    = 'slide_custom_link_field';
           $custom_link_value = esc_url( get_post_meta( $postid, $key = 'slide_custom_link_key', $single = true ) );
@@ -683,7 +683,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 </select><br />
             </div>
             <div class="meta-box-item-title">
-                <h4><?php _e("or a custom link (leave this empty if you selected a page or post above)", 'customizr' ); ?></h4>
+                <h4><?php _e("or a custom link (leave this empty if you already selected a page or post above)", 'customizr' ); ?></h4>
             </div>
             <div class="meta-box-item-content">
                 <input class="widefat" name="<?php echo $custom_link_id; ?>" id="<?php echo $custom_link_id; ?>" value="<?php echo $custom_link_value; ?>" style="width:50%">
@@ -830,7 +830,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                             $mydata = esc_html( $mydata);
                           }
                         break;
-                      
+
                       case 'slide_custom_link_key':
                           $mydata = esc_url( $_POST[$tcid] );
                       break;
@@ -922,7 +922,6 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                         $text_color             = esc_attr(get_post_meta( $id, $key = 'slide_color_key' , $single = true ));
                         $button_text            = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
                         $link                   = esc_url(get_post_meta( $id, $key = 'slide_custom_link_key' , $single = true ));
-
                         $button_link            = esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true ));
 
                         //check if $text_color is set and create an html style attribute
@@ -957,7 +956,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                               <?php endif; ?>
                           </td>
                            <td style="vertical-align:middle" class="">
-                              <?php if( $button_link != null) : ?>
+                              <?php if( $button_link != null || $link != null ) : ?>
                                 <p class="btn btn-large btn-primary" href="<?php echo $link ? $link : get_permalink( $button_link); ?>"><?php echo $link ? $link : get_the_title( $button_link); ?></p>
                               <?php endif; ?>
                           </td>
@@ -1010,7 +1009,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             else {
                 $post_ID = $_POST['tc_post_id'];
             }
-            
+
             //OPTION FIELDS
             //get options and some useful $_POST vars
             $tc_options                 = get_option( 'tc_theme_options' );
@@ -1266,7 +1265,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 //attachments
                 if( $tc_post_type == 'attachment' )
                   $this -> tc_slide_save( $post_ID );
-                
+
             }//function
 
 
@@ -1331,7 +1330,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        */
         function tc_slider_admin_scripts( $hook) {
         global $post;
-        
+
         $_min_version = ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min';
         //load scripts only for creating and editing slides options in pages and posts
         if( ( 'media.php'  == $hook)) {
@@ -1339,10 +1338,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
         }
         if( ( 'post-new.php' == $hook || 'post.php' == $hook || 'media.php' == $hook) )  {
             //ajax refresh for slider options
-            wp_enqueue_script( 'tc_ajax_slider' , 
+            wp_enqueue_script( 'tc_ajax_slider' ,
                 sprintf('%1$sinc/admin/js/tc_ajax_slider%2$s.js' , TC_BASE_URL, $_min_version ),
-                array( 'jquery' ), 
-                true 
+                array( 'jquery' ),
+                true
             );
 
             // Tips to declare javascript variables http://www.garyc40.com/2010/03/5-tips-for-using-ajax-in-wordpress/#bad-ways
@@ -1362,7 +1361,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             wp_enqueue_style( 'iphonecheckcss' ,
                 sprintf('%1$sinc/admin/css/iphonecheck%2$s.css' , TC_BASE_URL, $_min_version )
             );
-            wp_enqueue_script( 'iphonecheck' , 
+            wp_enqueue_script( 'iphonecheck' ,
 
                 sprintf('%1$sinc/admin/js/jquery.iphonecheck%2$s.js' , TC_BASE_URL, $_min_version ),
                 array('jquery'),
@@ -1374,7 +1373,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             add_thickbox();
 
             //sortable stuffs
-            wp_enqueue_style( 'sortablecss' , 
+            wp_enqueue_style( 'sortablecss' ,
                 sprintf('%1$sinc/admin/css/tc_sortable%2$s.css' , TC_BASE_URL, $_min_version )
             );
 
@@ -1390,8 +1389,8 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                  // load the minified version of custom script
                 wp_enqueue_script( 'cp_demo-custom' ,
                     sprintf('%1$sinc/admin/js/color-picker%2$s.js' , TC_BASE_URL, $_min_version ),
-                    array( 'jquery' , 'wp-color-picker' ), 
-                    true 
+                    array( 'jquery' , 'wp-color-picker' ),
+                    true
                 );
             }
             //If the WordPress version is less than 3.5 load the older farbtasic color picker.
@@ -1400,10 +1399,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 wp_enqueue_style( 'farbtastic' );
                 wp_enqueue_script( 'farbtastic' );
                 // load the minified version of custom script
-                wp_enqueue_script( 'cp_demo-custom' , 
+                wp_enqueue_script( 'cp_demo-custom' ,
                     sprintf('%1$sinc/admin/js/color-picker%2$s.js' , TC_BASE_URL, $_min_version ),
-                    array( 'jquery' , 'farbtastic' ), 
-                    true 
+                    array( 'jquery' , 'farbtastic' ),
+                    true
                 );
             }
         }//end post type hook check
