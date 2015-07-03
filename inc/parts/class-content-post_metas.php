@@ -361,9 +361,18 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
             array_push( $_classes , 'btn-tag' );
 
           $_classes      = implode( ' ', apply_filters( 'tc_meta_tax_class', $_classes , isset( $term -> category_parent ) ) );
-          return apply_filters( 'tc_meta_term_view' , sprintf('<a class="%1$s" href="%2$s" title="%3$s"> %4$s </a>',
+
+          // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
+          // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
+          // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.
+          // Just this change avoids the issue with 3.6.1, but I thought should be better make a check anyway on the return type of that function.
+          $_term_link    = is_wp_error( get_term_link( $term ) ) ? '' : get_term_link( $term );
+
+          $_to_return    = $_term_link ? '<a class="%1$s" href="%2$s" title="%3$s"> %4$s </a>' :  '<span class="%1$s"> %4$s </a>';
+
+          return apply_filters( 'tc_meta_term_view' , sprintf($_to_return,
               $_classes,
-              get_term_link( $term -> term_id , $term -> taxonomy ),
+              $_term_link,
               esc_attr( sprintf( __( "View all posts in %s", 'customizr' ), $term -> name ) ),
               $term -> name
             )
