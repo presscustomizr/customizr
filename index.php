@@ -15,7 +15,7 @@
     <div class="container" role="main">
         <div class="<?php echo implode(' ', apply_filters( 'tc_column_content_wrapper_classes' , array('row' ,'column-content-wrapper') ) ) ?>">
 
-            <?php do_action( '__before_article_container'); ##hook of left sidebar?>
+            <?php do_action( '__before_article_container' ); ##hook of left sidebar ?>
 
                 <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
 
@@ -47,7 +47,7 @@
 
                 </div><!--.article-container -->
 
-           <?php do_action( '__after_article_container'); ##hook of left sidebar ?>
+           <?php do_action( '__after_article_container' ); ##hook of right sidebar ?>
 
         </div><!--.row -->
     </div><!-- .container role: main -->
