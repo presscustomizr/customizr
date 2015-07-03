@@ -236,7 +236,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
               <input name="<?php echo $post_slider_check_id; ?>" type="hidden" value="0"/>
               <input name="<?php echo $post_slider_check_id ?>" id="<?php echo $post_slider_check_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $post_slider_checked, $current = true, $echo = true ) ?>/>
             </div>
-            <div id="post_slider_infos">
+            <div id="slider-fields-box">
               <?php do_action( '__post_slider_infos' , $post -> ID ); ?>
             </div>
           <?php
@@ -252,7 +252,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
      * @package Customizr
      * @since Customizr 2.0
      */
-      function tc_get_post_slider_infos( $postid) {
+      function tc_get_post_slider_infos( $postid ) {
           //check value is ajax saved ?
           $post_slider_check_value   = esc_attr(get_post_meta( $postid, $key = 'post_slider_check_key' , $single = true ));
 
@@ -284,13 +284,13 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
 
           ?>
-          <?php if( $post_slider_check_value == true) : ?>
+          <?php if( $post_slider_check_value == true ): ?>
               <div class="meta-box-item-title">
                 <h4><?php _e("Choose a slider", 'customizr' ); ?></h4>
               </div>
               <?php if (isset($sliders) && !empty( $sliders)) : ?>
                 <div class="meta-box-item-content">
-                  <span class="spinner" style="float: left;"></span>
+                  <span class="spinner" style="float: left;visibility:visible;display: none;"></span>
                   <select name="<?php echo $post_slider_id; ?>" id="<?php echo $post_slider_id; ?>">
                     <?php //no link option ?>
                     <option value="" <?php selected( $current_post_slider, $current = null, $echo = true ) ?>> <?php _e( '&mdash; Select a slider &mdash; ' , 'customizr' ); ?></option>
@@ -507,7 +507,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
               <input name="<?php echo $slider_check_id; ?>" type="hidden" value="0"/>
               <input name="<?php echo $slider_check_id ?>" id="<?php echo $slider_check_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $slider_checked, $current = true, $echo = true ) ?>/>
             </div>
-           <div id="tc_slider_list">
+           <div id="slider-fields-box">
              <?php do_action( '__attachment_slider_infos' , $post -> ID); ?>
            </div>
           <?php
@@ -525,7 +525,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-        function tc_get_attachment_slider_infos( $postid) {
+        function tc_get_attachment_slider_infos( $postid ) {
           //check value is ajax saved ?
           $slider_check_value     = esc_attr(get_post_meta( $postid, $key = 'slider_check_key' , $single = true ));
 
@@ -610,6 +610,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           $post_types     = get_post_types(array( 'public' => true));
           $excludes       = array( 'attachment' );
 
+
           foreach ( $post_types as $t) {
               if (!in_array( $t, $excludes)) {
                //get the posts a tab of types
@@ -623,8 +624,20 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
               }
             };
 
+          //custom link field setup
+          $custom_link_id    = 'slide_custom_link_field';
+          $custom_link_value = esc_url( get_post_meta( $postid, $key = 'slide_custom_link_key', $single = true ) );
+
+          //link target setup
+          $link_target_id    = 'slide_link_target_field';
+          $link_target_value = esc_attr( get_post_meta( $postid, $key = 'slide_link_target_key', $single = true ) ) ;
+
+          //link whole slide setup
+          $link_whole_slide_id    = 'slide_link_whole_slide_field';
+          $link_whole_slide_value = esc_attr( get_post_meta( $postid, $key = 'slide_link_whole_slide_key', $single = true ) ) ;
+
           //display fields if slider button is checked
-          if ( $slider_check_value == 1)  {
+          if ( $slider_check_value == true )  {
              ?>
             <div class="meta-box-item-title">
                 <h4><?php _e( 'Title text (80 car. max length)' , 'customizr' ); ?></h4>
@@ -670,6 +683,26 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 </select><br />
             </div>
             <div class="meta-box-item-title">
+                <h4><?php _e("or a custom link (leave this empty if you already selected a page or post above)", 'customizr' ); ?></h4>
+            </div>
+            <div class="meta-box-item-content">
+                <input class="widefat" name="<?php echo $custom_link_id; ?>" id="<?php echo $custom_link_id; ?>" value="<?php echo $custom_link_value; ?>" style="width:50%">
+            </div>
+            <div class="meta-box-item-title">
+                <h4><?php _e("Open link in a new page/tab", 'customizr' );  ?></h4>
+            </div>
+            <div class="meta-box-item-content">
+                <input name="<?php echo $link_target_id; ?>" type="hidden" value="0"/>
+                <input name="<?php echo $link_target_id; ?>" id="<?php echo $link_target_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $link_target_value, $current = true, $echo = true ) ?>/>
+            </div>
+            <div class="meta-box-item-title">
+                <h4><?php _e("Link the whole slide", 'customizr' );  ?></h4>
+            </div>
+            <div class="meta-box-item-content">
+                <input name="<?php echo $link_whole_slide_id; ?>" type="hidden" value="0"/>
+                <input name="<?php echo $link_whole_slide_id; ?>" id="<?php echo $link_whole_slide_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $link_whole_slide_value, $current = true, $echo = true ) ?>/>
+            </div>
+            <div class="meta-box-item-title">
               <h4><?php _e("Choose a slider", 'customizr' ); ?></h4>
             </div>
             <?php if (!empty( $sliders)) : ?>
@@ -692,7 +725,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                   </select>
                   <input name="<?php echo $slider_id  ?>" id="<?php echo $slider_id ?>" value=""/>
                   <span class="button-primary" id="tc_create_slider"><?php _e( 'Add a slider' , 'customizr' ) ?></span>
-                  <span class="spinner" style="float: left;"></span>
+                  <span class="spinner" style="float: left;visibility:visible;display: none;"></span>
                   <?php if (isset( $current_post_slides)) : ?>
                       <p style="text-align:right"><a href="#TB_inline?width=350&height=100&inlineId=slider-warning-message" class="thickbox"><?php _e( 'Delete this slider' , 'customizr' ) ?></a></p>
                       <div id="slider-warning-message" style="display:none;">
@@ -721,7 +754,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                    <p class="description"> <?php _e("You haven't create any slider yet. Write a slider name and click on the button to add you first slider.", "customizr" ) ?><br/>
                     <input name="<?php echo $slider_id  ?>" id="<?php echo $slider_id ?>" value=""/>
                     <span class="button-primary" id="tc_create_slider"><?php _e( 'Add a slider' , 'customizr' ) ?></span>
-                    <span class="spinner" style="float: left"></span>
+                    <span class="spinner" style="float: left; diplay:none;"></span>
                    </p>
                     <br />
                 </div>
@@ -767,12 +800,15 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
           //set up the fields array
           $tc_slider_fields = array(
-              'slide_title_field'           => 'slide_title_key' ,
-              'slide_text_field'            => 'slide_text_key' ,
-              'slide_color_field'           => 'slide_color_key' ,
-              'slide_button_field'          => 'slide_button_key' ,
-              'slide_link_field'            => 'slide_link_key'
-              );
+              'slide_title_field'             => 'slide_title_key' ,
+              'slide_text_field'              => 'slide_text_key' ,
+              'slide_color_field'             => 'slide_color_key' ,
+              'slide_button_field'            => 'slide_button_key' ,
+              'slide_link_field'              => 'slide_link_key' ,
+              'slide_custom_link_field'       => 'slide_custom_link_key',
+              'slide_link_target_field'       => 'slide_link_target_key',
+              'slide_link_whole_slide_field'  => 'slide_link_whole_slide_key'
+          );
 
           //if saving in a custom table, get post_ID
           if ( $post_id == null)
@@ -784,17 +820,25 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                   $mydata = sanitize_text_field( $_POST[$tcid] );
                     switch ( $tckey) {
                       //different sanitizations
-
                       case 'slide_text_key':
                           $default_text_length = apply_filters( 'tc_slide_text_length', 250 );
                           if (strlen( $mydata) > $default_text_length) {
-                          $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,$default_text_length));
-                          $mydata = esc_html( $mydata) . ' ...';
+                            $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,$default_text_length));
+                            $mydata = esc_html( $mydata) . ' ...';
                           }
                           else {
                             $mydata = esc_html( $mydata);
                           }
                         break;
+
+                      case 'slide_custom_link_key':
+                          $mydata = esc_url( $_POST[$tcid] );
+                      break;
+
+                      case 'slide_link_target_key';
+                      case 'slide_link_whole_slide_key':
+                          $mydata = esc_attr( $mydata );
+                      break;
 
                       default://for button, color, title and post link field (actually not a link but an id)
                           $default_title_length = apply_filters( 'tc_slide_title_length', 80 );
@@ -849,7 +893,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                           <th scope="col"><?php _e( 'Title' , 'customizr' ) ?></th>
                           <th scope="col" style="width: 35%"><?php _e( 'Slide Text' , 'customizr' ) ?></th>
                           <th scope="col"><?php _e( 'Button Text' , 'customizr' ) ?></th>
-                          <th scope="col"><?php _e( 'Button Link' , 'customizr' ) ?></th>
+                          <th scope="col"><?php _e( 'Link' , 'customizr' ) ?></th>
                           <th scope="col"><?php _e( 'Edit' , 'customizr' ) ?></th>
                         </tr>
                       </thead>
@@ -877,6 +921,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                         $text                   = esc_html(get_post_meta( $id, $key = 'slide_text_key' , $single = true ));
                         $text_color             = esc_attr(get_post_meta( $id, $key = 'slide_color_key' , $single = true ));
                         $button_text            = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
+                        $link                   = esc_url(get_post_meta( $id, $key = 'slide_custom_link_key' , $single = true ));
                         $button_link            = esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true ));
 
                         //check if $text_color is set and create an html style attribute
@@ -911,8 +956,8 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                               <?php endif; ?>
                           </td>
                            <td style="vertical-align:middle" class="">
-                              <?php if( $button_link != null) : ?>
-                                <p class="btn btn-large btn-primary" href="<?php echo get_permalink( $button_link); ?>"><?php echo get_the_title( $button_link); ?></p>
+                              <?php if( $button_link != null || $link != null ) : ?>
+                                <p class="btn btn-large btn-primary" href="<?php echo $link ? $link : get_permalink( $button_link); ?>"><?php echo $link ? $link : get_the_title( $button_link); ?></p>
                               <?php endif; ?>
                           </td>
                            <td style="vertical-align:middle" class="">
@@ -1163,11 +1208,6 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 'post_slider_check_field'     => 'post_slider_check_key' ,
                 //attachments
                 'slider_check_field'          => 'slider_check_key' ,
-                'slide_title_field'           => 'slide_title_key' ,
-                'slide_text_field'            => 'slide_text_key' ,
-                'slide_color_field'           => 'slide_color_key' ,
-                'slide_button_field'          => 'slide_button_key' ,
-                'slide_link_field'            => 'slide_link_key'
                 );
 
                 //sanitize user input by looping on the fields
@@ -1219,44 +1259,13 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                               }//endif;
 
                           break;
-
-                          case 'slide_text_key':
-                          //check if we add this attachment to a slider for the first time : do we have custom fields defined in DB and are the input fields existing in the DOM (sent by Ajax)?
-
-                                $mydata = sanitize_text_field( $_POST[$tcid] );
-                                if (strlen( $mydata) > 250) {
-                                $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,250));
-                                $mydata = esc_html( $mydata) . ' ...';
-                                }
-                                else {
-                                  $mydata = esc_html( $mydata);
-                                }
-                                 //write in DB
-                                add_post_meta( $post_ID, $tckey, $mydata, true) or
-                                update_post_meta( $post_ID, $tckey , $mydata);
-
-                            break;
-
-                          default://for button, color, title and post link field (actually not a link but an id)
-                          //check if we add this attachment to a slider for the first time : do we have custom fields defined in DB and are the input fields existing in the DOM (sent by Ajax)?
-
-                               $mydata = sanitize_text_field( $_POST[$tcid] );
-                               $default_button_length = apply_filters( 'tc_slide_button_length', 80 );
-                               if (strlen( $mydata) > $default_button_length) {
-                                $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,$default_button_length));
-                                $mydata = esc_attr( $mydata) . ' ...';
-                                }
-                                else {
-                                  $mydata = esc_attr( $mydata);
-                                }
-                                //write in DB
-                                add_post_meta( $post_ID, $tckey, $mydata, true) or
-                                update_post_meta( $post_ID, $tckey , $mydata);
-
-                            break;
                         }//end switchendif;
                     }//end if ( isset( $_POST[$tcid])) {
                 }//end foreach
+                //attachments
+                if( $tc_post_type == 'attachment' )
+                  $this -> tc_slide_save( $post_ID );
+
             }//function
 
 
@@ -1284,6 +1293,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
       if ( ! wp_verify_nonce( $nonce, 'tc-slider-check-nonce' ) ) {
         die();
       }
+
         Try{
         //get the post_id with the hidden input field
         $tc_post_id         = $_POST['tc_post_id'];
@@ -1295,10 +1305,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
         //we use the post_slider var defined in tc_ajax_slider.js
         if ( isset( $_POST['tc_post_type'])) {
           if( $_POST['tc_post_type'] == 'post' ) {
-            $this -> tc_get_post_slider_infos( $tc_post_id);
+            $this -> tc_get_post_slider_infos( $tc_post_id );
           }
           else {
-            $this -> tc_get_attachment_slider_infos( $tc_post_id);
+            $this -> tc_get_attachment_slider_infos( $tc_post_id );
           }
         }
         //echo $_POST['slider_id'];
@@ -1320,13 +1330,19 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        */
         function tc_slider_admin_scripts( $hook) {
         global $post;
+
+        $_min_version = ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min';
         //load scripts only for creating and editing slides options in pages and posts
         if( ( 'media.php'  == $hook)) {
             wp_enqueue_script( 'jquery-ui-sortable' );
         }
         if( ( 'post-new.php' == $hook || 'post.php' == $hook || 'media.php' == $hook) )  {
             //ajax refresh for slider options
-            wp_enqueue_script( 'tc_ajax_slider' , TC_BASE_URL.'inc/admin/js/tc_ajax_slider.min.js' , array( 'jquery' ), true );
+            wp_enqueue_script( 'tc_ajax_slider' ,
+                sprintf('%1$sinc/admin/js/tc_ajax_slider%2$s.js' , TC_BASE_URL, $_min_version ),
+                array( 'jquery' ),
+                true
+            );
 
             // Tips to declare javascript variables http://www.garyc40.com/2010/03/5-tips-for-using-ajax-in-wordpress/#bad-ways
             wp_localize_script( 'tc_ajax_slider' , 'SliderAjax' , array(
@@ -1342,15 +1358,24 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             );
 
             //iphone like button style and script
-            wp_enqueue_style( 'iphonecheckcss' , TC_BASE_URL.'inc/admin/css/iphonecheck.css' );
-            wp_enqueue_script( 'iphonecheck' , TC_BASE_URL.'inc/admin/js/jquery.iphonecheck.js' );
+            wp_enqueue_style( 'iphonecheckcss' ,
+                sprintf('%1$sinc/admin/css/iphonecheck%2$s.css' , TC_BASE_URL, $_min_version )
+            );
+            wp_enqueue_script( 'iphonecheck' ,
+
+                sprintf('%1$sinc/admin/js/jquery.iphonecheck%2$s.js' , TC_BASE_URL, $_min_version ),
+                array('jquery'),
+                true
+            );
 
             //thickbox
             wp_admin_css( 'thickbox' );
             add_thickbox();
 
             //sortable stuffs
-            wp_enqueue_style( 'sortablecss' , TC_BASE_URL.'inc/admin/css/tc_sortable.css' );
+            wp_enqueue_style( 'sortablecss' ,
+                sprintf('%1$sinc/admin/css/tc_sortable%2$s.css' , TC_BASE_URL, $_min_version )
+            );
 
             //wp built-in color picker style and script
            //Access the global $wp_version variable to see which version of WordPress is installed.
@@ -1362,7 +1387,11 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 wp_enqueue_style( 'wp-color-picker' );
                 wp_enqueue_script( 'wp-color-picker' );
                  // load the minified version of custom script
-              wp_enqueue_script( 'cp_demo-custom' , TC_BASE_URL.'inc/admin/js/color-picker.js' , array( 'jquery' , 'wp-color-picker' ), true );
+                wp_enqueue_script( 'cp_demo-custom' ,
+                    sprintf('%1$sinc/admin/js/color-picker%2$s.js' , TC_BASE_URL, $_min_version ),
+                    array( 'jquery' , 'wp-color-picker' ),
+                    true
+                );
             }
             //If the WordPress version is less than 3.5 load the older farbtasic color picker.
             else {
@@ -1370,7 +1399,11 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 wp_enqueue_style( 'farbtastic' );
                 wp_enqueue_script( 'farbtastic' );
                 // load the minified version of custom script
-              wp_enqueue_script( 'cp_demo-custom' , TC_BASE_URL.'inc/admin/js/color-picker.js' , array( 'jquery' , 'farbtastic' ), true );
+                wp_enqueue_script( 'cp_demo-custom' ,
+                    sprintf('%1$sinc/admin/js/color-picker%2$s.js' , TC_BASE_URL, $_min_version ),
+                    array( 'jquery' , 'farbtastic' ),
+                    true
+                );
             }
         }//end post type hook check
       }
