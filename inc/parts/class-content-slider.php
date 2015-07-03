@@ -15,6 +15,7 @@ if ( ! class_exists( 'TC_slider' ) ) :
 class TC_slider {
 
   static $instance;
+  private $sliders_model;
 
   function __construct () {
     self::$instance =& $this;
@@ -170,7 +171,7 @@ class TC_slider {
       $_loop_index++;
     }//end of slides loop
     //returns the slides or false if nothing
-    return ! empty($slides) ? $slides : false;
+    return apply_filters('tc_the_slides', ! empty($slides) ? $slides : false );
   }
 
 
@@ -199,6 +200,9 @@ class TC_slider {
     if ( ! $this -> tc_is_slider_active( $queried_id) )
       return array();
 
+    if ( ! empty( $this -> sliders_model ) && is_array( $this -> sliders_model ) && array_key_exists( $slider_name_id, $this -> sliders_model ) )
+      return $this -> sliders_model[ $slider_name_id ];
+
     //gets slider options if any
     $layout_value                 = tc__f('__is_home') ? TC_utils::$inst->tc_opt( 'tc_slider_width' ) : esc_attr(get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ));
     $layout_value                 = apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
@@ -210,7 +214,9 @@ class TC_slider {
     //get slides
     $slides                       = $this -> tc_get_the_slides( $slider_name_id , $img_size );
 
-    return compact( "slider_name_id", "slides", "layout_class" , "img_size" );
+    $this -> sliders_model[ $slider_name_id ]         = compact( "slider_name_id", "slides", "layout_class" , "img_size" );
+
+    return $this -> sliders_model[ $slider_name_id ];
   }
 
 
