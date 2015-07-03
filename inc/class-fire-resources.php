@@ -244,7 +244,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	      wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.css' );
 
 	    //holder.js is loaded when featured pages are enabled AND FP are set to show images and at least one holder should be displayed.
-        $tc_show_featured_pages 	         = TC_featured_pages::$instance -> tc_show_featured_pages();
+        $tc_show_featured_pages 	         = class_exists('TC_featured_pages') && TC_featured_pages::$instance -> tc_show_featured_pages();
     	if ( 0 != $tc_show_featured_pages && $this -> tc_maybe_is_holder_js_required() ) {
 	    	wp_enqueue_script(
 	    		'holder',
@@ -723,7 +723,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
     function tc_maybe_is_holder_js_required(){
       $bool = false;
 
-      if ( ! TC_featured_pages::$instance -> tc_show_featured_pages_img() )
+      if ( ! ( class_exists('TC_featured_pages') && TC_featured_pages::$instance -> tc_show_featured_pages_img() ) )
         return $bool;
 
       $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
