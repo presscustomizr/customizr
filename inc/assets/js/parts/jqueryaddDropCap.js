@@ -203,7 +203,7 @@
   //@return : string
   Plugin.prototype._removeSpecChars = function( _expr , _replaceBy ) {
     _replaceBy = _replaceBy || '';
-    return 'string' == typeof(_expr) ? _expr.replace(/[^\w-]/g, _replaceBy ) : '';
+    return 'string' == typeof(_expr) ? _expr.replace(/[^\w-\?!\u00bf-\u00ff]/g, _replaceBy ) : '';
   };
 
   //@return : string or false

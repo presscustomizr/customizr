@@ -17,8 +17,8 @@ patches/
 # GRUNT
 node_modules/
 .ftpauth
-grunt-tasks-config/
-gruntfile.js
+#grunt-tasks-config/
+# gruntfile.js
 
 # PHP_CodeSniffer
 PHP_CodeSniffer/
