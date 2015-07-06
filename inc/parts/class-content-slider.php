@@ -333,11 +333,16 @@ class TC_slider {
     if ( 'demo' != $slider_name_id && ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ) || ! apply_filters( 'tc_display_slider_loader' , true ) ) )
       return;
     ?>
-      <div class="tc-slider-loader-wrapper">
+      <div id="tc-slider-loader-wrapper" class="tc-slider-loader-wrapper" style="display:none;">
         <div class="tc-img-gif-loader">
           <img data-no-retina alt="loading" src="<?php echo apply_filters('tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') ) ?>">
         </div>
       </div>
+      <script type="text/javascript">
+      <!--
+        document.getElementById("tc-slider-loader-wrapper").style.display="block";
+      -->
+      </script>
     <?php
   }
 
