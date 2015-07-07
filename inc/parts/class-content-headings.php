@@ -50,7 +50,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
         add_filter( 'tc_archive_header_class'         , array( $this , 'tc_archive_title_and_class_callback'), 10, 2 );
         add_filter( 'tc_headings_archive_html'        , array( $this , 'tc_archive_title_and_class_callback'), 10, 1 );
         global $wp_query;
-        if ( tc__f('__is_home') || $wp_query -> is_posts_page )
+        if ( tc__f('__is_home') )
           add_filter( 'tc_archive_headings_separator' , '__return_false' );
       }
 
