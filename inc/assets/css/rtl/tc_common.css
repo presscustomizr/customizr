@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.28
+ * Customizr v3.3.29
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5972,6 +5972,10 @@ h1.entry-title,
 h2.entry-title {
   width: 100%;
 }
+/* woocommerce product titles */
+.woocommerce div.product .product_title {
+  text-align: right;
+}
 h1 a:hover,
 h2 a:hover {
   text-decoration: none;
@@ -8302,7 +8306,7 @@ li#wp-admin-bar-tc-customizr a {
     padding-right: 10px;
   }
 }
-@media (min-width: 979px + 1) {
+@media (min-width: 980px) {
   .nav-collapse.collapse {
     height: auto !important;
     overflow: visible !important;
