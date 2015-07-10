@@ -1124,7 +1124,7 @@ footer#footer .colophon .social-block a {
   font-size: 120px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
   z-index: 10;
-  color: #999;
+  color: inherit;
   line-height: 16px;
   vertical-align: middle;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1137,6 +1137,9 @@ footer#footer .colophon .social-block a {
   filter: alpha(opacity=90);
   outline : none;
 }
+.tc-carousel-control:focus {
+  color: inherit;
+}
 .tc-slider-controls {
   position: absolute;
   bottom: 0;
@@ -1144,6 +1147,7 @@ footer#footer .colophon .social-block a {
   line-height: 500px;/* OVERRIDEN BY DYNAMIC!!!! PHP + JS */
   width: 10%;
   opacity: 0;
+  color: #999;
 }
 .tc-slid-hover .tc-slider-controls {
   opacity: 1;
