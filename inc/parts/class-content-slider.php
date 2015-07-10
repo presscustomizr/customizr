@@ -105,8 +105,8 @@ class TC_slider {
     $link_url               = apply_filters( 'tc_slide_link_url', esc_url(get_post_meta( $id, $key = 'slide_custom_link_key', $single = true )), $id, $slider_name_id );
 
     if ( ! $link_url )
-      $link_url = $link_id ? get_permalink( $link_id ) : $link_url; 
- 
+      $link_url = $link_id ? get_permalink( $link_id ) : $link_url;
+
     //link target
     $link_target_bool       = esc_attr(get_post_meta( $id, $key= 'slide_link_target_key', $single = true ));
     $link_target            = apply_filters( 'tc_slide_link_target', $link_target_bool ? '_blank' : '_self', $id, $slider_name_id );
@@ -182,7 +182,7 @@ class TC_slider {
       $slide_model = $this -> tc_get_single_slide_model( $slider_name_id, $_loop_index, $id, $img_size);
 
       if ( ! $slide_model )
-        continue;    
+        continue;
 
       $slides[$id] = $slide_model;
 
@@ -234,7 +234,7 @@ class TC_slider {
 
     //store the model per slide_name_id
     self::$sliders_model[ $slider_name_id ] = compact( "slider_name_id", "slides", "layout_class" , "img_size" );
- 
+
     return self::$sliders_model[ $slider_name_id ];
   }
 
@@ -323,6 +323,7 @@ class TC_slider {
 
   /**
   * Slider loader view
+  * This feature is only fired in browser with js enabled => cf the embedded script
   * @param (string) $slider_name_id
   *
   * @package Customizr
@@ -333,11 +334,15 @@ class TC_slider {
     if ( 'demo' != $slider_name_id && ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ) || ! apply_filters( 'tc_display_slider_loader' , true ) ) )
       return;
     ?>
-      <div class="tc-slider-loader-wrapper">
+      <div id="tc-slider-loader-wrapper-<?php echo self::$rendered_slides ?>" class="tc-slider-loader-wrapper" style="display:none;">
         <div class="tc-img-gif-loader">
           <img data-no-retina alt="loading" src="<?php echo apply_filters('tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') ) ?>">
         </div>
       </div>
+
+      <script type="text/javascript">
+        document.getElementById("tc-slider-loader-wrapper-<?php echo self::$rendered_slides ?>").style.display="block";
+      </script>
     <?php
   }
 
@@ -370,7 +375,7 @@ class TC_slider {
   }
 
   /**
-  * 
+  *
   * Link whole slide
   * hook: tc_slide_background
   *
@@ -410,7 +415,7 @@ class TC_slider {
     $data['title']          = isset($data['title']) ? apply_filters( 'tc_slide_title', $data['title'] , $id, $slider_name_id ) : '';
     $data['text']           = isset($data['text']) ? esc_html( apply_filters( 'tc_slide_text', $data['text'], $id, $slider_name_id ) ) : '';
     $data['color_style']    = apply_filters( 'tc_slide_color', $data['color_style'], $id, $slider_name_id );
-    
+
 
     $data['button_text']    = isset($data['button_text']) ? apply_filters( 'tc_slide_button_text', $data['button_text'], $id, $slider_name_id ) : '';
 
