@@ -234,7 +234,7 @@ class TC_post_list {
       $_sub_class = 'entry-content';
       $_content   = '<p class="format-icon"></p>';
     }
-    elseif ( in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside' ) ) )
+    elseif ( in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside', 'video' ) ) )
     {
       $_sub_class = sprintf( 'entry-content %s' , $_icon_class );
       $_content   = sprintf( '%1$s%2$s',
