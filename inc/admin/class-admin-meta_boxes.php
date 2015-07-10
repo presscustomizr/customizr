@@ -1363,7 +1363,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             );
             wp_enqueue_script( 'iphonecheck' ,
 
-                sprintf('%1$sinc/admin/js/jquery.iphonecheck%2$s.js' , TC_BASE_URL, $_min_version ),
+                sprintf('%1$sinc/admin/js/jqueryIphonecheck%2$s.js' , TC_BASE_URL, $_min_version ),
                 array('jquery'),
                 true
             );
