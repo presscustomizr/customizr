@@ -26,7 +26,8 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
           'TC_wfc'                     => array('/addons/wfc/wordpress-font-customizer.php'),
           'TC_fpu'                     => array('/addons/fpu/tc_unlimited_featured_pages.php'),
           'TC_fc'                      => array('/addons/fc/footer-customizer.php'),
-          'TC_gc'                      => array('/addons/gc/tc_grid_customizer.php')
+          'TC_gc'                      => array('/addons/gc/tc_grid_customizer.php'),
+          'PC_mc'                      => array('/addons/mc/pc_menu_customizer.php')
         );
         //set files to load according to the context : admin / front / customize
         add_filter( 'tc_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
