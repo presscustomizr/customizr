@@ -620,18 +620,27 @@
   var _url_comp     = (location.host).split('.'),
       _nakedDomain  = new RegExp( _url_comp[1] + "." + _url_comp[2] );
 
+  /*
+  * @return boolean
+  */
   var _is_external = function( _href  ) {
-    var _thisHref = $.trim( _href );
-    if ( _thisHref !== '' && _thisHref != '#' && _isValidURL(_thisHref) )
-        return ! _nakedDomain.test(_thisHref) ? true : false;
+    //gets main domain and extension, no matter if it is a n level sub domain
+    //works also with localhost or numeric urls
+    var _thisHref = $.trim( _href ),
+        _main_domain = (location.host).split('.').slice(-2).join('.'),
+        _reg = new RegExp( _main_domain );
+
+    if ( _thisHref !== '' && _thisHref != '#' && _isValidURL( _thisHref ) )
+      return ! _reg.test( _thisHref );
+    return;
   };
 
-  var _isValidURL = function(url){
-      var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-      if (pattern.test(url)){
-          return true;
-      }
-      return false;
+  /*
+  * @return boolean
+  */
+  var _isValidURL = function(_url){
+    var _pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+    return _pattern.test( _url );
   };
 
 

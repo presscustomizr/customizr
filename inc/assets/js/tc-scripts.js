@@ -3085,6 +3085,8 @@ var TCParams = TCParams || {};
       var _main_domain = (location.host).split('.').slice(-2).join('.'),
           _reg = new RegExp( _main_domain );
 
+      _href = $.trim( _href );
+
       if ( _href !== '' && _href != '#' && this._isValidURL( _href ) )
         return ! _reg.test( _href );
       return;
