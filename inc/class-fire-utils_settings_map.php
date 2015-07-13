@@ -1402,8 +1402,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'centered'  => __( 'Logo / title centered' , 'customizr'),
                                         'right'     => __( 'Logo / title on the right' , 'customizr' )
                                 ),
-                                'priority'      => 30,
-                                'transport'     => 'postMessage'
+                                'priority'      => 30
+                                //'transport'     => 'postMessage'
               ),
               'tc_theme_options[tc_sticky_header]'  =>  array(
                                 'default'       => 1,
