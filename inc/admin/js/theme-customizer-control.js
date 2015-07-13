@@ -472,6 +472,17 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_menu_style' : {
+      controls: [
+        'tc_menu_type',
+        'tc_menu_submenu_fade_effect',
+        'tc_menu_submenu_item_move_effect',
+        'tc_menu_resp_dropdown_limit_to_viewport'
+      ],
+      callback: function (to) {
+        return 'aside' != to;
+      }
     }
   };
 

@@ -255,7 +255,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			wp_enqueue_script(
 				'tc-customizer-preview' ,
 				sprintf('%1$s/inc/admin/js/theme-customizer-preview%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
-				array( 'customize-preview'),
+				array( 'customize-preview', 'underscore'),
 				CUSTOMIZR_VER ,
 				true
 			);
