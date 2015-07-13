@@ -410,7 +410,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_menu_type]'  => array(
                                 'default'   =>  TC_utils::$inst -> tc_user_started_before_version( '3.1.0' , '1.0.0' ) ? 'click' : 'hover',
                                 'control'   =>  'TC_controls' ,
-                                'title'     => __( 'Design and effects' , 'customizr'),
                                 'label'     =>  __( 'Select a submenu expansion option' , 'customizr' ),
                                 'section'   =>  'nav' ,
                                 'type'      =>  'select' ,
@@ -418,6 +417,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'click'   => __( 'Expand submenus on click' , 'customizr'),
                                         'hover'   => __( 'Expand submenus on hover' , 'customizr'  ),
                                 ),
+                                'priority'  =>   20
               ),
       ); //end of navigation options
       $navigation_option_map = apply_filters( 'tc_navigation_option_map', $navigation_option_map , $get_default );
@@ -1110,7 +1110,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                             'panel'   => 'tc-header-panel'
                         ),
                         'nav'           => array(
-                                  'title'          => __( 'Navigation' , 'customizr' ),
+                                  'title'          => __( 'Navigation Menu' , 'customizr' ),
                                   'theme_supports' => 'menus',
                                   'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
                                   'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.'),
@@ -1402,8 +1402,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'centered'  => __( 'Logo / title centered' , 'customizr'),
                                         'right'     => __( 'Logo / title on the right' , 'customizr' )
                                 ),
-                                'priority'      => 30,
-                                'transport'     => 'postMessage'
+                                'priority'      => 30
+                                //'transport'     => 'postMessage'
               ),
               'tc_theme_options[tc_sticky_header]'  =>  array(
                                 'default'       => 1,
@@ -1479,8 +1479,21 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               ),
 
               /* Menu */
+               'tc_theme_options[tc_menu_style]'  =>  array(
+                              'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'navbar' : 'aside',
+                              'control'       => 'TC_controls' ,
+                              'title'         => __( 'Design and effects' , 'customizr'),
+                              'label'         => __( 'Select a style : side menu or regular' , 'customizr' ),
+                              'section'       => 'nav' ,
+                              'type'          => 'select',
+                              'choices'       => array(
+                                      'navbar'   => __( 'Regular'   ,  'customizr' ),
+                                      'aside'    => __( 'Side Menu' ,  'customizr' ),
+                              ),
+                              'priority'      => 10
+              ),
               'tc_theme_options[tc_menu_position]'  =>  array(
-                                'default'       => 'left',
+                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'pull-menu-left' : 'pull-menu-right',
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Menu position" , "customizr" ),
                                 'section'       => 'nav' ,
@@ -1490,7 +1503,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'pull-menu-right'     => __( 'Menu on the right' , 'customizr' )
                                 ),
                                 'priority'      => 20,
-                                'transport'     => 'postMessage'
+                                'transport'     => 'postMessage',
+                                'notice'        => __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' )
               ),
               'tc_theme_options[tc_menu_submenu_fade_effect]'  =>  array(
                                 'default'       => 1,

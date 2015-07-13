@@ -339,6 +339,12 @@ a.thumbnail:focus {
   background-color: #000000;
   background-position: 0 -30px;
 }
+.navbar .nav-collapse.in + .btn-toggle-nav .icon-bar,
+.tc-is-mobile.tc-sn-visible .btn-toggle-nav .icon-bar,
+.no-csstransforms .tc-sn-visible .btn-toggle-nav .icon-bar,
+.navbar .btn-toggle-nav:hover .icon-bar {
+  background-color: #262626;
+}
 .site-description {
   color: #000000;
 }

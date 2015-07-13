@@ -61,7 +61,7 @@
     removerVisibility: function( to ) {
       this.remover.toggle( to != this.params.removed );
     }
-  });
+  });//api.Control.extend()
 
 
   $.extend( api.controlConstructor, {
@@ -284,6 +284,17 @@
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_menu_style' : {
+      controls: [
+        'tc_menu_type',
+        'tc_menu_submenu_fade_effect',
+        'tc_menu_submenu_item_move_effect',
+        'tc_menu_resp_dropdown_limit_to_viewport'
+      ],
+      callback: function (to) {
+        return 'aside' != to;
+      }
     }
   };
 
@@ -413,7 +424,7 @@
   */
   var _handle_grid_dependencies = function() {
     //apply visibility on ready
-    var _is_grid_enabled = api.instance('tc_theme_options[tc_post_list_grid]').get() == 'grid';
+    var _is_grid_enabled = api('tc_theme_options[tc_post_list_grid]') && 'grid' == api('tc_theme_options[tc_post_list_grid]').get();
     $('.tc-grid-toggle-controls').toggle( _is_grid_enabled );
 
     //bind visibility on setting changes
@@ -426,14 +437,37 @@
   };
 
 
+  /**
+  * Dependency between the header layout and the menu position, when the menu style is Side Menu
+  */
+  var _header_layout_dependency = function() {
+    //var _is_side_menu_enabled = api('tc_theme_options[tc_menu_style]') && "aside" == api('tc_theme_options[tc_menu_style]').get();
+    //when user switch layout, make sure the menu is correctly aligned by default.
+    api('tc_theme_options[tc_header_layout]').callbacks.add( function(to) {
+      api('tc_theme_options[tc_menu_position]').set( 'right' == to ? 'pull-menu-left' : 'pull-menu-right' );
+      //refresh the selecter
+      api.control('tc_theme_options[tc_menu_position]').container.find('select').selecter('destroy').selecter({});
+    } );
+
+    var _header_layout = api('tc_theme_options[tc_header_layout]').get();
+    //when user changes the menu syle (side or regular), refresh the menu position according to the header layout
+    api('tc_theme_options[tc_menu_style]').callbacks.add( function(to) {
+      api('tc_theme_options[tc_menu_position]').set( 'right' == _header_layout ? 'pull-menu-right' : 'pull-menu-left' );
+      //refresh the selecter
+      api.control('tc_theme_options[tc_menu_position]').container.find('select').selecter('destroy').selecter({});
+    } );
+  };
+
+
   //bind all actions to wp.customize ready event
   //map each setting with its dependencies
   api.bind( 'ready' , function() {
     _.map( _controlDependencies , function( opts , setId ) {
         _prepare_visibilities( setId, opts );
     });
-    //additional grid action
+    //additional dependencies
     _handle_grid_dependencies();
+    _header_layout_dependency();
   } );
 
 })( wp, jQuery);
