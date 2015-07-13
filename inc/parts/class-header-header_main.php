@@ -50,6 +50,11 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
       //html > header actions
       add_action ( '__before_main_wrapper'	, 'get_header');
+
+      //boolean filter to control the header's rendering
+      if ( ! apply_filters( 'tc_display_header', true ) )
+        return;
+
       add_action ( '__header' 				, array( $this , 'tc_prepare_logo_title_display' ) , 10 );
       add_action ( '__header' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
       add_action ( '__header' 				, array( $this , 'tc_navbar_display' ) , 30 );
@@ -58,7 +63,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
       add_filter ( 'tc_navbar_display', array( $this , 'tc_new_menu_view'), 10, 2);
 
       //body > header > navbar actions ordered by priority
-	  // GY : switch order for RTL sites 
+	  // GY : switch order for RTL sites
 	  if (is_rtl()) {
       add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 20, 2 );
       add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 10, 1 );
