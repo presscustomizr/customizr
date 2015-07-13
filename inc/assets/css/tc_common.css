@@ -8926,7 +8926,7 @@ li#wp-admin-bar-tc-customizr a {
   .navbar .btn-navbar {
     display: block;
     margin: 10px 0;
-    float: right;
+    /*float: right;*/
   }
   /* GIVE NAVBAR A SMALLER Z-index than logo / title SINCE V3.2.0*/
   .sticky-enabled .navbar-wrapper {
@@ -8954,6 +8954,9 @@ li#wp-admin-bar-tc-customizr a {
     width: auto!important;
     float: left;
     margin: 14px 0 0;
+  }
+  .logo-right .navbar .navbar-inner .social-block {
+    float: right;
   }
   /* MENU CHANGES SINCE V3.2.0 */
   .navbar .nav-collapse .dropdown-menu a {

@@ -39,7 +39,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
       //add a 100% wide container just after the sticky header to reset margin top
       if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) )
         add_action( '__after_header'              , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
- 
+
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
       add_filter( 'tc_user_options_style'         , array( $this , 'tc_menu_item_style_first_letter_css') );
@@ -96,15 +96,15 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
       //renders the regular menu + responsive button
       if ( ! $this -> tc_is_sidenav_enabled() ) {
-        $this -> tc_regular_menu_display();  
+        $this -> tc_regular_menu_display();
       }else
-        $this -> tc_sidenav_toggle_button_display();  
+        $this -> tc_sidenav_toggle_button_display();
 
       $html = ob_get_contents();
       ob_end_clean();
 
       echo apply_filters( 'tc_menu_display', $html );
-    } 
+    }
 
 
     /**
@@ -120,10 +120,10 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
       $_button = sprintf( '<button type="button" class="%1$s" %2$s>%3$s%3$s%3$s</button>',
                      implode(' ', apply_filters( "tc_{$type}_button_class", $button_class ) ),
-                     apply_filters( "tc_{$type}_menu_button_attr", $button_attr),  
+                     apply_filters( "tc_{$type}_menu_button_attr", $button_attr),
                      '<span class="icon-bar"></span>'
                  );
-      
+
       return apply_filters( "tc_{$type}_menu_button_view", $_button );
     }
 
@@ -150,15 +150,15 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
         $menu = wp_nav_menu( $menu_args );
 
-        if ( $menu )    
+        if ( $menu )
           $menu = sprintf('<div class="%1$s">%2$s</div>',
               implode(' ', apply_filters( "tc_{$type}_menu_wrapper_class", $menu_wrapper_class ) ),
               $menu
           );
-        
-        return apply_filters("tc_{$type}_menu_view", $menu );  
+
+        return apply_filters("tc_{$type}_menu_view", $menu );
     }
- 
+
 
 
     /**
@@ -205,25 +205,26 @@ if ( ! class_exists( 'TC_menu' ) ) :
     ****************************************/
     /**
     *  Prepare params and echo menu views
-    * 
+    *
     * @return html string
     * @since v3.3+
     *
     */
     function tc_regular_menu_display(){
-      $type               = 'regular';  
-      $button_class       = array( 'btn', 'btn-toggle-nav');
+      $type               = 'regular';
+      $where              = 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
+      $button_class       = array( 'btn', 'btn-toggle-nav', $where );
       $button_attr        = 'data-toggle="collapse" data-target=".nav-collapse"';
 
       $menu_class         = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) ;
       $menu_wrapper_class = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
- 
+
       $menu_view = $this -> tc_wp_nav_menu_view( compact( 'type', 'menu_class', 'menu_wrapper_class') );
-      
+
       if ( $menu_view )
         $menu_view = $menu_view . $this -> tc_menu_button_view( compact( 'type', 'button_class', 'button_attr') );
 
-      echo $menu_view;  
+      echo $menu_view;
     }
 
 
@@ -275,11 +276,11 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * hooks: __sidenav, __navbar
     */
     function tc_sidenav_toggle_button_display() {
-      $type          = 'sidenav';  
+      $type          = 'sidenav';
       $where         = 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
       $button_class  = array( 'btn', 'btn-toggle-nav', 'sn-toggle', $where );
       $button_attr   = '';
-      
+
       echo $this -> tc_menu_button_view( compact( 'type', 'button_class', 'button_attr') );
     }
 
@@ -406,22 +407,22 @@ if ( ! class_exists( 'TC_menu' ) ) :
              .tc-sticky-header.tc-sn-visible:not(.animating)[class*=sn-right] .tc-header { right: %1$spx; }
              /* ie<9 breaks using :not */
              .no-csstransforms3d .tc-sticky-header.tc-sn-visible[class*=sn-left] .tc-header { left: %1$spx; }
-             .no-csstransforms3d .tc-sticky-header.tc-sn-visible[class*=sn-right] .tc-header { right: %1$spx; }', 
-            $sidenav_width   
+             .no-csstransforms3d .tc-sticky-header.tc-sn-visible[class*=sn-right] .tc-header { right: %1$spx; }',
+            $sidenav_width
         )
       );
     }
 
     /**
     * hook : body_class filter
-    * 
+    *
     * @package Customizr
     * @since Customizr 3.3+
     */
     function tc_sidenav_body_class( $_classes ){
       $_where = str_replace( 'pull-menu-', '', esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
       array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
-          
+
       return $_classes;
     }
 

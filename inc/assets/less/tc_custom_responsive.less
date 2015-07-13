@@ -106,7 +106,7 @@
   // .tc-is-mobile .navbar .nav li > ul ul {
   //   display: block;
   // }
-  
+
 }
 
 @media (max-width: 979px) {
@@ -367,7 +367,7 @@
   .navbar .btn-navbar {
     display: block;
     margin: 10px 0;
-    float: right;
+    /*float: right;*/
   }
   /* GIVE NAVBAR A SMALLER Z-index than logo / title SINCE V3.2.0*/
   .sticky-enabled .navbar-wrapper {
@@ -396,6 +396,9 @@
     width: auto!important;
     float: left;
     margin: 14px 0 0;
+  }
+  .logo-right .navbar .navbar-inner .social-block {
+    float: right;
   }
   /* MENU CHANGES SINCE V3.2.0 */
   .navbar .nav-collapse .dropdown-menu a {
@@ -693,7 +696,7 @@
   /* when open, give to the menu a greater z-index
    */
   .tc-sn-visible:not(.sn-close) #tc-sn {
-    z-index: 9999; 
+    z-index: 9999;
   }
   .tc-sn-visible {
     overflow: hidden;
