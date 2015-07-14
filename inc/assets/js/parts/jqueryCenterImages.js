@@ -175,10 +175,10 @@
       return 'x' == _dim ? $_img.outerWidth() : $_img.outerHeight();
     else {
       if ( 'x' == _dim ){
-        var _width = $_img.originalWidth();  
+        var _width = $_img.originalWidth();
         return typeof _width === undefined ? 0 : _width;
       }if ( 'y' == _dim ){
-        var _height = $_img.originalHeight();  
+        var _height = $_img.originalHeight();
         return typeof _height === undefined ? 0 : _height;
       }
     }
