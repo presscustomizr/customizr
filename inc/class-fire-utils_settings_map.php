@@ -1533,6 +1533,16 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 50,
                                 //'transport'     => 'postMessage',
               ),
+              'tc_theme_options[tc_display_menu_label]'  =>  array(
+                                'default'       => 0,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Display a label next to the menu button." , "customizr" ),
+                                'section'       => 'nav' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 60,
+                                'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
+              ),
+
               /* Links */
               'tc_theme_options[tc_link_hover_effect]'  =>  array(
                                 'default'       => 1,

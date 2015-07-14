@@ -32,8 +32,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
     */
     function tc_set_menu_hooks() {
       //VARIOUS USER OPTIONS
-      if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
-        add_filter( 'body_class'                  , array( $this, 'tc_set_no_navbar' ) );
+      add_filter( 'body_class'                    , array( $this , 'tc_add_body_classes') );
       add_filter( 'tc_social_header_block_class'  , array( $this, 'tc_set_social_header_class') );
 
       //add a 100% wide container just after the sticky header to reset margin top
@@ -56,6 +55,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
       add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ));
     }
+
 
 
     /**
@@ -116,14 +116,19 @@ if ( ! class_exists( 'TC_menu' ) ) :
     *
     */
     function tc_menu_button_view( $args ) {
+      //extracts : 'type', 'button_class', 'button_attr'
       extract( $args );
 
-      $_button = sprintf( '<button type="button" class="%1$s" %2$s>%3$s%3$s%3$s</button>',
-                     implode(' ', apply_filters( "tc_{$type}_button_class", $button_class ) ),
-                     apply_filters( "tc_{$type}_menu_button_attr", $button_attr),
-                     '<span class="icon-bar"></span>'
-                 );
-
+      $_button_label = sprintf( '<span class="menu-label">%s</span>',
+        '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Menu' , 'customizr')
+      );
+      $_button = sprintf( '<div class="%1$s"><button type="button" class="btn menu-btn" %2$s title="%5$s">%3$s%3$s%3$s </button>%4$s</div>',
+        implode(' ', apply_filters( "tc_{$type}_button_class", $button_class ) ),
+        apply_filters( "tc_{$type}_menu_button_attr", $button_attr),
+        '<span class="icon-bar"></span>',
+        (bool)esc_attr( TC_utils::$inst->tc_opt('tc_display_menu_label') ) ? $_button_label : '',
+        '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Reveal the menu' , 'customizr')
+      );
       return apply_filters( "tc_{$type}_menu_button_view", $_button );
     }
 
@@ -213,7 +218,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
     function tc_regular_menu_display(){
       $type               = 'regular';
       $where              = 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
-      $button_class       = array( 'btn', 'btn-toggle-nav', $where );
+      $button_class       = array( 'btn-toggle-nav', $where );
       $button_attr        = 'data-toggle="collapse" data-target=".nav-collapse"';
 
       $menu_class         = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) ;
@@ -278,7 +283,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
     function tc_sidenav_toggle_button_display() {
       $type          = 'sidenav';
       $where         = 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
-      $button_class  = array( 'btn', 'btn-toggle-nav', 'sn-toggle', $where );
+      $button_class  = array( 'btn-toggle-nav', 'sn-toggle', $where );
       $button_attr   = '';
 
       echo $this -> tc_menu_button_view( compact( 'type', 'button_class', 'button_attr') );
@@ -312,8 +317,14 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function tc_set_no_navbar($_classes) {
-      $_classes[] = 'no-navbar';
+    function tc_add_body_classes($_classes) {
+      if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
+        array_push( $_classes , 'no-navbar' );
+
+      //menu type class
+      $_menu_type = $this -> tc_is_sidenav_enabled() ? 'tc-side-menu' : 'tc-regular-menu';
+      array_push( $_classes, $_menu_type );
+
       return $_classes;
     }
 
