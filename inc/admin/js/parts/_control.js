@@ -441,7 +441,6 @@
   * Dependency between the header layout and the menu position, when the menu style is Side Menu
   */
   var _header_layout_dependency = function() {
-    //var _is_side_menu_enabled = api('tc_theme_options[tc_menu_style]') && "aside" == api('tc_theme_options[tc_menu_style]').get();
     //when user switch layout, make sure the menu is correctly aligned by default.
     api('tc_theme_options[tc_header_layout]').callbacks.add( function(to) {
       api('tc_theme_options[tc_menu_position]').set( 'right' == to ? 'pull-menu-left' : 'pull-menu-right' );
