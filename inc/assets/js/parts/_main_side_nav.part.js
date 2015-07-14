@@ -109,13 +109,16 @@ var czrapp = czrapp || {};
       }
 
       //handles the page wrapper button fade in / out on click
-      var $_clicked_btn = $( event.target ),
-          _is_opening   = $('#tc-page-wrap').has( $_clicked_btn).length > 0;
+      var _event = evt || event,
+          $_clicked_btn = $( _event.target ),
+          _is_opening   = $('#tc-page-wrap').has( $_clicked_btn).length > 0,
+          that = this;
 
-      this.$_page_wrapper_btn.fadeTo( 500, _is_opening ? 0 : 1 , function() {
-         $(this).css("visibility", _is_opening ? "hidden" : "visible");
-      }); // duration, opacity, callback
-
+      this.$_page_wrapper_btn.each( function(){
+        $(this).fadeTo( 500 , _is_opening ? 0 : 1 , function() {
+          $(this).css( "visibility", _is_opening ? "hidden" : "visible");
+        }); //.fadeTo() duration, opacity, callback
+      } );
       return false;
    },
 
@@ -130,9 +133,9 @@ var czrapp = czrapp || {};
      if ( this._is_sticky_header() ){
        if ( czrapp.$_body.hasClass('sticky-disabled') )
          czrapp.$_body.addClass('tc-sticky-header');
-     }
-
+      }
     },
+
 
 
     /***********************************************

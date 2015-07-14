@@ -74,6 +74,7 @@ var czrapp = czrapp || {};
       });//click
     },
 
+
     //Btt arrow visibility
     bttArrowVisibility : function () {
       if ( czrapp.$_window.scrollTop() > 100 )
@@ -231,8 +232,6 @@ var czrapp = czrapp || {};
       }
     },
 
-
-
     //Handle dropdown on click for multi-tier menus
     dropdownMenuEventsHandler : function() {
       var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'),
@@ -268,7 +267,23 @@ var czrapp = czrapp || {};
             return false;
         });//.on()
       });//.each()
+    },
+
+    //@return void()
+    //simply toggles a "hover" class to the relevant elements
+    menuButtonHover : function() {
+      var $_menu_btns = $('.btn-toggle-nav');
+      //BUTTON HOVER (with handler)
+      $_menu_btns.hover(
+        function( evt ) {
+          $(this).addClass('hover');
+        },
+        function( evt ) {
+          $(this).removeClass('hover');
+        }
+      );
     }
+
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};
