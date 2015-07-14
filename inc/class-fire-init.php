@@ -516,7 +516,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       function tc_get_style_src( $_wot = 'skin' ) {
         $_sheet    = ( 'skin' == $_wot ) ? esc_attr( TC_utils::$inst->tc_opt( 'tc_skin' ) ) : 'tc_common.css';
         if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_minified_skin' ) ) )
-          $_sheet  = str_replace('.css', '.min.css', $_sheet);
+          $_sheet  = ( defined('TC_NOT_MINIFIED_CSS') && true === TC_NOT_MINIFIED_CSS ) ? $_sheet : str_replace('.css', '.min.css', $_sheet);
 
         //Finds the good path : are we in a child theme and is there a skin to override?
         $remote_path    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css/' . $_sheet) ) ? TC_BASE_URL_CHILD .'inc/assets/css/' : false ;
