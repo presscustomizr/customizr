@@ -958,10 +958,10 @@ li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropd
 }
 
 [class*=sn-right] #tc-sn {
-  right: 0;   
+  right: 0;
 }
 [class*=sn-left] #tc-sn {
-  left: 0;   
+  left: 0;
 }
 
 nav#tc-sn {
@@ -974,10 +974,10 @@ nav#tc-sn {
   overflow: hidden;
 }
 
-#tc-sn .tc-sn-inner { 
-  -webkit-transition: height 0s; 
-     -moz-transition: height 0s; 
-       -o-transition: height 0s; 
+#tc-sn .tc-sn-inner {
+  -webkit-transition: height 0s;
+     -moz-transition: height 0s;
+       -o-transition: height 0s;
           transition: height 0s;
   position: relative;
   height: 100%;
@@ -993,7 +993,7 @@ nav#tc-sn {
 }
 
 /* Animations */
-.animating #tc-page-wrap, .animating #tc-sn, 
+.animating #tc-page-wrap, .animating #tc-sn,
 .tc-sn-visible #tc-page-wrap, .tc-sn-visible #tc-sn {
   -webkit-backface-visibility: hidden;
      -moz-backface-visibility: hidden;
@@ -1044,22 +1044,22 @@ nav#tc-sn {
        -o-transition: top 0s;
           transition: top 0s;
 }
-.animating.sticky-enabled.tc-sticky-header .tc-header { 
-  opacity: 0; 
+.animating.sticky-enabled.tc-sticky-header .tc-header {
+  opacity: 0;
 }
 
 /* HACK */
 /* stick the sticky header to the left/right of the page wrapper*/
 /* following needed both in mobiles with max-width 400px and in the safari version I tried 6.1.5, since looks fine also in other desktop I left it as general rule*/
-/* basically on transition's end in those browsers the sticky header moved to left 0 (or right 0) of the window, overlapping the side menu 
+/* basically on transition's end in those browsers the sticky header moved to left 0 (or right 0) of the window, overlapping the side menu
 style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_style
 */
 
-.tc-sticky-header[class*=sn-left] .tc-header { 
+.tc-sticky-header[class*=sn-left] .tc-header {
   left: 0;
 }
 
-.tc-sticky-header[class*=sn-right] .tc-header { 
+.tc-sticky-header[class*=sn-right] .tc-header {
   right: 0;
 }
 
@@ -1096,19 +1096,19 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 #tc-sn.navbar .nav .dropdown-submenu > a:after,
 #tc-sn.navbar .nav > li > .dropdown-menu:after,
 #tc-sn.navbar .nav > li > .dropdown-menu:before {
-  content: none;  
+  content: none;
 }
 
 .tc-sn-inner .nav [class*=dropdown] {
-  position: static; 
+  position: static;
   background: transparent;
-  border: none; 
+  border: none;
   box-shadow: none;
   display: none;
 }
 /*force font color of the 2nd level for all viewports? change this in customizr? */
 .nav .dropdown-menu a {
-  color: #777; 
+  color: #777;
 }
 .navbar div > ul.nav > .menu-item:first-child > a {
   padding-left: 20px;
@@ -1145,16 +1145,16 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 .animating .tc-sn-inner .nav [class*=dropdown] ,
 .tc-sn-visible .tc-sn-inner .nav [class*=dropdown] {
-  display: block; 
+  display: block;
 }
 /* SIDE MENU END */
 
 /* SIDE/MOBILE NAV TOGGLE BUTTON */
 
-.sn-open .tc-header .btn-toggle-nav ,
-.tc-sn-visible .tc-header .btn-toggle-nav { 
-  visibility: hidden; 
-}
+/*.sn-open .tc-header .btn-toggle-nav ,
+.tc-sn-visible .tc-header .btn-toggle-nav {
+  visibility: hidden;
+}*/
 .navbar .btn.btn-toggle-nav {
   -webkit-border-radius: 0px;
      -moz-border-radius: 0px;
@@ -1194,7 +1194,7 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
           transition: all 0.2s linear;
 }
 /* Prevent icons staying highlighted in mobiles even when menu closed */
-.tc-is-mobile .navbar .nav-collapse + .btn-toggle-nav .icon-bar { 
+.tc-is-mobile .navbar .nav-collapse + .btn-toggle-nav .icon-bar {
   background-color: #5f6f81;
 }
 /* Tanform 3 bars in a cross */

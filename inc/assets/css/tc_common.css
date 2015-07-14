@@ -5630,7 +5630,7 @@ nav#tc-sn {
 /* HACK */
 /* stick the sticky header to the left/right of the page wrapper*/
 /* following needed both in mobiles with max-width 400px and in the safari version I tried 6.1.5, since looks fine also in other desktop I left it as general rule*/
-/* basically on transition's end in those browsers the sticky header moved to left 0 (or right 0) of the window, overlapping the side menu 
+/* basically on transition's end in those browsers the sticky header moved to left 0 (or right 0) of the window, overlapping the side menu
 style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_style
 */
 .tc-sticky-header[class*=sn-left] .tc-header {
@@ -5707,10 +5707,10 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 /* SIDE MENU END */
 /* SIDE/MOBILE NAV TOGGLE BUTTON */
-.sn-open .tc-header .btn-toggle-nav,
+/*.sn-open .tc-header .btn-toggle-nav ,
 .tc-sn-visible .tc-header .btn-toggle-nav {
   visibility: hidden;
-}
+}*/
 .navbar .btn.btn-toggle-nav {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
