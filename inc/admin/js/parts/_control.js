@@ -286,14 +286,24 @@
       }
     },
     'tc_menu_style' : {
-      controls: [
-        'tc_menu_type',
-        'tc_menu_submenu_fade_effect',
-        'tc_menu_submenu_item_move_effect',
-        'tc_menu_resp_dropdown_limit_to_viewport'
-      ],
-      callback: function (to) {
-        return 'aside' != to;
+      show : {
+        controls: [
+          'tc_menu_type',
+          'tc_menu_submenu_fade_effect',
+          'tc_menu_submenu_item_move_effect',
+          'tc_menu_resp_dropdown_limit_to_viewport'
+        ],
+        callback: function (to) {
+          return 'aside' != to;
+        }
+      },
+      hide : {
+        controls: [
+          'tc_display_menu_label'
+        ],
+        callback: function (to) {
+          return 'aside' != to;
+        }
       }
     }
   };
@@ -380,6 +390,7 @@
         controls  : _get_dependants(setId),
       };
 
+
       _.map( _params.controls , function( depSetId ) {
         _set_single_dependant_control_visibility( depSetId , _params);
       } );
@@ -399,8 +410,8 @@
 
         if ( 'show' == _action && _callback(to) )
           _bool = true;
-        if ( 'hide' == _action && _callback(to) )
-          _bool = false;
+        if ( 'hide' == _action && ! _callback(to) )
+          _bool = true;
         if ( 'both' == _action )
           _bool = _callback(to);
 
@@ -448,10 +459,10 @@
       api.control('tc_theme_options[tc_menu_position]').container.find('select').selecter('destroy').selecter({});
     } );
 
-    var _header_layout = api('tc_theme_options[tc_header_layout]').get();
     //when user changes the menu syle (side or regular), refresh the menu position according to the header layout
     api('tc_theme_options[tc_menu_style]').callbacks.add( function(to) {
-      api('tc_theme_options[tc_menu_position]').set( 'right' == _header_layout ? 'pull-menu-right' : 'pull-menu-left' );
+      var _header_layout = api('tc_theme_options[tc_header_layout]').get();
+      api('tc_theme_options[tc_menu_position]').set( 'left' == _header_layout ? 'pull-menu-right' : 'pull-menu-left' );
       //refresh the selecter
       api.control('tc_theme_options[tc_menu_position]').container.find('select').selecter('destroy').selecter({});
     } );
