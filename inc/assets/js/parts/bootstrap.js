@@ -1667,7 +1667,7 @@ var TCParams = TCParams || {};
           $('.back-to-top').trigger('click');
         }
         else {
-          ('html, body').animate({
+          $('html, body').animate({
                   scrollTop: 0
               }, 700);
         }
