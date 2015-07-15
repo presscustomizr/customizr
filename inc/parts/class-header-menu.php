@@ -97,7 +97,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
       //renders the regular menu + responsive button
       if ( ! $this -> tc_is_sidenav_enabled() ) {
         $this -> tc_regular_menu_display();
-      }else
+      } else
         $this -> tc_sidenav_toggle_button_display();
 
       $html = ob_get_contents();
