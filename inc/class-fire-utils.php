@@ -25,6 +25,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function __construct () {
         self::$inst =& $this;
         self::$instance =& $this;
+
+        //init properties
+        add_action( 'after_setup_theme'                   , array( $this , 'tc_init_properties') );
+        //WP filters
+        add_action( 'after_setup_theme'                   , array( $this , 'tc_wp_filters') );
+
         //get all options
         add_filter( '__options'                           , array( $this , 'tc_get_theme_options' ), 10, 1);
         //get single option
@@ -41,13 +47,40 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         //social networks
         add_filter( '__get_socials'                       , array( $this , 'tc_get_social_networks' ) );
-
-        //WP filters
-        add_action( 'after_setup_theme'                   , array( $this , 'tc_wp_filters') );
-
-        //init properties
-        add_action( 'after_setup_theme'                   , array( $this , 'tc_init_properties') );
       }
+
+
+      /***************************
+      * EARLY HOOKS
+      ****************************/
+      /**
+      * Init TC_utils class properties after_setup_theme
+      * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
+      * tc_get_default_options uses is_user_logged_in() => was causing the bug
+      * hook : after_setup_theme
+      *
+      * @package Customizr
+      * @since Customizr 3.2.3
+      */
+      function tc_init_properties() {
+        $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
+        $this -> db_options       = (array) get_option( TC___::$tc_option_group );
+        $this -> default_options  = $this -> tc_get_default_options();
+        $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
+        $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
+
+        //What was the theme version when the user started to use Customizr?
+        //new install = no options yet
+        //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
+        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
+          set_transient(
+            $_trans,
+            sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
+            60*60*24*9999
+          );
+        }
+      }
+
 
 
       /**
@@ -111,33 +144,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
 
 
-      /**
-      * Init TC_utils class properties after_setup_theme
-      * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
-      * tc_get_default_options uses is_user_logged_in() => was causing the bug
-      *
-      * @package Customizr
-      * @since Customizr 3.2.3
-      */
-      function tc_init_properties() {
-        $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
-        $this -> default_options  = $this -> tc_get_default_options();
-        $this -> db_options       = (array) get_option( TC___::$tc_option_group );
-        $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
-        $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
-
-        //What was the theme version when the user started to use Customizr?
-        //new install = no options yet
-        //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
-          set_transient(
-            $_trans,
-            sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
-            60*60*24*9999
-          );
-        }
-      }
-
 
       /**
       * Returns the current skin's primary color
@@ -177,18 +183,23 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.1.11
       */
       function tc_get_default_options() {
-        $def_options = get_option( "tc_theme_defaults" );
+        $_db_opts     = $this -> db_options;
+        $def_options  = isset($_db_opts['defaults']) ? $_db_opts['defaults'] : array();
 
-        //Always update the default option when (OR) :
-        // 1) they are not defined
-        // 2) customzing => takes into account if user has set a filter or added a new customizer setting
-        // 3) theme version not defined
-        // 4) versions are different
-        if ( is_user_logged_in() || ! $def_options || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
+        //Always update/generate the default option when (OR) :
+        // 1) user is logged in
+        // 2) they are not defined
+        // 3) customzing => takes into account if user has set a filter or added a new customizer setting
+        // 4) theme version not defined
+        // 5) versions are different
+        if ( is_user_logged_in() || empty($def_options) || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
           $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
-          //Adds the version
+          //Adds the version in default
           $def_options['ver']   =  CUSTOMIZR_VER;
-          update_option( "tc_theme_defaults" , $def_options );
+
+          $_db_opts['defaults'] = $def_options;
+          //writes the new value in db
+          update_option( "tc_theme_options" , $_db_opts );
         }
         return apply_filters( 'tc_default_options', $def_options );
       }
