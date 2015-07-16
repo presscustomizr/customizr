@@ -186,13 +186,18 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $_db_opts     = $this -> db_options;
         $def_options  = isset($_db_opts['defaults']) ? $_db_opts['defaults'] : array();
 
+        //Don't update if default options are not empty + customizing context
+        //customizing out ? => we can assume that the user has at least refresh the default once (because logged in, see conditions below) before accessing the customizer
+        //customzing => takes into account if user has set a filter or added a new customizer setting
+        if ( ! empty($def_options) && $this -> is_customizing )
+          return apply_filters( 'tc_default_options', $def_options );
+
         //Always update/generate the default option when (OR) :
         // 1) user is logged in
         // 2) they are not defined
-        // 3) customzing => takes into account if user has set a filter or added a new customizer setting
-        // 4) theme version not defined
-        // 5) versions are different
-        if ( is_user_logged_in() || empty($def_options) || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
+        // 3) theme version not defined
+        // 4) versions are different
+        if ( is_user_logged_in() || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
           $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
           //Adds the version in default
           $def_options['ver']   =  CUSTOMIZR_VER;

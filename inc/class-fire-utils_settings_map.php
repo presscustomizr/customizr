@@ -14,15 +14,12 @@
 */
 if ( ! class_exists( 'TC_utils_settings_map' ) ) :
   class TC_utils_settings_map {
-
-    //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     private $is_wp_version_before_4_0;
     public $_customizer_map = array();
 
     function __construct () {
       self::$instance =& $this;
-
       //declare a private property to check wp version >= 4.0
       global $wp_version;
       $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
@@ -60,6 +57,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       );
       return apply_filters( 'tc_customizer_map', $this -> customizer_map );
     }
+
 
 
     /**
