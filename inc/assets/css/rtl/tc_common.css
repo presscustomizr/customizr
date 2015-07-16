@@ -5222,7 +5222,7 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
   display: none;
 }
 /* do not display menu button when sticky enabled and tc-menu-off enabled */
-.sticky-enabled .tc-menu-off .btn.btn-toggle-nav,
+.sticky-enabled .tc-menu-off .btn-toggle-nav .btn,
 .sticky-enabled .tc-menu-off .nav-collapse {
   display: none;
 }
@@ -5245,9 +5245,9 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
 .sticky-enabled .brand a {
   margin: 10px 0px;
 }
-.sticky-enabled .tc-header .btn.btn-toggle-nav {
+/*.sticky-enabled .tc-header .btn-toggle-nav .btn {
   margin: 0 0 3px;
-}
+}*/
 .sticky-enabled .nav-collapse {
   float: left;
 }
@@ -5427,9 +5427,9 @@ h2.site-description {
   border-width: 4px 0 4px 4px;
   border-left-color: #cccccc;
 }
-/* Hide responsive button by default */
-.navbar .btn-toggle-nav,
-.navbar .btn-navbar {
+/* Hide responsive button by default when menu is regulat type*/
+.tc-regular-menu .navbar .btn-toggle-nav,
+.tc-regular-menu .navbar .btn-navbar {
   display: none;
 }
 .navbar .btn-navbar:hover,
@@ -5512,13 +5512,13 @@ li.dropdown.active > .dropdown-toggle,
   padding-right: 1.63em;
 }
 /* ADJUST LEFT AND RIGHT MENU POSITIONS => align with socials (left) and tagline (right) */
-.navbar div > ul.nav > .menu-item:last-child > a {
-  padding-right: 0px;
+.logo-left .navbar div > ul.nav > .menu-item:last-child > a {
+  padding-right: 0;
 }
 .navbar .nav {
   margin-right: 0px;
 }
-.navbar div > ul.nav > .menu-item:first-child > a {
+.logo-right .navbar div > ul.nav > .menu-item:first-child > a {
   padding-left: 5px;
 }
 .pull-menu-left .nav-collapse {
@@ -5639,7 +5639,7 @@ nav#tc-sn {
 /* HACK */
 /* stick the sticky header to the left/right of the page wrapper*/
 /* following needed both in mobiles with max-width 400px and in the safari version I tried 6.1.5, since looks fine also in other desktop I left it as general rule*/
-/* basically on transition's end in those browsers the sticky header moved to left 0 (or right 0) of the window, overlapping the side menu 
+/* basically on transition's end in those browsers the sticky header moved to left 0 (or right 0) of the window, overlapping the side menu
 style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_style
 */
 .tc-sticky-header[class*=sn-left] .tc-header {
@@ -5651,11 +5651,17 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 /* see inline style for further fixes */
 /* END FIXED HEADER ISSUE */
 /* SIDE MENU START */
-.btn.btn-toggle-nav,
+/*.btn-toggle-nav .menu-btn,
 #tc-sn .nav-collapse {
   background: #fff;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,.9);
   filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF)";
+}*/
+.btn-toggle-nav .menu-btn:focus,
+.btn-toggle-nav .menu-btn:hover {
+  outline: none;
+  outline-offset: inherit;
+  background: none;
 }
 #tc-sn .tc-sn-inner.nav-collapse .nav {
   display: block;
@@ -5716,11 +5722,15 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 /* SIDE MENU END */
 /* SIDE/MOBILE NAV TOGGLE BUTTON */
-.sn-open .tc-header .btn-toggle-nav,
+/*.sn-open .tc-header .btn-toggle-nav ,
 .tc-sn-visible .tc-header .btn-toggle-nav {
   visibility: hidden;
+}*/
+.btn-toggle-nav {
+  width: auto;
+  line-height: 29px;
 }
-.navbar .btn.btn-toggle-nav {
+.navbar .btn-toggle-nav .btn {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -5730,28 +5740,44 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: content-box;
-  padding: 8px 7px 2px;
-  border: 1px solid #EEE;
+  /*padding: 8px 7px 2px;
+  border: 1px solid #EEE;*/
   height: 30px;
-  width: 30px;
   color: #5F6F81;
   text-decoration: none;
   cursor: pointer;
-  margin: 0 10px 10px;
+  margin: 1px 5px 0px;
   outline: 0;
+  float: left;
 }
-.btn.sn-toggle {
+.sn-toggle .btn {
   display: block;
+}
+.menu-btn {
+  padding: 0;
+  background: none;
+  border: none;
+}
+.menu-label {
+  text-align: center;
+  margin: auto;
+  display: block;
+  float: right;
+  display: inline-block;
+  margin-right: 5px;
 }
 .navbar .btn-toggle-nav .icon-bar {
   background: #5F6F81;
   display: block;
   width: 30px;
-  height: 4px;
+  height: 3px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   margin-bottom: 5px;
+}
+.navbar .btn-toggle-nav .icon-bar,
+.navbar .btn-toggle-nav .menu-label {
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
@@ -5773,6 +5799,10 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 .nav-collapse.in + .btn-toggle-nav .icon-bar:nth-child(2),
 .tc-sn-visible .btn-toggle-nav .icon-bar:nth-child(2) {
   height: 0;
+  -webkit-transition: all .05s linear;
+  -moz-transition: all .05s linear;
+  -o-transition: all .05s linear;
+  transition: all .05s linear;
 }
 .nav-collapse.in + .btn-toggle-nav .icon-bar:nth-child(3),
 .tc-sn-visible .btn-toggle-nav .icon-bar:nth-child(3) {
@@ -6728,10 +6758,14 @@ img.v-centered {
   background: rgba(0, 0, 0, 0.4);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
 }
-.no-thumb figcaption {
+article .no-thumb figcaption {
   color: inherit;
   background: none;
   opacity: 1;
+}
+.expanded .no-thumb figcaption {
+  color: #fff;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 .expanded figcaption,
 .no-thumb figcaption,
@@ -6776,6 +6810,7 @@ img.v-centered {
 .tc-post-list-grid article.expanded .entry-summary {
   background: #fafafa;
   background: rgba(0, 0, 0, 0.4);
+  background: grey\9;
   padding: 8%;
   margin: 0;
   max-height: none;
@@ -6798,11 +6833,20 @@ img.v-centered {
 .hover .tc-grid-figure img {
   opacity: 0.7;
 }
-.hover .expanded figcaption,
+/*.hover figcaption {
+  background: rgb(250, 250, 250);
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  /*color: inherit\9!important;
+}*/
+.hover.expanded .no-thumb figcaption {
+  background: none;
+}
 .hover .no-thumb figcaption {
+  color: #fff;
   background: #fafafa;
   background: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  background: #676767\9;
 }
 .tc-post-list-grid article.sticky {
   text-align: justify;
@@ -6872,6 +6916,7 @@ img.v-centered {
   position: absolute;
   z-index: 1;
   width: 100%;
+  display: none!important\9;
 }
 .format-quote .tc-grid-icon,
 .format-status .tc-grid-icon {
@@ -7233,6 +7278,8 @@ footer ol {
   z-index: 99999999;
   background: #777777 transparent;
   background: rgba(119, 119, 119, 0.2);
+  background: white\9;
+  border: 1px solid #ddd\9;
   color: #EEE;
   width: 45px;
   height: 43px;
@@ -8935,7 +8982,7 @@ li#wp-admin-bar-tc-customizr a {
   .navbar .btn-navbar {
     display: block;
     margin: 10px 0;
-    float: right;
+    /*float: right;*/
   }
   /* GIVE NAVBAR A SMALLER Z-index than logo / title SINCE V3.2.0*/
   .sticky-enabled .navbar-wrapper {
@@ -8963,6 +9010,9 @@ li#wp-admin-bar-tc-customizr a {
     width: auto!important;
     float: left;
     margin: 14px 0 0;
+  }
+  .logo-right .navbar .navbar-inner .social-block {
+    float: right;
   }
   /* MENU CHANGES SINCE V3.2.0 */
   .navbar .nav-collapse .dropdown-menu a {
@@ -9011,8 +9061,11 @@ li#wp-admin-bar-tc-customizr a {
   .simple-button .navbar .btn-navbar:hover .icon-bar {
     background-color: #fff;
   }
-  button.btn.btn-navbar {
+  /*  button.btn.btn-navbar {
     transition: all 0.1s ease-in-out;
+  }*/
+  .btn-toggle-nav .menu-label {
+    display: none;
   }
 }
 @media (max-width: 979px) and (min-width: 768px) {

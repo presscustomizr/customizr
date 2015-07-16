@@ -203,36 +203,36 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.0.3
       */
       function tc_generate_default_options( $map, $option_group = null ) {
-          //do we have to look in a specific group of option (plugin?)
-          $option_group   = is_null($option_group) ? 'tc_theme_options' : $option_group;
+        //do we have to look in a specific group of option (plugin?)
+        $option_group   = is_null($option_group) ? 'tc_theme_options' : $option_group;
 
-          //initialize the default array with the sliders options
-          $defaults = array();
+        //initialize the default array with the sliders options
+        $defaults = array();
 
-          foreach ($map['add_setting_control'] as $key => $options) {
+        foreach ($map['add_setting_control'] as $key => $options) {
 
-            //check it is a customizr option
-            if( false !== strpos( $key  , $option_group ) ) {
+          //check it is a customizr option
+          if( false !== strpos( $key  , $option_group ) ) {
 
-              //isolate the option name between brackets [ ]
-              $option_name = '';
-              $option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
-              if ( isset( $match[1][0] ) )
-                {
-                    $option_name = $match[1][0];
-                }
-
-              //write default option in array
-              if(isset($options['default'])) {
-                $defaults[$option_name] = ( 'checkbox' == $options['type'] ) ? (bool) $options['default'] : $options['default'];
-              }
-              else {
-                $defaults[$option_name] = null;
+            //isolate the option name between brackets [ ]
+            $option_name = '';
+            $option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
+            if ( isset( $match[1][0] ) )
+              {
+                  $option_name = $match[1][0];
               }
 
-            }//end if
+            //write default option in array
+            if(isset($options['default'])) {
+              $defaults[$option_name] = ( 'checkbox' == $options['type'] ) ? (bool) $options['default'] : $options['default'];
+            }
+            else {
+              $defaults[$option_name] = null;
+            }
 
-          }//end foreach
+          }//end if
+
+        }//end foreach
 
         return $defaults;
       }
@@ -328,7 +328,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if ( in_the_loop() ) {
           $tc_id            = get_the_ID();
         } else {
-          global $post;  
+          global $post;
           $queried_object   = get_queried_object();
           $tc_id            = ( ! empty ( $post ) && isset($post -> ID) ) ? $post -> ID : null;
           $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
