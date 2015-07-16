@@ -115,6 +115,10 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 				    <link rel="profile" href="http://gmpg.org/xfn/11" />
 				    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
+				   <!-- html5shiv for IE8 and less  -->
+				    <!--[if lt IE 9]>
+				      <script src="<?php echo TC_BASE_URL ?>inc/assets/js/html5.js"></script>
+				    <![endif]-->
 				   <!-- Icons font support for IE6-7  -->
 				    <!--[if lt IE 8]>
 				      <script src="<?php echo TC_BASE_URL ?>inc/assets/css/fonts/lte-ie7.js"></script>
