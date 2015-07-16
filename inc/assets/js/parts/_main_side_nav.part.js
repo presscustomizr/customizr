@@ -111,8 +111,7 @@ var czrapp = czrapp || {};
       //handles the page wrapper button fade in / out on click
       var _event = evt || event,
           $_clicked_btn = $( _event.target ),
-          _is_opening   = $('#tc-page-wrap').has( $_clicked_btn).length > 0,
-          that = this;
+          _is_opening   = $('#tc-page-wrap').has( $_clicked_btn).length > 0;
 
       this.$_page_wrapper_btn.each( function(){
         $(this).fadeTo( 500 , _is_opening ? 0 : 1 , function() {
@@ -122,9 +121,7 @@ var czrapp = czrapp || {};
       return false;
    },
 
-   _transition_end_callback : function (){
-     var self = this;
-
+   _transition_end_callback : function() {
      czrapp.$_body.removeClass( 'animating ' +  this._anim_type)
                   .toggleClass( 'tc-sn-visible' )
                   .trigger( this._anim_type + '_end' );
