@@ -67,7 +67,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		* @since Customizr 3.0
 		*/
 		function tc_customize_register( $wp_customize) {
-			return $this -> tc_customize_factory ( $wp_customize , $args = $this -> tc_customize_arguments(), $setup = TC_utils_settings_map::$instance -> tc_customizer_map() );
+			return $this -> tc_customize_factory ( $wp_customize , $args = $this -> tc_customize_arguments(), $setup = TC_utils_settings_map::$instance -> tc_get_customizer_map() );
 		}
 
 

@@ -18,17 +18,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     private $is_wp_version_before_4_0;
+    public $_customizer_map = array();
 
     function __construct () {
       self::$instance =& $this;
-      add_filter( 'tc_add_panel_map'        , array( $this, 'tc_popul_panels_map'));
-      add_filter( 'tc_remove_section_map'   , array( $this, 'tc_popul_remove_section_map'));
-      //theme switcher's enabled when user opened the customizer from the theme's page
-      add_filter( 'tc_remove_section_map'   , array( $this, 'tc_set_theme_switcher_visibility'));
-      add_filter( 'tc_add_section_map'      , array( $this, 'tc_popul_section_map' ));
-      add_filter( 'tc_get_setting_map'      , array( $this, 'tc_popul_get_setting_map' ));
-      //controls
-      $this -> tc_populate_setting_control_map();
 
       //declare a private property to check wp version >= 4.0
       global $wp_version;
@@ -44,18 +37,28 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    public function tc_customizer_map( $get_default = null ) {
+    public function tc_get_customizer_map( $get_default = null ) {
+      if ( ! empty( $this -> customizer_map ) )
+        return $this -> customizer_map;
+
+      add_filter( 'tc_add_panel_map'        , array( $this, 'tc_popul_panels_map'));
+      add_filter( 'tc_remove_section_map'   , array( $this, 'tc_popul_remove_section_map'));
+      //theme switcher's enabled when user opened the customizer from the theme's page
+      add_filter( 'tc_remove_section_map'   , array( $this, 'tc_set_theme_switcher_visibility'));
+      add_filter( 'tc_add_section_map'      , array( $this, 'tc_popul_section_map' ));
+      add_filter( 'tc_get_setting_map'      , array( $this, 'tc_popul_get_setting_map' ));
+      //add controls to the map
+      $this -> tc_populate_setting_control_map();
+
       //merges all customizer arrays
-      return apply_filters(
-        'tc_customizer_map',
-        array_merge(
-          array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
-          array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
-          array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
-          array( 'get_setting'         => apply_filters( 'tc_get_setting_map', array() ) ),
-          array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
-        )
+      $this -> customizer_map = array_merge(
+        array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
+        array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
+        array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
+        array( 'get_setting'         => apply_filters( 'tc_get_setting_map', array() ) ),
+        array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
       );
+      return apply_filters( 'tc_customizer_map', $this -> customizer_map );
     }
 
 

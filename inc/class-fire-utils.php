@@ -193,7 +193,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         // 4) theme version not defined
         // 5) versions are different
         if ( is_user_logged_in() || empty($def_options) || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
-          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
+          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
           //Adds the version in default
           $def_options['ver']   =  CUSTOMIZR_VER;
 
