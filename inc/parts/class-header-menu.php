@@ -17,7 +17,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
     function __construct () {
       self::$instance =& $this;
       //Set menu customizer options (since 3.2.0)
-      add_action ( 'wp'                       , array( $this , 'tc_set_menu_hooks') );
+      add_action( 'wp'                       , array( $this, 'tc_set_menu_hooks') );
     }
 
 
@@ -52,7 +52,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
       //body > header > navbar action ordered by priority
       add_action ( '__navbar'                     , array( $this , 'tc_menu_display' ), 30 );
-
+      //adds class
       add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ));
     }
 
@@ -143,12 +143,16 @@ if ( ! class_exists( 'TC_menu' ) ) :
     function tc_wp_nav_menu_view( $args, $theme_location = 'main' ) {
        extract( $args );
        //renders the menu
+
+       // Get the nav menu based on the theme_location
+       $_locations  = get_nav_menu_locations();//<= returns an array Array( [main] => id1, [secondary] => id2 );
+       $_menu       = isset($_locations[$theme_location]) ? wp_get_nav_menu_object( $_locations[$theme_location] ) : false;
        $menu_args = apply_filters( "tc_{$type}_menu_args",
                     array(
                       'theme_location'  => $theme_location,
                       'menu_class'      => implode(' ', apply_filters( "tc_{$type}_menu_class", $menu_class ) ),
-                      'fallback_cb'     => array( $this , 'tc_link_to_menu_editor' ),
-                      'walker'          => TC_nav_walker::$instance,
+                      'fallback_cb'     => array( $this, 'tc_page_menu' ),
+                      'walker'          => ! $_menu ? '' : new TC_nav_walker,
                       'echo'            => false,
                   )
         );
@@ -204,6 +208,8 @@ if ( ! class_exists( 'TC_menu' ) ) :
       if ( $echo ) { echo $output; }
       return $output;
     }
+
+
 
     /***************************************
     * REGULAR VIEWS
@@ -355,6 +361,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
     }
 
 
+
     /**
     * Adds a specific class to the ul wrapper
     * hook : 'wp_page_menu'
@@ -366,6 +373,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
       $html =  preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
       return apply_filters( 'tc_add_menuclass', $html );
     }
+
 
 
     /**
@@ -447,6 +455,8 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
 
 
+
+
     /***************************************
     * HELPERS
     ****************************************/
@@ -455,6 +465,150 @@ if ( ! class_exists( 'TC_menu' ) ) :
     */
     function tc_is_sidenav_enabled() {
       return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) ) );
+    }
+
+
+
+    /**
+     * Display or retrieve list of pages with optional home link.
+     * Modified copy of wp_page_menu()
+     * @return string html menu
+     */
+    function tc_page_menu( $args = array() ) {
+      $defaults = array('sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '');
+      $args = wp_parse_args( $args, $defaults );
+
+      $args = apply_filters( 'wp_page_menu_args', $args );
+
+      $menu = '';
+
+      $list_args = $args;
+
+      // Show Home in the menu
+      if ( ! empty($args['show_home']) ) {
+        if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] )
+          $text = __('Home');
+        else
+          $text = $args['show_home'];
+        $class = '';
+        if ( is_front_page() && !is_paged() )
+          $class = 'class="current_page_item"';
+        $menu .= '<li ' . $class . '><a href="' . home_url( '/' ) . '">' . $args['link_before'] . $text . $args['link_after'] . '</a></li>';
+        // If the front page is a page, add it to the exclude list
+        if (get_option('show_on_front') == 'page') {
+          if ( !empty( $list_args['exclude'] ) ) {
+            $list_args['exclude'] .= ',';
+          } else {
+            $list_args['exclude'] = '';
+          }
+          $list_args['exclude'] .= get_option('page_on_front');
+        }
+      }
+
+      $list_args['echo'] = false;
+      $list_args['title_li'] = '';
+      $menu .= str_replace( array( "\r", "\n", "\t" ), '', $this -> tc_list_pages($list_args) );
+
+      // if ( $menu )
+      //   $menu = '<ul>' . $menu . '</ul>';
+
+      //$menu = '<div class="' . esc_attr($args['menu_class']) . '">' . $menu . "</div>\n";
+
+      if ( $menu )
+        $menu = '<ul class="' . esc_attr($args['menu_class']) . '">' . $menu . '</ul>';
+
+      //$menu = apply_filters( 'wp_page_menu', $menu, $args );
+      if ( $args['echo'] )
+        echo $menu;
+      else
+        return $menu;
+    }
+
+
+    /**
+     * Retrieve or display list of pages in list (li) format.
+     * Modified copy of wp_list_pages
+     * @return string HTML list of pages.
+     */
+    function tc_list_pages( $args = '' ) {
+      $defaults = array(
+        'depth' => 0, 'show_date' => '',
+        'date_format' => get_option( 'date_format' ),
+        'child_of' => 0, 'exclude' => '',
+        'title_li' => __( 'Pages' ), 'echo' => 1,
+        'authors' => '', 'sort_column' => 'menu_order, post_title',
+        'link_before' => '', 'link_after' => '', 'walker' => '',
+      );
+
+      $r = wp_parse_args( $args, $defaults );
+
+      $output = '';
+      $current_page = 0;
+
+      // sanitize, mostly to keep spaces out
+      $r['exclude'] = preg_replace( '/[^0-9,]/', '', $r['exclude'] );
+
+      // Allow plugins to filter an array of excluded pages (but don't put a nullstring into the array)
+      $exclude_array = ( $r['exclude'] ) ? explode( ',', $r['exclude'] ) : array();
+
+      $r['exclude'] = implode( ',', apply_filters( 'wp_list_pages_excludes', $exclude_array ) );
+
+      // Query pages.
+      $r['hierarchical'] = 0;
+      $pages = get_pages( $r );
+
+      if ( ! empty( $pages ) ) {
+        if ( $r['title_li'] ) {
+          $output .= '<li class="pagenav">' . $r['title_li'] . '<ul>';
+        }
+        global $wp_query;
+        if ( is_page() || is_attachment() || $wp_query->is_posts_page ) {
+          $current_page = get_queried_object_id();
+        } elseif ( is_singular() ) {
+          $queried_object = get_queried_object();
+          if ( is_post_type_hierarchical( $queried_object->post_type ) ) {
+            $current_page = $queried_object->ID;
+          }
+        }
+
+        $output .= $this -> tc_walk_page_tree( $pages, $r['depth'], $current_page, $r );
+
+        if ( $r['title_li'] ) {
+          $output .= '</ul></li>';
+        }
+      }
+
+      $html = apply_filters( 'wp_list_pages', $output, $r );
+
+      if ( $r['echo'] ) {
+        echo $html;
+      } else {
+        return $html;
+      }
+    }
+
+
+    /**
+     * Retrieve HTML list content for page list.
+     *
+     * @uses Walker_Page to create HTML list content.
+     * @since 2.1.0
+     * @see Walker_Page::walk() for parameters and return description.
+     */
+    function tc_walk_page_tree($pages, $depth, $current_page, $r) {
+      // if ( empty($r['walker']) )
+      //   $walker = new Walker_Page;
+      // else
+      //   $walker = $r['walker'];
+      $walker = new TC_nav_walker_page;
+
+      foreach ( (array) $pages as $page ) {
+        if ( $page->post_parent )
+          $r['pages_with_children'][ $page->post_parent ] = true;
+      }
+
+      $args = array($pages, $depth, $r, $current_page);
+      return call_user_func_array(array($walker, 'walk'), $args);
     }
 
   }//end of class
