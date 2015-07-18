@@ -176,9 +176,12 @@ if ( ! class_exists( 'TC___' ) ) :
           }
 
           $classname = 'TC_' . $path_suffix[1];
-          if( ! isset( $instances[ $classname ] ) )
-          {
-              $instances[ $classname ] = class_exists($classname)  ? new $classname : '';
+          if( ! isset( $instances[ $classname ] ) )  {
+            //check if the classname can be instanciated here
+            if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
+              continue;
+            //instanciates
+            $instances[ $classname ] = class_exists($classname)  ? new $classname : '';
           }
         }
       }
