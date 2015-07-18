@@ -96,9 +96,11 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
       //renders the regular menu + responsive button
       if ( ! $this -> tc_is_sidenav_enabled() ) {
-        $this -> tc_regular_menu_display();
-      } else
+        $this -> tc_regular_menu_display( 'main' );
+      } else {
         $this -> tc_sidenav_toggle_button_display();
+        $this -> tc_regular_menu_display( 'secondary' );
+      }
 
       $html = ob_get_contents();
       ob_end_clean();
@@ -140,32 +142,36 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_wp_nav_menu_view( $args, $theme_location = 'main' ) {
-       extract( $args );
-       //renders the menu
+    function tc_wp_nav_menu_view( $args ) {
+      extract( $args );
+      //'_location', 'type', 'menu_class', 'menu_wrapper_class'
+      //renders the menu
 
-       // Get the nav menu based on the theme_location
-       $_locations  = get_nav_menu_locations();//<= returns an array Array( [main] => id1, [secondary] => id2 );
-       $_menu       = isset($_locations[$theme_location]) ? wp_get_nav_menu_object( $_locations[$theme_location] ) : false;
-       $menu_args = apply_filters( "tc_{$type}_menu_args",
-                    array(
-                      'theme_location'  => $theme_location,
-                      'menu_class'      => implode(' ', apply_filters( "tc_{$type}_menu_class", $menu_class ) ),
-                      'fallback_cb'     => array( $this, 'tc_page_menu' ),
-                      'walker'          => ! $_menu ? '' : new TC_nav_walker,
-                      'echo'            => false,
-                  )
+      // Get the nav menu based on the _location
+      $_locations           = get_nav_menu_locations();//<= returns an array Array( [main] => id1, [secondary] => id2 );
+      $_has_location_menu   = isset($_locations[$_location]) ? wp_get_nav_menu_object( $_locations[$_location] ) : false;
+
+      $menu_args = apply_filters( "tc_{$type}_menu_args",
+          array(
+            'theme_location'  => $_location,
+            'menu_class'      => implode(' ', apply_filters( "tc_{$type}_menu_class", $menu_class ) ),
+            'fallback_cb'     => array( $this, 'tc_page_menu' ),
+            //if no menu is set to the required location, fallsback to tc_page_menu
+            //=> tc_page_menu has it's own class extension of Walker, therefore no need to specify one below
+            'walker'          => ! $_has_location_menu ? '' : new TC_nav_walker,
+            'echo'            => false,
+        )
+      );
+
+      $menu = wp_nav_menu( $menu_args );
+
+      if ( $menu )
+        $menu = sprintf('<div class="%1$s">%2$s</div>',
+            implode(' ', apply_filters( "tc_{$type}_menu_wrapper_class", $menu_wrapper_class ) ),
+            $menu
         );
 
-        $menu = wp_nav_menu( $menu_args );
-
-        if ( $menu )
-          $menu = sprintf('<div class="%1$s">%2$s</div>',
-              implode(' ', apply_filters( "tc_{$type}_menu_wrapper_class", $menu_wrapper_class ) ),
-              $menu
-          );
-
-        return apply_filters("tc_{$type}_menu_view", $menu );
+      return apply_filters("tc_{$type}_menu_view", $menu );
     }
 
 
@@ -221,7 +227,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * @since v3.3+
     *
     */
-    function tc_regular_menu_display(){
+    function tc_regular_menu_display( $_location = 'main' ){
       $type               = 'regular';
       $where              = 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
       $button_class       = array( 'btn-toggle-nav', $where );
@@ -230,9 +236,9 @@ if ( ! class_exists( 'TC_menu' ) ) :
       $menu_class         = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) ;
       $menu_wrapper_class = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
 
-      $menu_view = $this -> tc_wp_nav_menu_view( compact( 'type', 'menu_class', 'menu_wrapper_class') );
+      $menu_view = $this -> tc_wp_nav_menu_view( compact( '_location', 'type', 'menu_class', 'menu_wrapper_class' ) );
 
-      if ( $menu_view )
+      if ( $menu_view && 'main' == $_location )
         $menu_view = $menu_view . $this -> tc_menu_button_view( compact( 'type', 'button_class', 'button_attr') );
 
       echo $menu_view;
@@ -276,8 +282,10 @@ if ( ! class_exists( 'TC_menu' ) ) :
        $type               = 'sidenav';
        $menu_class         = array('nav', 'sn-nav' );
        $menu_wrapper_class = array('sn-nav-wrapper');
+       //sidenav menu is always "main"
+       $_location          = 'main';
 
-       echo $this -> tc_wp_nav_menu_view( compact( 'type', 'menu_class', 'menu_wrapper_class') );
+       echo $this -> tc_wp_nav_menu_view( compact( '_location', 'type', 'menu_class', 'menu_wrapper_class') );
     }
 
     /**

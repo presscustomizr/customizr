@@ -2034,7 +2034,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'panel'   => 'tc-header-panel'
         ),
         'nav'           => array(
-                  'title'          => __( 'Navigation Menu' , 'customizr' ),
+                  'title'          => __( 'Navigation Menus' , 'customizr' ),
                   'theme_supports' => 'menus',
                   'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
                   'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.'),
