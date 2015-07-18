@@ -27,16 +27,18 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
       self::$instance =& $this;
   		//add control class
-  		add_action ( 'customize_register'				                , array( $this , 'tc_augment_customizer' ) ,10,1);
+  		add_action ( 'customize_register'				                , array( $this , 'tc_augment_customizer' ),10,1);
 
-  		//add grid/post list buttons
-  		add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );
-  		add_action( '__before_setting_control'    , array( $this , 'tc_render_link_to_grid') );
+  		//add grid/post list buttons in the control views
+  		add_action( '__before_setting_control'                  , array( $this , 'tc_render_grid_control_link') );
+  		add_action( '__before_setting_control'                  , array( $this , 'tc_render_link_to_grid') );
 
   		//control scripts and style
   		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
+      //modify some WP built-in setting
+      add_action ( 'customize_register'                       , array( $this , 'tc_remove_wp_menus_settings_controls' ), 15, 1 );
   		//add the customizer built with the builder below
-  		add_action ( 'customize_register'				                , array( $this , 'tc_customize_register' ) , 20, 1 );
+  		add_action ( 'customize_register'				                , array( $this , 'tc_customize_register' ), 20, 1 );
   		//preview scripts
   		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ));
   		//Hide donate button
@@ -46,6 +48,30 @@ if ( ! class_exists( 'TC_customize' ) ) :
       	add_action( 'customize_controls_print_scripts'        , array( $this , 'tc_add_livereload_script') );
 
       add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'tc_print_js_templates' ) );
+    }
+
+
+    /*
+    * Since the WP_Customize_Manager::$controls and $settings are protected properties, there's no way to alter them
+    * The workaround is to use the WP_Customize_Manager methods to remove them
+    *  => they are then added back in the customizer map
+    * hook : tc_customize_register
+    * @return void()
+    */
+    function tc_remove_wp_menus_settings_controls( $wp_customize ) {
+      /* Nav Menus */
+      $locations      = get_registered_nav_menus();
+      $menus          = wp_get_nav_menus();
+
+      if ( ! $menus )
+        return;
+
+      //assign new priorities to the menu controls
+      foreach ( $locations as $location => $description ) {
+        $menu_setting_id = "nav_menu_locations[{$location}]";
+        $wp_customize -> remove_control( $menu_setting_id );
+        $wp_customize -> remove_setting( $menu_setting_id );
+      }
     }
 
 
@@ -67,7 +93,11 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		* @since Customizr 3.0
 		*/
 		function tc_customize_register( $wp_customize) {
-			return $this -> tc_customize_factory ( $wp_customize , $args = $this -> tc_customize_arguments(), $setup = TC_utils_settings_map::$instance -> tc_get_customizer_map() );
+			return $this -> tc_customize_factory (
+        $wp_customize,
+        $this -> tc_customize_arguments(),
+        TC_utils_settings_map::$instance -> tc_get_customizer_map()
+      );
 		}
 
 

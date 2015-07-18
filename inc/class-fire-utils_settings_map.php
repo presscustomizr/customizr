@@ -53,6 +53,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
       add_filter( 'tc_social_option_map'     , array( $this, 'tc_generates_socials' ));
       add_filter( 'tc_front_page_option_map' , array( $this, 'tc_generates_featured_pages' ));
+      //adds back the WP menus modified settings controls
+      add_filter( 'tc_navigation_option_map' , array( $this, 'tc_generates_menus' ));
 
 
       //CACHE THE GLOBAL CUSTOMIZER MAP
@@ -629,6 +631,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                         NAVIGATION SECTION
     ------------------------------------------------------------------------------------------------------*/
+    //NOTE : priorities 10 and 20 are "used" bu menus main and secondary
     function tc_navigation_option_map( $get_default = null ) {
       return array(
               'menu_button'           => array(
@@ -638,11 +641,21 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'      =>  'button' ,
                                 'link'      =>  'nav-menus.php' ,
                                 'buttontext'  => __( 'Manage menus' , 'customizr' ),
+                                'priority'      => 3
+              ),
+              'tc_theme_options[tc_display_second_menu]'  =>  array(
+                                'default'       => 0,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Display a secondary menu in the header." , "customizr" ),
+                                'section'       => 'nav' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 15,//must be located between the two menus
+                                // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               ),
               'tc_theme_options[tc_menu_style]'  =>  array(
                               'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'navbar' : 'aside',
                               'control'       => 'TC_controls' ,
-                              'title'         => __( 'Design and effects' , 'customizr'),
+                              'title'         => __( 'Main menu design' , 'customizr'),
                               'label'         => __( 'Select a style : side menu or regular' , 'customizr' ),
                               'section'       => 'nav' ,
                               'type'          => 'select',
@@ -650,7 +663,32 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                       'navbar'   => __( 'Regular'   ,  'customizr' ),
                                       'aside'    => __( 'Side Menu' ,  'customizr' ),
                               ),
-                              'priority'      => 10
+                              'priority'      => 30
+              ),
+              'tc_theme_options[tc_second_menu_resp_setting]'  =>  array(
+                                'default'       => 'in-sn-before',
+                                'control'       => 'TC_controls' ,
+                                'title'         => __( 'Secondary menu design' , 'customizr'),
+                                'label'         => __( "Choose a responsive behaviour for the secondary menu." , "customizr" ),
+                                'section'       => 'nav',
+                                'type'      =>  'select',
+                                'choices'     => array(
+                                    'in-sn-before'   => __( 'Move before items inside the side menu ' , 'customizr'),
+                                    'in-sn-after'   => __( 'Move after items inside the side menu ' , 'customizr'),
+                                    'display-in-header'   => __( 'Display in the header' , 'customizr'),
+                                    'hide'   => __( 'Hide' , 'customizr'  ),
+                                ),
+                                'priority'      => 40,
+                                // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
+              ),
+              'tc_theme_options[tc_display_menu_label]'  =>  array(
+                                'default'       => 0,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Display a label next to the menu button." , "customizr" ),
+                                'section'       => 'nav' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 45,
+                                'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               ),
               'tc_theme_options[tc_menu_position]'  =>  array(
                                 'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'pull-menu-left' : 'pull-menu-right',
@@ -662,7 +700,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'pull-menu-left'      => __( 'Menu on the left' , 'customizr' ),
                                         'pull-menu-right'     => __( 'Menu on the right' , 'customizr' )
                                 ),
-                                'priority'      => 20,
+                                'priority'      => 50,
                                 'transport'     => 'postMessage',
                                 'notice'        => __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' )
               ),
@@ -678,7 +716,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                         'click'   => __( 'Expand submenus on click' , 'customizr'),
                                         'hover'   => __( 'Expand submenus on hover' , 'customizr'  ),
                                 ),
-                                'priority'  =>   25
+                                'priority'  =>   60
               ),
               'tc_theme_options[tc_menu_submenu_fade_effect]'  =>  array(
                                 'default'       => 1,
@@ -686,7 +724,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Reveal the sub-menus blocks with a fade effect" , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          => 'checkbox' ,
-                                'priority'      => 30,
+                                'priority'      => 70,
                                 'transport'     => 'postMessage',
               ),
               'tc_theme_options[tc_menu_submenu_item_move_effect]'  =>  array(
@@ -695,7 +733,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Hover move effect for the sub menu items" , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          => 'checkbox' ,
-                                'priority'      => 40,
+                                'priority'      => 80,
                                 'transport'     => 'postMessage',
               ),
               'tc_theme_options[tc_menu_resp_dropdown_limit_to_viewport]'  =>  array(
@@ -704,17 +742,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "In responsive mode, limit the height of the dropdown menu block to the visible viewport" , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          => 'checkbox' ,
-                                'priority'      => 50,
+                                'priority'      => 90,
                                 //'transport'     => 'postMessage',
-              ),
-              'tc_theme_options[tc_display_menu_label]'  =>  array(
-                                'default'       => 0,
-                                'control'       => 'TC_controls' ,
-                                'label'         => __( "Display a label next to the menu button." , "customizr" ),
-                                'section'       => 'nav' ,
-                                'type'          => 'checkbox' ,
-                                'priority'      => 60,
-                                'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               )
       ); //end of navigation options
     }
@@ -2313,6 +2342,65 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       }
 
       return array_merge( $_original_map, $_new_map );
+    }
+
+
+
+    /*
+    * Since the WP_Customize_Manager::$controls are protected properties, there's no way to alter them
+    * The workaround is to use the WP_Customize_Manager methods to remove them
+    *  => they are then added back in the customizer map
+    * In this particular case, we need to alter the nav menus priorities to assign the following values
+    * 10 for main and 20 for secondary
+    * we also add a title
+    *
+    * hook : tc_navigation_option_map
+    * @return customize map
+    */
+    function tc_generates_menus( $_original_map ) {
+      /* Nav Menus */
+      $locations      = get_registered_nav_menus();
+      $menus          = wp_get_nav_menus();
+      //Don't go further if no menus
+      if ( ! $menus )
+        return $_original_map;
+
+      $num_locations  = count( array_keys( $locations ) );
+      if ( 1 == $num_locations ) {
+        $description = __( 'Your theme supports one menu. Select which menu you would like to use.' );
+      } else {
+        $description = sprintf( _n( 'Your theme supports %s menu. Select which menu appears in each location.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) );
+      }
+
+      $choices = array( '' => __( '&mdash; Select &mdash;' ) );
+
+      foreach ( $menus as $menu ) {
+        $choices[ $menu->term_id ] = wp_html_excerpt( $menu->name, 40, '&hellip;' );
+      }
+
+      $_priorities = array(
+        'nav_menu_locations[main]' => 10,
+        'nav_menu_locations[secondary]' => 20
+      );
+      $_priority = 0;
+      $_new_map     = array();
+
+      //assign new priorities to the menu controls
+      foreach ( $locations as $location => $description ) {
+        $menu_setting_id = "nav_menu_locations[{$location}]";
+        $_new_map[$menu_setting_id] = array(
+          'label'   => $description,
+          'section' => 'nav',
+          'control' => 'TC_controls',
+          'title'   => "nav_menu_locations[main]" == $menu_setting_id ? __( 'Assign menus to locations' , 'customizr') : false,
+          'type'    => 'select',
+          'choices' => $choices,
+          'priority' => isset($_priorities[$menu_setting_id]) ? $_priorities[$menu_setting_id] : $_priority
+        );
+        $_priority = $_priority + 10;
+      }
+
+      return array_merge($_new_map, $_original_map );
     }
 
 
