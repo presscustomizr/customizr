@@ -99,7 +99,8 @@ if ( ! class_exists( 'TC_menu' ) ) :
         $this -> tc_regular_menu_display( 'main' );
       } else {
         $this -> tc_sidenav_toggle_button_display();
-        $this -> tc_regular_menu_display( 'secondary' );
+        if ( $this -> tc_is_second_menu_enabled() )
+          $this -> tc_regular_menu_display( 'secondary' );
       }
 
       $html = ob_get_contents();
@@ -475,6 +476,13 @@ if ( ! class_exists( 'TC_menu' ) ) :
       return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) ) );
     }
 
+
+    /**
+    * @return bool
+    */
+    function tc_is_second_menu_enabled() {
+      return apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( TC_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) );
+    }
 
 
     /**
