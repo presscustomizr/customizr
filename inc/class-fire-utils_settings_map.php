@@ -16,7 +16,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
   class TC_utils_settings_map {
     static $instance;
     private $is_wp_version_before_4_0;
-    public $_customizer_map = array();
+    public $customizer_map = array();
 
     function __construct () {
       self::$instance =& $this;
@@ -38,6 +38,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       if ( ! empty( $this -> customizer_map ) )
         return $this -> customizer_map;
 
+      //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
       add_filter( 'tc_add_panel_map'        , array( $this, 'tc_popul_panels_map'));
       add_filter( 'tc_remove_section_map'   , array( $this, 'tc_popul_remove_section_map'));
       //theme switcher's enabled when user opened the customizer from the theme's page
@@ -45,9 +46,16 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       add_filter( 'tc_add_section_map'      , array( $this, 'tc_popul_section_map' ));
       add_filter( 'tc_get_setting_map'      , array( $this, 'tc_popul_get_setting_map' ));
       //add controls to the map
-      $this -> tc_populate_setting_control_map();
+      add_filter( 'tc_add_setting_control_map' , array( $this , 'tc_popul_setting_control_map' ), 10, 2 );
+      //$this -> tc_populate_setting_control_map();
 
-      //merges all customizer arrays
+      //FILTER SPECIFIC SETTING-CONTROL MAPS
+      //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
+      add_filter( 'tc_social_option_map'     , array( $this, 'tc_generates_socials' ));
+      add_filter( 'tc_front_page_option_map' , array( $this, 'tc_generates_featured_pages' ));
+
+
+      //CACHE THE GLOBAL CUSTOMIZER MAP
       $this -> customizer_map = array_merge(
         array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
         array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
@@ -62,14 +70,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
     /**
     * Populate the control map
+    * hook : 'tc_add_setting_control_map'
     * => loops on a callback list, each callback is a section setting group
-    * No hook, fired in the constructor
-    * @return void
+    * @return array()
     *
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_populate_setting_control_map() {
+    function tc_popul_setting_control_map( $_map, $get_default = null ) {
+      $_new_map = array();
       $_settings_sections = array(
         //GLOBAL SETTINGS
         'tc_logo_favicon_option_map',
@@ -95,6 +104,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_gallery_option_map',
         'tc_paragraph_option_map',
         'tc_post_navigation_option_map',
+        //SIDEBARS
+        'tc_sidebars_option_map',
         //FOOTER
         'tc_footer_global_settings_option_map',
         //ADVANCED OPTIONS
@@ -102,12 +113,23 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_performance_option_map'
       );
 
-      foreach ( $_settings_sections as $_section ) {
-        if ( method_exists($this , $_section) )
-          add_filter ( 'tc_add_setting_control_map' , array( $this , $_section ), 10, 2 );
-      }
-    }
+      foreach ( $_settings_sections as $_section_cb ) {
+        if ( ! method_exists( $this , $_section_cb ) )
+          continue;
+        //applies a filter to each section settings map => allows plugins (featured pages for ex.) to add/remove settings
+        //each section map takes one boolean param : $get_default
+        $_section_map = apply_filters(
+          $_section_cb,
+          call_user_func_array( array( $this, $_section_cb ), array( $get_default ) )
+        );
 
+        if ( ! is_array( $_section_map) )
+          continue;
+
+        $_new_map = array_merge( $_new_map, $_section_map );
+      }//foreach
+      return array_merge( $_map, $_new_map );
+    }
 
 
     /******************************************************************************************************
@@ -119,13 +141,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    LOGO & FAVICON SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_logo_favicon_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_logo_favicon_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_logo_upload]'  => array(
                                 'control'   =>  'TC_Customize_Upload_Control' ,
                                 'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'title'     => __( 'LOGO' , 'customizr'),
-                                'section'   => 'tc_logo_settings' ,
+                                'section'   => 'logo_sec' ,
                                 'type'      => 'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' )
               ),
@@ -135,14 +157,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'   =>  1,
                                 'label'     =>  __( 'Force logo dimensions to max-width:250px and max-height:100px' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'   =>  'tc_logo_settings' ,
+                                'section'   =>  'logo_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
               ),
               'tc_theme_options[tc_sticky_logo_upload]'  => array(
                                 'control'   =>  'TC_Customize_Upload_Control' ,
                                 'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
-                                'section'   =>  'tc_logo_settings' ,
+                                'section'   =>  'logo_sec' ,
                                 'type'      => 'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
@@ -153,25 +175,24 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'   =>  'TC_Customize_Upload_Control' ,
                                 'label'       => __( 'Favicon Upload (supported formats : .ico, .png, .gif)' , 'customizr' ),
                                 'title'     => __( 'FAVICON' , 'customizr'),
-                                'section'   =>  'tc_logo_settings' ,
+                                'section'   =>  'logo_sec' ,
                                 'type'      => 'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number'),
               )
       );
-      return array_merge( $_map, $_new );
     }
 
     /*-----------------------------------------------------------------------------------------------------
                                       SKIN SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_skin_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_skin_option_map( $get_default = null ) {
+      return array(
               //skin select
               'tc_theme_options[tc_skin]'     => array(
                                 'default'   =>  'blue3.css' ,
                                 'control'   => 'TC_controls' ,
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
-                                'section'   =>  'tc_skins_settings' ,
+                                'section'   =>  'skins_sec' ,
                                 'type'      =>  'select' ,
                                 'choices'    =>  $this -> tc_build_skin_list(),
                                 'transport'   =>  'postMessage',
@@ -181,7 +202,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'   => 0,
                                 'control'   => 'TC_controls',
                                 'label'     => __('Randomize the skin', 'customizr'),
-                                'section'   => 'tc_skins_settings',
+                                'section'   => 'skins_sec',
                                 'type'      => 'checkbox',
                                 'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
               ),
@@ -192,13 +213,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'title'         => __( 'Header design and layout' , 'customizr'),
                                 'label'         =>  __( 'Display top border' , 'customizr' ),
                                 'control'       =>  'TC_controls' ,
-                                'section'       =>  'tc_header_layout' ,
+                                'section'       =>  'header_layout_sec' ,
                                 'type'          =>  'checkbox' ,
                                 'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
                                 'priority'      => 5
               )
         );//end of skin options
-      return array_merge( $_map, $_new );
     }
 
 
@@ -206,13 +226,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                      FONT SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_fonts_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_fonts_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_fonts]'      => array(
                                 'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
                                 'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                                 'control'       =>  'TC_controls',
-                                'section'       => 'tc_fonts',
+                                'section'       => 'fonts_sec',
                                 'type'          => 'select' ,
                                 'choices'       => TC_utils::$inst -> tc_get_font( 'list' , 'name' ),
                                 'priority'      => 10,
@@ -224,7 +244,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( 'Set your website default font size in pixels.' , 'customizr' ),
                                 'control'       =>  'TC_controls',
-                                'section'       => 'tc_fonts',
+                                'section'       => 'fonts_sec',
                                 'type'          => 'number' ,
                                 'step'          => 1,
                                 'min'           => 0,
@@ -233,20 +253,19 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'        => __( "This option sets the default font size applied to any text element of your website, when no font size is already applied." , 'customizr' )
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
     /*-----------------------------------------------------------------------------------------------------
                              SOCIAL NETWORKS + POSITION SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_social_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_social_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_social_in_header]' =>  array(
                                 'default'       => 1,
                                 'label'       => __( 'Social links in header' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_social_settings' ,
+                                'section'     => 'socials_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'      => 10,
                                 'transport'   => 'postMessage'
@@ -255,56 +274,25 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'label'       => __( 'Social links in footer' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_social_settings' ,
+                                'section'     => 'socials_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'       => 15,
                                 'transport'   => 'postMessage'
-              ),
-              'tc_theme_options[tc_social_in_left-sidebar]' =>  array(
-                                'default'       => 0,
-                                'label'       => __( 'Social links in left sidebar' , 'customizr' ),
-                                'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_social_settings' ,
-                                'type'        => 'checkbox' ,
-                                'priority'       => 20,
-                                'transport'   => 'postMessage'
-              ),
-
-              'tc_theme_options[tc_social_in_right-sidebar]'  =>  array(
-                                'default'       => 0,
-                                'label'       => __( 'Social links in right sidebar' , 'customizr' ),
-                                'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_social_settings' ,
-                                'type'        => 'checkbox' ,
-                                'priority'       => 25,
-                                'transport'   => 'postMessage'
-              ),
-              'tc_theme_options[tc_social_in_sidebar_title]'  =>  array(
-                                'default'       => __( 'Social links' , 'customizr' ),
-                                'label'       => __( 'Social link title in sidebars' , 'customizr' ),
-                                'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_social_settings' ,
-                                'type'        => 'text' ,
-                                'priority'       => 30,
-                                'transport'   => 'postMessage',
-                                'notice'    => __( 'Will be hidden if empty' , 'customizr' )
-              ),
+              )
       );//end of social layout map
-      $_new = array_merge( $_new , $this -> tc_generates_socials() );
-      return array_merge( $_map, $_new );
     }
 
 
     /*-----------------------------------------------------------------------------------------------------
                                    LINKS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_links_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_links_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_link_scroll]'  =>  array(
                                 'default'       => 0,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Smooth scroll on click' , 'customizr' ),
-                                'section'     => 'tc_links_settings' ,
+                                'section'     => 'links_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ),
               ),
@@ -312,7 +300,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Fade effect on link hover" , "customizr" ),
-                                'section'       => 'tc_links_settings' ,
+                                'section'       => 'links_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
@@ -322,7 +310,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display an icon next to external links" , "customizr" ),
-                                'section'       => 'tc_links_settings' ,
+                                'section'       => 'links_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 30,
                                 'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
@@ -333,14 +321,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Open external links in a new tab" , "customizr" ),
-                                'section'       => 'tc_links_settings' ,
+                                'section'       => 'links_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40,
                                 'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
                                 'transport'     => 'postMessage'
               )
       );//end of links options
-      return array_merge( $_map, $_new );
     }
 
 
@@ -348,13 +335,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    ICONS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_icons_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_icons_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_show_title_icon]'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display icons next to titles" , "customizr" ),
-                                'section'       => 'tc_titles_icons_settings' ,
+                                'section'       => 'titles_icons_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 10,
                                 'notice'    => __( 'When this option is checked, a contextual icon is displayed next to the titles of pages, posts, archives, and WP built-in widgets.' , 'customizr' ),
@@ -364,7 +351,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display a page icon next to the page title" , "customizr" ),
-                                'section'       => 'tc_titles_icons_settings' ,
+                                'section'       => 'titles_icons_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
@@ -373,7 +360,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display a post icon next to the single post title" , "customizr" ),
-                                'section'       => 'tc_titles_icons_settings' ,
+                                'section'       => 'titles_icons_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 30,
                                 'transport'   => 'postMessage'
@@ -382,7 +369,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display an icon next to the archive title" , "customizr" ),
-                                'section'       => 'tc_titles_icons_settings' ,
+                                'section'       => 'titles_icons_sec' ,
                                 'type'          => 'checkbox',
                                 'notice'    => __( 'When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results.' , 'customizr' ),
                                 'priority'      => 40,
@@ -392,7 +379,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.0' , '1.0.11' ) ? 1 : 0,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display an icon next to each post title in an archive page" , "customizr" ),
-                                'section'       => 'tc_titles_icons_settings' ,
+                                'section'       => 'titles_icons_sec' ,
                                 'type'          => 'checkbox',
                                 'notice'    => __( 'When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results.' , 'customizr' ),
                                 'priority'      => 50,
@@ -402,7 +389,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "WP sidebar widgets : display icons next to titles" , "customizr" ),
-                                'section'       => 'tc_titles_icons_settings' ,
+                                'section'       => 'titles_icons_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 60,
                                 'transport'   => 'postMessage'
@@ -411,26 +398,25 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "WP footer widgets : display icons next to titles" , "customizr" ),
-                                'section'       => 'tc_titles_icons_settings' ,
+                                'section'       => 'titles_icons_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 70,
                                 'transport'   => 'postMessage'
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
     /*-----------------------------------------------------------------------------------------------------
                                    IMAGE SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_images_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_images_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_fancybox]' =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Lightbox effect on images' , 'customizr' ),
-                                'section'     => 'tc_image_settings' ,
+                                'section'     => 'images_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'If enabled, this option activates a popin window whith a zoom effect when an image is clicked. Note : to enable this effect on the images of your pages and posts, images have to be linked to the Media File.' , 'customizr' ),
               ),
@@ -439,7 +425,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Autoscale images on zoom' , 'customizr' ),
-                                'section'     => 'tc_image_settings' ,
+                                'section'     => 'images_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'If enabled, this option will force images to fit the screen on lightbox zoom.' , 'customizr' ),
               ),
@@ -448,7 +434,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'High resolution (Retina) support' , 'customizr' ),
-                                'section'     => 'tc_image_settings' ,
+                                'section'     => 'images_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => sprintf('%1$s <strong>%2$s</strong> : <a href="%4$splugin-install.php?tab=plugin-information&plugin=regenerate-thumbnails" title="%5$s" target="_blank">%3$s</a>.',
                                     __( 'If enabled, your website will include support for high resolution devices.' , 'customizr' ),
@@ -462,7 +448,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( "Sliders : display on loading icon before rendering the slides" , "customizr" ),
-                                'section'     => 'tc_image_settings' ,
+                                'section'     => 'images_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'When checked, this option displays a loading icon when the slides are being setup.' , 'customizr' ),
               ),
@@ -470,7 +456,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( "Dynamic slider images centering on any devices" , "customizr" ),
-                                'section'     => 'tc_image_settings' ,
+                                'section'     => 'images_sec' ,
                                 'type'        => 'checkbox' ,
                                 //'notice'    => __( 'This option dynamically centers your images on any devices vertically or horizontally (without stretching them) according to their initial dimensions.' , 'customizr' ),
               ),
@@ -478,12 +464,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( "Dynamic thumbnails centering on any devices" , "customizr" ),
-                                'section'     => 'tc_image_settings' ,
+                                'section'     => 'images_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio.' , 'customizr' ),
               )
       );//end of images options
-      return array_merge( $_map, $_new );
     }
 
 
@@ -494,18 +479,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   RESPONSIVE SETTINGS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_responsive_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_responsive_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_block_reorder]'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Dynamic sidebar reordering on small devices' , 'customizr' ),
-                                'section'     => 'tc_responsive' ,
+                                'section'     => 'responsive_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport.' , 'customizr' ),
               )
       );//end of links options
-      return array_merge( $_map, $_new );
     }
 
 
@@ -513,19 +497,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   AUTHORS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_authors_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_authors_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_show_author_info]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display an author box after each single post content" , "customizr" ),
-                                'section'       => 'tc_authors',
+                                'section'       => 'authors_sec',
                                 'type'          => 'checkbox',
                                 'priority'      => 1,
                                 'notice'        =>  __( 'Check this option to display an author info block after each single post content. Note : the Biographical info field must be filled out in the user profile.' , 'customizr' ),
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -539,13 +522,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    HEADER DESIGN AND LAYOUT
     ------------------------------------------------------------------------------------------------------*/
-    function tc_header_design_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_header_design_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_show_tagline]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display the tagline" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 10,
                                 'transport'     => 'postMessage'
@@ -554,7 +537,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display menu in a box" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 20,
                                 'transport'     => 'postMessage',
@@ -564,7 +547,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 'left',
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Layout" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          =>  'select' ,
                                 'choices'       => array(
                                         'left'      => __( 'Logo / title on the left' , 'customizr' ),
@@ -579,7 +562,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       => 'TC_controls' ,
                                 'title'         => __( 'Sticky header settings' , 'customizr'),
                                 'label'         => __( "Sticky on scroll" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 30,
                                 'transport'     => 'postMessage',
@@ -589,7 +572,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Sticky header : display the tagline" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40,
                                 'transport'     => 'postMessage',
@@ -598,7 +581,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Sticky header : display the title / logo" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 50,
                                 'transport'     => 'postMessage',
@@ -607,7 +590,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Sticky header : shrink title / logo" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 60,
                                 'transport'     => 'postMessage',
@@ -616,7 +599,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Sticky header : display the menu" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 60,
                                 'transport'     => 'postMessage',
@@ -625,7 +608,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Sticky header : semi-transparent on scroll" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 67,
                                 'transport'     => 'postMessage',
@@ -635,7 +618,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       => 'TC_controls' ,
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( "Set the header z-index" , "customizr" ),
-                                'section'       => 'tc_header_layout' ,
+                                'section'       => 'header_layout_sec' ,
                                 'type'          => 'number' ,
                                 'step'          => 1,
                                 'min'           => 0,
@@ -648,7 +631,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               )
 
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -657,8 +639,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                         NAVIGATION SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_navigation_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_navigation_option_map( $get_default = null ) {
+      return array(
               'menu_button'           => array(
                                 'setting_type'  =>  null,
                                 'control'   =>  'TC_controls' ,
@@ -745,7 +727,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               )
       ); //end of navigation options
-      return array_merge( $_map, $_new );
     }
 
 
@@ -761,14 +742,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    FRONT PAGE SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_front_page_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_front_page_option_map( $get_default = null ) {
+      return array(
               //title
               'homecontent_title'         => array(
                       'setting_type'  =>  null,
                       'control'   =>  'TC_controls' ,
                       'title'       => __( 'Choose content and layout' , 'customizr' ),
-                      'section'     => 'tc_frontpage_settings' ,
+                      'section'     => 'frontpage_sec' ,
                       'type'      => 'title' ,
                       'priority'      => 0,
               ),
@@ -776,7 +757,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //show on front
               'show_on_front'           => array(
                                 'label'     =>  __( 'Front page displays' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'      => 'select' ,
                                 'priority'      => 1,
                                 'choices'     => array(
@@ -789,7 +770,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //page on front
               'page_on_front'           => array(
                                 'label'     =>  __( 'Front page' , 'customizr'  ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'dropdown-pages' ,
                                 'priority'      => 1,
               ),
@@ -797,7 +778,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //page for posts
               'page_for_posts'          => array(
                                 'label'     =>  __( 'Posts page' , 'customizr'  ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'dropdown-pages' ,
                                 'priority'      => 1,
               ),
@@ -806,7 +787,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_front_layout]' => array(
                                 'default'       => 'f' ,//Default layout for home page is full width
                                 'label'       =>  __( 'Set up the front page layout' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'control'     => 'TC_controls' ,
                                 'type'        => 'select' ,
                                 'choices'     => $this -> tc_layout_choices(),
@@ -819,7 +800,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls' ,
                                 'title'       => __( 'Slider options' , 'customizr' ),
                                 'label'       => __( 'Select front page slider' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'select' ,
                                 //!important
                                 'choices'     => ( true == $get_default ) ? null : $this -> tc_slider_choices(),
@@ -831,7 +812,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Full width slider' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'      => 30,
               ),
@@ -842,7 +823,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Delay between each slides' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'number' ,
                                 'step'      => 500,
                                 'min'     => 1000,
@@ -854,7 +835,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( "Set slider's height in pixels" , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'number' ,
                                 'step'      => 1,
                                 'min'       => 0,
@@ -865,7 +846,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'label'       => __( 'Apply this height to all sliders' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'       => 53,
               ),
@@ -873,7 +854,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'label'       => __( "Replace the default image slider's height" , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'       => 54,
                                 'notice'    => sprintf('%1$s <a href="http://doc.presscustomizr.com/customizr/recommended-plugins/#images" target="_blank">%2$s</a>',
@@ -888,7 +869,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'   => 'TC_controls' ,
                                 'title'       => __( 'Featured pages options' , 'customizr' ),
                                 'label'       => __( 'Display home featured pages area' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'select' ,
                                 'choices'     => array(
                                         1 => __( 'Enable' , 'customizr' ),
@@ -902,7 +883,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Show images' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'The images are set with the "featured image" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images.' , 'customizr' ),
                                 'priority'      => 60,
@@ -913,15 +894,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => __( 'Read more &raquo;' , 'customizr' ),
                                 'transport'     =>  'postMessage',
                                 'label'       => __( 'Button text' , 'customizr' ),
-                                'section'     => 'tc_frontpage_settings' ,
+                                'section'     => 'frontpage_sec' ,
                                 'type'        => 'text' ,
                                 'priority'      => 65,
               )
 
       );//end of front_page_options
-
-      $_new = array_merge( $_new , $this -> tc_generates_featured_pages() );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -932,13 +910,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    PAGES AND POST LAYOUT SETTINGS
     ------------------------------------------------------------------------------------------------------*/
-    function tc_layout_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_layout_option_map( $get_default = null ) {
+      return array(
               //Global sidebar layout
               'tc_theme_options[tc_sidebar_global_layout]' => array(
                               'default'       => 'l' ,//Default sidebar layout is on the left
                               'label'         => __( 'Choose the global default layout' , 'customizr' ),
-                              'section'     => 'tc_layout_settings' ,
+                              'section'     => 'post_layout_sec' ,
                               'type'          => 'select' ,
                               'choices'     => $this -> tc_layout_choices(),
                               'notice'      => __( 'Note : the home page layout has to be set in the home page section' , 'customizr' ),
@@ -950,7 +928,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                               'default'       => 0,
                               'control'     => 'TC_controls' ,
                               'label'         => __( 'Force default layout everywhere' , 'customizr' ),
-                              'section'       => 'tc_layout_settings' ,
+                              'section'       => 'post_layout_sec' ,
                               'type'          => 'checkbox' ,
                               'notice'      => __( 'This option will override the specific layouts on all posts/pages, including the front page.' , 'customizr' ),
                               'priority'      => 20
@@ -960,7 +938,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_sidebar_post_layout]'  =>  array(
                               'default'       => 'l' ,//Default sidebar layout is on the left
                               'label'       => __( 'Choose the posts default layout' , 'customizr' ),
-                              'section'     => 'tc_layout_settings' ,
+                              'section'     => 'post_layout_sec' ,
                               'type'        => 'select' ,
                               'choices'   => $this -> tc_layout_choices(),
                               'priority'      => 30
@@ -973,7 +951,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                               'control'     => 'TC_controls' ,
                               'title'         => __( 'Global Post Lists Settings' , 'customizr' ),
                               'label'         => __( 'Maximum number of posts per page' , 'customizr' ),
-                              'section'       => 'tc_post_list_settings' ,
+                              'section'       => 'post_lists_sec' ,
                               'type'          => 'number' ,
                               'step'        => 1,
                               'min'         => 1,
@@ -984,7 +962,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_post_list_length]' =>  array(
                                 'default'       => 'excerpt',
                                 'label'         => __( 'Select the length of posts in lists (home, search, archives, ...)' , 'customizr' ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'select' ,
                                 'choices'       => array(
                                         'excerpt'   => __( 'Display the excerpt' , 'customizr' ),
@@ -997,13 +975,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_sidebar_page_layout]'  =>  array(
                                 'default'       => 'l' ,//Default sidebar layout is on the left
                                 'label'       => __( 'Choose the pages default layout' , 'customizr' ),
-                                'section'     => 'tc_layout_settings' ,
+                                'section'     => 'post_layout_sec' ,
                                 'type'        => 'select' ,
                                 'choices'   => $this -> tc_layout_choices(),
                                 'priority'       => 40
               ),
       );//end of layout_options
-      return array_merge( $_map, $_new );
+
     }
 
 
@@ -1011,14 +989,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   POST LISTS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_post_list_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_post_list_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_post_list_excerpt_length]'  =>  array(
                                 'default'       => 50,
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Set the excerpt length (in number of words) " , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'number' ,
                                 'step'          => 1,
                                 'min'           => 0,
@@ -1029,7 +1007,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       => 'TC_controls' ,
                                 'title'         => __( 'Thumbnails options' , 'customizr' ),
                                 'label'         => __( "Display the post thumbnails" , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 68,
                                 'notice'        => sprintf( '%s %s' , __( 'When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ...' , 'customizr' ), __( 'Note : thumbnails are always displayed when the grid layout is choosen.' , 'customizr') )
@@ -1038,14 +1016,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "If no featured image is set, use the last image attached to this post." , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 70
               ),
               'tc_theme_options[tc_post_list_default_thumb]' => array(
                                 'control'       =>  'TC_Customize_Upload_Control',
                                 'label'         => __( 'Upload a default thumbnail' , 'customizr' ),
-                                'section'       =>  'tc_post_list_settings',
+                                'section'       =>  'post_lists_sec',
                                 'type'          =>  'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number'),
                                 'priority'      =>  73,
@@ -1056,7 +1034,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls' ,
                                 'title'         => __( 'Thumbnails options for the alternate thumbnails layout' , 'customizr' ),
                                 'label'         => __( "Thumbnails shape" , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'      =>  'select' ,
                                 'choices'     => array(
                                         'rounded'               => __( 'Rounded, expand on hover' , 'customizr'),
@@ -1074,7 +1052,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
-                                'section'     => 'tc_post_list_settings' ,
+                                'section'     => 'post_lists_sec' ,
                                 'type'        => 'number' ,
                                 'step'      => 1,
                                 'min'     => 0,
@@ -1086,7 +1064,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 'right',
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Thumbnails position" , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'      =>  'select' ,
                                 'choices'     => array(
                                         'top'     => __( 'Top' , 'customizr' ),
@@ -1100,7 +1078,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Alternate thumbnail/content" , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 95
               ),
@@ -1111,7 +1089,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'title'         => __( 'Archive titles' , 'customizr' ),
                                 'label'       => __( 'Category pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_post_list_settings' ,
+                                'section'     => 'post_lists_sec' ,
                                 'type'        => 'text' ,
                                 'priority'       => 100
                                 //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
@@ -1120,7 +1098,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'         => '',
                                 'label'       => __( 'Tag pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_post_list_settings' ,
+                                'section'     => 'post_lists_sec' ,
                                 'type'        => 'text' ,
                                 'priority'       => 105
                                 //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
@@ -1129,7 +1107,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'         => '',
                                 'label'       => __( 'Author pages titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_post_list_settings' ,
+                                'section'     => 'post_lists_sec' ,
                                 'type'        => 'text' ,
                                 'priority'       => 110
                                 //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
@@ -1138,7 +1116,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'         => __( 'Search Results for :' , 'customizr' ),
                                 'label'       => __( 'Search results page titles' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'tc_post_list_settings' ,
+                                'section'     => 'post_lists_sec' ,
                                 'type'        => 'text' ,
                                 'priority'       => 115
                                 //'notice'    => __( 'Will be hidden if empty' , 'customizr' )
@@ -1149,7 +1127,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       => 'TC_controls' ,
                                 'title'         => __( 'Post List Design' , 'customizr' ),
                                 'label'         => __( 'Select a Layout' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'select',
                                 'choices'       => array(
                                         'alternate'       => __( 'Alternate thumbnails layout' , 'customizr'),
@@ -1162,7 +1140,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => '3',
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Number of columns per row' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'select',
                                 'choices'       => array(
                                         '1'                     => __( '1' , 'customizr'),
@@ -1177,7 +1155,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Expand the last sticky post (for home and blog page only)' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 47
               ),
@@ -1185,7 +1163,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Apply the grid layout to Home/Blog' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 57
               ),
@@ -1193,7 +1171,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Apply the grid layout to Archives (archives, categories, author posts)' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 58
               ),
@@ -1201,7 +1179,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 60,
                                 'notice'        => __( 'Unchecked contexts are displayed with the alternate thumbnails layout.' , 'customizr' ),
@@ -1210,7 +1188,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Apply a shadow to each grid items' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 61,
                                 'transport'   => 'postMessage'
@@ -1219,7 +1197,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Apply a colored bottom border to each grid items' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 62,
                                 'transport'   => 'postMessage'
@@ -1228,7 +1206,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Display post format icons in the background' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 63,
                                 'transport'   => 'postMessage'
@@ -1238,7 +1216,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Max. length for post titles (in words)' , "customizr" ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'number' ,
                                 'step'          => 1,
                                 'min'           => 1,
@@ -1250,7 +1228,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       => 'TC_controls' ,
                                 'title'         => __( 'Thumbnails max height for the grid layout' , 'customizr' ),
                                 'label'         => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
-                                'section'       => 'tc_post_list_settings' ,
+                                'section'       => 'post_lists_sec' ,
                                 'type'          => 'number' ,
                                 'step'          => 1,
                                 'min'           => 0,
@@ -1258,7 +1236,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 //'transport'   => 'postMessage'
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -1266,13 +1243,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    SINGLE POSTS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_single_post_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_single_post_option_map( $get_default = null ) {
+      return array(
           'tc_theme_options[tc_single_post_thumb_location]'  =>  array(
                             'default'       => 'hide',
                             'control'     => 'TC_controls' ,
                             'label'         => __( "Post thumbnail position" , "customizr" ),
-                            'section'       => 'tc_single_post_settings' ,
+                            'section'       => 'single_posts_sec' ,
                             'type'      =>  'select' ,
                             'choices'     => array(
                                     'hide'                    => __( "Don't display" , 'customizr' ),
@@ -1287,7 +1264,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                             'control'   => 'TC_controls' ,
                             'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
-                            'section'     => 'tc_single_post_settings' ,
+                            'section'     => 'single_posts_sec' ,
                             'type'        => 'number' ,
                             'step'        => 1,
                             'min'         => 0,
@@ -1295,7 +1272,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'transport'   => 'postMessage'
           )
       );
-      return array_merge( $_map, $_new );
+
     }
 
 
@@ -1307,13 +1284,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    BREADCRUMB SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_breadcrump_option_map( $_map, $get_default = null ) {
-        $_new = array(
+    function tc_breadcrump_option_map( $get_default = null ) {
+        return array(
               'tc_theme_options[tc_breadcrumb]' => array(
                               'default'       => 1,//Breadcrumb is checked by default
                               'label'         => __( 'Display Breadcrumb' , 'customizr' ),
                               'control'     =>  'TC_controls' ,
-                              'section'       => 'tc_breadcrumb_settings' ,
+                              'section'       => 'breadcrumb_sec' ,
                               'type'          => 'checkbox' ,
                               'priority'      => 1,
               ),
@@ -1321,7 +1298,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display the breadcrumb on home page" , "customizr" ),
-                                'section'       => 'tc_breadcrumb_settings' ,
+                                'section'       => 'breadcrumb_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 20
               ),
@@ -1329,7 +1306,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display the breadcrumb in pages" , "customizr" ),
-                                'section'       => 'tc_breadcrumb_settings' ,
+                                'section'       => 'breadcrumb_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 30
 
@@ -1338,7 +1315,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display the breadcrumb in single posts" , "customizr" ),
-                                'section'       => 'tc_breadcrumb_settings' ,
+                                'section'       => 'breadcrumb_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40
 
@@ -1347,26 +1324,26 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display the breadcrumb in posts lists : blog page, archives, search results..." , "customizr" ),
-                                'section'       => 'tc_breadcrumb_settings' ,
+                                'section'       => 'breadcrumb_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 50
 
               )
       );
-      return array_merge( $_map, $_new );
+
     }
 
 
     /*-----------------------------------------------------------------------------------------------------
                                   POST METAS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_post_metas_option_map( $_map, $get_default = null ){
-      $_new = array(
+    function tc_post_metas_option_map( $get_default = null ){
+      return array(
               'tc_theme_options[tc_show_post_metas]'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display posts metas" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings' ,
+                                'section'       => 'post_metas_sec' ,
                                 'type'          => 'checkbox',
                                 'notice'    => __( 'When this option is checked, the post metas (like taxonomies, date and author) are displayed below the post titles.' , 'customizr' ),
                                 'priority'      => 5,
@@ -1377,7 +1354,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls' ,
                                 'title'         => __( 'Metas Design' , 'customizr' ),
                                 'label'         => __( "Select a design for the post metas" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings' ,
+                                'section'       => 'post_metas_sec' ,
                                 'type'          =>  'select' ,
                                 'choices'       => array(
                                     'buttons'     => __( 'Buttons and text' , 'customizr' ),
@@ -1390,7 +1367,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls' ,
                                 'title'         => __( 'Select the contexts' , 'customizr' ),
                                 'label'         => __( "Display posts metas on home" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings' ,
+                                'section'       => 'post_metas_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 15,
                                 'transport'   => 'postMessage'
@@ -1399,7 +1376,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display posts metas for single posts" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings' ,
+                                'section'       => 'post_metas_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
@@ -1408,7 +1385,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display posts metas in post lists (archives, blog page)" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings' ,
+                                'section'       => 'post_metas_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 25,
                                 'transport'   => 'postMessage'
@@ -1419,7 +1396,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls',
                                 'title'         => __( 'Select the metas to display' , 'customizr' ),
                                 'label'         => __( "Display hierarchical taxonomies (like categories)" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          => 'checkbox',
                                 'priority'      => 30
               ),
@@ -1428,7 +1405,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls',
                                 'label'         => __( "Display non-hierarchical taxonomies (like tags)" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          => 'checkbox',
                                 'priority'      => 35
               ),
@@ -1437,7 +1414,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls',
                                 'label'         => __( "Display the publication date" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          => 'checkbox',
                                 'priority'      => 40
               ),
@@ -1445,7 +1422,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls',
                                 'label'         => __( "Display the author" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          => 'checkbox',
                                 'priority'      => 45
               ),
@@ -1453,7 +1430,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'control'     => 'TC_controls',
                                 'label'         => __( "Display the update date" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          => 'checkbox',
                                 'priority'      => 50,
                                 'notice'    => __( 'If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated).' , 'customizr' ),
@@ -1463,7 +1440,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 'days',
                                 'control'       => 'TC_controls',
                                 'label'         => __( "Select the last update format" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          =>  'select' ,
                                 'choices'       => array(
                                         'days'     => __( 'Nb of days since last update' , 'customizr' ),
@@ -1477,7 +1454,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       => 'TC_controls',
                                 'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          => 'checkbox',
                                 'priority'      => 65,
                                 'notice'    => __( 'If this option is checked, a customizable recent update notice is displayed next to the post title.' , 'customizr' )
@@ -1487,7 +1464,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       => 'TC_controls',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          => 'number' ,
                                 'step'          => 1,
                                 'min'           => 0,
@@ -1498,7 +1475,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => __( "Recently updated !" , "customizr" ),
                                 'control'       => 'TC_controls',
                                 'label'         => __( "Update notice text" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          => 'text',
                                 'priority'      => 75,
                                 'transport'   => 'postMessage'
@@ -1507,7 +1484,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 'label-default',
                                 'control'       => 'TC_controls',
                                 'label'         => __( "Update notice style" , "customizr" ),
-                                'section'       => 'tc_post_metas_settings',
+                                'section'       => 'post_metas_sec',
                                 'type'          =>  'select' ,
                                 'choices'       => array(
                                         'label-default'   => __( 'Default (grey)' , 'customizr' ),
@@ -1520,7 +1497,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -1528,14 +1504,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    GALLERY SECTION
     -----------------------------------------------------------------------------------------------------*/
-    function tc_gallery_option_map( $_map, $get_default = null ){
-      $_new = array(
+    function tc_gallery_option_map( $get_default = null ){
+      return array(
               'tc_theme_options[tc_enable_gallery]'  =>  array(
                                 'default'       => 1,
                                 'label'         => __('Enable Customizr galleries' , 'customizr'),
                                 'control'       => 'TC_controls' ,
                                 'notice'         => __( "Apply Customizr effects to galleries images" , "customizr" ),
-                                'section'       => 'tc_galleries_settings' ,
+                                'section'       => 'galleries_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1
               ),
@@ -1544,7 +1520,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __('Enable Lightbox effect in galleries' , 'customizr'),
                                 'control'       => 'TC_controls' ,
                                 'notice'         => __( "Apply lightbox effects to galleries images" , "customizr" ),
-                                'section'       => 'tc_galleries_settings' ,
+                                'section'       => 'galleries_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1
               ),
@@ -1553,13 +1529,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __('Enable Customizr effects on hover' , 'customizr'),
                                 'control'       => 'TC_controls' ,
                                 'notice'         => __( "Apply nice on hover expansion effect to the galleries images" , "customizr" ),
-                                'section'       => 'tc_galleries_settings' ,
+                                'section'       => 'galleries_sec' ,
                                 'type'          => 'checkbox',
                                 'transport'     => 'postMessage',
                                 'priority'      => 1
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -1567,15 +1542,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    PARAGRAPHS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_paragraph_option_map( $_map, $get_default = null ){
-      $_new = array(
+    function tc_paragraph_option_map( $get_default = null ){
+      return array(
               'tc_theme_options[tc_enable_dropcap]'  =>  array(
                                 'default'       => 0,
                                 'title'         => __( 'Drop caps', 'customizr'),
                                 'label'         => __('Enable drop caps' , 'customizr'),
                                 'control'       => 'TC_controls' ,
                                 'notice'         => __( "Apply a drop cap to the first paragraph of your post / page content" , "customizr" ),
-                                'section'       => 'tc_paragraphs_settings' ,
+                                'section'       => 'paragraphs_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1
               ),
@@ -1585,7 +1560,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Apply a drop cap when the paragraph includes at least the following number of words :" , "customizr" ),
                                 'notice'         => __( "(number of words)" , "customizr" ),
-                                'section'       => 'tc_paragraphs_settings' ,
+                                'section'       => 'paragraphs_sec' ,
                                 'type'          => 'number' ,
                                 'step'          => 1,
                                 'min'           => 1,
@@ -1595,7 +1570,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'     => 'skin-shadow',
                                 'control'     => 'TC_controls',
                                 'label'       => __( 'Drop cap style' , 'customizr' ),
-                                'section'     => 'tc_paragraphs_settings',
+                                'section'     => 'paragraphs_sec',
                                 'type'      =>  'select' ,
                                 'choices'     => array(
                                         'skin-shadow'    => __( "Skin color with shadow" , 'customizr' ),
@@ -1608,7 +1583,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __('Enable drop caps in posts' , 'customizr'),
                                 'control'       => 'TC_controls' ,
                                 'notice'         => __( "Apply a drop cap to the first paragraph of your single posts content" , "customizr" ),
-                                'section'       => 'tc_paragraphs_settings' ,
+                                'section'       => 'paragraphs_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 30
               ),
@@ -1617,12 +1592,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __('Enable drop caps in pages' , 'customizr'),
                                 'control'       => 'TC_controls' ,
                                 'notice'         => __( "Apply a drop cap to the first paragraph of your pages" , "customizr" ),
-                                'section'       => 'tc_paragraphs_settings' ,
+                                'section'       => 'paragraphs_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 40
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -1630,14 +1604,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    COMMENTS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_comment_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_comment_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_comment_show_bubble]'  =>  array(
                                 'default'       => 1,
                                 'title'         => __('Comments bubbles' , 'customizr'),
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display the number of comments in a bubble next to the post title" , "customizr" ),
-                                'section'       => 'tc_comments_settings' ,
+                                'section'       => 'comments_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1
               ),
@@ -1646,7 +1620,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'     => 'default',
                                 'control'     => 'TC_controls',
                                 'label'       => __( 'Comments bubble shape' , 'customizr' ),
-                                'section'     => 'tc_comments_settings',
+                                'section'     => 'comments_sec',
                                 'type'      =>  'select' ,
                                 'choices'     => array(
                                         'default'             => __( "Small bubbles" , 'customizr' ),
@@ -1659,7 +1633,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'     => TC_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'custom' : 'skin',
                                 'control'     => 'TC_controls',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
-                                'section'     => 'tc_comments_settings',
+                                'section'     => 'comments_sec',
                                 'type'      =>  'select' ,
                                 'choices'     => array(
                                         'skin'     => __( "Skin color" , 'customizr' ),
@@ -1671,7 +1645,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'     => TC_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : TC_utils::$inst -> tc_get_skin_color(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
-                                'section'     => 'tc_comments_settings',
+                                'section'     => 'comments_sec',
                                 'type'        =>  'color' ,
                                 'priority'    => 30,
                                 'sanitize_callback'    => array( $this, 'tc_sanitize_hex_color' ),
@@ -1683,7 +1657,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls',
                                 'title'       => __( 'Other comments settings' , 'customizr'),
                                 'label'       => __( 'Enable comments on pages' , 'customizr' ),
-                                'section'     => 'tc_comments_settings',
+                                'section'     => 'comments_sec',
                                 'type'        => 'checkbox',
                                 'priority'    => 40,
                                 'notice'      => sprintf('%1$s<br/> %2$s <a href="%3$s" target="_blank">%4$s</a>',
@@ -1697,7 +1671,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'     => 1,
                                 'control'     => 'TC_controls',
                                 'label'       => __( 'Enable comments on posts' , 'customizr' ),
-                                'section'     => 'tc_comments_settings',
+                                'section'     => 'comments_sec',
                                 'type'        => 'checkbox',
                                 'priority'    => 45,
                                 'notice'      => sprintf('%1$s <a href="%2$s" target="_blank">%3$s</a>.<br/>%4$s <a href="%5$s" target="_blank">%6$s</a>',
@@ -1713,13 +1687,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'     => 1,
                                 'control'     => 'TC_controls',
                                 'label'       => __( 'Display the comment list' , 'customizr' ),
-                                'section'     => 'tc_comments_settings',
+                                'section'     => 'comments_sec',
                                 'type'        => 'checkbox',
                                 'priority'    => 50,
                                 'notice'      =>__( 'By default, WordPress displays the past comments, even if comments are disabled in posts or pages. Unchecking this option allows you to not display this comment history.' , 'customizr' )
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -1727,13 +1700,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    POST NAVIGATION SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_post_navigation_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_post_navigation_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_show_post_navigation]'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display posts navigation" , "customizr" ),
-                                'section'       => 'tc_post_navigation_settings' ,
+                                'section'       => 'post_navigation_sec' ,
                                 'type'          => 'checkbox',
                                 'notice'    => __( 'When this option is checked, the posts navigation is displayed below the posts' , 'customizr' ),
                                 'priority'      => 5,
@@ -1744,7 +1717,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls' ,
                                 'title'         => __( 'Select the contexts' , 'customizr' ),
                                 'label'         => __( "Display navigation in pages" , "customizr" ),
-                                'section'       => 'tc_post_navigation_settings' ,
+                                'section'       => 'post_navigation_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 10,
                                 'transport'   => 'postMessage'
@@ -1753,7 +1726,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display posts navigation in single posts" , "customizr" ),
-                                'section'       => 'tc_post_navigation_settings' ,
+                                'section'       => 'post_navigation_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
@@ -1762,13 +1735,55 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
                                 'label'         => __( "Display posts navigation in post lists (archives, blog page, categories, search results ..)" , "customizr" ),
-                                'section'       => 'tc_post_navigation_settings' ,
+                                'section'       => 'post_navigation_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 25,
                                 'transport'   => 'postMessage'
               ),
       );
-      return array_merge( $_map, $_new );
+    }
+
+
+    /******************************************************************************************************
+    *******************************************************************************************************
+    * PANEL : SIDEBARS
+    *******************************************************************************************************
+    ******************************************************************************************************/
+    /*-----------------------------------------------------------------------------------------------------
+                                   SIDEBAR SOCIAL LINKS SETTINGS SECTION
+    ------------------------------------------------------------------------------------------------------*/
+    function tc_sidebars_option_map( $get_default = null ) {
+      return array(
+              'tc_theme_options[tc_social_in_left-sidebar]' =>  array(
+                                'default'       => 0,
+                                'label'       => __( 'Social links in left sidebar' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'socials_sec' ,
+                                'type'        => 'checkbox' ,
+                                'priority'       => 20,
+                                'transport'   => 'postMessage'
+              ),
+
+              'tc_theme_options[tc_social_in_right-sidebar]'  =>  array(
+                                'default'       => 0,
+                                'label'       => __( 'Social links in right sidebar' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'socials_sec' ,
+                                'type'        => 'checkbox' ,
+                                'priority'       => 25,
+                                'transport'   => 'postMessage'
+              ),
+              'tc_theme_options[tc_social_in_sidebar_title]'  =>  array(
+                                'default'       => __( 'Social links' , 'customizr' ),
+                                'label'       => __( 'Social link title in sidebars' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'socials_sec' ,
+                                'type'        => 'text' ,
+                                'priority'       => 30,
+                                'transport'   => 'postMessage',
+                                'notice'    => __( 'Will be hidden if empty' , 'customizr' )
+              )
+      );
     }
 
 
@@ -1781,18 +1796,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    FOOTER GLOBAL SETTINGS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_footer_global_settings_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_footer_global_settings_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_show_back_to_top]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display a back to top arrow on scroll" , "customizr" ),
-                                'section'       => 'tc_footer_global_settings' ,
+                                'section'       => 'footer_global_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 1
               ),
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -1804,14 +1818,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    CUSTOM CSS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_custom_css_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_custom_css_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_custom_css]' =>  array(
                                 'sanitize_callback' => 'wp_filter_nohtml_kses',
                                 'sanitize_js_callback' => 'wp_filter_nohtml_kses',
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( 'Add your custom css here and design live! (for advanced users)' , 'customizr' ),
-                                'section'     => 'tc_custom_css' ,
+                                'section'     => 'custom_sec' ,
                                 'type'        => 'textarea' ,
                                 'notice'    => sprintf('%1$s <a href="%4$ssnippet/creating-child-theme-customizr/" title="%3$s" target="_blank">%2$s</a>',
                                     __( "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a" , 'customizr' ),
@@ -1822,20 +1836,19 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
       );//end of custom_css_options
-      return array_merge( $_map, $_new );
     }
 
 
     /*-----------------------------------------------------------------------------------------------------
                               WEBSITE PERFORMANCES SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_performance_option_map( $_map, $get_default = null ) {
-      $_new = array(
+    function tc_performance_option_map( $get_default = null ) {
+      return array(
               'tc_theme_options[tc_minified_skin]'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( "Performance : use the minified CSS stylesheet", 'customizr' ),
-                                'section'     => 'tc_performances' ,
+                                'section'     => 'performances_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'Using the minified version of the skin stylesheet will speed up your webpage load time.' , 'customizr' ),
               ),
@@ -1843,13 +1856,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'label'       => __( 'Load images on scroll' , 'customizr' ),
                                 'control'     =>  'TC_controls' ,
-                                'section'     => 'tc_performances' ,
+                                'section'     => 'performances_sec' ,
                                 'type'        => 'checkbox',
                                 'priority'    => 20,
                                 'notice'      => __('Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images.' , 'customizr')
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 
@@ -1881,6 +1893,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Content : home, posts, ...' , 'customizr' ),
                   'description'    => __( "Content settings for the Customizr theme." , 'customizr' )
+        ),
+        'tc-sidebars-panel' => array(
+                  'priority'       => 30,
+                  'capability'     => 'edit_theme_options',
+                  'title'          => __( 'Sidebars' , 'customizr' ),
+                  'description'    => __( "Sidebars settings for the Customizr theme." , 'customizr' )
         ),
         'tc-footer-panel' => array(
                   'priority'       => 40,
@@ -1974,61 +1992,61 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'priority' => $this -> is_wp_version_before_4_0 ? 7 : 0,
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_logo_settings'            => array(
+        'logo_sec'            => array(
                             'title'     =>  __( 'Logo &amp; Favicon' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 8 : 5,
                             'description' =>  __( 'Set up logo and favicon options' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_skins_settings'         => array(
+        'skins_sec'         => array(
                             'title'     =>  __( 'Skin' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 1 : 7,
                             'description' =>  __( 'Select a skin for Customizr' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_fonts'          => array(
+        'fonts_sec'          => array(
                             'title'     =>  __( 'Fonts' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
                             'description' =>  __( 'Set up the font global settings' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_social_settings'        => array(
+        'socials_sec'        => array(
                             'title'     =>  __( 'Social links' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 9 : 20,
                             'description' =>  __( 'Set up your social links' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_links_settings'         => array(
+        'links_sec'         => array(
                             'title'     =>  __( 'Links style and effects' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 22 : 30,
                             'description' =>  __( 'Various links settings' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_titles_icons_settings'        => array(
+        'titles_icons_sec'        => array(
                             'title'     =>  __( 'Titles icons settings' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 18 : 40,
                             'description' =>  __( 'Set up the titles icons options' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_image_settings'         => array(
+        'images_sec'         => array(
                             'title'     =>  __( 'Image settings' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 95 : 50,
                             'description' =>  __( 'Various images settings' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_responsive'           => array(
+        'responsive_sec'           => array(
                             'title'     =>  __( 'Responsive settings' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 96 : 60,
                             'description' =>  __( 'Various settings for responsive display' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_authors'               => array(
+        'authors_sec'               => array(
                             'title'     =>  __( 'Authors' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 220 : 70,
                             'description' =>  __( 'Post authors settings' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'tc_header_layout'         => array(
+        'header_layout_sec'         => array(
                             'title'    => $this -> is_wp_version_before_4_0 ? __( 'Header design and layout', 'customizr' ) : __( 'Design and layout', 'customizr' ),
                             'priority' => $this -> is_wp_version_before_4_0 ? 5 : 20,
                             'panel'   => 'tc-header-panel'
@@ -2041,33 +2059,33 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                   'panel'   => 'tc-header-panel'
         ),
 
-        'tc_frontpage_settings'       => array(
+        'frontpage_sec'       => array(
                             'title'     =>  __( 'Front Page' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 12 : 10,
                             'description' =>  __( 'Set up front page options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
 
-        'tc_layout_settings'        => array(
+        'post_layout_sec'        => array(
                             'title'     =>  __( 'Pages &amp; Posts Layout' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 15 : 15,
                             'description' =>  __( 'Set up layout options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
 
-        'tc_post_list_settings'        => array(
+        'post_lists_sec'        => array(
                             'title'     =>  __( 'Post lists : blog, archives, ...' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 16 : 20,
                             'description' =>  __( 'Set up post lists options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
-        'tc_single_post_settings'        => array(
+        'single_posts_sec'        => array(
                             'title'     =>  __( 'Single posts' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 17 : 24,
                             'description' =>  __( 'Set up single posts options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
-        'tc_breadcrumb_settings'        => array(
+        'breadcrumb_sec'        => array(
                             'title'     =>  __( 'Breadcrumb' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 11 : 30,
                             'description' =>  __( 'Set up breadcrumb options' , 'customizr' ),
@@ -2081,49 +2099,49 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'description' =>  __( 'Set up pages options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),*/
-        'tc_post_metas_settings'        => array(
+        'post_metas_sec'        => array(
                             'title'     =>  __( 'Post metas (category, tags, custom taxonomies)' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 20 : 50,
                             'description' =>  __( 'Set up post metas options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
-        'tc_galleries_settings'        => array(
+        'galleries_sec'        => array(
                             'title'     =>  __( 'Galleries' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 20 : 55,
                             'description' =>  __( 'Set up gallery options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
-        'tc_paragraphs_settings'        => array(
+        'paragraphs_sec'        => array(
                             'title'     =>  __( 'Paragraphs' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 20 : 55,
                             'description' =>  __( 'Set up paragraphs options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
-        'tc_comments_settings'          => array(
+        'comments_sec'          => array(
                             'title'     =>  __( 'Comments' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 25 : 60,
                             'description' =>  __( 'Set up comments options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
-        'tc_post_navigation_settings'          => array(
+        'post_navigation_sec'          => array(
                             'title'     =>  __( 'Post/Page Navigation' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 30 : 65,
                             'description' =>  __( 'Set up post/page navigation options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
-        'tc_footer_global_settings'          => array(
+        'footer_global_sec'          => array(
                             'title'     =>  __( 'Footer global settings' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
                             'description' =>  __( 'Set up footer global options' , 'customizr' ),
                             'panel'   => 'tc-footer-panel'
         ),
-        'tc_custom_css'           => array(
+        'custom_sec'           => array(
                             'title'     =>  __( 'Custom CSS' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 100 : 10,
                             'description' =>  __( 'Add your own CSS' , 'customizr' ),
                             'panel'   => 'tc-advanced-panel'
         ),
-        'tc_performances'           => array(
+        'performances_sec'           => array(
                             'title'     =>  __( 'Website Performances' , 'customizr' ),
                             'priority'    => 20,
                             'description' =>  __( 'On the web, speed is key ! Improve the load time of your pages with those options.' , 'customizr' ),
@@ -2167,12 +2185,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     ***************************************************************/
     /**
     * Generates the featured pages options
+    * add the settings/controls to the relevant section
+    * hook : tc_front_page_option_map
     *
     * @package Customizr
     * @since Customizr 3.0.15
     *
     */
-    private function tc_generates_featured_pages() {
+    function tc_generates_featured_pages( $_original_map ) {
       $default = array(
         'dropdown'  =>  array(
               'one'   => __( 'Home featured page one' , 'customizr' ),
@@ -2199,7 +2219,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         $priority = $priority + $incr;
         $fp_setting_control['tc_theme_options[tc_featured_page_'. $id.']']    =  array(
                       'label'       => isset($default['dropdown'][$id]) ? $default['dropdown'][$id] :  sprintf( __('Custom featured page %1$s' , 'customizr' ) , $id ),
-                      'section'     => 'tc_frontpage_settings' ,
+                      'section'     => 'frontpage_sec' ,
                       'type'        => 'dropdown-pages' ,
                       'priority'      => $priority
                     );
@@ -2215,7 +2235,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                       'transport'   => 'postMessage',
                       'control'   => 'TC_controls' ,
                       'label'       => isset($default['text'][$id]) ? $default['text'][$id] : sprintf( __('Featured text %1$s (200 car. max)' , 'customizr' ) , $id ),
-                      'section'     => 'tc_frontpage_settings' ,
+                      'section'     => 'frontpage_sec' ,
                       'type'        => 'textarea' ,
                       'notice'    => __( 'You need to select a page first. Leave this field empty if you want to use the page excerpt.' , 'customizr' ),
                       'priority'      => $priority,
@@ -2223,34 +2243,37 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         $incr += 10;
       }
 
-      return $fp_setting_control;
+      return array_merge( $_original_map , $fp_setting_control );
     }
+
 
 
     /**
     * Generates social network options
+    * Populate the social section map of settings/controls
+    * hook : tc_social_option_map
     *
     * @package Customizr
     * @since Customizr 3.0.15
     *
     */
-    private function tc_generates_socials() {
+    function tc_generates_socials( $_original_map ) {
       //gets the social network array
       $socials      = apply_filters( 'tc_default_socials' , TC_init::$instance -> socials );
 
       //declares some loop's vars and the settings array
-      $priority       = 50;//start priority
+      $priority     = 50;//start priority
       $incr         = 0;
-      $socials_setting_control  = array();
+      $_new_map     = array();
 
       foreach ( $socials as $key => $data ) {
         $priority += $incr;
-        $socials_setting_control['tc_theme_options[' . $key . ']']  = array(
+        $_new_map['tc_theme_options[' . $key . ']']  = array(
                       'default'         => ( isset($data['default']) && !is_null($data['default']) ) ? $data['default'] : null ,
                       'sanitize_callback' => array( $this , 'tc_sanitize_url' ),
                       'control'       => 'TC_controls' ,
                       'label'         => ( isset($data['option_label']) ) ? call_user_func( '__' , $data['option_label'] , 'customizr' ) : $key,
-                      'section'       => 'tc_social_settings' ,
+                      'section'       => 'socials_sec' ,
                       'type'          => 'url',
                       'priority'      => $priority,
                       'icon'          => "tc-icon-". str_replace('tc_', '', $key)
@@ -2258,7 +2281,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         $incr += 5;
       }
 
-      return $socials_setting_control;
+      return array_merge( $_original_map, $_new_map );
     }
 
 

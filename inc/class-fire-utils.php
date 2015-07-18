@@ -363,9 +363,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       public static function tc_get_layout( $post_id , $sidebar_or_class = 'class' ) {
           $__options                    = tc__f ( '__options' );
-
           global $post;
-
           //Article wrapper class definition
           $global_layout                = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
 
