@@ -497,7 +497,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           'tc_second_menu_resp_setting',
         ],
         callback: function (to, targetSetId, changedSetId ) {
-          if ( 'nav_menu_locations[secondary]' == targetSetId )
+          if ( _.contains( ['nav_menu_locations[secondary]', 'tc_second_menu_resp_setting'], targetSetId ) )
             return true !== api( _build_setId('tc_display_second_menu') ).get();
           return 'aside' != to;
         }
