@@ -260,26 +260,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                              SOCIAL NETWORKS + POSITION SECTION
     ------------------------------------------------------------------------------------------------------*/
     function tc_social_option_map( $get_default = null ) {
-      return array(
-              'tc_theme_options[tc_social_in_header]' =>  array(
-                                'default'       => 1,
-                                'label'       => __( 'Social links in header' , 'customizr' ),
-                                'control'   =>  'TC_controls' ,
-                                'section'     => 'socials_sec' ,
-                                'type'        => 'checkbox' ,
-                                'priority'      => 10,
-                                'transport'   => 'postMessage'
-              ),
-              'tc_theme_options[tc_social_in_footer]' =>  array(
-                                'default'       => 1,
-                                'label'       => __( 'Social links in footer' , 'customizr' ),
-                                'control'   =>  'TC_controls' ,
-                                'section'     => 'socials_sec' ,
-                                'type'        => 'checkbox' ,
-                                'priority'       => 15,
-                                'transport'   => 'postMessage'
-              )
-      );//end of social layout map
+      return array();//end of social layout map
     }
 
 
@@ -576,6 +557,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40,
                                 'transport'     => 'postMessage',
+              ),
+              'tc_theme_options[tc_social_in_header]' =>  array(
+                                'default'       => 1,
+                                'label'       => __( 'Social links in header' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'header_layout_sec' ,
+                                'type'        => 'checkbox' ,
+                                'priority'      => 45,
+                                'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_sticky_show_title_logo]'  =>  array(
                                 'default'       => 1,
@@ -1758,7 +1748,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'label'       => __( 'Social links in left sidebar' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'socials_sec' ,
+                                'section'     => 'sidebar_socials_sec',
                                 'type'        => 'checkbox' ,
                                 'priority'       => 20,
                                 'transport'   => 'postMessage'
@@ -1768,7 +1758,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 0,
                                 'label'       => __( 'Social links in right sidebar' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'socials_sec' ,
+                                'section'     => 'sidebar_socials_sec',
                                 'type'        => 'checkbox' ,
                                 'priority'       => 25,
                                 'transport'   => 'postMessage'
@@ -1777,7 +1767,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => __( 'Social links' , 'customizr' ),
                                 'label'       => __( 'Social link title in sidebars' , 'customizr' ),
                                 'control'   =>  'TC_controls' ,
-                                'section'     => 'socials_sec' ,
+                                'section'     => 'sidebar_socials_sec',
                                 'type'        => 'text' ,
                                 'priority'       => 30,
                                 'transport'   => 'postMessage',
@@ -1798,6 +1788,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     ------------------------------------------------------------------------------------------------------*/
     function tc_footer_global_settings_option_map( $get_default = null ) {
       return array(
+              'tc_theme_options[tc_social_in_footer]' =>  array(
+                                'default'       => 1,
+                                'label'       => __( 'Social links in footer' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'footer_global_sec' ,
+                                'type'        => 'checkbox' ,
+                                'priority'       => 0,
+                                'transport'   => 'postMessage'
+              ),
               'tc_theme_options[tc_show_back_to_top]'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
@@ -1987,6 +1986,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $num_locations  = count( array_keys( $locations ) );
 
       $_new_sections = array(
+        /*---------------------------------------------------------------------------------------------
+        -> PANEL : GLOBAL SETTINGS
+        ----------------------------------------------------------------------------------------------*/
         'title_tagline'         => array(
                             'title'    => __( 'Site Title & Tagline', 'customizr' ),
                             'priority' => $this -> is_wp_version_before_4_0 ? 7 : 0,
@@ -2046,19 +2048,27 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'description' =>  __( 'Post authors settings' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
+
+        /*---------------------------------------------------------------------------------------------
+        -> PANEL : HEADER
+        ----------------------------------------------------------------------------------------------*/
         'header_layout_sec'         => array(
                             'title'    => $this -> is_wp_version_before_4_0 ? __( 'Header design and layout', 'customizr' ) : __( 'Design and layout', 'customizr' ),
                             'priority' => $this -> is_wp_version_before_4_0 ? 5 : 20,
                             'panel'   => 'tc-header-panel'
         ),
         'nav'           => array(
-                  'title'          => __( 'Navigation Menus' , 'customizr' ),
-                  'theme_supports' => 'menus',
-                  'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
-                  'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.'),
-                  'panel'   => 'tc-header-panel'
+                            'title'          => __( 'Navigation Menus' , 'customizr' ),
+                            'theme_supports' => 'menus',
+                            'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
+                            'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.'),
+                            'panel'   => 'tc-header-panel'
         ),
 
+
+        /*---------------------------------------------------------------------------------------------
+        -> PANEL : CONTENT
+        ----------------------------------------------------------------------------------------------*/
         'frontpage_sec'       => array(
                             'title'     =>  __( 'Front Page' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 12 : 10,
@@ -2129,12 +2139,33 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'description' =>  __( 'Set up post/page navigation options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
+
+
+        /*---------------------------------------------------------------------------------------------
+        -> PANEL : SIDEBARS
+        ----------------------------------------------------------------------------------------------*/
+        'sidebar_socials_sec'          => array(
+                            'title'     =>  __( 'Socials in Sidebars' , 'customizr' ),
+                            'priority'    =>  10,
+                            'description' =>  __( 'Set up your social profiles links in the sidebar(s).' , 'customizr' ),
+                            'panel'   => 'tc-sidebars-panel'
+        ),
+
+
+        /*---------------------------------------------------------------------------------------------
+        -> PANEL : FOOTER
+        ----------------------------------------------------------------------------------------------*/
         'footer_global_sec'          => array(
                             'title'     =>  __( 'Footer global settings' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 40 : 10,
                             'description' =>  __( 'Set up footer global options' , 'customizr' ),
                             'panel'   => 'tc-footer-panel'
         ),
+
+
+        /*---------------------------------------------------------------------------------------------
+        -> PANEL : ADVANCED
+        ----------------------------------------------------------------------------------------------*/
         'custom_sec'           => array(
                             'title'     =>  __( 'Custom CSS' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 100 : 10,
