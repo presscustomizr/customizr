@@ -651,21 +651,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                               ),
                               'priority'      => 30
               ),
-              'tc_theme_options[tc_second_menu_resp_setting]'  =>  array(
-                                'default'       => 'in-sn-before',
+              'tc_theme_options[tc_menu_resp_dropdown_limit_to_viewport]'  =>  array(
+                                'default'       => 0,
                                 'control'       => 'TC_controls' ,
-                                'title'         => __( 'Secondary menu design' , 'customizr'),
-                                'label'         => __( "Choose a responsive behaviour for the secondary menu." , "customizr" ),
-                                'section'       => 'nav',
-                                'type'      =>  'select',
-                                'choices'     => array(
-                                    'in-sn-before'   => __( 'Move before items inside the side menu ' , 'customizr'),
-                                    'in-sn-after'   => __( 'Move after items inside the side menu ' , 'customizr'),
-                                    'display-in-header'   => __( 'Display in the header' , 'customizr'),
-                                    'hide'   => __( 'Hide' , 'customizr'  ),
-                                ),
-                                'priority'      => 40,
-                                // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
+                                'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport." , "customizr" ) ),
+                                'section'       => 'nav' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 35,
+                                //'transport'     => 'postMessage',
               ),
               'tc_theme_options[tc_display_menu_label]'  =>  array(
                                 'default'       => 0,
@@ -722,15 +715,22 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 80,
                                 'transport'     => 'postMessage',
               ),
-              'tc_theme_options[tc_menu_resp_dropdown_limit_to_viewport]'  =>  array(
-                                'default'       => 0,
+              'tc_theme_options[tc_second_menu_resp_setting]'  =>  array(
+                                'default'       => 'in-sn-before',
                                 'control'       => 'TC_controls' ,
-                                'label'         => __( "In responsive mode, limit the height of the dropdown menu block to the visible viewport" , "customizr" ),
-                                'section'       => 'nav' ,
-                                'type'          => 'checkbox' ,
+                                'title'         => __( 'Secondary menu design' , 'customizr'),
+                                'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "Choose a mobile devices (responsive) behaviour for the secondary menu." , "customizr" ) ),
+                                'section'       => 'nav',
+                                'type'      =>  'select',
+                                'choices'     => array(
+                                    'in-sn-before'   => __( 'Move before items inside the side menu ' , 'customizr'),
+                                    'in-sn-after'   => __( 'Move after items inside the side menu ' , 'customizr'),
+                                    'display-in-header'   => __( 'Display in the header' , 'customizr'),
+                                    'hide'   => __( 'Hide' , 'customizr'  ),
+                                ),
                                 'priority'      => 90,
-                                //'transport'     => 'postMessage',
-              )
+                                // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
+              ),
       ); //end of navigation options
     }
 
