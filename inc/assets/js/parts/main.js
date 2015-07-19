@@ -818,13 +818,15 @@ var czrapp = czrapp || {};
         return;
 
       //cache some $
-      this.$_sec_menu_els  = this.$_sec_menu_els || $('ul > li', '.tc-header .nav-collapse');
+      this.$_sec_menu_els  = this.$_sec_menu_els || $('.nav > li', '.tc-header .nav-collapse');
       this.$_sn_wrap       = this.$_sn_wrap || $('.sn-nav', '.sn-nav-wrapper');
       this.$_sec_menu_wrap = this.$_sec_menu_wrap || $('.nav', '.tc-header .nav-collapse');
 
       //fire on DOM READY
       var _locationOnDomReady = 'desktop' == this.getDevice() ? 'navbar' : 'side_nav';
-      this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
+
+      if ( 'desktop' != this.getDevice() )
+        this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
       console.log( 'Second menu resp option : ', userOption );
