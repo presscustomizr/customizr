@@ -1,3 +1,15 @@
+// addEventListener Polyfill ie9- http://stackoverflow.com/a/27790212
+window.addEventListener = window.addEventListener || function (e, f) { window.attachEvent('on' + e, f); };
+
+
+// Datenow Polyfill ie9- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
+if (!Date.now) {
+  Date.now = function now() {
+    return new Date().getTime();
+  };
+}
+
+
 // Object.create monkey patch ie8 http://stackoverflow.com/a/18020326
 if ( ! Object.create ) {
   Object.create = function(proto, props) {
