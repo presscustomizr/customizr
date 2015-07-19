@@ -693,8 +693,9 @@ var czrapp = czrapp || {};
       if ( 1 != TCParams.ReorderBlocks )
         return;
 
-      //fire on DOM READY
-      this._reorderSidebars( 'desktop' == this.getDevice() ? 'normal' : 'responsive' );
+      //fire on DOM READY and only for responsive devices
+      if ( 'desktop' != this.getDevice() )
+        this._reorderSidebars( 'responsive' );
 
       //fire on custom resize event
       var self = this;
@@ -807,6 +808,8 @@ var czrapp = czrapp || {};
 
     //Mobile behaviour for the secondary menu
     secondMenuRespActions : function() {
+      if ( ! TCParams.isSecondMenuEnabled )
+        return;
       //Enable reordering if option is checked in the customizer.
       var userOption = TCParams.secondMenuRespSet || false,
           that = this;
@@ -820,7 +823,8 @@ var czrapp = czrapp || {};
       this.$_sec_menu_wrap = this.$_sec_menu_wrap || $('.nav', '.tc-header .nav-collapse');
 
       //fire on DOM READY
-      this._moveSecondMenu( 'desktop' == this.getDevice() ? 'navbar' : 'side_nav', userOption );
+      var _locationOnDomReady = 'desktop' == this.getDevice() ? 'navbar' : 'side_nav';
+      this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
       console.log( 'Second menu resp option : ', userOption );
@@ -833,9 +837,42 @@ var czrapp = czrapp || {};
         if ( _current == _to )
           return;
 
-        that._moveSecondMenu( _to, userOption );
+        that._manageMenuSeparator( _to, userOption)._moveSecondMenu( _to, userOption );
       } );//.on()
     },
+
+    _manageMenuSeparator : function( _to, userOption ) {
+      console.log( 'in prepare', _to , userOption);
+      //add/remove a separator between the two menus
+      var that = this,
+          _separatorContent = function( _pattern, _loop ) {
+            var _html = [];
+            for(var i = 0; i < ( _loop || 50 ); i++) {
+              _html.push( _pattern || '/' );
+            }
+            return _html.join('');
+          };
+      if ( 'navbar' == _to )
+        $( '.secondary-menu-separator', that.$_sn_wrap).remove();
+      else {
+        $_sep = $( '<li/>', {
+          class : 'menu-item secondary-menu-separator',
+          html : '<a href="#"><span class="sep-pattern">' + _separatorContent('/') + '</span></a>'
+        } );
+
+        switch(userOption) {
+          case 'in-sn-before' :
+            this.$_sn_wrap.prepend($_sep);
+          break;
+
+          case 'in-sn-after' :
+            this.$_sn_wrap.append($_sep);
+          break;
+        }
+      }
+      return this;
+    },
+
 
     //@return void()
     //@param _where = menu items location string 'navbar' or 'side_nav'
