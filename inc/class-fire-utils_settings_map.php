@@ -672,7 +672,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_menu_position]'  =>  array(
                                 'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'pull-menu-left' : 'pull-menu-right',
                                 'control'       => 'TC_controls' ,
-                                'label'         => __( "Menu position" , "customizr" ),
+                                'label'         => __( 'Menu position (for "main" menu)' , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          =>  'select' ,
                                 'choices'       => array(
@@ -682,6 +682,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 50,
                                 'transport'     => 'postMessage',
                                 'notice'        => __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' )
+              ),
+              'tc_theme_options[tc_second_menu_position]'  =>  array(
+                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'pull-menu-left' : 'pull-menu-right',
+                                'control'       => 'TC_controls' ,
+                                'title'         => __( 'Secondary menu design' , 'customizr'),
+                                'label'         => __( 'Menu position (for "secondary" menu)' , "customizr" ),
+                                'section'       => 'nav' ,
+                                'type'          =>  'select' ,
+                                'choices'       => array(
+                                        'pull-menu-left'      => __( 'Menu on the left' , 'customizr' ),
+                                        'pull-menu-right'     => __( 'Menu on the right' , 'customizr' )
+                                ),
+                                'priority'      => 55,
+                                'transport'     => 'postMessage'
               ),
               //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
@@ -718,19 +732,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_theme_options[tc_second_menu_resp_setting]'  =>  array(
                                 'default'       => 'in-sn-before',
                                 'control'       => 'TC_controls' ,
-                                'title'         => __( 'Secondary menu design' , 'customizr'),
                                 'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "Choose a mobile devices (responsive) behaviour for the secondary menu." , "customizr" ) ),
                                 'section'       => 'nav',
                                 'type'      =>  'select',
                                 'choices'     => array(
-                                    'in-sn-before'   => __( 'Move before items inside the side menu ' , 'customizr'),
-                                    'in-sn-after'   => __( 'Move after items inside the side menu ' , 'customizr'),
+                                    'in-sn-before'   => __( 'Move before inside the side menu ' , 'customizr'),
+                                    'in-sn-after'   => __( 'Move after inside the side menu ' , 'customizr'),
                                     'display-in-header'   => __( 'Display in the header' , 'customizr'),
                                     'hide'   => __( 'Hide' , 'customizr'  ),
                                 ),
                                 'priority'      => 90,
                                 // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
-              ),
+              )
       ); //end of navigation options
     }
 
