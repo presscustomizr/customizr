@@ -9,8 +9,12 @@ var czrapp = czrapp || {};
       this._class   = 'sticky-footer-enabled';
       this.$_page   = $('#tc-page-wrap');
       
-      if ( 1 != TCParams.stickyHeader )//sticky header fires a resize
-        setTimeout( _apply_sticky_footer, 50 );
+      if ( 1 != TCParams.stickyHeader ) {//sticky header fires a resize
+        var self = this;
+        setTimeout( function() {
+                self._apply_sticky_footer(); }, 50 
+        );
+      }
     },
 
     /***********************************************
