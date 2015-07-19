@@ -497,8 +497,9 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           'tc_second_menu_resp_setting',
         ],
         callback: function (to, targetSetId, changedSetId ) {
+          console.log(to, targetSetId, changedSetId, api( _build_setId('tc_display_second_menu') ).get() );
           if ( _.contains( ['nav_menu_locations[secondary]', 'tc_second_menu_resp_setting'], targetSetId ) )
-            return true !== api( _build_setId('tc_display_second_menu') ).get();
+            return 'aside' == to ? true !== api( _build_setId('tc_display_second_menu') ).get() : 'aside' != to ;
           return 'aside' != to;
         }
       }
@@ -508,12 +509,10 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         controls: [
           'nav_menu_locations[secondary]',
           'tc_second_menu_resp_setting',
+          'tc_menu_type',
           'tc_menu_submenu_fade_effect',
-          'tc_menu_submenu_item_move_effect',
-          'tc_menu_resp_dropdown_limit_to_viewport'
+          'tc_menu_submenu_item_move_effect'
         ],
-        //if the second menu is activated, only the tc_menu_resp_dropdown_limit_to_viewport is hidden
-        //otherwise all of them are hidden
         callback: function (to, targetSetId, changedSetId) {
           return '1' == to;
         }
