@@ -516,6 +516,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 10,
                                 'transport'     => 'postMessage'
               ),
+              'tc_theme_options[tc_social_in_header]' =>  array(
+                                'default'       => 1,
+                                'label'       => __( 'Social links in header' , 'customizr' ),
+                                'control'   =>  'TC_controls' ,
+                                'section'     => 'header_layout_sec' ,
+                                'type'        => 'checkbox' ,
+                                'priority'      => 15,
+                                'transport'   => 'postMessage'
+              ),
               'tc_theme_options[tc_display_boxed_navbar]'  =>  array(
                                 'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                 'control'       => 'TC_controls' ,
@@ -559,15 +568,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox' ,
                                 'priority'      => 40,
                                 'transport'     => 'postMessage',
-              ),
-              'tc_theme_options[tc_social_in_header]' =>  array(
-                                'default'       => 1,
-                                'label'       => __( 'Social links in header' , 'customizr' ),
-                                'control'   =>  'TC_controls' ,
-                                'section'     => 'header_layout_sec' ,
-                                'type'        => 'checkbox' ,
-                                'priority'      => 45,
-                                'transport'   => 'postMessage'
               ),
               'tc_theme_options[tc_sticky_show_title_logo]'  =>  array(
                                 'default'       => 1,
