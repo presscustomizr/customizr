@@ -44,7 +44,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       //theme switcher's enabled when user opened the customizer from the theme's page
       add_filter( 'tc_remove_section_map'   , array( $this, 'tc_set_theme_switcher_visibility'));
       add_filter( 'tc_add_section_map'      , array( $this, 'tc_popul_section_map' ));
-      add_filter( 'tc_get_setting_map'      , array( $this, 'tc_popul_get_setting_map' ));
       //add controls to the map
       add_filter( 'tc_add_setting_control_map' , array( $this , 'tc_popul_setting_control_map' ), 10, 2 );
       //$this -> tc_populate_setting_control_map();
@@ -53,16 +52,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
       add_filter( 'tc_social_option_map'     , array( $this, 'tc_generates_socials' ));
       add_filter( 'tc_front_page_option_map' , array( $this, 'tc_generates_featured_pages' ));
-      //adds back the WP menus modified settings controls
-      add_filter( 'tc_navigation_option_map' , array( $this, 'tc_generates_menus' ));
-
 
       //CACHE THE GLOBAL CUSTOMIZER MAP
       $this -> customizer_map = array_merge(
         array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
         array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
         array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
-        array( 'get_setting'         => apply_filters( 'tc_get_setting_map', array() ) ),
         array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
       );
       return apply_filters( 'tc_customizer_map', $this -> customizer_map );
@@ -634,15 +629,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     //NOTE : priorities 10 and 20 are "used" bu menus main and secondary
     function tc_navigation_option_map( $get_default = null ) {
       return array(
-              'menu_button'           => array(
-                                'setting_type'  =>  null,
-                                'control'   =>  'TC_controls' ,
-                                'section'   =>  'nav' ,
-                                'type'      =>  'button' ,
-                                'link'      =>  'nav-menus.php' ,
-                                'buttontext'  => __( 'Manage menus' , 'customizr' ),
-                                'priority'      => 3
-              ),
               'tc_theme_options[tc_display_second_menu]'  =>  array(
                                 'default'       => 0,
                                 'control'       => 'TC_controls' ,
@@ -2215,30 +2201,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
 
 
-    /***************************************************************
-    * POPULATE GET SETTING
-    ***************************************************************/
-    /**
-    * hook : tc_get_setting_map
-    */
-    function tc_popul_get_setting_map( $_get_settings ) {
-      //specifies the transport for some options
-      $_new_get_settings = array(
-              'blogname' ,
-              'blogdescription'
-      );
-      return array_merge( $_get_settings, $_new_get_settings );
-    }
-
-
-
-
-
-
-
-
-
-
 
     /***************************************************************
     * CONTROLS HELPERS
@@ -2344,64 +2306,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       return array_merge( $_original_map, $_new_map );
     }
 
-
-
-    /*
-    * Since the WP_Customize_Manager::$controls are protected properties, there's no way to alter them
-    * The workaround is to use the WP_Customize_Manager methods to remove them
-    *  => they are then added back in the customizer map
-    * In this particular case, we need to alter the nav menus priorities to assign the following values
-    * 10 for main and 20 for secondary
-    * we also add a title
-    *
-    * hook : tc_navigation_option_map
-    * @return customize map
-    */
-    function tc_generates_menus( $_original_map ) {
-      /* Nav Menus */
-      $locations      = get_registered_nav_menus();
-      $menus          = wp_get_nav_menus();
-      //Don't go further if no menus
-      if ( ! $menus )
-        return $_original_map;
-
-      $num_locations  = count( array_keys( $locations ) );
-      if ( 1 == $num_locations ) {
-        $description = __( 'Your theme supports one menu. Select which menu you would like to use.' );
-      } else {
-        $description = sprintf( _n( 'Your theme supports %s menu. Select which menu appears in each location.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) );
-      }
-
-      $choices = array( '' => __( '&mdash; Select &mdash;' ) );
-
-      foreach ( $menus as $menu ) {
-        $choices[ $menu->term_id ] = wp_html_excerpt( $menu->name, 40, '&hellip;' );
-      }
-
-      $_priorities = array(
-        'nav_menu_locations[main]' => 10,
-        'nav_menu_locations[secondary]' => 20
-      );
-      $_priority = 0;
-      $_new_map     = array();
-
-      //assign new priorities to the menu controls
-      foreach ( $locations as $location => $description ) {
-        $menu_setting_id = "nav_menu_locations[{$location}]";
-        $_new_map[$menu_setting_id] = array(
-          'label'   => $description,
-          'section' => 'nav',
-          'control' => 'TC_controls',
-          'title'   => "nav_menu_locations[main]" == $menu_setting_id ? __( 'Assign menus to locations' , 'customizr') : false,
-          'type'    => 'select',
-          'choices' => $choices,
-          'priority' => isset($_priorities[$menu_setting_id]) ? $_priorities[$menu_setting_id] : $_priority
-        );
-        $_priority = $_priority + 10;
-      }
-
-      return array_merge($_new_map, $_original_map );
-    }
 
 
 
