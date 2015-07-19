@@ -94,14 +94,14 @@ if ( ! class_exists( 'TC_menu' ) ) :
     function tc_menu_display() {
       ob_start();
 
-      //renders the regular menu + responsive button
-      if ( ! $this -> tc_is_sidenav_enabled() ) {
-        $this -> tc_regular_menu_display( 'main' );
-      } else {
-        $this -> tc_sidenav_toggle_button_display();
-        if ( $this -> tc_is_second_menu_enabled() )
-          $this -> tc_regular_menu_display( 'secondary' );
-      }
+        //renders the regular menu + responsive button
+        if ( ! $this -> tc_is_sidenav_enabled() ) {
+          $this -> tc_regular_menu_display( 'main' );
+        } else {
+          $this -> tc_sidenav_toggle_button_display();
+          if ( $this -> tc_is_second_menu_enabled() )
+            $this -> tc_regular_menu_display( 'secondary' );
+        }
 
       $html = ob_get_contents();
       ob_end_clean();
@@ -133,46 +133,6 @@ if ( ! class_exists( 'TC_menu' ) ) :
         '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Reveal the menu' , 'customizr')
       );
       return apply_filters( "tc_{$type}_menu_button_view", $_button );
-    }
-
-
-    /**
-    * WP Nav Menu View
-    *
-    * @return html string
-    * @package Customizr
-    * @since Customizr 3.3+
-    */
-    function tc_wp_nav_menu_view( $args ) {
-      extract( $args );
-      //'_location', 'type', 'menu_class', 'menu_wrapper_class'
-      //renders the menu
-
-      // Get the nav menu based on the _location
-      $_locations           = get_nav_menu_locations();//<= returns an array Array( [main] => id1, [secondary] => id2 );
-      $_has_location_menu   = isset($_locations[$_location]) ? wp_get_nav_menu_object( $_locations[$_location] ) : false;
-
-      $menu_args = apply_filters( "tc_{$type}_menu_args",
-          array(
-            'theme_location'  => $_location,
-            'menu_class'      => implode(' ', apply_filters( "tc_{$type}_menu_class", $menu_class ) ),
-            'fallback_cb'     => array( $this, 'tc_page_menu' ),
-            //if no menu is set to the required location, fallsback to tc_page_menu
-            //=> tc_page_menu has it's own class extension of Walker, therefore no need to specify one below
-            'walker'          => ! $_has_location_menu ? '' : new TC_nav_walker,
-            'echo'            => false,
-        )
-      );
-
-      $menu = wp_nav_menu( $menu_args );
-
-      if ( $menu )
-        $menu = sprintf('<div class="%1$s">%2$s</div>',
-            implode(' ', apply_filters( "tc_{$type}_menu_wrapper_class", $menu_wrapper_class ) ),
-            $menu
-        );
-
-      return apply_filters("tc_{$type}_menu_view", $menu );
     }
 
 
@@ -303,6 +263,50 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
       echo $this -> tc_menu_button_view( compact( 'type', 'button_class', 'button_attr') );
     }
+
+
+    /***************************************
+    * COMMON VIEW
+    ****************************************/
+    /**
+    * WP Nav Menu View
+    *
+    * @return html string
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    function tc_wp_nav_menu_view( $args ) {
+      extract( $args );
+      //'_location', 'type', 'menu_class', 'menu_wrapper_class'
+      //renders the menu
+
+      // Get the nav menu based on the _location
+      $_locations           = get_nav_menu_locations();//<= returns an array Array( [main] => id1, [secondary] => id2 );
+      $_has_location_menu   = isset($_locations[$_location]) ? wp_get_nav_menu_object( $_locations[$_location] ) : false;
+
+      $menu_args = apply_filters( "tc_{$type}_menu_args",
+          array(
+            'theme_location'  => $_location,
+            'menu_class'      => implode(' ', apply_filters( "tc_{$type}_menu_class", $menu_class ) ),
+            'fallback_cb'     => array( $this, 'tc_page_menu' ),
+            //if no menu is set to the required location, fallsback to tc_page_menu
+            //=> tc_page_menu has it's own class extension of Walker, therefore no need to specify one below
+            'walker'          => ! $_has_location_menu ? '' : new TC_nav_walker,
+            'echo'            => false,
+        )
+      );
+
+      $menu = wp_nav_menu( $menu_args );
+
+      if ( $menu )
+        $menu = sprintf('<div class="%1$s">%2$s</div>',
+            implode(' ', apply_filters( "tc_{$type}_menu_wrapper_class", $menu_wrapper_class ) ),
+            $menu
+        );
+
+      return apply_filters("tc_{$type}_menu_view", $menu );
+    }
+
 
 
 
