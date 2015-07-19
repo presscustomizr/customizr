@@ -36,7 +36,7 @@ var czrapp = czrapp || {};
       });//.on()
 
       //RESIZING ACTIONS
-      czrapp.$_window.resize( function() {
+      czrapp.$_window.on( 'tc-resize', function() {
         self.stickyHeaderEventHandler('resize');
       });
 
@@ -137,7 +137,7 @@ var czrapp = czrapp || {};
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
-    _prepare_logo_transition : function(){ 
+    _prepare_logo_transition : function(){
       //do nothing if the browser doesn't support csstransitions (modernizr)
       //or if no logo (includes the case where we have two logos, normal and sticky one)
       if ( ! ( czrapp.$_html.hasClass('csstransitions') && ( this.logo && 0 !== this.logo._logo.length ) ) )
@@ -145,11 +145,11 @@ var czrapp = czrapp || {};
 
       var logoW = this.logo._logo.originalWidth(),
           logoH = this.logo._logo.originalHeight();
-      
+
       //check that all numbers are valid before using division
       if ( 0 === _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
         return;
-    
+
       this.logo._ratio = logoW / logoH;
       this.logo._logo.css('width' , logoW );
     },
