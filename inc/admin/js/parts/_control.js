@@ -291,28 +291,45 @@
           'tc_menu_type',
           'tc_menu_submenu_fade_effect',
           'tc_menu_submenu_item_move_effect',
-          'tc_menu_resp_dropdown_limit_to_viewport'
+          'tc_menu_resp_dropdown_limit_to_viewport',
+
+          'tc_display_menu_label',
+          'tc_display_second_menu',
+          'tc_second_menu_position',
+          'nav_menu_locations[secondary]',
+          'tc_second_menu_resp_setting'
         ],
         //if the second menu is activated, only the tc_menu_resp_dropdown_limit_to_viewport is hidden
         //otherwise all of them are hidden
         callback: function (to, targetSetId, changedSetId) {
-          if ( _.contains(['tc_menu_type', 'tc_menu_submenu_fade_effect', 'tc_menu_submenu_item_move_effect'], targetSetId ) )
-            return true === api( _build_setId('tc_display_second_menu') ).get() || 'aside' != to;
-          return 'aside' != to;
-        }
-      },
-      hide : {
-        controls: [
-          'tc_display_menu_label',
-          'tc_display_second_menu',
-          'nav_menu_locations[secondary]',
-          'tc_second_menu_resp_setting',
-        ],
-        callback: function (to, targetSetId, changedSetId ) {
-          console.log(to, targetSetId, changedSetId, api( _build_setId('tc_display_second_menu') ).get() );
-          if ( _.contains( ['nav_menu_locations[secondary]', 'tc_second_menu_resp_setting'], targetSetId ) )
-            return 'aside' == to ? true !== api( _build_setId('tc_display_second_menu') ).get() : 'aside' != to ;
-          return 'aside' != to;
+          //CASE 1 : regular menu choosen
+          if ( 'aside' != to ) {
+            if ( _.contains([
+                'tc_display_menu_label',
+                'tc_display_second_menu',
+                'nav_menu_locations[secondary]',
+                'tc_second_menu_position',
+                'tc_second_menu_resp_setting'] , targetSetId ) ) {
+              return false;
+            } else {
+              return true;
+            }
+          }
+          //CASE 2 : side menu choosen
+          else {
+            if ( _.contains([
+              'tc_menu_type',
+              'tc_menu_submenu_fade_effect',
+              'tc_menu_submenu_item_move_effect',
+              'nav_menu_locations[secondary]',
+              'tc_second_menu_position',
+              'tc_second_menu_resp_setting'],
+              targetSetId ) ) {
+                return true === api( _build_setId('tc_display_second_menu') ).get();
+            }
+            else
+              return true;
+          }
         }
       }
     },
@@ -320,12 +337,16 @@
       show : {
         controls: [
           'nav_menu_locations[secondary]',
+          'tc_second_menu_position',
           'tc_second_menu_resp_setting',
           'tc_menu_type',
           'tc_menu_submenu_fade_effect',
           'tc_menu_submenu_item_move_effect'
         ],
+        //the menu style must be aside for secondary menu controls
         callback: function (to, targetSetId, changedSetId) {
+          if ( _.contains( ['nav_menu_locations[secondary]', 'tc_second_menu_resp_setting'], targetSetId ) )
+            return '1' == to && 'aside' == api( _build_setId( 'tc_menu_style' )).get();
           return '1' == to;
         }
       }
@@ -443,11 +464,13 @@
         var _action   = _get_visibility_action( _params.setId , depSetId ),
             _callback = _get_visibility_cb( _params.setId , _action ),
             _bool     = false;
-
+        if ( 'nav_menu_locations[secondary]' == depSetId ) {
+          console.log( 'in SET SINGLE' , _params.setId, _action, _callback(to, depSetId, _params.setId ) ) ;
+        }
         if ( 'show' == _action && _callback(to, depSetId, _params.setId ) )
           _bool = true;
-        if ( 'hide' == _action && ! _callback(to, depSetId, _params.setId ) )
-          _bool = true;
+        if ( 'hide' == _action && _callback(to, depSetId, _params.setId ) )
+          _bool = false;
         if ( 'both' == _action )
           _bool = _callback(to, depSetId, _params.setId );
 
@@ -456,6 +479,9 @@
         //if cross dependency :
         //1) return true if we must show, false if not.
         _bool = _check_cross_dependant( _params.setId, depSetId ) && _bool;
+        if ( 'nav_menu_locations[secondary]' == depSetId ) {
+          console.log('IN SET SINGLE AFTER', _check_cross_dependant( _params.setId, depSetId ), _bool, control.container );
+        }
         control.container.toggle( _bool );
       };
 
