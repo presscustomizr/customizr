@@ -226,28 +226,17 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $defaults = array();
 
         foreach ($map['add_setting_control'] as $key => $options) {
-
           //check it is a customizr option
-          if( false !== strpos( $key  , $option_group ) ) {
+          //all customizr theme options start by "tc_" by convention
+          if(  'tc_' !== substr( $key, 0, 3 ) )
+            continue;
 
-            //isolate the option name between brackets [ ]
-            $option_name = '';
-            $option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
-            if ( isset( $match[1][0] ) )
-              {
-                  $option_name = $match[1][0];
-              }
-
-            //write default option in array
-            if(isset($options['default'])) {
-              $defaults[$option_name] = ( 'checkbox' == $options['type'] ) ? (bool) $options['default'] : $options['default'];
-            }
-            else {
-              $defaults[$option_name] = null;
-            }
-
-          }//end if
-
+          $option_name = $key;
+          //write default option in array
+          if( isset($options['default']) )
+            $defaults[$option_name] = ( 'checkbox' == $options['type'] ) ? (bool) $options['default'] : $options['default'];
+          else
+            $defaults[$option_name] = null;
         }//end foreach
 
         return $defaults;
