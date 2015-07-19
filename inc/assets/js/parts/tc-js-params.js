@@ -38,5 +38,6 @@ var TCParams = TCParams || {
   imgSmartLoadOpts: {},
   goldenRatio : 1.618,
   gridGoldenRatioLimit : 350,
+  isSecondMenuEnabled : 0,
   secondMenuRespSet : 'in-sn-before'
 };

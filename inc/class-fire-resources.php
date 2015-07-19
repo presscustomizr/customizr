@@ -233,6 +233,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
               'imgSmartLoadOpts'    => apply_filters( 'tc_img_smart_load_options' , array() ),
               'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
               'gridGoldenRatioLimit' => esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height' ) ),
+              'isSecondMenuEnabled'  => TC_utils::$inst->tc_is_secondary_menu_enabled(),
               'secondMenuRespSet'   => esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) )
 	        	),
 	        	TC_utils::tc_id()

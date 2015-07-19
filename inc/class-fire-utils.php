@@ -871,6 +871,15 @@ if ( ! class_exists( 'TC_utils' ) ) :
       }
     }
 
+
+    /**
+    * Boolean helper to check if the secondary menu is enabled
+    * since v3.4+
+    */
+    function tc_is_secondary_menu_enabled() {
+      return (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) && 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) );
+    }
+
   }//end of class
 endif;
 
