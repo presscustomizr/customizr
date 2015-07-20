@@ -42,13 +42,20 @@ if ( ! class_exists( 'TC_menu' ) ) :
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
       add_filter( 'tc_user_options_style'         , array( $this , 'tc_menu_item_style_first_letter_css') );
+      //set second menu specific style including @media rules
+      add_filter( 'tc_user_options_style'         , array( $this , 'tc_add_second_menu_inline_style') );
 
       //SIDE MENU HOOKS SINCE v3.3+
       if ( $this -> tc_is_sidenav_enabled() ){
         add_action( 'wp_head'                     , array( $this , 'tc_set_sidenav_hooks') );
         add_filter( 'tc_user_options_style'       , array( $this , 'tc_set_sidenav_style') );
-      }else
+      }
+      //this adds css classes to the navbar-wrapper :
+      //1) to the main menu if regular (sidenav not enabled)
+      //2) to the secondary menu if enabled
+      if ( ! $this -> tc_is_sidenav_enabled() || TC_utils::$inst->tc_is_secondary_menu_enabled() ) {
         add_filter( 'tc_navbar_wrapper_class'     , array( $this, 'tc_set_menu_style_options'), 0 );
+      }
 
       //body > header > navbar action ordered by priority
       add_action ( '__navbar'                     , array( $this , 'tc_menu_display' ), 30 );
@@ -315,7 +322,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * GETTERS / SETTERS
     ****************************************/
     /*
-    * Set menu class position
+    * Set navbar menu css classes : effects, position...
     * hook : tc_navbar_wrapper_class hook
     *
     * @package Customizr
@@ -325,7 +332,16 @@ if ( ! class_exists( 'TC_menu' ) ) :
       $_classes = ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
       $_classes = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
       $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
-      return array_merge( $_classes, array(esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) ) );
+
+      //Navbar menus positions (not sidenav)
+      //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
+      //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
+      if ( ! $this -> tc_is_sidenav_enabled() )
+        array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
+      if ( TC_utils::$inst->tc_is_secondary_menu_enabled() )
+        array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
+
+      return $_classes;
     }
 
 
@@ -407,6 +423,83 @@ if ( ! class_exists( 'TC_menu' ) ) :
         }\n"
       );
     }
+
+
+    function tc_add_second_menu_inline_style( $_css ) {
+      if ( ! TC_Utils::$inst -> tc_is_secondary_menu_enabled() )
+        return $_css;
+
+      return sprintf("%s\n%s",
+        $_css,
+        "@media (max-width: 979px) {
+          .tc-second-menu-on #tc-page-wrap .nav-collapse {
+            width: inherit;
+            overflow: visible;
+            height: inherit;
+            position:relative;
+            top: inherit;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+          }
+          .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse {
+            display:none;
+          }
+          .tc-second-menu-on #tc-page-wrap .nav-collapse.collapse .nav {
+            display: block;
+            float: left;
+            margin: inherit;
+          }
+          .tc-second-menu-on #tc-page-wrap .nav-collapse .nav>li {
+            float:left;
+          }
+          .tc-second-menu-on #tc-page-wrap .nav-collapse .dropdown-menu {
+            position:absolute;
+            display: none;
+            -webkit-box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            -moz-box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            background-color: #fff;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            -moz-box-shadow:  0 2px 8px rgba(0,0,0,.2)
+            box-shadow:  0 2px 8px rgba(0,0,0,.2)
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding;
+            background-clip: padding-box;
+          }
+          .tc-second-menu-on #tc-page-wrap .navbar .nav>li>.dropdown-menu:before {
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid #ccc;
+            border-bottom-color: rgba(0,0,0,.2);
+            top: -7px;
+            left: 9px;
+          }
+          .tc-second-menu-on #tc-page-wrap .navbar .nav>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu:before{
+            content: '';
+            display: inline-block;
+            position: absolute;
+          }
+          .tc-second-menu-on #tc-page-wrap .tc-hover-menu.nav .caret {
+            display:inline-block;
+          }
+          .nav-collapse, .nav-collapse.collapse.in .nav, .tc-hover-menu.nav ul.dropdown-menu {
+
+          }
+          .tc-second-menu-on #tc-page-wrap .tc-hover-menu.nav li:hover>ul {
+            display: block;
+          }
+          .tc-second-menu-on #tc-page-wrap .nav a, .tc-second-menu-on #tc-page-wrap .tc-hover-menu.nav a {
+            border-bottom: none;
+          }
+        }\n"
+      );
+    }
+
+
 
     /**
     * Adds a specific style to the first letter of the menu item
