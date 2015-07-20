@@ -711,6 +711,11 @@ if ( ! class_exists( 'TC_init' ) ) :
             'f' == $_layout ? 'no' : $_layout
           ) );
         }
+
+        //adds the second menu state
+        if ( TC_Utils::$inst -> tc_is_secondary_menu_enabled() )
+          array_push( $_classes, 'tc-second-menu-on' );
+
         return $_classes;
       }
 
