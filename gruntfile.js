@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         configPath: path.join(process.cwd(), 'grunt-tasks-config/'),
         // auto grunt.initConfig
         init: true,
-        // data passed into config ( => the basic grunt.initConfig(config) ). Can be used afterwards with <%= test %>
+        // data passed into config ( => the basic grunt.initConfig(config) ). Can be used afterwards with < %= test % >
         data: {
 			pkg: grunt.file.readJSON( 'package.json' ),
 			paths : {
@@ -30,6 +30,7 @@ module.exports = function(grunt) {
 			customizr_tasks : {
 				//DEV : clean the build and watch changes (see watch task)
 				'customizr_dev': ['clean' ,'watch'],
+        'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
 				//PROD
 				'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'cssmin:prod_common_rtl'],

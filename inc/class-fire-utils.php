@@ -25,6 +25,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function __construct () {
         self::$inst =& $this;
         self::$instance =& $this;
+
+        //init properties
+        add_action( 'after_setup_theme'                   , array( $this , 'tc_init_properties') );
+        //WP filters
+        add_action( 'after_setup_theme'                   , array( $this , 'tc_wp_filters') );
+
         //get all options
         add_filter( '__options'                           , array( $this , 'tc_get_theme_options' ), 10, 1);
         //get single option
@@ -41,13 +47,40 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         //social networks
         add_filter( '__get_socials'                       , array( $this , 'tc_get_social_networks' ) );
-
-        //WP filters
-        add_action( 'after_setup_theme'                   , array( $this , 'tc_wp_filters') );
-
-        //init properties
-        add_action( 'after_setup_theme'                   , array( $this , 'tc_init_properties') );
       }
+
+
+      /***************************
+      * EARLY HOOKS
+      ****************************/
+      /**
+      * Init TC_utils class properties after_setup_theme
+      * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
+      * tc_get_default_options uses is_user_logged_in() => was causing the bug
+      * hook : after_setup_theme
+      *
+      * @package Customizr
+      * @since Customizr 3.2.3
+      */
+      function tc_init_properties() {
+        $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
+        $this -> db_options       = (array) get_option( TC___::$tc_option_group );
+        $this -> default_options  = $this -> tc_get_default_options();
+        $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
+        $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
+
+        //What was the theme version when the user started to use Customizr?
+        //new install = no options yet
+        //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
+        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
+          set_transient(
+            $_trans,
+            sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
+            60*60*24*9999
+          );
+        }
+      }
+
 
 
       /**
@@ -111,33 +144,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
 
 
-      /**
-      * Init TC_utils class properties after_setup_theme
-      * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
-      * tc_get_default_options uses is_user_logged_in() => was causing the bug
-      *
-      * @package Customizr
-      * @since Customizr 3.2.3
-      */
-      function tc_init_properties() {
-        $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
-        $this -> default_options  = $this -> tc_get_default_options();
-        $this -> db_options       = (array) get_option( TC___::$tc_option_group );
-        $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
-        $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
-
-        //What was the theme version when the user started to use Customizr?
-        //new install = no options yet
-        //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
-          set_transient(
-            $_trans,
-            sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
-            60*60*24*9999
-          );
-        }
-      }
-
 
       /**
       * Returns the current skin's primary color
@@ -177,18 +183,28 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.1.11
       */
       function tc_get_default_options() {
-        $def_options = get_option( "tc_theme_defaults" );
+        $_db_opts     = $this -> db_options;
+        $def_options  = isset($_db_opts['defaults']) ? $_db_opts['defaults'] : array();
 
-        //Always update the default option when (OR) :
-        // 1) they are not defined
-        // 2) customzing => takes into account if user has set a filter or added a new customizer setting
+        //Don't update if default options are not empty + customizing context
+        //customizing out ? => we can assume that the user has at least refresh the default once (because logged in, see conditions below) before accessing the customizer
+        //customzing => takes into account if user has set a filter or added a new customizer setting
+        if ( ! empty($def_options) && $this -> is_customizing )
+          return apply_filters( 'tc_default_options', $def_options );
+
+        //Always update/generate the default option when (OR) :
+        // 1) user is logged in
+        // 2) they are not defined
         // 3) theme version not defined
         // 4) versions are different
-        if ( is_user_logged_in() || ! $def_options || $this -> is_customizing || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
-          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
-          //Adds the version
+        if ( is_user_logged_in() || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
+          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
+          //Adds the version in default
           $def_options['ver']   =  CUSTOMIZR_VER;
-          update_option( "tc_theme_defaults" , $def_options );
+
+          $_db_opts['defaults'] = $def_options;
+          //writes the new value in db
+          update_option( "tc_theme_options" , $_db_opts );
         }
         return apply_filters( 'tc_default_options', $def_options );
       }
@@ -203,36 +219,36 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.0.3
       */
       function tc_generate_default_options( $map, $option_group = null ) {
-          //do we have to look in a specific group of option (plugin?)
-          $option_group   = is_null($option_group) ? 'tc_theme_options' : $option_group;
+        //do we have to look in a specific group of option (plugin?)
+        $option_group   = is_null($option_group) ? 'tc_theme_options' : $option_group;
 
-          //initialize the default array with the sliders options
-          $defaults = array();
+        //initialize the default array with the sliders options
+        $defaults = array();
 
-          foreach ($map['add_setting_control'] as $key => $options) {
+        foreach ($map['add_setting_control'] as $key => $options) {
 
-            //check it is a customizr option
-            if( false !== strpos( $key  , $option_group ) ) {
+          //check it is a customizr option
+          if( false !== strpos( $key  , $option_group ) ) {
 
-              //isolate the option name between brackets [ ]
-              $option_name = '';
-              $option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
-              if ( isset( $match[1][0] ) )
-                {
-                    $option_name = $match[1][0];
-                }
-
-              //write default option in array
-              if(isset($options['default'])) {
-                $defaults[$option_name] = ( 'checkbox' == $options['type'] ) ? (bool) $options['default'] : $options['default'];
-              }
-              else {
-                $defaults[$option_name] = null;
+            //isolate the option name between brackets [ ]
+            $option_name = '';
+            $option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
+            if ( isset( $match[1][0] ) )
+              {
+                  $option_name = $match[1][0];
               }
 
-            }//end if
+            //write default option in array
+            if(isset($options['default'])) {
+              $defaults[$option_name] = ( 'checkbox' == $options['type'] ) ? (bool) $options['default'] : $options['default'];
+            }
+            else {
+              $defaults[$option_name] = null;
+            }
 
-          }//end foreach
+          }//end if
+
+        }//end foreach
 
         return $defaults;
       }
@@ -328,7 +344,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if ( in_the_loop() ) {
           $tc_id            = get_the_ID();
         } else {
-          global $post;  
+          global $post;
           $queried_object   = get_queried_object();
           $tc_id            = ( ! empty ( $post ) && isset($post -> ID) ) ? $post -> ID : null;
           $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
@@ -347,9 +363,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       public static function tc_get_layout( $post_id , $sidebar_or_class = 'class' ) {
           $__options                    = tc__f ( '__options' );
-
           global $post;
-
           //Article wrapper class definition
           $global_layout                = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
 
@@ -855,6 +869,15 @@ if ( ! class_exists( 'TC_utils' ) ) :
           return false;
         break;
       }
+    }
+
+
+    /**
+    * Boolean helper to check if the secondary menu is enabled
+    * since v3.4+
+    */
+    function tc_is_secondary_menu_enabled() {
+      return (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) && 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) );
     }
 
   }//end of class

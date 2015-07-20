@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.28
+ * Customizr v3.4.0
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5221,6 +5221,8 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
 .sticky-enabled .tc-title-logo-off .brand {
   display: none;
 }
+/* do not display menu button when sticky enabled and tc-menu-off enabled */
+.sticky-enabled .tc-menu-off .btn-toggle-nav,
 .sticky-enabled .tc-menu-off .nav-collapse {
   display: none;
 }
@@ -5231,10 +5233,10 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
   margin-left: 0px;
   width: 100%;
 }
-.sticky-enabled .navbar .nav > li > a {
+.sticky-enabled .tc-header .navbar .nav > li > a {
   font-size: 14px;
 }
-.sticky-enabled .navbar .navbar-inner {
+.sticky-enabled .tc-header .navbar .navbar-inner {
   margin: 8px 5px 5px 5px;
   background: none;
   min-height: 35px;
@@ -5243,6 +5245,9 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
 .sticky-enabled .brand a {
   margin: 10px 0px;
 }
+/*.sticky-enabled .tc-header .btn-toggle-nav .btn {
+  margin: 0 0 3px;
+}*/
 .sticky-enabled .nav-collapse {
   float: left;
 }
@@ -5422,8 +5427,9 @@ h2.site-description {
   border-width: 4px 0 4px 4px;
   border-left-color: #cccccc;
 }
-/* Hide responsive button by default */
-.navbar .btn-navbar {
+/* Hide responsive button by default when menu is regulat type*/
+.tc-regular-menu .navbar .btn-toggle-nav,
+.tc-regular-menu .navbar .btn-navbar {
   display: none;
 }
 .navbar .btn-navbar:hover,
@@ -5506,14 +5512,19 @@ li.dropdown.active > .dropdown-toggle,
   padding-right: 1.63em;
 }
 /* ADJUST LEFT AND RIGHT MENU POSITIONS => align with socials (left) and tagline (right) */
-.navbar div > ul.nav > .menu-item:last-child > a {
-  padding-right: 0px;
+.logo-left .navbar div > ul.nav > .menu-item:last-child > a {
+  padding-right: 0;
 }
 .navbar .nav {
   margin-right: 0px;
 }
-.navbar div > ul.nav > .menu-item:first-child > a {
+.tc-header .btn-toggle-nav.pull-left,
+.pull-menu-left .navbar div > ul.nav > .menu-item:first-child > a {
   padding-left: 5px;
+}
+.tc-header .btn-toggle-nav.pull-right,
+.pull-menu-right .navbar div > ul.nav > .menu-item:last-child > a {
+  padding-right: 0px;
 }
 .pull-menu-left .nav-collapse {
   float: left;
@@ -5521,7 +5532,300 @@ li.dropdown.active > .dropdown-toggle,
 .pull-menu-right .nav-collapse {
   float: right;
 }
-/* BREADCUMB
+/* SIDE MENU
+  -------------------------------------------------- */
+/* prevent overflow-x when animating and when menu is visible */
+.tc-sn-visible,
+.animating {
+  overflow-x: hidden;
+}
+/* rtl fix */
+.animating[class*=sn-right] {
+  direction: ltr;
+}
+.animating[class*=sn-right] * {
+  direction: rtl;
+}
+#tc-page-wrap {
+  position: relative;
+  z-index: 15;
+  background: inherit;
+}
+[class*=sn-right] #tc-sn {
+  right: 0;
+}
+[class*=sn-left] #tc-sn {
+  left: 0;
+}
+nav#tc-sn {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  margin: 0;
+  z-index: 10;
+  /* Make sure the z-index is lower than the #page */
+  overflow: hidden;
+}
+#tc-sn .tc-sn-inner {
+  -webkit-transition: height 0s;
+  -moz-transition: height 0s;
+  -o-transition: height 0s;
+  transition: height 0s;
+  position: relative;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  -webkit-overflow-scroll: auto;
+  /* safari */
+  padding: 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+/* Animations */
+.animating #tc-page-wrap,
+.animating #tc-sn,
+.tc-sn-visible #tc-page-wrap,
+.tc-sn-visible #tc-sn {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+/* Hide the menu unless it's animating or visible */
+.animating #tc-sn,
+.tc-sn-visible #tc-sn {
+  visibility: visible;
+}
+.animating #tc-sn,
+.animating #tc-page-wrap {
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+}
+.sn-right.sn-close #tc-sn,
+.sn-right #tc-sn {
+  -webkit-transform: translate3d(50%, 0, 0);
+  -moz-transform: translate3d(50%, 0, 0);
+  transform: translate3d(50%, 0, 0);
+}
+.sn-left.sn-close #tc-sn,
+.sn-left #tc-sn {
+  -webkit-transform: translate3d(-50%, 0, 0);
+  -moz-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
+}
+/* hide inner scrollbars (if any) while animating */
+.animating #tc-sn .tc-sn-inner {
+  overflow: hidden !important;
+}
+.animating #tc-sn,
+.tc-sn-visible #tc-sn {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+/* FIXED HEADER ISSUE */
+.animating.tc-sticky-header #tc-page-wrap {
+  overflow: auto;
+}
+.tc-sticky-header[class*=sn-] .tc-header {
+  -webkit-transition: top 0s;
+  -moz-transition: top 0s;
+  -o-transition: top 0s;
+  transition: top 0s;
+}
+.animating.sticky-enabled.tc-sticky-header .tc-header {
+  opacity: 0;
+}
+/* HACK */
+/* stick the sticky header to the left/right of the page wrapper*/
+/* following needed both in mobiles with max-width 400px and in the safari version I tried 6.1.5, since looks fine also in other desktop I left it as general rule*/
+/* basically on transition's end in those browsers the sticky header moved to left 0 (or right 0) of the window, overlapping the side menu
+style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_style
+*/
+.tc-sticky-header[class*=sn-left] .tc-header {
+  left: 0;
+}
+.tc-sticky-header[class*=sn-right] .tc-header {
+  right: 0;
+}
+/* see inline style for further fixes */
+/* END FIXED HEADER ISSUE */
+/* SIDE MENU START */
+/*.btn-toggle-nav .menu-btn,*/
+#tc-sn .nav-collapse {
+  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF)";
+}
+.btn-toggle-nav .menu-btn:focus,
+.btn-toggle-nav .menu-btn:hover {
+  outline: none;
+  outline-offset: inherit;
+  background: none;
+}
+#tc-sn .tc-sn-inner.nav-collapse .nav {
+  display: block;
+}
+.sn-nav-wrapper {
+  clear: both;
+  float: left;
+  min-width: 100%;
+}
+#tc-sn .tc-sn-inner .nav li {
+  float: none;
+}
+#tc-sn .nav a {
+  border-bottom: 1px solid #EEE;
+}
+/* hide arrow */
+#tc-sn.navbar .nav .dropdown-submenu > a:after,
+#tc-sn.navbar .nav > li > .dropdown-menu:after,
+#tc-sn.navbar .nav > li > .dropdown-menu:before {
+  content: none;
+}
+.tc-sn-inner .nav [class*=dropdown] {
+  position: static;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: none;
+}
+/*force font color of the 2nd level for all viewports? change this in customizr? */
+.nav .dropdown-menu a {
+  color: #777;
+}
+.navbar div > ul.sn-nav > .menu-item:first-child > a {
+  padding-left: 20px;
+}
+#tc-sn .tc-sn-inner .nav .dropdown-menu {
+  left: auto;
+  float: none;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  top: 100%;
+}
+#tc-sn .nav-collapse .nav .dropdown-menu a {
+  padding: 3px 5px;
+  white-space: normal;
+}
+#tc-sn.navbar .nav-collapse ul.nav > li li a {
+  padding-right: 30px;
+}
+#tc-sn.navbar .nav-collapse ul.nav > li li li a {
+  padding-right: 50px;
+}
+.animating .tc-sn-inner .nav [class*=dropdown],
+.tc-sn-visible .tc-sn-inner .nav [class*=dropdown] {
+  display: block;
+}
+/* SIDE MENU END */
+/* SIDE/MOBILE NAV TOGGLE BUTTON */
+/*.sn-open .tc-header .btn-toggle-nav ,
+.tc-sn-visible .tc-header .btn-toggle-nav {
+  visibility: hidden;
+}*/
+.btn-toggle-nav {
+  width: auto;
+  line-height: 29px;
+}
+/* Adjustment when tagline off */
+.tc-tagline-off .btn-toggle-nav {
+  margin-top: 8px;
+}
+.navbar .btn-toggle-nav .btn {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: content-box;
+  /*padding: 8px 7px 2px;
+  border: 1px solid #EEE;*/
+  height: 30px;
+  color: #5F6F81;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 1px 5px 0px;
+  outline: 0;
+  float: left;
+}
+.sn-toggle .btn {
+  display: block;
+}
+.menu-btn {
+  padding: 0;
+  background: none;
+  border: none;
+}
+.menu-label {
+  text-align: center;
+  margin: auto;
+  display: block;
+  float: right;
+  display: inline-block;
+  margin-right: 5px;
+}
+.navbar .btn-toggle-nav .icon-bar {
+  background: #5F6F81;
+  display: block;
+  width: 30px;
+  height: 3px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.navbar .btn-toggle-nav .icon-bar,
+.navbar .btn-toggle-nav .menu-label {
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+/* Prevent icons staying highlighted in mobiles even when menu closed */
+.tc-is-mobile .navbar .nav-collapse + .btn-toggle-nav .icon-bar {
+  background-color: #5f6f81;
+}
+/* Tanform 3 bars in a cross */
+.nav-collapse.in + .btn-toggle-nav .icon-bar:nth-child(1),
+.tc-sn-visible .btn-toggle-nav .icon-bar:nth-child(1) {
+  -webkit-transform: translate(0px, 0px) rotate(-45deg) scalex(1.3);
+  -moz-transform: translate(0px, 0px) rotate(-45deg) scalex(1.3);
+  -ms-transform: translate(0px, 0px) rotate(-45deg) scalex(1.3);
+  -o-transform: translate(0px, 0px) rotate(-45deg) scalex(1.3);
+  transform: translate(0px, 0px) rotate(-45deg) scalex(1.3);
+}
+.nav-collapse.in + .btn-toggle-nav .icon-bar:nth-child(2),
+.tc-sn-visible .btn-toggle-nav .icon-bar:nth-child(2) {
+  height: 0;
+  -webkit-transition: all .05s linear;
+  -moz-transition: all .05s linear;
+  -o-transition: all .05s linear;
+  transition: all .05s linear;
+}
+.nav-collapse.in + .btn-toggle-nav .icon-bar:nth-child(3),
+.tc-sn-visible .btn-toggle-nav .icon-bar:nth-child(3) {
+  -webkit-transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+  -moz-transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+  -ms-transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+  -o-transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+  transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+}
+.csstransforms .nav-collapse.in + .btn-toggle-nav .icon-bar,
+.csstransforms .tc-sn-visible .btn-toggle-nav .icon-bar {
+  margin: 0;
+}
+/* BREADCRUMB
   -------------------------------------------------- */
 .tc-hot-crumble {
   margin: 5px 0 10px 0;
@@ -5684,7 +5988,7 @@ footer#footer .colophon .social-block a {
   font-size: 120px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
   z-index: 10;
-  color: #999;
+  color: inherit;
   line-height: 16px;
   vertical-align: middle;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -5698,6 +6002,9 @@ footer#footer .colophon .social-block a {
   filter: alpha(opacity=90);
   outline: none;
 }
+.tc-carousel-control:focus {
+  color: inherit;
+}
 .tc-slider-controls {
   position: absolute;
   bottom: 0;
@@ -5707,6 +6014,7 @@ footer#footer .colophon .social-block a {
   /* OVERRIDEN BY DYNAMIC!!!! PHP + JS */
   width: 10%;
   opacity: 0;
+  color: #999;
 }
 .tc-slid-hover .tc-slider-controls {
   opacity: 1;
@@ -5971,6 +6279,10 @@ article.hover .tc-thumbnail .round-div {
 h1.entry-title,
 h2.entry-title {
   width: 100%;
+}
+/* woocommerce product titles */
+.woocommerce div.product .product_title {
+  text-align: right;
 }
 h1 a:hover,
 h2 a:hover {
@@ -6455,10 +6767,14 @@ img.v-centered {
   background: rgba(0, 0, 0, 0.4);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000', GradientType=0);
 }
-.no-thumb figcaption {
+article .no-thumb figcaption {
   color: inherit;
   background: none;
   opacity: 1;
+}
+.expanded .no-thumb figcaption {
+  color: #fff;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 .expanded figcaption,
 .no-thumb figcaption,
@@ -6503,6 +6819,7 @@ img.v-centered {
 .tc-post-list-grid article.expanded .entry-summary {
   background: #fafafa;
   background: rgba(0, 0, 0, 0.4);
+  background: grey\9;
   padding: 8%;
   margin: 0;
   max-height: none;
@@ -6525,11 +6842,20 @@ img.v-centered {
 .hover .tc-grid-figure img {
   opacity: 0.7;
 }
-.hover .expanded figcaption,
+/*.hover figcaption {
+  background: rgb(250, 250, 250);
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  /*color: inherit\9!important;
+}*/
+.hover.expanded .no-thumb figcaption {
+  background: none;
+}
 .hover .no-thumb figcaption {
+  color: #fff;
   background: #fafafa;
   background: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  background: #676767\9;
 }
 .tc-post-list-grid article.sticky {
   text-align: justify;
@@ -6599,6 +6925,7 @@ img.v-centered {
   position: absolute;
   z-index: 1;
   width: 100%;
+  display: none!important\9;
 }
 .format-quote .tc-grid-icon,
 .format-status .tc-grid-icon {
@@ -6960,6 +7287,8 @@ footer ol {
   z-index: 99999999;
   background: #777777 transparent;
   background: rgba(119, 119, 119, 0.2);
+  background: white\9;
+  border: 1px solid #ddd\9;
   color: #EEE;
   width: 45px;
   height: 43px;
@@ -8302,7 +8631,7 @@ li#wp-admin-bar-tc-customizr a {
     padding-right: 10px;
   }
 }
-@media (min-width: 979px + 1) {
+@media (min-width: 980px) {
   .nav-collapse.collapse {
     height: auto !important;
     overflow: visible !important;
@@ -8410,6 +8739,11 @@ li#wp-admin-bar-tc-customizr a {
   .tc-open-on-click .dropdown-submenu:hover > .dropdown-menu {
     display: none;
   }
+  /* Side Nav */
+  .tc-sn-inner.nav-collapse.collapse {
+    height: 100% !important;
+    overflow: auto !important;
+  }
 }
 @media (max-width: 979px) {
   .tc-header .outside {
@@ -8453,12 +8787,10 @@ li#wp-admin-bar-tc-customizr a {
   /* Default Menu */
   .nav-collapse,
   .nav-collapse.collapse {
-    overflow: hidden;
-    height: 0;
     position: absolute;
     z-index: 3000;
     right: 0px;
-    top: 42px;
+    top: 52px;
     background-color: #FAFAFA;
     background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
@@ -8489,6 +8821,9 @@ li#wp-admin-bar-tc-customizr a {
   .nav-collapse.collapse.in .nav {
     display: block;
   }
+  .navbar div > ul.nav > .menu-item:first-child > a {
+    padding-left: 15px;
+  }
   .nav-collapse .nav > li > a,
   .nav-collapse .dropdown-menu a {
     font-weight: normal;
@@ -8508,10 +8843,7 @@ li#wp-admin-bar-tc-customizr a {
     padding-left: 25px;
   }
   .nav-collapse .dropdown-menu li li a {
-    padding-left: 50px;
-  }
-  .nav-collapse .dropdown-menu li li li a {
-    padding-left: 75px;
+    padding-left: 30px;
   }
   /* Hover Menu */
   .nav-collapse.tc-hover-menu-wrapper {
@@ -8653,18 +8985,16 @@ li#wp-admin-bar-tc-customizr a {
   .sticky-enabled .navbar .navbar-inner {
     margin: 0px;
   }
+  .tc-header .navbar .btn-toggle-nav,
   .navbar .btn-navbar {
     display: block;
     margin: 10px 0;
+    /*float: right;*/
   }
   /* GIVE NAVBAR A SMALLER Z-index than logo / title SINCE V3.2.0*/
   .sticky-enabled .navbar-wrapper {
     position: relative;
     z-index: 1;
-  }
-  /* do not display menu button when sticky enabled and tc-menu-off enabled */
-  .sticky-enabled .tc-menu-off .btn-navbar {
-    display: none;
   }
   .no-navbar .nav-collapse,
   .nav-collapse.collapse {
@@ -8688,6 +9018,9 @@ li#wp-admin-bar-tc-customizr a {
     float: left;
     margin: 14px 0 0;
   }
+  .logo-right .navbar .navbar-inner .social-block {
+    float: right;
+  }
   /* MENU CHANGES SINCE V3.2.0 */
   .navbar .nav-collapse .dropdown-menu a {
     padding: 3px 5px;
@@ -8696,7 +9029,7 @@ li#wp-admin-bar-tc-customizr a {
     padding-right: 30px;
   }
   .navbar .nav-collapse ul.nav > li li li a {
-    padding-right: 60px;
+    padding-right: 50px;
   }
   .dropdown-submenu > a:after {
     content: none;
@@ -8735,8 +9068,11 @@ li#wp-admin-bar-tc-customizr a {
   .simple-button .navbar .btn-navbar:hover .icon-bar {
     background-color: #fff;
   }
-  button.btn.btn-navbar {
+  /*  button.btn.btn-navbar {
     transition: all 0.1s ease-in-out;
+  }*/
+  .btn-toggle-nav .menu-label {
+    display: none;
   }
 }
 @media (max-width: 979px) and (min-width: 768px) {
@@ -8975,6 +9311,31 @@ li#wp-admin-bar-tc-customizr a {
     max-height: 80px;
     overflow: hidden;
   }
+}
+/* Side Nav */
+@media (max-width: 400px) {
+  nav#tc-sn {
+    width: 400px;
+    max-width: 100%;
+  }
+  /* when open, give to the menu a greater z-index
+   */
+  .tc-sn-visible:not(.sn-close) #tc-sn {
+    z-index: 9999;
+  }
+  .tc-sn-visible {
+    overflow: hidden;
+  }
+  /* Hack*/
+  /* prevent pan in mobiles max-width: 400px: should we apply this for all tc-is-mobile losing the page scroll down ?? */
+  .tc-sn-visible #tc-page-wrap {
+    position: absolute;
+    width: 100%;
+  }
+  .tc-sn-visible.sticky-enabled.admin-bar #tc-page-wrap {
+    top: 0;
+  }
+  /*end prevent overflows in mobiles */
 }
 @media (max-width: 320px) {
   .carousel .item {

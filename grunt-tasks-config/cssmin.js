@@ -1,4 +1,11 @@
 module.exports = {
+  options: {
+    // compatibility: {
+    //     properties: {
+    //         spaceAfterClosingBrace: true
+    //     }
+    // }
+  },
 	dev_skin: {
 		files: [
 			{'<%= paths.front_css %>blue3.min.css' : '<%= paths.front_css %>blue3.css'}

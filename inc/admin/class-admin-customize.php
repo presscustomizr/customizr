@@ -27,16 +27,18 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
       self::$instance =& $this;
   		//add control class
-  		add_action ( 'customize_register'				                , array( $this , 'tc_augment_customizer' ) ,10,1);
+  		add_action ( 'customize_register'				                , array( $this , 'tc_augment_customizer' ),10,1);
 
-  		//add grid/post list buttons
-  		add_action( '__before_setting_control'    , array( $this , 'tc_render_grid_control_link') );
-  		add_action( '__before_setting_control'    , array( $this , 'tc_render_link_to_grid') );
+  		//add grid/post list buttons in the control views
+  		add_action( '__before_setting_control'                  , array( $this , 'tc_render_grid_control_link') );
+  		add_action( '__before_setting_control'                  , array( $this , 'tc_render_link_to_grid') );
 
   		//control scripts and style
   		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
   		//add the customizer built with the builder below
-  		add_action ( 'customize_register'				                , array( $this , 'tc_customize_register' ) , 20, 1 );
+  		add_action ( 'customize_register'				                , array( $this , 'tc_customize_register' ), 20, 1 );
+      //modify some WP built-in settings / controls / sections
+      add_action ( 'customize_register'                       , array( $this , 'tc_alter_wp_customizer_settings' ), 30, 1 );
   		//preview scripts
   		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ));
   		//Hide donate button
@@ -46,6 +48,62 @@ if ( ! class_exists( 'TC_customize' ) ) :
       	add_action( 'customize_controls_print_scripts'        , array( $this , 'tc_add_livereload_script') );
 
       add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'tc_print_js_templates' ) );
+    }
+
+
+
+    /*
+    * Since the WP_Customize_Manager::$controls and $settings are protected properties, one way to alter them is to use the get_setting and get_control methods
+    * Another way is to remove the control and add it back as an instance of a custom class and with new properties
+    * and set new property values
+    * hook : tc_customize_register
+    * @return void()
+    */
+    function tc_alter_wp_customizer_settings( $wp_customize ) {
+      //Alter blogname et blogdescription transport
+      $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
+      $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
+
+      //Alter nav section
+      $_complement_descr = sprintf('&nbsp;<a class="button-primary" href="%2$s" target="_blank">%3$s</a><p>%1$s</p>',
+        __( 'If a location nas no menu assigned, a default page menu will be used.', 'customizr'),
+        admin_url('nav-menus.php'),
+        __( 'Manage menus' , 'customizr' )
+      );
+      $wp_customize -> get_section('nav') -> description .= $_complement_descr;
+
+      //Alter menus various menus properties
+      $locations    = get_registered_nav_menus();
+      $menus        = wp_get_nav_menus();
+      $choices      = array( '' => __( '&mdash; Select &mdash;' ) );
+      foreach ( $menus as $menu ) {
+        $choices[ $menu->term_id ] = wp_html_excerpt( $menu->name, 40, '&hellip;' );
+      }
+      $_priorities  = array(
+        'main' => 10,
+        'secondary' => 20
+      );
+
+      $_priority = 0;
+      //assign new priorities to the menus controls
+      foreach ( $locations as $location => $description ) {
+        $menu_setting_id = "nav_menu_locations[{$location}]";
+
+        $wp_customize -> remove_control( $menu_setting_id );
+
+        $_control_options = array(
+          'label'   => $description,
+          'section' => 'nav',
+          'title'   => "main" == $location ? __( 'Assign menus to locations' , 'customizr') : false,
+          'type'    => 'select',
+          'choices' => $choices,
+          'priority' => isset($_priorities[$location]) ? $_priorities[$location] : $_priority
+        );
+
+        $wp_customize -> add_control( new TC_controls( $wp_customize, $menu_setting_id, $_control_options ) );
+
+        $_priority = $_priority + 10;
+      }
     }
 
 
@@ -67,7 +125,11 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		* @since Customizr 3.0
 		*/
 		function tc_customize_register( $wp_customize) {
-			return $this -> tc_customize_factory ( $wp_customize , $args = $this -> tc_customize_arguments(), $setup = TC_utils_settings_map::$instance -> tc_customizer_map() );
+			return $this -> tc_customize_factory (
+        $wp_customize,
+        $this -> tc_customize_arguments(),
+        TC_utils_settings_map::$instance -> tc_get_customizer_map()
+      );
 		}
 
 
@@ -174,13 +236,6 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				}//end foreach
 			}//end if
 
-			//get_settings
-			if ( isset( $setup['get_setting'])) {
-				foreach ( $setup['get_setting'] as $setting) {
-					$wp_customize	-> get_setting( $setting )->transport = 'postMessage';
-				}
-			}
-
 			//add settings and controls
 			if ( isset( $setup['add_setting_control'])) {
 
@@ -255,7 +310,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			wp_enqueue_script(
 				'tc-customizer-preview' ,
 				sprintf('%1$s/inc/admin/js/theme-customizer-preview%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
-				array( 'customize-preview'),
+				array( 'customize-preview', 'underscore'),
 				CUSTOMIZR_VER ,
 				true
 			);

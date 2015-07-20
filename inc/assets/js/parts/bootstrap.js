@@ -1656,8 +1656,7 @@ var TCParams = TCParams || {};
 
       if ( TCParams && 1 == TCParams.dropdowntoViewport )
       {
-        var tcVisible = $('body').hasClass('sticky-enabled') ? $(window).height() : ($(window).height() - $('.navbar-wrapper').offset().top);
-        tcVisible = ( tcVisible - 90 ) > 80 ? tcVisible - 90 : 300;
+        var tcVisible = czrapp.$_window.height() - this.$element.offset().top + czrapp.$_window.scrollTop();
         this.$element.css('max-height' , tcVisible + 'px');
       }
       else if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader )
@@ -1667,7 +1666,7 @@ var TCParams = TCParams || {};
           $('.back-to-top').trigger('click');
         }
         else {
-          ('html, body').animate({
+          $('html, body').animate({
                   scrollTop: 0
               }, 700);
         }

@@ -97,10 +97,16 @@
   .tc-open-on-click .dropdown-submenu:hover > .dropdown-menu {
     display: none;
   }
+  /* Side Nav */
+  .tc-sn-inner.nav-collapse.collapse {
+    height: 100% !important;
+    overflow: auto !important;
+  }
   //expand submenus for tablets in landscape mode
   // .tc-is-mobile .navbar .nav li > ul ul {
   //   display: block;
   // }
+
 }
 
 @media (max-width: 979px) {
@@ -146,12 +152,10 @@
 
   /* Default Menu */
   .nav-collapse, .nav-collapse.collapse {
-    overflow: hidden;
-    height: 0;
     position: absolute;
     z-index:3000;
     right: 0px;
-    top: 42px;
+    top: 52px;
     background-color: #FAFAFA;
     background-image: -moz-linear-gradient(top, white, #F2F2F2);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#F2F2F2));
@@ -179,7 +183,9 @@
   .nav-collapse, .nav-collapse.collapse.in .nav{
     display: block;
   }
-
+  .navbar div > ul.nav > .menu-item:first-child > a {
+    padding-left: 15px
+  }
   .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
     font-weight:normal;
     -webkit-border-radius: 0px;
@@ -199,10 +205,7 @@
     padding-left: 25px;
   }
   .nav-collapse .dropdown-menu li li a {
-    padding-left: 50px;
-  }
-  .nav-collapse .dropdown-menu li li li a {
-    padding-left: 75px;
+    padding-left: 30px;
   }
 
   /* Hover Menu */
@@ -358,18 +361,16 @@
     margin: 0px;
   }
 
+  .tc-header .navbar .btn-toggle-nav,
   .navbar .btn-navbar {
     display: block;
     margin: 10px 0;
+    /*float: right;*/
   }
   /* GIVE NAVBAR A SMALLER Z-index than logo / title SINCE V3.2.0*/
   .sticky-enabled .navbar-wrapper {
     position: relative;
     z-index: 1;
-  }
-  /* do not display menu button when sticky enabled and tc-menu-off enabled */
-  .sticky-enabled .tc-menu-off .btn-navbar {
-    display: none;
   }
 
   .no-navbar .nav-collapse, .nav-collapse.collapse {
@@ -394,6 +395,9 @@
     float: left;
     margin: 14px 0 0;
   }
+  .logo-right .navbar .navbar-inner .social-block {
+    float: right;
+  }
   /* MENU CHANGES SINCE V3.2.0 */
   .navbar .nav-collapse .dropdown-menu a {
     padding: 3px 5px;
@@ -410,10 +414,10 @@
 
   .navbar .nav-collapse ul.nav > li li li a {
      & when (@is_rtl = true) {
-      padding-right: 60px;
+      padding-right: 50px;
     }
     & when (@is_rtl = false) {
-      padding-left: 60px;
+      padding-left: 50px;
     }
   }
 
@@ -456,8 +460,11 @@
     background-color:#fff;
   }
 
-  button.btn.btn-navbar {
+/*  button.btn.btn-navbar {
     transition: all 0.1s ease-in-out;
+  }*/
+  .btn-toggle-nav .menu-label {
+    display: none;
   }
 }
 @media (max-width: 979px) and (min-width: 768px)  {
@@ -681,7 +688,26 @@
     overflow: hidden;
   }
 }
-
+/* Side Nav */
+@media (max-width: 400px){
+  nav#tc-sn {
+    width: 400px;
+    max-width: 100%;
+  }
+  /* when open, give to the menu a greater z-index
+   */
+  .tc-sn-visible:not(.sn-close) #tc-sn {
+    z-index: 9999;
+  }
+  .tc-sn-visible {
+    overflow: hidden;
+  }
+  /* Hack*/
+  /* prevent pan in mobiles max-width: 400px: should we apply this for all tc-is-mobile losing the page scroll down ?? */
+  .tc-sn-visible #tc-page-wrap { position: absolute; width: 100%;}
+  .tc-sn-visible.sticky-enabled.admin-bar #tc-page-wrap { top: 0; }
+  /*end prevent overflows in mobiles */
+}
 @media (max-width: 320px) {
   .carousel .item {
     line-height: 140px;

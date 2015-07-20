@@ -40,6 +40,11 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     function tc_footer_hook_setup() {
       //html > footer actions
       add_action ( '__after_main_wrapper'   , 'get_footer');
+
+      //boolean filter to control the footer's rendering
+      if ( ! apply_filters( 'tc_display_footer', true ) )
+        return;
+
       //footer actions
       add_action ( '__footer'         , array( $this , 'tc_widgets_footer' ), 10 );
       add_action ( '__footer'         , array( $this , 'tc_colophon_display' ), 20 );

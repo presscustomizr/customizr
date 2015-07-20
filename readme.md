@@ -1,4 +1,4 @@
-# Customizr v3.3.29 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=eri-trabiccolo-slider-improvements)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.0 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -28,7 +28,8 @@ The exceptions to this license are as follows:
 * bootstrap-carousel.js v2.3.0 is licensed under the Apache License
 * holder.js v1.9 is licensed under the Apache License
 * modernizr.js is dual licensed under the BSD and MIT licenses
-* jquery.iphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
+* HTML5 Shiv v3.7.0 | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
+* jqueryIphonecheck.js is copyrighted by Thomas Reynolds, licensed GPL & MIT
 * jquery.fancybox-1.3.4.js is dual licensed under the MIT and GPL licenses
 * retina.min.js is copyrighted by Imulus, LLC, Ben Atkin, and other contributors and licensed under MIT
 * iCheck v1.0.1 by Damir Sultanov, http://git.io/arlzeA, MIT Licensed

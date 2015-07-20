@@ -66,9 +66,9 @@ var czrapp = czrapp || {};
 
 
     /**
-     * Cache properties on Dom Ready
-     * @return {[type]} [description]
-     */
+    * Cache properties on Dom Ready
+    * @return {[type]} [description]
+    */
     cacheProp : function() {
       $.extend( czrapp, {
         //cache various jQuery el in czrapp obj
@@ -80,11 +80,63 @@ var czrapp = czrapp || {};
 
         //various properties definition
         localized        : TCParams || {},
-        reordered_blocks : false,//store the states of the sidebar layout
+        is_responsive    : this.isResponsive(),//store the initial responsive state of the window
+        current_device   : this.getDevice()//store the initial device
       });
+      return czrapp;
+    },
+
+
+    /***************************************************************************
+    * CUSTOM EVENTS
+    * tc-resize
+    ****************************************************************************/
+    emitCustomEvents : function() {
+      var that = this;
+      /*-----------------------------------------------------
+      -> CUSTOM RESIZE EVENT
+      ------------------------------------------------------*/
+      czrapp.$_window.resize( function(e) {
+        var $_windowWidth     = czrapp.$_window.width(),
+            _current          = czrapp.current_device,//<= stored on last resize event or on load
+            //15 pixels adjustement to avoid replacement before real responsive width
+            _to               = that.getDevice();
+
+        //updates width dependant properties
+        czrapp.is_responsive  = that.isResponsive();
+        czrapp.current_device = _to;
+
+        console.log('IN EMIT', $(window).width(), czrapp.is_responsive, _current, _to );
+
+        czrapp.$_body.trigger( 'tc-resize', { current : _current, to : _to} );
+      } );//resize();
 
       return czrapp;
     },
+
+
+    //bool
+    isResponsive : function() {
+      return $(window).width() <= 979 - 15;
+    },
+
+    //@return string of current device
+    getDevice : function() {
+      var _devices = {
+            desktop : 979 - 15,
+            tablet : 767 - 15,
+            smartphone : 480 - 15
+          },
+          _current_device = 'desktop',
+          $_window = czrapp.$_window || $(window);
+
+      _.map( _devices, function( max_width, _dev ){
+        if ( $_window.width() <= max_width )
+          _current_device = _dev;
+      } );
+      return _current_device;
+    },
+
 
 
     /***************************************************************************
@@ -190,6 +242,12 @@ var czrapp = czrapp || {};
 
     isCustomizing    : function() {
       return czrapp.$_body.hasClass('is-customizing');
+    },
+    getDevice : function() {
+      return czrapp.getDevice();
+    },
+    isReponsive : function() {
+      return czrapp.isReponsivee();
     }
 
   };//_methods{}

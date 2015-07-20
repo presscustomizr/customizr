@@ -191,7 +191,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
  * @package Customizr
  * @since Customizr 1.0
  */
-(function (wp, $) {
+(function (wp, $, _) {
   var api = wp.customize;
 
   /**
@@ -249,7 +249,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     removerVisibility: function( to ) {
       this.remover.toggle( to != this.params.removed );
     }
-  });
+  });//api.Control.extend()
 
 
   $.extend( api.controlConstructor, {
@@ -472,6 +472,80 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       callback: function (to) {
         return '1' == to;
       }
+    },
+    'tc_menu_style' : {
+      show : {
+        controls: [
+          'tc_menu_type',
+          'tc_menu_submenu_fade_effect',
+          'tc_menu_submenu_item_move_effect',
+          'tc_menu_resp_dropdown_limit_to_viewport',
+
+          'tc_display_menu_label',
+          'tc_display_second_menu',
+          'tc_second_menu_position',
+          'nav_menu_locations[secondary]',
+          'tc_second_menu_resp_setting'
+        ],
+        //if the second menu is activated, only the tc_menu_resp_dropdown_limit_to_viewport is hidden
+        //otherwise all of them are hidden
+        callback: function (to, targetSetId, changedSetId) {
+          //CASE 1 : regular menu choosen
+          if ( 'aside' != to ) {
+            if ( _.contains([
+                'tc_display_menu_label',
+                'tc_display_second_menu',
+                'nav_menu_locations[secondary]',
+                'tc_second_menu_position',
+                'tc_second_menu_resp_setting'] , targetSetId ) ) {
+              return false;
+            } else {
+              return true;
+            }
+          }
+          //CASE 2 : side menu choosen
+          else {
+            if ( _.contains([
+              'tc_menu_type',
+              'tc_menu_submenu_fade_effect',
+              'tc_menu_submenu_item_move_effect',
+              'nav_menu_locations[secondary]',
+              'tc_second_menu_position',
+              'tc_second_menu_resp_setting'],
+              targetSetId ) ) {
+                return true === api( _build_setId('tc_display_second_menu') ).get();
+            }
+            else
+              return true;
+          }
+        }
+      }
+    },
+    'tc_display_second_menu' : {
+      show : {
+        controls: [
+          'nav_menu_locations[secondary]',
+          'tc_second_menu_position',
+          'tc_second_menu_resp_setting',
+          'tc_menu_type',
+          'tc_menu_submenu_fade_effect',
+          'tc_menu_submenu_item_move_effect'
+        ],
+        //the menu style must be aside for secondary menu controls
+        callback: function (to, targetSetId, changedSetId) {
+          if ( _.contains( ['nav_menu_locations[secondary]', 'tc_second_menu_resp_setting'], targetSetId ) )
+            return '1' == to && 'aside' == api( _build_setId( 'tc_menu_style' )).get();
+          return '1' == to;
+        }
+      }
+      // hide : {
+      //   controls: [
+      //     'tc_display_menu_label'
+      //   ],
+      //   callback: function (to) {
+      //     return 'aside' != to;
+      //   }
+      // }
     }
   };
 
@@ -481,6 +555,10 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   * simple helper to build the setting id name
   */
   var _build_setId = function ( name ) {
+    //first check if the current setting id is a customizr one (can be WP built in like nav_menu_locations[{$location}])
+    //=> all customizer theme settings starts by "tc_" by convention
+    if ( -1 == name.indexOf( 'tc_' ) )
+      return name;
     return -1 == name.indexOf( 'tc_theme_options') ? [ 'tc_theme_options[' , name  , ']' ].join('') : name;
   };
 
@@ -557,6 +635,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         controls  : _get_dependants(setId),
       };
 
+
       _.map( _params.controls , function( depSetId ) {
         _set_single_dependant_control_visibility( depSetId , _params);
       } );
@@ -573,19 +652,24 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         var _action   = _get_visibility_action( _params.setId , depSetId ),
             _callback = _get_visibility_cb( _params.setId , _action ),
             _bool     = false;
-
-        if ( 'show' == _action && _callback(to) )
+        if ( 'nav_menu_locations[secondary]' == depSetId ) {
+          console.log( 'in SET SINGLE' , _params.setId, _action, _callback(to, depSetId, _params.setId ) ) ;
+        }
+        if ( 'show' == _action && _callback(to, depSetId, _params.setId ) )
           _bool = true;
-        if ( 'hide' == _action && _callback(to) )
+        if ( 'hide' == _action && _callback(to, depSetId, _params.setId ) )
           _bool = false;
         if ( 'both' == _action )
-          _bool = _callback(to);
+          _bool = _callback(to, depSetId, _params.setId );
 
         //check if there are any cross dependencies to look at
         //_check_cross_dependant return true if there are no cross dependencies.
         //if cross dependency :
         //1) return true if we must show, false if not.
         _bool = _check_cross_dependant( _params.setId, depSetId ) && _bool;
+        if ( 'nav_menu_locations[secondary]' == depSetId ) {
+          console.log('IN SET SINGLE AFTER', _check_cross_dependant( _params.setId, depSetId ), _bool, control.container );
+        }
         control.container.toggle( _bool );
       };
 
@@ -601,7 +685,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   */
   var _handle_grid_dependencies = function() {
     //apply visibility on ready
-    var _is_grid_enabled = api.instance('tc_theme_options[tc_post_list_grid]').get() == 'grid';
+    var _is_grid_enabled = api('tc_theme_options[tc_post_list_grid]') && 'grid' == api('tc_theme_options[tc_post_list_grid]').get();
     $('.tc-grid-toggle-controls').toggle( _is_grid_enabled );
 
     //bind visibility on setting changes
@@ -614,18 +698,39 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   };
 
 
+  /**
+  * Dependency between the header layout and the menu position, when the menu style is Side Menu
+  */
+  var _header_layout_dependency = function() {
+    //when user switch layout, make sure the menu is correctly aligned by default.
+    api('tc_theme_options[tc_header_layout]').callbacks.add( function(to) {
+      api('tc_theme_options[tc_menu_position]').set( 'right' == to ? 'pull-menu-left' : 'pull-menu-right' );
+      //refresh the selecter
+      api.control('tc_theme_options[tc_menu_position]').container.find('select').selecter('destroy').selecter({});
+    } );
+
+    //when user changes the menu syle (side or regular), refresh the menu position according to the header layout
+    api('tc_theme_options[tc_menu_style]').callbacks.add( function(to) {
+      var _header_layout = api('tc_theme_options[tc_header_layout]').get();
+      api('tc_theme_options[tc_menu_position]').set( 'left' == _header_layout ? 'pull-menu-right' : 'pull-menu-left' );
+      //refresh the selecter
+      api.control('tc_theme_options[tc_menu_position]').container.find('select').selecter('destroy').selecter({});
+    } );
+  };
+
+
   //bind all actions to wp.customize ready event
   //map each setting with its dependencies
   api.bind( 'ready' , function() {
     _.map( _controlDependencies , function( opts , setId ) {
         _prepare_visibilities( setId, opts );
     });
-    //additional grid action
+    //additional dependencies
     _handle_grid_dependencies();
+    _header_layout_dependency();
   } );
 
-})( wp, jQuery);
-/**
+})( wp, jQuery, _);/**
  * Call to actions
  */
 jQuery(function ($) {

@@ -156,7 +156,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    wp_enqueue_script( 'jquery' );
 	    wp_enqueue_script( 'jquery-ui-core' );
 
-	    //load modernizr.js in footer
 	    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, true);
 
       //customizr scripts and libs
@@ -233,7 +232,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
               'imgSmartLoadEnabled' => esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ),
               'imgSmartLoadOpts'    => apply_filters( 'tc_img_smart_load_options' , array() ),
               'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
-              'gridGoldenRatioLimit' => esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height' ) )
+              'gridGoldenRatioLimit' => esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height' ) ),
+              'isSecondMenuEnabled'  => TC_utils::$inst->tc_is_secondary_menu_enabled(),
+              'secondMenuRespSet'   => esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) )
 	        	),
 	        	TC_utils::tc_id()
 		    )//end of filter

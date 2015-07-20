@@ -20,34 +20,34 @@
   var pluginPrefix = 'original',
       _props       = ['Width', 'Height'];
 
-  while (_prop = _props.pop()) {
-    (function ( _prop, _lprop ) {
-      $.fn[ pluginPrefix + _prop ] = ('natural' + _prop in new Image()) ? 
-        function () {
-          return this[0][ 'natural' + _prop ];
-        } : 
-        function () {
-          var _size = _getAttr( this, _lprop );
-        
-          if ( _size )
-            return _size;
+  _props.map( function(_prop) {
+    var _lprop = _prop.toLowerCase();
+    $.fn[ pluginPrefix + _prop ] = ('natural' + _prop in new Image()) ?
+      function () {
+        return this[0][ 'natural' + _prop ];
+      } :
+      function () {
+        var _size = _getAttr( this, _lprop );
 
-          var _node = this[0],
-              _img;
-
-          if (_node.tagName.toLowerCase() === 'img') {
-            _img = new Image();
-            _img.src = _node.src,
-            _size = _img[ _lprop ];
-          }
+        if ( _size )
           return _size;
-        };
-    }( _prop, _prop.toLowerCase()));
-  }
+
+        var _node = this[0],
+            _img;
+
+        if (_node.tagName.toLowerCase() === 'img') {
+          _img = new Image();
+          _img.src = _node.src;
+          _size = _img[ _lprop ];
+        }
+        return _size;
+      };
+  } );//map()
 
   function _getAttr( _el, prop ){
-    var _img_size = $(_el).attr( prop );  
-    return ( typeof _img_size === undefined ) ? false : _img_size;     
+    var _img_size = $(_el).attr( prop );
+    return ( typeof _img_size === undefined ) ? false : _img_size;
   }
 
 })( jQuery, window, document );
+
