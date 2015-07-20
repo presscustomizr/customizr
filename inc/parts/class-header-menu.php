@@ -33,6 +33,8 @@ if ( ! class_exists( 'TC_menu' ) ) :
     function tc_set_menu_hooks() {
       //VARIOUS USER OPTIONS
       add_filter( 'body_class'                    , array( $this , 'tc_add_body_classes') );
+      //Set header css classes based on user options
+      add_filter( 'tc_header_classes'             , array( $this , 'tc_set_header_classes') );
       add_filter( 'tc_social_header_block_class'  , array( $this, 'tc_set_social_header_class') );
 
       //add a 100% wide container just after the sticky header to reset margin top
@@ -345,7 +347,6 @@ if ( ! class_exists( 'TC_menu' ) ) :
     }
 
 
-
     /*
     * hook : body_class hook
     *
@@ -362,6 +363,29 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
       return $_classes;
     }
+
+
+
+    /**
+    * Set the header classes
+    * Callback for tc_header_classes filter
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_set_header_classes( $_classes ) {
+      //backward compatibility (was not handled has an array in previous versions)
+      if ( ! is_array($_classes) )
+        return $_classes;
+
+      //adds the second menu state
+      if ( TC_Utils::$inst -> tc_is_secondary_menu_enabled() )
+        array_push( $_classes, 'tc-second-menu-on' );
+
+      return $_classes;
+    }
+
+
 
     /*
     * hook :  tc_social_header_block_class hook
@@ -424,7 +448,10 @@ if ( ! class_exists( 'TC_menu' ) ) :
       );
     }
 
-
+    /*
+    * Second menu
+    * This actually "restore" regular menu style (user options in particular) by overriding the max-width: 979px media query
+    */
     function tc_add_second_menu_inline_style( $_css ) {
       if ( ! TC_Utils::$inst -> tc_is_secondary_menu_enabled() )
         return $_css;
@@ -432,7 +459,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
       return sprintf("%s\n%s",
         $_css,
         "@media (max-width: 979px) {
-          .tc-second-menu-on #tc-page-wrap .nav-collapse {
+          .tc-second-menu-on .nav-collapse {
             width: inherit;
             overflow: visible;
             height: inherit;
@@ -445,15 +472,15 @@ if ( ! class_exists( 'TC_menu' ) ) :
           .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse {
             display:none;
           }
-          .tc-second-menu-on #tc-page-wrap .nav-collapse.collapse .nav {
+          .tc-second-menu-on .nav-collapse.collapse .nav {
             display: block;
             float: left;
             margin: inherit;
           }
-          .tc-second-menu-on #tc-page-wrap .nav-collapse .nav>li {
+          .tc-second-menu-on .nav-collapse .nav>li {
             float:left;
           }
-          .tc-second-menu-on #tc-page-wrap .nav-collapse .dropdown-menu {
+          .tc-second-menu-on .nav-collapse .dropdown-menu {
             position:absolute;
             display: none;
             -webkit-box-shadow: 0 2px 8px rgba(0,0,0,.2);
@@ -470,7 +497,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
             -moz-background-clip: padding;
             background-clip: padding-box;
           }
-          .tc-second-menu-on #tc-page-wrap .navbar .nav>li>.dropdown-menu:before {
+          .tc-second-menu-on .navbar .nav>li>.dropdown-menu:before {
             border-left: 7px solid transparent;
             border-right: 7px solid transparent;
             border-bottom: 7px solid #ccc;
@@ -478,23 +505,66 @@ if ( ! class_exists( 'TC_menu' ) ) :
             top: -7px;
             left: 9px;
           }
-          .tc-second-menu-on #tc-page-wrap .navbar .nav>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu:before{
+          .tc-second-menu-on .navbar .nav>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu:before{
             content: '';
             display: inline-block;
             position: absolute;
           }
-          .tc-second-menu-on #tc-page-wrap .tc-hover-menu.nav .caret {
+          .tc-second-menu-on .tc-hover-menu.nav .caret {
             display:inline-block;
           }
           .nav-collapse, .nav-collapse.collapse.in .nav, .tc-hover-menu.nav ul.dropdown-menu {
 
           }
-          .tc-second-menu-on #tc-page-wrap .tc-hover-menu.nav li:hover>ul {
+          .tc-second-menu-on .tc-hover-menu.nav li:hover>ul {
             display: block;
           }
-          .tc-second-menu-on #tc-page-wrap .nav a, .tc-second-menu-on #tc-page-wrap .tc-hover-menu.nav a {
+          .tc-second-menu-on .nav a, .tc-second-menu-on .tc-hover-menu.nav a {
             border-bottom: none;
           }
+          .tc-second-menu-on .dropdown-menu>li>a {
+            padding: 3px 20px;
+          }
+          .tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a:focus,.tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a:hover,.tc-second-menu-on .tc-submenu-move .dropdown-submenu:focus>a, .tc-second-menu-on .tc-submenu-move .dropdown-submenu:hover>a {
+            padding-left: 1.63em
+          }
+          .tc-second-menu-on .tc-submenu-fade .nav>li>ul {
+            opacity: 0;
+            top: 75%;
+            visibility: hidden;
+            display: block;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+          }
+          .tc-second-menu-on .tc-submenu-fade .nav li.open>ul, .tc-second-menu-on .tc-submenu-fade .tc-hover-menu.nav li:hover>ul {
+            opacity: 1;
+            top: 95%;
+            visibility: visible;
+          }
+          .tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a {
+            -webkit-transition: all ease .241s;
+            -moz-transition: all ease .241s;
+            -o-transition: all ease .241s;
+            transition: all ease .241s;
+          }
+          .tc-second-menu-on .dropdown-submenu>.dropdown-menu {
+            top: 110%;
+            left: 30%;
+            left: 30%\9;
+            top: 0\9;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+          }
+        }\n
+
+        .sticky-enabled .tc-second-menu-on .nav-collapse.collapse {
+          clear:none;
         }\n"
       );
     }
