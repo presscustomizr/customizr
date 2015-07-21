@@ -160,6 +160,8 @@ var czrapp = czrapp || {};
       if ( 1 != TCParams.ReorderBlocks )
         return;
 
+      this.__has_iframe = false;
+
       //fire on DOM READY and only for responsive devices
       if ( 'desktop' != this.getDevice() )
         this._reorderSidebars( 'responsive' );
@@ -368,13 +370,15 @@ var czrapp = czrapp || {};
     //@return bool
     //@param $_elements = mixed
     _has_iframe : function ( $_elements ) {
-      if ( ! this.__has_iframe )
-        _.each( $_elemnts, function($_el){
+      if ( ! this.__has_iframe ){ 
+        var that = this;
+        _.each( $_elements, function($_el){
           if ( $_el.length > 0 && $_el.find('IFRAME').length > 0 ){
             that.__has_iframe = true; 
             return;
           }
         });
+      }
       return this.__has_iframe;
     }
   };//_methods{}
