@@ -381,6 +381,8 @@ if ( ! class_exists( 'TC_menu' ) ) :
       //adds the second menu state
       if ( TC_Utils::$inst -> tc_is_secondary_menu_enabled() )
         array_push( $_classes, 'tc-second-menu-on' );
+      //adds the resp. behaviour option for secondary menu
+      array_push( $_classes, 'tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) . '-when-mobile' ) );
 
       return $_classes;
     }
@@ -469,7 +471,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
             -moz-box-shadow: none;
             box-shadow: none;
           }
-          .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse {
+          .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse, #tc-page-wrap .tc-second-menu-hide-when-mobile .nav-collapse.collapse .nav {
             display:none;
           }
           .tc-second-menu-on .nav-collapse.collapse .nav {
