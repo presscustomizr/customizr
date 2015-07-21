@@ -9343,6 +9343,9 @@ li#wp-admin-bar-tc-customizr a {
     width: 400px;
     max-width: 100%;
   }
+  #tc-sn .nav-collapse {
+    background: #fff;
+  }
   /* when open, give to the menu a greater z-index
    */
   .tc-sn-visible:not(.sn-close) #tc-sn {
@@ -9356,9 +9359,6 @@ li#wp-admin-bar-tc-customizr a {
   .tc-sn-visible #tc-page-wrap {
     position: absolute;
     width: 100%;
-  }
-  .tc-sn-visible.sticky-enabled.admin-bar #tc-page-wrap {
-    top: 0;
   }
   /*end prevent overflows in mobiles */
 }
