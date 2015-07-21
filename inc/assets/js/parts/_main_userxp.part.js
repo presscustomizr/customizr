@@ -191,10 +191,13 @@ var czrapp = czrapp || {};
       that.$_left         = that.$_left || $("#main-wrapper .container " + LeftSidebarClass);
       that.$_right        = that.$_right || $("#main-wrapper .container " + RightSidebarClass);
 
+      // do nothing if there's at least one iframe
+      if ( that._has_iframe( [this.$_content, this.$_left, this.$_right] ) ) 
+        return;
+
       //15 pixels adjustement to avoid replacement before real responsive width
       switch ( _sidebarLayout ) {
         case 'normal' :
-        console.log('JOIE DU NORMAL');
           if ( that.$_left.length ) {
             that.$_left.detach();
             that.$_content.detach();
@@ -296,8 +299,6 @@ var czrapp = czrapp || {};
         this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
-      console.log( 'Second menu resp option : ', userOption );
-
       czrapp.$_body.on( 'tc-resize', function( e, param ) {
         param = _.isObject(param) ? param : {};
         var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
@@ -311,7 +312,6 @@ var czrapp = czrapp || {};
     },
 
     _manageMenuSeparator : function( _to, userOption ) {
-      console.log( 'in prepare', _to , userOption);
       //add/remove a separator between the two menus
       var that = this,
           _separatorContent = function( _pattern, _loop ) {
@@ -346,7 +346,6 @@ var czrapp = czrapp || {};
     //@return void()
     //@param _where = menu items location string 'navbar' or 'side_nav'
     _moveSecondMenu : function( _where, userOption ) {
-      console.log('MOVE SECOND MENU : ', _where );
       _where = _where || 'side_nav';
       var that = this;
       switch( _where ) {
@@ -361,8 +360,23 @@ var czrapp = czrapp || {};
               that.$_sn_wrap.append(that.$_sec_menu_els);
           break;
         }
-    }
+    },
 
+    //Helpers
+    
+    //Check if the passed element contains an iframe
+    //@return bool
+    //@param $_elements = mixed
+    _has_iframe : function ( $_elements ) {
+      if ( ! this.__has_iframe )
+        _.each( $_elemnts, function($_el){
+          if ( $_el.length > 0 && $_el.find('IFRAME').length > 0 ){
+            that.__has_iframe = true; 
+            return;
+          }
+        });
+      return this.__has_iframe;
+    }
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};
