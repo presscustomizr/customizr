@@ -203,8 +203,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			if ( false != esc_attr( TC_utils::$inst->tc_opt( 'tc_link_scroll') ) )
 				wp_enqueue_script('jquery-effects-core');
 
-        $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_smoothscroll') ) );
-        $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array() );
+      $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_smoothscroll') ) );
+      $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array() );
 
 			//gets current screen layout
     	$screen_layout      = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
@@ -226,7 +226,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	          	'SliderDelay' 			=> $js_sliderdelay,
 	          	'SliderHover'			  => apply_filters( 'tc_stop_slider_hover', true ),
 	          	'centerSliderImg'   => esc_attr( TC_utils::$inst->tc_opt( 'tc_center_slider_img') ),
-              'SmoothScroll'      => array( "Enabled" => esc_attr( TC_utils::$inst->tc_opt( 'tc_smoothscroll') ), "Options" => apply_filters('tc_smoothscroll_options' , array() ) ),
+              'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
               'anchorSmoothScroll'			=> $anchor_smooth_scroll,
               'anchorSmoothScrollExclude' => apply_filters( 'tc_anchor_smoothscroll_excl' , array( '[class*=edd]' , '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]' ) ),
 	          	'ReorderBlocks' 		=> esc_attr( TC_utils::$inst->tc_opt( 'tc_block_reorder') ),
