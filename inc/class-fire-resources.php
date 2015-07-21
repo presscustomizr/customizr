@@ -156,7 +156,15 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    wp_enqueue_script( 'jquery' );
 	    wp_enqueue_script( 'jquery-ui-core' );
 
-	    wp_enqueue_script( 'modernizr' , TC_BASE_URL . 'inc/assets/js/modernizr.min.js', array(), CUSTOMIZR_VER, true);
+	    wp_enqueue_script(
+        'modernizr'
+        ,
+        TC_BASE_URL . 'inc/assets/js/modernizr.min.js',
+        array(),
+        CUSTOMIZR_VER,
+        //load in head if browser is chrome => fix the issue of 3Dtransform not detected in some cases
+        ( isset($_SERVER['HTTP_USER_AGENT']) && false !== strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') ) ? false : true
+      );
 
       //customizr scripts and libs
 	   	if ( $this -> tc_load_concatenated_front_scripts() )	{
