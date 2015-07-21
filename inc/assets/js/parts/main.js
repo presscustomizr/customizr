@@ -105,9 +105,6 @@ var czrapp = czrapp || {};
         //updates width dependant properties
         czrapp.is_responsive  = that.isResponsive();
         czrapp.current_device = _to;
-
-        console.log('IN EMIT', $(window).width(), czrapp.is_responsive, _current, _to );
-
         czrapp.$_body.trigger( 'tc-resize', { current : _current, to : _to} );
       } );//resize();
 
@@ -727,7 +724,6 @@ var czrapp = czrapp || {};
       //15 pixels adjustement to avoid replacement before real responsive width
       switch ( _sidebarLayout ) {
         case 'normal' :
-        console.log('JOIE DU NORMAL');
           if ( that.$_left.length ) {
             that.$_left.detach();
             that.$_content.detach();
@@ -829,8 +825,6 @@ var czrapp = czrapp || {};
         this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
-      console.log( 'Second menu resp option : ', userOption );
-
       czrapp.$_body.on( 'tc-resize', function( e, param ) {
         param = _.isObject(param) ? param : {};
         var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
@@ -844,7 +838,6 @@ var czrapp = czrapp || {};
     },
 
     _manageMenuSeparator : function( _to, userOption ) {
-      console.log( 'in prepare', _to , userOption);
       //add/remove a separator between the two menus
       var that = this;
       if ( 'navbar' == _to )
@@ -872,7 +865,6 @@ var czrapp = czrapp || {};
     //@return void()
     //@param _where = menu items location string 'navbar' or 'side_nav'
     _moveSecondMenu : function( _where, userOption ) {
-      console.log('MOVE SECOND MENU : ', _where );
       _where = _where || 'side_nav';
       var that = this;
       switch( _where ) {
