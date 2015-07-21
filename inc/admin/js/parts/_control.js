@@ -327,8 +327,10 @@
               targetSetId ) ) {
                 return true === api( _build_setId('tc_display_second_menu') ).get();
             }
-            else
-              return true;
+            else if ( 'tc_menu_resp_dropdown_limit_to_viewport' == targetSetId ){
+              return false;
+            }
+            return true;
           }
         }
       }
