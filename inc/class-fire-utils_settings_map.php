@@ -492,7 +492,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'smoothscroll_sec',
                                 'type'          => 'checkbox',
                                 'priority'      => 1,
-                                'notice'    => __( 'If enabled, this option activates a smooth page scroll' , 'customizr' ),
+                                'notice'    => __( 'This option enables a smoother page scroll.' , 'customizr' ),
                                 'transport'     => 'postMessage'
               )
       );
