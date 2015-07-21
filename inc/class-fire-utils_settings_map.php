@@ -87,6 +87,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_images_option_map',
         'tc_responsive_option_map',
         'tc_authors_option_map',
+        'tc_smoothscroll_option_map',
         //HEADER
         'tc_header_design_option_map',
         'tc_navigation_option_map',
@@ -477,6 +478,26 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       );
     }
 
+
+
+    /*-----------------------------------------------------------------------------------------------------
+                                  SMOOTH SCROLL SECTION
+    ------------------------------------------------------------------------------------------------------*/
+    function tc_smoothscroll_option_map( $_map, $get_default = null ) {
+      $_new = array(
+              'tc_theme_options[tc_smoothscroll]'  =>  array(
+                                'default'       => 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __("Enable Smooth Scroll", "customizr"),
+                                'section'       => 'smoothscroll_sec',
+                                'type'          => 'checkbox',
+                                'priority'      => 1,
+                                'notice'    => __( 'If enabled, this option activates a smooth page scroll' , 'customizr' ),
+                                'transport'     => 'postMessage'
+              )
+      );
+      return array_merge( $_map, $_new );
+    }
 
 
 
@@ -2078,6 +2099,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'title'     =>  __( 'Authors' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 220 : 70,
                             'description' =>  __( 'Post authors settings' , 'customizr' ),
+                            'panel'   => 'tc-global-panel'
+        ),
+        'smoothscroll_sec'          => array(
+                            'title'     =>  __( 'Smooth Scroll' , 'customizr' ),
+                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 97 : 75,
+                            'description' =>  __( 'Smooth Scroll settings' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
 

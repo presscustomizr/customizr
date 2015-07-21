@@ -16,6 +16,8 @@ var czrapp = czrapp || {};
       this.timer            = 0;
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
+
+      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 50; //these are equal for now
     },//init()
 
 
@@ -63,21 +65,21 @@ var czrapp = czrapp || {};
         break;
 
         case 'scroll' :
+          var _delay = 0;
+
            //use a timer
           if ( this.timer) {
             this.increment++;
             clearTimeout(self.timer);
           }
 
-          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
-            this.timer = setTimeout( function() {
+          if ( this.increment > 5 )
+            //decrease the scrolling trigger delay when smoothscroll on to avoid not catching the scroll when scrolling fast and sticky header not already triggered  
+            _delay = ! ( czrapp.$_body.hasClass('tc-smoothscroll') && ! this._is_scrolling() ) ? this.scrollingDelay : 15;
+
+          this.timer = setTimeout( function() {
               self._sticky_header_scrolling_actions();
-            }, self.increment > 5 ? 50 : 0 );
-          } else if ( czrapp.$_body.hasClass('ie') ) {
-            this.timer = setTimeout( function() {
-              self._sticky_header_scrolling_actions();
-            }, self.increment > 5 ? 50 : 0 );
-          }
+          }, _delay );
         break;
 
         case 'resize' :

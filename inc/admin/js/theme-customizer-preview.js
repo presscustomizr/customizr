@@ -171,6 +171,13 @@
         $('.footer-widgets').addClass('no-widget-icons');
       else
         $('.footer-widgets').removeClass('no-widget-icons');
+    },
+    //Smooth Scroll
+    tc_smoothscroll : function(to) {
+      if ( false === to )
+        smoothScroll._cleanUp();
+      else
+        smoothScroll._maybeFire();
     }
   });//$.extend()
 
