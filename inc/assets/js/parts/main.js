@@ -247,7 +247,7 @@ var czrapp = czrapp || {};
       return czrapp.getDevice();
     },
     isReponsive : function() {
-      return czrapp.isReponsivee();
+      return czrapp.isReponsive();
     }
 
   };//_methods{}
@@ -846,20 +846,13 @@ var czrapp = czrapp || {};
     _manageMenuSeparator : function( _to, userOption ) {
       console.log( 'in prepare', _to , userOption);
       //add/remove a separator between the two menus
-      var that = this,
-          _separatorContent = function( _pattern, _loop ) {
-            var _html = [];
-            for(var i = 0; i < ( _loop || 50 ); i++) {
-              _html.push( _pattern || '/' );
-            }
-            return _html.join('');
-          };
+      var that = this;
       if ( 'navbar' == _to )
         $( '.secondary-menu-separator', that.$_sn_wrap).remove();
       else {
         $_sep = $( '<li/>', {
           class : 'menu-item secondary-menu-separator',
-          html : '<a href="#"><span class="sep-pattern">' + _separatorContent('/') + '</span></a>'
+          html : '<hr class="featurette-divider">'
         } );
 
         switch(userOption) {
