@@ -52,7 +52,7 @@ var czrapp = czrapp || {};
 
     //SMOOTH SCROLL
     smoothScroll: function() {
-      if ( TCParams.SmoothScroll.Enabled ) 
+      if ( TCParams.SmoothScroll && TCParams.SmoothScroll.Enabled )
         smoothScroll( TCParams.SmoothScroll.Options );
     },
 

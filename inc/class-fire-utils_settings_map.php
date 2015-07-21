@@ -483,9 +483,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   SMOOTH SCROLL SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_smoothscroll_option_map( $_map, $get_default = null ) {
-      $_new = array(
-              'tc_theme_options[tc_smoothscroll]'  =>  array(
+    function tc_smoothscroll_option_map( $get_default = null ) {
+      return array(
+              'tc_smoothscroll'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __("Enable Smooth Scroll", "customizr"),
@@ -496,7 +496,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'transport'     => 'postMessage'
               )
       );
-      return array_merge( $_map, $_new );
     }
 
 

@@ -580,13 +580,18 @@ var czrapp = czrapp || {};
       }
     },//eventHandler
 
+    //SMOOTH SCROLL
+    smoothScroll: function() {
+      if ( TCParams.SmoothScroll && TCParams.SmoothScroll.Enabled )
+        smoothScroll( TCParams.SmoothScroll.Options );
+    },
 
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
-      if ( ! TCParams.SmoothScroll || 'easeOutExpo' != TCParams.SmoothScroll )
+      if ( ! TCParams.anchorSmoothScroll || 'easeOutExpo' != TCParams.anchorSmoothScroll )
             return;
 
-      var _excl_sels = ( TCParams.SmoothScrollExclude && _.isArray( TCParams.SmoothScrollExclude ) ) ? TCParams.SmoothScrollExclude.join(',') : '';
+      var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude ) ) ? TCParams.anchorSmoothScrollExclude.join(',') : '';
       $('a[href^="#"]', '#content').not( _excl_sels ).click(function () {
         var anchor_id = $(this).attr("href");
 
@@ -597,7 +602,7 @@ var czrapp = czrapp || {};
         if ('#' != anchor_id) {
             $('html, body').animate({
                 scrollTop: $(anchor_id).offset().top
-            }, 700, TCParams.SmoothScroll);
+            }, 700, TCParams.anchorSmoothScroll);
         }
         return false;
       });//click
@@ -886,7 +891,8 @@ var czrapp = czrapp || {};
   czrapp.methods.Czr_UserExperience = {};
   $.extend( czrapp.methods.Czr_UserExperience , _methods );
 
-})(jQuery, czrapp);var czrapp = czrapp || {};
+})(jQuery, czrapp);
+var czrapp = czrapp || {};
 /************************************************
 * STICKY HEADER SUB CLASS
 *************************************************/
@@ -904,6 +910,8 @@ var czrapp = czrapp || {};
       this.timer            = 0;
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
+
+      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 50; //these are equal for now
     },//init()
 
 
@@ -951,21 +959,21 @@ var czrapp = czrapp || {};
         break;
 
         case 'scroll' :
+          var _delay = 0;
+
            //use a timer
           if ( this.timer) {
             this.increment++;
             clearTimeout(self.timer);
           }
 
-          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
-            this.timer = setTimeout( function() {
+          if ( this.increment > 5 )
+            //decrease the scrolling trigger delay when smoothscroll on to avoid not catching the scroll when scrolling fast and sticky header not already triggered  
+            _delay = ! ( czrapp.$_body.hasClass('tc-smoothscroll') && ! this._is_scrolling() ) ? this.scrollingDelay : 15;
+
+          this.timer = setTimeout( function() {
               self._sticky_header_scrolling_actions();
-            }, self.increment > 5 ? 50 : 0 );
-          } else if ( czrapp.$_body.hasClass('ie') ) {
-            this.timer = setTimeout( function() {
-              self._sticky_header_scrolling_actions();
-            }, self.increment > 5 ? 50 : 0 );
-          }
+          }, _delay );
         break;
 
         case 'resize' :
@@ -1277,7 +1285,7 @@ jQuery(function ($) {
     BrowserDetect : [],
     Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
     Czr_Slider : ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport', 'sliderTriggerSimpleLoad'],
-    Czr_UserExperience : ['eventListener','anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'],
+    Czr_UserExperience : ['eventListener', 'smoothScroll', 'anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'],
     Czr_StickyHeader : ['stickyHeaderEventListener', 'triggerStickyHeaderLoad' ],
     Czr_SideNav : []
   };
