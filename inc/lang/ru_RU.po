@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.4.0\n"
 "POT-Creation-Date: 2015-04-09 15:56+0100\n"
-"PO-Revision-Date: 2015-04-09 15:56+0100\n"
-"Last-Translator: Nicolas <contact@presscustomizr.com>\n"
+"PO-Revision-Date: 2015-07-20 14:24+0100\n"
+"Last-Translator: Rocco Aliberti\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -930,11 +930,11 @@ msgstr "От автора"
 #: ../class-fire-utils_settings_map.php:1067
 #: ../class-fire-utils_settings_map.php:1313
 msgid "Header design and layout"
-msgstr "Дезайн хедера и расположение"
+msgstr "Дизайн хедера и расположение"
 
 #: ../class-fire-utils_settings_map.php:1067
 msgid "Design and layout"
-msgstr "Дезайн и расположение"
+msgstr "Дизайн и расположение"
 
 #: ../class-fire-utils_settings_map.php:1072
 msgid "Navigation"
