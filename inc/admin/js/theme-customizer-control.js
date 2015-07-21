@@ -923,7 +923,7 @@ jQuery(function ($) {
 
     /* BUTTON JUMP TO POST LIST */
     $('.tc-navigate-to-post-list').click( function() {
-      $('#accordion-section-tc_post_list_settings > .accordion-section-title').trigger('click');
+      $('#accordion-section-post_lists_sec > .accordion-section-title').trigger('click');
     });
 
     /* RECENTER CURRENT SECTIONS */
