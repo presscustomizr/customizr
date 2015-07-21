@@ -743,7 +743,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 ),
                                 'priority'      => 90,
                                 // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
-              )
+              ),
+              'tc_hide_all_menus'  =>  array(
+                                'default'       => 0,
+                                'control'       => 'TC_controls' ,
+                                'title'         => __( 'Remove all the menus.' , 'customizr'),
+                                'label'         => __( "Don't display any menus in the header of your website" , "customizr" ),
+                                'section'       => 'nav' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 100,//must be located between the two menus
+                                'notice'        => __( 'Use with caution : provide an alternative way to navigate in your website for your users.' , 'customizr' ),
+              ),
       ); //end of navigation options
     }
 

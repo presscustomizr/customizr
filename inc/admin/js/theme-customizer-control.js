@@ -654,9 +654,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         var _action   = _get_visibility_action( _params.setId , depSetId ),
             _callback = _get_visibility_cb( _params.setId , _action ),
             _bool     = false;
-        if ( 'nav_menu_locations[secondary]' == depSetId ) {
-          console.log( 'in SET SINGLE' , _params.setId, _action, _callback(to, depSetId, _params.setId ) ) ;
-        }
+
         if ( 'show' == _action && _callback(to, depSetId, _params.setId ) )
           _bool = true;
         if ( 'hide' == _action && _callback(to, depSetId, _params.setId ) )
@@ -669,9 +667,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         //if cross dependency :
         //1) return true if we must show, false if not.
         _bool = _check_cross_dependant( _params.setId, depSetId ) && _bool;
-        if ( 'nav_menu_locations[secondary]' == depSetId ) {
-          console.log('IN SET SINGLE AFTER', _check_cross_dependant( _params.setId, depSetId ), _bool, control.container );
-        }
         control.container.toggle( _bool );
       };
 
@@ -721,6 +716,17 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   };
 
 
+  //change the 'nav' section controls opacity based on the booleand value of a setting (tc_theme_options[tc_hide_all_menus])
+  var _hideAllmenusActions = function(to, from, setId) {
+    setId = setId ||'tc_theme_options[tc_hide_all_menus]';
+    var $_controls = api.section('nav').container.find('li.customize-control').not( api.control(setId).container );
+    $_controls.each( function() {
+      if ( $(this).is(':visible') )
+        $(this).fadeTo( 500 , true === to ? 0.5 : 1); //.fadeTo() duration, opacity, callback
+    });//$.each()
+  };
+
+
   //bind all actions to wp.customize ready event
   //map each setting with its dependencies
   api.bind( 'ready' , function() {
@@ -730,6 +736,21 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     //additional dependencies
     _handle_grid_dependencies();
     _header_layout_dependency();
+
+    //on nav section open
+    api.section('nav').container.on( 'click keydown', '.accordion-section-title', function(e) {
+      //special treatment for click events
+      if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
+        return;
+      }
+      event.preventDefault(); // Keep this AFTER the key filter above)
+
+      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
+    });//on()
+
+    //specific callback when for the tc_hide_all_menus setting
+    api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
+
   } );
 
 })( wp, jQuery, _);/**
