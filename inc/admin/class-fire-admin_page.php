@@ -59,15 +59,29 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
       function tc_welcome_panel() {
 
         $is_help = isset($_GET['help'])  ?  true : false;
+        $_faq_url = "customizr-pro" == TC___::$theme_name ? 'http://doc.presscustomizr.com/customizr-pro/faq/' : TC_WEBSITE .'customizr/faq';
+        $_support_url = "customizr-pro" == TC___::$theme_name ? TC_WEBSITE .'support-forums/forum/customizr-pro/' : 'http://wordpress.org/support/theme/customizr';
 
         do_action('__before_welcome_panel');
         ?>
         <div id="customizr-admin-panel" class="wrap about-wrap">
 
             <?php if ( $is_help ) : ?>
-              <h1 class="need-help-title"><?php _e( 'Need help with Customizr ?','customizr' ) ?></h1>
+              <h1 style="font-size: 2.5em;" class="need-help-title">
+              <?php printf( '%1$s %2$s ?',
+                      __( "Need help with", "customizr" ),
+                       "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr'
+                    );
+              ?>
+            </h1>
             <?php else : ?>
-              <h1><?php printf( __( 'Welcome to Customizr %s','customizr' ), CUSTOMIZR_VER ); ?></h1>
+              <h1 class="need-help-title">
+              <?php printf( '%1$s %2$s %3$s',
+                      __( "Welcome to", "customizr" ),
+                       "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
+                       CUSTOMIZR_VER
+                    );
+              ?>
             <?php endif; ?>
 
 
@@ -87,7 +101,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                 </div>
                 <div class="last-feature">
                   <br/>
-                    <a class="button-secondary customizr-help" title="faq" href="<?php echo TC_WEBSITE ?>customizr/faq" target="_blank"><?php _e( 'Check the FAQ','customizr' ); ?></a>
+                    <a class="button-secondary customizr-help" title="faq" href="<?php echo $_faq_url; ?>" target="_blank"><?php _e( 'Check the FAQ','customizr' ); ?></a>
                  </div>
               </div><!-- .two-col -->
               <div class="feature-section col two-col">
@@ -95,7 +109,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                     <a class="button-secondary customizr-help" title="code snippets" href="<?php echo TC_WEBSITE ?>code-snippets/" target="_blank"><?php _e( 'Code snippets','customizr' ); ?></a>
                 </div>
                  <div class="last-feature">
-                    <a class="button-secondary customizr-help" title="forum" href="http://wordpress.org/support/theme/customizr" target="_blank"><?php _e( 'Get support in the forum','customizr' ); ?></a>
+                    <a class="button-secondary customizr-help" title="forum" href="<?php echo $_support_url; ?>" target="_blank"><?php _e( 'Get support in the forum','customizr' ); ?></a>
                  </div>
               </div><!-- .two-col -->
             </div><!-- .changelog -->
