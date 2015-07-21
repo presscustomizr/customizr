@@ -226,9 +226,6 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         ?>
         <div class="updated" style="position:relative">
           <?php
-            echo apply_filters( 'the_content', sprintf('<h3>%1$s %2$s :D</h3>', __( "Good, you've just upgraded to Customizr version", 'customizr'), CUSTOMIZR_VER ) );
-          ?>
-          <?php
             echo apply_filters(
               'the_content',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
@@ -236,6 +233,16 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
                 "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER
+              )
+            );
+          ?>
+          <?php
+            echo apply_filters(
+              'the_content',
+              sprintf( '<h4>%1$s</h4><strong><a class="button" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></strong>',
+                __( "We'd like to introduce the new features we've been working on.", "customizr"),
+                TC_WEBSITE . "category/customizr-releases/",
+                __( "Take me to the release note" , "customizr" )
               )
             );
           ?>
