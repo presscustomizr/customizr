@@ -165,6 +165,8 @@ var czrapp = czrapp || {};
       if ( 1 != TCParams.ReorderBlocks )
         return;
 
+      this.__has_iframe = false;
+
       //fire on DOM READY and only for responsive devices
       if ( 'desktop' != this.getDevice() )
         this._reorderSidebars( 'responsive' );
@@ -195,6 +197,10 @@ var czrapp = czrapp || {};
       that.$_content      = that.$_content || $("#main-wrapper .container .article-container");
       that.$_left         = that.$_left || $("#main-wrapper .container " + LeftSidebarClass);
       that.$_right        = that.$_right || $("#main-wrapper .container " + RightSidebarClass);
+
+      // do nothing if there's at least one iframe
+      if ( that._has_iframe( [this.$_content, this.$_left, this.$_right] ) ) 
+        return;
 
       //15 pixels adjustement to avoid replacement before real responsive width
       switch ( _sidebarLayout ) {
@@ -354,8 +360,25 @@ var czrapp = czrapp || {};
               that.$_sn_wrap.append(that.$_sec_menu_els);
           break;
         }
-    }
+    },
 
+    //Helpers
+    
+    //Check if the passed element contains an iframe
+    //@return bool
+    //@param $_elements = mixed
+    _has_iframe : function ( $_elements ) {
+      if ( ! this.__has_iframe ){ 
+        var that = this;
+        _.each( $_elements, function($_el){
+          if ( $_el.length > 0 && $_el.find('IFRAME').length > 0 ){
+            that.__has_iframe = true; 
+            return;
+          }
+        });
+      }
+      return this.__has_iframe;
+    }
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};
