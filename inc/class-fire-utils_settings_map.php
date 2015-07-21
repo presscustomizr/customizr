@@ -1855,14 +1855,23 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'       => 0,
                                 'transport'   => 'postMessage'
               ),
+              'tc_sticky_footer'  =>  array(
+                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.4.0' , '1.1.14' ) ? 0 : 1,
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Stick the footer to the bottom of the page", "customizr" ),
+                                'section'       => 'footer_global_sec' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 1,
+                                'transport'     => 'postMessage'
+              ),
               'tc_show_back_to_top'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display a back to top arrow on scroll" , "customizr" ),
                                 'section'       => 'footer_global_sec' ,
                                 'type'          => 'checkbox',
-                                'priority'      => 1
-              ),
+                                'priority'      => 5
+              )
       );
     }
 

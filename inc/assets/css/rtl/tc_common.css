@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.3.29
+ * Customizr v3.4.0
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5815,11 +5815,11 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 .nav-collapse.in + .btn-toggle-nav .icon-bar:nth-child(3),
 .tc-sn-visible .btn-toggle-nav .icon-bar:nth-child(3) {
-  -webkit-transform: translate(0px, -4px) rotate(45deg) scalex(1.3);
-  -moz-transform: translate(0px, -4px) rotate(45deg) scalex(1.3);
-  -ms-transform: translate(0px, -4px) rotate(45deg) scalex(1.3);
-  -o-transform: translate(0px, -4px) rotate(45deg) scalex(1.3);
-  transform: translate(0px, -4px) rotate(45deg) scalex(1.3);
+  -webkit-transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+  -moz-transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+  -ms-transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+  -o-transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
+  transform: translate(0px, -3px) rotate(45deg) scalex(1.3);
 }
 .csstransforms .nav-collapse.in + .btn-toggle-nav .icon-bar,
 .csstransforms .tc-sn-visible .btn-toggle-nav .icon-bar {
@@ -8787,8 +8787,6 @@ li#wp-admin-bar-tc-customizr a {
   /* Default Menu */
   .nav-collapse,
   .nav-collapse.collapse {
-    overflow: hidden;
-    height: 0;
     position: absolute;
     z-index: 3000;
     right: 0px;
