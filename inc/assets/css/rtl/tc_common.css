@@ -9360,6 +9360,9 @@ li#wp-admin-bar-tc-customizr a {
     position: absolute;
     width: 100%;
   }
+  .tc-sn-visible:not(.sn-close) #tc-page-wrap {
+    left: initial !important;
+  }
   /*end prevent overflows in mobiles */
 }
 @media (max-width: 320px) {

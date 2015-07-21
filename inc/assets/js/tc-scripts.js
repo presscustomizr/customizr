@@ -4913,10 +4913,7 @@ var czrapp = czrapp || {};
       if ( 'navbar' == _to )
         $( '.secondary-menu-separator', that.$_sn_wrap).remove();
       else {
-        $_sep = $( '<li/>', {
-          class : 'menu-item secondary-menu-separator',
-          html : '<hr class="featurette-divider">'
-        } );
+        $_sep = $( '<li class="menu-item secondary-menu-separator"><hr class="featurette-divider"></hr></li>' );
 
         switch(userOption) {
           case 'in-sn-before' :
