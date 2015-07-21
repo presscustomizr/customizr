@@ -513,9 +513,6 @@ if ( ! class_exists( 'TC_menu' ) ) :
           .tc-second-menu-on .tc-hover-menu.nav .caret {
             display:inline-block;
           }
-          .nav-collapse, .nav-collapse.collapse.in .nav, .tc-hover-menu.nav ul.dropdown-menu {
-
-          }
           .tc-second-menu-on .tc-hover-menu.nav li:hover>ul {
             display: block;
           }
