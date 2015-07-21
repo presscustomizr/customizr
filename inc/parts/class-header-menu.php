@@ -31,15 +31,13 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_set_menu_hooks() {
+      if ( (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') )
+        return;
       //VARIOUS USER OPTIONS
       add_filter( 'body_class'                    , array( $this , 'tc_add_body_classes') );
       //Set header css classes based on user options
       add_filter( 'tc_header_classes'             , array( $this , 'tc_set_header_classes') );
       add_filter( 'tc_social_header_block_class'  , array( $this, 'tc_set_social_header_class') );
-
-      //add a 100% wide container just after the sticky header to reset margin top
-      if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) )
-        add_action( '__after_header'              , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
 
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
@@ -400,22 +398,6 @@ if ( ! class_exists( 'TC_menu' ) ) :
     }
 
 
-    /*
-    * hook : __after_header hook
-    *
-    * @package Customizr
-    * @since Customizr 3.2.0
-    */
-    function tc_reset_margin_top_after_sticky_header() {
-      echo apply_filters(
-        'tc_reset_margin_top_after_sticky_header',
-        sprintf('<div id="tc-reset-margin-top" class="container-fluid" style="margin-top:%1$spx"></div>',
-          apply_filters('tc_default_sticky_header_height' , 103 )
-        )
-      );
-    }
-
-
 
     /**
     * Adds a specific class to the ul wrapper
@@ -473,6 +455,12 @@ if ( ! class_exists( 'TC_menu' ) ) :
           }
           .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse, #tc-page-wrap .tc-second-menu-hide-when-mobile .nav-collapse.collapse .nav {
             display:none;
+          }
+          .tc-second-menu-on .tc-hover-menu.nav ul.dropdown-menu {
+            display:none;
+          }
+          .tc-second-menu-on .navbar .nav-collapse ul.nav>li li a {
+            padding: 3px 20px;
           }
           .tc-second-menu-on .nav-collapse.collapse .nav {
             display: block;

@@ -33,8 +33,6 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     /***************************
     * HEADER HOOKS SETUP
     ****************************/
-
-
 	  /**
 		* Set all header hooks
 		* template_redirect callback
@@ -63,15 +61,20 @@ if ( ! class_exists( 'TC_header_main' ) ) :
       add_filter ( 'tc_navbar_display', array( $this , 'tc_new_menu_view'), 10, 2);
 
       //body > header > navbar actions ordered by priority
-	  // GY : switch order for RTL sites
-	  if (is_rtl()) {
-      add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 20, 2 );
-      add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 10, 1 );
-	  }
-	  else {
-      add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
-      add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
-	  }
+  	  // GY : switch order for RTL sites
+  	  if (is_rtl()) {
+        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 20, 2 );
+        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 10, 1 );
+  	  }
+  	  else {
+        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
+        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
+  	  }
+
+      //add a 100% wide container just after the sticky header to reset margin top
+      if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) )
+        add_action( '__after_header'              , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
+
     }
 
 
@@ -95,7 +98,10 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     }
 
 
-	   /**
+    /***************************
+    * VIEWS
+    ****************************/
+	  /**
 		* Displays what is inside the head html tag. Includes the wp_head() hook.
 		*
 		*
@@ -421,8 +427,6 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 
 
-
-
 		/**
 		* Displays the social networks block in the header
 		*
@@ -450,8 +454,6 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
         echo apply_filters( 'tc_social_in_header', $html, $resp );
     }
-
-
 
 
 
@@ -484,6 +486,27 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 
 
+    /*
+    * hook : __after_header hook
+    *
+    * @package Customizr
+    * @since Customizr 3.2.0
+    */
+    function tc_reset_margin_top_after_sticky_header() {
+      echo apply_filters(
+        'tc_reset_margin_top_after_sticky_header',
+        sprintf('<div id="tc-reset-margin-top" class="container-fluid" style="margin-top:%1$spx"></div>',
+          apply_filters('tc_default_sticky_header_height' , 103 )
+        )
+      );
+    }
+
+
+
+
+    /***************************
+    * SETTER / GETTERS / HELPERS
+    ****************************/
 		/*
     * Callback of tc_user_options_style hook
     * @return css string
