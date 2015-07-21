@@ -452,6 +452,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
             box-shadow: none;
+            background: inherit;
           }
           .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse, #tc-page-wrap .tc-second-menu-hide-when-mobile .nav-collapse.collapse .nav {
             display:none;
