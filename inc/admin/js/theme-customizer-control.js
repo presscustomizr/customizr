@@ -498,7 +498,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           'tc_display_second_menu',
           'tc_second_menu_position',
           'nav_menu_locations[secondary]',
-          'tc_second_menu_resp_setting'
+          'tc_second_menu_resp_setting',
+          'tc_mc_effect'
         ],
         //if the second menu is activated, only the tc_menu_resp_dropdown_limit_to_viewport is hidden
         //otherwise all of them are hidden
@@ -510,7 +511,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
                 'tc_display_second_menu',
                 'nav_menu_locations[secondary]',
                 'tc_second_menu_position',
-                'tc_second_menu_resp_setting'] , targetSetId ) ) {
+                'tc_second_menu_resp_setting',
+                'tc_mc_effect'] , targetSetId ) ) {
               return false;
             } else {
               return true;
@@ -649,8 +651,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         setId : setId,
         controls  : _get_dependants(setId),
       };
-
-
       _.map( _params.controls , function( depSetId ) {
         _set_single_dependant_control_visibility( depSetId , _params);
       } );
