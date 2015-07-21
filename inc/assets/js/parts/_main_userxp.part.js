@@ -165,8 +165,6 @@ var czrapp = czrapp || {};
       if ( 1 != TCParams.ReorderBlocks )
         return;
 
-      this.__has_iframe = false;
-
       //fire on DOM READY and only for responsive devices
       if ( 'desktop' != this.getDevice() )
         this._reorderSidebars( 'responsive' );
@@ -193,41 +191,26 @@ var czrapp = czrapp || {};
           $_WindowWidth       = czrapp.$_window.width();
 
       //cache some $
-      that.$_wrapper      = that.$_wrapper || $('#main-wrapper .container[role=main] > .column-content-wrapper');
       that.$_content      = that.$_content || $("#main-wrapper .container .article-container");
       that.$_left         = that.$_left || $("#main-wrapper .container " + LeftSidebarClass);
       that.$_right        = that.$_right || $("#main-wrapper .container " + RightSidebarClass);
 
-      // do nothing if there's at least one iframe
-      if ( that._has_iframe( [this.$_content, this.$_left, this.$_right] ) ) 
-        return;
+      // check if we have iframes
+      iframeContainers = that._has_iframe( { 'content' : this.$_content, 'left' : this.$_left } ) ;
 
-      //15 pixels adjustement to avoid replacement before real responsive width
-      switch ( _sidebarLayout ) {
-        case 'normal' :
-          if ( that.$_left.length ) {
-            that.$_left.detach();
-            that.$_content.detach();
-            that.$_wrapper.append(that.$_left).append(that.$_content);
-          }
-          if ( that.$_right.length ) {
-              that.$_right.detach();
-              that.$_wrapper.append(that.$_right);
-          }
-        break;
+      var leftIframe    = $.inArray('left', iframeContainers) > -1,
+          contentIframe = $.inArray('content', iframeContainers) > -1;
 
-        case 'responsive' :
-          if ( that.$_left.length ) {
-             that.$_left.detach();
-            that.$_content.detach();
-            that.$_wrapper.append(that.$_content).append(that.$_left);
-          }
-          if ( that.$_right.length ) {
-              that.$_right.detach();
-              that.$_wrapper.append(that.$_right);
-          }
-        break;
-      }
+      //both conain iframes => do nothing
+      if ( leftIframe && contentIframe )
+        return;    
+
+      if ( that.$_left.length ) {
+        if ( leftIframe )
+          that.$_content[ _sidebarLayout === 'normal' ?  'insertAfter' : 'insertBefore']( that.$_left );
+        else
+          that.$_left[ _sidebarLayout === 'normal' ?  'insertBefore' : 'insertAfter']( that.$_content );
+      } 
     },
 
     //Handle dropdown on click for multi-tier menus
@@ -364,21 +347,19 @@ var czrapp = czrapp || {};
 
     //Helpers
     
-    //Check if the passed element contains an iframe
-    //@return bool
+    //Check if the passed element(s) contains an iframe
+    //@return list of containers
     //@param $_elements = mixed
     _has_iframe : function ( $_elements ) {
-      if ( ! this.__has_iframe ){ 
-        var that = this;
-        _.each( $_elements, function($_el){
-          if ( $_el.length > 0 && $_el.find('IFRAME').length > 0 ){
-            that.__has_iframe = true; 
-            return;
-          }
-        });
-      }
-      return this.__has_iframe;
+      var that = this,
+          to_return = [];
+      _.map( $_elements, function( $_el, container ){
+        if ( $_el.length > 0 && $_el.find('IFRAME').length > 0 )
+          to_return.push(container);
+      });
+      return to_return;
     }
+
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};
