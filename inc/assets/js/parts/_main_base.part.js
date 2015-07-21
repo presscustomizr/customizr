@@ -247,7 +247,7 @@ var czrapp = czrapp || {};
       return czrapp.getDevice();
     },
     isReponsive : function() {
-      return czrapp.isReponsivee();
+      return czrapp.isReponsive();
     }
 
   };//_methods{}
