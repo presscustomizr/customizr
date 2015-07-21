@@ -202,18 +202,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'   => 'skins_sec',
                                 'type'      => 'checkbox',
                                 'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
-              ),
-
-              //enable/disable top border
-              'tc_top_border' => array(
-                                'default'       =>  1,//top border on by default
-                                'title'         => __( 'Header design and layout' , 'customizr'),
-                                'label'         =>  __( 'Display top border' , 'customizr' ),
-                                'control'       =>  'TC_controls' ,
-                                'section'       =>  'header_layout_sec' ,
-                                'type'          =>  'checkbox' ,
-                                'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
-                                'priority'      => 5
               )
         );//end of skin options
     }
@@ -462,7 +450,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_block_reorder'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
-                                'label'       => __( 'Dynamic sidebar reordering on small devices' , 'customizr' ),
+                                'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( 'Dynamic sidebar reordering on small devices' , 'customizr' ) ),
                                 'section'     => 'responsive_sec' ,
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport.' , 'customizr' ),
@@ -502,13 +490,38 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     ------------------------------------------------------------------------------------------------------*/
     function tc_header_design_option_map( $get_default = null ) {
       return array(
+              'tc_header_layout'  =>  array(
+                              'default'       => 'left',
+                              'title'         => __( 'Header design and layout' , 'customizr'),
+                              'control'       => 'TC_controls' ,
+                              'label'         => __( "Choose a layout for the header" , "customizr" ),
+                              'section'       => 'header_layout_sec' ,
+                              'type'          =>  'select' ,
+                              'choices'       => array(
+                                      'left'      => __( 'Logo / title on the left' , 'customizr' ),
+                                      'centered'  => __( 'Logo / title centered' , 'customizr'),
+                                      'right'     => __( 'Logo / title on the right' , 'customizr' )
+                              ),
+                              'priority'      => 5,
+                              'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
+              ),
+              //enable/disable top border
+              'tc_top_border' => array(
+                                'default'       =>  1,//top border on by default
+                                'label'         =>  __( 'Display top border' , 'customizr' ),
+                                'control'       =>  'TC_controls' ,
+                                'section'       =>  'header_layout_sec' ,
+                                'type'          =>  'checkbox' ,
+                                'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
+                                'priority'      => 10
+              ),
               'tc_show_tagline'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Display the tagline" , "customizr" ),
                                 'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
-                                'priority'      => 10,
+                                'priority'      => 15,
                                 'transport'     => 'postMessage'
               ),
               'tc_social_in_header' =>  array(
@@ -517,7 +530,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'   =>  'TC_controls' ,
                                 'section'     => 'header_layout_sec' ,
                                 'type'        => 'checkbox' ,
-                                'priority'      => 15,
+                                'priority'      => 20,
                                 'transport'   => 'postMessage'
               ),
               'tc_display_boxed_navbar'  =>  array(
@@ -526,23 +539,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'         => __( "Display menu in a box" , "customizr" ),
                                 'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
-                                'priority'      => 20,
+                                'priority'      => 25,
                                 'transport'     => 'postMessage',
                                 'notice'    => __( 'If checked, this option wraps the header menu/tagline/social in a light grey box.' , 'customizr' ),
-              ),
-              'tc_header_layout'  =>  array(
-                                'default'       => 'left',
-                                'control'       => 'TC_controls' ,
-                                'label'         => __( "Layout" , "customizr" ),
-                                'section'       => 'header_layout_sec' ,
-                                'type'          =>  'select' ,
-                                'choices'       => array(
-                                        'left'      => __( 'Logo / title on the left' , 'customizr' ),
-                                        'centered'  => __( 'Logo / title centered' , 'customizr'),
-                                        'right'     => __( 'Logo / title on the right' , 'customizr' )
-                                ),
-                                'priority'      => 30
-                                //'transport'     => 'postMessage'
               ),
               'tc_sticky_header'  =>  array(
                                 'default'       => 1,
@@ -590,6 +589,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox' ,
                                 'priority'      => 60,
                                 'transport'     => 'postMessage',
+                                'notice'        => __('Also applied to the secondary menu if any.' , 'customizr')
               ),
               'tc_sticky_transparent_on_scroll'  =>  array(
                                 'default'       => 1,
@@ -2064,12 +2064,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'description' =>  __( 'Various images settings' , 'customizr' ),
                             'panel'   => 'tc-global-panel'
         ),
-        'responsive_sec'           => array(
-                            'title'     =>  __( 'Responsive settings' , 'customizr' ),
-                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 96 : 60,
-                            'description' =>  __( 'Various settings for responsive display' , 'customizr' ),
-                            'panel'   => 'tc-global-panel'
-        ),
         'authors_sec'               => array(
                             'title'     =>  __( 'Authors' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 220 : 70,
@@ -2176,6 +2170,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'title'     =>  __( 'Socials in Sidebars' , 'customizr' ),
                             'priority'    =>  10,
                             'description' =>  __( 'Set up your social profiles links in the sidebar(s).' , 'customizr' ),
+                            'panel'   => 'tc-sidebars-panel'
+        ),
+        'responsive_sec'           => array(
+                            'title'     =>  __( 'Responsive settings' , 'customizr' ),
+                            'priority'    =>  20,
+                            'description' =>  __( 'Various settings for responsive display' , 'customizr' ),
                             'panel'   => 'tc-sidebars-panel'
         ),
 
