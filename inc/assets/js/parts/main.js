@@ -105,9 +105,6 @@ var czrapp = czrapp || {};
         //updates width dependant properties
         czrapp.is_responsive  = that.isResponsive();
         czrapp.current_device = _to;
-
-        console.log('IN EMIT', $(window).width(), czrapp.is_responsive, _current, _to );
-
         czrapp.$_body.trigger( 'tc-resize', { current : _current, to : _to} );
       } );//resize();
 
@@ -247,7 +244,7 @@ var czrapp = czrapp || {};
       return czrapp.getDevice();
     },
     isReponsive : function() {
-      return czrapp.isReponsivee();
+      return czrapp.isReponsive();
     }
 
   };//_methods{}
@@ -583,13 +580,18 @@ var czrapp = czrapp || {};
       }
     },//eventHandler
 
+    //SMOOTH SCROLL
+    smoothScroll: function() {
+      if ( TCParams.SmoothScroll && TCParams.SmoothScroll.Enabled )
+        smoothScroll( TCParams.SmoothScroll.Options );
+    },
 
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
-      if ( ! TCParams.SmoothScroll || 'easeOutExpo' != TCParams.SmoothScroll )
+      if ( ! TCParams.anchorSmoothScroll || 'easeOutExpo' != TCParams.anchorSmoothScroll )
             return;
 
-      var _excl_sels = ( TCParams.SmoothScrollExclude && _.isArray( TCParams.SmoothScrollExclude ) ) ? TCParams.SmoothScrollExclude.join(',') : '';
+      var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude ) ) ? TCParams.anchorSmoothScrollExclude.join(',') : '';
       $('a[href^="#"]', '#content').not( _excl_sels ).click(function () {
         var anchor_id = $(this).attr("href");
 
@@ -600,7 +602,7 @@ var czrapp = czrapp || {};
         if ('#' != anchor_id) {
             $('html, body').animate({
                 scrollTop: $(anchor_id).offset().top
-            }, 700, TCParams.SmoothScroll);
+            }, 700, TCParams.anchorSmoothScroll);
         }
         return false;
       });//click
@@ -719,38 +721,26 @@ var czrapp = czrapp || {};
           $_WindowWidth       = czrapp.$_window.width();
 
       //cache some $
-      that.$_wrapper      = that.$_wrapper || $('#main-wrapper .container[role=main] > .column-content-wrapper');
       that.$_content      = that.$_content || $("#main-wrapper .container .article-container");
       that.$_left         = that.$_left || $("#main-wrapper .container " + LeftSidebarClass);
       that.$_right        = that.$_right || $("#main-wrapper .container " + RightSidebarClass);
 
-      //15 pixels adjustement to avoid replacement before real responsive width
-      switch ( _sidebarLayout ) {
-        case 'normal' :
-        console.log('JOIE DU NORMAL');
-          if ( that.$_left.length ) {
-            that.$_left.detach();
-            that.$_content.detach();
-            that.$_wrapper.append(that.$_left).append(that.$_content);
-          }
-          if ( that.$_right.length ) {
-              that.$_right.detach();
-              that.$_wrapper.append(that.$_right);
-          }
-        break;
+      // check if we have iframes
+      iframeContainers = that._has_iframe( { 'content' : this.$_content, 'left' : this.$_left } ) ;
 
-        case 'responsive' :
-          if ( that.$_left.length ) {
-             that.$_left.detach();
-            that.$_content.detach();
-            that.$_wrapper.append(that.$_content).append(that.$_left);
-          }
-          if ( that.$_right.length ) {
-              that.$_right.detach();
-              that.$_wrapper.append(that.$_right);
-          }
-        break;
-      }
+      var leftIframe    = $.inArray('left', iframeContainers) > -1,
+          contentIframe = $.inArray('content', iframeContainers) > -1;
+
+      //both conain iframes => do nothing
+      if ( leftIframe && contentIframe )
+        return;    
+
+      if ( that.$_left.length ) {
+        if ( leftIframe )
+          that.$_content[ _sidebarLayout === 'normal' ?  'insertAfter' : 'insertBefore']( that.$_left );
+        else
+          that.$_left[ _sidebarLayout === 'normal' ?  'insertBefore' : 'insertAfter']( that.$_content );
+      } 
     },
 
     //Handle dropdown on click for multi-tier menus
@@ -829,8 +819,6 @@ var czrapp = czrapp || {};
         this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
-      console.log( 'Second menu resp option : ', userOption );
-
       czrapp.$_body.on( 'tc-resize', function( e, param ) {
         param = _.isObject(param) ? param : {};
         var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
@@ -844,23 +832,12 @@ var czrapp = czrapp || {};
     },
 
     _manageMenuSeparator : function( _to, userOption ) {
-      console.log( 'in prepare', _to , userOption);
       //add/remove a separator between the two menus
-      var that = this,
-          _separatorContent = function( _pattern, _loop ) {
-            var _html = [];
-            for(var i = 0; i < ( _loop || 50 ); i++) {
-              _html.push( _pattern || '/' );
-            }
-            return _html.join('');
-          };
+      var that = this;
       if ( 'navbar' == _to )
         $( '.secondary-menu-separator', that.$_sn_wrap).remove();
       else {
-        $_sep = $( '<li/>', {
-          class : 'menu-item secondary-menu-separator',
-          html : '<a href="#"><span class="sep-pattern">' + _separatorContent('/') + '</span></a>'
-        } );
+        $_sep = $( '<li class="menu-item secondary-menu-separator"><hr class="featurette-divider"></hr></li>' );
 
         switch(userOption) {
           case 'in-sn-before' :
@@ -879,7 +856,6 @@ var czrapp = czrapp || {};
     //@return void()
     //@param _where = menu items location string 'navbar' or 'side_nav'
     _moveSecondMenu : function( _where, userOption ) {
-      console.log('MOVE SECOND MENU : ', _where );
       _where = _where || 'side_nav';
       var that = this;
       switch( _where ) {
@@ -894,6 +870,21 @@ var czrapp = czrapp || {};
               that.$_sn_wrap.append(that.$_sec_menu_els);
           break;
         }
+    },
+
+    //Helpers
+    
+    //Check if the passed element(s) contains an iframe
+    //@return list of containers
+    //@param $_elements = mixed
+    _has_iframe : function ( $_elements ) {
+      var that = this,
+          to_return = [];
+      _.map( $_elements, function( $_el, container ){
+        if ( $_el.length > 0 && $_el.find('IFRAME').length > 0 )
+          to_return.push(container);
+      });
+      return to_return;
     }
 
   };//_methods{}
@@ -901,7 +892,8 @@ var czrapp = czrapp || {};
   czrapp.methods.Czr_UserExperience = {};
   $.extend( czrapp.methods.Czr_UserExperience , _methods );
 
-})(jQuery, czrapp);var czrapp = czrapp || {};
+})(jQuery, czrapp);
+var czrapp = czrapp || {};
 /************************************************
 * STICKY HEADER SUB CLASS
 *************************************************/
@@ -919,6 +911,8 @@ var czrapp = czrapp || {};
       this.timer            = 0;
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
+
+      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 50; //these are equal for now
     },//init()
 
 
@@ -966,21 +960,21 @@ var czrapp = czrapp || {};
         break;
 
         case 'scroll' :
+          var _delay = 0;
+
            //use a timer
           if ( this.timer) {
             this.increment++;
             clearTimeout(self.timer);
           }
 
-          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
-            this.timer = setTimeout( function() {
+          if ( this.increment > 5 )
+            //decrease the scrolling trigger delay when smoothscroll on to avoid not catching the scroll when scrolling fast and sticky header not already triggered  
+            _delay = ! ( czrapp.$_body.hasClass('tc-smoothscroll') && ! this._is_scrolling() ) ? this.scrollingDelay : 15;
+
+          this.timer = setTimeout( function() {
               self._sticky_header_scrolling_actions();
-            }, self.increment > 5 ? 50 : 0 );
-          } else if ( czrapp.$_body.hasClass('ie') ) {
-            this.timer = setTimeout( function() {
-              self._sticky_header_scrolling_actions();
-            }, self.increment > 5 ? 50 : 0 );
-          }
+          }, _delay );
         break;
 
         case 'resize' :
@@ -1103,6 +1097,107 @@ var czrapp = czrapp || {};
 
   czrapp.methods.Czr_StickyHeader = {};
   $.extend( czrapp.methods.Czr_StickyHeader , _methods );
+
+})(jQuery, czrapp);
+var czrapp = czrapp || {};
+/************************************************
+* STICKY FOOTER SUB CLASS
+*************************************************/
+(function($, czrapp) {
+  var _methods =  {
+    init : function() {
+      this.$_push   = $('#tc-push-footer');
+      this._class   = 'sticky-footer-enabled';
+      this.$_page   = $('#tc-page-wrap');
+      
+      if ( 1 != TCParams.stickyHeader ) {//sticky header fires a resize
+        var self = this;
+        setTimeout( function() {
+                self._apply_sticky_footer(); }, 50 
+        );
+      }
+    },
+
+    /***********************************************
+    * DOM EVENT LISTENERS AND HANDLERS
+    ***********************************************/
+    stickyFooterEventListener : function() {
+      var self = this;
+
+      // maybe apply sticky footer on window resize
+      czrapp.$_window.on( 'tc-resize', function() {
+        self.stickyFooterEventHandler('resize');
+      });
+      /* can be useful without exposing methods make it react to this event which could be externally fired, used in the preview atm */
+      czrapp.$_body.on( 'refresh-sticky-footer', function() {
+        self.stickyFooterEventHandler('refresh');
+      });
+
+    },
+    
+    stickyFooterEventHandler : function( evt ) {
+      var self = this;
+
+      if ( ! this._is_sticky_footer_enabled() )
+        return;
+
+      switch ( evt ) {
+        case 'resize':
+          //to avoid the creation of a function inside a loop
+          //but still allow the access to "this"
+          var func = function() { return self._apply_sticky_footer() ;};
+          for ( var i = 0; i<5; i++ ) /* I've seen something like that in twentyfifteen */
+            setTimeout( func, 50 * i);
+        break;
+        case 'refresh':
+          this._apply_sticky_footer();
+        break;
+      }
+    },
+    /* We apply the "sticky" footer by setting the height of the push div, and adding the proper class to show it */
+    _apply_sticky_footer : function() {
+
+      var  _f_height     = this._get_full_height(),
+           _w_height     = czrapp.$_window.height(),
+           _push_height  = _w_height - _f_height,
+           _event        = false;
+      
+      if ( _push_height > 0 ) {
+        this.$_push.css('height', _push_height).addClass(this._class);
+        _event = 'sticky-footer-on';
+      }else if ( this.$_push.hasClass(this._class) ) {
+        this.$_push.removeClass(this._class);
+        _event = 'sticky-footer-off';
+      }
+
+      /* Fire an event which something might listen to */
+      if ( _event )
+        czrapp.$_body.trigger(_event);    
+    },
+    
+    //STICKY HEADER SUB CLASS HELPER (private like)
+    /*
+    * return @bool: whether apply or not the sticky-footer
+    */
+    _is_sticky_footer_enabled : function() {
+      return czrapp.$_body.hasClass('tc-sticky-footer');
+    },
+
+
+    //STICKY HEADER SUB CLASS HELPER (private like)
+    /* 
+    * return @int: the potential height value of the page
+    */
+    _get_full_height : function() {
+      var _full_height = this.$_page.outerHeight(true) + this.$_page.offset().top,
+          _push_height = 'block' == this.$_push.css('display') ? this.$_push.outerHeight() : 0;
+            
+      return _full_height - _push_height;
+    }
+  };//_methods{}
+
+  czrapp.methods.Czr_StickyFooter = {};
+  $.extend( czrapp.methods.Czr_StickyFooter , _methods );
 
 })(jQuery, czrapp);
 var czrapp = czrapp || {};
@@ -1292,8 +1387,9 @@ jQuery(function ($) {
     BrowserDetect : [],
     Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
     Czr_Slider : ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport', 'sliderTriggerSimpleLoad'],
-    Czr_UserExperience : ['eventListener','anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'],
+    Czr_UserExperience : ['eventListener', 'smoothScroll', 'anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'],
     Czr_StickyHeader : ['stickyHeaderEventListener', 'triggerStickyHeaderLoad' ],
+    Czr_StickyFooter : ['stickyFooterEventListener'],
     Czr_SideNav : []
   };
   czrapp.cacheProp().emitCustomEvents().loadCzr(toLoad);

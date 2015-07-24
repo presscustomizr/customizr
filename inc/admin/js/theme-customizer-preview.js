@@ -171,6 +171,13 @@
         $('.footer-widgets').addClass('no-widget-icons');
       else
         $('.footer-widgets').removeClass('no-widget-icons');
+    },
+    //Smooth Scroll
+    tc_smoothscroll : function(to) {
+      if ( false === to )
+        smoothScroll._cleanUp();
+      else
+        smoothScroll._maybeFire();
     }
   });//$.extend()
 
@@ -563,7 +570,7 @@
 
 
 
-  /******************************************
+   /******************************************
   * COMMENTS
   ******************************************/
   $.extend( _preview_cbs, {
@@ -576,6 +583,18 @@
       bubble_live_css += '.comments-link .tc-comment-bubble {border-color:' + to + ';color:' + to + '}';
       bubble_live_css += '.comments-link .tc-comment-bubble:before {border-color:' + to + '}';
       $('head').append($style_element.html(bubble_live_css));
+    }
+  } );//$.extend() 
+  
+  /******************************************
+  * FOOTER
+  ******************************************/
+  $.extend( _preview_cbs, {
+    tc_sticky_footer : function( to ) {
+      if ( false !== to )
+        $_body.addClass('tc-sticky-footer').trigger('refresh-sticky-footer');
+      else
+        $_body.removeClass('tc-sticky-footer');
     }
   } );//$.extend()
 

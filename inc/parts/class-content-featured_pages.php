@@ -29,7 +29,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
     	* @since Customizr 3.0
     	*/
       function tc_fp_block_display() {
-          
+
           if ( ! $this -> tc_show_featured_pages()  )
             return;
 
@@ -122,15 +122,23 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
           if ( null == TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
               //admin link if user logged in
               $featured_page_link             = is_user_logged_in() ? apply_filters( 'tc_fp_link_url', admin_url().'customize.php' , $fp_single_id ) : '';
-              $admin_link                     = is_user_logged_in() ? '<a href="'.admin_url().'customize.php" title="'.__( 'Customizer screen' , 'customizr' ).'">'.__( ' here' , 'customizr' ).'</a>' : '';
+              $customizr_link = '';
+              if ( is_user_logged_in() ) {
+                $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
+                  admin_url() . 'customize.php?autofocus[section]=frontpage_sec',
+                  __( 'Customizer screen' , 'customizr' ),
+                  __( 'Edit now.' , 'customizr' )
+                );
+              }
 
               //rendering
               $featured_page_id               =  null;
               $featured_page_title            =  apply_filters( 'tc_fp_title', __( 'Featured page' , 'customizr' ), $fp_single_id, $featured_page_id);
               $text                           =  apply_filters(
                                                   'tc_fp_text',
-                                                  sprintf( __( 'Featured page description text : use the page excerpt or set your own custom text in the Customizr screen%s.' , 'customizr' ),
-                                                    $admin_link
+                                                  sprintf( '%1$s %2$s',
+                                                    __( 'Featured page description text : use the page excerpt or set your own custom text in the Customizr screen.' , 'customizr' ),
+                                                    $customizr_link
                                                   ),
                                                   $fp_single_id,
                                                   $featured_page_id
@@ -239,8 +247,8 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
             return apply_filters( 'tc_fp_single_display' , $html, $fp_single_id, $show_img, $fp_img, $featured_page_link, $featured_page_title, $text, $featured_page_id );
         }//end of function
 
-      /* HELPERS */
 
+      /* HELPERS */
       function tc_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
         //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
         //tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )

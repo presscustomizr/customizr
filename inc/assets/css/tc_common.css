@@ -4657,6 +4657,7 @@ a.badge:focus {
  => LOGO/TITLE
  => NAVBAR
  => MENU
+ => SECONDARY MENU
  => SOCIAL
  => BREADCRUMB
  => SLIDER
@@ -5516,8 +5517,11 @@ li.dropdown.active > .dropdown-toggle,
 .navbar .nav {
   margin-right: 0px;
 }
-.tc-header .btn-toggle-nav.pull-left,
 .pull-menu-left .navbar div > ul.nav > .menu-item:first-child > a {
+  padding-left: 5px;
+}
+.tc-header .btn-toggle-nav.pull-left {
+  clear: both;
   padding-left: 5px;
 }
 .tc-header .btn-toggle-nav.pull-right,
@@ -5753,6 +5757,13 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 .sn-toggle .btn {
   display: block;
 }
+/* Adapt close button position according to the user setting */
+.sn-left .tc-sn .btn-toggle-nav {
+  float: right;
+}
+.sn-right .tc-sn .btn-toggle-nav {
+  float: left;
+}
 .menu-btn {
   padding: 0;
   background: none;
@@ -5765,6 +5776,7 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   float: right;
   display: inline-block;
   margin-right: 5px;
+  cursor: pointer;
 }
 .navbar .btn-toggle-nav .icon-bar {
   background: #5F6F81;
@@ -5815,6 +5827,19 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 .csstransforms .nav-collapse.in + .btn-toggle-nav .icon-bar,
 .csstransforms .tc-sn-visible .btn-toggle-nav .icon-bar {
   margin: 0;
+}
+/* SECONDARY MENU
+  -------------------------------------------------- */
+.secondary-menu-separator hr:after {
+  content: '';
+  border: 2px dashed #B3B3B3;
+  display: block;
+}
+.secondary-menu-separator hr {
+  border-bottom: 1px solid #EEE;
+  border-top: none;
+  margin: 30px 0 0;
+  padding-bottom: 30px;
 }
 /* BREADCRUMB
   -------------------------------------------------- */
@@ -9309,6 +9334,9 @@ li#wp-admin-bar-tc-customizr a {
     width: 400px;
     max-width: 100%;
   }
+  #tc-sn .nav-collapse {
+    background: #fff;
+  }
   /* when open, give to the menu a greater z-index
    */
   .tc-sn-visible:not(.sn-close) #tc-sn {
@@ -9323,8 +9351,8 @@ li#wp-admin-bar-tc-customizr a {
     position: absolute;
     width: 100%;
   }
-  .tc-sn-visible.sticky-enabled.admin-bar #tc-page-wrap {
-    top: 0;
+  .tc-sn-visible:not(.sn-close) #tc-page-wrap {
+    left: initial !important;
   }
   /*end prevent overflows in mobiles */
 }

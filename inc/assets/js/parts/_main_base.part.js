@@ -105,9 +105,6 @@ var czrapp = czrapp || {};
         //updates width dependant properties
         czrapp.is_responsive  = that.isResponsive();
         czrapp.current_device = _to;
-
-        console.log('IN EMIT', $(window).width(), czrapp.is_responsive, _current, _to );
-
         czrapp.$_body.trigger( 'tc-resize', { current : _current, to : _to} );
       } );//resize();
 
@@ -247,7 +244,7 @@ var czrapp = czrapp || {};
       return czrapp.getDevice();
     },
     isReponsive : function() {
-      return czrapp.isReponsivee();
+      return czrapp.isReponsive();
     }
 
   };//_methods{}

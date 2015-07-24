@@ -1,3 +1,15 @@
+// addEventListener Polyfill ie9- http://stackoverflow.com/a/27790212
+window.addEventListener = window.addEventListener || function (e, f) { window.attachEvent('on' + e, f); };
+
+
+// Datenow Polyfill ie9- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
+if (!Date.now) {
+  Date.now = function now() {
+    return new Date().getTime();
+  };
+}
+
+
 // Object.create monkey patch ie8 http://stackoverflow.com/a/18020326
 if ( ! Object.create ) {
   Object.create = function(proto, props) {
@@ -142,7 +154,8 @@ if (!Array.prototype.map) {
     // 9. return A
     return A;
   };
-}/*! iCheck v1.0.1 by Damir Sultanov, http://git.io/arlzeA, MIT Licensed */
+}
+/*! iCheck v1.0.1 by Damir Sultanov, http://git.io/arlzeA, MIT Licensed */
 if ( 'function' != typeof(jQuery.fn.iCheck) ) {
   !function(a){function b(a,b,e){var f=a[0],g=/er/.test(e)?p:/bl/.test(e)?n:l,h=e==q?{checked:f[l],disabled:f[n],indeterminate:"true"==a.attr(p)||"false"==a.attr(o)}:f[g];if(/^(ch|di|in)/.test(e)&&!h)c(a,g);else if(/^(un|en|de)/.test(e)&&h)d(a,g);else if(e==q)for(g in h)h[g]?c(a,g,!0):d(a,g,!0);else b&&"toggle"!=e||(b||a[u]("ifClicked"),h?f[r]!==k&&d(a,g):c(a,g))}function c(b,c,e){var q=b[0],u=b.parent(),v=c==l,x=c==p,y=c==n,z=x?o:v?m:"enabled",A=f(b,z+g(q[r])),B=f(b,c+g(q[r]));if(!0!==q[c]){if(!e&&c==l&&q[r]==k&&q.name){var C=b.closest("form"),D='input[name="'+q.name+'"]',D=C.length?C.find(D):a(D);D.each(function(){this!==q&&a(this).data(i)&&d(a(this),c)})}x?(q[c]=!0,q[l]&&d(b,l,"force")):(e||(q[c]=!0),v&&q[p]&&d(b,p,!1)),h(b,v,c,e)}q[n]&&f(b,w,!0)&&u.find("."+j).css(w,"default"),u[s](B||f(b,c)||""),y?u.attr("aria-disabled","true"):u.attr("aria-checked",x?"mixed":"true"),u[t](A||f(b,z)||"")}function d(a,b,c){var d=a[0],e=a.parent(),i=b==l,k=b==p,q=b==n,u=k?o:i?m:"enabled",v=f(a,u+g(d[r])),x=f(a,b+g(d[r]));!1!==d[b]&&((k||!c||"force"==c)&&(d[b]=!1),h(a,i,u,c)),!d[n]&&f(a,w,!0)&&e.find("."+j).css(w,"pointer"),e[t](x||f(a,b)||""),q?e.attr("aria-disabled","false"):e.attr("aria-checked","false"),e[s](v||f(a,u)||"")}function e(b,c){b.data(i)&&(b.parent().html(b.attr("style",b.data(i).s||"")),c&&b[u](c),b.off(".i").unwrap(),a(v+'[for="'+b[0].id+'"]').add(b.closest(v)).off(".i"))}function f(a,b,c){return a.data(i)?a.data(i).o[b+(c?"":"Class")]:void 0}function g(a){return a.charAt(0).toUpperCase()+a.slice(1)}function h(a,b,c,d){d||(b&&a[u]("ifToggled"),a[u]("ifChanged")[u]("if"+g(c)))}var i="iCheck",j=i+"-helper",k="radio",l="checked",m="un"+l,n="disabled",o="determinate",p="in"+o,q="update",r="type",s="addClass",t="removeClass",u="trigger",v="label",w="cursor",x=/ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);a.fn[i]=function(f,g){var h='input[type="checkbox"], input[type="'+k+'"]',m=a(),o=function(b){b.each(function(){var b=a(this);m=b.is(h)?m.add(b):m.add(b.find(h))})};if(/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|destroy)$/i.test(f))return f=f.toLowerCase(),o(this),m.each(function(){var c=a(this);"destroy"==f?e(c,"ifDestroyed"):b(c,!0,f),a.isFunction(g)&&g()});if("object"!=typeof f&&f)return this;var w=a.extend({checkedClass:l,disabledClass:n,indeterminateClass:p,labelHover:!0,aria:!1},f),y=w.handle,z=w.hoverClass||"hover",A=w.focusClass||"focus",B=w.activeClass||"active",C=!!w.labelHover,D=w.labelHoverClass||"hover",E=0|(""+w.increaseArea).replace("%","");return("checkbox"==y||y==k)&&(h='input[type="'+y+'"]'),-50>E&&(E=-50),o(this),m.each(function(){var f=a(this);e(f);var g=this,h=g.id,m=-E+"%",o=100+2*E+"%",o={position:"absolute",top:m,left:m,display:"block",width:o,height:o,margin:0,padding:0,background:"#fff",border:0,opacity:0},m=x?{position:"absolute",visibility:"hidden"}:E?o:{position:"absolute",opacity:0},p="checkbox"==g[r]?w.checkboxClass||"icheckbox":w.radioClass||"i"+k,y=a(v+'[for="'+h+'"]').add(f.closest(v)),F=!!w.aria,G=i+"-"+Math.random().toString(36).substr(2,6),H='<div class="'+p+'" '+(F?'role="'+g[r]+'" ':"");F&&y.each(function(){H+='aria-labelledby="',this.id?H+=this.id:(this.id=G,H+=G),H+='"'}),H=f.wrap(H+"/>")[u]("ifCreated").parent().append(w.insert),o=a('<ins class="'+j+'"/>').css(o).appendTo(H),f.data(i,{o:w,s:f.attr("style")}).css(m),w.inheritClass&&H[s](g.className||""),w.inheritID&&h&&H.attr("id",i+"-"+h),"static"==H.css("position")&&H.css("position","relative"),b(f,!0,q),y.length&&y.on("click.i mouseover.i mouseout.i touchbegin.i touchend.i",function(c){var d=c[r],e=a(this);if(!g[n]){if("click"==d){if(a(c.target).is("a"))return;b(f,!1,!0)}else C&&(/ut|nd/.test(d)?(H[t](z),e[t](D)):(H[s](z),e[s](D)));if(!x)return!1;c.stopPropagation()}}),f.on("click.i focus.i blur.i keyup.i keydown.i keypress.i",function(a){var b=a[r];return a=a.keyCode,"click"==b?!1:"keydown"==b&&32==a?(g[r]==k&&g[l]||(g[l]?d(f,l):c(f,l)),!1):("keyup"==b&&g[r]==k?!g[l]&&c(f,l):/us|ur/.test(b)&&H["blur"==b?t:s](A),void 0)}),o.on("click mousedown mouseup mouseover mouseout touchbegin.i touchend.i",function(a){var c=a[r],d=/wn|up/.test(c)?B:z;if(!g[n]){if("click"==c?b(f,!1,!0):(/wn|er|in/.test(c)?H[s](d):H[t](d+" "+B),y.length&&C&&d==z&&y[/ut|nd/.test(c)?t:s](D)),!x)return!1;a.stopPropagation()}})})}}(window.jQuery||window.Zepto);
 }
@@ -485,7 +498,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           'tc_display_second_menu',
           'tc_second_menu_position',
           'nav_menu_locations[secondary]',
-          'tc_second_menu_resp_setting'
+          'tc_second_menu_resp_setting',
+          'tc_mc_effect'
         ],
         //if the second menu is activated, only the tc_menu_resp_dropdown_limit_to_viewport is hidden
         //otherwise all of them are hidden
@@ -497,7 +511,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
                 'tc_display_second_menu',
                 'nav_menu_locations[secondary]',
                 'tc_second_menu_position',
-                'tc_second_menu_resp_setting'] , targetSetId ) ) {
+                'tc_second_menu_resp_setting',
+                'tc_mc_effect'] , targetSetId ) ) {
               return false;
             } else {
               return true;
@@ -515,8 +530,10 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
               targetSetId ) ) {
                 return true === api( _build_setId('tc_display_second_menu') ).get();
             }
-            else
-              return true;
+            else if ( 'tc_menu_resp_dropdown_limit_to_viewport' == targetSetId ){
+              return false;
+            }
+            return true;
           }
         }
       }
@@ -634,8 +651,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         setId : setId,
         controls  : _get_dependants(setId),
       };
-
-
       _.map( _params.controls , function( depSetId ) {
         _set_single_dependant_control_visibility( depSetId , _params);
       } );
@@ -652,9 +667,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         var _action   = _get_visibility_action( _params.setId , depSetId ),
             _callback = _get_visibility_cb( _params.setId , _action ),
             _bool     = false;
-        if ( 'nav_menu_locations[secondary]' == depSetId ) {
-          console.log( 'in SET SINGLE' , _params.setId, _action, _callback(to, depSetId, _params.setId ) ) ;
-        }
+
         if ( 'show' == _action && _callback(to, depSetId, _params.setId ) )
           _bool = true;
         if ( 'hide' == _action && _callback(to, depSetId, _params.setId ) )
@@ -667,9 +680,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         //if cross dependency :
         //1) return true if we must show, false if not.
         _bool = _check_cross_dependant( _params.setId, depSetId ) && _bool;
-        if ( 'nav_menu_locations[secondary]' == depSetId ) {
-          console.log('IN SET SINGLE AFTER', _check_cross_dependant( _params.setId, depSetId ), _bool, control.container );
-        }
         control.container.toggle( _bool );
       };
 
@@ -719,6 +729,17 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   };
 
 
+  //change the 'nav' section controls opacity based on the booleand value of a setting (tc_theme_options[tc_hide_all_menus])
+  var _hideAllmenusActions = function(to, from, setId) {
+    setId = setId ||'tc_theme_options[tc_hide_all_menus]';
+    var $_controls = api.section('nav').container.find('li.customize-control').not( api.control(setId).container );
+    $_controls.each( function() {
+      if ( $(this).is(':visible') )
+        $(this).fadeTo( 500 , true === to ? 0.5 : 1); //.fadeTo() duration, opacity, callback
+    });//$.each()
+  };
+
+
   //bind all actions to wp.customize ready event
   //map each setting with its dependencies
   api.bind( 'ready' , function() {
@@ -728,6 +749,21 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     //additional dependencies
     _handle_grid_dependencies();
     _header_layout_dependency();
+
+    //on nav section open
+    api.section('nav').container.on( 'click keydown', '.accordion-section-title', function(e) {
+      //special treatment for click events
+      if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
+        return;
+      }
+      event.preventDefault(); // Keep this AFTER the key filter above)
+
+      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
+    });//on()
+
+    //specific callback when for the tc_hide_all_menus setting
+    api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
+
   } );
 
 })( wp, jQuery, _);/**
@@ -887,7 +923,7 @@ jQuery(function ($) {
 
     /* BUTTON JUMP TO POST LIST */
     $('.tc-navigate-to-post-list').click( function() {
-      $('#accordion-section-tc_post_list_settings > .accordion-section-title').trigger('click');
+      $('#accordion-section-post_lists_sec > .accordion-section-title').trigger('click');
     });
 
     /* RECENTER CURRENT SECTIONS */

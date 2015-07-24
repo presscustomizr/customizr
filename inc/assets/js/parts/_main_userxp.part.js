@@ -50,13 +50,18 @@ var czrapp = czrapp || {};
       }
     },//eventHandler
 
+    //SMOOTH SCROLL
+    smoothScroll: function() {
+      if ( TCParams.SmoothScroll && TCParams.SmoothScroll.Enabled )
+        smoothScroll( TCParams.SmoothScroll.Options );
+    },
 
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
-      if ( ! TCParams.SmoothScroll || 'easeOutExpo' != TCParams.SmoothScroll )
+      if ( ! TCParams.anchorSmoothScroll || 'easeOutExpo' != TCParams.anchorSmoothScroll )
             return;
 
-      var _excl_sels = ( TCParams.SmoothScrollExclude && _.isArray( TCParams.SmoothScrollExclude ) ) ? TCParams.SmoothScrollExclude.join(',') : '';
+      var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude ) ) ? TCParams.anchorSmoothScrollExclude.join(',') : '';
       $('a[href^="#"]', '#content').not( _excl_sels ).click(function () {
         var anchor_id = $(this).attr("href");
 
@@ -67,7 +72,7 @@ var czrapp = czrapp || {};
         if ('#' != anchor_id) {
             $('html, body').animate({
                 scrollTop: $(anchor_id).offset().top
-            }, 700, TCParams.SmoothScroll);
+            }, 700, TCParams.anchorSmoothScroll);
         }
         return false;
       });//click
@@ -186,38 +191,26 @@ var czrapp = czrapp || {};
           $_WindowWidth       = czrapp.$_window.width();
 
       //cache some $
-      that.$_wrapper      = that.$_wrapper || $('#main-wrapper .container[role=main] > .column-content-wrapper');
       that.$_content      = that.$_content || $("#main-wrapper .container .article-container");
       that.$_left         = that.$_left || $("#main-wrapper .container " + LeftSidebarClass);
       that.$_right        = that.$_right || $("#main-wrapper .container " + RightSidebarClass);
 
-      //15 pixels adjustement to avoid replacement before real responsive width
-      switch ( _sidebarLayout ) {
-        case 'normal' :
-        console.log('JOIE DU NORMAL');
-          if ( that.$_left.length ) {
-            that.$_left.detach();
-            that.$_content.detach();
-            that.$_wrapper.append(that.$_left).append(that.$_content);
-          }
-          if ( that.$_right.length ) {
-              that.$_right.detach();
-              that.$_wrapper.append(that.$_right);
-          }
-        break;
+      // check if we have iframes
+      iframeContainers = that._has_iframe( { 'content' : this.$_content, 'left' : this.$_left } ) ;
 
-        case 'responsive' :
-          if ( that.$_left.length ) {
-             that.$_left.detach();
-            that.$_content.detach();
-            that.$_wrapper.append(that.$_content).append(that.$_left);
-          }
-          if ( that.$_right.length ) {
-              that.$_right.detach();
-              that.$_wrapper.append(that.$_right);
-          }
-        break;
-      }
+      var leftIframe    = $.inArray('left', iframeContainers) > -1,
+          contentIframe = $.inArray('content', iframeContainers) > -1;
+
+      //both conain iframes => do nothing
+      if ( leftIframe && contentIframe )
+        return;    
+
+      if ( that.$_left.length ) {
+        if ( leftIframe )
+          that.$_content[ _sidebarLayout === 'normal' ?  'insertAfter' : 'insertBefore']( that.$_left );
+        else
+          that.$_left[ _sidebarLayout === 'normal' ?  'insertBefore' : 'insertAfter']( that.$_content );
+      } 
     },
 
     //Handle dropdown on click for multi-tier menus
@@ -296,8 +289,6 @@ var czrapp = czrapp || {};
         this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
-      console.log( 'Second menu resp option : ', userOption );
-
       czrapp.$_body.on( 'tc-resize', function( e, param ) {
         param = _.isObject(param) ? param : {};
         var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
@@ -311,23 +302,12 @@ var czrapp = czrapp || {};
     },
 
     _manageMenuSeparator : function( _to, userOption ) {
-      console.log( 'in prepare', _to , userOption);
       //add/remove a separator between the two menus
-      var that = this,
-          _separatorContent = function( _pattern, _loop ) {
-            var _html = [];
-            for(var i = 0; i < ( _loop || 50 ); i++) {
-              _html.push( _pattern || '/' );
-            }
-            return _html.join('');
-          };
+      var that = this;
       if ( 'navbar' == _to )
         $( '.secondary-menu-separator', that.$_sn_wrap).remove();
       else {
-        $_sep = $( '<li/>', {
-          class : 'menu-item secondary-menu-separator',
-          html : '<a href="#"><span class="sep-pattern">' + _separatorContent('/') + '</span></a>'
-        } );
+        $_sep = $( '<li class="menu-item secondary-menu-separator"><hr class="featurette-divider"></hr></li>' );
 
         switch(userOption) {
           case 'in-sn-before' :
@@ -346,7 +326,6 @@ var czrapp = czrapp || {};
     //@return void()
     //@param _where = menu items location string 'navbar' or 'side_nav'
     _moveSecondMenu : function( _where, userOption ) {
-      console.log('MOVE SECOND MENU : ', _where );
       _where = _where || 'side_nav';
       var that = this;
       switch( _where ) {
@@ -361,6 +340,21 @@ var czrapp = czrapp || {};
               that.$_sn_wrap.append(that.$_sec_menu_els);
           break;
         }
+    },
+
+    //Helpers
+    
+    //Check if the passed element(s) contains an iframe
+    //@return list of containers
+    //@param $_elements = mixed
+    _has_iframe : function ( $_elements ) {
+      var that = this,
+          to_return = [];
+      _.map( $_elements, function( $_el, container ){
+        if ( $_el.length > 0 && $_el.find('IFRAME').length > 0 )
+          to_return.push(container);
+      });
+      return to_return;
     }
 
   };//_methods{}

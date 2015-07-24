@@ -31,24 +31,31 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_set_menu_hooks() {
+      if ( (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') )
+        return;
       //VARIOUS USER OPTIONS
       add_filter( 'body_class'                    , array( $this , 'tc_add_body_classes') );
+      //Set header css classes based on user options
+      add_filter( 'tc_header_classes'             , array( $this , 'tc_set_header_classes') );
       add_filter( 'tc_social_header_block_class'  , array( $this, 'tc_set_social_header_class') );
-
-      //add a 100% wide container just after the sticky header to reset margin top
-      if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) )
-        add_action( '__after_header'              , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
 
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
       add_filter( 'tc_user_options_style'         , array( $this , 'tc_menu_item_style_first_letter_css') );
+      //set second menu specific style including @media rules
+      add_filter( 'tc_user_options_style'         , array( $this , 'tc_add_second_menu_inline_style') );
 
       //SIDE MENU HOOKS SINCE v3.3+
       if ( $this -> tc_is_sidenav_enabled() ){
         add_action( 'wp_head'                     , array( $this , 'tc_set_sidenav_hooks') );
         add_filter( 'tc_user_options_style'       , array( $this , 'tc_set_sidenav_style') );
-      }else
+      }
+      //this adds css classes to the navbar-wrapper :
+      //1) to the main menu if regular (sidenav not enabled)
+      //2) to the secondary menu if enabled
+      if ( ! $this -> tc_is_sidenav_enabled() || TC_utils::$inst->tc_is_secondary_menu_enabled() ) {
         add_filter( 'tc_navbar_wrapper_class'     , array( $this, 'tc_set_menu_style_options'), 0 );
+      }
 
       //body > header > navbar action ordered by priority
       add_action ( '__navbar'                     , array( $this , 'tc_menu_display' ), 30 );
@@ -315,7 +322,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * GETTERS / SETTERS
     ****************************************/
     /*
-    * Set menu class position
+    * Set navbar menu css classes : effects, position...
     * hook : tc_navbar_wrapper_class hook
     *
     * @package Customizr
@@ -325,9 +332,17 @@ if ( ! class_exists( 'TC_menu' ) ) :
       $_classes = ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
       $_classes = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
       $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
-      return array_merge( $_classes, array(esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) ) );
-    }
 
+      //Navbar menus positions (not sidenav)
+      //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
+      //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
+      if ( ! $this -> tc_is_sidenav_enabled() )
+        array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
+      if ( TC_utils::$inst->tc_is_secondary_menu_enabled() )
+        array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
+
+      return $_classes;
+    }
 
 
     /*
@@ -347,6 +362,31 @@ if ( ! class_exists( 'TC_menu' ) ) :
       return $_classes;
     }
 
+
+
+    /**
+    * Set the header classes
+    * Callback for tc_header_classes filter
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_set_header_classes( $_classes ) {
+      //backward compatibility (was not handled has an array in previous versions)
+      if ( ! is_array($_classes) )
+        return $_classes;
+
+      //adds the second menu state
+      if ( TC_Utils::$inst -> tc_is_secondary_menu_enabled() )
+        array_push( $_classes, 'tc-second-menu-on' );
+      //adds the resp. behaviour option for secondary menu
+      array_push( $_classes, 'tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) . '-when-mobile' ) );
+
+      return $_classes;
+    }
+
+
+
     /*
     * hook :  tc_social_header_block_class hook
     *
@@ -355,22 +395,6 @@ if ( ! class_exists( 'TC_menu' ) ) :
     */
     function tc_set_social_header_class($_classes) {
       return 'span5';
-    }
-
-
-    /*
-    * hook : __after_header hook
-    *
-    * @package Customizr
-    * @since Customizr 3.2.0
-    */
-    function tc_reset_margin_top_after_sticky_header() {
-      echo apply_filters(
-        'tc_reset_margin_top_after_sticky_header',
-        sprintf('<div id="tc-reset-margin-top" class="container-fluid" style="margin-top:%1$spx"></div>',
-          apply_filters('tc_default_sticky_header_height' , 103 )
-        )
-      );
     }
 
 
@@ -407,6 +431,133 @@ if ( ! class_exists( 'TC_menu' ) ) :
         }\n"
       );
     }
+
+    /*
+    * Second menu
+    * This actually "restore" regular menu style (user options in particular) by overriding the max-width: 979px media query
+    */
+    function tc_add_second_menu_inline_style( $_css ) {
+      if ( ! TC_Utils::$inst -> tc_is_secondary_menu_enabled() )
+        return $_css;
+
+      return sprintf("%s\n%s",
+        $_css,
+        "@media (max-width: 979px) {
+          .tc-second-menu-on .nav-collapse {
+            width: inherit;
+            overflow: visible;
+            height: inherit;
+            position:relative;
+            top: inherit;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            background: inherit;
+          }
+          .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse, #tc-page-wrap .tc-second-menu-hide-when-mobile .nav-collapse.collapse .nav {
+            display:none;
+          }
+          .tc-second-menu-on .tc-hover-menu.nav ul.dropdown-menu {
+            display:none;
+          }
+          .tc-second-menu-on .navbar .nav-collapse ul.nav>li li a {
+            padding: 3px 20px;
+          }
+          .tc-second-menu-on .nav-collapse.collapse .nav {
+            display: block;
+            float: left;
+            margin: inherit;
+          }
+          .tc-second-menu-on .nav-collapse .nav>li {
+            float:left;
+          }
+          .tc-second-menu-on .nav-collapse .dropdown-menu {
+            position:absolute;
+            display: none;
+            -webkit-box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            -moz-box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            background-color: #fff;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            -moz-box-shadow:  0 2px 8px rgba(0,0,0,.2)
+            box-shadow:  0 2px 8px rgba(0,0,0,.2)
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding;
+            background-clip: padding-box;
+          }
+          .tc-second-menu-on .navbar .nav>li>.dropdown-menu:before {
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid #ccc;
+            border-bottom-color: rgba(0,0,0,.2);
+            top: -7px;
+            left: 9px;
+          }
+          .tc-second-menu-on .navbar .nav>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu:before{
+            content: '';
+            display: inline-block;
+            position: absolute;
+          }
+          .tc-second-menu-on .tc-hover-menu.nav .caret {
+            display:inline-block;
+          }
+          .tc-second-menu-on .tc-hover-menu.nav li:hover>ul {
+            display: block;
+          }
+          .tc-second-menu-on .nav a, .tc-second-menu-on .tc-hover-menu.nav a {
+            border-bottom: none;
+          }
+          .tc-second-menu-on .dropdown-menu>li>a {
+            padding: 3px 20px;
+          }
+          .tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a:focus,.tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a:hover,.tc-second-menu-on .tc-submenu-move .dropdown-submenu:focus>a, .tc-second-menu-on .tc-submenu-move .dropdown-submenu:hover>a {
+            padding-left: 1.63em
+          }
+          .tc-second-menu-on .tc-submenu-fade .nav>li>ul {
+            opacity: 0;
+            top: 75%;
+            visibility: hidden;
+            display: block;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+          }
+          .tc-second-menu-on .tc-submenu-fade .nav li.open>ul, .tc-second-menu-on .tc-submenu-fade .tc-hover-menu.nav li:hover>ul {
+            opacity: 1;
+            top: 95%;
+            visibility: visible;
+          }
+          .tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a {
+            -webkit-transition: all ease .241s;
+            -moz-transition: all ease .241s;
+            -o-transition: all ease .241s;
+            transition: all ease .241s;
+          }
+          .tc-second-menu-on .dropdown-submenu>.dropdown-menu {
+            top: 110%;
+            left: 30%;
+            left: 30%\9;
+            top: 0\9;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+          }
+        }\n
+
+        .sticky-enabled .tc-second-menu-on .nav-collapse.collapse {
+          clear:none;
+        }\n"
+      );
+    }
+
+
 
     /**
     * Adds a specific style to the first letter of the menu item
