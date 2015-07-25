@@ -214,7 +214,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       $show_new_notice = false;
       //first time user of the theme, the option does not exist.
       if ( ! $last_update_notice )
-        $show_new_notice = true;
+        return;
       //user who just upgraded the theme will be notified until he clicks on the dismiss link
       if ( version_compare( CUSTOMIZR_VER, $last_update_notice , '>' ) )
         $show_new_notice = true;
