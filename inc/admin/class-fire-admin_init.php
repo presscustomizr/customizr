@@ -267,10 +267,12 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
           <?php
             echo apply_filters(
               'the_content',
-              sprintf( '<h4>%1$s</h4><strong><a class="button" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></strong>',
+              sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
                 TC_WEBSITE . "category/customizr-releases/",
-                __( "Take me to the release note" , "customizr" )
+                __( "Read the latest release notes" , "customizr" ),
+                esc_url('demo.presscustomizr.com'),
+                __( "Visit the demo", "customizr" )
               )
             );
           ?>
