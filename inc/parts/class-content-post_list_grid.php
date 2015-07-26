@@ -698,7 +698,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_h = $_css_prop['h'];
           $_p = $_css_prop['p'];
           $_css .= "
-              .tc-post-list-grid .entry-title {{$_h}}
+              .tc-post-list-grid article .entry-title {{$_h}}
               .tc-post-list-grid .tc-g-cont {{$_p}}
           ";
           return $_css;
