@@ -911,7 +911,7 @@ var czrapp = czrapp || {};
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
 
-      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 50;
+      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 5;
     },//init()
 
 
