@@ -508,43 +508,65 @@ if ( ! class_exists( 'TC_customize' ) ) :
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Need more customizations options and premium support ?" , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
-              __( "Discover Customizr Pro" , 'customizr' )
+              __( "Get Customizr Pro" , 'customizr' )
             );
           ?>
         </div>
       </script>
       <script type="text/template" id="wfc_cta">
         <div class="tc-cta tc-in-control-cta-wrap">
-        <hr/>
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with the Customizr Pro theme." , 'customizr' ),
+              __( "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with Customizr Pro." , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
-              __( "Discover Customizr Pro" , 'customizr' )
+              __( "Get Customizr Pro" , 'customizr' )
             );
           ?>
         </div>
       </script>
-       <script type="text/template" id="fpu_cta">
+      <script type="text/template" id="fpu_cta">
         <div class="tc-cta tc-in-control-cta-wrap">
-        <hr/>
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Add unlimited featured pages with Customizr Pro" , 'customizr' ),
+              __( "Add unlimited featured pages with Customizr Pro." , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
-              __( "Discover Customizr Pro" , 'customizr' )
+              __( "Get Customizr Pro" , 'customizr' )
             );
           ?>
         </div>
       </script>
+
+      <script type="text/template" id="gc_cta">
+        <div class="tc-cta tc-in-control-cta-wrap">
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer." , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Get Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
+
+       <script type="text/template" id="mc_cta">
+        <div class="tc-cta tc-in-control-cta-wrap">
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Add beautiful reveal effects to your side menu." , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Get Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
+
       <script type="text/template" id="footer_cta">
         <div class="tc-cta tc-in-control-cta-wrap">
-        <hr/>
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Customize your footer credits with Customizr Pro" , 'customizr' ),
+              __( "Customize your footer credits with Customizr Pro." , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
-              __( "Discover Customizr Pro" , 'customizr' )
+              __( "Get Customizr Pro" , 'customizr' )
             );
           ?>
         </div>
