@@ -253,7 +253,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_get_theme_options ( $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
-          $option_group       = is_null($option_group) ? 'tc_theme_options' : $option_group;
+          $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
           $saved              = (array) get_option( $option_group );
           $defaults           = $this -> default_options;
           $__options          = wp_parse_args( $saved, $defaults );
@@ -305,6 +305,23 @@ if ( ! class_exists( 'TC_utils' ) ) :
         return apply_filters( "tc_opt_{$option_name}" , $_single_opt , $option_name , $option_group, $_default_val );
       }
 
+
+
+      /**
+      * Set an option value in the theme option group
+      * @param $option_name : string ( like tc_skin )
+      * @param $option_value : sanitized option value, can be a string, a boolean or an array
+      * @param $option_group : string ( like tc_theme_options )
+      * @return  void
+      *
+      * @package Customizr
+      * @since Customizr 3.4+
+      */
+      function tc_set_option( $option_name , $option_value, $option_group = null ) {
+        $_options = $this -> tc_get_theme_options( $option_group );
+        $_options[$option_name] = $option_value;
+        update_option( $option_group, $_options );
+      }
 
 
 
