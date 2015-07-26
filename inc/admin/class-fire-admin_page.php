@@ -13,41 +13,42 @@
 */
 if ( ! class_exists( 'TC_admin_page' ) ) :
   class TC_admin_page {
-      static $instance;
-      public $support_url;
+    static $instance;
+    public $support_url;
 
-      function __construct () {
-        self::$instance =& $this;
+    function __construct () {
+      self::$instance =& $this;
+      //add welcome page in menu
+      add_action( 'admin_menu'             , array( $this , 'tc_add_welcome_page' ));
+      //changelog
+      add_action( '__after_welcome_panel'  , array( $this , 'tc_extract_changelog' ));
+      //config infos
+      add_action( '__after_welcome_panel'  , array( $this , 'tc_config_infos' ), 20 );
+      //build the support url
+      $this -> support_url = ( 'customizr-pro' == TC___::$theme_name ) ? sprintf('%ssupport-forums/forum/customizr-pro/' , TC_WEBSITE ) : esc_url('wordpress.org/support/theme/customizr');
+      //fix #wpfooter absolute positioning in the welcome and about pages
+      add_action( 'admin_print_styles'      , array( $this, 'tc_fix_wp_footer_link_style') );
+    }
 
-        //add welcome page in menu
-        add_action ( 'admin_menu'                          , array( $this , 'tc_add_welcome_page' ));
-        //changelog
-        add_action ( '__after_welcome_panel'               , array( $this , 'tc_extract_changelog' ));
-        //config infos
-        add_action ( '__after_welcome_panel'               , array( $this , 'tc_config_infos' ), 20 );
-        //build the support url
-        $this -> support_url = ( 'customizr-pro' == TC___::$theme_name ) ? sprintf('%ssupport-forums/forum/customizr-pro/' , TC_WEBSITE ) : esc_url('wordpress.org/support/theme/customizr');
-      }
 
 
+   /**
+   * Add fallback admin page.
+   * @package Customizr
+   * @since Customizr 1.1
+   */
+    function tc_add_welcome_page() {
+        $_name = __( 'About Customizr' , 'customizr' );
+        $_name = ( 'customizr-pro' == TC___::$theme_name ) ? sprintf( '%s Pro', $_name ) : $_name;
 
-     /**
-     * Add fallback admin page.
-     * @package Customizr
-     * @since Customizr 1.1
-     */
-      function tc_add_welcome_page() {
-          $_name = __( 'About Customizr' , 'customizr' );
-          $_name = ( 'customizr-pro' == TC___::$theme_name ) ? sprintf( '%s Pro', $_name ) : $_name;
-
-          $theme_page = add_theme_page(
-              $_name,   // Name of page
-              $_name,   // Label in menu
-              'edit_theme_options' ,          // Capability required
-              'welcome.php' ,             // Menu slug, used to uniquely identify the page
-              array( $this , 'tc_welcome_panel' )         //function to be called to output the content of this page
-          );
-      }
+        $theme_page = add_theme_page(
+            $_name,   // Name of page
+            $_name,   // Label in menu
+            'edit_theme_options' ,          // Capability required
+            'welcome.php' ,             // Menu slug, used to uniquely identify the page
+            array( $this , 'tc_welcome_panel' )         //function to be called to output the content of this page
+        );
+    }
 
 
 
@@ -65,25 +66,20 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
         do_action('__before_welcome_panel');
         ?>
         <div id="customizr-admin-panel" class="wrap about-wrap">
-
-            <?php if ( $is_help ) : ?>
-              <h1 style="font-size: 2.5em;" class="need-help-title">
-              <?php printf( '%1$s %2$s ?',
-                      __( "Need help with", "customizr" ),
-                       "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr'
-                    );
-              ?>
-            </h1>
-            <?php else : ?>
-              <h1 class="need-help-title">
-              <?php printf( '%1$s %2$s %3$s',
-                      __( "Welcome to", "customizr" ),
-                       "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
-                       CUSTOMIZR_VER
-                    );
-              ?>
-            <?php endif; ?>
-
+          <?php
+            if ( $is_help ) {
+              printf( '<h1 style="font-size: 2.5em;" class="need-help-title">%1$s %2$s ?</h1>',
+                __( "Need help with", "customizr" ),
+                "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr'
+              );
+            } else {
+              printf( '<h1 class="need-help-title">%1$s %2$s %3$s</h1>',
+                __( "Welcome to", "customizr" ),
+                "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
+                CUSTOMIZR_VER
+              );
+            }
+          ?>
 
           <?php if ( $is_help ) : ?>
 
@@ -148,7 +144,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
               <div class="feature-section col three-col">
 
                 <div>
-                  <h5><?php _e( 'We need sponsors!','customizr' ); ?></h5>
+                  <h3><?php _e( 'We need sponsors!','customizr' ); ?></h3>
                   <p><?php  _e( '<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it\'s continued development with a donation of $20, $50, or even $100.','customizr' ) ?></br>
 
                     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow"><img class="tc-donate" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr" /></a>
@@ -156,14 +152,14 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                 </div>
 
                 <div>
-                  <h5><?php _e( 'Happy user of Customizr?','customizr' ); ?></h5>
+                  <h3><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
                   <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)','customizr' ) ?></br>
                   <a class="button-primary review-customizr" title="Customizr WordPress Theme" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank">Review Customizr &raquo;</a></p>
                 </div>
 
                 <div class="last-feature">
-                  <h5><?php _e( 'Follow us','customizr' ); ?></h5>
-                  <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/tc.png' ?>" alt="Press Customizr" /></a></p>
+                  <h3><?php _e( 'Follow us','customizr' ); ?></h3>
+                  <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/pc.png' ?>" alt="Press Customizr" /></a></p>
                   <!-- Place this tag where you want the widget to render. -->
 
                 </div><!-- .feature-section -->
@@ -171,7 +167,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
           </div><!-- .changelog -->
 
           <div id="extend" class="changelog">
-            <h4 style="text-align:left"><?php _e("Customizr's extensions" ,'customizr') ?></h4>
+            <h3 style="text-align:left"><?php _e("Customizr's extensions" ,'customizr') ?></h3>
 
             <div class="feature-section images-stagger-right">
               <a class="" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>extend/" target="_blank"><img alt="Customizr'extensions" src="<?php echo TC_BASE_URL.'inc/admin/img/extend.png' ?>" class=""></a>
@@ -190,7 +186,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
         <?php endif; ?>
 
         <div id="showcase" class="changelog">
-          <h4 style="text-align:right"><?php _e('Customizr Showcase' ,'customizr') ?></h4>
+          <h3 style="text-align:right"><?php _e('Customizr Showcase' ,'customizr') ?></h3>
 
           <div class="feature-section images-stagger-left">
              <a class="" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><img alt="Customizr Showcase" src="<?php echo TC_BASE_URL.'inc/admin/img/mu2.png' ?>" class=""></a>
@@ -219,73 +215,73 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
 
 
-      /**
-     * Extract changelog of latest version from readme.txt file
-     *
-     * @package Customizr
-     * @since Customizr 3.0.5
-     */
-      function tc_extract_changelog() {
-        if( ! file_exists(TC_BASE."readme.txt") ) {
-          return;
-        }
-        if( ! is_readable(TC_BASE."readme.txt") ) {
-          echo '<p>The changelog in readme.txt is not readable.</p>';
-          return;
-        }
-
-        ob_start();
-        $stylelines = explode("\n", implode('', file(TC_BASE."readme.txt")));
-        $read = false;
-        $i = 0;
-
-        foreach ($stylelines as $line) {
-          //echo 'i = '.$i.'|read = '.$read.'pos = '.strpos($line, '= ').'|line :'.$line.'<br/>';
-          //we stop reading if we reach the next version change
-          if ($i == 1 && strpos($line, '= ') === 0 ) {
-            $read = false;
-            $i = 0;
-          }
-          //we write the line if between current and previous version
-          if ($read) {
-            echo $line.'<br/>';
-          }
-          //we skip all lines before the current version changelog
-          if ($line != strpos($line, '= '.CUSTOMIZR_VER)) {
-            if ($i == 0) {
-              $read = false;
-            }
-          }
-          //we begin to read after current version title
-          else {
-            $read = true;
-            $i = 1;
-          }
-        }
-        $html = ob_get_contents();
-        if ($html) ob_end_clean();
-
-        ?>
-        <div id="customizr-changelog" class="changelog">
-          <h4><?php printf( __( 'Changelog in version %1$s' , 'customizr' ) , CUSTOMIZR_VER ); ?></h4>
-            <p><?php echo $html ?></p>
-        </div>
-        <?php
+    /**
+   * Extract changelog of latest version from readme.txt file
+   *
+   * @package Customizr
+   * @since Customizr 3.0.5
+   */
+    function tc_extract_changelog() {
+      if( ! file_exists(TC_BASE."readme.txt") ) {
+        return;
+      }
+      if( ! is_readable(TC_BASE."readme.txt") ) {
+        echo '<p>The changelog in readme.txt is not readable.</p>';
+        return;
       }
 
+      ob_start();
+      $stylelines = explode("\n", implode('', file(TC_BASE."readme.txt")));
+      $read = false;
+      $i = 0;
+
+      foreach ($stylelines as $line) {
+        //echo 'i = '.$i.'|read = '.$read.'pos = '.strpos($line, '= ').'|line :'.$line.'<br/>';
+        //we stop reading if we reach the next version change
+        if ($i == 1 && strpos($line, '= ') === 0 ) {
+          $read = false;
+          $i = 0;
+        }
+        //we write the line if between current and previous version
+        if ($read) {
+          echo $line.'<br/>';
+        }
+        //we skip all lines before the current version changelog
+        if ($line != strpos($line, '= '.CUSTOMIZR_VER)) {
+          if ($i == 0) {
+            $read = false;
+          }
+        }
+        //we begin to read after current version title
+        else {
+          $read = true;
+          $i = 1;
+        }
+      }
+      $html = ob_get_contents();
+      if ($html) ob_end_clean();
+
+      ?>
+      <div id="customizr-changelog" class="changelog">
+        <h3><?php printf( __( 'Changelog in version %1$s' , 'customizr' ) , CUSTOMIZR_VER ); ?></h3>
+          <p><?php echo $html ?></p>
+      </div>
+      <?php
+    }
 
 
-      /*
-      * Inspired by Easy Digital Download plugin by Pippin Williamson
-      * @since 3.2.1
-      */
-      function tc_config_infos() {
-        global $wpdb;
 
-        ?>
+    /*
+    * Inspired by Easy Digital Download plugin by Pippin Williamson
+    * @since 3.2.1
+    */
+    function tc_config_infos() {
+      global $wpdb;
+
+      ?>
 <div class="wrap">
-<h4><?php _e( 'System Informations', 'customizr' ); ?></h4>
-<h5 style="text-align: left"><?php _e( 'Please include the following informations when posting support requests' , 'customizr' ) ?></h5>
+<h3><?php _e( 'System Informations', 'customizr' ); ?></h3>
+<h4 style="text-align: left"><?php _e( 'Please include the following informations when posting support requests' , 'customizr' ) ?></h4>
 <textarea readonly="readonly" onclick="this.focus();this.select()" id="system-info-textarea" name="tc-sysinfo" title="<?php _e( 'To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'customizr' ); ?>" style="width: 800px;min-height: 800px;font-family: Menlo,Monaco,monospace;background: 0 0;white-space: pre;overflow: auto;display:block;">
 <?php do_action( '__system_config_before' ); ?>
 # SITE_URL:                 <?php echo site_url() . "\n"; ?>
@@ -386,6 +382,23 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
         return $ret;
       }
 
+    /**
+    * hook : admin_print_styles
+    * fix the absolute positioning of the wp footer admin link in the welcome pages
+    * @return void
+    */
+    function tc_fix_wp_footer_link_style() {
+      /* if ( is_array(get_current_screen()) )
+        array_walk_recursive(get_current_screen(), function(&$v) { $v = htmlspecialchars($v); }); */
+      $screen = get_current_screen();
+      if ( 'appearance_page_welcome' != $screen-> id )
+        return;
+      ?>
+        <style type="text/css" id="tc-fix-wp-footer-position">
+          .wp-admin #wpfooter {bottom: inherit;}
+        </style>
+      <?php
+    }
 
   }//end of class
 endif;
