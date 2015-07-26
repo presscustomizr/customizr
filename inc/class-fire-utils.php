@@ -318,8 +318,10 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.4+
       */
       function tc_set_option( $option_name , $option_value, $option_group = null ) {
-        $_options = $this -> tc_get_theme_options( $option_group );
+        $option_group           = is_null($option_group) ? TC___::$tc_option_group : $option_group;
+        $_options               = $this -> tc_get_theme_options( $option_group );
         $_options[$option_name] = $option_value;
+
         update_option( $option_group, $_options );
       }
 
