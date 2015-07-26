@@ -901,6 +901,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       return apply_filters(
         'tc_get_ctx_excluded_options',
         array(
+          'defaults',
           'tc_sliders',
           'last_update_notice',
           'last_update_notice_pro'
