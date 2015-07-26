@@ -59,23 +59,25 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
      */
       function tc_welcome_panel() {
 
-        $is_help = isset($_GET['help'])  ?  true : false;
-        $_faq_url = TC___::tc_is_pro() ? esc_url('doc.presscustomizr.com/customizr-pro/faq/') : TC_WEBSITE .'customizr/faq';
-        $_support_url = TC___::tc_is_pro() ? TC_WEBSITE .'support-forums/forum/customizr-pro/' : esc_url('wordpress.org/support/theme/customizr');
+        $is_help        = isset($_GET['help'])  ?  true : false;
+        $_faq_url       = TC___::tc_is_pro() ? esc_url('doc.presscustomizr.com/customizr-pro/faq/') : esc_url('doc.presscustomizr.com/customizr/faq/');
+        $_support_url   = TC___::tc_is_pro() ? TC_WEBSITE .'support-forums/forum/customizr-pro/' : esc_url('wordpress.org/support/theme/customizr');
+        $_theme_name    = TC___::tc_is_pro() ? 'Customizr Pro' : 'Customizr';
 
         do_action('__before_welcome_panel');
+
         ?>
         <div id="customizr-admin-panel" class="wrap about-wrap">
           <?php
             if ( $is_help ) {
               printf( '<h1 style="font-size: 2.5em;" class="need-help-title">%1$s %2$s ?</h1>',
                 __( "Need help with", "customizr" ),
-                TC___::tc_is_pro() ? 'Customizr Pro' : 'Customizr'
+                $_theme_name
               );
             } else {
               printf( '<h1 class="need-help-title">%1$s %2$s %3$s</h1>',
                 __( "Welcome to", "customizr" ),
-                TC___::tc_is_pro() ? 'Customizr Pro' : 'Customizr',
+                $_theme_name,
                 CUSTOMIZR_VER
               );
             }
@@ -85,11 +87,20 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
             <div class="changelog">
               <div class="about-text tc-welcome">
-              <?php printf( __( 'You can start by watching the <a href="%1$s" target="_blank">introduction video</a> or by reading <a href="%2$s" target="_blank">the documentation</a>.<br/> If you don\'t find an answer to your issue, don\'t panic! Since Customizr is used by a growing community of webmasters reporting bugs and making continuous improvements, you will probably find a solution to your problem either in the FAQ or in the user forum.','customizr' ),
-               TC_WEBSITE,
-               TC_WEBSITE.'customizr'
-               ); ?>
-               </div>
+              <?php
+                printf( '<p>%1$s</p>',
+                  sprintf( __( "The best way to start is to read the %s." , "customizr" ),
+                    sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('doc.presscustomizr.com'), __("documentation" , "customizr") )
+                  )
+                );
+                printf( '<p>%1$s</p><p><strong>%2$s</strong></p>',
+                  __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it’s already been reported and fixed in the support forums.", "customizr" ),
+                  sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
+                    sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('presscustomizr.com'), __("home page" , "customizr") )
+                  )
+                );
+                ?>
+              </div>
               <div class="feature-section col two-col">
                 <div>
                    <br/>
@@ -114,21 +125,18 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
             <div class="about-text tc-welcome">
               <?php
-                printf( '<p>%1$s Customizr %2$s %3$s <a href="#customizr-changelog">(%4$s)</a> %5$s.</p>',
-                  __( "Thank you for using Customizr!", "customizr" ),
-                  CUSTOMIZR_VER,
-                  __( "has more features, is safer and more stable than ever", "customizr"),
-                  __( "see the changelog", "customizr")
-                  __( "to help you designing an awesome website", "customizr")
+                printf( '<p><strong>%1$s %2$s <a href="#customizr-changelog">(%3$s)</a></strong></p>',
+                  sprintf( __( "Thank you for using %s!", "customizr" ), $_theme_name ),
+                  sprintf( __( "%s %s has more features, is safer and more stable than ever to help you designing an awesome website.", "customizr" ), $_theme_name, CUSTOMIZR_VER ),
+                  __( "check the changelog", "customizr")
                 );
 
-                printf( '<p></p>',
-                  __( "The best way to start with the Customizr theme is to", "customizr"),
-                  __( "read the documentation" , "customizr")
-                );
-                  __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see the changelog)</a> to help you build an awesome website. Watch the <a href="%2$s" target="_blank">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/>Enjoy it! ','customizr' ),
-                  CUSTOMIZR_VER,
-                  TC_WEBSITE
+                printf( '<p><strong>%1$s</strong></p>',
+                  sprintf( __( "The best way to start with %s is to read the %s and visit the %s.", "customizr"),
+                    $_theme_name,
+                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('doc.presscustomizr.com'), __("documentation", "customizr") ),
+                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('demo.presscustomizr.com'), __("demo website", "customizr") )
+                  )
                 );
               ?>
             </div>
@@ -153,51 +161,49 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
           <div class="changelog point-releases"></div>
 
           <?php if ( ! TC___::tc_is_pro() ) : ?>
-          <div class="changelog">
+            <div class="changelog">
 
-              <div class="feature-section col three-col">
+                <div class="feature-section col three-col">
 
-                <div>
-                  <h3><?php _e( 'We need sponsors!','customizr' ); ?></h3>
-                  <p><?php  _e( '<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it\'s continued development with a donation of $20, $50, or even $100.','customizr' ) ?></br>
+                  <div>
+                    <h3><?php _e( 'We need sponsors!','customizr' ); ?></h3>
+                    <p><?php  _e( '<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it\'s continued development with a donation of $20, $50, or even $100.','customizr' ) ?></br>
 
-                    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow"><img class="tc-donate" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr" /></a>
-                  </p>
-                </div>
+                      <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow"><img class="tc-donate" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr" /></a>
+                    </p>
+                  </div>
 
-                <div>
-                  <h3><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
-                  <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)','customizr' ) ?></br>
-                  <a class="button-primary review-customizr" title="Customizr WordPress Theme" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank">Review Customizr &raquo;</a></p>
-                </div>
+                  <div>
+                    <h3><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
+                    <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)','customizr' ) ?></br>
+                    <a class="button-primary review-customizr" title="Customizr WordPress Theme" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank">Review Customizr &raquo;</a></p>
+                  </div>
 
-                <div class="last-feature">
-                  <h3><?php _e( 'Follow us','customizr' ); ?></h3>
-                  <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/pc.png' ?>" alt="Press Customizr" /></a></p>
-                  <!-- Place this tag where you want the widget to render. -->
+                  <div class="last-feature">
+                    <h3><?php _e( 'Follow us','customizr' ); ?></h3>
+                    <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/pc.png' ?>" alt="Press Customizr" /></a></p>
+                    <!-- Place this tag where you want the widget to render. -->
 
-                </div><!-- .feature-section -->
-              </div><!-- .feature-section col three-col -->
-          </div><!-- .changelog -->
+                  </div><!-- .feature-section -->
+                </div><!-- .feature-section col three-col -->
 
-          <div id="extend" class="changelog">
-            <h3 style="text-align:left"><?php _e("Customizr's extensions" ,'customizr') ?></h3>
+            </div><!-- .changelog -->
 
-            <div class="feature-section images-stagger-right">
-              <a class="" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>extend/" target="_blank"><img alt="Customizr'extensions" src="<?php echo TC_BASE_URL.'inc/admin/img/extend.png' ?>" class=""></a>
-              <h4 style="text-align: left"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
-              <p style="text-align: left"><?php _e("The Customizr's extensions are plugins developed to extend the Customizr theme with great features. Nicely integrated with the theme's built-in options, they can be enabled/disabled safely with no side effects on your existing settings or customizations." , 'customizr') ?>
-              </p>
-              <p style="text-align: left"><?php _e("These modules are designed to be simple to use for everyone. They are a good solution to add some creative customizations whitout needing to dive into the code." , 'customizr') ?>
-              </p>
-              <p style="text-align: left"><?php _e("Customizr's extensions are installed and upgraded from your WordPress admin, like any other WordPress plugins. Well documented and easily extendable with hooks, they come with a dedicated support forum on presscustomizr.com." , 'customizr') ?>
-              </p>
-              <p style="text-align:left">
-                  <a class="button-primary review-customizr" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/extend/" target="_blank"><?php _e("Visit the extension's page",'customizr') ?> &raquo;</a>
-              </p>
+            <div id="extend" class="changelog">
+              <h3 style="text-align:left"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
+
+              <div class="feature-section images-stagger-right">
+                <a class="" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>extension/customizr-pro/" target="_blank"><img alt="Customizr'extensions" src="<?php echo TC_BASE_URL.'inc/admin/img/customizr-pro.png' ?>" class=""></a>
+                <h4 style="text-align: left"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
+
+                <p style="text-align: left"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you’ll get all the free version features plus some really cool and even revolutionary ones." , 'customizr') ?>
+                </p>
+                <p style="text-align:left">
+                    <a class="button-primary review-customizr" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo TC_WEBSITE ?>extension/customizr-pro/" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
+                </p>
+              </div>
             </div>
-          </div>
-        <?php endif; ?>
+          <?php endif; //end if ! is_pro ?>
 
         <div id="showcase" class="changelog">
           <h3 style="text-align:right"><?php _e('Customizr Showcase' ,'customizr') ?></h3>

@@ -34,7 +34,7 @@ The exceptions to this license are as follows:
 * stepper v3.0.5 - 2014-02-06, Copyright 2014 Ben Plum, MIT Licensed
 * Hammer.JS - v2.0.4 - Copyright (c) 2014 Jorik Tangelder, MIT license
 * Icon Set:	Entypo is licensed under SIL Open-Font License
-* The images screenshot.png, inc/assets/img/customizr-theme-customizer.png, inc/assets/img/customizr-theme-responsive.png are creations of Nicolas Guillaume and licensed under GPL v2+
+* The images screenshot.png, inc/assets/img/customizr-theme-customizer.png, inc/assets/img/customizr-theme-responsive.png, inc/admin/img/ are creations of Nicolas Guillaume and licensed under GPL v2+
 * The image slider-loader.gif is released under the WTFPL license (http://www.wtfpl.net/, GPL compatible), generated on http://ajaxload.info/
 
 
