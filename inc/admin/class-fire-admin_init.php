@@ -212,9 +212,12 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       $opt_name = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice = esc_attr( TC_utils::$inst-> tc_opt($opt_name) );
       $show_new_notice = false;
-      //first time user of the theme, the option does not exist.
-      if ( ! $last_update_notice )
-        return;
+      //first time user of the theme, the option does not exist => set it to the current Customizr version.
+      if ( ! $last_update_notice ) {
+        $last_update_notice = CUSTOMIZR_VER;
+        TC_utils::$inst->tc_set_option( $opt_name, $last_update_notice );
+      }
+
       //user who just upgraded the theme will be notified until he clicks on the dismiss link
       if ( version_compare( CUSTOMIZR_VER, $last_update_notice , '>' ) )
         $show_new_notice = true;
@@ -267,10 +270,8 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     */
     function tc_dismiss_update_notice_action() {
       check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
-      $_options = get_option(TC___::$tc_option_group);
       $opt_name = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
-      $_options["{$opt_name}"] = CUSTOMIZR_VER;
-      update_option( TC___::$tc_option_group, $_options );
+      TC_utils::$inst->tc_set_option( $opt_name, CUSTOMIZR_VER );
       wp_die();
     }
 
