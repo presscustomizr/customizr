@@ -25,7 +25,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
       //config infos
       add_action( '__after_welcome_panel'  , array( $this , 'tc_config_infos' ), 20 );
       //build the support url
-      $this -> support_url = ( 'customizr-pro' == TC___::$theme_name ) ? sprintf('%ssupport-forums/forum/customizr-pro/' , TC_WEBSITE ) : esc_url('wordpress.org/support/theme/customizr');
+      $this -> support_url = TC___::tc_is_pro() ? sprintf('%ssupport-forums/forum/customizr-pro/' , TC_WEBSITE ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'      , array( $this, 'tc_fix_wp_footer_link_style') );
     }
@@ -39,7 +39,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
    */
     function tc_add_welcome_page() {
         $_name = __( 'About Customizr' , 'customizr' );
-        $_name = ( 'customizr-pro' == TC___::$theme_name ) ? sprintf( '%s Pro', $_name ) : $_name;
+        $_name = TC___::tc_is_pro() ? sprintf( '%s Pro', $_name ) : $_name;
 
         $theme_page = add_theme_page(
             $_name,   // Name of page
@@ -60,8 +60,8 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
       function tc_welcome_panel() {
 
         $is_help = isset($_GET['help'])  ?  true : false;
-        $_faq_url = "customizr-pro" == TC___::$theme_name ? esc_url('doc.presscustomizr.com/customizr-pro/faq/') : TC_WEBSITE .'customizr/faq';
-        $_support_url = "customizr-pro" == TC___::$theme_name ? TC_WEBSITE .'support-forums/forum/customizr-pro/' : esc_url('wordpress.org/support/theme/customizr');
+        $_faq_url = TC___::tc_is_pro() ? esc_url('doc.presscustomizr.com/customizr-pro/faq/') : TC_WEBSITE .'customizr/faq';
+        $_support_url = TC___::tc_is_pro() ? TC_WEBSITE .'support-forums/forum/customizr-pro/' : esc_url('wordpress.org/support/theme/customizr');
 
         do_action('__before_welcome_panel');
         ?>
@@ -70,12 +70,12 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
             if ( $is_help ) {
               printf( '<h1 style="font-size: 2.5em;" class="need-help-title">%1$s %2$s ?</h1>',
                 __( "Need help with", "customizr" ),
-                "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr'
+                TC___::tc_is_pro() ? 'Customizr Pro' : 'Customizr'
               );
             } else {
               printf( '<h1 class="need-help-title">%1$s %2$s %3$s</h1>',
                 __( "Welcome to", "customizr" ),
-                "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
+                TC___::tc_is_pro() ? 'Customizr Pro' : 'Customizr',
                 CUSTOMIZR_VER
               );
             }
@@ -113,10 +113,24 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
           <?php else: ?>
 
             <div class="about-text tc-welcome">
-              <?php printf( __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see the changelog)</a> to help you build an awesome website. Watch the <a href="%2$s" target="_blank">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/>Enjoy it! ','customizr' ),
-               CUSTOMIZR_VER,
-               TC_WEBSITE
-               ); ?>
+              <?php
+                printf( '<p>%1$s Customizr %2$s %3$s <a href="#customizr-changelog">(%4$s)</a> %5$s.</p>',
+                  __( "Thank you for using Customizr!", "customizr" ),
+                  CUSTOMIZR_VER,
+                  __( "has more features, is safer and more stable than ever", "customizr"),
+                  __( "see the changelog", "customizr")
+                  __( "to help you designing an awesome website", "customizr")
+                );
+
+                printf( '<p></p>',
+                  __( "The best way to start with the Customizr theme is to", "customizr"),
+                  __( "read the documentation" , "customizr")
+                );
+                  __( 'Thank you for using Customizr! Customizr %1$s has more features, is safer and more stable than ever <a href="#customizr-changelog">(see the changelog)</a> to help you build an awesome website. Watch the <a href="%2$s" target="_blank">introduction video</a> and find inspiration in the <a href="#showcase">showcase</a>.<br/>Enjoy it! ','customizr' ),
+                  CUSTOMIZR_VER,
+                  TC_WEBSITE
+                );
+              ?>
             </div>
 
           <?php endif; ?>
@@ -138,7 +152,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
           <div class="changelog point-releases"></div>
 
-          <?php if ( 'customizr-pro' != TC___::$theme_name ) : ?>
+          <?php if ( ! TC___::tc_is_pro() ) : ?>
           <div class="changelog">
 
               <div class="feature-section col three-col">

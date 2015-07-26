@@ -134,7 +134,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
       //check the context
-      if ( file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && 'customizr-pro' == self::$theme_name )
+      if ( $this -> tc_is_pro() )
         require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
 
       self::$tc_option_group = 'tc_theme_options';
@@ -346,6 +346,14 @@ if ( ! class_exists( 'TC___' ) ) :
       return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
     }
 
+
+    /**
+    * @return  boolean
+    * @since  3.4+
+    */
+    static function tc_is_pro() {
+      return file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
+    }
   }//end of class
 endif;
 
