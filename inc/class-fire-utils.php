@@ -291,9 +291,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
         //assign false value if does not exist, just like WP does
         $_single_opt    = isset($__options[$option_name]) ? $__options[$option_name] : false;
 
-        //contx retro compat => falls back to default val if contx like option detected
-        //important note : tc_slider is not impacted by contx
-        if ( $option_name != 'tc_sliders' ) {
+        //ctx retro compat => falls back to default val if ctx like option detected
+        //important note : some options like tc_slider are not concerned by ctx
+        if ( ! $this -> tc_is_option_excluded_from_ctx( $option_name ) ) {
           if ( is_array( $_single_opt ) && ! class_exists( 'TC_contx' ) )
             $_single_opt = $_default_val;
         }
@@ -886,6 +886,35 @@ if ( ! class_exists( 'TC_utils' ) ) :
     */
     function tc_is_secondary_menu_enabled() {
       return (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) && 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) );
+    }
+
+
+
+    /***************************
+    * CTX COMPAT
+    ****************************/
+    /**
+    * Helper : define a set of options not impacted by ctx like tc_slider, last_update_notice.
+    * @return  array of excluded option names
+    */
+    function tc_get_ctx_excluded_options() {
+      return apply_filters(
+        'tc_get_ctx_excluded_options',
+        array(
+          'tc_sliders',
+          'last_update_notice',
+          'last_update_notice_pro'
+        )
+      );
+    }
+
+
+    /**
+    * Boolean helper : tells if this option is excluded from the ctx treatments.
+    * @return bool
+    */
+    function tc_is_option_excluded_from_ctx( $opt_name ) {
+      return in_array( $opt_name, $this -> tc_get_ctx_excluded_options() );
     }
 
   }//end of class
