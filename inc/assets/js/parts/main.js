@@ -936,8 +936,14 @@ var czrapp = czrapp || {};
         self.stickyHeaderEventHandler('resize');
       });
 
+      //SCROLLING ACTIONS
       czrapp.$_window.scroll( function() {
         self.stickyHeaderEventHandler('scroll');
+      });
+
+      //SIDENAV ACTIONS => recalculate the top offset on sidenav toggle
+      czrapp.$_body.on( czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click' , '.sn-toggle', function() {
+        self.stickyHeaderEventHandler('sidenav-toggle');
       });
     },
 
@@ -977,6 +983,7 @@ var czrapp = czrapp || {};
         break;
 
         case 'resize' :
+        case 'sidenav-toggle' :
           self._set_sticky_offsets();
           self._set_header_top_offset();
           self._set_logo_height();
@@ -1002,11 +1009,9 @@ var czrapp = czrapp || {};
       //initialOffset     = ( 1 == isUserLogged &&  580 < $(window).width() ) ? $('#wpadminbar').height() : 0;
       //custom offset : are we scrolling ? => 2 custom top offset values can be defined by users : initial and scrolling
       //make sure custom offset are set and numbers
-      this.customOffset._initial = +this.customOffset._initial || 0;
-      this.customOffset._scrolling  = +this.customOffset._scrolling || 0;
-
       var initialOffset   = 0,
-          customOffset    = this._is_scrolling() ? +this.customOffset._scrolling : +this.customOffset._initial;
+          that            = this,
+          customOffset    = +this._get_custom_offset( that._is_scrolling() ? '_scrolling' : '_initial' );
 
       if ( 1 == this.isUserLogged() && ! this.isCustomizing() ) {
         if ( 580 < czrapp.$_window.width() )
@@ -1016,6 +1021,46 @@ var czrapp = czrapp || {};
       }
       return initialOffset + customOffset ;
     },
+
+
+    //CUSTOM TOP OFFSET
+    //return the user defined dynamic or static custom offset
+    //custom offset is a localized param that can be passed with the wp filter : tc_sticky_custom_offset
+    //its default value is an object : { _initial : 0, _scrolling : 0, options : { _static : true, _element : "" }
+    //if _static is set to false and a dom element is provided, then the custom offset will be the calculated height of the element
+    _get_custom_offset : function( _context ) {
+      //Always check if this.customOffset is well formed
+      if ( _.isEmpty( this.customOffset ) )
+        return 0;
+      if ( ! this.customOffset[_context] )
+        return 0;
+      if ( ! this.customOffset.options )
+        return this.customOffset[_context];
+
+      //always return a static value for the scrolling context;
+      if ( '_scrolling' == _context )
+        return +this.customOffset[_context] || 0;
+
+      //INITIAL CONTEXT
+      //CASE 1 : STATIC
+      if ( this.customOffset.options._static )
+        return +this.customOffset[_context] || 0;
+
+      var that = this,
+          $_el = $(that.customOffset.options._element);
+
+      //CASE 2 : DYNAMIC : based on an element's height
+      //does the element exists?
+      if ( ! $_el.length )
+        return 0;
+      else {
+        return $_el.outerHeight() || +this.customOffset[_context] || 0;
+      }
+      return;
+    },
+
+
+
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _set_sticky_offsets : function() {

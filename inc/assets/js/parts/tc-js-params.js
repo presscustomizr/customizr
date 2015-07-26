@@ -17,7 +17,7 @@ var TCParams = TCParams || {
 	SmoothScroll: { Enabled : 1 , Options : {} },
 	anchorSmoothScroll: "linear",
   anchorSmoothScrollExclude : ['[class*=edd]', '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]'],
-	stickyCustomOffset: { _initial : 0, _scrolling : 0 },
+	stickyCustomOffset: { _initial : 0, _scrolling : 0, options : { _static : true, _element : "" } },
 	stickyHeader: 1,
 	dropdowntoViewport: 1,
 	timerOnScrollAllBrowsers:1,
@@ -41,4 +41,4 @@ var TCParams = TCParams || {
   gridGoldenRatioLimit : 350,
   isSecondMenuEnabled : 0,
   secondMenuRespSet : 'in-sn-before'
-};
+}
