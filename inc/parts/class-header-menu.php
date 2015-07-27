@@ -334,7 +334,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
       ?>
       <div class="nav-collapse collapse tc-placeholder-wrap tc-menu-placeholder">
         <?php
-          printf('<p>%1$s %2$s</p>',
+          printf('<p><strong>%1$s %2$s</strong></p>',
               __( "You can display another menu here.", "customizr" ),
               sprintf( __("Setup this menu %s or read the %s.", "customizr"),
                 sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', TC_placeholders::tc_get_customizer_url( array( "section" => "nav") ), __( "Add a menu", "customizr"), __("now", "customizr") ),
