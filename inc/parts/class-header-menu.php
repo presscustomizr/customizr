@@ -337,7 +337,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
           printf('<p>%1$s %2$s</p>',
               __( "You can display another menu here.", "customizr" ),
               sprintf( __("Setup this menu %s or read the %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', admin_url('customize.php?autofocus[section]=nav'), __( "Add a menu", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', TC_placeholders::tc_get_customizer_url( array( "section" => "nav") ), __( "Add a menu", "customizr"), __("now", "customizr") ),
                 sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a><span class="tc-external"></span>', esc_url('doc.presscustomizr.com/customizr/header-options/#navigation'), __( "documentation", "customizr") )
               )
           );

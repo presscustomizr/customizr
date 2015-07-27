@@ -51,16 +51,8 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.3+
     */
     function tc_dismiss_second_menu_notice() {
-      /* if ( is_array($_POST) )
-        array_walk_recursive($_POST, function(&$v) { $v = htmlspecialchars($v); }); */
-      ?>
-        <pre>
-          <?php print_r($_POST); ?>
-        </pre>
-      <?php
       check_ajax_referer( 'tc-second-menu-placeholder-nonce', 'secondMenuNonce' );
       set_transient( 'tc_second_menu_placehold', 'disabled' , 60*60*24*365*20 );//20 years of peace
-      return true;
       wp_die();
     }
 
@@ -94,10 +86,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
                 return;
 
               $_el.closest('.tc-menu-placeholder').slideToggle('fast');
-            })
-            .always(function( response ) {
-              console.log( 'ajax response : ', arguments );
             });
+            // .always(function( response ) {
+            //   console.log( 'ajax response : ', arguments );
+            // });
           };//end of fn
 
           //DOM READY
@@ -194,7 +186,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
             });
         };//end of fn
         jQuery( function($) {
-          $('.tc-dismiss-notice').click( function( e ) {
+          $('.tc-dismiss-notice, .tc-inline-dismiss-notice').click( function( e ) {
             e.preventDefault();
             var _position = $(this).attr('data-position');
             if ( ! _position || ! _position.length )
@@ -250,6 +242,32 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     function tc_check_widget_placeholder_transient( $_position ){
       return 'disabled' != get_transient("tc_widget_placehold_{$_position}");
     }
+
+
+    /************************************************************
+    * COMMON HELPERS
+    ************************************************************/
+    /**
+    * Returns the url of the customizer with the current url arguments + an optional customizer section args
+    * @param $section is an array indicating the panel or section and its name. Ex : array( 'panel' => 'widgets')
+    * @return url string
+    * @since Customizr 3.4+
+    */
+    static function tc_get_customizer_url( $_panel_or_section = null ) {
+      $_current_url       = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+      $_customize_url     = add_query_arg( 'url', urlencode( $_current_url ), wp_customize_url() );
+      $_panel_or_section  = ( ! is_array($_panel_or_section) || empty($_panel_or_section) ) ? null : $_panel_or_section;
+
+      if ( is_null($_panel_or_section) )
+        return $_customize_url;
+
+      if ( ! array_key_exists('section', $_panel_or_section) && ! array_key_exists('panel', $_panel_or_section) )
+        return $_customize_url;
+
+      $_what = array_key_exists('section', $_panel_or_section) ? 'section' : 'panel';
+      return add_query_arg( urlencode( "autofocus[{$_what}]" ), $_panel_or_section[$_what], $_customize_url );
+    }
+
 
   }//end of class
 endif;

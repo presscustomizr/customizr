@@ -6600,9 +6600,9 @@ video {
   padding: 19px;
   background-color: #F5F5F5;
   border: 1px solid #E3E3E3;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
   position: relative;
 }
 .tc-sidebar .tc-placeholder-wrap {
