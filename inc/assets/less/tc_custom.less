@@ -15,6 +15,7 @@
  => SIDEBARS STUFF
  => POST THUMBNAILS
  => POST GRID
+ => PLACEHOLDERS / DISMISS NOTICES
  => WP SPECIFICS
  => FOOTER
  => ADMIN BAR
@@ -1296,16 +1297,13 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 
 .navbar .tc-menu-placeholder {
   float: left;
-  width: 87%;
+  width: 86%;
   margin-left: 10px;
   clear: left;
-  padding: 9px 2% 0;
+  padding: 9px 3% 0;
   font-size: 17px;
 }
-.tc-menu-placeholder .tc-dismiss-notice {
-  bottom: 1px;
-  top: inherit;
-}
+
 /* BREADCRUMB
   -------------------------------------------------- */
 
@@ -1473,9 +1471,17 @@ footer#footer .colophon .social-block a {
 
 /* SLIDER
     -------------------------------------------------- */
+.customizr-slide .tc-slider-notice {
+  position: absolute;
+  right: 30px;
+  z-index: 50;
+  bottom: -26px;
+  padding: 18px 14px 3px;
+  font-size: 17px;
+  width: 50%;
+}
 
 /* Carousel base class */
-
 .carousel {
   margin-bottom: 0px;
 }
@@ -1648,7 +1654,13 @@ footer#footer .colophon .social-block a {
 
 /* FEATURED PAGES
     -------------------------------------------------- */
-
+.marketing .tc-fp-dismiss {
+  float: right;
+  padding: 18px 14px 3px;
+  font-size: 17px;
+  width: 50%;
+  margin-top: 20px;
+}
 /* Center align the text within the three columns below the carousel */
 .marketing {
   margin-top: 20px
@@ -2129,15 +2141,7 @@ max-width: 100%;
 
 /* SIDEBARS STUFF
       -------------------------------------------------- */
-.tc-placeholder-wrap {
-  padding: 19px;
-  background-color: #F5F5F5;
-  border: 1px solid #E3E3E3;
-  -webkit-box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
-  box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
-  position: relative;
-}
+
 .tc-sidebar .tc-placeholder-wrap {
   margin-top: 15px;
 }
@@ -2586,6 +2590,38 @@ article .no-thumb figcaption {
 .woocommerce .thumbnails {
   margin-left: 0;
 }
+
+
+/*
+PLACEHOLDERS / DISMISS NOTICES
+    -------------------------------------------------- */
+.tc-placeholder-wrap {
+  padding: 19px;
+  background-color: #F5F5F5;
+  border: 1px solid #E3E3E3;
+  -webkit-box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+.tc-placeholder-wrap::before {
+  font-family: genericons;
+  font-size: 1.25em;
+  content: "\f455";
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 0;
+  padding-left: 0;
+  position: absolute;
+  text-decoration: none!important;
+  top: 12px;
+  left: 2px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 
 /* WP CSS
     -------------------------------------------------- */
