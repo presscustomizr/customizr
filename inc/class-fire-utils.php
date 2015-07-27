@@ -64,10 +64,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_init_properties() {
         $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
-        $this -> db_options       = (array) get_option( TC___::$tc_option_group );
+        $this -> db_options       = false === get_option( TC___::$tc_option_group ) ? array() : (array)get_option( TC___::$tc_option_group );
         $this -> default_options  = $this -> tc_get_default_options();
-        $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
-        $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
+        $_trans                   = TC___::tc_is_pro() ? 'started_using_customizr_pro' : 'started_using_customizr';
 
         //What was the theme version when the user started to use Customizr?
         //new install = no options yet
@@ -183,7 +182,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.1.11
       */
       function tc_get_default_options() {
-        $_db_opts     = $this -> db_options;
+        $_db_opts     = empty($this -> db_options) ? $this -> tc_cache_db_options() : $this -> db_options;
         $def_options  = isset($_db_opts['defaults']) ? $_db_opts['defaults'] : array();
 
         //Don't update if default options are not empty + customizing context
@@ -276,7 +275,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if ( TC___::$instance -> tc_is_customizing() || is_admin() )
           $_db_options = (array) get_option( $option_group );
         else
-          $_db_options = empty($this -> db_options) ? $this -> tc_cache_db_options($option_group) : $this -> db_options;
+          $_db_options = empty($this -> db_options) ? $this -> tc_cache_db_options() : $this -> db_options;
 
         //do we have to use the default ?
         $__options = $_db_options;
@@ -333,9 +332,10 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function tc_cache_db_options($option_group) {
-        $this -> db_options = (array) get_option( $option_group );
-        return $this-> db_options;
+      function tc_cache_db_options($opt_group = null) {
+        $opts_group = is_null($opt_group) ? TC___::$tc_option_group : $opt_group;
+        $this -> db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
+        return $this -> db_options;
       }
 
 
@@ -844,7 +844,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @since Customizr 3.2.9
     */
     function tc_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
-      $_ispro = 'customizr-pro' == TC___::$theme_name ? true : false;
+      $_ispro = TC___::tc_is_pro();
 
       if ( $_ispro && ! get_transient( 'started_using_customizr_pro' ) )
         return false;
