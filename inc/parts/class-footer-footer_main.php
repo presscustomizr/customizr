@@ -135,7 +135,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     * @since Customizr 3.3
     */
     private function tc_display_footer_placeholder() {
-      if ( ! TC_widgets::$instance -> tc_is_widget_placeholder_enabled( 'footer' ) )
+      if ( ! TC_placeholders::tc_is_widget_placeholder_enabled( 'footer' ) )
         return;
       ?>
       <aside class="tc-placeholder-wrap tc-widget-placeholder">

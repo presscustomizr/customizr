@@ -92,6 +92,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('inc' , 'utils'),//helpers used everywhere
               array('inc' , 'resources'),//loads front stylesheets (skins) and javascripts
               array('inc' , 'widgets'),//widget factory
+              array('inc' , 'placeholders'),//front end placeholders ajax actions for widgets, menus. Must be fired is is_admin === true to allow ajax actions
               array('inc/admin' , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
               array('inc/admin' , 'admin_page')//creates the welcome/help panel including changelog and system config
             ),
@@ -130,8 +131,6 @@ if ( ! class_exists( 'TC___' ) ) :
             'addons'    => apply_filters( 'tc_addons_classes' , array() )
         )//end of array
       );//end of filter
-
-
 
       //check the context
       if ( $this -> tc_is_pro() )

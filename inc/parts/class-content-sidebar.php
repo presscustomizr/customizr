@@ -122,7 +122,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
       * @since Customizr 3.3
       */
       private function tc_display_sidebar_placeholder( $position ) {
-        if ( ! TC_widgets::$instance -> tc_is_widget_placeholder_enabled( 'sidebar' ) )
+        if ( ! TC_placeholders::tc_is_widget_placeholder_enabled( 'sidebar' ) )
           return;
         ?>
         <aside class="tc-placeholder-wrap tc-widget-placeholder">
