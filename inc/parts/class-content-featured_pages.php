@@ -125,7 +125,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
               $customizr_link = '';
               if ( is_user_logged_in() ) {
                 $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-                  admin_url() . 'customize.php?autofocus[section]=frontpage_sec',
+                  admin_url('customize.php?autofocus[section]=frontpage_sec'),
                   __( 'Customizer screen' , 'customizr' ),
                   __( 'Edit now.' , 'customizr' )
                 );

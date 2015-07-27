@@ -138,7 +138,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
       if ( ! TC_widgets::$instance -> tc_is_widget_placeholder_enabled( 'footer' ) )
         return;
       ?>
-      <aside class="tc-widget-placeholder">
+      <aside class="tc-placeholder-wrap tc-widget-placeholder">
         <?php
           printf('<span class="tc-admin-notice">%1$s</span>',
             __( 'This block is visible for admin users only.', 'customizr')
@@ -302,7 +302,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
          .tc-sticky-footer #tc-push-footer.sticky-footer-enabled { display: block; }
         \n"
       );
-      return $_css;      
+      return $_css;
     }
     /*
     * Callback of body_class hook
@@ -313,12 +313,12 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     function tc_add_sticky_footer_body_class($_classes) {
       if ( $this -> is_sticky_footer_enabled() )
         $_classes = array_merge( $_classes, array( 'tc-sticky-footer') );
-      
+
       return $_classes;
     }
 
     /**
-    * 
+    *
     * Print hookable sticky footer push div
     *
     *
@@ -331,8 +331,8 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     function tc_sticky_footer_push() {
       if ( ! ( $this -> is_sticky_footer_enabled() || TC___::$instance -> tc_is_customizing() ) )
         return;
-      
-      echo '<div id="tc-push-footer"></div>';    
+
+      echo '<div id="tc-push-footer"></div>';
     }
 
 
@@ -368,10 +368,10 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 
 
     /* Helpers */
-        
+
     /*
     *  Sticky footer enabled
-    *  
+    *
     * @return bool
     */
     function is_sticky_footer_enabled() {

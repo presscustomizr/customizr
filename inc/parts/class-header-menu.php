@@ -16,13 +16,15 @@ if ( ! class_exists( 'TC_menu' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
+      //second menu placeholder : early hooks for ajax actions
+      add_action( 'init'             , array( $this, 'tc_setup_second_menu_placeholder') );
       //Set menu customizer options (since 3.2.0)
-      add_action( 'wp'                       , array( $this, 'tc_set_menu_hooks') );
+      add_action( 'wp'               , array( $this, 'tc_set_menu_hooks') );
     }
 
 
     /***************************************
-    * HOOKS SETTINGS
+    * WP HOOKS SETTINGS
     ****************************************/
     /*
     * hook : wp
@@ -65,6 +67,9 @@ if ( ! class_exists( 'TC_menu' ) ) :
 
 
 
+    /***************************************
+    * WP_HEAD HOOKS SETTINGS
+    ****************************************/
     /**
     * Set Various hooks for the sidemenu
     * hook : wp_head
@@ -108,6 +113,8 @@ if ( ! class_exists( 'TC_menu' ) ) :
           $this -> tc_sidenav_toggle_button_display();
           if ( $this -> tc_is_second_menu_enabled() )
             $this -> tc_regular_menu_display( 'secondary' );
+          else
+            $this -> tc_maybe_display_second_menu_placeholder();
         }
 
       $html = ob_get_contents();
@@ -312,6 +319,138 @@ if ( ! class_exists( 'TC_menu' ) ) :
         );
 
       return apply_filters("tc_{$type}_menu_view", $menu );
+    }
+
+
+
+    /*****************************************************
+    * PLACEHOLDER VIEW AND HELPERS FOR SECONDARY MENU
+    * AJAX JS AND ACTIONS FOR SECOND MENU PLACEHOLDER
+    *****************************************************/
+    /**
+    * Displays the placeholder view if conditions are met in tc_is_second_menu_placeholder_on()
+    * fired in tc_menu_display(), hook : __navbar
+    * @since Customizr 3.4
+    */
+    function tc_maybe_display_second_menu_placeholder() {
+      if (  ! $this -> tc_is_second_menu_placeholder_on() )
+          return;
+      ?>
+      <div class="nav-collapse collapse tc-placeholder-wrap tc-menu-placeholder">
+        <?php
+          printf('<p>%1$s %2$s</p>',
+              __( "You can display another menu here.", "customizr" ),
+              sprintf( __("Add it %s or read the %s.", "customizr"),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', admin_url('customize.php?autofocus[section]=nav'), __( "Add a menu", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a><span class="tc-external"></span>', esc_url('doc.presscustomizr.com/customizr/header-options/#navigation'), __( "documentation", "customizr") )
+              )
+          );
+          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
+                __( 'dismiss notice', 'customizr')
+          );
+        ?>
+      </div>
+      <?php
+    }
+
+
+    /**
+    * Set the placeholder related hooks if conditions are met in tc_is_second_menu_placeholder_on()
+    *
+    * hook : init
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_setup_second_menu_placeholder() {
+      if ( ! $this -> tc_is_second_menu_placeholder_on() )
+        return;
+
+      add_action( 'wp_footer'                           , array( $this, 'tc_write_second_menu_placeholder_js'), 100 );
+      add_action( 'wp_ajax_dismiss_second_menu_notice'  , array( $this, 'tc_dismiss_second_menu_notice' ) );
+    }
+
+
+    /**
+    * Dismiss widget notice ajax callback
+    * hook : wp_ajax_dismiss_widget_notice
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    function tc_dismiss_second_menu_notice() {
+      check_ajax_referer( 'tc-second-menu-placeholder-nonce', 'secondMenuNonce' );
+      set_transient( 'tc_second_menu_placehold', 'disabled' , 60*60*24*365*20 );//20 years of peace
+      wp_die();
+    }
+
+
+    /**
+    * Prints dismiss notice javascript in the footer
+    * hook : wp_footer
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_write_second_menu_placeholder_js() {
+      ?>
+      <script type="text/javascript" id="second-menu-placeholder">
+        ( function( $ ) {
+          var dismiss_request = function( $_el ) {
+            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
+                _query = {
+                    action  : 'dismiss_second_menu_notice',
+                    secondMenuNonce :  "<?php echo wp_create_nonce( 'tc-second-menu-placeholder-nonce' ); ?>"
+                },
+                $ = jQuery,
+                request = $.post( AjaxUrl, _query );
+
+            request.done( function( response ) {
+              // Check if the user is logged out.
+              if ( '0' === response )
+                return;
+              // Check for cheaters.
+              if ( '-1' === response )
+                return;
+
+              $_el.closest('.tc-menu-placeholder').slideToggle('fast');
+            });
+          };//end of fn
+
+          //DOM READY
+          $( function($) {
+            $('.tc-dismiss-notice', '.tc-menu-placeholder').click( function( e ) {
+              console.log('JOIE', e);
+              e.preventDefault();
+              dismiss_request( $(this) );
+            } );
+          } );
+        }) (jQuery)
+      </script>
+      <?php
+    }
+
+
+    /**
+    * Public helper, state if we can display a widget placeholder to the current user.
+    * @return  bool
+    * @since Customizr 3.3+
+    */
+    function tc_is_second_menu_placeholder_on( $_position = null ) {
+      //always display in DEV mode
+      if ( defined('TC_DEV') && true === TC_DEV )
+        return true;
+      //don't display if main menu style is regular <=> 'navbar' == tc_menu_style
+      if ( 'navbar' == TC_utils::$inst->tc_opt('tc_menu_style') )
+        return false;
+      //don't display if second menu is enabled : tc_display_second_menu
+      if ( (bool)TC_utils::$inst->tc_opt('tc_display_second_menu') )
+        return false;
+
+      return apply_filters(
+        "tc_is_second_menu_placeholder_on",
+        is_user_logged_in() && current_user_can('edit_theme_options') && 'disabled' != get_transient("tc_second_menu_placehold")
+      );
     }
 
 

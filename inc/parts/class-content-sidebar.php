@@ -115,9 +115,9 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
 
       /**
       * When do we display this placeholder ?
-      * -User logged in
-      * -Admin
-      * -User did not dismiss the notice
+      * User logged in
+      * + Admin
+      * + User did not dismissed the notice
       * @param : string position left or right
       * @since Customizr 3.3
       */
@@ -125,7 +125,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
         if ( ! TC_widgets::$instance -> tc_is_widget_placeholder_enabled( 'sidebar' ) )
           return;
         ?>
-        <aside class="tc-widget-placeholder">
+        <aside class="tc-placeholder-wrap tc-widget-placeholder">
           <?php
             printf('<span class="tc-admin-notice">%1$s</span>',
               __( 'This block is visible for admin users only.', 'customizr')
