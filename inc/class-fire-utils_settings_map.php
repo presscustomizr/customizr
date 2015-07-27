@@ -261,7 +261,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Smooth scroll on click' , 'customizr' ),
                                 'section'     => 'links_sec' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ),
+                                'notice'      => sprintf( '%s<br/><strong>%s</strong> : %s', __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ), __( 'Important note' , 'customizr' ), __('this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option.') )
               ),
               'tc_link_hover_effect'  =>  array(
                                 'default'       => 1,
