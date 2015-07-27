@@ -5532,9 +5532,11 @@ li.dropdown.active > .dropdown-toggle,
 }
 .pull-menu-left .nav-collapse {
   float: left;
+  clear: left;
 }
 .pull-menu-right .nav-collapse {
   float: right;
+  clear: right;
 }
 /* SIDE MENU
   -------------------------------------------------- */
@@ -5738,9 +5740,10 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 .btn-toggle-nav {
   width: auto;
   line-height: 29px;
+  margin-top: 5px;
 }
 /* Adjustment when tagline off */
-.tc-tagline-off .btn-toggle-nav {
+.sticky-enabled .tc-tagline-off .btn-toggle-nav {
   margin-top: 8px;
 }
 .navbar .btn-toggle-nav .btn {

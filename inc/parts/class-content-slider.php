@@ -634,7 +634,6 @@ class TC_slider {
       if ( false !== (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height', TC___::$tc_option_group, $use_default = false ) ) )
         return $_h;
     }
-
     return apply_filters( 'tc_set_demo_slider_height' , 750 );
   }
 
