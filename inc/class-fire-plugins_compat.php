@@ -17,8 +17,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     function __construct () {
       self::$instance =& $this;
       //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
-      add_action ('after_setup_theme'                      , array( $this , 'tc_set_plugins_supported'), 20 );
-      add_action ('after_setup_theme'                      , array( $this , 'tc_plugins_compatibility'), 30 );
+      add_action ('after_setup_theme'          , array( $this , 'tc_set_plugins_supported'), 20 );
+      add_action ('after_setup_theme'          , array( $this , 'tc_plugins_compatibility'), 30 );
     }//end of constructor
 
 

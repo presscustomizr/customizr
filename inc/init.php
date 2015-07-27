@@ -12,7 +12,7 @@
 *
 * @since Customizr 3.0
 */
-if( !function_exists( 'tc__f' )) :
+if( ! function_exists( 'tc__f' ) ) :
     function tc__f ( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
        return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
     }
