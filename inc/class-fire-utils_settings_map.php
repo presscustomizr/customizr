@@ -659,7 +659,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               ),
               'tc_menu_style'  =>  array(
-                              'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'navbar' : 'aside',
+                              'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
                               'control'       => 'TC_controls' ,
                               'title'         => __( 'Main menu design' , 'customizr'),
                               'label'         => __( 'Select a style : side menu or regular' , 'customizr' ),
@@ -690,7 +690,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               ),
               'tc_menu_position'  =>  array(
-                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'pull-menu-left' : 'pull-menu-right',
+                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Menu position (for "main" menu)' , "customizr" ),
                                 'section'       => 'nav' ,
@@ -704,7 +704,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'        => __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' )
               ),
               'tc_second_menu_position'  =>  array(
-                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'pull-menu-left' : 'pull-menu-right',
+                                'default'       => 'pull-menu-left',
                                 'control'       => 'TC_controls' ,
                                 'title'         => __( 'Secondary menu design' , 'customizr'),
                                 'label'         => __( 'Menu position (for "secondary" menu)' , "customizr" ),
