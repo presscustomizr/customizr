@@ -16,10 +16,30 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       static $instance;
       function __construct () {
           self::$instance =& $this;
-          add_action  ( '__before_main_container'     , array( $this , 'tc_fp_block_display'), 10 );
+          add_action( '__before_main_container'     , array( $this , 'tc_fp_block_display'), 10 );
+          add_action( '__after_fp'                  , array( $this , 'tc_maybe_display_dismiss_notice'));
       }
 
 
+      function tc_maybe_display_dismiss_notice() {
+
+        $_customizer_lnk = TC_placeholders::tc_get_customizer_url( array( 'section' => 'frontpage_sec') );
+        ?>
+        <div class="tc-placeholder-wrap tc-fp-dismiss">
+          <?php
+            printf('<p><strong>%1$s</strong></p>',
+              sprintf( __("Edit those featured pages %s, or %s (you'll be able to add them back later)." , "customizr"),
+                sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Edit those featured pages", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
+                sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the featured pages", "customizr" ), __( "remove them", "customizr" ) )
+              )
+            );
+            printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
+              __( 'dismiss notice', 'customizr')
+            );
+          ?>
+        </div>
+        <?php
+      }
 
       /**
     	* The template displaying the front page featured page block.
