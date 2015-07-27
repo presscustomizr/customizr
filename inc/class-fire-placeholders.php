@@ -18,13 +18,144 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
+      add_action( 'init'           , array( $this, 'tc_slider_dimiss_ajax_setup') );
       add_action( 'init'           , array( $this, 'tc_second_menu_placeholder_setup') );
       add_action( 'init'           , array( $this, 'tc_widget_ajax_setup') );
     }
 
+
     /*****************************************************
-    * PLACEHOLDER VIEW AND HELPERS FOR SECONDARY MENU
-    * AJAX JS AND ACTIONS FOR SECOND MENU PLACEHOLDER
+    * SLIDER : AJAX JS AND ACTIONS
+    *****************************************************/
+    /**
+    * Set the placeholder related hooks if conditions are met in tc_is_second_menu_placeholder_on()
+    *
+    * hook : init
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_slider_dimiss_ajax_setup() {
+      if ( ! $this -> tc_is_slider_notice_on() )
+        return;
+
+      add_action( 'wp_footer'                           , array( $this, 'tc_write_slider_notice_js'), 100 );
+      add_action( 'wp_ajax_slider_notice_actions'       , array( $this, 'tc_slider_notice_ajax_actions' ) );
+    }
+
+
+    /**
+    * Two cases :
+    * 1) dismiss notice
+    * 2) remove demo slider
+    * hook : wp_ajax_slider_notice_actions
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    function tc_slider_notice_ajax_actions() {
+      if ( isset( $_POST['remove_action'] ) )
+        $_remove_action = esc_attr( $_POST['remove_action'] );
+      else
+        wp_die(0);
+
+      check_ajax_referer( 'tc-slider-notice-nonce', 'sliderNoticeNonce' );
+      switch ($_remove_action) {
+        case 'remove_slider':
+          TC_utils::$inst -> tc_set_option( 'tc_front_slider' , 0 );
+        break;
+
+        case 'remove_notice':
+          set_transient( 'tc_slider_notice', 'disabled' , 60*60*24*365*20 );//20 years of peace
+        break;
+      }
+      wp_die();
+    }
+
+
+    /**
+    * Prints dismiss notice js in the footer
+    * Two cases :
+    * 1) dismiss notice
+    * 2) remove demo slider
+    * hook : wp_footer
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_write_slider_notice_js() {
+      ?>
+      <script type="text/javascript" id="slider-notice-actions">
+        ( function( $ ) {
+          var slider_ajax_request = function( remove_action, $_el ) {
+            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
+                _query = {
+                    action  : 'slider_notice_actions',
+                    remove_action : remove_action,
+                    sliderNoticeNonce :  "<?php echo wp_create_nonce( 'tc-slider-notice-nonce' ); ?>"
+                },
+                $ = jQuery,
+                request = $.post( AjaxUrl, _query );
+
+            request.done( function( response ) {
+              // Check if the user is logged out.
+              if ( '0' === response )
+                return;
+              // Check for cheaters.
+              if ( '-1' === response )
+                return;
+
+              if ( 'remove_slider' == remove_action )
+                $('div[id*="customizr-slider"]').fadeOut('slow');
+              else
+                $_el.closest('.tc-slider-notice').slideToggle('fast');
+            });
+          };//end of fn
+
+          //DOM READY
+          $( function($) {
+            $('.tc-dismiss-notice', '.tc-slider-notice').click( function( e ) {
+              e.preventDefault();
+              slider_ajax_request( 'remove_notice', $(this) );
+            } );
+            $('.tc-inline-remove', '.tc-slider-notice').click( function( e ) {
+              e.preventDefault();
+              slider_ajax_request( 'remove_slider', $(this) );
+            } );
+          } );
+
+        }) (jQuery)
+      </script>
+      <?php
+    }
+
+
+    /**
+    * Public helper, state if we can display a widget placeholder to the current user.
+    * @return  bool
+    * @since Customizr 3.3+
+    */
+    static function tc_is_slider_notice_on( $_position = null ) {
+      //always display in DEV mode
+      if ( defined('TC_DEV') && true === TC_DEV )
+        return true;
+      //don't display if main menu style is regular <=> 'navbar' == tc_menu_style
+      if ( 'navbar' == TC_utils::$inst->tc_opt('tc_menu_style') )
+        return false;
+      //don't display if second menu is enabled : tc_display_second_menu
+      if ( (bool)TC_utils::$inst->tc_opt('tc_display_second_menu') )
+        return false;
+
+      return apply_filters(
+        "tc_is_second_menu_placeholder_on",
+        is_user_logged_in() && current_user_can('edit_theme_options') && 'disabled' != get_transient("tc_second_menu_placehold")
+      );
+    }
+
+
+
+    /*****************************************************
+    * SECOND MENU PLACEHOLDER : AJAX JS AND ACTIONS
     *****************************************************/
     /**
     * Set the placeholder related hooks if conditions are met in tc_is_second_menu_placeholder_on()
@@ -45,7 +176,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
 
     /**
     * Dismiss widget notice ajax callback
-    * hook : wp_ajax_dismiss_widget_notice
+    * hook : wp_ajax_dismiss_second_menu_notice
     *
     * @package Customizr
     * @since Customizr 3.3+
