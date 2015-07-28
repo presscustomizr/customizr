@@ -939,6 +939,19 @@ if ( ! class_exists( 'TC_utils' ) ) :
       return add_query_arg( urlencode( "autofocus[{$_what}]" ), $_panel_or_section[$_what], $_customize_url );
     }
 
+
+    /**
+    * Is there a menu assigned to a given location ?
+    * Used in class-header-menu and class-fire-placeholders
+    * @return bool
+    * @since  v3.4+
+    */
+    function tc_has_location_menu( $_location ) {
+      $_all_locations  = get_nav_menu_locations();
+      return isset($_all_locations[$_location]) && is_object( wp_get_nav_menu_object( $_all_locations[$_location] ) );
+    }
+
+
   }//end of class
 endif;
 
