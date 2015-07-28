@@ -476,3 +476,8 @@ footer#footer .colophon a.back-to-top {
 .tc-grid-icon:before {
   color: #26ce61;
 }
+/* Placeholder icons */
+.tc-placeholder-wrap::before,
+.tc-admin-notice:before {
+  color: #26ce61;
+}

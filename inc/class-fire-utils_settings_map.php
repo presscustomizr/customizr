@@ -46,7 +46,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       add_filter( 'tc_add_section_map'      , array( $this, 'tc_popul_section_map' ));
       //add controls to the map
       add_filter( 'tc_add_setting_control_map' , array( $this , 'tc_popul_setting_control_map' ), 10, 2 );
-      //$this -> tc_populate_setting_control_map();
 
       //FILTER SPECIFIC SETTING-CONTROL MAPS
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
