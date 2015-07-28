@@ -505,9 +505,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
       *
       */
       function tc_is_home() {
-
         //get info whether the front page is a list of last posts or a page
-        return ( (is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) ) || is_front_page() ) ? true : false;
+        return ( is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) ) || is_front_page();
       }
 
 
@@ -916,6 +915,28 @@ if ( ! class_exists( 'TC_utils' ) ) :
     */
     function tc_is_option_excluded_from_ctx( $opt_name ) {
       return in_array( $opt_name, $this -> tc_get_ctx_excluded_options() );
+    }
+
+
+    /**
+    * Returns the url of the customizer with the current url arguments + an optional customizer section args
+    * @param $section is an array indicating the panel or section and its name. Ex : array( 'panel' => 'widgets')
+    * @return url string
+    * @since Customizr 3.4+
+    */
+    static function tc_get_customizer_url( $_panel_or_section = null ) {
+      $_current_url       = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+      $_customize_url     = add_query_arg( 'url', urlencode( $_current_url ), wp_customize_url() );
+      $_panel_or_section  = ( ! is_array($_panel_or_section) || empty($_panel_or_section) ) ? null : $_panel_or_section;
+
+      if ( is_null($_panel_or_section) )
+        return $_customize_url;
+
+      if ( ! array_key_exists('section', $_panel_or_section) && ! array_key_exists('panel', $_panel_or_section) )
+        return $_customize_url;
+
+      $_what = array_key_exists('section', $_panel_or_section) ? 'section' : 'panel';
+      return add_query_arg( urlencode( "autofocus[{$_what}]" ), $_panel_or_section[$_what], $_customize_url );
     }
 
   }//end of class
