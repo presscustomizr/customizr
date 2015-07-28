@@ -46,6 +46,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       add_filter( 'tc_add_section_map'      , array( $this, 'tc_popul_section_map' ));
       //add controls to the map
       add_filter( 'tc_add_setting_control_map' , array( $this , 'tc_popul_setting_control_map' ), 10, 2 );
+      //$this -> tc_populate_setting_control_map();
 
       //FILTER SPECIFIC SETTING-CONTROL MAPS
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
@@ -260,7 +261,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Smooth scroll on click' , 'customizr' ),
                                 'section'     => 'links_sec' ,
                                 'type'        => 'checkbox' ,
-                                'notice'      => sprintf( '%s<br/><strong>%s</strong> : %s', __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ), __( 'Important note' , 'customizr' ), __('this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option.') )
+                                'notice'      => sprintf( '%s<br/><strong>%s</strong> : %s', __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ), __( 'Important note' , 'customizr' ), __('this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option.', 'customizr') )
               ),
               'tc_link_hover_effect'  =>  array(
                                 'default'       => 1,
@@ -2127,7 +2128,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'title'          => __( 'Navigation Menus' , 'customizr' ),
                             'theme_supports' => 'menus',
                             'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
-                            'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.'),
+                            'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations, 'customizr' ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.' , 'customizr'),
                             'panel'   => 'tc-header-panel'
         ),
 

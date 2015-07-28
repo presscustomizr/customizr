@@ -94,7 +94,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                   )
                 );
                 printf( '<p>%1$s</p><p><strong>%2$s</strong></p>',
-                  __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it’s already been reported and fixed in the support forums.", "customizr" ),
+                  __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" ),
                   sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
                     sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('presscustomizr.com'), __("home page" , "customizr") )
                   )
@@ -169,7 +169,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                     <h3><?php _e( 'We need sponsors!','customizr' ); ?></h3>
                     <p><?php  _e( '<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it\'s continued development with a donation of $20, $50, or even $100.','customizr' ) ?></br>
 
-                      <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow"><img class="tc-donate" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr" /></a>
+                      <a href="<?php echo esc_url('paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8CTH6YFDBQYGU'); ?>" target="_blank" rel="nofollow"><img class="tc-donate" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr" /></a>
                     </p>
                   </div>
 
@@ -196,7 +196,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                 <a class="" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>extension/customizr-pro/" target="_blank"><img alt="Customizr'extensions" src="<?php echo TC_BASE_URL.'inc/admin/img/customizr-pro.png' ?>" class=""></a>
                 <h4 style="text-align: left"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
 
-                <p style="text-align: left"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you’ll get all the free version features plus some really cool and even revolutionary ones." , 'customizr') ?>
+                <p style="text-align: left"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you'll get all the features of the free version plus some really cool and even revolutionary ones." , 'customizr') ?>
                 </p>
                 <p style="text-align:left">
                     <a class="button-primary review-customizr" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo TC_WEBSITE ?>extension/customizr-pro/" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>

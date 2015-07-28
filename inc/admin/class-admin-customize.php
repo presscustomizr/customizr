@@ -75,7 +75,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
       //CHANGE MENUS PROPERTIES
       $locations    = get_registered_nav_menus();
       $menus        = wp_get_nav_menus();
-      $choices      = array( '' => __( '&mdash; Select &mdash;' ) );
+      $choices      = array( '' => __( '&mdash; Select &mdash;', 'customizr' ) );
       foreach ( $menus as $menu ) {
         $choices[ $menu->term_id ] = wp_html_excerpt( $menu->name, 40, '&hellip;' );
       }
@@ -117,7 +117,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           'priority' => isset($_priorities[$location]) ? $_priorities[$location] : $_priority
         );
 
-        //add a notice propery if no menu created yet.
+        //add a notice property if no menu created yet.
         if ( ! $menus ) {
           $_control_properties['notice'] = sprintf( __("You haven't created any menu yet. %s or check the %s to learn more about menus.", "customizr"),
             sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', admin_url('nav-menus.php'), __("Create a new menu now" , "customizr") ),
@@ -508,15 +508,17 @@ if ( ! class_exists( 'TC_customize' ) ) :
         <div id="tc-donate-customizer">
           <a href="#" class="tc-close-request button" title="<?php _e('dismiss' , 'customizr'); ?>">X</a>
             <?php
-              printf('<h3>%1$s <a href="https://twitter.com/nicguillaume" target="_blank">Nicolas</a>%2$s :).</h3>',
+              printf('<h3>%1$s <a href="%2$s" target="_blank">Nicolas</a>%3$s :).</h3>',
                 __( "Hi! This is" , 'customizr' ),
+                esc_url('twitter.com/presscustomizr'),
                 __( ", developer of the Customizr theme", 'customizr' )
               );
               printf('<span class="tc-notice">%1$s</span>',
                 __( "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support it's continued development with a donation of $20, $50, ..." , 'customizr' )
               );
-              printf('<a class="tc-donate-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow">
-                <img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="%1$s"></a>',
+              printf('<a class="tc-donate-link" href="%1$s" target="_blank" rel="nofollow"><img src="%2$s" alt="%3$s"></a>',
+                esc_url('paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU'),
+                esc_url('paypal.com/en_US/i/btn/btn_donate_LG.gif'),
                 __( "Make a donation for Customizr" , 'customizr' )
               );
               printf('<div class="donate-alert"><p class="tc-notice">%1$s</p><span class="tc-hide-donate button">%2$s</span><span class="tc-cancel-hide-donate button">%3$s</span></div>',

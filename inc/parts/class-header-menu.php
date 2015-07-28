@@ -691,7 +691,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
       // Show Home in the menu
       if ( ! empty($args['show_home']) ) {
         if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] )
-          $text = __('Home');
+          $text = __('Home' , 'customizr');
         else
           $text = $args['show_home'];
         $class = '';
@@ -739,7 +739,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
         'depth' => 0, 'show_date' => '',
         'date_format' => get_option( 'date_format' ),
         'child_of' => 0, 'exclude' => '',
-        'title_li' => __( 'Pages' ), 'echo' => 1,
+        'title_li' => __( 'Pages', 'customizr' ), 'echo' => 1,
         'authors' => '', 'sort_column' => 'menu_order, post_title',
         'link_before' => '', 'link_after' => '', 'walker' => '',
       );
