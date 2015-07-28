@@ -56,15 +56,15 @@ if ( ! class_exists( 'TC_customize' ) ) :
     * Since the WP_Customize_Manager::$controls and $settings are protected properties, one way to alter them is to use the get_setting and get_control methods
     * Another way is to remove the control and add it back as an instance of a custom class and with new properties
     * and set new property values
-    * hook : tc_customize_register
+    * hook : tc_customize_register:30
     * @return void()
     */
     function tc_alter_wp_customizer_settings( $wp_customize ) {
-      //Alter blogname et blogdescription transport
+      //CHANGE BLOGNAME AND BLOGDESCRIPTION TRANSPORT
       $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
       $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
 
-      //Alter nav section
+      //CHANGE NAV SECTION DESCRIPTION
       $_complement_descr = sprintf('&nbsp;<a class="button-primary" href="%2$s" target="_blank">%3$s</a><p>%1$s</p>',
         __( 'If a location nas no menu assigned, a default page menu will be used.', 'customizr'),
         admin_url('nav-menus.php'),
@@ -72,7 +72,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
       );
       $wp_customize -> get_section('nav') -> description .= $_complement_descr;
 
-      //Alter menus various menus properties
+      //CHANGE MENUS PROPERTIES
       $locations    = get_registered_nav_menus();
       $menus        = wp_get_nav_menus();
       $choices      = array( '' => __( '&mdash; Select &mdash;' ) );
@@ -84,14 +84,31 @@ if ( ! class_exists( 'TC_customize' ) ) :
         'secondary' => 20
       );
 
+      //WP only adds the menu(s) settings and controls if the user has created at least one menu.
+      //1) if no menus yet, we still want to display the menu picker + add a notice with a link to the admin menu creation panel
+      //=> add_setting and add_control for each menu location. Check if they are set first by security
+      //2) if user has already created a menu, the settings are already created, we just need to update the controls.
       $_priority = 0;
       //assign new priorities to the menus controls
       foreach ( $locations as $location => $description ) {
         $menu_setting_id = "nav_menu_locations[{$location}]";
 
-        $wp_customize -> remove_control( $menu_setting_id );
+        //create the settings if they don't exist
+        //=> in the condition, make sure that the setting has really not been created yet (maybe over secured)
+        if ( ! $menus && ! is_object( $wp_customize->get_setting($menu_setting_id ) ) ) {
+          $wp_customize -> add_setting( $menu_setting_id, array(
+            'sanitize_callback' => 'absint',
+            'theme_supports'    => 'menus',
+          ) );
+        }
 
-        $_control_options = array(
+        //remove the controls if they exists
+        if ( is_object( $wp_customize->get_control( $menu_setting_id ) ) ) {
+          $wp_customize -> remove_control( $menu_setting_id );
+        }
+
+        //replace the controls by our custom controls
+        $_control_properties = array(
           'label'   => $description,
           'section' => 'nav',
           'title'   => "main" == $location ? __( 'Assign menus to locations' , 'customizr') : false,
@@ -100,10 +117,18 @@ if ( ! class_exists( 'TC_customize' ) ) :
           'priority' => isset($_priorities[$location]) ? $_priorities[$location] : $_priority
         );
 
-        $wp_customize -> add_control( new TC_controls( $wp_customize, $menu_setting_id, $_control_options ) );
+        //add a notice propery if no menu created yet.
+        if ( ! $menus ) {
+          $_control_properties['notice'] = sprintf( __("You haven't created any menu yet. %s or check the %s to learn more about menus.", "customizr"),
+            sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', admin_url('nav-menus.php'), __("Create a new menu now" , "customizr") ),
+            sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('codex.wordpress.org/WordPress_Menu_User_Guide'),  __("WordPress documentation" , "customizr") )
+          );
+        }
+
+        $wp_customize -> add_control( new TC_controls( $wp_customize, $menu_setting_id, $_control_properties ) );
 
         $_priority = $_priority + 10;
-      }
+      }//foreach
     }
 
 
