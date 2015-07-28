@@ -18,32 +18,54 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      add_action( 'init'           , array( $this, 'tc_slider_dimiss_ajax_setup') );
-      add_action( 'init'           , array( $this, 'tc_second_menu_placeholder_setup') );
-      add_action( 'init'           , array( $this, 'tc_widget_ajax_setup') );
+      add_action( 'init'           , array( $this, 'tc_placeholders_ajax_setup') );
+      add_action( 'wp'             , array( $this, 'tc_placeholders_write_ajax_js_in_footer') );
     }
 
 
     /*****************************************************
-    * SLIDER : AJAX JS AND ACTIONS
+    * ADMIN AJAX HOOKS ALL PLACEHOLDERS
     *****************************************************/
     /**
-    * Set the placeholder related hooks if conditions are met in tc_is_second_menu_placeholder_on()
-    *
-    * hook : init
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
+    * hook : init => because we need to fire this function before the admin_ajax.php call
+    * @since v3.4+
     */
-    function tc_slider_dimiss_ajax_setup() {
-      if ( ! $this -> tc_is_slider_notice_on() )
-        return;
-
-      add_action( 'wp_footer'                           , array( $this, 'tc_write_slider_notice_js'), 100 );
-      add_action( 'wp_ajax_slider_notice_actions'       , array( $this, 'tc_slider_notice_ajax_actions' ) );
+    function tc_placeholders_ajax_setup() {
+      add_action( 'wp_ajax_slider_notice_actions'   , array( $this, 'tc_slider_notice_ajax_actions' ) );
+      add_action( 'wp_ajax_fp_notice_actions'       , array( $this, 'tc_fp_notice_ajax_actions' ) );
+      add_action( 'wp_ajax_dismiss_second_menu_notice'  , array( $this, 'tc_dismiss_second_menu_notice' ) );
+      add_action( 'wp_ajax_dismiss_widget_notice'   , array( $this , 'tc_dismiss_widget_notice' ) );
     }
 
 
+
+    /*****************************************************
+    * MAYBE WRITE AJAX SCRIPTS IN FOOTER FOR ALL PLACEHOLDERS / NOTICES
+    *****************************************************/
+    /**
+    * hook : wp => because we need to access some conditional tags like is_home when checking if the placeholder / notice are enabled
+    * @since v3.4+
+    */
+    function tc_placeholders_write_ajax_js_in_footer() {
+      if ( $this -> tc_is_slider_notice_on() )
+        add_action( 'wp_footer'   , array( $this, 'tc_write_slider_notice_js'), 100 );
+
+      if ( $this -> tc_is_fp_notice_on() )
+        add_action( 'wp_footer'   , array( $this, 'tc_write_fp_notice_js'), 100 );
+
+      if ( $this -> tc_is_second_menu_placeholder_on() )
+        add_action( 'wp_footer'   , array( $this, 'tc_write_second_menu_placeholder_js'), 100 );
+
+      if ( $this -> tc_is_widget_placeholder_enabled() )
+        add_action( 'wp_footer'   , array( $this, 'tc_widget_placeholder_script'), 100 );
+    }
+
+
+
+
+    /*****************************************************
+    * SLIDER : AJAX JS AND CALLBACK
+    *****************************************************/
     /**
     * Two cases :
     * 1) dismiss notice
@@ -51,7 +73,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * hook : wp_ajax_slider_notice_actions
     *
     * @package Customizr
-    * @since Customizr 3.3+
+    * @since Customizr 3.4+
     */
     function tc_slider_notice_ajax_actions() {
       if ( isset( $_POST['remove_action'] ) )
@@ -131,49 +153,170 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
 
 
     /**
-    * Public helper, state if we can display a widget placeholder to the current user.
+    * Do we display the slider notice ?
     * @return  bool
-    * @since Customizr 3.3+
+    * @since Customizr 3.4+
     */
     static function tc_is_slider_notice_on( $_position = null ) {
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
-      //don't display if main menu style is regular <=> 'navbar' == tc_menu_style
-      if ( 'navbar' == TC_utils::$inst->tc_opt('tc_menu_style') )
-        return false;
-      //don't display if second menu is enabled : tc_display_second_menu
-      if ( (bool)TC_utils::$inst->tc_opt('tc_display_second_menu') )
-        return false;
 
+      $_conditions = array(
+        ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
+        ! is_admin() && ! TC_utils::$inst-> tc_is_home(),
+        'demo' != TC_utils::$inst->tc_opt('tc_front_slider'),
+        'disabled' == get_transient("tc_slider_notice")
+      );
+
+      //checks if at least one of the conditions is true
       return apply_filters(
-        "tc_is_second_menu_placeholder_on",
-        is_user_logged_in() && current_user_can('edit_theme_options') && 'disabled' != get_transient("tc_second_menu_placehold")
+        'tc_is_slider_notice_on',
+        ! (bool)array_sum($_conditions)
       );
     }
 
 
 
+
     /*****************************************************
-    * SECOND MENU PLACEHOLDER : AJAX JS AND ACTIONS
+    * FEATURED PAGES : AJAX JS AND CALLBACK
     *****************************************************/
     /**
-    * Set the placeholder related hooks if conditions are met in tc_is_second_menu_placeholder_on()
-    *
-    * hook : init
+    * Two cases :
+    * 1) dismiss notice
+    * 2) remove fp
+    * hook : wp_ajax_fp_notice_actions
     *
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_second_menu_placeholder_setup() {
-      if ( ! $this -> tc_is_second_menu_placeholder_on() )
-        return;
+    function tc_fp_notice_ajax_actions() {
+      if ( isset( $_POST['remove_action'] ) )
+        $_remove_action = esc_attr( $_POST['remove_action'] );
+      else
+        wp_die(0);
 
-      add_action( 'wp_footer'                           , array( $this, 'tc_write_second_menu_placeholder_js'), 100 );
-      add_action( 'wp_ajax_dismiss_second_menu_notice'  , array( $this, 'tc_dismiss_second_menu_notice' ) );
+      check_ajax_referer( 'tc-fp-notice-nonce', 'fpNoticeNonce' );
+      switch ($_remove_action) {
+        case 'remove_fp':
+          TC_utils::$inst -> tc_set_option( 'tc_show_featured_pages' , 0 );
+        break;
+
+        case 'remove_notice':
+          set_transient( 'tc_fp_notice', 'disabled' , 60*60*24*365*20 );//20 years of peace
+        break;
+      }
+      wp_die();
     }
 
 
+    /**
+    * Prints dismiss notice js in the footer
+    * Two cases :
+    * 1) dismiss notice
+    * 2) remove fp
+    * hook : wp_footer
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_write_fp_notice_js() {
+      ?>
+      <script type="text/javascript" id="fp-notice-actions">
+        ( function( $ ) {
+          var fp_ajax_request = function( remove_action, $_el ) {
+            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
+                _query = {
+                    action  : 'fp_notice_actions',
+                    remove_action : remove_action,
+                    fpNoticeNonce :  "<?php echo wp_create_nonce( 'tc-fp-notice-nonce' ); ?>"
+                },
+                $ = jQuery,
+                request = $.post( AjaxUrl, _query );
+
+            request.done( function( response ) {
+              // Check if the user is logged out.
+              if ( '0' === response )
+                return;
+              // Check for cheaters.
+              if ( '-1' === response )
+                return;
+
+              if ( 'remove_fp' == remove_action )
+                $('#main-wrapper > .marketing').fadeOut('slow');
+              else
+                $_el.closest('.tc-fp-notice').slideToggle('fast');
+            });
+          };//end of fn
+
+          //DOM READY
+          $( function($) {
+            $('.tc-dismiss-notice', '.tc-fp-notice').click( function( e ) {
+              e.preventDefault();
+              fp_ajax_request( 'remove_notice', $(this) );
+            } );
+            $('.tc-inline-remove', '.tc-fp-notice').click( function( e ) {
+              e.preventDefault();
+              fp_ajax_request( 'remove_fp', $(this) );
+            } );
+          } );
+
+        }) (jQuery)
+      </script>
+      <?php
+    }
+
+
+    /**
+    * Do we display the featured page notice ?
+    * @return  bool
+    * @since Customizr 3.4+
+    */
+    static function tc_is_fp_notice_on( $_position = null ) {
+      //always display in DEV mode
+      if ( defined('TC_DEV') && true === TC_DEV )
+        return true;
+
+      $_conditions = array(
+        ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
+        ! is_admin() && ! TC_utils::$inst-> tc_is_home(),
+        ! (bool)TC_utils::$inst->tc_opt('tc_show_featured_pages'),
+        'disabled' == get_transient("tc_fp_notice"),
+        self::$instance -> tc_is_one_fp_set()
+      );
+
+      //checks if at least one of the conditions is true
+      return apply_filters(
+        'tc_is_fp_notice_on',
+        ! (bool)array_sum($_conditions)
+      );
+    }
+
+
+    /**
+    * Helper to check if at least one featured page has been set by the user.
+    * @return bool
+    * @since v3.4+
+    */
+    function tc_is_one_fp_set() {
+      $_fp_sets = array();
+      $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+      if ( ! is_array($fp_ids) )
+        return;
+      foreach ($fp_ids as $fp_single_id ) {
+        $_fp_sets[] = (bool)TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id );
+      }
+      //returns true if at least one fp has been set.
+      return (bool)array_sum($_fp_sets);
+    }
+
+
+
+
+    /*****************************************************
+    * SECOND MENU PLACEHOLDER : AJAX JS AND CALLBACK
+    *****************************************************/
     /**
     * Dismiss widget notice ajax callback
     * hook : wp_ajax_dismiss_second_menu_notice
@@ -217,9 +360,6 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
                 return;
 
               $_el.closest('.tc-menu-placeholder').slideToggle('fast');
-            })
-            .always(function( response ) {
-              console.log( 'ajax response : ', response, arguments );
             });
           };//end of fn
 
@@ -262,27 +402,8 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
 
 
     /************************************************************
-    * WIDGET PLACEHOLDERS AJAX ACTIONS : FOR SIDEBARS AND FOOTER
+    * WIDGET PLACEHOLDERS AJAX JS AND CALLBACK : FOR SIDEBARS AND FOOTER
     ************************************************************/
-    /**
-    * Set the widget placeholder related hooks if :
-    * - user is logged in and admin
-    * - placeholder transients != disabled
-    *
-    * hook : init
-    *
-    * @package Customizr
-    * @since Customizr 3.3+
-    */
-    function tc_widget_ajax_setup() {
-      if ( ! $this -> tc_is_widget_placeholder_enabled() )
-        return;
-
-      add_action( 'wp_footer'                       , array( $this, 'tc_widget_placeholder_script'), 100 );
-      add_action( 'wp_ajax_dismiss_widget_notice'   , array( $this , 'tc_dismiss_widget_notice' ) );
-    }
-
-
     /**
     * Prints dismiss widget notice javascript in the footer
     * hook : wp_footer
@@ -373,32 +494,5 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     function tc_check_widget_placeholder_transient( $_position ){
       return 'disabled' != get_transient("tc_widget_placehold_{$_position}");
     }
-
-
-    /************************************************************
-    * COMMON HELPERS
-    ************************************************************/
-    /**
-    * Returns the url of the customizer with the current url arguments + an optional customizer section args
-    * @param $section is an array indicating the panel or section and its name. Ex : array( 'panel' => 'widgets')
-    * @return url string
-    * @since Customizr 3.4+
-    */
-    static function tc_get_customizer_url( $_panel_or_section = null ) {
-      $_current_url       = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-      $_customize_url     = add_query_arg( 'url', urlencode( $_current_url ), wp_customize_url() );
-      $_panel_or_section  = ( ! is_array($_panel_or_section) || empty($_panel_or_section) ) ? null : $_panel_or_section;
-
-      if ( is_null($_panel_or_section) )
-        return $_customize_url;
-
-      if ( ! array_key_exists('section', $_panel_or_section) && ! array_key_exists('panel', $_panel_or_section) )
-        return $_customize_url;
-
-      $_what = array_key_exists('section', $_panel_or_section) ? 'section' : 'panel';
-      return add_query_arg( urlencode( "autofocus[{$_what}]" ), $_panel_or_section[$_what], $_customize_url );
-    }
-
-
   }//end of class
 endif;

@@ -137,7 +137,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
 
             printf('<p><strong>%1$s</strong></p>',
               sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', TC_placeholders::tc_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', TC_utils::tc_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" data-position="sidebar" href="#" title="%1$s">%1$s</a>',
                   __( 'dismiss this notice', 'customizr')
                 )
