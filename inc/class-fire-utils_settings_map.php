@@ -108,7 +108,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_footer_global_settings_option_map',
         //ADVANCED OPTIONS
         'tc_custom_css_option_map',
-        'tc_performance_option_map'
+        'tc_performance_option_map',
+        'tc_placeholders_notice_map'
       );
 
       foreach ( $_settings_sections as $_section_cb ) {
@@ -1921,8 +1922,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_img_smart_load'  =>  array(
                                 'default'       => 0,
                                 'label'       => __( 'Load images on scroll' , 'customizr' ),
-                                'control'     =>  'TC_controls' ,
-                                'section'     => 'performances_sec' ,
+                                'control'     =>  'TC_controls',
+                                'section'     => 'performances_sec',
                                 'type'        => 'checkbox',
                                 'priority'    => 20,
                                 'notice'      => __('Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images.' , 'customizr')
@@ -1930,6 +1931,21 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       );
     }
 
+    /*-----------------------------------------------------------------------------------------------------
+                              FRONT END NOTICES AND PLACEHOLDERS SECTION
+    ------------------------------------------------------------------------------------------------------*/
+    function tc_placeholders_notice_map( $get_default = null ) {
+      return array(
+              'tc_display_front_help'  =>  array(
+                                'default'       => 1,
+                                'control'   => 'TC_controls',
+                                'label'       => __( "Display help notices on front-end for logged in users.", 'customizr' ),
+                                'section'     => 'placeholder_sec',
+                                'type'        => 'checkbox',
+                                'notice'    => __( 'When this options is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities.' , 'customizr' )
+              )
+      );
+    }
 
 
 
@@ -2242,13 +2258,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'custom_sec'           => array(
                             'title'     =>  __( 'Custom CSS' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 100 : 10,
-                            'description' =>  __( 'Add your own CSS' , 'customizr' ),
                             'panel'   => 'tc-advanced-panel'
         ),
-        'performances_sec'           => array(
+        'performances_sec'      => array(
                             'title'     =>  __( 'Website Performances' , 'customizr' ),
                             'priority'    => 20,
                             'description' =>  __( 'On the web, speed is key ! Improve the load time of your pages with those options.' , 'customizr' ),
+                            'panel'   => 'tc-advanced-panel'
+        ),
+        'placeholder_sec'     => array(
+                            'title'     =>  __( 'Front-end placeholders and help blocks' , 'customizr' ),
+                            'priority'    => 30,
                             'panel'   => 'tc-advanced-panel'
         )
       );
