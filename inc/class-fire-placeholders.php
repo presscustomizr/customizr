@@ -162,7 +162,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
 
-      $_conditions = array(
+      $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! is_admin() && ! TC_utils::$inst-> tc_is_home(),
         'demo' != TC_utils::$inst->tc_opt('tc_front_slider'),
@@ -172,7 +172,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       //checks if at least one of the conditions is true
       return apply_filters(
         'tc_is_slider_notice_on',
-        ! (bool)array_sum($_conditions)
+        ! (bool)array_sum($_dont_display_conditions)
       );
     }
 
@@ -278,18 +278,19 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
 
-      $_conditions = array(
+      $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! is_admin() && ! TC_utils::$inst-> tc_is_home(),
         ! (bool)TC_utils::$inst->tc_opt('tc_show_featured_pages'),
         'disabled' == get_transient("tc_fp_notice"),
-        self::$instance -> tc_is_one_fp_set()
+        self::$instance -> tc_is_one_fp_set(),
+        TC___::tc_is_pro()
       );
 
       //checks if at least one of the conditions is true
       return apply_filters(
         'tc_is_fp_notice_on',
-        ! (bool)array_sum($_conditions)
+        ! (bool)array_sum($_dont_display_conditions)
       );
     }
 
