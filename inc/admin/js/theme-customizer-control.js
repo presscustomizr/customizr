@@ -811,6 +811,7 @@ jQuery(function ($) {
 
      //BIND EVENTS
     $('.tc-close-request').click( function(e) {
+      e.preventDefault();
       $('.donate-alert').slideToggle("fast");
       $(this).hide();
     });

@@ -338,23 +338,30 @@ span[class*=tc-icon]:before {
 }
 
 #tc-donate-customizer .tc-close-request{
-	position: absolute;
-	right: 13px;
-	top: 9px;
-	font-size: 13px;
-	line-height: 19px;
-	height: 21px;
-	margin: 0;
-	padding: 0 4px 0;
+  position: absolute;
+  right: 8px;
+  top: 4px;
+  font-size: 14px;
+  line-height: 19px;
+  height: 21px;
+  margin: 0;
+  padding: 1px 6px 0;
+  background-color: #27cda5;
+  color: white;
+  border: none;
+  box-shadow: none;
 }
 .rtl #tc-donate-customizer .tc-close-request {
-  left: 13px;
+  left: 8px;
   right: inherit;
 }
 #tc-donate-customizer .donate-alert .tc-hide-donate, #tc-donate-customizer .donate-alert .tc-cancel-hide-donate {
 	padding: 0 5px 1px;
 }
 
+.tc-cancel-hide-donate {
+  float: right;
+}
 /* GENERAL STYLE */
 .control-section .accordion-section-content {
 	overflow-y: auto;

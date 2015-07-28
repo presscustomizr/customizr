@@ -481,7 +481,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
       ?>
       <script type="text/template" id="donate_template">
         <div id="tc-donate-customizer">
-          <span class="tc-close-request button">X</span>
+          <a href="#" class="tc-close-request button" title="<?php _e('dismiss' , 'customizr'); ?>">X</a>
             <?php
               printf('<h3>%1$s <a href="https://twitter.com/nicguillaume" target="_blank">Nicolas</a>%2$s :).</h3>',
                 __( "Hi! This is" , 'customizr' ),
@@ -497,7 +497,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
               printf('<div class="donate-alert"><p class="tc-notice">%1$s</p><span class="tc-hide-donate button">%2$s</span><span class="tc-cancel-hide-donate button">%3$s</span></div>',
                 __( "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>" , 'customizr'),
                 __( "Hide forever" , 'customizr' ),
-                __( "Let me think twice" , 'customizr' )
+                sprintf( '%s <span style="font-size:20px">%s</span>', __( "Let me think twice" , 'customizr' ), convert_smilies( ':roll:') )
               );
             ?>
         </div>
