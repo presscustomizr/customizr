@@ -6001,7 +6001,7 @@ footer#footer .colophon .social-block a {
   position: absolute;
   right: 30px;
   z-index: 50;
-  bottom: -26px;
+  bottom: 0px;
   padding: 18px 14px 3px;
   font-size: 17px;
   width: 50%;
@@ -6170,7 +6170,7 @@ footer#footer .colophon .social-block a {
 }
 /* FEATURED PAGES
     -------------------------------------------------- */
-.marketing .tc-fp-dismiss {
+.marketing .tc-fp-notice {
   float: right;
   padding: 18px 14px 3px;
   font-size: 17px;
