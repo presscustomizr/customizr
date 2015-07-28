@@ -77,11 +77,12 @@ if ( ! class_exists( 'TC_menu' ) ) :
       add_filter( 'body_class'              , array( $this, 'tc_sidenav_body_class') );
 
       // disable dropdown on click
-      add_filter( 'tc_menu_open_on_click'  , array( $this, 'tc_disable_dropdown_on_click'), 10, 2 );
+      add_filter( 'tc_menu_open_on_click'   , array( $this, 'tc_disable_dropdown_on_click'), 10, 2 );
 
       // add side menu before the page wrapper
       add_action( '__before_page_wrapper'   , array( $this, 'tc_sidenav_display'), 0 );
-
+      // add side menu help block
+      add_action( '__sidenav'               , array( $this, 'tc_maybe_display_sidenav_help') );
       // add menu button to the sidebar
       add_action( '__sidenav'               , array( $this, 'tc_sidenav_toggle_button_display'), 5 );
       // add menu
@@ -89,6 +90,27 @@ if ( ! class_exists( 'TC_menu' ) ) :
     }
 
 
+    function tc_maybe_display_sidenav_help() {
+      if (  ! TC_placeholders::tc_is_sidenav_help_on() )
+        return;
+      ?>
+      <div class="tc-placeholder-wrap tc-sidenav-help">
+        <?php
+          printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
+              __( "This is a default page menu.", "customizr" ),
+              __( "( If you don't have any pages in your website, then this side menu is empty for the moment. )" , "customizr"),
+              sprintf( __("If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s.", "customizr"),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', TC_utils::tc_get_customizer_url( array( "section" => "nav") ), __( "change the default menu", "customizr"), __("replace this default menu by another one", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a>', admin_url('nav-menus.php'), __( "menu creation screen", "customizr") )
+              )
+          );
+          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
+                __( 'dismiss notice', 'customizr')
+          );
+        ?>
+      </div>
+      <?php
+    }
 
 
     /***************************************
@@ -230,16 +252,17 @@ if ( ! class_exists( 'TC_menu' ) ) :
     */
     function tc_sidenav_display() {
       ob_start();
-        printf('<nav id="tc-sn" class="%1$s" role="navigation"><div class="%2$s">',
-                        implode(' ', apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) ),
-                        implode(' ', apply_filters('tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') ) )
-        );
-        do_action( '__sidenav' );
-        echo '</div><!--end tc-sn-inner --></nav><!--end #tc-sn-->';
-
+        $tc_side_nav_class        = implode(' ', apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) );
+        $tc_side_nav_inner_class  = implode(' ', apply_filters('tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') ) );
+        ?>
+          <nav id="tc-sn" class="<?php echo $tc_side_nav_class; ?>" role="navigation">
+            <div class="<?php echo $tc_side_nav_inner_class; ?>">
+              <?php do_action( '__sidenav' ); ?>
+            </div><!--.tc-sn-inner -->
+          </nav><!--#tc-sn-->
+        <?php
       $_sidenav = ob_get_contents();
       ob_end_clean();
-
       echo apply_filters( 'tc_sidenav_display', $_sidenav );
     }
 
@@ -292,10 +315,6 @@ if ( ! class_exists( 'TC_menu' ) ) :
       //'_location', 'type', 'menu_class', 'menu_wrapper_class'
       //renders the menu
 
-      // Get the nav menu based on the _location
-      $_locations           = get_nav_menu_locations();//<= returns an array Array( [main] => id1, [secondary] => id2 );
-      $_has_location_menu   = isset($_locations[$_location]) ? wp_get_nav_menu_object( $_locations[$_location] ) : false;
-
       $menu_args = apply_filters( "tc_{$type}_menu_args",
           array(
             'theme_location'  => $_location,
@@ -303,7 +322,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
             'fallback_cb'     => array( $this, 'tc_page_menu' ),
             //if no menu is set to the required location, fallsback to tc_page_menu
             //=> tc_page_menu has it's own class extension of Walker, therefore no need to specify one below
-            'walker'          => ! $_has_location_menu ? '' : new TC_nav_walker,
+            'walker'          => ! TC_utils::$inst -> tc_has_location_menu($_location) ? '' : new TC_nav_walker,
             'echo'            => false,
         )
       );

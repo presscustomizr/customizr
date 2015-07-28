@@ -31,9 +31,12 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since v3.4+
     */
     function tc_placeholders_ajax_setup() {
+      if ( ! $this -> tc_is_front_help_enabled() )
+        return;
+      add_action( 'wp_ajax_dismiss_sidenav_help'    , array( $this, 'tc_dismiss_sidenav_help' ) );
+      add_action( 'wp_ajax_dismiss_second_menu_notice'  , array( $this, 'tc_dismiss_second_menu_notice' ) );
       add_action( 'wp_ajax_slider_notice_actions'   , array( $this, 'tc_slider_notice_ajax_actions' ) );
       add_action( 'wp_ajax_fp_notice_actions'       , array( $this, 'tc_fp_notice_ajax_actions' ) );
-      add_action( 'wp_ajax_dismiss_second_menu_notice'  , array( $this, 'tc_dismiss_second_menu_notice' ) );
       add_action( 'wp_ajax_dismiss_widget_notice'   , array( $this , 'tc_dismiss_widget_notice' ) );
     }
 
@@ -47,17 +50,203 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since v3.4+
     */
     function tc_placeholders_write_ajax_js_in_footer() {
+      if ( ! $this -> tc_is_front_help_enabled() )
+        return;
+
+      if ( $this -> tc_is_sidenav_help_on() )
+        add_action( 'wp_footer'   , array( $this, 'tc_write_sidenav_help_js'), 100 );
+
+      if ( $this -> tc_is_second_menu_placeholder_on() )
+        add_action( 'wp_footer'   , array( $this, 'tc_write_second_menu_placeholder_js'), 100 );
+
       if ( $this -> tc_is_slider_notice_on() )
         add_action( 'wp_footer'   , array( $this, 'tc_write_slider_notice_js'), 100 );
 
       if ( $this -> tc_is_fp_notice_on() )
         add_action( 'wp_footer'   , array( $this, 'tc_write_fp_notice_js'), 100 );
 
-      if ( $this -> tc_is_second_menu_placeholder_on() )
-        add_action( 'wp_footer'   , array( $this, 'tc_write_second_menu_placeholder_js'), 100 );
-
       if ( $this -> tc_is_widget_placeholder_enabled() )
         add_action( 'wp_footer'   , array( $this, 'tc_widget_placeholder_script'), 100 );
+    }
+
+
+
+
+
+    /*****************************************************
+    * SIDENAV MENU HELP : AJAX JS AND CALLBACK
+    *****************************************************/
+    /**
+    * Dismiss sidenav help
+    * hook : wp_ajax_dismiss_sidenav_help
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_dismiss_sidenav_help() {
+      check_ajax_referer( 'tc-sidenav-help-nonce', 'sideNavNonce' );
+      set_transient( 'tc_sidenav_help', 'disabled' , 60*60*24*365*20 );//20 years of peace
+      wp_die();
+    }
+
+
+    /**
+    * Prints dismiss notice javascript in the footer
+    * hook : wp_footer
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_write_sidenav_help_js() {
+      ?>
+      <script type="text/javascript" id="sidenav-help">
+        ( function( $ ) {
+          var dismiss_request = function( $_el ) {
+            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
+                _query = {
+                    action  : 'dismiss_sidenav_help',
+                    sideNavNonce :  "<?php echo wp_create_nonce( 'tc-sidenav-help-nonce' ); ?>"
+                },
+                $ = jQuery,
+                request = $.post( AjaxUrl, _query );
+
+            request.done( function( response ) {
+              // Check if the user is logged out.
+              if ( '0' === response )
+                return;
+              // Check for cheaters.
+              if ( '-1' === response )
+                return;
+
+              $_el.closest('.tc-sidenav-help').slideToggle('fast');
+            });
+          };//end of fn
+
+          //DOM READY
+          $( function($) {
+            $('.tc-dismiss-notice', '.tc-sidenav-help').click( function( e ) {
+              e.preventDefault();
+              dismiss_request( $(this) );
+            } );
+          } );
+        }) (jQuery)
+      </script>
+      <?php
+    }
+
+
+    /**
+    *
+    * @return  bool
+    * @since Customizr 3.3+
+    */
+    static function tc_is_sidenav_help_on() {
+      //always display in DEV mode
+      if ( defined('TC_DEV') && true === TC_DEV )
+        return true;
+
+      $_dont_display_conditions = array(
+        ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
+        TC_utils::$inst->tc_has_location_menu('main'),// => if the "main" location has a menu assigned
+        'navbar' == TC_utils::$inst->tc_opt('tc_menu_style'),
+        'disabled' == get_transient("tc_sidenav_help"),
+        ! self::$instance -> tc_is_front_help_enabled()
+      );
+
+      //checks if at least one of the conditions is true
+      return apply_filters(
+        'tc_is_sidenav_help_on',
+        ! (bool)array_sum($_dont_display_conditions)
+      );
+    }
+
+
+
+
+
+
+    /*****************************************************
+    * SECOND MENU PLACEHOLDER : AJAX JS AND CALLBACK
+    *****************************************************/
+    /**
+    * Dismiss notice ajax callback
+    * hook : wp_ajax_dismiss_second_menu_notice
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    function tc_dismiss_second_menu_notice() {
+      check_ajax_referer( 'tc-second-menu-placeholder-nonce', 'secondMenuNonce' );
+      set_transient( 'tc_second_menu_placehold', 'disabled' , 60*60*24*365*20 );//20 years of peace
+      wp_die();
+    }
+
+
+    /**
+    * Prints dismiss notice javascript in the footer
+    * hook : wp_footer
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_write_second_menu_placeholder_js() {
+      ?>
+      <script type="text/javascript" id="second-menu-placeholder">
+        ( function( $ ) {
+          var dismiss_request = function( $_el ) {
+            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
+                _query = {
+                    action  : 'dismiss_second_menu_notice',
+                    secondMenuNonce :  "<?php echo wp_create_nonce( 'tc-second-menu-placeholder-nonce' ); ?>"
+                },
+                $ = jQuery,
+                request = $.post( AjaxUrl, _query );
+
+            request.done( function( response ) {
+              // Check if the user is logged out.
+              if ( '0' === response )
+                return;
+              // Check for cheaters.
+              if ( '-1' === response )
+                return;
+
+              $_el.closest('.tc-menu-placeholder').slideToggle('fast');
+            });
+          };//end of fn
+
+          //DOM READY
+          $( function($) {
+            $('.tc-dismiss-notice', '.tc-menu-placeholder').click( function( e ) {
+              e.preventDefault();
+              dismiss_request( $(this) );
+            } );
+          } );
+        }) (jQuery)
+      </script>
+      <?php
+    }
+
+
+    /**
+    *
+    * @return  bool
+    * @since Customizr 3.3+
+    */
+    static function tc_is_second_menu_placeholder_on() {
+      //always display in DEV mode
+      if ( defined('TC_DEV') && true === TC_DEV )
+        return true;
+      //don't display if main menu style is regular <=> 'navbar' == tc_menu_style
+      if ( 'navbar' == TC_utils::$inst->tc_opt('tc_menu_style') )
+        return false;
+      //don't display if second menu is enabled : tc_display_second_menu
+      if ( (bool)TC_utils::$inst->tc_opt('tc_display_second_menu') )
+        return false;
+
+      return apply_filters(
+        "tc_is_second_menu_placeholder_on",
+        self::$instance -> tc_is_front_help_enabled() && is_user_logged_in() && current_user_can('edit_theme_options') && 'disabled' != get_transient("tc_second_menu_placehold")
+      );
     }
 
 
@@ -166,7 +355,8 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! is_admin() && ! TC_utils::$inst-> tc_is_home(),
         'demo' != TC_utils::$inst->tc_opt('tc_front_slider'),
-        'disabled' == get_transient("tc_slider_notice")
+        'disabled' == get_transient("tc_slider_notice"),
+        ! self::$instance -> tc_is_front_help_enabled()
       );
 
       //checks if at least one of the conditions is true
@@ -285,7 +475,8 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
         'disabled' == get_transient("tc_fp_notice"),
         self::$instance -> tc_is_one_fp_set(),
         TC___::tc_is_pro(),
-        TC_plugins_compat::$instance->tc_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php')
+        TC_plugins_compat::$instance->tc_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php'),
+        ! self::$instance -> tc_is_front_help_enabled()
       );
 
       //checks if at least one of the conditions is true
@@ -312,94 +503,6 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       //returns true if at least one fp has been set.
       return (bool)array_sum($_fp_sets);
     }
-
-
-
-
-    /*****************************************************
-    * SECOND MENU PLACEHOLDER : AJAX JS AND CALLBACK
-    *****************************************************/
-    /**
-    * Dismiss widget notice ajax callback
-    * hook : wp_ajax_dismiss_second_menu_notice
-    *
-    * @package Customizr
-    * @since Customizr 3.3+
-    */
-    function tc_dismiss_second_menu_notice() {
-      check_ajax_referer( 'tc-second-menu-placeholder-nonce', 'secondMenuNonce' );
-      set_transient( 'tc_second_menu_placehold', 'disabled' , 60*60*24*365*20 );//20 years of peace
-      wp_die();
-    }
-
-
-    /**
-    * Prints dismiss notice javascript in the footer
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function tc_write_second_menu_placeholder_js() {
-      ?>
-      <script type="text/javascript" id="second-menu-placeholder">
-        ( function( $ ) {
-          var dismiss_request = function( $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'dismiss_second_menu_notice',
-                    secondMenuNonce :  "<?php echo wp_create_nonce( 'tc-second-menu-placeholder-nonce' ); ?>"
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                return;
-
-              $_el.closest('.tc-menu-placeholder').slideToggle('fast');
-            });
-          };//end of fn
-
-          //DOM READY
-          $( function($) {
-            $('.tc-dismiss-notice', '.tc-menu-placeholder').click( function( e ) {
-              e.preventDefault();
-              dismiss_request( $(this) );
-            } );
-          } );
-        }) (jQuery)
-      </script>
-      <?php
-    }
-
-
-    /**
-    * Public helper, state if we can display a widget placeholder to the current user.
-    * @return  bool
-    * @since Customizr 3.3+
-    */
-    static function tc_is_second_menu_placeholder_on( $_position = null ) {
-      //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
-        return true;
-      //don't display if main menu style is regular <=> 'navbar' == tc_menu_style
-      if ( 'navbar' == TC_utils::$inst->tc_opt('tc_menu_style') )
-        return false;
-      //don't display if second menu is enabled : tc_display_second_menu
-      if ( (bool)TC_utils::$inst->tc_opt('tc_display_second_menu') )
-        return false;
-
-      return apply_filters(
-        "tc_is_second_menu_placeholder_on",
-        is_user_logged_in() && current_user_can('edit_theme_options') && 'disabled' != get_transient("tc_second_menu_placehold")
-      );
-    }
-
 
 
 
@@ -485,7 +588,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       $_position = is_null($_position) ? apply_filters('tc_widget_areas_position', array( 'sidebar', 'footer') ) : array($_position);
 
       return apply_filters( "tc_display_widget_placeholders",
-        is_user_logged_in() && current_user_can('edit_theme_options') && array_sum( array_map( array( self::$instance , 'tc_check_widget_placeholder_transient'), $_position ) )
+        self::$instance -> tc_is_front_help_enabled() && is_user_logged_in() && current_user_can('edit_theme_options') && array_sum( array_map( array( self::$instance , 'tc_check_widget_placeholder_transient'), $_position ) )
       );
     }
 
@@ -496,5 +599,15 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     function tc_check_widget_placeholder_transient( $_position ){
       return 'disabled' != get_transient("tc_widget_placehold_{$_position}");
     }
+
+
+    /**
+    * @return  bool
+    * @since Customizr 3.4+
+    */
+    function tc_is_front_help_enabled(){
+      return apply_filters( 'tc_is_front_help_enabled' , (bool)TC_utils::$inst->tc_opt('tc_display_front_help') );
+    }
+
   }//end of class
 endif;

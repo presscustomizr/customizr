@@ -4656,7 +4656,8 @@ a.badge:focus {
  => HEADER
  => LOGO/TITLE
  => NAVBAR
- => MENU
+ => REGULAR MENU
+ => SIDE MENU
  => SECONDARY MENU
  => SOCIAL
  => BREADCRUMB
@@ -5440,7 +5441,7 @@ h2.site-description {
 .navbar .btn-navbar.active {
   outline: 0;
 }
-/* MENU
+/* REGULAR MENU
     -------------------------------------------------- */
 .dropdown-menu {
   border: 0px solid rgba(0, 0, 0, 0.2);
@@ -5541,6 +5542,14 @@ li.dropdown.active > .dropdown-toggle,
 }
 /* SIDE MENU
   -------------------------------------------------- */
+.tc-sn-inner .tc-sidenav-help {
+  clear: both;
+  margin: 10px 0px;
+  position: relative;
+  float: left;
+  padding-bottom: 12px;
+  font-size: 17px;
+}
 /* prevent overflow-x when animating and when menu is visible */
 .tc-sn-visible,
 .animating {
