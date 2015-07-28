@@ -284,7 +284,8 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
         ! (bool)TC_utils::$inst->tc_opt('tc_show_featured_pages'),
         'disabled' == get_transient("tc_fp_notice"),
         self::$instance -> tc_is_one_fp_set(),
-        TC___::tc_is_pro()
+        TC___::tc_is_pro(),
+        TC_plugins_compat::$instance->tc_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php')
       );
 
       //checks if at least one of the conditions is true
