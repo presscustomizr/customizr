@@ -217,10 +217,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
                 return;
 
               $_el.closest('.tc-menu-placeholder').slideToggle('fast');
+            })
+            .always(function( response ) {
+              console.log( 'ajax response : ', response, arguments );
             });
-            // .always(function( response ) {
-            //   console.log( 'ajax response : ', arguments );
-            // });
           };//end of fn
 
           //DOM READY
@@ -362,7 +362,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       $_position = is_null($_position) ? apply_filters('tc_widget_areas_position', array( 'sidebar', 'footer') ) : array($_position);
 
       return apply_filters( "tc_display_widget_placeholders",
-        is_user_logged_in() && current_user_can('edit_theme_options') && array_sum( array_map( array( $this , 'tc_check_widget_placeholder_transient'), $_position ) )
+        is_user_logged_in() && current_user_can('edit_theme_options') && array_sum( array_map( array( self::$instance , 'tc_check_widget_placeholder_transient'), $_position ) )
       );
     }
 
