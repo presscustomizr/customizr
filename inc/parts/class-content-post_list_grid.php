@@ -183,7 +183,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_thumb_html = '';
           if ( $this -> tc_grid_show_thumb() ) {
             $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
-            $_thumb_html  = $_thumb_model['tc_thumb'];
+            if ( isset($_thumb_model['tc_thumb']) )
+              $_thumb_html  = $_thumb_model['tc_thumb'];
           }
           $_thumb_html = apply_filters( 'tc-grid-thumb-html' , $_thumb_html );
 
