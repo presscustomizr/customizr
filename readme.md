@@ -43,6 +43,26 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.0 July 28th 2015 =
+* added : new features for sliders : use a custom link, possibility to link the entire slide and to open the page in a new tab
+* added : new default sidenav menu
+* added : new optional secondary menu
+* added : new default page menu
+* added : new feature smoothscroll option in customize > Global Settings
+* added : new feature Sticky Footer in customize > Footer
+* added : a "sidebars" panel in the customizer including a social links section. (moved from global settings > Social links). Header and Footer social links checkboxes have been also moved into their respective panels.
+* added : a theme updated notice that can be dismissed. Automatically removed after 5 prints.
+* added : various optional front end help notices and placeholder blocks for first time users.
+* fix : avoid blocks reordering when they contain at least one iframe (avoid some reported plugin conflicts)
+* fix : video post format, show full content in alternate layout
+* fix : display slider-loading-gif only if js enabled
+* fix : display a separator after the heading in the page for posts (when not home)
+* fix : html5shiv is loaded only for ie9-
+* fix : dynamic sidebar reordering of the sidebar was not triggered since latest front js framework implementation improved : used of the tc-resize event for all resize related actions added : secondary menu items re-location for responsivereplaced : (js) 'resize' event by the custom 'tc-resize'
+* fix : anchors smooth scroll - exclude ultimate members anchor links
+* changed : customize transport of the header layout setting is now 'refresh'
+* improved : modernizr upgraded to the latest version
+
 = 3.3.28 June 25th 2015 =
 * fix : re-introduce btt-arrow handling in new front js
 * fix : fix external link on multiple occurrences and exclude parents
