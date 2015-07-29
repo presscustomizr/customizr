@@ -53,8 +53,9 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_set_single_post_thumbnail_hooks() {
-
-      add_action( '__before_content'        , array( $this, 'tc_maybe_display_featured_image_help') );
+      //check conditional tags : we want to show single post or single custom post types
+      if ( $this -> tc_single_post_display_controller() )
+        add_action( '__before_content'        , array( $this, 'tc_maybe_display_featured_image_help') );
 
       //__before_main_wrapper, 200
       //__before_content 0
@@ -77,6 +78,11 @@ if ( ! class_exists( 'TC_post' ) ) :
     /***************************
     * SINGLE POST THUMBNAIL HELP
     ****************************/
+    /**
+    * Displays a help block about featured images for single posts
+    * hook : __before_content
+    * @since Customizr 3.4
+    */
     function tc_maybe_display_featured_image_help() {
       if (  ! TC_placeholders::tc_is_thumbnail_help_on() )
         return;
