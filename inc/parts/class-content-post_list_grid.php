@@ -182,6 +182,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //add thumbnail html (src, width, height) if any
           $_thumb_html = '';
           if ( $this -> tc_grid_show_thumb() ) {
+            //return an array( $tc_thumb(image object), $tc_thumb_width(string), $tc_thumb_height(string) )
             $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
             if ( isset($_thumb_model['tc_thumb']) )
               $_thumb_html  = $_thumb_model['tc_thumb'];
