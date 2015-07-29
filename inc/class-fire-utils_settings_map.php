@@ -1027,7 +1027,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'post_layout_sec' ,
                                 'type'        => 'select' ,
                                 'choices'   => $this -> tc_layout_choices(),
-                                'priority'       => 40
+                                'priority'       => 40,
+                                'notice'    => sprintf('<br/> %s<br/>%s',
+                                    sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s."),
+                                        sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('doc.presscustomizr.com/customizr/content-options/#pages-and-posts-layout'), __("Customizr theme documentation" , "customizr" )
+                                        )
+                                    ),
+                                    sprintf( __("If you need to change the layout design of the front page, then open the 'Front Page' section above this one.", "customizr") )
+                                )
               ),
       );//end of layout_options
 
@@ -1306,7 +1313,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     '__before_content|0'     => __( 'Before the title boxed' , 'customizr' ),
                                     '__after_content_title|10'    => __( 'After the title' , 'customizr' ),
                             ),
-                            'priority'      => 10
+                            'priority'      => 10,
+                            'notice'    => sprintf( '%s<br/>%s',
+                              __( 'You can display the featured image (also called the post thumbnail) of your posts before their content, when they are displayed individually.' , 'customizr' ),
+                              sprintf( __( "Don't know how to set a featured image to a post? Learn how in the %s.", "customizr" ),
+                                  sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
+                              )
+                            )
           ),
           'tc_single_post_thumb_height' => array(
                             'default'       => 250,
@@ -1723,12 +1736,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'comments_sec',
                                 'type'        => 'checkbox',
                                 'priority'    => 45,
-                                'notice'      => sprintf('%1$s <a href="%2$s" target="_blank">%3$s</a>.<br/>%4$s <a href="%5$s" target="_blank">%6$s</a>',
+                                'notice'      => sprintf('%1$s <a href="%2$s" target="_blank">%3$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.<br/>%4$s <a href="%5$s" target="_blank">%6$s</a>',
                                     __( 'If checked, this option enables comments on all types of single posts. You can disable comments for a single post in quick edit mode from the' , 'customizr' ),
-                                    'http://codex.wordpress.org/Posts_Screen',
+                                    esc_url('codex.wordpress.org/Posts_Screen'),
                                     __( 'post screen', 'customizr'),
                                     __( "You can also change other comments settings in the" , 'customizr'),
-                                    admin_url() . 'options-discussion.php',
+                                    admin_url('options-discussion.php'),
                                     __( 'discussion settings page.' , 'customizr' )
                                 ),
               ),
