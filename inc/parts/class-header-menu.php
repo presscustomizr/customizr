@@ -164,7 +164,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
         apply_filters( "tc_{$type}_menu_button_attr", $button_attr),
         '<span class="icon-bar"></span>',
         (bool)esc_attr( TC_utils::$inst->tc_opt('tc_display_menu_label') ) ? $_button_label : '',
-        '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Reveal the menu' , 'customizr')
+        '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Open the menu' , 'customizr')
       );
       return apply_filters( "tc_{$type}_menu_button_view", $_button );
     }
@@ -627,12 +627,12 @@ if ( ! class_exists( 'TC_menu' ) ) :
           [class*=sn-left].sn-close #tc-sn, [class*=sn-left] #tc-sn{
             -webkit-transform: translate3d( -100%%, 0, 0 );
             -moz-transform: translate3d( -100%%, 0, 0 );
-            transform: translate3d(-100%%, 0, 0 ); 
+            transform: translate3d(-100%%, 0, 0 );
           }
           [class*=sn-right].sn-close #tc-sn,[class*=sn-right] #tc-sn {
             -webkit-transform: translate3d( 100%%, 0, 0 );
             -moz-transform: translate3d( 100%%, 0, 0 );
-            transform: translate3d( 100%%, 0, 0 ); 
+            transform: translate3d( 100%%, 0, 0 );
           }
          .animating #tc-page-wrap, .sn-open #tc-sn, .tc-sn-visible:not(.sn-close) #tc-sn{
             -webkit-transform: translate3d( 0, 0, 0 );
@@ -665,7 +665,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
       return sprintf("%s\n%s",
         $_css,
         sprintf(
-            apply_filters('tc_sidenav_inline_css', 
+            apply_filters('tc_sidenav_inline_css',
               apply_filters( 'tc_sidenav_slide_mobile', wp_is_mobile() ) ? $_sidenav_mobile_css : $_sidenav_desktop_css
             ),
             $sidenav_width
