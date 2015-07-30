@@ -135,10 +135,11 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     * @since Customizr 3.3
     */
     private function tc_display_footer_placeholder() {
-      if ( ! TC_widgets::$instance -> tc_is_widget_placeholder_enabled( 'footer' ) )
+      if ( ! TC_placeholders::tc_is_widget_placeholder_enabled( 'footer' ) )
         return;
+
       ?>
-      <aside class="tc-widget-placeholder">
+      <aside class="tc-placeholder-wrap tc-widget-placeholder">
         <?php
           printf('<span class="tc-admin-notice">%1$s</span>',
             __( 'This block is visible for admin users only.', 'customizr')
@@ -148,11 +149,13 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
             __( 'The footer has no widgets', 'customizr')
           );
 
-          printf('<p>%1s <a href="%2$s" title="%3$s" target="blank">%4$s</a></p>',
-            __( 'You can add widgets to the footer in :', 'customizr' ),
-            admin_url( 'widgets.php' ),
-            __( 'Add widgets' , 'customizr'),
-            __( 'appearance > widgets' , 'customizr' )
+          printf('<p><strong>%1$s</strong></p>',
+              sprintf( __("Add widgets to the footer %s or %s.", "customizr"),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', TC_utils::tc_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
+                sprintf('<a class="tc-inline-dismiss-notice" data-position="footer" href="#" title="%1$s">%1$s</a>',
+                  __( 'dismiss this notice', 'customizr')
+                )
+              )
           );
 
           printf('<a class="tc-dismiss-notice" data-position="footer" href="#" title="%1$s">%1$s x</a>',
@@ -302,7 +305,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
          .tc-sticky-footer #tc-push-footer.sticky-footer-enabled { display: block; }
         \n"
       );
-      return $_css;      
+      return $_css;
     }
     /*
     * Callback of body_class hook
@@ -313,12 +316,12 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     function tc_add_sticky_footer_body_class($_classes) {
       if ( $this -> is_sticky_footer_enabled() )
         $_classes = array_merge( $_classes, array( 'tc-sticky-footer') );
-      
+
       return $_classes;
     }
 
     /**
-    * 
+    *
     * Print hookable sticky footer push div
     *
     *
@@ -331,8 +334,8 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     function tc_sticky_footer_push() {
       if ( ! ( $this -> is_sticky_footer_enabled() || TC___::$instance -> tc_is_customizing() ) )
         return;
-      
-      echo '<div id="tc-push-footer"></div>';    
+
+      echo '<div id="tc-push-footer"></div>';
     }
 
 
@@ -368,10 +371,10 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 
 
     /* Helpers */
-        
+
     /*
     *  Sticky footer enabled
-    *  
+    *
     * @return bool
     */
     function is_sticky_footer_enabled() {

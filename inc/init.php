@@ -12,7 +12,7 @@
 *
 * @since Customizr 3.0
 */
-if( !function_exists( 'tc__f' )) :
+if( ! function_exists( 'tc__f' ) ) :
     function tc__f ( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
        return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
     }
@@ -92,6 +92,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('inc' , 'utils'),//helpers used everywhere
               array('inc' , 'resources'),//loads front stylesheets (skins) and javascripts
               array('inc' , 'widgets'),//widget factory
+              array('inc' , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
               array('inc/admin' , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
               array('inc/admin' , 'admin_page')//creates the welcome/help panel including changelog and system config
             ),
@@ -131,10 +132,8 @@ if ( ! class_exists( 'TC___' ) ) :
         )//end of array
       );//end of filter
 
-
-
       //check the context
-      if ( file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && 'customizr-pro' == self::$theme_name )
+      if ( $this -> tc_is_pro() )
         require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
 
       self::$tc_option_group = 'tc_theme_options';
@@ -203,10 +202,24 @@ if ( ! class_exists( 'TC___' ) ) :
     function tc_set_files_to_load( $_to_load ) {
       $_to_load = empty($_to_load) ? $this -> tc_core : $_to_load;
       //Not customizing
+      //1) IS NOT CUSTOMIZING : tc_is_customize_left_panel() || tc_is_customize_preview_frame() || tc_doing_customizer_ajax()
+      //---1.1) IS ADMIN
+      //-------1.1.a) Doing AJAX
+      //-------1.1.b) Not Doing AJAX
+      //---1.2) IS NOT ADMIN
+      //2) IS CUSTOMIZING
+      //---2.1) IS LEFT PANEL => customizer controls
+      //---2.2) IS RIGHT PANEL => preview
       if ( ! $this -> tc_is_customizing() )
         {
-          if ( is_admin() )
-            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
+          if ( is_admin() ) {
+            //if doing ajax, we must not exclude the placeholders
+            //because ajax actions are fired by admin_ajax.php where is_admin===true.
+            if ( defined( 'DOING_AJAX' ) )
+              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
+            else
+              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
+          }
           else
             //Skips all admin classes
             $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
@@ -238,6 +251,11 @@ if ( ! class_exists( 'TC___' ) ) :
     /**
     * Helper
     * Alters the original classes tree
+    * @param $_groups array() list the group of classes to unset like header, content, admin
+    * @param $_files array() list the single file to unset.
+    * Specific syntax for single files: ex in fire|inc/admin|admin_page
+    * => fire is the group, inc/admin is the path, admin_page is the file suffix.
+    * => will unset inc/admin/class-fire-admin_page.php
     *
     * @return array() describing the files to load
     *
@@ -255,8 +273,11 @@ if ( ! class_exists( 'TC___' ) ) :
         foreach ( $_files as $_concat ) {
           //$_concat looks like : fire|inc|resources
           $_exploded = explode( '|', $_concat );
+          //each single file entry must be a string like 'admin|inc/admin|customize'
+          //=> when exploded by |, the array size must be 3 entries
           if ( count($_exploded) < 3 )
             continue;
+
           $gname = $_exploded[0];
           $_file_to_remove = $_exploded[2];
           if ( ! isset($_tree[$gname] ) )
@@ -346,6 +367,14 @@ if ( ! class_exists( 'TC___' ) ) :
       return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
     }
 
+
+    /**
+    * @return  boolean
+    * @since  3.4+
+    */
+    static function tc_is_pro() {
+      return file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
+    }
   }//end of class
 endif;
 

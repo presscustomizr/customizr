@@ -12,8 +12,10 @@
 if ( ! class_exists( 'TC_nav_walker' ) ) :
   class TC_nav_walker extends Walker_Nav_Menu {
     static $instance;
-    function __construct () {
+    public $tc_location;
+    function __construct($_location) {
       self::$instance =& $this;
+      $this -> tc_location = $_location;
       add_filter( 'nav_menu_css_class' , array($this, 'tc_add_bootstrap_classes'), 10, 4 );
     }
 
@@ -49,9 +51,9 @@ if ( ! class_exists( 'TC_nav_walker' ) ) :
       if ( $item->is_dropdown ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? '<a data-test="joie"' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search );
+        $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, $this -> tc_location );
         $item_html      = str_replace( $search , $replace , $item_html);
 
         //adds arrows down

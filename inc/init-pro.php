@@ -84,6 +84,6 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
   }//end of class
 endif;
 
-//pro version
-if ( 'customizr-pro' == TC___::$theme_name )
+//may be load pro
+if ( TC___::tc_is_pro() )
   new TC_init_pro(TC___::$theme_name );

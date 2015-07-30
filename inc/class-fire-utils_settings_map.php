@@ -108,7 +108,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_footer_global_settings_option_map',
         //ADVANCED OPTIONS
         'tc_custom_css_option_map',
-        'tc_performance_option_map'
+        'tc_performance_option_map',
+        'tc_placeholders_notice_map'
       );
 
       foreach ( $_settings_sections as $_section_cb ) {
@@ -261,7 +262,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Smooth scroll on click' , 'customizr' ),
                                 'section'     => 'links_sec' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ),
+                                'notice'      => sprintf( '%s<br/><strong>%s</strong> : %s', __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ), __( 'Important note' , 'customizr' ), __('this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option.', 'customizr') )
               ),
               'tc_link_hover_effect'  =>  array(
                                 'default'       => 1,
@@ -652,14 +653,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_display_second_menu'  =>  array(
                                 'default'       => 0,
                                 'control'       => 'TC_controls' ,
-                                'label'         => __( "Display a secondary menu in the header." , "customizr" ),
+                                'label'         => __( "Display a secondary (horizontal) menu in the header." , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 15,//must be located between the two menus
                                 // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               ),
               'tc_menu_style'  =>  array(
-                              'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'navbar' : 'aside',
+                              'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
                               'control'       => 'TC_controls' ,
                               'title'         => __( 'Main menu design' , 'customizr'),
                               'label'         => __( 'Select a style : side menu or regular' , 'customizr' ),
@@ -690,7 +691,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               ),
               'tc_menu_position'  =>  array(
-                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'pull-menu-left' : 'pull-menu-right',
+                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( 'Menu position (for "main" menu)' , "customizr" ),
                                 'section'       => 'nav' ,
@@ -704,10 +705,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'        => __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' )
               ),
               'tc_second_menu_position'  =>  array(
-                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.3.29', '1.1.14' ) ? 'pull-menu-left' : 'pull-menu-right',
+                                'default'       => 'pull-menu-left',
                                 'control'       => 'TC_controls' ,
-                                'title'         => __( 'Secondary menu design' , 'customizr'),
-                                'label'         => __( 'Menu position (for "secondary" menu)' , "customizr" ),
+                                'title'         => __( 'Secondary (horizontal) menu design' , 'customizr'),
+                                'label'         => __( 'Menu position for the horizontal menu)' , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          =>  'select' ,
                                 'choices'       => array(
@@ -1026,7 +1027,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'post_layout_sec' ,
                                 'type'        => 'select' ,
                                 'choices'   => $this -> tc_layout_choices(),
-                                'priority'       => 40
+                                'priority'       => 40,
+                                'notice'    => sprintf('<br/> %s<br/>%s',
+                                    sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s.", "customizr"),
+                                        sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('doc.presscustomizr.com/customizr/content-options/#pages-and-posts-layout'), __("Customizr theme documentation" , "customizr" )
+                                        )
+                                    ),
+                                    sprintf( __("If you need to change the layout design of the front page, then open the 'Front Page' section above this one.", "customizr") )
+                                )
               ),
       );//end of layout_options
 
@@ -1305,7 +1313,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     '__before_content|0'     => __( 'Before the title boxed' , 'customizr' ),
                                     '__after_content_title|10'    => __( 'After the title' , 'customizr' ),
                             ),
-                            'priority'      => 10
+                            'priority'      => 10,
+                            'notice'    => sprintf( '%s<br/>%s',
+                              __( 'You can display the featured image (also called the post thumbnail) of your posts before their content, when they are displayed individually.' , 'customizr' ),
+                              sprintf( __( "Don't know how to set a featured image to a post? Learn how in the %s.", "customizr" ),
+                                  sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
+                              )
+                            )
           ),
           'tc_single_post_thumb_height' => array(
                             'default'       => 250,
@@ -1722,12 +1736,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'comments_sec',
                                 'type'        => 'checkbox',
                                 'priority'    => 45,
-                                'notice'      => sprintf('%1$s <a href="%2$s" target="_blank">%3$s</a>.<br/>%4$s <a href="%5$s" target="_blank">%6$s</a>',
+                                'notice'      => sprintf('%1$s <a href="%2$s" target="_blank">%3$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.<br/>%4$s <a href="%5$s" target="_blank">%6$s</a>',
                                     __( 'If checked, this option enables comments on all types of single posts. You can disable comments for a single post in quick edit mode from the' , 'customizr' ),
-                                    'http://codex.wordpress.org/Posts_Screen',
+                                    esc_url('codex.wordpress.org/Posts_Screen'),
                                     __( 'post screen', 'customizr'),
                                     __( "You can also change other comments settings in the" , 'customizr'),
-                                    admin_url() . 'options-discussion.php',
+                                    admin_url('options-discussion.php'),
                                     __( 'discussion settings page.' , 'customizr' )
                                 ),
               ),
@@ -1921,8 +1935,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_img_smart_load'  =>  array(
                                 'default'       => 0,
                                 'label'       => __( 'Load images on scroll' , 'customizr' ),
-                                'control'     =>  'TC_controls' ,
-                                'section'     => 'performances_sec' ,
+                                'control'     =>  'TC_controls',
+                                'section'     => 'performances_sec',
                                 'type'        => 'checkbox',
                                 'priority'    => 20,
                                 'notice'      => __('Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images.' , 'customizr')
@@ -1930,6 +1944,21 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       );
     }
 
+    /*-----------------------------------------------------------------------------------------------------
+                              FRONT END NOTICES AND PLACEHOLDERS SECTION
+    ------------------------------------------------------------------------------------------------------*/
+    function tc_placeholders_notice_map( $get_default = null ) {
+      return array(
+              'tc_display_front_help'  =>  array(
+                                'default'       => 1,
+                                'control'   => 'TC_controls',
+                                'label'       => __( "Display help notices on front-end for logged in users.", 'customizr' ),
+                                'section'     => 'placeholder_sec',
+                                'type'        => 'checkbox',
+                                'notice'    => __( 'When this options is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities.' , 'customizr' )
+              )
+      );
+    }
 
 
 
@@ -2051,6 +2080,26 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $locations      = get_registered_nav_menus();
       $menus          = wp_get_nav_menus();
       $num_locations  = count( array_keys( $locations ) );
+      global $wp_version;
+      $nav_section_desc =  sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations, 'customizr' ), number_format_i18n( $num_locations ) );
+      //adapt the nav section description for v4.3 (menu in the customizer from now on)
+      if ( version_compare( $wp_version, '4.3', '<' ) ) {
+        $nav_section_desc .= "<br/>" . sprintf( __('You can edit your menu content %s.' , 'customizr'),
+          sprintf( '<a href="%1$s" target="_blank">%2$s</a>',
+            admin_url('nav-menus.php'),
+            __("on the Menus screen in the Appearance section" , "customizr")
+          )
+        );
+      } else {
+        $nav_section_desc .= "<br/><br/>" . sprintf( __('You can edit your menu content %s.' , 'customizr'),
+          sprintf( '<a href="%1$s" target="_blank">%2$s</a>',
+            "javascript:wp.customize.section('nav').container.find('.customize-section-back').trigger('click'); wp.customize.panel('nav_menus').focus()",
+            __("in the menu panel" , "customizr")
+          )
+        );
+      }
+
+      $nav_section_desc .= "<br/>". __( 'If a location nas no menu assigned to it, a default page menu will be used.', 'customizr');
 
       $_new_sections = array(
         /*---------------------------------------------------------------------------------------------
@@ -2128,7 +2177,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'title'          => __( 'Navigation Menus' , 'customizr' ),
                             'theme_supports' => 'menus',
                             'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
-                            'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.'),
+                            'description'    => $nav_section_desc,
                             'panel'   => 'tc-header-panel'
         ),
 
@@ -2242,13 +2291,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'custom_sec'           => array(
                             'title'     =>  __( 'Custom CSS' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 100 : 10,
-                            'description' =>  __( 'Add your own CSS' , 'customizr' ),
                             'panel'   => 'tc-advanced-panel'
         ),
-        'performances_sec'           => array(
+        'performances_sec'      => array(
                             'title'     =>  __( 'Website Performances' , 'customizr' ),
                             'priority'    => 20,
                             'description' =>  __( 'On the web, speed is key ! Improve the load time of your pages with those options.' , 'customizr' ),
+                            'panel'   => 'tc-advanced-panel'
+        ),
+        'placeholder_sec'     => array(
+                            'title'     =>  __( 'Front-end placeholders and help blocks' , 'customizr' ),
+                            'priority'    => 30,
                             'panel'   => 'tc-advanced-panel'
         )
       );

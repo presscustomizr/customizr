@@ -903,16 +903,15 @@ var czrapp = czrapp || {};
       //cache jQuery el
       this.$_sticky_logo    = $('img.sticky', '.site-logo');
       this.$_resetMarginTop = $('#tc-reset-margin-top');
-
       //subclass properties
       this.elToHide         = []; //[ '.social-block' , '.site-description' ],
-      this.customOffset     = +TCParams.stickyCustomOffset;
+      this.customOffset     = TCParams.stickyCustomOffset || {};// defaults : { _initial : 0, _scrolling : 0 }
       this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
       this.timer            = 0;
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
 
-      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 50; //these are equal for now
+      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 5;
     },//init()
 
 
@@ -937,8 +936,14 @@ var czrapp = czrapp || {};
         self.stickyHeaderEventHandler('resize');
       });
 
+      //SCROLLING ACTIONS
       czrapp.$_window.scroll( function() {
         self.stickyHeaderEventHandler('scroll');
+      });
+
+      //SIDENAV ACTIONS => recalculate the top offset on sidenav toggle
+      czrapp.$_body.on( czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click' , '.sn-toggle', function() {
+        self.stickyHeaderEventHandler('sidenav-toggle');
       });
     },
 
@@ -969,7 +974,7 @@ var czrapp = czrapp || {};
           }
 
           if ( this.increment > 5 )
-            //decrease the scrolling trigger delay when smoothscroll on to avoid not catching the scroll when scrolling fast and sticky header not already triggered  
+            //decrease the scrolling trigger delay when smoothscroll on to avoid not catching the scroll when scrolling fast and sticky header not already triggered
             _delay = ! ( czrapp.$_body.hasClass('tc-smoothscroll') && ! this._is_scrolling() ) ? this.scrollingDelay : 15;
 
           this.timer = setTimeout( function() {
@@ -978,6 +983,7 @@ var czrapp = czrapp || {};
         break;
 
         case 'resize' :
+        case 'sidenav-toggle' :
           self._set_sticky_offsets();
           self._set_header_top_offset();
           self._set_logo_height();
@@ -999,17 +1005,62 @@ var czrapp = czrapp || {};
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
-    _get_initial_offset : function() {
+    _get_top_offset : function() {
       //initialOffset     = ( 1 == isUserLogged &&  580 < $(window).width() ) ? $('#wpadminbar').height() : 0;
-      var initialOffset   = 0;
+      //custom offset : are we scrolling ? => 2 custom top offset values can be defined by users : initial and scrolling
+      //make sure custom offset are set and numbers
+      var initialOffset   = 0,
+          that            = this,
+          customOffset    = +this._get_custom_offset( that._is_scrolling() ? '_scrolling' : '_initial' );
+
       if ( 1 == this.isUserLogged() && ! this.isCustomizing() ) {
         if ( 580 < czrapp.$_window.width() )
           initialOffset = czrapp.$_wpadminbar.height();
         else
           initialOffset = ! this._is_scrolling() ? czrapp.$_wpadminbar.height() : 0;
       }
-      return initialOffset + this.customOffset;
+      return initialOffset + customOffset ;
     },
+
+
+    //CUSTOM TOP OFFSET
+    //return the user defined dynamic or static custom offset
+    //custom offset is a localized param that can be passed with the wp filter : tc_sticky_custom_offset
+    //its default value is an object : { _initial : 0, _scrolling : 0, options : { _static : true, _element : "" }
+    //if _static is set to false and a dom element is provided, then the custom offset will be the calculated height of the element
+    _get_custom_offset : function( _context ) {
+      //Always check if this.customOffset is well formed
+      if ( _.isEmpty( this.customOffset ) )
+        return 0;
+      if ( ! this.customOffset[_context] )
+        return 0;
+      if ( ! this.customOffset.options )
+        return this.customOffset[_context];
+
+      //always return a static value for the scrolling context;
+      if ( '_scrolling' == _context )
+        return +this.customOffset[_context] || 0;
+
+      //INITIAL CONTEXT
+      //CASE 1 : STATIC
+      if ( this.customOffset.options._static )
+        return +this.customOffset[_context] || 0;
+
+      var that = this,
+          $_el = $(that.customOffset.options._element);
+
+      //CASE 2 : DYNAMIC : based on an element's height
+      //does the element exists?
+      if ( ! $_el.length )
+        return 0;
+      else {
+        return $_el.outerHeight() || +this.customOffset[_context] || 0;
+      }
+      return;
+    },
+
+
+
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _set_sticky_offsets : function() {
@@ -1023,14 +1074,14 @@ var czrapp = czrapp || {};
       //What is the initial offset of the header ?
       var headerHeight    = czrapp.$_tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
       //set initial margin-top = initial offset + header's height
-      this.$_resetMarginTop.css('margin-top' , ( + headerHeight + self.customOffset ) + 'px');
+      this.$_resetMarginTop.css('margin-top' , + headerHeight  + 'px');
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _set_header_top_offset : function() {
       var self = this;
       //set header initial offset
-      czrapp.$_tcHeader.css('top' , self._get_initial_offset() );
+      czrapp.$_tcHeader.css('top' , self._get_top_offset() );
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)

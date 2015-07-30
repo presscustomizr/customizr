@@ -40,7 +40,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
       //modify some WP built-in settings / controls / sections
       add_action ( 'customize_register'                       , array( $this , 'tc_alter_wp_customizer_settings' ), 30, 1 );
   		//preview scripts
-  		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ));
+      //set with priority 20 to be fired after tc_customize_store_db_opt in TC_utils
+  		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ), 20 );
   		//Hide donate button
   		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
   		//Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
@@ -56,26 +57,18 @@ if ( ! class_exists( 'TC_customize' ) ) :
     * Since the WP_Customize_Manager::$controls and $settings are protected properties, one way to alter them is to use the get_setting and get_control methods
     * Another way is to remove the control and add it back as an instance of a custom class and with new properties
     * and set new property values
-    * hook : tc_customize_register
+    * hook : tc_customize_register:30
     * @return void()
     */
     function tc_alter_wp_customizer_settings( $wp_customize ) {
-      //Alter blogname et blogdescription transport
+      //CHANGE BLOGNAME AND BLOGDESCRIPTION TRANSPORT
       $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
       $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
 
-      //Alter nav section
-      $_complement_descr = sprintf('&nbsp;<a class="button-primary" href="%2$s" target="_blank">%3$s</a><p>%1$s</p>',
-        __( 'If a location nas no menu assigned, a default page menu will be used.', 'customizr'),
-        admin_url('nav-menus.php'),
-        __( 'Manage menus' , 'customizr' )
-      );
-      $wp_customize -> get_section('nav') -> description .= $_complement_descr;
-
-      //Alter menus various menus properties
+      //CHANGE MENUS PROPERTIES
       $locations    = get_registered_nav_menus();
       $menus        = wp_get_nav_menus();
-      $choices      = array( '' => __( '&mdash; Select &mdash;' ) );
+      $choices      = array( '' => __( '&mdash; Select &mdash;', 'customizr' ) );
       foreach ( $menus as $menu ) {
         $choices[ $menu->term_id ] = wp_html_excerpt( $menu->name, 40, '&hellip;' );
       }
@@ -84,14 +77,31 @@ if ( ! class_exists( 'TC_customize' ) ) :
         'secondary' => 20
       );
 
+      //WP only adds the menu(s) settings and controls if the user has created at least one menu.
+      //1) if no menus yet, we still want to display the menu picker + add a notice with a link to the admin menu creation panel
+      //=> add_setting and add_control for each menu location. Check if they are set first by security
+      //2) if user has already created a menu, the settings are already created, we just need to update the controls.
       $_priority = 0;
       //assign new priorities to the menus controls
       foreach ( $locations as $location => $description ) {
         $menu_setting_id = "nav_menu_locations[{$location}]";
 
-        $wp_customize -> remove_control( $menu_setting_id );
+        //create the settings if they don't exist
+        //=> in the condition, make sure that the setting has really not been created yet (maybe over secured)
+        if ( ! $menus && ! is_object( $wp_customize->get_setting($menu_setting_id ) ) ) {
+          $wp_customize -> add_setting( $menu_setting_id, array(
+            'sanitize_callback' => 'absint',
+            'theme_supports'    => 'menus',
+          ) );
+        }
 
-        $_control_options = array(
+        //remove the controls if they exists
+        if ( is_object( $wp_customize->get_control( $menu_setting_id ) ) ) {
+          $wp_customize -> remove_control( $menu_setting_id );
+        }
+
+        //replace the controls by our custom controls
+        $_control_properties = array(
           'label'   => $description,
           'section' => 'nav',
           'title'   => "main" == $location ? __( 'Assign menus to locations' , 'customizr') : false,
@@ -100,10 +110,18 @@ if ( ! class_exists( 'TC_customize' ) ) :
           'priority' => isset($_priorities[$location]) ? $_priorities[$location] : $_priority
         );
 
-        $wp_customize -> add_control( new TC_controls( $wp_customize, $menu_setting_id, $_control_options ) );
+        //add a notice property if no menu created yet.
+        if ( ! $menus ) {
+          $_control_properties['notice'] = sprintf( __("You haven't created any menu yet. %s or check the %s to learn more about menus.", "customizr"),
+            sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', admin_url('nav-menus.php'), __("Create a new menu now" , "customizr") ),
+            sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('codex.wordpress.org/WordPress_Menu_User_Guide'),  __("WordPress documentation" , "customizr") )
+          );
+        }
+
+        $wp_customize -> add_control( new TC_controls( $wp_customize, $menu_setting_id, $_control_properties ) );
 
         $_priority = $_priority + 10;
-      }
+      }//foreach
     }
 
 
@@ -310,7 +328,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
         */
         function tc_render_link_to_grid( $set_id ) {
           if ( false !== strpos( $set_id, 'tc_front_layout' ) )
-            printf('<span class="button tc-navigate-to-post-list" title="%1$s">%1$s &raquo;</span>' , __('Jump to the blog design options' , 'customizr') );
+            printf('<a class="button tc-navigate-to-post-list" title="%1$s" href="%2$s">%1$s &raquo;</a>' ,
+              __('Jump to the blog design options' , 'customizr'),
+              "javascript:wp.customize.section( 'post_lists_sec' ).focus();"
+              );
         }
 
 
@@ -481,23 +502,25 @@ if ( ! class_exists( 'TC_customize' ) ) :
       ?>
       <script type="text/template" id="donate_template">
         <div id="tc-donate-customizer">
-          <span class="tc-close-request button">X</span>
+          <a href="#" class="tc-close-request button" title="<?php _e('dismiss' , 'customizr'); ?>">X</a>
             <?php
-              printf('<h3>%1$s <a href="https://twitter.com/nicguillaume" target="_blank">Nicolas</a>%2$s :).</h3>',
+              printf('<h3>%1$s <a href="%2$s" target="_blank">Nicolas</a>%3$s :).</h3>',
                 __( "Hi! This is" , 'customizr' ),
+                esc_url('twitter.com/presscustomizr'),
                 __( ", developer of the Customizr theme", 'customizr' )
               );
               printf('<span class="tc-notice">%1$s</span>',
                 __( "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support it's continued development with a donation of $20, $50, ..." , 'customizr' )
               );
-              printf('<a class="tc-donate-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU" target="_blank" rel="nofollow">
-                <img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="%1$s"></a>',
+              printf('<a class="tc-donate-link" href="%1$s" target="_blank" rel="nofollow"><img src="%2$s" alt="%3$s"></a>',
+                esc_url('paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU'),
+                esc_url('paypal.com/en_US/i/btn/btn_donate_LG.gif'),
                 __( "Make a donation for Customizr" , 'customizr' )
               );
               printf('<div class="donate-alert"><p class="tc-notice">%1$s</p><span class="tc-hide-donate button">%2$s</span><span class="tc-cancel-hide-donate button">%3$s</span></div>',
                 __( "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>" , 'customizr'),
                 __( "Hide forever" , 'customizr' ),
-                __( "Let me think twice" , 'customizr' )
+                sprintf( '%s <span style="font-size:20px">%s</span>', __( "Let me think twice" , 'customizr' ), convert_smilies( ':roll:') )
               );
             ?>
         </div>
@@ -508,43 +531,65 @@ if ( ! class_exists( 'TC_customize' ) ) :
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Need more customizations options and premium support ?" , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
-              __( "Discover Customizr Pro" , 'customizr' )
+              __( "Get Customizr Pro" , 'customizr' )
             );
           ?>
         </div>
       </script>
       <script type="text/template" id="wfc_cta">
         <div class="tc-cta tc-in-control-cta-wrap">
-        <hr/>
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with the Customizr Pro theme." , 'customizr' ),
+              __( "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with Customizr Pro." , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
-              __( "Discover Customizr Pro" , 'customizr' )
+              __( "Get Customizr Pro" , 'customizr' )
             );
           ?>
         </div>
       </script>
-       <script type="text/template" id="fpu_cta">
+      <script type="text/template" id="fpu_cta">
         <div class="tc-cta tc-in-control-cta-wrap">
-        <hr/>
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Add unlimited featured pages with Customizr Pro" , 'customizr' ),
+              __( "Add unlimited featured pages with Customizr Pro." , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
-              __( "Discover Customizr Pro" , 'customizr' )
+              __( "Get Customizr Pro" , 'customizr' )
             );
           ?>
         </div>
       </script>
+
+      <script type="text/template" id="gc_cta">
+        <div class="tc-cta tc-in-control-cta-wrap">
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer." , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Get Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
+
+       <script type="text/template" id="mc_cta">
+        <div class="tc-cta tc-in-control-cta-wrap">
+          <?php
+            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+              __( "Add beautiful reveal effects to your side menu." , 'customizr' ),
+              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              __( "Get Customizr Pro" , 'customizr' )
+            );
+          ?>
+        </div>
+      </script>
+
       <script type="text/template" id="footer_cta">
         <div class="tc-cta tc-in-control-cta-wrap">
-        <hr/>
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Customize your footer credits with Customizr Pro" , 'customizr' ),
+              __( "Customize your footer credits with Customizr Pro." , 'customizr' ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
-              __( "Discover Customizr Pro" , 'customizr' )
+              __( "Get Customizr Pro" , 'customizr' )
             );
           ?>
         </div>

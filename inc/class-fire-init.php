@@ -366,6 +366,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       * Set user defined options for images
       * Thumbnail's height
       * Slider's height
+      * hook : after_setup_theme
       *
       * @package Customizr
       * @since Customizr 3.1.23
@@ -415,7 +416,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       /**
       * Set slider new image sizes
       * Callback of slider_full_size and slider_size filters
-      *
+      * hook : might be called from after_setup_theme
       * @package Customizr
       * @since Customizr 3.2.0
       *
@@ -512,7 +513,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       function tc_register_menus() {
         /* This theme uses wp_nav_menu() in one location. */
         register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
-        register_nav_menu( 'secondary' , __( 'Secondary Menu' , 'customizr' ) );
+        register_nav_menu( 'secondary' , __( 'Secondary (horizontal) Menu' , 'customizr' ) );
       }
 
 

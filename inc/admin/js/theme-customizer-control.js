@@ -789,6 +789,8 @@ jQuery(function ($) {
     _render_wfc_cta();
     _render_fpu_cta();
     _render_footer_cta();
+    _render_gc_cta();
+    _render_mc_cta();
   }
   _render_rate_czr();
 
@@ -809,6 +811,7 @@ jQuery(function ($) {
 
      //BIND EVENTS
     $('.tc-close-request').click( function(e) {
+      e.preventDefault();
       $('.donate-alert').slideToggle("fast");
       $(this).hide();
     });
@@ -851,6 +854,22 @@ jQuery(function ($) {
         $( "script#fpu_cta" ).html()
     );
     $('li[id*="tc_featured_text_three"]').append( _cta() );
+  }
+
+  function _render_gc_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var _cta = _.template(
+        $( "script#gc_cta" ).html()
+    );
+    $('li[id*="tc_post_list_show_thumb"] > .tc-customizr-title').before( _cta() );
+  }
+
+  function _render_mc_cta() {
+    // Grab the HTML out of our template tag and pre-compile it.
+    var _cta = _.template(
+        $( "script#mc_cta" ).html()
+    );
+    $('li[id*="tc_theme_options-tc_display_menu_label"]').append( _cta() );
   }
 
   function _render_footer_cta() {
@@ -920,11 +939,6 @@ jQuery(function ($) {
       $( _get_grid_design_controls() ).slideToggle('fast');
       $(this).toggleClass('open');
     } );
-
-    /* BUTTON JUMP TO POST LIST */
-    $('.tc-navigate-to-post-list').click( function() {
-      $('#accordion-section-post_lists_sec > .accordion-section-title').trigger('click');
-    });
 
     /* RECENTER CURRENT SECTIONS */
     $('.accordion-section').not('.control-panel').click( function () {

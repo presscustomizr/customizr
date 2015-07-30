@@ -198,26 +198,57 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         return $init;
     }
 
+
+
     /**********************************************************************************
     * UPDATE NOTICE
     * User gets notified when the version stores in the db option 'last_update_notice'
     * is < current version of the theme (CUSTOMIZR_VER)
     * User can dismiss the notice and the option get updated by ajax to the current version
+    * The notice will be displayed a maximum of 5 times and will be automatically dismissed until the next update.
     * => users won't be notified again until the next update.
     **********************************************************************************/
     /**
     * hook : admin_notices
     */
     function tc_may_be_display_update_notice() {
-      $opt_name = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
-      $last_update_notice = esc_attr( TC_utils::$inst-> tc_opt($opt_name) );
+      $opt_name                   = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
+      $last_update_notice_values  = TC_utils::$inst -> tc_opt($opt_name);
       $show_new_notice = false;
-      //first time user of the theme, the option does not exist.
-      if ( ! $last_update_notice )
-        $show_new_notice = true;
+
+      if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {
+        //first time user of the theme, the option does not exist
+        // 1) initialize it => set it to the current Customizr version, displayed 0 times.
+        // 2) update in db
+        $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+        TC_utils::$inst->tc_set_option( $opt_name, $last_update_notice_values );
+        //already user of the theme ?
+        if ( TC_utils::$inst->tc_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
+          $show_new_notice = true;
+      }
+
+      $_db_version          = $last_update_notice_values["version"];
+      $_db_displayed_count  = $last_update_notice_values["display_count"];
+
       //user who just upgraded the theme will be notified until he clicks on the dismiss link
-      if ( version_compare( CUSTOMIZR_VER, $last_update_notice , '>' ) )
-        $show_new_notice = true;
+      //or until the notice has been displayed 5 times.
+      if ( version_compare( CUSTOMIZR_VER, $_db_version , '>' ) ) {
+        //CASE 1 : displayed less than 5 times
+        if ( $_db_displayed_count < 5 ) {
+          $show_new_notice = true;
+          //increments the counter
+          (int) $_db_displayed_count++;
+          $last_update_notice_values["display_count"] = $_db_displayed_count;
+          //updates the option val with the new count
+          TC_utils::$inst->tc_set_option( $opt_name, $last_update_notice_values );
+        }
+        //CASE 2 : displayed 5 times => automatic dismiss
+        else {
+          //reset option value with new version and counter to 0
+          $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+          TC_utils::$inst->tc_set_option( $opt_name, $new_val );
+        }//end else
+      }//end if
 
       if ( ! $show_new_notice )
         return;
@@ -226,9 +257,6 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         ?>
         <div class="updated" style="position:relative">
           <?php
-            echo apply_filters( 'the_content', sprintf('<h3>%1$s %2$s :D</h3>', __( "Good, you've just upgraded to Customizr version", 'customizr'), CUSTOMIZR_VER ) );
-          ?>
-          <?php
             echo apply_filters(
               'the_content',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
@@ -236,6 +264,18 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
                 "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER
+              )
+            );
+          ?>
+          <?php
+            echo apply_filters(
+              'the_content',
+              sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
+                __( "We'd like to introduce the new features we've been working on.", "customizr"),
+                TC_WEBSITE . "category/customizr-releases/",
+                __( "Read the latest release notes" , "customizr" ),
+                esc_url('demo.presscustomizr.com'),
+                __( "Visit the demo", "customizr" )
               )
             );
           ?>
@@ -260,10 +300,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     */
     function tc_dismiss_update_notice_action() {
       check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
-      $_options = get_option(TC___::$tc_option_group);
       $opt_name = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
-      $_options["{$opt_name}"] = CUSTOMIZR_VER;
-      update_option( TC___::$tc_option_group, $_options );
+      //reset option value with new version and counter to 0
+      $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+      TC_utils::$inst->tc_set_option( $opt_name, $new_val );
       wp_die();
     }
 

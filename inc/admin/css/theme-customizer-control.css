@@ -199,6 +199,38 @@
 .customize-control-title {
 	line-height: 18px;
 }
+
+/* since v4.3 */
+.wp-customizer #customize-theme-controls .accordion-section-content {
+  background: #fff;
+}
+.wp-customizer .customize-panel-back {
+  height: 60px;
+}
+.wp-customizer #customize-controls .customize-info .customize-help-toggle:hover, .wp-customizer #customize-controls .customize-info.open .customize-help-toggle, .wp-customizer #customize-controls .customize-info .customize-help-toggle:focus {
+  color:#1ABC9C;
+}
+.wp-customizer .customize-screen-options-toggle:focus:before, .wp-customizer #customize-controls .customize-info .customize-help-toggle:focus:before {
+  -webkit-box-shadow: 0 0 0 1px #1ABC9C;
+  box-shadow: 0 0 0 1px #1ABC9C;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+
+.wp-customizer .menu-item-handle:hover .item-type, .wp-customizer .menu-item-handle:hover .item-edit, .wp-customizer #available-menu-items .menu-item-handle:hover .item-add, .wp-customizer .menu-item-handle:hover{
+  color: #1ABC9C;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="week"]:focus, input[type="checkbox"]:focus, input[type="radio"]:focus, select:focus, textarea:focus {
+    border-color: #1ABC9C!important;
+    -webkit-box-shadow: 0 0 2px rgba(26, 188, 156, 0.8)!important;
+    box-shadow: 0 0 2px rgba(26, 188, 156, 0.8)!important;
+}
+
+.customize-screen-options-toggle:hover, .customize-screen-options-toggle:active, .customize-screen-options-toggle:focus, .active-menu-screen-options .customize-screen-options-toggle, #customize-controls .customize-info.open.active-menu-screen-options .customize-help-toggle:hover, #customize-controls .customize-info.open.active-menu-screen-options .customize-help-toggle:active, #customize-controls .customize-info.open.active-menu-screen-options .customize-help-toggle:focus {
+  color: #1ABC9C!important;
+}
+
 /*SOCIAL ICONS*/
 /* ICONS
   -------------------------------------------------- */
@@ -338,23 +370,30 @@ span[class*=tc-icon]:before {
 }
 
 #tc-donate-customizer .tc-close-request{
-	position: absolute;
-	right: 13px;
-	top: 9px;
-	font-size: 13px;
-	line-height: 19px;
-	height: 21px;
-	margin: 0;
-	padding: 0 4px 0;
+  position: absolute;
+  right: 8px;
+  top: 4px;
+  font-size: 14px;
+  line-height: 19px;
+  height: 21px;
+  margin: 0;
+  padding: 1px 6px 0;
+  background-color: #27cda5;
+  color: white;
+  border: none;
+  box-shadow: none;
 }
 .rtl #tc-donate-customizer .tc-close-request {
-  left: 13px;
+  left: 8px;
   right: inherit;
 }
 #tc-donate-customizer .donate-alert .tc-hide-donate, #tc-donate-customizer .donate-alert .tc-cancel-hide-donate {
 	padding: 0 5px 1px;
 }
 
+.tc-cancel-hide-donate {
+  float: right;
+}
 /* GENERAL STYLE */
 .control-section .accordion-section-content {
 	overflow-y: auto;
@@ -372,7 +411,7 @@ li[id*="customize-control-"] {
 .control-section .accordion-section-title:after {
 	top: 7px;
 }
-.control-section.control-panel > .accordion-section-title:after {
+.control-section.control-panel .accordion-section-title:after {
 	top: 7px;
 	-webkit-transition: right .3s ease-in-out, opacity .3s ease-in-out;
 	-moz-transition: right .3s ease-in-out, opacity .3s ease-in-out;
@@ -386,14 +425,14 @@ li[id*="customize-control-"] {
   left: 8px;
   right: initial;
 }
-#customize-theme-controls .control-section.control-panel > h3.accordion-section-title:hover:after ,  #customize-theme-controls .control-section.control-panel > h3.accordion-section-title:focus:after {
+#customize-theme-controls .control-section.control-panel h3.accordion-section-title:hover:after ,  #customize-theme-controls .control-section.control-panel h3.accordion-section-title:focus:after {
 	right: 8px;
 	top: 8px;
 	opacity:1;
 	color: #F5F5F5!important;
 }
 
-.rtl #customize-theme-controls .control-section.control-panel > h3.accordion-section-title:hover:after , .rtl #customize-theme-controls .control-section.control-panel > h3.accordion-section-title:focus:after {
+.rtl #customize-theme-controls .control-section.control-panel h3.accordion-section-title:hover:after , .rtl #customize-theme-controls .control-section.control-panel h3.accordion-section-title:focus:after {
   left: 6px;
   right: initial;
 }
@@ -412,7 +451,7 @@ li[id*="customize-control-"] {
 	-o-transition: background .1s ease-in-out;
 	transition: background .1s ease-in-out;
 }
-#customize-theme-controls > .control-section:hover .accordion-section-title, #customize-theme-controls .control-section .accordion-section-title:hover, #customize-theme-controls .control-section.open .accordion-section-title, #customize-theme-controls .control-section .accordion-section-title:focus {
+#customize-theme-controls > .control-section:hover .accordion-section-title, #customize-theme-controls .control-section > .accordion-section-title:hover, #customize-theme-controls .control-section.open .accordion-section-title, #customize-theme-controls .control-section .accordion-section-title:focus{
 	background: #1ABC9C;
 	-webkit-box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.6);
 	box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.6);
@@ -889,11 +928,12 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 }
 
 .tc-in-control-cta-wrap {
-  background-color: #FFF;
-  color: #666;
+  background-color: #8C8C8C;
+  color: #fff;
   border-left: 0;
   border-right: 0;
-  margin: 0;
+  margin: 10px 0;
+  padding: 10px 2%;
   position: relative;
   text-align: center;
   -webkit-user-select: none;
@@ -902,6 +942,17 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   user-select: none;
   float: left;
   clear: both;
+  width: 96%;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.65);
+  -moz-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.65);
+  box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.65);
+}
+
+.tc-in-control-cta-wrap .tc-notice {
+  font-weight: bold;
+  color: #fff;
 }
 
 .tc-cta .tc-cta-btn:hover {

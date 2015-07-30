@@ -182,8 +182,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //add thumbnail html (src, width, height) if any
           $_thumb_html = '';
           if ( $this -> tc_grid_show_thumb() ) {
+            //return an array( $tc_thumb(image object), $tc_thumb_width(string), $tc_thumb_height(string) )
             $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
-            $_thumb_html  = $_thumb_model['tc_thumb'];
+            if ( isset($_thumb_model['tc_thumb']) )
+              $_thumb_html  = $_thumb_model['tc_thumb'];
           }
           $_thumb_html = apply_filters( 'tc-grid-thumb-html' , $_thumb_html );
 
@@ -698,7 +700,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_h = $_css_prop['h'];
           $_p = $_css_prop['p'];
           $_css .= "
-              .tc-post-list-grid .entry-title {{$_h}}
+              .tc-post-list-grid article .entry-title {{$_h}}
               .tc-post-list-grid .tc-g-cont {{$_p}}
           ";
           return $_css;

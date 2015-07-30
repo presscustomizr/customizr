@@ -64,6 +64,8 @@ class TC_slider {
 
     //wrap the slide into a link
     add_filter( 'tc_slide_background'       , array( $this, 'tc_link_whole_slide'), 5, 5 );
+    //display a notice for first time users
+    add_action( '__after_carousel_inner'    , array( $this, 'tc_maybe_display_dismiss_notice'));
   }
 
 
@@ -504,7 +506,33 @@ class TC_slider {
   }
 
 
-
+  /******************************
+  * SLIDER NOTICE VIEW
+  *******************************/
+  /**
+  * hook : __after_carousel_inner
+  * @since v3.4+
+  */
+  function tc_maybe_display_dismiss_notice() {
+    if ( ! TC_placeholders::tc_is_slider_notice_on() )
+      return;
+    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( 'section' => 'frontpage_sec') );
+    ?>
+    <div class="tc-placeholder-wrap tc-slider-notice">
+      <?php
+        printf('<p><strong>%1$s</strong></p>',
+          sprintf( __("Select your own slider %s, or %s (you'll be able to add one back later)." , "customizr"),
+            sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Select your own slider", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
+            sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the home page slider", "customizr" ), __( "remove this demo slider", "customizr" ) )
+          )
+        );
+        printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
+          __( 'dismiss notice', 'customizr')
+        );
+      ?>
+    </div>
+    <?php
+  }
 
 
 
@@ -528,7 +556,7 @@ class TC_slider {
 
     switch ( $id ) {
       case 1 :
-        $data['title']        = __( 'Discover how to change or remove this demo slider.', 'customizr' );
+        $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
         $data['link_url']     = implode('/', array('http:/','doc.presscustomizr.com' , 'customizr/content-options/#slider-options') );
         $data['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
       break;
@@ -634,7 +662,6 @@ class TC_slider {
       if ( false !== (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height', TC___::$tc_option_group, $use_default = false ) ) )
         return $_h;
     }
-
     return apply_filters( 'tc_set_demo_slider_height' , 750 );
   }
 

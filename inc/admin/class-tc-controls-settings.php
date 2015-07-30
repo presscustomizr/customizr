@@ -129,22 +129,23 @@ if ( ! class_exists( 'TC_controls' ) ) :
                 <?php endif; ?>
     					</label>
     					<?php
-    					//retrieve all sliders in option array
-    			        $options          = get_option( 'tc_theme_options' );
-    			        $sliders 					= array();
-    			        if ( isset( $options['tc_sliders'])) {
-    			        	$sliders        = $options['tc_sliders'];
-    			    	}
-
-    					if ( 'tc_theme_options[tc_front_slider]' == $this -> id  && empty( $sliders ) ) {
-    						printf('<div style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="http://%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',
-                  __("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ),
-                  admin_url( 'upload.php' ),
-                  __( 'Create a slider' , 'customizr' ),
-                  __( 'Need help to create a slider ?' , 'customizr' ),
-                  "doc.presscustomizr.com/",
-                  __( 'Check the documentation' , 'customizr' )
-                );
+    					if ( 'tc_theme_options[tc_front_slider]' == $this -> id ) {
+                //retrieve all sliders in option array
+                $options          = get_option( 'tc_theme_options' );
+                $sliders          = array();
+                if ( isset( $options['tc_sliders'])) {
+                  $sliders        = $options['tc_sliders'];
+                }
+                if ( empty( $sliders ) ) {
+      						printf('<div style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',
+                    __("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ),
+                    admin_url( 'upload.php?mode=list' ),
+                    __( 'Create a slider' , 'customizr' ),
+                    __( 'Need help to create a slider ?' , 'customizr' ),
+                    esc_url( "doc.presscustomizr.com/customizr/creating-sliders/" ),
+                    __( 'Check the documentation' , 'customizr' )
+                  );
+                }
     					}
 
     				break;

@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.0
+ * Customizr v3.4.2
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -474,5 +474,10 @@ footer#footer .colophon a.back-to-top {
 }
 /* Grid icons */
 .tc-grid-icon:before {
+  color: #394143;
+}
+/* Placeholder icons */
+.tc-placeholder-wrap::before,
+.tc-admin-notice:before {
   color: #394143;
 }
