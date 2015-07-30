@@ -1,4 +1,4 @@
-# Customizr v3.4.0 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.1 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -43,6 +43,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.1 July 30th 2015 =
+* fix : a missing text domain for a translation string
+
 = 3.4.0 July 28th 2015 =
 * added : new features for sliders : use a custom link, possibility to link the entire slide and to open the page in a new tab
 * added : new default sidenav menu

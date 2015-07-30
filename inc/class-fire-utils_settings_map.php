@@ -1029,7 +1029,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'choices'   => $this -> tc_layout_choices(),
                                 'priority'       => 40,
                                 'notice'    => sprintf('<br/> %s<br/>%s',
-                                    sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s."),
+                                    sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s.", "customizr"),
                                         sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('doc.presscustomizr.com/customizr/content-options/#pages-and-posts-layout'), __("Customizr theme documentation" , "customizr" )
                                         )
                                     ),

@@ -40,6 +40,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.1 July 30th 2015 =
+* fix : a missing text domain for a translation string
+
 = 3.4.0 July 28th 2015 =
 * added : new features for sliders : use a custom link, possibility to link the entire slide and to open the page in a new tab
 * added : new default sidenav menu
