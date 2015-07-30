@@ -40,6 +40,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.2 July 30th 2015 =
+* fixed : expand on click not working for the secondary menu.
+
 = 3.4.1 July 30th 2015 =
 * fix : a missing text domain for a translation string
 
