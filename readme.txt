@@ -59,6 +59,7 @@ The exceptions to this license are as follows:
 * fix : anchors smooth scroll - exclude ultimate members anchor links
 * changed : customize transport of the header layout setting is now 'refresh'
 * improved : modernizr upgraded to the latest version
+* improved : customizer preview is refreshed faster
 
 = 3.3.28 June 25th 2015 =
 * fix : re-introduce btt-arrow handling in new front js

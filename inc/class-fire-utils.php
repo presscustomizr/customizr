@@ -48,10 +48,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
         //social networks
         add_filter( '__get_socials'           , array( $this , 'tc_get_social_networks' ) );
 
-        //cache option when previewing
-        add_action( 'customize_preview_init'  , array( $this , 'tc_customize_store_db_opt' ) );
+        //refresh the theme options right after the _preview_filter when previewing
+        add_action( 'customize_preview_init'  , array( $this , 'tc_customize_refresh_db_opt' ) );
       }
-
 
       /***************************
       * EARLY HOOKS
@@ -256,7 +255,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_get_theme_options ( $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
           $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
-          $saved              = (array) get_option( $option_group );
+          $saved              = empty($this -> db_options) ? $this -> tc_cache_db_options() : $this -> db_options;
           $defaults           = $this -> default_options;
           $__options          = wp_parse_args( $saved, $defaults );
           //$__options        = array_intersect_key( $__options, $defaults );
@@ -311,14 +310,16 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * The purpose of this callback is to refresh and store the theme options in a property on each customize preview refresh
       * => preview performance improvement
       * 'customize_preview_init' is fired on wp_loaded, once WordPress is fully loaded ( after 'init', before 'wp') and right after the call to 'customize_register'
+      * This method is fired just after the theme option has been filtered for each settings by the WP_Customize_Setting::_preview_filter() callback
+      * => if this method is fired before this hook when customizing, the user changes won't be taken into account on preview refresh
       *
       * hook : customize_preview_init
       * @return  void
       *
       * @since  v3.4+
       */
-      function tc_customize_store_db_opt(){
-        $this -> db_options = false === get_option( TC___::$tc_option_group ) ? array() : $this -> tc_cache_db_options();
+      function tc_customize_refresh_db_opt(){
+        $this -> db_options = false === get_option( TC___::$tc_option_group ) ? array() : (array)get_option( TC___::$tc_option_group );
       }
 
 
