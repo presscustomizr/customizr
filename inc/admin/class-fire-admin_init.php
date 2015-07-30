@@ -216,12 +216,15 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       $last_update_notice_values  = TC_utils::$inst -> tc_opt($opt_name);
       $show_new_notice = false;
 
-      //first time user of the theme, the option does not exist
-      // 1) initialize it => set it to the current Customizr version, displayed 0 times.
-      // 2) update in db
       if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {
+        //first time user of the theme, the option does not exist
+        // 1) initialize it => set it to the current Customizr version, displayed 0 times.
+        // 2) update in db
         $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
         TC_utils::$inst->tc_set_option( $opt_name, $last_update_notice_values );
+        //already user of the theme ?
+        if ( TC_utils::$inst->tc_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
+          $show_new_notice = true;
       }
 
       $_db_version          = $last_update_notice_values["version"];
