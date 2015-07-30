@@ -513,7 +513,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       function tc_register_menus() {
         /* This theme uses wp_nav_menu() in one location. */
         register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
-        register_nav_menu( 'secondary' , __( 'Secondary Menu' , 'customizr' ) );
+        register_nav_menu( 'secondary' , __( 'Secondary (horizontal) Menu' , 'customizr' ) );
       }
 
 

@@ -653,7 +653,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_display_second_menu'  =>  array(
                                 'default'       => 0,
                                 'control'       => 'TC_controls' ,
-                                'label'         => __( "Display a secondary menu in the header." , "customizr" ),
+                                'label'         => __( "Display a secondary (horizontal) menu in the header." , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 15,//must be located between the two menus
@@ -707,8 +707,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_second_menu_position'  =>  array(
                                 'default'       => 'pull-menu-left',
                                 'control'       => 'TC_controls' ,
-                                'title'         => __( 'Secondary menu design' , 'customizr'),
-                                'label'         => __( 'Menu position (for "secondary" menu)' , "customizr" ),
+                                'title'         => __( 'Secondary (horizontal) menu design' , 'customizr'),
+                                'label'         => __( 'Menu position for the horizontal menu)' , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          =>  'select' ,
                                 'choices'       => array(
