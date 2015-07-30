@@ -6323,6 +6323,9 @@ article.hover .tc-thumbnail .round-div {
 }
 /* POST STUFF
     -------------------------------------------------- */
+.article-container .tc-thumbnail-help {
+  font-size: 17px;
+}
 #main-wrapper {
   margin-top: 20px;
   margin-bottom: 20px;
