@@ -199,6 +199,12 @@
 .customize-control-title {
 	line-height: 18px;
 }
+
+/* since v4.3 */
+.wp-customizer .customize-panel-back {
+  height: 60px;
+}
+
 /*SOCIAL ICONS*/
 /* ICONS
   -------------------------------------------------- */
