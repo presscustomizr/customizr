@@ -27,26 +27,29 @@ if ( ! class_exists( 'TC_utils' ) ) :
         self::$instance =& $this;
 
         //init properties
-        add_action( 'after_setup_theme'                   , array( $this , 'tc_init_properties') );
+        add_action( 'after_setup_theme'       , array( $this , 'tc_init_properties') );
         //WP filters
-        add_action( 'after_setup_theme'                   , array( $this , 'tc_wp_filters') );
+        add_action( 'after_setup_theme'       , array( $this , 'tc_wp_filters') );
 
         //get all options
-        add_filter( '__options'                           , array( $this , 'tc_get_theme_options' ), 10, 1);
+        add_filter( '__options'               , array( $this , 'tc_get_theme_options' ), 10, 1);
         //get single option
-        add_filter( '__get_option'                        , array( $this , 'tc_opt' ), 10, 2 );//deprecated
+        add_filter( '__get_option'            , array( $this , 'tc_opt' ), 10, 2 );//deprecated
 
         //some useful filters
-        add_filter( '__ID'                                , array( $this , 'tc_id' ));//deprecated
-        add_filter( '__screen_layout'                     , array( $this , 'tc_get_layout' ) , 10 , 2 );//deprecated
-        add_filter( '__is_home'                           , array( $this , 'tc_is_home' ) );
-        add_filter( '__is_home_empty'                     , array( $this , 'tc_is_home_empty' ) );
-        add_filter( '__post_type'                         , array( $this , 'tc_get_post_type' ) );
-        add_filter( '__is_no_results'                     , array( $this , 'tc_is_no_results') );
-        add_filter( '__article_selectors'                 , array( $this , 'tc_article_selectors' ) );
+        add_filter( '__ID'                    , array( $this , 'tc_id' ));//deprecated
+        add_filter( '__screen_layout'         , array( $this , 'tc_get_layout' ) , 10 , 2 );//deprecated
+        add_filter( '__is_home'               , array( $this , 'tc_is_home' ) );
+        add_filter( '__is_home_empty'         , array( $this , 'tc_is_home_empty' ) );
+        add_filter( '__post_type'             , array( $this , 'tc_get_post_type' ) );
+        add_filter( '__is_no_results'         , array( $this , 'tc_is_no_results') );
+        add_filter( '__article_selectors'     , array( $this , 'tc_article_selectors' ) );
 
         //social networks
-        add_filter( '__get_socials'                       , array( $this , 'tc_get_social_networks' ) );
+        add_filter( '__get_socials'           , array( $this , 'tc_get_social_networks' ) );
+
+        //cache option when previewing
+        add_action( 'customize_preview_init'  , array( $this , 'tc_customize_store_db_opt' ) );
       }
 
 
@@ -271,14 +274,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_opt( $option_name , $option_group = null, $use_default = true ) {
         //do we have to look for a specific group of option (plugin?)
-        $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
-        if ( TC___::$instance -> tc_is_customizing() || is_admin() )
-          $_db_options = (array) get_option( $option_group );
-        else
-          $_db_options = empty($this -> db_options) ? $this -> tc_cache_db_options() : $this -> db_options;
+        $option_group = is_null($option_group) ? TC___::$tc_option_group : $option_group;
+        //when customizing, the db_options property is refreshed each time the preview is refreshed in 'customize_preview_init'
+        $_db_options  = empty($this -> db_options) ? $this -> tc_cache_db_options() : $this -> db_options;
 
         //do we have to use the default ?
-        $__options = $_db_options;
+        $__options    = $_db_options;
         $_default_val = false;
         if ( $use_default ) {
           $_defaults      = $this -> default_options;
@@ -302,6 +303,22 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         //allow single option filtering
         return apply_filters( "tc_opt_{$option_name}" , $_single_opt , $option_name , $option_group, $_default_val );
+      }
+
+
+
+      /**
+      * The purpose of this callback is to refresh and store the theme options in a property on each customize preview refresh
+      * => preview performance improvement
+      * 'customize_preview_init' is fired on wp_loaded, once WordPress is fully loaded ( after 'init', before 'wp') and right after the call to 'customize_register'
+      *
+      * hook : customize_preview_init
+      * @return  void
+      *
+      * @since  v3.4+
+      */
+      function tc_customize_store_db_opt(){
+        $this -> db_options = false === get_option( TC___::$tc_option_group ) ? array() : $this -> tc_cache_db_options();
       }
 
 

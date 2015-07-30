@@ -40,7 +40,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
       //modify some WP built-in settings / controls / sections
       add_action ( 'customize_register'                       , array( $this , 'tc_alter_wp_customizer_settings' ), 30, 1 );
   		//preview scripts
-  		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ));
+      //set with priority 20 to be fired after tc_customize_store_db_opt in TC_utils
+  		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ), 20 );
   		//Hide donate button
   		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
   		//Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)

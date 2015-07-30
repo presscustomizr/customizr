@@ -53,7 +53,6 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_set_single_post_thumbnail_hooks() {
-      //check conditional tags : we want to show single post or single custom post types
       if ( $this -> tc_single_post_display_controller() )
         add_action( '__before_content'        , array( $this, 'tc_maybe_display_featured_image_help') );
 
@@ -73,38 +72,6 @@ if ( ! class_exists( 'TC_post' ) ) :
       add_filter( 'tc_post_thumb_wrapper'      , array( $this , 'tc_set_thumb_shape'), 10 , 2 );
     }
 
-
-
-    /***************************
-    * SINGLE POST THUMBNAIL HELP
-    ****************************/
-    /**
-    * Displays a help block about featured images for single posts
-    * hook : __before_content
-    * @since Customizr 3.4
-    */
-    function tc_maybe_display_featured_image_help() {
-      if (  ! TC_placeholders::tc_is_thumbnail_help_on() )
-        return;
-      ?>
-      <div class="tc-placeholder-wrap tc-thumbnail-help">
-        <?php
-          printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
-              __( "You can display your post's featured image here if you have set one.", "customizr" ),
-              sprintf( __("%s to display a featured image here.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', TC_utils::tc_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
-              ),
-              sprintf( __( "Don't know how to set a featured image to a post? Learn how in the %s.", "customizr" ),
-                sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
-              )
-          );
-          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
-                __( 'dismiss notice', 'customizr')
-          );
-        ?>
-      </div>
-      <?php
-    }
 
 
     /***************************
@@ -214,6 +181,39 @@ if ( ! class_exists( 'TC_post' ) ) :
         )
       );
     }
+
+
+    /***************************
+    * SINGLE POST THUMBNAIL HELP VIEW
+    ****************************/
+    /**
+    * Displays a help block about featured images for single posts
+    * hook : __before_content
+    * @since Customizr 3.4
+    */
+    function tc_maybe_display_featured_image_help() {
+      if (  ! TC_placeholders::tc_is_thumbnail_help_on() )
+        return;
+      ?>
+      <div class="tc-placeholder-wrap tc-thumbnail-help">
+        <?php
+          printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
+              __( "You can display your post's featured image here if you have set one.", "customizr" ),
+              sprintf( __("%s to display a featured image here.", "customizr"),
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', TC_utils::tc_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
+              ),
+              sprintf( __( "Don't know how to set a featured image to a post? Learn how in the %s.", "customizr" ),
+                sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
+              )
+          );
+          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
+                __( 'dismiss notice', 'customizr')
+          );
+        ?>
+      </div>
+      <?php
+    }
+
 
 
 
