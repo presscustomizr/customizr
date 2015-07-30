@@ -2080,6 +2080,26 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $locations      = get_registered_nav_menus();
       $menus          = wp_get_nav_menus();
       $num_locations  = count( array_keys( $locations ) );
+      global $wp_version;
+      $nav_section_desc =  sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations, 'customizr' ), number_format_i18n( $num_locations ) );
+      //adapt the nav section description for v4.3 (menu in the customizer from now on)
+      if ( version_compare( $wp_version, '4.3', '<' ) ) {
+        $nav_section_desc .= "<br/>" . sprintf( __('You can edit your menu content %s.' , 'customizr'),
+          sprintf( '<a href="%1$s" target="_blank">%2$s</a>',
+            admin_url('nav-menus.php'),
+            __("on the Menus screen in the Appearance section" , "customizr")
+          )
+        );
+      } else {
+        $nav_section_desc .= "<br/><br/>" . sprintf( __('You can edit your menu content %s.' , 'customizr'),
+          sprintf( '<a href="%1$s" target="_blank">%2$s</a>',
+            "javascript:wp.customize.section('nav').container.find('.customize-section-back').trigger('click'); wp.customize.panel('nav_menus').focus()",
+            __("in the menu panel" , "customizr")
+          )
+        );
+      }
+
+      $nav_section_desc .= "<br/>". __( 'If a location nas no menu assigned to it, a default page menu will be used.', 'customizr');
 
       $_new_sections = array(
         /*---------------------------------------------------------------------------------------------
@@ -2157,7 +2177,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'title'          => __( 'Navigation Menus' , 'customizr' ),
                             'theme_supports' => 'menus',
                             'priority'       => $this -> is_wp_version_before_4_0 ? 10 : 40,
-                            'description'    => sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations, 'customizr' ), number_format_i18n( $num_locations ) ) . "\n\n" . __('You can edit your menu content on the Menus screen in the Appearance section.' , 'customizr'),
+                            'description'    => $nav_section_desc,
                             'panel'   => 'tc-header-panel'
         ),
 

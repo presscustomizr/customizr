@@ -38,11 +38,6 @@
       $(this).toggleClass('open');
     } );
 
-    /* BUTTON JUMP TO POST LIST */
-    $('.tc-navigate-to-post-list').click( function() {
-      $('#accordion-section-post_lists_sec > .accordion-section-title').trigger('click');
-    });
-
     /* RECENTER CURRENT SECTIONS */
     $('.accordion-section').not('.control-panel').click( function () {
       _recenter_current_section($(this));

@@ -65,14 +65,6 @@ if ( ! class_exists( 'TC_customize' ) ) :
       $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
       $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
 
-      //CHANGE NAV SECTION DESCRIPTION
-      $_complement_descr = sprintf('&nbsp;<a class="button-primary" href="%2$s" target="_blank">%3$s</a><p>%1$s</p>',
-        __( 'If a location nas no menu assigned, a default page menu will be used.', 'customizr'),
-        admin_url('nav-menus.php'),
-        __( 'Manage menus' , 'customizr' )
-      );
-      $wp_customize -> get_section('nav') -> description .= $_complement_descr;
-
       //CHANGE MENUS PROPERTIES
       $locations    = get_registered_nav_menus();
       $menus        = wp_get_nav_menus();
@@ -336,7 +328,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
         */
         function tc_render_link_to_grid( $set_id ) {
           if ( false !== strpos( $set_id, 'tc_front_layout' ) )
-            printf('<span class="button tc-navigate-to-post-list" title="%1$s">%1$s &raquo;</span>' , __('Jump to the blog design options' , 'customizr') );
+            printf('<a class="button tc-navigate-to-post-list" title="%1$s" href="%2$s">%1$s &raquo;</a>' ,
+              __('Jump to the blog design options' , 'customizr'),
+              "javascript:wp.customize.section( 'post_lists_sec' ).focus();"
+              );
         }
 
 
