@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.3
+ * Customizr v3.4.4
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5685,6 +5685,7 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 #tc-sn .tc-sn-inner.nav-collapse .nav {
   display: block;
+  width: 98%;
 }
 .sn-nav-wrapper {
   clear: both;
@@ -5697,11 +5698,17 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 #tc-sn .nav a {
   border-bottom: 1px solid #EEE;
 }
+#tc-sn .tc-sn-inner .nav > li > a {
+  padding: 5px 20px 5px 0px;
+}
 /* hide arrow */
 #tc-sn.navbar .nav .dropdown-submenu > a:after,
 #tc-sn.navbar .nav > li > .dropdown-menu:after,
 #tc-sn.navbar .nav > li > .dropdown-menu:before {
   content: none;
+}
+#tc-sn .tc-sn-inner .nav li.dropdown .caret {
+  display: none;
 }
 .tc-sn-inner .nav [class*=dropdown] {
   position: static;
@@ -5731,7 +5738,8 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   white-space: normal;
 }
 #tc-sn.navbar .nav-collapse ul.nav > li li a {
-  padding-left: 30px;
+  font-size: 90%;
+  padding-left: 25px;
 }
 #tc-sn.navbar .nav-collapse ul.nav > li li li a {
   padding-left: 50px;
