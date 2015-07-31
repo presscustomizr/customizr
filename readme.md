@@ -43,8 +43,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
-= 3.4.3 July 30th 2015 =
+= 3.4.3 July 31st 2015 =
 * fixed : minor css adjustements for the menus
+* added : a dismissable help notice under the main regular menu, on front-end, for logged-in admin users (edit options cap)
 
 = 3.4.2 July 30th 2015 =
 * fixed : expand on click not working for the secondary menu.
