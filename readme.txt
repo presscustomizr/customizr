@@ -40,7 +40,7 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
-= 3.4.4 July 31st 2015 =
+= 3.4.5 July 31st 2015 =
 * fixed : various css issues for the vertical menu items
 
 = 3.4.3 July 31st 2015 =

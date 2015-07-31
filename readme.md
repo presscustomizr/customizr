@@ -1,4 +1,4 @@
-# Customizr v3.4.4 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=master)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.5 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -43,7 +43,7 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
-= 3.4.4 July 31st 2015 =
+= 3.4.5 July 31st 2015 =
 * fixed : various css issues for the vertical menu items
 
 = 3.4.3 July 31st 2015 =
