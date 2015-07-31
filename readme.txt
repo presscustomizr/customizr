@@ -40,6 +40,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.3 July 30th 2015 =
+* fixed : minor css adjustements for the menus
+
 = 3.4.2 July 30th 2015 =
 * fixed : expand on click not working for the secondary menu.
 
