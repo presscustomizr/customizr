@@ -5441,6 +5441,14 @@ h2.site-description {
 }
 /* REGULAR MENU
     -------------------------------------------------- */
+.navbar .tc-main-menu-notice {
+  clear: both;
+  padding: 13px 15px 3px;
+  font-size: 17px;
+}
+.sticky-enabled .tc-main-menu-notice {
+  display: none;
+}
 .dropdown-menu {
   border: 0px solid rgba(0, 0, 0, 0.2);
 }
@@ -5865,6 +5873,9 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   clear: left;
   padding: 9px 3% 0;
   font-size: 17px;
+}
+.sticky-enabled .tc-menu-placeholder {
+  display: none;
 }
 /* BREADCRUMB
   -------------------------------------------------- */
@@ -8948,7 +8959,8 @@ li#wp-admin-bar-tc-customizr a {
     display: none;
   }
   /* second menu placeholder */
-  .navbar .tc-menu-placeholder {
+  .navbar .tc-menu-placeholder,
+  .navbar .tc-main-menu-notice {
     display: none;
   }
   /* social blocks */

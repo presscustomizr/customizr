@@ -954,7 +954,14 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   font-weight: bold;
   color: #fff;
 }
-
+.tc-in-control-cta-wrap .tc-notice-ext-icon {
+  font-size: 17px;
+  text-decoration: none;
+}
+.tc-in-control-cta-wrap .tc-notice-inline-link {
+  color: #fff;
+  text-decoration: underline!important;
+}
 .tc-cta .tc-cta-btn:hover {
   background: #1B8D71;
   color: #FFF;

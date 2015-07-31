@@ -95,7 +95,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_front_page_option_map',
         'tc_layout_option_map',
         'tc_comment_option_map',
-        'tc_breadcrump_option_map',
+        'tc_breadcrumb_option_map',
         'tc_post_metas_option_map',
         'tc_post_list_option_map',
         'tc_single_post_option_map',
@@ -657,18 +657,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'nav' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 15,//must be located between the two menus
-                                // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
+                                'notice'        => __( "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header." , 'customizr' ),
               ),
               'tc_menu_style'  =>  array(
                               'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
                               'control'       => 'TC_controls' ,
                               'title'         => __( 'Main menu design' , 'customizr'),
-                              'label'         => __( 'Select a style : side menu or regular' , 'customizr' ),
+                              'label'         => __( 'Select a design : side menu (vertical) or regular (horizontal)' , 'customizr' ),
                               'section'       => 'nav' ,
                               'type'          => 'select',
                               'choices'       => array(
-                                      'navbar'   => __( 'Regular'   ,  'customizr' ),
-                                      'aside'    => __( 'Side Menu' ,  'customizr' ),
+                                      'navbar'   => __( 'Regular (horizontal)'   ,  'customizr' ),
+                                      'aside'    => __( 'Side Menu (vertical)' ,  'customizr' ),
                               ),
                               'priority'      => 30
               ),
@@ -1346,7 +1346,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    BREADCRUMB SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_breadcrump_option_map( $get_default = null ) {
+    function tc_breadcrumb_option_map( $get_default = null ) {
         return array(
               'tc_breadcrumb' => array(
                               'default'       => 1,//Breadcrumb is checked by default
@@ -2084,22 +2084,24 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $nav_section_desc =  sprintf( _n('Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations, 'customizr' ), number_format_i18n( $num_locations ) );
       //adapt the nav section description for v4.3 (menu in the customizer from now on)
       if ( version_compare( $wp_version, '4.3', '<' ) ) {
-        $nav_section_desc .= "<br/>" . sprintf( __('You can edit your menu content %s.' , 'customizr'),
-          sprintf( '<a href="%1$s" target="_blank">%2$s</a>',
+        $nav_section_desc .= "<br/>" . sprintf( __("You can create new menu and edit your menu's content %s." , "customizr"),
+          sprintf( '<strong><a href="%1$s" target="_blank" title="%3$s">%2$s &raquo;</a><strong>',
             admin_url('nav-menus.php'),
-            __("on the Menus screen in the Appearance section" , "customizr")
+            __("on the Menus screen in the Appearance section" , "customizr"),
+            __("create/edit menus", "customizr")
           )
         );
       } else {
-        $nav_section_desc .= "<br/><br/>" . sprintf( __('You can edit your menu content %s.' , 'customizr'),
-          sprintf( '<a href="%1$s" target="_blank">%2$s</a>',
+        $nav_section_desc .= "<br/>" . sprintf( __("You can create new menu and edit your menu's content %s." , "customizr"),
+          sprintf( '<strong><a href="%1$s" target="_blank" title="%3$s">%2$s &raquo;</a><strong>',
             "javascript:wp.customize.section('nav').container.find('.customize-section-back').trigger('click'); wp.customize.panel('nav_menus').focus()",
-            __("in the menu panel" , "customizr")
+            __("in the menu panel" , "customizr"),
+            __("create/edit menus", "customizr")
           )
         );
       }
 
-      $nav_section_desc .= "<br/>". __( 'If a location nas no menu assigned to it, a default page menu will be used.', 'customizr');
+      $nav_section_desc .= "<br/><br/>". __( 'If a menu location has no menu assigned to it, a default page menu will be used.', 'customizr');
 
       $_new_sections = array(
         /*---------------------------------------------------------------------------------------------
