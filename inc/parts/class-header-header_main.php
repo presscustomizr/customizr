@@ -159,7 +159,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 	       	//check if option is an attachement id or a path (for backward compatibility)
 	       	if ( is_numeric($_fav_option) ) {
 	       		$_attachement_id 	= $_fav_option;
-	       		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'large' ) );
+	       		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'full' ) );
 	       		$_fav_src 			= $_attachment_data[0];
 	       	} else { //old treatment
 	       		$_saved_path 		= esc_url ( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
@@ -217,7 +217,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
           //check if option is an attachement id or a path (for backward compatibility)
           if ( is_numeric($_logo_option) ) {
               $_attachement_id 	= $_logo_option;
-              $_attachment_data 	= apply_filters( "tc{$logo_type}logo_attachment_img" , wp_get_attachment_image_src( $_logo_option , 'large' ) );
+              $_attachment_data 	= apply_filters( "tc{$logo_type}logo_attachment_img" , wp_get_attachment_image_src( $_logo_option , 'full' ) );
               $_logo_src 			= $_attachment_data[0];
               $_width 			= ( isset($_attachment_data[1]) && $_attachment_data[1] > 1 ) ? $_attachment_data[1] : $_width;
               $_height 			= ( isset($_attachment_data[2]) && $_attachment_data[2] > 1 ) ? $_attachment_data[2] : $_height;
