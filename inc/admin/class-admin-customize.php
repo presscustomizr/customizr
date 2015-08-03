@@ -562,8 +562,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
       <script type="text/template" id="gc_cta">
         <div class="tc-cta tc-in-control-cta-wrap">
           <?php
-            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
+            printf('<span class="tc-notice">%1$s %2$s</span><a class="tc-cta-btn" href="%3$s" title="%4$s" target="_blank">%4$s &raquo;</a>',
               __( "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer." , 'customizr' ),
+               sprintf('<a href="%1$s" class="tc-notice-inline-link" title="%2$s" target="_blank">%2$s<span class="tc-notice-ext-icon dashicons dashicons-external"></span></a>' , esc_url('demo.presscustomizr.com/?design=demo_grid_customizer'), __("Try it in the demo" , "customizr" )
+              ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
               __( "Get Customizr Pro" , 'customizr' )
             );
@@ -574,8 +576,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
        <script type="text/template" id="mc_cta">
         <div class="tc-cta tc-in-control-cta-wrap">
           <?php
-            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Add beautiful reveal effects to your side menu." , 'customizr' ),
+            printf('<span class="tc-notice">%1$s %2$s</span><a class="tc-cta-btn" href="%3$s" title="%4$s" target="_blank">%4$s &raquo;</a>',
+              __( "Add creative and engaging reveal animations to your side menu." , 'customizr' ),
+              sprintf('<a href="%1$s" class="tc-notice-inline-link" title="%2$s" target="_blank">%2$s<span class="tc-notice-ext-icon dashicons dashicons-external"></span></a>' , esc_url('demo.presscustomizr.com/?design=nav'), __("Side menu animation demo" , "customizr" )
+              ),
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
               __( "Get Customizr Pro" , 'customizr' )
             );

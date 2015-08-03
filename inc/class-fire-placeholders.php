@@ -34,11 +34,12 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       if ( ! $this -> tc_is_front_help_enabled() )
         return;
       add_action( 'wp_ajax_dismiss_thumbnail_help'    , array( $this, 'tc_dismiss_thumbnail_help' ) );
-      add_action( 'wp_ajax_dismiss_sidenav_help'    , array( $this, 'tc_dismiss_sidenav_help' ) );
-      add_action( 'wp_ajax_dismiss_second_menu_notice'  , array( $this, 'tc_dismiss_second_menu_notice' ) );
-      add_action( 'wp_ajax_slider_notice_actions'   , array( $this, 'tc_slider_notice_ajax_actions' ) );
-      add_action( 'wp_ajax_fp_notice_actions'       , array( $this, 'tc_fp_notice_ajax_actions' ) );
-      add_action( 'wp_ajax_dismiss_widget_notice'   , array( $this , 'tc_dismiss_widget_notice' ) );
+      add_action( 'wp_ajax_dismiss_sidenav_help'      , array( $this, 'tc_dismiss_sidenav_help' ) );
+      add_action( 'wp_ajax_dismiss_second_menu_notice', array( $this, 'tc_dismiss_second_menu_notice' ) );
+      add_action( 'wp_ajax_dismiss_main_menu_notice'  , array( $this, 'tc_dismiss_main_menu_notice' ) );
+      add_action( 'wp_ajax_slider_notice_actions'     , array( $this, 'tc_slider_notice_ajax_actions' ) );
+      add_action( 'wp_ajax_fp_notice_actions'         , array( $this, 'tc_fp_notice_ajax_actions' ) );
+      add_action( 'wp_ajax_dismiss_widget_notice'     , array( $this, 'tc_dismiss_widget_notice' ) );
     }
 
 
@@ -61,6 +62,9 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
 
       if ( $this -> tc_is_second_menu_placeholder_on() )
         add_action( 'wp_footer'   , array( $this, 'tc_write_second_menu_placeholder_js'), 100 );
+
+      if ( $this -> tc_is_main_menu_notice_on() )
+        add_action( 'wp_footer'   , array( $this, 'tc_write_main_menu_notice_js'), 100 );
 
       if ( $this -> tc_is_slider_notice_on() )
         add_action( 'wp_footer'   , array( $this, 'tc_write_slider_notice_js'), 100 );
@@ -342,6 +346,94 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       );
     }
 
+
+
+    /*****************************************************
+    * MAIN MENU NOTICE : AJAX JS AND CALLBACK
+    *****************************************************/
+    /**
+    * Dismiss notice ajax callback
+    * hook : wp_ajax_dismiss_main_menu_notice
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    function tc_dismiss_main_menu_notice() {
+      check_ajax_referer( 'tc-main-menu-notice-nonce', 'mainMenuNonce' );
+      set_transient( 'tc_main_menu_notice', 'disabled' , 60*60*24*365*20 );//20 years of peace
+      wp_die();
+    }
+
+
+    /**
+    * Prints dismiss notice javascript in the footer
+    * hook : wp_footer
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_write_main_menu_notice_js() {
+      ?>
+      <script type="text/javascript" id="main-menu-placeholder">
+        ( function( $ ) {
+          var dismiss_request = function( $_el ) {
+            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
+                _query = {
+                    action  : 'dismiss_main_menu_notice',
+                    mainMenuNonce :  "<?php echo wp_create_nonce( 'tc-main-menu-notice-nonce' ); ?>"
+                },
+                $ = jQuery,
+                request = $.post( AjaxUrl, _query );
+
+            request.done( function( response ) {
+              // Check if the user is logged out.
+              if ( '0' === response )
+                return;
+              // Check for cheaters.
+              if ( '-1' === response )
+                return;
+
+              $_el.closest('.tc-main-menu-notice').slideToggle('fast');
+            });
+          };//end of fn
+
+          //DOM READY
+          $( function($) {
+            $('.tc-dismiss-notice', '.tc-main-menu-notice').click( function( e ) {
+              e.preventDefault();
+              dismiss_request( $(this) );
+            } );
+          } );
+        }) (jQuery)
+      </script>
+      <?php
+    }
+
+
+    /**
+    *
+    * @return  bool
+    * @since Customizr 3.3+
+    */
+    static function tc_is_main_menu_notice_on() {
+      //always display in DEV mode
+      if ( defined('TC_DEV') && true === TC_DEV )
+        return true;
+
+      $_dont_display_conditions = array(
+        ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
+        'navbar' != TC_utils::$inst->tc_opt('tc_menu_style'),
+        (bool)TC_utils::$inst->tc_opt('tc_display_second_menu'),
+        'disabled' == get_transient("tc_main_menu_notice"),
+        ! self::$instance -> tc_is_front_help_enabled()
+      );
+
+      //checks if at least one of the conditions is true
+      return apply_filters(
+        'tc_is_main_menu_notice_on',
+        ! (bool)array_sum($_dont_display_conditions)
+      );
+    }
 
 
 

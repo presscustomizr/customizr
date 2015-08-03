@@ -1,4 +1,4 @@
-# Customizr v3.4.2 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.5 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -43,6 +43,13 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.5 July 31st 2015 =
+* fixed : various css issues for the vertical menu items
+
+= 3.4.3 July 31st 2015 =
+* fixed : minor css adjustements for the menus
+* added : a dismissable help notice under the main regular menu, on front-end, for logged-in admin users (edit options cap)
+
 = 3.4.2 July 30th 2015 =
 * fixed : expand on click not working for the secondary menu.
 

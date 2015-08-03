@@ -845,6 +845,16 @@ h2.site-description {
 
 /* REGULAR MENU
     -------------------------------------------------- */
+.navbar .tc-main-menu-notice {
+  clear: both;
+  padding: 13px 15px 3px;
+  font-size: 17px;
+}
+
+.sticky-enabled .tc-main-menu-notice {
+  display: none;
+}
+
 .dropdown-menu {
   border: 0px solid rgba(0, 0, 0, 0.2);
 }
@@ -1103,6 +1113,7 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 #tc-sn .tc-sn-inner.nav-collapse .nav{
   display: block;
+  width: 98%
 }
 
 .sn-nav-wrapper {
@@ -1119,11 +1130,18 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   border-bottom: 1px solid #EEE;
 }
 
+#tc-sn .tc-sn-inner .nav > li > a {
+  padding: 5px 20px 5px 0px;
+}
+
 /* hide arrow */
 #tc-sn.navbar .nav .dropdown-submenu > a:after,
 #tc-sn.navbar .nav > li > .dropdown-menu:after,
 #tc-sn.navbar .nav > li > .dropdown-menu:before {
   content: none;
+}
+#tc-sn .tc-sn-inner .nav li.dropdown .caret {
+  display: none;
 }
 
 .tc-sn-inner .nav [class*=dropdown] {
@@ -1155,11 +1173,12 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   white-space: normal;
 }
 #tc-sn.navbar .nav-collapse ul.nav > li li a {
+    font-size: 90%;
     & when (@is_rtl = true) {
-      padding-right: 30px;
+      padding-right: 25px;
     }
     & when (@is_rtl = false) {
-      padding-left: 30px;
+      padding-left: 25px;
     }
 }
 #tc-sn.navbar .nav-collapse ul.nav>li li li a {
@@ -1222,6 +1241,10 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 [class*=sn-right] .tc-sn .btn-toggle-nav {
   float: left;
+}
+/* fix visibility bug on close */
+.sn-close .tc-sn .btn-toggle-nav {
+ visibility: hidden;
 }
 .menu-btn {
   padding: 0;
@@ -1312,6 +1335,10 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   clear: left;
   padding: 9px 3% 0;
   font-size: 17px;
+}
+
+.sticky-enabled .tc-menu-placeholder {
+  display: none;
 }
 
 /* BREADCRUMB
