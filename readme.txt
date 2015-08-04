@@ -40,6 +40,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.6 August 4th 2015 =
+* fixed : polylang compat code according to the new customizer settings
+* fixed : use original sizes (full) for logo and favicon attachments
+
 = 3.4.5 July 31st 2015 =
 * fixed : various css issues for the vertical menu items
 
