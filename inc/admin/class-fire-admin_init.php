@@ -44,7 +44,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     */
     function tc_refresh_thumbnail( $post_id ) {
       // If this is just a revision, don't send the email.
-      if ( wp_is_post_revision( $post_id ) )
+      if ( empty( $_POST ) || wp_is_post_revision( $post_id ) )
         return;
 
       if ( ! class_exists( 'TC_post_thumbnails' ) )
