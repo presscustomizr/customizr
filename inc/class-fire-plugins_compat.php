@@ -241,7 +241,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         // grab theme options
         $pll_tc_options = tc__f('__options');
         // grab settings map, useful for some options labels
-        $tc_settings_map = TC_utils_settings_map::$instance -> tc_customizer_map( $get_default = true );
+        $tc_settings_map = TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
         $polylang_group = 'customizr-pro' == TC___::$theme_name ? 'Customizr-Pro' : 'Customizr';
@@ -253,18 +253,19 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         $archive_titles_settings =  array( 'tc_tag_title', 'tc_cat_title', 'tc_author_title', 'tc_search_title');
         foreach ( $archive_titles_settings as $archive_title_setting_name )
           if ( isset( $pll_tc_options[$archive_title_setting_name] ) )
-            pll_register_string( $tc_controls_map["tc_theme_options[$archive_title_setting_name]"]["label"], esc_attr($pll_tc_options[$archive_title_setting_name]), $polylang_group );
+            pll_register_string( $tc_controls_map[$archive_title_setting_name]["label"], esc_attr($pll_tc_options[$archive_title_setting_name]), $polylang_group );
+
         // Featured Pages
         if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
           $pll_tc_fp_areas = TC_init::$instance -> fp_ids;
           // Add featured pages button text to Polylang's string translation panel
           if ( isset( $pll_tc_options[ 'tc_featured_page_button_text'] ) )
-            pll_register_string( $tc_controls_map["tc_theme_options[tc_featured_page_button_text]"]["label"], esc_attr($pll_tc_options[ 'tc_featured_page_button_text']), $polylang_group );
+            pll_register_string( $tc_controls_map["tc_featured_page_button_text"]["label"], esc_attr($pll_tc_options[ 'tc_featured_page_button_text']), $polylang_group );
 
           // Add featured pages excerpt text to Polylang's string translation panel
           foreach ( $pll_tc_fp_areas as $area )
             if ( isset( $pll_tc_options["tc_featured_text_$area"] ) )
-              pll_register_string( $tc_controls_map["tc_theme_options[tc_featured_text_$area]"]["label"], esc_attr($pll_tc_options['tc_featured_text_'.$area]), $polylang_group );
+              pll_register_string( $tc_controls_map["tc_featured_text_$area"]["label"], esc_attr($pll_tc_options['tc_featured_text_'.$area]), $polylang_group );
 
         } //end Featured Pages
       }// end tc_pll_strings_setup function
