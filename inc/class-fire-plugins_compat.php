@@ -36,6 +36,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_theme_support( 'jetpack' );
       add_theme_support( 'bbpress' );
       add_theme_support( 'buddy-press' );
+      add_theme_support( 'buddy-press-global-search' );
       add_theme_support( 'qtranslate-x' );
       add_theme_support( 'polylang' );
       add_theme_support( 'woocommerce' );
@@ -67,8 +68,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       /* BUDDYPRESS */
       //if buddypress is installed and activated, we can check the existence of the contextual boolean function is_buddypress() to execute some code
       // we have to use buddy-press instead of buddypress as string for theme support as buddypress makes some checks on current_theme_supports('buddypress') which result in not using its templates
-      if ( current_theme_supports( 'buddy-press' ) && $this -> tc_is_plugin_active('buddypress/bp-loader.php') )
+      if ( current_theme_supports( 'buddy-press' ) && $this -> tc_is_plugin_active('buddypress/bp-loader.php') ){
         $this -> tc_set_buddypress_compat();
+
+      /* BUDDYPRESS GLOBAL SEARCH */
+        if ( current_theme_supports( 'buddy-press-global-search' ) && $this -> tc_is_plugin_active('buddypress-global-search/buddypress-global-search.php') )
+          $this -> tc_set_buddypress_global_search_compat();
+      }
 
       /*
       * QTranslatex
@@ -161,6 +167,33 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_filter( 'tc_are_comments_enabled', 'tc_buddypress_disable_comments' );
       function tc_buddypress_disable_comments($bool){
         return ( is_page() && function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
+      }
+    }
+
+    /**
+    * BuddyPress Global Search compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    private function tc_set_buddypress_global_search_compat() {
+      add_action('template_redirect', 'handle_bp_gs_output', 100);
+      function handle_bp_gs_output(){
+        //template_redirect isn't fired in admin, though who kwnos what some plugins can do.
+        if ( ! ( is_search() && ! is_admin() ) ) 
+          return;
+
+        global $wp_query;
+        $wp_query-> is_singular = true;
+        $wp_query-> is_page = true;
+          
+        add_filter('tc_set_grid_hooks', '__return_false');
+        add_filter('tc_post_list_controller', '__return_false');
+        add_filter('tc_show_post_metas' , '__return_false' );
+        if ( method_exists('TC_headings', 'tc_render_headings_view') )
+          remove_action ( '__before_loop' , array( TC_headings::$instance , 'tc_render_headings_view' ) );
+       
+        remove_all_filters('tc_the_title');
       }
     }
 
