@@ -2085,7 +2085,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       //adapt the nav section description for v4.3 (menu in the customizer from now on)
       if ( version_compare( $wp_version, '4.3', '<' ) ) {
         $nav_section_desc .= "<br/>" . sprintf( __("You can create new menu and edit your menu's content %s." , "customizr"),
-          sprintf( '<strong><a href="%1$s" target="_blank" title="%3$s">%2$s &raquo;</a><strong>',
+          sprintf( '<strong><a href="%1$s" target="_blank" title="%3$s">%2$s &raquo;</a></strong>',
             admin_url('nav-menus.php'),
             __("on the Menus screen in the Appearance section" , "customizr"),
             __("create/edit menus", "customizr")
