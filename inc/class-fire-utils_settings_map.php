@@ -708,7 +708,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 'pull-menu-left',
                                 'control'       => 'TC_controls' ,
                                 'title'         => __( 'Secondary (horizontal) menu design' , 'customizr'),
-                                'label'         => __( 'Menu position for the horizontal menu)' , "customizr" ),
+                                'label'         => __( 'Menu position (for the horizontal menu)' , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          =>  'select' ,
                                 'choices'       => array(
@@ -1385,7 +1385,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_show_breadcrumb_in_post_lists'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'TC_controls' ,
-                                'label'         => __( "Display the breadcrumb in posts lists : blog page, archives, search results..." , "customizr" ),
+                                'label'         => __( "Display the breadcrumb in posts lists: blog page, archives, search results..." , "customizr" ),
                                 'section'       => 'breadcrumb_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 50
@@ -1975,7 +1975,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                   'priority'       => 10,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Global settings' , 'customizr' ),
-                  'description'    => __( "Global settings for the Customizr theme :skin, socials, links..." , 'customizr' )
+                  'description'    => __( "Global settings for the Customizr theme: skin, socials, links..." , 'customizr' )
         ),
         'tc-header-panel' => array(
                   'priority'       => 20,
