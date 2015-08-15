@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.4.6\n"
-"POT-Creation-Date: 2015-08-09 11:47-0700\n"
+"POT-Creation-Date: 2015-08-11 10:43-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Giorgio Riccardi <giorgio@griccardi.com>\n"
 "Language-Team: \n"
@@ -22,7 +22,7 @@ msgstr "&mdash; Seleziona &mdash;"
 
 #: ../admin/class-admin-customize.php:107
 msgid "Assign menus to locations"
-msgstr ""
+msgstr "Assegna un menu ad una posizione"
 
 #: ../admin/class-admin-customize.php:115
 #, php-format
@@ -51,7 +51,7 @@ msgstr "Vai alle opzioni di design del blog"
 
 #: ../admin/class-admin-customize.php:505
 msgid "dismiss"
-msgstr ""
+msgstr "rimuovi"
 
 #: ../admin/class-admin-customize.php:508
 msgid "Hi! This is"
@@ -117,10 +117,13 @@ msgid ""
 "Need more control on your fonts ? Style any text in live preview ( size, "
 "color, font family, effect, ...) with Customizr Pro."
 msgstr ""
+"Senti il bisogno di avere un maggior controllo sui tuoi fonts? Applica i "
+"tuoi stili nell'anteprima live ( dimensione, colore, famiglia dei font, "
+"effetti, ... ) con il tema Customizr Pro."
 
 #: ../admin/class-admin-customize.php:554
 msgid "Add unlimited featured pages with Customizr Pro."
-msgstr ""
+msgstr "Aggiungi un numero illimitato di pagine in evidenza con Customizr Pro"
 
 #: ../admin/class-admin-customize.php:566
 msgid ""
@@ -130,7 +133,7 @@ msgstr ""
 
 #: ../admin/class-admin-customize.php:567
 msgid "Try it in the demo"
-msgstr ""
+msgstr "Provalo nella demo"
 
 #: ../admin/class-admin-customize.php:580
 msgid "Add creative and engaging reveal animations to your side menu."
@@ -138,11 +141,11 @@ msgstr ""
 
 #: ../admin/class-admin-customize.php:581
 msgid "Side menu animation demo"
-msgstr ""
+msgstr "Demo animazioni menu laterale"
 
 #: ../admin/class-admin-customize.php:594
 msgid "Customize your footer credits with Customizr Pro."
-msgstr ""
+msgstr "Personalizza i credits nel pié di pagina con Customizr Pro"
 
 #: ../admin/class-admin-customize.php:605
 msgid "If you like"
@@ -355,7 +358,7 @@ msgstr ""
 
 #: ../admin/class-admin-meta_boxes.php:692
 msgid "Open link in a new page/tab"
-msgstr ""
+msgstr "Apri collegamento in una nuova pagina/tab"
 
 #: ../admin/class-admin-meta_boxes.php:699
 msgid "Link the whole slide"
@@ -428,7 +431,7 @@ msgstr "Diapositiva attuale"
 
 #: ../admin/class-fire-admin_init.php:263
 msgid "Good, you've just upgraded to"
-msgstr ""
+msgstr "Grandioso, hai appena aggiornato a"
 
 #: ../admin/class-fire-admin_init.php:265
 msgid "version"
@@ -440,7 +443,7 @@ msgstr ""
 
 #: ../admin/class-fire-admin_init.php:276
 msgid "Read the latest release notes"
-msgstr ""
+msgstr "Leggi gli ultimi aggiornamenti"
 
 #: ../admin/class-fire-admin_init.php:278
 msgid "Visit the demo"
@@ -448,7 +451,7 @@ msgstr "Guarda la demo"
 
 #: ../admin/class-fire-admin_init.php:284
 msgid "I already know what's new thanks !"
-msgstr ""
+msgstr "So già cosa c'è di nuovo, grazie!"
 
 #: ../admin/class-fire-admin_init.php:285
 msgid "close"
@@ -464,7 +467,7 @@ msgstr "Hai bisogno di aiuto con"
 
 #: ../admin/class-fire-admin_page.php:79
 msgid "Welcome to"
-msgstr ""
+msgstr "Benvenuto in"
 
 #: ../admin/class-fire-admin_page.php:92
 #, php-format
@@ -494,7 +497,7 @@ msgstr ""
 
 #: ../admin/class-fire-admin_page.php:99
 msgid "home page"
-msgstr ""
+msgstr "home page"
 
 #: ../admin/class-fire-admin_page.php:107
 msgid "Read the documentation"
@@ -515,7 +518,7 @@ msgstr "Ricevi assistenza nel forum utenti"
 #: ../admin/class-fire-admin_page.php:129
 #, php-format
 msgid "Thank you for using %s!"
-msgstr ""
+msgstr "Grazie per usare %s!"
 
 #: ../admin/class-fire-admin_page.php:130
 #, php-format
@@ -526,7 +529,7 @@ msgstr ""
 
 #: ../admin/class-fire-admin_page.php:131
 msgid "check the changelog"
-msgstr ""
+msgstr "Controlla il registro delle modifiche"
 
 #: ../admin/class-fire-admin_page.php:135
 #, php-format
@@ -535,7 +538,7 @@ msgstr ""
 
 #: ../admin/class-fire-admin_page.php:138
 msgid "demo website"
-msgstr ""
+msgstr "demo website"
 
 #: ../admin/class-fire-admin_page.php:152
 #, php-format
@@ -578,7 +581,7 @@ msgstr "Seguici"
 
 #: ../admin/class-fire-admin_page.php:193
 msgid "Go Customizr Pro"
-msgstr ""
+msgstr "Scarica Customizr Pro"
 
 #: ../admin/class-fire-admin_page.php:196
 msgid "Visit the extension's page"
@@ -595,6 +598,10 @@ msgid ""
 "version, you'll get all the features of the free version plus some really "
 "cool and even revolutionary ones."
 msgstr ""
+"Il tema WordPress Customizr Pro permette a chiunque di creare un sito web "
+"stupendo, professionale e totalmente rispondente in pochi secondi. Nella "
+"versione Pro, avrai tutte le caratteristiche della versione gratuita, più "
+"alcune opzioni davvero grandiose ed anche rivoluzionarie."
 
 #: ../admin/class-fire-admin_page.php:202
 msgid "Discover Customizr Pro"
@@ -960,7 +967,7 @@ msgstr "Menu principale"
 
 #: ../class-fire-init.php:516
 msgid "Secondary (horizontal) Menu"
-msgstr ""
+msgstr "Menu Secondario (orizzontale)"
 
 #: ../class-fire-init.php:680
 msgid "Help"
@@ -1017,15 +1024,15 @@ msgstr "Scegli una skin predefinita"
 
 #: ../class-fire-utils_settings_map.php:198
 msgid "Disabled if the random option is on."
-msgstr ""
+msgstr "Disabilitata se l'opzione casuale è attiva."
 
 #: ../class-fire-utils_settings_map.php:203
 msgid "Randomize the skin"
-msgstr ""
+msgstr "Colore della skin casuale"
 
 #: ../class-fire-utils_settings_map.php:206
 msgid "Apply a random color skin on each page load."
-msgstr ""
+msgstr "Applica un colore casuale della skin ad ogni caricamento pagina"
 
 #: ../class-fire-utils_settings_map.php:220
 msgid ""
@@ -1077,7 +1084,7 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:265
 msgid "Important note"
-msgstr ""
+msgstr "Nota importante"
 
 #: ../class-fire-utils_settings_map.php:265
 msgid ""
@@ -1277,11 +1284,11 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:492
 msgid "Enable Smooth Scroll"
-msgstr ""
+msgstr "Scorrimento morbido al click del mouse"
 
 #: ../class-fire-utils_settings_map.php:496
 msgid "This option enables a smoother page scroll."
-msgstr ""
+msgstr "Questa opzione consente un agevole scorrimento pagina."
 
 #: ../class-fire-utils_settings_map.php:516
 #: ../class-fire-utils_settings_map.php:2174
@@ -1290,7 +1297,7 @@ msgstr "Design e layout della testata"
 
 #: ../class-fire-utils_settings_map.php:518
 msgid "Choose a layout for the header"
-msgstr ""
+msgstr "Scegli un layout per la testata"
 
 #: ../class-fire-utils_settings_map.php:522
 msgid "Logo / title on the left"
@@ -1408,17 +1415,19 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:670
 msgid "Regular (horizontal)"
-msgstr ""
+msgstr "Regolare (orizzontale)"
 
 #: ../class-fire-utils_settings_map.php:671
 msgid "Side Menu (vertical)"
-msgstr ""
+msgstr "Menu laterale (vertical)"
 
 #: ../class-fire-utils_settings_map.php:678
 msgid ""
 "For mobile devices (responsive), limit the height of the dropdown menu block "
 "to the visible viewport."
 msgstr ""
+"In modalità responsive, limita l'altezza del menu a tendina alla parte di "
+"finestra visibile"
 
 #: ../class-fire-utils_settings_map.php:687
 msgid "Display a label next to the menu button."
@@ -1430,7 +1439,7 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:696
 msgid "Menu position (for \"main\" menu)"
-msgstr ""
+msgstr "Posizione del menu (per il menu \"principale\")"
 
 #: ../class-fire-utils_settings_map.php:700
 #: ../class-fire-utils_settings_map.php:715
@@ -1450,11 +1459,11 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:710
 msgid "Secondary (horizontal) menu design"
-msgstr ""
+msgstr "Design menu Secondario (orizzontale)"
 
 #: ../class-fire-utils_settings_map.php:711
-msgid "Menu position for the horizontal menu)"
-msgstr ""
+msgid "Menu position (for the horizontal menu)"
+msgstr "Posizione del menu (per il menu orizzontale)"
 
 #: ../class-fire-utils_settings_map.php:726
 msgid "Select a submenu expansion option"
@@ -1490,7 +1499,7 @@ msgstr ""
 
 #: ../class-fire-utils_settings_map.php:762
 msgid "Display in the header"
-msgstr ""
+msgstr "Visualizza nell'intestazione"
 
 #: ../class-fire-utils_settings_map.php:763
 msgid "Hide"
@@ -1498,11 +1507,11 @@ msgstr "Cacher"
 
 #: ../class-fire-utils_settings_map.php:771
 msgid "Remove all the menus."
-msgstr ""
+msgstr "Elimina tutti i menu"
 
 #: ../class-fire-utils_settings_map.php:772
 msgid "Don't display any menus in the header of your website"
-msgstr ""
+msgstr "Non mostrare nessun menu nella testate del tuo sito"
 
 #: ../class-fire-utils_settings_map.php:776
 msgid ""
@@ -1683,10 +1692,13 @@ msgid ""
 "pages. But you can also define the layout for each post and page "
 "individually. Learn how in the %s."
 msgstr ""
+"Le opzioni di layout di cui sopra imposterà il layout a livello globale per "
+"gli articoli e le pagine. Ma si può anche definire individualmente il layout "
+"per ogni articolo e pagina. Scopri come nel %s."
 
 #: ../class-fire-utils_settings_map.php:1033
 msgid "Customizr theme documentation"
-msgstr ""
+msgstr "Documentazione del tema Customizr"
 
 #: ../class-fire-utils_settings_map.php:1036
 msgid ""
@@ -2450,11 +2462,11 @@ msgstr "Impostazioni del Contenuto per il tema Customizr."
 
 #: ../class-fire-utils_settings_map.php:1995
 msgid "Sidebars"
-msgstr ""
+msgstr "Barre laterali"
 
 #: ../class-fire-utils_settings_map.php:1996
 msgid "Sidebars settings for the Customizr theme."
-msgstr ""
+msgstr "Impostazioni barre laterali per il tema Customizr"
 
 #: ../class-fire-utils_settings_map.php:2001
 msgid "Footer"
@@ -3170,7 +3182,7 @@ msgstr "Aggiungi widgets"
 #: ../parts/class-content-sidebar.php:142
 #: ../parts/class-footer-footer_main.php:156
 msgid "dismiss this notice"
-msgstr ""
+msgstr "rimuovi questa notifica"
 
 #: ../parts/class-content-sidebar.php:148
 msgid "You can also remove this sidebar by changing the current page layout."
@@ -3278,7 +3290,7 @@ msgstr "Menu"
 
 #: ../parts/class-header-menu.php:174
 msgid "Open the menu"
-msgstr ""
+msgstr "Apri il menu"
 
 #: ../parts/class-header-menu.php:200
 msgid "Add a menu"
@@ -3297,7 +3309,7 @@ msgstr "%s o %s."
 
 #: ../parts/class-header-menu.php:365
 msgid "Try it with the demo"
-msgstr ""
+msgstr "Provalo nella demo"
 
 #: ../parts/class-header-menu.php:366
 msgid "open the customizer menu section"
@@ -3318,7 +3330,7 @@ msgstr "%s o leggi la %s."
 
 #: ../parts/class-header-menu.php:392
 msgid "Manage menus in the header"
-msgstr ""
+msgstr "Gestione menu nella testata"
 
 #: ../parts/class-header-menu.php:392
 msgid "Manage your menus in the header now"
