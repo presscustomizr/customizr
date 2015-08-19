@@ -592,6 +592,10 @@ if ( ! class_exists( 'TC_header_main' ) ) :
      		$_classes = array_merge( $_classes, array('tc-no-sticky-header') );
      	}
 
+        //No navbar box
+        if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
+            $_classes = array_merge( $_classes , array('no-navbar' ) );
+
       //SKIN CLASS
       $_skin = sprintf( 'skin-%s' , basename( TC_init::$instance -> tc_get_style_src() ) );
       array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
