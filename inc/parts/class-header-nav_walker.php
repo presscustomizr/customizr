@@ -16,14 +16,14 @@ if ( ! class_exists( 'TC_nav_walker' ) ) :
     function __construct($_location) {
       self::$instance =& $this;
       $this -> tc_location = $_location;
-      add_filter( 'nav_menu_css_class' , array($this, 'tc_add_bootstrap_classes'), 10, 4 );
+      add_filter( 'tc_nav_menu_css_class' , array($this, 'tc_add_bootstrap_classes'), 10, 4 );
     }
 
 
     /**
     * hook : nav_menu_css_class
     */
-    function tc_add_bootstrap_classes($classes, $item, $args, $depth ) {
+    function tc_add_bootstrap_classes($classes, $item, $args, $depth ) { 
       //check if $item is a dropdown ( a parent )
       //this is_dropdown property has been added in the the display_element() override method
       if ( $item -> is_dropdown ) {
@@ -75,6 +75,8 @@ if ( ! class_exists( 'TC_nav_walker' ) ) :
       //we add a property here
       //will be used in override start_el() and class filter
       $element->is_dropdown = ! empty( $children_elements[$element->ID]);
+
+      $element->classes = apply_filters( 'tc_nav_menu_css_class', $element->classes, $element, $args, $depth );
 
       //let the parent do the rest of the job !
       parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output);
