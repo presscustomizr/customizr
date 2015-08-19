@@ -4,7 +4,8 @@
  * @since Customizr 1.0
  */
 (function (wp, $, _) {
-  var api = wp.customize;
+  var api = wp.customize,
+      $_nav_section_container;
 
   /**
    * @constructor
@@ -531,7 +532,7 @@
   //change the 'nav' section controls opacity based on the booleand value of a setting (tc_theme_options[tc_hide_all_menus])
   var _hideAllmenusActions = function(to, from, setId) {
     setId = setId ||'tc_theme_options[tc_hide_all_menus]';
-    var $_controls = api.section('nav').container.find('li.customize-control').not( api.control(setId).container );
+    var $_controls = $_nav_section_container.find('li.customize-control').not( api.control(setId).container );
     $_controls.each( function() {
       if ( $(this).is(':visible') )
         $(this).fadeTo( 500 , true === to ? 0.5 : 1); //.fadeTo() duration, opacity, callback
@@ -548,9 +549,11 @@
     //additional dependencies
     _handle_grid_dependencies();
     _header_layout_dependency();
+ 
+    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
 
     //on nav section open
-    api.section('nav').container.on( 'click keydown', '.accordion-section-title', function(e) {
+    $_nav_section_container.on( 'click keydown', '.accordion-section-title', function(e) {
       //special treatment for click events
       if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
         return;
