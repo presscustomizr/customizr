@@ -708,7 +708,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'default'       => 'pull-menu-left',
                                 'control'       => 'TC_controls' ,
                                 'title'         => __( 'Secondary (horizontal) menu design' , 'customizr'),
-                                'label'         => __( 'Menu position for the horizontal menu)' , "customizr" ),
+                                'label'         => __( 'Menu position (for the horizontal menu)' , "customizr" ),
                                 'section'       => 'nav' ,
                                 'type'          =>  'select' ,
                                 'choices'       => array(
