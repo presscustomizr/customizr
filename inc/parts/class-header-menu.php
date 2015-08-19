@@ -437,9 +437,6 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_add_body_classes($_classes) {
-      if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
-        array_push( $_classes , 'no-navbar' );
-
       //menu type class
       $_menu_type = $this -> tc_is_sidenav_enabled() ? 'tc-side-menu' : 'tc-regular-menu';
       array_push( $_classes, $_menu_type );
