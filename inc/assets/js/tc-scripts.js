@@ -4290,7 +4290,8 @@ var czrapp = czrapp || {};
       var self = this;
       _.map( cbs, function(cb) {
         if ( 'function' == typeof(self[cb]) ) {
-          self[cb].apply(self, 'undefined' == typeof( args ) ? Array() : args );
+          args = 'undefined' == typeof( args ) ? Array() : args ;  
+          self[cb].apply(self, args );
           czrapp.trigger( cb, _.object( _.keys(args), args ) );
         }
       });//_.map

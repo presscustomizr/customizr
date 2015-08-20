@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.6
+ * Customizr v3.4.7
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -358,11 +358,11 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   float: right;
-  margin-left: 2.12765957%;
-  *margin-left: 2.07446809%;
+  margin-right: 2.12765957%;
+  *margin-right: 2.07446809%;
 }
 .row-fluid [class*="span"]:first-child {
-  margin-left: 0;
+  margin-right: 0;
 }
 .row-fluid .controls-row [class*="span"] + [class*="span"] {
   margin-left: 2.12765957%;
@@ -5142,6 +5142,10 @@ h3#reply-title:before {
   padding-right: 5px;
   font-size: 2em;
 }
+h2.comments:before {
+  /* GY: added rule to fix icon position */
+  float: right;
+}
 h2.comments-title:before {
   font-family: 'genericons';
   content: "\f108";
@@ -5151,6 +5155,7 @@ h2.comments-title:before {
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+  float: right;
   padding-left: 5px;
   font-size: 1em;
 }
@@ -5524,21 +5529,21 @@ li.dropdown.active > .dropdown-toggle,
 }
 /* ADJUST LEFT AND RIGHT MENU POSITIONS => align with socials (left) and tagline (right) */
 .logo-left .navbar div > ul.nav > .menu-item:last-child > a {
-  padding-right: 0;
+  padding-left: 0px;
 }
 .navbar .nav {
   margin-right: 0px;
 }
-.pull-menu-left .navbar div > ul.nav > .menu-item:first-child > a {
-  padding-left: 5px;
-}
 .tc-header .btn-toggle-nav.pull-left {
   clear: both;
-  padding-left: 5px;
+}
+.tc-header .btn-toggle-nav.pull-left,
+.pull-menu-left .navbar div > ul.nav > .menu-item:first-child > a {
+  padding-right: 5px;
 }
 .tc-header .btn-toggle-nav.pull-right,
 .pull-menu-right .navbar div > ul.nav > .menu-item:last-child > a {
-  padding-right: 0px;
+  padding-left: 0px;
 }
 .pull-menu-left .nav-collapse {
   float: left;
@@ -5779,8 +5784,8 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   /*padding: 8px 7px 2px;
   border: 1px solid #EEE;*/
@@ -5964,7 +5969,7 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 .widget.widget_rss li:before {
   content: '\203A';
   position: relative;
-  left: -10px;
+  right: -10px;
   -webkit-transition: right 0.2s;
   -moz-transition: right 0.2s;
   -ms-transition: right 0.2s;
@@ -6778,6 +6783,7 @@ video {
 }
 /* JS IMAGE CENTERING */
 img.h-centered {
+  float: left;
   width: auto!important;
   max-width: none!important;
 }
@@ -7231,8 +7237,8 @@ ul.children {
   display: block;
 }
 .comment .edit-link {
+  float: left;
   display: block;
-  float: right;
   margin-right: 10px;
 }
 .comment-avatar {
@@ -7743,11 +7749,11 @@ li#wp-admin-bar-tc-customizr a {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     float: right;
-    margin-left: 2.56410256%;
-    *margin-left: 2.51091107%;
+    margin-right: 2.56410256%;
+    *margin-right: 2.51091107%;
   }
   .row-fluid [class*="span"]:first-child {
-    margin-left: 0;
+    margin-right: 0;
   }
   .row-fluid .controls-row [class*="span"] + [class*="span"] {
     margin-left: 2.56410256%;
@@ -8092,11 +8098,11 @@ li#wp-admin-bar-tc-customizr a {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     float: right;
-    margin-left: 2.76243094%;
-    *margin-left: 2.70923945%;
+    margin-right: 2.76243094%;
+    *margin-right: 2.70923945%;
   }
   .row-fluid [class*="span"]:first-child {
-    margin-left: 0;
+    margin-right: 0;
   }
   .row-fluid .controls-row [class*="span"] + [class*="span"] {
     margin-left: 2.76243094%;
@@ -9090,6 +9096,10 @@ li#wp-admin-bar-tc-customizr a {
   }
   .sticky-enabled .tc-header {
     min-height: 40px;
+  }
+  .sticky-enabled .tc-header .brand {
+    float: left;
+    text-align: left;
   }
   .sticky-enabled .tc-header .outside {
     display: none;
