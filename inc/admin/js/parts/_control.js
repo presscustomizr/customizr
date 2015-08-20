@@ -5,7 +5,41 @@
  */
 (function (wp, $, _) {
   var api = wp.customize,
-      $_nav_section_container;
+      $_nav_section_container,
+      translatedStrings = TCControlParams.translatedStrings || {};
+
+  //bind all actions to wp.customize ready event
+  //map each setting with its dependencies
+  api.bind( 'ready' , function() {
+    _.map( _controlDependencies , function( opts , setId ) {
+        _prepare_visibilities( setId, opts );
+    });
+
+    //additional dependencies
+    _handle_grid_dependencies();
+    _header_layout_dependency();
+
+    //favicon note on load and on change(since wp 4.3)
+    _handleFaviconNote();
+
+    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
+
+    //on nav section open
+    $_nav_section_container.on( 'click keydown', '.accordion-section-title', function(e) {
+      //special treatment for click events
+      if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
+        return;
+      }
+      event.preventDefault(); // Keep this AFTER the key filter above)
+
+      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
+    });//on()
+
+    //specific callback when for the tc_hide_all_menus setting
+    api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
+
+  } );
+
 
   /**
    * @constructor
@@ -540,32 +574,43 @@
   };
 
 
-  //bind all actions to wp.customize ready event
-  //map each setting with its dependencies
-  api.bind( 'ready' , function() {
-    _.map( _controlDependencies , function( opts , setId ) {
-        _prepare_visibilities( setId, opts );
-    });
-    //additional dependencies
-    _handle_grid_dependencies();
-    _header_layout_dependency();
- 
-    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
+  /**
+  * Fired on api ready
+  * May change the site_icon description on load
+  * May add a callback to site_icon
+  * @return void()
+  */
+  var _handleFaviconNote = function() {
+    //do nothing if (||)
+    //1) WP version < 4.3 where site icon has been introduced
+    //2) User had not defined a Customizr favicon
+    //3) User has already set WP site icon
+    if ( ! api.has('site_icon') || 0 === + api( _build_setId('tc_fav_upload') ).get() || + api('site_icon').get() > 0 )
+      return;
 
-    //on nav section open
-    $_nav_section_container.on( 'click keydown', '.accordion-section-title', function(e) {
-      //special treatment for click events
-      if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
-        return;
+    var _oldDes     = api.control('site_icon').params.description;
+        _newDes     = ['<strong>' , translatedStrings.faviconNote || '' , '</strong><br/><br/>' ].join('') + _oldDes;
+
+    //on api ready
+    _printFaviconNote(_newDes );
+
+    //on site icon change
+    api('site_icon').callbacks.add( function(to) {
+      if ( +to > 0 ) {
+        //reset the description to default
+        api.control('site_icon').container.find('.description').text(_oldDes);
+        //reset the previous customizr favicon setting
+        api( _build_setId('tc_fav_upload') ).set("");
       }
-      event.preventDefault(); // Keep this AFTER the key filter above)
+      else {
+        _printFaviconNote(_newDes );
+      }
+    });
+  };
 
-      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
-    });//on()
-
-    //specific callback when for the tc_hide_all_menus setting
-    api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
-
-  } );
+  //Add a note to the WP control description if user has already defined a favicon with Customizr
+  var _printFaviconNote = function( _newDes ) {
+    api.control('site_icon').container.find('.description').html(_newDes);
+  };
 
 })( wp, jQuery, _);

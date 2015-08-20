@@ -206,7 +206,8 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
  */
 (function (wp, $, _) {
   var api = wp.customize,
-      $_nav_section_container;
+      $_nav_section_container,
+      translatedStrings = TCControlParams.translatedStrings || {};
 
   /**
    * @constructor
@@ -741,16 +742,60 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   };
 
 
+  /**
+  * Fired on api ready
+  * May change the site_icon description on load
+  * May add a callback to site_icon
+  * @return void()
+  */
+  var _handleFaviconNote = function() {
+    //do nothing if (||)
+    //1) WP version < 4.3 where site icon has been introduced
+    //2) User had not defined a Customizr favicon
+    //3) User has already set WP site icon
+    if ( ! api.has('site_icon') || 0 === + api( _build_setId('tc_fav_upload') ).get() || + api('site_icon').get() > 0 )
+      return;
+
+    var _oldDes     = api.control('site_icon').params.description;
+        _newDes     = ['<strong>' , translatedStrings.faviconNote || '' , '</strong><br/><br/>' ].join('') + _oldDes;
+
+    //on api ready
+    _printFaviconNote(_newDes );
+
+    //on site icon change
+    api('site_icon').callbacks.add( function(to) {
+      if ( +to > 0 ) {
+        //reset the description to default
+        api.control('site_icon').container.find('.description').text(_oldDes);
+        //reset the previous customizr favicon setting
+        api( _build_setId('tc_fav_upload') ).set("");
+      }
+      else {
+        _printFaviconNote(_newDes );
+      }
+    });
+  };
+
+  //Add a note to the WP control description if user has already defined a favicon with Customizr
+  var _printFaviconNote = function( _newDes ) {
+    api.control('site_icon').container.find('.description').html(_newDes);
+  };
+
+
   //bind all actions to wp.customize ready event
   //map each setting with its dependencies
   api.bind( 'ready' , function() {
     _.map( _controlDependencies , function( opts , setId ) {
         _prepare_visibilities( setId, opts );
     });
+
     //additional dependencies
     _handle_grid_dependencies();
     _header_layout_dependency();
- 
+
+    //favicon note on load and on change(since wp 4.3)
+    _handleFaviconNote();
+
     $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
 
     //on nav section open
@@ -769,8 +814,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
 
   } );
 
-})( wp, jQuery, _);
-/**
+})( wp, jQuery, _);/**
  * Call to actions
  */
 jQuery(function ($) {
