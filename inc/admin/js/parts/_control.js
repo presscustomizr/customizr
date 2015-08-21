@@ -8,9 +8,103 @@
       $_nav_section_container,
       translatedStrings = TCControlParams.translatedStrings || {};
 
+
+  api.bind( 'ready' , function() {
+    _listenToSectionExpand();
+    //_listenToPreviewSync();
+  } );
+
+
+  //FIX FOR CONTROL VISIBILITY LOST ON SECTION EXPANDED
+  //@to do => add the missing control dependencies (see _oldActions() )
+  var _listenToSectionExpand = function() {
+    _.map( _getCzrSections(), function( o, sectionId ) {
+
+      api.section( sectionId ).expanded.callbacks.add( function() {
+        _.map( _controlDependencies , function( opts , setId ) {
+          if ( _sectionHasSetting( sectionId , _build_setId(setId) ) )
+            _prepare_visibilities( setId, opts );
+        });//_.map()
+      });//add()
+    });//_.map()
+  };
+
+  //returns the list of sections
+  //@todo filter the widget sections ?
+  var _getCzrSections = function() {
+    return api.settings.sections;
+  };
+
+  /**
+   * @param  {[type]} sectionId
+   * @param  {[type]} setId
+   * @return bool
+   */
+  var _sectionHasSetting = function( sectionId, setId ) {
+    return api.control(setId) && api.control(setId).params.section == sectionId;
+  };
+
+
+
+  //FIX FOR CONTROL VISIBILITY LOST ON PREVIEW REFRESH #1
+  //This solves the problem of control visiblity settings being lost on preview refresh since WP 4.3
+  api.Control.prototype.activate = function ( params ) {
+    //this overrides the activate method only for the control instances
+    //it check if there's been a customizations
+    //=> api.previewer.loading is an ephemere object, created during the frame synchronisation
+    //=> the second check is not mandatory but it's been added for consistency. On customizer load, the query.customized object is empty.
+    if ( api.previewer.loading && ! _.isEmpty( api.previewer.loading.query.customized ) )
+      return;
+
+    return this._toggleActive( true, params );
+  };
+
+
+  //FIX FOR CONTROL VISIBILITY LOST ON PREVIEW REFRESH #2
+  //This works but the sync message is a bit too late to avoid a flash of ( normally hidden ) controls being displayed.
+  var _listenToPreviewSync = function() {
+    $(window).on('message', function(event){
+      var message;
+      event = event.originalEvent;
+      if ( ! api.previewer.targetWindow() )
+        return;
+
+      // Check to make sure the origin is valid.
+      if ( api.previewer.origin() && event.origin !== api.previewer.origin() )
+        return;
+
+      // Ensure we have a string that's JSON.parse-able
+      if ( typeof event.data !== 'string' || event.data[0] !== '{' ) {
+        return;
+      }
+      message = JSON.parse( event.data );
+      // Check required message properties.
+      if ( ! message || ! message.id || typeof message.data === 'undefined' )
+        return;
+
+      if ( 'synced' != message.id )
+        return;
+
+      _.map( _getCzrSections(), function( o, sectionId ) {
+        _.map( _controlDependencies , function( opts , setId ) {
+          //we don't care about collapsed sections
+          if ( ! api.section(sectionId).expanded() )
+            return;
+
+          if ( _sectionHasSetting( sectionId , _build_setId(setId) ) )
+            _prepare_visibilities( setId, opts );
+        });//_.map()
+      });//_.map()
+    });
+  };
+
+
+
+
   //bind all actions to wp.customize ready event
   //map each setting with its dependencies
-  api.bind( 'ready' , function() {
+  //api.bind( 'ready' , _oldActions );
+  var _oldActions = function() {
     _.map( _controlDependencies , function( opts , setId ) {
         _prepare_visibilities( setId, opts );
     });
@@ -37,8 +131,9 @@
 
     //specific callback when for the tc_hide_all_menus setting
     api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
+  };
 
-  } );
+
 
 
   /**
@@ -515,7 +610,9 @@
         //1) return true if we must show, false if not.
         _bool = _check_cross_dependant( _params.setId, depSetId ) && _bool;
         control.container.toggle( _bool );
-      };
+      };//_visibility()
+
+
 
       _visibility( _params.setting.get() );
       _params.setting.bind( _visibility );

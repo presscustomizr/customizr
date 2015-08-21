@@ -1,4 +1,4 @@
-# Customizr v3.4.7 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=handle-new-wp-favicon)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.7 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=fix-control-visibility-issue-since-4-3)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
