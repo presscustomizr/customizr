@@ -114,13 +114,15 @@
     //favicon note on load and on change(since wp 4.3)
     _handleFaviconNote();
 
-    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
+    if ( 'function' == typeof api.section ) {
+      $_nav_section_container = api.section('nav').container;
 
-    //on nav section open
-    api.section('nav').expanded.callbacks.add( function() {
-      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
-    });//add()
-
+      //on nav section open
+      api.section('nav').expanded.callbacks.add( function() {
+        _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
+      });//add()
+    } else
+      $_nav_section_container = $('li#accordion-section-nav');    
     //specific callback when for the tc_hide_all_menus setting
     api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
   };
