@@ -114,14 +114,29 @@
     //favicon note on load and on change(since wp 4.3)
     _handleFaviconNote();
 
-    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
+    //nav section visibilities
+    //=> backward compat if api.section not defined
+    if ( 'function' == typeof api.section ) {
+      $_nav_section_container = api.section('nav').container;
+      //on nav section open
+      api.section('nav').expanded.callbacks.add( function() {
+        _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
+      });//add()
+    } else {
+      $_nav_section_container = $('li#accordion-section-nav');
+      //on nav section open
+      $_nav_section_container.on( 'click keydown', '.accordion-section-title', function(event) {
+        //special treatment for click events
+        if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
+          return;
+        }
+        event.preventDefault(); // Keep this AFTER the key filter above)
 
-    //on nav section open
-    api.section('nav').expanded.callbacks.add( function() {
-      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
-    });//add()
+        _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
+      });//on()
+    }//else
 
-    //specific callback when for the tc_hide_all_menus setting
+    //specific callback for the tc_hide_all_menus setting
     api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
   };
 
