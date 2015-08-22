@@ -6,6 +6,7 @@
 (function (wp, $, _) {
   var api = wp.customize,
       $_nav_section_container,
+      _control_onChangeActive = api.Control.prototype.onChangeActive,
       translatedStrings = TCControlParams.translatedStrings || {};
 
   api.bind( 'ready' , function() {
@@ -21,17 +22,8 @@
   api.Control.prototype.onChangeActive = function ( active, args ) {
     if ( args.unchanged )
       return;
-    if ( this.container[0] && ! $.contains( document, this.container[0] ) ) {
-      // jQuery.fn.slideUp is not hiding an element if it is not in the DOM
-      this.container.toggle( active );
-      if ( args.completeCallback ) {
-        args.completeCallback();
-      }
-    } else if ( active ) {
-      this.container.slideDown( args.duration, args.completeCallback );
-    } else {
-      this.container.slideUp( args.duration, args.completeCallback );
-    }
+
+    _control_onChangeActive.call(this, active, args);    
   };
 
 
