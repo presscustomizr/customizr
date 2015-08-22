@@ -209,132 +209,31 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       $_nav_section_container,
       translatedStrings = TCControlParams.translatedStrings || {};
 
-
   api.bind( 'ready' , function() {
-    _listenToSectionExpand();
-    //_listenToPreviewSync();
+    _setControlVisibilities();
   } );
-
-
-  //FIX FOR CONTROL VISIBILITY LOST ON SECTION EXPANDED
-  //@to do => add the missing control dependencies (see _oldActions() )
-  var _listenToSectionExpand = function() {
-    _.map( _getCzrSections(), function( o, sectionId ) {
-
-      api.section( sectionId ).expanded.callbacks.add( function() {
-        _.map( _controlDependencies , function( opts , setId ) {
-          if ( _sectionHasSetting( sectionId , _build_setId(setId) ) )
-            _prepare_visibilities( setId, opts );
-        });//_.map()
-      });//add()
-    });//_.map()
-  };
-
-  //returns the list of sections
-  //@todo filter the widget sections ?
-  var _getCzrSections = function() {
-    return api.settings.sections;
-  };
-
-  /**
-   * @param  {[type]} sectionId
-   * @param  {[type]} setId
-   * @return bool
-   */
-  var _sectionHasSetting = function( sectionId, setId ) {
-    return api.control(setId) && api.control(setId).params.section == sectionId;
-  };
-
 
 
   //FIX FOR CONTROL VISIBILITY LOST ON PREVIEW REFRESH #1
   //This solves the problem of control visiblity settings being lost on preview refresh since WP 4.3
-  api.Control.prototype.activate = function ( params ) {
-    //this overrides the activate method only for the control instances
-    //it check if there's been a customizations
-    //=> api.previewer.loading is an ephemere object, created during the frame synchronisation
-    //=> the second check is not mandatory but it's been added for consistency. On customizer load, the query.customized object is empty.
-    if ( api.previewer.loading && ! _.isEmpty( api.previewer.loading.query.customized ) )
+  //this overrides the wp method only for the control instances
+  //it check if there's been a customizations
+  //=> args.unchanged is true for all cases, for example when api.previewer.loading and the preview send 'ready'created during the frame synchronisation
+  api.Control.prototype.onChangeActive = function ( active, args ) {
+    if ( args.unchanged )
       return;
-
-    return this._toggleActive( true, params );
-  };
-
-
-  //FIX FOR CONTROL VISIBILITY LOST ON PREVIEW REFRESH #2
-  //This works but the sync message is a bit too late to avoid a flash of ( normally hidden ) controls being displayed.
-  var _listenToPreviewSync = function() {
-    $(window).on('message', function(event){
-      var message;
-      event = event.originalEvent;
-      if ( ! api.previewer.targetWindow() )
-        return;
-
-      // Check to make sure the origin is valid.
-      if ( api.previewer.origin() && event.origin !== api.previewer.origin() )
-        return;
-
-      // Ensure we have a string that's JSON.parse-able
-      if ( typeof event.data !== 'string' || event.data[0] !== '{' ) {
-        return;
+    if ( this.container[0] && ! $.contains( document, this.container[0] ) ) {
+      // jQuery.fn.slideUp is not hiding an element if it is not in the DOM
+      this.container.toggle( active );
+      if ( args.completeCallback ) {
+        args.completeCallback();
       }
-      message = JSON.parse( event.data );
-      // Check required message properties.
-      if ( ! message || ! message.id || typeof message.data === 'undefined' )
-        return;
-
-      if ( 'synced' != message.id )
-        return;
-
-      _.map( _getCzrSections(), function( o, sectionId ) {
-        _.map( _controlDependencies , function( opts , setId ) {
-          //we don't care about collapsed sections
-          if ( ! api.section(sectionId).expanded() )
-            return;
-
-          if ( _sectionHasSetting( sectionId , _build_setId(setId) ) )
-            _prepare_visibilities( setId, opts );
-        });//_.map()
-      });//_.map()
-    });
+    } else if ( active ) {
+      this.container.slideDown( args.duration, args.completeCallback );
+    } else {
+      this.container.slideUp( args.duration, args.completeCallback );
+    }
   };
-
-
-
-
-  //bind all actions to wp.customize ready event
-  //map each setting with its dependencies
-  //api.bind( 'ready' , _oldActions );
-  var _oldActions = function() {
-    _.map( _controlDependencies , function( opts , setId ) {
-        _prepare_visibilities( setId, opts );
-    });
-
-    //additional dependencies
-    _handle_grid_dependencies();
-    _header_layout_dependency();
-
-    //favicon note on load and on change(since wp 4.3)
-    _handleFaviconNote();
-
-    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
-
-    //on nav section open
-    $_nav_section_container.on( 'click keydown', '.accordion-section-title', function(e) {
-      //special treatment for click events
-      if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
-        return;
-      }
-      event.preventDefault(); // Keep this AFTER the key filter above)
-
-      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
-    });//on()
-
-    //specific callback when for the tc_hide_all_menus setting
-    api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
-  };
-
-
 
 
   /**
@@ -398,6 +297,34 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   $.extend( api.controlConstructor, {
     tc_upload : api.TCUploadControl
   });
+
+
+
+
+  //bind all actions to wp.customize ready event
+  //map each setting with its dependencies
+  var _setControlVisibilities = function() {
+    _.map( _controlDependencies , function( opts , setId ) {
+      _prepare_visibilities( setId, opts );
+    });
+
+    //additional dependencies
+    _handle_grid_dependencies();
+    _header_layout_dependency();
+
+    //favicon note on load and on change(since wp 4.3)
+    _handleFaviconNote();
+
+    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
+
+    //on nav section open
+    api.section('nav').expanded.callbacks.add( function() {
+      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
+    });//add()
+
+    //specific callback when for the tc_hide_all_menus setting
+    api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
+  };
 
 
   /*
