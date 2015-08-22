@@ -702,7 +702,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 ),
                                 'priority'      => 50,
                                 'transport'     => 'postMessage',
-                                'notice'        => __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' )
+                                'notice'        => sprintf( '%1$s<br/><br/>%2$s',
+                                  __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' ),
+                                  sprintf( __("To change the global header layout, %s" , "customizr"),
+                                    sprintf( '<a href="%1$s" target="_blank" title="%3$s">%2$s &raquo;</a>',
+                                      "javascript:wp.customize.section('header_layout_sec').focus();",
+                                      __("jump to the Design and Layout section" , "customizr"),
+                                      __("Change the header layout", "customizr")
+                                    )
+                                  )
+                                )
+
               ),
               'tc_second_menu_position'  =>  array(
                                 'default'       => 'pull-menu-left',
@@ -2094,7 +2104,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       } else {
         $nav_section_desc .= "<br/>" . sprintf( __("You can create new menu and edit your menu's content %s." , "customizr"),
           sprintf( '<strong><a href="%1$s" target="_blank" title="%3$s">%2$s &raquo;</a><strong>',
-            "javascript:wp.customize.section('nav').container.find('.customize-section-back').trigger('click'); wp.customize.panel('nav_menus').focus()",
+            "javascript:wp.customize.section('nav').container.find('.customize-section-back').trigger('click'); wp.customize.panel('nav_menus').focus();",
             __("in the menu panel" , "customizr"),
             __("create/edit menus", "customizr")
           )
