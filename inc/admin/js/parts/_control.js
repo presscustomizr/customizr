@@ -8,37 +8,31 @@
       $_nav_section_container,
       translatedStrings = TCControlParams.translatedStrings || {};
 
-  //bind all actions to wp.customize ready event
-  //map each setting with its dependencies
   api.bind( 'ready' , function() {
-    _.map( _controlDependencies , function( opts , setId ) {
-        _prepare_visibilities( setId, opts );
-    });
-
-    //additional dependencies
-    _handle_grid_dependencies();
-    _header_layout_dependency();
-
-    //favicon note on load and on change(since wp 4.3)
-    _handleFaviconNote();
-
-    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
-
-    //on nav section open
-    $_nav_section_container.on( 'click keydown', '.accordion-section-title', function(e) {
-      //special treatment for click events
-      if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
-        return;
-      }
-      event.preventDefault(); // Keep this AFTER the key filter above)
-
-      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
-    });//on()
-
-    //specific callback when for the tc_hide_all_menus setting
-    api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
-
+    _setControlVisibilities();
   } );
+
+
+  //FIX FOR CONTROL VISIBILITY LOST ON PREVIEW REFRESH #1
+  //This solves the problem of control visiblity settings being lost on preview refresh since WP 4.3
+  //this overrides the wp method only for the control instances
+  //it check if there's been a customizations
+  //=> args.unchanged is true for all cases, for example when api.previewer.loading and the preview send 'ready'created during the frame synchronisation
+  api.Control.prototype.onChangeActive = function ( active, args ) {
+    if ( args.unchanged )
+      return;
+    if ( this.container[0] && ! $.contains( document, this.container[0] ) ) {
+      // jQuery.fn.slideUp is not hiding an element if it is not in the DOM
+      this.container.toggle( active );
+      if ( args.completeCallback ) {
+        args.completeCallback();
+      }
+    } else if ( active ) {
+      this.container.slideDown( args.duration, args.completeCallback );
+    } else {
+      this.container.slideUp( args.duration, args.completeCallback );
+    }
+  };
 
 
   /**
@@ -102,6 +96,34 @@
   $.extend( api.controlConstructor, {
     tc_upload : api.TCUploadControl
   });
+
+
+
+
+  //bind all actions to wp.customize ready event
+  //map each setting with its dependencies
+  var _setControlVisibilities = function() {
+    _.map( _controlDependencies , function( opts , setId ) {
+      _prepare_visibilities( setId, opts );
+    });
+
+    //additional dependencies
+    _handle_grid_dependencies();
+    _header_layout_dependency();
+
+    //favicon note on load and on change(since wp 4.3)
+    _handleFaviconNote();
+
+    $_nav_section_container = 'function' != typeof api.section ? $('li#accordion-section-nav') : api.section('nav').container;
+
+    //on nav section open
+    api.section('nav').expanded.callbacks.add( function() {
+      _hideAllmenusActions( api('tc_theme_options[tc_hide_all_menus]').get() );
+    });//add()
+
+    //specific callback when for the tc_hide_all_menus setting
+    api('tc_theme_options[tc_hide_all_menus]').callbacks.add( _hideAllmenusActions );
+  };
 
 
   /*
@@ -515,7 +537,9 @@
         //1) return true if we must show, false if not.
         _bool = _check_cross_dependant( _params.setId, depSetId ) && _bool;
         control.container.toggle( _bool );
-      };
+      };//_visibility()
+
+
 
       _visibility( _params.setting.get() );
       _params.setting.bind( _visibility );
