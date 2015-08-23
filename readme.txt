@@ -40,6 +40,14 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.7 August 23rd 2015 =
+* update : translations files
+* fix : replace Customizr favicon by the WP 4.3 site icon. Handle the transition on front end and in the customizer for users already using the Customizr favicon. Retro compat : not applied if WP version < 4.3 + Check if function_exists('has_site_icon')
+* fix : for control visibility bug since wp4.3
+* add : a boolean filter to control the colophon back to top link
+* fix : properly remove box around navbar when no menu is set Bug reported here: https://wordpress.org/support/topic/dispay-menu-in-a-box?replies=6
+* fix : do not update the post meta as soon as you enter the add post page
+
 = 3.4.6 August 4th 2015 =
 * fixed : polylang compat code according to the new customizer settings
 * fixed : use original sizes (full) for logo and favicon attachments
