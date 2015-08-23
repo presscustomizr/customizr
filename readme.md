@@ -2,7 +2,7 @@
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
-> Easy to customize and versatile WordPress theme. Customizr allows anyone to design a beautiful, fast and mobile friendly website compatible with all browsers. For developers, the theme offers a clean, well documented and modular code, easy to extend with hooks.
+> Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with an extremely active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
 
 ## Copyright
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Press Customizer](http://presscustomizr.com>)) 
