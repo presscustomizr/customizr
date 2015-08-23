@@ -5798,6 +5798,9 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 [class*=sn-right] .tc-sn .btn-toggle-nav {
   float: left;
 }
+.tc-sn .btn-toggle-nav {
+  margin-bottom: 10px;
+}
 /* fix visibility bug on close */
 .sn-close .tc-sn .btn-toggle-nav {
   visibility: hidden;
