@@ -42,6 +42,7 @@ The exceptions to this license are as follows:
 #######################  Changelog ######################
 = 3.4.8 August 24th 2015 =
 * fix : issue #242 https://github.com/Nikeo/customizr/issues/242 : Effects common to regular menu and second horizontal menu where not visible when the regular menu was selected
+* fix: qTranslate-X compat code improved (issue : https://wordpress.org/support/topic/featured-pages-and-qtranslate?replies=4 )
 
 = 3.4.7 August 23rd 2015 =
 * update : translations files
