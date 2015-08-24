@@ -2345,9 +2345,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'three' => __( 'Home featured page three' , 'customizr' )
         ),
         'text'    => array(
-              'one'   => __( 'Featured text one (200 car. max)' , 'customizr' ),
-              'two'   => __( 'Featured text two (200 car. max)' , 'customizr' ),
-              'three' => __( 'Featured text three (200 car. max)' , 'customizr' )
+              'one'   => __( 'Featured text one (200 char. max)' , 'customizr' ),
+              'two'   => __( 'Featured text two (200 char. max)' , 'customizr' ),
+              'three' => __( 'Featured text three (200 char. max)' , 'customizr' )
         )
       );
 
@@ -2379,7 +2379,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                       'sanitize_callback' => array( $this , 'tc_sanitize_textarea' ),
                       'transport'   => 'postMessage',
                       'control'   => 'TC_controls' ,
-                      'label'       => isset($default['text'][$id]) ? $default['text'][$id] : sprintf( __('Featured text %1$s (200 car. max)' , 'customizr' ) , $id ),
+                      'label'       => isset($default['text'][$id]) ? $default['text'][$id] : sprintf( __('Featured text %1$s (200 char. max)' , 'customizr' ) , $id ),
                       'section'     => 'frontpage_sec' ,
                       'type'        => 'textarea' ,
                       'notice'    => __( 'You need to select a page first. Leave this field empty if you want to use the page excerpt.' , 'customizr' ),
