@@ -40,6 +40,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.8 August 24th 2015 =
+* fix : issue #242 https://github.com/Nikeo/customizr/issues/242 : Effects common to regular menu and second horizontal menu where not visible when the regular menu was selected
+
 = 3.4.7 August 23rd 2015 =
 * update : translations files
 * fix : replace Customizr favicon by the WP 4.3 site icon. Handle the transition on front end and in the customizer for users already using the Customizr favicon. Retro compat : not applied if WP version < 4.3 + Check if function_exists('has_site_icon')
