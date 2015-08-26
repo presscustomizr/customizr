@@ -471,6 +471,14 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
          return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
+
+      //disable link smooth scroll;
+      add_filter( 'tc_opt_tc_link_scroll', 'tc_woocommerce_disable_link_scroll' );
+      function tc_woocommerce_disable_link_scroll( $bool ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
+      }
+
+
       //changes customizr meta boxes priority (slider and layout not on top) if displaying woocommerce products in admin
       add_filter( 'tc_post_meta_boxes_priority', 'tc_woocommerce_change_meta_boxes_priority' , 2 , 10 );
       function tc_woocommerce_change_meta_boxes_priority($priority , $screen) {
