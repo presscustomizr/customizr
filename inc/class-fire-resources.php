@@ -206,6 +206,14 @@ if ( ! class_exists( 'TC_resources' ) ) :
       $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_smoothscroll') ) );
       $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array() );
 
+      //smart load
+      $smart_load_enabled   = esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) );
+      $smart_load_opts      = apply_filters( 'tc_img_smart_load_options' , array(
+            'parentSelectors' => $smart_load_enabled ? array(
+                '.article-container', '.__before_main_wrapper', '.widget-front',
+            ) : array(),
+            'opts'     => array() 
+      ));
 			//gets current screen layout
     	$screen_layout      = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
     	//gets the global layout settings
@@ -246,8 +254,8 @@ if ( ! class_exists( 'TC_resources' ) ) :
               'dropcapWhere'      => array( 'post' => esc_attr( TC_utils::$inst->tc_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( TC_utils::$inst->tc_opt( 'tc_page_dropcap' ) ) ),
               'dropcapMinWords'     => esc_attr( TC_utils::$inst->tc_opt( 'tc_dropcap_minwords' ) ),
               'dropcapSkipSelectors'  => apply_filters( 'tc_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'), 'classes' => array('btn') , 'id' => array() ) ),
-              'imgSmartLoadEnabled' => esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ),
-              'imgSmartLoadOpts'    => apply_filters( 'tc_img_smart_load_options' , array() ),
+              'imgSmartLoadEnabled' => $smart_load_enabled,
+              'imgSmartLoadOpts'    => $smart_load_opts,
               'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
               'gridGoldenRatioLimit' => esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height' ) ),
               'isSecondMenuEnabled'  => TC_utils::$inst->tc_is_secondary_menu_enabled(),

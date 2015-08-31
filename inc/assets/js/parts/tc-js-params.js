@@ -36,7 +36,10 @@ var TCParams = TCParams || {
     ids : []
   },
   imgSmartLoadEnabled:0,
-  imgSmartLoadOpts: {},
+  imgSmartLoadOpts: { 
+    parentSelectors: [], 
+    opts : {}
+  },
   goldenRatio : 1.618,
   gridGoldenRatioLimit : 350,
   isSecondMenuEnabled : 0,

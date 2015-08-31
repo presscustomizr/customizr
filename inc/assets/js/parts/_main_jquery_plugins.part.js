@@ -16,8 +16,8 @@ var czrapp = czrapp || {};
     //__before_main_wrapper covers the single post thumbnail case
     //.widget-front handles the featured pages
     imgSmartLoad : function() {
-      if ( 1 == TCParams.imgSmartLoadEnabled )
-        $( '.article-container, .__before_main_wrapper, .widget-front' ).imgSmartLoad( _.size( TCParams.imgSmartLoadOpts ) > 0 ? TCParams.imgSmartLoadOpts : {} );
+      if ( 1 == TCParams.imgSmartLoadEnabled && _.size( TCParams.imgSmartLoadOpts.parentSelectors ) > 0 )
+        $( TCParams.imgSmartLoadOpts.parentSelectors.join() ).imgSmartLoad( _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {} );
       else {
         //if smart load not enabled => trigger the load event on img load
         var $_to_center = $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
