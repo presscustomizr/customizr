@@ -37,8 +37,8 @@ var TCParams = TCParams || {
   },
   imgSmartLoadEnabled:0,
   imgSmartLoadOpts: { 
-    parentSelectors: [], 
-    opts : {}
+    parentSelectors: ['.article-container', '.__before_main_wrapper', '.widget-front'], 
+    opts : { excludeImg: ['.tc-holder-img'] }
   },
   goldenRatio : 1.618,
   gridGoldenRatioLimit : 350,

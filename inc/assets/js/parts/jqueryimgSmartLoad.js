@@ -23,6 +23,7 @@
       defaults = {
         load_all_images_on_first_scroll : false,
         attribute : 'data-src',
+        excludeImg : '',
         threshold : 200,
         fadeIn_options : { duration : 400 },
         delaySmartLoadEvent : 0
@@ -41,7 +42,8 @@
   //can access this.element and this.option
   Plugin.prototype.init = function () {
     var self        = this,
-        $_imgs   = $( 'img[' + this.options.attribute + ']' , this.element );
+        $_imgs   = $( 'img[' + this.options.attribute + ']:not('+ this.options.excludeImg.join() +')' , this.element );
+    
     this.increment  = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
     this.timer      = 0;
 

@@ -209,10 +209,12 @@ if ( ! class_exists( 'TC_resources' ) ) :
       //smart load
       $smart_load_enabled   = esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) );
       $smart_load_opts      = apply_filters( 'tc_img_smart_load_options' , array(
-            'parentSelectors' => $smart_load_enabled ? array(
+            'parentSelectors' => array(
                 '.article-container', '.__before_main_wrapper', '.widget-front',
-            ) : array(),
-            'opts'     => array() 
+            ),
+            'opts'     => array(
+                'excludeImg' => array( '.tc-holder-img' )
+            ) 
       ));
 			//gets current screen layout
     	$screen_layout      = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
