@@ -18,7 +18,7 @@ var czrapp = czrapp || {};
     imgSmartLoad : function() {
       var smartLoadEnabled = 1 == TCParams.imgSmartLoadEnabled,
           _where           = TCParams.imgSmartLoadOpts.parentSelectors.join(),  
-          $_to_center      = ! smartLoadEnabled ? $( _where ).find('img') : $( TCParams.imgSmartLoadOpts.opts.excludeImg.join(), _where );
+          $_to_center      = ! smartLoadEnabled ? $( _where ).find('img') : _.filter( $( _where ).find('img') , function ( img ) { return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join()); } );
 
       if (  smartLoadEnabled )
         $( _where ).imgSmartLoad( 
