@@ -186,6 +186,9 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_change_transport( $value , $set ) {
         return ('transport' == $set) ? 'refresh' : $value;
       }
+      //outputs the qtranslate translation for the grid sticky title
+      add_filter( 'tc_grid_expanded_title', 'tc_apply_qtranslate');
+
       //outputs correct urls for current language : in logo, slider
       add_filter( 'tc_slide_link_url' , 'tc_url_lang' );
       add_filter( 'tc_logo_link_url' , 'tc_url_lang');

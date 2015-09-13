@@ -476,11 +476,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           if ( ! $this -> tc_force_current_post_expansion() )
               return $_html;
           global $post;
-          $_html = sprintf('%1$s<h2 class="entry-title">%2$s</h2>',
-              $_html,
-              apply_filters( 'tc_the_title', $post->post_title )
-          );
-          return apply_filters( 'tc_grid_expanded_title', $_html );
+          $_title = apply_filters( 'tc_grid_expanded_title' , $post->post_title );
+          $_title = apply_filters( 'tc_the_title'           , $_title );
+          $_title = apply_filters( 'tc_grid_expanded_title_html', sprintf('<h2 class="entry-title">%1$s</h2>',
+              $_title
+          ) );
+          return $_html . $_title;
         }
 
 
