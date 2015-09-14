@@ -63,7 +63,9 @@ class TC_post_thumbnails {
 
       $_img_attr['class']     = sprintf( 'attachment-%1$s tc-thumb-type-%2$s wp-post-image' , $tc_thumb_size , $_thumb_type );
       //Add the style value
-      $_img_attr['style']     = apply_filters( 'tc_post_thumb_inline_style' , '', $image, $_filtered_thumb_size );
+      $_style                 = apply_filters( 'tc_post_thumb_inline_style' , '', $image, $_filtered_thumb_size );
+      if ( $_style )
+        $_img_attr['style']   = $_style;
       $_img_attr              = apply_filters( 'tc_post_thumbnail_img_attributes' , $_img_attr );
 
       //get the thumb html
