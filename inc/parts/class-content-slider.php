@@ -64,8 +64,9 @@ class TC_slider {
 
     //wrap the slide into a link
     add_filter( 'tc_slide_background'       , array( $this, 'tc_link_whole_slide'), 5, 5 );
-    //display a notice for first time users
-    add_action( '__after_carousel_inner'    , array( $this, 'tc_maybe_display_dismiss_notice'));
+    if ( 'demo' == $slider_name_id )
+      //display a notice for first time users
+      add_action( '__after_carousel_inner'    , array( $this, 'tc_maybe_display_dismiss_notice'));
   }
 
 
