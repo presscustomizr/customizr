@@ -32,6 +32,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       //always add the ajax action
       add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'tc_dismiss_update_notice_action' ) );
       add_action( 'admin_footer'                  , array( $this , 'tc_write_ajax_dismis_script' ) );
+      /* beautify admin notice text using some defaults the_content filter callbacks */
+      foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
+        add_filter( 'tc_update_notice', $callback );
     }
 
 
@@ -253,10 +256,6 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       if ( ! $show_new_notice )
         return;
 
-      /* beautify text using some defaults the_content filter callbacks */
-      foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
-        add_filter( 'tc_update_notice', $callback );
-    
       ob_start();
         ?>
         <div class="updated" style="position:relative">
