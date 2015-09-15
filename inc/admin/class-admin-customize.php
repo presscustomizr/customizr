@@ -294,12 +294,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
           //all customizr theme options start by "tc_" by convention
           //=> footer customizer addon starts by fc_
           //=> grid customizer addon starts by gc_
+          //When do we add a prefix ?
           $add_prefix = false;
-          if ( 'tc_' === substr( $key, 0, 3 ) )
-            $add_prefix = true;
-          if ( 'gc_' === substr( $key, 0, 3 ) )
-            $add_prefix = true;
-          if ( 'fc_' === substr( $key, 0, 3 ) )
+          if ( TC_utils::$inst -> tc_is_customizr_option( $key ) )
             $add_prefix = true;
           $_opt_name = $add_prefix ? "{$tc_option_group}[{$key}]" : $key;
 
