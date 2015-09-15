@@ -37,9 +37,11 @@ if ( ! class_exists( 'TC_customize' ) ) :
   		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
   		//add the customizer built with the builder below
   		add_action ( 'customize_register'				                , array( $this , 'tc_customize_register' ), 20, 1 );
+
       //modify some WP built-in settings / controls / sections
       add_action ( 'customize_register'                       , array( $this , 'tc_alter_wp_customizer_settings' ), 30, 1 );
-  		//preview scripts
+
+      //preview scripts
       //set with priority 20 to be fired after tc_customize_store_db_opt in TC_utils
   		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ), 20 );
   		//Hide donate button
@@ -64,6 +66,22 @@ if ( ! class_exists( 'TC_customize' ) ) :
       //CHANGE BLOGNAME AND BLOGDESCRIPTION TRANSPORT
       $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
       $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
+
+
+      //IF WP VERSION >= 4.3 AND SITE_ICON SETTING EXISTS
+      //=> REMOVE CUSTOMIZR FAV ICON CONTROL
+      //=> CHANGE SITE ICON DEFAULT WP SECTION TO CUSTOMIZR LOGO SECTION
+      global $wp_version;
+      if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
+        $tc_option_group = TC___::$tc_option_group;
+        $wp_customize -> remove_control( "{$tc_option_group}[tc_fav_upload]" );
+        //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
+        $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
+
+        //add a favicon title after the logo upload
+        add_action( '__after_setting_control' , array( $this , 'tc_add_favicon_title') );
+      }//end ALTER SITE ICON
+
 
       //CHANGE MENUS PROPERTIES
       $locations    = get_registered_nav_menus();
@@ -125,6 +143,14 @@ if ( ! class_exists( 'TC_customize' ) ) :
     }
 
 
+    /*
+    * hook : '__after_setting_control' (declared in class-tc-controls-settings.php)
+    * Display a title for the favicon control, after the logo
+    */
+    function tc_add_favicon_title($set_id) {
+      if ( false !== strpos( $set_id, 'tc_sticky_logo_upload' ) )
+        printf( '<h3 class="tc-customizr-title">%s</h3>', __( 'SITE ICON' , 'customizr') );
+    }
 
 		/**
 		* Augments wp customize controls and settings classes
@@ -313,26 +339,26 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		}//end of customize generator function
 
 
-        /**
-        * hook __before_setting_control (declared in class-controls.php)
-        * @echo clickable text
-        */
-        function tc_render_grid_control_link( $set_id ) {
-          if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
-            printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
-        }
+    /**
+    * hook __before_setting_control (declared in class-tc-controls-settings.php)
+    * @echo clickable text
+    */
+    function tc_render_grid_control_link( $set_id ) {
+      if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
+        printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
+    }
 
-        /**
-        * hook __before_setting_control (declared in class-controls.php)
-        * @echo link
-        */
-        function tc_render_link_to_grid( $set_id ) {
-          if ( false !== strpos( $set_id, 'tc_front_layout' ) )
-            printf('<a class="button tc-navigate-to-post-list" title="%1$s" href="%2$s">%1$s &raquo;</a>' ,
-              __('Jump to the blog design options' , 'customizr'),
-              "javascript:wp.customize.section( 'post_lists_sec' ).focus();"
-              );
-        }
+    /**
+    * hook __before_setting_control (declared in class-tc-controls-settings.php)
+    * @echo link
+    */
+    function tc_render_link_to_grid( $set_id ) {
+      if ( false !== strpos( $set_id, 'tc_front_layout' ) )
+        printf('<a class="button tc-navigate-to-post-list" title="%1$s" href="%2$s">%1$s &raquo;</a>' ,
+          __('Jump to the blog design options' , 'customizr'),
+          "javascript:wp.customize.section( 'post_lists_sec' ).focus();"
+          );
+    }
 
 
 		/**
@@ -423,19 +449,22 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 			//localizes
 			wp_localize_script(
-		        'tc-customizer-controls',
-		        'TCControlParams',
-		        apply_filters('tc_js_customizer_control_params' ,
-			        array(
-			        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
-			        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
-			        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
-                'themeName'     => TC___::$theme_name,
-                'HideDonate'    => $this -> tc_get_hide_donate_status(),
-                'ShowCTA'       => ( true == TC_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false
-			        )
-			    )
-	        );
+        'tc-customizer-controls',
+        'TCControlParams',
+        apply_filters('tc_js_customizer_control_params' ,
+	        array(
+	        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
+	        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
+	        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
+            'themeName'     => TC___::$theme_name,
+            'HideDonate'    => $this -> tc_get_hide_donate_status(),
+            'ShowCTA'       => ( true == TC_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
+            'translatedStrings'    => array(
+              'faviconNote' => __( "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below." , 'customizr')
+            )
+	        )
+	      )
+      );
 
 		}
 

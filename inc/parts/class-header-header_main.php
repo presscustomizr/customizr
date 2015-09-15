@@ -44,6 +44,8 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     function tc_set_header_hooks() {
     	//html > head actions
       add_action ( '__before_body'	  , array( $this , 'tc_head_display' ));
+
+      //The WP favicon (introduced in WP 4.3) will be used in priority
       add_action ( 'wp_head'     		  , array( $this , 'tc_favicon_display' ));
 
       //html > header actions
@@ -145,46 +147,52 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 
 		/**
-	    * Render favicon from options
-	    *
-	    * @package Customizr
-	    * @since Customizr 3.0
-	    */
-	    function tc_favicon_display() {
-	       	$_fav_option  			= esc_attr( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
-	       	if ( ! $_fav_option || is_null($_fav_option) )
-	       		return;
+    * Render favicon from options
+    * Since WP 4.3 : let WP do the job if user has set the WP site_icon setting.
+    *
+    * @package Customizr
+    * @since Customizr 3.0
+    */
+    function tc_favicon_display() {
+     	//is there a WP favicon set ?
+      //if yes then let WP do the job
+      if ( function_exists('has_site_icon') && has_site_icon() )
+        return;
 
-	       	$_fav_src 				= '';
-	       	//check if option is an attachement id or a path (for backward compatibility)
-	       	if ( is_numeric($_fav_option) ) {
-	       		$_attachement_id 	= $_fav_option;
-	       		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'full' ) );
-	       		$_fav_src 			= $_attachment_data[0];
-	       	} else { //old treatment
-	       		$_saved_path 		= esc_url ( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
-	       		//rebuild the path : check if the full path is already saved in DB. If not, then rebuild it.
-		       	$upload_dir 		= wp_upload_dir();
-		       	$_fav_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
-	       	}
+      $_fav_option  			= esc_attr( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
+     	if ( ! $_fav_option || is_null($_fav_option) )
+     		return;
 
-	       	//makes ssl compliant url
-	       	$_fav_src 				= apply_filters( 'tc_fav_src' , is_ssl() ? str_replace('http://', 'https://', $_fav_src) : $_fav_src );
+     	$_fav_src 				= '';
+     	//check if option is an attachement id or a path (for backward compatibility)
+     	if ( is_numeric($_fav_option) ) {
+     		$_attachement_id 	= $_fav_option;
+     		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'full' ) );
+     		$_fav_src 			= $_attachment_data[0];
+     	} else { //old treatment
+     		$_saved_path 		= esc_url ( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
+     		//rebuild the path : check if the full path is already saved in DB. If not, then rebuild it.
+       	$upload_dir 		= wp_upload_dir();
+       	$_fav_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
+     	}
 
-	        if( null == $_fav_src || !$_fav_src )
-	        	return;
+     	//makes ssl compliant url
+     	$_fav_src 				= apply_filters( 'tc_fav_src' , is_ssl() ? str_replace('http://', 'https://', $_fav_src) : $_fav_src );
 
-          	$type = "image/x-icon";
-          	if ( strpos( $_fav_src, '.png') ) $type = "image/png";
-          	if ( strpos( $_fav_src, '.gif') ) $type = "image/gif";
+      if( null == $_fav_src || !$_fav_src )
+      	return;
 
-        	echo apply_filters( 'tc_favicon_display',
-	        		sprintf('<link rel="shortcut icon" href="%1$s" type="%2$s">' ,
-	        			$_fav_src,
-	        			$type
-	        		)
-        	);
-	    }
+      	$type = "image/x-icon";
+      	if ( strpos( $_fav_src, '.png') ) $type = "image/png";
+      	if ( strpos( $_fav_src, '.gif') ) $type = "image/gif";
+
+    	echo apply_filters( 'tc_favicon_display',
+      		sprintf('<link id="czr-favicon" rel="shortcut icon" href="%1$s" type="%2$s">' ,
+      			$_fav_src,
+      			$type
+      		)
+    	);
+    }
 
 
 
@@ -591,6 +599,10 @@ if ( ! class_exists( 'TC_header_main' ) ) :
      	else {
      		$_classes = array_merge( $_classes, array('tc-no-sticky-header') );
      	}
+
+      //No navbar box
+      if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
+          $_classes = array_merge( $_classes , array('no-navbar' ) );
 
       //SKIN CLASS
       $_skin = sprintf( 'skin-%s' , basename( TC_init::$instance -> tc_get_style_src() ) );

@@ -515,6 +515,14 @@ h3#reply-title:before {
   padding-right: 5px;
   font-size: 2em;
 }
+h2.comments:before { /* GY: added rule to fix icon position */
+  & when (@is_rtl = true){
+   float: right;
+  }
+  & when (@is_rtl = false){
+   float: left;
+  }
+}
 h2.comments-title:before {
   font-family: 'genericons';
   content: "\f108";
@@ -525,9 +533,11 @@ h2.comments-title:before {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   & when (@is_rtl = true) {
+    float: right;
     padding-left: 5px;
   }
   & when (@is_rtl = false) {
+    float: left;
     padding-right: 5px;
   }
   font-size: 1em;
@@ -936,22 +946,37 @@ li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropd
 }
 /* ADJUST LEFT AND RIGHT MENU POSITIONS => align with socials (left) and tagline (right) */
 .logo-left .navbar div>ul.nav>.menu-item:last-child>a {
-  padding-right: 0;
+  & when (@is_rtl = true) {
+   padding-left: 0px;
+  }
+  & when (@is_rtl = false) {
+   padding-right: 0px;
+  }
 }
 .navbar .nav {
   margin-right: 0px;
 }
 
- .pull-menu-left .navbar div>ul.nav>.menu-item:first-child>a  {
-  padding-left: 5px;
-}
 .tc-header .btn-toggle-nav.pull-left {
   clear: both;
-  padding-left: 5px;
+}
+.tc-header .btn-toggle-nav.pull-left,
+.pull-menu-left .navbar div>ul.nav>.menu-item:first-child>a {
+  & when (@is_rtl = true) {
+   padding-right: 5px;
+  }
+  & when (@is_rtl = false) {
+   padding-left: 5px;
+  }
 }
 .tc-header .btn-toggle-nav.pull-right,
 .pull-menu-right .navbar div>ul.nav>.menu-item:last-child>a {
-  padding-right: 0px;
+  & when (@is_rtl = true) {
+   padding-left: 0px;
+  }
+  & when (@is_rtl = false) {
+   padding-right: 0px;
+  }
 }
 
 .pull-menu-left .nav-collapse{
@@ -1218,8 +1243,8 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
           box-sizing: content-box;
   /*padding: 8px 7px 2px;
   border: 1px solid #EEE;*/
@@ -1241,6 +1266,9 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 [class*=sn-right] .tc-sn .btn-toggle-nav {
   float: left;
+}
+.tc-sn .btn-toggle-nav {
+  margin-bottom: 10px
 }
 /* fix visibility bug on close */
 .sn-close .tc-sn .btn-toggle-nav {
@@ -1410,8 +1438,8 @@ font-size: 13px;
     li:before {
       content: '\203A';
       position: relative;
-      left: -10px;
       & when (@is_rtl = true) {
+        right: -10px;
         -webkit-transition:right 0.2s;
         -moz-transition:right 0.2s;
         -ms-transition:right 0.2s;
@@ -1419,6 +1447,7 @@ font-size: 13px;
         transition:right 0.2s;
       }
       & when (@is_rtl = false) {
+        left: -10px;
         -webkit-transition:left 0.2s;
         -moz-transition:left 0.2s;
         -ms-transition:left 0.2s;
@@ -2308,6 +2337,9 @@ max-width: 100%;
 
 /* JS IMAGE CENTERING */
 img.h-centered {
+ & when (@is_rtl = true) {
+  float: left;
+ }
   width: auto!important;
   max-width: none!important;
 }
@@ -2662,7 +2694,7 @@ PLACEHOLDERS / DISMISS NOTICES
 }
 
 
-/* WP CSS
+/* WP SPECIFICS
     -------------------------------------------------- */
 
 .wp-caption {
@@ -2678,6 +2710,35 @@ PLACEHOLDERS / DISMISS NOTICES
   font-size: 0.7rem;
   line-height: 1.3em;
   color: @captionText;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000; /* Above WP toolbar. */
 }
 
 .tc-gallery-style .gallery-item img {
@@ -2797,8 +2858,13 @@ ul.children {
   display: block;
 }
 .comment .edit-link {
-  display:block;
+ & when(@is_rtl = true){
+  float:left;
+ }
+  & when(@is_rtl = false){
   float:right;
+ }
+  display:block;
   margin-right: 10px;
 }
 .comment-avatar {

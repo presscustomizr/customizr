@@ -352,7 +352,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
             $user_id = get_query_var( 'author' );
             $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                   apply_filters( 'tc_archive_icon', 'format-icon' ),
-                  apply_filters( 'tc_author_archive_title' , __( '' , 'customizr' ) ),
+                  apply_filters( 'tc_author_archive_title' , '' ),
                   '<span class="vcard">' . get_the_author_meta( 'display_name' , $user_id ) . '</span>'
             );
             if ( apply_filters ( 'tc_show_author_meta' , get_the_author_meta( 'description', $user_id  ) ) ) {
@@ -378,7 +378,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           else if ( is_category() ) {
             $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                 apply_filters( 'tc_archive_icon', 'format-icon' ),
-                apply_filters( 'tc_category_archive_title' , __( '' , 'customizr' ) ),
+                apply_filters( 'tc_category_archive_title' , '' ),
                 '<span>' . single_cat_title( '' , false ) . '</span>'
             );
             if ( apply_filters ( 'tc_show_cat_description' , category_description() ) ) {
@@ -393,7 +393,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
           else if ( is_tag() ) {
             $content    = sprintf( '<h1 class="%1$s">%2$s %3$s</h1>',
                 apply_filters( 'tc_archive_icon', 'format-icon' ),
-                apply_filters( 'tc_tag_archive_title' , __( '' , 'customizr' ) ),
+                apply_filters( 'tc_tag_archive_title' , '' ),
                 '<span>' . single_tag_title( '' , false ) . '</span>'
             );
             if ( apply_filters ( 'tc_show_tag_description' , tag_description() ) ) {

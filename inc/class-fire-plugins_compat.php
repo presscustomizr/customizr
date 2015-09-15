@@ -15,10 +15,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     function __construct () {
+        
       self::$instance =& $this;
       //add various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
       add_action ('after_setup_theme'          , array( $this , 'tc_set_plugins_supported'), 20 );
       add_action ('after_setup_theme'          , array( $this , 'tc_plugins_compatibility'), 30 );
+      // remove qtranslateX theme options filter
+      remove_filter('option_tc_theme_options', 'qtranxf_translate_option', 5);
     }//end of constructor
 
 
@@ -208,14 +211,6 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         add_filter( 'tc_fp_text', 'tc_apply_qtranslate' );
         add_filter( 'tc_fp_button_text', 'tc_apply_qtranslate' );
 
-        //sets no character limit for featured pages (text) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
-        add_filter( 'tc_fp_text_length' , 'tc_remove_char_limit');
-        //modify the page excerpt=> uses the wp page excerpt instead of the generated excerpt with the_content
-        add_filter( 'tc_fp_text', 'tc_use_page_excerpt', 20, 3 );
-        function tc_use_page_excerpt( $featured_text , $fp_id , $page_id ) {
-          $page = get_post($page_id);
-          return ( empty($featured_text) && !post_password_required($page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_excerpt )) : $featured_text ;
-        }
         /* The following is pretty useless at the momment since we should inhibit preview js code */
         //modify the customizer transport from post message to null for some options
         add_filter( 'tc_featured_page_button_text_customizer_set' , 'tc_change_transport', 20, 2);

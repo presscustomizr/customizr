@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.6
+ * Customizr v3.4.8
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5140,6 +5140,10 @@ h3#reply-title:before {
   padding-right: 5px;
   font-size: 2em;
 }
+h2.comments:before {
+  /* GY: added rule to fix icon position */
+  float: left;
+}
 h2.comments-title:before {
   font-family: 'genericons';
   content: "\f108";
@@ -5149,6 +5153,7 @@ h2.comments-title:before {
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+  float: left;
   padding-right: 5px;
   font-size: 1em;
 }
@@ -5522,16 +5527,16 @@ li.dropdown.active > .dropdown-toggle,
 }
 /* ADJUST LEFT AND RIGHT MENU POSITIONS => align with socials (left) and tagline (right) */
 .logo-left .navbar div > ul.nav > .menu-item:last-child > a {
-  padding-right: 0;
+  padding-right: 0px;
 }
 .navbar .nav {
   margin-right: 0px;
 }
-.pull-menu-left .navbar div > ul.nav > .menu-item:first-child > a {
-  padding-left: 5px;
-}
 .tc-header .btn-toggle-nav.pull-left {
   clear: both;
+}
+.tc-header .btn-toggle-nav.pull-left,
+.pull-menu-left .navbar div > ul.nav > .menu-item:first-child > a {
   padding-left: 5px;
 }
 .tc-header .btn-toggle-nav.pull-right,
@@ -5770,8 +5775,8 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   /*padding: 8px 7px 2px;
   border: 1px solid #EEE;*/
@@ -5792,6 +5797,9 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 [class*=sn-right] .tc-sn .btn-toggle-nav {
   float: left;
+}
+.tc-sn .btn-toggle-nav {
+  margin-bottom: 10px;
 }
 /* fix visibility bug on close */
 .sn-close .tc-sn .btn-toggle-nav {
@@ -7105,7 +7113,7 @@ PLACEHOLDERS / DISMISS NOTICES
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* WP CSS
+/* WP SPECIFICS
     -------------------------------------------------- */
 .wp-caption {
   max-width: 100%;
@@ -7120,6 +7128,34 @@ PLACEHOLDERS / DISMISS NOTICES
   font-size: 0.7rem;
   line-height: 1.3em;
   color: #757575;
+}
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */
 }
 .tc-gallery-style .gallery-item img {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -7222,8 +7258,8 @@ ul.children {
   display: block;
 }
 .comment .edit-link {
-  display: block;
   float: right;
+  display: block;
   margin-right: 10px;
 }
 .comment-avatar {

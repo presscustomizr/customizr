@@ -251,7 +251,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	    }
 
 
-	    /**
+	  /**
 		* Displays the back to top fixed text block in the colophon
 		*
 		*
@@ -259,13 +259,16 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		* @since Customizr 3.0.10
 		*/
 		function tc_colophon_right_block() {
-	    	echo apply_filters(
-	    		'tc_colophon_right_block',
-	    		sprintf('<div class="%1$s"><p class="pull-right"><a class="back-to-top" href="#">%2$s</a></p></div>',
-	    			apply_filters( 'tc_colophon_right_block_class', 'span4 backtop' ),
-	    			__( 'Back to top' , 'customizr' )
-	    		)
-	    	);
+      if ( ! apply_filters('tc_show_text_btt', true) )
+        return;
+
+    	echo apply_filters(
+    		'tc_colophon_right_block',
+    		sprintf('<div class="%1$s"><p class="pull-right"><a class="back-to-top" href="#">%2$s</a></p></div>',
+    			apply_filters( 'tc_colophon_right_block_class', 'span4 backtop' ),
+    			__( 'Back to top' , 'customizr' )
+    		)
+    	);
 		}
 
 

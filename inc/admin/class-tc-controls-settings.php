@@ -360,7 +360,8 @@ if ( ! class_exists( 'TC_Customize_Upload_Control' ) ) :
 		 * @since 3.4.0
 		 */
 		public function render_content() {
-			?>
+			do_action( '__before_setting_control' , $this -> id );
+      ?>
       <?php if ( isset( $this->title) ) : ?>
         <h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
       <?php endif; ?>
@@ -380,6 +381,7 @@ if ( ! class_exists( 'TC_Customize_Upload_Control' ) ) :
         <?php endif; ?>
 			</label>
 			<?php
+      do_action( '__after_setting_control' , $this -> id );
 		}
 	}
 endif;
