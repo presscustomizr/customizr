@@ -16,7 +16,10 @@ var TCParams = TCParams || {
   centerSliderImg : 1,
 	SmoothScroll: { Enabled : 1 , Options : {} },
 	anchorSmoothScroll: "linear",
-  anchorSmoothScrollExclude : ['[class*=edd]', '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]'],
+  anchorSmoothScrollExclude : {
+      simple : ['[class*=edd]', '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]'],
+      deep : { classes : ['wc-tabs'], ids : [] }
+    },
 	stickyCustomOffset: { _initial : 0, _scrolling : 0, options : { _static : true, _element : "" } },
 	stickyHeader: 1,
 	dropdowntoViewport: 1,
