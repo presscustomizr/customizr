@@ -16,13 +16,23 @@ var czrapp = czrapp || {};
     //__before_main_wrapper covers the single post thumbnail case
     //.widget-front handles the featured pages
     imgSmartLoad : function() {
-      if ( 1 == TCParams.imgSmartLoadEnabled )
-        $( '.article-container, .__before_main_wrapper, .widget-front' ).imgSmartLoad( _.size( TCParams.imgSmartLoadOpts ) > 0 ? TCParams.imgSmartLoadOpts : {} );
-      else {
-        //if smart load not enabled => trigger the load event on img load
-        var $_to_center = $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
-        this.triggerSimpleLoad($_to_center);
-      }//end else
+      var smartLoadEnabled = 1 == TCParams.imgSmartLoadEnabled,
+          //Default selectors for where are : $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
+          _where           = TCParams.imgSmartLoadOpts.parentSelectors.join(),
+          $_to_center      = $( _where ).find('img');
+
+      if ( smartLoadEnabled ) {
+        $_to_center      = _.filter( $( _where ).find('img') , function ( img ) {
+          return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
+        } );//filter
+      }//if
+
+      if (  smartLoadEnabled )
+        $( _where ).imgSmartLoad(
+          _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {}
+        );
+
+      this.triggerSimpleLoad($_to_center);
     },
 
 
