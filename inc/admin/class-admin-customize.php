@@ -380,7 +380,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			wp_localize_script(
 		        'tc-customizer-preview',
 		        'TCPreviewParams',
-		        apply_filters('tc_js_customizer_control_params' ,
+		        apply_filters('tc_js_customizer_preview_params' ,
 			        array(
 			        	'themeFolder' 		=> get_template_directory_uri(),
                 //can be hacked to override the preview params when a custom skin is used

@@ -55,7 +55,7 @@
 
     /* ADD GOOGLE IN TITLE */
     $g_logo = $('<img>' , {class : 'tc-title-google-logo' , src : 'http://www.google.com/images/logos/google_logo_41.png' , height : 20 });
-    $('#accordion-section-tc_fonts').prepend($g_logo);
+    $('#accordion-section-fonts_sec').prepend($g_logo);
 
 
     /* CHECK */
