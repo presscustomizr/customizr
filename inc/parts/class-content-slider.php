@@ -62,8 +62,12 @@ class TC_slider {
 
     //wrap the slide into a link
     add_filter( 'tc_slide_background'       , array( $this, 'tc_link_whole_slide'), 5, 5 );
+
     //display a notice for first time users
-    add_action( '__after_carousel_inner'    , array( $this, 'tc_maybe_display_dismiss_notice'));
+    if ( 'demo' == $slider_name_id ) {
+      //display a notice for first time users
+      add_action( '__after_carousel_inner'    , array( $this, 'tc_maybe_display_dismiss_notice'));
+    }
 
     //display an edit deep link to the Slider section in the Customize posts slider
     add_action( '__after_carousel_inner'    , array( $this, 'tc_display_posts_slider_customizer_link'), 10, 2 );
@@ -157,18 +161,18 @@ class TC_slider {
   *
   */
   function tc_get_single_post_slide_pre_model( $_post , $img_size ){
-    $ID                     = $_post->ID;  
+    $ID                     = $_post->ID;
 
     //attachment image
     $thumb                  = TC_post_thumbnails::$instance -> tc_get_thumbnail_model($img_size, $ID);
-    $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null; 
+    $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
     // we don't want to show slides with no image
-    if ( ! $slide_background ) 
+    if ( ! $slide_background )
       return false;
 
     //title
     $title                  = $this -> tc_get_post_slide_title( $_post, $ID);
- 
+
     //lead text
     $text                   = $this -> tc_get_post_slide_excerpt( $_post, $ID);
 
@@ -185,14 +189,14 @@ class TC_slider {
   *
   */
   function tc_get_single_post_slide_model( $slider_name_id, $_loop_index , $_post_slide , $common, $img_size ){
-    extract( $_post_slide );  
+    extract( $_post_slide );
     extract( $common );
- 
+
     //background image
     $slide_background       = apply_filters( 'tc_posts_slide_background', $slide_background, $ID );
-    
+
     // we don't want to show slides with no image
-    if ( ! $slide_background ) 
+    if ( ! $slide_background )
       return false;
 
     $title                  = apply_filters('tc_posts_slider_title', $title, $ID );
@@ -204,7 +208,7 @@ class TC_slider {
 
     //link
     $link_id                = apply_filters( 'tc_posts_slide_link_id', $ID );
-       
+
     $link_url               = apply_filters( 'tc_posts_slide_link_url', $link_id ? get_permalink( $link_id ) : '', $ID );
 
     $link_target            = apply_filters( 'tc_posts_slide_link_target', '_self', $ID );
@@ -213,15 +217,15 @@ class TC_slider {
 
     $active                 = ( 0 == $_loop_index ) ? 'active' : '';
     $color_style            = apply_filters( 'tc_posts_slide_color_style', '', $ID );
-    
-    return apply_filters( 'tc_single_post_slide_model', compact( 
-        'title', 
-        'text', 
-        'button_text', 
-        'link_id', 
-        'link_url', 
-        'link_target', 
-        'link_whole_slide', 
+
+    return apply_filters( 'tc_single_post_slide_model', compact(
+        'title',
+        'text',
+        'button_text',
+        'link_id',
+        'link_url',
+        'link_target',
+        'link_whole_slide',
         'active',
         'color_style',
         'slide_background'
@@ -247,9 +251,9 @@ class TC_slider {
     else if ( 'tc_posts_slider' == $slider_name_id ) {
       $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! TC___::$instance -> tc_is_customizing() );
       //Do not use transient when in the customizer preview (this class is not called in the customize left panel)
-      $store_transient = $load_transient = $use_transient; 
+      $store_transient = $load_transient = $use_transient;
       // delete transient when in the customize preview
-      if ( ! $use_transient ) 
+      if ( ! $use_transient )
         delete_transient( 'tc_posts_slides' );
 
       return $this -> tc_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient );
@@ -259,7 +263,7 @@ class TC_slider {
     $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
 
     //if the slider not longer exists or exists but is empty, return false
-    if ( ! $this -> tc_slider_exists( $saved_slides) )    
+    if ( ! $this -> tc_slider_exists( $saved_slides) )
       return;
 
     //inititalize the slides array
@@ -306,16 +310,16 @@ class TC_slider {
   * 1) get the pre slides model, can be either stored in the transient or live generated
   * 2) get the actual model from the pre_model
   *
-  * 
   *
-  * The difference between the pre_model and the actual model is because in the 
-  * transient we do not store the whole slide model, some info are not needed. 
-  * Also the actual model can be filtered, allowing user's filter and to translate it 
-  * mostly with qtranslate (polylang will force us, most likely if I don't find any 
-  * other suitable solution, to not use the transient). 
-  */ 
+  *
+  * The difference between the pre_model and the actual model is because in the
+  * transient we do not store the whole slide model, some info are not needed.
+  * Also the actual model can be filtered, allowing user's filter and to translate it
+  * mostly with qtranslate (polylang will force us, most likely if I don't find any
+  * other suitable solution, to not use the transient).
+  */
   private function tc_get_the_posts_slides( $slider_name_id, $img_size, $load_transient = true, $store_transient = true ) {
-    
+
     $load_transient  = apply_filters( 'tc_posts_slider_load_transient'  , $load_transient );
     $store_transient = apply_filters( 'tc_posts_slider_store_transient', $store_transient );
 
@@ -323,7 +327,7 @@ class TC_slider {
 
     //filter the pre_model
     $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides );
-    
+
     //if the slider not longer exists or exists but is empty, return false
     if ( ! $this -> tc_slider_exists( $pre_slides ) )
       return false;
@@ -335,14 +339,14 @@ class TC_slider {
     $slides      = array();
 
     $_loop_index = 0;
-    
+
     //GENERATE SLIDES ARRAY
     foreach ( $posts as $_post_slide ) {
       $slide_model = $this -> tc_get_single_post_slide_model( $slider_name_id, $_loop_index, $_post_slide, $common, $img_size);
 
       if ( ! $slide_model )
         continue;
-      
+
       $slides[ $_post_slide['ID'] ] = $slide_model;
 
       $_loop_index++;
@@ -354,7 +358,7 @@ class TC_slider {
   }
 
 
-  
+
   /**
   * Helper
   * Return an ass array of 'posts'=> array of the post slide pre models 'common' => common properties
@@ -367,10 +371,10 @@ class TC_slider {
   * - check if there's a transient and we have to use it => get the transient
   * a pre_model array
   *
-  * - if not transient (both cases: no transient, don't use transient) 
+  * - if not transient (both cases: no transient, don't use transient)
   *  build the array of posts to use
-  * 
-  * - eventually store the transient 
+  *
+  * - eventually store the transient
   *
   * @package Customizr
   * @since Customizr 3.4.9
@@ -379,7 +383,7 @@ class TC_slider {
   private function tc_get_pre_posts_slides( $img_size, $load_transient = true, $store_transient = true ){
 
     if ( $load_transient )
-      // the transient stores the pre_model  
+      // the transient stores the pre_model
       $pre_slides = get_transient('tc_posts_slides');
     else
       $pre_slides = false;
@@ -392,7 +396,7 @@ class TC_slider {
 
     //retrieve posts from the db
     $queried_posts    = $this -> tc_query_posts_slider( array(
-          'type'         => TC_utils::$inst->tc_opt( 'tc_posts_slider_type' ), 
+          'type'         => TC_utils::$inst->tc_opt( 'tc_posts_slider_type' ),
           'show_title'   => TC_utils::$inst->tc_opt( 'tc_posts_slider_title' ),
           'show_excerpt' => TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ),
           'limit'        => TC_utils::$inst->tc_opt( 'tc_posts_slider_number' )
@@ -429,7 +433,7 @@ class TC_slider {
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
       add_filter('tc_thumb_html', array(TC_utils::$instance, 'tc_parse_imgs') );
-    // remove thumb style reset 
+    // remove thumb style reset
     remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
     /* end tC_thumb reset filters */
 
@@ -441,8 +445,8 @@ class TC_slider {
       // has button to be displayed?
       if ( strstr($_link_type, 'cta') )
         $button_text            = $this -> tc_get_post_slide_button_text();
-      else 
-        $button_text            = ''; 
+      else
+        $button_text            = '';
 
       //link the whole slide?
       $link_whole_slide       = strstr( $_link_type, 'slide') ? true : false;
@@ -454,7 +458,7 @@ class TC_slider {
       $pre_slides['posts']   = $pre_slides_posts;
 
     }
-    
+
     if ( $store_transient )
       set_transient( 'tc_posts_slides', $pre_slides , 60*60*24*365*20 );//20 years of peace
 
@@ -505,7 +509,7 @@ class TC_slider {
   }
 
 
- 
+
 
   /**
   * Helper
@@ -529,12 +533,12 @@ class TC_slider {
       'join'           => '',
       'order_by'       => 'posts.post_date DESC',
       'limit'          => 5,
-      'offset'         => 0,  
+      'offset'         => 0,
     );
-    
+
     $args           = apply_filters( 'tc_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
-        
+
     /* Set up */
     $columns        = 'posts.ID, posts.post_date';
     $columns       .= $show_title   ? ', posts.post_title' : '';
@@ -564,16 +568,16 @@ class TC_slider {
             'sticky' == $type ? '' : 'NOT',
             $_sticky_posts_ids
         );
-    
+
         $pa_where .= $_inc_esc_sticky;
-        $pt_where .= $_inc_esc_sticky;   
+        $pt_where .= $_inc_esc_sticky;
       }
     }
 
     $sql = sprintf( 'SELECT %1$s%2$s FROM ( %3$s ) as posts %4$s ORDER BY %5$s LIMIT %6$s OFFSET %7$s',
              apply_filters( 'tc_query_posts_slider_columns', $columns ),
              apply_filters( 'tc_query_posts_slider_sticky_column', $_sticky_column ),
-             $this -> tc_get_posts_have_tc_thumb_sql( 
+             $this -> tc_get_posts_have_tc_thumb_sql(
                apply_filters( 'tc_query_posts_slider_columns', $columns ),
                apply_filters( 'tc_query_posts_slide_thumbnail_where', $pt_where ),
                apply_filters( 'tc_query_posts_slider_attachment_where', $pa_where )
@@ -582,11 +586,11 @@ class TC_slider {
              apply_filters( 'tc_query_posts_slider_orderby', $order_by ),
              $limit,
              $offset
-    );         
-    
+    );
+
     $sql = apply_filters( 'tc_query_posts_slider_sql', $sql );
-    
-    $_posts = $wpdb->get_results( $sql );       
+
+    $_posts = $wpdb->get_results( $sql );
     return apply_filters( 'tc_query_posts_slider', $_posts );
   }
 
@@ -616,7 +620,7 @@ class TC_slider {
   *
   */
   private function tc_get_posts_have_thumbnail_sql( $_columns, $_where = '' ) {
-    global $wpdb;  
+    global $wpdb;
     return apply_filters( 'tc_get_posts_have_thumbnail_sql', "
         SELECT $_columns
         FROM $wpdb->posts AS posts INNER JOIN $wpdb->postmeta AS metas
@@ -634,7 +638,7 @@ class TC_slider {
   *
   */
   private function tc_get_posts_have_attachment_sql( $_columns, $_where = '' ) {
-    global $wpdb;  
+    global $wpdb;
     return apply_filters( 'tc_get_posts_have_attachment_sql', "
         SELECT $_columns FROM $wpdb->posts attachments, $wpdb->posts posts
         WHERE $_where
@@ -830,7 +834,7 @@ class TC_slider {
 
     printf('<div class="%1$s">%2$s %3$s %4$s</div>',
       //class
-      implode( ' ', apply_filters( 'tc_slide_caption_class', array( 'carousel-caption' ), $show_caption, $slider_name_id ) ),  
+      implode( ' ', apply_filters( 'tc_slide_caption_class', array( 'carousel-caption' ), $show_caption, $slider_name_id ) ),
       //title
       ( apply_filters( 'tc_slide_show_title', $data['title'] != null, $slider_name_id ) ) ? sprintf('<%1$s class="%2$s" %3$s>%4$s</%1$s>',
                             apply_filters( 'tc_slide_title_tag', 'h1', $slider_name_id ),
@@ -876,18 +880,18 @@ class TC_slider {
     $_edit_link = get_edit_post_link($id);
     $_edit_link .= ( 'tc_posts_slider' ==$slider_name_id ) ? '' : '#slider_sectionid';
     printf('<span class="slider edit-link btn btn-inverse"><a class="post-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
-      $_edit_link,  
+      $_edit_link,
       __( 'Edit' , 'customizr' )
     );
   }
 
   /**
-  * Post Slider Customize edit deeplink 
+  * Post Slider Customize edit deeplink
   *
   * hook : __after_carousel_inner
   * @since v3.4.9
   */
-  
+
   function tc_display_posts_slider_customizer_link( $slides, $slider_name_id ) {
     if ( 'tc_posts_slider' != $slider_name_id )
       return;
@@ -896,10 +900,10 @@ class TC_slider {
     $show_edit_customizer_link         = apply_filters( 'tc_show_posts_slider_customize_edit_link' , $show_edit_customizer_link );
     if ( ! $show_edit_customizer_link )
       return;
-    
+
     $_customizer_lnk = TC_utils::tc_get_customizer_url( array( 'section' => 'frontpage_sec') );
     printf('<span class="slider customizer-link edit-link btn btn-inverse"><a class="posts-slider-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
-      $_customizer_lnk,  
+      $_customizer_lnk,
       __( 'Customize or remove the posts slider' , 'customizr' )
     );
   }
@@ -1212,7 +1216,7 @@ class TC_slider {
   * @since Customizr 3.4.9
   */
   function tc_cache_posts_slider() {
-    //use the home slider_width 
+    //use the home slider_width
     $img_size    = 1 == TC_utils::$inst->tc_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider';
     $load_transient   = false;
     $store_transient = true;
@@ -1224,7 +1228,7 @@ class TC_slider {
   /**
   * Getter
   * Returns the trimmed post slide title
-  * 
+  *
   * @return string
   *
   * @package Customizr
@@ -1232,9 +1236,9 @@ class TC_slider {
   *
   */
   function tc_get_post_slide_title( $_post, $ID ) {
-    if ( ! TC_utils::$inst->tc_opt( 'tc_posts_slider_title') ) 
+    if ( ! TC_utils::$inst->tc_opt( 'tc_posts_slider_title') )
       return '';
-    
+
     $title_length   = apply_filters('tc_post_slide_title_length', 80, $ID );
     $more           = apply_filters('tc_post_slide_more', '...', $ID );
     return $this -> tc_get_post_title( $_post, $title_length, $more );
@@ -1244,7 +1248,7 @@ class TC_slider {
   /**
   * Getter
   * Returns the trimmed post slide excerpt
-  * 
+  *
   * @return string
   *
   * @package Customizr
@@ -1263,7 +1267,7 @@ class TC_slider {
   /**
   * Getter
   * Returns the trimmed posts slider button text
-  * 
+  *
   * @return string
   *
   * @package Customizr
@@ -1281,7 +1285,7 @@ class TC_slider {
   /**
   * Helper
   * Returns the trimmed post title
-  * 
+  *
   * @return string
   *
   * Slightly different and simplified version of get_the_title to avoid conflicts with plugins filtering the_title
@@ -1296,7 +1300,7 @@ class TC_slider {
     $title = $_post->post_title;
     if ( ! empty( $_post->post_password ) ) {
       $protected_title_format = apply_filters( 'protected_title_format', __( 'Protected: %s' ), $_post);
-      $title = sprintf( $protected_title_format, $title );      
+      $title = sprintf( $protected_title_format, $title );
     }
 
     $title = apply_filters( 'tc_post_title_pre_trim' , $title );
@@ -1307,7 +1311,7 @@ class TC_slider {
   /**
   * Helper
   * Returns the trimmed post excerpt
-  * 
+  *
   * @return string
   *
   * Slightly different and simplified version of wp_trim_excerpt to avoid conflicts with plugins filtering get_excerpt and the_content
@@ -1320,7 +1324,7 @@ class TC_slider {
   // move this into TC_utils?
   function tc_get_post_excerpt( $_post, $default_text_length, $more ) {
     if ( ! empty( $_post->post_password) )
-      return __( 'There is no excerpt because this is a protected post.' ); 
+      return __( 'There is no excerpt because this is a protected post.' );
 
     $excerpt = '' != $_post->post_excerpt ? $_post->post_excerpt : $_post->post_content;
 
@@ -1334,7 +1338,7 @@ class TC_slider {
     $excerpt = wpautop( $excerpt );
     $excerpt = shortcode_unautop( $excerpt );
     $excerpt = str_replace(']]>', ']]&gt;', $excerpt );
-    
+
     $excerpt = apply_filters( 'tc_post_excerpt_pre_trim' , $excerpt );
     return $this -> tc_trim_text( $excerpt, $default_text_length, $more);
   }
@@ -1344,7 +1348,7 @@ class TC_slider {
   * Helper
   * Returns the passed text trimmed at $text_length char.
   * with the $more text added
-  * 
+  *
   * @return string
   *
   * @package Customizr
@@ -1357,7 +1361,7 @@ class TC_slider {
       return '';
 
     $text       = trim( strip_tags( $text ) );
-  
+
     if ( ! $text_length )
       return $text;
 
