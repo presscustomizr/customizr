@@ -25,7 +25,12 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
 
       add_filter( 'tiny_mce_before_init'  , array( $this, 'tc_user_defined_tinymce_css') );
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
-      add_action ( 'save_post'            , array( $this , 'tc_refresh_thumbnail') );
+      add_action ( 'save_post'            , array( $this , 'tc_refresh_thumbnail') , 10, 2);
+      
+      //refresh the posts slider transient on save_post. Since v3.4.9.
+      add_action ( 'save_post'            , array( $this , 'tc_refresh_posts_slider'), 20, 2 );
+      //refresh the posts slider transient on permanent post/attachment deletion. Since v3.4.9.
+      add_action ( 'deleted_post'         , array( $this , 'tc_refresh_posts_slider') );
 
       //UPDATE NOTICE
       add_action( 'admin_notices'         , array( $this, 'tc_may_be_display_update_notice') );
@@ -42,9 +47,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     * @package Customizr
     * @since Customizr 3.3.2
     */
-    function tc_refresh_thumbnail( $post_id ) {
+    function tc_refresh_thumbnail( $post_id, $post ) {
       // If this is just a revision, don't send the email.
-      if ( empty( $_POST ) || wp_is_post_revision( $post_id ) )
+      if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
       if ( ! class_exists( 'TC_post_thumbnails' ) )
@@ -53,6 +58,28 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
     }
 
+    /*
+    * @return void
+    * updates the posts slider transient
+    * @package Customizr
+    * @since Customizr 3.4.9
+    */
+    function tc_refresh_posts_slider( $post_id, $post = array() ) {
+      // no need to build up/refresh the transient it we don't use the posts slider
+      // since we always delete the transient when entering the preview.
+      if ( 'tc_posts_slider' != TC_utils::$inst->tc_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
+        return;
+      
+      if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
+        return;
+ 
+      if ( ! class_exists( 'TC_post_thumbnails' ) )
+        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+      if ( ! class_exists( 'TC_slider' ) )
+        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'slider') ) ), true );
+
+      TC_slider::$instance -> tc_cache_posts_slider();
+    }
 
     /*
     * @return css string
