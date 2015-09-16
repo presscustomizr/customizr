@@ -640,14 +640,14 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           if ( $slider_check_value == true )  {
              ?>
             <div class="meta-box-item-title">
-                <h4><?php _e( 'Title text (80 car. max length)' , 'customizr' ); ?></h4>
+                <h4><?php _e( 'Title text (80 char. max length)' , 'customizr' ); ?></h4>
             </div>
             <div class="meta-box-item-content">
                 <input class="widefat" name="<?php echo esc_attr( $title_id); ?>" id="<?php echo esc_attr( $title_id); ?>" value="<?php echo esc_attr( $title_value); ?>" style="width:50%">
             </div>
 
             <div class="meta-box-item-title">
-                <h4><?php _e( 'Description text (below the title, 250 car. max length)' , 'customizr' ); ?></h4>
+                <h4><?php _e( 'Description text (below the title, 250 char. max length)' , 'customizr' ); ?></h4>
             </div>
             <div class="meta-box-item-content">
                 <textarea name="<?php echo esc_attr( $text_id); ?>" id="<?php echo esc_attr( $text_id); ?>" style="width:50%"><?php echo esc_attr( $text_value); ?></textarea>
@@ -662,7 +662,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             </div>
 
              <div class="meta-box-item-title">
-                <h4><?php _e( 'Button text (80 car. max length)' , 'customizr' ); ?></h4>
+                <h4><?php _e( 'Button text (80 char. max length)' , 'customizr' ); ?></h4>
             </div>
             <div class="meta-box-item-content">
                 <input class="widefat" name="<?php echo esc_attr( $button_id); ?>" id="<?php echo esc_attr( $button_id); ?>" value="<?php echo esc_attr( $button_value); ?>" style="width:50%">
