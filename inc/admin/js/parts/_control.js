@@ -157,10 +157,31 @@
         'tc_slider_delay',
         'tc_slider_default_height',
         'tc_slider_default_height_apply_all',
-        'tc_slider_change_default_img_size'
+        'tc_slider_change_default_img_size',
+        'tc_posts_slider_number',
+        'tc_posts_slider_type',
+        'tc_posts_slider_title',
+        'tc_posts_slider_text',
+        'tc_posts_slider_link',
+        'tc_posts_slider_button_text'
+      ],
+      callback: function (to, targetSetId) {
+        //posts slider options must be hidden when the posts slider not choosen
+        if ( targetSetId.indexOf('tc_posts_slider_') > -1 )
+          return 'tc_posts_slider' == to;
+        return '0' !== to;
+      }
+    },
+    'tc_posts_slider_link' : {
+      controls: [
+        'tc_posts_slider_button_text'    
       ],
       callback: function (to) {
-        return '0' !== to;
+        return to.indexOf('cta') > -1;  
+      },
+      //display dependant if master setting value == value
+      cross: {
+        tc_posts_slider_button_text : { master : 'tc_front_slider' , callback : function (to) { return 'tc_posts_slider' == to; } },
       }
     },
     'tc_post_list_grid' : {
