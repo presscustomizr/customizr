@@ -540,10 +540,16 @@ if ( ! class_exists( 'TC_resources' ) ) :
       if ( false == esc_attr( TC_utils::$inst -> tc_opt( 'tc_skin_random' ) ) )
         return $_skin;
 
-      /* Generate the random skin just once !*/
-      if ( ! $this -> current_random_skin || ! is_array( TC_init::$instance -> skins ) )
-        $this -> current_random_skin = array_rand( TC_init::$instance -> skins, 1 );
+      //allow custom skins to be taken in account
+      $_skins = apply_filters( 'tc_get_skin_color', TC_init::$instance -> skin_color_map, 'all' );
 
+      //allow users to filter the list of skins they want to randomize
+      $_skins = apply_filters( 'tc_skins_to_randomize', $_skins );
+
+      /* Generate the random skin just once !*/
+      if ( ! $this -> current_random_skin && is_array( $_skins ) )
+        $this -> current_random_skin = array_rand( $_skins, 1 );
+      
       return $this -> current_random_skin;
     }
 
