@@ -37,6 +37,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       //always add the ajax action
       add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'tc_dismiss_update_notice_action' ) );
       add_action( 'admin_footer'                  , array( $this , 'tc_write_ajax_dismis_script' ) );
+      /* beautify admin notice text using some defaults the_content filter callbacks */
+      foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
+        add_filter( 'tc_update_notice', $callback );
     }
 
 
@@ -285,7 +288,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         <div class="updated" style="position:relative">
           <?php
             echo apply_filters(
-              'the_content',
+              'tc_update_notice',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
                 __( "Good, you've just upgraded to", "customizr"),
                 "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
@@ -296,7 +299,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
           ?>
           <?php
             echo apply_filters(
-              'the_content',
+              'tc_update_notice',
               sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
                 TC_WEBSITE . "category/customizr-releases/",
