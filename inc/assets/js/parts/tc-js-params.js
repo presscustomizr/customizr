@@ -24,7 +24,7 @@ var TCParams = TCParams || {
   extLinksStyle :1,
   extLinksTargetExt:1,
   extLinksSkipSelectors: {
-    classes : ['btn'],
+    classes : ['btn', 'button'],
     ids:[]
   },
   dropcapEnabled:1,
@@ -41,4 +41,4 @@ var TCParams = TCParams || {
   gridGoldenRatioLimit : 350,
   isSecondMenuEnabled : 0,
   secondMenuRespSet : 'in-sn-before'
-}
+};

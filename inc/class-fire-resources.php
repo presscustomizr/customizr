@@ -241,7 +241,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	          	'timerOnScrollAllBrowsers' => apply_filters( 'tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
               'extLinksStyle'       => esc_attr( TC_utils::$inst->tc_opt( 'tc_ext_link_style' ) ),
               'extLinksTargetExt'   => esc_attr( TC_utils::$inst->tc_opt( 'tc_ext_link_target' ) ),
-              'extLinksSkipSelectors'   => apply_filters( 'tc_ext_links_skip_selectors' , array( 'classes' => array('btn') , 'ids' => array() ) ),
+              'extLinksSkipSelectors'   => apply_filters( 'tc_ext_links_skip_selectors' , array( 'classes' => array('btn', 'button') , 'ids' => array() ) ),
               'dropcapEnabled'      => esc_attr( TC_utils::$inst->tc_opt( 'tc_enable_dropcap' ) ),
               'dropcapWhere'      => array( 'post' => esc_attr( TC_utils::$inst->tc_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( TC_utils::$inst->tc_opt( 'tc_page_dropcap' ) ) ),
               'dropcapMinWords'     => esc_attr( TC_utils::$inst->tc_opt( 'tc_dropcap_minwords' ) ),
