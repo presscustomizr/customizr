@@ -19,7 +19,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
         function __construct () {
           self::$instance =& $this;
-          $this -> expanded_sticky = null;
 
           add_action ( 'pre_get_posts'              , array( $this , 'tc_maybe_excl_first_sticky') );
           add_action ( 'wp_head'                    , array( $this , 'tc_set_grid_hooks') );
@@ -826,12 +825,21 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
+
         /*
         * @return bool
         * check if we have to expand the first sticky post
+        *
+        * caches its ID or false
         */
         private function tc_is_sticky_expanded( $query = null ){
-          global $wp_query, $wpdb;
+          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
+          if ( ! $_expand_feat_post_opt )
+            return false;
+          if ( isset( $this -> expanded_sticky ) )
+            return $this -> expanded_sticky ? true : false;
+          
+          global $wp_query;
           $query = ( $query ) ? $query : $wp_query;
 
           if ( ! $query->is_main_query() )
@@ -840,32 +848,39 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
                   $wp_query->is_posts_page ) )
               return false;
 
-          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
-
-          if ( ! $this -> expanded_sticky ) {
-            $_sticky_posts = get_option('sticky_posts');
-            // get last published sticky post
-            if ( is_array($_sticky_posts) && ! empty( $_sticky_posts ) ) {
-              $_where = implode(',', $_sticky_posts );
-              $this -> expanded_sticky = $wpdb->get_var( 
-                     "
-                     SELECT ID
-                     FROM $wpdb->posts
-                     WHERE ID IN ( $_where )
-                     ORDER BY post_date DESC
-                     LIMIT 1
-                     "
-              );
-            }else
-              $this -> expanded_sticky = null;
-          }
-
-          if ( ! ( $_expand_feat_post_opt && $this -> expanded_sticky ) )
-              return false;
-
-          return true;
+          // chache the expanded sticky
+          $this -> expanded_sticky =  $this -> tc_has_eligible_expanded();
+          return $this -> expanded_sticky;
         }
 
+
+
+        /*
+        * @return bool
+        * returns if there's an eligible expanded post
+        *
+        */
+        private function tc_has_eligible_expanded( ) {
+            
+          $expanded_sticky = false;
+          $_sticky_posts = get_option('sticky_posts');
+          // get last published sticky post
+          if ( is_array($_sticky_posts) && ! empty( $_sticky_posts ) ) {
+            global $wpdb;  
+            $_posts_in = implode(',', $_sticky_posts );
+            $expanded_sticky = $wpdb->get_var( 
+                   "
+                   SELECT ID
+                   FROM $wpdb->posts
+                   WHERE ID IN ( $_posts_in ) AND post_status = 'publish'
+                   ORDER BY post_date DESC
+                   LIMIT 1
+                   "
+            );
+          }
+
+          return is_null( $expanded_sticky ) ? false : $expanded_sticky;
+        }
 
         /*
         * @return bool
