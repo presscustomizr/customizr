@@ -347,9 +347,18 @@ class TC_post_list {
     //filter the post types to include, they must be public and not excluded from search
     //we also exclude the built-in types, to exclude pages and attachments, we'll add standard posts later
     $post_types         = get_post_types( array( 'public' => true, 'exclude_from_search' => false, '_builtin' => false) );
-    //add standard post
+    
+    //add standard posts
     $post_types['post'] = 'post';
-
+    if ( $query -> is_search ){
+      // add standard pages in search results => new wp behavior
+      $post_types['page'] = 'page';
+      // allow attachments to be included in search results by tc_include_attachments_in_search method
+      if ( apply_filters( 'tc_include_attachments_in_search_results' , false ) )      
+        $post_types['attachment'] = 'attachment';    
+    }
+    
+    // add standard pages in search results
     $query->set('post_type', $post_types );
   }
 
