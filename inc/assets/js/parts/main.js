@@ -135,6 +135,31 @@ var czrapp = czrapp || {};
     },
 
 
+    //@return bool
+    isSelectorAllowed : function( $_el, skip_selectors, requested_sel_type ) {
+      var sel_type = 'ids' == requested_sel_type ? 'id' : 'class',
+      _selsToSkip   = skip_selectors[requested_sel_type];
+
+      //check if option is well formed
+      if ( 'object' != typeof(skip_selectors) || ! skip_selectors[requested_sel_type] || ! $.isArray( skip_selectors[requested_sel_type] ) || 0 === skip_selectors[requested_sel_type].length )
+        return true;
+
+      //has a forbidden parent?
+      if ( $_el.parents( _selsToSkip.map( function( _sel ){ return 'id' == sel_type ? '#' + _sel : '.' + _sel; } ).join(',') ).length > 0 )
+        return false;
+
+      //has requested sel ?
+      if ( ! $_el.attr( sel_type ) )
+        return true;
+
+      var _elSels       = $_el.attr( sel_type ).split(' '),
+          _filtered     = _elSels.filter( function(classe) { return -1 != $.inArray( classe , _selsToSkip ) ;});
+
+      //check if the filtered selectors array with the non authorized selectors is empty or not
+      //if empty => all selectors are allowed
+      //if not, at least one is not allowed
+      return 0 === _filtered.length;
+    },
 
     /***************************************************************************
     * Event methods, offering the ability to bind to and trigger events.
@@ -246,6 +271,9 @@ var czrapp = czrapp || {};
     },
     isReponsive : function() {
       return czrapp.isReponsive();
+    },
+    isSelectorAllowed: function( $_el, skip_selectors, requested_sel_type ) {
+      return czrapp.isSelectorAllowed( $_el, skip_selectors, requested_sel_type );    
     }
 
   };//_methods{}
@@ -293,13 +321,23 @@ var czrapp = czrapp || {};
     //__before_main_wrapper covers the single post thumbnail case
     //.widget-front handles the featured pages
     imgSmartLoad : function() {
-      if ( 1 == TCParams.imgSmartLoadEnabled )
-        $( '.article-container, .__before_main_wrapper, .widget-front' ).imgSmartLoad( _.size( TCParams.imgSmartLoadOpts ) > 0 ? TCParams.imgSmartLoadOpts : {} );
-      else {
-        //if smart load not enabled => trigger the load event on img load
-        var $_to_center = $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
-        this.triggerSimpleLoad($_to_center);
-      }//end else
+      var smartLoadEnabled = 1 == TCParams.imgSmartLoadEnabled,
+          //Default selectors for where are : $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
+          _where           = TCParams.imgSmartLoadOpts.parentSelectors.join(),
+          $_to_center      = $( _where ).find('img');
+
+      if ( smartLoadEnabled ) {
+        $_to_center      = _.filter( $( _where ).find('img') , function ( img ) {
+          return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
+        } );//filter
+      }//if
+
+      if (  smartLoadEnabled )
+        $( _where ).imgSmartLoad(
+          _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {}
+        );
+
+      this.triggerSimpleLoad($_to_center);
     },
 
 
@@ -592,8 +630,23 @@ var czrapp = czrapp || {};
       if ( ! TCParams.anchorSmoothScroll || 'easeOutExpo' != TCParams.anchorSmoothScroll )
             return;
 
-      var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude ) ) ? TCParams.anchorSmoothScrollExclude.join(',') : '';
-      $('a[href^="#"]', '#content').not( _excl_sels ).click(function () {
+      var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude.simple ) ) ? TCParams.anchorSmoothScrollExclude.simple.join(',') : '',
+          self = this,
+          $_links = $('a[href^="#"]', '#content').not(_excl_sels);
+
+      //Deep exclusion
+      //are ids and classes selectors allowed ?
+      //all type of selectors (in the array) must pass the filter test
+      _deep_excl = _.isObject( TCParams.anchorSmoothScrollExclude.deep ) ? TCParams.anchorSmoothScrollExclude.deep : null ;
+      if ( _deep_excl )
+        _links = _.toArray($_links).filter( function ( _el ) {
+          return ( 2 == ( ['ids', 'classes'].filter( 
+                        function( sel_type) { 
+                            return self.isSelectorAllowed( $(_el), _deep_excl, sel_type); 
+                        } ) ).length 
+                );
+        });
+      $(_links).click( function () {
         var anchor_id = $(this).attr("href");
 
         //anchor el exists ?
