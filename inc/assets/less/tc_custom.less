@@ -729,9 +729,9 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
 /* Downsize the brand/project name a bit */
 
 .navbar-wrapper .navbar .site-description {
-  float: @counterfloatDirection;
-  padding-@{counterfloatDirection}: 5px;
-  text-align: @counterfloatDirection;
+  float: @counterFloatDirection;
+  padding-@{counterFloatDirection}: 5px;
+  text-align: @counterFloatDirection;
 }
 .navbar-wrapper .navbar h2.site-description {
   line-height: 19px;
@@ -909,11 +909,12 @@ li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropd
 }
 /* ADJUST LEFT AND RIGHT MENU POSITIONS => align with socials (left) and tagline (right) */
 .logo-left .navbar div>ul.nav>.menu-item:last-child>a {
-  padding-right: 0px;
+  padding-@{counterFloatDirection}: 0px;
 }
 
 .navbar .nav {
-  margin-@{counterFloatDirection}: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .tc-header .btn-toggle-nav.pull-left {
@@ -921,11 +922,11 @@ li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropd
 }
 .tc-header .btn-toggle-nav.pull-left,
 .pull-menu-left .navbar div>ul.nav>.menu-item:first-child>a {
-  padding-left: 5px;
+  padding-@{floatDirection}: 5px;
 }
 .tc-header .btn-toggle-nav.pull-right,
 .pull-menu-right .navbar div>ul.nav>.menu-item:last-child>a {
-  padding-right: 0px;
+  padding-@{counterFloatDirection}: 0px;
 }
 
 .pull-menu-left .nav-collapse{
@@ -943,7 +944,6 @@ li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropd
   clear: both;
   margin: 10px 0px;
   position: relative;
-  float: @floatDirection;
   padding-bottom: 12px;
   font-size: 17px;
 }
@@ -1092,7 +1092,6 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 
 .sn-nav-wrapper {
   clear: both;
-  float: @floatDirection;
   min-width: 100%;
 }
 
@@ -1422,7 +1421,12 @@ font-size: 13px;
 /* SOCIAL
     -------------------------------------------------- */
 .navbar-inner .social-block {
-  padding: 0px 20px 0px 10px;
+  & when (@is_rtl = true) {
+    padding: 0px 10px 0px 20px;
+  }
+  & when (@is_rtl = false) {
+    padding: 0px 20px 0px 10px;
+  }
   *max-width: 270px; /* IE 7 and below */
   margin: 10px 0;
 }
@@ -1447,7 +1451,7 @@ font-size: 13px;
   line-height: inherit;
   margin: 0px;
   text-decoration:none;
-  padding-right: 13px;
+  padding-@{counterFloatDirection}: 13px;
   position: relative;
   top: 2px;
 }
