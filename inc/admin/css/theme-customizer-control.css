@@ -1009,7 +1009,7 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 }
 .rtl .in-sub-panel #tc-donate-customizer,
 .rtl .in-sub-panel .tc-cta-wrap {
-  right: =450px;
+  right: -450px;
 }
 .tc-grid-control-section {
   width: 100%;
