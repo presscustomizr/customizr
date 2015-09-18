@@ -28,6 +28,7 @@ module.exports = {
       modifyVars: {
         is_rtl: false,
         floatDirection : 'left',
+        counterFloatDirection : 'right',
         textAlign: 'left'
       }
     },
@@ -40,6 +41,7 @@ module.exports = {
       modifyVars: {
         is_rtl: true,
         floatDirection : 'right',
+        counterFloatDirection : 'left',
         textAlign: 'right'
       }
     },
@@ -53,6 +55,7 @@ module.exports = {
         lnkCol : '<%= skin_color %>',
         is_rtl: false,
         floatDirection : 'left',
+        counterFloatDirection : 'right',
         textAlign: 'left'
       }
     },

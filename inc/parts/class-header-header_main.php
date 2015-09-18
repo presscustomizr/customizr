@@ -63,15 +63,8 @@ if ( ! class_exists( 'TC_header_main' ) ) :
       add_filter ( 'tc_navbar_display', array( $this , 'tc_new_menu_view'), 10, 2);
 
       //body > header > navbar actions ordered by priority
-  	  // GY : switch order for RTL sites
-  	  if (is_rtl()) {
-        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 20, 2 );
-        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 10, 1 );
-  	  }
-  	  else {
-        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
-        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
-  	  }
+      add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
+      add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
 
       //add a 100% wide container just after the sticky header to reset margin top
       if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) )

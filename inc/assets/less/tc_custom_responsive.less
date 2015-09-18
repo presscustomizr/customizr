@@ -186,7 +186,7 @@
     display: block;
   }
   .navbar div > ul.nav > .menu-item:first-child > a {
-    padding-left: 15px
+    padding-@{floatDirection}: 15px
   }
   .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
     font-weight:normal;
@@ -204,10 +204,10 @@
     margin-right: 0px;
   }
   .nav-collapse .dropdown-menu li a {
-    padding-left: 25px;
+    padding-@{floatDirection}: 25px;
   }
   .nav-collapse .dropdown-menu li li a {
-    padding-left: 30px;
+    padding-@{floatDirection}: 30px;
   }
 
   /* Hover Menu */
@@ -352,19 +352,14 @@
     float: @floatDirection;
     width: 80%;
     text-align: @textAlign;
-    padding-left: 10px;
+    padding-@{floatDirection}: 10px;
     position: relative;
     z-index: 2;
   }
   .sticky-enabled .tc-header {
     min-height: 40px;
   }
-  .sticky-enabled .tc-header .brand {
-    & when (@is_rtl = true){
-    float: left;
-    text-align: left;
-    }
-  }
+
   .sticky-enabled .tc-header .outside {
     display: none;
   }
@@ -377,8 +372,16 @@
   .navbar .btn-navbar {
     display: block;
     margin: 10px 0;
-    /*float: right;*/
+    float: @counterFloatDirection;
   }
+  .tc-header .navbar .btn-toggle-nav {
+    clear: none;
+  }
+  .logo-right.tc-header .navbar .btn-toggle-nav,
+  .logo-right .navbar .btn-navbar {
+    float: @floatDirection;
+  }
+
   /* GIVE NAVBAR A SMALLER Z-index than logo / title SINCE V3.2.0*/
   .sticky-enabled .navbar-wrapper {
     position: relative;
@@ -404,11 +407,11 @@
   }
   .navbar .navbar-inner .social-block {
     width: auto!important;
-    float: left;
+    float: @floatDirection;
     margin: 14px 0 0;
   }
   .logo-right .navbar .navbar-inner .social-block {
-    float: right;
+    float: @counterFloatDirection;
   }
   /* MENU CHANGES SINCE V3.2.0 */
   .navbar .nav-collapse .dropdown-menu a {
@@ -416,21 +419,11 @@
   }
 
   .navbar .nav-collapse ul.nav > li li a {
-    & when (@is_rtl = true) {
-      padding-right: 30px;
-    }
-    & when (@is_rtl = false) {
-      padding-left: 30px;
-    }
+    padding-@{floatDirection}: 30px;
   }
 
   .navbar .nav-collapse ul.nav > li li li a {
-     & when (@is_rtl = true) {
-      padding-right: 50px;
-    }
-    & when (@is_rtl = false) {
-      padding-left: 50px;
-    }
+    padding-@{floatDirection}: 50px;
   }
 
   .dropdown-submenu>a:after {
@@ -531,10 +524,10 @@
   }
   /*hide the border and before effect for right sidebar*/
   #right.widget-area {
-    border-left:0px;
+    border-@{counterFloatDirection}:0px;
   }
   #right.widget-area:before{
-    border-left:0px;
+    border-@{floatDirection}:0px;
   }
   .navbar-inner {
     margin: -20px;
@@ -573,7 +566,7 @@
   .row-fluid .comment-avatar.span2 {
     width: 14.893617021%;
     float: @floatDirection;
-    margin-right: 2.762430939%;
+    margin-@{floatDirection}: 2.762430939%;
   }
   footer#footer {
     text-align: center;
@@ -606,7 +599,7 @@
   }
   .expanded .tc-grid-post figcaption {
     max-width: none;
-    margin-left: 0;
+    margin-@{floatDirection}: 0;
   }
   [class*=grid-cols-] .tc-grid-post figure {
     height: 225px;
@@ -656,7 +649,7 @@
 
   .carousel-caption {
     padding: 2%;
-    margin-left: 17%;
+    margin-@{floatDirection}: 17%;
     position:relative;
     max-height: 130px;
     overflow: hidden;
@@ -692,7 +685,7 @@
     margin: 10px 0px 0px;
   }
   .navbar-inner .social-block a {
-    padding-right: 6px;
+    padding-@{counterFloatDirection}: 6px;
   }
   /* GRID */
   .tc-g-cont {

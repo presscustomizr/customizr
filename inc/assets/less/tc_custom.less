@@ -78,7 +78,7 @@ a + span.tc-external:after {
   font-variant: normal;
   text-transform: none;
   line-height: 0;
-  padding-left: 0;
+  padding-@{floatDirection}: 0;
   position: relative;
   text-decoration: none!important;
   top: 5px;
@@ -104,10 +104,10 @@ section {
   --------------------------------------------------- */
 /* FIX MARGIN LEFT FOR SPAN12 CONTENT */
 .row-fluid [class*="tc-content span12"], .row-fluid [class*="tc-thumbnail span12"] {
-  margin-left: 0!important;
+  margin-@{floatDirection}: 0!important;
 }
 .row-fluid .span8 {
-  padding-left: 1%;
+  padding-@{floatDirection}: 1%;
 }
 
 
@@ -224,12 +224,7 @@ section {
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  & when (@is_rtl = true) {
-    padding-left: 5px;
-  }
-  & when (@is_rtl = false) {
-    padding-right: 5px;
-  }
+  padding-@{counterFloatDirection}: 5px;
   top: 8px;
   font-size: 1.5em;
   position: relative;
@@ -328,12 +323,7 @@ section {
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  & when (@is_rtl = true) {
-    padding-left: 10px;
-  }
-  & when (@is_rtl = false) {
-    padding-right: 10px;
-  }
+  padding-@{counterFloatDirection}: 10px;
   font-size: 1.2em;
   opacity: 0.2;
   position: relative;
@@ -516,12 +506,7 @@ h3#reply-title:before {
   font-size: 2em;
 }
 h2.comments:before { /* GY: added rule to fix icon position */
-  & when (@is_rtl = true){
-   float: right;
-  }
-  & when (@is_rtl = false){
-   float: left;
-  }
+  float: @floatDirection;
 }
 h2.comments-title:before {
   font-family: 'genericons';
@@ -532,14 +517,8 @@ h2.comments-title:before {
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  & when (@is_rtl = true) {
-    float: right;
-    padding-left: 5px;
-  }
-  & when (@is_rtl = false) {
-    float: left;
-    padding-right: 5px;
-  }
+  float: @floatDirection;
+  padding-@{counterFloatDirection}: 5px;
   font-size: 1em;
 }
 
@@ -625,7 +604,7 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
   margin-top: 0px;
 }
 .sticky-enabled .tc-title-logo-off .navbar-wrapper {
-  margin-left: 0px;
+  margin-@{floatDirection}: 0px;
   width: 100%;
 }
 .sticky-enabled .tc-header .navbar .nav>li>a {
@@ -643,12 +622,7 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
   margin: 0 0 3px;
 }*/
 .sticky-enabled .nav-collapse {
-  & when (@is_rtl = true) {
-    float: left;
-  }
-  & when (@is_rtl = false) {
-    float: right;
-  }
+  float: @counterFloatDirection;
 }
 
 /* RESIZE ON SCROLL IF SHRINK ON */
@@ -734,12 +708,7 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
 }
 
 .navbar {
-  & when (@is_rtl = true) {
-  float: left;
-  }
-  & when (@is_rtl = false) {
-    float: right;
-  }
+  float: @counterFloatDirection;
   margin-bottom: 0px;
 }
 .navbar-inner {
@@ -753,16 +722,16 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
   margin: 5px 5px 11px;
   border: 0;
   .box-shadow(~"0 2px 10px rgba(0, 0, 0, 0.25)");
-  padding-left: 5px;
+  padding-@{floatDirection}: 5px;
   /*ie9 and less : hack to get rid of the gradient effect */
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 /* Downsize the brand/project name a bit */
 
 .navbar-wrapper .navbar .site-description {
-  float: right;
+  float: @floatDirection;
   padding-right: 5px;
-  text-align: right;
+  text-align: @textAlign;
 }
 .navbar-wrapper .navbar h2.site-description {
   line-height: 19px;
@@ -829,21 +798,26 @@ h2.site-description {
 .dropdown-submenu > a:after {
   display: block;
   content: " ";
-  & when (@is_rtl = true) {
-  float: left;
-  }
-  & when (@is_rtl = false) {
-    float: right;
-  }
+  float: @counterFloatDirection;
   width: 0;
   height: 0;
-  border-color: transparent;
   border-style: solid;
-  border-width: 4px 0 4px 4px;
-  border-left-color: #cccccc;
+  /* the following will allow us to make no reference to the direction in the skin 
+  * so we can keep it text direction independent
+  */
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-width: 4px;
+  border-@{counterFloatDirection}-width: 0px;
+  border-@{floatDirection}-color: #cccccc;
 }
 
-
+.navbar .btn-navbar {
+  float: @floatDirection;
+  padding: 7px 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 /* Hide responsive button by default when menu is regulat type*/
 .tc-regular-menu .navbar .btn-toggle-nav,
 .tc-regular-menu .navbar .btn-navbar {
@@ -871,24 +845,18 @@ h2.site-description {
 
 .dropdown-submenu > .dropdown-menu {
   top: 110%;
-  & when (@is_rtl = true) {
-    right: 30%;
-    right: 30%\9; /* IE 8 and below */
-  }
-  & when (@is_rtl = false) {
-    left: 30%;
-    left: 30%\9; /* IE 8 and below */
-  }
+  @{floatDirection}: 30%;
+  @{floatDirection}: 30%\9; /* IE 8 and below */
   top: 0%\9; /* IE 8 and below */
   margin-top: -6px;
-  margin-left: -1px;
+  margin-@{floatDirection}: -1px;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
 }
 /* ie9 hack */
 .ie9 .dropdown-submenu > .dropdown-menu {
-  left: 30%;
+  @{floatDirection}: 30%;
 }
 /* ie hack */
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
@@ -937,24 +905,15 @@ li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropd
 }
 /* SUBMENU MOVE EFFECT ON HOVER */
 .tc-submenu-move .dropdown-menu>li>a:focus, .tc-submenu-move .dropdown-menu>li>a:hover, .tc-submenu-move .dropdown-submenu:focus>a, .tc-submenu-move .dropdown-submenu:hover>a {
-  & when (@is_rtl = true) {
-    padding-right: 1.63em;
-  }
-  & when (@is_rtl = false) {
-    padding-left: 1.63em;
-  }
+  padding-@{floatDirection}: 1.63em;
 }
 /* ADJUST LEFT AND RIGHT MENU POSITIONS => align with socials (left) and tagline (right) */
 .logo-left .navbar div>ul.nav>.menu-item:last-child>a {
-  & when (@is_rtl = true) {
-   padding-left: 0px;
-  }
-  & when (@is_rtl = false) {
-   padding-right: 0px;
-  }
+  padding-right: 0px;
 }
+
 .navbar .nav {
-  margin-right: 0px;
+  margin-@{counterFloatDirection}: 0px;
 }
 
 .tc-header .btn-toggle-nav.pull-left {
@@ -962,21 +921,11 @@ li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropd
 }
 .tc-header .btn-toggle-nav.pull-left,
 .pull-menu-left .navbar div>ul.nav>.menu-item:first-child>a {
-  & when (@is_rtl = true) {
-   padding-right: 5px;
-  }
-  & when (@is_rtl = false) {
-   padding-left: 5px;
-  }
+  padding-left: 5px;
 }
 .tc-header .btn-toggle-nav.pull-right,
 .pull-menu-right .navbar div>ul.nav>.menu-item:last-child>a {
-  & when (@is_rtl = true) {
-   padding-left: 0px;
-  }
-  & when (@is_rtl = false) {
-   padding-right: 0px;
-  }
+  padding-right: 0px;
 }
 
 .pull-menu-left .nav-collapse{
@@ -994,7 +943,7 @@ li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropd
   clear: both;
   margin: 10px 0px;
   position: relative;
-  float: left;
+  float: @floatDirection;
   padding-bottom: 12px;
   font-size: 17px;
 }
@@ -1039,7 +988,7 @@ nav#tc-sn {
   position: relative;
   height: 100%;
   top: 0;
-  left: 0;
+  @{floatDirection}: 0;
   overflow: auto;
   -webkit-overflow-scroll: auto; /* safari */
   padding: 15px;
@@ -1143,7 +1092,7 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 
 .sn-nav-wrapper {
   clear: both;
-  float: left;
+  float: @floatDirection;
   min-width: 100%;
 }
 
@@ -1181,11 +1130,11 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   color: #777;
 }
 .navbar div > ul.sn-nav > .menu-item:first-child > a {
-  padding-left: 20px;
+  padding-@{floatDirection}: 20px;
 }
 
 #tc-sn .tc-sn-inner .nav .dropdown-menu {
-  left: auto;
+  @{floatDirection}: auto;
   float: none;
   max-width: none;
   margin: 0;
@@ -1198,21 +1147,11 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   white-space: normal;
 }
 #tc-sn.navbar .nav-collapse ul.nav > li li a {
-    font-size: 90%;
-    & when (@is_rtl = true) {
-      padding-right: 25px;
-    }
-    & when (@is_rtl = false) {
-      padding-left: 25px;
-    }
+  font-size: 90%;
+  padding-@{floatDirection}: 25px;
 }
 #tc-sn.navbar .nav-collapse ul.nav>li li li a {
-    & when (@is_rtl = true) {
-      padding-right: 50px;
-    }
-    & when (@is_rtl = false) {
-      padding-left: 50px;
-    }
+  padding-@{floatDirection}: 25px;
 }
 .animating .tc-sn-inner .nav [class*=dropdown] ,
 .tc-sn-visible .tc-sn-inner .nav [class*=dropdown] {
@@ -1254,7 +1193,7 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   cursor: pointer;
   margin: 1px 5px 0px;
   outline: 0;
-  float: left;
+  float: @floatDirection;
 }
 
 .sn-toggle .btn {
@@ -1283,9 +1222,9 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   text-align: center;
   margin: auto;
   display: block;
-  float: right;
+  float: @floatDirection;
   display: inline-block;
-  margin-right: 5px;
+  margin-@{floatDirection}: 5px;
   cursor: pointer;
 }
 .navbar .btn-toggle-nav .icon-bar {
@@ -1357,10 +1296,10 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 }
 
 .navbar .tc-menu-placeholder {
-  float: left;
+  float: @floatDirection;
   width: 86%;
-  margin-left: 10px;
-  clear: left;
+  margin-@{floatDirection}: 10px;
+  clear: @floatDirection;
   padding: 9px 3% 0;
   font-size: 17px;
 }
@@ -1381,23 +1320,23 @@ z-index: 10;
 
 /* SIDEBARS */
 #right.widget-area {
-  padding-left: 5px;
-  border-left: 1px solid @grayLighter;
+  padding-@{floatDirection}: 5px;
+  border-@{floatDirection}: 1px solid @grayLighter;
   position: relative;
 }
 
 #right.widget-area:before {
   content: "";
   height: 100%;
-  border-left: 1px solid @white;
+  border-@{floatDirection}: 1px solid @white;
   position: absolute;
-  left: 0px;
+  @{floatDirection}: 0px;
   top:0px;
 }
 
 #left.widget-area {
-  padding-right: 5px;
-  border-right: 1px solid @grayLighter;
+  padding-@{counterFloatDirection}: 5px;
+  border-@{counterFloatDirection}: 1px solid @grayLighter;
   position: relative;
 }
 
@@ -1405,8 +1344,8 @@ z-index: 10;
   content: '';
   position: absolute;
   height: 100%;
-  border-right: 1px solid @white;
-  right: -2px;
+  border-@{counterFloatDirection}: 1px solid @white;
+  @{counterFloatDirection}: -2px;
   bottom: 0px;
 }
 
@@ -1419,7 +1358,7 @@ content: "";
 border-bottom: 1px solid @white;
 position: absolute;
 width: 100%;
-right: 0px;
+@{counterFloatDirection}: 0px;
 bottom: -2px;
 }
 
@@ -1438,33 +1377,18 @@ font-size: 13px;
     li:before {
       content: '\203A';
       position: relative;
-      & when (@is_rtl = true) {
-        right: -10px;
-        -webkit-transition:right 0.2s;
-        -moz-transition:right 0.2s;
-        -ms-transition:right 0.2s;
-        -o-transition:right 0.2s;
-        transition:right 0.2s;
-      }
-      & when (@is_rtl = false) {
-        left: -10px;
-        -webkit-transition:left 0.2s;
-        -moz-transition:left 0.2s;
-        -ms-transition:left 0.2s;
-        -o-transition:left 0.2s;
-        transition:left 0.2s;
-      }
+      @{floatDirection}: -10px;
+      -webkit-transition:@floatDirection 0.2s;
+      -moz-transition:@floatDirection 0.2s;
+      -ms-transition:@floatDirection 0.2s;
+      -o-transition:@floatDirection 0.2s;
+      transition:@floatDirection 0.2s;
     }
   }
 }
 
 .widget li.on:before {
-  & when (@is_rtl = true) {
-    right: -7px;
-  }
-  & when (@is_rtl = false) {
-    left: -7px;
-  }
+  @{floatDirection}: -7px;
 }
 
 #main-wrapper .widget li {
@@ -1478,7 +1402,7 @@ font-size: 13px;
   border-bottom: 1px solid #FFF;
   position: absolute;
   width: 100%;
-  right: 0px;
+  @{floatDirection}: 0px;
   bottom: -2px;
 }
 
@@ -1641,14 +1565,8 @@ footer#footer .colophon .social-block a {
 }
 .carousel-image img {
   width: 100%;
-  & when (@is_rtl = true) {
-    -webkit-transition-property: width,height,top,right;
-    transition-property: width,height,top,right;
-  }
-  & when (@is_rtl = false) {
-    -webkit-transition-property: width,height,top,left;
-    transition-property: width,height,top,left;
-  }
+  -webkit-transition-property: width,height,top,@floatDirection;
+  transition-property: width,height,top,@floatDirection;
   -webkit-transition-duration: .25s;
   transition-duration: .25s;
   -webkit-transition-timing-function: ease-in-out;
@@ -1670,7 +1588,7 @@ footer#footer .colophon .social-block a {
   *top: 25%;/*hack IE7 and below */
   display: inline-block;
   position: relative;
-  margin-left: 11%;
+  margin-@{floatDirection}: 11%;
   /*display:inline; IE7 and below */
 }
 .carousel-caption h1,
@@ -1745,8 +1663,8 @@ footer#footer .colophon .social-block a {
   font-weight: normal;
 }
 .marketing .span4 p {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-@{floatDirection}: 10px;
+  margin-@{counterFloatDirection}: 10px;
 }
 
 /*hover effect*/
@@ -1949,25 +1867,19 @@ article.format-aside .entry-content {
   padding: 24px 24px 0;
   padding: 1.714285714rem;
   background: @FormatAsideBg;
-  border-left: 18px solid @FormatAsideBorder;
+  border-@{floatDirection}: 18px solid @FormatAsideBorder;
 }
 
 article.format-chat .entry-content {
   padding: 24px 24px 0;
   padding: 1.714285714rem;
   background: @FormatQuoteBg;
-  border-left: 18px solid @FormatQuoteBorder;
+  border-@{floatDirection}: 18px solid @FormatQuoteBorder;
 }
 
 article.format-quote .entry-content, article.error404 .entry-content {
-  & when (@is_rtl = true) {
-    padding: 24px 0 24px;
-    border-right: 18px solid@FormatQuoteBorder;
-  }
-  & when (@is_rtl = false) {
-    padding: 24px 24px 0;
-    border-left: 18px solid@FormatQuoteBorder;
-  }
+  padding: 24px 0 24px;
+  border-@{floatDirection}: 18px solid@FormatQuoteBorder;
   padding: 1.714285714rem;
   background: @FormatQuoteBg;
 }
@@ -1981,17 +1893,19 @@ cite {
   font-size: 14px;
 }
 blockquote {
-  padding: 5px 0 5px 15px;
+  padding: 5px 0;
+  padding-@{floatDirection}: 15px;
   margin: 0 0 20px;
   font-style: italic;
   background: #FFF;
+  border-@{floatDirection}: 5px solid;
 }
 
 article.format-link .entry-content {
   padding: 24px 24px 0;
   padding: 1.714285714rem;
   background: @FormatLinkBg;
-  border-left: 18px solid @FormatLinkBorder;
+  border-@{floatDirection}: 18px solid @FormatLinkBorder;
 }
 article.format-link .entry-content a {
   color: @FormatLinkBorder;
@@ -2005,7 +1919,7 @@ article.format-link .entry-content a:after{
   text-transform: none;
   line-height: 0px;
   -webkit-font-smoothing: antialiased;
-  padding-left: 6px;
+  padding-@{floatDirection}: 6px;
   font-size: 1.5em;
   opacity: 0.3;
   position: relative;
@@ -2017,7 +1931,7 @@ article.format-status .entry-content {
 padding: 24px 24px 0;
 padding: 1.714285714rem;
 background: @FormatStatusBg;
-border-left: 18px solid @FormatStatusBorder;
+border-@{floatDirection}: 18px solid @FormatStatusBorder;
 }
 
 article.format-gallery p.format-icon, article.format-image p.format-icon {
@@ -2101,12 +2015,7 @@ article .author-info h2 , .archive-header .author-info h2 {
   content: '';
   position: absolute;
   bottom: -7px;
-  & when (@is_rtl = true) {
-    right: -7px;
-  }
-  & when (@is_rtl = false) {
-    left: -7px;
-  }
+  @{floatDirection}: -7px;
   background: @Customizrbackground;
   display: block;
   width: 9px;
@@ -2393,7 +2302,7 @@ img.v-centered {
 
 .tc-grid-post figcaption{
   top: 0;
-  left: 0;
+  @{floatDirection}: 0;
   height: 100%;
   position: absolute;
   opacity: 0;
@@ -2404,19 +2313,14 @@ img.v-centered {
   opacity: 1;
   max-width: 65%;
   height: auto;
-  margin-left: 8%;
+  margin-@{floatDirection}: 8%;
   background: none;
-  & when (@is_rtl = true) {
-    text-align: right;
-  }
-  & when (@is_rtl = false) {
-    text-align: left;
-  }
+  text-align: @textAlign;
 }
 
 .span6.article-container .expanded figcaption, .span9.article-container .expanded figcaption {
   max-width: none;
-  margin-left: 0;
+  margin-@{floatDirection}: 0;
 }
 .tc-grid .entry-header {
   padding: 0 7%;
@@ -2486,12 +2390,7 @@ article .no-thumb figcaption {
   width: 100%;
 }
 .tc-post-list-grid .expanded .entry-title {
-  & when (@is_rtl = true) {
-    text-align: right;
-  }
-  & when (@is_rtl = false) {
-    text-align: left;
-  }
+  text-align: @textAlign;
   text-shadow: none;
 }
 .tc-post-list-grid .expanded .entry-title a {
@@ -2565,7 +2464,7 @@ article .no-thumb figcaption {
   position: absolute;
   z-index: 15;
   top: 15%;
-  right: 1%;
+  @{counterFloatDirection}: 1%;
 }
 .expanded .tc-grid-figure .comments-link {
   top: 7%;
@@ -2610,7 +2509,7 @@ article .no-thumb figcaption {
   vertical-align: middle;
   line-height: 29px!important;
   top: inherit!important;
-  padding-right: 0;
+  padding-@{counterFloatDirection}: 0;
 }
 .tc-post-list-grid article.format-quote .tc-grid-icon:before, .tc-post-list-grid article.format-status .tc-grid-icon:before {
   font-size: 138px;
@@ -2645,7 +2544,7 @@ article .no-thumb figcaption {
 .no-thumb .tc-grid-fade_expt {
   position: absolute;
   bottom: 0;
-  left: 0;
+  @{floatDirection}: 0;
   width: 100%;
   height: 60%;
   text-align: center;
@@ -2666,7 +2565,7 @@ article .no-thumb figcaption {
 }
 /* Woocommerce thumbnails */
 .woocommerce .thumbnails {
-  margin-left: 0;
+  margin-@{floatDirection}: 0;
 }
 
 
@@ -2691,11 +2590,11 @@ PLACEHOLDERS / DISMISS NOTICES
   font-variant: normal;
   text-transform: none;
   line-height: 0;
-  padding-left: 0;
+  padding-@{floatDirection}: 0;
   position: absolute;
   text-decoration: none!important;
   top: 12px;
-  left: 2px;
+  @{floatDirection}: 2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -2774,12 +2673,7 @@ article.attachment img {
 }
 
 .attachment #image-navigation .next-image {
-  & when (@is_rtl = true) {
-  float: left;
-  }
-  & when (@is_rtl = false) {
-    float: right;
-  }
+  float: @counterFloatDirection;
 }
 
 .entry-attachment .attachment {
@@ -2851,13 +2745,8 @@ ul.children {
 }
 
 #content .reply {
-  & when (@is_rtl = true) {
-    float: left;
-  }
-  & when (@is_rtl = false) {
-    float: right;
-  }
-  margin-right: 10px;
+  float: @counterFloatDirection;
+  margin-@{counterFloatDirection}: 10px;
 }
 .comment cite {
   font-size: 23px;
@@ -2865,14 +2754,9 @@ ul.children {
   display: block;
 }
 .comment .edit-link {
- & when(@is_rtl = true){
-  float:left;
- }
-  & when(@is_rtl = false){
-  float:right;
- }
+  float: @counterFloatDirection;
   display:block;
-  margin-right: 10px;
+  margin-@{counterFloatDirection}: 10px;
 }
 .comment-avatar {
   margin-bottom:5px;
@@ -2882,8 +2766,8 @@ ul.children {
   font-size: 12px;
 }
 .comments-area li.bypostauthor cite span {
-  margin-left: 5px;
-  margin-left: 0.357142857rem;
+  margin-@{floatDirection}: 5px;
+  margin-@{floatDirection}: 0.357142857rem;
   padding: 2px 5px;
   padding: 0.142857143rem 0.357142857rem;
   font-size: 10px;
@@ -2967,16 +2851,11 @@ tr:nth-child(even) th {
 }
 /*tr th:first-child,
 tr td:first-child {
-  border-left-style: solid;
-  border-left-width: 1px;
+  border-@{floatDirection}-style: solid;
+  border-@{floatDirection}-width: 1px;
 }*/
 #wp-calendar tfoot td {
-  & when (@is_rtl = true) {
-    text-align: right;
-  }
-  & when (@is_rtl = false) {
-    text-align: left;
-  }
+  text-align: @textAlign
 }
 ul {
   /*list-style: none outside;*/
@@ -3058,7 +2937,7 @@ footer ul, footer ol {
   width: 45px;
   height: 43px;
   line-height: 43px;
-  right: 30px;
+  @{counterFloatDirection}: 30px;
   bottom: 25px;
   padding-top: 2px;
   border-top-left-radius: 10px;

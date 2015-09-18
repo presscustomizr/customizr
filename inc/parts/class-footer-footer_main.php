@@ -17,13 +17,10 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     function __construct () {
       self::$instance =& $this;
       //All footer hooks setup
-      add_action( 'wp_head'                   , array( $this , 'tc_footer_hook_setup') );
+      add_action( 'wp_head'                    , array( $this , 'tc_footer_hook_setup') );
 
       // Sticky footer style
-      add_filter( 'tc_user_options_style' , array( $this , 'tc_write_sticky_footer_inline_css' ) );
-      //Handles RTL block order
-      //takes 2 parameters : priority, location
-      add_filter( 'tc_rtl_colophon_priority' , array( $this , 'tc_set_rtl_colophon_priority'), 10, 2 );
+      add_filter( 'tc_user_options_style'      , array( $this , 'tc_write_sticky_footer_inline_css' ) );
     }
 
 
@@ -58,9 +55,9 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
       add_action ( '__footer'         , array( $this , 'tc_colophon_display' ), 20 );
 
       //colophon actions => some priorities are rtl dependants
-      add_action ( '__colophon'       , array( $this , 'tc_colophon_left_block' ), apply_filters( 'tc_rtl_colophon_priority', 10, 'left' ) );
+      add_action ( '__colophon'       , array( $this , 'tc_colophon_left_block' ), 10 );
       add_action ( '__colophon'       , array( $this , 'tc_colophon_center_block' ), 20 );
-      add_action ( '__colophon'       , array( $this , 'tc_colophon_right_block' ), apply_filters( 'tc_rtl_colophon_priority', 30 , 'right') );
+      add_action ( '__colophon'       , array( $this , 'tc_colophon_right_block' ), 30 );
 
       //since v3.2.0, Show back to top from the Customizer option panel
       add_action ( '__after_footer'       , array( $this , 'tc_render_back_to_top') );
@@ -217,7 +214,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	      	echo apply_filters(
 	      		'tc_colophon_left_block',
 	      		sprintf('<div class="%1$s">%2$s</div>',
-	      			apply_filters( 'tc_colophon_left_block_class', 'span4 social-block pull-left' ),
+	      			implode( ' ', apply_filters( 'tc_colophon_left_block_class', array('span4', 'social-block', ! is_rtl() ? 'pull-left' : 'pull-right' ) ) ),
 	      			( ! $_nothing_to_render ) ? sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
 	      				( $_hide_socials ) ? 'style="display:none"' : '',
 	      				tc__f( '__get_socials' )
@@ -264,8 +261,9 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 
     	echo apply_filters(
     		'tc_colophon_right_block',
-    		sprintf('<div class="%1$s"><p class="pull-right"><a class="back-to-top" href="#">%2$s</a></p></div>',
-    			apply_filters( 'tc_colophon_right_block_class', 'span4 backtop' ),
+    		sprintf('<div class="%1$s"><p class="%2$s"><a class="back-to-top" href="#">%3$s</a></p></div>',
+    			implode( ' ', apply_filters( 'tc_colophon_right_block_class', array( 'span4', 'backtop' ) ) ),
+    			implode( ' ', apply_filters( 'tc_colophon_right_paragraph_class', array( ! is_rtl() ? 'pull-right' : 'pull-left' ) ) ),
     			__( 'Back to top' , 'customizr' )
     		)
     	);
@@ -275,22 +273,6 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     /******************************
     * CALLBACKS / SETTERS
     *******************************/
-    /**
-    * Set priorities for right and left colophon blocks, depending on the hook and is_rtl bool
-    * hooks : tc_rtl_colophon_priority
-    * @return void
-    * @param  priority number, location string
-    * @package Customizr
-    * @since Customizr 3.3+
-    */
-    function tc_set_rtl_colophon_priority( $_priority, $_location ) {
-      if ( ! is_rtl() )
-        return $_priority;
-      //tc_colophon_right_priority OR tc_colophon_left_priority
-      return 'right' == $_location ? 10 : 30;
-    }
-
-
     /*
     * Callback of tc_user_options_style hook
     * @return css string
