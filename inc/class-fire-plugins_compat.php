@@ -533,11 +533,24 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
          return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
+      //link smooth scroll: exclude woocommerce tabs
+      add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
+      function tc_woocommerce_disable_link_scroll( $excl ){
+        if ( false == TC_utils::$inst->tc_opt('tc_link_scroll') ) return $excl;
+        
+        if ( function_exists('is_woocommerce') && is_woocommerce() ) {
+          if ( ! is_array( $excl ) )
+            $excl = array( 'deep' => array( 'classes' => array() ) );  
+          
+          else if ( ! is_array( $excl['deep'] ) )
+              $excl['deep'] = array( 'classes' => array() );
+          
+          elseif ( ! is_array( $excl['deep']['classes'] ) )
+              $excl['deep']['classes'] = array();        
 
-      //disable link smooth scroll;
-      add_filter( 'tc_opt_tc_link_scroll', 'tc_woocommerce_disable_link_scroll' );
-      function tc_woocommerce_disable_link_scroll( $bool ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
+          $excl['deep']['classes'][] = 'wc-tabs';
+        }
+        return $excl;
       }
 
 

@@ -205,7 +205,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
             $anchor_smooth_scroll_exclude =  apply_filters( 'tc_anchor_smoothscroll_excl' , array(
                 'simple' => array( '[class*=edd]' , '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]' ),
                 'deep'   => array(
-                  'classes' => array('wc-tabs'),
+                  'classes' => array(),
                   'ids'     => array()
                 ) 
             ));
