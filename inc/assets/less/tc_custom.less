@@ -729,9 +729,9 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
 /* Downsize the brand/project name a bit */
 
 .navbar-wrapper .navbar .site-description {
-  float: @floatDirection;
-  padding-right: 5px;
-  text-align: @textAlign;
+  float: @counterfloatDirection;
+  padding-@{counterfloatDirection}: 5px;
+  text-align: @counterfloatDirection;
 }
 .navbar-wrapper .navbar h2.site-description {
   line-height: 19px;
