@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.8
+ * Customizr v3.4.9
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -360,8 +360,10 @@ body {
   float: right;
   margin-right: 2.12765957%;
   *margin-right: 2.07446809%;
+  margin-left: 0;
 }
 .row-fluid [class*="span"]:first-child {
+  margin-left: 0;
   margin-right: 0;
 }
 .row-fluid .controls-row [class*="span"] + [class*="span"] {
@@ -518,6 +520,10 @@ body {
 [class*="span"].pull-right,
 .row-fluid [class*="span"].pull-right {
   float: right;
+}
+[class*="span"].pull-left,
+.row-fluid [class*="span"].pull-left {
+  float: left;
 }
 .container {
   margin-right: auto;
@@ -6191,6 +6197,14 @@ footer#footer .colophon .social-block a {
   bottom: 40px;
   right: 11%;
 }
+.tc_posts_slider .carousel-inner .edit-link {
+  right: auto;
+  left: 11%;
+}
+.tc_posts_slider .customizer-link.edit-kink {
+  bottom: 5px;
+  right: 5px;
+}
 /* If automatic centering is enabled */
 .carousel > .center-slides-enabled > .item > .carousel-image img {
   display: block;
@@ -7782,8 +7796,10 @@ li#wp-admin-bar-tc-customizr a {
     float: right;
     margin-right: 2.56410256%;
     *margin-right: 2.51091107%;
+    margin-left: 0;
   }
   .row-fluid [class*="span"]:first-child {
+    margin-left: 0;
     margin-right: 0;
   }
   .row-fluid .controls-row [class*="span"] + [class*="span"] {
@@ -8131,8 +8147,10 @@ li#wp-admin-bar-tc-customizr a {
     float: right;
     margin-right: 2.76243094%;
     *margin-right: 2.70923945%;
+    margin-left: 0;
   }
   .row-fluid [class*="span"]:first-child {
+    margin-left: 0;
     margin-right: 0;
   }
   .row-fluid .controls-row [class*="span"] + [class*="span"] {

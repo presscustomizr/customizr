@@ -476,11 +476,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           if ( ! $this -> tc_force_current_post_expansion() )
               return $_html;
           global $post;
-          $_html = sprintf('%1$s<h2 class="entry-title">%2$s</h2>',
-              $_html,
-              apply_filters( 'tc_the_title', $post->post_title )
-          );
-          return apply_filters( 'tc_grid_expanded_title', $_html );
+          $_title = apply_filters( 'tc_grid_expanded_title' , $post->post_title );
+          $_title = apply_filters( 'tc_the_title'           , $_title );
+          $_title = apply_filters( 'tc_grid_expanded_title_html', sprintf('<h2 class="entry-title">%1$s</h2>',
+              $_title
+          ) );
+          return $_html . $_title;
         }
 
 
@@ -830,7 +831,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * check if we have to expand the first sticky post
         */
         private function tc_is_sticky_expanded( $query = null ){
-          global $wp_query;
+          global $wp_query, $wpdb;
           $query = ( $query ) ? $query : $wp_query;
 
           if ( ! $query->is_main_query() )
@@ -841,8 +842,23 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
           $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
 
-          $_sticky_posts = get_option('sticky_posts');
-          $this -> expanded_sticky = ( is_array($_sticky_posts) && isset( $_sticky_posts[0] ) ) ? $_sticky_posts[0] : null;
+          if ( ! $this -> expanded_sticky ) {
+            $_sticky_posts = get_option('sticky_posts');
+            // get last published sticky post
+            if ( is_array($_sticky_posts) && ! empty( $_sticky_posts ) ) {
+              $_where = implode(',', $_sticky_posts );
+              $this -> expanded_sticky = $wpdb->get_var( 
+                     "
+                     SELECT ID
+                     FROM $wpdb->posts
+                     WHERE ID IN ( $_where )
+                     ORDER BY post_date DESC
+                     LIMIT 1
+                     "
+              );
+            }else
+              $this -> expanded_sticky = null;
+          }
 
           if ( ! ( $_expand_feat_post_opt && $this -> expanded_sticky ) )
               return false;

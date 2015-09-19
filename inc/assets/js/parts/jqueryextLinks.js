@@ -71,6 +71,9 @@
     * @return boolean
     */
     Plugin.prototype._is_selector_allowed = function( requested_sel_type ) {
+      if ( czrapp )
+        return czrapp.isSelectorAllowed( this.$_el, this.options.skipSelectors, requested_sel_type);
+
       var sel_type = 'ids' == requested_sel_type ? 'id' : 'class',
           _selsToSkip   = this.options.skipSelectors[requested_sel_type];
 

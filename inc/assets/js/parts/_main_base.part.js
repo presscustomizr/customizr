@@ -135,6 +135,31 @@ var czrapp = czrapp || {};
     },
 
 
+    //@return bool
+    isSelectorAllowed : function( $_el, skip_selectors, requested_sel_type ) {
+      var sel_type = 'ids' == requested_sel_type ? 'id' : 'class',
+      _selsToSkip   = skip_selectors[requested_sel_type];
+
+      //check if option is well formed
+      if ( 'object' != typeof(skip_selectors) || ! skip_selectors[requested_sel_type] || ! $.isArray( skip_selectors[requested_sel_type] ) || 0 === skip_selectors[requested_sel_type].length )
+        return true;
+
+      //has a forbidden parent?
+      if ( $_el.parents( _selsToSkip.map( function( _sel ){ return 'id' == sel_type ? '#' + _sel : '.' + _sel; } ).join(',') ).length > 0 )
+        return false;
+
+      //has requested sel ?
+      if ( ! $_el.attr( sel_type ) )
+        return true;
+
+      var _elSels       = $_el.attr( sel_type ).split(' '),
+          _filtered     = _elSels.filter( function(classe) { return -1 != $.inArray( classe , _selsToSkip ) ;});
+
+      //check if the filtered selectors array with the non authorized selectors is empty or not
+      //if empty => all selectors are allowed
+      //if not, at least one is not allowed
+      return 0 === _filtered.length;
+    },
 
     /***************************************************************************
     * Event methods, offering the ability to bind to and trigger events.
@@ -246,6 +271,9 @@ var czrapp = czrapp || {};
     },
     isReponsive : function() {
       return czrapp.isReponsive();
+    },
+    isSelectorAllowed: function( $_el, skip_selectors, requested_sel_type ) {
+      return czrapp.isSelectorAllowed( $_el, skip_selectors, requested_sel_type );    
     }
 
   };//_methods{}
