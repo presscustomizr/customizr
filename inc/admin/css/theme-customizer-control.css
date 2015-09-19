@@ -422,15 +422,13 @@ li[id*="customize-control-"] {
 	opacity:0.7;
 }
 .rtl .control-section.control-panel .accordion-section-title:after {
-	top: 7px;
 	-webkit-transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	-moz-transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	-ms-transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	-o-transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	left: 10px;
-	opacity:0.7;
-
+	right: initial;
 }
 #customize-theme-controls .control-section.control-panel h3.accordion-section-title:hover:after ,  #customize-theme-controls .control-section.control-panel h3.accordion-section-title:focus:after {
 	right: 8px;
