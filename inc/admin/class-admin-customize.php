@@ -456,6 +456,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
             'themeName'     => TC___::$theme_name,
             'HideDonate'    => $this -> tc_get_hide_donate_status(),
             'ShowCTA'       => ( true == TC_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
+            'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'    => array(
               'faviconNote' => __( "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below." , 'customizr')
             )

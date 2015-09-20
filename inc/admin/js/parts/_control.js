@@ -172,12 +172,23 @@
         return '0' !== to;
       }
     },
+    'tc_slider_default_height' : {
+      controls: [
+        'tc_slider_default_height_apply_all',
+        'tc_slider_change_default_img_size'
+      ],
+      callback: function (to, targetSetId) {
+        //slider height options must be hidden is height = default height (500px), unchanged by user
+        var _defaultHeight = TCControlParams.defaultSliderHeight || 500;
+        return _defaultHeight != to;
+      }
+    },
     'tc_posts_slider_link' : {
       controls: [
-        'tc_posts_slider_button_text'    
+        'tc_posts_slider_button_text'
       ],
       callback: function (to) {
-        return to.indexOf('cta') > -1;  
+        return to.indexOf('cta') > -1;
       },
       //display dependant if master setting value == value
       cross: {
