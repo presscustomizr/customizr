@@ -458,6 +458,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
             'ShowCTA'       => ( true == TC_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'    => array(
+              'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
               'faviconNote' => __( "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below." , 'customizr')
             )
 	        )
@@ -555,8 +556,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
       <script type="text/template" id="main_cta">
         <div class="tc-cta tc-cta-wrap">
           <?php
-            printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Need more customizations options ?" , 'customizr' ),
+            printf('<a class="tc-cta-btn" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a>',
               sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );

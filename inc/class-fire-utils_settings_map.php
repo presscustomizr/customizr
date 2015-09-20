@@ -873,7 +873,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'frontpage_sec' ,
                                 'type'        => 'number',
                                 'priority'    => 22,
-                                'notice'      => __( 'Your home page slider will display at most the selected number of your last(s) post(s). Each time you will create a new post, it will be added to the list of posts to show. Posts are ordered by descending date. Your featured posts will always be displayed in first positions (if not excluded), just like in the blog. The number of slides displayed will always be limited to the number of available posts. Only the posts with a featured image or at least an image inside their content will qualify to the slider', 'customizr' )
+                                'notice'      => __( "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website.", 'customizr' )
               ),
               'tc_posts_slider_type' => array(
                                 'default'     => 'all',
@@ -941,6 +941,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'frontpage_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'      => 30,
+                                'notice'      => __( "When checked, the front page slider occupies the full viewport's width", 'customizr' ),
               ),
 
               //Delay between each slides
@@ -2576,7 +2577,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $slider_choices = array(
         0     =>  __( '&mdash; No slider &mdash;' , 'customizr' ),
         'demo'  =>  __( '&mdash; Demo Slider &mdash;' , 'customizr' ),
-        'tc_posts_slider' => __('&mdash; Posts Slider &mdash;', 'customizr')
+        'tc_posts_slider' => __('&mdash; Auto-generated slider from your blog posts &mdash;', 'customizr')
         );
       if ( $slider_names ) {
         foreach( $slider_names as $tc_name => $slides) {
