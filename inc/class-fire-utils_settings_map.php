@@ -881,10 +881,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Select which kind of posts you want to display' , 'customizr' ),
                                 'section'     => 'frontpage_sec' ,
                                 'type'        => 'select' ,
-                                'choices'     => array( 
+                                'choices'     => array(
                                     'all'        => __('All posts', 'customizr' ),
                                     'sticky'     => __('Only the sticky posts', 'customizr' ),
-                                    'not_sticky' => __('All posts excluded the sticky ones', 'customizr' )   
+                                    'not_sticky' => __('All posts excluded the sticky ones', 'customizr' )
                                 ),
                                 'priority'    => 23,
                                 'notice'      => sprintf('%1$s <a href="https://codex.wordpress.org/Sticky_Posts" target="_blank">%2$s</a>',
@@ -917,10 +917,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Link post with' , 'customizr' ),
                                 'section'     => 'frontpage_sec' ,
                                 'type'        => 'select' ,
-                                'choices'     => array( 
+                                'choices'     => array(
                                     'cta'        => __('Call to action button', 'customizr' ),
                                     'slide'      => __('Entire slide', 'customizr' ),
-                                    'slide_cta'  => __('Entire slide and call to action button', 'customizr' )   
+                                    'slide_cta'  => __('Entire slide and call to action button', 'customizr' )
                                 ),
                                 'priority'    => 26,
 
@@ -983,7 +983,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'     => 'frontpage_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'       => 54,
-                                'notice'    => sprintf('%1$s <a href="http://doc.presscustomizr.com/customizr/recommended-plugins/#images" target="_blank">%2$s</a>',
+                                'notice'    => sprintf('%1$s <a href="http://docs.presscustomizr.com/customizr/recommended-plugins/#images" target="_blank">%2$s</a>',
                                     __( "If this option is checked, your images will be resized with your custom height on upload. This is better for your overall loading performance." , 'customizr' ),
                                     __( "You might want to regenerate your thumbnails." , 'customizr')
                                 ),
@@ -1107,7 +1107,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'       => 40,
                                 'notice'    => sprintf('<br/> %s<br/>%s',
                                     sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s.", "customizr"),
-                                        sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('doc.presscustomizr.com/customizr/content-options/#pages-and-posts-layout'), __("Customizr theme documentation" , "customizr" )
+                                        sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('docs.presscustomizr.com/customizr/content-options/#pages-and-posts-layout'), __("Customizr theme documentation" , "customizr" )
                                         )
                                     ),
                                     sprintf( __("If you need to change the layout design of the front page, then open the 'Front Page' section above this one.", "customizr") )

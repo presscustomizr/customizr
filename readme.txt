@@ -9,8 +9,8 @@ Most important : enjoy it!
 
 ######## Demo, Documentation, FAQs and Support #########
 * DEMO : http://demo.presscustomizr.com/
-* DOCUMENTATION : http://doc.presscustomizr.com/customizr
-* FAQs : http://doc.presscustomizr.com/customizr/faq
+* DOCUMENTATION : http://docs.presscustomizr.com/collection/76-customizr-theme
+* FAQs : http://docs.presscustomizr.com/category/90-faq-and-common-issues
 * SUPPORT : https://wordpress.org/support/theme/customizr
 * SNIPPETS : http://presscustomizr.com/code-snippets/
 * HOOKS API : http://presscustomizr.com/customizr/hooks-api/

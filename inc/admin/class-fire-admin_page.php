@@ -60,7 +60,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
       function tc_welcome_panel() {
 
         $is_help        = isset($_GET['help'])  ?  true : false;
-        $_faq_url       = TC___::tc_is_pro() ? esc_url('doc.presscustomizr.com/customizr-pro/faq/') : esc_url('doc.presscustomizr.com/customizr/faq/');
+        $_faq_url       = TC___::tc_is_pro() ? esc_url('docs.presscustomizr.com/customizr-pro/faq/') : esc_url('docs.presscustomizr.com/customizr/faq/');
         $_support_url   = TC___::tc_is_pro() ? TC_WEBSITE .'support-forums/forum/customizr-pro/' : esc_url('wordpress.org/support/theme/customizr');
         $_theme_name    = TC___::tc_is_pro() ? 'Customizr Pro' : 'Customizr';
 
@@ -90,7 +90,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
               <?php
                 printf( '<p>%1$s</p>',
                   sprintf( __( "The best way to start is to read the %s." , "customizr" ),
-                    sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('doc.presscustomizr.com'), __("documentation" , "customizr") )
+                    sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('docs.presscustomizr.com'), __("documentation" , "customizr") )
                   )
                 );
                 printf( '<p>%1$s</p><p><strong>%2$s</strong></p>',
@@ -134,7 +134,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                 printf( '<p><strong>%1$s</strong></p>',
                   sprintf( __( "The best way to start with %s is to read the %s and visit the %s.", "customizr"),
                     $_theme_name,
-                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('doc.presscustomizr.com'), __("documentation", "customizr") ),
+                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('docs.presscustomizr.com'), __("documentation", "customizr") ),
                     sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('demo.presscustomizr.com'), __("demo website", "customizr") )
                   )
                 );

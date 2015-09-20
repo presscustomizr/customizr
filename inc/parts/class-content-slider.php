@@ -991,13 +991,13 @@ class TC_slider {
     switch ( $id ) {
       case 1 :
         $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
-        $data['link_url']     = implode('/', array('http:/','doc.presscustomizr.com' , 'customizr/content-options/#slider-options') );
+        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'customizr/content-options/#slider-options') );
         $data['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
       break;
 
       case 2 :
         $data['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
-        $data['link_url']     = implode('/', array('http:/','doc.presscustomizr.com' , 'customizr/creating-sliders/') );
+        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'customizr/creating-sliders/') );
         $data['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
       break;
     };
