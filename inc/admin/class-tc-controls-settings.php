@@ -142,7 +142,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
                     admin_url( 'upload.php?mode=list' ),
                     __( 'Create a slider' , 'customizr' ),
                     __( 'Need help to create a slider ?' , 'customizr' ),
-                    esc_url( "doc.presscustomizr.com/customizr/creating-sliders/" ),
+                    esc_url( "docs.presscustomizr.com/customizr/creating-sliders/" ),
                     __( 'Check the documentation' , 'customizr' )
                   );
                 }
@@ -181,7 +181,6 @@ if ( ! class_exists( 'TC_controls' ) ) :
     					<?php if(!empty( $this -> notice)) : ?>
     					 <span class="tc-notice"><?php echo $this-> notice ?></span>
     					<?php endif; ?>
-    					<hr class="tc-customizer-separator-invisible" />
     					<?php
     				break;
 

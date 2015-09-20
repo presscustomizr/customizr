@@ -399,7 +399,7 @@ span[class*=tc-icon]:before {
 	overflow-y: auto;
 }
 li[id*="customize-control-"] {
-	margin-bottom: 8px;
+	margin: 8px 0;
 }
 #customize-info .accordion-section-title {
 	padding-bottom: 0px;
@@ -477,7 +477,7 @@ li[id*="customize-control-"] {
 	text-transform: uppercase;
 	/* text-shadow: 0 1px 0 #FFF; */
 	margin: 1em 0em 5px 0em;
-	font-size: 14px!important;
+	font-size: 15px!important;
 	border-bottom: 1px dotted #1ABC9C;
 	padding-bottom: 5px;
   text-align: center;
