@@ -991,13 +991,13 @@ class TC_slider {
     switch ( $id ) {
       case 1 :
         $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
-        $data['link_url']     = implode('/', array('http:/','doc.presscustomizr.com' , 'customizr/content-options/#slider-options') );
+        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'customizr/content-options/#slider-options') );
         $data['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
       break;
 
       case 2 :
         $data['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
-        $data['link_url']     = implode('/', array('http:/','doc.presscustomizr.com' , 'customizr/creating-sliders/') );
+        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'customizr/creating-sliders/') );
         $data['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
       break;
     };
@@ -1299,7 +1299,7 @@ class TC_slider {
   function tc_get_post_title( $_post, $default_title_length, $more ) {
     $title = $_post->post_title;
     if ( ! empty( $_post->post_password ) ) {
-      $protected_title_format = apply_filters( 'protected_title_format', __( 'Protected: %s' ), $_post);
+      $protected_title_format = apply_filters( 'protected_title_format', __( 'Protected: %s', 'customizr' ), $_post);
       $title = sprintf( $protected_title_format, $title );
     }
 
@@ -1324,7 +1324,7 @@ class TC_slider {
   // move this into TC_utils?
   function tc_get_post_excerpt( $_post, $default_text_length, $more ) {
     if ( ! empty( $_post->post_password) )
-      return __( 'There is no excerpt because this is a protected post.' );
+      return __( 'There is no excerpt because this is a protected post.', 'customizr' );
 
     $excerpt = '' != $_post->post_excerpt ? $_post->post_excerpt : $_post->post_content;
 

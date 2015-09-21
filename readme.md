@@ -13,8 +13,8 @@ Customizr is distributed under the terms of the [GNU GPL v2.0 or later](http://w
 
 ## Demo, Documentation, FAQs and Support
 * DEMO : http://demo.presscustomizr.com/
-* DOCUMENTATION : http://doc.presscustomizr.com/customizr
-* FAQs : http://doc.presscustomizr.com/customizr/faq
+* DOCUMENTATION : http://docs.presscustomizr.com/collection/76-customizr-theme
+* FAQs : http://docs.presscustomizr.com/category/90-faq-and-common-issues
 * SUPPORT : https://wordpress.org/support/theme/customizr
 * SNIPPETS : http://presscustomizr.com/code-snippets/
 * HOOKS API : http://presscustomizr.com/customizr/hooks-api/
@@ -43,6 +43,18 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.9 September 20th 2015 =
+* added: New feature - display a slider of recent posts on home
+* fix: RTL initial position of the small arrow in the accordion(JTS)
+* fix: broken update notice in edit attachment page fixes issue #248
+* fix: display slider notice only on the demo slider fixes issue #251
+* fix: Add back the Google Font img in the Customizer fixes issue #285
+* fix: Woocommerce's product tabs not showing if Smooth scroll on click enabled Fixes issue #258 
+* fix: Allow the expanded grid title to be translated with qtranslate 
+* fix: include pages in search results when including cpt in post lists Fixes issue #280
+* fix: expand last published sticky post in the grid
+* fix: disable link smoothscroll in woocommerce contexts See issue #258
+
 = 3.4.8 August 24th 2015 =
 * fix : issue #242 https://github.com/Nikeo/customizr/issues/242 : Effects common to regular menu and second horizontal menu where not visible when the regular menu was selected
 * fix: qTranslate-X compat code improved (issue : https://wordpress.org/support/topic/featured-pages-and-qtranslate?replies=4 )

@@ -38,7 +38,7 @@
 * Customizr's code acts like a collection of plugins that can be enabled, disabled or extended.
 *
 * If you're not familiar with the WordPress hooks concept, you might want to read those guides :
-* http://doc.presscustomizr.com/customizr/wordpress-actions-filters-and-hooks-a-guide-for-non-developers/
+* http://docs.presscustomizr.com/article/26-wordpress-actions-filters-and-hooks-a-guide-for-non-developers
 * https://codex.wordpress.org/Plugin_API
 */
 
@@ -53,6 +53,6 @@ require_once( get_template_directory() . '/inc/init.php' );
 * Don't know what a child theme is ? Then you really want to spend 5 minutes learning how to use child themes in WordPress, you won't regret it :) !
 * https://codex.wordpress.org/Child_Themes
 *
-* More informations about how to create a child theme with Customizr : http://doc.presscustomizr.com/customizr/creating-child-theme-customizr/
-* A good starting point to customize the Customizr theme : http://doc.presscustomizr.com/customizr/customize-customizr-wordpress-theme/
+* More informations about how to create a child theme with Customizr : http://docs.presscustomizr.com/article/24-creating-a-child-theme-for-customizr/
+* A good starting point to customize the Customizr theme : http://docs.presscustomizr.com/article/35-how-to-customize-the-customizr-wordpress-theme/
 */

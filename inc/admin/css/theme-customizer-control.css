@@ -399,7 +399,7 @@ span[class*=tc-icon]:before {
 	overflow-y: auto;
 }
 li[id*="customize-control-"] {
-	margin-bottom: 8px;
+	margin: 8px 0;
 }
 #customize-info .accordion-section-title {
 	padding-bottom: 0px;
@@ -422,15 +422,13 @@ li[id*="customize-control-"] {
 	opacity:0.7;
 }
 .rtl .control-section.control-panel .accordion-section-title:after {
-	top: 7px;
 	-webkit-transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	-moz-transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	-ms-transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	-o-transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	transition: left .3s ease-in-out, opacity .3s ease-in-out;
 	left: 10px;
-	opacity:0.7;
-
+	right: initial;
 }
 #customize-theme-controls .control-section.control-panel h3.accordion-section-title:hover:after ,  #customize-theme-controls .control-section.control-panel h3.accordion-section-title:focus:after {
 	right: 8px;
@@ -479,7 +477,7 @@ li[id*="customize-control-"] {
 	text-transform: uppercase;
 	/* text-shadow: 0 1px 0 #FFF; */
 	margin: 1em 0em 5px 0em;
-	font-size: 14px!important;
+	font-size: 15px!important;
 	border-bottom: 1px dotted #1ABC9C;
 	padding-bottom: 5px;
   text-align: center;
@@ -1009,7 +1007,7 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 }
 .rtl .in-sub-panel #tc-donate-customizer,
 .rtl .in-sub-panel .tc-cta-wrap {
-  right: =450px;
+  right: -450px;
 }
 .tc-grid-control-section {
   width: 100%;

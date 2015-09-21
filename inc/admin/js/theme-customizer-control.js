@@ -370,15 +370,41 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         //posts slider options must be hidden when the posts slider not choosen
         if ( targetSetId.indexOf('tc_posts_slider_') > -1 )
           return 'tc_posts_slider' == to;
+
+        //if user select the post slider option, append a notice in the label element
+        var $_front_slider_container = api.control( _build_setId('tc_front_slider') ).container;
+        if ( 'tc_posts_slider' == to ) {
+          var $_label = $( 'label' , $_front_slider_container );
+          if ( 0 !== $_label.length && ! $('.tc-notice' , $_label ).length ) {
+            var $_notice = $('<span>', { class: 'tc-notice', html : translatedStrings.postSliderNote || '' } );
+            $_label.append( $_notice );
+          } else {
+            $('.tc-notice' , $_label ).show();
+          }
+        } else {
+          if ( 0 !== $( '.tc-notice' , $_front_slider_container ).length )
+            $( '.tc-notice' , $_front_slider_container ).hide();
+        }
         return '0' !== to;
+      }//callback
+    },
+    'tc_slider_default_height' : {
+      controls: [
+        'tc_slider_default_height_apply_all',
+        'tc_slider_change_default_img_size'
+      ],
+      callback: function (to, targetSetId) {
+        //slider height options must be hidden is height = default height (500px), unchanged by user
+        var _defaultHeight = TCControlParams.defaultSliderHeight || 500;
+        return _defaultHeight != to;
       }
     },
     'tc_posts_slider_link' : {
       controls: [
-        'tc_posts_slider_button_text'    
+        'tc_posts_slider_button_text'
       ],
       callback: function (to) {
-        return to.indexOf('cta') > -1;  
+        return to.indexOf('cta') > -1;
       },
       //display dependant if master setting value == value
       cross: {

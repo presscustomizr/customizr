@@ -146,7 +146,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
 
             printf('<p><i>%1s <a href="http:%2$s" title="%3$s" target="blank">%4$s</a></i></p>',
               __( 'You can also remove this sidebar by changing the current page layout.', 'customizr' ),
-              '//doc.presscustomizr.com/customizr/content-options/#pages-and-posts-layout',
+              '//docs.presscustomizr.com/customizr/content-options/#pages-and-posts-layout',
               __( 'Changing the layout in the Customizr theme' , 'customizr'),
               __( 'See the theme documentation.' , 'customizr' )
             );
