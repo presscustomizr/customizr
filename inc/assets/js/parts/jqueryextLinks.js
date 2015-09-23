@@ -35,6 +35,7 @@
       if ( this.options.addIcon && 0 === $_external_icon.length ) {
         this.$_el.after('<span class="tc-external">');
       }
+        
 
       //add the target _blank, if not already there
       if ( this.options.newTab && '_blank' != this.$_el.attr('target') )
@@ -59,7 +60,20 @@
       if ( 2 != ( ['ids', 'classes'].filter( function( sel_type) { return self._is_selector_allowed(sel_type); } ) ).length )
         return;
 
-      return true;
+      //is wrapped in an underlined span?
+      var $_link_parents_span = this.$_el.parents('span[style*=text-decoration]'),
+          _is_eligible = true;  
+
+      // we want to exit as soon as we find a parent with the underlined text-decoration
+      if ( $_link_parents_span.length )
+        $_link_parents_span.each( function() {
+          if ( $(this).attr('style').indexOf('underline') ){
+            _is_eligible = false;  
+            return;    
+          }
+        });
+
+      return true && _is_eligible;
     };
 
 
