@@ -30,7 +30,7 @@ var czrapp = czrapp || {};
 
       // maybe apply sticky footer on golden ratio applied
       czrapp.$_window.on( 'golden-ratio-applied', function() {
-        self.stickyFooterEventHandler('resize');
+        self.stickyFooterEventHandler('refresh');
       });
 
       /* can be useful without exposing methods make it react to this event which could be externally fired, used in the preview atm */
