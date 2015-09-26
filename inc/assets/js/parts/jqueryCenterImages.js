@@ -78,7 +78,7 @@
     var new_height = Math.round( $(this.container).width() / this.options.goldenRatioVal );
     //check if the new height does not exceed the goldenRatioLimitHeightTo option
     new_height = new_height > this.options.goldenRatioLimitHeightTo ? this.options.goldenRatioLimitHeightTo : new_height;
-    $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } );
+    $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } ).trigger('golden-ratio-applied');
   };
 
 
