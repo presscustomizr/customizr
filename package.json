@@ -6,7 +6,7 @@
   "license": "GNU GPL v2.0",
   "repository": {
     "type": "git",
-    "url": "git://https://github.com/Nikeo/customizr.git"
+    "url": "https://github.com/presscustomizr/customizr"
   },
   "skins": {
     "black": "#000",

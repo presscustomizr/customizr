@@ -972,6 +972,16 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                       }//end foreach
                    echo '</tbody></table><br/>';
                    ?>
+                   <div class="tc-add-slide-notice">
+                      <?php
+                        printf('<p>%1$s</p><p>%2$s <a href="%3$s" title="%4$s" target="_blank">%4$s &raquo;</a>.</p>',
+                          __('To add another slide : navigate to your media library (click on Media), open the edit screen of an image ( or add a new image ), and add it to your desired slider by using the dedicated option block at the bottom of the page.' , 'customizr'),
+                          __('For more informations about sliders, check the documentation page :' , 'customizr'),
+                          esc_url('http://docs.presscustomizr.com/search?query=slider'),
+                          __('Slider documentation' , 'customizr')
+                        );
+                      ?>
+                   </div>
               </div><!-- #tc_slides_table -->
          <?php endif; // empty( $current_post_slides? ?>
         <?php
