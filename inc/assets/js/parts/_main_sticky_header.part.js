@@ -237,8 +237,12 @@ var czrapp = czrapp || {};
       var self = this;
       //process scrolling actions
       if ( czrapp.$_window.scrollTop() > this.triggerHeight ) {
-        if ( ! this._is_scrolling() )
-            czrapp.$_body.addClass("sticky-enabled").removeClass("sticky-disabled");
+        if ( ! this._is_scrolling() ) {
+          czrapp.$_body.addClass("sticky-enabled").removeClass("sticky-disabled");
+          // set the logo height, makes sense just when the logo isn't shrinked
+          if ( ! czrapp.$_tcHeader.hasClass('tc-shrink-on') )
+            self._set_logo_height();
+        }
       }
       else if ( this._is_scrolling() ){
         czrapp.$_body.removeClass("sticky-enabled").addClass("sticky-disabled");

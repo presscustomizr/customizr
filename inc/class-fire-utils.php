@@ -938,6 +938,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         array(
           'defaults',
           'tc_sliders',
+          'tc_blog_restrict_by_cat',
           'last_update_notice',
           'last_update_notice_pro'
         )

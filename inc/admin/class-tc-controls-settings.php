@@ -4,7 +4,6 @@
 ***************************************************/
 if ( ! class_exists( 'TC_Customize_Setting') ) :
   class TC_Customize_Setting extends WP_Customize_Setting {
-
     /**
      * Fetch the value of the setting.
      *
@@ -50,13 +49,13 @@ if ( ! class_exists( 'TC_Customize_Setting') ) :
         $_maybe_array = $this->multidimensional_get( $values, $this->id_data[ 'keys' ], $this->default );
         if ( ! is_array( $_maybe_array ) )
           return $_maybe_array;
-
         if ( isset($_maybe_array['all_ctx']) )
           return $_maybe_array['all_ctx'];
         if ( isset($_maybe_array['all_ctx_over']) )
           return $_maybe_array['all_ctx_over'];
-
-        return $this->default;
+        
+        return $_maybe_array;
+        //$this->default;
       }
   }
 endif;
@@ -123,7 +122,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
     					<?php endif; ?>
     					<label>
     						<span class="customize-control-title"><?php echo $this->label; ?></span>
-    						<?php $this -> tc_print_select_control() ?>
+    						<?php $this -> tc_print_select_control( in_array( $this->id, array( 'tc_theme_options[tc_fonts]', 'tc_theme_options[tc_skin]' ) ) ? 'select2' : '' ) ?>
                 <?php if(!empty( $this -> notice)) : ?>
                   <span class="tc-notice"><?php echo $this -> notice ?></span>
                 <?php endif; ?>
@@ -244,9 +243,10 @@ if ( ! class_exists( 'TC_controls' ) ) :
 
 
 
-    private function tc_print_select_control() {
-      printf('<select %1$s>%2$s</select>',
+    private function tc_print_select_control($class) {
+      printf('<select %1$s class="%2$s">%3$s</select>',
         call_user_func( array( $this, 'get'.'_'.'link' ) ),
+        $class,
         $this -> tc_get_select_options()
       );
     }
@@ -358,7 +358,7 @@ if ( ! class_exists( 'TC_Customize_Upload_Control' ) ) :
 		 *
 		 * @since 3.4.0
 		 */
-		public function render_content() {
+	public function render_content() {
 			do_action( '__before_setting_control' , $this -> id );
       ?>
       <?php if ( isset( $this->title) ) : ?>
@@ -383,4 +383,118 @@ if ( ! class_exists( 'TC_Customize_Upload_Control' ) ) :
       do_action( '__after_setting_control' , $this -> id );
 		}
 	}
+endif;
+
+
+if ( ! class_exists( 'TC_Customize_Multipicker_Control' ) ) :
+  /**
+  * Customize Multi-picker Control Class
+  *
+  * @package WordPress
+  * @subpackage Customize
+  * @since 3.4.10
+  */
+  abstract class TC_Customize_Multipicker_Control extends TC_controls {
+
+    public function render_content() {
+
+      if ( ! $this -> type ) return;
+      do_action( '__before_setting_control' , $this -> id );
+
+      $dropdown = $this -> tc_get_dropdown_multipicker();
+      
+      if ( empty( $dropdown ) ) return;
+      
+      $dropdown = str_replace( '<select', '<select multiple="multiple"' . $this->get_link(), $dropdown );
+      //start rendering
+      if (!empty( $this->title)) : 
+    ?>
+        <h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
+      <?php endif; ?>
+
+      <label>
+        <span class="customize-control-title"><?php echo $this->label; ?></span>
+        <?php echo $dropdown; ?>
+        <?php if(!empty( $this -> notice)) : ?>
+          <span class="tc-notice"><?php echo $this -> notice ?></span>
+         <?php endif; ?>
+      </label>
+    <?php
+      do_action( '__after_setting_control' , $this -> id );
+    }
+
+    //to define in the extended classes
+    abstract public function tc_get_dropdown_multipicker();
+  }//end class  
+endif;
+
+if ( ! class_exists( 'TC_Customize_Multipicker_Categories_Control' ) ) :
+  class TC_Customize_Multipicker_Categories_Control extends TC_Customize_Multipicker_Control {
+
+    public function tc_get_dropdown_multipicker() {
+      $cats_dropdown = wp_dropdown_categories(
+          array( 
+              'name'               => '_customize-'.$this->type,
+              'id'                 => $this -> id,
+              //hide empty, set it to false to avoid complains
+              'hide_empty'         => 0 ,
+              'echo'               => 0 ,
+              'walker'             => new TC_Walker_CategoryDropdown_Multipicker(),
+              'hierarchical'       => 1,
+              'class'              => 'select2 '.$this->type,
+              'selected'           => implode(',', $this->value() )
+          )
+      );
+      
+      return $cats_dropdown;
+    }
+  }
+endif;
+
+
+/** 
+ * @ dropdown multi-select walker
+ * Create HTML dropdown list of Categories.
+ *
+ * @package WordPress
+ * @since 2.1.0
+ * @uses Walker
+ *
+ * we need to allow more than one "selected" attribute 
+ */
+
+if ( ! class_exists( 'TC_Walker_CategoryDropdown_Multipicker' ) ) :
+  class TC_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown {
+    /**
+     * Start the element output.
+     *
+     * @Override
+     *
+     * @see Walker::start_el()
+     *
+     * @param string $output   Passed by reference. Used to append additional content.
+     * @param object $category Category data object.
+     * @param int    $depth    Depth of category. Used for padding.
+     * @param array  $args     Uses 'selected', 'show_count', and 'value_field' keys, if they exist.
+     *                         See {@see wp_dropdown_categories()}.
+     */
+    public function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 ) {
+      $pad = str_repeat('&mdash;', $depth );
+      /** This filter is documented in wp-includes/category-template.php */
+      $cat_name = apply_filters( 'list_cats', $category->name, $category );
+
+      $value_field = 'term_id';
+
+      $output .= "\t<option class=\"level-$depth\" value=\"" . esc_attr( $category->{$value_field} ) . "\"";
+      //Treat selected arg as array
+      if ( in_array( (string) $category->{$value_field}, explode( ',', $args['selected'] ) ) )
+        $output .= ' selected="selected"';
+        
+      $output .= '>';
+      $output .= $pad.$cat_name;
+      if ( $args['show_count'] )
+        $output .= '&nbsp;&nbsp;('. number_format_i18n( $category->count ) .')';
+      $output .= "</option>\n";
+    }
+  }
 endif;

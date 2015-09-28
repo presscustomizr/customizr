@@ -235,6 +235,29 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     }
   };
 
+  /* Multiple Picker */
+  /**
+   * @constructor
+   * @augments wp.customize.Control
+   * @augments wp.customize.Class
+   */
+  api.TCMultiplePickerControl = api.Control.extend({
+    ready: function() {
+      var control = this,
+          _select  = this.container.find('select');
+
+      //handle case when all choices become unselected
+      _select.on('change', function(e){
+        if ( 0 === $(this).find("option:selected").length ) 
+          control.setting.set([]);    
+      });
+    }    
+  });
+  $.extend( api.controlConstructor, {
+    tc_multiple_picker : api.TCMultiplePickerControl    
+  });
+
+
 
   /**
    * @constructor
@@ -346,6 +369,14 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
   * Main control dependencies object
   */
   var _controlDependencies = {
+    'show_on_front' : {
+      controls : [
+        'page_for_posts'
+      ],
+      callback: function( to ){
+        return 'posts' != to;
+      }
+    },  
     'tc_show_featured_pages': {
       controls: TCControlParams.FPControls,
       callback: function (to) {
@@ -1116,8 +1147,7 @@ jQuery(function ($) {
 
     /* SELECT */
     //Exclude skin
-    $('select[data-customize-setting-link]').not('select[data-customize-setting-link="tc_theme_options[tc_skin]"]')
-      .not('select[data-customize-setting-link="tc_theme_options[tc_fonts]"]')
+    $('select[data-customize-setting-link]').not('.select2')
       .each( function() {
         $(this).selecter({
         //triggers a change event on the view, passing the newly selected value + index as parameters.
@@ -1127,6 +1157,9 @@ jQuery(function ($) {
         });
     });
 
+    //Multipicker
+    //http://ivaynberg.github.io/select2/#documentation
+    $('select.tc_multiple_picker').select2({closeOnSelect: false});
 
     //SKINS
     //http://ivaynberg.github.io/select2/#documentation

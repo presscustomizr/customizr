@@ -59,7 +59,17 @@
       if ( 2 != ( ['ids', 'classes'].filter( function( sel_type) { return self._is_selector_allowed(sel_type); } ) ).length )
         return;
 
-      return true;
+      var _is_eligible = true;
+      // disallow elements whose parent has text-decoration: underline
+      // we want to exit as soon as we find a parent with the underlined text-decoration
+      $.each( this.$_el.parents(), function() {
+        if ( 'underline' == $(this).css('textDecoration') ){
+          _is_eligible = false;
+          return false;    
+        }
+      });
+      
+      return true && _is_eligible;
     };
 
 

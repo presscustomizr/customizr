@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 			skin_color : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? grunt.option.flags()[0].replace(/-/g, '') : "blue3",
 			//https://www.npmjs.org/package/grunt-ssh
 			//Check if the context var is set and == travis => avoid travis error with ftpauth no found
-			credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
+//			credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
 			customizr_tasks : {
 				//DEV : clean the build and watch changes (see watch task)
 				'customizr_dev': ['clean' ,'watch'],
