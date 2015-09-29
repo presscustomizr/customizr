@@ -2515,19 +2515,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       foreach ( $socials as $key => $data ) {
         $priority += $incr;
+        $type      = isset( $data['type'] ) && ! is_null( $data['type'] ) ? $data['type'] : 'url';
+        
         $_new_map[$key]  = array(
-                      'default'         => ( isset($data['default']) && !is_null($data['default']) ) ? $data['default'] : null ,
-                      'sanitize_callback' => array( $this , 'tc_sanitize_url' ),
+                      'default'       => ( isset($data['default']) && !is_null($data['default']) ) ? $data['default'] : null,
+                      'sanitize_callback' => array( $this , 'tc_sanitize_' . $type ),
                       'control'       => 'TC_controls' ,
                       'label'         => ( isset($data['option_label']) ) ? call_user_func( '__' , $data['option_label'] , 'customizr' ) : $key,
                       'section'       => 'socials_sec' ,
-                      'type'          => 'url',
+                      'type'          => $type,
                       'priority'      => $priority,
                       'icon'          => "tc-icon-". str_replace('tc_', '', $key)
                     );
         $incr += 5;
       }
-
       return array_merge( $_original_map, $_new_map );
     }
 
@@ -2680,7 +2681,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       return $value;
     }
 
-
+    /**
+     * adds sanitization callback funtion : email
+     * @package Customizr
+     * @since Customizr 3.4.11
+     */
+    function tc_sanitize_email( $value) {
+      return sanitize_email( $value );
+    }
 
     /**
      * adds sanitization callback funtion : colors

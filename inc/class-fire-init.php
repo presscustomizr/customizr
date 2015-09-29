@@ -194,6 +194,11 @@ if ( ! class_exists( 'TC_init' ) ) :
                                     'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
                                     'option_label'  => __( 'RSS feed (default is the wordpress feed)' , 'customizr' ),
                                     'default'       => get_bloginfo( 'rss_url' )
+                                ),
+            'tc_email'          => array(
+                                    'link_title'    => __( 'E-mail' , 'customizr' ),
+                                    'option_label'  => __( 'E-mail address (default is the wordpress e-mail set in Settings -> General)' , 'customizr' ),
+                                    'type'          => 'email'
                                   ),
             'tc_twitter'        => array(
                                     'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),

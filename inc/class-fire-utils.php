@@ -48,6 +48,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         //social networks
         add_filter( '__get_socials'           , array( $this , 'tc_get_social_networks' ) );
+        //special treatment for social email link
+        add_filter( 'tc_default_socials'  , array( $this , 'tc_set_default_social_email_address'), 0 );
 
         //refresh the theme options right after the _preview_filter when previewing
         add_action( 'customize_preview_init'  , array( $this , 'tc_customize_refresh_db_opt' ) );
@@ -681,7 +683,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
               //gets height and width from image, we check if getimagesize can be used first with the error control operator
               $width = $height = '';
               if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
-
+              $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
+              $link = 'email' == $type ? 'mailto:' : '';
+              $link .=  call_user_func( array( TC_utils_settings_map::$instance, 'tc_sanitize_'.$type ), $__options[$key] );
               //there is one exception : rss feed has no target _blank and special icon title
               $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
                   apply_filters( 'tc_social_link_class',
@@ -690,9 +694,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
                                 ),
                                 $key
                   ),
-                  esc_url( $__options[$key]),
+                  $link,
                   isset($data['link_title']) ?  call_user_func( '__' , $data['link_title'] , 'customizr' ) : '' ,
-                  ( $key == 'tc_rss' ) ? '' : apply_filters( 'tc_socials_target', 'target=_blank', $key ),
+                  ( in_array( $key, array('tc_rss', 'tc_email') ) ) ? '' : apply_filters( 'tc_socials_target', 'target=_blank', $key ),
                   apply_filters( 'tc_additional_social_attributes', '' , $key),
                   ( isset($data['custom_icon_url']) && !empty($data['custom_icon_url']) ) ? sprintf('<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s"/>',
                                                           $data['custom_icon_url'],
@@ -705,6 +709,24 @@ if ( ! class_exists( 'TC_utils' ) ) :
         }
         return $html;
       }
+
+
+      /**
+      * Set default social email address based on when user started using Customizr
+      *
+      * hook : tc_default_socials
+      *
+      * @package Customizr
+      * @since Customizr 3.4.11
+      */
+      function tc_set_default_social_email_address( $socials ) {
+        //we cannot do this in class-fire-init as TC_utils isn't instantiated yet
+        if ( array_key_exists( 'tc_email', $socials) && ! isset( $socials['tc_email']['default'] ) )
+          $socials['tc_email']['default'] = TC_utils::$inst -> tc_user_started_before_version( '3.4.11' , '1.2.6') ? null : get_bloginfo('admin_email');
+
+        return $socials;
+      }
+
 
 
     /**
