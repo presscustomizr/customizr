@@ -406,6 +406,8 @@ class TC_post_list {
      // we have to ignore sticky posts (do not prepend them) 
      // disable grid sticky post expansion
      $cats = TC_utils::$inst -> tc_opt('tc_blog_restrict_by_cat');
+     $cats = array_filter( $cats, array( TC_utils::$inst , 'tc_category_id_exists' ) ); 
+     
      if ( is_array( $cats ) && ! empty( $cats ) ){
          $query->set('category__in', $cats );     
          $query->set('ignore_sticky_posts', 1 );     

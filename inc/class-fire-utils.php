@@ -737,6 +737,20 @@ if ( ! class_exists( 'TC_utils' ) ) :
       return compact( 'ext', 'type' );
     }
 
+    /**
+    * Check whether a category exists.
+    * (wp category_exists isn't available in pre_get_posts)
+    * @since 3.4.10
+    *
+    * @see term_exists()
+    *
+    * @param int $cat_id.
+    * @return bool
+    */
+    public function tc_category_id_exists( $cat_id ) {
+      return term_exists( (int) $cat_id, 'category');
+    }
+
 
 
     /**
