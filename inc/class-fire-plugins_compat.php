@@ -311,6 +311,27 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       // Front
       // If Polylang is active, translate/swap featured page buttons/text/link and slider
       if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
+        /** 
+        * Tax filtering (home/blog posts filtered by cat)
+        * @param array of term ids
+        */
+        function tc_pll_translate_tax( $term_ids ){
+          if ( ! (is_array( $term_ids ) && ! empty( $term_ids ) ) )
+            return $term_ids;
+          
+          $translated_terms = array();    
+          foreach ( $term_ids as $id ){
+              $translated_term = pll_get_term( $id );
+              $translated_terms[] = $translated_term ? $translated_term : $id;
+          }
+          return array_unique( $translated_terms );
+        }
+
+        //Translate category ids for the filtered posts in home/blog
+        add_filter('tc_opt_tc_blog_restrict_by_cat', 'tc_pll_translate_tax');
+        /*end tax filtering*/
+
+        /* Slider */  
         // Substitute any registered slider name
         add_filter( 'tc_slider_name_id', 'pll__' );
 
@@ -331,7 +352,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           $join .= $wpdb->prepare( "INNER JOIN $wpdb->term_relationships AS pll_tr ON pll_tr.object_id = posts.ID WHERE pll_tr.term_taxonomy_id=%d", $curlang_id );
           return $join;
         }
-
+        /*end Slider*/
         // Substitue archive titles
         $pll_tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results');
 
