@@ -841,7 +841,16 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'        => 'dropdown-pages' ,
                                 'priority'      => 1,
               ),
-
+              //page for posts
+              'tc_blog_restrict_by_cat'       => array(
+                                'default'     => array(),
+                                'label'       =>  __( 'Restrict displayed posts on home/blog by Categories' , 'customizr'  ),
+                                'section'     => 'frontpage_sec',
+                                'control'     => 'TC_Customize_Multipicker_Categories_Control',
+                                'type'        => 'tc_multiple_picker',
+                                'priority'    => 1,
+                                'notice'      => __( 'Sticky posts will not be put at the top of the selected categories posts', 'customizr' ),
+              ),
               //layout
               'tc_front_layout' => array(
                                 'default'       => 'f' ,//Default layout for home page is full width
