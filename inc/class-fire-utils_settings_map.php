@@ -804,11 +804,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     function tc_front_page_option_map( $get_default = null ) {
       //prepare the cat picker notice
       global $wp_version;
-      if ( version_compare( $wp_version, '4.3', '<' ) ) {
-        $_cat_picker_notice =  __( "Click inside the above field and pick the categories of posts you want to display. If no category is selected, your home / post page won't be filtered by any categories.", 'customizr' );
-      } else {
+      $_cat_picker_notice = sprintf( '%1$s <a href="%2$s" target="_blank">%3$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' ,
+        __( "Click inside the above field and pick post categories you want to display. No filter will be applied if empty.", 'customizr'),
+        esc_url('codex.wordpress.org/Posts_Categories_SubPanel'),
+        __('Learn more about post categories in WordPress' , 'customizr')
+      );
+      //for wp version >= 4.3 add deep links
+      if ( ! version_compare( $wp_version, '4.3', '<' ) ) {
         $_cat_picker_notice = sprintf( '%1$s<br/><br/><ul><li>%2$s</li><li>%3$s</li></ul>',
-          __( "Click inside the above field and pick the categories of posts you want to display. If no category is selected, your home / post page won't be filtered by any categories.", 'customizr' ),
+          $_cat_picker_notice,
           sprintf( '%1$s <a href="%2$s">%3$s &raquo;</a>',
             __("Set the number of posts to display" , "customizr"),
             "javascript:wp.customize.section('frontpage_sec').container.find('.customize-section-back').trigger('click'); wp.customize.control('posts_per_page').focus();",
