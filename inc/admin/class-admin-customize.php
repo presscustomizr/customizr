@@ -31,7 +31,6 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
   		//add grid/post list buttons in the control views
   		add_action( '__before_setting_control'                  , array( $this , 'tc_render_grid_control_link') );
-  		add_action( '__before_setting_control'                  , array( $this , 'tc_render_link_to_grid') );
 
   		//control scripts and style
   		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
@@ -343,18 +342,6 @@ if ( ! class_exists( 'TC_customize' ) ) :
     function tc_render_grid_control_link( $set_id ) {
       if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
         printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
-    }
-
-    /**
-    * hook __before_setting_control (declared in class-tc-controls-settings.php)
-    * @echo link
-    */
-    function tc_render_link_to_grid( $set_id ) {
-      if ( false !== strpos( $set_id, 'tc_front_layout' ) )
-        printf('<a class="button tc-navigate-to-post-list" title="%1$s" href="%2$s">%1$s &raquo;</a>' ,
-          __('Jump to the blog design options' , 'customizr'),
-          "javascript:wp.customize.section( 'post_lists_sec' ).focus();"
-          );
     }
 
 

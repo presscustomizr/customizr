@@ -802,6 +802,27 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                    FRONT PAGE SECTION
     ------------------------------------------------------------------------------------------------------*/
     function tc_front_page_option_map( $get_default = null ) {
+      //prepare the cat picker notice
+      global $wp_version;
+      if ( version_compare( $wp_version, '4.3', '<' ) ) {
+        $_cat_picker_notice =  __( "Click inside the above field and pick the categories of posts you want to display. If no category is selected, your home / post page won't be filtered by any categories.", 'customizr' );
+      } else {
+        $_cat_picker_notice = sprintf( '%1$s<br/><br/><ul><li>%2$s</li><li>%3$s</li></ul>',
+          __( "Click inside the above field and pick the categories of posts you want to display. If no category is selected, your home / post page won't be filtered by any categories.", 'customizr' ),
+          sprintf( '%1$s <a href="%2$s">%3$s &raquo;</a>',
+            __("Set the number of posts to display" , "customizr"),
+            "javascript:wp.customize.section('frontpage_sec').container.find('.customize-section-back').trigger('click'); wp.customize.control('posts_per_page').focus();",
+            __("here", "customizr")
+          ),
+          sprintf( '%1$s <a href="%2$s">%3$s &raquo;</a>',
+            __('Jump to the blog design options' , 'customizr'),
+            "javascript:wp.customize.section('frontpage_sec').container.find('.customize-section-back').trigger('click'); wp.customize.control('tc_theme_options[tc_post_list_grid]').focus();",
+            __("here", "customizr")
+          )
+        );
+      }
+
+
       return array(
               //title
               'homecontent_title'         => array(
@@ -844,12 +865,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               //page for posts
               'tc_blog_restrict_by_cat'       => array(
                                 'default'     => array(),
-                                'label'       =>  __( 'Restrict displayed posts on home/blog by Categories' , 'customizr'  ),
+                                'label'       =>  __( 'Apply a category filter to your home / blog posts' , 'customizr'  ),
                                 'section'     => 'frontpage_sec',
                                 'control'     => 'TC_Customize_Multipicker_Categories_Control',
                                 'type'        => 'tc_multiple_picker',
                                 'priority'    => 1,
-                                'notice'      => __( 'Sticky posts will not be put at the top of the selected categories posts', 'customizr' ),
+                                'notice'      => $_cat_picker_notice
               ),
               //layout
               'tc_front_layout' => array(
