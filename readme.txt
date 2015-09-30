@@ -40,10 +40,13 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.11 September 30th 2015 =
+* added: new social link - email
+
 = 3.4.10 September 29th 2015 =
 * added: new option, filter home/blog posts by categories
-* added : info box at the bottom of the slides table on how to add another slide
-* added : in customizer > Front Page > Slider, make some "sub" slider height options dependant on the actual user define slider height
+* added: info box at the bottom of the slides table on how to add another slide
+* added: in customizer > Front Page > Slider, make some "sub" slider height options dependant on the actual user define slider height
 * updated: translation he_IL.po
 * fix: let sticky-footer detect the golden-ratio is applied to the grid
 * fix: exclude links wrapped in an underlined span from the eligible externals

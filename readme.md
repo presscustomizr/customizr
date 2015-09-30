@@ -1,4 +1,4 @@
-# Customizr v3.4.10 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.11 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -43,6 +43,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.11 September 30th 2015 =
+* added: new social link - email
+
 = 3.4.10 September 29th 2015 =
 * added: new option, filter home/blog posts by categories
 * added : info box at the bottom of the slides table on how to add another slide
