@@ -197,7 +197,8 @@ if ( ! class_exists( 'TC_init' ) ) :
                                 ),
             'tc_email'          => array(
                                     'link_title'    => __( 'E-mail' , 'customizr' ),
-                                    'option_label'  => __( 'E-mail address (default is the wordpress e-mail set in Settings -> General)' , 'customizr' ),
+                                    'option_label'  => __( 'Contact E-mail address' , 'customizr' ),
+                                    'default'       => null,
                                     'type'          => 'email'
                                   ),
             'tc_twitter'        => array(
