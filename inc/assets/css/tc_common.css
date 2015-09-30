@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.9
+ * Customizr v3.4.11
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4860,6 +4860,13 @@ section {
 .icon-tumblr:before {
   content: "\f214";
 }
+.icon-email:before {
+  content: "\f410";
+  font-size: 1.3em;
+}
+.social-block .icon-email {
+  top: 0.28em;
+}
 /*ICONS FOR WIDGETS*/
 .widget h3:before {
   font-family: 'genericons';
@@ -6040,6 +6047,10 @@ footer#footer .colophon .social-block a {
   color: #5A5A5A;
   text-shadow: 0 0px 0 #ffffff;
   font-size: 1.1em;
+}
+.social-block a:focus,
+.social-block a:active {
+  text-decoration: none;
 }
 /* SLIDER
     -------------------------------------------------- */
@@ -8907,6 +8918,7 @@ li#wp-admin-bar-tc-customizr a {
     float: none;
     text-align: center;
     width: 100%;
+    clear: both;
   }
   .container.navbar-wrapper {
     margin-bottom: 0;
@@ -9301,6 +9313,10 @@ li#wp-admin-bar-tc-customizr a {
   }
   #right.widget-area:before {
     border-left: 0px;
+  }
+  .tc-no-sticky-header .navbar-wrapper,
+  .sticky-disabled .navbar-wrapper {
+    clear: both;
   }
   .navbar-inner {
     margin: -20px;

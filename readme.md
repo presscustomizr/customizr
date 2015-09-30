@@ -1,4 +1,4 @@
-# Customizr v3.4.9 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.11 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
@@ -43,6 +43,19 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.11 September 30th 2015 =
+* added: new social link - email
+
+= 3.4.10 September 29th 2015 =
+* added: new option, filter home/blog posts by categories
+* added : info box at the bottom of the slides table on how to add another slide
+* added : in customizer > Front Page > Slider, make some "sub" slider height options dependant on the actual user define slider height
+* updated: translation he_IL.po
+* fix: let sticky-footer detect the golden-ratio is applied to the grid
+* fix: exclude links wrapped in an underlined span from the eligible externals
+* fix: sticky-header: logo re-size on scrolling when needed fixes #314
+* fix: avoid navbar-wrapper overlapping title/logo in mobiles when no site-description is shown for ww<767px
+
 = 3.4.9 September 20th 2015 =
 * added: New feature - display a slider of recent posts on home
 * fix: RTL initial position of the small arrow in the accordion(JTS)

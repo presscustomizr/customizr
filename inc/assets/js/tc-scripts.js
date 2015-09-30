@@ -3041,7 +3041,17 @@ var TCParams = TCParams || {};
       if ( 2 != ( ['ids', 'classes'].filter( function( sel_type) { return self._is_selector_allowed(sel_type); } ) ).length )
         return;
 
-      return true;
+      var _is_eligible = true;
+      // disallow elements whose parent has text-decoration: underline
+      // we want to exit as soon as we find a parent with the underlined text-decoration
+      $.each( this.$_el.parents(), function() {
+        if ( 'underline' == $(this).css('textDecoration') ){
+          _is_eligible = false;
+          return false;    
+        }
+      });
+      
+      return true && _is_eligible;
     };
 
 
@@ -3221,7 +3231,7 @@ var TCParams = TCParams || {};
     var new_height = Math.round( $(this.container).width() / this.options.goldenRatioVal );
     //check if the new height does not exceed the goldenRatioLimitHeightTo option
     new_height = new_height > this.options.goldenRatioLimitHeightTo ? this.options.goldenRatioLimitHeightTo : new_height;
-    $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } );
+    $(this.container).css( {'line-height' : new_height + 'px' , 'height' : new_height + 'px' } ).trigger('golden-ratio-applied');
   };
 
 
@@ -5274,8 +5284,12 @@ var czrapp = czrapp || {};
       var self = this;
       //process scrolling actions
       if ( czrapp.$_window.scrollTop() > this.triggerHeight ) {
-        if ( ! this._is_scrolling() )
-            czrapp.$_body.addClass("sticky-enabled").removeClass("sticky-disabled");
+        if ( ! this._is_scrolling() ) {
+          czrapp.$_body.addClass("sticky-enabled").removeClass("sticky-disabled");
+          // set the logo height, makes sense just when the logo isn't shrinked
+          if ( ! czrapp.$_tcHeader.hasClass('tc-shrink-on') )
+            self._set_logo_height();
+        }
       }
       else if ( this._is_scrolling() ){
         czrapp.$_body.removeClass("sticky-enabled").addClass("sticky-disabled");
@@ -5321,6 +5335,12 @@ var czrapp = czrapp || {};
       czrapp.$_window.on( 'tc-resize', function() {
         self.stickyFooterEventHandler('resize');
       });
+
+      // maybe apply sticky footer on golden ratio applied
+      czrapp.$_window.on( 'golden-ratio-applied', function() {
+        self.stickyFooterEventHandler('refresh');
+      });
+
       /* can be useful without exposing methods make it react to this event which could be externally fired, used in the preview atm */
       czrapp.$_body.on( 'refresh-sticky-footer', function() {
         self.stickyFooterEventHandler('refresh');

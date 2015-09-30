@@ -681,7 +681,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
               //gets height and width from image, we check if getimagesize can be used first with the error control operator
               $width = $height = '';
               if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
-
+              $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
+              $link = 'email' == $type ? 'mailto:' : '';
+              $link .=  call_user_func( array( TC_utils_settings_map::$instance, 'tc_sanitize_'.$type ), $__options[$key] );
               //there is one exception : rss feed has no target _blank and special icon title
               $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
                   apply_filters( 'tc_social_link_class',
@@ -690,9 +692,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
                                 ),
                                 $key
                   ),
-                  esc_url( $__options[$key]),
+                  $link,
                   isset($data['link_title']) ?  call_user_func( '__' , $data['link_title'] , 'customizr' ) : '' ,
-                  ( $key == 'tc_rss' ) ? '' : apply_filters( 'tc_socials_target', 'target=_blank', $key ),
+                  ( in_array( $key, array('tc_rss', 'tc_email') ) ) ? '' : apply_filters( 'tc_socials_target', 'target=_blank', $key ),
                   apply_filters( 'tc_additional_social_attributes', '' , $key),
                   ( isset($data['custom_icon_url']) && !empty($data['custom_icon_url']) ) ? sprintf('<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s"/>',
                                                           $data['custom_icon_url'],
@@ -705,6 +707,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
         }
         return $html;
       }
+
+
 
 
     /**
@@ -735,6 +739,20 @@ if ( ! class_exists( 'TC_utils' ) ) :
       }
 
       return compact( 'ext', 'type' );
+    }
+
+    /**
+    * Check whether a category exists.
+    * (wp category_exists isn't available in pre_get_posts)
+    * @since 3.4.10
+    *
+    * @see term_exists()
+    *
+    * @param int $cat_id.
+    * @return bool
+    */
+    public function tc_category_id_exists( $cat_id ) {
+      return term_exists( (int) $cat_id, 'category');
     }
 
 
@@ -938,6 +956,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         array(
           'defaults',
           'tc_sliders',
+          'tc_blog_restrict_by_cat',
           'last_update_notice',
           'last_update_notice_pro'
         )

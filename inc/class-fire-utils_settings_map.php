@@ -802,6 +802,31 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                    FRONT PAGE SECTION
     ------------------------------------------------------------------------------------------------------*/
     function tc_front_page_option_map( $get_default = null ) {
+      //prepare the cat picker notice
+      global $wp_version;
+      $_cat_picker_notice = sprintf( '%1$s <a href="%2$s" target="_blank">%3$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' ,
+        __( "Click inside the above field and pick post categories you want to display. No filter will be applied if empty.", 'customizr'),
+        esc_url('codex.wordpress.org/Posts_Categories_SubPanel'),
+        __('Learn more about post categories in WordPress' , 'customizr')
+      );
+      //for wp version >= 4.3 add deep links
+      if ( ! version_compare( $wp_version, '4.3', '<' ) ) {
+        $_cat_picker_notice = sprintf( '%1$s<br/><br/><ul><li>%2$s</li><li>%3$s</li></ul>',
+          $_cat_picker_notice,
+          sprintf( '%1$s <a href="%2$s">%3$s &raquo;</a>',
+            __("Set the number of posts to display" , "customizr"),
+            "javascript:wp.customize.section('frontpage_sec').container.find('.customize-section-back').trigger('click'); wp.customize.control('posts_per_page').focus();",
+            __("here", "customizr")
+          ),
+          sprintf( '%1$s <a href="%2$s">%3$s &raquo;</a>',
+            __('Jump to the blog design options' , 'customizr'),
+            "javascript:wp.customize.section('frontpage_sec').container.find('.customize-section-back').trigger('click'); wp.customize.control('tc_theme_options[tc_post_list_grid]').focus();",
+            __("here", "customizr")
+          )
+        );
+      }
+
+
       return array(
               //title
               'homecontent_title'         => array(
@@ -841,7 +866,16 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'        => 'dropdown-pages' ,
                                 'priority'      => 1,
               ),
-
+              //page for posts
+              'tc_blog_restrict_by_cat'       => array(
+                                'default'     => array(),
+                                'label'       =>  __( 'Apply a category filter to your home / blog posts' , 'customizr'  ),
+                                'section'     => 'frontpage_sec',
+                                'control'     => 'TC_Customize_Multipicker_Categories_Control',
+                                'type'        => 'tc_multiple_picker',
+                                'priority'    => 1,
+                                'notice'      => $_cat_picker_notice
+              ),
               //layout
               'tc_front_layout' => array(
                                 'default'       => 'f' ,//Default layout for home page is full width
@@ -2481,19 +2515,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
       foreach ( $socials as $key => $data ) {
         $priority += $incr;
+        $type      = isset( $data['type'] ) && ! is_null( $data['type'] ) ? $data['type'] : 'url';
+        
         $_new_map[$key]  = array(
-                      'default'         => ( isset($data['default']) && !is_null($data['default']) ) ? $data['default'] : null ,
-                      'sanitize_callback' => array( $this , 'tc_sanitize_url' ),
+                      'default'       => ( isset($data['default']) && !is_null($data['default']) ) ? $data['default'] : null,
+                      'sanitize_callback' => array( $this , 'tc_sanitize_' . $type ),
                       'control'       => 'TC_controls' ,
                       'label'         => ( isset($data['option_label']) ) ? call_user_func( '__' , $data['option_label'] , 'customizr' ) : $key,
                       'section'       => 'socials_sec' ,
-                      'type'          => 'url',
+                      'type'          => $type,
                       'priority'      => $priority,
                       'icon'          => "tc-icon-". str_replace('tc_', '', $key)
                     );
         $incr += 5;
       }
-
       return array_merge( $_original_map, $_new_map );
     }
 
@@ -2646,7 +2681,14 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       return $value;
     }
 
-
+    /**
+     * adds sanitization callback funtion : email
+     * @package Customizr
+     * @since Customizr 3.4.11
+     */
+    function tc_sanitize_email( $value) {
+      return sanitize_email( $value );
+    }
 
     /**
      * adds sanitization callback funtion : colors

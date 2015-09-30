@@ -1186,8 +1186,12 @@ var czrapp = czrapp || {};
       var self = this;
       //process scrolling actions
       if ( czrapp.$_window.scrollTop() > this.triggerHeight ) {
-        if ( ! this._is_scrolling() )
-            czrapp.$_body.addClass("sticky-enabled").removeClass("sticky-disabled");
+        if ( ! this._is_scrolling() ) {
+          czrapp.$_body.addClass("sticky-enabled").removeClass("sticky-disabled");
+          // set the logo height, makes sense just when the logo isn't shrinked
+          if ( ! czrapp.$_tcHeader.hasClass('tc-shrink-on') )
+            self._set_logo_height();
+        }
       }
       else if ( this._is_scrolling() ){
         czrapp.$_body.removeClass("sticky-enabled").addClass("sticky-disabled");
@@ -1233,6 +1237,12 @@ var czrapp = czrapp || {};
       czrapp.$_window.on( 'tc-resize', function() {
         self.stickyFooterEventHandler('resize');
       });
+
+      // maybe apply sticky footer on golden ratio applied
+      czrapp.$_window.on( 'golden-ratio-applied', function() {
+        self.stickyFooterEventHandler('refresh');
+      });
+
       /* can be useful without exposing methods make it react to this event which could be externally fired, used in the preview atm */
       czrapp.$_body.on( 'refresh-sticky-footer', function() {
         self.stickyFooterEventHandler('refresh');

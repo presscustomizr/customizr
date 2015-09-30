@@ -34,6 +34,29 @@
     }
   };
 
+  /* Multiple Picker */
+  /**
+   * @constructor
+   * @augments wp.customize.Control
+   * @augments wp.customize.Class
+   */
+  api.TCMultiplePickerControl = api.Control.extend({
+    ready: function() {
+      var control  = this,
+          _select  = this.container.find('select');
+
+      //handle case when all choices become unselected
+      _select.on('change', function(e){
+        if ( 0 === $(this).find("option:selected").length ) 
+          control.setting.set([]);    
+      });
+    }    
+  });
+  $.extend( api.controlConstructor, {
+    tc_multiple_picker : api.TCMultiplePickerControl    
+  });
+
+
 
   /**
    * @constructor
@@ -145,6 +168,29 @@
   * Main control dependencies object
   */
   var _controlDependencies = {
+    //we have to show restrict blog/home posts when
+    //1. show page on front and a page of posts is selected
+    //2, show posts on front
+    'page_for_posts' : {
+       controls: [
+         'tc_blog_restrict_by_cat'    
+       ],
+       callback : function (to) {
+         return '0' !== to;  
+       },
+    },
+    'show_on_front' : {
+      controls: [
+        'tc_blog_restrict_by_cat'    
+      ],
+      callback : function (to) {
+        if ( 'posts' == to )
+          return true;
+        if ( 'page' == to )
+          return '0' !== api( _build_setId('page_for_posts') ).get() ;
+        return false;
+      },
+    },
     'tc_show_featured_pages': {
       controls: TCControlParams.FPControls,
       callback: function (to) {

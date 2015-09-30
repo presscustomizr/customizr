@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.4.9\n"
+"Project-Id-Version: * Customizr v3.4.11\n"
 "POT-Creation-Date: 2015-08-22 17:03+0200\n"
 "PO-Revision-Date: 2015-08-22 17:03+0200\n"
 "Last-Translator: Yaacov Glezer <jakets69@gmail.com>\n"
@@ -151,11 +151,11 @@ msgstr ""
 
 #: admin/class-admin-customize.php:634
 msgid "If you like"
-msgstr "אם תרצו"
+msgstr "אם אהבתם "
 
 #: admin/class-admin-customize.php:635
 msgid "the Customizr theme"
-msgstr "תבנית Customizr"
+msgstr "את התבנית Customizr"
 
 #: admin/class-admin-customize.php:635
 msgid "the Customizr pro theme"
@@ -163,7 +163,7 @@ msgstr "תבנית Customizr Pro"
 
 #: admin/class-admin-customize.php:636
 msgid "we would love to receive a"
-msgstr "אנו שנמח לקבל"
+msgstr "אנו נשמח לקבל דירוג"
 
 #: admin/class-admin-customize.php:638
 msgid "Review the Customizr theme"
@@ -171,7 +171,7 @@ msgstr "דרגו את תבנית Customizr"
 
 #: admin/class-admin-customize.php:640
 msgid "rating. Thanks :) !"
-msgstr "דירוג. תודה :-) !"
+msgstr ". תודה :-) !"
 
 #: admin/class-admin-customize.php:656 admin/class-admin-customize.php:657
 msgid "Upgrade WP"

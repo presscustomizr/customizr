@@ -314,6 +314,11 @@ span[class*=tc-icon]:before {
 .tc-icon-tumblr:before {
   content: "\f214";
 }
+.tc-icon-email:before {
+  content: "\f410";
+  font-size: 1.8em;
+  top: 0.8em;
+}
 
 
 /* DONATE BLOCK*/
@@ -791,50 +796,50 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 
 
 /* SELECT 2 SPECIFICS */
-.wp-customizer .select2-container {
+body .select2-container {
 	width: 100%
 }
-.wp-customizer .select2-drop {
+body .select2-drop {
 	z-index: 999999;
 }
-.wp-customizer .select2-drop-active {
+body .select2-drop-active {
     border: 1px solid #1ABC9C;
 }
-.wp-customizer .select2-drop.select2-drop-above.select2-drop-active {
+body .select2-drop.select2-drop-above.select2-drop-active {
     border-top: 1px solid #1ABC9C;
 }
-.wp-customizer .select2-container-active .select2-choices {
+body .select2-container-active .select2-choices {
     border: 1px solid #1ABC9C;
 }
-.wp-customizer .select2-container-multi.select2-container-active .select2-choices {
+body .select2-container-multi.select2-container-active .select2-choices {
     border: 1px solid #1ABC9C;
 }
-.wp-customizer .select2-container-active .select2-choice,
-.wp-customizer .select2-container-active .select2-choices {
+body .select2-container-active .select2-choice,
+body .select2-container-active .select2-choices {
     border: 1px solid #1ABC9C;
 }
-.wp-customizer .select2-container .select2-choice > .select2-chosen {
+body .select2-container .select2-choice > .select2-chosen {
 	margin-right: 0px;
 }
-.wp-customizer .select2-container .select2-choice {
+body .select2-container .select2-choice {
 	padding: 0px;
 }
-.wp-customizer li.select2-results-dept-0.select2-result.select2-result-selectable {
+body li.select2-results-dept-0.select2-result.select2-result-selectable {
 	padding: 0;
 }
-.wp-customizer .select2-results .select2-result-label {
+body .select2-results .select2-result-label {
 	padding: 0;
 }
-.wp-customizer .select2-results .select2-highlighted {
+body .select2-results .select2-highlighted {
     background: #eee;
 }
-.wp-customizer .select2-results li em {
+body .select2-results li em {
     background: #F4F4F4;
 }
 .select2-results .tc-select2-skin-color {
 	padding: 8px 0px;
 }
-.wp-customizer .select2-results {
+body .select2-results {
 	max-height: 360px
 }
 .tc-select2-skin-color {
