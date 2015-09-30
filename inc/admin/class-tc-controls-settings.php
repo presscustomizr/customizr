@@ -199,6 +199,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
 		        	break;
 
 	        	case 'url':
+	        	case 'email':
               ?>
               <?php if (isset( $this->title)) : ?>
               <h3 class="tc-customizr-title"><?php echo esc_html( $this->title); ?></h3>
@@ -207,7 +208,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
 	        		printf('<label><span class="customize-control-title %1$s">%2$s</span><input type="text" value="%3$s" %4$s /></label>',
 	        			! empty( $this -> icon) ? $this -> icon : '',
 	        			$this->label,
-	        			esc_url( $this->value() ),
+	        			call_user_func( array( TC_utils_settings_map::$instance, 'tc_sanitize_' . $this -> type), $this->value() ),
 	        			call_user_func( array( $this, 'get'.'_'.'link' ) )
 	        		);
 		        	break;

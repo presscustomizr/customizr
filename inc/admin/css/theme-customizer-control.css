@@ -314,6 +314,11 @@ span[class*=tc-icon]:before {
 .tc-icon-tumblr:before {
   content: "\f214";
 }
+.tc-icon-email:before {
+  content: "\f410";
+  font-size: 1.8em;
+  top: 0.8em;
+}
 
 
 /* DONATE BLOCK*/
