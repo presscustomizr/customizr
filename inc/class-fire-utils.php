@@ -48,8 +48,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         //social networks
         add_filter( '__get_socials'           , array( $this , 'tc_get_social_networks' ) );
-        //special treatment for social email link
-        add_filter( 'tc_default_socials'  , array( $this , 'tc_set_default_social_email_address'), 0 );
 
         //refresh the theme options right after the _preview_filter when previewing
         add_action( 'customize_preview_init'  , array( $this , 'tc_customize_refresh_db_opt' ) );
@@ -710,22 +708,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
         return $html;
       }
 
-
-      /**
-      * Set default social email address based on when user started using Customizr
-      *
-      * hook : tc_default_socials
-      *
-      * @package Customizr
-      * @since Customizr 3.4.11
-      */
-      function tc_set_default_social_email_address( $socials ) {
-        //we cannot do this in class-fire-init as TC_utils isn't instantiated yet
-        if ( array_key_exists( 'tc_email', $socials) && ! isset( $socials['tc_email']['default'] ) )
-          $socials['tc_email']['default'] = TC_utils::$inst -> tc_user_started_before_version( '3.4.11' , '1.2.6') ? null : get_bloginfo('admin_email');
-
-        return $socials;
-      }
 
 
 
