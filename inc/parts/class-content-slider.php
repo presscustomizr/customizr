@@ -69,8 +69,8 @@ class TC_slider {
       add_action( '__after_carousel_inner'    , array( $this, 'tc_maybe_display_dismiss_notice'));
     }
 
-    //display an edit deep link to the Slider section in the Customize posts slider
-    add_action( '__after_carousel_inner'    , array( $this, 'tc_display_posts_slider_customizer_link'), 10, 2 );
+    //display an edit deep link to the Slider section in the Customize or post/page
+    add_action( '__after_carousel_inner'    , array( $this, 'tc_render_slider_edit_link_view'), 10, 2 );
   }
 
 
@@ -871,14 +871,20 @@ class TC_slider {
   function tc_render_slide_edit_link_view( $_view_model ) {
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
-    //display edit link for logged in users with edit posts capabilities
-    $show_edit_link         = ( is_user_logged_in() && current_user_can('upload_files') ) ? true : false;
-    $show_edit_link         = apply_filters('tc_show_slider_edit_link' , $show_edit_link && ! is_null($data['link_id']) );
-    if ( ! $show_edit_link )
+
+    //display edit link for logged in users with  edit_post capabilities
+    //upload_files cap isn't a good lower limit 'cause for example and Author can upload_files but actually cannot edit medias he/she hasn't uploaded
+    
+    $show_slide_edit_link  = ( is_user_logged_in() && current_user_can( 'edit_post', $id ) ) ? true : false;
+    $show_slide_edit_link  = apply_filters('tc_show_slide_edit_link' , $show_slide_edit_link && ! is_null($data['link_id']), $id );
+
+    if ( ! $show_slide_edit_link )
       return;
 
-    $_edit_link = get_edit_post_link($id);
-    $_edit_link .= ( 'tc_posts_slider' ==$slider_name_id ) ? '' : '#slider_sectionid';
+    $_edit_link_suffix     = 'tc_posts_slider' == $slider_name_id ? '' : '#slider_sectionid';
+    //in case of tc_posts_slider the $id is the *post* id, otherwise it's the attachment id
+    $_edit_link            = get_edit_post_link($id) . $_edit_link_suffix;
+
     printf('<span class="slider edit-link btn btn-inverse"><a class="post-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
       $_edit_link,
       __( 'Edit' , 'customizr' )
@@ -886,27 +892,47 @@ class TC_slider {
   }
 
   /**
-  * Post Slider Customize edit deeplink
+  * Slider Edit deeplink
+  * @param $slides, array of slides
+  * @param $slider_name_id string, the name of the current slider
   *
   * hook : __after_carousel_inner
   * @since v3.4.9
   */
 
-  function tc_display_posts_slider_customizer_link( $slides, $slider_name_id ) {
-    if ( 'tc_posts_slider' != $slider_name_id )
+  function tc_render_slider_edit_link_view( $slides, $slider_name_id ) {
+    if ( 'demo' == $slider_name_id )
+      return;
+    
+    $show_slider_edit_link    = false;
+
+    //We have to show the slider edit link to
+    //a) users who can edit theme options for the slider in home -> deep link in the customizer
+    //b) users who can edit the post/page where the slider is displayed for users who can edit the post/page -> deep link in the post/page slider section
+    if ( tc__f('__is_home') ){
+      $show_slider_edit_link = ( is_user_logged_in() && current_user_can('edit_theme_options') ) ? true : false;
+      $_edit_link            = TC_utils::tc_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+    }else if ( is_singular() ){ // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
+      global $post;  
+      $show_slider_edit_link = ( is_user_logged_in() && ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ) ? true : false;
+      $_edit_link            = get_edit_post_link( $post -> ID ) . '#slider_sectionid';
+    }
+ 
+    $show_slider_edit_link = apply_filters( 'tc_show_slider_edit_link' , $show_slider_edit_link, $slider_name_id );
+    if ( ! $show_slider_edit_link )
       return;
 
-    $show_edit_customizer_link         = ( is_user_logged_in() && current_user_can('edit_theme_options') ) ? true : false;
-    $show_edit_customizer_link         = apply_filters( 'tc_show_posts_slider_customize_edit_link' , $show_edit_customizer_link );
-    if ( ! $show_edit_customizer_link )
-      return;
-
-    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( 'section' => 'frontpage_sec') );
-    printf('<span class="slider customizer-link edit-link btn btn-inverse"><a class="posts-slider-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
-      $_customizer_lnk,
-      __( 'Customize or remove the posts slider' , 'customizr' )
+    // The posts slider shows a different text
+    $_text                   = sprintf( __( 'Customize or remove %s' , 'customizr' ),
+                                  ( 'tc_posts_slider' == $slider_name_id ) ?__('the posts slider', 'customizr') : __('this slider', 'customizr' )
+                              );
+    printf('<span class="slider deep-edit-link edit-link btn btn-inverse"><a class="slider-edit-link" href="%1$s" title="%2$s" target="_blank">%2$s</a></span>',
+      $_edit_link,
+      $_text
     );
   }
+
+
   /*
   * Slider controls view
   * @param slides
@@ -950,7 +976,7 @@ class TC_slider {
   function tc_maybe_display_dismiss_notice() {
     if ( ! TC_placeholders::tc_is_slider_notice_on() )
       return;
-    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( 'section' => 'frontpage_sec') );
+    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     ?>
     <div class="tc-placeholder-wrap tc-slider-notice">
       <?php
