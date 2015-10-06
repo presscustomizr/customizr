@@ -34,7 +34,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       if ( ! $this -> tc_is_front_help_enabled() )
         return;
       add_action( 'wp_ajax_dismiss_thumbnail_help'    , array( $this, 'tc_dismiss_thumbnail_help' ) );
-      add_action( 'wp_ajax_dismiss_img_smartload_help', array( $this, 'tc_dismiss_img_smartload_help' ) );      
+      add_action( 'wp_ajax_dismiss_img_smartload_help', array( $this, 'tc_dismiss_img_smartload_help' ) );
       add_action( 'wp_ajax_dismiss_sidenav_help'      , array( $this, 'tc_dismiss_sidenav_help' ) );
       add_action( 'wp_ajax_dismiss_second_menu_notice', array( $this, 'tc_dismiss_second_menu_notice' ) );
       add_action( 'wp_ajax_dismiss_main_menu_notice'  , array( $this, 'tc_dismiss_main_menu_notice' ) );
@@ -186,7 +186,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       set_transient( 'tc_img_smartload_help', 'disabled' , 60*60*24*365*20 );//20 years of peace
       wp_die();
     }
- 
+
     /**
     * Print Smartload help block notice
     *
@@ -202,7 +202,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       <div class="tc-placeholder-wrap tc-img-smartload-help">
         <?php
           printf('<p><strong>%1$s</strong></p><p>%2$s</p>',
-              __( "Did you know you can boost the performances of your website deferring the loading of the non visibile images?", "customizr" ),
+              __( "Did you know you can easily speed up your page load by deferring the loading of the non visible images?", "customizr" ),
               sprintf( __("%s and check the option 'Load images on scroll' under 'Website Performances' section.", "customizr"),
                 sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', TC_utils::tc_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) ), __( "Jump to the customizer now", "customizr") )
               )
@@ -229,7 +229,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.4+
     */
     function tc_maybe_write_img_sarmtload_help_js() {
-      if ( ! apply_filters( 'tc_write_img_smartload_help_js', false ) ) return;  
+      if ( ! apply_filters( 'tc_write_img_smartload_help_js', false ) ) return;
       ?>
       <script type="text/javascript" id="img-smartload-help">
         ( function( $ ) {
