@@ -374,8 +374,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
                 'fontPairs'       => TC_utils::$inst -> tc_get_font( 'list' ),
                 'fontSelectors'   => TC_init::$instance -> font_selectors,
-                //patch for old wp versions which don't trigger preview-ready signal
-                'wp_before_4_1'   => version_compare( $wp_version, '4.1' , '<' )
+                //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
+                'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' )
 			        )
 			       )
 	        );

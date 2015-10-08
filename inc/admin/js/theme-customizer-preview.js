@@ -24,7 +24,7 @@
       };
 
   //Patch for wp versions before 4.1 => preview-ready signal isn't triggered
-  if ( TCPreviewParams && TCPreviewParams.wp_before_4_1 ) 
+  if ( TCPreviewParams && ! TCPreviewParams.preview_ready_event_exists )
     $(document).ready(fireCzrPrev);
   else
     api.bind( 'preview-ready', fireCzrPrev );
