@@ -42,6 +42,9 @@ if ( ! class_exists( 'TC_post' ) ) :
       add_action( '__loop'              , array( $this , 'tc_post_content' ));
       //posts parts actions
       add_action( '__after_content'     , array( $this , 'tc_post_footer' ));
+      //smartload help block
+      add_filter( 'the_content'         , array( $this, 'tc_maybe_display_img_smartload_help') , PHP_INT_MAX );
+
     }
 
 
@@ -192,7 +195,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.4
     */
     function tc_maybe_display_featured_image_help() {
-      if (  ! TC_placeholders::tc_is_thumbnail_help_on() )
+      if ( ! TC_placeholders::tc_is_thumbnail_help_on() )
         return;
       ?>
       <div class="tc-placeholder-wrap tc-thumbnail-help">
@@ -212,6 +215,21 @@ if ( ! class_exists( 'TC_post' ) ) :
         ?>
       </div>
       <?php
+    }
+
+    /***************************
+    * SINGLE POST IMG SMARTLOAD HELP VIEW
+    ****************************/
+    /**
+    * Displays a help block about images smartload for single posts prepended to the content
+    * hook : the_content
+    * @since Customizr 3.4+
+    */
+    function tc_maybe_display_img_smartload_help( $the_content ) {
+      if ( ! ( $this -> tc_single_post_display_controller()  &&  in_the_loop() && TC_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
+        return $the_content;
+
+      return TC_placeholders::tc_print_smartload_help_block() . $the_content;
     }
 
 

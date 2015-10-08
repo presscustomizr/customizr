@@ -352,6 +352,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		 */
 
 		function tc_customize_preview_js() {
+			global $wp_version;
+
 			wp_enqueue_script(
 				'tc-customizer-preview' ,
 				sprintf('%1$s/inc/admin/js/theme-customizer-preview%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
@@ -371,7 +373,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
                 'fontPairs'       => TC_utils::$inst -> tc_get_font( 'list' ),
-                'fontSelectors'   => TC_init::$instance -> font_selectors
+                'fontSelectors'   => TC_init::$instance -> font_selectors,
+                //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
+                'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' )
 			        )
 			       )
 	        );
