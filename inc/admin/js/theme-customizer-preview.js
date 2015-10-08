@@ -23,7 +23,11 @@
         } );
       };
 
-  api.bind( 'preview-ready', fireCzrPrev );
+  //Patch for wp versions before 4.1 => preview-ready signal isn't triggered
+  if ( TCPreviewParams && TCPreviewParams.wp_before_4_1 ) 
+    $(document).ready(fireCzrPrev);
+  else
+    api.bind( 'preview-ready', fireCzrPrev );
 
   /******************************************
   * GLOBAL SETTINGS
