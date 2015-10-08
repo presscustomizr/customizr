@@ -117,7 +117,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('inc/parts', 'no_results'),
               array('inc/parts', 'page'),
               array('inc/parts', 'post_thumbnails'),
-              array('inc/parts', 'post'),
+              //array('inc/parts', 'post'),
               array('inc/parts', 'post_list'),
               array('inc/parts', 'post_list_grid'),
               array('inc/parts', 'post_metas'),
@@ -157,7 +157,7 @@ if ( ! class_exists( 'TC___' ) ) :
     *
     * @since Customizr 3.0
     */
-    function tc__( $_to_load = array(), $_no_filter = false ) {
+    function tc__( $_to_load = array(), $_no_filter = false, $_singleton = true, $_args = array() ) {
       static $instances;
       //do we apply a filter ? optional boolean can force no filter
       $_to_load = $_no_filter ? $_to_load : apply_filters( 'tc_get_files_to_load' , $_to_load );
@@ -175,12 +175,23 @@ if ( ! class_exists( 'TC___' ) ) :
           }
 
           $classname = 'TC_' . $path_suffix[1];
-          if( ! isset( $instances[ $classname ] ) )  {
+          if( ! isset( $instances[ $classname ] ) && $_singleton )  {
             //check if the classname can be instanciated here
             if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
               continue;
             //instanciates
-            $instances[ $classname ] = class_exists($classname)  ? new $classname : '';
+            $instances[ $classname ] = class_exists($classname)  ? new $classname($_args) : '';
+          }
+          else if( ! $_singleton ) {
+            if ( class_exists($classname) ) {
+              //stores the instance id in a property for later use
+              $_args['instance_id'] = is_array($instances[ $classname ]) ? count($instances[ $classname ]) + 1 : 1;
+
+              if ( isset($instances[ $classname ]) )
+                $instances[ $classname ][] = new $classname($_args);
+              else
+                $instances[ $classname ] = array( new $classname($_args) );
+            }
           }
         }
       }
@@ -380,3 +391,11 @@ endif;
 
 //Creates a new instance
 new TC___;
+//shortcut function to instanciate easier
+if ( ! function_exists('tc_new') ) {
+  function tc_new( $_to_load = array(), $_no_filter = false, $_singleton = true, $_args = array() ) {
+    TC___::$instance -> tc__( $_to_load , $_no_filter, $_singleton, $_args );
+    return;
+  }
+}
+//endif;
