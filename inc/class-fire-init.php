@@ -362,9 +362,24 @@ if ( ! class_exists( 'TC_init' ) ) :
           add_filter( 'delete_attachment'                      , array( $this , 'tc_clean_retina_images') );
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
-          add_filter('body_class'                              , array( $this , 'tc_set_body_classes') );
+          add_filter( 'body_class'                              , array( $this , 'tc_set_body_classes') );
+
+          //Maybe renders the default loop
+          add_action( 'init'                                    , array($this, 'tc_fires_default_loop') );
 
       }//end of constructor
+
+
+      //hook : __daloop
+      //=> instanciate the default loop using the main $wp_query
+      function tc_fires_default_loop(){
+        tc_new(
+          array('content' => array( array('inc/parts', 'loop_base') ) ),
+          true,//no_filter
+          false//=> no singleton
+        );
+      }
+
 
 
 
