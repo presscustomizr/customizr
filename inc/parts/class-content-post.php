@@ -1,7 +1,7 @@
 <?php
 /**
 * Single post content actions
-*
+* CONTEXT AGNOSTIC
 *
 * @package      Customizr
 * @subpackage   classes
@@ -12,13 +12,13 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_post' ) ) :
-  class TC_post {
+  class TC_post extends TC_loop_base {
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      add_action( 'wp'                , array( $this , 'tc_set_single_post_hooks' ));
+      $this -> tc_set_single_post_hooks();
       //Set single post thumbnail with customizer options (since 3.2.0)
-      add_action( 'wp'                , array( $this , 'tc_set_single_post_thumbnail_hooks' ));
+      $this -> tc_set_single_post_thumbnail_hooks();
 
       //append inline style to the custom stylesheet
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
@@ -56,8 +56,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_set_single_post_thumbnail_hooks() {
-      if ( $this -> tc_single_post_display_controller() )
-        add_action( '__before_content'        , array( $this, 'tc_maybe_display_featured_image_help') );
+      add_action( '__before_content'        , array( $this, 'tc_maybe_display_featured_image_help') );
 
       //__before_main_wrapper, 200
       //__before_content 0
@@ -87,9 +86,6 @@ if ( ! class_exists( 'TC_post' ) ) :
      * @since Customizr 3.0
      */
     function tc_post_content() {
-      //check conditional tags : we want to show single post or single custom post types
-      if ( ! $this -> tc_single_post_display_controller() )
-          return;
       //display an icon for div if there is no title
       $icon_class = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'tc_post_format_icon', 'format-icon' ) :'' ;
 
@@ -117,7 +113,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     */
     function tc_post_footer() {
       //check conditional tags : we want to show single post or single custom post types
-      if ( ! $this -> tc_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
+      if ( ! apply_filters( 'tc_show_single_post_footer', true ) )
           return;
       //@todo check if some conditions below not redundant?
       if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( TC_utils::$inst->tc_opt( 'tc_show_author_info' ) ) )
@@ -226,7 +222,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.4+
     */
     function tc_maybe_display_img_smartload_help( $the_content ) {
-      if ( ! ( $this -> tc_single_post_display_controller()  &&  in_the_loop() && TC_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
+      if ( ! ( in_the_loop() && TC_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
         return $the_content;
 
       return TC_placeholders::tc_print_smartload_help_block() . $the_content;
@@ -238,23 +234,6 @@ if ( ! class_exists( 'TC_post' ) ) :
     /******************************
     * SETTERS / HELPERS / CALLBACKS
     *******************************/
-    /**
-    * Single post view controller
-    * @return  boolean
-    * @package Customizr
-    * @since Customizr 3.2.0
-    */
-    function tc_single_post_display_controller() {
-      //check conditional tags : we want to show single post or single custom post types
-      global $post;
-      $tc_show_single_post_content = isset($post)
-        && 'page' != $post -> post_type
-        && 'attachment' != $post -> post_type
-        && is_singular()
-        && ! tc__f( '__is_home_empty');
-      return apply_filters( 'tc_show_single_post_content', $tc_show_single_post_content );
-    }
-
 
     /**
     * HELPER
@@ -263,8 +242,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.2.11
     */
     function tc_show_single_post_thumbnail() {
-      return $this -> tc_single_post_display_controller()
-        && 'hide' != esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
+      return'hide' != esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
         && apply_filters( 'tc_show_single_post_thumbnail' , true );
     }
 
