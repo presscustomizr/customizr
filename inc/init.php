@@ -113,7 +113,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('inc/parts', 'comments'),
               array('inc/parts', 'featured_pages'),
               array('inc/parts', 'gallery'),
-              array('inc/parts', 'headings'),
+              //array('inc/parts', 'headings'),
               array('inc/parts', 'no_results'),
               array('inc/parts', 'page'),
               array('inc/parts', 'post_thumbnails'),
@@ -174,10 +174,12 @@ if ( ! class_exists( 'TC___' ) ) :
           else {
               require_once ( TC_BASE . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ;
           }
+          if ( isset($_args['_instanciate']) && ! $_args['_instanciate'] )
+            continue;
 
           $classname = 'TC_' . $path_suffix[1];
            //clean up the args to remove what we don't need for the class constructors
-          $_constructor_args = array_diff_key($_args, array( '_no_filter' => false, '_singleton' => true ) );
+          $_constructor_args = array_diff_key($_args, array( '_no_filter' => false, '_singleton' => true , '_instanciate' => true) );
 
           //SINGLETON FACTORY
           if( ! isset( $instances[ $classname ] ) && isset($_args['_singleton']) && $_args['_singleton'] )  {
@@ -203,7 +205,8 @@ if ( ! class_exists( 'TC___' ) ) :
           }//if
         }//foreach
       }//foreach
-      return $instances[ $classname ];
+      if ( is_array($instances) && isset($classname) )
+        return $instances[ $classname ];
     }
 
 
