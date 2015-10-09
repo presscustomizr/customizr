@@ -14,8 +14,11 @@
 if ( ! class_exists( 'TC_post' ) ) :
   class TC_post extends TC_base {
     static $instance;
-    function __construct() {
+    function __construct($_args = array()) {
       self::$instance =& $this;
+      // Instanciates the parent class.
+      parent::__construct( $_args );
+
       $this -> tc_set_single_post_hooks();
       //Set single post thumbnail with customizer options (since 3.2.0)
       $this -> tc_set_single_post_thumbnail_hooks();
@@ -39,9 +42,9 @@ if ( ! class_exists( 'TC_post' ) ) :
     */
     function tc_set_single_post_hooks() {
       //add post header, content and footer to the __loop
-      add_action( '__loop'              , array( $this , 'tc_post_content' ));
+      add_action( "__loop{$this -> loop_name}"              , array( $this , 'tc_post_content' ));
       //posts parts actions
-      add_action( '__after_content'     , array( $this , 'tc_post_footer' ));
+      add_action( "__after_content{$this -> loop_name}"     , array( $this , 'tc_post_footer' ));
       //smartload help block
       add_filter( 'the_content'         , array( $this, 'tc_maybe_display_img_smartload_help') , PHP_INT_MAX );
 
@@ -56,7 +59,7 @@ if ( ! class_exists( 'TC_post' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_set_single_post_thumbnail_hooks() {
-      add_action( '__before_content'        , array( $this, 'tc_maybe_display_featured_image_help') );
+      add_action( '__before_content{$this -> loop_name}'        , array( $this, 'tc_maybe_display_featured_image_help') );
 
       //__before_main_wrapper, 200
       //__before_content 0
@@ -86,19 +89,19 @@ if ( ! class_exists( 'TC_post' ) ) :
      * @package Customizr
      * @since Customizr 3.0
      */
-    function tc_post_content( $_loop_name ) {
+    function tc_post_content() {
       //display an icon for div if there is no title
       $icon_class = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'tc_post_format_icon', 'format-icon' ) :'' ;
 
       ob_start();
-      do_action( '__before_content' );
+      do_action( '__before_content{$this -> loop_name}' );
         ?>
           <section class="entry-content <?php echo $icon_class ?>">
               <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
               <?php wp_link_pages( array( 'before' => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>
           </section><!-- .entry-content -->
         <?php
-      do_action( '__after_content' );
+      do_action( '__after_content{$this -> loop_name}' );
       $html = ob_get_contents();
       if ($html) ob_end_clean();
       echo apply_filters( 'tc_post_content', $html );

@@ -16,15 +16,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         static $instance;
         private $post_id;
 
-        function __construct($_args) {
-          //Gets the accessible non-static properties of the given object according to scope.
-          $keys = array_keys( get_object_vars( $this ) );
-          foreach ( $keys as $key ) {
-            if ( isset( $_args[ $key ] ) ) {
-              $this->$key = $_args[ $key ];
-            }
-          }
+        function __construct($_args = array() ) {
           self::$instance =& $this;
+          // Instanciates the parent class.
+          parent::__construct( $_args );
+
           add_action( 'wp_head'                    , array( $this , 'tc_set_grid_hooks') );
           //append inline style to the custom stylesheet
           add_filter( 'wp_head'                    , array( $this , 'tc_print_grid_inline_css'), 100 );
