@@ -43,6 +43,9 @@ if ( ! class_exists( 'TC_controller' ) ) :
       //POST LIST GRID
       if ( $this -> tc_is_grid_enabled() )
         tc_new( array('content' => array( array('inc/parts', 'post_list_grid') ) ) );
+
+      //HEADINGS
+      tc_new( array('content' => array( array('inc/parts', 'headings') ) ) );
     }
 
 
