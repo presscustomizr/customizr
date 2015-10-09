@@ -375,7 +375,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       function tc_fires_views(){
         tc_new(
           array('views' => array( array('inc', 'base') ) ),
-          $_args = array( '_no_filter' => true, '_singleton' => false )
+          $_args = array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
         );
         tc_new( array('views' => array( array('inc', 'early_hooks') ) ) );
         //controller extends loop_base => we might need some of the loop_base property ?
