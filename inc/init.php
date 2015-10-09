@@ -118,7 +118,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('inc/parts', 'page'),
               array('inc/parts', 'post_thumbnails'),
               //array('inc/parts', 'post'),
-              array('inc/parts', 'post_list'),
+              //array('inc/parts', 'post_list'),
               array('inc/parts', 'post_list_grid'),
               array('inc/parts', 'post_metas'),
               array('inc/parts', 'post_navigation'),
@@ -159,7 +159,7 @@ if ( ! class_exists( 'TC___' ) ) :
     */
     function tc__( $_to_load = array(), $_args = array() ) {
       static $instances;
-      $args = wp_parse_args( $args, array( '_no_filter' => false, '_singleton' => true ) );
+      $_args = wp_parse_args( $_args, array( '_no_filter' => false, '_singleton' => true ) );
       //do we apply a filter ? optional boolean can force no filter
       $_to_load = ( isset($_args['_no_filter']) && $_args['_no_filter'] ) ? $_to_load : apply_filters( 'tc_get_files_to_load' , $_to_load );
       if ( empty($_to_load) )
@@ -176,20 +176,22 @@ if ( ! class_exists( 'TC___' ) ) :
           }
 
           $classname = 'TC_' . $path_suffix[1];
+           //clean up the args to remove what we don't need for the class constructors
+          $_constructor_args = array_diff_key($_args, array( '_no_filter' => false, '_singleton' => true ) );
+
           //SINGLETON FACTORY
           if( ! isset( $instances[ $classname ] ) && isset($_args['_singleton']) && $_args['_singleton'] )  {
             //check if the classname can be instanciated here
             if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
               continue;
             //instanciates
-            $instances[ $classname ] = class_exists($classname)  ? new $classname($_args) : '';
+            $instances[ $classname ] = class_exists($classname)  ? new $classname($_constructor_args) : '';
           }
           else if( ! isset($_args['_singleton']) || ! $_args['_singleton'] ) {
             if ( class_exists($classname) ) {
               //stores the instance id in a property for later use
-              $_args['instance_id'] = is_array($instances[ $classname ]) ? count($instances[ $classname ]) + 1 : 1;
-              //clean up the args to remove what we don't need for the class constructors
-              $_constructor_args = array_diff_key($_args, array( '_no_filter' => false, '_singleton' => true ) );
+              $_args['instance_id'] = ( ! isset($instances[ $classname ]) || ! is_array($instances[ $classname ]) ) ? 1 : count($instances[ $classname ]);
+
               if ( isset($instances[ $classname ]) )
                 $instances[ $classname ][] = new $classname($_constructor_args);
               else

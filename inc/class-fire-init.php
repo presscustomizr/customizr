@@ -364,19 +364,30 @@ if ( ! class_exists( 'TC_init' ) ) :
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
           add_filter( 'body_class'                              , array( $this , 'tc_set_body_classes') );
 
+          //Fires the early hooks for the views
+          //must be fired before 'init'
+          add_action( 'after_setup_theme'                       , array( $this, 'tc_fire_views_early_hooks'));
+
           //Maybe renders the default loop
-          add_action( 'init'                                    , array($this, 'tc_fires_default_loop') );
+          add_action( 'init'                                    , array( $this, 'tc_fires_controller_views') );
 
       }//end of constructor
 
 
-      //hook : __daloop
+      //hook : 'after_setup_theme'
+      function tc_fire_views_early_hooks() {
+        tc_new( array('views' => array( array('inc', 'early_hooks') ) ) );
+      }
+
+      //hook : 'init'
       //=> instanciate the default loop using the main $wp_query
-      function tc_fires_default_loop(){
+      function tc_fires_controller_views(){
         tc_new(
-          array('content' => array( array('inc/parts', 'loop_base') ) ),
+          array('views' => array( array('inc', 'loop_base') ) ),
           $_args = array( '_no_filter' => true, '_singleton' => false )
         );
+        //controller extends loop_base => we might need some of the loop_base property ?
+        tc_new( array('views' => array( array('inc', 'controller') ) ) );
       }
 
 
