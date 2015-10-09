@@ -12,16 +12,16 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_headings' ) ) :
-  class TC_headings {
+  class TC_headings extends TC_base {
       static $instance;
       function __construct () {
         self::$instance =& $this;
         //set actions and filters for posts and page headings
-        add_action( 'template_redirect'                            , array( $this , 'tc_set_post_page_heading_hooks') );
+        $this -> tc_set_post_page_heading_hooks();
         //set actions and filters for archives headings
-        add_action( 'template_redirect'                            , array( $this , 'tc_set_archives_heading_hooks') );
+        $this -> tc_set_archives_heading_hooks();
         //Set headings user options
-        add_action( 'template_redirect'                            , array( $this , 'tc_set_headings_options') );
+        $this -> tc_set_headings_options();
       }
 
 
