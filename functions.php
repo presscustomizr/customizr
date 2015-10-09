@@ -56,3 +56,37 @@ require_once( get_template_directory() . '/inc/init.php' );
 * More informations about how to create a child theme with Customizr : http://docs.presscustomizr.com/article/24-creating-a-child-theme-for-customizr/
 * A good starting point to customize the Customizr theme : http://docs.presscustomizr.com/article/35-how-to-customize-the-customizr-wordpress-theme/
 */
+
+
+/*add_action('__after_footer' , function() {
+  $args = array(
+    'post_type' => array('post'),
+    'post_status' => array('publish'),
+    'posts_per_page'         => 10
+  );
+
+  tc_new(
+    array('content' => array( array('inc/parts', 'loop_base') ) ),
+    array(
+      'name' => '',
+      'query' => new WP_Query( $args )
+    )
+  );
+});*/
+
+/*add_action( 'parse_query' , function($query) {
+  $test = array(
+    'is_single' => $query -> is_single(),
+    'is_home' => $query -> is_home()
+  );
+
+   if ( is_array() )
+    array_walk_recursive(, function(&$v) { $v = htmlspecialchars($v); });
+  ?>
+    <pre>
+      <br/><br/><br/><br/><br/><br/>
+      <?php print_r($test); ?>
+    </pre>
+  <?php
+  //wp_die();
+});*/

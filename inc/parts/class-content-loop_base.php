@@ -50,13 +50,31 @@ if ( ! class_exists( 'TC_loop_base' ) ) :
 
       //if Main query, check the context on query ready
       //and instanciate the relevant class(es)
-      add_action( 'wp', array( $this, 'tc_instanciate_relevant_views') );
+      //We can access the conditional tags in pre_get_post !
+      //Let's use 'pre_get_posts' with priority
+      if ( ! is_admin() )
+        add_action( 'parse_query', array( $this, 'tc_instanciate_relevant_views'), 0 );
     }
 
 
-    //hook : wp
-    function tc_instanciate_relevant_views() {
-      if ( $this -> tc_is_single_post() )
+    //hook : 'pre_get_posts'
+    function tc_instanciate_relevant_views($query) {
+      /* if ( is_array($this -> tc_is_single_post()) )
+        array_walk_recursive($this -> tc_is_single_post(), function(&$v) { $v = htmlspecialchars($v); }); */
+      ?>
+        <pre>
+          <?php print_r( $query ); ?>
+        </pre>
+      <?php
+      /* if ( is_array() )
+        array_walk_recursive(, function(&$v) { $v = htmlspecialchars($v); }); */
+      ?>
+        <pre>
+          <?php print_r( $this -> tc_is_single_post($query) ); ?>
+        </pre>
+      <?php
+      //wp_die();
+      if ( $this -> tc_is_single_post($query) )
         tc_new( array('content' => array( array('inc/parts', 'post') ) ) );
     }
 
@@ -116,13 +134,13 @@ if ( ! class_exists( 'TC_loop_base' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function tc_is_single_post() {
+    function tc_is_single_post($query) {
       //check conditional tags : we want to show single post or single custom post types
       global $post;
       return apply_filters( 'tc_show_single_post_content',
-        isset($post)
-        && 'page' != $post -> post_type
-        && 'attachment' != $post -> post_type
+        // isset($post)
+        // && 'page' != $post -> post_type
+        ! isset( $query -> query['attachment'] )
         && is_singular()
         && ! tc__f( '__is_home_empty')
       );

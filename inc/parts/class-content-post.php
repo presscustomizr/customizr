@@ -16,9 +16,9 @@ if ( ! class_exists( 'TC_post' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      $this -> tc_set_single_post_hooks();
+      add_action( 'wp'                , array( $this , 'tc_set_single_post_hooks' ));
       //Set single post thumbnail with customizer options (since 3.2.0)
-      $this -> tc_set_single_post_thumbnail_hooks();
+      add_action( 'wp'                , array( $this , 'tc_set_single_post_thumbnail_hooks' ));
 
       //append inline style to the custom stylesheet
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
