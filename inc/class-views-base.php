@@ -1,7 +1,7 @@
 <?php
 /**
 * Da loop
-* FIRED ON AFTER SETUP THEME
+* Instanciated from the children on 'wp'
 *
 * @package      Customizr
 * @subpackage   classes
@@ -15,10 +15,9 @@ if ( ! class_exists( 'TC_base' ) ) :
   class TC_base {
     static $instance;
     public $args;
-    public $_loop_name = 'main';
+    public $loop_name = '';
     public $query;
     public $loop_view;
-    public $name;
     public $instance_id;
     public $render_on_hook = '__daloop';//this is the default hook declared in the index.php template
 
@@ -31,10 +30,19 @@ if ( ! class_exists( 'TC_base' ) ) :
 
     function __construct( $_args ) {
       self::$instance =& $this;
+      //store class args in a property
       $this -> args = $_args;
+      //Gets the accessible non-static properties of the given object according to scope.
+      $keys = array_keys( get_object_vars( $this ) );
+
+      foreach ( $keys as $key ) {
+        if ( isset( $_args[ $key ] ) ) {
+          $this->$key = $_args[ $key ];
+        }
+      }
 
       //set base class properties
-      add_action( 'wp'                      , array($this, 'tc_set_properties_on_query_ready'), 0 );
+      $this -> tc_set_loop_name_on_query_ready();
 
       //Actually renders the loop
       add_action( $this -> render_on_hook   , array($this, 'tc_render_loop') );
@@ -42,20 +50,12 @@ if ( ! class_exists( 'TC_base' ) ) :
 
 
     //hook 'wp'
-    function tc_set_properties_on_query_ready() {
+    function tc_set_loop_name_on_query_ready() {
+      $_args = $this -> args;
       //Sets the default wp_query
       //Can be overriden in the args
       global $wp_query, $wp_the_query;
       $this -> query = $wp_query;
-
-      //Gets the accessible non-static properties of the given object according to scope.
-      $keys = array_keys( get_object_vars( $this ) );
-      $_args = $this -> args;
-      foreach ( $keys as $key ) {
-        if ( isset( $_args[ $key ] ) ) {
-          $this->$key = $_args[ $key ];
-        }
-      }
 
       //what is the current loop name or id ?
       //Whall we add one ?
@@ -64,7 +64,7 @@ if ( ! class_exists( 'TC_base' ) ) :
       //Do we have a name or shall we use the id ?
       //=> we use the name property. If not set, the instance id is used instead (instance id is set on class instanciation in init.php )
       if ( $this -> query != $wp_the_query )
-        $this -> _loop_name = isset( $_args[ 'name' ] ) ? $_args[ 'name' ] : $this -> instance_id;
+        $this -> loop_name = isset( $_args[ 'loop_name' ] ) ? $_args[ 'loop_name' ] : $this -> instance_id;
     }
 
 
@@ -73,16 +73,16 @@ if ( ! class_exists( 'TC_base' ) ) :
     //hook : $this -> render_on_hook
     public function tc_render_loop() {
       ?>
-        <?php do_action( "__before_article_container" , $this -> _loop_name ); ##hook of left sidebar?>
+        <?php do_action( "__before_article_container{$this -> loop_name}" , $this -> loop_name); ##hook of left sidebar?>
 
                 <div id="content" class="<?php echo implode(' ', apply_filters( "tc_article_container_class" , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
 
-                    <?php do_action ( "__before_loop", $this -> _loop_name );##hooks the heading of the list of post : archive, search... ?>
+                    <?php do_action ( "__before_loop{$this -> loop_name}", $this -> loop_name);##hooks the heading of the list of post : archive, search... ?>
 
                         <?php if ( tc__f('__is_no_results') || is_404() ) : ##no search results or 404 cases ?>
 
-                            <article <?php apply_filters( "__article_selectors" , $this -> _loop_name ) ?>>
-                                <?php do_action( "__loop", $this -> _loop_name ); ?>
+                            <article <?php apply_filters( "__article_selectors{$this -> loop_name}" , $this -> loop_name) ?>>
+                                <?php do_action( "__loop{$this -> loop_name}", $this -> loop_name); ?>
                             </article>
 
                         <?php endif; ?>
@@ -91,21 +91,21 @@ if ( ! class_exists( 'TC_base' ) ) :
                             <?php while ( $this -> query -> have_posts() ) : ##all other cases for single and lists: post, custom post type, page, archives, search, 404 ?>
                                 <?php $this -> query -> the_post(); ?>
 
-                                <?php do_action ( "__before_article", $this -> _loop_name ) ?>
-                                    <article <?php apply_filters( "__article_selectors", $this -> _loop_name ) ?>>
-                                        <?php do_action( "__loop" , (string) $this -> _loop_name ); ?>
+                                <?php do_action ( "__before_article{$this -> loop_name}", $this -> loop_name) ?>
+                                    <article <?php apply_filters( "__article_selectors{$this -> loop_name}", $this -> loop_name) ?>>
+                                        <?php do_action( "__loop{$this -> loop_name}" , (string) $this -> loop_name); ?>
                                     </article>
-                                <?php do_action ( "__after_article", $this -> _loop_name ) ?>
+                                <?php do_action ( "__after_article{$this -> loop_name}", $this -> loop_name) ?>
 
                             <?php endwhile; ?>
 
                         <?php endif; ##end if have posts ?>
 
-                    <?php do_action ( "__after_loop", $this -> _loop_name );##hook of the comments and the posts navigation with priorities 10 and 20 ?>
+                    <?php do_action ( "__after_loop{$this -> loop_name}", $this -> loop_name);##hook of the comments and the posts navigation with priorities 10 and 20 ?>
 
                 </div><!--.article-container -->
 
-           <?php do_action( "__after_article_container", $this -> _loop_name ); ##hook of left sidebar ?>
+           <?php do_action( "__after_article_container{$this -> loop_name}", $this -> loop_name); ##hook of left sidebar ?>
       <?php
     }
 
