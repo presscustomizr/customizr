@@ -12,7 +12,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_post_list' ) ) :
-class TC_post_list extends TC_loop_base {
+class TC_post_list extends TC_base {
   static $instance;
   function __construct () {
     self::$instance =& $this;

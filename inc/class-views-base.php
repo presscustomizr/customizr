@@ -1,7 +1,7 @@
 <?php
 /**
 * Da loop
-* FIRED ON INIT
+* FIRED ON AFTER SETUP THEME
 *
 * @package      Customizr
 * @subpackage   classes
@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_loop_base' ) ) :
-  class TC_loop_base {
+if ( ! class_exists( 'TC_base' ) ) :
+  class TC_base {
     static $instance;
     public $args;
     public $_loop_name = 'main';
@@ -21,6 +21,13 @@ if ( ! class_exists( 'TC_loop_base' ) ) :
     public $name;
     public $instance_id;
     public $render_on_hook = '__daloop';//this is the default hook declared in the index.php template
+
+    //grid specifics
+    //are set from the early hooks child on pre_get_posts
+    //and used in the post_list_grid child
+    static $expanded_sticky_bool = false;
+    static $expanded_sticky_val = null;
+
 
     function __construct( $_args ) {
       self::$instance =& $this;
