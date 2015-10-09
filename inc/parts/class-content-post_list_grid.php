@@ -12,17 +12,22 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_post_list_grid' ) ) :
-    class TC_post_list_grid {
+    class TC_post_list_grid extends TC_base {
         static $instance;
-        private $expanded_sticky;
         private $post_id;
 
-        function __construct () {
+        function __construct($_args) {
+          //Gets the accessible non-static properties of the given object according to scope.
+          $keys = array_keys( get_object_vars( $this ) );
+          foreach ( $keys as $key ) {
+            if ( isset( $_args[ $key ] ) ) {
+              $this->$key = $_args[ $key ];
+            }
+          }
           self::$instance =& $this;
-          $this -> expanded_sticky = null;
-
-          add_action ( 'pre_get_posts'              , array( $this , 'tc_maybe_excl_first_sticky') );
-          add_action ( 'wp_head'                    , array( $this , 'tc_set_grid_hooks') );
+          add_action( 'wp_head'                    , array( $this , 'tc_set_grid_hooks') );
+          //append inline style to the custom stylesheet
+          add_filter( 'wp_head'                    , array( $this , 'tc_print_grid_inline_css'), 100 );
 
           //Font size filter
           //Updates the array of font sizes for a given sidebar layout
@@ -32,12 +37,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //those filters are fired on hook : tc_user_options_style => fired on hook : wp_enqueue_scripts
           add_filter( 'tc_grid_title_sizes'         , array( $this , 'tc_set_grid_title_size'), 10, 2 );
           add_filter( 'tc_grid_p_sizes'             , array( $this , 'tc_set_grid_p_size'), 10, 2 );
-
-          //append inline style to the custom stylesheet
-          //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
-          //fired on hook : wp_enqueue_scripts
-          add_filter( 'tc_user_options_style'       , array( $this , 'tc_grid_write_inline_css'), 100 );
         }
+
 
 
         /***************************************
@@ -47,9 +48,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * hook : wp
         */
         function tc_set_grid_hooks(){
-          if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> tc_is_grid_enabled() ) )
-              return;
-
           $this -> post_id = TC_utils::tc_id();
 
           do_action( '__post_list_grid' );
@@ -78,7 +76,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_action( '__before_article_container'  , array( $this, 'tc_grid_prepare_expand_sticky' ) );
 
           // THUMBNAILS
-          remove_filter( 'post_class'               , array( TC_post_list::$instance , 'tc_add_thumb_shape_name'));
           remove_filter( 'tc_thumb_size_name'       , array( TC_post_thumbnails::$instance, 'tc_set_thumb_size') );
           add_filter( 'tc_thumb_size_name'          , array( $this, 'tc_set_thumb_size_name') );
           add_filter( 'tc_thumb_size'               , array( $this, 'tc_set_thumb_size') );
@@ -116,7 +113,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
           add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
 
-          remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_prepare_section_view') );
           add_action( '__loop'                      , array( $this, 'tc_grid_prepare_single_post') );
         }
 
@@ -132,7 +128,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_print_row_fluid_section_wrapper(){
           global $wp_query;
           $current_post   = $wp_query -> current_post;
-          $start_post     = $this -> expanded_sticky ? 1 : 0;
+          $start_post     = TC_base::$expanded_sticky_bool ? 1 : 0;
           $cols           = $this -> tc_get_grid_section_cols();
 
           if ( '__before_article' == current_filter() &&
@@ -162,7 +158,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_grid_prepare_single_post() {
           global $post;
-          if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_is_grid_context_matching() , $post ) )
+          if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', true , $post ) )
             return;
 
           // get the filtered post list layout
@@ -318,14 +314,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-        /**
-        * hook : pre_get_posts
-        * exclude the first sticky post
-        */
-        function tc_maybe_excl_first_sticky( $query ){
-          if ( $this -> tc_is_grid_enabled() && $this -> tc_is_sticky_expanded( $query ) )
-            $query->set('post__not_in', array( $this -> expanded_sticky ) );
-        }
+
 
 
         /**
@@ -394,13 +383,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_grid_prepare_expand_sticky(){
           global $wp_query;
-          if ( ! ( $this -> tc_is_sticky_expanded() &&
-                 $wp_query -> query_vars[ 'paged' ] == 0 ) ){
-            $this -> expanded_sticky = null;
+          if ( ! ( TC_base::$expanded_sticky_bool && $wp_query -> query_vars[ 'paged' ] == 0 ) ) {
+            TC_base::$expanded_sticky_val = null;
             return;
           }
           // prepend the first sticky
-          $first_sticky = get_post( $this -> expanded_sticky );
+          $first_sticky = get_post( TC_base::$expanded_sticky_val );
           array_unshift( $wp_query -> posts, $first_sticky );
           $wp_query -> post_count = $wp_query -> post_count + 1;
         }
@@ -487,13 +475,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
         /**
         * @return css string
-        * hook : tc_user_options_style
+        * hook : wp_head
         * @since Customizr 3.2.18
         */
-        function tc_grid_write_inline_css( $_css ){
-          if ( ! $this -> tc_is_grid_enabled() )
-            return $_css;
-
+        function tc_print_grid_inline_css(){
           $_col_nb  = $this -> tc_get_grid_cols();
 
           //GENERATE THE FIGURE HEIGHT CSS
@@ -502,12 +487,15 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
           $_current_col_media_css   = $this -> tc_get_grid_font_css( $_col_nb );
 
-          $_css = sprintf("%s\n%s\n%s\n",
-              $_css,
+          $_css = sprintf("\n%s\n%s\n",
               $_current_col_media_css,
               $_current_col_figure_css
           );
-          return $_css;
+
+          printf('<style type="text/css" id="grid-%1$s">%2$s</style>',
+            $this -> _loop_name,
+            $_css
+          );
         }
 
 
@@ -689,7 +677,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         private function tc_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
           $_css = '';
           //Add one column font rules if there's a sticky post
-          if ( $this -> tc_is_sticky_expanded() || '1' == $_col_nb ) {
+          if ( TC_base::$expanded_sticky_bool || '1' == $_col_nb ) {
             $_size      = $this -> tc_get_grid_font_sizes( $_col_nb = '1', $_media_query );//size like xxl
             $_h_one_col = $this -> tc_grid_build_css_rules( $_size , 'h' );
             $_p_one_col = $this -> tc_grid_build_css_rules( $_size , 'p' );
@@ -720,7 +708,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_cols_class      = sprintf( 'grid-cols-%s' , $_col_nb );
           $_css = '';
           //Add one column height if there's a sticky post
-          if ( $this -> tc_is_sticky_expanded() && '1' != $_col_nb ) {
+          if ( TC_base::$expanded_sticky_bool && '1' != $_col_nb ) {
             $_height_col_one = $this -> tc_get_grid_column_height( '1' );
             $_css .= ".grid-cols-1 figure {
                   height:{$_height_col_one}px;
@@ -826,46 +814,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         }
 
 
-        /*
-        * @return bool
-        * check if we have to expand the first sticky post
-        */
-        private function tc_is_sticky_expanded( $query = null ){
-          global $wp_query, $wpdb;
-          $query = ( $query ) ? $query : $wp_query;
-
-          if ( ! $query->is_main_query() )
-              return false;
-          if ( ! ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
-                  $wp_query->is_posts_page ) )
-              return false;
-
-          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
-
-          if ( ! $this -> expanded_sticky ) {
-            $_sticky_posts = get_option('sticky_posts');
-            // get last published sticky post
-            if ( is_array($_sticky_posts) && ! empty( $_sticky_posts ) ) {
-              $_where = implode(',', $_sticky_posts );
-              $this -> expanded_sticky = $wpdb->get_var( 
-                     "
-                     SELECT ID
-                     FROM $wpdb->posts
-                     WHERE ID IN ( $_where )
-                     ORDER BY post_date DESC
-                     LIMIT 1
-                     "
-              );
-            }else
-              $this -> expanded_sticky = null;
-          }
-
-          if ( ! ( $_expand_feat_post_opt && $this -> expanded_sticky ) )
-              return false;
-
-          return true;
-        }
-
 
         /*
         * @return bool
@@ -873,16 +821,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         private function tc_force_current_post_expansion(){
           global $wp_query;
-          return ( $this -> expanded_sticky && 0 == $wp_query -> current_post );
+          return ( TC_base::$expanded_sticky_bool && 0 == $wp_query -> current_post );
         }
 
 
-        /*
-        * @return bool
-        */
-        public function tc_is_grid_enabled() {
-          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
-        }
+
 
 
         /* retrieves number of cols option, and wrap it into a filter */
@@ -901,29 +844,6 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           );
         }
 
-
-
-        /* returns the type of post list we're in if any, an empty string otherwise */
-        private function tc_get_grid_context() {
-          global $wp_query;
-          if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
-                  $wp_query->is_posts_page )
-              return 'blog';
-          else if ( is_search() )
-              return 'search';
-          else if ( is_archive() )
-              return 'archive';
-          return '';
-        }
-
-
-        /* performs the match between the option where to use post list grid
-         * and the post list we're in */
-        private function tc_is_grid_context_matching() {
-          $_type = $this -> tc_get_grid_context();
-          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_in_' . $_type ) ) );
-          return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
-        }
 
 
         /**

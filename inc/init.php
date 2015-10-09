@@ -119,7 +119,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('inc/parts', 'post_thumbnails'),
               //array('inc/parts', 'post'),
               //array('inc/parts', 'post_list'),
-              array('inc/parts', 'post_list_grid'),
+              //array('inc/parts', 'post_list_grid'),
               array('inc/parts', 'post_metas'),
               array('inc/parts', 'post_navigation'),
               array('inc/parts', 'sidebar'),
@@ -192,8 +192,11 @@ if ( ! class_exists( 'TC___' ) ) :
               //stores the instance id in a property for later use
               $_args['instance_id'] = ( ! isset($instances[ $classname ]) || ! is_array($instances[ $classname ]) ) ? 1 : count($instances[ $classname ]);
 
-              if ( isset($instances[ $classname ]) )
+              if ( isset($instances[ $classname ]) ) {
+                if ( ! is_array($instances[ $classname ]) )
+                  $instances[ $classname ] = array($instances[ $classname ]);
                 $instances[ $classname ][] = new $classname($_constructor_args);
+              }
               else
                 $instances[ $classname ] = array( new $classname($_constructor_args) );
             }//if

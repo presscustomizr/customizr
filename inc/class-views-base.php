@@ -38,8 +38,6 @@ if ( ! class_exists( 'TC_base' ) ) :
 
       //Actually renders the loop
       add_action( $this -> render_on_hook   , array($this, 'tc_render_loop') );
-
-
     }
 
 

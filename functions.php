@@ -90,3 +90,20 @@ require_once( get_template_directory() . '/inc/init.php' );
   <?php
   //wp_die();
 });*/
+
+/*add_action('__after_header' , function() {
+  $args = array(
+    'post_type' => array('post'),
+    'post_status' => array('publish'),
+    'posts_per_page'         => 3
+  );
+
+  tc_new(
+    array('content' => array( array('inc/parts', 'post_list_grid') ) ),
+    array(
+      '_singleton' => false,
+      'name' => 'custom-grid',
+      'query' => new WP_Query( $args )
+    )
+  );
+});*/
