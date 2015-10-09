@@ -14,11 +14,11 @@
 if ( ! class_exists( 'TC_post' ) ) :
   class TC_post extends TC_loop_base {
     static $instance;
-    function __construct () {
+    function __construct() {
       self::$instance =& $this;
-      add_action( 'wp'                , array( $this , 'tc_set_single_post_hooks' ));
+      $this -> tc_set_single_post_hooks();
       //Set single post thumbnail with customizer options (since 3.2.0)
-      add_action( 'wp'                , array( $this , 'tc_set_single_post_thumbnail_hooks' ));
+      $this -> tc_set_single_post_thumbnail_hooks();
 
       //append inline style to the custom stylesheet
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
@@ -81,11 +81,12 @@ if ( ! class_exists( 'TC_post' ) ) :
     ****************************/
     /**
      * The default template for displaying single post content
+     * Hook : __loop
      *
      * @package Customizr
      * @since Customizr 3.0
      */
-    function tc_post_content() {
+    function tc_post_content( $_loop_name ) {
       //display an icon for div if there is no title
       $icon_class = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'tc_post_format_icon', 'format-icon' ) :'' ;
 
