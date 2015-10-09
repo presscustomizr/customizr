@@ -26,7 +26,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       add_filter( 'tiny_mce_before_init'  , array( $this, 'tc_user_defined_tinymce_css') );
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
       add_action ( 'save_post'            , array( $this , 'tc_refresh_thumbnail') , 10, 2);
-      
+
       //refresh the posts slider transient on save_post. Since v3.4.9.
       add_action ( 'save_post'            , array( $this , 'tc_refresh_posts_slider'), 20, 2 );
       //refresh the posts slider transient on permanent post/attachment deletion. Since v3.4.9.
@@ -59,7 +59,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         return;
 
       if ( ! class_exists( 'TC_post_thumbnails' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), array( '_no_filter' => true ) );
 
       TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
     }
@@ -75,18 +75,18 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       // since we always delete the transient when entering the preview.
       if ( 'tc_posts_slider' != TC_utils::$inst->tc_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
         return;
-      
+
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
- 
+
       if ( ! class_exists( 'TC_post_thumbnails' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), array( '_no_filter' => true ) );
       if ( ! class_exists( 'TC_slider' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'slider') ) ), true );
+        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'slider') ) ), array( '_no_filter' => true ) );
 
       TC_slider::$instance -> tc_cache_posts_slider();
     }
- 
+
     /*
     * @return void
     * updates the term pickers related options
@@ -233,7 +233,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       //some plugins fire tiny mce editor in the customizer
       //in this case, the TC_resource class has to be loaded
       if ( ! class_exists('TC_resources') )
-        TC___::$instance -> tc__( array('fire' => array( array('inc' , 'resources') ) ), true );
+        TC___::$instance -> tc__( array('fire' => array( array('inc' , 'resources') ) ), array( '_no_filter' => true ) );
 
       //fonts
       $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');

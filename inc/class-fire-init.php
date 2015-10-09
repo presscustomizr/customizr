@@ -375,8 +375,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       function tc_fires_default_loop(){
         tc_new(
           array('content' => array( array('inc/parts', 'loop_base') ) ),
-          true,//no_filter
-          false//=> no singleton
+          $_args = array( '_no_filter' => true, '_singleton' => false )
         );
       }
 
