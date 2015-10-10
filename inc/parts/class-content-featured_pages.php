@@ -1,7 +1,7 @@
 <?php
 /**
 * Featured pages actions
-*
+* Fired on 'wp'
 *
 * @package      Customizr
 * @subpackage   classes
@@ -64,7 +64,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
   	* @since Customizr 3.0
   	*/
     function tc_fp_block_display() {
-      if ( ! $this -> tc_show_featured_pages()  )
+      if ( ! TC_controller::$instance -> tc_are_featured_pages_on()  )
         return;
 
       $tc_show_featured_pages_img     = $this -> tc_show_featured_pages_img();
@@ -303,13 +303,6 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       return $fp_img;
     }
 
-
-    function tc_show_featured_pages() {
-      //gets display fp option
-      $tc_show_featured_pages 	      = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
-
-      return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && tc__f('__is_home') );
-    }
 
 
     function tc_show_featured_pages_img() {

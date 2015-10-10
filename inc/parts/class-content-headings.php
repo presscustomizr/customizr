@@ -1,7 +1,7 @@
 <?php
 /**
 * Headings actions
-*
+* Fired on 'wp'
 *
 * @package      Customizr
 * @subpackage   classes
@@ -14,7 +14,7 @@
 if ( ! class_exists( 'TC_headings' ) ) :
   class TC_headings extends TC_base {
       static $instance;
-      function __construct () {
+      function __construct() {
         self::$instance =& $this;
         //set actions and filters for posts and page headings
         $this -> tc_set_post_page_heading_hooks();
@@ -39,11 +39,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function tc_set_archives_heading_hooks() {
         //is there anything to render in the current context
         //by default don't display the Customizr title in feeds
-        if ( apply_filters('tc_display_customizr_headings',  ! $this -> tc_archive_title_and_class_callback() || is_feed() ) )
+        if ( ! TC_controller::$instance -> tc_is_heading_archive() )
           return;
 
         //Headings for archives, authors, search, 404
-        add_action ( '__before_loop'                  , array( $this , 'tc_render_headings_view' ) );
+        add_action ( "__before_loop{$this -> loop_name}"                  , array( $this , 'tc_render_headings_view' ) );
         //Set archive icon with customizer options (since 3.2.0)
         add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ) );
 
@@ -64,15 +64,14 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.2.6
       */
       function tc_set_post_page_heading_hooks() {
-
         //by default don't display the Customizr title of the front page and in feeds
-        if ( apply_filters('tc_display_customizr_headings', ( is_front_page() && 'page' == get_option( 'show_on_front' ) ) ) || is_feed() )
+        if ( ! TC_controller::$instance -> tc_is_post_page_heading()  )
           return;
 
         //Set single post/page icon with customizer options (since 3.2.0)
         add_filter ( 'tc_content_title_icon'    , array( $this , 'tc_set_post_page_icon' ) );
         //Prepare the headings for post, page, attachment
-        add_action ( '__before_content'         , array( $this , 'tc_render_headings_view' ) );
+        add_action ( "__before_content{$this -> loop_name}"         , array( $this , 'tc_render_headings_view' ) );
         //Populate heading with default content
         add_filter ( 'tc_headings_content_html' , array( $this , 'tc_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
@@ -277,10 +276,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
       }
 
 
-
-
       /**
-      * Return 1) the archive title html content OR 2) the archive title class OR 3) the boolean
+      * Return 1) the archive title html content OR 2) the archive title class
       * hook : tc_display_customizr_headings
       * @return  boolean
       *

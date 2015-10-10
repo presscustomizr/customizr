@@ -94,14 +94,14 @@ if ( ! class_exists( 'TC_post' ) ) :
       $icon_class = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'tc_post_format_icon', 'format-icon' ) :'' ;
 
       ob_start();
-      do_action( '__before_content{$this -> loop_name}' );
+      do_action( "__before_content{$this -> loop_name}" );
         ?>
           <section class="entry-content <?php echo $icon_class ?>">
               <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
               <?php wp_link_pages( array( 'before' => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>
           </section><!-- .entry-content -->
         <?php
-      do_action( '__after_content{$this -> loop_name}' );
+      do_action( "__after_content{$this -> loop_name}" );
       $html = ob_get_contents();
       if ($html) ob_end_clean();
       echo apply_filters( 'tc_post_content', $html );

@@ -1,6 +1,7 @@
 <?php
 /**
 * Breadcrumb for Customizr
+* Fired on 'wp'
 *
 *
 * @package      Customizr
@@ -85,15 +86,6 @@ class TC_breadcrumb {
     * @since Customizr 1.0
     */
     function tc_breadcrumb_display() {
-	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_breadcrumb') ) ) )
-	      return;
-
-	  	if ( ! apply_filters( 'tc_show_breadcrumb_in_context' , true ) )
-	      return;
-
-	  	if ( tc__f('__is_home')  && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_home' ) ) )
-	  		return;
-
 	  	//set the args properties
         $this -> args = $this -> _get_args();
 

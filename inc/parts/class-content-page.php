@@ -1,6 +1,7 @@
 <?php
 /**
 * Pages content actions
+* Fired on 'wp'
 *
 *
 * @package      Customizr
@@ -12,15 +13,17 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_page' ) ) :
-  class TC_page {
+  class TC_page extends TC_base {
     static $instance;
-    function __construct () {
+    function __construct( $_args = array() ) {
       self::$instance =& $this;
-      add_action( 'wp'                , array( $this , 'tc_set_page_hooks' ) );
+      // Instanciates the parent class.
+      parent::__construct( $_args );
+      $this -> tc_set_page_hooks();
     }
 
 
-        
+
     /***************************
     * PAGE HOOKS SETUP
     ****************************/
@@ -32,7 +35,7 @@ if ( ! class_exists( 'TC_page' ) ) :
     */
     function tc_set_page_hooks() {
       //add page content and footer to the __loop
-      add_action( '__loop'           , array( $this , 'tc_page_content' ) );
+      add_action( "__loop{$this -> loop_name}"           , array( $this , 'tc_page_content' ) );
       //page help blocks
       add_filter( 'the_content'       , array( $this, 'tc_maybe_display_img_smartload_help') , PHP_INT_MAX );
     }
@@ -46,12 +49,9 @@ if ( ! class_exists( 'TC_page' ) ) :
      * @since Customizr 3.0
      */
     function tc_page_content() {
-      if ( ! $this -> tc_page_display_controller() )
-        return;
-
       ob_start();
 
-        do_action( '__before_content' );
+        do_action( "__before_content{$this -> loop_name}" );
         ?>
 
         <div class="entry-content">
@@ -69,7 +69,7 @@ if ( ! class_exists( 'TC_page' ) ) :
         </div>
 
         <?php
-        do_action( '__after_content' );
+        do_action( "__after_content{$this -> loop_name}" );
 
       $html = ob_get_contents();
       if ($html) ob_end_clean();
@@ -87,29 +87,10 @@ if ( ! class_exists( 'TC_page' ) ) :
     * @since Customizr 3.4+
     */
     function tc_maybe_display_img_smartload_help( $the_content ) {
-      if ( ! ( $this -> tc_page_display_controller()  &&  in_the_loop() && TC_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
+      if ( ! in_the_loop() || ! TC_placeholders::tc_is_img_smartload_help_on( $the_content ) )
         return $the_content;
 
       return TC_placeholders::tc_print_smartload_help_block() . $the_content;
-    }
-
-
-
-    /******************************
-    * SETTERS / HELPERS / CALLBACKS
-    *******************************/
-    /**
-    * Page view controller
-    * @return  boolean
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function tc_page_display_controller() {
-      $tc_show_page_content = 'page' == tc__f('__post_type') 
-          && is_singular() 
-          && ! tc__f( '__is_home_empty');
-
-      return apply_filters( 'tc_show_page_content', $tc_show_page_content );
     }
 
   }//end of class

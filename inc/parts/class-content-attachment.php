@@ -12,11 +12,13 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_attachment' ) ) :
-    class TC_attachment {
+    class TC_attachment extends TC_base {
         static $instance;
-        function __construct () {
-            self::$instance =& $this;
-            add_action  ( '__loop'			              , array( $this , 'tc_attachment_content' ));
+        function __construct( $_args = array() ) {
+          self::$instance =& $this;
+          // Instanciates the parent class.
+          parent::__construct( $_args );
+          add_action  ( "__loop{$this -> loop_name}"			  , array( $this , 'tc_attachment_content' ));
         }
 
 
@@ -31,11 +33,9 @@ if ( ! class_exists( 'TC_attachment' ) ) :
         function tc_attachment_content() {
             //check conditional tags
             global $post;
-            if ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() )
-                return;
 
             ob_start();
-            do_action( '__before_content' );
+            do_action( "__before_content{$this -> loop_name}" );
             ?>
             <nav id="image-navigation" class="navigation" role="navigation">
                 <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous' , 'customizr' ) ); ?></span>
@@ -142,7 +142,7 @@ if ( ! class_exists( 'TC_attachment' ) ) :
 
             </section><!-- .entry-content -->
 
-            <?php do_action( '__after_content' ) ?>
+            <?php do_action( "__after_content{$this -> loop_name}" ) ?>
 
             <?php
             $html = ob_get_contents();

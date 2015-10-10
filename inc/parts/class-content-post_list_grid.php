@@ -88,7 +88,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_article_container_class'  , array( $this, 'tc_grid_container_set_classes' ) );
 
           //COMMENT BUBBLE
-          remove_filter( 'tc_the_title'             , array( TC_comments::$instance, 'tc_display_comment_bubble' ) , 1 );
+          remove_filter( 'tc_the_title'             , array( TC_comment_bubbles::$instance, 'tc_display_comment_bubble' ) , 1 );
           add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'tc_grid_display_comment_bubble' ) );
 
           //POST METAS
@@ -446,7 +446,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * inside loop
         */
         function tc_grid_display_comment_bubble( $_html ) {
-          return TC_comments::$instance -> tc_display_comment_bubble() . $_html;
+          return TC_comment_bubbles::$instance -> tc_display_comment_bubble() . $_html;
         }
 
 
@@ -489,7 +489,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           );
 
           printf('<style type="text/css" id="grid-%1$s">%2$s</style>',
-            $this -> _loop_name,
+            $this -> loop_name,
             $_css
           );
         }

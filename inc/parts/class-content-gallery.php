@@ -31,7 +31,7 @@ if ( ! class_exists( 'TC_gallery' ) ) :
        *
        */
       function tc_add_gallery_class( $_classes ){
-        if (  $this -> tc_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_style' ) ) ) )
+        if (  apply_filters( 'tc_gallery_style', esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_style' ) ) ) )
           array_push($_classes, 'tc-gallery-style');
         return $_classes;
       }
@@ -46,9 +46,6 @@ if ( ! class_exists( 'TC_gallery' ) ) :
        *
        */
       function tc_modify_attachment_link( $markup, $id, $size, $permalink, $icon, $text ) {
-
-        if ( ! $this -> tc_is_gallery_enabled() )
-          return $markup;
 
         $tc_gallery_fancybox = apply_filters( 'tc_gallery_fancybox', esc_attr( TC_utils::$inst -> tc_opt( 'tc_gallery_fancybox' ) ) , $id );
 
@@ -79,13 +76,6 @@ if ( ! class_exists( 'TC_gallery' ) ) :
 
 
         return $markup;
-      }
-
-      /*
-       * HELPERS
-       */
-      function tc_is_gallery_enabled(){
-        return apply_filters('tc_enable_gallery', esc_attr( TC_utils::$inst -> tc_opt('tc_enable_gallery') ) );
       }
   }//end of class
 endif;

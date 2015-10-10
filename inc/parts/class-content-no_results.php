@@ -1,7 +1,7 @@
 <?php
 /**
 * No results content actions
-*
+* Fired on 'wp'
 *
 * @package      Customizr
 * @subpackage   classes
@@ -12,11 +12,15 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_no_results' ) ) :
-  class TC_no_results {
+  class TC_no_results extends TC_base {
       static $instance;
-      function __construct () {
-          self::$instance =& $this;
-          add_action  ( '__loop'                        , array( $this , 'tc_no_result_content' ));
+      function __construct( $_args = array() ) {
+        self::$instance =& $this;
+        // Instanciates the parent class.
+        if ( ! isset(parent::$instance) )
+          parent::__construct( $_args );
+
+        add_action  ( "__loop{$this -> loop_name}"         , array( $this , 'tc_no_result_content' ));
       }
 
       /**

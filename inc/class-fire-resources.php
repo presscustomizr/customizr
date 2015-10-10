@@ -205,7 +205,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
                 'deep'   => array(
                   'classes' => array(),
                   'ids'     => array()
-                ) 
+                )
             ));
 
       $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_smoothscroll') ) );
@@ -219,7 +219,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
             ),
             'opts'     => array(
                 'excludeImg' => array( '.tc-holder-img' )
-            ) 
+            )
       ));
 			//gets current screen layout
     	$screen_layout      = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
@@ -277,7 +277,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	      wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.css' );
 
 	    //holder.js is loaded when featured pages are enabled AND FP are set to show images and at least one holder should be displayed.
-      $tc_show_featured_pages 	         = class_exists('TC_featured_pages') && TC_featured_pages::$instance -> tc_show_featured_pages();
+      $tc_show_featured_pages 	         = class_exists('TC_featured_pages') && TC_controller::$instance -> tc_are_featured_pages_on();
     	if ( 0 != $tc_show_featured_pages && $this -> tc_maybe_is_holder_js_required() ) {
 	    	wp_enqueue_script(
 	    		'holder',
@@ -554,7 +554,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
       /* Generate the random skin just once !*/
       if ( ! $this -> current_random_skin && is_array( $_skins ) )
         $this -> current_random_skin = array_rand( $_skins, 1 );
-      
+
       return $this -> current_random_skin;
     }
 

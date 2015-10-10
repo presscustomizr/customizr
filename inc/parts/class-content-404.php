@@ -12,15 +12,17 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_404' ) ) :
-  class TC_404 {
+  class TC_404 extends TC_base {
 
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
 
-      function __construct () {
+      function __construct( $_args = array() ) {
           self::$instance =& $this;
+          // Instanciates the parent class.
+          parent::__construct( $_args );
           //404 content
-          add_action  ( '__loop'                      , array( $this , 'tc_404_content' ));
+          add_action  ( "__loop{$this -> loop_name}"         , array( $this , 'tc_404_content' ));
       }
 
 
@@ -32,7 +34,7 @@ if ( ! class_exists( 'TC_404' ) ) :
        * @since Customizr 3.0
        */
       function tc_404_content() {
-          if ( !is_404() )
+          if ( ! is_404() )
               return;
 
           $content_404    = apply_filters( 'tc_404', TC_init::$instance -> content_404 );
