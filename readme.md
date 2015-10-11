@@ -1,4 +1,4 @@
-# Customizr v3.4.11 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=loop-lab)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.11 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=structure-experiment)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 

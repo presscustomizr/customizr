@@ -32,71 +32,71 @@ if ( ! class_exists( 'TC_controller' ) ) :
       if ( is_admin() )
         return;
       if ( $this -> tc_is_slider_possible() )
-        tc_new( array('content' => array( array('inc/parts', 'slider') ) ) );
+        tc_new( array('module' => array( array('inc/views/modules', 'slider') ) ) );
 
       //FEATURED PAGES
       if ( $this -> tc_are_featured_pages_on() )
-        tc_new( array('content' => array( array('inc/parts', 'featured_pages') ) ) );
+        tc_new( array('module' => array( array('inc/views/modules', 'featured_pages') ) ) );
 
       //BREADCRUMB
       if ( $this -> tc_is_breadcrumb_on() )
-        tc_new( array('content' => array( array('inc/parts', 'breadcrumb') ) ) );
+        tc_new( array('module' => array( array('inc/views/modules', 'breadcrumb') ) ) );
 
       //HEADINGS
       if ( $this -> tc_has_view_heading() )
-        tc_new( array('content' => array( array('inc/parts', 'headings') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'headings') ) ) );
 
       //PAGE
       if ( $this -> tc_is_page() )
-        tc_new( array('content' => array( array('inc/parts', 'page') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'page') ) ) );
 
       //SINGLE POST
       if ( $this -> tc_is_single_post() )
-        tc_new( array('content' => array( array('inc/parts', 'post') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'post') ) ) );
 
       //SINGLE ATTACHMENT
       if ( $this -> tc_is_single_attachment() )
-        tc_new( array('content' => array( array('inc/parts', 'attachment') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'attachment') ) ) );
 
       //POST LIST (IF GRID IS NOT ENABLED)
       if ( $this -> tc_is_post_list() && ! $this -> tc_is_grid_enabled() )
-        tc_new( array('content' => array( array('inc/parts', 'post_list') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'post_list') ) ) );
 
       //POST LIST GRID
       if ( $this -> tc_is_grid_enabled() )
-        tc_new( array('content' => array( array('inc/parts', 'post_list_grid') ) ) );
+        tc_new( array('module' => array( array('inc/views/modules', 'post_list_grid') ) ) );
 
       //404
       if ( is_404() )
-        tc_new( array('content' => array( array('inc/parts', '404') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', '404') ) ) );
 
       //NO SEARCH RESULTS
       if ( $this -> tc_is_no_search_results() )
-        tc_new( array('content' => array( array('inc/parts', 'no_results') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'no_results') ) ) );
 
       //COMMENTS
       if ( $this -> tc_are_comments_enabled() )
-        tc_new( array('content' => array( array('inc/parts', 'comments') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'comments') ) ) );
 
       //GALLERY
       if ( $this -> tc_is_gallery_eligible() )
-        tc_new( array('content' => array( array('inc/parts', 'gallery') ) ) );
+        tc_new( array('module' => array( array('inc/views/modules', 'gallery') ) ) );
 
       //COMMENT BUBBLES
       if ( $this -> tc_are_comment_bubbles_on() )
-        tc_new( array('content' => array( array('inc/parts', 'comment_bubbles') ) ) );
+        tc_new( array('module' => array( array('inc/views/modules', 'comment_bubbles') ) ) );
 
       //POST NAVIGATION
       if ( $this -> tc_are_post_nav_on() )
-        tc_new( array('content' => array( array('inc/parts', 'post_navigation') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'post_navigation') ) ) );
 
       //POST METAS
       if ( $this -> tc_are_metas_enabled() )
-        tc_new( array('content' => array( array('inc/parts', 'post_metas') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'post_metas') ) ) );
 
       //SIDEBARS
       if ( $this -> tc_are_sidebars_on() )
-        tc_new( array('content' => array( array('inc/parts', 'sidebar') ) ) );
+        tc_new( array('loop' => array( array('inc/views/loop', 'sidebar') ) ) );
     }
 
 

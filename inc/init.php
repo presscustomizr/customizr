@@ -102,15 +102,15 @@ if ( ! class_exists( 'TC___' ) ) :
             ),
             //the following files/classes define the action hooks for front end rendering : header, main content, footer
             'header'    =>   array(
-              array('inc/parts' , 'header_main'),
-              array('inc/parts' , 'menu'),
-              array('inc/parts' , 'nav_walker')
+              array('inc/views/header' , 'header_main'),
+              array('inc/views/header' , 'menu'),
+              array('inc/views/header' , 'nav_walker')
             ),
-            'content'   =>  array(
-              array('inc/parts', 'post_thumbnails'),
+            'module'   =>  array(
+              array('inc/views/modules', 'post_thumbnails'),
             ),
             'footer'    => array(
-              array('inc/parts', 'footer_main'),
+              array('inc/views/footer', 'footer_main'),
             ),
             'addons'    => apply_filters( 'tc_addons_classes' , array() )
         )//end of array

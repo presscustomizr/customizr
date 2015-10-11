@@ -23,7 +23,7 @@ if ( ! class_exists( 'TC_nav_walker' ) ) :
     /**
     * hook : nav_menu_css_class
     */
-    function tc_add_bootstrap_classes($classes, $item, $args, $depth ) { 
+    function tc_add_bootstrap_classes($classes, $item, $args, $depth ) {
       //check if $item is a dropdown ( a parent )
       //this is_dropdown property has been added in the the display_element() override method
       if ( $item -> is_dropdown ) {

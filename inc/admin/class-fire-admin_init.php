@@ -59,7 +59,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         return;
 
       if ( ! class_exists( 'TC_post_thumbnails' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), array( '_no_filter' => true ) );
+        TC___::$instance -> tc__( array('module' => array( array('inc/views/modules', 'post_thumbnails') ) ), array( '_no_filter' => true ) );
 
       TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
     }
@@ -80,9 +80,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         return;
 
       if ( ! class_exists( 'TC_post_thumbnails' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), array( '_no_filter' => true ) );
+        TC___::$instance -> tc__( array('module' => array( array('inc/views/modules', 'post_thumbnails') ) ), array( '_no_filter' => true ) );
       if ( ! class_exists( 'TC_slider' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'slider') ) ), array( '_no_filter' => true ) );
+        TC___::$instance -> tc__( array('module' => array( array('inc/views/modules', 'slider') ) ), array( '_no_filter' => true ) );
 
       TC_slider::$instance -> tc_cache_posts_slider();
     }

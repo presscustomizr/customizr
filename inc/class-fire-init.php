@@ -374,12 +374,12 @@ if ( ! class_exists( 'TC_init' ) ) :
       //=> instanciate the default loop using the main $wp_query
       function tc_fires_views(){
         tc_new(
-          array('views' => array( array('inc', 'base') ) ),
+          array('views' => array( array('inc/views', 'base') ) ),
           $_args = array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
         );
-        tc_new( array('views' => array( array('inc', 'early_hooks') ) ) );
+        tc_new( array('views' => array( array('inc/views', 'early_hooks') ) ) );
         //controller extends loop_base => we might need some of the loop_base property ?
-        tc_new( array('views' => array( array('inc', 'controller') ) ) );
+        tc_new( array('views' => array( array('inc/views', 'controller') ) ) );
       }
 
 
