@@ -12,8 +12,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_early_hooks' ) ) :
-  class TC_early_hooks {
+if ( ! class_exists( 'TC_loop_setup' ) ) :
+  class TC_loop_setup {
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
 
@@ -22,6 +22,10 @@ if ( ! class_exists( 'TC_early_hooks' ) ) :
         /***************************************************************************************************************
         * POST LISTS EARLY HOOKS
         ***************************************************************************************************************/
+        //image sizes callbacks must be fired on instanciation == after_setup_theme:10
+        //because declare filters used on after_setup_theme:20
+        $this -> tc_set_user_defined_posts_img_sizes();
+
         //Set new image size can be set here ( => wp hook would be too late) (since 3.2.0)
         add_action( 'init'                    , array( $this, 'tc_set_post_lists_thumb_early_options') );
         //modify the query with pre_get_posts
@@ -35,6 +39,28 @@ if ( ! class_exists( 'TC_early_hooks' ) ) :
       /***************************************************************************************************************
       * POST LISTS EARLY ACTIONS
       ***************************************************************************************************************/
+      /**
+      * Set user defined options for images
+      * Thumbnail's height
+      * hook : after_setup_theme:10
+      *
+      * @package Customizr
+      * @since Customizr 3.1.23
+      */
+      function tc_set_user_defined_posts_img_sizes() {
+        //add "rectangular" image size
+        if ( false !== strpos( TC_utils::$inst -> tc_opt('tc_post_list_thumb_shape'), 'rectangular') ) {
+          $_user_height     = false !== TC_utils::$inst -> tc_opt( 'tc_post_list_thumb_height' ) ? esc_attr( TC_utils::$inst -> tc_opt('tc_post_list_thumb_height' ) ) : '250';
+          $_user_height     = false !== TC_utils::$inst -> tc_opt('tc_post_list_thumb_shape') ? '250' : $_user_height;
+          $_rectangular_size    = apply_filters(
+            'tc_rectangular_size' ,
+            array( 'width' => '1170' , 'height' => $_user_height , 'crop' => true )
+          );
+          add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
+        }
+      }
+
+
       /**
       * hook : init
       * @return void

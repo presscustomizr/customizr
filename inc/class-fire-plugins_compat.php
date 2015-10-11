@@ -290,7 +290,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
         // Featured Pages
         if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
-          $pll_tc_fp_areas = TC_init::$instance -> fp_ids;
+          $pll_tc_fp_areas = TC_modules_setup::$instance -> fp_ids;
           // Add featured pages button text to Polylang's string translation panel
           if ( isset( $pll_tc_options[ 'tc_featured_page_button_text'] ) )
             pll_register_string( $tc_controls_map["tc_featured_page_button_text"]["label"], esc_attr($pll_tc_options[ 'tc_featured_page_button_text']), $polylang_group );
@@ -306,15 +306,15 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       // Front
       // If Polylang is active, translate/swap featured page buttons/text/link and slider
       if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
-        /** 
+        /**
         * Tax filtering (home/blog posts filtered by cat)
         * @param array of term ids
         */
         function tc_pll_translate_tax( $term_ids ){
           if ( ! (is_array( $term_ids ) && ! empty( $term_ids ) ) )
             return $term_ids;
-          
-          $translated_terms = array();    
+
+          $translated_terms = array();
           foreach ( $term_ids as $id ){
               $translated_term = pll_get_term( $id );
               $translated_terms[] = $translated_term ? $translated_term : $id;
@@ -326,7 +326,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         add_filter('tc_opt_tc_blog_restrict_by_cat', 'tc_pll_translate_tax');
         /*end tax filtering*/
 
-        /* Slider */  
+        /* Slider */
         // Substitute any registered slider name
         add_filter( 'tc_slider_name_id', 'pll__' );
 
@@ -534,16 +534,16 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
       function tc_woocommerce_disable_link_scroll( $excl ){
         if ( false == TC_utils::$inst->tc_opt('tc_link_scroll') ) return $excl;
-        
+
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
             $excl = array();
-          
+
           if ( ! is_array( $excl['deep'] ) )
             $excl['deep'] = array() ;
-          
+
           if ( ! is_array( $excl['deep']['classes'] ) )
-              $excl['deep']['classes'] = array();        
+              $excl['deep']['classes'] = array();
 
           $excl['deep']['classes'][] = 'wc-tabs';
         }

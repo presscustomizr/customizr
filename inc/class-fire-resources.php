@@ -677,7 +677,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
       if ( ! ( class_exists('TC_featured_pages') && TC_featured_pages::$instance -> tc_show_featured_pages_img() ) )
         return $bool;
 
-      $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+      $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_modules_setup::$instance -> fp_ids);
 
       foreach ( $fp_ids as $fp_single_id ){
         $featured_page_id = TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id );

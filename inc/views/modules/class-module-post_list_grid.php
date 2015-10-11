@@ -405,7 +405,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_set_thumb_size(){
           $thumb = ( $this -> tc_get_grid_section_cols() == '1' ) ? 'tc_grid_full_size' : 'tc_grid_size';
-          return TC_init::$instance -> $thumb;
+          return TC_modules_setup::$instance -> $thumb;
         }
 
 

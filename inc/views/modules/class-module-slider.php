@@ -247,7 +247,7 @@ class TC_slider {
   private function tc_get_the_slides( $slider_name_id, $img_size ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
-      return apply_filters( 'tc_default_slides', TC_init::$instance -> default_slides );
+      return apply_filters( 'tc_default_slides', TC_modules_setup::$instance -> default_slides );
     else if ( 'tc_posts_slider' == $slider_name_id ) {
       $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! TC___::$instance -> tc_is_customizing() );
       //Do not use transient when in the customizer preview (this class is not called in the customize left panel)

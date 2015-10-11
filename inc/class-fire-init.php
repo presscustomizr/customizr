@@ -18,15 +18,10 @@ if ( ! class_exists( 'TC_init' ) ) :
       //declares the filtered default settings
       public $global_layout;
       public $tc_thumb_size;
-      public $slider_full_size;
-      public $slider_size;
-      public $tc_grid_full_size;
-      public $tc_grid_size;
       public $skins;
       public $skin_color_map;
       public $font_pairs;
       public $font_selectors;
-      public $fp_ids;
       public $socials;
       public $sidebar_widgets;
       public $footer_widgets;
@@ -73,11 +68,6 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           //Default images sizes
           $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
-          $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
-          $this -> slider_size        = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
-          $this -> tc_grid_full_size  = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
-          $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
-
 
           //Default skins array
           $this -> skins              =  array(
@@ -185,8 +175,6 @@ if ( ! class_exists( 'TC_init' ) ) :
           );
 
 
-          //Default featured pages ids
-          $this -> fp_ids             = array( 'one' , 'two' , 'three' );
 
           //Default social networks
           $this -> socials            = array(
@@ -317,43 +305,6 @@ if ( ! class_exists( 'TC_init' ) ) :
             'text'              => __( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.' , 'customizr' )
           );
 
-          //Default slides content
-          $this -> default_slides     = array(
-            1 => array(
-              'title'         =>  '',
-              'text'          =>  '',
-              'button_text'   =>  '',
-              'link_id'       =>  null,
-              'link_url'      =>  null,
-              'active'        =>  'active',
-              'color_style'   =>  '',
-              'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'inc/assets/img/customizr-theme-responsive.png',
-                                          __( 'Customizr is a clean responsive theme' , 'customizr' )
-                                  )
-            ),
-
-            2 => array(
-              'title'         =>  '',
-              'text'          =>  '',
-              'button_text'   =>  '',
-              'link_id'       =>  null,
-              'link_url'      =>  null,
-              'active'        =>  '',
-              'color_style'   =>  '',
-              'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'inc/assets/img/customizr-theme-customizer.png',
-                                          __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
-                                  )
-            )
-          );///end of slides array
-
-          //Set image options set by user @since v3.2.0
-          //! must be included in utils to be available in admin for plugins like regenerate thumbnails
-          add_action( 'after_setup_theme'                      , array( $this, 'tc_set_user_defined_settings'));
-
-          //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, post-thumbnails
-          add_action( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ));
           //registers the menu
           add_action( 'after_setup_theme'                       , array( $this, 'tc_register_menus'));
 
@@ -369,12 +320,17 @@ if ( ! class_exists( 'TC_init' ) ) :
           add_action( 'after_setup_theme'                       , array( $this, 'tc_fires_controllers') );
           add_action( 'after_setup_theme'                       , array( $this, 'tc_fires_views') );
 
+          //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, post-thumbnails
+          //IMPORTANT : the image sizes are registered here. Some sizes might be filtered by callbacks declared in the early hooks on 'after_setup_theme'
+          //That's tc_fires_early_hooks must be hooked on after_setup_theme with a LOWER priority
+          add_action( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ), 20 );
+
 
       }//end of constructor
 
       function tc_fires_early_hooks() {
-        tc_new( array('early' => array( array('inc/early-hooks', 'loop_hooks') ) ) );
-        tc_new( array('early' => array( array('inc/early-hooks', 'modules_hooks') ) ) );
+        tc_new( array('early' => array( array('inc/early-hooks', 'loop_setup') ) ) );
+        tc_new( array('early' => array( array('inc/early-hooks', 'modules_setup') ) ) );
       }
 
       function tc_fires_controllers() {
@@ -409,95 +365,6 @@ if ( ! class_exists( 'TC_init' ) ) :
           array('views' => array( array('inc/views', 'footer_view') ) ),
           array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
         );
-
-
-
-
-
-      }
-
-
-
-      /**
-      * Set user defined options for images
-      * Thumbnail's height
-      * Slider's height
-      * hook : after_setup_theme
-      *
-      * @package Customizr
-      * @since Customizr 3.1.23
-      */
-      function tc_set_user_defined_settings() {
-        $_options = get_option('tc_theme_options');
-        //add "rectangular" image size
-        if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
-          $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
-          $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
-          $_rectangular_size    = apply_filters(
-            'tc_rectangular_size' ,
-            array( 'width' => '1170' , 'height' => $_user_height , 'crop' => true )
-          );
-          add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
-        }
-
-        if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) && isset ( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
-            add_filter( 'tc_slider_full_size'    , array($this,  'tc_set_slider_img_height') );
-            add_filter( 'tc_slider_size'         , array($this,  'tc_set_slider_img_height') );
-        }
-
-
-        /***********
-        *** GRID ***
-        ***********/
-        if ( isset( $_options['tc_grid_thumb_height'] ) ) {
-            $_user_height  = esc_attr( $_options['tc_grid_thumb_height'] );
-
-        }
-        $tc_grid_full_size     = $this -> tc_grid_full_size;
-        $tc_grid_size          = $this -> tc_grid_size;
-        $_user_grid_height     = isset( $_options['tc_grid_thumb_height'] ) && is_numeric( $_options['tc_grid_thumb_height'] ) ? esc_attr( $_options['tc_grid_thumb_height'] ) : $tc_grid_full_size['height'];
-
-        add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $_user_grid_height, $tc_grid_full_size['crop'] );
-        add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
-
-        if ( $_user_grid_height != $tc_grid_full_size['height'] )
-          add_filter( 'tc_grid_full_size', array( $this,  'tc_set_grid_img_height') );
-        if ( $_user_grid_height != $tc_grid_size['height'] )
-          add_filter( 'tc_grid_size'     , array( $this,  'tc_set_grid_img_height') );
-
-      }
-
-
-
-      /**
-      * Set slider new image sizes
-      * Callback of slider_full_size and slider_size filters
-      * hook : might be called from after_setup_theme
-      * @package Customizr
-      * @since Customizr 3.2.0
-      *
-      */
-      function tc_set_slider_img_height( $_default_size ) {
-        $_options = get_option('tc_theme_options');
-
-        $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
-        return $_default_size;
-      }
-
-
-      /**
-      * Set post list desgin new image sizes
-      * Callback of tc_grid_full_size and tc_grid_size filters
-      *
-      * @package Customizr
-      * @since Customizr 3.1.12
-      *
-      */
-      function tc_set_grid_img_height( $_default_size ) {
-        $_options = get_option('tc_theme_options');
-
-        $_default_size['height'] =  esc_attr( $_options['tc_grid_thumb_height'] ) ;
-        return $_default_size;
       }
 
 
@@ -545,14 +412,6 @@ if ( ! class_exists( 'TC_init' ) ) :
         //post thumbnails for featured pages and post lists (archive, search, ...)
         $tc_thumb_size    = apply_filters( 'tc_thumb_size' , $this -> tc_thumb_size );
         add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
-
-        //slider full width
-        $slider_full_size = apply_filters( 'tc_slider_full_size' , $this -> slider_full_size );
-        add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
-
-        //slider boxed
-        $slider_size      = apply_filters( 'tc_slider_size' , $this -> slider_size );
-        add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
 
         //add support for svg and svgz format in media upload
         add_filter( 'upload_mimes'                        , array( $this , 'tc_custom_mtypes' ) );

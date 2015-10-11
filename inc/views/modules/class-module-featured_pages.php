@@ -70,7 +70,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       $tc_show_featured_pages_img     = $this -> tc_show_featured_pages_img();
 
   		//gets the featured pages array and sets the fp layout
-  		$fp_ids                         = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+  		$fp_ids                         = apply_filters( 'tc_featured_pages_ids' , TC_modules_setup::$instance -> fp_ids);
       $fp_nb                          = count($fp_ids);
       $fp_per_row                     = apply_filters( 'tc_fp_per_line', 3 );
 

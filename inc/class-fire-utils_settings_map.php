@@ -2459,7 +2459,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $fp_setting_control = array();
 
       //gets the featured pages id from init
-      $fp_ids       = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+      $fp_ids       = apply_filters( 'tc_featured_pages_ids' , TC_modules_setup::$instance -> fp_ids);
 
       //dropdown field generator
       foreach ( $fp_ids as $id ) {
@@ -2516,7 +2516,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       foreach ( $socials as $key => $data ) {
         $priority += $incr;
         $type      = isset( $data['type'] ) && ! is_null( $data['type'] ) ? $data['type'] : 'url';
-        
+
         $_new_map[$key]  = array(
                       'default'       => ( isset($data['default']) && !is_null($data['default']) ) ? $data['default'] : null,
                       'sanitize_callback' => array( $this , 'tc_sanitize_' . $type ),

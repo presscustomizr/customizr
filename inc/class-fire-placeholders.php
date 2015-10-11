@@ -810,7 +810,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     function tc_is_one_fp_set() {
       $_fp_sets = array();
-      $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+      $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_modules_setup::$instance -> fp_ids);
       if ( ! is_array($fp_ids) )
         return;
       foreach ($fp_ids as $fp_single_id ) {
