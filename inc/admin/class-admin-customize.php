@@ -621,7 +621,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
         $_is_pro = 'customizr-pro' == TC___::$theme_name;
           printf( '<span class="tc-rate-link">%1$s %2$s, <br/>%3$s <a href="%4$s" title="%5$s" class="tc-stars" target="_blank">%6$s</a> %7$s</span>',
             __( 'If you like' , 'customizr' ),
-            ! $_is_pro ? __( 'the Customizr theme' , 'customizr') : __( 'the Customizr pro theme' , 'customizr'),
+            ! $_is_pro ? __( 'the Customizr theme' , 'customizr') : __( 'the Customizr Pro theme' , 'customizr'),
             __( 'we would love to receive a' , 'customizr' ),
             ! $_is_pro ? 'https://' . 'wordpress.org/support/view/theme-reviews/customizr?filter=5' : sprintf('%sextension/customizr-pro/#comments', TC_WEBSITE ),
             __( 'Review the Customizr theme' , 'customizr' ),
