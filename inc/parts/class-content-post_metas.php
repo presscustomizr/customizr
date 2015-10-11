@@ -1,6 +1,7 @@
 <?php
 /**
 * Post metas content actions
+* Fired on 'wp'
 * Since 3.1.20, displays all levels of any hierarchical taxinomies by default and for all types of post (including hierarchical CPT). This feature can be disabled with a the filter : tc_display_taxonomies_in_breadcrumb (set to true by default). In the case of hierarchical post types (like page or hierarchical CPT), the taxonomy trail is only displayed for the higher parent.
 *
 * @package      Customizr
@@ -12,22 +13,27 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_post_metas' ) ) :
-    class TC_post_metas {
+    class TC_post_metas extends TC_base {
         static $instance;
-        function __construct () {
+
+        function __construct( $_args = array() ) {
           self::$instance =& $this;
+          // Instanciates the parent class.
+          if ( ! isset(parent::$instance) )
+            parent::__construct( $_args );
+
           //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( 'template_redirect'                            , array( $this , 'tc_set_visibility_options' ) , 10 );
+          add_action( 'template_redirect'             , array( $this , 'tc_set_customizer_visibility_filters' ) , 10 );
            //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( 'template_redirect'                            , array( $this , 'tc_set_design_options' ) , 20 );
+          add_action( 'template_redirect'             , array( $this , 'tc_set_design_options' ) , 20 );
           //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( '__after_content_title'         , array( $this , 'tc_set_post_metas_hooks' ), 20 );
+          add_action( "__after_content_title"         , array( $this , 'tc_set_post_metas_hooks' ), 20 );
 
         }
 
 
         /***********************
-        * VISIBILITY HOOK SETUP
+        * CUSTOMIZER VISIBILITY HOOK SETUP
         ***********************/
         /**
         * Set the post metas visibility based on Customizer options
@@ -37,79 +43,25 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.0
         */
-        function tc_set_visibility_options() {
-          //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
+        function tc_set_customizer_visibility_filters() {
+          if ( ! TC___::$instance -> tc_is_customizing() )
+            return;
+
           if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) ) {
-            if ( TC___::$instance -> tc_is_customizing() )
               add_filter( 'body_class' , array( $this , 'tc_hide_all_post_metas') );
-            else{
-              add_filter( 'tc_show_post_metas' , '__return_false' );
-              return;
-            }
           }
+
           if ( is_singular() && ! is_page() && ! tc__f('__is_home') ) {
-              if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ) {
-                  add_filter( 'tc_show_post_metas' , '__return_true' );
-                  return;
-              }
-
-              if ( TC___::$instance -> tc_is_customizing() ) {
-                  add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
-                  add_filter( 'tc_show_post_metas' , '__return_true' );
-              }
-              else
-                  add_filter( 'tc_show_post_metas' , '__return_false' );
-              return;
+            add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
           }
+
           if ( ! is_singular() && ! tc__f('__is_home') && ! is_page() ) {
-              if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) ) {
-                  add_filter( 'tc_show_post_metas' , '__return_true' );
-                  return;
-              }
-
-              if ( TC___::$instance -> tc_is_customizing() ) {
-                  add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
-                  add_filter( 'tc_show_post_metas' , '__return_true' );
-              }
-              else
-                  add_filter( 'tc_show_post_metas' , '__return_false' );
-              return;
+            add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
           }
+
           if ( tc__f('__is_home') ) {
-              if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) ) {
-                  add_filter( 'tc_show_post_metas' , '__return_true' );
-                  return;
-              }
-              if ( TC___::$instance -> tc_is_customizing() ) {
-                  add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
-                  add_filter( 'tc_show_post_metas' , '__return_true' );
-              }
-              else
-                  add_filter( 'tc_show_post_metas' , '__return_false' );
+            add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
           }
-        }
-
-
-
-        /**
-        * Default metas visibility controller
-        * tc_show_post_metas gets filtered by tc_set_visibility_options() called early in template_redirect
-        * @return  boolean
-        * @package Customizr
-        * @since Customizr 3.2.6
-        */
-        private function tc_show_post_metas() {
-          global $post;
-          //when do we display the metas ?
-          //1) default is : not on home page, 404, search page
-          //2) +filter conditions
-          return apply_filters(
-              'tc_show_post_metas',
-              ! tc__f('__is_home')
-              && ! is_404()
-              && ! 'page' == $post -> post_type
-              && in_array( get_post_type(), apply_filters('tc_show_metas_for_post_types' , array( 'post') ) )
-          );
         }
 
 
@@ -143,8 +95,6 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @since Customizr 3.2.2
         */
         function tc_set_post_metas_hooks() {
-          if ( ! $this -> tc_show_post_metas() )
-            return;
           global $post;
           $_model = array();
           //BUILD MODEL

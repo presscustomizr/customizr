@@ -1,6 +1,7 @@
 <?php
 /**
 * Sidebar actions
+* Fired on 'wp'
 * The default widgets areas are defined as properties of the TC_utils class in class-fire-utils.php
 * TC_utils::$inst -> sidebar_widgets for left and right sidebars
 * TC_utils::$inst -> footer_widgets for the footer
@@ -16,11 +17,15 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_sidebar' ) ) :
-  class TC_sidebar {
+  class TC_sidebar extends TC_base {
       static $instance;
-      function __construct () {
+      function __construct( $_args = array() ) {
         self::$instance =& $this;
-        add_action ( 'wp'       , array( $this , 'tc_set_sidebar_hooks' ) );
+        // Instanciates the parent class.
+        if ( ! isset(parent::$instance) )
+          parent::__construct( $_args );
+
+        $this  -> tc_set_sidebar_hooks();
       }
 
 
@@ -35,11 +40,11 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
       */
       function tc_set_sidebar_hooks() {
         //displays left sidebar
-    		add_action ( '__before_article_container'  , array( $this , 'tc_sidebar_display' ) );
+    		add_action ( "__before_article_container{$this -> loop_name}"  , array( $this , 'tc_sidebar_display' ) );
     		add_action ( '__before_left_sidebar'       , array( $this , 'tc_social_in_sidebar' ) );
 
         //displays right sidebar
-    		add_action ( '__after_article_container'   , array( $this , 'tc_sidebar_display' ) );
+    		add_action ( "__after_article_container{$this -> loop_name}"   , array( $this , 'tc_sidebar_display' ) );
     		add_action ( '__before_right_sidebar'      , array( $this , 'tc_social_in_sidebar' ) );
 
         //since 3.2.0 show/hide the WP built-in widget icons
@@ -61,12 +66,9 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
       * @since Customizr 1.0
       */
       function tc_sidebar_display() {
-        //first check if home and no content option is choosen
-        if ( tc__f( '__is_home_empty') )
-          return;
         //gets current screen layout
         $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
-		    // GY: add relative right and left for LTR/RTL sites
+        // GY: add relative right and left for LTR/RTL sites
         $rel_left             = is_rtl() ? 'right' : 'left';
         $rel_right            = is_rtl() ? 'left' : 'right';
         //gets position from current hook and checks the context
@@ -79,6 +81,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
           return;
         if ( 'right' == $position && $screen_layout != 'r' && $screen_layout != 'b' )
           return;
+
 
         //gets the global layout settings
         $global_layout        = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );

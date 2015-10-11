@@ -107,23 +107,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('inc/parts' , 'nav_walker')
             ),
             'content'   =>  array(
-              //array('inc/parts', '404'),
-              //array('inc/parts', 'attachment'),
-              //array('inc/parts', 'breadcrumb'),
-              //array('inc/parts', 'comments'),
-              //array('inc/parts', 'featured_pages'),
-              //array('inc/parts', 'gallery'),
-              //array('inc/parts', 'headings'),
-              //array('inc/parts', 'no_results'),
-              //array('inc/parts', 'page'),
               array('inc/parts', 'post_thumbnails'),
-              //array('inc/parts', 'post'),
-              //array('inc/parts', 'post_list'),
-              //array('inc/parts', 'post_list_grid'),
-              array('inc/parts', 'post_metas'),
-              //array('inc/parts', 'post_navigation'),
-              array('inc/parts', 'sidebar'),
-              array('inc/parts', 'slider')
             ),
             'footer'    => array(
               array('inc/parts', 'footer_main'),

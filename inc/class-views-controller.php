@@ -31,6 +31,9 @@ if ( ! class_exists( 'TC_controller' ) ) :
     function tc_fire_views_on_query_ready() {
       if ( is_admin() )
         return;
+      if ( $this -> tc_is_slider_possible() )
+        tc_new( array('content' => array( array('inc/parts', 'slider') ) ) );
+
       //FEATURED PAGES
       if ( $this -> tc_are_featured_pages_on() )
         tc_new( array('content' => array( array('inc/parts', 'featured_pages') ) ) );
@@ -86,6 +89,14 @@ if ( ! class_exists( 'TC_controller' ) ) :
       //POST NAVIGATION
       if ( $this -> tc_are_post_nav_on() )
         tc_new( array('content' => array( array('inc/parts', 'post_navigation') ) ) );
+
+      //POST METAS
+      if ( $this -> tc_are_metas_enabled() )
+        tc_new( array('content' => array( array('inc/parts', 'post_metas') ) ) );
+
+      //SIDEBARS
+      if ( $this -> tc_are_sidebars_on() )
+        tc_new( array('content' => array( array('inc/parts', 'sidebar') ) ) );
     }
 
 
@@ -378,6 +389,115 @@ if ( ! class_exists( 'TC_controller' ) ) :
     */
     function tc_is_post_navigation_enabled(){
       return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
+    }
+
+
+
+    /***************************************************************************************************************
+    * POST METAS
+    ***************************************************************************************************************/
+    /**
+    *
+    * @package Customizr
+    * @since Customizr 3.4.11
+    */
+    function tc_are_metas_enabled() {
+      global $post;
+      //if customizing context, always render.
+      //Will be hidden in the DOM with a body class filter
+      $_bool = false;
+      if ( TC___::$instance -> tc_is_customizing() )
+        $_bool = true;
+
+      if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
+        $_bool = false;
+
+      if ( is_singular() && ! is_page() && ! tc__f('__is_home') ) {
+        if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) )
+          $_bool = true;
+      }
+
+      if ( ! is_singular() && ! tc__f('__is_home') && ! is_page() ) {
+        if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) )
+          $_bool = true;
+      }
+
+      if ( tc__f('__is_home') ) {
+        if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) )
+          $_bool = true;
+      }
+
+      //additional conditions here
+      return apply_filters(
+        'tc_show_post_metas',
+        $_bool
+        && ! is_404()
+        && 'page' != $post -> post_type
+        && in_array( get_post_type(), apply_filters('tc_show_metas_for_post_types' , array( 'post') ) )
+      );
+    }
+
+
+    /***************************************************************************************************************
+    * SIDEBAR
+    ***************************************************************************************************************/
+    function tc_are_sidebars_on() {
+      //Check if home and no content option is choosen
+      return apply_filters( 'tc_show_sidebars' , ! tc__f( '__is_home_empty') );
+    }
+
+
+
+    /***************************************************************************************************************
+    * SLIDER
+    ***************************************************************************************************************/
+    //Do we have a slider to display in this context ?
+    function tc_is_slider_possible() {
+      //gets the front slider if any
+      $tc_front_slider              = esc_attr(TC_utils::$inst->tc_opt( 'tc_front_slider' ) );
+      //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
+      $_show_slider = tc__f('__is_home') ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
+      //gets the actual page id if we are displaying the posts page
+      $queried_id                   = $this -> tc_get_real_id();
+
+      return apply_filters( 'tc_show_slider' , $_show_slider && $this -> tc_is_slider_active( $queried_id) );
+    }
+
+
+    /**
+    * helper
+    * returns the actual page id if we are displaying the posts page
+    * @return  boolean
+    *
+    */
+    function tc_is_slider_active( $queried_id ) {
+      //is the slider set to on for the queried id?
+      if ( tc__f('__is_home') && TC_utils::$inst->tc_opt( 'tc_front_slider' ) )
+        return apply_filters( 'tc_slider_active_status', true , $queried_id );
+
+      $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
+      if ( ! empty( $_slider_on ) && $_slider_on )
+        return apply_filters( 'tc_slider_active_status', true , $queried_id );
+
+      return apply_filters( 'tc_slider_active_status', false , $queried_id );
+    }
+
+
+
+
+    /***************************************************************************************************************
+    * HELPERS
+    ***************************************************************************************************************/
+    /**
+    * helper
+    * returns the actual page id if we are displaying the posts page
+    * @return  number
+    *
+    */
+    function tc_get_real_id() {
+      global $wp_query;
+      $queried_id  = get_queried_object_id();
+      return ( ! tc__f('__is_home') && $wp_query -> is_posts_page && ! empty($queried_id) ) ? $queried_id : get_the_ID();
     }
 
   }//end of class

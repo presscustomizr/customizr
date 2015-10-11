@@ -1,7 +1,7 @@
 <?php
 /**
 * Slider Model / Views / Helpers Class
-*
+* Fired on 'wp'
 *
 * @package      Customizr
 * @subpackage   classes
@@ -476,17 +476,13 @@ class TC_slider {
   *
   */
   private function tc_get_slider_model() {
-    //Do we have a slider to display in this context ?
-    if ( ! $this -> tc_is_slider_possible() )
-      return array();
-
     //gets the actual page id if we are displaying the posts page
-    $queried_id                   = $this -> tc_get_real_id();
+    $queried_id                   = $this -> tc_get_slider_real_id();
+
+    if ( ! TC_controller::$instance -> tc_is_slider_active( $queried_id) )
+      return array();
 
     $slider_name_id               = $this -> tc_get_current_slider( $queried_id );
-
-    if ( ! $this -> tc_is_slider_active( $queried_id) )
-      return array();
 
     if ( ! empty( self::$sliders_model ) && is_array( self::$sliders_model ) && array_key_exists( $slider_name_id, self::$sliders_model ) )
       return self::$sliders_model[ $slider_name_id ];
@@ -874,7 +870,7 @@ class TC_slider {
 
     //display edit link for logged in users with  edit_post capabilities
     //upload_files cap isn't a good lower limit 'cause for example and Author can upload_files but actually cannot edit medias he/she hasn't uploaded
-    
+
     $show_slide_edit_link  = ( is_user_logged_in() && current_user_can( 'edit_post', $id ) ) ? true : false;
     $show_slide_edit_link  = apply_filters('tc_show_slide_edit_link' , $show_slide_edit_link && ! is_null($data['link_id']), $id );
 
@@ -903,7 +899,7 @@ class TC_slider {
   function tc_render_slider_edit_link_view( $slides, $slider_name_id ) {
     if ( 'demo' == $slider_name_id )
       return;
-    
+
     $show_slider_edit_link    = false;
 
     //We have to show the slider edit link to
@@ -913,11 +909,11 @@ class TC_slider {
       $show_slider_edit_link = ( is_user_logged_in() && current_user_can('edit_theme_options') ) ? true : false;
       $_edit_link            = TC_utils::tc_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     }else if ( is_singular() ){ // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
-      global $post;  
+      global $post;
       $show_slider_edit_link = ( is_user_logged_in() && ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ) ? true : false;
       $_edit_link            = get_edit_post_link( $post -> ID ) . '#slider_sectionid';
     }
- 
+
     $show_slider_edit_link = apply_filters( 'tc_show_slider_edit_link' , $show_slider_edit_link, $slider_name_id );
     if ( ! $show_slider_edit_link )
       return;
@@ -1085,30 +1081,10 @@ class TC_slider {
   * @return  number
   *
   */
-  private function tc_get_real_id() {
-    global $wp_query;
-    $queried_id                   = get_queried_object_id();
-    return apply_filters( 'tc_slider_get_real_id', ( ! tc__f('__is_home') && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+  private function tc_get_slider_real_id() {
+    return apply_filters( 'tc_slider_get_real_id', TC_controller::$instance -> tc_get_real_id() );
   }
 
-
-  /**
-  * helper
-  * returns the actual page id if we are displaying the posts page
-  * @return  boolean
-  *
-  */
-  private function tc_is_slider_active( $queried_id ) {
-    //is the slider set to on for the queried id?
-    if ( tc__f('__is_home') && TC_utils::$inst->tc_opt( 'tc_front_slider' ) )
-      return apply_filters( 'tc_slider_active_status', true , $queried_id );
-
-    $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
-    if ( ! empty( $_slider_on ) && $_slider_on )
-      return apply_filters( 'tc_slider_active_status', true , $queried_id );
-
-    return apply_filters( 'tc_slider_active_status', false , $queried_id );
-  }
 
 
   /**
@@ -1121,7 +1097,7 @@ class TC_slider {
   function tc_set_demo_slider_height( $_h ) {
     //this custom demo height is applied when :
     //1) current slider is demo
-    if ( 'demo' != $this -> tc_get_current_slider( $this -> tc_get_real_id() ) )
+    if ( 'demo' != $this -> tc_get_current_slider( $this -> tc_get_slider_real_id() ) )
       return $_h;
 
     //2) height option has not been changed by user yet
