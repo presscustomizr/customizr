@@ -64,7 +64,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
   	* @since Customizr 3.0
   	*/
     function tc_fp_block_display() {
-      if ( ! TC_controller::$instance -> tc_are_featured_pages_on()  )
+      if ( ! TC_modules_control::$instance -> tc_are_featured_pages_on()  )
         return;
 
       $tc_show_featured_pages_img     = $this -> tc_show_featured_pages_img();

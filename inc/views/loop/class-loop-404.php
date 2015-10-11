@@ -12,7 +12,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_404' ) ) :
-  class TC_404 extends TC_base {
+  class TC_404 extends TC_loop_view {
 
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;

@@ -479,7 +479,7 @@ class TC_slider {
     //gets the actual page id if we are displaying the posts page
     $queried_id                   = $this -> tc_get_slider_real_id();
 
-    if ( ! TC_controller::$instance -> tc_is_slider_active( $queried_id) )
+    if ( ! TC_modules_control::$instance -> tc_is_slider_active( $queried_id) )
       return array();
 
     $slider_name_id               = $this -> tc_get_current_slider( $queried_id );
@@ -1082,7 +1082,7 @@ class TC_slider {
   *
   */
   private function tc_get_slider_real_id() {
-    return apply_filters( 'tc_slider_get_real_id', TC_controller::$instance -> tc_get_real_id() );
+    return apply_filters( 'tc_slider_get_real_id', TC_modules_control::$instance -> tc_get_real_id() );
   }
 
 

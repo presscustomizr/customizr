@@ -365,21 +365,55 @@ if ( ! class_exists( 'TC_init' ) ) :
           add_filter( 'body_class'                              , array( $this , 'tc_set_body_classes') );
 
           //Loop, Controller, Early Hooks
+          add_action( 'after_setup_theme'                       , array( $this, 'tc_fires_early_hooks') );
+          add_action( 'after_setup_theme'                       , array( $this, 'tc_fires_controllers') );
           add_action( 'after_setup_theme'                       , array( $this, 'tc_fires_views') );
+
 
       }//end of constructor
 
+      function tc_fires_early_hooks() {
+        tc_new( array('early' => array( array('inc/early-hooks', 'loop_hooks') ) ) );
+        tc_new( array('early' => array( array('inc/early-hooks', 'modules_hooks') ) ) );
+      }
+
+      function tc_fires_controllers() {
+        tc_new( array('controller' => array( array('inc/controllers', 'header_control') ) ) );
+        tc_new( array('controller' => array( array('inc/controllers', 'loop_control') ) ) );
+        tc_new( array('controller' => array( array('inc/controllers', 'modules_control') ) ) );
+        tc_new( array('controller' => array( array('inc/controllers', 'footer_control') ) ) );
+      }
 
       //hook : 'after_setup_theme'
       //=> instanciate the default loop using the main $wp_query
       function tc_fires_views(){
+        //HEADER : load only. Instanciations in children.
         tc_new(
-          array('views' => array( array('inc/views', 'base') ) ),
-          $_args = array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
+          array( 'views' => array( array('inc/views', 'header_view') ) ),
+          array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
         );
-        tc_new( array('views' => array( array('inc/views', 'early_hooks') ) ) );
-        //controller extends loop_base => we might need some of the loop_base property ?
-        tc_new( array('views' => array( array('inc/views', 'controller') ) ) );
+
+        //MAIN WRAPPER : load and instanciates.
+        tc_new(
+          array( 'views' => array( array('inc/views', 'main_wrapper_view') ) )
+        );
+
+        //LOOP : load only. Instanciations in children.
+        tc_new(
+          array( 'views' => array( array('inc/views', 'loop_view') ) ),
+          array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
+        );
+
+        //FOOTER : load only. Instanciations in children.
+        tc_new(
+          array('views' => array( array('inc/views', 'footer_view') ) ),
+          array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
+        );
+
+
+
+
+
       }
 
 

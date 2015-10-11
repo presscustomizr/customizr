@@ -12,7 +12,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_post_list_grid' ) ) :
-    class TC_post_list_grid extends TC_base {
+    class TC_post_list_grid extends TC_loop_view {
         static $instance;
         private $post_id;
 
@@ -93,7 +93,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'tc_grid_display_comment_bubble' ) );
 
           //POST METAS
-          if ( TC_controller::$instance -> tc_are_metas_enabled() )
+          if ( TC_loop_control::$instance -> tc_are_metas_enabled() )
             remove_filter( 'tc_meta_utility_text'     , array( TC_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
 
           //TITLE LENGTH
@@ -126,7 +126,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function tc_print_row_fluid_section_wrapper(){
           global $wp_query;
           $current_post   = $wp_query -> current_post;
-          $start_post     = TC_base::$expanded_sticky_bool ? 1 : 0;
+          $start_post     = TC_modules_control::$expanded_sticky_bool ? 1 : 0;
           $cols           = $this -> tc_get_grid_section_cols();
 
           if ( '__before_article' == current_filter() &&
@@ -381,12 +381,12 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_grid_prepare_expand_sticky(){
           global $wp_query;
-          if ( ! ( TC_base::$expanded_sticky_bool && $wp_query -> query_vars[ 'paged' ] == 0 ) ) {
-            TC_base::$expanded_sticky_val = null;
+          if ( ! ( TC_modules_control::$expanded_sticky_bool && $wp_query -> query_vars[ 'paged' ] == 0 ) ) {
+            TC_modules_control::$expanded_sticky_val = null;
             return;
           }
           // prepend the first sticky
-          $first_sticky = get_post( TC_base::$expanded_sticky_val );
+          $first_sticky = get_post( TC_modules_control::$expanded_sticky_val );
           array_unshift( $wp_query -> posts, $first_sticky );
           $wp_query -> post_count = $wp_query -> post_count + 1;
         }
@@ -675,7 +675,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         private function tc_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
           $_css = '';
           //Add one column font rules if there's a sticky post
-          if ( TC_base::$expanded_sticky_bool || '1' == $_col_nb ) {
+          if ( TC_modules_control::$expanded_sticky_bool || '1' == $_col_nb ) {
             $_size      = $this -> tc_get_grid_font_sizes( $_col_nb = '1', $_media_query );//size like xxl
             $_h_one_col = $this -> tc_grid_build_css_rules( $_size , 'h' );
             $_p_one_col = $this -> tc_grid_build_css_rules( $_size , 'p' );
@@ -706,7 +706,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_cols_class      = sprintf( 'grid-cols-%s' , $_col_nb );
           $_css = '';
           //Add one column height if there's a sticky post
-          if ( TC_base::$expanded_sticky_bool && '1' != $_col_nb ) {
+          if ( TC_modules_control::$expanded_sticky_bool && '1' != $_col_nb ) {
             $_height_col_one = $this -> tc_get_grid_column_height( '1' );
             $_css .= ".grid-cols-1 figure {
                   height:{$_height_col_one}px;
@@ -819,7 +819,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         private function tc_force_current_post_expansion(){
           global $wp_query;
-          return ( TC_base::$expanded_sticky_bool && 0 == $wp_query -> current_post );
+          return ( TC_modules_control::$expanded_sticky_bool && 0 == $wp_query -> current_post );
         }
 
 

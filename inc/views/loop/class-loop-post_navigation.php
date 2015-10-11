@@ -13,7 +13,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_post_navigation' ) ) :
-  class TC_post_navigation extends TC_base {
+  class TC_post_navigation extends TC_loop_view {
       static $instance;
 
       function __construct( $_args = array() ) {
@@ -40,9 +40,9 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
       function tc_set_visibility_options(){
 
         $_nav_classes              = array('navigation');
-        $_context                  = TC_controller::$instance -> tc_get_context();
-        $_post_nav_enabled         = TC_controller::$instance -> tc_is_post_navigation_enabled();
-        $_post_nav_context_enabled = TC_controller::$instance -> tc_is_post_navigation_context_enabled( $_context );
+        $_context                  = TC_loop_control::$instance -> tc_get_context();
+        $_post_nav_enabled         = TC_loop_control::$instance -> tc_is_post_navigation_enabled();
+        $_post_nav_context_enabled = TC_loop_control::$instance -> tc_is_post_navigation_context_enabled( $_context );
 
         if ( TC___::$instance -> tc_is_customizing() ){
           if ( ! $_post_nav_enabled )

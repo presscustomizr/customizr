@@ -12,10 +12,14 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_footer_main' ) ) :
-	class TC_footer_main {
+	class TC_footer_main extends TC_footer_view {
     static $instance;
-    function __construct () {
+    function __construct( $_args = array() ) {
       self::$instance =& $this;
+      // Instanciates the parent class.
+      if ( ! isset(parent::$instance) )
+        parent::__construct( $_args );
+
       //All footer hooks setup
       add_action( 'wp_head'                   , array( $this , 'tc_footer_hook_setup') );
 

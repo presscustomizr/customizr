@@ -13,7 +13,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_post_metas' ) ) :
-    class TC_post_metas extends TC_base {
+    class TC_post_metas extends TC_loop_view {
         static $instance;
 
         function __construct( $_args = array() ) {

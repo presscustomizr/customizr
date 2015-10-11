@@ -12,10 +12,14 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_header_main' ) ) :
-	class TC_header_main {
+	class TC_header_main extends TC_header_view {
     static $instance;
-    function __construct () {
+    function __construct( $_args = array() ) {
       self::$instance =& $this;
+      // Instanciates the parent class.
+      if ( ! isset(parent::$instance) )
+        parent::__construct( $_args );
+
       //Set header hooks
       add_action ( 'template_redirect' 		, array( $this , 'tc_set_header_hooks' ) );
 

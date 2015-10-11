@@ -12,7 +12,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_headings' ) ) :
-  class TC_headings extends TC_base {
+  class TC_headings extends TC_loop_view {
       static $instance;
       function __construct( $_args = array() ) {
         self::$instance =& $this;
@@ -42,7 +42,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function tc_set_archives_heading_hooks() {
         //is there anything to render in the current context
         //by default don't display the Customizr title in feeds
-        if ( ! TC_controller::$instance -> tc_is_heading_archive() )
+        if ( ! TC_loop_control::$instance -> tc_is_heading_archive() )
           return;
 
         //Headings for archives, authors, search, 404
@@ -68,7 +68,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       */
       function tc_set_post_page_heading_hooks() {
         //by default don't display the Customizr title of the front page and in feeds
-        if ( ! TC_controller::$instance -> tc_is_post_page_heading()  )
+        if ( ! TC_loop_control::$instance -> tc_is_post_page_heading()  )
           return;
 
         //Set single post/page icon with customizer options (since 3.2.0)

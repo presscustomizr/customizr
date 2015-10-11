@@ -12,7 +12,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_no_results' ) ) :
-  class TC_no_results extends TC_base {
+  class TC_no_results extends TC_loop_view {
       static $instance;
       function __construct( $_args = array() ) {
         self::$instance =& $this;

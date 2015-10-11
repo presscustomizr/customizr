@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_base' ) ) :
-  class TC_base {
+if ( ! class_exists( 'TC_loop_view' ) ) :
+  class TC_loop_view {
     static $instance;
     public $args;
     public $loop_name = '';
@@ -20,13 +20,6 @@ if ( ! class_exists( 'TC_base' ) ) :
     public $loop_view;
     public $instance_id;
     public $render_on_hook = '__daloop';//this is the default hook declared in the index.php template
-
-    //grid specifics
-    //are set from the early hooks child on pre_get_posts
-    //and used in the post_list_grid child
-    static $expanded_sticky_bool = false;
-    static $expanded_sticky_val = null;
-
 
     function __construct( $_args ) {
       self::$instance =& $this;

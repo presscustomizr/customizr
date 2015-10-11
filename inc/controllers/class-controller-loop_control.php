@@ -12,8 +12,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_controller' ) ) :
-  class TC_controller extends TC_base {
+if ( ! class_exists( 'TC_loop_control' ) ) :
+  class TC_loop_control {
     static $instance;
 
     function __construct( $_args ) {
