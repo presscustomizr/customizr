@@ -18,7 +18,9 @@ if ( ! class_exists( 'TC_page' ) ) :
     function __construct( $_args = array() ) {
       self::$instance =& $this;
       // Instanciates the parent class.
-      parent::__construct( $_args );
+      if ( ! isset(parent::$instance) )
+        parent::__construct( $_args );
+
       $this -> tc_set_page_hooks();
     }
 

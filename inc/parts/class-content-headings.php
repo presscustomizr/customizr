@@ -14,8 +14,11 @@
 if ( ! class_exists( 'TC_headings' ) ) :
   class TC_headings extends TC_base {
       static $instance;
-      function __construct() {
+      function __construct( $_args = array() ) {
         self::$instance =& $this;
+        // Instanciates the parent class.
+        if ( ! isset(parent::$instance) )
+          parent::__construct( $_args );
         //set actions and filters for posts and page headings
         $this -> tc_set_post_page_heading_hooks();
         //set actions and filters for archives headings
@@ -113,9 +116,9 @@ if ( ! class_exists( 'TC_headings' ) ) :
         ?>
         <header class="<?php echo implode( ' ' , apply_filters( "tc_{$_heading_type}_header_class", array('entry-header'), $_return_class = true ) ); ?>">
           <?php
-            do_action( "__before_{$_heading_type}_title" );
+            do_action( "__before_{$_heading_type}_title", $this -> loop_name );
             echo apply_filters( "tc_headings_{$_heading_type}_html", '' , $_heading_type );
-            do_action( "__after_{$_heading_type}_title" );
+            do_action( "__after_{$_heading_type}_title", $this -> loop_name );
 
             echo apply_filters( "tc_{$_heading_type}_headings_separator", '<hr class="featurette-divider '.current_filter(). '">' );
           ?>

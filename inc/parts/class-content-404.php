@@ -20,7 +20,9 @@ if ( ! class_exists( 'TC_404' ) ) :
       function __construct( $_args = array() ) {
           self::$instance =& $this;
           // Instanciates the parent class.
-          parent::__construct( $_args );
+          if ( ! isset(parent::$instance) )
+            parent::__construct( $_args );
+
           //404 content
           add_action  ( "__loop{$this -> loop_name}"         , array( $this , 'tc_404_content' ));
       }

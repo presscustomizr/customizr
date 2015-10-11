@@ -19,7 +19,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         function __construct($_args = array() ) {
           self::$instance =& $this;
           // Instanciates the parent class.
-          parent::__construct( $_args );
+          if ( ! isset(parent::$instance) )
+            parent::__construct( $_args );
 
           add_action( 'wp_head'                    , array( $this , 'tc_set_grid_hooks') );
           //append inline style to the custom stylesheet
@@ -92,7 +93,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'tc_grid_display_comment_bubble' ) );
 
           //POST METAS
-          remove_filter( 'tc_meta_utility_text'     , array( TC_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
+          if ( TC_controller::$instance -> tc_are_metas_enabled() )
+            remove_filter( 'tc_meta_utility_text'     , array( TC_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
 
           //TITLE LENGTH
           add_filter( 'tc_title_text'               , array( $this, 'tc_grid_set_title_length' ) );

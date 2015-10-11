@@ -17,7 +17,9 @@ if ( ! class_exists( 'TC_attachment' ) ) :
         function __construct( $_args = array() ) {
           self::$instance =& $this;
           // Instanciates the parent class.
-          parent::__construct( $_args );
+          if ( ! isset(parent::$instance) )
+            parent::__construct( $_args );
+
           add_action  ( "__loop{$this -> loop_name}"			  , array( $this , 'tc_attachment_content' ));
         }
 

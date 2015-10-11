@@ -17,7 +17,9 @@ class TC_post_list extends TC_base {
   function __construct($_args = array() ) {
     self::$instance =& $this;
     // Instanciates the parent class.
-    parent::__construct( $_args );
+    if ( ! isset(parent::$instance) )
+      parent::__construct( $_args );
+
     //Set __loop hooks and customizer options (since 3.2.0)
     add_action( 'wp_head'                 , array( $this, 'tc_set_post_list_hooks'));
     //append inline style to the custom stylesheet

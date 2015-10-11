@@ -1,6 +1,7 @@
 <?php
 /**
 * Navigation action
+* Fired on 'wp'
 *
 *
 * @package      Customizr

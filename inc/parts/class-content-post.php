@@ -17,7 +17,8 @@ if ( ! class_exists( 'TC_post' ) ) :
     function __construct($_args = array()) {
       self::$instance =& $this;
       // Instanciates the parent class.
-      parent::__construct( $_args );
+      if ( ! isset(parent::$instance) )
+        parent::__construct( $_args );
 
       $this -> tc_set_single_post_hooks();
       //Set single post thumbnail with customizer options (since 3.2.0)
