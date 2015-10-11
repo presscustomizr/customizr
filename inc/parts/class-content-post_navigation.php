@@ -39,13 +39,11 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
       function tc_set_visibility_options(){
 
         $_nav_classes              = array('navigation');
-        $_context                  = $this -> tc_get_context();
-        $_post_nav_enabled         = $this -> tc_is_post_navigation_enabled();
-        $_post_nav_context_enabled = $this -> tc_is_post_navigation_context_enabled( $_context );
+        $_context                  = TC_controller::$instance -> tc_get_context();
+        $_post_nav_enabled         = TC_controller::$instance -> tc_is_post_navigation_enabled();
+        $_post_nav_context_enabled = TC_controller::$instance -> tc_is_post_navigation_context_enabled( $_context );
 
-        $_is_customizing           = TC___::$instance -> tc_is_customizing() ;
-
-        if ( $_is_customizing ){
+        if ( TC___::$instance -> tc_is_customizing() ){
           if ( ! $_post_nav_enabled )
             array_push( $_nav_classes, 'hide-all-post-navigation' );
           if ( ! $_post_nav_context_enabled )

@@ -339,9 +339,7 @@ if ( ! class_exists( 'TC_controller' ) ) :
       $_post_nav_enabled         = $this -> tc_is_post_navigation_enabled();
       $_post_nav_context_enabled = $this -> tc_is_post_navigation_context_enabled( $_context );
 
-      $_is_customizing           = TC___::$instance -> tc_is_customizing() ;
-
-      if ( $_is_customizing )
+      if ( TC___::$instance -> tc_is_customizing() )
         $_post_nav_enabled       = true;
       else
         $_post_nav_enabled       = $_post_nav_enabled && $_post_nav_context_enabled;
