@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.4.11\n"
 "POT-Creation-Date: 2015-04-09 15:49+0100\n"
-"PO-Revision-Date: 2015-08-22 15:54+0200\n"
+"PO-Revision-Date: 2015-10-11 21:06+0100\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Martin Bangemann <contact@presscustomizr.com>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -1925,8 +1925,10 @@ msgstr ""
 msgid "Need more customizations options and premium support ?"
 msgstr ""
 
-#: ../admin/class-admin-customize.php:392 ../admin/class-admin-customize.php:404
-#: ../admin/class-admin-customize.php:416 ../admin/class-admin-customize.php:428
+#: ../admin/class-admin-customize.php:392
+#: ../admin/class-admin-customize.php:404
+#: ../admin/class-admin-customize.php:416
+#: ../admin/class-admin-customize.php:428
 #, fuzzy
 msgid "Discover Customizr Pro"
 msgstr "Entdecken Sie Customizr: kurzes Einführungsvideo"
@@ -2181,7 +2183,8 @@ msgstr "Schaltflächenverknüpfung"
 #: ../parts/class-content-breadcrumb.php:721
 #: ../parts/class-content-comments.php:195
 #: ../parts/class-content-featured_pages.php:214
-#: ../parts/class-content-headings.php:238 ../parts/class-content-slider.php:347
+#: ../parts/class-content-headings.php:238
+#: ../parts/class-content-slider.php:347
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -2219,7 +2222,8 @@ msgstr "Hochladen"
 msgid "Remove"
 msgstr "Entfernen"
 
-#: ../admin/class-fire-admin_init.php:108 ../admin/class-fire-admin_init.php:109
+#: ../admin/class-fire-admin_init.php:108
+#: ../admin/class-fire-admin_init.php:109
 msgid "Upgrade WP"
 msgstr "Upgrade von WP"
 
@@ -2227,12 +2231,13 @@ msgstr "Upgrade von WP"
 msgid "This theme requires WordPress 3.4+"
 msgstr "Das Theme erfordert WordPress 3.4 +"
 
-#: ../admin/class-fire-admin_init.php:131 ../admin/class-fire-admin_init.php:132
+#: ../admin/class-fire-admin_init.php:131
+#: ../admin/class-fire-admin_init.php:132
 msgid "Upgrade Wordpress Now"
 msgstr "Wordpress jetzt upgraden"
 
-#: ../admin/class-fire-admin_init.php:149 ../admin/class-fire-admin_init.php:150
-#: ../admin/class-fire-admin_page.php:40
+#: ../admin/class-fire-admin_init.php:149
+#: ../admin/class-fire-admin_init.php:150 ../admin/class-fire-admin_page.php:40
 msgid "About Customizr"
 msgstr "Über Customizr"
 
@@ -2279,7 +2284,8 @@ msgstr "Code-Schnipsel"
 msgid "Discuss in the user forum"
 msgstr "Bitte im User-Forum diskutieren"
 
-#: ../admin/class-fire-admin_init.php:209 ../admin/class-fire-admin_page.php:106
+#: ../admin/class-fire-admin_init.php:209
+#: ../admin/class-fire-admin_page.php:106
 #, php-format
 msgid ""
 "Thank you for using Customizr! Customizr %1$s has more features, is safer and "
@@ -2295,7 +2301,8 @@ msgstr ""
 "\"> Einführungsvideo</a> an und holen Sie sich Anregungen im <a href="
 "\"#showcase\"> Showcase</a>. <br/>Viel Spaß! "
 
-#: ../admin/class-fire-admin_init.php:223 ../admin/class-fire-admin_page.php:120
+#: ../admin/class-fire-admin_init.php:223
+#: ../admin/class-fire-admin_page.php:120
 #, php-format
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
@@ -2305,11 +2312,13 @@ msgstr ""
 "immer die %2$ s nach der Aktualisierung um festzustellen, ob eine Funktion "
 "oder eine Vorlage als veraltet gilt."
 
-#: ../admin/class-fire-admin_init.php:238 ../admin/class-fire-admin_page.php:137
+#: ../admin/class-fire-admin_init.php:238
+#: ../admin/class-fire-admin_page.php:137
 msgid "We need sponsors!"
 msgstr "Wir brauchen Sponsoren!"
 
-#: ../admin/class-fire-admin_init.php:239 ../admin/class-fire-admin_page.php:138
+#: ../admin/class-fire-admin_init.php:239
+#: ../admin/class-fire-admin_page.php:138
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
 "strong><br/> Please help support it's continued development with a donation "
@@ -2320,11 +2329,13 @@ msgstr ""
 "Weiterentwicklung mit. Ob $20, $50 oder sogar $100 - Jeder Euro zählt ;-) <br/"
 ">"
 
-#: ../admin/class-fire-admin_init.php:246 ../admin/class-fire-admin_page.php:145
+#: ../admin/class-fire-admin_init.php:246
+#: ../admin/class-fire-admin_page.php:145
 msgid "Happy user of Customizr?"
 msgstr "Zufriedener Customizr-Benutzer?"
 
-#: ../admin/class-fire-admin_init.php:247 ../admin/class-fire-admin_page.php:146
+#: ../admin/class-fire-admin_init.php:247
+#: ../admin/class-fire-admin_page.php:146
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr a "
 "nice review! <br />(We are addicted to your feedbacks...)"
@@ -2333,24 +2344,30 @@ msgstr ""
 "und geben Customizr eine positive Bewertung! <br/>(Wir sehnen uns nach Ihrem  "
 "Feedback...)"
 
-#: ../admin/class-fire-admin_init.php:252 ../admin/class-fire-admin_page.php:151
+#: ../admin/class-fire-admin_init.php:252
+#: ../admin/class-fire-admin_page.php:151
 msgid "Follow us"
 msgstr "Folgen Sie mir"
 
-#: ../admin/class-fire-admin_init.php:260 ../admin/class-fire-admin_page.php:160
+#: ../admin/class-fire-admin_init.php:260
+#: ../admin/class-fire-admin_page.php:160
 msgid "Customizr's extensions"
 msgstr "Customizrs Erweiterungen"
 
-#: ../admin/class-fire-admin_init.php:263 ../admin/class-fire-admin_init.php:272
-#: ../admin/class-fire-admin_page.php:163 ../admin/class-fire-admin_page.php:172
+#: ../admin/class-fire-admin_init.php:263
+#: ../admin/class-fire-admin_init.php:272
+#: ../admin/class-fire-admin_page.php:163
+#: ../admin/class-fire-admin_page.php:172
 msgid "Visit the extension's page"
 msgstr "Besuchen Sie die Erweiterungen-Seite"
 
-#: ../admin/class-fire-admin_init.php:264 ../admin/class-fire-admin_page.php:164
+#: ../admin/class-fire-admin_init.php:264
+#: ../admin/class-fire-admin_page.php:164
 msgid "Easily take your web design one step further"
 msgstr "Bringen Sie Ihr Webdesign ganz einfach einen Schritt voraus"
 
-#: ../admin/class-fire-admin_init.php:265 ../admin/class-fire-admin_page.php:165
+#: ../admin/class-fire-admin_init.php:265
+#: ../admin/class-fire-admin_page.php:165
 msgid ""
 "The Customizr's extensions are plugins developed to extend the Customizr "
 "theme with great features. Nicely integrated with the theme's built-in "
@@ -2362,7 +2379,8 @@ msgstr ""
 "in die Theme-eigenen Funktionen, sind diese sicher an- und abschaltbar ohne "
 "Nebeneffekte auf bereits bestehende Einstellungen oder Anpassungen."
 
-#: ../admin/class-fire-admin_init.php:267 ../admin/class-fire-admin_page.php:167
+#: ../admin/class-fire-admin_init.php:267
+#: ../admin/class-fire-admin_page.php:167
 msgid ""
 "These modules are designed to be simple to use for everyone. They are a good "
 "solution to add some creative customizations whitout needing to dive into the "
@@ -2372,7 +2390,8 @@ msgstr ""
 "sind eine gute Lösung, um einige kreative Erweiterungen hinzuzufügen ohne "
 "tief in den Code einsteigen zu müssen."
 
-#: ../admin/class-fire-admin_init.php:269 ../admin/class-fire-admin_page.php:169
+#: ../admin/class-fire-admin_init.php:269
+#: ../admin/class-fire-admin_page.php:169
 msgid ""
 "Customizr's extensions are installed and upgraded from your WordPress admin, "
 "like any other WordPress plugins. Well documented and easily extendable with "
@@ -2383,21 +2402,26 @@ msgstr ""
 "erweiterbar mit Hooks und mit einem engagierten Support-Forum auf "
 "presscustomizr.com. "
 
-#: ../admin/class-fire-admin_init.php:278 ../admin/class-fire-admin_page.php:179
+#: ../admin/class-fire-admin_init.php:278
+#: ../admin/class-fire-admin_page.php:179
 msgid "Customizr Showcase"
 msgstr "Customizr-Showcase"
 
-#: ../admin/class-fire-admin_init.php:281 ../admin/class-fire-admin_init.php:288
-#: ../admin/class-fire-admin_page.php:182 ../admin/class-fire-admin_page.php:189
+#: ../admin/class-fire-admin_init.php:281
+#: ../admin/class-fire-admin_init.php:288
+#: ../admin/class-fire-admin_page.php:182
+#: ../admin/class-fire-admin_page.php:189
 msgid "Visit the showcase"
 msgstr "Besuchen Sie das Schaufenster"
 
-#: ../admin/class-fire-admin_init.php:282 ../admin/class-fire-admin_page.php:183
+#: ../admin/class-fire-admin_init.php:282
+#: ../admin/class-fire-admin_page.php:183
 msgid "Find inspiration for your next Customizr based website!"
 msgstr ""
 "Lassen Sie sich für Ihre nächste Customizr-basierte Website inspirieren!"
 
-#: ../admin/class-fire-admin_init.php:283 ../admin/class-fire-admin_page.php:184
+#: ../admin/class-fire-admin_init.php:283
+#: ../admin/class-fire-admin_page.php:184
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
@@ -2405,7 +2429,8 @@ msgstr ""
 "Dieser Präsentation soll zeigen, was mit Customizr getan werden kann und "
 "anderen Nutzern helfen Inspiration für ihr Webdesign zu erhalten."
 
-#: ../admin/class-fire-admin_init.php:285 ../admin/class-fire-admin_page.php:186
+#: ../admin/class-fire-admin_init.php:285
+#: ../admin/class-fire-admin_page.php:186
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
@@ -2414,16 +2439,19 @@ msgstr ""
 "Menschen begeistert? Dann reichen Sie diese zur Ansicht ein. Schnell und "
 "einfach."
 
-#: ../admin/class-fire-admin_init.php:295 ../admin/class-fire-admin_page.php:256
+#: ../admin/class-fire-admin_init.php:295
+#: ../admin/class-fire-admin_page.php:256
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Changelog zu Version %1$s"
 
-#: ../admin/class-fire-admin_init.php:304 ../admin/class-fire-admin_page.php:198
+#: ../admin/class-fire-admin_init.php:304
+#: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Zum Dashboard &rarr; Startseite"
 
-#: ../admin/class-fire-admin_init.php:304 ../admin/class-fire-admin_page.php:198
+#: ../admin/class-fire-admin_init.php:304
+#: ../admin/class-fire-admin_page.php:198
 msgid "Go to Dashboard"
 msgstr "Zum Dashboard"
 
@@ -2691,6 +2719,8 @@ msgstr "Symbolbild-Optionen der Titel"
 #, php-format
 msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
 msgstr ""
+"Dieser Eintrag wurde am %1$s<span class=\"by-author\"> von %2$s</span> "
+"veröffentlicht."
 
 #: ../parts/class-content-post_metas.php:192
 msgid "Published"
@@ -2731,17 +2761,17 @@ msgstr "Dieser Beitrag wurde getaggt mit %2$s"
 #: ../parts/class-content-post_metas.php:271
 #, php-format
 msgid "This entry was posted on %1$s"
-msgstr ""
+msgstr "Eintrag vom %1$s"
 
 #: ../parts/class-content-post_metas.php:273
 #, php-format
 msgid "on %1$s"
-msgstr ""
+msgstr "am %1$s"
 
 #: ../parts/class-content-post_metas.php:275
 #, php-format
 msgid "and posted on %1$s"
-msgstr ""
+msgstr "und veröffentlicht am %1$s"
 
 #: ../parts/class-content-post_metas.php:287
 msgid "This entry was posted"
@@ -2751,7 +2781,7 @@ msgstr "Der Beitrag wurde veröffentlicht"
 #: ../parts/class-content-post_metas.php:289
 #, php-format
 msgid "by %1$s"
-msgstr ""
+msgstr "von %1$s"
 
 #: ../parts/class-content-post_metas.php:303
 msgid "(updated today)"
@@ -2760,7 +2790,7 @@ msgstr "(heute geändert)"
 #: ../parts/class-content-post_metas.php:303
 #, php-format
 msgid "(updated %s days ago)"
-msgstr ""
+msgstr "(vor %s Tagen aktualisiert)"
 
 #: ../parts/class-content-post_metas.php:304
 msgid "(updated 1 day ago)"
@@ -2769,7 +2799,7 @@ msgstr "(vor 1 Tag geändert)"
 #: ../parts/class-content-post_metas.php:307
 #, php-format
 msgid "(updated on %1$s)"
-msgstr ""
+msgstr "(am %1$s aktualisiert)"
 
 #: ../parts/class-content-post_metas.php:358
 #, php-format
