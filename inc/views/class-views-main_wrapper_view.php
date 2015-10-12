@@ -12,14 +12,12 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_main_wrapper_view' ) ) :
-  class TC_main_wrapper_view {
+  class TC_main_wrapper_view extends TC_view_base {
     static $instance;
-    public $args;
-    public $render_on_hook = '__main_wrapper';//this is the default hook declared in the index.php template
 
-
-    function __construct( $_args ) {
+    function __construct( $_args = array() ) {
       self::$instance =& $this;
+
       //Gets the accessible non-static properties of the given object according to scope.
       $keys = array_keys( get_object_vars( $this ) );
 
@@ -29,14 +27,16 @@ if ( ! class_exists( 'TC_main_wrapper_view' ) ) :
         }
       }
 
-      //Actually renders the loop
-      add_action( $this -> render_on_hook   , array($this, 'tc_render_main_wrapper') );
+      //Instanciates the parent class.
+      parent::__construct( $_args );
+
     }
 
 
 
     //hook : $this -> render_on_hook
-    public function tc_render_main_wrapper() {
+    //overrides parent's method
+    public function tc_render() {
       ?>
         <div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">
 

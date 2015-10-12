@@ -12,7 +12,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_loop_view' ) ) :
-  class TC_loop_view {
+  class TC_loop_view extends TC_view_base {
     static $instance;
     public $args;
     public $loop_name = '';
@@ -21,8 +21,9 @@ if ( ! class_exists( 'TC_loop_view' ) ) :
     public $instance_id;
     public $render_on_hook = '__daloop';//this is the default hook declared in the index.php template
 
-    function __construct( $_args ) {
+    function __construct( $_args = array() ) {
       self::$instance =& $this;
+
       //store class args in a property
       $this -> args = $_args;
       //Gets the accessible non-static properties of the given object according to scope.
@@ -34,11 +35,11 @@ if ( ! class_exists( 'TC_loop_view' ) ) :
         }
       }
 
+      //Instanciates the parent class.
+      parent::__construct( $_args );
+
       //set base class properties
       $this -> tc_set_loop_name_on_query_ready();
-
-      //Actually renders the loop
-      add_action( $this -> render_on_hook   , array($this, 'tc_render_loop') );
     }
 
 
@@ -64,7 +65,8 @@ if ( ! class_exists( 'TC_loop_view' ) ) :
 
 
     //hook : $this -> render_on_hook
-    public function tc_render_loop() {
+    //overrides parent's method
+    public function tc_render() {
       ?>
         <?php do_action( "__before_article_container{$this -> loop_name}" , $this -> loop_name); ##hook of left sidebar?>
 

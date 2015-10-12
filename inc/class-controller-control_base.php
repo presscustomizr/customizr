@@ -1,7 +1,5 @@
 <?php
 /**
-* Renders the main wrapper
-* Instanciated from the children on 'wp'
 *
 * @package      Customizr
 * @subpackage   classes
@@ -11,11 +9,11 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_footer_view' ) ) :
-  class TC_footer_view extends TC_view_base {
+if ( ! class_exists( 'TC_control_base' ) ) :
+  class TC_control_base {
     static $instance;
 
-    function __construct( $_args = array() ) {
+    function __construct( $_args ) {
       self::$instance =& $this;
 
       //Gets the accessible non-static properties of the given object according to scope.
@@ -27,22 +25,14 @@ if ( ! class_exists( 'TC_footer_view' ) ) :
         }
       }
 
-      //Instanciates the parent class.
-      parent::__construct( $_args );
+      add_action( 'wp'   , array($this, 'tc_fire_views_on_query_ready') );
     }
 
 
-
-    //hook : $this -> render_on_hook
-    //overrides parent's method
-    public function tc_render() {
-      ?>
-        <!-- FOOTER -->
-        <footer id="footer" class="<?php echo tc__f('tc_footer_classes', '') ?>">
-          <?php do_action( '__footer' ); // hook of footer widget and colophon?>
-        </footer>
-      <?php
-    }
+    /***************************************************************************************************************
+    * FIRE THE RELEVANT VIEW IN CHILDREN CONTROLLERS
+    ***************************************************************************************************************/
+    public function tc_fire_views_on_query_ready() {}
 
   }//end of class
 endif;

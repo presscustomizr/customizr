@@ -1,7 +1,5 @@
 <?php
 /**
-* HEADER CONTROLLER CLASS
-* FIRED ON INIT
 *
 *
 * @package      Customizr
@@ -13,13 +11,14 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_footer_control' ) ) :
-  class TC_footer_control {
+  class TC_footer_control extends TC_control_base {
     static $instance;
 
-    function __construct( $_args ) {
+    function __construct( $_args = array()) {
       self::$instance =& $this;
 
-      add_action( 'wp' , array( $this, 'tc_fire_views_on_query_ready' ) );
+      //Instanciates the parent class.
+      parent::__construct( $_args );
     }
 
 
@@ -33,7 +32,10 @@ if ( ! class_exists( 'TC_footer_control' ) ) :
         return;
 
       if ( apply_filters( 'tc_display_main_footer' , true ) )
-        tc_new( array('footer' => array( array('inc/views/footer', 'footer_main') ) ) );
+        tc_new(
+          array( 'footer' => array( array('inc/views/footer', 'footer_main') ) ),
+          array( 'render_on_hook' => '__footer_main' )
+        );
 
     }
 

@@ -1,7 +1,5 @@
 <?php
 /**
-* Renders the main wrapper
-* Instanciated from the children on 'wp'
 *
 * @package      Customizr
 * @subpackage   classes
@@ -11,11 +9,12 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_footer_view' ) ) :
-  class TC_footer_view extends TC_view_base {
+if ( ! class_exists( 'TC_view_base' ) ) :
+  class TC_view_base {
     static $instance;
+    public $render_on_hook = false;//this is the default hook declared in the index.php template
 
-    function __construct( $_args = array() ) {
+    function __construct( $_args ) {
       self::$instance =& $this;
 
       //Gets the accessible non-static properties of the given object according to scope.
@@ -27,22 +26,14 @@ if ( ! class_exists( 'TC_footer_view' ) ) :
         }
       }
 
-      //Instanciates the parent class.
-      parent::__construct( $_args );
+      //Renders the view on the requested hook
+      if ( false !== $this -> render_on_hook )
+        add_action( $this -> render_on_hook   , array($this, 'tc_render') );
     }
-
 
 
     //hook : $this -> render_on_hook
-    //overrides parent's method
-    public function tc_render() {
-      ?>
-        <!-- FOOTER -->
-        <footer id="footer" class="<?php echo tc__f('tc_footer_classes', '') ?>">
-          <?php do_action( '__footer' ); // hook of footer widget and colophon?>
-        </footer>
-      <?php
-    }
+    public function tc_render() {}
 
   }//end of class
 endif;

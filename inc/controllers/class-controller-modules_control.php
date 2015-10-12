@@ -1,7 +1,5 @@
 <?php
 /**
-* LOOP CONTROLLER CLASS
-* FIRED ON INIT
 *
 *
 * @package      Customizr
@@ -13,7 +11,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_modules_control' ) ) :
-  class TC_modules_control{
+  class TC_modules_control extends TC_control_base {
     static $instance;
 
     //grid specifics
@@ -22,11 +20,11 @@ if ( ! class_exists( 'TC_modules_control' ) ) :
     static $expanded_sticky_bool = false;
     static $expanded_sticky_val = null;
 
-    function __construct( $_args ) {
+    function __construct( $_args = array() ) {
       self::$instance =& $this;
 
-
-      add_action( 'wp' , array( $this, 'tc_fire_views_on_query_ready' ) );
+      //Instanciates the parent class.
+      parent::__construct( $_args );
     }
 
 

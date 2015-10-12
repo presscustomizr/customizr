@@ -1,7 +1,5 @@
 <?php
 /**
-* LOOP CONTROLLER CLASS
-* FIRED ON INIT
 *
 *
 * @package      Customizr
@@ -13,13 +11,14 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_loop_control' ) ) :
-  class TC_loop_control {
+  class TC_loop_control extends TC_control_base {
     static $instance;
 
-    function __construct( $_args ) {
+    function __construct( $_args = array() ) {
       self::$instance =& $this;
 
-      add_action( 'wp' , array( $this, 'tc_fire_views_on_query_ready' ) );
+      //Instanciates the parent class.
+      parent::__construct( $_args );
     }
 
 
@@ -31,17 +30,6 @@ if ( ! class_exists( 'TC_loop_control' ) ) :
     function tc_fire_views_on_query_ready() {
       if ( is_admin() )
         return;
-      if ( $this -> tc_is_slider_possible() )
-        tc_new( array('module' => array( array('inc/views/modules', 'slider') ) ) );
-
-      //FEATURED PAGES
-      if ( $this -> tc_are_featured_pages_on() )
-        tc_new( array('module' => array( array('inc/views/modules', 'featured_pages') ) ) );
-
-      //BREADCRUMB
-      if ( $this -> tc_is_breadcrumb_on() )
-        tc_new( array('module' => array( array('inc/views/modules', 'breadcrumb') ) ) );
-
       //HEADINGS
       if ( $this -> tc_has_view_heading() )
         tc_new( array('loop' => array( array('inc/views/loop', 'headings') ) ) );
@@ -62,10 +50,6 @@ if ( ! class_exists( 'TC_loop_control' ) ) :
       if ( $this -> tc_is_post_list() && ! $this -> tc_is_grid_enabled() )
         tc_new( array('loop' => array( array('inc/views/loop', 'post_list') ) ) );
 
-      //POST LIST GRID
-      if ( $this -> tc_is_grid_enabled() )
-        tc_new( array('module' => array( array('inc/views/modules', 'post_list_grid') ) ) );
-
       //404
       if ( is_404() )
         tc_new( array('loop' => array( array('inc/views/loop', '404') ) ) );
@@ -77,14 +61,6 @@ if ( ! class_exists( 'TC_loop_control' ) ) :
       //COMMENTS
       if ( $this -> tc_are_comments_enabled() )
         tc_new( array('loop' => array( array('inc/views/loop', 'comments') ) ) );
-
-      //GALLERY
-      if ( $this -> tc_is_gallery_eligible() )
-        tc_new( array('module' => array( array('inc/views/modules', 'gallery') ) ) );
-
-      //COMMENT BUBBLES
-      if ( $this -> tc_are_comment_bubbles_on() )
-        tc_new( array('module' => array( array('inc/views/modules', 'comment_bubbles') ) ) );
 
       //POST NAVIGATION
       if ( $this -> tc_are_post_nav_on() )

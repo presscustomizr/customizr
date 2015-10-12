@@ -334,6 +334,12 @@ if ( ! class_exists( 'TC_init' ) ) :
       }
 
       function tc_fires_controllers() {
+        //CONTROL BASE : load only. Instanciations in children.
+        tc_new(
+          array( 'controller' => array( array('inc/', 'control_base') ) ),
+          array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
+        );
+
         tc_new( array('controller' => array( array('inc/controllers', 'header_control') ) ) );
         tc_new( array('controller' => array( array('inc/controllers', 'loop_control') ) ) );
         tc_new( array('controller' => array( array('inc/controllers', 'modules_control') ) ) );
@@ -343,6 +349,12 @@ if ( ! class_exists( 'TC_init' ) ) :
       //hook : 'after_setup_theme'
       //=> instanciate the default loop using the main $wp_query
       function tc_fires_views(){
+        //VIEW BASE : load only. Instanciations in children.
+        tc_new(
+          array( 'views' => array( array('inc/', 'view_base') ) ),
+          array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
+        );
+
         //HEADER : load only. Instanciations in children.
         tc_new(
           array( 'views' => array( array('inc/views', 'header_view') ) ),
@@ -351,7 +363,8 @@ if ( ! class_exists( 'TC_init' ) ) :
 
         //MAIN WRAPPER : load and instanciates.
         tc_new(
-          array( 'views' => array( array('inc/views', 'main_wrapper_view') ) )
+          array( 'views' => array( array('inc/views', 'main_wrapper_view') ) ),
+          array( 'render_on_hook' => '__main_wrapper' )
         );
 
         //LOOP : load only. Instanciations in children.
@@ -363,7 +376,11 @@ if ( ! class_exists( 'TC_init' ) ) :
         //FOOTER : load only. Instanciations in children.
         tc_new(
           array('views' => array( array('inc/views', 'footer_view') ) ),
-          array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
+          array(
+            '_no_filter' => true,
+            '_singleton' => false,
+            '_instanciate' => false
+            )
         );
       }
 
