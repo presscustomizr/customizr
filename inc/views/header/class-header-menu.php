@@ -1,6 +1,7 @@
 <?php
 /**
 * Menu action
+* Fired on 'wp'
 *
 *
 * @package      Customizr
@@ -12,12 +13,17 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_menu' ) ) :
-  class TC_menu {
+  class TC_menu extends TC_header_view {
     static $instance;
-    function __construct () {
+    function __construct( $_args = array() ) {
       self::$instance =& $this;
+
+      // Instanciates the parent class.
+      if ( ! isset(parent::$instance) )
+        parent::__construct( $_args );
+
       //Set menu customizer options (since 3.2.0)
-      add_action( 'wp'             , array( $this, 'tc_set_menu_hooks') );
+      $this -> tc_set_menu_hooks();
     }
 
 
@@ -31,8 +37,6 @@ if ( ! class_exists( 'TC_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function tc_set_menu_hooks() {
-      if ( (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') )
-        return;
       //VARIOUS USER OPTIONS
       add_filter( 'body_class'                    , array( $this , 'tc_add_body_classes') );
       //Set header css classes based on user options

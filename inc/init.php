@@ -13,7 +13,7 @@
 * @since Customizr 3.0
 */
 if( ! function_exists( 'tc__f' ) ) :
-    function tc__f ( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
+    function tc__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
        return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
     }
 endif;
@@ -99,18 +99,6 @@ if ( ! class_exists( 'TC___' ) ) :
             'admin'     => array(
               array('inc/admin' , 'customize'),//loads customizer actions and resources
               array('inc/admin' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
-            ),
-            //the following files/classes define the action hooks for front end rendering : header, main content, footer
-            'header'    =>   array(
-              //array('inc/views/header' , 'header_main'),
-              array('inc/views/header' , 'menu'),
-              array('inc/views/header' , 'nav_walker')
-            ),
-            'module'   =>  array(
-              array('inc/views/modules', 'post_thumbnails'),
-            ),
-            'footer'    => array(
-              //array('inc/views/footer', 'footer_main'),
             ),
             'addons'    => apply_filters( 'tc_addons_classes' , array() )
         )//end of array

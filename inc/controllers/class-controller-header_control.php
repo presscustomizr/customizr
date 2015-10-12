@@ -39,6 +39,12 @@ if ( ! class_exists( 'TC_header_control' ) ) :
           array( 'render_on_hook' => '__header_main' )
         );
 
+      //MENUS
+      if ( ! (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') ) {
+        tc_new( array('header' => array( array('inc/views/header', 'menu') ) ) );
+        //the custom nav walker classes will be instanciated when firing the menus
+        tc_new( array('header' => array( array('inc/views/header', 'nav_walker') ) ), array( '_instanciate' => false ) );
+      }
     }
 
 

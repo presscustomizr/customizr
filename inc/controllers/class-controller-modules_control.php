@@ -36,6 +36,10 @@ if ( ! class_exists( 'TC_modules_control' ) ) :
     function tc_fire_views_on_query_ready() {
       if ( is_admin() )
         return;
+      //THUMBNAILS
+      tc_new( array( 'module' => array( array('inc/views/modules', 'post_thumbnails') ) ) );
+
+      //SLIDER
       if ( $this -> tc_is_slider_possible() )
         tc_new( array('module' => array( array('inc/views/modules', 'slider') ) ) );
 

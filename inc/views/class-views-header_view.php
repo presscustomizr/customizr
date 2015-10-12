@@ -15,7 +15,6 @@ if ( ! class_exists( 'TC_header_view' ) ) :
   class TC_header_view extends TC_view_base {
     static $instance;
 
-
     function __construct( $_args ) {
       self::$instance =& $this;
 
