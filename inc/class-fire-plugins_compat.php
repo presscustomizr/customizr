@@ -86,6 +86,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( current_theme_supports( 'polylang' ) && $this -> tc_is_plugin_active('polylang/polylang.php') )
         $this -> tc_set_polylang_compat();
 
+      /* The Events Calendar */
+      if ( current_theme_supports( 'the-events-calendar' ) && $this -> tc_is_plugin_active('the-events-calendar/the-events-calendar.php') )
+        $this -> tc_set_the_events_calendar_compat();
+
       /* Optimize Press */
       if ( current_theme_supports( 'optimize-press' ) && $this -> tc_is_plugin_active('optimizePressPlugin/optimizepress.php') )
         $this -> tc_set_optimizepress_compat();
@@ -370,6 +374,59 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         }
       }//end Front
     }//end polylang compat
+
+
+
+    /**
+    * The Events Calendar compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    private function tc_set_the_events_calendar_compat() {
+      /*
+      * Are we in the Events list context?
+      */  
+      if ( ! ( function_exists( 'tc_is_tec_events_list' ) ) ) {
+        function tc_is_tec_events_list() {
+          return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_post_type_archive();
+        }
+      }
+
+      // hide tax archive title
+      add_filter( 'tc_show_tax_archive_title', 'tc_tec_disable_tax_archive_title');
+      function tc_tec_disable_tax_archive_title( $bool ) {
+        return tc_is_tec_events_list() ? false : $bool;
+      }
+
+      // Events archive is displayed, wrongly, we our post lists classes, we have to prevent this
+      add_filter( 'tc_post_list_controller', 'tc_tec_disable_post_list');
+      add_filter( 'tc_is_grid_enabled', 'tc_tec_disable_post_list');
+      function tc_tec_disable_post_list( $bool ) {
+        return tc_is_tec_events_list() ? false : $bool;
+      }
+
+      // Now we have to display a post or page content
+      add_filter( 'tc_show_single_post_content', 'tc_tec_show_content' );
+      function tc_tec_show_content( $bool ) {
+        return tc_is_tec_events_list() ? true : $bool;
+      }
+
+      // Force the tax name in the breadcrumb when list of events shown as 'Month'
+      // The Events Calendar add a filter on post_type_archive_title with __return_false callback
+      // for their own reasons. This impacts on our breadcrumb 'cause we use the function post_type_archive_title() to build up the trail arg in posty_type_archives contexts. To avoid issues we copy part of the breadcrumb code for is_posts_type_archive()
+      add_filter( 'tc_breadcrumb_trail_args', 'tc_tec_force_breadcrumb_trail_in_month');
+      function tc_tec_force_breadcrumb_trail_in_month( $args ){
+        if ( tc_is_tec_events_list() && function_exists( 'tribe_is_month' ) && tribe_is_month() ) {
+          /* Get the post type object. */
+          $post_type_object = ! is_array(get_query_var( 'post_type' )) ? get_post_type_object( get_query_var( 'post_type' ) ) : array();
+          if ( ! empty( $post_type_object ) )
+            $args['after'] = $post_type_object->labels->name;    
+        }
+    
+        return $args;
+      }
+    }//end the-events-calendar compat
 
 
 
