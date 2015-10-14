@@ -58,7 +58,7 @@ if ( ! class_exists( 'TC_nav_walker' ) ) :
 
         //adds arrows down
         if ( $depth === 0 )
-            $item_html      = str_replace( '</a>' , ' <b class="caret"></b></a>' , $item_html);
+            $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);
       }
       elseif (stristr( $item_html, 'li class="divider' )) {
         $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);
@@ -142,7 +142,7 @@ if ( ! class_exists( 'TC_nav_walker_page' ) ) :
 
         //adds arrows down
         if ( $depth === 0 )
-          $item_html      = str_replace( '</a>' , ' <b class="caret"></b></a>' , $item_html);
+          $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);
       }
 
       elseif (stristr( $item_html, 'li class="divider' )) {
