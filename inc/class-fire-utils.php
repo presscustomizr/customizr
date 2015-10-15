@@ -29,8 +29,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         //init properties
         add_action( 'after_setup_theme'       , array( $this , 'tc_init_properties') );
-        //WP filters
-        add_action( 'after_setup_theme'       , array( $this , 'tc_wp_filters') );
+
+        //Various WP filters for
+        //content
+        //thumbnails => parses image if smartload enabled
+        //title
+        add_action( 'wp_head'                 , array( $this , 'tc_wp_filters') );
 
         //get all options
         add_filter( '__options'               , array( $this , 'tc_get_theme_options' ), 10, 1);
@@ -190,8 +194,8 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.4.9
       */
       function tc_is_customizr_option( $option_key ) {
-        $_is_tc_option = in_array( substr( $option_key, 0, 3 ), $this -> tc_options_prefixes ); 
-        return apply_filters( 'tc_is_customizr_option', $_is_tc_option , $option_key );       
+        $_is_tc_option = in_array( substr( $option_key, 0, 3 ), $this -> tc_options_prefixes );
+        return apply_filters( 'tc_is_customizr_option', $_is_tc_option , $option_key );
       }
 
 
@@ -975,16 +979,16 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
     /**
     * Returns the url of the customizer with the current url arguments + an optional customizer section args
-    * 
+    *
     * @param $autofocus(optional) is an array indicating the elements to focus on ( control,section,panel).
     * Ex : array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec').
     * Wordpress will cycle among autofocus keys focusing the existing element - See wp-admin/customize.php.
     * The actual focused element depends on its type according to this priority scale: control, section, panel.
     * In this sense when specifying a control, additional section and panel could be considered as fall-back.
     *
-    * @param $control_wrapper(optional) is a string indicating the wrapper to apply to the passed control. By default is "tc_theme_options". 
+    * @param $control_wrapper(optional) is a string indicating the wrapper to apply to the passed control. By default is "tc_theme_options".
     * Ex: passing $aufocus = array('control' => 'tc_front_slider') will produce the query arg 'autofocus'=>array('control' => 'tc_theme_options[tc_front_slider]'
-    * 
+    *
     * @return url string
     * @since Customizr 3.4+
     */
@@ -999,7 +1003,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       // $autofocus must contain at least one key among (control,section,panel)
       if ( ! count( array_intersect( array_keys($autofocus), array( 'control', 'section', 'panel') ) ) )
         return $_customize_url;
-      
+
       // wrap the control in the $control_wrapper if neded
       if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] && $control_wrapper ) ){
         $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
