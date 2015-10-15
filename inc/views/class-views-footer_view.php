@@ -28,7 +28,7 @@ if ( ! class_exists( 'TC_footer_view' ) ) :
       }
 
       //Instanciates the parent class.
-      parent::__construct( $_args );
+      parent::__construct( array_merge( $_args , array( 'render_on_hook' => '__footer_main' ) ) );
     }
 
 

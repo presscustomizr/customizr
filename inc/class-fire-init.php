@@ -355,12 +355,6 @@ if ( ! class_exists( 'TC_init' ) ) :
           array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
         );
 
-        //HEADER : load only. Instanciations in children.
-        tc_new(
-          array( 'views' => array( array('inc/views', 'header_view') ) ),
-          array( '_no_filter' => true, '_singleton' => false, '_instanciate' => false )
-        );
-
         //MAIN WRAPPER : load and instanciates.
         tc_new(
           array( 'views' => array( array('inc/views', 'main_wrapper_view') ) ),

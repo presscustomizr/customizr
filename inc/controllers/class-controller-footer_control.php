@@ -32,10 +32,7 @@ if ( ! class_exists( 'TC_footer_control' ) ) :
         return;
 
       if ( apply_filters( 'tc_display_main_footer' , true ) )
-        tc_new(
-          array( 'footer' => array( array('inc/views/footer', 'footer_main') ) ),
-          array( 'render_on_hook' => '__footer_main' )
-        );
+        tc_new( array( 'footer' => array( array('inc/views/footer', 'footer_main') ) ) );
 
     }
 
