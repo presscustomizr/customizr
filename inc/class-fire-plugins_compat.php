@@ -45,6 +45,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_theme_support( 'the-events-calendar' );
       add_theme_support( 'optimize-press' );
       add_theme_support( 'sensei' );
+      add_theme_support( 'visual-composer' );//or js-composer as they call it
     }
 
 
@@ -101,6 +102,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       /* Sensei woocommerce addon */
       if ( current_theme_supports( 'sensei') && $this -> tc_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
         $this -> tc_set_sensei_compat();
+ 
+      /* Visual Composer */
+      if ( current_theme_supports( 'visual-composer') && $this -> tc_is_plugin_active('js_composer/js_composer.php') )
+        $this -> tc_set_vc_compat();
     }//end of plugin compatibility function
 
 
@@ -596,7 +601,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
       function tc_woocommerce_disable_link_scroll( $excl ){
-        if ( false == TC_utils::$inst->tc_opt('tc_link_scroll') ) return $excl;
+        if ( false == esc_attr( TC_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
         
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
@@ -619,7 +624,36 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_woocommerce_change_meta_boxes_priority($priority , $screen) {
          return ( 'product' == $screen ) ? 'default' : $priority ;
       }
-    }
+    }//end woocommerce compat
+
+
+    /**
+    * Visual Composer compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    private function tc_set_vc_compat() {
+      //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
+      add_filter( 'tc_anchor_smoothscroll_excl', 'tc_vc_disable_link_scroll' );
+      function tc_vc_disable_link_scroll( $excl ){
+        if ( false == esc_attr( TC_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        
+        if ( ! is_array( $excl ) )
+          $excl = array();
+          
+        if ( ! is_array( $excl['deep'] ) )
+          $excl['deep'] = array() ;
+          
+        if ( ! is_array( $excl['deep']['classes'] ) )
+            $excl['deep']['classes'] = array();        
+
+        $excl['deep']['classes'][] = 'vc_row';
+        
+        return $excl;
+      }
+    }//end woocommerce compat
+
 
     /**
     * CUSTOMIZR WRAPPERS
