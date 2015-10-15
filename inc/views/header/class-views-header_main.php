@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_header_view' ) ) :
-  class TC_header_view extends TC_view_base {
+if ( ! class_exists( 'TC_header_main' ) ) :
+  class TC_header_main extends TC_view_base {
     static $instance;
 
     function __construct( $_args ) {
@@ -28,7 +28,11 @@ if ( ! class_exists( 'TC_header_view' ) ) :
       }
 
       // Instanciates the parent class.
+      // => Renders Customizr header on hook '__header_main'
       parent::__construct( $_args );
+
+      //render the WP header
+      add_action ( '__before_main_wrapper'  , 'get_header');
     }
 
 

@@ -12,7 +12,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_header_main' ) ) :
-	class TC_header_main extends TC_header_view {
+	class TC_header_main extends TC_view_base{
     static $instance;
     function __construct( $_args = array() ) {
       self::$instance =& $this;
@@ -646,24 +646,6 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 			return array_merge( $_classes , $_add_classes );
 		}
 
-
-
-    /**
-    * Returns a boolean wheter we're using or not a specific sticky logo
-    *
-    * @package Customizr
-    * @since Customizr 3.2.9
-    */
-    function tc_use_sticky_logo(){
-        if ( ! esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_logo_upload") ) )
-            return false;
-        if ( ! ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") ) &&
-                     esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') )
-               )
-        )
-            return false;
-        return true;
-    }
 
 
 		/**

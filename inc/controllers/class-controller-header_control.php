@@ -33,11 +33,37 @@ if ( ! class_exists( 'TC_header_control' ) ) :
       if ( is_admin() )
         return;
 
-      if ( apply_filters( 'tc_display_main_header' , true ) )
-        tc_new(
-          array( 'header' => array( array('inc/views/header', 'header_main') ) ),
+      //HEAD ( and mandatory ) VIEW : INCLUDES wp_head
+      tc_new(
+        array( 'header' => array( array('inc/views/header', 'head') ) ),
+        array( 'render_on_hook' => '__before_body' )
+      );
+
+      //OTHER HEADER OPTIONAL VIEWS
+      if ( ! apply_filters( 'tc_display_header', true ) )
+        return;
+
+      //HEADER WRAPPER
+      tc_new(
+          array( 'views' => array( array('inc/views/header', 'header_main') ) ),
           array( 'render_on_hook' => '__header_main' )
+      );
+
+      //FAVICON
+      //is there a WP favicon set ? If yes then let WP do the job
+      if ( ! function_exists('has_site_icon') || ! has_site_icon() ) {
+        tc_new(
+          array( 'header' => array( array('inc/views/header', 'logo_title') ) ),
+          array( 'render_on_hook' => 'wp_head' )
         );
+      }
+
+      //LOGO / TITLE
+      tc_new(
+        array( 'header' => array( array('inc/views/header', 'logo_title') ) ),
+        array( 'render_on_hook' => '__header' )
+      );
+
 
       //MENUS
       if ( ! (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') ) {

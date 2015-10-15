@@ -13,7 +13,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC_menu' ) ) :
-  class TC_menu extends TC_header_view {
+  class TC_menu extends TC_view_base{
     static $instance;
     function __construct( $_args = array() ) {
       self::$instance =& $this;
