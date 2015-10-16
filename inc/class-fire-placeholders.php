@@ -285,7 +285,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! self::$instance -> tc_is_front_help_enabled(),
         'disabled' == get_transient("tc_img_smartload_help"),
-        apply_filters('tc_img_smartload_help_n_images', 2 ) > preg_match_all( '/(<img[^>]+>)/i', $text ),
+        apply_filters('tc_img_smartload_help_n_images', 2 ) > preg_match_all( '/(<img[^>]+>)/i', $text, $matches ),
         is_admin(),
         ! is_singular()
       );
