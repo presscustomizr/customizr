@@ -65,6 +65,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
     /**
     * Helper to get all front end script
+    * Fired from the constructor
     *
     * @package Customizr
     * @since Customizr 3.3+
@@ -205,7 +206,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
                 'deep'   => array(
                   'classes' => array(),
                   'ids'     => array()
-                ) 
+                )
             ));
 
       $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_smoothscroll') ) );
@@ -219,7 +220,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
             ),
             'opts'     => array(
                 'excludeImg' => array( '.tc-holder-img' )
-            ) 
+            )
       ));
 			//gets current screen layout
     	$screen_layout      = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
@@ -554,7 +555,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
       /* Generate the random skin just once !*/
       if ( ! $this -> current_random_skin && is_array( $_skins ) )
         $this -> current_random_skin = array_rand( $_skins, 1 );
-      
+
       return $this -> current_random_skin;
     }
 

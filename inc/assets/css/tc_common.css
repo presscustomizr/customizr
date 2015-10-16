@@ -6109,6 +6109,8 @@ footer#footer .colophon .social-block a {
   width: 10%;
   opacity: 0;
   color: #999;
+  z-index: 10\9;
+  /* controls visible and clickable in IE 9 and below */
 }
 .tc-slid-hover .tc-slider-controls {
   opacity: 1;
@@ -6199,13 +6201,10 @@ footer#footer .colophon .social-block a {
   bottom: 40px;
   right: 11%;
 }
-.tc_posts_slider .carousel-inner .edit-link {
+.slider.deep-edit-link.edit-link {
   right: auto;
   left: 11%;
-}
-.tc_posts_slider .customizer-link.edit-kink {
-  bottom: 5px;
-  right: 5px;
+  bottom: 20px;
 }
 /* If automatic centering is enabled */
 .carousel > .center-slides-enabled > .item > .carousel-image img {
