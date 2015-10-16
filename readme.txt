@@ -40,6 +40,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.13 October 16th 2015 =
+* fix : better support for php versions < 5.4.0
+
 = 3.4.12 October 16th 2015 =
 * added : performance help notice on front-end for posts/pages showing more than 2 images
 * updated : Italian Translation thanks to Giorgio Riccardi http://www.giorgioriccardi.com/
