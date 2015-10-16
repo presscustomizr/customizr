@@ -40,6 +40,19 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.12 October 16th 2015 =
+* added : performance help notice on front-end for posts/pages showing more than 2 images
+* updated : Italian Translation thanks to Giorgio Riccardi http://www.giorgioriccardi.com/
+* fix: better support for Visual Composer, prevent conflicts with anchor links in visual composer elements 
+* fix: better support for The Events Calendar, events list view fixes #353
+* fix: better support for JetPack's photon, load imgs from cdn
+updated Polish translation. Thanks to Krzysztof Busłowicz
+* fix : better retro compatibility for the customizer preview for WP version under 4.1
+* fix: Select a submenu expansion option disappears #340
+* fix: allow control deeplink in the customizer
+* fix: limit previous fix to ie9 and below
+* fix: slider-controls always visible in ie9- In such browsers the opacity+transition doesn't really work fine, let's make them always visible
+
 = 3.4.11 September 30th 2015 =
 * added: new social link - email
 

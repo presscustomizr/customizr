@@ -1,8 +1,8 @@
-# Customizr v3.4.11 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.12 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
-> Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with an extremely active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
+> Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
 
 ## Copyright
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Press Customizer](http://presscustomizr.com>)) 
@@ -43,6 +43,19 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.12 October 16th 2015 =
+* added : performance help notice on front-end for posts/pages showing more than 2 images
+* updated : Italian Translation thanks to Giorgio Riccardi http://www.giorgioriccardi.com/
+* fix: better support for Visual Composer, prevent conflicts with anchor links in visual composer elements 
+* fix: better support for The Events Calendar, events list view fixes #353
+* fix: better support for JetPack's photon, load imgs from cdn
+updated Polish translation. Thanks to Krzysztof Busłowicz
+* fix : better retro compatibility for the customizer preview for WP version under 4.1
+* fix: Select a submenu expansion option disappears #340
+* fix: allow control deeplink in the customizer
+* fix: limit previous fix to ie9 and below
+* fix: slider-controls always visible in ie9- In such browsers the opacity+transition doesn't really work fine, let's make them always visible
+
 = 3.4.11 September 30th 2015 =
 * added: new social link - email
 
