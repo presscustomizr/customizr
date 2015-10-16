@@ -1005,7 +1005,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         return $_customize_url;
 
       // wrap the control in the $control_wrapper if neded
-      if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] && $control_wrapper ) ){
+      if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ){
         $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
       }
       // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
