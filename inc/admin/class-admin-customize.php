@@ -548,7 +548,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
         <div class="tc-cta tc-cta-wrap">
           <?php
             printf('<a class="tc-cta-btn" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a>',
-              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', TC_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -559,7 +559,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with Customizr Pro." , 'customizr' ),
-              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', TC_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -570,7 +570,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Add unlimited featured pages with Customizr Pro." , 'customizr' ),
-              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', TC_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -584,7 +584,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
               __( "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer." , 'customizr' ),
                sprintf('<a href="%1$s" class="tc-notice-inline-link" title="%2$s" target="_blank">%2$s<span class="tc-notice-ext-icon dashicons dashicons-external"></span></a>' , esc_url('demo.presscustomizr.com/?design=demo_grid_customizer'), __("Try it in the demo" , "customizr" )
               ),
-              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', TC_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -598,7 +598,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
               __( "Add creative and engaging reveal animations to your side menu." , 'customizr' ),
               sprintf('<a href="%1$s" class="tc-notice-inline-link" title="%2$s" target="_blank">%2$s<span class="tc-notice-ext-icon dashicons dashicons-external"></span></a>' , esc_url('demo.presscustomizr.com/?design=nav'), __("Side menu animation demo" , "customizr" )
               ),
-              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', TC_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -610,7 +610,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Customize your footer credits with Customizr Pro." , 'customizr' ),
-              sprintf('%sextension/customizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', TC_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -623,7 +623,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
             __( 'If you like' , 'customizr' ),
             ! $_is_pro ? __( 'the Customizr theme' , 'customizr') : __( 'the Customizr pro theme' , 'customizr'),
             __( 'we would love to receive a' , 'customizr' ),
-            ! $_is_pro ? 'https://' . 'wordpress.org/support/view/theme-reviews/customizr?filter=5' : sprintf('%sextension/customizr-pro/#comments', TC_WEBSITE ),
+            ! $_is_pro ? 'https://' . 'wordpress.org/support/view/theme-reviews/customizr?filter=5' : sprintf('%scustomizr-pro/#comments', TC_WEBSITE ),
             __( 'Review the Customizr theme' , 'customizr' ),
             '&#9733;&#9733;&#9733;&#9733;&#9733;',
             __( 'rating. Thanks :) !' , 'customizr')
