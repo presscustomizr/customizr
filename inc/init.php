@@ -33,17 +33,37 @@ endif;
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'TC___' ) ) :
-  class TC___ {
-    //Access any method or var of the class with classname::$instance -> var or method():
-    static $instance;
+
+  final class TC___ {
+    public static $instance;//@todo make private in the future
     public $tc_core;
     public $is_customizing;
     public static $theme_name;
     public static $tc_option_group;
 
-    function __construct () {
-      self::$instance =& $this;
+    public $views;//object, will store the views
 
+    public static function tc_instance() {
+      if ( ! isset( self::$instance ) && ! ( self::$instance instanceof TC___ ) ) {
+        self::$instance = new TC___;
+        self::$instance -> tc_setup_constants();
+        self::$instance -> tc_load();
+        self::$instance -> views = new TC_Views();
+      }
+      return self::$instance;
+    }
+
+
+    //instanciates a new view
+    //the args will be updated by the create method
+    //and / or by the chid instanciation
+    public function tc_views() {
+      return new TC_Views();
+    }
+
+
+
+    private function tc_setup_constants() {
       /* GETS INFORMATIONS FROM STYLE.CSS */
       // get themedata version wp 3.4+
       if( function_exists( 'wp_get_theme' ) ) {
@@ -81,7 +101,11 @@ if ( ! class_exists( 'TC___' ) ) :
       //TC_WEBSITE is the home website of Customizr
       if( ! defined( 'TC_WEBSITE' ) )         define( 'TC_WEBSITE' , $tc_base_data['authoruri'] );
 
+    }//setup_contants()
 
+
+
+    private function tc_load() {
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
         array(
@@ -115,7 +139,8 @@ if ( ! class_exists( 'TC___' ) ) :
 
       //theme class groups instanciation
       $this -> tc__();
-    }//end of __construct()
+    }
+
 
 
 
@@ -372,8 +397,6 @@ if ( ! class_exists( 'TC___' ) ) :
   }//end of class
 endif;
 
-//Creates a new instance
-new TC___;
 //shortcut function to instanciate easier
 if ( ! function_exists('tc_new') ) {
   function tc_new( $_to_load, $_args = array() ) {
@@ -382,3 +405,144 @@ if ( ! function_exists('tc_new') ) {
   }
 }
 //endif;
+
+/**
+ * @since 3.5.0
+ * @return object CZR Instance
+ */
+function CZR() {
+  return TC___::tc_instance();
+}
+
+
+
+
+
+if ( ! class_exists( 'TC_views' ) ) :
+  class TC_views {
+    static $instance;
+
+
+    public $hook = false;//this is the default hook declared in the index.php template
+    public $name = "";
+    public $obj = false;
+    public $query = false;
+    public $priority = 10;
+
+    public $group = "";//header,content,footer,modules
+
+    private $args = array();//will store the updated args on view creation and use them to instanciate the child
+
+    function __construct( $args = array() ) {
+      self::$instance =& $this;
+      //Gets the accessible non-static properties of the given object according to scope.
+      $keys = array_keys( get_object_vars( self::$instance ) );
+
+      foreach ( $keys as $key ) {
+        if ( isset( $args[ $key ] ) ) {
+          $this->$key = $args[ $key ];
+        }
+      }
+    }
+
+
+    //hook : $this -> render_on_hook
+    public function tc_maybe_render() {
+      //check the controller
+      // if ( ! CZR() -> controller( $group, $name ) )
+      //   return;
+      // $path = '';
+      // $part = '';
+      // get_template_part( $path , $part );
+      //
+      //load and instanciate the view class if specified
+      if ( false !== $this -> obj && class_exists($this -> obj)) {
+        $custom_view_obj = new $this -> obj( $this -> args );
+        $custom_view_obj -> tc_render();
+      } else {
+        $this -> tc_render();
+      }
+
+
+    }
+
+    //might be overriden in the child view if any
+    public function tc_render() {
+      ?>
+      <div class="row-fluid">
+        <div class="span12">
+          <h1>I AM THE DEFAULT HTML</h1>
+        </div>
+      </div>
+      <?php
+    }
+
+
+
+    public function create( $args = array() ) {
+      $default = array(
+        $hook => false,
+        $name => "",
+        $obj => false,
+        $query => false,
+        $priority => 10
+      );
+
+      $args = wp_parse_args( $args, $defaults );
+
+      //Gets the accessible non-static properties of the given object according to scope.
+      $keys = array_keys( get_object_vars( self::$instance ) );
+
+      foreach ( $keys as $key ) {
+        if ( isset( $args[ $key ] ) ) {
+          $this->$key = $args[ $key ];
+        }
+      }
+
+      //update the args
+      $this -> args = $args;
+
+      //Renders the view on the requested hook
+      if ( false !== $this -> hook )
+        add_action( $this -> hook   , array($this, 'tc_maybe_render'), $this -> priority );
+    }
+
+
+  }//end of class
+endif;
+
+
+
+
+
+
+
+class TC_test_view_class extends TC_views {
+
+  public function tc_render() {
+    ?>
+    <div class="row-fluid">
+      <div class="span12">
+        <h1>I AM THE CUSTOM VIEW</h1>
+      </div>
+    </div>
+    <?php
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// Fire Customizr
+CZR();
+
+//Create a new test view
+CZR() -> tc_views() -> create(
+  array( 'hook' => '__after_header', 'name' => 'test', 'obj' => 'TC_test_view_class' )
+);
