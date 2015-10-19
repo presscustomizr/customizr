@@ -2,7 +2,7 @@
 # This file is distributed under the GNU General Public License v2.0 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.4.11\n"
+"Project-Id-Version: * Customizr v3.5.0\n"
 "Report-Msgid-Bugs-To: http://themesandco.com/contact/\n"
 "POT-Creation-Date: 2015-08-22 15:55+0200\n"
 "PO-Revision-Date: 2015-08-22 15:55+0200\n"

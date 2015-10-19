@@ -651,6 +651,36 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         return '1' == to;
       }
     },
+    'tc_display_second_menu' : {
+      show : {
+        controls: [
+          'nav_menu_locations[secondary]',
+          'tc_second_menu_position',
+          'tc_second_menu_resp_setting',
+          'tc_menu_type',
+          'tc_menu_submenu_fade_effect',
+          'tc_menu_submenu_item_move_effect'
+        ],
+        //the menu style must be aside for secondary menu controls
+        callback: function (to, targetSetId, changedSetId) {
+          //second menu speicifics
+          if ( _.contains( ['nav_menu_locations[secondary]', 'tc_second_menu_resp_setting'], targetSetId ) )
+            return '1' == to && 'aside' == api( _build_setId( 'tc_menu_style' )).get();
+          //effects common to regular menu and second horizontal menu
+          if ( _.contains( ['tc_menu_submenu_fade_effect', 'tc_menu_submenu_item_move_effect'], targetSetId ) )
+            return ( '1' == to && 'aside' == api( _build_setId( 'tc_menu_style' )).get() ) || ('1' != to && 'aside' != api( _build_setId( 'tc_menu_style' )).get() );
+          return '1' == to;
+        }
+      }
+      // hide : {
+      //   controls: [
+      //     'tc_display_menu_label'
+      //   ],
+      //   callback: function (to) {
+      //     return 'aside' != to;
+      //   }
+      // }
+    },
     'tc_menu_style' : {
       show : {
         controls: [
@@ -658,7 +688,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           'tc_menu_submenu_fade_effect',
           'tc_menu_submenu_item_move_effect',
           'tc_menu_resp_dropdown_limit_to_viewport',
-
           'tc_display_menu_label',
           'tc_display_second_menu',
           'tc_second_menu_position',
@@ -702,36 +731,6 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           }
         }
       }
-    },
-    'tc_display_second_menu' : {
-      show : {
-        controls: [
-          'nav_menu_locations[secondary]',
-          'tc_second_menu_position',
-          'tc_second_menu_resp_setting',
-          'tc_menu_type',
-          'tc_menu_submenu_fade_effect',
-          'tc_menu_submenu_item_move_effect'
-        ],
-        //the menu style must be aside for secondary menu controls
-        callback: function (to, targetSetId, changedSetId) {
-          //second menu speicifics
-          if ( _.contains( ['nav_menu_locations[secondary]', 'tc_second_menu_resp_setting'], targetSetId ) )
-            return '1' == to && 'aside' == api( _build_setId( 'tc_menu_style' )).get();
-          //effects common to regular menu and second horizontal menu
-          if ( _.contains( ['tc_menu_submenu_fade_effect', 'tc_menu_submenu_item_move_effect'], targetSetId ) )
-            return ( '1' == to && 'aside' == api( _build_setId( 'tc_menu_style' )).get() ) || ('1' != to && 'aside' != api( _build_setId( 'tc_menu_style' )).get() );
-          return '1' == to;
-        }
-      }
-      // hide : {
-      //   controls: [
-      //     'tc_display_menu_label'
-      //   ],
-      //   callback: function (to) {
-      //     return 'aside' != to;
-      //   }
-      // }
     }
   };
 
