@@ -423,16 +423,18 @@ if ( ! class_exists( 'TC_views' ) ) :
 
 
     public $hook = false;//this is the default hook declared in the index.php template
-    public $name = "";
+    public $id = "";
     public $obj = false;
     public $query = false;
     public $priority = 10;
+    public $template = "";
 
     public $group = "";//header,content,footer,modules
 
     private $args = array();//will store the updated args on view creation and use them to instanciate the child
 
     private $_views = array();//will store all views added to front end
+    private $_delete_candidates = array();
 
     function __construct( $args = array() ) {
       self::$instance =& $this;
@@ -447,24 +449,111 @@ if ( ! class_exists( 'TC_views' ) ) :
     }
 
 
-    //hook : $this -> render_on_hook
-    public function tc_maybe_render() {
-      if ( ! apply_filters( "{$this -> name}_view_exists", true ) )
+
+    public function tc_create( $args = array() ) {
+      //update the args
+      //set the unique id based on optional given id or hooks/priority
+      $args = $this -> tc_set_view_properties($args);
+      $view_obj = $this;
+
+      //add the view to the static object
+      $this -> tc_add_view( $this -> id );
+
+      //load and instanciate the view class if specified
+      //must be done now so that the child view class is instanciated with the right properties (args)
+      if ( false !== $this -> obj && class_exists($this -> obj))
+        $view_obj = new $this -> obj( $this -> args );
+
+      //Renders the view on the requested hook
+      if ( false !== $this -> hook ) {
+        add_action( $this -> hook, array($view_obj, 'tc_maybe_render'), $this -> priority );
+        // if (method_exists( $view_obj, 'tc_render') )
+        //   add_action( "maybe_render" , array( $view_obj, 'tc_render'),  );
+      }
+    }
+
+    //the view might not have been created yet
+    //=> register a promise deletion in this case
+    //IMPORTANT : always use the TC_views::$instance -> _views property to access the view list here
+    //=> because it can be accessed from a child class
+    public function tc_delete( $id ) {
+      $views = TC_views::$instance -> _views;
+      if ( isset($views[$id]) ) {
+        unset($views[$id]);
+        TC_views::$instance -> _views = $views;
+        //may be remove from the deletion list
+        $this -> tc_deregister_deletion($id);
+      }
+      else
+        $this -> tc_register_deletion( $id );
+      return;
+    }
+
+
+    private function tc_deregister_deletion($id) {
+      $to_delete = $this -> _delete_candidates;
+      if ( isset($to_delete[$id]) )
+        unset($to_delete[$id]);
+      $this -> _delete_candidates = $to_delete;
+    }
+
+
+    private function tc_register_deletion($id) {
+      $to_delete = $this -> _delete_candidates;
+      //avoid if already registered
+      if ( in_array($id, $to_delete) )
         return;
+
+      $to_delete[$id] = $id;
+      $this -> _delete_candidates =  $to_delete;
+    }
+
+
+    //=> always update the view list before rendering something
+    //=> a view might have been registered in the delete candidates
+    public function tc_update_views( $id = false ) {
+      if ( ! $id )
+        return;
+      $to_delete = TC_views::$instance -> _delete_candidates;
+      if ( in_array( $id, $to_delete ) )
+        $this -> tc_delete( $id );
+    }
+
+
+    //hook : $this -> render_on_hook
+    //NOTE : the $this here can be the child class $this.
+    public function tc_maybe_render() {
       //check the controller
       // if ( ! CZR() -> controller( $group, $name ) )
       //   return;
       // $path = '';
       // $part = '';
       // get_template_part( $path , $part );
-      //
-      //load and instanciate the view class if specified
-      if ( false !== $this -> obj && class_exists($this -> obj)) {
-        $view_obj = new $this -> obj( $this -> args );
-        $view_obj -> tc_render();
-      } else {
+
+
+      //check if some views are registered for deletion or change
+      $this -> tc_update_views($this -> id );
+
+      do_action( 'before_maybe_render', $this -> id );
+
+      //get the views from the parent
+      $views = $this -> tc_get();
+
+      if ( ! apply_filters( "tc_do_render_view_{$this -> id}", isset( $views[$this -> id] ) ) )
+        return;
+
+      if ( empty($this -> template) && is_user_logged_in() && current_user_can('edit_theme_options') ) :
+        ?>
+        <div class="row-fluid">
+          <div class="span12" style="text-align:center">
+            <h1>NO TEMPLATE WAS SPECIFIED</h1>
+            <p>This warning is visible for admin users only.</p>
+          </div>
+        </div>
+        <?php
+      else :
         $this -> tc_render();
-      }
+      endif;
     }
 
 
@@ -472,57 +561,33 @@ if ( ! class_exists( 'TC_views' ) ) :
 
     //might be overriden in the child view if any
     public function tc_render() {
-      if ( isset( $this -> name) )
-        get_template_part( "inc/views/templates/{$this -> name}" );
-
-      if ( is_user_logged_in() && current_user_can('edit_theme_options') ) :
-        ?>
-        <div class="row-fluid">
-          <div class="span12">
-            <h1>NO VIEW WAS SPECIFIED</h1>
-          </div>
-        </div>
-        <?php
-      endif;
+      if ( ! empty ( $this -> template) )
+        get_template_part( "inc/views/templates/{$this -> template}" );
     }
-
-
-
-    public function create( $args = array() ) {
-      //update the args
-      $args = $this -> tc_set_view_properties($args);
-
-      //Renders the view on the requested hook
-      if ( false !== $this -> hook )
-        add_action( $this -> hook   , array($this, 'tc_maybe_render'), $this -> priority );
-
-      //add the view to the static object
-      $this -> tc_add_view( $this -> name );
-    }
-
-
 
 
 
     //add the view description to the private views array
-    private function tc_add_view( $name ) {
+    private function tc_add_view( $id ) {
       $_views = $this -> _views;
-      $_views[$name] = $this -> args;
+      $_views[$id] = $this -> args;
       $this -> _views = $_views;
     }
 
 
-
-    public function tc_get_view( $name = null ) {
+    //@return a single view description
+    public function tc_get_view( $id = null ) {
       $views = $this -> _views;
-      if ( ! is_null($name) && isset($views[$name]) )
-        return $views[$name];
+      if ( ! is_null($id) && isset($views[$id]) )
+        return $views[$id];
       return;
     }
 
 
+    //@return all views descriptions
     public function tc_get() {
-      return $this -> _views;
+      //uses self::$instance instead of this to always use the parent instance
+      return self::$instance -> _views;
     }
 
 
@@ -531,8 +596,9 @@ if ( ! class_exists( 'TC_views' ) ) :
     //@return the args array()
     private function tc_set_view_properties($args) {
       $defaults = array(
+        'id' => "",
         'hook' => false,
-        'name' => "",
+        'template' => "",
         'obj' => false,
         'query' => false,
         'priority' => 10
@@ -541,9 +607,9 @@ if ( ! class_exists( 'TC_views' ) ) :
       $args = wp_parse_args( $args, $defaults );
 
       //makes sure the requested hook priority is not already taken
-      $args['priority'] = $this -> tc_set_priority( $args['priority'] );
+      //$args['priority'] = $this -> tc_set_priority( $args['priority'] );
       //check the name unicity
-      $args['name']     = $this -> tc_set_unique_id( $args['name'], $args['hook'], $args['priority'] );
+      $args['id']       = $this -> tc_set_unique_id( $args['id'], $args['hook'], $args['priority'] );
 
 
 
@@ -573,25 +639,25 @@ if ( ! class_exists( 'TC_views' ) ) :
     }
 
 
-    //Recursively set a unique name when needed
-    private function tc_set_unique_id( $name, $hook, $priority, $recursive = false ) {
-      //if name not set, then create a unique name from hook_priority
-      if ( empty($name) )
-        $name = "{$hook}_{$priority}";
+    //Recursively set a unique id when needed
+    private function tc_set_unique_id( $id, $hook, $priority, $recursive = false ) {
+      //if id not set, then create a unique id from hook_priority
+      if ( empty($id) )
+        $id = "{$hook}_{$priority}";
 
       if ( $recursive ) {
         //add hyphen add the end if not there
-        $name                 = ! is_numeric(substr($name, -1)) ? $name . '_0' : $name;
-        $name_exploded        = explode('_' , $name);
-        $_index               = end($name_exploded);
-        $_key                 = key($name_exploded);
+        $id                 = ! is_numeric(substr($id, -1)) ? $id . '_0' : $id;
+        $id_exploded        = explode('_' , $id);
+        $_index               = end($id_exploded);
+        $_key                 = key($id_exploded);
         //set new value
-        $name_exploded[$_key] = $_index + 1;
-        $name                 = implode( "_" , $name_exploded );
+        $id_exploded[$_key] = $_index + 1;
+        $id                 = implode( "_" , $id_exploded );
       }
 
       $_views = $this -> _views;
-      return isset($_views[$name]) ? $this -> tc_set_unique_id( $name, $hook, $priority, true ) : $name;
+      return isset($_views[$id]) ? $this -> tc_set_unique_id( $id, $hook, $priority, true ) : $id;
     }
 
 
@@ -601,10 +667,9 @@ if ( ! class_exists( 'TC_views' ) ) :
      * inspired from the WP original
      * adds the priority_to_check param
      */
-    private function tc_has_filter($tag, $function_to_check = false, $priority_to_check = 10) {
+    private function tc_has_filter( $tag, $function_to_check = false, $priority_to_check = 10 ) {
       // Don't reset the internal array pointer
       $wp_filter = $GLOBALS['wp_filter'];
-
       $has = ! empty( $wp_filter[ $tag ] );
 
       // Make sure at least one priority has a filter callback
@@ -650,12 +715,7 @@ class TC_test_view_class extends TC_views {
   }
 
   public function tc_render() {
-    ?>
-      <pre>
-        <?php print_r($this -> name); ?>
-      </pre>
-    <?php
-    get_template_part( "inc/views/templates/{$this -> name}" );
+    get_template_part( "inc/views/templates/{$this -> template}" );
   }
 }
 
@@ -695,42 +755,43 @@ endif;//class_exists*/
 // Fire Customizr
 //CZR();
 
+
+CZR() -> views -> tc_delete( 'joie');
+
 //Create a new test view
-CZR() -> views -> create(
+CZR() -> views -> tc_create(
   array( 'hook' => '__after_header', 'obj' => 'TC_test_view_class' )
 );
-CZR() -> views -> create(
-  array( 'hook' => '__after_header', 'name' => 'custom', 'obj' => 'TC_test_view_class' )
+CZR() -> views -> tc_create(
+  array( 'hook' => '__after_header', 'id' => 'joie', 'template' => 'custom', 'obj' => 'TC_test_view_class', 'priority' => 0 )
 );
-CZR() -> views -> create(
-  array( 'hook' => '__after_header', 'name' => 'custom', 'obj' => 'TC_test_view_class' )
+CZR() -> views -> tc_create(
+  array( 'hook' => '__after_header', 'template' => 'custom', 'obj' => 'TC_test_view_class' )
 );
-CZR() -> views -> create(
-  array( 'hook' => '__after_header', 'name' => 'custom', 'obj' => 'TC_test_view_class' )
+CZR() -> views -> tc_create(
+  array( 'hook' => '__after_header', 'template' => 'custom', 'obj' => 'TC_test_view_class' )
 );
-CZR() -> views -> create(
-  array( 'hook' => '__after_header', 'name' => 'custom', 'obj' => 'TC_test_view_class' )
+CZR() -> views -> tc_create(
+  array( 'hook' => '__after_header', 'template' => 'custom', 'obj' => 'TC_test_view_class' )
 );
 
 
 
-add_action('__after_header' , function() {
-  /* if ( is_array() )
-    array_walk_recursive(, function(&$v) { $v = htmlspecialchars($v); }); */
+/*add_action('__after_header' , function() {
   ?>
     <pre>
       <?php print_r( CZR() -> views -> tc_get() ); ?>
     </pre>
   <?php
 });
+*/
 
-
-//@todo => add a remove_view method => will require to execute an action just before the rendering and check if the view still exists before rendering
 //@todo => allow hard HTML as an optional param in the create method
-//like CZR() -> views -> create(
+//like CZR() -> views -> tc_create(
 //   array( 'hook' => '__after_header', 'html' => '<h2>HELLO WORLD</h2>' )
 // );
 //@todo => allow a callback function instead of a class
-//like CZR() -> views -> create(
+//like CZR() -> views -> tc_create(
 //   array( 'hook' => '__after_header', 'cb' => 'my_callback' ), or array( $this, 'my_callback')
 // );
+//@todo => allow view change (some logic as register deletion)
