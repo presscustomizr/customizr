@@ -41,7 +41,8 @@ if ( ! class_exists( 'TC___' ) ) :
     public static $theme_name;
     public static $tc_option_group;
 
-    public $views;//object, will store the views
+    public $views;//object, stores the views
+    public $controllers;//object, stores the controllers
 
     public static function tc_instance() {
       if ( ! isset( self::$instance ) && ! ( self::$instance instanceof TC___ ) ) {
@@ -49,16 +50,9 @@ if ( ! class_exists( 'TC___' ) ) :
         self::$instance -> tc_setup_constants();
         self::$instance -> tc_load();
         self::$instance -> views = new TC_Views();
+        //self::$instance -> controllers = new TC_Controllers();
       }
       return self::$instance;
-    }
-
-
-    //instanciates a new view
-    //the args will be updated by the create method
-    //and / or by the chid instanciation
-    public function tc_views() {
-      return new TC_Views();
     }
 
 
@@ -418,6 +412,11 @@ function CZR() {
 
 
 
+
+
+
+
+
 if ( ! class_exists( 'TC_views' ) ) :
   class TC_views {
     static $instance;
@@ -432,6 +431,8 @@ if ( ! class_exists( 'TC_views' ) ) :
     public $group = "";//header,content,footer,modules
 
     private $args = array();//will store the updated args on view creation and use them to instanciate the child
+
+    private $_views = array();//will store all views added to front end
 
     function __construct( $args = array() ) {
       self::$instance =& $this;
@@ -448,6 +449,8 @@ if ( ! class_exists( 'TC_views' ) ) :
 
     //hook : $this -> render_on_hook
     public function tc_maybe_render() {
+      if ( ! apply_filters( "{$this -> name}_view_exists", true ) )
+        return;
       //check the controller
       // if ( ! CZR() -> controller( $group, $name ) )
       //   return;
@@ -457,38 +460,92 @@ if ( ! class_exists( 'TC_views' ) ) :
       //
       //load and instanciate the view class if specified
       if ( false !== $this -> obj && class_exists($this -> obj)) {
-        $custom_view_obj = new $this -> obj( $this -> args );
-        $custom_view_obj -> tc_render();
+        $view_obj = new $this -> obj( $this -> args );
+        $view_obj -> tc_render();
       } else {
         $this -> tc_render();
       }
-
-
     }
+
+
+
 
     //might be overriden in the child view if any
     public function tc_render() {
-      ?>
-      <div class="row-fluid">
-        <div class="span12">
-          <h1>I AM THE DEFAULT HTML</h1>
+      if ( isset( $this -> name) )
+        get_template_part( "inc/views/templates/{$this -> name}" );
+
+      if ( is_user_logged_in() && current_user_can('edit_theme_options') ) :
+        ?>
+        <div class="row-fluid">
+          <div class="span12">
+            <h1>NO VIEW WAS SPECIFIED</h1>
+          </div>
         </div>
-      </div>
-      <?php
+        <?php
+      endif;
     }
 
 
 
     public function create( $args = array() ) {
-      $default = array(
-        $hook => false,
-        $name => "",
-        $obj => false,
-        $query => false,
-        $priority => 10
+      //update the args
+      $args = $this -> tc_set_view_properties($args);
+
+      //Renders the view on the requested hook
+      if ( false !== $this -> hook )
+        add_action( $this -> hook   , array($this, 'tc_maybe_render'), $this -> priority );
+
+      //add the view to the static object
+      $this -> tc_add_view( $this -> name );
+    }
+
+
+
+
+
+    //add the view description to the private views array
+    private function tc_add_view( $name ) {
+      $_views = $this -> _views;
+      $_views[$name] = $this -> args;
+      $this -> _views = $_views;
+    }
+
+
+
+    public function tc_get_view( $name = null ) {
+      $views = $this -> _views;
+      if ( ! is_null($name) && isset($views[$name]) )
+        return $views[$name];
+      return;
+    }
+
+
+    public function tc_get() {
+      return $this -> _views;
+    }
+
+
+    //updates the view properties with the requested args
+    //stores the clean and updated args in a view property.
+    //@return the args array()
+    private function tc_set_view_properties($args) {
+      $defaults = array(
+        'hook' => false,
+        'name' => "",
+        'obj' => false,
+        'query' => false,
+        'priority' => 10
       );
 
       $args = wp_parse_args( $args, $defaults );
+
+      //makes sure the requested hook priority is not already taken
+      $args['priority'] = $this -> tc_set_priority( $args['priority'] );
+      //check the name unicity
+      $args['name']     = $this -> tc_set_unique_id( $args['name'], $args['hook'], $args['priority'] );
+
+
 
       //Gets the accessible non-static properties of the given object according to scope.
       $keys = array_keys( get_object_vars( self::$instance ) );
@@ -499,13 +556,81 @@ if ( ! class_exists( 'TC_views' ) ) :
         }
       }
 
-      //update the args
+      //stores the clean and updated args in a view property.
       $this -> args = $args;
-
-      //Renders the view on the requested hook
-      if ( false !== $this -> hook )
-        add_action( $this -> hook   , array($this, 'tc_maybe_render'), $this -> priority );
+      return $args;
     }
+
+
+    //this function recursively :
+    //1) checks if the requested action/priority combination is available on the specified hook
+    //2) set a new priority until until it's available
+    private function tc_set_priority( $priority ) {
+      if ( ! $this -> tc_has_filter( $this -> hook , array($this, 'tc_maybe_render'), $priority ) )
+        return $priority;
+      else
+        return $this -> tc_set_priority( $priority + 10 );
+    }
+
+
+    //Recursively set a unique name when needed
+    private function tc_set_unique_id( $name, $hook, $priority, $recursive = false ) {
+      //if name not set, then create a unique name from hook_priority
+      if ( empty($name) )
+        $name = "{$hook}_{$priority}";
+
+      if ( $recursive ) {
+        //add hyphen add the end if not there
+        $name                 = ! is_numeric(substr($name, -1)) ? $name . '_0' : $name;
+        $name_exploded        = explode('_' , $name);
+        $_index               = end($name_exploded);
+        $_key                 = key($name_exploded);
+        //set new value
+        $name_exploded[$_key] = $_index + 1;
+        $name                 = implode( "_" , $name_exploded );
+      }
+
+      $_views = $this -> _views;
+      return isset($_views[$name]) ? $this -> tc_set_unique_id( $name, $hook, $priority, true ) : $name;
+    }
+
+
+
+    /**
+     * Check if any filter has been registered for a hook AND a priority
+     * inspired from the WP original
+     * adds the priority_to_check param
+     */
+    private function tc_has_filter($tag, $function_to_check = false, $priority_to_check = 10) {
+      // Don't reset the internal array pointer
+      $wp_filter = $GLOBALS['wp_filter'];
+
+      $has = ! empty( $wp_filter[ $tag ] );
+
+      // Make sure at least one priority has a filter callback
+      if ( $has ) {
+        $exists = false;
+        foreach ( $wp_filter[ $tag ] as $callbacks ) {
+          if ( ! empty( $callbacks ) ) {
+            $exists = true;
+            break;
+          }
+        }
+
+        if ( ! $exists ) {
+          $has = false;
+        }
+      }
+
+      if ( false === $function_to_check || false === $has )
+        return $has;
+
+      if ( !$idx = _wp_filter_build_unique_id($tag, $function_to_check, false) )
+        return false;
+
+      return isset( $wp_filter[$tag][$priority_to_check] ) && isset( $wp_filter[$tag][$priority_to_check][$idx] );
+    }
+
 
 
   }//end of class
@@ -514,21 +639,49 @@ endif;
 
 
 
-
-
-
 class TC_test_view_class extends TC_views {
+  function __construct( $args = array() ) {
+    $keys = array_keys( get_object_vars( parent::$instance ) );
+    foreach ( $keys as $key ) {
+      if ( isset( $args[ $key ] ) ) {
+        $this->$key = $args[ $key ];
+      }
+    }
+  }
 
   public function tc_render() {
     ?>
-    <div class="row-fluid">
-      <div class="span12">
-        <h1>I AM THE CUSTOM VIEW</h1>
-      </div>
-    </div>
+      <pre>
+        <?php print_r($this -> name); ?>
+      </pre>
     <?php
+    get_template_part( "inc/views/templates/{$this -> name}" );
   }
 }
+
+
+
+
+
+
+
+/*if ( ! class_exists( 'TC_Controllers' ) ) :
+  class TC_Controllers {
+    static $instance;
+
+  }
+endif;//class_exists*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -540,9 +693,44 @@ class TC_test_view_class extends TC_views {
 
 
 // Fire Customizr
-CZR();
+//CZR();
 
 //Create a new test view
-CZR() -> tc_views() -> create(
-  array( 'hook' => '__after_header', 'name' => 'test', 'obj' => 'TC_test_view_class' )
+CZR() -> views -> create(
+  array( 'hook' => '__after_header', 'obj' => 'TC_test_view_class' )
 );
+CZR() -> views -> create(
+  array( 'hook' => '__after_header', 'name' => 'custom', 'obj' => 'TC_test_view_class' )
+);
+CZR() -> views -> create(
+  array( 'hook' => '__after_header', 'name' => 'custom', 'obj' => 'TC_test_view_class' )
+);
+CZR() -> views -> create(
+  array( 'hook' => '__after_header', 'name' => 'custom', 'obj' => 'TC_test_view_class' )
+);
+CZR() -> views -> create(
+  array( 'hook' => '__after_header', 'name' => 'custom', 'obj' => 'TC_test_view_class' )
+);
+
+
+
+add_action('__after_header' , function() {
+  /* if ( is_array() )
+    array_walk_recursive(, function(&$v) { $v = htmlspecialchars($v); }); */
+  ?>
+    <pre>
+      <?php print_r( CZR() -> views -> tc_get() ); ?>
+    </pre>
+  <?php
+});
+
+
+//@todo => add a remove_view method => will require to execute an action just before the rendering and check if the view still exists before rendering
+//@todo => allow hard HTML as an optional param in the create method
+//like CZR() -> views -> create(
+//   array( 'hook' => '__after_header', 'html' => '<h2>HELLO WORLD</h2>' )
+// );
+//@todo => allow a callback function instead of a class
+//like CZR() -> views -> create(
+//   array( 'hook' => '__after_header', 'cb' => 'my_callback' ), or array( $this, 'my_callback')
+// );
