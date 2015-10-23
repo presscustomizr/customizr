@@ -44,6 +44,10 @@ if ( ! class_exists( 'TC___' ) ) :
     public $views;//object, stores the views
     public $controllers;//object, stores the controllers
 
+    public static $view_collection = array();//will store all views added to front end
+    public static $_delete_candidates = array();//will store deletion of views not added yet
+    public static $_change_candidates = array();//will store change of views not added yet
+
     public static function tc_instance() {
       if ( ! isset( self::$instance ) && ! ( self::$instance instanceof TC___ ) ) {
         self::$instance = new TC___();
@@ -427,10 +431,10 @@ if ( ! class_exists( 'TC_views' ) ) :
   class TC_views {
     static $instance;
 
-
     public $hook = false;//this is the default hook declared in the index.php template
     public $id = "";
     public $view_class = false;
+    public $view_class_instance = false;//if an additional view class has been registered to the view, its instance will be stored there
     public $query = false;
     public $priority = 10;
     public $template = "";
@@ -441,9 +445,6 @@ if ( ! class_exists( 'TC_views' ) ) :
     public $group = "";//header,content,footer,modules
 
     private $args = array();//will store the updated args on view creation and use them to instanciate the child
-
-    private $view_collection = array();//will store all views added to front end
-    private $_delete_candidates = array();
 
     function __construct( $args = array() ) {
       self::$instance =& $this;
@@ -459,56 +460,114 @@ if ( ! class_exists( 'TC_views' ) ) :
 
 
     /**********************************************************************************
-    * CREATES
+    * REGISTERS
     ***********************************************************************************/
-    public function tc_create( $args = array() ) {
+    public function tc_register( $args = array() ) {
       if ( ! is_array($args) )
         return;
-      //update the args
-      //set the unique id based on optional given id or hooks/priority
-      $args     = $this -> tc_set_view_properties($args);
+
+      //Normalize args with defaults
+      //set unique priority
+      //set unique id
+      $args = $this -> tc_preprocess_view_args($args);
+
+      //IS THERE A REGISTERED REQUEST FOR CHANGE OR DELETION ?
+      $to_delete = TC___::$_delete_candidates;
+      $to_change = TC___::$_change_candidates;
+      //Delete case ?
+      //Stop here
+      if ( array_key_exists( $args['id'], $to_delete ) )
+        return;
+
+      //Change case ?
+      //=> overwrite the modified args with the new ones
+      if ( array_key_exists( $args['id'], $to_change ) ) {
+        $id = $args['id'];
+        $args = wp_parse_args( $to_change[$id], $args );
+        //remove this change from the list
+        $this -> tc_deregister_change($id);
+      }
 
       //instanciates the base view object
-      $default_view_instance = new TC_default_view($args);
+      add_action( 'wp' , array( new TC_default_view($args), 'tc_preprocess_view' ), 0 );
+
+      //update the view properties with the provided args
+      $args = $this -> tc_set_view_properties($args);
 
       //adds the view to the static object
-      $this -> tc_add_view( $this -> id );
+      $this -> tc_add_view( $args['id'], $args);
+    }
+
+
+
+
+    /**********************************************************************************
+    * PREPARE VIEW ON WP => check the controllers, check if it's been changed or deleted ?
+    ***********************************************************************************/
+    public function tc_preprocess_view() {
+      //check the controller
+      // if ( ! CZR() -> controller( $group, $name ) )
+      //   return;
 
       //instanciate an additional class for this view if specified ?
       //must be done now so that the child view class is instanciated with the right properties (args)
-      if ( false !== $this -> view_class && class_exists($this -> view_class) ){
+      $default_view_instance = $this -> instance;
+      if ( false !== $this -> view_class && class_exists($this ->view_class) ){
         $view_class = $this -> view_class;
         $complement_view_instance = new $view_class( $this -> args );
+        //add the complement view instance to the args
+        $this -> view_class_instance = $complement_view_instance;
       }
 
+      $_instance_for_action = $this;
       //if the complement view class is a child of TC_view
       //then use it to override the default
       //=> if the class to instanciate extends TC_views, then the tc_render() method can be overriden by this class
       if ( method_exists($complement_view_instance, 'tc_maybe_render') )
-        $default_view_instance = $complement_view_instance;
+        $_instance_for_action = $complement_view_instance;
 
       //Renders the view on the requested hook
       if ( false !== $this -> hook )
-        add_action( $this -> hook, array( $default_view_instance, 'tc_maybe_render'), $this -> priority );
+        add_action( $this -> hook, array( $_instance_for_action, 'tc_maybe_render'), $this -> priority );
     }
+
+
+
+
+    //prepares the view arguments to be registered
+    private function tc_preprocess_view_args($args) {
+      //normalizes the args
+      $args = wp_parse_args( $args, $this -> tc_get_default_params() );
+      //makes sure we assign a unique ascending priority if not set
+      $args['priority'] = $this -> tc_set_priority( $args['hook'], $args['priority'] );
+      //check the name unicity
+      $args['id']       = $this -> tc_set_unique_id( $args['id'], $args['hook'], $args['priority'] );
+      return $args;
+    }
+
 
 
 
     //add the view description to the private views array
-    private function tc_add_view( $id ) {
-      $view_collection = $this -> view_collection;
-      $view_collection[$id] = $this -> args;
-      $this -> view_collection = $view_collection;
+    //at this stage the id is unique
+    //the args are well formed
+    private function tc_add_view( $id, $args ) {
+      $view_collection = TC___::$view_collection;
+      $view_collection[$id] = $args;
+      TC___::$view_collection = $view_collection;
     }
+
 
     //helper to get the default
     //can be used to a get a single default param if specified and exists
     private function tc_get_default_params( $param = null ) {
       $defaults = array(
         'id'          => "",
+        'instance'    => self::$instance,//=> we store the current instance here for later access (remove_action), will not be retrieved when using get_object_vars() because this function only get non-static properties
         'hook'        => false,
         'template'    => "",
         'view_class'  => false,
+        'view_class_instance' => false,
         'query'       => false,
         'priority'    => 10,
         'html'        => "",
@@ -525,15 +584,6 @@ if ( ! class_exists( 'TC_views' ) ) :
     //stores the clean and updated args in a view property.
     //@return the args array()
     private function tc_set_view_properties( $args ) {
-      $args = wp_parse_args( $args, $this -> tc_get_default_params() );
-
-      //makes sure the requested hook priority is not already taken
-      //$args['priority'] = $this -> tc_set_priority( $args['priority'] );
-      //check the name unicity
-      $args['id']       = $this -> tc_set_unique_id( $args['id'], $args['hook'], $args['priority'] );
-
-
-
       //Gets the accessible non-static properties of the given object according to scope.
       $keys = array_keys( get_object_vars( self::$instance ) );
 
@@ -551,18 +601,47 @@ if ( ! class_exists( 'TC_views' ) ) :
 
 
     /**********************************************************************************
+    * DE-REGISTER
+    ***********************************************************************************/
+    //keep in mind that the instance of the previous view with initial argument will still exists...
+    //so will the additional class instance if any
+    //@todo shall we store all views instances and delete them when requested ?
+    private function tc_deregister( $id, $args ) {
+      if ( ! is_array($args) )
+        return;
+
+      //has the previous view an additional class ?
+      //If yes, and if it has overriden tc_may_render, then it must be the one we use in remove_action
+      if ( false !== $args['view_class'] && class_exists($args['view_class']) )
+        $complement_view_instance = $args['view_class_instance'];
+
+      //if the complement view class is a child of TC_view
+      //then use this instance to remove the previsouly defined action
+      $default_view_instance = method_exists($complement_view_instance, 'tc_maybe_render') ? $complement_view_instance : $args['instance'];
+
+
+      //Removes the previously set action
+      if ( false !== $args['hook'] )
+        remove_action( $args['hook'], array( $default_view_instance, 'tc_maybe_render'), $args['priority'] );
+
+      //delete from collection
+      $this -> tc_delete($id);
+    }
+
+
+
+    /**********************************************************************************
     * RENDERS
     ***********************************************************************************/
     //hook : $this -> render_on_hook
     //NOTE : the $this here can be the child class $this.
     public function tc_maybe_render() {
-      //check the controller
-      // if ( ! CZR() -> controller( $group, $name ) )
-      //   return;
+
       // $path = '';
       // $part = '';
       // get_template_part( $path , $part );
-      //check if some views are registered for deletion or change
+
+      //check if some views are registered for deletion
       $this -> tc_update_view_collection($this -> id );
 
       do_action( 'before_maybe_render', $this -> id );
@@ -632,11 +711,14 @@ if ( ! class_exists( 'TC_views' ) ) :
     //=> register a promise deletion in this case
     //IMPORTANT : always use the TC_views::$instance -> _views property to access the view list here
     //=> because it can be accessed from a child class
-    public function tc_delete( $id ) {
-      $view_collection = TC_views::$instance -> view_collection;
+    public function tc_delete( $id = null ) {
+      if ( is_null($id) )
+        return;
+
+      $view_collection = TC___::$view_collection;
       if ( isset($view_collection[$id]) ) {
         unset($view_collection[$id]);
-        TC_views::$instance -> view_collection = $view_collection;
+        TC___::$view_collection = $view_collection;
         //may be remove from the deletion list
         $this -> tc_deregister_deletion($id);
       }
@@ -647,34 +729,22 @@ if ( ! class_exists( 'TC_views' ) ) :
 
 
     private function tc_deregister_deletion($id) {
-      $to_delete = $this -> _delete_candidates;
+      $to_delete = TC___::$_delete_candidates;
       if ( isset($to_delete[$id]) )
         unset($to_delete[$id]);
-      $this -> _delete_candidates = $to_delete;
+      TC___::$_delete_candidates = $to_delete;
     }
 
 
     private function tc_register_deletion($id) {
-      $to_delete = $this -> _delete_candidates;
+      $to_delete = TC___::$_delete_candidates;
       //avoid if already registered
-      if ( in_array($id, $to_delete) )
+      if ( array_key_exists($id, $to_delete) )
         return;
 
       $to_delete[$id] = $id;
-      $this -> _delete_candidates =  $to_delete;
+      TC___::$_delete_candidates =  $to_delete;
     }
-
-
-    //=> always update the view list before rendering something
-    //=> a view might have been registered in the delete candidates
-    public function tc_update_view_collection( $id = false ) {
-      if ( ! $id )
-        return;
-      $to_delete = TC_views::$instance -> _delete_candidates;
-      if ( in_array( $id, $to_delete ) )
-        $this -> tc_delete( $id );
-    }
-
 
 
 
@@ -684,13 +754,71 @@ if ( ! class_exists( 'TC_views' ) ) :
     public function tc_change( $id = null, $args = array() ) {
       if ( is_null($id) || ! is_array($args) )
         return;
-      //normalize args
-      $params = wp_parse_args( $args, $this -> tc_get_default_params() );
 
       //updates the view collection or registers an update
+      $view_collection = TC___::$view_collection;
+      if ( isset($view_collection[$id]) ) {
+        //update the view collection
+        $_current = $view_collection[$id];
+        $_new = wp_parse_args( $args, $_current );
+        $view_collection[$id] = $_new;
+        TC___::$view_collection = $view_collection;
 
+        //deregister previously hooked action and delete from collection
+        $this -> tc_deregister( $id, $_current );
+
+        //register the new version of the view
+        $this -> tc_register( $_new );
+
+        //may be remove from the promise change list
+        $this -> tc_deregister_change($id);
+      }
+      else
+        $this -> tc_register_change( $id, $args );
+      return;
     }
 
+
+    //stores a requested change for a view not yet registered
+    //@id = id of the view
+    //@args = view params to change
+    //@return void()
+    private function tc_register_change( $id, $args ) {
+      $view_collection = TC___::$view_collection;
+      $to_change = TC___::$_change_candidates;
+      //avoid if already registered
+      if ( array_key_exists($id, $to_change) )
+        return;
+
+      $to_change[$id] = $args;
+      TC___::$_change_candidates = $to_change;
+    }
+
+
+    //removes a change in the promise change list.
+    //Fired after a changed has been actually done.
+    private function tc_deregister_change($id) {
+      $to_change = TC___::$_change_candidates;
+      if ( isset($to_change[$id]) )
+        unset($to_change[$id]);
+      TC___::$_change_candidates = $to_change;
+    }
+
+
+
+    /**********************************************************************************
+    * UPDATE VIEW : DELETE
+    ***********************************************************************************/
+    //=> always update the view list before rendering something
+    //=> a view might have been registered in the delete / change candidates
+    public function tc_update_view_collection( $id = false ) {
+      if ( ! $id )
+        return;
+      $to_delete = TC___::$_delete_candidates;
+
+      if ( array_key_exists( $id, $to_delete ) )
+        $this -> tc_delete( $id );
+    }
 
 
 
@@ -699,7 +827,7 @@ if ( ! class_exists( 'TC_views' ) ) :
     ***********************************************************************************/
     //@return a single view description
     public function tc_get_view( $id = null ) {
-      $view_collection = $this -> view_collection;
+      $view_collection = TC___::$view_collection;
       if ( ! is_null($id) && isset($view_collection[$id]) )
         return $view_collection[$id];
       return;
@@ -709,18 +837,22 @@ if ( ! class_exists( 'TC_views' ) ) :
     //@return all views descriptions
     public function tc_get_collection() {
       //uses self::$instance instead of this to always use the parent instance
-      return self::$instance -> view_collection;
+      return TC___::$view_collection;
     }
 
 
     //this function recursively :
-    //1) checks if the requested action/priority combination is available on the specified hook
+    //1) checks if the requested priority is available on the specified hook
     //2) set a new priority until until it's available
-    private function tc_set_priority( $priority ) {
-      if ( ! $this -> tc_has_filter( $this -> hook , array($this, 'tc_maybe_render'), $priority ) )
-        return $priority;
-      else
-        return $this -> tc_set_priority( $priority + 10 );
+    private function tc_set_priority( $hook, $priority ) {
+      $view_collection = TC___::$view_collection;
+      $available = true;
+      foreach ($view_collection as $id => $view) {
+        if ( $hook == $view['hook'] && $priority != $view['priority'] )
+          continue;
+        $available = false;
+      }
+      return $available ? $priority : $this -> tc_set_priority( $hook, $priority + 1 );
     }
 
 
@@ -741,7 +873,7 @@ if ( ! class_exists( 'TC_views' ) ) :
         $id                 = implode( "_" , $id_exploded );
       }
 
-      $view_collection = $this -> view_collection;
+      $view_collection = TC___::$view_collection;
       return isset($view_collection[$id]) ? $this -> tc_set_unique_id( $id, $hook, $priority, true ) : $id;
     }
 
@@ -818,7 +950,7 @@ class TC_test_view_class extends TC_views {
 
   public function tc_render() {
     ?>
-      <h1>I AM RENDERED BY THE VIEW CLASS</h1>
+      <h1>MY ID IS <span style="color:blue"><?php echo $this -> id ?></span>, AND I AM RENDERED BY THE VIEW CLASS</h1>
     <?php
   }
 }
@@ -872,27 +1004,31 @@ endif;//class_exists*/
 //CZR();
 
 
-CZR() -> views -> tc_delete( 'joie');
+//CZR() -> views -> tc_delete( 'joie');
 
-CZR() -> views -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is changed view</h1>') );
+//CZR() -> views -> tc_delete( 'joie');
+CZR() -> views -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'view_class' => '') );
+
 
 //Create a new test view
-CZR() -> views -> tc_create(
+CZR() -> views -> tc_register(
   array( 'hook' => '__after_header', 'template' => 'custom', 'view_class' => 'TC_test_view_class', 'html' => '<h1>Yo Man this is some html to render</h1>' )
 );
-CZR() -> views -> tc_create(
+CZR() -> views -> tc_register(
   array( 'hook' => '__after_header', 'id' => 'joie', 'template' => 'custom', 'view_class' => 'TC_test_view_class' )
 );
 
-CZR() -> views -> tc_create(
+CZR() -> views -> tc_register(
   array( 'hook' => '__after_header', 'html' => '<h1>Yo Man this is some html to render</h1>' )
 );
-CZR() -> views -> tc_create(
+CZR() -> views -> tc_register(
   array( 'hook' => '__after_header', 'callback' => array( 'TC_rendering', 'callback_met') )
 );
-CZR() -> views -> tc_create(
+CZR() -> views -> tc_register(
   array( 'hook' => '__after_header', 'callback' => 'callback_fn', 'cb_params' => array('custom1', 'custom2') )
 );
+
+
 
 
 
@@ -911,4 +1047,10 @@ add_action('__after_header' , function() {
 }, 100);
 
 
-//@todo => allow view change (some logic as register deletion)
+//@todo => better handling of the static view properties stored in TC___.
+//=> can we move collection helper into TC___?
+//=> would it be interesting to use some getter / setter from TC___
+
+//@todo => implement the controller in tc_preprocess_view
+//@todo => add an action on wp right after tc_preprocess_view, to apply the registered changes if any
+//@todo => review the change and deletion implementation following the addition of tc_preprocess_view
