@@ -205,7 +205,7 @@
         'tc_slider_default_height_apply_all',
         'tc_slider_change_default_img_size',
         'tc_posts_slider_number',
-        'tc_posts_slider_type',
+        'tc_posts_slider_stickies',
         'tc_posts_slider_title',
         'tc_posts_slider_text',
         'tc_posts_slider_link',

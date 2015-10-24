@@ -323,7 +323,7 @@ class TC_slider {
     $load_transient  = apply_filters( 'tc_posts_slider_load_transient'  , $load_transient );
     $store_transient = apply_filters( 'tc_posts_slider_store_transient', $store_transient );
 
-    $pre_slides      = $this -> tc_get_pre_posts_slides( $img_size, $load_transient, $store_transient );
+    $pre_slides      = $this -> tc_get_pre_posts_slides( compact( 'img_size', 'load_transient', 'store_transient' ) );
 
     //filter the pre_model
     $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides );
@@ -380,11 +380,21 @@ class TC_slider {
   * @since Customizr 3.4.9
   *
   */
-  private function tc_get_pre_posts_slides( $img_size, $load_transient = true, $store_transient = true ){
+  private function tc_get_pre_posts_slides( $args ){
+
+    $defaults       = array(
+      'img_size'        => null,
+      'load_transient'  => true,
+      'store_transient' => true,
+      'transient_name'       => 'tc_posts_slides' 
+    );
+    
+    $args           = apply_filters( 'tc_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
+    extract( $args );
 
     if ( $load_transient )
       // the transient stores the pre_model
-      $pre_slides = get_transient('tc_posts_slides');
+      $pre_slides = get_transient( $transient_name );
     else
       $pre_slides = false;
 
@@ -396,10 +406,10 @@ class TC_slider {
 
     //retrieve posts from the db
     $queried_posts    = $this -> tc_query_posts_slider( array(
-          'type'         => TC_utils::$inst->tc_opt( 'tc_posts_slider_type' ),
-          'show_title'   => TC_utils::$inst->tc_opt( 'tc_posts_slider_title' ),
-          'show_excerpt' => TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ),
-          'limit'        => TC_utils::$inst->tc_opt( 'tc_posts_slider_number' )
+          'stickies_only' => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_stickies' ) ),
+          'show_title'    => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_title' ) ),
+          'show_excerpt'  => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ) ),
+          'limit'         => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_number' ) )
       )
     );
 
@@ -523,7 +533,7 @@ class TC_slider {
     global $wpdb;
 
     $defaults       = array(
-      'type'           => 'all',
+      'stickies_only'  => 0,
       'post_status'    => 'publish',
       'post_type'      => 'post',
       'show_title'     => true,
@@ -549,34 +559,24 @@ class TC_slider {
     $pt_where       = "posts.post_status='$post_status' AND posts.post_type='$post_type'". $pt_where;
     $pa_where       = "posts.post_status='$post_status' AND posts.post_type='$post_type'". $pa_where;
 
-    // Are there sticky posts?
-    $_sticky_posts  = get_option('sticky_posts');
-    $_sticky_column = '';
-    if ( ! empty( $_sticky_posts ) ) {
-      $_sticky_posts_ids = implode(',', $_sticky_posts );
-
-      if ( 'all' == $type ){
-        // the following allows to extrapolate eligible sticky posts and place them to the head
-        $_sticky_column  = sprintf( ', ( SELECT COUNT( DISTINCT ID) FROM %1$s WHERE ID=posts.ID AND posts.ID IN (%2$s) ) AS is_sticky',
-                                $wpdb->posts,
-                                $_sticky_posts_ids
-        );
-        $order_by        = 'is_sticky DESC, '.$order_by;
-
-      }else {
-        $_inc_esc_sticky = sprintf(" AND posts.ID %s IN (%s)",
-            'sticky' == $type ? '' : 'NOT',
+    // Do we have to show only sticky posts?
+    if ( $stickies_only ) {
+      // Are there sticky posts?
+      $_sticky_posts  = get_option('sticky_posts');
+      $_sticky_column = '';
+      if ( ! empty( $_sticky_posts ) ) {
+        $_sticky_posts_ids = implode(',', $_sticky_posts );
+        $_filter_stickies_only = sprintf(" AND posts.ID IN (%s)",
             $_sticky_posts_ids
         );
 
-        $pa_where .= $_inc_esc_sticky;
-        $pt_where .= $_inc_esc_sticky;
+        $pa_where .= $_filter_stickies_only;
+        $pt_where .= $_filter_stickies_only;
       }
     }
 
-    $sql = sprintf( 'SELECT %1$s%2$s FROM ( %3$s ) as posts %4$s ORDER BY %5$s LIMIT %6$s OFFSET %7$s',
+    $sql = sprintf( 'SELECT %1$s FROM ( %2$s ) as posts %3$s ORDER BY %4$s LIMIT %5$s OFFSET %6$s',
              apply_filters( 'tc_query_posts_slider_columns', $columns ),
-             apply_filters( 'tc_query_posts_slider_sticky_column', $_sticky_column ),
              $this -> tc_get_posts_have_tc_thumb_sql(
                apply_filters( 'tc_query_posts_slider_columns', $columns ),
                apply_filters( 'tc_query_posts_slide_thumbnail_where', $pt_where ),
@@ -587,7 +587,7 @@ class TC_slider {
              $limit,
              $offset
     );
-
+    
     $sql = apply_filters( 'tc_query_posts_slider_sql', $sql );
 
     $_posts = $wpdb->get_results( $sql );
@@ -1241,12 +1241,16 @@ class TC_slider {
   * @package Customizr
   * @since Customizr 3.4.9
   */
-  function tc_cache_posts_slider() {
-    //use the home slider_width
-    $img_size    = 1 == TC_utils::$inst->tc_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider';
-    $load_transient   = false;
-    $store_transient = true;
-    $this -> tc_get_pre_posts_slides( $img_size, $load_transient, $store_transient );
+  function tc_cache_posts_slider( $args = array() ) {
+    $defaults = array (  
+      //use the home slider_width
+      'img_size'        => 1 == TC_utils::$inst->tc_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
+      'load_transient'  => false,
+      'store_transient' => true,
+      'transient_name'  => ''
+    ); 
+    
+    $this -> tc_get_pre_posts_slides( wp_parse_args( $args, $defaults) );
   }
 
 
