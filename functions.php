@@ -58,6 +58,89 @@ require_once( get_template_directory() . '/inc/init.php' );
 */
 
 
+/*if ( ! class_exists( 'TC_Controllers' ) ) :
+  class TC_Controllers {
+    static $instance;
+
+  }
+endif;//class_exists*/
+//CZR() -> views -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'view_class' => '') );
+//CZR() -> views -> tc_delete( 'joie');
+add_action('wp' , 'register_test_views');
+
+function register_test_views() {
+  //Create a new test view
+  CZR() -> views -> tc_register(
+    array( 'hook' => '__after_header', 'template' => 'custom',  'html' => '<h1>Yo Man this is some html to render</h1>' )
+  );
+  CZR() -> views -> tc_register(
+    array( 'hook' => '__after_header', 'id' => 'joie', 'template' => 'custom', 'view_class' => 'TC_test_view_class' )
+  );
+
+  CZR() -> views -> tc_register(
+    array( 'hook' => '__after_header', 'html' => '<h1>Yo Man this is some html to render</h1>' )
+  );
+  CZR() -> views -> tc_register(
+    array( 'hook' => '__after_header', 'callback' => array( 'TC_rendering', 'callback_met') )
+  );
+  CZR() -> views -> tc_register(
+    array( 'hook' => '__after_header', 'callback' => 'callback_fn', 'cb_params' => array('custom1', 'custom2') )
+  );
+}
+
+
+
+// Fire Customizr
+CZR();
+
+
+
+
+//CZR() -> views -> tc_delete( 'joie');
+
+
+
+
+
+
+function callback_fn( $text1 = "default1", $text2 = "default2"  ) {
+  ?>
+    <h1>THIS IS RENDERED BY A CALLBACK FUNCTION WITH 2 OPTIONAL PARAMS : <?php echo $text1; ?> and <?php echo $text2; ?></h1>
+  <?php
+}
+
+add_action('__after_header' , function() {
+  ?>
+    <pre>
+      <?php print_r( CZR() -> views -> tc_get_collection() ); ?>
+    </pre>
+  <?php
+}, 100);
+
+
+
+//@todo register deletion is not working
+
+//@todo => better handling of the static view properties stored in TC___.
+//=> can we move collection helper into TC___?
+//=> would it be interesting to use some getter / setter from TC___
+
+//@todo => implement the controller in tc_preprocess_view
+//@todo => add an action on wp right after tc_preprocess_view, to apply the registered changes if any
+//@todo => review the change and deletion implementation following the addition of tc_preprocess_view
+
+add_action( 'tc_dev_notice', 'tc_print_r');
+//hook : tc_dev_notice
+function tc_print_r($message) {
+  if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) )
+    return;
+  ?>
+    <pre><h1 style="color:red"><?php echo $message ?></h1></pre>
+  <?php
+}
+
+
+
 /*add_action('__after_footer' , function() {
   $args = array(
     'post_type' => array('post'),
