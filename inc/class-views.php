@@ -18,17 +18,18 @@ if ( ! class_exists( 'TC_views' ) ) :
       add_filter( 'tc_pre_add_to_collection'  , array( $this, 'tc_pre_add_check_registered_changes'), 10, 1 );
 
       //listens to 'wp' and instanciate the relevant views
-      add_action( 'wp'                        , array( $this, 'tc_instanciate_contextual_views' ), 1000 );
+      add_action( 'wp'                        , array( $this, 'tc_maybe_register_children' ), 999 );
+      add_action( 'wp'                        , array( $this, 'tc_maybe_instanciate_collection' ), 1000 );
 
       //Reacts when a view is instanciated
       //Execute various actions before actually hooking the view to front end
       //=> takes 2 params
       //$id
       //$instance
-      add_action('view_instanciated'          , array( $this, 'tc_store_relevant_instance_object'), 10, 2 );
+      add_action( 'view_instanciated'          , array( $this, 'tc_store_relevant_instance_object'), 10, 2 );
       //=> we don't use the instance parameter here, (only 1 param, the id), it might have be replaced by a custom instance
       //=> the instance is retrieved inside the callback
-      add_action('view_instanciated'          , array( $this, 'tc_maybe_hook_view') , 20, 1 );
+      add_action( 'view_instanciated'          , array( $this, 'tc_maybe_hook_view') , 20, 1 );
 
       //listens to a collection pre-update => and fire the tc_apply_registered_changes_to_instance
       // => a change might have been registered
@@ -92,10 +93,8 @@ if ( ! class_exists( 'TC_views' ) ) :
       //adds the view to the static collection array
       $this -> tc_update_collection( $id, $view_params );
 
-
       //emit an event on view registered
       //can be used with did_action() afterwards
-
       do_action( "view_registered_{$id}" );
     }
 
@@ -107,10 +106,6 @@ if ( ! class_exists( 'TC_views' ) ) :
     //fired on filter 'tc_pre_add_to_collection' in tc_register
     //@return array() $view_params updated
     public function tc_pre_process_view_params( $view_params = array() ) {
-      // //do we have a priority ?
-      // $priority                 = isset($view_params['priority']) ? $view_params['priority'] : 10;
-      // //do we have an id ?
-      // $id                       = isset($view_params['id']) ? $view_params['id'] : null;
       //normalizes the args
       $view_params              = wp_parse_args( $view_params, $this -> tc_get_default_params() );
       //makes sure we assign a unique ascending priority if not set
@@ -145,21 +140,41 @@ if ( ! class_exists( 'TC_views' ) ) :
 
 
     /**********************************************************************************
-    * PREPARE VIEW ON WP => check the controllers, check if it's been changed or deleted ?
+    * PREPARE VIEWS ON WP => check the controllers, check if it's been changed or deleted ?
     ***********************************************************************************/
+    //hook : wp
+    //param : parent view id
+    public function tc_maybe_register_children( $id ) {
+      foreach ( self::$view_collection as $id => $view_params ) {
+        //are there children to register ?
+        if ( ! $this -> tc_has_children($id) )
+          continue;
+
+        foreach ( $this -> tc_get_children( $id ) as $id => $view_params ) {
+          //re-inject the id into the view_params
+          $view_params['id'] = $id;
+          $this -> tc_register( $view_params );
+        }
+      }//foreach
+    }
+
+
     //hook : wp | 1000
-    public function tc_instanciate_contextual_views() {
+    public function tc_maybe_instanciate_collection() {
       //check the controller
       // if ( ! CZR() -> controller( $group, $name ) )
       //   return;
+      do_action( "pre_instanciate_views" );
 
       //instanciates the base view object
       //add_action( 'wp' , array( new TC_default_view($view_params), 'tc_preprocess_view' ), 0 );
-      $collection = self::$view_collection;
-      foreach ( $collection as $id => $view_params ) {
+      foreach ( self::$view_collection as $id => $view_params ) {
+        //check the controller
+        // if ( ! CZR() -> controller( $group, $name ) )
+        //   return;
+
         //instanciate default view
         $instance = new TC_default_view($view_params);
-
         //emit event on view instanciation
         do_action( "view_instanciated", $id, $instance );//=> will be listened for rendering
       }//foreach
@@ -248,7 +263,7 @@ if ( ! class_exists( 'TC_views' ) ) :
 
       if ( ! empty( $this -> template ) ) {
         //add the view to the wp_query wp global
-        set_query_var( 'view', $this );
+        set_query_var( "{$this -> template}_model", $this );
         get_template_part( "inc/views/templates/{$this -> template}" );
       }
       // $path = '';
@@ -512,7 +527,9 @@ if ( ! class_exists( 'TC_views' ) ) :
         'priority'    => 10,
         'html'        => "",
         'callback'    => "",
-        'cb_params'   => array()
+        'cb_params'   => array(),
+        'early_setup' => false,
+        'children'    => array()
       );
       if ( ! is_null($param) )
         return isset($defaults[$param]) ? $defaults[$param] : false;
@@ -540,9 +557,10 @@ if ( ! class_exists( 'TC_views' ) ) :
     //1) checks if the requested priority is available on the specified hook
     //2) set a new priority until until it's available
     private function tc_set_priority( $hook, $priority ) {
-      $view_collection = self::$view_collection;
       $available = true;
-      foreach ($view_collection as $id => $view) {
+      foreach ( self::$view_collection as $id => $view) {
+        if ( $hook != $view['hook'] )
+          continue;
         if ( $hook == $view['hook'] && $priority != $view['priority'] )
           continue;
         $available = false;
@@ -573,10 +591,26 @@ if ( ! class_exists( 'TC_views' ) ) :
     }
 
 
+    //@return array of child views
+    //@return false if has no children
+    private function tc_get_children($id) {
+      if ( ! $this -> tc_has_children($id) )
+        return;
+
+      $view_params = $this -> tc_get_view($id);
+      return ! empty( $view_params['children'] ) ? $view_params['children'] : false;
+    }
 
     /**********************************************************************************
     * HELPERS
     ***********************************************************************************/
+    //Checks if a registered view has child views
+    //@return boolean
+    private function tc_has_children($id) {
+      $view_params = $this -> tc_get_view($id);
+      return $this -> tc_view_exists($id) && array_key_exists( 'children', $view_params ) && ! empty($view_params['children']);
+    }
+
     private function tc_view_exists( $id ) {
       return array_key_exists( $id, self::$view_collection );
     }
@@ -640,6 +674,8 @@ if ( ! class_exists( 'TC_default_view' ) ) :
     public $html = "";
     public $callback = "";
     public $cb_params = array();
+    public $early_setup = false;
+    public $children = array();
 
     function __construct( $view_params = array() ) {
       $keys = array_keys( get_object_vars( $this ) );
@@ -683,6 +719,7 @@ endif;
 
 
 class TC_test_view_class extends TC_default_view {
+  public $test_class_property = 'YOUPI';
   function __construct( $view_params = array() ) {
     $keys = array_keys( get_object_vars( parent::tc_get_instance() ) );
     foreach ( $keys as $key ) {
@@ -692,11 +729,11 @@ class TC_test_view_class extends TC_default_view {
     }
   }
 
-  public function tc_render() {
+  /*public function tc_render() {
     ?>
       <h1>MY ID IS <span style="color:blue"><?php echo $this -> id ?></span>, AND I AM RENDERED BY THE VIEW CLASS</h1>
     <?php
-  }
+  }*/
 }
 
 
@@ -710,3 +747,15 @@ class TC_rendering {
     <?php
   }
 }
+
+
+//@todo : tc_maybe_register_children shall be recursive ?
+//@todo : children it would be good to add actions on pre_render_view, where we are in the parent's hook action.
+//=> late check if new children have been registered
+//=> if so, instanciate their views there
+
+//@todo : since all view classes will be TC_default_view or inherit TC_default_view,
+//=> instead of listening to view_instanciated for triggering
+//1) tc_store_relevant_instance_object
+//2) maybe_hook_view
+//=> why not firing those method directy into the TC_default_view constructor ?

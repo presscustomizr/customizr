@@ -74,7 +74,23 @@ function register_test_views() {
     array( 'hook' => '__after_header', 'template' => 'custom',  'html' => '<h1>Yo Man this is some html to render</h1>' )
   );
   CZR() -> views -> tc_register(
-    array( 'hook' => '__after_header', 'id' => 'joie', 'template' => 'custom', 'view_class' => 'TC_test_view_class' )
+    array(
+      'hook'        => '__after_header',
+      'id'          => 'joie',
+      'template'    => 'custom',
+      'view_class'  => 'TC_test_view_class',
+      'early_setup' => 'TC_test_early_setup',
+      'children' => array(
+        'child1' => array(
+            'hook'        => 'in_custom_template',
+            'html'        => '<h2 style="color:green">I AM A CHID VIEW</h2>'
+        ),
+        'child2' => array(
+            'hook'        => 'in_custom_template',
+            'html'        => '<h2 style="color:purple">I AM ANOTHER CHID VIEW</h2>'
+        )
+      )
+    )
   );
 
   CZR() -> views -> tc_register(
@@ -118,16 +134,6 @@ add_action('__after_header' , function() {
 }, 100);
 
 
-
-//@todo register deletion is not working
-
-//@todo => better handling of the static view properties stored in TC___.
-//=> can we move collection helper into TC___?
-//=> would it be interesting to use some getter / setter from TC___
-
-//@todo => implement the controller in tc_preprocess_view
-//@todo => add an action on wp right after tc_preprocess_view, to apply the registered changes if any
-//@todo => review the change and deletion implementation following the addition of tc_preprocess_view
 
 add_action( 'tc_dev_notice', 'tc_print_r');
 //hook : tc_dev_notice
