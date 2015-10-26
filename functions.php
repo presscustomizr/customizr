@@ -71,7 +71,7 @@ add_action('wp' , 'register_test_views');
 function register_test_views() {
   //Create a new test view
   CZR() -> views -> tc_register(
-    array( 'hook' => '__after_header', 'template' => 'custom',  'html' => '<h1>Yo Man this is some html to render</h1>' )
+    array( 'hook' => '__after_header', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>' )
   );
   CZR() -> views -> tc_register(
     array(

@@ -13,39 +13,30 @@ if ( ! class_exists( 'TC_views' ) ) :
 
       //listens to filter 'tc_pre_add_to_collection', takes 1 param : view params
       //makes sure the view has a unique $id and a proper priority for its rendereing hook
-      add_filter( 'tc_pre_add_to_collection'  , array( $this, 'tc_pre_process_view_params'), 10, 1 );
+      add_filter( 'tc_pre_add_to_collection'    , array( $this, 'tc_pre_process_view_params'), 10, 1 );
       //implement the registered changes before adding view to collection
-      add_filter( 'tc_pre_add_to_collection'  , array( $this, 'tc_pre_add_check_registered_changes'), 10, 1 );
+      add_filter( 'tc_pre_add_to_collection'    , array( $this, 'tc_pre_add_check_registered_changes'), 10, 1 );
 
       //listens to 'wp' and instanciate the relevant views
-      add_action( 'wp'                        , array( $this, 'tc_maybe_register_children' ), 999 );
-      add_action( 'wp'                        , array( $this, 'tc_maybe_instanciate_collection' ), 1000 );
-
-      //Reacts when a view is instanciated
-      //Execute various actions before actually hooking the view to front end
-      //=> takes 2 params
-      //$id
-      //$instance
-      add_action( 'view_instanciated'          , array( $this, 'tc_store_relevant_instance_object'), 10, 2 );
-      //=> we don't use the instance parameter here, (only 1 param, the id), it might have be replaced by a custom instance
-      //=> the instance is retrieved inside the callback
-      add_action( 'view_instanciated'          , array( $this, 'tc_maybe_hook_view') , 20, 1 );
+      //add_action( 'wp'                        , array( $this, 'tc_maybe_register_children' ), 999 );
+      add_action( 'wp'                          , array( $this, 'tc_maybe_instanciate_collection' ), 1000 );
+      add_action( 'children_registered'         , array( $this, 'tc_maybe_instanciate_collection') , 20, 1 );
 
       //listens to a collection pre-update => and fire the tc_apply_registered_changes_to_instance
       // => a change might have been registered
       //view id
       //view params
-      add_action( 'pre_render_view'           , array( $this, 'tc_apply_registered_changes_to_instance' ), 10, 1 );
+      add_action( 'pre_render_view'             , array( $this, 'tc_apply_registered_changes_to_instance' ), 10, 1 );
 
       //listens for a registered change applied to a view => remove it from the register changes list
       //takes one param : view id
-      add_action( 'registered_changed_applied', array( $this, 'tc_deregister_change' ), 10, 1 );
+      add_action( 'registered_changed_applied'  , array( $this, 'tc_deregister_change' ), 10, 1 );
 
       //listens to a view changed => update the view collection
       //view_properties_changed takes two params :
       //view id
       //view params
-      add_action( 'view_properties_changed'   , array( $this, 'tc_update_collection' ), 10, 2 );
+      add_action( 'view_properties_changed'     , array( $this, 'tc_update_collection' ), 10, 2 );
 
       //reacts when a view has been deregistered from the collection
       //=> fire tc_delete()
@@ -142,158 +133,27 @@ if ( ! class_exists( 'TC_views' ) ) :
     /**********************************************************************************
     * PREPARE VIEWS ON WP => check the controllers, check if it's been changed or deleted ?
     ***********************************************************************************/
-    //hook : wp
-    //param : parent view id
-    public function tc_maybe_register_children( $id ) {
-      foreach ( self::$view_collection as $id => $view_params ) {
-        //are there children to register ?
-        if ( ! $this -> tc_has_children($id) )
-          continue;
-
-        foreach ( $this -> tc_get_children( $id ) as $id => $view_params ) {
-          //re-inject the id into the view_params
-          $view_params['id'] = $id;
-          $this -> tc_register( $view_params );
-        }
-      }//foreach
-    }
-
-
     //hook : wp | 1000
-    public function tc_maybe_instanciate_collection() {
-      //check the controller
-      // if ( ! CZR() -> controller( $group, $name ) )
-      //   return;
+    //hook : children_registered with a children collection as param
+    public function tc_maybe_instanciate_collection( $collection = array() ) {
       do_action( "pre_instanciate_views" );
+      //!! => when hooked on wp, the passed paramater is the wp object
+      //=> that's why we must check that it's not an object
+      $collection = ( is_object($collection) || empty($collection) ) ? (array)self::$view_collection : $collection;
 
       //instanciates the base view object
       //add_action( 'wp' , array( new TC_default_view($view_params), 'tc_preprocess_view' ), 0 );
-      foreach ( self::$view_collection as $id => $view_params ) {
+      foreach ( $collection as $id => $view_params ) {
         //check the controller
         // if ( ! CZR() -> controller( $group, $name ) )
         //   return;
 
         //instanciate default view
-        $instance = new TC_default_view($view_params);
-        //emit event on view instanciation
-        do_action( "view_instanciated", $id, $instance );//=> will be listened for rendering
+        new TC_default_view($view_params);
       }//foreach
-
+      //emit an event each time a collection is instanciated
+      do_action( "collection_instanciated", $collection );
     }//fn
-
-
-
-    /***********************************************************************************
-    * ACTIONS ON VIEW INSTANCIATED
-    ***********************************************************************************/
-    //hook : view_instanciated 10
-    public function tc_store_relevant_instance_object( $id = null , $instance = null ) {
-      if ( is_null($id) || ! is_object($instance) ) {
-        do_action('tc_dev_notice', 'Wrong id or no view instance for view : '. $id );
-        return;
-      }
-      //gets the view
-      $view_params = $this -> tc_get_view($id);
-
-      //instanciates an overriden class for this view if specified ?
-      //the overriden class must be a child of TC_default_view
-      //must be done now so that the child view class is instanciated with the right properties (args)
-      if ( false !== $view_params['view_class'] && class_exists($view_params['view_class']) ) {
-        $view_class = $view_params['view_class'];
-        $new_instance = new $view_class( $view_params );
-        if ( is_subclass_of($new_instance, 'TC_default_view') ) {
-          //reset the previous instance with the new one
-          $instance = $new_instance;
-          //unset the previous default instance
-          unset( $view_params['_instance'] );
-        }
-      }
-      //add this instance to the view description in the collection
-      //=> can be used later for deregistration
-      $instance -> tc_set_property( '_instance', $instance );
-    }
-
-
-
-    //hook : view_instanciated
-    //$this is TC_views
-    //the view is instanciated at this stage
-    public function tc_maybe_hook_view( $id = null ) {
-      if ( is_null($id) ) {
-        do_action('tc_dev_notice', 'A view is missing an id' );
-        return;
-      }
-
-      //gets the view
-      $view_params = $this -> tc_get_view($id);
-      //Renders the view on the requested hook
-      if ( false !== $view_params['hook'] ) {
-        add_action( $view_params['hook'], array( $view_params['_instance'], 'tc_maybe_render'), $view_params['priority'] );
-        //emit an event each time a view is hooked
-        do_action( 'view_hooked' , $id );
-      }
-    }
-
-
-
-    /**********************************************************************************
-    * RENDERS
-    ***********************************************************************************/
-    //hook : $view_params['hook']
-    //NOTE : the $this here can be the child class $this.
-    public function tc_maybe_render() {
-      //this event is used to check for late deletion or change before actually rendering
-      //will fire tc_apply_registered_changes_to_instance
-      do_action( 'pre_render_view', $this -> id );
-
-      if ( ! apply_filters( "tc_do_render_view_{$this -> id}", $this -> tc_view_exists($this -> id) ) )
-        return;
-
-      do_action( "before_render_view_{$this -> id}" );
-        $this -> tc_render();
-      do_action( "after_render_view_{$this -> id}" );
-    }
-
-
-
-    //might be overriden in the child view if any
-    public function tc_render() {
-      if ( ! empty( $this -> html ) )
-        echo $this -> html;
-
-      if ( ! empty( $this -> template ) ) {
-        //add the view to the wp_query wp global
-        set_query_var( "{$this -> template}_model", $this );
-        get_template_part( "inc/views/templates/{$this -> template}" );
-      }
-      // $path = '';
-      // $part = '';
-      // get_template_part( $path , $part );
-
-      if ( ! empty( $this -> callback ) )
-        $this -> tc_fire_render_cb( $this -> callback, $this -> cb_params );
-    }
-
-
-
-    //A callback helper
-    //a callback can be function or a method of a class
-    private function tc_fire_render_cb( $cb, $params ) {
-      //method of a class => look for an array( 'class_name', 'method_name')
-      if ( is_array($cb) && 2 == count($cb) && class_exists($cb[0]) ) {
-        //instanciated with an instance property holding the object ?
-        if ( isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
-          call_user_func_array( array( $cb[0]::$instance ,  $cb[1] ), $params );
-        }
-        else {
-          $_class_obj = new $cb[0]();
-          if ( method_exists($_class_obj, $cb[1]) )
-            call_user_func_array( array( $_class_obj, $cb[1] ), $params );
-        }
-      } else if ( is_string($cb) && function_exists($cb) ) {
-        call_user_func_array($cb, $params);
-      }
-    }
 
 
 
@@ -604,13 +464,6 @@ if ( ! class_exists( 'TC_views' ) ) :
     /**********************************************************************************
     * HELPERS
     ***********************************************************************************/
-    //Checks if a registered view has child views
-    //@return boolean
-    private function tc_has_children($id) {
-      $view_params = $this -> tc_get_view($id);
-      return $this -> tc_view_exists($id) && array_key_exists( 'children', $view_params ) && ! empty($view_params['children']);
-    }
-
     private function tc_view_exists( $id ) {
       return array_key_exists( $id, self::$view_collection );
     }
@@ -662,6 +515,28 @@ endif;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//this is the default view class
+//all views are setup and rendered from this class or a child of this class
+//this class (and children) is responsible for
+//1) rendering
+//2) instanciating its children if any
 if ( ! class_exists( 'TC_default_view' ) ) :
   class TC_default_view extends TC_views {
     public $hook = false;//this is the default hook declared in the index.php template
@@ -685,15 +560,180 @@ if ( ! class_exists( 'TC_default_view' ) ) :
           $this->$key = $view_params[ $key ];
         }
       }
+
+      //ACTIONS ON VIEW READY
+      //hooks the view
+      add_action( "view_ready_{$this -> id}", array( $this, 'tc_maybe_hook_view'),10, 1 );
+
+      //Registers its children if any
+      add_action( "view_ready_{$this -> id}", array( $this, 'tc_maybe_register_children') );
+
+      //Execute various actions before actually hooking the view to front end
+      //=> takes 2 params
+      //$id
+      //$instance
+      $this -> tc_setup_view();
+
+      //emit event on view instanciation
+      do_action( "view_instanciated", $this -> id );
     }
+
+
+
+    /***********************************************************************************
+    * ACTIONS ON VIEW INSTANCIATION
+    ***********************************************************************************/
+    //fired in __construct()
+    public function tc_setup_view( $id = null , $instance = null ) {
+      if ( empty($this -> id) ) {
+        do_action('tc_dev_notice', 'Wrong id for view : '. $this -> id );
+        return;
+      }
+
+      $instance = $this;
+      //instanciates an overriden class for this view if specified ?
+      //the overriden class must be a child of TC_default_view
+      //must be done now so that the child view class is instanciated with the right properties (args)
+      if ( false !== $this -> view_class && class_exists($this -> view_class) ) {
+        $view_class = $this -> view_class;
+        $new_instance = new $view_class( $this -> tc_get_params() );
+        if ( is_subclass_of($new_instance, 'TC_default_view') ) {
+          //reset the previous instance with the new one
+          $instance = $new_instance;
+          //unset the previous default instance
+          //unset( $instance -> _instance );
+        }
+      }
+
+      //add this instance to the view description in the collection
+      //=> can be used later for deregistration
+      $instance -> tc_set_property( '_instance', $instance );
+
+      do_action( "view_ready_{$this -> id}", $instance );
+    }
+
+
+
+    /***********************************************************************************
+    * ACTIONS ON VIEW READY
+    * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
+    ***********************************************************************************/
+    //hook the rendering method to the hook
+    //$this -> _instance can be used. It can be a child of this class.
+    public function tc_maybe_hook_view($instance) {
+      $_this = $instance;
+      if ( empty($_this -> id) ) {
+        do_action('tc_dev_notice', 'A view is missing an id' );
+        return;
+      }
+
+      //Renders the view on the requested hook
+      if ( false !== $_this -> hook ) {
+        add_action( $_this -> hook, array( $_this -> _instance , 'tc_maybe_render' ), $_this -> priority );
+        //emit an event each time a view is hooked
+        do_action( 'view_hooked' , $_this -> id );
+      }
+    }
+
+
+
+    /**********************************************************************************
+    * ACTIONS ON VIEW READY : REGISTERS CHILD VIEWS
+    ***********************************************************************************/
+    //hook : view ready
+    //=> the collection here can be the full collection or a partial set of views (children for example)
+    public function tc_maybe_register_children() {
+      if ( ! $this -> tc_has_children() )
+        return;
+
+      $children_collection = array();
+      foreach ( $this -> children as $id => $view_params ) {
+        //re-inject the id into the view_params
+        $view_params['id'] = $id;
+        $this -> tc_register( $view_params );
+        $children_collection[$id] = $view_params;
+      }//foreach
+
+      //emit an event if a children collection has been registered
+      //=> will fire the instanciation of the children collection with tc_maybe_instanciate_collection
+      do_action( 'children_registered', $children_collection );
+    }
+
+
+    /**********************************************************************************
+    * RENDERS
+    ***********************************************************************************/
+    //hook : $view_params['hook']
+    //NOTE : the $this here can be the child class $this.
+    public function tc_maybe_render() {
+      //this event is used to check for late deletion or change before actually rendering
+      //will fire tc_apply_registered_changes_to_instance
+      do_action( 'pre_render_view', $this -> id );
+
+      if ( ! apply_filters( "tc_do_render_view_{$this -> id}", true ) )
+        return;
+
+      do_action( "before_render_view_{$this -> id}" );
+        $this -> tc_render();
+      do_action( "after_render_view_{$this -> id}" );
+    }
+
+
+
+    //might be overriden in the child view if any
+    public function tc_render() {
+      if ( ! empty( $this -> html ) )
+        echo $this -> html;
+
+      if ( ! empty( $this -> template ) ) {
+        //add the view to the wp_query wp global
+        set_query_var( "{$this -> template}_model", $this );
+        get_template_part( "inc/views/templates/{$this -> template}" );
+      }
+      // $path = '';
+      // $part = '';
+      // get_template_part( $path , $part );
+
+      if ( ! empty( $this -> callback ) )
+        $this -> tc_fire_render_cb( $this -> callback, $this -> cb_params );
+    }
+
+
+
+    /***********************************************************************************
+    * GETTERS / SETTERS / HELPERS
+    ***********************************************************************************/
+    //Checks if a registered view has child views
+    //@return boolean
+    private function tc_has_children() {
+      return ! empty($this -> children);
+    }
+
+
+    //A callback helper
+    //a callback can be function or a method of a class
+    private function tc_fire_render_cb( $cb, $params ) {
+      //method of a class => look for an array( 'class_name', 'method_name')
+      if ( is_array($cb) && 2 == count($cb) && class_exists($cb[0]) ) {
+        //instanciated with an instance property holding the object ?
+        if ( isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
+          call_user_func_array( array( $cb[0]::$instance ,  $cb[1] ), $params );
+        }
+        else {
+          $_class_obj = new $cb[0]();
+          if ( method_exists($_class_obj, $cb[1]) )
+            call_user_func_array( array( $_class_obj, $cb[1] ), $params );
+        }
+      } else if ( is_string($cb) && function_exists($cb) ) {
+        call_user_func_array($cb, $params);
+      }
+    }
+
 
     //normalizes the way we can access and change a single view property
     //=> emit an event to update the collection
     //@return void()
     public function tc_set_property( $property, $value ){
-      if ( ! isset( $this -> $property ) )
-        return;
-
       $this -> $property = $value;
       //add an event 'view_properties_changed'
       //will trigger a collection update
@@ -716,6 +756,10 @@ if ( ! class_exists( 'TC_default_view' ) ) :
     }
   }
 endif;
+
+
+
+
 
 
 class TC_test_view_class extends TC_default_view {
