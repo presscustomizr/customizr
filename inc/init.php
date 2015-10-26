@@ -50,7 +50,8 @@ if ( ! class_exists( 'TC___' ) ) :
         self::$instance -> tc_setup_constants();
         self::$instance -> tc_load();
         self::$instance -> views = new TC_Views();
-        //self::$instance -> controllers = new TC_Controllers();
+        self::$instance -> controllers = new TC_Controllers();
+        self::$instance -> helpers = new TC_Helpers();
       }
       return self::$instance;
     }
@@ -100,8 +101,10 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
     private function tc_load() {
-      //load the views class
+      //load the new classes
       require_once( sprintf( '%sinc/class-views.php' , TC_BASE ) );
+      require_once( sprintf( '%sinc/class-controllers.php' , TC_BASE ) );
+      require_once( sprintf( '%sinc/class-helpers.php' , TC_BASE ) );
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',

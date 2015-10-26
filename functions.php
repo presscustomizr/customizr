@@ -135,16 +135,6 @@ add_action('__after_header' , function() {
 
 
 
-add_action( 'tc_dev_notice', 'tc_print_r');
-//hook : tc_dev_notice
-function tc_print_r($message) {
-  if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) )
-    return;
-  ?>
-    <pre><h1 style="color:red"><?php echo $message ?></h1></pre>
-  <?php
-}
-
 
 
 /*add_action('__after_footer' , function() {

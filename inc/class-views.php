@@ -145,8 +145,8 @@ if ( ! class_exists( 'TC_views' ) ) :
       //add_action( 'wp' , array( new TC_default_view($view_params), 'tc_preprocess_view' ), 0 );
       foreach ( $collection as $id => $view_params ) {
         //check the controller
-        // if ( ! CZR() -> controller( $group, $name ) )
-        //   return;
+        if ( ! CZR() -> controllers -> tc_is_possible($id)  )
+          continue;
 
         //instanciate default view
         new TC_default_view($view_params);
@@ -374,6 +374,19 @@ if ( ! class_exists( 'TC_views' ) ) :
     /**********************************************************************************
     * GETTERS / SETTERS
     ***********************************************************************************/
+    public function tc_get_controller( $id ) {
+      $collection = self::$view_collection;
+      if ( $this -> tc_has_controller( $id ) )
+        return $collection[$id]['controller'];
+      return;
+    }
+
+
+    public function tc_has_controller( $id ) {
+      $collection = self::$view_collection;
+      return $this -> tc_view_exists( $id ) && false !== $collection[$id]['_instance'];
+    }
+
     //helper to get the default
     //can be used to a get a single default param if specified and exists
     private function tc_get_default_params( $param = null ) {
@@ -389,7 +402,8 @@ if ( ! class_exists( 'TC_views' ) ) :
         'callback'    => "",
         'cb_params'   => array(),
         'early_setup' => false,
-        'children'    => array()
+        'children'    => array(),
+        'controller'  => ""
       );
       if ( ! is_null($param) )
         return isset($defaults[$param]) ? $defaults[$param] : false;
@@ -551,6 +565,7 @@ if ( ! class_exists( 'TC_default_view' ) ) :
     public $cb_params = array();
     public $early_setup = false;
     public $children = array();
+    public $controller = "";
 
     function __construct( $view_params = array() ) {
       $keys = array_keys( get_object_vars( $this ) );
@@ -695,7 +710,7 @@ if ( ! class_exists( 'TC_default_view' ) ) :
       // get_template_part( $path , $part );
 
       if ( ! empty( $this -> callback ) )
-        $this -> tc_fire_render_cb( $this -> callback, $this -> cb_params );
+        CZR() -> helpers -> tc_fire_cb( $this -> callback, $this -> cb_params );
     }
 
 
@@ -707,26 +722,6 @@ if ( ! class_exists( 'TC_default_view' ) ) :
     //@return boolean
     private function tc_has_children() {
       return ! empty($this -> children);
-    }
-
-
-    //A callback helper
-    //a callback can be function or a method of a class
-    private function tc_fire_render_cb( $cb, $params ) {
-      //method of a class => look for an array( 'class_name', 'method_name')
-      if ( is_array($cb) && 2 == count($cb) && class_exists($cb[0]) ) {
-        //instanciated with an instance property holding the object ?
-        if ( isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
-          call_user_func_array( array( $cb[0]::$instance ,  $cb[1] ), $params );
-        }
-        else {
-          $_class_obj = new $cb[0]();
-          if ( method_exists($_class_obj, $cb[1]) )
-            call_user_func_array( array( $_class_obj, $cb[1] ), $params );
-        }
-      } else if ( is_string($cb) && function_exists($cb) ) {
-        call_user_func_array($cb, $params);
-      }
     }
 
 
@@ -754,6 +749,7 @@ if ( ! class_exists( 'TC_default_view' ) ) :
     public function tc_get_instance() {
       return $this;
     }
+
   }
 endif;
 
@@ -793,13 +789,6 @@ class TC_rendering {
 }
 
 
-//@todo : tc_maybe_register_children shall be recursive ?
 //@todo : children it would be good to add actions on pre_render_view, where we are in the parent's hook action.
 //=> late check if new children have been registered
 //=> if so, instanciate their views there
-
-//@todo : since all view classes will be TC_default_view or inherit TC_default_view,
-//=> instead of listening to view_instanciated for triggering
-//1) tc_store_relevant_instance_object
-//2) maybe_hook_view
-//=> why not firing those method directy into the TC_default_view constructor ?
