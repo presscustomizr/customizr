@@ -421,8 +421,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       // The Events Calendar adds a filter on post_type_archive_title with __return_false callback
       // for their own reasons. This impacts on our breadcrumb 'cause we use the function post_type_archive_title() to build up the trail arg in posty_type_archives contexts.
       // What we do here is unhooking their callback before the breadcrumb is built and re-hook it after it has been displayed
-      add_action( 'wp_head', 'tc_tec_allow_display_breadcrumb_in_mont_view');
-      function tc_tec_allow_display_breadcrumb_in_mont_view() {
+      add_action( 'wp_head', 'tc_tec_allow_display_breadcrumb_in_month_view');
+      function tc_tec_allow_display_breadcrumb_in_month_view() {
         if ( ! ( tc_is_tec_events_list() && function_exists( 'tribe_is_month' ) && tribe_is_month() ) )
           return;
 
