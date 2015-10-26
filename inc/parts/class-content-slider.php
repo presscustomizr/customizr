@@ -575,7 +575,7 @@ class TC_slider {
       }
     }
 
-    $sql = sprintf( 'SELECT %1$s FROM ( %2$s ) as posts %3$s ORDER BY %4$s LIMIT %5$s OFFSET %6$s',
+    $sql = sprintf( 'SELECT DISTINCT %1$s FROM ( %2$s ) as posts %3$s ORDER BY %4$s LIMIT %5$s OFFSET %6$s',
              apply_filters( 'tc_query_posts_slider_columns', $columns ),
              $this -> tc_get_posts_have_tc_thumb_sql(
                apply_filters( 'tc_query_posts_slider_columns', $columns ),
