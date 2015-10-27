@@ -2,6 +2,9 @@
 //the controllers are organized by groupd in 4 classes
 //Header, Content, Footer, Modules.
 //The controller group classes are instanciated on demand if any of a view (or its child) requested it
+//If the model is used as a method parameter, it shall be an array()
+//=> because a controller can be checked and fired before the model has been instanciated
+//=> always check the existence of the id
 if ( ! class_exists( 'TC_controllers' ) ) :
   class TC_controllers {
     static $instance;
@@ -30,8 +33,14 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       //group name (string)
       //group controller instance (object)
       add_action( 'group_controller_instanciated', array( $this, 'tc_store_controller_instance'),10, 2);
-    }
+    }//__construct()
 
+
+
+
+    /***********************************************************************************
+    * EXPOSED API
+    ***********************************************************************************/
     //1) checks if a controller has been specified for the view. It can be either a function, or the method of a class
     //
     //2) if nothing is specified for the view, then checks if the view controller belongs to a particular group
@@ -39,11 +48,13 @@ if ( ! class_exists( 'TC_controllers' ) ) :
     //then the existence of the controller method is checked and fired if exists
     //
     //3) if no match is found, the view is not allowed
-    function tc_is_possible($id) {
+    public function tc_is_possible( $model ) {
       //the returned value can be a string or an array( instance, method)
-      $controller_cb = $this -> tc_get_controller( $id );
+      $controller_cb = $this -> tc_get_controller( $model );
+      //FOR TEST ONLY
+      return true;
 
-      if ( false !== $controller_cb ) {
+      if ( ! empty( $controller_cb ) ) {
         return apply_filters( 'tc_set_control' , (bool) CZR() -> helpers -> tc_return_cb_result( $controller_cb ) );
       }
       return;
@@ -51,13 +62,24 @@ if ( ! class_exists( 'TC_controllers' ) ) :
 
 
 
+    //@return bool
+    //@param array() or object() model
+    public function tc_has_controller( $model = array() ) {
+      return ! empty( $this -> tc_build_controller( $model ) );
+    }
+
+
+
     //@return a function string or an array( instance, method )
-    private function tc_get_controller($id) {
-      $controller_cb = false;
-      //IS A CONTROLLER SPECIFIED AS PROPERTY OF THIS VIEW ?
-      if ( ! empty( CZR() -> views -> tc_get_controller($id) ) ) {
+    //@param array() or object() model
+    private function tc_get_controller( $model = array() ) {
+      $model = is_object($model) ? (array)$model : $model;
+      $controller_cb = "";
+
+      //IS A CONTROLLER SPECIFIED AS PROPERTY OF THIS MODEL ?
+      if ( isset($model['controller']) ) {
         //a callback can be function or a method of a class
-        $controller_cb = CZR() -> views -> tc_get_controller($id);
+        $controller_cb = $model['controller'];
       }
       //IS THERE A PRE-DEFINED CONTROLLER FOR THE VIEW ?
       else if ( $this -> tc_has_default_controller( $id ) ) {
@@ -66,7 +88,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
         //the default controller should look like array( instance, method )
         if ( empty($controller_cb) ) {
           do_action( 'tc_dev_notice', 'View : '.$id.'. The default group controller has not been instanciated');
-          return;
+          return "";
         }
       }//if
       return $controller_cb;
