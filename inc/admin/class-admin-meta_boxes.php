@@ -220,22 +220,22 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             $post_slider_check_id       = 'post_slider_check_field';
             $post_slider_check_value    = esc_attr(get_post_meta( $post -> ID, $key = 'post_slider_check_key' , $single = true ));
 
-            ?>
-           <div class="meta-box-item-title">
-                <h4><?php _e( 'Add a slider to this post/page' , 'customizr' ); ?></h4>
-                  <label for="<?php echo $post_slider_check_id; ?>">
-              </label>
-            </div>
-            <div class="meta-box-item-content">
-              <input name="tc_post_id" id="tc_post_id" type="hidden" value="<?php echo $post-> ID ?>"/>
-               <?php
-                 $post_slider_checked = false;
-                 if ( $post_slider_check_value == 1)
-                  $post_slider_checked = true;
-                ?>
-              <input name="<?php echo $post_slider_check_id; ?>" type="hidden" value="0"/>
-              <input name="<?php echo $post_slider_check_id ?>" id="<?php echo $post_slider_check_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $post_slider_checked, $current = true, $echo = true ) ?>/>
-            </div>
+            //hidden post_id field
+            TC_meta_boxes::tc_generic_input_view( array(
+              'input_type'  => 'hidden',
+              'boxed'       => 0,
+              'input_name'  => 'tc_post_id',
+              'input_value' => $post->ID
+            ));
+            // Post slider check key
+            TC_meta_boxes::tc_checkbox_view( array(
+              'input_state' => ( $post_slider_check_value == 1 ),
+              'input_name'  => $post_slider_check_id,
+              'title'       => array(
+                  'title_text'  => __( 'Add a slider to this post/page', 'customizr') 
+               )
+            ));
+        ?>
             <div id="slider-fields-box">
               <?php do_action( '__post_slider_infos' , $post -> ID ); ?>
             </div>
@@ -256,7 +256,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           //check value is ajax saved ?
           $post_slider_check_value   = esc_attr(get_post_meta( $postid, $key = 'post_slider_check_key' , $single = true ));
 
-         //retrieve all sliders in option array
+          //retrieve all sliders in option array
           $options                   = get_option( 'tc_theme_options' );
           if ( isset($options['tc_sliders']) ) {
             $sliders                   = $options['tc_sliders'];
@@ -281,50 +281,56 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
           //sliders field
           $slider_id                 = 'slider_field';
+          
+          if( $post_slider_check_value == true ):
+            
+            TC_meta_boxes::tc_title_view( array(
+             'title_text' => __( 'Choose a slider', 'customizr') 
+            ));
+         
+            $selectable_sliders  = apply_filters( 'tc_post_selectable_sliders', $sliders );
+            if (isset($selectable_sliders) && !empty( $selectable_sliders)) :
 
+              //build selectable slider -> ID => label
+              //Default in head
+              $selectable_sliders = array_merge( array(
+                -1 => __( '&mdash; Select a slider &mdash; ' , 'customizr' )
+              ), $selectable_sliders );
 
-          ?>
-          <?php if( $post_slider_check_value == true ): ?>
-              <div class="meta-box-item-title">
-                <h4><?php _e("Choose a slider", 'customizr' ); ?></h4>
-              </div>
-              <?php if (isset($sliders) && !empty( $sliders)) : ?>
-                <div class="meta-box-item-content">
-                  <span class="spinner" style="float: left;visibility:visible;display: none;"></span>
-                  <select name="<?php echo $post_slider_id; ?>" id="<?php echo $post_slider_id; ?>">
-                    <?php //no link option ?>
-                    <option value="" <?php selected( $current_post_slider, $current = null, $echo = true ) ?>> <?php _e( '&mdash; Select a slider &mdash; ' , 'customizr' ); ?></option>
-                       <?php foreach( $sliders as $slider_name => $slider_posts) : ?>
-                            <option value="<?php echo esc_attr( $slider_name) ?>" <?php selected( $slider_name, $current = $current_post_slider, $echo = true ) ?>><?php echo esc_attr( $slider_name) ?></option>
-                       <?php endforeach; ?>
-                  </select>
-                   <i><?php _e( 'To create a new slider : open the media library, edit your images and add them to your new slider.' , 'customizr' ) ?></i>
-                </div>
+              //in case of sliders of images we set the label as the slider_id
+              foreach ( $sliders as $key => $value) {
+                if ( is_array( $value ) )
+                  $selectable_sliders[ $key ] = $key;
+              }
 
-                <div class="meta-box-item-title">
-                  <h4><?php _e("Delay between each slides in milliseconds (default : 5000 ms)", 'customizr' ); ?></h4>
-                </div>
-                <div class="meta-box-item-content">
-                    <input name="<?php echo esc_attr( $delay_id) ; ?>" id="<?php echo esc_attr( $delay_id); ?>" value="<?php if (empty( $delay_value)) { echo '5000';} else {echo esc_attr( $delay_value);} ?>"/>
-                </div>
+              TC_meta_boxes::tc_selectbox_view( array(
+                  'select_name'    => $post_slider_id,
+                  'choices'        => $selectable_sliders,
+                  'selected'       => $current_post_slider,
+                  'content_before' => '<span class="spinner" style="float: left;visibility:visible;display: none;"></span>',
+                  'content_after'  => '<p><i>'. __( 'To create a new slider : open the media library, edit your images and add them to your new slider.' , 'customizr' ) . '</i></p>'
+              ));
 
-                <div class="meta-box-item-title">
-                    <h4><?php _e("Slider Layout : set the slider in full width", 'customizr' );  ?></h4>
-                </div>
-                <div class="meta-box-item-content">
-                    <?php
-                    if ( $layout_value ==null || $layout_value ==1 )
-                    {
-                      $layout_check_value = true;
-                    }
-                    else {
-                      $layout_check_value = false;
-                    }
-                    ?>
-                    <input name="<?php echo $layout_id; ?>" type="hidden" value="0"/>
-                    <input name="<?php echo $layout_id; ?>" id="<?php echo $layout_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php checked( $layout_check_value, $current = true, $echo = true ) ?>/>
-                </div>
-                <?php if (isset( $current_post_slides)) : ?>
+              //slides delay
+              TC_meta_boxes::tc_generic_input_view( array(
+                  'input_name'  => $delay_id,
+                  'input_value' => empty( $delay_value ) ? 5000 : $delay_value,
+                  'input_type'  => 'number',
+                  'title'       => array(
+                     'title_text' => __( 'Delay between each slides in milliseconds (default : 5000 ms)', 'customizr') 
+                  )
+              ));
+
+              //slider layout
+              $layout_check_value = ( $layout_value == null || $layout_value == 1 );
+              TC_meta_boxes::tc_checkbox_view( array(
+                  'input_state' => $layout_check_value,
+                  'input_name'  => $layout_id,
+                  'title'       => array(
+                     'title_text' => __( 'Slider Layout : set the slider in full width', 'customizr') 
+                  )
+              ));
+              if (isset( $current_post_slides)) : ?>
                       <div style="z-index: 1000;position: relative;">
                         <p style="display: inline-block;float: right;"><a href="#TB_inline?width=350&height=100&inlineId=post_slider-warning-message" class="thickbox"><?php _e( 'Delete this slider' , 'customizr' ) ?></a></p>
                       </div>
@@ -337,17 +343,17 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                              <a class="button-secondary" id="delete-slider" href="#" title="<?php _e( 'Delete slider' , 'customizr' ); ?>" onClick="javascript:window.parent.tb_remove()"><?php _e( 'Delete slider' , 'customizr' ); ?></a>
                         </div>
                       </div>
-                    <?php  do_action( '__show_slides' , $current_post_slides, $current_attachement_id = null); ?>
-                <?php endif; ?>
-              <?php else : //if no slider created yet ?>
-
-                 <div class="meta-box-item-content">
-                   <p class="description"> <?php _e("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ) ?><br/>
-                   </p>
-                    <br />
-                </div>
-              <?php endif; //sliders? ?>
-            <?php endif; //check slider? ?>
+                    <?php  do_action( '__show_slides' , $current_post_slides, $current_attachement_id = null ); ?>
+                <?php else: //slider of posts? :
+                    do_action( '__no_slides', $postid, $current_post_slider );
+                ?>
+              <?php endif; //slides? ?>
+            <?php else: //if no slider created yet 
+                TC_meta_boxes::tc_wrapper_view( array(
+                  'content' => '<p class="description">' . __("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ) .'<br/></p><br />'
+                ));
+            endif; //sliders? ?>
+        <?php endif; //check slider? ?>
         <?php
       }
 
@@ -416,7 +422,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
         // verify this came from our screen and with proper authorization,
         if ( isset( $_POST['post_slider_noncename']) && !wp_verify_nonce( $_POST['post_slider_noncename'], plugin_basename( __FILE__ ) ) )
             return;
-
+        
         // OK, we're authenticated: we need to find and save the data
         //set up the fields array
         $tc_post_slider_fields = array(
@@ -424,10 +430,11 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             'slider_delay_field'        => 'slider_delay_key' ,
             'slider_layout_field'       => 'slider_layout_key' ,
             'post_slider_field'         => 'post_slider_key' ,
-            );
-
+        );
+        
         //if saving in a custom table, get post_ID
-       if ( isset( $_POST['post_ID'])) {
+        if ( isset( $_POST['post_ID'])) {
+          do_action( '__before_save_post_slider_fields', $_POST, $tc_post_slider_fields );
           $post_ID = $_POST['post_ID'];
           //sanitize user input by looping on the fields
           foreach ( $tc_post_slider_fields as $tcid => $tckey) {
@@ -440,8 +447,9 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                   update_post_meta( $post_ID, $tckey , $mydata);
                 // or a custom table (see Further Reading section below)
                }
-            }
           }
+          do_action( '__after_save_post_slider_fields', $_POST, $tc_post_slider_fields );
+        }
       }
 
 
@@ -1219,7 +1227,8 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 //attachments
                 'slider_check_field'          => 'slider_check_key' ,
                 );
-
+            
+                do_action( "__before_ajax_save_slider_{$tc_post_type}", $_POST, $tc_slider_fields );
                 //sanitize user input by looping on the fields
                 foreach ( $tc_slider_fields as $tcid => $tckey) {
                     if ( isset( $_POST[$tcid])) {
@@ -1229,7 +1238,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                           case 'post_slider_key' :
                              $mydata = esc_attr( $_POST[$tcid] );
                              //Does the selected slider still exists in options? (we first check if the selected slider is not empty)
-                             if(!empty( $mydata) && !isset( $tc_options['tc_sliders'][$mydata]))
+                             if( !empty( $mydata) && !isset( $tc_options['tc_sliders'][$mydata] ) )
                                 break;
 
                              //write in DB
@@ -1275,7 +1284,8 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 //attachments
                 if( $tc_post_type == 'attachment' )
                   $this -> tc_slide_save( $post_ID );
-
+                
+                do_action( "__after_ajax_save_slider_{$tc_post_type}", $_POST, $tc_slider_fields );
             }//function
 
 
@@ -1440,5 +1450,202 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
           return $post;
       }
+
+
+
+     /* Static Views */
+     /**
+     * Build title element html 
+     *
+     * @package Customizr
+     * @since Customizr 3.4.14
+     */
+     public static function tc_title_view( $args ){
+       $defaults = array(
+         'title_tag'     => 'h4',
+         'wrapper_class' => 'meta-box-item-title',
+         'title_text'    => '',
+         'echo'          => 1,
+         'boxed'         => 1
+       );
+
+       $args = wp_parse_args( $args, $defaults );
+       extract($args);
+
+       $content = sprintf( '<%1$s>%2$s</%1$s>',
+         $title_tag,
+         $title_text
+       );
+
+       $html = $boxed ? TC_meta_boxes::tc_wrapper_view( 
+             compact( 'content', 'wrapper_tag', 'wrapper_class')
+       ) : $content;
+       
+       if ( ! $echo )
+         return $html;
+       echo $html;    
+     }
+  
+  
+     /**
+     * Build checkbox element html 
+     *
+     * @package Customizr
+     * @since Customizr 3.4.14
+     */
+     public static function tc_checkbox_view( $args ) {
+       $defaults = array(
+         'input_name'     => '',
+         'input_class'    => 'iphonecheck',
+         'input_state'    => '',
+         'echo'           => 1,
+         'boxed'          => 1,
+         'input_type'     => 'checkbox',
+         'input_value'    => '1',
+         'content_before' => '',
+       );
+
+       $args = wp_parse_args( $args, $defaults );
+       extract($args);
+
+       TC_meta_boxes::tc_generic_input_view( array_merge( $args, array(
+           'content_before' => $content_before . '<input name="'. $input_name .'" type="hidden" value = "0" />',
+           'custom_args' => checked( $input_state, $current = true, $c_echo = false)
+       )));     
+     }
+
+
+
+     /**
+     * Build selectbox element html 
+     *
+     * @package Customizr
+     * @since Customizr 3.4.14
+     */
+     public static function tc_selectbox_view( $args ) {
+       $defaults = array(
+         'select_name'    => '',
+         'select_class'   => '',
+         'echo'           => 1,
+         'boxed'          => 1,
+         'content_before' => '',
+         'content_after'  => '',
+         'choices'        => array(),
+         'selected'       => '',
+       );
+
+       $args = wp_parse_args( $args, $defaults );
+       extract($args);
+
+       if ( ! $choices ) return;
+       
+       $select_id = isset($select_id) ? $select_id : $select_name;
+       
+       $options_html = '';
+
+       foreach( $choices as $key => $label )
+         $options_html .= sprintf('<option value=%1$s %2$s>%3$s</option>',
+           esc_attr( $key ),
+           selected( $selected, esc_attr( $key ), $s_echo = false ),
+           $label
+         ); 
+
+       $content = sprintf('<select name="%1$s" id ="%2$s">%3$s</select>',
+           $select_name,
+           $select_id,
+           $options_html
+       );
+        
+       $content = $content_before . $content . $content_after;
+       
+       $html = $boxed ? TC_meta_boxes::tc_wrapper_view(
+         compact( 'content', 'wrapper_tag', 'wrapper_class')
+       ) : $content;
+
+       $html = ! ( isset($title) && is_array( $title ) && empty( ! $title ) ) ? $html :
+           sprintf( "%s%s",
+             TC_meta_boxes::tc_title_view( $title ),
+             $html
+         );
+
+       if ( ! $echo )
+         return $html;
+       
+       echo $html ;         
+     }
+
+     /**
+     * Build generic input element html 
+     *
+     * @package Customizr
+     * @since Customizr 3.4.14
+     */
+     public static function tc_generic_input_view( $args ) {
+       $defaults = array(
+         'input_name'     => '',
+         'input_class'    => '',
+         'input_type'     => 'text',
+         'input_value'    => '0',
+         'custom_args'    => '',
+         'echo'           => 1,
+         'boxed'          => 1,
+         'content_before' => '',
+         'content_after'  => ''
+       );
+
+       $args = wp_parse_args( $args, $defaults );
+       extract($args);
+       
+       $input_id = isset($input_id) ? $input_id : $input_name;
+
+       $content = sprintf('<input name="%1$s" id="%2$s" value="%3$s" %4$s class="%5$s" type="%6$s">',
+            esc_attr( $input_name ),
+            esc_attr( $input_id ),
+            esc_attr( $input_value ),
+            $custom_args,
+            $input_class,
+            $input_type
+       );
+       
+       $content = $content_before . $content . $content_after;
+       
+       $html = $boxed ? TC_meta_boxes::tc_wrapper_view(
+         compact( 'content', 'wrapper_tag', 'wrapper_class')
+       ) : $content;
+
+       $html = ! ( isset($title) && is_array( $title ) && empty( ! $title ) ) ? $html :
+           sprintf( "%s%s",
+             TC_meta_boxes::tc_title_view( $title ),
+             $html
+         );
+
+       if ( ! $echo )
+         return $html;
+       
+       echo $html ;   
+     }
+
+
+     public static function tc_wrapper_view( $args ) {
+       $defaults = array( 
+         'wrapper_tag'   => 'div',    
+         'wrapper_class' => 'meta-box-item-content',
+         'echo'          => false,
+         'content'       => ''
+       );
+       $args = wp_parse_args( $args, $defaults );
+       extract($args);
+
+       $html = sprintf('<%1$s class="%2$s">%3$s</%1$s>',
+         $wrapper_tag,
+         $wrapper_class,
+         $content
+       );
+
+       if ( ! $echo )
+         return $html;
+       echo $html;
+     }
+
   }//end of class
 endif;

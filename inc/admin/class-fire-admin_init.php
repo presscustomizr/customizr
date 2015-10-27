@@ -33,7 +33,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       add_action ( 'deleted_post'         , array( $this , 'tc_refresh_posts_slider') );
 
       //refresh the terms array (categories/tags pickers options) on term deletion
-      add_action ( 'delete_term'          , array( $this, 'tc_refresh_terms_picker_options'), 10, 3 );
+      add_action ( 'delete_term'          , array( $this, 'tc_refresh_terms_pickers_options_cb'), 10, 3 );
 
       //UPDATE NOTICE
       add_action( 'admin_notices'         , array( $this, 'tc_may_be_display_update_notice') );
@@ -87,31 +87,38 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       TC_slider::$instance -> tc_cache_posts_slider();
     }
  
+
     /*
     * @return void
     * updates the term pickers related options
     * @package Customizr
     * @since Customizr 3.4.10
     */
-    function tc_refresh_terms_picker_options( $term, $tt_id, $taxonomy ) {
+    function tc_refresh_terms_picker_options_cb( $term, $tt_id, $taxonomy ) {
       switch ( $taxonomy ) {
 
         //delete categories based options
         case 'category':
-          //home/blog posts category picker
-          $blog_cats = TC_utils::$inst -> tc_opt('tc_blog_restrict_by_cat', $option_group = null, $use_default = false );
-          if ( is_array( $blog_cats ) && ! empty( $blog_cats ) && in_array( $term, $blog_cats ) ) {
-            //update the option
-            TC_utils::$inst -> tc_set_option( 'tc_blog_restrict_by_cat', array_diff( $blog_cats, (array)$term ) );
-          }
-          //alternative, cycle throughout the cats and keep just the existent ones
-          /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
-            //update the option
-            TC_utils::$inst -> tc_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(TC_utils::$inst, 'tc_category_id_exists' ) ) );
-          }*/
+          $this -> tc_refresh_term_picker_options( $term, $option_name = 'tc_blog_restrict_by_cat' );  
           break;
       }
     }
+
+
+    function tc_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
+       //home/blog posts category picker
+       $_option = TC_utils::$inst -> tc_opt( $option_name, $option_group, $use_default = false );
+       if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
+         //update the option
+         TC_utils::$inst -> tc_set_option( $option_name, array_diff( $_option, (array)$term ) );
+       
+       //alternative, cycle throughout the cats and keep just the existent ones
+       /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
+         //update the option
+         TC_utils::$inst -> tc_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(TC_utils::$inst, 'tc_category_id_exists' ) ) );
+       }*/
+    }
+
 
     /*
     * @return css string
