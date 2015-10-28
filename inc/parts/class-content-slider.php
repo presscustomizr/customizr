@@ -66,7 +66,7 @@ class TC_slider {
     //display a notice for first time users
     if ( 'demo' == $slider_name_id ) {
       //display a notice for first time users
-      add_action( '__after_carousel_inner'    , array( $this, 'tc_maybe_display_dismiss_notice'));
+      add_action( '__after_carousel_inner'   , array( $this, 'tc_maybe_display_dismiss_notice') );
     }
 
     //display an edit deep link to the Slider section in the Customize or post/page
@@ -383,15 +383,23 @@ class TC_slider {
   private function tc_get_pre_posts_slides( $args ){
 
     $defaults       = array(
-      'img_size'        => null,
-      'load_transient'  => true,
-      'store_transient' => true,
-      'transient_name'       => 'tc_posts_slides' 
+      'img_size'            => null,
+      'load_transient'      => true,
+      'store_transient'     => true,
+      'transient_name'      => 'tc_posts_slides',
+      //options
+      'stickies_only'       => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_stickies' ) ),
+      'show_title'          => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_title' ) ),
+      'show_excerpt'        => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ) ),
+      'button_text'         => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_button_text' ) ),
+      'limit'               => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_number' ) ),
+      'link_type'           => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_link') ),
     );
     
-    $args           = apply_filters( 'tc_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
+    $args         = apply_filters( 'tc_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
 
+    print_r($args);
     if ( $load_transient )
       // the transient stores the pre_model
       $pre_slides = get_transient( $transient_name );
@@ -405,13 +413,7 @@ class TC_slider {
       return $pre_slides;
 
     //retrieve posts from the db
-    $queried_posts    = $this -> tc_query_posts_slider( array(
-          'stickies_only' => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_stickies' ) ),
-          'show_title'    => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_title' ) ),
-          'show_excerpt'  => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ) ),
-          'limit'         => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_number' ) )
-      )
-    );
+    $queried_posts    = $this -> tc_query_posts_slider( compact( $stickies_only, $show_title, $show_excerpt, $limit ) );
 
     if ( empty ( $queried_posts ) )
       return array();
@@ -420,11 +422,11 @@ class TC_slider {
     // remove smart load img parsing if any
     $smart_load_enabled = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter('tc_thumb_html', array(TC_utils::$instance, 'tc_parse_imgs'));
+      remove_filter( 'tc_thumb_html', array( TC_utils::$instance, 'tc_parse_imgs') );
 
     // prevent adding thumb inline style when no center img is added
     add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
-    /*** end TC_thumb setup ***/
+    /*** end tc_thumb setup ***/
 
 
     /* Get the pre_model */
@@ -445,21 +447,20 @@ class TC_slider {
       add_filter('tc_thumb_html', array(TC_utils::$instance, 'tc_parse_imgs') );
     // remove thumb style reset
     remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
-    /* end tC_thumb reset filters */
+    /* end tc_thumb reset filters */
 
     if ( ! empty( $pre_slides_posts ) ) {
       /*** Setup shared properties ***/
       /* Shared by all post slides, stored in the "common" field */
       // button and link whole slide
-      $_link_type             = TC_utils::$inst->tc_opt('tc_posts_slider_link');
       // has button to be displayed?
-      if ( strstr($_link_type, 'cta') )
-        $button_text            = $this -> tc_get_post_slide_button_text();
+      if ( strstr($link_type, 'cta') )
+        $button_text            = $this -> tc_get_post_slide_button_text( $button_text );
       else
         $button_text            = '';
 
       //link the whole slide?
-      $link_whole_slide       = strstr( $_link_type, 'slide') ? true : false;
+      $link_whole_slide       = strstr( $link_type, 'slide') ? true : false;
       /*** end Setup shared properties ***/
 
 
@@ -470,7 +471,7 @@ class TC_slider {
     }
 
     if ( $store_transient )
-      set_transient( 'tc_posts_slides', $pre_slides , 60*60*24*365*20 );//20 years of peace
+      set_transient( $transient_name, $pre_slides , 60*60*24*365*20 );//20 years of peace
 
     return $pre_slides;
   }
@@ -1247,7 +1248,7 @@ class TC_slider {
       'img_size'        => 1 == TC_utils::$inst->tc_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
       'load_transient'  => false,
       'store_transient' => true,
-      'transient_name'  => ''
+      'transient_name'  => 'tc_posts_slides'
     ); 
     
     $this -> tc_get_pre_posts_slides( wp_parse_args( $args, $defaults) );
@@ -1304,8 +1305,8 @@ class TC_slider {
   * @since Customizr 3.4.9
   *
   */
-  function tc_get_post_slide_button_text() {
-    $button_text         = TC_utils::$inst->tc_opt( 'tc_posts_slider_button_text' );
+  function tc_get_post_slide_button_text( $button_text ) {
+    $button_text         = $button_text ? $button_text : TC_utils::$inst->tc_opt( 'tc_posts_slider_button_text' );
     $button_text_length  = apply_filters( 'tc_posts_slider_button_text_length', 80 );
     $more                = apply_filters( 'tc_post_slide_more', '...');
     $button_text         = apply_filters( 'tc_posts_slider_button_text_pre_trim' , $button_text );
