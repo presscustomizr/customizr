@@ -247,7 +247,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           $ID = $_post['ID'];
           $_p = get_post( $ID );
           if ( ! $_p ) continue;
-          
+
           $_post['title'] = $_post['title'] ? TC_slider::$instance -> tc_get_post_slide_title($_p, $ID) : '';
           $_post['text']  = $_post['text'] ? TC_slider::$instance -> tc_get_post_slide_excerpt($_p, $ID) : '';
         }
