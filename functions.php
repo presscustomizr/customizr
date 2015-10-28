@@ -64,16 +64,16 @@ require_once( get_template_directory() . '/inc/init.php' );
 
   }
 endif;//class_exists*/
-//CZR() -> views -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'view_class' => '') );
-//CZR() -> views -> tc_delete( 'joie');
+//CZR() -> collection -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'view_class' => '') );
+//CZR() -> collection -> tc_delete( 'joie');
 add_action('wp' , 'register_test_views');
 
 function register_test_views() {
   //Create a new test view
-  CZR() -> views -> tc_register(
+  CZR() -> collection -> tc_register(
     array( 'hook' => '__after_header', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>' )
   );
-  CZR() -> views -> tc_register(
+  CZR() -> collection -> tc_register(
     array(
       'hook'        => '__after_header',
       'id'          => 'joie',
@@ -93,13 +93,13 @@ function register_test_views() {
     )
   );
 
-  CZR() -> views -> tc_register(
+  CZR() -> collection -> tc_register(
     array( 'hook' => '__after_header', 'html' => '<h1>Yo Man this is some html to render</h1>' )
   );
-  CZR() -> views -> tc_register(
+  CZR() -> collection -> tc_register(
     array( 'hook' => '__after_header', 'callback' => array( 'TC_rendering', 'callback_met') )
   );
-  CZR() -> views -> tc_register(
+  CZR() -> collection -> tc_register(
     array( 'hook' => '__after_header', 'callback' => 'callback_fn', 'cb_params' => array('custom1', 'custom2') )
   );
 }
@@ -112,7 +112,7 @@ CZR();
 
 
 
-//CZR() -> views -> tc_delete( 'joie');
+//CZR() -> collection -> tc_delete( 'joie');
 
 
 
@@ -125,13 +125,69 @@ function callback_fn( $text1 = "default1", $text2 = "default2"  ) {
   <?php
 }
 
+
+
+
 add_action('__after_header' , function() {
   ?>
     <pre>
-      <?php print_r( CZR() -> views -> tc_get_collection() ); ?>
+      <?php print_r( CZR() -> collection -> tc_get() ); ?>
     </pre>
   <?php
 }, 100);
+
+
+
+class TC_test_view_class extends TC_View {
+  public $test_class_property = 'YOUPI';
+  function __construct( $model = array() ) {
+    $keys = array_keys( get_object_vars( parent::tc_get_instance() ) );
+    foreach ( $keys as $key ) {
+      if ( isset( $model[ $key ] ) ) {
+        $this->$key = $model[ $key ];
+      }
+    }
+  }
+
+  /*public function tc_render() {
+    ?>
+      <h1>MY ID IS <span style="color:blue"><?php echo $this -> id ?></span>, AND I AM RENDERED BY THE VIEW CLASS</h1>
+    <?php
+  }*/
+}
+
+
+
+
+
+class TC_rendering {
+  function callback_met( $text1 = "default1", $text2 = "default2"  ) {
+    ?>
+      <h1>THIS IS RENDERED BY A CALLBACK METHOD IN A CLASS, WITH 2 OPTIONAL PARAMS : <?php echo $text1; ?> and <?php echo $text2; ?></h1>
+    <?php
+  }
+}
+
+
+
+//@todo : children it would be good to add actions on pre_render_view, where we are in the parent's hook action.
+//=> late check if new children have been registered
+//=> if so, instanciate their views there
+//
+//@todo : the id could be based on the id, then template name, then hook_priority
+//
+//@todo : for logged in admin users, add a line of html comment before and after the view giving id, hook, priority
+//
+//@todo : move tc_apply_registered_changes_to_instance into the model ?
+
+
+
+
+
+
+
+
+
 
 
 

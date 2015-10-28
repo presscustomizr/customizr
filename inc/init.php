@@ -49,7 +49,7 @@ if ( ! class_exists( 'TC___' ) ) :
         self::$instance = new TC___();
         self::$instance -> tc_setup_constants();
         self::$instance -> tc_load();
-        self::$instance -> views = new TC_Views();
+        self::$instance -> collection = new TC_Collection();
         self::$instance -> controllers = new TC_Controllers();
         self::$instance -> helpers = new TC_Helpers();
       }
@@ -102,7 +102,9 @@ if ( ! class_exists( 'TC___' ) ) :
 
     private function tc_load() {
       //load the new classes
-      require_once( sprintf( '%sinc/class-views.php' , TC_BASE ) );
+      require_once( sprintf( '%sinc/class-model.php' , TC_BASE ) );
+      require_once( sprintf( '%sinc/class-collection.php' , TC_BASE ) );
+      require_once( sprintf( '%sinc/class-view.php' , TC_BASE ) );
       require_once( sprintf( '%sinc/class-controllers.php' , TC_BASE ) );
       require_once( sprintf( '%sinc/class-helpers.php' , TC_BASE ) );
 

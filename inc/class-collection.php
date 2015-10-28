@@ -7,7 +7,6 @@
 //- Make sure the collection is a public array of model's instance
 if ( ! class_exists( 'TC_Collection' ) ) :
   class TC_Collection {
-    public $yo = 'yo';
     static $instance;
     //public $group = "";//header,content,footer,modules
     //private $args = array();//will store the updated args on view creation and use them to instanciate the child
