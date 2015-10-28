@@ -160,7 +160,7 @@ class TC_slider {
   * @since Customizr 3.4.9
   *
   */
-  function tc_get_single_post_slide_pre_model( $_post , $img_size ){
+  function tc_get_single_post_slide_pre_model( $_post , $img_size, $args ){
     $ID                     = $_post->ID;
 
     //attachment image
@@ -171,10 +171,10 @@ class TC_slider {
       return false;
 
     //title
-    $title                  = $this -> tc_get_post_slide_title( $_post, $ID);
+    $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> tc_get_post_slide_title( $_post, $ID) : '';
 
     //lead text
-    $text                   = $this -> tc_get_post_slide_excerpt( $_post, $ID);
+    $text                   = ( isset( $args['show_excerpt'] ) && $args['show_excerpt'] ) ? $this -> tc_get_post_slide_excerpt( $_post, $ID) : '';
 
     return compact( 'ID', 'title', 'text', 'slide_background' );
   }
@@ -399,7 +399,6 @@ class TC_slider {
     $args         = apply_filters( 'tc_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
 
-    print_r($args);
     if ( $load_transient )
       // the transient stores the pre_model
       $pre_slides = get_transient( $transient_name );
@@ -411,9 +410,9 @@ class TC_slider {
     // b) the transient doesn't exist
     if ( false !== $pre_slides )
       return $pre_slides;
-
+    
     //retrieve posts from the db
-    $queried_posts    = $this -> tc_query_posts_slider( compact( $stickies_only, $show_title, $show_excerpt, $limit ) );
+    $queried_posts    = $this -> tc_query_posts_slider( $args );
 
     if ( empty ( $queried_posts ) )
       return array();
@@ -433,7 +432,7 @@ class TC_slider {
     $pre_slides = $pre_slides_posts = array();
 
     foreach ( $queried_posts as $_post ) {
-      $pre_slide_model = $this ->  tc_get_single_post_slide_pre_model( $_post , $img_size );
+      $pre_slide_model = $this ->  tc_get_single_post_slide_pre_model( $_post , $img_size, $args );
 
       if ( ! $pre_slide_model )
         continue;
@@ -577,22 +576,22 @@ class TC_slider {
     }
 
     $sql = sprintf( 'SELECT DISTINCT %1$s FROM ( %2$s ) as posts %3$s ORDER BY %4$s LIMIT %5$s OFFSET %6$s',
-             apply_filters( 'tc_query_posts_slider_columns', $columns ),
+             apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
              $this -> tc_get_posts_have_tc_thumb_sql(
-               apply_filters( 'tc_query_posts_slider_columns', $columns ),
-               apply_filters( 'tc_query_posts_slide_thumbnail_where', $pt_where ),
-               apply_filters( 'tc_query_posts_slider_attachment_where', $pa_where )
+               apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
+               apply_filters( 'tc_query_posts_slide_thumbnail_where', $pt_where, $args ),
+               apply_filters( 'tc_query_posts_slider_attachment_where', $pa_where, $args )
              ),
-             apply_filters( 'tc_query_posts_slider_join', $join ),
-             apply_filters( 'tc_query_posts_slider_orderby', $order_by ),
+             apply_filters( 'tc_query_posts_slider_join', $join, $args ),
+             apply_filters( 'tc_query_posts_slider_orderby', $order_by, $args ),
              $limit,
              $offset
     );
     
-    $sql = apply_filters( 'tc_query_posts_slider_sql', $sql );
+    $sql = apply_filters( 'tc_query_posts_slider_sql', $sql, $args );
 
     $_posts = $wpdb->get_results( $sql );
-    return apply_filters( 'tc_query_posts_slider', $_posts );
+    return apply_filters( 'tc_query_posts_slider', $_posts, $args );
   }
 
 
@@ -1250,7 +1249,6 @@ class TC_slider {
       'store_transient' => true,
       'transient_name'  => 'tc_posts_slides'
     ); 
-    
     $this -> tc_get_pre_posts_slides( wp_parse_args( $args, $defaults) );
   }
 
@@ -1267,9 +1265,6 @@ class TC_slider {
   *
   */
   function tc_get_post_slide_title( $_post, $ID ) {
-    if ( ! TC_utils::$inst->tc_opt( 'tc_posts_slider_title') )
-      return '';
-
     $title_length   = apply_filters('tc_post_slide_title_length', 80, $ID );
     $more           = apply_filters('tc_post_slide_more', '...', $ID );
     return $this -> tc_get_post_title( $_post, $title_length, $more );
@@ -1287,9 +1282,6 @@ class TC_slider {
   *
   */
   function tc_get_post_slide_excerpt( $_post, $ID ) {
-    if ( ! TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ) )
-      return '';
-
     $excerpt_length  = apply_filters( 'tc_post_slide_text_length', 80, $ID );
     $more            = apply_filters( 'tc_post_slide_more', '...', $ID );
     return $this -> tc_get_post_excerpt( $_post, $excerpt_length, $more );
@@ -1306,7 +1298,6 @@ class TC_slider {
   *
   */
   function tc_get_post_slide_button_text( $button_text ) {
-    $button_text         = $button_text ? $button_text : TC_utils::$inst->tc_opt( 'tc_posts_slider_button_text' );
     $button_text_length  = apply_filters( 'tc_posts_slider_button_text_length', 80 );
     $more                = apply_filters( 'tc_post_slide_more', '...');
     $button_text         = apply_filters( 'tc_posts_slider_button_text_pre_trim' , $button_text );

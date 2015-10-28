@@ -238,10 +238,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           add_filter( $filter, 'tc_apply_qtranslate' );
 
         //translate button text
-        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? TC_slider::$instance -> tc_get_post_slide_button_text() : '';
-
-        if ( ! ( TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ) || TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ) ) )
-          return $pre_slides;
+        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? TC_slider::$instance -> tc_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
 
         //translate title and excerpt if needed
         $_posts = &$pre_slides['posts'];
@@ -250,9 +247,9 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           $ID = $_post['ID'];
           $_p = get_post( $ID );
           if ( ! $_p ) continue;
-
-          $_post['title'] = TC_slider::$instance -> tc_get_post_slide_title($_p, $ID) ;
-          $_post['text']  = TC_slider::$instance -> tc_get_post_slide_excerpt($_p, $ID) ;
+          
+          $_post['title'] = $_post['title'] ? TC_slider::$instance -> tc_get_post_slide_title($_p, $ID) : '';
+          $_post['text']  = $_post['text'] ? TC_slider::$instance -> tc_get_post_slide_excerpt($_p, $ID) : '';
         }
         return $pre_slides;
       }
@@ -344,7 +341,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         add_filter( 'tc_posts_slider_button_text', 'pll_posts_slider_button');
         function pll_posts_slider_button( $text ) {
           if ( ! $text ) return;
-          return TC_slider::$instance -> tc_get_post_slide_button_text();
+          return TC_slider::$instance -> tc_get_post_slide_button_text( $text );
         }
         if ( function_exists( 'pll_current_language') )
         // Filter the posts query for the current language
