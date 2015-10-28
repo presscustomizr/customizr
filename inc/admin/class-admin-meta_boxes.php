@@ -260,7 +260,8 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           $options                   = get_option( 'tc_theme_options' );
           if ( isset($options['tc_sliders']) ) {
             $sliders                   = $options['tc_sliders'];
-          }
+          }else
+            $sliders                   = array();  
 
           //post slider fields setup
           $post_slider_id            = 'post_slider_field';
@@ -289,19 +290,20 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             ));
          
             $selectable_sliders  = apply_filters( 'tc_post_selectable_sliders', $sliders );
-            if (isset($selectable_sliders) && !empty( $selectable_sliders)) :
+            if ( isset($selectable_sliders) && !empty( $selectable_sliders) ) :
 
               //build selectable slider -> ID => label
               //Default in head
               $selectable_sliders = array_merge( array(
                 -1 => __( '&mdash; Select a slider &mdash; ' , 'customizr' )
               ), $selectable_sliders );
-
-              //in case of sliders of images we set the label as the slider_id
-              foreach ( $sliders as $key => $value) {
-                if ( is_array( $value ) )
-                  $selectable_sliders[ $key ] = $key;
-              }
+            
+              if ( isset($sliders) && !empty( $sliders) )
+                //in case of sliders of images we set the label as the slider_id
+                foreach ( $sliders as $key => $value) {
+                  if ( is_array( $value ) )
+                    $selectable_sliders[ $key ] = $key;
+                }
 
               TC_meta_boxes::tc_selectbox_view( array(
                   'select_name'    => $post_slider_id,
@@ -546,7 +548,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           //retrieve all sliders in option array
           $options                = get_option( 'tc_theme_options' );
           $sliders                = array();
-          if ( isset( $options['tc_sliders'])) {
+          if ( isset( $options['tc_sliders']) ) {
             $sliders              = $options['tc_sliders'];
           }
 
@@ -1452,8 +1454,11 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
       }
 
 
-
-     /* Static Views */
+  /*
+  ----------------------------------------------------------------
+  ---------------------- STATIC FIELDS VIEWS ---------------------
+  ----------------------------------------------------------------
+  */
      /**
      * Build title element html 
      *
@@ -1575,6 +1580,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        echo $html ;         
      }
 
+
      /**
      * Build generic input element html 
      *
@@ -1626,7 +1632,12 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        echo $html ;   
      }
 
-
+     /**
+     * Build generic content wrapper html
+     *
+     * @package Customizr
+     * @since Customizr 3.4.14
+     */
      public static function tc_wrapper_view( $args ) {
        $defaults = array( 
          'wrapper_tag'   => 'div',    
