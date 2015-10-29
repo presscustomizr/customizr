@@ -229,7 +229,7 @@ if ( ! class_exists( 'TC_post' ) ) :
       if ( ! ( $this -> tc_single_post_display_controller()  &&  in_the_loop() && TC_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
         return $the_content;
 
-      return TC_placeholders::tc_print_smartload_help_block() . $the_content;
+      return TC_placeholders::tc_get_smartload_help_block() . $the_content;
     }
 
 
