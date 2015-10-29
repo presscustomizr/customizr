@@ -45,6 +45,8 @@ var CzrSlider;
         this.eventListeners();
         //init sortable, other ext plugins already initialized
         this._init_sortable();
+        //init multipicker
+        this._init_multipicker();
     };
 
     $.extend( CzrSlider.prototype, {
@@ -167,6 +169,7 @@ var CzrSlider;
         this._init_color_picker();
         this._init_iphone_check();
         this._init_sortable();
+        this._init_multipicker();
       },
 
       //init color picker
@@ -194,6 +197,18 @@ var CzrSlider;
         this.$_slider_section_box.find( '#sortable' ).sortable({
           placeholder: "ui-state-highlight",
         }).disableSelection();
+      },
+      //init select2 multipicker
+      _init_multipicker : function(){
+        if ( typeof $.fn.select2 !== 'function' ) return;
+        this.$_slider_section_box.find('select.tc_multiple_picker').select2({
+          closeOnSelect: false,
+          formatSelection: tcEscapeMarkup
+        });
+        function tcEscapeMarkup(obj) {
+          //trim dashes
+          return obj.text.replace(/\u2013|\u2014/g, "");
+        }
       }
     });
     new CzrSlider();
