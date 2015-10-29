@@ -78,7 +78,7 @@ if ( ! class_exists( 'TC_nav_walker' ) ) :
       //will be used in override start_el() and class filter
       $element->is_dropdown = ! empty( $children_elements[$element->ID]);
 
-      $element->classes = apply_filters( 'tc_nav_menu_css_class', array_filter( $element->classes ), $element, $args, $depth );
+      $element->classes = apply_filters( 'tc_nav_menu_css_class', array_filter( empty( $element->classes) ? array() : (array)$element->classes ), $element, $args, $depth );
 
       //let the parent do the rest of the job !
       parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output);
