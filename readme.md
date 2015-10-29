@@ -1,4 +1,4 @@
-# Customizr v3.4.13 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=eri-trabiccolo-slider-posts-filtered-prodromal)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.14 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=dev)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
