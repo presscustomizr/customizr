@@ -193,7 +193,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    static function tc_print_smartload_help_block() {
+    static function tc_get_smartload_help_block( $echo = false ) {
       //prepare js printing in the footer
       add_filter( 'tc_write_img_smartload_help_js', '__return_true' );
 
@@ -216,7 +216,9 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       $help_block = ob_get_contents();
       ob_end_clean();
 
-      return $help_block;
+      if ( ! $echo )
+        return $help_block;
+      echo $help_block;
     }
 
 
@@ -272,9 +274,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.4+
     */
-    static function tc_is_img_smartload_help_on( $text ) {
-      if ( ! $text  )
-        return false;
+    static function tc_is_img_smartload_help_on( $text, $min_img_num = 2 ) {
+      if ( $min_img_num )
+        if ( ! $text )
+          return false;
 
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
@@ -285,9 +288,8 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! self::$instance -> tc_is_front_help_enabled(),
         'disabled' == get_transient("tc_img_smartload_help"),
-        apply_filters('tc_img_smartload_help_n_images', 2 ) > preg_match_all( '/(<img[^>]+>)/i', $text, $matches ),
-        is_admin(),
-        ! is_singular()
+        $min_img_num ? apply_filters('tc_img_smartload_help_n_images', $min_img_num ) > preg_match_all( '/(<img[^>]+>)/i', $text, $matches ) : false ,
+        is_admin()
       );
 
       //checks if at least one of the conditions is true
