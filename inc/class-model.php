@@ -32,6 +32,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public $early_setup = false;
     public $children = array();
     public $controller = "";
+    public $visibility = true;//can be typically overriden by a check on a user option
 
     //on instanciation the id is unique and the priority propery setup
     //=> those treatments have been managed by the collection
