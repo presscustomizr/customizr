@@ -129,8 +129,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
         //add a notice property if no menu created yet.
         if ( ! $menus ) {
+          //adapt the nav section description for v4.3 (menu in the customizer from now on)
+          $_create_menu_link =  version_compare( $GLOBALS['wp_version'], '4.3', '<' ) ? admin_url('nav-menus.php') : "javascript:wp.customize.section('nav').container.find('.customize-section-back').trigger('click'); wp.customize.panel('nav_menus').focus();";
           $_control_properties['notice'] = sprintf( __("You haven't created any menu yet. %s or check the %s to learn more about menus.", "customizr"),
-            sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', admin_url('nav-menus.php'), __("Create a new menu now" , "customizr") ),
+            sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', $_create_menu_link, __("Create a new menu now" , "customizr") ),
             sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('codex.wordpress.org/WordPress_Menu_User_Guide'),  __("WordPress documentation" , "customizr") )
           );
         }
