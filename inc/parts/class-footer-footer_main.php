@@ -245,7 +245,10 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		    		sprintf( '<p>%1$s %2$s %3$s</p>',
 						    apply_filters( 'tc_copyright_link', sprintf( '&middot; &copy; %1$s <a href="%2$s" title="%3$s" rel="bookmark">%3$s</a>', esc_attr( date( 'Y' ) ), esc_url( home_url() ), esc_attr( get_bloginfo() ) ) ),
                             apply_filters( 'tc_credit_link', sprintf( '&middot; Designed by %1$s', '<a href="'.TC_WEBSITE.'">Press Customizr</a>' ) ),
-						    apply_filters( 'tc_wp_powered', sprintf( '&middot; Powered by %1$s &middot;', '<a class="icon-wordpress" target="_blank" href="http://wordpress.org"></a>' ) )
+                            apply_filters( 'tc_wp_powered', sprintf( '&middot; %1$s <a class="icon-wordpress" target="_blank" href="https://wordpress.org" title="%2$s"></a> &middot;',
+                              __('Powered by', 'customizr'),
+                              __('Powered by Wordpress', 'customizr')
+                            ))
 					)
 	    		)
 	    	);
