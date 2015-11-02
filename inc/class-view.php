@@ -12,7 +12,19 @@
 
 
 if ( ! class_exists( 'TC_View' ) ) :
-  class TC_View extends TC_model {
+  class TC_View {
+    public $hook = "";//this is the default hook declared in the index.php template
+    public $id = "";
+    public $query = false;
+    public $priority = 10;
+    public $template = "";
+    public $html = "";
+    public $callback = "";
+    public $cb_params = array();
+    public $children = array();
+    public $controller = "";
+    public $visibility = true;//can be typically overriden by a check on a user option
+
     function __construct( $model = array() ) {
       $keys = array_keys( get_object_vars( $this ) );
 
@@ -21,13 +33,9 @@ if ( ! class_exists( 'TC_View' ) ) :
           $this->$key = $model[ $key ];
         }
       }
-      //add this instance to the view description in the collection
-      //=> can be used later for deregistration
-      //
-      $this -> tc_set_property( '_instance', $this );
 
       //emit event on view instanciation
-      do_action( "view_instanciated", $this );
+      do_action( "view_instanciated_{$this -> id}", $this );
 
       //listens to a view pre-render => and fire the tc_apply_registered_changes_to_instance
       // => a change might have been registered
@@ -116,6 +124,12 @@ if ( ! class_exists( 'TC_View' ) ) :
     }
 
 
+    /**********************************************************************************
+    * PUBLIC HELPERS
+    ***********************************************************************************/
+    public function tc_get_instance() {
+      return $this;
+    }
 
   }//class
 endif;
