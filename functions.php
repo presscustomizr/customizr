@@ -66,13 +66,10 @@ require_once( get_template_directory() . '/inc/init.php' );
 endif;//class_exists*/
 //CZR() -> collection -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'view_class' => '') );
 //CZR() -> collection -> tc_delete( 'joie');
-add_action('wp' , 'register_test_views');
+//add_action('wp' , 'register_test_views');
 
 function register_test_views() {
-  //Create a new test view
-  CZR() -> collection -> tc_register(
-    array( 'hook' => '__after_header', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>' )
-  );
+
   CZR() -> collection -> tc_register(
     array(
       'hook'        => '__after_header',
@@ -107,9 +104,12 @@ function register_test_views() {
 
 
 // Fire Customizr
-CZR();
+//CZR();
 
-
+//Create a new test view
+CZR() -> collection -> tc_register(
+  array( 'hook' => '__after_header', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>' )
+);
 
 
 //CZR() -> collection -> tc_delete( 'joie');
@@ -179,6 +179,8 @@ class TC_rendering {
 //@todo : for logged in admin users, add a line of html comment before and after the view giving id, hook, priority
 //
 //@todo : move tc_apply_registered_changes_to_instance into the model ?
+//
+//@toco : pre_render_view stuffs
 
 
 

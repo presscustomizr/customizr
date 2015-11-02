@@ -82,12 +82,12 @@ if ( ! class_exists( 'TC_controllers' ) ) :
         $controller_cb = $model['controller'];
       }
       //IS THERE A PRE-DEFINED CONTROLLER FOR THE VIEW ?
-      else if ( $this -> tc_has_default_controller( $id ) ) {
-        $controller_cb = $this -> tc_get_default_controller($id);
+      else if ( $this -> tc_has_default_controller( $model['id'] ) ) {
+        $controller_cb = $this -> tc_get_default_controller($model['id']);
         //make sure the default controller is well formed
         //the default controller should look like array( instance, method )
         if ( empty($controller_cb) ) {
-          do_action( 'tc_dev_notice', 'View : '.$id.'. The default group controller has not been instanciated');
+          do_action( 'tc_dev_notice', 'View : '.$model['id'].'. The default group controller has not been instanciated');
           return "";
         }
       }//if

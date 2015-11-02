@@ -56,8 +56,31 @@ if ( ! class_exists( 'TC_Model' ) ) :
       $this -> tc_maybe_register_children();
 
       //listens to 'wp' and instanciate the model's view
-      add_action( 'wp'                          , array( $this, 'tc_maybe_instanciate_view' ), 1000 );
+      add_action( 'wp'                          , array( $this, 'tc_maybe_instanciate_view' ), 999 );
+
+      //takes the view instance as param
+      add_action( 'view_instanciated'           , array( $this, 'tc_maybe_hook_view'), 10, 1 );
     }
+
+
+
+
+    /**********************************************************************************
+    * INSTANCIATE THE MODEL VIEW => check the controllers,
+    * @wp_timezone_override_offset(); check if it's been changed or deleted ?
+    ***********************************************************************************/
+    //default hook : wp | 1000
+    //@return void()
+    public function tc_maybe_instanciate_view() {
+      do_action( "pre_instanciate_view" );
+
+      if ( ! CZR() -> controllers -> tc_is_possible($this -> tc_get())  )
+        return;
+
+      //instanciate the view with the right class
+      $instance = $this -> tc_instanciate_view_class();
+
+    }//fn
 
 
 
@@ -65,6 +88,8 @@ if ( ! class_exists( 'TC_Model' ) ) :
     * ACTIONS ON VIEW READY
     * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
     ***********************************************************************************/
+    //hook : 'view_instanciated'
+    //@param instance object, can be TC_View or a child of TC_View
     //hook the rendering method to the hook
     //$this -> _instance can be used. It can be a child of this class.
     public function tc_maybe_hook_view($instance) {
@@ -84,54 +109,30 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
 
 
+    //hook : 'wp'
+    //this method load the relevant view class file and return the instance
+    //@return instance object
+    private function tc_instanciate_view_class() {
+      if ( false == $this -> view_class  )
+        return new TC_view( $this -> tc_get() );
 
-    /**********************************************************************************
-    * INSTANCIATE THE MODEL VIEW => check the controllers,
-    * @wp_timezone_override_offset(); check if it's been changed or deleted ?
-    ***********************************************************************************/
-    //default hook : wp | 1000
-    public function tc_maybe_instanciate_view() {
-      do_action( "pre_instanciate_view" );
-
-      if ( ! CZR() -> controllers -> tc_is_possible($id)  )
+      if ( ! class_exists($this -> view_class) )
         return;
 
-      //instanciate the view with the right class
-      $instance = $this -> tc_instanciate_view_class()
+      $view_class = $this -> view_class;
+      $instance = new $view_class( $this -> tc_get() );
+
       if ( ! is_object($instance) ) {
         do_action('tc_dev_notice', "Model : " . $this -> id . ". The view has not been instanciated." );
         return;
       }
+
       //A view must be TC_view or a child class of TC_view.
-      if ( is_subclass_of($instance, 'TC_View') ) {
-        do_action('tc_dev_notice', "Model : " . $this -> id . ". The view must be a child of TC_View." );
+      if ( ! is_subclass_of($instance, 'TC_View') ) {
+        do_action('tc_dev_notice', "Model : " . $this -> id . ". View Instanciation aborted : the specified view class must be a child of TC_View." );
         return;
       }
 
-      //add this instance to the view description in the collection
-      //=> can be used later for deregistration
-      $instance -> tc_set_property( '_instance', $instance );
-
-      //emit an event each time a collection is instanciated
-      do_action( "view_instanciated", $this -> id );
-    }//fn
-
-
-
-
-    //this method load the relevant view class file and return the instance
-    //@return instance object
-    private function tc_instanciate_view_class() {
-      if ( false !== $this -> view_class && class_exists($this -> view_class) ) {
-        $view_class = $this -> view_class;
-        $new_instance = new $view_class( $this -> tc_get() );
-        if ( is_subclass_of($new_instance, 'TC_View') ) {
-          //reset the previous instance with the new one
-          $instance = $new_instance;
-          //unset the previous default instance
-          //unset( $instance -> _instance );
-        }
-      }
       return $instance;
     }
 

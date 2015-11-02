@@ -10,6 +10,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     static $instance;
     //public $group = "";//header,content,footer,modules
     //private $args = array();//will store the updated args on model creation and use them to instanciate the child
+    public static $pre_registered = array();
     public static $collection = array();//will store all registered models
     public static $_delete_candidates = array();//will store deletion of models not added yet
     public static $_change_candidates = array();//will store change of models not added yet
@@ -24,31 +25,44 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //makes sure the model has a unique $id set and a proper priority for its rendereing hook
       add_filter( 'tc_prepare_model'            , array( $this, 'tc_prepare_model'), 10, 1 );
 
+      //=> implement any previously registered changes to this model
+      //2 params : id, and (array) model
+      add_filter( 'tc_apply_registered_changes' , array( $this, 'tc_apply_registered_changes'), 10, 2 );
+
       //Once the model is eligible and properly prepared (unique id), let's see if we can
       //1) register it,
       //2) pre-register it,
       //3) or simply abort registration
       add_filter( 'tc_can_register_model'       , array( $this, 'tc_check_can_register_model'), 10, 1 );
 
-      //listens to the model setup event
-      //=> implement any previously registered changes to this model
-      add_action( 'model_setup'                 , array( $this, 'tc_pre_add_check_registered_changes'), 10, 1 );
+      //if 'wp' has not been fired yet, we will pre-register this model for later instanciation
+      //2 params :
+      //1) model id
+      //2) model instance
+      add_action ('pre_register_model'          , array( $this, 'tc_pre_register_model'), 10, 2 );
 
-      //listens for a registered change applied to a model => remove it from the register changes list
-      //takes one param : model id
-      add_action( 'registered_changed_applied'  , array( $this, 'tc_deregister_change' ), 10, 1 );
-
-      //model_setup is emitted each time a model object has been properly instanciated and setup
+      //model_instanciated is emitted each time a model object has been properly instanciated and setup
       //=> update the collection. 2 params
       //1) model id
       //2) model instance
       add_action( 'model_instanciated'          , array( $this, 'tc_update_collection' ), 10, 2 );
+
+      //on 'wp', the pre_registered are registered
+      add_action( 'wp'                          , array($this, 'tc_register_pre_registered') );
+
+      //Reacts on 'tc_delete' event
+      //1 param = model id
+      add_action( 'tc_delete'                   , array( $this, 'tc_delete' ), 10, 1 );
 
       //listens to a model changed => update the model collection
       //model_property_changed takes two params :
       //model id
       //model params
       add_action( 'model_property_changed'      , array( $this, 'tc_update_collection' ), 10, 2 );
+
+      //listens to a registered change applied to a model => remove it from the register changes list
+      //takes one param : model id
+      add_action( 'registered_changed_applied'  , array( $this, 'tc_deregister_change' ), 10, 1 );
 
       //reacts when a model has been deregistered from the collection
       //=> fire tc_delete()
@@ -78,25 +92,20 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       if ( ! apply_filters( 'tc_can_register_model' , $model ) )
         return;
 
-      //if the model registration occurs after 'wp', then we can early check the model's controller here
-      if ( ! $this -> tc_is_model_authorized( $model ) )
-        return;
-
       //Instanciates the model object
-      //after this stage, the model is at least assigned to a hook
-      //=> On model instanciatiation, make sure :
-      //1) the priority is set
-      //2) the id is unique
-      //=> we'll use the specified id for the model. If no id specified, a unique id will generated based on the template name if set, or the {hook}_{priority}
-      //In any cases, the id unicity will be ensure by a recursive function (increment +1 until unicity found)
-      //3) a hook has been specified
-      //=> At the end of the model setup, a model_setup event is emitted
+      //at this stage, the model
+      //- has an id
+      //- has a priority
+      //- is at least assigned to a hook
       $model = new TC_Model( $model );
 
       if ( $this -> tc_model_exists( $model -> id ) ) {
         //emit an event on model registered
         //can be used with did_action() afterwards
-        do_action( "model_registered_{$id}" );
+        do_action( "model_registered_{$model -> id}" );
+      } else {
+        do_action('tc_dev_notice', "A model instance was not registered. into the collection." );
+        return;
       }
     }
 
@@ -113,19 +122,23 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         do_action('tc_dev_notice', "A model is not ready for the collection, it won't be registered. The model must be an array of params. The hook is the only mandatory param." );
         return;
       }
+      return true;
     }
 
 
 
     //at this stage, the model has a hook but the id unicity, and the priority have not been checked yet
     //=> we need to make sure the model has a unique $id and a proper priority for its rendering hook
-    //fired on filter 'tc_prepare_model' in tc_register
+    //hook filter 'tc_prepare_model' in tc_register
+    //@param model array
     //@return model array() updated
     public function tc_prepare_model( $model = array() ) {
+      $id       = isset($model['id']) ? $model['id'] : "";
+      $priority = isset($model['priority']) ? $model['priority'] : "";
       //makes sure we assign a unique ascending priority if not set
-      $model['priority']  = $this -> tc_set_priority( $model['id'] , $$model['priority'] );
+      $model['priority']  = $this -> tc_set_priority( $model['hook'] , $priority );
       //check or set the name unicity
-      $model['id']        = $this -> tc_set_unique_id( $model['id'] , $model['hook'], $model['priority'] );
+      $model['id']        = $this -> tc_set_unique_id( $id , $model['hook'], $model['priority'] );
 
       //don't go further if we still have no id set
       if ( ! $model['id'] ) {
@@ -135,13 +148,18 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //at this stage the priority is set and the id is unique
       //a model with a unique id can be registered only once
       //a model with a promise registered deletion won't be registered
-      if ( $this -> tc_model_exists( $model['id'] ) || $this -> tc_has_registered_deletion( $this -> id ) )
+      if ( $this -> tc_model_exists( $id ) || $this -> tc_has_registered_deletion( $id ) )
         return;
-      else {
-        //emit an event when a model has been setup
-        //this event will trigger the addition of the model to the collection
-        do_action( 'model_setup', $this -> id, $this );
-      }
+
+      //has the model registered changes ?
+      //If yes, apply them with a filter
+      if ( $this -> tc_has_registered_change( $id ) )
+        $model = apply_filters( 'tc_apply_registered_changes' , $id, $model );
+
+      //say it to the api
+      do_action( 'model_prepared', $id, $model );
+
+      return $model;
     }
 
 
@@ -164,18 +182,72 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //if 'wp' has not been fired yet, we will pre-register this model for later registration
       if ( ! did_action('wp') ) {
         //we will use this event to fire the pre-registration
-        do_action( 'pre_register_model', $model );
+        do_action( 'pre_register_model', $model['id'], $model );
       }
       //if 'wp' has been fired (or is currently being fired) 1) check the controller if set
       else {
-        return CZR() -> controllers -> tc_is_possible( $model['id'] )
+        return CZR() -> controllers -> tc_is_possible( $model );
       }
       return;
     }
 
 
-    function tc_is_model_authorized($model) {
 
+    /**********************************************************************************
+    * PRE-REGISTERED
+    ***********************************************************************************/
+    //update the pre_register static property
+    //hook : pre_register_model
+    //@return void()
+    //@param id string
+    //@param model array
+    function tc_pre_register_model( $id, $model = array() ) {
+      $pre_registered = self::$pre_registered;
+      //is this model already pre_registered ?
+      //=> if yes, it can't be registered again. However it should be accessible with a change action.
+      if ( isset($pre_registered[$id]) ) {
+        do_action('tc_dev_notice', "Model " . $id . " has already been pre-registered." );
+        return;
+      }
+
+      $pre_registered[$id] = $model;
+      self::$pre_registered = $pre_registered;
+    }
+
+
+
+    //registers the pre-registered model when query is ready
+    //hook : wp
+    //@return void()
+    function tc_register_pre_registered() {
+      foreach ( self::$pre_registered as $id => $model ) {
+        $this -> tc_register($model);
+      }
+      //say it to the api
+      do_action( 'pre_registered_registered', self::$pre_registered );
+    }
+
+
+
+
+    //at this stage, the model has a unique id.
+    //implement the registered changes before adding view to collection
+    //@return the args array()
+    //hook : tc_apply_registered_changes
+    //@return updated model
+    public function tc_apply_registered_changes( $id, $model ) {
+      if ( ! $this -> tc_has_registered_change( $id ) )
+        return $model;
+
+      //IS THERE A REGISTERED REQUEST FOR CHANGE ?
+      $to_change  = self::$_change_candidates;
+      //=> overwrite the modified args with the new ones
+      $model = wp_parse_args( $to_change[$id], $model );
+      //This event will trigger a removal of the change from the change list
+      //=> tc_deregister_change
+      do_action('registered_changed_applied' , $id, $model );
+
+      return $model;
     }
 
 
@@ -183,6 +255,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     /**********************************************************************************
     * UPDATE COLLECION
     ***********************************************************************************/
+    //hook : 'model_instanciated' and 'model_proerty_changed'
     //The job of this method is :
     //1) to add a model to the collection
     //2) or to update an existing model
@@ -191,21 +264,25 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //=> a model might have been registered in the delete / change candidates
     //=> this is fired on model_property_changed event
     //=> when a single model property has been changed in TC_Model::tc_set_property()
+    //@param id string
+    //@param $model instance object
     public function tc_update_collection( $id = false, $model ) {
       if ( ! $id || ! is_object($model) )
         return;
-      //Executes a registered deletion here
-      if ( $this -> tc_model_exists( $id ) && $this -> tc_has_registered_deletion( $id ) )
-        $this -> tc_delete( $id );
+
+      //Check if we have to run a registered deletion here
+      if ( $this -> tc_model_exists( $id ) && $this -> tc_has_registered_deletion( $id ) ) {
+        do_action( 'tc_delete' , $id );
+        return;
+      }
 
       //Adds or updates a specific model in the collection
-      if ( is_array($new_params) && ! empty( $new_params ) ) {
-        $collection = self::$collection;
-        $collection[$id] = $new_params;
-        self::$collection = $collection;
-        //emit an event on each collection updates
-        do_action( 'collection_updated', $id, $new_params );
-      }
+      $collection = self::$collection;
+      $collection[$id] = $model;
+      self::$collection = $collection;
+
+      //emit an event on each collection updates
+      do_action( 'collection_updated', $id, $model );
     }
 
 
@@ -375,56 +452,6 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     }
 
 
-    //this function recursively :
-    //1) checks if the requested priority is available on the specified hook
-    //2) set a new priority until until it's available
-    private function tc_set_priority( $hook, $priority ) {
-      $available = true;
-      foreach ( self::$collection as $id => $model) {
-        if ( $hook != $model['hook'] )
-          continue;
-        if ( $hook == $model['hook'] && $priority != $model['priority'] )
-          continue;
-        $available = false;
-      }
-      return $available ? $priority : $this -> tc_set_priority( $hook, $priority + 1 );
-    }
-
-
-    //Recursively set a unique id when needed
-    private function tc_set_unique_id( $id, $hook, $priority, $recursive = false ) {
-      //if id not set, then create a unique id from hook_priority
-      if ( empty($id) || is_null($id) )
-        $id = "{$hook}_{$priority}";
-
-      if ( $recursive ) {
-        //add hyphen add the end if not there
-        $id                 = ! is_numeric(substr($id, -1)) ? $id . '_0' : $id;
-        $id_exploded        = explode('_' , $id);
-        $_index               = end($id_exploded);
-        $_key                 = key($id_exploded);
-        //set new value
-        $id_exploded[$_key] = $_index + 1;
-        $id                 = implode( "_" , $id_exploded );
-      }
-
-      $collection = self::$collection;
-      return isset($collection[$id]) ? $this -> tc_set_unique_id( $id, $hook, $priority, true ) : $id;
-    }
-
-
-    //@return array of child models
-    //@return false if has no children
-    private function tc_get_children($id) {
-      if ( ! $this -> tc_has_children($id) )
-        return;
-
-      $model = $this -> tc_get_model($id);
-      return ! empty( $model['children'] ) ? $model['children'] : false;
-    }
-
-
-
     /**********************************************************************************
     * HELPERS
     ***********************************************************************************/
@@ -432,6 +459,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //1) checks if the requested priority is available on the specified hook
     //2) set a new priority until until it's available
     private function tc_set_priority( $hook, $priority ) {
+      $priority = empty($priority) ? 10 : (int)$priority;
       $available = true;
       foreach ( CZR() -> collection -> tc_get() as $id => $model) {
         if ( $hook != $model['hook'] )
@@ -454,6 +482,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       if ( empty($id) || is_null($id) )
         $id = "{$hook}_{$priority}";
 
+      //return now is the requested id is not already taken
       if ( ! CZR() -> collection -> tc_model_exists($id) )
         return $id;
 
@@ -470,6 +499,17 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       return $this -> tc_set_unique_id( $id, $hook, $priority );
     }
 
+
+
+    //@return array of child models
+    //@return false if has no children
+    private function tc_get_children($id) {
+      if ( ! $this -> tc_has_children($id) )
+        return;
+
+      $model = $this -> tc_get_model($id);
+      return ! empty( $model['children'] ) ? $model['children'] : false;
+    }
 
 
     //checks if a model exists in the collection

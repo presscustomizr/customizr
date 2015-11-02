@@ -21,16 +21,13 @@ if ( ! class_exists( 'TC_View' ) ) :
           $this->$key = $model[ $key ];
         }
       }
-
-
-      //Execute various actions before actually hooking the view to front end
-      //=> takes 2 params
-      //$id
-      //$instance
-      $this -> tc_setup_view();
+      //add this instance to the view description in the collection
+      //=> can be used later for deregistration
+      //
+      $this -> tc_set_property( '_instance', $this );
 
       //emit event on view instanciation
-      do_action( "view_instanciated", $this -> id );
+      do_action( "view_instanciated", $this );
 
       //listens to a view pre-render => and fire the tc_apply_registered_changes_to_instance
       // => a change might have been registered
@@ -50,7 +47,7 @@ if ( ! class_exists( 'TC_View' ) ) :
     public function tc_maybe_render() {
       //this event is used to check for late deletion or change before actually rendering
       //will fire tc_apply_registered_changes_to_instance
-      do_action( 'pre_render_view', $this -> id );
+      //do_action( 'pre_render_view', $this -> id );
 
       if ( ! apply_filters( "tc_do_render_view_{$this -> id}", true ) )
         return;
@@ -87,10 +84,10 @@ if ( ! class_exists( 'TC_View' ) ) :
     //fired on 'pre_render_view'
     //fired on tc_change if view is instanciated
     public function tc_apply_registered_changes_to_instance( $id, $new_params = array() ) {
-      if ( ! $this -> tc_has_registered_change( $id ) )
+      if ( ! CZR() -> collection -> tc_has_registered_change( $id ) )
         return;
 
-      $new_params = empty($new_params) ? tc_get_registered_changes( $id ) : $new_params;
+      $new_params = empty($new_params) ? CZR() -> collection -> tc_get_registered_changes( $id ) : $new_params;
 
       $this -> tc_update_model_instance( $id, $new_params );
 
