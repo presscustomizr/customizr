@@ -217,7 +217,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	      	echo apply_filters(
 	      		'tc_colophon_left_block',
 	      		sprintf('<div class="%1$s">%2$s</div>',
-	      			apply_filters( 'tc_colophon_left_block_class', 'span4 social-block pull-left' ),
+	      			apply_filters( 'tc_colophon_left_block_class', 'span3 social-block pull-left' ),
 	      			( ! $_nothing_to_render ) ? sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
 	      				( $_hide_socials ) ? 'style="display:none"' : '',
 	      				tc__f( '__get_socials' )
@@ -241,10 +241,11 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 	    	echo apply_filters(
 	    		'tc_credits_display',
 	    		sprintf('<div class="%1$s">%2$s</div>',
-		    		apply_filters( 'tc_colophon_center_block_class', 'span4 credits' ),
-		    		sprintf( '<p>%1$s %2$s</p>',
+		    		apply_filters( 'tc_colophon_center_block_class', 'span6 credits' ),
+		    		sprintf( '<p>%1$s %2$s %3$s</p>',
 						    apply_filters( 'tc_copyright_link', sprintf( '&middot; &copy; %1$s <a href="%2$s" title="%3$s" rel="bookmark">%3$s</a>', esc_attr( date( 'Y' ) ), esc_url( home_url() ), esc_attr( get_bloginfo() ) ) ),
-						    apply_filters( 'tc_credit_link', sprintf( '&middot; Designed by %1$s &middot;', '<a href="'.TC_WEBSITE.'">Press Customizr</a>' ) )
+                            apply_filters( 'tc_credit_link', sprintf( '&middot; Designed by %1$s', '<a href="'.TC_WEBSITE.'">Press Customizr</a>' ) ),
+						    apply_filters( 'tc_wp_powered', sprintf( '&middot; Powered by %1$s &middot;', '<a class="icon-wordpress" target="_blank" href="http://wordpress.org"></a>' ) )
 					)
 	    		)
 	    	);
@@ -265,7 +266,7 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
     	echo apply_filters(
     		'tc_colophon_right_block',
     		sprintf('<div class="%1$s"><p class="pull-right"><a class="back-to-top" href="#">%2$s</a></p></div>',
-    			apply_filters( 'tc_colophon_right_block_class', 'span4 backtop' ),
+    			apply_filters( 'tc_colophon_right_block_class', 'span3 backtop' ),
     			__( 'Back to top' , 'customizr' )
     		)
     	);
