@@ -40,7 +40,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       self::$instance =& $this;
 
       //equivalent of wp_parse_args() with default model property values
-      $this -> tc_update_model_properties( $model );
+      $this -> tc_update( $model );
 
       //at this stage the mode must at least have :
       //1) a unique id
@@ -56,12 +56,23 @@ if ( ! class_exists( 'TC_Model' ) ) :
       $this -> tc_maybe_register_children();
 
       //listens to 'wp' and instanciate the model's view
-      add_action( 'wp'                          , array( $this, 'tc_maybe_instanciate_view' ), 999 );
+      add_action( 'wp'                                , array( $this, 'tc_maybe_instanciate_view' ), 999 );
+
+      //adds the view instance to the model
+      //view instance as param
+      add_action( "view_instanciated_{$this -> id}"   , array( $this, 'tc_add_view_to_model'), 10, 1 );
 
       //takes the view instance as param
-      add_action( 'view_instanciated'           , array( $this, 'tc_maybe_hook_view'), 10, 1 );
+      add_action( "view_instanciated_{$this -> id}"   , array( $this, 'tc_maybe_hook_view'), 20, 1 );
     }
 
+
+    //add this instance to the view description in the collection
+    //=> can be used later for deregistration
+    //hook : view_instanciated
+    function tc_add_view_to_model( $view_instance ) {
+       $this -> tc_set_property( '_instance', $view_instance );
+    }
 
 
 
@@ -89,35 +100,53 @@ if ( ! class_exists( 'TC_Model' ) ) :
     * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
     ***********************************************************************************/
     //hook : 'view_instanciated'
-    //@param instance object, can be TC_View or a child of TC_View
+    //@param view instance object, can be TC_View or a child of TC_View
     //hook the rendering method to the hook
     //$this -> _instance can be used. It can be a child of this class.
     public function tc_maybe_hook_view($instance) {
-      $_this = $instance;
-      if ( empty($_this -> id) ) {
+      if ( empty($this -> id) ) {
         do_action('tc_dev_notice', 'A view is missing an id' );
         return;
       }
 
       //Renders the view on the requested hook
-      if ( false !== $_this -> hook ) {
-        add_action( $_this -> hook, array( $_this -> _instance , 'tc_maybe_render' ), $_this -> priority );
+      if ( false !== $this -> hook ) {
+        add_action( $this -> hook, array( $instance , 'tc_maybe_render' ), $this -> priority );
         //emit an event each time a view is hooked
-        do_action( 'view_hooked' , $_this -> id );
+        do_action( 'view_hooked' , $this -> id );
       }
     }
 
+
+    //@param instance view
+    //@return void()
+    public function tc_unhook_view() {
+      if ( false == $this -> hook || ! is_object( $this -> _instance) )
+        return;
+      /* if ( is_array('SEXE') )
+        array_walk_recursive('SEXE', function(&$v) { $v = htmlspecialchars($v); }); */
+      ?>
+        <pre>
+          <?php print_r('SEXE'); ?>
+        </pre>
+      <?php
+      remove_action( $this -> hook, array( $instance , 'tc_maybe_render' ), $this -> priority );
+      //say it
+      do_action( 'view_unhooked' , $this -> id );
+    }
 
 
     //hook : 'wp'
     //this method load the relevant view class file and return the instance
     //@return instance object
     private function tc_instanciate_view_class() {
-      if ( false == $this -> view_class  )
-        return new TC_view( $this -> tc_get() );
+      if ( false === $this -> view_class || empty($this -> view_class) )
+        return new TC_View( $this -> tc_get() );
 
-      if ( ! class_exists($this -> view_class) )
+      if ( ! class_exists($this -> view_class) ) {
+        do_action('tc_dev_notice', "Model : " . $this -> id . ". The view class does not exist. The view has not been instanciated." );
         return;
+      }
 
       $view_class = $this -> view_class;
       $instance = new $view_class( $this -> tc_get() );
@@ -192,16 +221,12 @@ if ( ! class_exists( 'TC_Model' ) ) :
     }
 
 
-    public function tc_get_instance() {
-      return $this;
-    }
-
 
     //@return void()
     //update the model properties with a set of new ones
     //is fired on instanciation
     //@param = array()
-    public function tc_update_model_properties( $model = array() ) {
+    public function tc_update( $model = array() ) {
       $keys = array_keys( get_object_vars( $this ) );
       foreach ( $keys as $key ) {
         if ( isset( $model[ $key ] ) ) {
@@ -215,7 +240,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
 
     /**********************************************************************************
-    * PRIVATE HELPERS
+    * HELPERS
     ***********************************************************************************/
     //@return bool
     private function tc_can_model_be_instanciated() {
@@ -228,6 +253,13 @@ if ( ! class_exists( 'TC_Model' ) ) :
       }
       return true;
     }
+
+    //checks if the model exists and is an instance
+    //@return bool
+    public function tc_has_instanciated_view() {
+      return is_object( $this -> _instance );
+    }
+
   }//end of class
 endif;
 
