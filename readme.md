@@ -43,6 +43,15 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.14 November 4th 2015 =
+Add: Added a dismissable help notice on front-end in post lists about using img smart-load
+Add : add Powered by Wordpress in footer credits
+updated : German translation, thanks to Martin Bangermann
+Fix: menu display element, cast element classes to array fixes #372
+Fix: Deep link to customizer menu panel in a control description fixes #244
+Fix: Deep link to the featured page control in the removable front end block fixes #246
+Fix: better handling of the simple-load event triggered on holders fixes #377
+
 = 3.4.13 October 16th 2015 =
 * fix : better support for php versions < 5.4.0
 
