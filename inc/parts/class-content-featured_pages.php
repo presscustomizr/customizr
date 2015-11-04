@@ -33,7 +33,8 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       if ( ! TC_placeholders::tc_is_fp_notice_on() )
         return;
 
-      $_customizer_lnk = TC_utils::tc_get_customizer_url( array( 'section' => 'frontpage_sec') );
+      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', TC_utils::tc_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
+
       ?>
       <div class="tc-placeholder-wrap tc-fp-notice">
         <?php
@@ -148,7 +149,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
         $_skin_color                        = TC_utils::$inst -> tc_get_skin_color();
         $fp_holder_img                      = apply_filters (
           'tc_fp_holder_img' ,
-          sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" />',
+          sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" style="width:270px;height:250px;"/>',
             ( '#E4E4E4' != $_skin_color ) ? '#EEE' : '#5A5A5A',
             $_skin_color
           )
@@ -158,14 +159,15 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
         //if fps are not set
         if ( null == TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
             //admin link if user logged in
-            $featured_page_link             = is_user_logged_in() ? apply_filters( 'tc_fp_link_url', admin_url().'customize.php' , $fp_single_id ) : '';
-            $customizr_link = '';
-            if ( is_user_logged_in() ) {
+            $featured_page_link             = '';
+            $customizr_link                 = '';
+            if ( is_user_logged_in() && current_user_can('edit_theme_options') ) {
               $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-                admin_url('customize.php?autofocus[section]=frontpage_sec'),
+                TC_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Edit now.' , 'customizr' )
               );
+              $featured_page_link          = apply_filters( 'tc_fp_link_url', TC_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
             }
 
             //rendering
