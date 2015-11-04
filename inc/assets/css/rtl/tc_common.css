@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.13
+ * Customizr v3.4.14
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4807,6 +4807,7 @@ section {
   content: "\f300";
 }
 /*SOCIAL ICONS*/
+.colophon .credits a[class*=icon-]:before,
 .social-block a:before {
   font-family: 'genericons';
   speak: none;
@@ -4816,6 +4817,8 @@ section {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
+.colophon .credits a[class*=icon-]:focus,
+.colophon .credits a[class*=icon-]:hover,
 .social-block a:hover {
   text-decoration: none;
   opacity: 1;
@@ -6052,10 +6055,16 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   position: relative;
   top: 2px;
 }
+footer#footer .colophon .credits a[class*=icon-],
 footer#footer .colophon .social-block a {
   color: #5A5A5A;
   text-shadow: 0 0px 0 #ffffff;
   font-size: 1.1em;
+}
+footer#footer .colophon .credits a[class*=icon-] {
+  vertical-align: inherit;
+  position: relative;
+  top: 0.2em;
 }
 .social-block a:focus,
 .social-block a:active {
