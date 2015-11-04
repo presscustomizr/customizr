@@ -909,7 +909,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
                   $wp_query->is_posts_page )
               return 'blog';
-          else if ( is_search() )
+          else if ( is_search() && have_posts() )
               return 'search';
           else if ( is_archive() )
               return 'archive';
