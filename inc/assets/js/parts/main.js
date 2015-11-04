@@ -327,7 +327,7 @@ var czrapp = czrapp || {};
           $_to_center      = $( _where ).find('img');
 
       if ( smartLoadEnabled ) {
-        $_to_center      = _.filter( $( _where ).find('img') , function ( img ) {
+        $_to_center      = _.filter( $_to_center , function ( img ) {
           return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
         } );//filter
       }//if
@@ -336,8 +336,16 @@ var czrapp = czrapp || {};
         $( _where ).imgSmartLoad(
           _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {}
         );
-
-      this.triggerSimpleLoad($_to_center);
+    
+      //simple-load event on holders needs to be needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
+      if ( 1 == TCParams.centerAllImg ) {
+        self = this;
+        setTimeout( function(){ 
+            self.triggerSimpleLoad( _.filter( $_to_center, function( img ) { 
+                return $(img).hasClass('tc-holder-img'); 
+            } ) ); }, 
+            300 );
+      }
     },
 
 
