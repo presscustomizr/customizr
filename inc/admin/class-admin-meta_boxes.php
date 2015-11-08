@@ -1568,7 +1568,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
          compact( 'content', 'wrapper_tag', 'wrapper_class')
        ) : $content;
 
-       $html = ! ( isset($title) && is_array( $title ) && empty( ! $title ) ) ? $html :
+       $html = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
            sprintf( "%s%s",
              TC_meta_boxes::tc_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
              $html
@@ -1620,7 +1620,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
          compact( 'content', 'wrapper_tag', 'wrapper_class')
        ) : $content;
 
-       $html = ! ( isset($title) && is_array( $title ) && empty( ! $title ) ) ? $html :
+       $html = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
            sprintf( "%s%s",
              TC_meta_boxes::tc_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
              $html
