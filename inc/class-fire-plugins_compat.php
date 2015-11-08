@@ -500,8 +500,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         if ( isset( $options['tc_sliders'] ) ) {
             // Force default language
             $current_language = TC_plugins_compat::$instance->current_language;
-            $this->current_language = TC_plugins_compat::$instance->default_language;
-            $options['tc_sliders'] = $this->sliders_filter( $options['tc_sliders'] );
+            TC_plugins_compat::$instance->current_language = TC_plugins_compat::$instance->default_language;
+            $options['tc_sliders'] = sliders_filter( $options['tc_sliders'] );
             TC_plugins_compat::$instance->current_language = $current_language;
         }
         return $options;
