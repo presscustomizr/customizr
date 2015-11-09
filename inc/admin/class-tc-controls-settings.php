@@ -136,7 +136,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
                   $sliders        = $options['tc_sliders'];
                 }
                 if ( empty( $sliders ) ) {
-      						printf('<div style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',
+      						printf('<div class="tc-notice" style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',
                     __("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ),
                     admin_url( 'upload.php?mode=list' ),
                     __( 'Create a slider' , 'customizr' ),
