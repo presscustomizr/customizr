@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.4.14\n"
 "POT-Creation-Date: 2015-08-22 17:06+0200\n"
-"PO-Revision-Date: 2015-08-22 17:06+0200\n"
+"PO-Revision-Date: 2015-11-09 10:51+0100\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Roner Marcelo <http://ligaht.com.br/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: admin/class-admin-customize.php:89
 msgid "&mdash; Select &mdash;"
-msgstr ""
+msgstr "&mdash; Selecionar &mdash;"
 
 #: admin/class-admin-customize.php:125
 msgid "Assign menus to locations"
-msgstr ""
+msgstr "Atribuir menus para locais"
 
 #: admin/class-admin-customize.php:133
 #, php-format
@@ -31,24 +31,25 @@ msgid ""
 "You haven't created any menu yet. %s or check the %s to learn more about "
 "menus."
 msgstr ""
+"Você não criou nenhum menu ainda. %s ou confira o %s para aprender mais "
+"sobre menus."
 
 #: admin/class-admin-customize.php:134
 msgid "Create a new menu now"
-msgstr ""
+msgstr "Criar um novo menu agora"
 
 #: admin/class-admin-customize.php:135 class-fire-utils_settings_map.php:1330
 #: parts/class-content-post.php:206
 msgid "WordPress documentation"
-msgstr ""
+msgstr "Documentação do Wordpress"
 
 #: admin/class-admin-customize.php:152
 msgid "SITE ICON"
-msgstr ""
+msgstr "ÍCONE DO SITE"
 
 #: admin/class-admin-customize.php:348
-#, fuzzy
 msgid "More grid design options"
-msgstr "Opções páginas Destaque"
+msgstr ""
 
 #: admin/class-admin-customize.php:358
 #, fuzzy
@@ -61,19 +62,21 @@ msgid ""
 "properly displayed on all devices. You might consider to re-upload your "
 "favicon with the new control below."
 msgstr ""
+"Seu favicon atualmente é tratado com um método antigo e não será exibido "
+"corretamente em todos os dispositivos. Você pode considerar reenviar seu "
+"favicon com o novo controle abaixo."
 
 #: admin/class-admin-customize.php:534
 msgid "dismiss"
-msgstr ""
+msgstr "dispensar"
 
 #: admin/class-admin-customize.php:537
 msgid "Hi! This is"
-msgstr ""
+msgstr "Olá! Isto é"
 
 #: admin/class-admin-customize.php:539
-#, fuzzy
 msgid ", developer of the Customizr theme"
-msgstr "Precia de ajuda com o Customizr?"
+msgstr ""
 
 #: admin/class-admin-customize.php:542
 #, fuzzy
@@ -88,9 +91,8 @@ msgstr ""
 "$100,00."
 
 #: admin/class-admin-customize.php:547
-#, fuzzy
 msgid "Make a donation for Customizr"
-msgstr "Selecionar um estilo  Customizr"
+msgstr ""
 
 #: admin/class-admin-customize.php:550
 msgid ""
@@ -100,24 +102,29 @@ msgid ""
 "this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> "
 "Live long and prosper with Customizr!</strong>"
 msgstr ""
+"Uma vez clicado o botão 'esconder para sempre', este bloco doação não será "
+"mais exibido. <br/> Se você está usando Customizr para fins pessoais ou de "
+"negócios, qualquer tipo de patrocínio será apreciado para apoiar este tema "
+"livre. <br/> <strong>Já doador(a)? Agradecimentos, você é demais! <br/><br/> "
+"Vida longa e próspera com Customizr!</strong>"
 
 #: admin/class-admin-customize.php:551
 msgid "Hide forever"
-msgstr ""
+msgstr "Esconder para sempre"
 
 #: admin/class-admin-customize.php:552
 msgid "Let me think twice"
-msgstr ""
+msgstr "Quero repensar"
 
 #: admin/class-admin-customize.php:561
 msgid "Need more customizations options and premium support ?"
-msgstr ""
+msgstr "Precisa mais opções de customizações e support premium?"
 
 #: admin/class-admin-customize.php:563 admin/class-admin-customize.php:574
 #: admin/class-admin-customize.php:585 admin/class-admin-customize.php:599
 #: admin/class-admin-customize.php:613 admin/class-admin-customize.php:625
 msgid "Get Customizr Pro"
-msgstr ""
+msgstr "Adquira Customizr Pro"
 
 #: admin/class-admin-customize.php:572
 msgid ""
@@ -156,23 +163,20 @@ msgid "If you like"
 msgstr ""
 
 #: admin/class-admin-customize.php:635
-#, fuzzy
 msgid "the Customizr theme"
-msgstr "Precia de ajuda com o Customizr?"
+msgstr "Customizr tema"
 
 #: admin/class-admin-customize.php:635
-#, fuzzy
 msgid "the Customizr pro theme"
-msgstr "Precia de ajuda com o Customizr?"
+msgstr ""
 
 #: admin/class-admin-customize.php:636
 msgid "we would love to receive a"
 msgstr ""
 
 #: admin/class-admin-customize.php:638
-#, fuzzy
 msgid "Review the Customizr theme"
-msgstr "Precia de ajuda com o Customizr?"
+msgstr ""
 
 #: admin/class-admin-customize.php:640
 msgid "rating. Thanks :) !"
@@ -196,7 +200,7 @@ msgstr "Opções de layout"
 
 #: admin/class-admin-meta_boxes.php:95 admin/class-admin-meta_boxes.php:466
 msgid "Slider Options"
-msgstr "Opições de Slider"
+msgstr "Opções de Slider"
 
 #: admin/class-admin-meta_boxes.php:164
 #, php-format
@@ -333,7 +337,7 @@ msgstr "Título e cor do texto"
 
 #: admin/class-admin-meta_boxes.php:665
 msgid "Button text (80 car. max length)"
-msgstr "Texto do botão(longitud m&aacute;xima de 80 caracteres)"
+msgstr "Texto do botão (máximo de 80 caracteres)"
 
 #: admin/class-admin-meta_boxes.php:672
 msgid "Choose a linked page or post (among the last 100)."
@@ -383,7 +387,7 @@ msgstr "Imagem do slide"
 
 #: admin/class-admin-meta_boxes.php:893
 msgid "Title"
-msgstr "Titulo"
+msgstr "Título"
 
 #: admin/class-admin-meta_boxes.php:894
 msgid "Slide Text"
@@ -391,7 +395,7 @@ msgstr "Texto do slide"
 
 #: admin/class-admin-meta_boxes.php:895
 msgid "Button Text"
-msgstr "Texto do botão"
+msgstr "Texto do Botão"
 
 #: admin/class-admin-meta_boxes.php:896
 msgid "Link"
@@ -501,9 +505,8 @@ msgid "Code snippets"
 msgstr "Trechos de código"
 
 #: admin/class-fire-admin_page.php:119
-#, fuzzy
 msgid "Get support in the forum"
-msgstr "Discutir no fórum de usuários"
+msgstr "Obter suporte no fórum"
 
 #: admin/class-fire-admin_page.php:129
 #, php-format
@@ -591,9 +594,8 @@ msgid ""
 msgstr ""
 
 #: admin/class-fire-admin_page.php:202
-#, fuzzy
 msgid "Discover Customizr Pro"
-msgstr "Descubra Customizr: rápida introdução em vídeo"
+msgstr "Descubra Customizr Pro"
 
 #: admin/class-fire-admin_page.php:209
 msgid "Customizr Showcase"
@@ -666,9 +668,8 @@ msgid "Check the documentation"
 msgstr "Leia a documentação"
 
 #: admin/class-tc-controls-settings.php:376
-#, fuzzy
 msgid "Upload"
-msgstr "enviar Logo"
+msgstr "Carregar Logo"
 
 #: admin/class-tc-controls-settings.php:377
 msgid "Remove"
@@ -751,9 +752,8 @@ msgid "Light green"
 msgstr ""
 
 #: class-fire-init.php:99
-#, fuzzy
 msgid "Green blue"
-msgstr "Verde"
+msgstr "Verde água"
 
 #: class-fire-init.php:100
 msgid "Light blue "
@@ -948,8 +948,8 @@ msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
 msgstr ""
-"Muitas opções de layout e projeto estão disponíveis a partir do ecrã "
-"WordPress personalizador: ver as alterações ao vivo!"
+"Muitas opções de layout e design estão disponíveis a partir da tela "
+"WordPress personalizador: veja as alterações ao vivo!"
 
 #: class-fire-init.php:515
 msgid "Main Menu"
@@ -986,9 +986,8 @@ msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Força dimensões logotipo para a max-width:250px y max-height:100px"
 
 #: class-fire-utils_settings_map.php:161
-#, fuzzy
 msgid "Uncheck this option to keep your original logo dimensions."
-msgstr "Desmarque essa opção para remover a borda superior colorido."
+msgstr "Desmarque esta opção para manter as dimensões originais do logo."
 
 #: class-fire-utils_settings_map.php:165
 #, fuzzy
@@ -1244,9 +1243,8 @@ msgid "This option enables a smoother page scroll."
 msgstr ""
 
 #: class-fire-utils_settings_map.php:516 class-fire-utils_settings_map.php:2184
-#, fuzzy
 msgid "Header design and layout"
-msgstr "Projetado por"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:518
 msgid "Choose a layout for the header"
@@ -1283,7 +1281,7 @@ msgstr "Exibir o conteúdo inteiro"
 
 #: class-fire-utils_settings_map.php:550
 msgid "Social links in header"
-msgstr "siga-nos %s"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:560
 msgid "Display menu in a box"
@@ -1513,7 +1511,7 @@ msgstr "Configure o layout da página de inicio"
 
 #: class-fire-utils_settings_map.php:860
 msgid "Slider options"
-msgstr "Opições de slider"
+msgstr "Opções de slider"
 
 #: class-fire-utils_settings_map.php:861
 msgid "Select front page slider"
@@ -1559,7 +1557,7 @@ msgstr "Opções páginas Destaque"
 
 #: class-fire-utils_settings_map.php:930
 msgid "Display home featured pages area"
-msgstr "Mostrar casa área páginas Destaque"
+msgstr "Mostrar área das páginas em destaque da página inicial"
 
 #: class-fire-utils_settings_map.php:934
 msgid "Enable"
@@ -1663,9 +1661,8 @@ msgid "Set the excerpt length (in number of words) "
 msgstr ""
 
 #: class-fire-utils_settings_map.php:1074
-#, fuzzy
 msgid "Thumbnails options"
-msgstr "Opciones del tema"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1075
 #, fuzzy
@@ -1742,7 +1739,7 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1137
 msgid "Right"
-msgstr "Derecha"
+msgstr "Direita"
 
 #: class-fire-utils_settings_map.php:1138
 msgid "Bottom"
@@ -1750,7 +1747,7 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1139
 msgid "Left"
-msgstr "Izquierdo"
+msgstr "Esquerdo"
 
 #: class-fire-utils_settings_map.php:1146
 msgid "Alternate thumbnail/content"
@@ -1780,9 +1777,8 @@ msgid "Search Results for :"
 msgstr "Resultados de pesquisa para :"
 
 #: class-fire-utils_settings_map.php:1183
-#, fuzzy
 msgid "Search results page titles"
-msgstr "Resultados de pesquisa para :"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1194
 #, fuzzy
@@ -1798,9 +1794,8 @@ msgid "Alternate thumbnails layout"
 msgstr ""
 
 #: class-fire-utils_settings_map.php:1200
-#, fuzzy
 msgid "Grid layout"
-msgstr "Projetado por"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1203
 msgid ""
@@ -1878,19 +1873,16 @@ msgid "Set the post grid thumbnail's max height in pixels"
 msgstr ""
 
 #: class-fire-utils_settings_map.php:1317
-#, fuzzy
 msgid "Post thumbnail position"
-msgstr "Veja Mais"
+msgstr "Posição de thumbnail da mensagem"
 
 #: class-fire-utils_settings_map.php:1321
-#, fuzzy
 msgid "Don't display"
-msgstr "Primeira página "
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1322
-#, fuzzy
 msgid "Before the title in full width"
-msgstr "Disposição Slider: defina o controle slider na largura total"
+msgstr "Antes do título na largura total"
 
 #: class-fire-utils_settings_map.php:1323
 msgid "Before the title boxed"
@@ -1953,14 +1945,12 @@ msgid "Metas Design"
 msgstr ""
 
 #: class-fire-utils_settings_map.php:1428
-#, fuzzy
 msgid "Select a design for the post metas"
-msgstr "Selecionar um estilo  Customizr"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1432
-#, fuzzy
 msgid "Buttons and text"
-msgstr "Texto do botão"
+msgstr "Botões e texto"
 
 #: class-fire-utils_settings_map.php:1433
 msgid "Text only"
@@ -1968,9 +1958,8 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1440
 #: class-fire-utils_settings_map.php:1790
-#, fuzzy
 msgid "Select the contexts"
-msgstr "Editar el texto del bot&oacute;n\""
+msgstr "Selecionar contextos"
 
 #: class-fire-utils_settings_map.php:1441
 msgid "Display posts metas on home"
@@ -2173,9 +2162,8 @@ msgid "Display the number of comments in a bubble next to the post title"
 msgstr ""
 
 #: class-fire-utils_settings_map.php:1694
-#, fuzzy
 msgid "Comments bubble shape"
-msgstr "Os comentários estão fechados."
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1698
 msgid "Small bubbles"
@@ -2187,9 +2175,8 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1707
 #: class-fire-utils_settings_map.php:1719
-#, fuzzy
 msgid "Comments bubble color"
-msgstr "Os comentários estão fechados."
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1711
 #, fuzzy
@@ -2197,38 +2184,33 @@ msgid "Skin color"
 msgstr "Cor do ícone de dica"
 
 #: class-fire-utils_settings_map.php:1712
-#, fuzzy
 msgid "Custom"
-msgstr "Personalizar CSS"
+msgstr "Personalizar"
 
 #: class-fire-utils_settings_map.php:1730
-#, fuzzy
 msgid "Other comments settings"
-msgstr "Links configuração diversos"
+msgstr "Configuração de outros comentários"
 
 #: class-fire-utils_settings_map.php:1731
 msgid "Enable comments on pages"
 msgstr "Ativar comentários em páginas"
 
 #: class-fire-utils_settings_map.php:1736
-#, fuzzy
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
 msgstr ""
 "Esta opção irá permitir comentários nas páginas. Você pode desativar "
-"comentários em uma única página no modo de edição rápida do ecrã da lista da "
+"comentários em uma única página no modo de edição rápida da tela da lista da "
 "página."
 
 #: class-fire-utils_settings_map.php:1737
-#, fuzzy
 msgid "You can also change other comments settings in :"
-msgstr "Links configuração diversos"
+msgstr "Você pode também alterar a configuração de outros comentários in:"
 
 #: class-fire-utils_settings_map.php:1739
-#, fuzzy
 msgid "the discussion settings page."
-msgstr "Links configuração diversos"
+msgstr "configuração da página de comentários."
 
 #: class-fire-utils_settings_map.php:1745
 #, fuzzy
@@ -2236,29 +2218,25 @@ msgid "Enable comments on posts"
 msgstr "Ativar comentários em páginas"
 
 #: class-fire-utils_settings_map.php:1750
-#, fuzzy
 msgid ""
 "If checked, this option enables comments on all types of single posts. You "
 "can disable comments for a single post in quick edit mode from the"
 msgstr ""
-"Esta opção irá permitir comentários nas páginas. Você pode desativar "
-"comentários em uma única página no modo de edição rápida do ecrã da lista da "
-"página."
+"Esta opção irá permitir comentários em todos os tipos de posts/mensagens. "
+"Você pode desativar comentários em uma única mensagem no modo de edição "
+"rápida da tela da lista da página.."
 
 #: class-fire-utils_settings_map.php:1752
-#, fuzzy
 msgid "post screen"
-msgstr "Personalize a tela"
+msgstr "tela de mensagem"
 
 #: class-fire-utils_settings_map.php:1753
-#, fuzzy
 msgid "You can also change other comments settings in the"
-msgstr "Links configuração diversos"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1755
-#, fuzzy
 msgid "discussion settings page."
-msgstr "Links configuração diversos"
+msgstr "configuração da página de comentários"
 
 #: class-fire-utils_settings_map.php:1761
 #, fuzzy
@@ -2298,11 +2276,11 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1831
 msgid "Social links in left sidebar"
-msgstr "siga-nos %s"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1841
 msgid "Social links in right sidebar"
-msgstr "siga-nos %s"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1849
 #: class-fire-utils_settings_map.php:2144
@@ -2310,9 +2288,8 @@ msgid "Social links"
 msgstr "Redes Sociais "
 
 #: class-fire-utils_settings_map.php:1850
-#, fuzzy
 msgid "Social link title in sidebars"
-msgstr "siga-nos %s"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1856
 msgid "Will be hidden if empty"
@@ -2320,7 +2297,7 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1875
 msgid "Social links in footer"
-msgstr "siga-nos %s"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:1885
 msgid "Stick the footer to the bottom of the page"
@@ -2418,18 +2395,16 @@ msgid "Sidebars settings for the Customizr theme."
 msgstr ""
 
 #: class-fire-utils_settings_map.php:2011
-#, fuzzy
 msgid "Footer"
-msgstr "pie de p&aacute;gina"
+msgstr "Rodapé"
 
 #: class-fire-utils_settings_map.php:2012
 msgid "Footer settings for the Customizr theme."
 msgstr ""
 
 #: class-fire-utils_settings_map.php:2017
-#, fuzzy
 msgid "Advanced options"
-msgstr "Opições de slider"
+msgstr "Opções de slider"
 
 #: class-fire-utils_settings_map.php:2018
 msgid "Advanced settings for the Customizr theme."
@@ -2507,12 +2482,11 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:2152
 msgid "Various links settings"
-msgstr "Links configuração diversos"
+msgstr "Configuração de diversos links"
 
 #: class-fire-utils_settings_map.php:2156
-#, fuzzy
 msgid "Titles icons settings"
-msgstr "Links configuração diversos"
+msgstr "Configuração de ícones nos títulos"
 
 #: class-fire-utils_settings_map.php:2158
 #, fuzzy
@@ -2546,9 +2520,8 @@ msgid "Smooth Scroll settings"
 msgstr ""
 
 #: class-fire-utils_settings_map.php:2184
-#, fuzzy
 msgid "Design and layout"
-msgstr "Projetado por"
+msgstr ""
 
 #: class-fire-utils_settings_map.php:2189
 msgid "Navigation Menus"
@@ -2685,15 +2658,15 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:2343
 msgid "Home featured page one"
-msgstr "Mostrar o inicio como página  um"
+msgstr "Páginas em destaque da página inicial um."
 
 #: class-fire-utils_settings_map.php:2344
 msgid "Home featured page two"
-msgstr "Mostrar o inicio como página dois"
+msgstr "Páginas em destaque da página inicial dois."
 
 #: class-fire-utils_settings_map.php:2345
 msgid "Home featured page three"
-msgstr "Mostrar o inicio como página três "
+msgstr "Páginas em destaque da página inicial três."
 
 #: class-fire-utils_settings_map.php:2348
 msgid "Featured text one (200 car. max)"
@@ -3115,7 +3088,7 @@ msgstr ""
 #: parts/class-content-post_navigation.php:89
 #: parts/class-content-post_navigation.php:144
 msgid "Post navigation"
-msgstr "Veja Mais"
+msgstr "Navegação de mensagens"
 
 #: parts/class-content-post_navigation.php:157
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
@@ -3153,14 +3126,12 @@ msgid "You can also remove this sidebar by changing the current page layout."
 msgstr ""
 
 #: parts/class-content-sidebar.php:150
-#, fuzzy
 msgid "Changing the layout in the Customizr theme"
-msgstr "Precia de ajuda com o Customizr?"
+msgstr ""
 
 #: parts/class-content-sidebar.php:151
-#, fuzzy
 msgid "See the theme documentation."
-msgstr "Leia a documentação"
+msgstr "Leia a documentação do tema."
 
 #: parts/class-content-slider.php:393
 msgid "Go to"
