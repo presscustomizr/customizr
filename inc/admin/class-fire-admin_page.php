@@ -102,20 +102,20 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                 ?>
               </div>
               <div class="feature-section col two-col">
-                <div>
+                <div class="col">
                    <br/>
                     <a class="button-secondary customizr-help" title="documentation" href="<?php echo TC_WEBSITE ?>customizr" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
                 </div>
-                <div class="last-feature">
+                <div class="last-feature col">
                   <br/>
                     <a class="button-secondary customizr-help" title="faq" href="<?php echo $_faq_url; ?>" target="_blank"><?php _e( 'Check the FAQ','customizr' ); ?></a>
                  </div>
               </div><!-- .two-col -->
               <div class="feature-section col two-col">
-                 <div>
+                 <div class="col">
                     <a class="button-secondary customizr-help" title="code snippets" href="<?php echo TC_WEBSITE ?>code-snippets/" target="_blank"><?php _e( 'Code snippets','customizr' ); ?></a>
                 </div>
-                 <div class="last-feature">
+                 <div class="last-feature col">
                     <a class="button-secondary customizr-help" title="forum" href="<?php echo $_support_url; ?>" target="_blank"><?php _e( 'Get support in the forum','customizr' ); ?></a>
                  </div>
               </div><!-- .two-col -->
@@ -165,7 +165,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
                 <div class="feature-section col three-col">
 
-                  <div>
+                  <div class="col">
                     <h3><?php _e( 'We need sponsors!','customizr' ); ?></h3>
                     <p><?php  _e( '<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it\'s continued development with a donation of $20, $50, or even $100.','customizr' ) ?></br>
 
@@ -173,13 +173,13 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                     </p>
                   </div>
 
-                  <div>
+                  <div class="col">
                     <h3><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
                     <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)','customizr' ) ?></br>
                     <a class="button-primary review-customizr" title="Customizr WordPress Theme" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank">Review Customizr &raquo;</a></p>
                   </div>
 
-                  <div class="last-feature">
+                  <div class="last-feature col">
                     <h3><?php _e( 'Follow us','customizr' ); ?></h3>
                     <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/pc.png' ?>" alt="Press Customizr" /></a></p>
                     <!-- Place this tag where you want the widget to render. -->
