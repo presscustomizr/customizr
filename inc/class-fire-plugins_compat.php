@@ -397,7 +397,14 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_post_type_archive();
         }
       }
-
+      /*
+      * Are we in single Event context?
+      */
+      if ( ! ( function_exists( 'tc_is_tec_single_event' ) ) ) {
+        function tc_is_tec_single_event() {
+          return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_single();
+        }
+      }
       // hide tax archive title
       add_filter( 'tc_show_tax_archive_title', 'tc_tec_disable_tax_archive_title');
       function tc_tec_disable_tax_archive_title( $bool ) {
@@ -414,7 +421,14 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       // Now we have to display a post or page content
       add_filter( 'tc_show_single_post_content', 'tc_tec_show_content' );
       function tc_tec_show_content( $bool ) {
-        return tc_is_tec_events_list() ? true : $bool;
+        //2 cases:
+        //1 - in events lists - we force showing single post content
+        //2 - in single events we have to prevent showing both page and post content
+        if ( tc_is_tec_events_list() )
+          return true;
+        else if( tc_is_tec_single_event() )
+          return false;
+        return $bool;
       }
 
       // Force the tax name in the breadcrumb when list of events shown as 'Month'
@@ -436,6 +450,11 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           add_filter( 'post_type_archive_title', '__return_false', 10 );
           return $breadcrumb;
         }
+      }
+      //disables post navigation in single tec pages
+      add_filter( 'tc_show_post_navigation', 'tc_tec_disable_post_navigation' );
+      function tc_tec_disable_post_navigation($bool) {
+        return ( tc_is_tec_single_event() ) ? false : $bool;
       }
     }//end the-events-calendar compat
 
