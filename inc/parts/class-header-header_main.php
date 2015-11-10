@@ -17,10 +17,12 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     function __construct () {
       self::$instance =& $this;
       //Set header hooks
-      add_action ( 'template_redirect' 		, array( $this , 'tc_set_header_hooks' ) );
+      //we have to use 'wp' action hook to show header in multisite wp-signup/wp-activate.php which don't fire template_redirect hook 
+      //(see https://github.com/presscustomizr/customizr/issues/395)
+      add_action ( 'wp'                    , array( $this , 'tc_set_header_hooks' ) );
 
       //Set header options
-      add_action ( 'template_redirect' 		, array( $this , 'tc_set_header_options' ) );
+      add_action ( 'wp'                    , array( $this , 'tc_set_header_options' ) );
 
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
@@ -35,7 +37,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     ****************************/
 	  /**
 		* Set all header hooks
-		* template_redirect callback
+		* wp callback
 		* @return  void
 		*
 		* @package Customizr
@@ -82,7 +84,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 
     /**
-    * Callback for template_redirect
+    * Callback for wp
     * Set customizer user options
     *
     * @package Customizr
