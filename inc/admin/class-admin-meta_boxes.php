@@ -221,13 +221,13 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
             $post_slider_check_value    = esc_attr(get_post_meta( $post -> ID, $key = 'post_slider_check_key' , $single = true ));
 
             ?>
+           <input name="tc_post_id" id="tc_post_id" type="hidden" value="<?php echo $post-> ID ?>"/>
            <div class="meta-box-item-title">
                 <h4><?php _e( 'Add a slider to this post/page' , 'customizr' ); ?></h4>
                   <label for="<?php echo $post_slider_check_id; ?>">
               </label>
             </div>
             <div class="meta-box-item-content">
-              <input name="tc_post_id" id="tc_post_id" type="hidden" value="<?php echo $post-> ID ?>"/>
                <?php
                  $post_slider_checked = false;
                  if ( $post_slider_check_value == 1)
@@ -260,7 +260,8 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           $options                   = get_option( 'tc_theme_options' );
           if ( isset($options['tc_sliders']) ) {
             $sliders                   = $options['tc_sliders'];
-          }
+          }else
+            $sliders                   = array();  
 
           //post slider fields setup
           $post_slider_id            = 'post_slider_field';
@@ -282,21 +283,40 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           //sliders field
           $slider_id                 = 'slider_field';
 
+          if( $post_slider_check_value == true ): 
+              $selectable_sliders    = apply_filters( 'tc_post_selectable_sliders', $sliders );
+              if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ): 
 
           ?>
-          <?php if( $post_slider_check_value == true ): ?>
               <div class="meta-box-item-title">
                 <h4><?php _e("Choose a slider", 'customizr' ); ?></h4>
               </div>
-              <?php if (isset($sliders) && !empty( $sliders)) : ?>
+          <?php
+              //build selectable slider -> ID => label
+              //Default in head
+              $selectable_sliders = array_merge( array(
+                -1 => __( '&mdash; Select a slider &mdash; ' , 'customizr' )
+              ), $selectable_sliders );
+
+              //in case of sliders of images we set the label as the slider_id
+              if ( isset($sliders) && !empty( $sliders) )
+                foreach ( $sliders as $key => $value) {
+                  if ( is_array( $value ) )
+                    $selectable_sliders[ $key ] = $key;
+                }
+          ?>
                 <div class="meta-box-item-content">
                   <span class="spinner" style="float: left;visibility:visible;display: none;"></span>
                   <select name="<?php echo $post_slider_id; ?>" id="<?php echo $post_slider_id; ?>">
-                    <?php //no link option ?>
-                    <option value="" <?php selected( $current_post_slider, $current = null, $echo = true ) ?>> <?php _e( '&mdash; Select a slider &mdash; ' , 'customizr' ); ?></option>
-                       <?php foreach( $sliders as $slider_name => $slider_posts) : ?>
-                            <option value="<?php echo esc_attr( $slider_name) ?>" <?php selected( $slider_name, $current = $current_post_slider, $echo = true ) ?>><?php echo esc_attr( $slider_name) ?></option>
-                       <?php endforeach; ?>
+                  <?php //sliders select choices
+                    foreach ( $selectable_sliders as $id => $label ) {
+                      printf( '<option value="%1$s" %2$s> %3$s</option>',
+                          esc_attr( $id ),
+                          selected( $current_post_slider, esc_attr( $id ), $echo = false ),
+                          $label  
+                      );
+                    }
+                  ?>
                   </select>
                    <i><?php _e( 'To create a new slider : open the media library, edit your images and add them to your new slider.' , 'customizr' ) ?></i>
                 </div>
@@ -338,8 +358,11 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                         </div>
                       </div>
                     <?php  do_action( '__show_slides' , $current_post_slides, $current_attachement_id = null); ?>
-                <?php endif; ?>
-              <?php else : //if no slider created yet ?>
+                <?php else: //there are no slides 
+                  do_action( '__no_slides', $postid, $current_post_slider );
+                ?>
+              <?php endif; //slides? ?>      
+            <?php else://if no slider created yet and no slider of posts addon?>
 
                  <div class="meta-box-item-content">
                    <p class="description"> <?php _e("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ) ?><br/>
@@ -428,6 +451,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
         //if saving in a custom table, get post_ID
        if ( isset( $_POST['post_ID'])) {
+          do_action( '__before_save_post_slider_fields', $_POST, $tc_post_slider_fields );
           $post_ID = $_POST['post_ID'];
           //sanitize user input by looping on the fields
           foreach ( $tc_post_slider_fields as $tcid => $tckey) {
@@ -439,9 +463,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 add_post_meta( $post_ID, $tckey, $mydata, true) or
                   update_post_meta( $post_ID, $tckey , $mydata);
                 // or a custom table (see Further Reading section below)
-               }
             }
           }
+          do_action( '__after_save_post_slider_fields', $_POST, $tc_post_slider_fields );
+        }
       }
 
 
@@ -1218,8 +1243,9 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 'post_slider_check_field'     => 'post_slider_check_key' ,
                 //attachments
                 'slider_check_field'          => 'slider_check_key' ,
-                );
+              );
 
+              do_action( "__before_ajax_save_slider_{$tc_post_type}", $_POST, $tc_slider_fields );
                 //sanitize user input by looping on the fields
                 foreach ( $tc_slider_fields as $tcid => $tckey) {
                     if ( isset( $_POST[$tcid])) {
@@ -1276,6 +1302,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 if( $tc_post_type == 'attachment' )
                   $this -> tc_slide_save( $post_ID );
 
+                do_action( "__after_ajax_save_slider_{$tc_post_type}", $_POST, $tc_slider_fields );
             }//function
 
 
