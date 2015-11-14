@@ -906,10 +906,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /* returns the type of post list we're in if any, an empty string otherwise */
         private function tc_get_grid_context() {
           global $wp_query;
+            
           if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
                   $wp_query->is_posts_page )
               return 'blog';
-          else if ( is_search() && have_posts() )
+          else if ( is_search() && $wp_query->post_count > 0 )
               return 'search';
           else if ( is_archive() )
               return 'archive';
