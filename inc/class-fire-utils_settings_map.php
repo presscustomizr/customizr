@@ -909,20 +909,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'    => 22,
                                 'notice'      => __( "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website.", 'customizr' )
               ),
-              'tc_posts_slider_type' => array(
-                                'default'     => 'all',
+              'tc_posts_slider_stickies' => array(
+                                'default'     => 0,
                                 'control'     => 'TC_controls',
-                                'label'       => __( 'Select which kind of posts you want to display' , 'customizr' ),
+                                'label'       => __( 'Include only sticky posts' , 'customizr' ),
                                 'section'     => 'frontpage_sec' ,
-                                'type'        => 'select' ,
-                                'choices'     => array(
-                                    'all'        => __('All posts', 'customizr' ),
-                                    'sticky'     => __('Only the sticky posts', 'customizr' ),
-                                    'not_sticky' => __('All posts excluded the sticky ones', 'customizr' )
-                                ),
+                                'type'        => 'checkbox' ,
                                 'priority'    => 23,
                                 'notice'      => sprintf('%1$s <a href="https://codex.wordpress.org/Sticky_Posts" target="_blank">%2$s</a>',
-                                    __( 'Choosing "All posts" you will display all your posts preceded by the sticky posts. You can also choose to display only the sticky posts, or to exclude them. If you\'re not sure how to set a sticky post, check', 'customizr' ),
+                                    __( 'You can choose to display only the sticky posts. If you\'re not sure how to set a sticky post, check', 'customizr' ),
                                     __('the WordPress documentation.', 'customizr' )
                                 )
 
