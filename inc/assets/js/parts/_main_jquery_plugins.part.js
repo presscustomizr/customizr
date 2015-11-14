@@ -34,7 +34,7 @@ var czrapp = czrapp || {};
     
       //simple-load event on holders needs to be needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
       if ( 1 == TCParams.centerAllImg ) {
-        self = this;
+        var self = this;
         setTimeout( function(){ 
             self.triggerSimpleLoad( _.filter( $_to_center, function( img ) { 
                 return $(img).hasClass('tc-holder-img'); 
