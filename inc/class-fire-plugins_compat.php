@@ -346,19 +346,23 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         /*end tax filtering*/
 
         /* Slider of posts */  
-        if ( function_exists( 'pll_current_language') )
+        if ( function_exists( 'pll_current_language') ) { 
         // Filter the posts query for the current language
-          add_filter( 'tc_query_posts_slider_join', 'pll_posts_slider_join' );
+          add_filter( 'tc_query_posts_slider_join'      , 'pll_posts_slider_join' );
+          add_filter( 'tc_query_posts_slider_join_where', 'pll_posts_slider_join' );
+        }
         function pll_posts_slider_join( $join ) {
           global $wpdb;
+          switch ( current_filter() ){
+            case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN $wpdb->term_relationships AS pll_tr";
+                                                       break;
+            case 'tc_query_posts_slider_join_where'  : $_join = $wpdb->prepare("pll_tr.object_id = posts.ID AND pll_tr.term_taxonomy_id=%d ",
+                                                                                pll_current_language( 'term_taxonomy_id' ) 
+                                                       );
+                                                       $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
+                                                       break;
+          }
 
-          $curlang_id = pll_current_language( 'term_taxonomy_id' );
-          $join .= $wpdb->prepare( "
-              INNER JOIN $wpdb->term_relationships AS pll_tr 
-              ON pll_tr.object_id = posts.ID 
-              WHERE pll_tr.term_taxonomy_id=%d", 
-              $curlang_id 
-          );
           return $join;
         }
         /*end Slider of posts */
@@ -618,22 +622,30 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         //Translate category ids for the filtered posts in home/blog
         add_filter('tc_opt_tc_blog_restrict_by_cat', 'tc_wpml_translate_cat');
         /*end tax filtering*/
-        
-        if ( defined( 'ICL_LANGUAGE_CODE') )
+
+        /* Slider of posts */  
+        if ( defined( 'ICL_LANGUAGE_CODE') ) {
         // Filter the posts query for the current language
-          add_filter( 'tc_query_posts_slider_join', 'pll_posts_slider_join' );
-        function pll_posts_slider_join( $join ) {
+          add_filter( 'tc_query_posts_slider_join'      , 'wpml_posts_slider_join' );
+          add_filter( 'tc_query_posts_slider_join_where', 'wpml_posts_slider_join' );
+        }
+        function wpml_posts_slider_join( $join ) {
           global $wpdb;
-          $join .= $wpdb->prepare( "
-              INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr ON wpml_tr.element_id = posts.ID 
-              WHERE wpml_tr.language_code=%s AND wpml_tr.element_type=%s", 
-              ICL_LANGUAGE_CODE, 
-              'post_post' 
-          );
+          switch ( current_filter() ){
+            case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr";
+                                                       break;
+            case 'tc_query_posts_slider_join_where'  : $_join = $wpdb->prepare("wpml_tr.element_id = posts.ID AND wpml_tr.language_code=%s AND wpml_tr.element_type=%s",
+                                                                    ICL_LANGUAGE_CODE, 
+                                                                    'post_post' 
+                                                       );
+                                                       $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
+                                                       break;
+          }
+
           return $join;
         }
+        /*end Slider of posts */    
         /*end Slider*/
-
       }//end Front
     }//end wpml compat
 

@@ -541,6 +541,7 @@ class TC_slider {
       'pt_where'       => " AND meta_key='_thumbnail_id'",
       'pa_where'       => " AND attachments.post_type='attachment' AND attachments.post_mime_type LIKE '%image%' AND attachments.post_parent=posts.ID",
       'join'           => '',
+      'join_where'     => '',
       'order_by'       => 'posts.post_date DESC',
       'limit'          => 5,
       'offset'         => 0,
@@ -575,7 +576,7 @@ class TC_slider {
       }
     }
 
-    $sql = sprintf( 'SELECT DISTINCT %1$s FROM ( %2$s ) as posts %3$s ORDER BY %4$s LIMIT %5$s OFFSET %6$s',
+    $sql = sprintf( 'SELECT DISTINCT %1$s FROM ( %2$s ) as posts %3$s %4$s ORDER BY %5$s LIMIT %6$s OFFSET %7$s',
              apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
              $this -> tc_get_posts_have_tc_thumb_sql(
                apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
@@ -583,6 +584,7 @@ class TC_slider {
                apply_filters( 'tc_query_posts_slider_attachment_where', $pa_where, $args )
              ),
              apply_filters( 'tc_query_posts_slider_join', $join, $args ),
+             apply_filters( 'tc_query_posts_slider_join_where', $join_where, $args ),
              apply_filters( 'tc_query_posts_slider_orderby', $order_by, $args ),
              $limit,
              $offset
