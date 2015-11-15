@@ -1,6 +1,7 @@
 <?php
 /**
 * Fires the pro theme : constants definition, core classes loading
+* Defined in the customizr dev folder but not part of the free theme distribution
 *
 *
 * @package      Customizr
@@ -25,9 +26,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
           'TC_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
           'TC_wfc'                     => array('/addons/wfc/wordpress-font-customizer.php'),
           'TC_fpu'                     => array('/addons/fpu/tc_unlimited_featured_pages.php'),
-          'TC_fc'                      => array('/addons/fc/footer-customizer.php'),
-          'TC_gc'                      => array('/addons/gc/tc_grid_customizer.php'),
-          'PC_mc'                      => array('/addons/mc/pc_menu_customizer.php')
+          'PC_pro_bundle'              => array('/addons/bundle/pc-pro-bundle.php')
         );
         //set files to load according to the context : admin / front / customize
         add_filter( 'tc_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
