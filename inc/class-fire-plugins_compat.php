@@ -621,8 +621,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         
         if ( defined( 'ICL_LANGUAGE_CODE') )
         // Filter the posts query for the current language
-          add_filter( 'tc_query_posts_slider_join', 'pll_posts_slider_join' );
-        function pll_posts_slider_join( $join ) {
+          add_filter( 'tc_query_posts_slider_join', 'wpml_posts_slider_join' );
+        function wpml_posts_slider_join( $join ) {
           global $wpdb;
           $join .= $wpdb->prepare( "
               INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr ON wpml_tr.element_id = posts.ID 
