@@ -406,11 +406,12 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         'tc_slider_default_height_apply_all',
         'tc_slider_change_default_img_size',
         'tc_posts_slider_number',
-        'tc_posts_slider_type',
+        'tc_posts_slider_stickies',
         'tc_posts_slider_title',
         'tc_posts_slider_text',
         'tc_posts_slider_link',
-        'tc_posts_slider_button_text'
+        'tc_posts_slider_button_text',
+        'tc_posts_slider_restrict_by_cat' //tc-pro-bundle
       ],
       callback: function (to, targetSetId) {
         //posts slider options must be hidden when the posts slider not choosen
@@ -418,18 +419,26 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
           return 'tc_posts_slider' == to;
 
         //if user select the post slider option, append a notice in the label element
-        var $_front_slider_container = api.control( _build_setId('tc_front_slider') ).container;
+        //and hide the notice when no sliders have been created yet
+        var $_front_slider_container = api.control( _build_setId('tc_front_slider') ).container,
+            $_label = $( 'label' , $_front_slider_container ),
+            $_empty_sliders_notice = $( 'div.tc-notice', $_front_slider_container);
+
         if ( 'tc_posts_slider' == to ) {
-          var $_label = $( 'label' , $_front_slider_container );
           if ( 0 !== $_label.length && ! $('.tc-notice' , $_label ).length ) {
             var $_notice = $('<span>', { class: 'tc-notice', html : translatedStrings.postSliderNote || '' } );
             $_label.append( $_notice );
           } else {
             $('.tc-notice' , $_label ).show();
           }
+          //hide no sliders created notice
+          if ( 0 !== $_empty_sliders_notice.length )
+            $_empty_sliders_notice.hide();
         } else {
-          if ( 0 !== $( '.tc-notice' , $_front_slider_container ).length )
-            $( '.tc-notice' , $_front_slider_container ).hide();
+          if ( 0 !== $( '.tc-notice' , $_label ).length )
+            $( '.tc-notice' , $_label ).hide();
+          if ( 0 !== $_empty_sliders_notice.length )
+            $_empty_sliders_notice.show();
         }
         return '0' !== to;
       }//callback
