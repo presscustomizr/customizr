@@ -49,6 +49,7 @@ The exceptions to this license are as follows:
 * updated Brazilan Portuguese. Thanks to Helena Handa.
 * Fix: fix column layouts in Help and About admin pages
 * Add: WPML compatibility
+* Improved: disable the front end notices when customizing
 
 = 3.4.14 November 4th 2015 =
 * Add: Added a dismissable help notice on front-end in post lists about using img smart-load

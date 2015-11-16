@@ -149,6 +149,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.3+
     */
     static function tc_is_thumbnail_help_on() {
+      //never display when customizing
+      if ( TC___::$instance -> tc_is_customizing() )
+        return;
+
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
@@ -275,9 +279,14 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.4+
     */
     static function tc_is_img_smartload_help_on( $text, $min_img_num = 2 ) {
-      if ( $min_img_num )
+      //never display when customizing
+      if ( TC___::$instance -> tc_is_customizing() )
+        return;
+
+      if ( $min_img_num ) {
         if ( ! $text )
           return false;
+      }
 
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
@@ -371,6 +380,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.3+
     */
     static function tc_is_sidenav_help_on() {
+      //never display when customizing
+      if ( TC___::$instance -> tc_is_customizing() )
+        return;
+
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
@@ -463,6 +476,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.3+
     */
     static function tc_is_second_menu_placeholder_on() {
+      //never display when customizing
+      if ( TC___::$instance -> tc_is_customizing() )
+        return;
+
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
@@ -549,6 +566,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.3+
     */
     static function tc_is_main_menu_notice_on() {
+      //never display when customizing
+      if ( TC___::$instance -> tc_is_customizing() )
+        return;
+
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
@@ -665,6 +686,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.4+
     */
     static function tc_is_slider_notice_on( $_position = null ) {
+      //never display when customizing
+      if ( TC___::$instance -> tc_is_customizing() )
+        return;
+
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
@@ -782,6 +807,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.4+
     */
     static function tc_is_fp_notice_on( $_position = null ) {
+      //never display when customizing
+      if ( TC___::$instance -> tc_is_customizing() )
+        return;
+
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
@@ -899,6 +928,10 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * @since Customizr 3.3+
     */
     static function tc_is_widget_placeholder_enabled( $_position = null ) {
+      //never display when customizing
+      if ( TC___::$instance -> tc_is_customizing() )
+        return;
+
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )
         return true;
@@ -922,6 +955,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     /**
     * @return  bool
     * @since Customizr 3.4+
+    * User option to enabe/disable all notices. Enabled by default.
     */
     function tc_is_front_help_enabled(){
       return apply_filters( 'tc_is_front_help_enabled' , (bool)TC_utils::$inst->tc_opt('tc_display_front_help') );
