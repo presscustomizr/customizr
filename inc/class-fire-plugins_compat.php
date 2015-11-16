@@ -90,7 +90,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       */
       if ( current_theme_supports( 'polylang' ) && $this -> tc_is_plugin_active('polylang/polylang.php') )
         $this -> tc_set_polylang_compat();
- 
+
       /*
       * WPML
       */
@@ -112,7 +112,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       /* Sensei woocommerce addon */
       if ( current_theme_supports( 'sensei') && $this -> tc_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
         $this -> tc_set_sensei_compat();
- 
+
       /* Visual Composer */
       if ( current_theme_supports( 'visual-composer') && $this -> tc_is_plugin_active('js_composer/js_composer.php') )
         $this -> tc_set_vc_compat();
@@ -299,20 +299,20 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
             switch ( $tc_translatable_option ) {
               case 'tc_front_slider'             : $label = __( 'Front page slider name', 'customizr' );
                                                    break;
-              case 'tc_posts_slider_button_text' : $label = __( 'Posts slider button text', 'customizr' );     
+              case 'tc_posts_slider_button_text' : $label = __( 'Posts slider button text', 'customizr' );
                                                    break;
               default:                             $label = $tc_controls_map[$tc_translatable_option]['label'];
                                                    break;
-            }//endswitch                                                   
-            $tc_pll_options[$tc_translatable_option]= array( 
+            }//endswitch
+            $tc_pll_options[$tc_translatable_option]= array(
                 'label'  => $label,
                 'value'  => $tc_options[$tc_translatable_option]
             );
           }
-        
+
         //register the strings to translate
         foreach ( $tc_pll_options as $tc_pll_option )
-          pll_register_string( $tc_pll_option['label'], $tc_pll_option['value'], $polylang_group); 
+          pll_register_string( $tc_pll_option['label'], $tc_pll_option['value'], $polylang_group);
       }// end tc_pll_strings_setup function
 
       // Front
@@ -323,17 +323,17 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         $tc_translatable_options = TC_plugins_compat::$instance -> tc_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
-          add_filter("tc_opt_$tc_translatable_option", 'pll__');    
-        
-        /** 
+          add_filter("tc_opt_$tc_translatable_option", 'pll__');
+
+        /**
         * Tax filtering (home/blog posts filtered by cat)
         * @param array of term ids
         */
         function tc_pll_translate_tax( $term_ids ){
           if ( ! ( is_array( $term_ids ) && ! empty( $term_ids ) ) )
             return $term_ids;
-          
-          $translated_terms = array();    
+
+          $translated_terms = array();
           foreach ( $term_ids as $id ){
               $translated_term = pll_get_term( $id );
               $translated_terms[] = $translated_term ? $translated_term : $id;
@@ -345,8 +345,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         add_filter('tc_opt_tc_blog_restrict_by_cat', 'tc_pll_translate_tax');
         /*end tax filtering*/
 
-        /* Slider of posts */  
-        if ( function_exists( 'pll_current_language') ) { 
+        /* Slider of posts */
+        if ( function_exists( 'pll_current_language') ) {
         // Filter the posts query for the current language
           add_filter( 'tc_query_posts_slider_join'      , 'pll_posts_slider_join' );
           add_filter( 'tc_query_posts_slider_join_where', 'pll_posts_slider_join' );
@@ -357,7 +357,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
             case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN $wpdb->term_relationships AS pll_tr";
                                                        break;
             case 'tc_query_posts_slider_join_where'  : $_join = $wpdb->prepare("pll_tr.object_id = posts.ID AND pll_tr.term_taxonomy_id=%d ",
-                                                                                pll_current_language( 'term_taxonomy_id' ) 
+                                                                                pll_current_language( 'term_taxonomy_id' )
                                                        );
                                                        $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
                                                        break;
@@ -378,7 +378,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
 
     /**
-    * WPML compat hooks 
+    * WPML compat hooks
     *
     * @package Customizr
     * @since Customizr 3.4+
@@ -393,14 +393,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //define the CONSTANT wpml context. This means that user have to set the translations again when switching from Customizr, to Customizr-Pro.
       //If we don't want to do this, let's go with 'Customizr-option' in any case.
       //Also I choose to use "-option" suffix to avoid confusions as with WPML you can also translate theme's strings ( gettexted -> __() ) and WPML by default assigns to theme the context 'customizr' (textdomain)
-      if ( ! defined( 'TC_WPML_CONTEXT' ) ) 
-        define( 'TC_WPML_CONTEXT' ,  'customizr-pro' == TC___::$theme_name ? 'Customizr-Pro-option' : 'Customizr-option' );
-      
+      define( 'TC_WPML_CONTEXT' ,  'customizr-option' );
+
       // We cannot use wpml-config.xml to translate theme options because we use to update the option even in front page after retrieved, so we have to act on
       // a different filter.
       // When registering and translate strings WPML requires a 'context' and a 'name' (in a readable format for translators) plus the string to translate
       // context will be concatenated to the name and md5 will run on the result. The new result will represent the KEY for the WPML translations cache array.
-      // This means that 
+      // This means that
       // 1) We cannot use translated string for the "name" param (which actually they say should be in a readable format ..)
       // 2) We need a way to use the same "name" both when registering the string to translate and retrieving its translations
       function tc_wpml_get_options_names_config() {
@@ -413,9 +412,9 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           $option_name_assoc = apply_filters( 'tc_wpml_options_names_config', array(
  //           'tc_front_slider'              => 'Front page slider name', //Handled in a different way by Srdjan
             'tc_posts_slider_button_text'  => 'Posts slider button text',
-            'tc_tag_title'                 => 'Tag pages title', 
+            'tc_tag_title'                 => 'Tag pages title',
             'tc_cat_title'                 => 'Category pages title',
-            'tc_author_title'              => 'Author pages title', 
+            'tc_author_title'              => 'Author pages title',
             'tc_search_title'              => 'Search pages title',
             'tc_social_in_sidebar_title'   => 'Social link title in sidebars',
             'tc_featured_page_button_text' => 'Featured button text',
@@ -423,9 +422,9 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
             'tc_featured_text_two'         => 'Featured text two',
             'tc_featured_text_three'       => 'Featured text three'
           ) );
-          
+
           foreach ( $option_name_assoc as $key => $value ) {
-            //use array_key_exists when and if options_to_translate will be an associative array  
+            //use array_key_exists when and if options_to_translate will be an associative array
             if ( ! in_array( $key, $options_to_translate ) )
               unset( $option_name_assoc[$key] );
             else
@@ -469,7 +468,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
             }
             $sliders[$name] = array_unique( $sliders[$name] );
           }
-        
+
         return $sliders;
       }
       //credits: @Srdja,
@@ -521,7 +520,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
           // grab theme options
           $tc_options = tc__f('__options');
-        
+
           // build array of options to translate
           foreach ( $tc_wpml_options as $tc_wpml_option )
             if ( isset( $tc_options[$tc_wpml_option] ) )
@@ -567,35 +566,35 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( ! is_admin() ) {
         // String transaltion binders : requires wpml icl_t function
         if ( function_exists( 'icl_t') ) {
-          /*** TC - WPML bind, wrap WPML string translator function into convenient tc functions ***/  
+          /*** TC - WPML bind, wrap WPML string translator function into convenient tc functions ***/
           //define our icl_t wrapper for options filtered with tc_opt_{$option}
           if ( ! function_exists( 'tc_wpml_t_opt' ) ) {
             function tc_wpml_t_opt( $string ) {
-              return tc_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );      
-            }  
+              return tc_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );
+            }
           }
           //special function for the post slider button text pre trim filter
           if ( ! function_exists( 'tc_wpml_t_ps_button_text' ) ) {
             function tc_wpml_t_ps_button_text( $string ) {
               return tc_wpml_t( $string, 'tc_posts_slider_button_text' );
-            }  
+            }
           }
           //define our icl_t wrapper
           if ( ! function_exists( 'tc_wpml_t' ) ) {
             function tc_wpml_t( $string, $opt ) {
               $tc_wpml_options_names = tc_wpml_get_options_names_config();
-              return icl_t( TC_WPML_CONTEXT, $tc_wpml_options_names[$opt], $string );      
-            }  
+              return icl_t( TC_WPML_CONTEXT, $tc_wpml_options_names[$opt], $string );
+            }
           }
           /*** End TC - WPML bind ***/
 
           //get the options to translate
           $tc_wpml_options = array_keys( tc_wpml_get_options_names_config() );
-        
+
           //strings translation
           foreach ( $tc_wpml_options as $tc_wpml_option )
             add_filter("tc_opt_$tc_wpml_option", 'tc_wpml_t_opt', 20 );
- 
+
           //translates sliders? credits @Srdjan
           add_filter( 'tc_opt_tc_sliders', 'sliders_filter', 99 );
 
@@ -608,9 +607,9 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         }
 
         /*B) Tax */
-        /** 
+        /**
         * Cat filtering (home/blog posts filtered by cat)
-        * 
+        *
         * AFAIK wpml needs to exactly know which kind of tax we're looking for, category, tag ecc..
         * @param array of term ids
         */
@@ -623,7 +622,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         add_filter('tc_opt_tc_blog_restrict_by_cat', 'tc_wpml_translate_cat');
         /*end tax filtering*/
 
-        /* Slider of posts */  
+        /* Slider of posts */
         if ( defined( 'ICL_LANGUAGE_CODE') ) {
         // Filter the posts query for the current language
           add_filter( 'tc_query_posts_slider_join'      , 'wpml_posts_slider_join' );
@@ -635,8 +634,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
             case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr";
                                                        break;
             case 'tc_query_posts_slider_join_where'  : $_join = $wpdb->prepare("wpml_tr.element_id = posts.ID AND wpml_tr.language_code=%s AND wpml_tr.element_type=%s",
-                                                                    ICL_LANGUAGE_CODE, 
-                                                                    'post_post' 
+                                                                    ICL_LANGUAGE_CODE,
+                                                                    'post_post'
                                                        );
                                                        $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
                                                        break;
@@ -644,7 +643,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
           return $join;
         }
-        /*end Slider of posts */    
+        /*end Slider of posts */
         /*end Slider*/
       }//end Front
     }//end wpml compat
@@ -661,7 +660,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     private function tc_set_the_events_calendar_compat() {
       /*
       * Are we in the Events list context?
-      */  
+      */
       if ( ! ( function_exists( 'tc_is_tec_events_list' ) ) ) {
         function tc_is_tec_events_list() {
           return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_post_type_archive();
@@ -891,16 +890,16 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
       function tc_woocommerce_disable_link_scroll( $excl ){
         if ( false == esc_attr( TC_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
-        
+
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
             $excl = array();
-          
+
           if ( ! is_array( $excl['deep'] ) )
             $excl['deep'] = array() ;
-          
+
           if ( ! is_array( $excl['deep']['classes'] ) )
-              $excl['deep']['classes'] = array();        
+              $excl['deep']['classes'] = array();
 
           $excl['deep']['classes'][] = 'wc-tabs';
         }
@@ -927,18 +926,18 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_vc_disable_link_scroll' );
       function tc_vc_disable_link_scroll( $excl ){
         if ( false == esc_attr( TC_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
-        
+
         if ( ! is_array( $excl ) )
           $excl = array();
-          
+
         if ( ! is_array( $excl['deep'] ) )
           $excl['deep'] = array() ;
-          
+
         if ( ! is_array( $excl['deep']['classes'] ) )
-            $excl['deep']['classes'] = array();        
+            $excl['deep']['classes'] = array();
 
         $excl['deep']['classes'][] = 'vc_row';
-        
+
         return $excl;
       }
     }//end woocommerce compat
@@ -1036,7 +1035,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       );
       if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
         $fp_areas = TC_init::$instance -> fp_ids;
-        foreach ( $fp_areas as $fp_area ) 
+        foreach ( $fp_areas as $fp_area )
           $string_options[] = 'tc_featured_text_' . $fp_area;
 
         $string_options[] = 'tc_featured_page_button_text';
