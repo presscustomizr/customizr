@@ -4421,28 +4421,38 @@ var czrapp = czrapp || {};
     imgSmartLoad : function() {
       var smartLoadEnabled = 1 == TCParams.imgSmartLoadEnabled,
           //Default selectors for where are : $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
-          _where           = TCParams.imgSmartLoadOpts.parentSelectors.join(),
-          $_to_center      = $( _where ).find('img');
+          _where           = TCParams.imgSmartLoadOpts.parentSelectors.join();
 
-      if ( smartLoadEnabled ) {
-        $_to_center      = _.filter( $_to_center , function ( img ) {
-          return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
-        } );//filter
-      }//if
-
+      //Smart-Load images
+      //imgSmartLoad plugin will trigger the smartload event when the img will be loaded
+      //the centerImages plugin will react to this event centering them
       if (  smartLoadEnabled )
         $( _where ).imgSmartLoad(
           _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {}
         );
     
-      //simple-load event on holders needs to be needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
+      //If the centerAllImg is on we have to ensure imgs will be centered when simple loaded,
+      //for this purpose we have to trigger the simple-load on:
+      //1) imgs which have been excluded from the smartloading if enabled
+      //2) all the images in the default 'where' if the smartloading isn't enaled
+      //simple-load event on holders needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
       if ( 1 == TCParams.centerAllImg ) {
-        var self = this;
-        setTimeout( function(){ 
-            self.triggerSimpleLoad( _.filter( $_to_center, function( img ) { 
+        var self                   = this,
+            $_to_center            = smartLoadEnabled ? 
+               $( _.filter( $( _where ).find('img'), function( img ) {
+                  return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
+                }) ): //filter 
+                $( _where ).find('img');
+            $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
                 return $(img).hasClass('tc-holder-img'); 
-            } ) ); }, 
-            300 );
+            }) );
+        
+        //imgs to center with delay
+        setTimeout( function(){
+          self.triggerSimpleLoad( $_to_center_with_delay );
+        }, 300 );
+        //all other imgs to center
+        self.triggerSimpleLoad( $_to_center );
       }
     },
 
