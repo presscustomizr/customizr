@@ -106,6 +106,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_sidebars_option_map',
         //FOOTER
         'tc_footer_global_settings_option_map',
+        //WOOCOMMERCE
+        'tc_woocommerce_option_map',
         //ADVANCED OPTIONS
         'tc_custom_css_option_map',
         'tc_performance_option_map',
@@ -1997,6 +1999,30 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     }
 
 
+
+    /******************************************************************************************************
+    *******************************************************************************************************
+    * PANEL : WOOCOMMERCE OPTIONS
+    *******************************************************************************************************
+    ******************************************************************************************************/
+    /*-----------------------------------------------------------------------------------------------------
+                                     HEADER CART
+    ------------------------------------------------------------------------------------------------------*/
+    function tc_woocommerce_option_map( $get_default = null ) {
+      return array(  
+              'tc_woocommerce_header_cart' => array(
+                               'default'   => 1,
+                               'label'     => __( 'Display the shopping cart in the header' , 'customizr' ),
+                               'control'   =>  'TC_controls' ,
+                               'section'   => 'tc_woocommerce_sec',
+                               'type'      => 'checkbox' ,
+                               'priority'  => 10,
+              )
+        );
+    }
+    
+    
+    
     /******************************************************************************************************
     *******************************************************************************************************
     * PANEL : ADVANCED OPTIONS
