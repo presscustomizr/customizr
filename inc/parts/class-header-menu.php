@@ -566,6 +566,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
             -webkit-background-clip: padding-box;
             -moz-background-clip: padding;
             background-clip: padding-box;
+            padding: 5px 0;
           }
           .tc-second-menu-on .navbar .nav>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu:before{
             content: '';
@@ -621,7 +622,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
             border-radius: 6px;
           }
           .tc-second-menu-on .dropdown-submenu>a:after {
-            content: '';
+            content: ' ';
           }
         }\n
 
