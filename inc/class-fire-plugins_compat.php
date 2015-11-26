@@ -999,7 +999,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         $_resp_pos_css   = 'right' == $_header_layout ? 'float: left;' : '';
         $_wc_li_t_align  = 'left';
         //dropdown top arrow, as we open the drodpdown on the right we have to move the top arrow accordingly
-        $_dd_top_arrow   = '.navbar .nav > li > .dropdown-menu:before { right: 9px; left: auto;} .navbar .nav > li > .dropdown-menu:after { right: 10px; left: auto; }';
+        $_dd_top_arrow   = '.navbar .tc-wc-menu .nav > li > .dropdown-menu:before { right: 9px; left: auto;} .navbar .tc-wc-menu .nav > li > .dropdown-menu:after { right: 10px; left: auto; }';
 
         //rtl custom css
         if ( is_rtl() ) {
