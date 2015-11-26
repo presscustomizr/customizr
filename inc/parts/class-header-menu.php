@@ -628,6 +628,9 @@ if ( ! class_exists( 'TC_menu' ) ) :
             -moz-border-radius: 6px;
             border-radius: 6px;
           }
+          .tc-second-menu-on .dropdown-submenu>a:after {
+            content: '';
+          }
         }\n
 
         .sticky-enabled .tc-second-menu-on .nav-collapse.collapse {
