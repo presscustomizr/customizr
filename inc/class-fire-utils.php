@@ -118,9 +118,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
         if( is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('tc_disable_img_smart_load_mobiles', false ) ) )
           return $_html;
 
-        if ( strpos( $_html, 'data-src' ) !== false )
-          return $_html;
-
         return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'tc_regex_callback' ) , $_html);
       }
 
@@ -135,12 +132,10 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       private function tc_regex_callback( $matches ) {
         $_placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-        if ( preg_match('/ data-smartload *= *"false" */', $matches[0]) )
-          return sprintf('<img %1$s src="%2$s" %3$s>',
-            $matches[1],
-            $matches[2],
-            $matches[3]
-          );
+
+        if ( false !== strpos( 'data-src', $matches[0] ) ||
+            preg_match('/ data-smartload *= *"false" */', $matches[0]) )
+          return $matches[0];    
         else
           return sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s>',
             $matches[1],
