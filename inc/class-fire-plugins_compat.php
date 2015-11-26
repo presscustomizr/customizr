@@ -471,7 +471,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
         return $sliders;
       }
-      //credits: @Srdja,
+      //credits: @Srdjan,
       function add_theme_options_filter() {
         add_filter( 'option_tc_theme_options', 'theme_options_filter', 99 );
       }
@@ -554,6 +554,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         //credits @Srdjan
         // Filter slides in admin screens
         add_action( '__attachment_slider_infos', 'add_theme_options_filter', 9 );
+        add_action( '__post_slider_infos', 'add_theme_options_filter', 9 );
         // Update translated slide post meta
         add_action( 'edit_attachment', 'edit_attachment_action', 99 );
         // Pre-save hook
