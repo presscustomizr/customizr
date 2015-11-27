@@ -3,7 +3,7 @@ module.exports = {
 		separator: '',
 	},
 	front_main_parts_js : {
-    src: ['<%= paths.front_js %>parts/_main_base.part.js', '<%= paths.front_js %>parts/_main_browser_detect.part.js', '<%= paths.front_js %>parts/_main_jquery_plugins.part.js', '<%= paths.front_js %>parts/_main_slider.part.js', '<%= paths.front_js %>parts/_main_userxp.part.js', '<%= paths.front_js %>parts/_main_sticky_header.part.js', '<%= paths.front_js %>parts/_main_sticky_footer.part.js', '<%= paths.front_js %>parts/_main_side_nav.part.js', '<%= paths.front_js %>parts/_main_xfire.part.js' ],
+    src: ['<%= paths.front_js %>parts/_main_base.part.js', '<%= paths.front_js %>parts/_main_browser_detect.part.js', '<%= paths.front_js %>parts/_main_jquery_plugins.part.js', '<%= paths.front_js %>parts/_main_slider.part.js', '<%= paths.front_js %>parts/_main_userxp.part.js', '<%= paths.front_js %>parts/_main_sticky_header.part.js', '<%= paths.front_js %>parts/_main_sticky_footer.part.js', '<%= paths.front_js %>parts/_main_side_nav.part.js', <%= paths.front_js %>parts/_main_dropdown_placement.part.js', <%= paths.front_js %>parts/_main_xfire.part.js' ],
     dest: '<%= paths.front_js %>parts/main.js',
   },
   front_js: {

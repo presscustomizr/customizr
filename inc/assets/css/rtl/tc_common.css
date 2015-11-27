@@ -9039,7 +9039,7 @@ li#wp-admin-bar-tc-customizr a {
     text-align: right;
     position: relative;
   }
-  .tc-hover-menu.nav a:after {
+  .tc-header:not(.tc-second-menu-on) .tc-hover-menu.nav a:after {
     border-top: none;
     border-right: none;
     border-left: none;
