@@ -124,7 +124,8 @@ var czrapp = czrapp || {};
    _transition_end_callback : function() {
      czrapp.$_body.removeClass( 'animating ' +  this._anim_type)
                   .toggleClass( 'tc-sn-visible' )
-                  .trigger( this._anim_type + '_end' );
+                  .trigger( this._anim_type + '_end' )
+                  .trigger( this._anim_type );
 
      /* on transition end re-set sticky header */
      if ( this._is_sticky_header() ){
