@@ -238,14 +238,16 @@ var czrapp = czrapp || {};
       //process scrolling actions
       if ( czrapp.$_window.scrollTop() > this.triggerHeight ) {
         if ( ! this._is_scrolling() ) {
-          czrapp.$_body.addClass("sticky-enabled").removeClass("sticky-disabled");
+          czrapp.$_body.addClass("sticky-enabled").removeClass("sticky-disabled")
+                       .trigger('tc-sticky-enabled');
           // set the logo height, makes sense just when the logo isn't shrinked
           if ( ! czrapp.$_tcHeader.hasClass('tc-shrink-on') )
             self._set_logo_height();
         }
       }
       else if ( this._is_scrolling() ){
-        czrapp.$_body.removeClass("sticky-enabled").addClass("sticky-disabled");
+        czrapp.$_body.removeClass("sticky-enabled").addClass("sticky-disabled")
+                     .trigger('tc-sticky-disabled');
         setTimeout( function() { self._sticky_refresh(); } ,
           self.isCustomizing ? 100 : 20
         );
