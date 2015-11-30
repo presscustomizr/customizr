@@ -196,11 +196,11 @@ var czrapp = czrapp || {};
       if ( ! ( czrapp.$_html.hasClass('csstransitions') && ( this.logo && 0 !== this.logo._logo.length ) ) )
         return;
 
-      var logoW = this.logo._logo.originalWidth(),
-          logoH = this.logo._logo.originalHeight();
+      var logoW = this.logo._logo.outerWidth(),
+          logoH = this.logo._logo.outerHeight();
 
       //check that all numbers are valid before using division
-      if ( 0 === _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
+      if ( 2 !== _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
         return;
 
       this.logo._ratio = logoW / logoH;
