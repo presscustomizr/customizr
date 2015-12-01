@@ -1725,20 +1725,16 @@ footer#footer .colophon .credits a[class*=icon-] {
 
 /* Gif Loader if center slide option is checked */
 .tc-slider-loader-wrapper {
-  height: 500px;
+  height: 100%;
   width: 100%;
-  line-height: 500px;
   position: absolute;
-  z-index: 1000;
-  text-align: center;
+  z-index: 99;/*less than the default sticky-header z-index */
   background: #FAFAFA;
 }
 .tc-img-gif-loader {
-  line-height: 15px;
-  vertical-align: middle;
   width: 100%;
   display: inline-block;
-  position: relative;
+  height: 100%;
 }
 /* CUSTOM SLIDER HEIGHT */
 .custom-slider-height .carousel-inner .item {
