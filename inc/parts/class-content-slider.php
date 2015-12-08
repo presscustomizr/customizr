@@ -742,12 +742,12 @@ class TC_slider {
   *
   */
   function tc_render_slider_loader_view( $slider_name_id ) {
-    if ( 'demo' != $slider_name_id && ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ) || ! apply_filters( 'tc_display_slider_loader' , true ) ) )
+    if ( ! $this -> tc_is_slider_loader_active( $slider_name_id ) )
       return;
+
     ?>
       <div id="tc-slider-loader-wrapper-<?php echo self::$rendered_sliders ?>" class="tc-slider-loader-wrapper" style="display:none;">
         <div class="tc-img-gif-loader">
-          <img data-no-retina alt="loading" src="<?php echo apply_filters('tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') ) ?>">
         </div>
       </div>
 
@@ -1112,6 +1112,21 @@ class TC_slider {
     return apply_filters( 'tc_slider_active_status', false , $queried_id );
   }
 
+  /**
+  * helper
+  * returns whether or not the slider loading icon must be displayed
+  * @return  boolean
+  *
+  */
+  private function tc_is_slider_loader_active( $slider_name_id ) {
+    //The slider loader must be printed when
+    //a) we have to render the demo slider  
+    //b) display slider loading option is enabled (can be filtered) 
+    return ( 'demo' == $slider_name_id 
+        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ), $slider_name_id )
+    );
+  }
+
 
   /**
   * hook : tc_slider_height, fired in tc_user_options_style
@@ -1147,6 +1162,17 @@ class TC_slider {
   * @since Customizr 3.2.6
   */
   function tc_write_slider_inline_css( $_css ) {
+    //custom css for the slider loader gif
+    if ( $this -> tc_is_slider_loader_active( $this -> tc_get_current_slider( $this -> tc_get_real_id() ) ) ) {
+      $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') );
+      if ( $_slider_loader_src )
+        $_css = sprintf( "$_css\n%s",
+         ".tc-slider-loader-wrapper .tc-img-gif-loader {
+            background: url('$_slider_loader_src') no-repeat center center;
+         }"      
+        );
+    }
+
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
     $_custom_height     = apply_filters( 'tc_slider_height' , esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) );
