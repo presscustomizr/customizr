@@ -3043,7 +3043,10 @@ footer#footer .colophon {
 footer#footer .colophon a, footer#footer .colophon p {
   color:@FooterBg;
 }
-
+footer#footer .colophon .credits span[class*=text],
+footer#footer .colophon .credits a{
+  display: inline-block;
+}
 
 
 footer .widget_recent_entries li:after {
@@ -3078,7 +3081,12 @@ footer ul, footer ol {
   width: 45px;
   height: 43px;
   line-height: 43px;
-  right: 30px;
+  & when (@is_rtl = true) {
+    left: 30px;
+  }
+  & when (@is_rtl = false) {
+    right: 30px;
+  }
   bottom: 25px;
   padding-top: 2px;
   border-top-left-radius: 10px;
