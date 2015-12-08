@@ -76,7 +76,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
   	  }
 
       //add a 100% wide container just after the sticky header to reset margin top
-      if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) )
+      if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) || TC___::$instance -> tc_is_customizing() )
         add_action( '__after_header'              , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
 
     }
