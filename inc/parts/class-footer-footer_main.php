@@ -259,8 +259,9 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.0.10
 		*/
-		function tc_colophon_right_block() {
-      if ( ! apply_filters('tc_show_text_btt', true) )
+        function tc_colophon_right_block() {
+          //since 3.4.16 BTT button excludes BTT text
+      if ( ! apply_filters('tc_show_text_btt', 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_back_to_top' ) ) ) )
         return;
 
     	echo apply_filters(
