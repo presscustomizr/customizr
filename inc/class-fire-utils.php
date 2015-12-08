@@ -137,11 +137,13 @@ if ( ! class_exists( 'TC_utils' ) ) :
             preg_match('/ data-smartload *= *"false" */', $matches[0]) )
           return $matches[0];    
         else
-          return sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s>',
-            $matches[1],
-            $_placeholder,
-            $matches[2],
-            $matches[3]
+          return str_replace( 'srcset=', 'data-srcset=',
+                sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s>',
+                    $matches[1],
+                    $_placeholder,
+                    $matches[2],
+                    $matches[3]
+                )
           );
       }
 

@@ -22,7 +22,7 @@
   var pluginName = 'imgSmartLoad',
       defaults = {
         load_all_images_on_first_scroll : false,
-        attribute : 'data-src',
+        attribute : [ 'data-src', 'data-srcset' ],
         excludeImg : '',
         threshold : 200,
         fadeIn_options : { duration : 400 },
@@ -42,7 +42,7 @@
   //can access this.element and this.option
   Plugin.prototype.init = function () {
     var self        = this,
-        $_imgs   = $( 'img[' + this.options.attribute + ']:not('+ this.options.excludeImg.join() +')' , this.element );
+        $_imgs   = $( 'img[' + this.options.attribute[0] + ']:not('+ this.options.excludeImg.join() +')' , this.element );
     
     this.increment  = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
     this.timer      = 0;
@@ -119,17 +119,25 @@
   * replace src place holder by data-src attr val which should include the real src
   */
   Plugin.prototype._load_img = function( _img ) {
-    var $_img = $(_img),
-        _src  = $_img.attr( this.options.attribute ),
+    var $_img    = $(_img),
+        _src     = $_img.attr( this.options.attribute[0] ),
+        _src_set = $_img.attr( this.options.attribute[1] ),
         self = this;
 
     $_img.parent().addClass('smart-loading');
 
     $_img.unbind('load_img')
     .hide()
-    .removeAttr( this.options.attribute )
-    .attr('src' , _src )
+    //https://api.jquery.com/removeAttr/
+    //An attribute to remove; as of version 1.7, it can be a space-separated list of attributes.
+    //minimum supported wp version (3.4+) embeds jQuery 1.7.2
+    .removeAttr( this.options.attribute.join(' ') )
+    .attr( 'srcset' , _src_set )
+    .attr('src', _src )
     .load( function () {
+        console.log('here');
+      //prevent calling this twice on an already smartloaded img  
+      if ( $_img.hasClass('tc-smart-loaded') ) return;
       $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded').trigger('smartload');
     });//<= create a load() fn
     //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
