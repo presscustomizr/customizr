@@ -50,6 +50,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_theme_support( 'optimize-press' );
       add_theme_support( 'sensei' );
       add_theme_support( 'visual-composer' );//or js-composer as they call it
+      add_theme_support( 'disqus' );
     }
 
 
@@ -116,6 +117,11 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       /* Visual Composer */
       if ( current_theme_supports( 'visual-composer') && $this -> tc_is_plugin_active('js_composer/js_composer.php') )
         $this -> tc_set_vc_compat();
+
+      /* Disqus Comment System */
+      if ( current_theme_supports( 'disqus') && $this -> tc_is_plugin_active('disqus-comment-system/disqus.php') )
+        $this -> tc_set_disqus_compat();
+
     }//end of plugin compatibility function
 
 
@@ -1112,6 +1118,39 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       }
     }//end woocommerce compat
 
+
+    /**
+    * Disqus Comment System compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    private function tc_set_disqus_compat() {
+      if ( ! function_exists( 'tc_disqus_comments_enabled' ) ) {
+        function tc_disqus_comments_enabled() {
+          return function_exists( 'dsq_is_installed' ) && function_exists( 'dsq_can_replace' )
+                 && dsq_is_installed() && dsq_can_replace();
+        }
+      }
+      //replace the default comment link anchor with a more descriptive disqus anchor
+      add_filter( 'tc_bubble_comment_anchor', 'tc_disqus_bubble_comment_anchor' );
+      function tc_disqus_bubble_comment_anchor( $anchor ) {
+        return tc_disqus_comments_enabled() ? '#tc-disqus-comments' : $anchor;
+      }
+      //wrap disqus comments template in a convenient div
+      add_action( 'tc_before_comments_template' , 'tc_disqus_comments_wrapper' );
+      add_action( 'tc_after_comments_template'  , 'tc_disqus_comments_wrapper' );
+      function tc_disqus_comments_wrapper() {
+        if ( ! tc_disqus_comments_enabled() )
+          return;
+
+        switch ( current_filter() ) {
+          case 'tc_before_comments_template' : echo '<div id="tc-disqus-comments">';
+                                               break;
+          case 'tc_after_comments_template'  : echo '</div>';
+        }    
+      }
+    }//end woocommerce compat
 
     /**
     * CUSTOMIZR WRAPPERS
