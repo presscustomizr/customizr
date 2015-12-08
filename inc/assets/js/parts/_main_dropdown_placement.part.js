@@ -220,6 +220,21 @@ var czrapp = czrapp || {};
         //is submenu 2nd level?
         if ( _is_dropdown_submenu ) {
           _offset = parseFloat( $dropdown_menu.css( this._prop ) ) - _dropdown_overflow - 5;
+          //does the parent menu item have "brothers/sisters"? in this case be sure the new position will
+          //not make it completely overlap parent menu item sibling. We can left 50px of space so
+          //the user can access the sibling menu item.
+          //So the condition are:
+          //1) the parent menu item has siblings
+          //and
+          //2) there's a space < 50px between the startin edges of the parent and child dropdown
+          //or
+          //2.1) there's a space < 50px between the ending edges of the parent and child dropdown
+          if ( $_parent_dropdown.next('.menu-item').length ) {
+            var _submenu_overflows_parent = this._get_element_overflow( $dropdown_menu, _offset, $_parent_dropdown );
+            if ( _offset < 50  || _submenu_overflows_parent < 50 ) {
+              _offset = _submenu_overflows_parent - 50;
+            }
+          }
         } else {
           _offset = -20 - _dropdown_overflow; //add some space (20px) on the right(rtl-> left)
           // when is dropdown first level we need to move the top arrow
@@ -245,7 +260,7 @@ var czrapp = czrapp || {};
        if ( 'left' == this._prop ) {
          // the overlfow is: the absolute position left/right of the elemnt + its width - the window's width
          // so it represents the amount of "width" which overflows the window
-         _t_overflow = $dropdown_menu.offset().left + $dropdown_menu.width() - this._window_width;
+         _t_overflow = this._get_element_overflow( $dropdown_menu, $dropdown_menu.offset().left, {}, this._window_width );
          // a positive overflow means that the dropdown goes off the window
          // anyways I decided to adjust its position even if the gap between the end of the dropdown
         // and the window's width is < 5 (6), just to avoid dropdown edges so close to the end of the window
@@ -258,7 +273,12 @@ var czrapp = czrapp || {};
       }
         return overflow;
     },
-
+    //DROPDOWN PLACE SUB CLASS HELPER (private like)
+    //compute the overflow of an element given a parent an an initial left offset
+    _get_element_overflow : function ( $_el, _offset, $_parent, _parent_width ) {
+      _parent_width = $_parent.length ? $_parent.width() : _parent_width;  
+      return $_el.width() + _offset - _parent_width;
+    },
     //DROPDOWN PLACE SUB CLASS HELPER (private like)
     //compute and set the dropdown first level top arrow offset
     //which is the original offset for the pseudo element before and after minus the
