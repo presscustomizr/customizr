@@ -448,7 +448,9 @@ class TC_post_list {
   */
   function tc_set_post_list_layout( $_layout ) {
     $_position                  = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
-    $_layout['alternate']        = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_alternate' ) ) ) ? false : true;
+    //since 3.4.16 the alternate layout is not available when the position is top or bottom
+    $_layout['alternate']        = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_alternate' ) ) 
+                                   || in_array( $_position, array( 'top', 'bottom') ) ) ? false : true;
     $_layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
     $_layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
     $_layout['thumb']            = ( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $_layout['thumb'];
