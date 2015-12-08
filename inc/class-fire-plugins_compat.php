@@ -1003,13 +1003,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         */
         $_header_layout  = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
         $_resp_pos_css   = 'right' == $_header_layout ? 'float: left;' : '';
-        $_wc_li_t_align  = 'left';
+        $_wc_t_align     = 'left';
         //dropdown top arrow, as we open the drodpdown on the right we have to move the top arrow accordingly
         $_dd_top_arrow   = '.navbar .tc-wc-menu .nav > li > .dropdown-menu:before { right: 9px; left: auto;} .navbar .tc-wc-menu .nav > li > .dropdown-menu:after { right: 10px; left: auto; }';
 
         //rtl custom css
         if ( is_rtl() ) {
-          $_wc_li_t_align = 'right';
+          $_wc_t_align   = 'right';
           $_dd_top_arrow = '';
         }
         return sprintf( "%s\n%s",
@@ -1066,11 +1066,11 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                .tc-header .tc-wc-menu .woocommerce.widget_shopping_cart li {
                  padding-right: 1em;
                  padding-left: 1em;
-                 $_wc_li_t_align;
+                 text-align: $_wc_t_align;
                  font-size: inherit; font-family: inherit;
                }
                .tc-wc-menu .widget_shopping_cart .product_list_widget li a.remove {
-                 position: relative; float: left; top: auto;
+                 position: relative; float: left; top: auto; margin-right: 0.2em;
                }
                /* hack for the first letter issue */
                .tc-wc-menu .count:before {
