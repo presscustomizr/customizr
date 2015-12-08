@@ -285,6 +285,22 @@
         }
       }
     },
+    'tc_post_list_thumb_shape' : {
+      controls: [
+        'tc_post_list_thumb_height'
+      ],
+      callback: function (to) {
+        return to.indexOf('rectangular') > -1;
+      }
+    },
+    'tc_post_list_thumb_position' : {
+      controls: [
+        'tc_post_list_thumb_alternate'
+      ],
+      callback: function (to) {
+        return _.contains( [ 'left', 'right'], to );
+      }
+    },
     'tc_post_list_show_thumb' : {
       controls: [
         'tc_post_list_use_attachment_as_thumb',
@@ -301,14 +317,7 @@
       //display dependant if master setting value == value
       cross: {
         tc_post_list_thumb_height : { master : 'tc_post_list_thumb_shape' , callback : function (to) { return to.indexOf('rectangular') > -1; } },
-      }
-    },
-    'tc_post_list_thumb_shape' : {
-      controls: [
-        'tc_post_list_thumb_height'
-      ],
-      callback: function (to) {
-        return to.indexOf('rectangular') > -1;
+        tc_post_list_thumb_alternate: { master: 'tc_post_list_thumb_position', callback: function (to) { return _.contains( [ 'left', 'right'], to ); } }
       }
     },
     'tc_breadcrumb' : {
