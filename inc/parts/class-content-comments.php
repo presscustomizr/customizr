@@ -73,8 +73,9 @@ if ( ! class_exists( 'TC_comments' ) ) :
       function tc_comments() {
         if ( ! $this -> tc_are_comments_enabled() )
           return;
-
-        comments_template( '' , true );
+        do_action('tc_before_comments_template');
+          comments_template( '' , true );
+        do_action('tc_after_comments_template');
       }
 
 
@@ -338,9 +339,10 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
       global $post;
       //checks if comments are opened AND if there are any comments to display
-      return sprintf('%1$s <span class="comments-link"><a href="%2$s#tc-comment-title" title="%3$s %4$s">%5$s</a></span>',
+      return sprintf('%1$s <span class="comments-link"><a href="%2$s%3$s" title="%4$s %5$s" data-disqus-identifier="javascript:this.page.identifier">%6$s</a></span>',
         $_title,
         is_singular() ? '' : get_permalink(),
+        apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title'),
         sprintf( '%1$s %2$s' , get_comments_number(), __( 'Comment(s) on' , 'customizr' ) ),
         is_null($_title) ? esc_attr( strip_tags( $post -> post_title ) ) : esc_attr( strip_tags( $_title ) ),
         0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) ) : ''
