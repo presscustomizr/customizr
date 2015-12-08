@@ -4531,14 +4531,18 @@ var czrapp = czrapp || {};
     centerImages : function() {
       //SLIDER IMG + VARIOUS
       setTimeout( function() {
-        $( '.carousel .carousel-inner').centerImages( {
-          enableCentering : 1 == TCParams.centerSliderImg,
-          imgSel : '.item .carousel-image img',
-          oncustom : ['slid', 'simple_load'],
-          defaultCSSVal : { width : '100%' , height : 'auto' },
-          useImgAttr : true
-        });
-        $('.tc-slider-loader-wrapper').hide();
+        //centering per slider
+        $.each( $( '.carousel .carousel-inner') , function() {  
+          $( this ).centerImages( {
+            enableCentering : 1 == TCParams.centerSliderImg,
+            imgSel : '.item .carousel-image img',
+            oncustom : ['slid', 'simple_load'],
+            defaultCSSVal : { width : '100%' , height : 'auto' },
+            useImgAttr : true
+          });
+          //fade out the loading icon per slider
+          $( this ).prevAll('.tc-slider-loader-wrapper').fadeOut();
+        });  
       } , 50);
 
       //Featured Pages
