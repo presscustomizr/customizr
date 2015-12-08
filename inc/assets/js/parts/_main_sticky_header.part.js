@@ -200,7 +200,7 @@ var czrapp = czrapp || {};
           logoH = this.logo._logo.originalHeight();
 
       //check that all numbers are valid before using division
-      if ( 0 === _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
+      if ( 2 != _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
         return;
 
       this.logo._ratio = logoW / logoH;
