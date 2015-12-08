@@ -2853,7 +2853,7 @@ var TCParams = TCParams || {};
   var pluginName = 'imgSmartLoad',
       defaults = {
         load_all_images_on_first_scroll : false,
-        attribute : 'data-src',
+        attribute : [ 'data-src', 'data-srcset' ],
         excludeImg : '',
         threshold : 200,
         fadeIn_options : { duration : 400 },
@@ -2873,7 +2873,7 @@ var TCParams = TCParams || {};
   //can access this.element and this.option
   Plugin.prototype.init = function () {
     var self        = this,
-        $_imgs   = $( 'img[' + this.options.attribute + ']:not('+ this.options.excludeImg.join() +')' , this.element );
+        $_imgs   = $( 'img[' + this.options.attribute[0] + ']:not('+ this.options.excludeImg.join() +')' , this.element );
     
     this.increment  = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
     this.timer      = 0;
@@ -2950,17 +2950,25 @@ var TCParams = TCParams || {};
   * replace src place holder by data-src attr val which should include the real src
   */
   Plugin.prototype._load_img = function( _img ) {
-    var $_img = $(_img),
-        _src  = $_img.attr( this.options.attribute ),
+    var $_img    = $(_img),
+        _src     = $_img.attr( this.options.attribute[0] ),
+        _src_set = $_img.attr( this.options.attribute[1] ),
         self = this;
 
     $_img.parent().addClass('smart-loading');
 
     $_img.unbind('load_img')
     .hide()
-    .removeAttr( this.options.attribute )
-    .attr('src' , _src )
+    //https://api.jquery.com/removeAttr/
+    //An attribute to remove; as of version 1.7, it can be a space-separated list of attributes.
+    //minimum supported wp version (3.4+) embeds jQuery 1.7.2
+    .removeAttr( this.options.attribute.join(' ') )
+    .attr( 'srcset' , _src_set )
+    .attr('src', _src )
     .load( function () {
+        console.log('here');
+      //prevent calling this twice on an already smartloaded img  
+      if ( $_img.hasClass('tc-smart-loaded') ) return;
       $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded').trigger('smartload');
     });//<= create a load() fn
     //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
@@ -5265,7 +5273,7 @@ var czrapp = czrapp || {};
           logoH = this.logo._logo.originalHeight();
 
       //check that all numbers are valid before using division
-      if ( 0 === _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
+      if ( 2 != _.size( _.filter( [ logoW, logoH ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
         return;
 
       this.logo._ratio = logoW / logoH;
@@ -5834,6 +5842,21 @@ var czrapp = czrapp || {};
         //is submenu 2nd level?
         if ( _is_dropdown_submenu ) {
           _offset = parseFloat( $dropdown_menu.css( this._prop ) ) - _dropdown_overflow - 5;
+          //does the parent menu item have "brothers/sisters"? in this case be sure the new position will
+          //not make it completely overlap parent menu item sibling. We can left 50px of space so
+          //the user can access the sibling menu item.
+          //So the condition are:
+          //1) the parent menu item has siblings
+          //and
+          //2) there's a space < 50px between the startin edges of the parent and child dropdown
+          //or
+          //2.1) there's a space < 50px between the ending edges of the parent and child dropdown
+          if ( $_parent_dropdown.next('.menu-item').length ) {
+            var _submenu_overflows_parent = this._get_element_overflow( $dropdown_menu, _offset, $_parent_dropdown );
+            if ( _offset < 50  || _submenu_overflows_parent < 50 ) {
+              _offset = _submenu_overflows_parent - 50;
+            }
+          }
         } else {
           _offset = -20 - _dropdown_overflow; //add some space (20px) on the right(rtl-> left)
           // when is dropdown first level we need to move the top arrow
@@ -5859,7 +5882,7 @@ var czrapp = czrapp || {};
        if ( 'left' == this._prop ) {
          // the overlfow is: the absolute position left/right of the elemnt + its width - the window's width
          // so it represents the amount of "width" which overflows the window
-         _t_overflow = $dropdown_menu.offset().left + $dropdown_menu.width() - this._window_width;
+         _t_overflow = this._get_element_overflow( $dropdown_menu, $dropdown_menu.offset().left, {}, this._window_width );
          // a positive overflow means that the dropdown goes off the window
          // anyways I decided to adjust its position even if the gap between the end of the dropdown
         // and the window's width is < 5 (6), just to avoid dropdown edges so close to the end of the window
@@ -5872,7 +5895,12 @@ var czrapp = czrapp || {};
       }
         return overflow;
     },
-
+    //DROPDOWN PLACE SUB CLASS HELPER (private like)
+    //compute the overflow of an element given a parent an an initial left offset
+    _get_element_overflow : function ( $_el, _offset, $_parent, _parent_width ) {
+      _parent_width = $_parent.length ? $_parent.width() : _parent_width;  
+      return $_el.width() + _offset - _parent_width;
+    },
     //DROPDOWN PLACE SUB CLASS HELPER (private like)
     //compute and set the dropdown first level top arrow offset
     //which is the original offset for the pseudo element before and after minus the

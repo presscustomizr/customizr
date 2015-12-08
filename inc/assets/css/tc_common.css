@@ -7429,6 +7429,10 @@ footer#footer .colophon a,
 footer#footer .colophon p {
   color: #5a5a5a;
 }
+footer#footer .colophon .credits span[class*=text],
+footer#footer .colophon .credits a {
+  display: inline-block;
+}
 footer .widget_recent_entries li:after {
   border-bottom: none;
 }
@@ -8994,7 +8998,7 @@ li#wp-admin-bar-tc-customizr a {
   .nav-collapse.collapse.in .nav {
     display: block;
   }
-  .navbar div > ul.nav > .menu-item:first-child > a {
+  .tc-header:not(.tc-second-menu-on) .navbar div > ul.nav > .menu-item:first-child > a {
     padding-left: 15px;
   }
   .nav-collapse .nav > li > a,
