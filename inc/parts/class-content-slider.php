@@ -129,12 +129,21 @@ class TC_slider {
     $alt                    = apply_filters( 'tc_slide_background_alt' , trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true))) );
 
     $slide_background_attr  = array( 'class' => 'slide' , 'alt' => $alt );
-    
+
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      if ( 0 == esc_attr( TC_utils::$inst->tc_opt('tc_resp_slider_img') ) ) { 
+      if ( 0 == esc_attr( TC_utils::$inst->tc_opt('tc_resp_slider_img') ) ) {
         $slide_background_attr['srcset'] = " ";
-        add_filter( 'wp_get_attachment_image_attributes', array( TC_post_thumbnails::$instance, 'tc_remove_srcset_attr' ) ); 
+        //trick, => will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
+        //only when the passed srcset attr is not empty. This will avoid us to:
+        //a) add a filter to get rid of already computed srcset
+        // or
+        //b) use preg_replace to get rid of srcset and sizes attributes from the generated html
+        //Side effect:
+        //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html
+        //to avoid this we filter the attributes getting rid of the srcset if any.
+        //Basically this trick, even if ugly, will avoid the srcset attr computation
+        add_filter( 'wp_get_attachment_image_attributes', array( TC_post_thumbnails::$instance, 'tc_remove_srcset_attr' ) );
       }
     $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
 
@@ -404,7 +413,7 @@ class TC_slider {
       'limit'               => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_number' ) ),
       'link_type'           => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_link') ),
     );
-    
+
     $args         = apply_filters( 'tc_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
 
@@ -419,7 +428,7 @@ class TC_slider {
     // b) the transient doesn't exist
     if ( false !== $pre_slides )
       return $pre_slides;
-    
+
     //retrieve posts from the db
     $queried_posts    = $this -> tc_query_posts_slider( $args );
 
@@ -601,7 +610,7 @@ class TC_slider {
              $limit,
              $offset
     );
-    
+
     $sql = apply_filters( 'tc_query_posts_slider_sql', $sql, $args );
 
     $_posts = $wpdb->get_results( $sql );
@@ -888,7 +897,7 @@ class TC_slider {
 
     //display edit link for logged in users with  edit_post capabilities
     //upload_files cap isn't a good lower limit 'cause for example and Author can upload_files but actually cannot edit medias he/she hasn't uploaded
-    
+
     $show_slide_edit_link  = ( is_user_logged_in() && current_user_can( 'edit_post', $id ) ) ? true : false;
     $show_slide_edit_link  = apply_filters('tc_show_slide_edit_link' , $show_slide_edit_link && ! is_null($data['link_id']), $id );
 
@@ -917,7 +926,7 @@ class TC_slider {
   function tc_render_slider_edit_link_view( $slides, $slider_name_id ) {
     if ( 'demo' == $slider_name_id )
       return;
-    
+
     $show_slider_edit_link    = false;
 
     //We have to show the slider edit link to
@@ -927,11 +936,11 @@ class TC_slider {
       $show_slider_edit_link = ( is_user_logged_in() && current_user_can('edit_theme_options') ) ? true : false;
       $_edit_link            = TC_utils::tc_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     }else if ( is_singular() ){ // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
-      global $post;  
+      global $post;
       $show_slider_edit_link = ( is_user_logged_in() && ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ) ? true : false;
       $_edit_link            = get_edit_post_link( $post -> ID ) . '#slider_sectionid';
     }
- 
+
     $show_slider_edit_link = apply_filters( 'tc_show_slider_edit_link' , $show_slider_edit_link, $slider_name_id );
     if ( ! $show_slider_edit_link )
       return;
@@ -1132,9 +1141,9 @@ class TC_slider {
   */
   private function tc_is_slider_loader_active( $slider_name_id ) {
     //The slider loader must be printed when
-    //a) we have to render the demo slider  
-    //b) display slider loading option is enabled (can be filtered) 
-    return ( 'demo' == $slider_name_id 
+    //a) we have to render the demo slider
+    //b) display slider loading option is enabled (can be filtered)
+    return ( 'demo' == $slider_name_id
         || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ), $slider_name_id )
     );
   }
@@ -1181,7 +1190,7 @@ class TC_slider {
         $_css = sprintf( "$_css\n%s",
          ".tc-slider-loader-wrapper .tc-img-gif-loader {
             background: url('$_slider_loader_src') no-repeat center center;
-         }"      
+         }"
         );
     }
 
@@ -1282,13 +1291,13 @@ class TC_slider {
   * @since Customizr 3.4.9
   */
   function tc_cache_posts_slider( $args = array() ) {
-    $defaults = array (  
+    $defaults = array (
       //use the home slider_width
       'img_size'        => 1 == TC_utils::$inst->tc_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
       'load_transient'  => false,
       'store_transient' => true,
       'transient_name'  => 'tc_posts_slides'
-    ); 
+    );
     $this -> tc_get_pre_posts_slides( wp_parse_args( $args, $defaults) );
   }
 
