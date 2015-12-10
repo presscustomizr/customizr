@@ -2966,7 +2966,6 @@ var TCParams = TCParams || {};
     .attr( 'srcset' , _src_set )
     .attr('src', _src )
     .load( function () {
-        console.log('here');
       //prevent calling this twice on an already smartloaded img  
       if ( $_img.hasClass('tc-smart-loaded') ) return;
       $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded').trigger('smartload');
