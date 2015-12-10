@@ -928,8 +928,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
             'tc-woocommerce-panel' => array(
                   'priority'       => 50,
                   'capability'     => 'edit_theme_options',
-                  'title'          => __( 'Woocommerce options' , 'customizr' ),
-                  'description'    => __( "Woocommerce settings for the Customizr theme." , 'customizr' )
+                  'title'          => __( 'WooCommerce options' , 'customizr' ),
+                  'description'    => __( "WooCommerce settings for the Customizr theme." , 'customizr' )
             )
         );
         return array_merge( $panel_map, $tc_woocommerce_panel_map );
@@ -966,7 +966,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         //highlight the cart icon when in the Cart page
         if ( is_cart() ) {
           $_main_item_class = 'current-menu-item';
-        }    
+        }
 
        ?>
        <div class="tc-wc-menu tc-open-on-hover span1">
@@ -979,7 +979,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
             </a>
             <?php
             ?>
-            <?php if ( ! is_cart () ) { //do not display the dropdown in the cart page ?> 
+            <?php if ( ! is_cart () ) { //do not display the dropdown in the cart page ?>
               <ul class="dropdown-menu">
                <li>
                  <?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
@@ -991,7 +991,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         </div>
       <?php
       }
-     
+
       add_filter('tc_user_options_style', 'tc_woocommerce_header_cart_css');
       function tc_woocommerce_header_cart_css( $_css ) {
         if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
@@ -1015,33 +1015,33 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         return sprintf( "%s\n%s",
               $_css,
               ".sticky-enabled .tc-header .tc-wc-menu { display: none; }
-               .tc-header .tc-wc-menu .nav { 
+               .tc-header .tc-wc-menu .nav {
                  text-align: right;
                }
-               $_dd_top_arrow 
-               .tc-header .tc-wc-menu .dropdown-menu { 
+               $_dd_top_arrow
+               .tc-header .tc-wc-menu .dropdown-menu {
                   right: 0; left: auto; width: 250px; padding: 2px;
                }
-               .tc-header .tc-wc-menu { 
+               .tc-header .tc-wc-menu {
                  float: right; clear:none; margin-top: 10px;
                }
                .tc-header .tc-wc-menu .nav > li {
                  float:none;
                }
                .tc-wc-menu ul.dropdown-menu .buttons a,
-               .tc-wc-menu ul { 
-                 width: 100%; 
-                 -webkit-box-sizing: border-box; 
-                 -moz-box-sizing: border-box; 
+               .tc-wc-menu ul {
+                 width: 100%;
+                 -webkit-box-sizing: border-box;
+                 -moz-box-sizing: border-box;
                  box-sizing: border-box;
                }
-               .tc-wc-menu ul.dropdown-menu .buttons a { 
+               .tc-wc-menu ul.dropdown-menu .buttons a {
                  margin: 10px 5px 0 0px; text-align: center;
                }
-               .tc-wc-menu .nav > li > a:before { 
+               .tc-wc-menu .nav > li > a:before {
                  content: '\\f447';
                  font-family: 'genericons';
-                 speak:none; position:absolute; 
+                 speak:none; position:absolute;
                  top:-.1em; font-size:1.8em; left: 0;
                }
                .tc-header .tc-wc-menu .nav > li > a {
@@ -1049,12 +1049,12 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                  padding-right: 0 !important;
                  padding-left: 0 !important;
                  display:inline-block;
-                 border-bottom: none; 
+                 border-bottom: none;
                  text-align: right;
                  height: 1em;
                  min-width:1.8em;
                }
-               .tc-wc-menu .count { 
+               .tc-wc-menu .count {
                  font-size: 0.7em;
                  margin-left: 2.1em;
                  pointer-events: none;
@@ -1081,7 +1081,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                  overflow-y: auto;
                  padding: 1em 0;
                }
-               @media (max-width: 979px) { 
+               @media (max-width: 979px) {
                 .tc-wc-menu[class*=span] { width: auto; margin:18px 0 0 0; $_resp_pos_css }
                 .tc-wc-menu .dropdown-menu { display: none !important;}
                }
@@ -1148,7 +1148,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           case 'tc_before_comments_template' : echo '<div id="tc-disqus-comments">';
                                                break;
           case 'tc_after_comments_template'  : echo '</div>';
-        }    
+        }
       }
     }//end woocommerce compat
 
