@@ -43,6 +43,32 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.16 December 10th 2015 =
+* Added: WooCommerce cart in the header
+* Added: Turkish (tr_TR) translation files
+* Added: Front js - new js class to better place dropdowns submenus avoiding overflowing the window
+* Fix: allow smartload in wp 4.4 (responsive images)
+* Fix: alternate layout is available only if thumb position is right/left. Also fixes the alternate layout thumbnail's height control visibility
+* Fix: do not display colophon's back to top text when back to top arrow button is enabled
+* Fix: rtl colophon's layout fixes
+* Fix: remove unneeded css code for the secondary menu dropdown top arrow
+* Fix: allow smartload when jetpack's sharing enabled
+* Fix: fix some issues regarding to smartload and centering imgs
+* Fix: show second-menu dropdown-submenu arrow anyways
+* Fix: WPML customizr option name
+* Fix: allow logo transition only when both w,h are available.
+* Fix: fix padding for the first menu-item in responsive menu
+* Fix: remove unsupported turkish translation files
+* Fix: Front-js - new js event triggered for sticky header and sidenav
+* Fix: limit dropdown top arrow adjustment to the tc-wc-menu
+* Fix: some CSS fixes for parent dropdown submenus in secondary menu
+* Fix: allow slides translations in post/pages
+* Updated : Dutch translation. Thanks to Helena Handa
+* Updated: Brazilian Portuguese translation
+* Updated: japanese translation
+* Updated Farsi translation
+* Improved : disable all front end notices when customizing
+
 = 3.4.15 November 14th 2015 =
 * Fix: wrong variable declaration in the main front js file
 * Updated: Norwegian translation. Thanks to Marvin Wiik.
