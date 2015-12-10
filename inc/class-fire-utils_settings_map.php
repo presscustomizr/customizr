@@ -381,7 +381,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                    IMAGE SECTION
     ------------------------------------------------------------------------------------------------------*/
     function tc_images_option_map( $get_default = null ) {
-      return array(
+      global $wp_version;
+
+      $_image_options =  array(
               'tc_fancybox' =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
@@ -439,6 +441,28 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'    => __( 'This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio.' , 'customizr' ),
               )
       );//end of images options
+      //add responsive image settings for wp >= 4.4
+      if ( version_compare( $wp_version, '4.4', '>=' ) )
+        $_image_options = array_merge( $_image_options, array(
+               'tc_resp_slider_img'  =>  array(
+                                'default'     => 0,
+                                'control'     => 'TC_controls' ,
+                                'title'       => __( 'Responsive settings', 'customizr' ),
+                                'label'       => __( "Enable WP responsive image feature for the slider" , "customizr" ),
+                                'section'     => 'images_sec' ,
+                                'type'        => 'checkbox' ,
+              ),
+              'tc_resp_thumbs_img'  =>  array(
+                                'default'     => 0,
+                                'control'     => 'TC_controls' ,
+                                'label'       => __( "Enalbe WP responsive image feature for the theme's thumbnails" , "customizr" ),
+                                'section'     => 'images_sec' ,
+                                'type'        => 'checkbox' ,
+              )
+          )
+        );
+
+      return $_image_options;  
     }
 
 
