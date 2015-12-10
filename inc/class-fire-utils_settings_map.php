@@ -449,7 +449,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls' ,
                                 'title'       => __( 'Responsive settings', 'customizr' ),
                                 'label'       => __( "Enable the WordPress responsive image feature for the slider" , "customizr" ),
-                                'notice'      => __( 'This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor sides effects on some of your existings images. Check / uncheck this option to safely verify that your images are displayed nicely.' , 'customizr' ),
                                 'section'     => 'images_sec' ,
                                 'type'        => 'checkbox' ,
               ),
@@ -458,7 +457,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'control'     => 'TC_controls' ,
                                 'label'       => __( "Enable the WordPress responsive image feature for the theme's thumbnails" , "customizr" ),
                                 'section'     => 'images_sec' ,
-                                'notice'      => __( 'This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor sides effects on some of your existings images. Check / uncheck this option to safely verify that your images are displayed nicely.' , 'customizr' ),
+                                'notice'      => __( 'This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor side effects on some of your existing images. Check / uncheck this option to safely verify that your images are displayed nicely.' , 'customizr' ),
                                 'type'        => 'checkbox' ,
               )
           )
