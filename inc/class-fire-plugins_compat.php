@@ -847,7 +847,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                                                   break;
         }//end of switch on hook
       }//end of nested function
-
+      //Helper
+      function tc_wc_is_checkout_cart() {
+        return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
+      }
       // use Customizr title
       // initially used to display the edit button
       add_filter( 'the_title', 'tc_woocommerce_the_title' );
@@ -963,8 +966,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
         $_main_item_class = '';
         $_cart_count      = WC()->cart->get_cart_contents_count();
-        //highlight the cart icon when in the Cart page
-        if ( is_cart() ) {
+        //highlight the cart icon when in the Cart or Ceckout page
+        if ( tc_wc_is_checkout_cart() ) {
           $_main_item_class = 'current-menu-item';
         }
 
@@ -979,13 +982,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
             </a>
             <?php
             ?>
-            <?php if ( ! is_cart () ) { //do not display the dropdown in the cart page ?>
+            <?php if ( ! tc_wc_is_checkout_cart() ) : //do not display the dropdown in the cart or checkout page ?>
               <ul class="dropdown-menu">
                <li>
                  <?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
                 </li>
               </ul>
-            <?php } ?>
+            <?php endif; ?>
            </li>
           </ul>
         </div>
