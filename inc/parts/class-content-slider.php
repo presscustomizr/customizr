@@ -127,7 +127,16 @@ class TC_slider {
 
     //attachment image
     $alt                    = apply_filters( 'tc_slide_background_alt' , trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true))) );
-    $slide_background       = wp_get_attachment_image( $id, $img_size, false, array( 'class' => 'slide' , 'alt' => $alt ) );
+
+    $slide_background_attr  = array( 'class' => 'slide' , 'alt' => $alt );
+    
+    //allow responsive images?
+    if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
+      if ( 0 == esc_attr( TC_utils::$inst->tc_opt('tc_resp_slider_img') ) ) { 
+        $slide_background_attr['srcset'] = " ";
+        add_filter( 'wp_get_attachment_image_attributes', array( TC_post_thumbnails::$instance, 'tc_remove_srcset_attr' ) ); 
+      }
+    $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
 
     //adds all values to the slide array only if the content exists (=> handle the case when an attachment has been deleted for example). Otherwise go to next slide.
     if ( !isset($slide_background) || empty($slide_background) )
@@ -164,7 +173,7 @@ class TC_slider {
     $ID                     = $_post->ID;
 
     //attachment image
-    $thumb                  = TC_post_thumbnails::$instance -> tc_get_thumbnail_model($img_size, $ID);
+    $thumb                  = TC_post_thumbnails::$instance -> tc_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
     // we don't want to show slides with no image
     if ( ! $slide_background )
@@ -427,6 +436,9 @@ class TC_slider {
     add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
     /*** end tc_thumb setup ***/
 
+    //allow responsive images?
+    if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
+      $args['slider_responsive_images'] = 0 == esc_attr( TC_utils::$inst->tc_opt('tc_resp_slider_img') ) ? false : true ;
 
     /* Get the pre_model */
     $pre_slides = $pre_slides_posts = array();

@@ -44,6 +44,7 @@ The exceptions to this license are as follows:
 * Added: WooCommerce cart in the header
 * Added: Turkish (tr_TR) translation files
 * Added: Front js - new js class to better place dropdowns submenus avoiding overflowing the window
+* Added: Images compatibility with wp 4.4+. Added customizer options to disable the default responsive images behaviour for slider and thumbnails.
 * Fix: allow smartload in wp 4.4 (responsive images)
 * Fix: alternate layout is available only if thumb position is right/left. Also fixes the alternate layout thumbnail's height control visibility
 * Fix: do not display colophon's back to top text when back to top arrow button is enabled
