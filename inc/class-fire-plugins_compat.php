@@ -1193,7 +1193,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
         <?php do_action( '__after_main_container' ); ?>
 
-      </div><!--#main-wrapper"-->
+      </div><!-- //#main-wrapper -->
       <?php
     }
 
