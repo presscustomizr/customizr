@@ -185,6 +185,21 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_buddypress_disable_comments($bool){
         return ( is_page() && function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
       }
+      //disable smartload in change-avatar buddypress profile page
+      //to avoid the img tag (in a template loaded with backbone) being parsed on server side but
+      //not correctly processed by the front js.
+      //the action hook "xprofile_screen_change_avatar" is a buddypress specific hook
+      //fired before wp_head where we hook tc_parse_imgs
+      //side-effect: all the images in this pages will not be smartloaded, this isn't a big deal
+      //as there should be at maximum 2 images there:
+      //1) the avatar, if already set
+      //2) a cover image, if already set
+      //anyways this page is not a regular "front" page as it pertains more to a "backend" side
+      //if we can call it that way.
+      add_action( 'xprofile_screen_change_avatar', 'tc_buddypress_maybe_disable_img_smartload' );
+      function tc_buddypress_maybe_disable_img_smartload() {
+        add_filter( 'tc_opt_tc_img_smart_load', '__return_false' );
+      }
     }
 
     /**
