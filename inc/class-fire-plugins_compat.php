@@ -998,7 +998,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_filter('tc_user_options_style', 'tc_woocommerce_header_cart_css');
       function tc_woocommerce_header_cart_css( $_css ) {
         if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
-          return;
+          return $_css;
+
         /* The only real decision I took here is the following:
         * I let the "count" number possibily overflow the parent (span1) width
         * so that as it grows it won't break on a new line. This is quite an hack to
