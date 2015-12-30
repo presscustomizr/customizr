@@ -129,8 +129,13 @@ var czrapp = czrapp || {};
             defaultCSSVal : { width : '100%' , height : 'auto' },
             useImgAttr : true
           });
-          //fade out the loading icon per slider
-          $( this ).prevAll('.tc-slider-loader-wrapper').fadeOut();
+          //fade out the loading icon per slider with a little delay
+          //mostly for retina devices (the retina image will be downloaded afterwards
+          //and this may cause the re-centering of the image)
+          var self = this;
+          setTimeout( function() {
+              $( self ).prevAll('.tc-slider-loader-wrapper').fadeOut();
+          }, 500 );
         });  
       } , 50);
 
