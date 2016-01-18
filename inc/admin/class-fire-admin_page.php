@@ -343,12 +343,14 @@ foreach ( $plugins as $plugin_path ) {
 
   echo $plugin['Name'] . ' :' . $plugin['Version'] ."\n";
 }
-
 endif;
+//GET MYSQL VERSION
+global $wpdb;
+$mysql_ver =  ( ! empty( $wpdb->use_mysqli ) && $wpdb->use_mysqli ) ? @mysqli_get_server_info( $wpdb->dbh ) : @mysql_get_server_info();
 ?>
 
 PHP Version:              <?php echo PHP_VERSION . "\n"; ?>
-MySQL Version:            <?php echo @mysql_get_server_info() . "\n"; ?>
+MySQL Version:            <?php echo $mysql_ver . "\n"; ?>
 Web Server Info:          <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
 
 WordPress Memory Limit:   <?php echo ( $this -> tc_let_to_num( WP_MEMORY_LIMIT )/( 1024 ) )."MB"; ?><?php echo "\n"; ?>
