@@ -133,7 +133,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       private function tc_regex_callback( $matches ) {
         $_placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-        if ( false !== strpos( 'data-src', $matches[0] ) ||
+        if ( false !== strpos( $matches[0], 'data-src' ) ||
             preg_match('/ data-smartload *= *"false" */', $matches[0]) )
           return $matches[0];    
         else
