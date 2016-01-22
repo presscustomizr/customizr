@@ -356,11 +356,12 @@ if ( ! class_exists( 'TC_post_metas' ) ) :
         * @since Customizr 3.3.2
         */
         private function tc_meta_term_view( $term ) {
-          $_classes     =  array( 'btn' , 'btn-mini' );
-          if ( isset( $term -> category_parent ) ) //<= check if hierarchical (category) or not (tag)
+          $_classes         =  array( 'btn' , 'btn-mini' );
+          $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
+          if ( $_is_hierarchical ) //<= check if hierarchical (category) or not (tag)
             array_push( $_classes , 'btn-tag' );
 
-          $_classes      = implode( ' ', apply_filters( 'tc_meta_tax_class', $_classes , isset( $term -> category_parent ) ) );
+          $_classes      = implode( ' ', apply_filters( 'tc_meta_tax_class', $_classes , $_is_hierarchical, $term ) );
 
           // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
           // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
