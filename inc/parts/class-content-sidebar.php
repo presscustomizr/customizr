@@ -101,7 +101,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
 
                 do_action( "__after_{$position}_sidebar" );
               ?>
-            </div><!-- #left or #right-->
+            </div><!-- //#left or //#right -->
         </div><!--.tc-sidebar -->
 
         <?php
