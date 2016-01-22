@@ -51,6 +51,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_theme_support( 'sensei' );
       add_theme_support( 'visual-composer' );//or js-composer as they call it
       add_theme_support( 'disqus' );
+      add_theme_support( 'uris' );
     }
 
 
@@ -121,7 +122,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       /* Disqus Comment System */
       if ( current_theme_supports( 'disqus') && $this -> tc_is_plugin_active('disqus-comment-system/disqus.php') )
         $this -> tc_set_disqus_compat();
-
+ 
+      /* Ultimate Responsive Image Slider  */
+      if ( current_theme_supports( 'uris' ) && $this -> tc_is_plugin_active('ultimate-responsive-image-slider/ultimate-responsive-image-slider.php') )
+        $this -> tc_set_uris_compat();
     }//end of plugin compatibility function
 
 
@@ -1153,7 +1157,34 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           case 'tc_after_comments_template'  : echo '</div>';
         }
       }
-    }//end woocommerce compat
+    }//end disqus compat
+
+
+    /**
+    * Ultimate Responsive Image Slider compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    private function tc_set_uris_compat() {
+      add_filter ( 'tc_img_smart_load_options', 'tc_uris_disable_img_smartload' ) ;
+      function tc_uris_disable_img_smartload( $options ){
+        if ( ! is_array( $options ) )
+          $options = array();
+        
+        if ( ! is_array( $options['opts'] ) )
+          $options['opts'] = array();
+
+        if ( ! is_array( $options['opts']['excludeImg'] ) )
+          $options['opts']['excludeImg'] = array();
+
+        $options['opts']['excludeImg'][] = '.sp-image';
+
+        return $options;
+      }
+    }//end uris compat
+
+
 
     /**
     * CUSTOMIZR WRAPPERS
