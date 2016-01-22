@@ -107,11 +107,13 @@ var czrapp = czrapp || {};
     //BACK TO TOP
     backToTop : function() {
       var $_html = $("html, body"),
-          _backToTop = function($) {
-            return ($.which > 0 || "mousedown" === $.type || "mousewheel" === $.type) && $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
+          _backToTop = function( evt ) {
+            return ( evt.which > 0 || "mousedown" === evt.type || "mousewheel" === evt.type) && $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
           };
 
-      $(".back-to-top, .tc-btt-wrapper, .btt-arrow").on("click touchstart touchend", function ($) {
+      $(".back-to-top, .tc-btt-wrapper, .btt-arrow").on("click touchstart touchend", function ( evt ) {
+        evt.preventDefault();
+        evt.stopPropagation();
         $_html.on( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
         $_html.animate({
             scrollTop: 0
@@ -119,7 +121,6 @@ var czrapp = czrapp || {};
             $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
             //czrapp.$_window.trigger('resize');
         });
-        $.preventDefault();
       });
     },
 
