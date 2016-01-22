@@ -1007,7 +1007,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                         );
                       ?>
                    </div>
-              </div><!-- #tc_slides_table -->
+              </div><!-- //#tc_slides_table -->
          <?php endif; // empty( $current_post_slides? ?>
         <?php
       }

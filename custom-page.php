@@ -44,6 +44,6 @@ Template Name: Custom Page Example
 
     <?php do_action( '__after_main_container' ); ?>
 
-</div><!--#main-wrapper"-->
+</div><!-- //#main-wrapper -->
 
 <?php do_action( '__after_main_wrapper' );##hook of the footer with get_get_footer ?>

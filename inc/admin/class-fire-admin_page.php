@@ -228,7 +228,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
             is_blog_admin() ? _e( 'Go to Dashboard &rarr; Home','customizr' ) : _e( 'Go to Dashboard','customizr' ); ?></a>
         </div>
 
-      </div><!-- #customizr-admin-panel -->
+      </div><!-- //#customizr-admin-panel -->
       <?php
     }
 

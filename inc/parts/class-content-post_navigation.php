@@ -134,7 +134,7 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
                 <?php endif; ?>
               </ul>
 
-          </nav><!-- #<?php echo $html_id; ?> .navigation -->
+          </nav><!-- //#<?php echo $html_id; ?> .navigation -->
 
         <?php elseif ( $wp_query->max_num_pages > 1 &&  'archive' == $_context ) : ?>
 
@@ -188,7 +188,7 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
 
               </ul>
 
-          </nav><!-- #<?php echo $html_id; ?> .navigation -->
+          </nav><!-- //#<?php echo $html_id; ?> .navigation -->
 
         <?php endif; ?>
 

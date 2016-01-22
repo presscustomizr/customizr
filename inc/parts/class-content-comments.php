@@ -213,7 +213,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
                   $comment->comment_ID
                 );//end printf
             ?>
-          <!-- #comment-## -->
+          <!-- //#comment-## -->
         <?php
           break;
         endswitch; // end comment_type check

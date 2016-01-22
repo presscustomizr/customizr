@@ -266,7 +266,7 @@ if ( ! class_exists( 'TC_menu' ) ) :
             <div class="<?php echo $tc_side_nav_inner_class; ?>">
               <?php do_action( '__sidenav' ); ?>
             </div><!--.tc-sn-inner -->
-          </nav><!--#tc-sn-->
+          </nav><!-- //#tc-sn -->
         <?php
       $_sidenav = ob_get_contents();
       ob_end_clean();
