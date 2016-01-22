@@ -23,24 +23,24 @@ msgstr ""
 
 #: admin/class-admin-customize.php:125
 msgid "Assign menus to locations"
-msgstr ""
+msgstr "Alanlara menüleri ata"
 
 #: admin/class-admin-customize.php:133
 #, php-format
 msgid "You haven't created any menu yet. %s or check the %s to learn more about menus."
-msgstr ""
+msgstr "Henüz herhangi bir menü oluşturmadınız. %s veya daha fazla bilgi için %s"
 
 #: admin/class-admin-customize.php:134
 msgid "Create a new menu now"
-msgstr ""
+msgstr "Şimdi yeni bir menü oluştur"
 
 #: admin/class-admin-customize.php:135 class-fire-utils_settings_map.php:1330 parts/class-content-post.php:206
 msgid "WordPress documentation"
-msgstr ""
+msgstr "Wordpress dokümantasyon"
 
 #: admin/class-admin-customize.php:152
 msgid "SITE ICON"
-msgstr ""
+msgstr "SITE İKON"
 
 #: admin/class-admin-customize.php:348
 #, fuzzy
@@ -54,15 +54,15 @@ msgstr "Yorum ayarlarını belirleyin"
 
 #: admin/class-admin-customize.php:463
 msgid "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below."
-msgstr ""
+msgstr "İkonun şu an eski bir metotla kullanılıyor ve tüm cihazlarda düzgün bir şekilde görünmeyecektir. Aşağıdaki yeni kontrol ile tekrar yüklemeyi düşünebilirsiniz."
 
 #: admin/class-admin-customize.php:534
 msgid "dismiss"
-msgstr ""
+msgstr "Görmezden gel"
 
 #: admin/class-admin-customize.php:537
 msgid "Hi! This is"
-msgstr ""
+msgstr "Merhaba! Bu"
 
 #: admin/class-admin-customize.php:539
 #, fuzzy
@@ -87,11 +87,11 @@ msgstr ""
 
 #: admin/class-admin-customize.php:551
 msgid "Hide forever"
-msgstr ""
+msgstr "Sonsuza kadar gizle"
 
 #: admin/class-admin-customize.php:552
 msgid "Let me think twice"
-msgstr ""
+msgstr "İkinci kez düşünmeme izin ver"
 
 #: admin/class-admin-customize.php:561
 msgid "Need more customizations options and premium support ?"
@@ -3167,13 +3167,13 @@ msgstr ""
 #~ msgstr "Modifier le nom du diporama"
 
 #~ msgid "Front Page Widget Area One"
-#~ msgstr "Première zone de widgets de page d'accueil"
+#~ msgstr "Ön sayfa Widget Alan Bir"
 
 #~ msgid "Front Page Widget Area Two"
-#~ msgstr "Deuxième zone de widgets de page d'accueil"
+#~ msgstr "Ön sayfa Widget Alan İki"
 
 #~ msgid "Front Page Widget Area Three"
-#~ msgstr "Troisième zone de widgets de page d'accueil"
+#~ msgstr "Ön sayfa Widget Alan Üç"
 
 #~ msgid "If this field is empty, it will display an excerpt of the page."
 #~ msgstr "Si le champ est vide, un extrait de la page est affiché."
@@ -3191,16 +3191,16 @@ msgstr ""
 #~ msgstr "%"
 
 #~ msgid "View details &raquo;"
-#~ msgstr "Voir les détails &raquo;"
+#~ msgstr "Ayrıntılara bak &raquo;"
 
 #~ msgid "Length of the excerpt (default 200)"
-#~ msgstr "Longueur de l'extrait (200 car. par défaut)"
+#~ msgstr "Özetin uzunluğu (varsayılan 200)"
 
 #~ msgid " checked=\"checked\""
 #~ msgstr " "
 
 #~ msgid "Sample Checkbox"
-#~ msgstr "Exemple"
+#~ msgstr "Örnek Checkbox"
 
 #~ msgid "Appears on posts and pages except the optional Front Page template, which has its own widgets"
 #~ msgstr "Affichée dans les posts et les pages, hormis l"
