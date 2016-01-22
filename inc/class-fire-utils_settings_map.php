@@ -2183,9 +2183,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     function tc_popul_remove_section_map( $_sections ) {
       //customizer option array
       $remove_section = array(
-        'background_image' ,
         'static_front_page' ,
-        'colors',
         'nav',
         'title_tagline',
         'tc_page_comments'
