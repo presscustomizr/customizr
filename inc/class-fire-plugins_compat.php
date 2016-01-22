@@ -57,16 +57,16 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
 
     /**
-    * This function handles the following plugins compatibility : Jetpack (for the carousel addon), Bbpress, Qtranslate, Woocommerce
+    * This function handles the following plugins compatibility : Jetpack (for the carousel addon and photon), Bbpress, Qtranslate, Woocommerce
     *
     * @package Customizr
     * @since Customizr 3.0.15
     */
     function tc_plugins_compatibility() {
       /* JETPACK */
-      //adds compatibilty with the jetpack image carousel
+      //adds compatibilty with the jetpack image carousel and photon
       if ( current_theme_supports( 'jetpack' ) && $this -> tc_is_plugin_active('jetpack/jetpack.php') )
-        add_filter( 'tc_gallery_bool', '__return_false' );
+        $this -> tc_set_jetpack_compat();
 
       /* BBPRESS */
       //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
@@ -127,6 +127,40 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( current_theme_supports( 'uris' ) && $this -> tc_is_plugin_active('ultimate-responsive-image-slider/ultimate-responsive-image-slider.php') )
         $this -> tc_set_uris_compat();
     }//end of plugin compatibility function
+
+
+
+    /**
+    * Jetpack compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    private function tc_set_jetpack_compat() {
+      //jetpack image carousel 
+      //this filter doesn't exist anymore it has been replaced by
+      //tc_is_gallery_enabled
+      //I think we can remove the following compatibility as everything seems to work (considering that it doesn't do anything atm)
+      //and we haven't received any complain
+      //Also we now have a whole gallery section of settings and we coul redirect users there to fine tune it
+      add_filter( 'tc_gallery_bool', '__return_false' ); 
+
+      //Photon jetpack's module conflicts with our smartload feature:
+      //Photon removes the width,height attribute in php, then in js it compute them (when they have the special attribute 'data-recalc-dims') 
+      //based on the img src. When smartload is enabled the images parsed by its js which are not already smartloaded are dummy
+      //and their width=height is 1. The image is correctly loaded but the space
+      //assigned to it will be 1x1px. Photon js, is compatible with Auttomatic plugin lazy load and it sets the width/height
+      //attribute only when the img is smartloaded. This is pretty useless to me, as it doesn't solve the main issue:
+      //document's height change when the img are smartloaded.
+      //Anyway to avoid the 1x1 issue we alter the img attribute (data-recalc-dims) which photon adds to the img tag(php) so
+      //the width/height will not be erronously recalculated
+      if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) )
+        add_filter( 'tc_img_smartloaded', 'tc_jp_smartload_img');
+      function tc_jp_smartload_img( $img ) {
+        return str_replace( 'data-recalc-dims', 'data-tcjp-recalc-dims', $img );    
+      }    
+    }//end jetpack compat
+
 
 
 
