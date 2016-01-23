@@ -40,6 +40,20 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.17 January 23rd 2016 =
+* Add: a few translation tr_TR thanks to @ghost
+* Fix: fix post-metas hierarchical tax check when building button class
+* Fix: prefer mysqli api to the mysql ones (deprecated) in sys-info fixes #508
+* Fix: amend wrong documentation link in sidebar widget placeholder fixes #502
+* Fix: fix jetpack's photon - theme smartload compatibility issue 
+* Fix: fix btt-arrow and scroll-down issue Also use more descriptive variable names. fixes #477
+* Fix: fix disabling wc-header-cart to reset tc_user_options_style
+* Fix: avoid smartload conflict with buddypress setting avatar img fixes #467 a)
+* Fix: better html comments fix rare cases when some html comments were considered as server's directives. fixes #470
+* Fix: skip URIS images among imgs to smartload fixes #463
+* Fix: smarload preg callback - reverse strpos param order
+* Fix: apply border bottom only to theme sidebars widget list item
+
 = 3.4.16 December 10th 2015 =
 * Added: WooCommerce cart in the header
 * Added: Turkish (tr_TR) translation files

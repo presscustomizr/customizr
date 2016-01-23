@@ -2969,6 +2969,22 @@ var TCParams = TCParams || {};
       //prevent calling this twice on an already smartloaded img  
       if ( $_img.hasClass('tc-smart-loaded') ) return;
       $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded').trigger('smartload');
+      //jetpack's photon commpability
+      //Honestly to me this makes no really sense but photon does it.
+      //Basically photon recalculates the image dimension and sets its 
+      //width/height attribute once the image is smartloaded. Given the fact that those attributes are "needed" by the browser to assign the images a certain space so that when loaded the page doesn't "grow" it's height .. what's the point doing it so late?
+      if ( typeof $_img.attr('data-tcjp-recalc-dims') !== undefined ) {
+        var _width  = $_img.originalWidth();
+            _height = $_img.originalHeight();
+ 
+        //From photon.js: Modify given image's markup so that devicepx-jetpack.js will act on the image and it won't be reprocessed by this script.
+        $_img.removeAttr( ('data-tcjp-recalc-dims scale') );
+       
+        if ( 2 != _.size( _.filter( [ _width, _height ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
+          return;    
+        $_img.attr( 'width', _width );
+        $_img.attr( 'height', _height );
+      }
     });//<= create a load() fn
     //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
     if ( $_img[0].complete )
@@ -4539,8 +4555,13 @@ var czrapp = czrapp || {};
             defaultCSSVal : { width : '100%' , height : 'auto' },
             useImgAttr : true
           });
-          //fade out the loading icon per slider
-          $( this ).prevAll('.tc-slider-loader-wrapper').fadeOut();
+          //fade out the loading icon per slider with a little delay
+          //mostly for retina devices (the retina image will be downloaded afterwards
+          //and this may cause the re-centering of the image)
+          var self = this;
+          setTimeout( function() {
+              $( self ).prevAll('.tc-slider-loader-wrapper').fadeOut();
+          }, 500 );
         });  
       } , 50);
 
@@ -4803,11 +4824,13 @@ var czrapp = czrapp || {};
     //BACK TO TOP
     backToTop : function() {
       var $_html = $("html, body"),
-          _backToTop = function($) {
-            return ($.which > 0 || "mousedown" === $.type || "mousewheel" === $.type) && $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
+          _backToTop = function( evt ) {
+            return ( evt.which > 0 || "mousedown" === evt.type || "mousewheel" === evt.type) && $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
           };
 
-      $(".back-to-top, .tc-btt-wrapper, .btt-arrow").on("click touchstart touchend", function ($) {
+      $(".back-to-top, .tc-btt-wrapper, .btt-arrow").on("click touchstart touchend", function ( evt ) {
+        evt.preventDefault();
+        evt.stopPropagation();
         $_html.on( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
         $_html.animate({
             scrollTop: 0
@@ -4815,7 +4838,6 @@ var czrapp = czrapp || {};
             $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
             //czrapp.$_window.trigger('resize');
         });
-        $.preventDefault();
       });
     },
 
