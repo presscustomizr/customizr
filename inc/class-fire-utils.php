@@ -273,12 +273,15 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 1.0
       *
       */
-      function tc_get_theme_options ( $option_group = null ) {
+      function tc_get_theme_options ( $option_group = null, $_merge_defaults = true ) {
           //do we have to look in a specific group of option (plugin?)
           $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
           $saved              = empty($this -> db_options) ? $this -> tc_cache_db_options() : $this -> db_options;
-          $defaults           = $this -> default_options;
-          $__options          = wp_parse_args( $saved, $defaults );
+          if ( $_merge_defaults ) {
+            $defaults           = $this -> default_options;
+            $__options          = wp_parse_args( $saved, $defaults );
+          } else
+            $__options          = $saved;  
           //$__options        = array_intersect_key( $__options, $defaults );
         return $__options;
       }
@@ -356,10 +359,30 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.4+
       */
       function tc_set_option( $option_name , $option_value, $option_group = null ) {
+        //We store both defaults and user's options in the theme option
+        //When setting a single theme option we have to retrieve the original set from the db
+        //overwrite, if needed, that single option and re-write the whole row
+        //For this purpose, when getting the theme options, we cannot merge them with the defaults otherwise we'll end up having an option like:
+        //array( (array)defaults{}, merged_defaults_user_options ); (1)
+        //our theme option must always be in the form
+        //array( (array)defaults{}, user_options )
         $option_group           = is_null($option_group) ? TC___::$tc_option_group : $option_group;
-        $_options               = $this -> tc_get_theme_options( $option_group );
-        $_options[$option_name] = $option_value;
+        //do not merge defaults
+        $_options               = $this -> tc_get_theme_options( $option_group, $_merge_defaults = false );
+        $_defaults              = $this -> tc_get_default_options();
 
+        
+        //In versions < 3.4.18 (since "unknown" atm :) ) we merged also defaults options
+        //so the actual option was in the form (1)
+        //hence we have to get rid of the erronously merged default options.
+        $_options               = $this -> tc_maybe_sanitize_theme_options( $_options, $_defaults );
+
+        //set the new single option       
+        $_options[$option_name] = $option_value;
+        //if not already set, add defaults to the theme options
+        if ( ! isset( $_options[ 'defaults' ] ) )
+          $_options[ 'defaults' ] = $_defaults;
+        
         update_option( $option_group, $_options );
       }
 
@@ -1021,6 +1044,57 @@ if ( ! class_exists( 'TC_utils' ) ) :
     function tc_has_location_menu( $_location ) {
       $_all_locations  = get_nav_menu_locations();
       return isset($_all_locations[$_location]) && is_object( wp_get_nav_menu_object( $_all_locations[$_location] ) );
+    }
+
+    /**
+    * Remove merged defaults
+    * 
+    * @param $_options (optional), the array of options to sanitize 
+    * @param $_defaults (optional), the array of options to remove from the $_options
+    * @param $_store    (optional) default false , whether or not store the $_options in the db
+    * @param $_add_defatuls (optional) default false, whether or not add the array of default options as element of the array of options 
+    *
+    * @return array
+    * @since v3.4.18
+    */
+    function tc_maybe_sanitize_theme_options( $_options = null, $_defaults = null, $_store = false, $_add_defaults = false ) {
+      //In versions < 3.4.18 (since "unknown" atm :) ) we merged also defaults options
+      //hence we have to get rid of them
+      //Conditions are:
+      //1) user started using customizr before 3.4.18
+      //2) options are set
+      //3) options actually are a merge of the 'user options' and defaults, we check this
+      //by checking the presence of a "marker" we put in when the options are sanitized
+       
+      $option_group             = TC___::$tc_option_group;
+      //do not merge defaults
+      $_options                 = is_null( $_options ) ? $this -> tc_get_theme_options( $option_group, $_merge_defaults = false ) : $_options;
+      
+      if ( $this -> tc_user_started_before_version( '3.4.18', '1.2.17' ) &&
+          count( $_options ) && ! array_key_exists( 'options_sanitized', $_options ) ) {
+              
+        $_defaults            = is_null( $_defaults ) ? $this -> tc_get_default_options() : $_defaults;
+        
+        // remove from the $_options array the occurrences of the $_defaults options merged with user options
+        foreach ( $_defaults as $key => $value )
+            if ( array_key_exists( $key, $_options ) && $_options[ $key ] == $value )
+              unset( $_options[ $key ] );
+      }
+
+      //set our marker if needed
+      //set it even if no sanitization occurred so to skip previous block next times
+      if ( ! array_key_exists( 'options_sanitized', $_options ) )
+        $_options['options_sanitized'] = 1;
+
+      //if not already set, add defaults to the theme options if required
+      if ( $_add_defaults && ! isset( $_options[ 'defaults' ] ) )
+        $_options[ 'defaults' ] = $_defaults;
+
+      //store the options and/or return them
+      if ( $_store )
+        update_option( $option_group, $_options );
+        
+      return $_options;      
     }
 
 
