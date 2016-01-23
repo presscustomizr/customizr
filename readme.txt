@@ -42,6 +42,8 @@ The exceptions to this license are as follows:
 #######################  Changelog ######################
 = 3.4.17 January 23rd 2016 =
 * Add: a few translation tr_TR thanks to @ghost
+* Add : Indonesian translation. Thanks to Rio Bermano
+* Fix : some Swedish translation strings. Thanks to Mia Oberg.
 * Fix: fix post-metas hierarchical tax check when building button class
 * Fix: prefer mysqli api to the mysql ones (deprecated) in sys-info fixes #508
 * Fix: amend wrong documentation link in sidebar widget placeholder fixes #502
