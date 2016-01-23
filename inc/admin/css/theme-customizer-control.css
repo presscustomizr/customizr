@@ -470,8 +470,9 @@ li[id*="customize-control-"] {
 #customize-theme-controls > .control-section:hover .accordion-section-title::after, #customize-theme-controls .control-section .accordion-section-title:hover::after, #customize-theme-controls .control-section.open .accordion-section-title::after, #customize-theme-controls .control-section .accordion-section-title:focus::after {
 	color: #FFF;
 }
-.customize-control-checkbox label {
+.customize-control-checkbox label, .customize-control-nav_menu_auto_add label, .customize-control-radio label {
 	line-height: 16px;
+  margin-left: 0;
 }
 .customize-control-title {
 	color: #555;
