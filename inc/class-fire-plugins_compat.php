@@ -1083,9 +1083,9 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         return sprintf( "%s\n%s",
               $_css,
               ".sticky-enabled .tc-header.tc-wccart-off .tc-wc-menu { display: none; }
-               .tc-header .tc-wc-menu .nav {
-                 text-align: right;
-               }
+               .sticky-enabled .tc-tagline-off.tc-wccart-on .tc-wc-menu { margin-left: 0; margin-top: 11px; }
+               .sticky-enabled .tc-tagline-off.tc-wccart-on .btn-toggle-nav { margin-top: 5px; }
+               .tc-header .tc-wc-menu .nav { text-align: right; }
                $_dd_top_arrow
                .tc-header .tc-wc-menu .dropdown-menu {
                   right: 0; left: auto; width: 250px; padding: 2px;
