@@ -333,6 +333,12 @@
         $_body.removeClass('tc-transparent-on-scroll');
         $_body.addClass('tc-solid-color-on-scroll');
       }
+    },
+    tc_woocommerce_header_cart_sticky : function( to ) {
+      if ( false !== to )
+        $_header.addClass('tc-wccart-on').removeClass('tc-wccart-off').trigger('resize');
+      else
+        $_header.addClass('tc-wccart-off').removeClass('tc-wccart-on').trigger('resize');
     }
   } );//$.extend()
 

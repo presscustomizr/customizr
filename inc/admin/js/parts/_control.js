@@ -403,7 +403,8 @@
         'tc_sticky_shrink_title_logo',
         'tc_sticky_show_menu',
         'tc_sticky_transparent_on_scroll',
-        'tc_sticky_logo_upload'
+        'tc_sticky_logo_upload',
+        'tc_woocommerce_header_cart_sticky'
       ],
       callback: function (to) {
         return '1' == to;
@@ -547,6 +548,18 @@
             return true;
           }
         }
+      }
+    },
+    'tc_woocommerce_header_cart' : {
+      controls: [
+        'tc_woocommerce_header_cart_sticky'
+      ],
+      callback: function (to) {
+        return to;
+      },
+      //display dependant if master setting value == value
+      cross: {
+        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) { return to; } },
       }
     }
   };
