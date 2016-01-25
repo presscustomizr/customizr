@@ -1053,11 +1053,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @param $_defaults (optional), the array of options to remove from the $_options
     * @param $_store    (optional) default false , whether or not store the $_options in the db
     * @param $_add_defatuls (optional) default false, whether or not add the array of default options as element of the array of options 
+    * @param $_force (optional) default false, whether or not force the sanitation 
     *
     * @return array
     * @since v3.4.18
     */
-    function tc_maybe_sanitize_theme_options( $_options = null, $_defaults = null, $_store = false, $_add_defaults = false ) {
+    function tc_maybe_sanitize_theme_options( $_options = null, $_defaults = null, $_store = false, $_add_defaults = false, $_force = false ) {
       //In versions < 3.4.18 (since "unknown" atm :) ) we merged also defaults options
       //hence we have to get rid of them
       //Conditions are:
@@ -1070,7 +1071,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       //do not merge defaults
       $_options                 = is_null( $_options ) ? $this -> tc_get_theme_options( $option_group, $_merge_defaults = false ) : $_options;
       
-      if ( $this -> tc_user_started_before_version( '3.4.18', '1.2.17' ) &&
+      if ( $_force || $this -> tc_user_started_before_version( '3.4.18', '1.2.17' ) &&
           count( $_options ) && ! array_key_exists( 'options_sanitized', $_options ) ) {
               
         $_defaults            = is_null( $_defaults ) ? $this -> tc_get_default_options() : $_defaults;
