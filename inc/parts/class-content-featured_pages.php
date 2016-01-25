@@ -208,8 +208,18 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
             $text                           = ( empty($text) && !post_password_required($featured_page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_content )) : $text ;
 
             //limit text to 200 car
-            $default_fp_text_length         = apply_filters( 'tc_fp_text_length', 200, $fp_single_id, $featured_page_id );
-            $text                           = ( strlen($text) > $default_fp_text_length ) ? substr( $text , 0 , strpos( $text, ' ' , $default_fp_text_length) ). ' ...' : $text;
+            //basically the same code used for trimming the excerpt in the slider of posts, consider to put it in utils
+            $default_fp_text_length          = apply_filters( 'tc_fp_text_length', 200, $fp_single_id, $featured_page_id );
+            $end_substr = $tc_fp_text_length = strlen( $text );
+
+            if ( $tc_fp_text_length > $default_fp_text_length ){
+              /* strpos returns FALSE if the needle was not found this coudl mess up substr*/
+              $end_substr = strpos( $text, ' ' , $default_fp_text_length);
+              $end_substr = ( $end_substr !== FALSE ) ? $end_substr : $default_fp_text_length;
+              $text       = substr( $text , 0 , $end_substr );
+            }
+            
+            $text       = ( $end_substr < $default_fp_text_length ) ? $text : $text . '...';
 
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
             $fp_img_size                    = apply_filters( 'tc_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
