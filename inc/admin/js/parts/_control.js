@@ -173,7 +173,8 @@
     //2, show posts on front
     'page_for_posts' : {
        controls: [
-         'tc_blog_restrict_by_cat'    
+         'tc_blog_restrict_by_cat',
+         'tc_blog_random_order'
        ],
        callback : function (to) {
          return '0' !== to;  
@@ -181,7 +182,8 @@
     },
     'show_on_front' : {
       controls: [
-        'tc_blog_restrict_by_cat'    
+        'tc_blog_restrict_by_cat',
+        'tc_blog_random_order'
       ],
       callback : function (to) {
         if ( 'posts' == to )

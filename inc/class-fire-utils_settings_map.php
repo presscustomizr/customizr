@@ -903,6 +903,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'    => 1,
                                 'notice'      => $_cat_picker_notice
               ),
+              //page for posts
+              'tc_blog_random_order'       => array(
+                                'default'     => 0,
+                                'label'       =>  __( 'Display your home / blog posts in random order' , 'customizr'  ),
+                                'section'     => 'frontpage_sec',
+                                'control'     => 'TC_controls',
+                                'type'        => 'checkbox',
+                                'priority'    => 1,
+                                'notice'      => sprintf('%1$s <a href="https://codex.wordpress.org/Pagination" target="_blank">%2$s</a> %3$s',
+                                        __( 'Your posts will be randomly displayed on home/blog. If your home/blog posts are', 'customizr' ), 
+                                        __( 'paginated', 'customizr'),
+                                        __( 'you might either see several occurences of a given post in different pages or don\'t see it displayed at all.', 'customizr' )
+                                )
+              ),
               //layout
               'tc_front_layout' => array(
                                 'default'       => 'f' ,//Default layout for home page is full width

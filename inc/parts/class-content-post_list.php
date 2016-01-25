@@ -58,6 +58,10 @@ class TC_post_list {
   function tc_set_early_hooks() {
     //Filter home/blog postsa (priority 9 is to make it act before the grid hook for expanded post)
     add_action ( 'pre_get_posts'         , array( $this , 'tc_filter_home_blog_posts_by_tax' ), 9);
+    
+    //Display random posts in home/blog
+    add_action ( 'pre_get_posts'         , array( $this , 'tc_display_random_blog_posts' ) );
+
     //Include attachments in search results
     add_action ( 'pre_get_posts'         , array( $this , 'tc_include_attachments_in_search' ));
     //Include all post types in archive pages
@@ -417,6 +421,26 @@ class TC_post_list {
          add_filter('tc_grid_expand_featured', '__return_false');
      }
   }
+
+  /**
+  * hook : pre_get_posts
+  * Display home/blog posts in a random order
+  * @return modified query object
+  * @package Customizr
+  * @since Customizr 3.4.18
+  */
+  function tc_display_random_blog_posts( $query ) {
+    // when we have to apply the random order?
+    // in home and blog page
+    if ( ! $query->is_main_query()
+      || ! ( ( is_home() && 'posts' == get_option('show_on_front') ) || $query->is_posts_page ) )
+      return;
+
+     if ( 1 == TC_utils::$inst -> tc_opt( 'tc_blog_random_order' ) )
+       $query->set('orderby', 'rand');    
+  }
+
+
   /**
   * Callback of filter post_class
   * @return  array() of classes
