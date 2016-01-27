@@ -414,8 +414,7 @@
 
   //add callbacks dynamically
   $.each( _post_metas_context, function() {
-    var $_post_metas = $('.entry-header .entry-meta', this._container + ' .article-container' ),
-        _preview_cbs = _preview_cbs || {};
+    var $_post_metas = $('.entry-header .entry-meta', this._container + ' .article-container' );
 
     if ( false === $_post_metas.length > 0 )
       return;
@@ -440,6 +439,7 @@
   ******************************************/
   $.extend( _preview_cbs, {
     tc_show_post_navigation : function( to ) {
+      var $_post_nav = $( '#nav-below' );  
       if ( false === to )
         $_post_nav.hide('slow');
             else if ( ! $_post_nav.hasClass('hide-post-navigation') )
@@ -449,19 +449,19 @@
 
   var _post_nav_context = [
     { _context : 'page', _container : 'body.page' },
-    { _context : 'single', _container: 'body.single'},
-    { _context : 'archive', _container: 'body.archive, body.blog'}
+    { _context : 'blog', _container : 'body.blog' },
+    { _context : 'single', _container: 'body.single' },
+    { _context : 'archive', _container: 'body.archive' }
   ];
 
   //add callbacks dynamically
   $.each( _post_nav_context, function() {
-    var $_post_nav = $('#nav-below', this._container ),
-        _preview_cbs = _preview_cbs || {};
+    var $_post_nav = $('#nav-below', this._container );
 
     if ( false === $_post_nav.length > 0 )
       return;
 
-    _preview_cbs['tc_theme_options[tc_show_post_navigation_' + this._context] = function( to ) {
+    _preview_cbs[ 'tc_show_post_navigation_' + this._context ] = function( to ) {
       if ( false === to )
         $_post_nav.hide('slow').addClass('hide-post-navigation');
       else

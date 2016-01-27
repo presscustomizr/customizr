@@ -1908,10 +1908,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 5,
                                 'transport'   => 'postMessage'
               ),
+              'tc_show_post_navigation_blog'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'TC_controls' ,
+                                'title'         => __( 'Select the contexts' , 'customizr' ),
+                                'label'         => __( "Display navigation in your blog" , "customizr" ),
+                                'section'       => 'post_navigation_sec' ,
+                                'type'          => 'checkbox',
+                                'priority'      => 10,
+                                'transport'     => 'postMessage',
+                                'notice'        => __( 'This option refers either to your blog page and your home page if you use to display your latest posts there.', 'customizr')
+              ),
               'tc_show_post_navigation_page'  =>  array(
                                 'default'       => 0,
                                 'control'     => 'TC_controls' ,
-                                'title'         => __( 'Select the contexts' , 'customizr' ),
                                 'label'         => __( "Display navigation in pages" , "customizr" ),
                                 'section'       => 'post_navigation_sec' ,
                                 'type'          => 'checkbox',

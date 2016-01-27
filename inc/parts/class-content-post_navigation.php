@@ -136,7 +136,7 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
 
           </nav><!-- //#<?php echo $html_id; ?> .navigation -->
 
-        <?php elseif ( $wp_query->max_num_pages > 1 &&  'archive' == $_context ) : ?>
+        <?php elseif ( $wp_query->max_num_pages > 1 && in_array($_context, array('archive', 'blog') ) ) : ?>
 
           <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>" role="navigation">
 
@@ -209,11 +209,14 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
       *
       */
       function tc_get_context(){
-
         if ( is_page() )
           return 'page';
         if ( is_single() && ! is_attachment() )
           return 'single'; // exclude attachments
+        //https://codex.wordpress.org/Function_Reference/is_home
+        //On the blog posts index, is_home() will always return TRUE, regardless of whether the blog posts index is displayed on the site front page or a separate page.
+        if ( is_home() && !tc__f( '__is_home_empty') )
+          return 'blog';
         if ( !is_404() && !tc__f( '__is_home_empty') )
           return 'archive';
 
