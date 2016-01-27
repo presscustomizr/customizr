@@ -1449,32 +1449,51 @@ class TC_slider {
   * Helper
   * Returns the passed text trimmed at $text_length char.
   * with the $more text added
+  * multibyte compatible
+  *
+  * @param string $text : the text to trim
+  * @param numeric $text_length : the length of the desired text (in chars)
+  * @param string $more : the "more" to add to the trimmed text 
+  * @param bool $strip_tags (default true) : whether or not strip html tags
   *
   * @return string
   *
+  * What we do here:
+  * Trim the text at a certain length
+  * How we do it:
+  * To preserve words we:
+  * a) cut the text at the first blank space occurring after the specified length
+  * b) if no blank spaces occurs after the specified length keep the whole text
+  * 
   * @package Customizr
   * @since Customizr 3.4.9
   *
   */
-  // move this into TC_utils?
-  function tc_trim_text( $text, $text_length, $more ) {
+  // move this into TC_utils
+  function tc_trim_text( $text, $text_length, $more, $strip_tags = true ) {
     if ( ! $text )
       return '';
-
-    $text       = trim( strip_tags( $text ) );
 
     if ( ! $text_length )
       return $text;
 
-    $end_substr = $_text_length = strlen( $text );
+    $text         = $strip_tags ? strip_tags( $text ) : $text;
+    $text         = trim( preg_replace( "/[\n\r\t ]+/", ' ', $text ) );
 
-    if ( $_text_length > $text_length ){
-      $end_substr = strpos( $text, ' ' , $text_length);
-      $end_substr = ( $end_substr !== FALSE ) ? $end_substr : $text_length;
-      $text = substr( $text , 0 , $end_substr );
+    $charset      = apply_filters( 'tc_blog_charset', get_bloginfo('charset') );
+    $_text_length = mb_strlen( $text, $charset );
+
+    if ( $_text_length && ( $_text_length > $text_length ) ){
+      // strpos returns FALSE if the needle was not found this coudl mess up substr
+      $_trim_where = mb_strpos( $text, ' ' , $text_length, $charset );
+      //if a blank space has been found we have to trim the text and maybe add the "read more"
+      if ( FALSE !== $_trim_where ) { 
+        $text      = mb_substr( $text , 0 , $_trim_where, $charset );
+        $text      = $more ? $text . ' ' . $more : $text;
+      }
+      //otherwise we don't trim the text in order to preserve entire words;
     }
-    return ( ( $end_substr < $text_length ) && $more ) ? $text : $text . ' ' .$more ;
+    return $text;
   }
-
 } //end of class
 endif;
