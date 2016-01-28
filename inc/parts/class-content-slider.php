@@ -109,10 +109,12 @@ class TC_slider {
     //link post id
     $link_id                = apply_filters( 'tc_slide_link_id', esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true )), $id, $slider_name_id );
     //link
-    $link_url               = apply_filters( 'tc_slide_link_url', esc_url(get_post_meta( $id, $key = 'slide_custom_link_key', $single = true )), $id, $slider_name_id );
+    $link_url               = esc_url( get_post_meta( $id, $key = 'slide_custom_link_key', $single = true ) );
 
     if ( ! $link_url )
       $link_url = $link_id ? get_permalink( $link_id ) : $link_url;
+
+    $link_url               = apply_filters( 'tc_slide_link_url', $link_url, $id, $slider_name_id );
 
     //link target
     $link_target_bool       = esc_attr(get_post_meta( $id, $key= 'slide_link_target_key', $single = true ));
