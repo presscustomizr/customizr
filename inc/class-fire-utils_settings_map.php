@@ -2038,12 +2038,22 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_woocommerce_header_cart' => array(
                                'default'   => 1,
                                'label'     => __( 'Display the shopping cart in the header' , 'customizr' ),
-                               'control'   =>  'TC_controls' ,
+                               'control'   => 'TC_controls' ,
                                'section'   => 'tc_woocommerce_sec',
                                'notice'    => __( "You can display a cart icon showing the number of items in your cart next to your header's tagline", 'customizr' ),
                                'type'      => 'checkbox' ,
                                'priority'  => 10,
-              )
+              ),
+              'tc_woocommerce_header_cart_sticky' => array(
+                               'default'   => 1,
+                               'label'     => __( 'Sticky header: display the shopping cart' , 'customizr' ),
+                               'control'   => 'TC_controls' ,
+                               'section'   => 'tc_woocommerce_sec',
+                               'type'      => 'checkbox' ,
+                               'priority'  => 15,
+                               'transport' => 'postMessage'
+              ),
+
         );
     }
 

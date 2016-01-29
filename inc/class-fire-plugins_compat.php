@@ -1048,6 +1048,15 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       <?php
       }
 
+      //add woommerce header cart classes to the header (sticky enabled)
+      add_filter( 'tc_header_classes'   , 'tc_woocommerce_set_header_classes');
+      function tc_woocommerce_set_header_classes( $_classes ) {
+        if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )  
+          $_classes[]          = ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
+        return $_classes;
+      }
+
+      //add woocommerce header cart CSS
       add_filter('tc_user_options_style', 'tc_woocommerce_header_cart_css');
       function tc_woocommerce_header_cart_css( $_css ) {
         if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
@@ -1058,23 +1067,25 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         * so that as it grows it won't break on a new line. This is quite an hack to
         * keep the cart space as small as possible (span1) and do not hurt the tagline too much (from span7 to span6). Also nobody will, allegedly, have more than 10^3 products in its cart
         */
-        $_header_layout  = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
-        $_resp_pos_css   = 'right' == $_header_layout ? 'float: left;' : '';
-        $_wc_t_align     = 'left';
+        $_header_layout      = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
+        $_resp_pos_css       = 'right' == $_header_layout ? 'float: left;' : '';
+        $_wc_t_align         = 'left';
+
         //dropdown top arrow, as we open the drodpdown on the right we have to move the top arrow accordingly
-        $_dd_top_arrow   = '.navbar .tc-wc-menu .nav > li > .dropdown-menu:before { right: 9px; left: auto;} .navbar .tc-wc-menu .nav > li > .dropdown-menu:after { right: 10px; left: auto; }';
+        $_dd_top_arrow       = '.navbar .tc-wc-menu .nav > li > .dropdown-menu:before { right: 9px; left: auto;} .navbar .tc-wc-menu .nav > li > .dropdown-menu:after { right: 10px; left: auto; }';
 
         //rtl custom css
         if ( is_rtl() ) {
-          $_wc_t_align   = 'right';
-          $_dd_top_arrow = '';
+          $_wc_t_align       = 'right';
+          $_dd_top_arrow     = '';
         }
+
         return sprintf( "%s\n%s",
               $_css,
-              ".sticky-enabled .tc-header .tc-wc-menu { display: none; }
-               .tc-header .tc-wc-menu .nav {
-                 text-align: right;
-               }
+              ".sticky-enabled .tc-header.tc-wccart-off .tc-wc-menu { display: none; }
+               .sticky-enabled .tc-tagline-off.tc-wccart-on .tc-wc-menu { margin-left: 0; margin-top: 11px; }
+               .sticky-enabled .tc-tagline-off.tc-wccart-on .btn-toggle-nav { margin-top: 5px; }
+               .tc-header .tc-wc-menu .nav { text-align: right; }
                $_dd_top_arrow
                .tc-header .tc-wc-menu .dropdown-menu {
                   right: 0; left: auto; width: 250px; padding: 2px;
@@ -1099,7 +1110,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                  content: '\\f447';
                  font-family: 'genericons';
                  speak:none; position:absolute;
-                 top:-.1em; font-size:1.8em; left: 0;
+                 top:-.12em; font-size:1.7em; left: 0;
                }
                .tc-header .tc-wc-menu .nav > li > a {
                  position: relative;
@@ -1139,9 +1150,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                  padding: 1em 0;
                }
                @media (max-width: 979px) {
-                .tc-wc-menu[class*=span] { width: auto; margin:18px 0 0 0; $_resp_pos_css }
+                .tc-wc-menu[class*=span] { width: auto; margin:17px 0 0 0; $_resp_pos_css }
                 .tc-wc-menu .dropdown-menu { display: none !important;}
-               }
+              }
+              @media (max-width: 767px) { .sticky-enabled .tc-wccart-on .brand { width: 50%;} }
         ");
       }
       /*end rendering the cart icon in the header */
