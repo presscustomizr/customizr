@@ -141,7 +141,7 @@ if ( ! class_exists( 'TC_controls' ) ) :
                     admin_url( 'upload.php?mode=list' ),
                     __( 'Create a slider' , 'customizr' ),
                     __( 'Need help to create a slider ?' , 'customizr' ),
-                    esc_url( "docs.presscustomizr.com/customizr/creating-sliders/" ),
+                    esc_url( "http://docs.presscustomizr.com/article/3-creating-a-slider-with-customizr-wordpress-theme" ),
                     __( 'Check the documentation' , 'customizr' )
                   );
                 }
