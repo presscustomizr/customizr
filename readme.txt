@@ -40,6 +40,18 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.18 January 30th 2016 =
+* Updated Italian translation plus a typo
+* Add: new option - display woocommerce cart in the header when sticky fixes #499
+* Fix: fix smartloaded img not correctly displayed in some browsers fixes #534
+* Fix: fix slider link with QTranslate X in pre-path mode thanks to @justinbb fixes #531
+* Fix: fix broken link to the header's navigation doc
+* Fix: fix broken links to theme's faq
+* Fix: fix broken links to the slider docs
+* Fix: fix broken links to the docs in class-fire-utils
+* Fix: fix grid expanded post edit link not reachable fixes #286
+* Fix: refine alignment when tagline not shown
+
 = 3.4.17 January 23rd 2016 =
 * Add: a few translation tr_TR thanks to @ghost
 * Add : Indonesian translation. Thanks to Rio Bermano

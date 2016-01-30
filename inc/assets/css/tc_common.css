@@ -7014,6 +7014,17 @@ article .no-thumb figcaption {
 .tc-post-list-grid .expanded .entry-title a {
   color: #fff;
 }
+/* Edit link for the expanded post and for the grid-customizer */
+.tc-grid-figure .edit-link {
+  position: absolute;
+  z-index: 20;
+  bottom: 1px;
+  left: 1px;
+  padding: 0 2px;
+  font-size: 11px;
+  line-height: 15px;
+  text-transform: none;
+}
 /* HOVER */
 .tc-post-list-grid .hover:not(.expanded) figcaption,
 .tc-post-list-grid .expanded.hover .entry-summary {
