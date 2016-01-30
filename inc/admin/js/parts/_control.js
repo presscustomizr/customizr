@@ -185,7 +185,6 @@
         'tc_show_post_navigation_home'
       ],
       callback : function (to, targetSetId) {
-        console.log(targetSetId);
         if ( 'posts' == to )
           return true;
         if ( 'page' == to && 'tc_blog_restrict_by_cat' == targetSetId ) //show cat picker also if a page for posts is set
