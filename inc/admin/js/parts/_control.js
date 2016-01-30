@@ -174,32 +174,25 @@
     'page_for_posts' : {
        controls: [
          'tc_blog_restrict_by_cat',
-         'tc_show_post_navigation_home'
        ],
        callback : function (to) {
          return '0' !== to;  
        },
-      //display dependant if master setting value == value
-      cross: {
-        tc_show_post_navigation_home : { master : 'tc_show_post_navigation' , callback : function (to) { return '1' == to; } },
-      }
     },
     'show_on_front' : {
       controls: [
         'tc_blog_restrict_by_cat',
         'tc_show_post_navigation_home'
       ],
-      callback : function (to) {
+      callback : function (to, targetSetId) {
+        console.log(targetSetId);
         if ( 'posts' == to )
           return true;
-        if ( 'page' == to )
+        if ( 'page' == to && 'tc_blog_restrict_by_cat' == targetSetId ) //show cat picker also if a page for posts is set
           return '0' !== api( _build_setId('page_for_posts') ).get() ;
         return false;
       },
-      //display dependant if master setting value == value
-      cross: {
-        tc_show_post_navigation_home : { master : 'tc_show_post_navigation' , callback : function (to) { return '1' == to; } },
-      }
+
     },
     'tc_show_featured_pages': {
       controls: TCControlParams.FPControls,
@@ -477,6 +470,10 @@
       ],
       callback: function (to) {
         return '1' == to;
+      },
+      //display dependant if master setting value == value
+      cross: {
+        tc_show_post_navigation_home : { master : 'show_on_front' , callback : function (to) { return 'posts' == to; } },
       }
     },
     'tc_display_second_menu' : {
