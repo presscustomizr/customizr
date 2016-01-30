@@ -43,7 +43,7 @@
   Plugin.prototype.init = function () {
     var self        = this,
         $_imgs   = $( 'img[' + this.options.attribute[0] + ']:not('+ this.options.excludeImg.join() +')' , this.element );
-    
+
     this.increment  = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
     this.timer      = 0;
 
@@ -135,25 +135,32 @@
     .attr( 'srcset' , _src_set )
     .attr('src', _src )
     .load( function () {
-      //prevent calling this twice on an already smartloaded img  
-      if ( $_img.hasClass('tc-smart-loaded') ) return;
-      $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded').trigger('smartload');
-      //jetpack's photon commpability
+      //prevent executing this twice on an already smartloaded img
+      if ( ! $_img.hasClass('tc-smart-loaded') )
+        $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded');
+
+      //Following would be executed twice if needed, as some browsers at the
+      //first execution of the load callback might still have not actually loaded the img
+
+      //jetpack's photon commpability (seems to be unneeded since jetpack 3.9.1)
       //Honestly to me this makes no really sense but photon does it.
-      //Basically photon recalculates the image dimension and sets its 
+      //Basically photon recalculates the image dimension and sets its
       //width/height attribute once the image is smartloaded. Given the fact that those attributes are "needed" by the browser to assign the images a certain space so that when loaded the page doesn't "grow" it's height .. what's the point doing it so late?
-      if ( typeof $_img.attr('data-tcjp-recalc-dims') !== undefined ) {
+      if ( ( 'undefined' !== typeof $_img.attr('data-tcjp-recalc-dims')  ) && ( false !== $_img.attr('data-tcjp-recalc-dims') ) ) {
         var _width  = $_img.originalWidth();
             _height = $_img.originalHeight();
- 
+
+        if ( 2 != _.size( _.filter( [ _width, _height ], function(num){ return _.isNumber( parseInt(num, 10) ) && num > 1; } ) ) )
+          return;
+
         //From photon.js: Modify given image's markup so that devicepx-jetpack.js will act on the image and it won't be reprocessed by this script.
         $_img.removeAttr( ('data-tcjp-recalc-dims scale') );
-       
-        if ( 2 != _.size( _.filter( [ _width, _height ], function(num){ return _.isNumber( parseInt(num, 10) ) && 0 !== num; } ) ) )
-          return;    
+
         $_img.attr( 'width', _width );
         $_img.attr( 'height', _height );
       }
+
+      $_img.trigger('smartload');
     });//<= create a load() fn
     //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
     if ( $_img[0].complete )
