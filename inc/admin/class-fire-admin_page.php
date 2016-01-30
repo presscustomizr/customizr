@@ -60,7 +60,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
       function tc_welcome_panel() {
 
         $is_help        = isset($_GET['help'])  ?  true : false;
-        $_faq_url       = TC___::tc_is_pro() ? esc_url('docs.presscustomizr.com/customizr-pro/faq/') : esc_url('docs.presscustomizr.com/customizr/faq/');
+        $_faq_url       = esc_url('http://docs.presscustomizr.com/category/90-faq-and-common-issues');
         $_support_url   = TC___::tc_is_pro() ? TC_WEBSITE .'support-forums/forum/customizr-pro/' : esc_url('wordpress.org/support/theme/customizr');
         $_theme_name    = TC___::tc_is_pro() ? 'Customizr Pro' : 'Customizr';
 
