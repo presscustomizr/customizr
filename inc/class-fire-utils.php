@@ -185,7 +185,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
       /**
       * Helper
-      * Returns wheter or not the option is a theme/addon option
+      * Returns whether or not the option is a theme/addon option
       *
       * @return bool
       *
