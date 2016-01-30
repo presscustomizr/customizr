@@ -808,7 +808,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               'tc_grid_col_height_map',
               array(        // 'b'  'l'  'r'  'f'
                 '1' => array( 225 , 225, 225, $_h ),
-                '2' => array( 225 , 225, $_h, $_h ),
+                '2' => array( 225 , $_h, $_h, $_h ),
                 '3' => array( 225 , 225, 225, 225 ),
                 '4' => array( 165 , 165, 165, 165 )
               )
