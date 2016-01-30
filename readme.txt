@@ -43,6 +43,7 @@ The exceptions to this license are as follows:
 = 3.4.18 January 30th 2016 =
 * Updated Italian translation plus a typo
 * Add: new option - display woocommerce cart in the header when sticky fixes #499
+* Fix: fix grid not considering custom max height in left sidebar layout
 * Fix: fix smartloaded img not correctly displayed in some browsers fixes #534
 * Fix: fix slider link with QTranslate X in pre-path mode thanks to @justinbb fixes #531
 * Fix: fix broken link to the header's navigation doc
