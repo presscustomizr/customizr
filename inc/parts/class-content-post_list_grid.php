@@ -55,6 +55,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           do_action( '__post_list_grid' );
           //Disable icon titles
           //add_filter( 'tc_archive_icon'             , '__return_false', 50 );
+          //disable edit link (it's added afterwards) for the expanded post
+          add_filter( 'tc_edit_in_title'            , array( $this, 'tc_grid_disable_edit_in_title_expanded' ) );
+
           add_filter( 'tc_content_title_icon'       , '__return_false', 50 );
           //icon option
           add_filter( 'tc-grid-thumb-html'          , array( $this, 'tc_set_grid_icon_visibility') );
@@ -118,6 +121,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
 
           remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_prepare_section_view') );
           add_action( '__loop'                      , array( $this, 'tc_grid_prepare_single_post') );
+
+          if ( TC_headings::$instance -> tc_is_edit_enabled() && apply_filters( 'tc_grid_render_expanded_edit_link', true ) )
+            add_filter( 'tc_grid_get_single_post_html' , array( $this, 'tc_grid_render_expanded_edit_link' ), 50 );
         }
 
 
@@ -482,6 +488,28 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               $_title
           ) );
           return $_html . $_title;
+        }
+
+
+        /**
+        * @return  bool
+        * hook : tc_edit_in_title
+        * @since Customizr 3.4.18
+        */       
+        function tc_grid_disable_edit_in_title_expanded( $_bool ){
+          return $this -> tc_force_current_post_expansion() ? false : $_bool;
+        }
+
+
+        /**
+        * Append the edit link to the expanded post figcaption
+        * hook : tc_grid_get_single_post_html
+        * @since Customizr 3.4.18
+        */    
+        function tc_grid_render_expanded_edit_link( $_html ) {
+          if ( $this -> tc_force_current_post_expansion() )
+            $_html .= TC_headings::$instance -> tc_render_edit_link_view( $_echo = false );
+          return $_html;
         }
 
 
