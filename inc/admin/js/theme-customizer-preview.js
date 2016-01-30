@@ -449,7 +449,7 @@
 
   var _post_nav_context = [
     { _context : 'page', _container : 'body.page' },
-    { _context : 'blog', _container : 'body.blog' },
+    { _context : 'home', _container : 'body.blog.home' },
     { _context : 'single', _container: 'body.single' },
     { _context : 'archive', _container: 'body.archive' }
   ];

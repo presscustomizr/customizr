@@ -173,15 +173,21 @@
     //2, show posts on front
     'page_for_posts' : {
        controls: [
-         'tc_blog_restrict_by_cat'    
+         'tc_blog_restrict_by_cat',
+         'tc_show_post_navigation_home'
        ],
        callback : function (to) {
          return '0' !== to;  
        },
+      //display dependant if master setting value == value
+      cross: {
+        tc_show_post_navigation_home : { master : 'tc_show_post_navigation' , callback : function (to) { return '1' == to; } },
+      }
     },
     'show_on_front' : {
       controls: [
-        'tc_blog_restrict_by_cat'    
+        'tc_blog_restrict_by_cat',
+        'tc_show_post_navigation_home'
       ],
       callback : function (to) {
         if ( 'posts' == to )
@@ -190,6 +196,10 @@
           return '0' !== api( _build_setId('page_for_posts') ).get() ;
         return false;
       },
+      //display dependant if master setting value == value
+      cross: {
+        tc_show_post_navigation_home : { master : 'tc_show_post_navigation' , callback : function (to) { return '1' == to; } },
+      }
     },
     'tc_show_featured_pages': {
       controls: TCControlParams.FPControls,
@@ -461,6 +471,7 @@
     'tc_show_post_navigation' : {
       controls: [
         'tc_show_post_navigation_page',
+        'tc_show_post_navigation_home',
         'tc_show_post_navigation_single',
         'tc_show_post_navigation_archive'
       ],
