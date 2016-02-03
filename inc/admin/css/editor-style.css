@@ -5,7 +5,27 @@ Description: Used to style the TinyMCE editor.
 body{
 	background: #FAFAFA!important;
 }
-
+/* post format icons */
+.post-format-status:before,
+.post-format-quote:before,
+.post-format-link:before,
+.post-format-aside:before {
+  font-family: 'FontAwesome';
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  font-style: normal;
+  line-height: 7px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: block;
+  position: relative;
+  float: left;
+  font-size: 2.5em;
+  opacity: 0.3;
+  padding-right: 13px;
+}
 /* Aside */
 .post-format-aside {
 	padding: 1.714285714rem;
@@ -17,21 +37,8 @@ body{
 	color: #000;
 }
 .post-format-aside:before {
-	content: '\f308';
-	font-family: 'genericons';
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 7px;
-	top: -0px;
-	-webkit-font-smoothing: antialiased;
-	padding-right: 13px;
-	font-size: 3.5em;
-	opacity: 0.3;
-	position: relative;
-	display: block;
-	float: left;
+	content: '\f08d';
+
 }
 
 
@@ -55,21 +62,9 @@ body{
 }
 
 .post-format-link:before {
-	font-family: 'genericons';
-	content: "\f107";
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 7px;
-	top: -6px;
-	-webkit-font-smoothing: antialiased;
-	padding-right: 13px;
-	font-size: 6.0em;
-	opacity: 0.3;
-	position: relative;
-	display: block;
-	float: left;
+	content: "\f0c1";
+	top: -8px;
+	font-size: 4.0em;
 }
 
 
@@ -82,21 +77,9 @@ body{
 
 
 .post-format-quote:before {
-	font-family: 'entypo';
-	content: "\275E";
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 7px;
-	top: -26px;
-	-webkit-font-smoothing: antialiased;
-	padding-right: 13px;
-	font-size: 6.0em;
-	opacity: 0.3;
-	position: relative;
-	display: block;
-	float: left;
+    content: '\f10e';
+	top: -7px;
+	font-size: 4.0em;
 }
 
 
@@ -111,21 +94,9 @@ body{
 	color: #000;
 }
 .post-format-status:before {
-	font-family: 'entypo';
-	content: "\26A1";
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 7px;
-	top: -26px;
-	-webkit-font-smoothing: antialiased;
-	padding-right: 13px;
-	font-size: 6.0em;
-	opacity: 0.3;
-	position: relative;
-	display: block;
-	float: left;
+	content: "\f0e7";
+	top: -5px;
+	font-size: 3.0em;
 }
 
 
