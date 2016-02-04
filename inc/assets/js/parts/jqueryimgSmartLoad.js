@@ -154,7 +154,7 @@
           return;
 
         //From photon.js: Modify given image's markup so that devicepx-jetpack.js will act on the image and it won't be reprocessed by this script.
-        $_img.removeAttr( ('data-tcjp-recalc-dims scale') );
+        $_img.removeAttr( 'data-tcjp-recalc-dims scale' );
 
         $_img.attr( 'width', _width );
         $_img.attr( 'height', _height );
