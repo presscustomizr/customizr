@@ -901,6 +901,9 @@ class TC_slider {
   *
   */
   function tc_render_slide_edit_link_view( $_view_model ) {
+    //never display when customizing  
+    if ( TC___::$instance -> tc_is_customizing() )
+      return;   
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
 
@@ -933,6 +936,9 @@ class TC_slider {
   */
 
   function tc_render_slider_edit_link_view( $slides, $slider_name_id ) {
+    //never display when customizing  
+    if ( TC___::$instance -> tc_is_customizing() )
+      return;   
     if ( 'demo' == $slider_name_id )
       return;
 

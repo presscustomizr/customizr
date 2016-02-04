@@ -219,6 +219,9 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.3+
       */
       public function tc_is_edit_enabled() {
+        //never display when customizing
+        if ( TC___::$instance -> tc_is_customizing() )
+          return false; 
         //when are we displaying the edit link?
         $edit_enabled = ( (is_user_logged_in()) && is_page() && current_user_can('edit_pages') ) ? true : false;
         return ( (is_user_logged_in()) && 0 !== get_the_ID() && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;

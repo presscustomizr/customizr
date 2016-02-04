@@ -152,7 +152,9 @@ if ( ! class_exists( 'TC_comments' ) ) :
         ?>
         <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
           <article id="comment-<?php comment_ID(); ?>" class="comment">
-            <p><?php _e( 'Pingback:' , 'customizr' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' ); ?></p>
+            <p><?php _e( 'Pingback:' , 'customizr' ); ?> <?php comment_author_link(); ?>
+                <?php if ( ! TC___::$instance -> tc_is_customizing() )  edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' ); ?>
+            </p>
           </article>
         <?php
             break;
@@ -193,7 +195,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
                             get_comment_author_link(),
                             // If current post author is also comment author, make it known visually.
                             ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author' , 'customizr' ) . '</span>' : '' ,
-                            current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
+                            ! TC___::$instance -> tc_is_customizing() && current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
                         ),
                         sprintf( '<a class="comment-date" href="%1$s"><time datetime="%2$s">%3$s</time></a>' ,
                             esc_url( get_comment_link( $comment->comment_ID ) ),
