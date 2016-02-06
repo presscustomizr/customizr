@@ -130,10 +130,6 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 				      <script src="<?php echo TC_BASE_URL ?>inc/assets/js/html5.js"></script>
 				    <![endif]-->
 				    <?php wp_head(); ?>
-				    <!--Icons size hack for IE8 and less -->
-				    <!--[if lt IE 9]>
-				      <link href="<?php echo TC_BASE_URL ?>inc/assets/css/fonts/ie8-hacks.css" rel="stylesheet" type="text/css"/>
-				    <![endif]-->
 				</head>
 				<?php
 			$html = ob_get_contents();
