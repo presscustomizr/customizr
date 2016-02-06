@@ -306,7 +306,11 @@ article.format-quote .format-icon:before, article.error404 .format-icon:before {
   content: "\f10e";
   font-size: 3em;
 }
-
+/* ie11 hack: In ie11 looks like the above font-size rule makes the overall icon size too big
+as it multiplicates 4em (general rule) and 3em, instead of override the general rule with the one above */
+.ie11 article.format-quote .format-icon:before, .ie11 article.error404 .format-icon:before {
+  font-size: .3em;
+}
 article.format-link .format-icon:before {
   content: "\f0c1";
 }
