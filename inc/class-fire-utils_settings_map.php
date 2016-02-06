@@ -144,10 +144,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     ------------------------------------------------------------------------------------------------------*/
     function tc_logo_favicon_option_map( $get_default = null ) {
       return array(
-              'tc_logo_upload'  => array(
+              //logo/title link
+              'tc_disable_logo_title_link'  => array(
+                                'default'   =>  0,
+                                'label'     =>  __( 'Disable the logo/title link to the home page', 'customizr' ),
+                                'title'     => __( 'LOGO' , 'customizr'),
+                                'control'   =>  'TC_controls' ,
+                                'section'   =>  'logo_sec' ,
+                                'type'        => 'checkbox' ,
+              ),
+             'tc_logo_upload'  => array(
                                 'control'   =>  'TC_Customize_Upload_Control' ,
                                 'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
-                                'title'     => __( 'LOGO' , 'customizr'),
                                 'section'   => 'logo_sec' ,
                                 'type'      => 'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' )

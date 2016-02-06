@@ -74,7 +74,8 @@ if ( ! class_exists( 'TC_header_main' ) ) :
         add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
         add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
   	  }
-
+    
+      add_filter( 'tc_logo_title_content_wrapper', array ( $this, 'tc_logo_title_content_wrapper' ), 10, 2 );
       //add a 100% wide container just after the sticky header to reset margin top
       if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) || TC___::$instance -> tc_is_customizing() )
         add_action( '__after_header'              , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
@@ -283,14 +284,11 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
         <?php
           do_action( '__before_logo' );
-
-            printf('<%1$s><a class="site-title" href="%2$s" title="%3$s">%4$s</a></%1$s>',
-    	          		apply_filters( 'tc_site_title_tag', 'h1' ) ,
-    	          		apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
-    					     apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' , __( esc_attr( get_bloginfo( 'name' ) ) ) , __( esc_attr( get_bloginfo( 'description' ) ) ) ) ),
-    	          		__( esc_attr( get_bloginfo( 'name' ) ) )
+            printf('<%1$s>%2$s</%1$s>',
+                        apply_filters( 'tc_site_title_tag', 'h1' ) ,
+                        apply_filters( 'tc_logo_title_content_wrapper', __( esc_attr( get_bloginfo( 'name' ) ) ), array( 'tag_class' => 'site-title' ) )
             );
-  		 	  do_action( '__after_logo' )
+  		  do_action( '__after_logo' )
         ?>
 
       </div> <!-- brand span3 pull-left -->
@@ -338,7 +336,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     * @since Customizr 3.2.3
     */
     function tc_logo_view( $_args ) {
-        //Exctracts $args : $logo_class, $logos_img (array of <img>)
+        //Extracts $args : $logo_class, $logos_img (array of <img>)
         extract($_args);
         ob_start();
         ?>
@@ -346,13 +344,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
         <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', $logo_class ) ) ?>">
         <?php
             do_action( '__before_logo' );
-
-            printf( '<a class="site-logo" href="%1$s" title="%2$s">%3$s</a>',
-                apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
-                apply_filters( 'tc_logo_link_title', sprintf( '%1$s | %2$s' , __( esc_attr( get_bloginfo( 'name' ) ) ) , __( esc_attr( get_bloginfo( 'description' ) ) ) ) ),
-                implode( '', $logos_img )
-        	);
-
+              echo apply_filters( 'tc_logo_title_content_wrapper', implode( '', $logos_img ) );
             do_action( '__after_logo' );
         ?>
         </div> <!-- brand span3 -->
@@ -364,6 +356,34 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     }
 
 
+    function tc_logo_title_content_wrapper( $content, $_args = array() ) {
+      $defaults     = array(
+        'tag'       => 1 == TC_utils::$inst -> tc_opt( 'tc_disable_logo_title_link' ) ? 'span' : 'a',
+        'tag_class' => 'site-logo',
+        'tag_attr'  => '',
+      );  
+      
+      $_args         = wp_parse_args( $_args, $defaults );
+
+      //Extracts  $args : $tag, $tag_class, $tag_attr, $content
+      extract( $_args );
+
+      if ( 'a' == $tag )
+        $_html = sprintf( '<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
+                    $tag_class,
+                    apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
+                    apply_filters( 'tc_logo_link_title', sprintf( '%1$s | %2$s' , __( esc_attr( get_bloginfo( 'name' ) ) ) , __( esc_attr( get_bloginfo( 'description' ) ) ) ) ),
+                    $content
+        );
+      else
+        $_html = sprintf( '<%1$s class="%2$s">%3$s</%1$s>', 
+                    $tag,
+                    $tag_class,
+                    $content
+        );  
+
+      return apply_filters( 'tc_logo_title_content_wrapper_html', $_html, $_args );
+    }
 
 		/**
 		* Displays what's inside the navbar of the website.
