@@ -356,6 +356,22 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     }
 
 
+    /**
+    * Wraps log imgs or title into the proper tag depending on whether we want them linking to the home
+    *
+    * @param $content , the string/html twrap
+    * @param $_args ( default empty ), array of args ( 
+    *          tag       => (string) the wrapper html tag to use, 
+    *          tag_class => (string) the CSS class of the tag
+    *          tag_attr  => (string) eventual tag attributes
+    *           
+    *
+    * @return  filtered string
+    *
+    * hook : tc_logo_title_content_wrapper
+    * @package Customizr
+    * @since Customizr 3.4.19
+    */
     function tc_logo_title_content_wrapper( $content, $_args = array() ) {
       $defaults     = array(
         'tag'       => 1 == TC_utils::$inst -> tc_opt( 'tc_disable_logo_title_link' ) ? 'span' : 'a',
@@ -369,16 +385,18 @@ if ( ! class_exists( 'TC_header_main' ) ) :
       extract( $_args );
 
       if ( 'a' == $tag )
-        $_html = sprintf( '<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
+        $_html = sprintf( '<a class="%1$s" href="%2$s" title="%3$s" %4$s>%5$s</a>',
                     $tag_class,
                     apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
                     apply_filters( 'tc_logo_link_title', sprintf( '%1$s | %2$s' , __( esc_attr( get_bloginfo( 'name' ) ) ) , __( esc_attr( get_bloginfo( 'description' ) ) ) ) ),
+                    $tag_attr,
                     $content
         );
       else
-        $_html = sprintf( '<%1$s class="%2$s">%3$s</%1$s>', 
+        $_html = sprintf( '<%1$s class="%2$s" %3$s>%4$s</%1$s>', 
                     $tag,
                     $tag_class,
+                    $tag_attr,
                     $content
         );  
 
@@ -667,7 +685,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 
     /**
-    * Returns a boolean wheter we're using or not a specific sticky logo
+    * Returns a boolean whether we're using or not a specific sticky logo
     *
     * @package Customizr
     * @since Customizr 3.2.9
