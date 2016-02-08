@@ -159,7 +159,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		* @since Customizr 1.0
 		*/
 		function tc_augment_customizer( $type) {
-			locate_template( 'inc/admin/class-tc-controls-settings.php' , $load = true, $require_once = true );
+            locate_template( 'inc/admin/class-tc-controls-settings.php' , $load = true, $require_once = true );
+            locate_template( 'inc/admin/class-tc-controls-image-settings.php' , $load = true, $require_once = true );
 		}
 
 

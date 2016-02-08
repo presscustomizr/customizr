@@ -57,6 +57,35 @@
   });
 
 
+  api.TCCroppedImageControl = api.CroppedImageControl.extend({
+    /**
+    * After an image is selected in the media modal, switch to the cropper
+    * state if the image isn't the right size.
+    *
+    * TC: We don't want to crop svg (cropping fails), gif (animated gifs become static )
+    * @Override
+    * See api.CroppedImageControl:onSelect() ( wp-admin/js/customize-controls.js )
+    */
+    onSelect: function() {
+        var attachment = this.frame.state().get( 'selection' ).first().toJSON();
+        if ( ! ( attachment.mime && attachment.mime.indexOf("image") > -1 ) ){
+          //Todo: better error handling, show some message?  
+          this.frame.trigger( 'content:error' );
+          return;
+        }
+        if ( ( _.contains( ['image/svg+xml', 'image/gif'], attachment.mime ) ) || //do not crop gifs or svgs
+                this.params.width === attachment.width && this.params.height === attachment.height && ! this.params.flex_width && ! this.params.flex_height ) {
+            this.setImageFromAttachment( attachment );
+            this.frame.close();
+        } else {
+            this.frame.setState( 'cropper' );
+        }
+    },    
+  });
+  $.extend( api.controlConstructor, {
+    tc_cropped_image : api.TCCroppedImageControl
+  });
+
 
   /**
    * @constructor
