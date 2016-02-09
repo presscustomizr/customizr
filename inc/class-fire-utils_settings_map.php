@@ -143,6 +143,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                    LOGO & FAVICON SECTION
     ------------------------------------------------------------------------------------------------------*/
     function tc_logo_favicon_option_map( $get_default = null ) {
+      global $wp_version;
       return array(
 /*
             'tc_logo_upload'  => array(
@@ -156,11 +157,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
  */
               //TODO: Limit this only for wp>=4.3
               'tc_logo_upload'  => array(
-                                'control'   =>  'TC_Customize_Cropped_Image_Control',
+                                'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'TC_Customize_Cropped_Image_Control' : 'TC_Customize_Upload_Control',
                                 'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'title'     => __( 'LOGO' , 'customizr'),
                                 'section'   => 'logo_sec',
-                                'sanitize_callback' => array( $this , 'tc_sanitize_media_attachment' )
+                                'sanitize_callback' => version_compare( $wp_version, '4.3', '>=' ) ?  array( $this, 'tc_sanitize_media_attachment' ) : array( $this , 'tc_sanitize_number' )
               ),
               //force logo resize 250 * 85
               'tc_logo_resize'  => array(
