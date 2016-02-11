@@ -111,7 +111,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         //ADVANCED OPTIONS
         'tc_custom_css_option_map',
         'tc_performance_option_map',
-        'tc_placeholders_notice_map'
+        'tc_placeholders_notice_map',
+        'tc_external_resources_option_map'
       );
 
       foreach ( $_settings_sections as $_section_cb ) {
@@ -2096,10 +2097,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_minified_skin'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,
-                                'label'       => __( "Performance : use the minified CSS stylesheet", 'customizr' ),
+                                'label'       => __( "Performance : use the minified CSS stylesheets", 'customizr' ),
                                 'section'     => 'performances_sec' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'Using the minified version of the skin stylesheet will speed up your webpage load time.' , 'customizr' ),
+                                'notice'    => __( 'Using the minified version of the stylesheets will speed up your webpage load time.' , 'customizr' ),
               ),
               'tc_img_smart_load'  =>  array(
                                 'default'       => 0,
@@ -2129,7 +2130,30 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       );
     }
 
+    /*-----------------------------------------------------------------------------------------------------
+                              FRONT END EXTERNAL RESOURCES SECTION
+    ------------------------------------------------------------------------------------------------------*/
+    function tc_external_resources_option_map( $get_default = null ) {
+      return array(
+              'tc_font_awesome_icons'  =>  array(
+                                'default'       => 1,
+                                'control'   => 'TC_controls',
+                                'label'       => __( "Load Font Awesome icon set", 'customizr' ),
+                                'section'     => 'extresources_sec',
+                                'type'        => 'checkbox',
+                                'notice'      => __( 'Load the font awesome icon fonts. You might want to uncheck this option if you run a plugin which already loads font awesome (it will load the icon set from its CSS )', 'customizr' )
+              ),
+              'tc_font_awesome_css'  =>  array(
+                                'default'       => 0,
+                                'control'   => 'TC_controls',
+                                'label'       => __( "Load Font Awesome CSS", 'customizr' ),
+                                'section'     => 'extresources_sec',
+                                'type'        => 'checkbox',
+                                'notice'      => __( 'Load the font awesome CSS. You might want to check this if you want to use the whole Font Awesome CSS (in this case you need to check the above option too to load the fonts too', 'customizr' )
+              )
 
+      );
+    }
 
     /***************************************************************
     * POPULATE PANELS
@@ -2471,6 +2495,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'placeholder_sec'     => array(
                             'title'     =>  __( 'Front-end placeholders and help blocks' , 'customizr' ),
                             'priority'    => 30,
+                            'panel'   => 'tc-advanced-panel'
+        ),
+        'extresources_sec'    => array(
+                            'title'     =>  __( 'Front-end external resources (Font Awesome)' , 'customizr' ),
+                            'priority'    => 40,
                             'panel'   => 'tc-advanced-panel'
         )
       );
