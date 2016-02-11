@@ -1083,7 +1083,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         return sprintf( "%s\n%s",
               $_css,
               ".sticky-enabled .tc-header.tc-wccart-off .tc-wc-menu { display: none; }
-               .sticky-enabled .tc-tagline-off.tc-wccart-on .tc-wc-menu { margin-left: 0; margin-top: 11px; }
+               .sticky-enabled .tc-tagline-off.tc-wccart-on .tc-wc-menu { margin-left: 0; margin-top: 3px; }
                .sticky-enabled .tc-tagline-off.tc-wccart-on .btn-toggle-nav { margin-top: 5px; }
                .tc-header .tc-wc-menu .nav { text-align: right; }
                $_dd_top_arrow
@@ -1091,7 +1091,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                   right: 0; left: auto; width: 250px; padding: 2px;
                }
                .tc-header .tc-wc-menu {
-                 float: right; clear:none; margin-top: 10px;
+                 float: right; clear:none; margin-top: 1px;
                }
                .tc-header .tc-wc-menu .nav > li {
                  float:none;
@@ -1107,10 +1107,9 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                  margin: 10px 5px 0 0px; text-align: center;
                }
                .tc-wc-menu .nav > li > a:before {
-                 content: '\\f447';
-                 font-family: 'genericons';
-                 speak:none; position:absolute;
-                 top:-.12em; font-size:1.7em; left: 0;
+                 content: '\\f07a';
+                 position:absolute;
+                 font-size:1.6em; left: 0;
                }
                .tc-header .tc-wc-menu .nav > li > a {
                  position: relative;
@@ -1125,6 +1124,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                .tc-wc-menu .count {
                  font-size: 0.7em;
                  margin-left: 2.1em;
+                 position: relative;
+                 top: 1em;
                  pointer-events: none;
                }
                .tc-wc-menu .woocommerce.widget_shopping_cart li {
@@ -1150,7 +1151,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                  padding: 1em 0;
                }
                @media (max-width: 979px) {
-                .tc-wc-menu[class*=span] { width: auto; margin:17px 0 0 0; $_resp_pos_css }
+                .tc-wc-menu[class*=span] { width: auto; margin-top:7px; $_resp_pos_css }
                 .tc-wc-menu .dropdown-menu { display: none !important;}
               }
               @media (max-width: 767px) { .sticky-enabled .tc-wccart-on .brand { width: 50%;} }
