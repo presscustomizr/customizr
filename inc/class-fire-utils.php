@@ -160,17 +160,19 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_get_skin_color( $_what = null ) {
         $_color_map    = TC_init::$instance -> skin_color_map;
+        $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
+          
         $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_get_style_src() ) );
         //falls back to blue3 ( default #27CDA5 ) if not defined
         $_to_return = array( '#27CDA5', '#1b8d71' );
 
         switch ($_what) {
           case 'all':
-            $_to_return = ( is_array($_color_map) ) ? $_color_map : array();
+            $_to_return = $_color_map;
           break;
 
           case 'pair':
-            $_to_return = ( false != $_active_skin && is_array($_color_map[$_active_skin]) ) ? $_color_map[$_active_skin] : $_to_return;
+            $_to_return = ( false != $_active_skin && array_key_exists( $_active_skin, $_color_map ) && is_array( $_color_map[$_active_skin] ) ) ? $_color_map[$_active_skin] : $_to_return;
           break;
 
           default:
