@@ -235,91 +235,102 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="color"]:focu
 /* ICONS
   -------------------------------------------------- */
 @font-face {
-    font-family: 'genericons';
-    src: url( '../../assets/css/fonts/fonts/genericons-regular-webfont.eot' );
-    src: url( '../../assets/css/fonts/fonts/genericons-regular-webfont.eot?#iefix' ) format( 'embedded-opentype' ),
-         url( '../../assets/css/fonts/fonts/genericons-regular-webfont.woff' ) format( 'woff' ),
-         url( '../../assets/css/fonts/fonts/genericons-regular-webfont.ttf' ) format( 'truetype' ),
-         url( '../../assets/css/fonts/fonts/genericons-regular-webfont.svg#genericonsregular' ) format( 'svg' );
-}
+  font-family: 'FontAwesome';
+  src:url('../../assets/css/fonts/fonts/fontawesome-webfont.eot');
+  src:url('../../assets/css/fonts/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../../assets/css/fonts/fonts/fontawesome-webfont.woff2') format('woff2'),
+      url('../../assets/css/fonts/fonts/fontawesome-webfont.woff') format('woff'),
+      url('../../assets/css/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
+      url('../../assets/css/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+} 
 span[class*=tc-icon] {
 	margin-bottom: 5px;
 }
 span[class*=tc-icon]:before {
-  font-family: 'genericons';
+  font-family: 'FontAwesome';
   speak: none;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
+  font-style: normal;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: #1ABC9C;
-	font-size: 1.5em;
-	text-shadow: 0 1px 0 #FFF;
-	opacity: 0.8;
-	display: inline;
-	background: none;
-	width: inherit;
-	height: inherit;
-	vertical-align: inherit;
-	line-height: inherit;
-	margin: 0px;
-	text-decoration: none;
-	padding-right: 10px;
-	position: relative;
-	top: 4px;
+  font-size: 1.5em;
+  text-shadow: 0 1px 0 #FFF;
+  opacity: 0.8;
+  display: inline;
+  background: none;
+  width: inherit;
+  height: inherit;
+  vertical-align: inherit;
+  line-height: inherit;
+  margin: 0px;
+  text-decoration: none;
+  padding-right: 10px;
+  position: relative;
+  top: 2px;
 }
 .rtl span[class*=tc-icon]:before {
   padding-left: 10px;
 }
 .tc-icon-google:before {
-  content: "\f206";
+  content: "\f0d5";
 }
 .tc-icon-facebook:before {
-  content: "\f204";
+  content: "\f09a";
 }
 .tc-icon-twitter:before {
-  content: "\f202";
+  content: "\f099";
 }
 .tc-icon-rss:before {
-  content: "\f413";
+  content: "\f09e";
 }
 .tc-icon-flux:before {
-  content: "\f413";
+  content: "\f09e";
 }
 .tc-icon-github:before {
-  content: "\f200";
+  content: "\f09b";
 }
 .tc-icon-dribbble:before {
-  content: "\f201";
+  content: "\f17d";
 }
 .tc-icon-pinterest:before {
-  content: "\f209";
+  content: "\f231";
 }
 .tc-icon-youtube:before {
-  content: "\f213";
+  content: "\f167";
 }
 .tc-icon-linkedin:before {
-  content: "\f208";
+  content: "\f0e1";
 }
 .tc-icon-wordpress:before {
-  content: "\f205";
+  content: "\f19a";
 }
 .tc-icon-instagram:before {
-  content: "\f215";
+  content: "\f16d";
 }
 .tc-icon-flickr:before {
-  content: "\f211";
+  content: "\f16e";
 }
 .tc-icon-tumblr:before {
-  content: "\f214";
+  content: "\f173";
 }
 .tc-icon-email:before {
-  content: "\f410";
-  font-size: 1.8em;
-  top: 0.8em;
+  content: "\f0e0";
+/*  font-size: 1.8em;
+  top: 0.8em;*/
 }
-
+.tc-icon-vk:before {
+  content: "\f189";
+}
+.tc-icon-yelp:before {
+  content: "\f1e9";
+}
+.tc-icon-xing:before {
+  content: "\f168";
+}
 
 /* DONATE BLOCK*/
 #tc-donate-customizer {
