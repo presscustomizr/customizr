@@ -227,6 +227,14 @@
         return false;
       },
     },
+    'tc_logo_upload' : {
+      controls: [
+          'tc_logo_resize'    
+      ],
+      callback : function( to ) {
+        return _.isNumber( to );  
+      }
+    },
     'tc_show_featured_pages': {
       controls: TCControlParams.FPControls,
       callback: function (to) {
