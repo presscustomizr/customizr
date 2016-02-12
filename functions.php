@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 /**
 *
 * This program is a free software; you can use it and/or modify it under the terms of the GNU
@@ -55,3 +56,4 @@ require_once( get_template_directory() . '/inc/czr-init.php' );
 * More informations about how to create a child theme with Customizr : http://docs.presscustomizr.com/article/24-creating-a-child-theme-for-customizr/
 * A good starting point to customize the Customizr theme : http://docs.presscustomizr.com/article/35-how-to-customize-the-customizr-wordpress-theme/
 */
+=======
