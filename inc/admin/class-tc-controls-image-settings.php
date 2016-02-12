@@ -12,8 +12,6 @@ if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'TC_C
     //@override
     public function __construct( $manager, $id, $args = array() ) {
       parent::__construct( $manager, $id, $args );
-      //This is needed to load the backbone template, we can think about moving it in another place tough
-      $manager -> register_control_type( 'TC_Customize_Cropped_Image_Control' );
     }
 
     /**
@@ -28,7 +26,23 @@ if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'TC_C
 	public function to_json() {
       parent::to_json();
       $this->json['title']  = !empty( $this -> title )  ? esc_html( $this -> title ) : '';
-      $this->json['notice'] = !empty( $this -> notice ) ?           $this -> notice  :  '';
+      $this->json['notice'] = !empty( $this -> notice ) ?           $this -> notice  : '';
+      error_log( $this -> width );
+      //overload WP_Customize_Upload_Control
+      //we need to re-build the absolute url of the logo src set in old Customizr
+      $value = $this->value();
+      if ( $value ) {
+        //re-build the absolute url if the value isn't an attachment id before retrieving the id
+        if ( (int) esc_attr( $value ) < 1 ) {
+          $upload_dir = wp_upload_dir();
+          $value  = false !== strpos( $value , '/wp-content/' ) ? $value : $upload_dir['baseurl'] . $value; 
+        }
+        // Get the attachment model for the existing file.
+        $attachment_id = attachment_url_to_postid( $value );
+        if ( $attachment_id ) {
+            $this->json['attachment'] = wp_prepare_attachment_for_js( $attachment_id );
+		}
+      }//end overload
     }
 	
     /**

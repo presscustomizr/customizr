@@ -158,9 +158,10 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		* @package Customizr
 		* @since Customizr 1.0
 		*/
-		function tc_augment_customizer( $type) {
+		function tc_augment_customizer( $manager ) {
             locate_template( 'inc/admin/class-tc-controls-settings.php' , $load = true, $require_once = true );
             locate_template( 'inc/admin/class-tc-controls-image-settings.php' , $load = true, $require_once = true );
+            $manager -> register_control_type( 'TC_Customize_Cropped_Image_Control' );
 		}
 
 
@@ -207,6 +208,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'capability'		=>	'manage_options' ,
 								'setting_type'		=>	'option' ,
 								'sanitize_callback'	=>	null,
+								'sanitize_js_callback'	=>	null,
 								'transport'			=>	null
 					),
 					'controls' => array(
@@ -217,7 +219,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'type' ,
 								'choices' ,
 								'priority' ,
-								'sanitize_callback' ,
+								'sanitize_callback',
+								'sanitize_js_callback',
 								'notice' ,
 								'buttontext' ,//button specific
 								'link' ,//button specific
@@ -230,7 +233,11 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'active_callback',
 								'content_after',
 								'content_before',
-								'icon'
+								'icon',
+								'width',
+								'height',
+								'flex_width',
+								'flex_height'
 					)
 			);
 			return apply_filters( 'tc_customizer_arguments', $args );

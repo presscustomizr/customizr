@@ -145,23 +145,17 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     function tc_logo_favicon_option_map( $get_default = null ) {
       global $wp_version;
       return array(
-/*
-            'tc_logo_upload'  => array(
-                                'control'   =>  'TC_Customize_Upload_Control' ,
-                                'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
-                                'title'     => __( 'LOGO' , 'customizr'),
-                                'section'   => 'logo_sec' ,
-                                'type'      => 'tc_upload',
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' )
-              ),
- */
-              //TODO: Limit this only for wp>=4.3
               'tc_logo_upload'  => array(
                                 'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'TC_Customize_Cropped_Image_Control' : 'TC_Customize_Upload_Control',
                                 'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'title'     => __( 'LOGO' , 'customizr'),
                                 'section'   => 'logo_sec',
-                                'sanitize_callback' => version_compare( $wp_version, '4.3', '>=' ) ?  array( $this, 'tc_sanitize_media_attachment' ) : array( $this , 'tc_sanitize_number' )
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                        //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                'width'     => '250',
+                                'height'    => '100',
+                                'flex_width' => true,
+                                'flex_height' => true
               ),
               //force logo resize 250 * 85
               'tc_logo_resize'  => array(
@@ -173,10 +167,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
               ),
               'tc_sticky_logo_upload'  => array(
-                                'control'   =>  'TC_Customize_Upload_Control' ,
+                                'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'TC_Customize_Cropped_Image_Control' : 'TC_Customize_Upload_Control',
                                 'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'section'   =>  'logo_sec' ,
-                                'type'      => 'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
               ),
@@ -2731,27 +2724,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $value = esc_attr( $value); // clean input
       $value = (int) $value; // Force the value into integer type.
         return ( 0 < $value ) ? $value : null;
-    }
-
-    /**
-     * adds sanitization callback funtion : media attachemnt
-     * @package Customizr
-     * @since Customizr 3.4.19
-     */
-    function tc_sanitize_media_attachment( $attachment ) {
-      $_maybe_numeric_attachment = $this -> tc_sanitize_number( $attachment );
-      if ( $_maybe_numeric_attachment )
-        return $_maybe_numeric_attachment;
-      else {
-        //This will be exectued just once, if user has a url as tc_logo_uplad (old Customizr)
-        // retrieves the attachment ID from the file URL
-        global $wpdb;
-        $upload_dir 			= wp_upload_dir();
-        $_saved_path 			= $attachment;
-        $media_url = false !== strpos( $_saved_path , '/wp-content/' ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
-	    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $media_url )); 
-        return $attachment ? $attachment[0] : null; 
-      }
     }
 
     /**
