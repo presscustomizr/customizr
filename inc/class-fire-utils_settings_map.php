@@ -171,6 +171,11 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'section'   =>  'logo_sec' ,
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                        //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                'width'     => '75',
+                                'height'    => '30',
+                                'flex_width' => true,
+                                'flex_height' => true
                                 'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
               ),
 
