@@ -27,6 +27,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
         self::$inst =& $this;
         self::$instance =& $this;
 
+
+        $this -> tc_options_prefixes = apply_filters('tc_options_prefixes', array('tc_') );
+
         //init properties
         add_action( 'after_setup_theme'       , array( $this , 'tc_init_properties') );
 
@@ -73,8 +76,14 @@ if ( ! class_exists( 'TC_utils' ) ) :
         //all customizr theme options start by "tc_" by convention
         $this -> tc_options_prefixes = apply_filters('tc_options_prefixes', array('tc_') );
         $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
-        $this -> db_options       = false === get_option( TC___::$tc_option_group ) ? array() : (array)get_option( TC___::$tc_option_group );
+        $db_options               = false === get_option( TC___::$tc_option_group ) ? array() : (array)get_option( TC___::$tc_option_group );
         $this -> default_options  = $this -> tc_get_default_options();
+        //In versions < 3.4.19 (since "unknown" atm :) ) we merged also defaults options
+        //so the actual option was in the form:
+        //array( (array)defaults{}, merged_defaults_user_options )
+        //hence we have to get rid of the erronously merged default options.
+        $this -> db_options       = $this -> tc_maybe_sanitize_theme_options( $db_options, $this -> default_options );
+        
         $_trans                   = TC___::tc_is_pro() ? 'started_using_customizr_pro' : 'started_using_customizr';
 
         //What was the theme version when the user started to use Customizr?
@@ -221,11 +230,16 @@ if ( ! class_exists( 'TC_utils' ) ) :
         // 3) theme version not defined
         // 4) versions are different
         if ( is_user_logged_in() || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
-          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
-          //Adds the version in default
-          $def_options['ver']   =  CUSTOMIZR_VER;
-
-          $_db_opts['defaults'] = $def_options;
+          //Store the previous version
+          $prev_ver                = isset( $def_options['ver'] ) ? $def_options['ver'] : null;
+     
+          $def_options             = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
+  
+          //Adds the versions in default
+          $def_options['ver']      =  CUSTOMIZR_VER;
+          $def_options['prev_ver'] =  $prev_ver;
+          
+          $_db_opts['defaults']    = $def_options;
           //writes the new value in db
           update_option( "tc_theme_options" , $_db_opts );
         }
@@ -363,7 +377,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         //When setting a single theme option we have to retrieve the original set from the db
         //overwrite, if needed, that single option and re-write the whole row
         //For this purpose, when getting the theme options, we cannot merge them with the defaults otherwise we'll end up having an option like:
-        //array( (array)defaults{}, merged_defaults_user_options ); (1)
+        //array( (array)defaults{}, merged_defaults_user_options )
         //our theme option must always be in the form
         //array( (array)defaults{}, user_options )
         $option_group           = is_null($option_group) ? TC___::$tc_option_group : $option_group;
@@ -372,10 +386,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $_defaults              = $this -> tc_get_default_options();
 
         
-        //In versions < 3.4.18 (since "unknown" atm :) ) we merged also defaults options
-        //so the actual option was in the form (1)
-        //hence we have to get rid of the erronously merged default options.
-        $_options               = $this -> tc_maybe_sanitize_theme_options( $_options, $_defaults );
+
 
         //set the new single option       
         $_options[$option_name] = $option_value;
@@ -1046,55 +1057,58 @@ if ( ! class_exists( 'TC_utils' ) ) :
       return isset($_all_locations[$_location]) && is_object( wp_get_nav_menu_object( $_all_locations[$_location] ) );
     }
 
+
     /**
     * Remove merged defaults
     * 
     * @param $_options (optional), the array of options to sanitize 
     * @param $_defaults (optional), the array of options to remove from the $_options
-    * @param $_store    (optional) default false , whether or not store the $_options in the db
+    * @param $_store    (optional) default true , whether or not store the $_options in the db
     * @param $_add_defatuls (optional) default false, whether or not add the array of default options as element of the array of options 
     * @param $_force (optional) default false, whether or not force the sanitation 
     *
     * @return array
-    * @since v3.4.18
+    * @since v3.4.19
     */
-    function tc_maybe_sanitize_theme_options( $_options = null, $_defaults = null, $_store = false, $_add_defaults = false, $_force = false ) {
-      //In versions < 3.4.18 (since "unknown" atm :) ) we merged also defaults options
+    function tc_maybe_sanitize_theme_options( $_options = null, $_defaults = null, $_store = true, $_add_defaults = false, $_force = false ) {
+      //In versions < 3.4.19 (since "unknown" atm :) ) we merged also defaults options
       //hence we have to get rid of them
       //Conditions are:
-      //1) user started using customizr before 3.4.18
-      //2) options are set
-      //3) options actually are a merge of the 'user options' and defaults, we check this
-      //by checking the presence of a "marker" we put in when the options are sanitized
+      //1) options are set 
+      //&& (
+      //2) force param is true
+      //or
+      //3) we come from a version which has messed up the stored options ()
+      // )
        
       $option_group             = TC___::$tc_option_group;
       //do not merge defaults
       $_options                 = is_null( $_options ) ? $this -> tc_get_theme_options( $option_group, $_merge_defaults = false ) : $_options;
-      
-      if ( $_force || $this -> tc_user_started_before_version( '3.4.18', '1.2.17' ) &&
-          count( $_options ) && ! array_key_exists( 'options_sanitized', $_options ) ) {
-              
-        $_defaults            = is_null( $_defaults ) ? $this -> tc_get_default_options() : $_defaults;
-        
+      $_defaults                = is_null( $_defaults ) ? $this -> tc_get_default_options() : $_defaults;
+      $__store                  = false;
+
+      if ( is_array( $_options ) && ( $_force || empty( $_defaults['prev_ver'] ) || 
+          version_compare( $_defaults['prev_ver'], "customizr-pro" == TC___::$theme_name ? '1.2.18' : '3.4.19', '<' ) ) ) {
         // remove from the $_options array the occurrences of the $_defaults options merged with user options
         foreach ( $_defaults as $key => $value )
-            if ( array_key_exists( $key, $_options ) && $_options[ $key ] == $value )
-              unset( $_options[ $key ] );
+          if ( array_key_exists( $key, $_options ) && $_options[ $key ] == $value )
+            unset( $_options[ $key ] );
+        
+        //consider that the 'ver' field might still be stored in the $_options if it differ from the defaults, so get rid of it
+        //THIS COULD BE OUR MARKER, to be honest
+        unset( $_options['ver'] );
+        $__store = true;
       }
 
-      //set our marker if needed
-      //set it even if no sanitization occurred so to skip previous block next times
-      if ( ! array_key_exists( 'options_sanitized', $_options ) )
-        $_options['options_sanitized'] = 1;
 
       //if not already set, add defaults to the theme options if required
       if ( $_add_defaults && ! isset( $_options[ 'defaults' ] ) )
         $_options[ 'defaults' ] = $_defaults;
 
       //store the options and/or return them
-      if ( $_store )
+      if ( $_store && $__store )
         update_option( $option_group, $_options );
-        
+
       return $_options;      
     }
 
