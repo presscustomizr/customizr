@@ -207,6 +207,19 @@ a.social-icon.icon-instagram {
 .tc-sidebar .social-block a.social-icon,
 .colophon .social-block a.social-icon {
   float: @floatDirection;
+  width: auto;
+}
+.colophon .social-block:before,
+.colophon .social-block:after,
+.tc-sidebar .social-block:before,
+.tc-sidebar .social-block:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.colophon .social-block:after,
+.tc-sidebar .social-block:after {
+  clear: both;
 }
 
 /*ICONS FOR WIDGETS*/
@@ -2132,7 +2145,6 @@ max-width: 100%;
 
 .tc-sidebar .tc-placeholder-wrap {
   margin-top: 15px;
-  float: @floatDirection;
 }
 .tc-placeholder-wrap p {
   font-style: italic;
