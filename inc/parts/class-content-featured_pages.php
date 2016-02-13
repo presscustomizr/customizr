@@ -209,8 +209,9 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
 
             //limit text to 200 car
             $default_fp_text_length         = apply_filters( 'tc_fp_text_length', 200, $fp_single_id, $featured_page_id );
-            $text                           = ( strlen($text) > $default_fp_text_length ) ? substr( $text , 0 , strpos( $text, ' ' , $default_fp_text_length) ). ' ...' : $text;
 
+            $text                           = TC_utils::$inst -> tc_trim_text( $text, $default_fp_text_length, $more = '...', $strip_tags = false );
+                    
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
             $fp_img_size                    = apply_filters( 'tc_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
             //allow user to specify a custom image id
