@@ -175,7 +175,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'width'     => '75',
                                 'height'    => '30',
                                 'flex_width' => true,
-                                'flex_height' => true
+                                'flex_height' => true,
                                 'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
               ),
 
