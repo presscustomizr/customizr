@@ -49,21 +49,26 @@ if ( ! class_exists( 'TC_Model' ) ) :
       if ( ! $this -> tc_can_model_be_instanciated() )
         return;
 
-      //this will trigger the collection update
+      //this will trigger the collection update => the model will be registered in the collection
       do_action( 'model_instanciated' , $this -> id, $this );
 
       //Registers its children if any
       $this -> tc_maybe_register_children();
 
-      //listens to 'wp' and instanciate the model's view
-      add_action( 'wp'                                , array( $this, 'tc_maybe_instanciate_view' ), 999 );
-
-      //adds the view instance to the model
+      //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
       add_action( "view_instanciated_{$this -> id}"   , array( $this, 'tc_add_view_to_model'), 10, 1 );
 
       //takes the view instance as param
       add_action( "view_instanciated_{$this -> id}"   , array( $this, 'tc_maybe_hook_view'), 20, 1 );
+
+      //Maybe instanciate the model's view
+      //listens to 'wp' if not fired yet, or fire the instanciation
+      if ( ! did_action('wp') )
+        add_action( 'wp'                                , array( $this, 'tc_maybe_instanciate_view' ), 999 );
+      else
+        $this -> tc_maybe_instanciate_view();
+
     }
 
 
@@ -123,13 +128,6 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public function tc_unhook_view() {
       if ( false == $this -> hook || ! is_object( $this -> _instance) )
         return;
-      /* if ( is_array('SEXE') )
-        array_walk_recursive('SEXE', function(&$v) { $v = htmlspecialchars($v); }); */
-      ?>
-        <pre>
-          <?php print_r('SEXE'); ?>
-        </pre>
-      <?php
       remove_action( $this -> hook, array( $instance , 'tc_maybe_render' ), $this -> priority );
       //say it
       do_action( 'view_unhooked' , $this -> id );

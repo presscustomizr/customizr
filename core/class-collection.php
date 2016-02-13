@@ -2,7 +2,7 @@
 //This is the class managing the collection of models. Here's what it does :
 //- registers and de-registers models
 //- ensures that each model has a unique id and is well formed
-//- Instanciates the relevant models according to their controllers (for model registered on or after 'wp')
+//- Instanciates the relevant models according to their controllers (for models registered on or after 'wp')
 //- Handles the model's modifications, including deletion
 //- Make sure the collection is a public array of model's instance
 if ( ! class_exists( 'TC_Collection' ) ) :
@@ -10,8 +10,8 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     static $instance;
     //public $group = "";//header,content,footer,modules
     //private $args = array();//will store the updated args on model creation and use them to instanciate the child
-    public static $pre_registered = array();
-    public static $collection = array();//will store all registered models
+    public static $pre_registered = array();//will store the models before they are actually checked, instanciated and registered => before 'wp'
+    public static $collection = array();//will store all registered model instances
     public static $_delete_candidates = array();//will store deletion of models not added yet
     public static $_change_candidates = array();//will store change of models not added yet
 
@@ -43,13 +43,14 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //2) model instance
       add_action ('pre_register_model'          , array( $this, 'tc_pre_register_model'), 10, 2 );
 
-      //model_instanciated is emitted each time a model object has been properly instanciated and setup
-      //=> update the collection. 2 params
+      //a model_instanciated event is emitted each time a model object has been properly instanciated and setup
+      //=> update the collection by registering the model
+      //Takes 2 params
       //1) model id
       //2) model instance
       add_action( 'model_instanciated'          , array( $this, 'tc_update_collection' ), 10, 2 );
 
-      //on 'wp', the pre_registered are registered
+      //on 'wp', the pre_registered (if any) are registered
       add_action( 'wp'                          , array($this, 'tc_register_pre_registered') );
 
       //Reacts on 'tc_delete' event
@@ -186,6 +187,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       if ( ! did_action('wp') ) {
         //we will use this event to fire the pre-registration
         do_action( 'pre_register_model', $model['id'], $model );
+        return;
       }
       //if 'wp' has been fired (or is currently being fired) 1) check the controller if set
       else {
@@ -196,7 +198,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
 
     /**********************************************************************************
-    * PRE-REGISTERED
+    * PRE-REGISTRATION
     ***********************************************************************************/
     //update the pre_register static property
     //hook : pre_register_model
