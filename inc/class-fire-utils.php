@@ -30,6 +30,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
         //init properties
         add_action( 'after_setup_theme'       , array( $this , 'tc_init_properties') );
 
+        //multibyte string compatibility
+        add_action( 'init'                    , array( $this , 'tc_multibyte_string_compatibility') );
+
         //Various WP filters for
         //content
         //thumbnails => parses image if smartload enabled
@@ -86,6 +89,34 @@ if ( ! class_exists( 'TC_utils' ) ) :
             sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
             60*60*24*9999
           );
+        }
+      }
+
+
+
+      /**
+      * Allows the multibyte strings handling
+      *
+      * hook : init
+      * 
+      * @package Customizr
+      * @since Customizr 3.4.19
+      */
+      public function tc_multibyte_string_compatibility() {
+        //does the installed php allow it?
+        $_is_multibyte_allowed = function_exists( 'mb_strlen' ) && function_exists( 'mb_strpos' ) && function_exists( 'mb_substr' );
+        
+        $_list_of_mb_languages = array( 'ja'/*japanese*/ );
+        $_enable_multibyte     = apply_filters( 'tc_is_multibyte_enabled', in_array( get_locale(), $_list_of_mb_languages ) && $_is_multibyte_allowed, $_is_multibyte_allowed );
+      
+        if ( $_enable_multibyte ) { 
+          add_filter( 'tc_strlen', 'mb_strlen', 10 );
+          add_filter( 'tc_strpos', 'mb_strpos', 10, 4 );
+          add_filter( 'tc_substr', 'mb_substr', 10, 4 );
+        }else {
+          add_filter( 'tc_strlen', 'strlen' );
+          add_filter( 'tc_strpos', 'strpos', 10, 3 );
+          add_filter( 'tc_substr', 'substr', 10, 3 );
         }
       }
 
@@ -161,7 +192,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_get_skin_color( $_what = null ) {
         $_color_map    = TC_init::$instance -> skin_color_map;
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
-          
         $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_get_style_src() ) );
         //falls back to blue3 ( default #27CDA5 ) if not defined
         $_to_return = array( '#27CDA5', '#1b8d71' );
@@ -759,6 +789,59 @@ if ( ! class_exists( 'TC_utils' ) ) :
     public function tc_category_id_exists( $cat_id ) {
       return term_exists( (int) $cat_id, 'category');
     }
+
+
+ 
+    /**
+    * Helper
+    * Returns the passed text trimmed at $text_length char.
+    * with the $more text added
+    * multibyte compatible
+    *
+    * @param string $text : the text to trim
+    * @param numeric $text_length : the length of the desired text (in chars)
+    * @param string $more : the "more" to add to the trimmed text 
+    * @param bool $strip_tags (default true) : whether or not strip html tags
+    *
+    * @return string
+    *
+    * What we do here:
+    * Trim the text at a certain length
+    * How we do it:
+    * To preserve words we:
+    * a) cut the text at the first blank space occurring after the specified length
+    * b) if no blank spaces occurs after the specified length keep the whole text
+    * 
+    * @package Customizr
+    * @since Customizr 3.4.19
+    *
+    */
+    public function tc_trim_text( $text, $text_length, $more, $strip_tags = true ) {
+      if ( ! $text )
+        return '';
+
+      if ( ! $text_length )
+        return $text;
+
+      $text          = $strip_tags ? strip_tags( $text ) : $text;
+      $text          = trim( preg_replace( "/[\n\r\t ]+/", ' ', $text ) );
+
+      $charset       = apply_filters( 'tc_blog_charset', get_bloginfo('charset') );
+      $_text_length  = apply_filters( 'tc_strlen', $text, $charset );
+      
+      if ( $_text_length && ( $_text_length > $text_length ) ){
+        // strpos returns FALSE if the needle was not found this coudl mess up substr
+        $_trim_where = apply_filters( 'tc_strpos', $text, ' ', $text_length, $charset );
+        //if a blank space has been found we have to trim the text and maybe add the "read more"
+        if ( FALSE !== $_trim_where ) { 
+          $text      = apply_filters( 'tc_substr', $text, 0, $_trim_where, $charset );
+          $text      = $more ? $text . ' ' . $more : $text;
+        }
+        //else we don't trim the text in order to preserve entire words;
+      }
+      return $text;
+    }//end tc_trim_text
+
 
 
 
