@@ -35,6 +35,7 @@ if ( ! class_exists( 'TC_View' ) ) :
       }
 
       //emit event on view instanciation
+      //Will be listen to by the model and trigger the maybe_hook_view callback
       do_action( "view_instanciated_{$this -> id}", $this );
 
       //listens to a view pre-render => and fire the tc_apply_registered_changes_to_instance
@@ -72,7 +73,7 @@ if ( ! class_exists( 'TC_View' ) ) :
         echo $this -> html;
 
       if ( ! empty( $this -> template ) ) {
-        //add the view to the wp_query wp global
+        //add the view instance to the wp_query wp global
         set_query_var( "{$this -> template}_model", $this );
         get_template_part( "templates/{$this -> template}" );
       }
