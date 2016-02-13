@@ -210,7 +210,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
             //limit text to 200 car
             $default_fp_text_length         = apply_filters( 'tc_fp_text_length', 200, $fp_single_id, $featured_page_id );
 
-            $text                           = $this -> tc_trim_text( $text, $default_fp_text_length, $more = '...', $strip_tags = false );
+            $text                           = TC_utils::$inst -> tc_trim_text( $text, $default_fp_text_length, $more = '...', $strip_tags = false );
                     
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
             $fp_img_size                    = apply_filters( 'tc_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
@@ -319,58 +319,6 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       //gets  display img option
       return apply_filters( 'tc_show_featured_pages_img', esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) );
     }
-
-    /* You can find the exact same code in the slider class => move it into utils once then new php framework is done */
-    /**
-    * Helper
-    * Returns the passed text trimmed at $text_length char.
-    * with the $more text added
-    * multibyte compatible
-    *
-    * @param string $text : the text to trim
-    * @param numeric $text_length : the length of the desired text (in chars)
-    * @param string $more : the "more" to add to the trimmed text 
-    * @param bool $strip_tags (default true) : whether or not strip html tags
-    *
-    * @return string
-    *
-    * What we do here:
-    * Trim the text at a certain length
-    * How we do it:
-    * To preserve words we:
-    * a) cut the text at the first blank space occurring after the specified length
-    * b) if no blank spaces occurs after the specified length keep the whole text
-    * 
-    * @package Customizr
-    * @since Customizr 3.4.9
-    *
-    */
-    // move this into TC_utils
-    function tc_trim_text( $text, $text_length, $more, $strip_tags = true ) {
-      if ( ! $text )
-        return '';
-
-      if ( ! $text_length )
-        return $text;
-
-      $text         = $strip_tags ? strip_tags( $text ) : $text;
-      $text         = trim( preg_replace( "/[\n\r\t ]+/", ' ', $text ) );
-
-      $charset      = apply_filters( 'tc_blog_charset', get_bloginfo('charset') );
-      $_text_length = mb_strlen( $text, $charset );
-
-      if ( $_text_length && ( $_text_length > $text_length ) ){
-        // strpos returns FALSE if the needle was not found this coudl mess up substr
-        $_trim_where = mb_strpos( $text, ' ' , $text_length, $charset );
-        //if a blank space has been found we have to trim the text and maybe add the "read more"
-        if ( FALSE !== $_trim_where ) { 
-          $text      = mb_substr( $text , 0 , $_trim_where, $charset );
-          $text      = $more ? $text . ' ' . $more : $text;
-        }
-        //else we don't trim the text in order to preserve entire words;
-      }
-      return $text;
-    }//end tc_trim_text
 
   }//end of class
 endif;
