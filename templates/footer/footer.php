@@ -5,3 +5,4 @@
   <?php do_action( '__footer__'); ?>
 
 </footer>
+<?php wp_footer() ?>
