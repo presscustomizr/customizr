@@ -136,7 +136,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       }
 
       //stop here if still nothing is instanciated
-      if ( ! is_object( $_instance ) ) {
+      if ( !isset( $_instance) || ! is_object( $_instance ) ) {
         do_action( 'tc_dev_notice', 'View : '.$id.'. The control class for : ' . $controller_group . ' has not been instanciated.' );
         return array();
       }
