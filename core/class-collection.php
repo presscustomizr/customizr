@@ -553,7 +553,6 @@ if ( ! class_exists( 'TC_Collection' ) ) :
           $id = "{$hook}_{$priority}";
       }
 
-
       //return now if the requested id is not already taken
       if ( ! $this -> tc_is_registered($id) && ! $this -> tc_is_pre_registered($id) )
         return $id;

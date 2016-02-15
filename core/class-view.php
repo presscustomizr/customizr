@@ -70,7 +70,7 @@ if ( ! class_exists( 'TC_View' ) ) :
       <?php $this -> tc_render(); ?>
 
       <!-- END OF RENDERING VIEW ID : <?php echo $this -> id; ?> -->
-      <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> id}"; ?> -->
+      <!-- HOOK CONTENT HERE : <?php echo "after_render_view_{$this -> id}"; ?> -->
       <?php
 
       do_action( "after_render_view_{$this -> id}" );

@@ -11,7 +11,9 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
     function tc_display_view_head() {
       return true;
     }
-
+    function tc_display_view_menu() {
+      return true;
+    }
 
   }//end of class
 endif;

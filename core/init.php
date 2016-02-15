@@ -126,30 +126,40 @@ if ( ! class_exists( 'TC___' ) ) :
           *********************************************/
           array( 'hook' => '__rooot__', 'template' => 'rooot' ),
 
+
           /*********************************************
           * HEADER
           *********************************************/
-          array( 'hook' => '__before_body__', 'template' => 'header/head', 'early_hook' => 'something' ),
+          array( 'hook' => '__before_body__', 'template' => 'header/head' ),
           array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 ),
           array( 'hook' => '__header__', 'template' => 'header/menu', 'priority' => 10 ),
+
+
 
           /*********************************************
           * CONTENT
           *********************************************/
-          array( 'hook' => '__body__', 'template' => 'content/content', 'priority' => 20 ),
-          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20, 'query' => array( 'page_id' => 2 ) ),
-          array( 'hook' => 'in_main_loop', 'template' => 'content/title', 'priority' => 10 ),
-          array( 'hook' => 'in_main_loop', 'template' => 'content/page', 'priority' => 20 ),
+          array( 'hook' => '__body__', 'template' => 'content/content_wrapper', 'priority' => 20, 'view_class' => 'content_wrapper' ),
+          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
+          //headings
+          array( 'hook' => 'in_main_loop', 'template' => 'content/headings', 'priority' => 10 ),
 
-          //a post grid displayed in any content
-          array( 'hook' => '__content__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
-          array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
-          array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
+          //page
+          array( 'hook' => 'in_main_loop', 'template' => 'content/content', 'priority' => 20 ),
+
+          //404
+          array( 'hook' => 'in_main_loop', 'template' => 'content/404', 'priority' => 20 ),
+
 
           /*********************************************
           * FOOTER
           *********************************************/
-          array( 'hook' => '__body__', 'template' => 'footer/footer', 'priority' => 30 )
+          array( 'hook' => '__body__', 'template' => 'footer/footer', 'priority' => 30 ),
+
+          //a post grid displayed in any content
+          array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
+          array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
+          array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
         )
       );
     }

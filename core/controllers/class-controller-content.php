@@ -16,6 +16,13 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       );
     }
 
+    function tc_display_view_404() {
+      return is_404();
+    }
+
+    function tc_display_view_headings() {
+      return true;
+    }
 
   }//end of class
 endif;

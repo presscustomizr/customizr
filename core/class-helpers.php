@@ -15,7 +15,7 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
       if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) )
         return;
       ?>
-        <pre><h1 style="color:red"><?php echo $message ?></h1></pre>
+        <pre><h6 style="color:red"><?php echo $message ?></h6></pre>
       <?php
     }
 
