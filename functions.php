@@ -8,25 +8,32 @@ require_once( get_template_directory() . '/core/init.php' );
 CZR();
 
 
-/*******************************************************
-* SOME EXAMPLES
-*******************************************************/
+/*********************************************
+* ROOT HTML STRUCTURE
+*********************************************/
 CZR() -> collection -> tc_register(
   array( 'hook' => '__rooot__', 'template' => 'rooot' )
 );
+
+
+
+/*********************************************
+* HEADER
+*********************************************/
 CZR() -> collection -> tc_register(
   array( 'hook' => '__before_body__', 'template' => 'header/head' )
 );
-
 CZR() -> collection -> tc_register(
   array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 )
 );
 
+
+/*********************************************
+* CONTENT
+*********************************************/
 CZR() -> collection -> tc_register(
   array( 'hook' => '__body__', 'template' => 'content/content', 'priority' => 20 )
 );
-
-//CONTENT
 CZR() -> collection -> tc_register(
   array( 'hook' => '__content__', 'template' => 'loop', 'priority' => 20, 'query' => array( 'page_id' => 2, 'post_per_pages' => 1) )
 );
@@ -40,6 +47,9 @@ CZR() -> collection -> tc_register(
 
 
 
+/*********************************************
+* FOOTER
+*********************************************/
 CZR() -> collection -> tc_register(
   array( 'hook' => '__body__', 'template' => 'footer/footer', 'priority' => 30 )
 );
