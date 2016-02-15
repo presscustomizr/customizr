@@ -7,37 +7,8 @@ require_once( get_template_directory() . '/core/init.php' );
 // Fire Customizr
 CZR();
 
-$model_map = array(
-  /*********************************************
-  * ROOT HTML STRUCTURE
-  *********************************************/
-  array( 'hook' => '__rooot__', 'template' => 'rooot' ),
-
-  /*********************************************
-  * HEADER
-  *********************************************/
-  array( 'hook' => '__before_body__', 'template' => 'header/head' ),
-  array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 ),
-  array( 'hook' => '__header__', 'template' => 'header/menu', 'priority' => 10 ),
-
-  /*********************************************
-  * CONTENT
-  *********************************************/
-  array( 'hook' => '__body__', 'template' => 'content/content', 'priority' => 20 ),
-  array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20, 'query' => array( 'page_id' => 2 ) ),
-  array( 'hook' => 'in_main_loop', 'template' => 'content/title', 'priority' => 10 ),
-  array( 'hook' => 'in_main_loop', 'template' => 'content/page', 'priority' => 20 ),
-
-  /*********************************************
-  * FOOTER
-  *********************************************/
-  array( 'hook' => '__body__', 'template' => 'footer/footer', 'priority' => 30 )
-);
 
 
-foreach ($model_map as $model ) {
-  CZR() -> collection -> tc_register( $model);
-}
 
 
 /*//print the collection each time it's updated
