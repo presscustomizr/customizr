@@ -68,24 +68,6 @@ body {
   transition: none !important;
 }
 
-/* External Links style */
-a + span.tc-external:after {
-  font-family: 'genericons';
-  font-size: 1.25em;
-  content: "\f442";
-  speak: none;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 0;
-  padding-left: 0;
-  position: relative;
-  text-decoration: none!important;
-  top: 5px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 ul, ol {
   padding: 0px 5px;
 }
@@ -113,418 +95,268 @@ section {
 
 /* ICONS
   -------------------------------------------------- */
-/*@font-face {
-    font-family: 'genericons';
-    src: url( 'fonts/fonts/genericons-regular-webfont.eot' );
-    src: url( 'fonts/fonts/genericons-regular-webfont.eot?#iefix' ) format( 'embedded-opentype' ),
-         url( 'fonts/fonts/genericons-regular-webfont.woff' ) format( 'woff' ),
-         url( 'fonts/fonts/genericons-regular-webfont.ttf' ) format( 'truetype' ),
-         url( 'fonts/fonts/genericons-regular-webfont.svg#genericonsregular' ) format( 'svg' );
-}
-
-@font-face {
-    font-family: 'entypo';
-    src: url( 'fonts/fonts/entypo.eot' );
-    src: url( 'fonts/fonts/entypo.eot?#iefix' ) format( 'embedded-opentype' ),
-         url( 'fonts/fonts/entypo.woff' ) format( 'woff' ),
-         url( 'fonts/fonts/entypo.ttf' ) format( 'truetype' ),
-         url( 'fonts/fonts/entypo.svg#genericonsregular' ) format( 'svg' );
-}
-*/
-
-[data-icon]:before {
-  font-family: 'genericons';
-  content: attr(data-icon);
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-}
-
-.icon-bubble:before {
-  font-family: 'genericons';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-}
-.icon-bubble:before {
-  content: "\f300";
-}
-
-/*SOCIAL ICONS*/
+.tc-wc-menu .nav > li > a:before,
+#wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before,
+a + span.tc-external:after,
+.tc-placeholder-wrap:before,
+.tc-admin-notice:before,
+h2.comments-title:before,  
+h3#reply-title:before,
+.btt-arrow,
+.format-icon:before,
+.icon-bubble:before,
+.widget h3:before, 
 .colophon .credits a[class*=icon-]:before,
 .social-block a:before {
-  font-family: 'genericons';
+  font-family: 'FontAwesome';
   speak: none;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
+  font-style: normal;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.colophon .credits a[class*=icon-]:focus,
-.colophon .credits a[class*=icon-]:hover,
-.social-block a:hover{
-  text-decoration: none;
-  opacity: 1;
-}
-.icon-google:before {
-  content: "\f206";
-}
-.icon-facebook:before {
-  content: "\f204";
-}
-.icon-twitter:before {
-  content: "\f202";
-}
-.icon-feed:before {
-  content: "\f413";
-}
-.icon-flux:before {
-  content: "\f413";
-}
-.icon-github:before {
-  content: "\f200";
-}
-.icon-dribbble:before {
-  content: "\f201";
-}
-.icon-pinterest:before {
-  content: "\f209";
-}
-.icon-youtube:before {
-  content: "\f213";
-}
-.icon-linkedin:before {
-  content: "\f208";
-}
-.icon-wordpress:before {
-  content: "\f205";
-}
-.icon-instagram:before {
-  content: "\f215";
-}
-.icon-flickr:before {
-  content: "\f211";
-}
-.icon-tumblr:before {
-  content: "\f214";
-}
-.icon-email:before {
-  content: "\f410";
-  font-size: 1.3em;
-}
-.social-block .icon-email {
-  top: 0.28em;
-}
-
-
-/*ICONS FOR WIDGETS*/
-.widget h3:before {
-  font-family: 'genericons';
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  & when (@is_rtl = true) {
-    padding-left: 5px;
-  }
-  & when (@is_rtl = false) {
-    padding-right: 5px;
-  }
-  top: 8px;
-  font-size: 1.5em;
-  position: relative;
-  line-height: 0px;
-}
-.widget_social h3:before {
-  font-family: 'entypo';
-  top: 2px;
-  font-size: 2em;
-  content: "\E73C";
-}
-.widget_categories h3:before {
-  font-family: 'entypo';
-  top: 2px;
-  font-size: 2em;
-  content: "\1F4C1";
-}
-/* hack for safari, uses the browser body.class added with a script */
-.safari .widget_categories h3:before, .chrome .widget_categories h3:before {
-  font-family: 'genericons';
-  top: 8px;
-  font-size: 1.5em;
-  content: '\f301';
-}
-
-.widget_archive h3:before {
-  font-family: 'entypo';
-  top: 2px;
-  font-size: 2em;
-  content: "\E800";
-}
-.widget_tag_cloud h3:before {
-  content: "\f302";
-}
-.widget_recent_entries h3:before {
-  font-family: 'entypo';
-  top: 2px;
-  font-size: 2em;
-  content: "\1F4E3";
-}
-/* hack for safari, uses the browser body.class added with a script */
-.safari .widget_recent_entries h3:before, .chrome .widget_recent_entries h3:before {
-  font-family: 'genericons';
-  top: 8px;
-  font-size: 1.5em;
-  content: '\f403';
-}
-
-.widget_meta h3:before {
-  content: "\f442";
-}
-/* hack to render white color icons if skin is grey */
-.white-icons .widget h3:before {
-  color: #FFF;
-}
 #footer .white-icons .widget li:before {
   color: #FFF;
 }
 
-.widget_calendar h3:before {
-  content: "\f307";
+/*SOCIAL ICONS*/
+.colophon .credits a[class*=icon-]:focus,
+.colophon .credits a[class*=icon-]:hover,
+.social-block a:hover {
+  text-decoration: none;
+  opacity: 1;
 }
-.widget_pages h3:before {
-  font-family: 'entypo';
-  top: 2px;
-  font-size: 2em;
-  content: "\1F56A";
+.icon-google:before {
+  content: "\f0d5";
 }
-/* hack for safari, uses the browser body.class added with a script */
-.safari .widget_pages h3:before, .chrome .widget_pages h3:before {
-  font-family: 'genericons';
-  top: 8px;
-  font-size: 1.5em;
-  content: '\f436';
+.icon-facebook:before {
+  content: "\f09a";
+}
+.icon-twitter:before {
+  content: "\f099";
+}
+.icon-feed:before {
+  content: "\f09e";
+}
+.icon-flux:before {
+  content: "\f09e";
+}
+.icon-github:before {
+  content: "\f09b";
+}
+.icon-dribbble:before {
+  content: "\f17d";
+}
+.icon-pinterest:before {
+  content: "\f231";
+}
+.icon-youtube:before {
+  content: "\f167";
+}
+.icon-linkedin:before {
+  content: "\f0e1";
+}
+.icon-wordpress:before {
+  content: "\f19a";
+}
+.icon-instagram:before {
+  content: "\f16d";
+}
+.icon-flickr:before {
+  content: "\f16e";
+}
+.icon-tumblr:before {
+  content: "\f173";
+}
+.icon-email:before {
+  content: "\f0e0";
+}
+.icon-vk:before {
+  content: "\f189";
+}
+.icon-yelp:before {
+  content: "\f1e9";
+}
+.icon-xing:before {
+  content: "\f168";
+}
+/* icons in social block - fine alignment */
+.social-block a.social-icon {
+  top: -0.04em;
+}
+a.social-icon.icon-feed {
+  top: -0.01em;
+}
+a.social-icon.icon-youtube {
+  top: -0.15em;
+}
+a.social-icon.icon-wordpress {
+  top: -0.1em;
+}
+a.social-icon.icon-twitter {
+  top: 0.01em;
+}
+a.social-icon.icon-instagram {
+  top: 0;
+}
+/* Social icons floating in sidebars and colophon left block */
+.tc-sidebar .social-block a.social-icon,
+.colophon .social-block a.social-icon {
+  float: @floatDirection;
+  width: auto;
+}
+.colophon .social-block:before,
+.colophon .social-block:after,
+.tc-sidebar .social-block:before,
+.tc-sidebar .social-block:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.colophon .social-block:after,
+.tc-sidebar .social-block:after {
+  clear: both;
 }
 
-.widget_recent_comments h3:before {
-  content: "\f108";
-}
-.widget_search h3:before {
-  content: "\f400";
-}
-.widget_nav_menu h3:before {
-  content: "\f419";
-  top: 4px;
-  font-size: 1em;
-  padding-right: 10px;
-}
-
-/*-- POST FORMATS AND ARCHIVE ICONS */
-.format-icon:before {
-  font-family: 'entypo';
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
+/*ICONS FOR WIDGETS*/
+.widget h3:before {
   & when (@is_rtl = true) {
     padding-left: 10px;
   }
   & when (@is_rtl = false) {
     padding-right: 10px;
   }
-  font-size: 1.2em;
-  opacity: 0.2;
   position: relative;
-  top: 8px;
+  top: -1.3px;
 }
-.entry-summary.format-icon:before, .entry-content.format-icon:before {
-  font-family: 'entypo';
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 7px;
-  top: -26px;
-  -webkit-font-smoothing: antialiased;
-  padding-right: 13px;
-  font-size: 6.0em;
-  opacity: 0.3;
-  position: relative;
-  display: block;
-  float: @floatDirection;
+.widget_social h3:before {
+  content: "\f1e0";
 }
-article.page .format-icon:before {
-  content: "\1F4C4";
-    font-size: 3em;
-  line-height: 0px;
-  line-height: 0px;
-  position: relative;
-  top: 14px;
+.widget_categories h3:before {
+  content: "\f07c";
+}
+.widget_archive h3:before {
+  content: "\f187";
+}
+.widget_tag_cloud h3:before {
+  content: "\f02b";
+  top: .2px;
+}
+.widget_recent_entries h3:before {
+  content: "\f0a1";
+}
+.widget_meta h3:before {
+  content: "\f08e";
+  top: 0.5px;
+}
+.widget_calendar h3:before {
+  content: "\f073";
+  top: -1.6px;
+}
+.widget_pages h3:before {
+  content: "\f0e8";
+}
+.widget_recent_comments h3:before {
+  content: "\f086";
+}
+.widget_search h3:before {
+  content: "\f002";
+  top: -1.9px;
+}
+.widget_nav_menu h3:before {
+  content: "\f0c9";
 }
 
-/* hack for chrome and safari, uses the browser body.class added with a script */
-.safari article.page .format-icon:before, .chrome article.page .format-icon:before  {
-  font-family: 'genericons';
-  content: "\f443";
-  font-size: 1.8em;
-  line-height: 0px;
+/*-- POST FORMATS AND ARCHIVE ICONS */
+.format-icon:before {
+  & when (@is_rtl = true) {
+    padding-left: 10px;
+  }
+  & when (@is_rtl = false) {
+    padding-right: 10px;
+  }
+  opacity: 0.2;
   position: relative;
-  top: 20px;
+  top: -1.3px;
+}
+.entry-summary.format-icon:before, .entry-content.format-icon:before {
+  padding-right: 13px;
+  font-size: 4em;
+  opacity: 0.3;
+  display: block;
+  float: @floatDirection;
+  margin-top: -12px;
+}
+article.page .format-icon:before {
+  content: "\f0f6";
 }
 
 article.format-standard .format-icon:before {
-  font-family: 'genericons';
-  content: "\f411";
-  font-size: 1.5em;
-  top: 12px;
-  line-height: 25px;
-}
-article.format-gallery .format-icon:before, article.attachment .format-icon:before {
-  content: "\1F304";
-    font-size: 3em;
-  line-height: 0px;
+  content: "\f040";
 }
 
-/* hack for safari, uses the browser body.class added with a script */
-.safari article.format-gallery .format-icon:before, .safari article.attachment .format-icon:before , .chrome article.format-gallery .format-icon:before, .chrome article.attachment .format-icon:before {
-  font-family: 'genericons';
-  content: '\f102';
-  font-size: 1.8em;
-  line-height: 0px;
-  top: 15px;
+article.format-image .format-icon:before, article.format-gallery .format-icon:before, article.attachment .format-icon:before {
+  content: "\f03e";
 }
 
 article.format-aside .format-icon:before {
-  content: "\1F504";
-}
-/* hack for safari, uses the browser body.class added with a script */
-.safari article.format-aside .format-icon:before, .chrome article.format-aside .format-icon:before {
-  content: '\f308';
-  font-family: 'genericons';
-  font-size: 3.5em;
-  top: -2px;
+  content: "\f08d";
 }
 
 article.format-chat .format-icon:before {
-  font-family: 'genericons';
-  content: "\f108";
+  content: "\f086";
 }
 article.format-audio .format-icon:before  {
-  font-family: 'genericons';
-  content: "\f109";
-  font-size: 1.5em;
-  top: 10px
+  content: "\f028";
 }
 article.format-video .format-icon:before  {
-  content: "\1F3AC";
-    font-size: 3em;
-  line-height: 0px;
-  top: 10px;
-}
-/* hack for safari, uses the browser body.class added with a script */
-.safari article.format-video .format-icon:before , .chrome article.format-video .format-icon:before {
-content: '\f104';
-font-size: 2em;
-line-height: 0px;
-top: 20px;
-font-family: 'genericons';
+  content: "\f03d";
 }
 
 article.format-status .format-icon:before  {
-  content: "\26A1";
+  content: "\f0e7";
 }
 article.format-quote .format-icon:before, article.error404 .format-icon:before {
-  content: "\275E";
+  content: "\f10e";
+  font-size: 3em;
 }
-article.format-image .format-icon:before {
-  content: "\1F304";
-    font-size: 3em;
-  line-height: 0px;
+/* ie11 hack: In ie11 looks like the above font-size rule makes the overall icon size too big
+as it multiplicates 4em (general rule) and 3em, instead of override the general rule with the one above */
+.ie11 article.format-quote .format-icon:before, .ie11 article.error404 .format-icon:before {
+  font-size: .3em;
 }
-/* hack for ie */
-.ie article.format-image .format-icon:before {
-  font-size: 0.4em;
-}
-/* hack for safari, uses the browser body.class added with a script */
-.safari article.format-image .format-icon:before, .chrome article.format-image .format-icon:before {
-  font-family: 'genericons';
-  content: '\f102';
-  font-size: 1.8em;
-  line-height: 0px;
-  top: 15px;
-}
-
 article.format-link .format-icon:before {
-  content: "\1F517";
-  top: -12px;
+  content: "\f0c1";
 }
-/* hack for safari + chrome, uses the browser body.class added with a script */
-.safari article.format-link .format-icon:before , .chrome article.format-link .format-icon:before{
-  font-family: 'genericons';
-  content: "\f107";
-  top: 7px;
-}
-
+/* ARCHIVES */
 .search .search-header .format-icon:before {
-  font-family: 'genericons';
-  content: "\f400";
+  content: "\f002";
+  top: -1.9px;
 }
 
 .archive.date .archive-header .format-icon:before {
-  content: "\E800";
-  top: 3px;
-  font-size: 1.8em;
+  content: "\f187";
 }
 .archive.category .archive-header .format-icon:before {
-  top: 2px;
-  font-size: 2em;
-  content: "\1F4C1";
-}
-
-/* hack for safari + chrome, uses the browser body.class added with a script */
-.safari.archive.category .archive-header .format-icon:before,
-.chrome.archive.category .archive-header .format-icon:before {
-  font-family: 'genericons';
-  top: 10px;
-  font-size: 1.5em;
-  content: '\f301';
+  content: "\f07c";
 }
 
 .archive.tag .archive-header .format-icon:before {
-  font-family: 'genericons';
-  content: "\f302";
+  content: "\f02b";
 }
 .archive.author .archive-header .format-icon:before {
-  font-family: 'genericons';
-  content: '\f304';
+  content: '\f007';
 }
 
 /*--------OTHER ICONS-----------*/
 /*comments*/
 h3#reply-title:before {
-  font-family: 'entypo';
-  content: "\2712";
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
   padding-right: 5px;
-  font-size: 2em;
+  content: '\f044';
 }
 h2.comments:before { /* GY: added rule to fix icon position */
   & when (@is_rtl = true){
@@ -535,14 +367,7 @@ h2.comments:before { /* GY: added rule to fix icon position */
   }
 }
 h2.comments-title:before {
-  font-family: 'genericons';
-  content: "\f108";
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
+  content: '\f086';
   & when (@is_rtl = true) {
     float: right;
     padding-left: 5px;
@@ -551,9 +376,22 @@ h2.comments-title:before {
     float: left;
     padding-right: 5px;
   }
-  font-size: 1em;
 }
 
+/* External Links style */
+a + span.tc-external:after {
+  content: "\f08e";
+  line-height: 0;
+  padding-left: 0;
+  text-decoration: none!important;
+  top: .1em;
+  left: .2em;
+  position: relative;
+}
+
+.icon-bubble:before {
+  content: "\f075";
+}
 /* HEADER
     -------------------------------------------------- */
 
@@ -1548,7 +1386,6 @@ footer#footer .colophon .social-block a {
 footer#footer .colophon .credits a[class*=icon-] {
   vertical-align: inherit;
   position: relative;
-  top: 0.2em;
 }
 .social-block a:focus,
 .social-block a:active {
@@ -2334,15 +2171,9 @@ max-width: 100%;
   right: 6px;
 }
 .tc-admin-notice:before {
-  content: '\f427';
-  font-family: 'genericons';
-  font-size: 21px;
-  position: relative;
-  display: inline-block;
-  top: 5px;
+  content: '\f084';
+  font-size: 15px;
   padding-right: 3px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 /* POST THUMBNAILS
       -------------------------------------------------- */
@@ -2694,14 +2525,12 @@ article .no-thumb figcaption {
 /* Grid icons */
 .tc-grid-icon {
   text-align: center;
-  position: relative;
   position: absolute;
   z-index: 1;
   width: 100%;
+  left: 0;
+  top: 0;
   display: none!important\9;
-}
-.format-quote .tc-grid-icon, .format-status .tc-grid-icon {
-  top: -15%;
 }
 .tc-post-list-grid article .tc-grid-icon:before {
   font-size: 90px;
@@ -2711,19 +2540,11 @@ article .no-thumb figcaption {
   top: inherit!important;
   padding-right: 0;
 }
-.tc-post-list-grid article.format-quote .tc-grid-icon:before, .tc-post-list-grid article.format-status .tc-grid-icon:before {
-  font-size: 138px;
-}
-.tc-b-sidebar .tc-post-list-grid article .tc-grid-icon:before, .tc-b-sidebar .tc-post-list-grid article.format-quote .tc-grid-icon:before, .tc-b-sidebar .tc-post-list-grid article.format-status .tc-grid-icon:before, {
+
+.tc-b-sidebar .tc-post-list-grid article[class*=format] .tc-grid-icon:before {
   font-size: 60px;
 }
 
-.tc-post-list-grid .grid-cols-3 article .tc-grid-icon:before, .tc-post-list-grid .grid-cols-4 article .tc-grid-icon:before {
-  font-size: 60px;
-}
-.grid-cols-3 article.format-status .tc-grid-icon:before, .grid-cols-4 article.format-quote .tc-grid-icon:before, .grid-cols-4 article.format-status .tc-grid-icon:before, .grid-cols-4 article.format-quote .tc-grid-icon:before{
-  font-size: 100px!important;
-}
 .tc-grid-post .no-thumb .format-icon:before {
   opacity: 0.2;
 }
@@ -2782,21 +2603,13 @@ PLACEHOLDERS / DISMISS NOTICES
   position: relative;
 }
 .tc-placeholder-wrap::before {
-  font-family: genericons;
-  font-size: 1.25em;
-  content: "\f455";
-  speak: none;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 0;
+  font-size: 1em;
+  content: "\f05a";
   padding-left: 0;
   position: absolute;
   text-decoration: none!important;
-  top: 12px;
-  left: 2px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  top: 5px;
+  left: 5px;
 }
 
 
@@ -3182,56 +2995,25 @@ footer ul, footer ol {
   line-height: inherit;
 }
 .btt-arrow {
-  display: inline-block;
-  font-family: 'genericons';
   font-size: 2em;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 .btt-arrow:before {
-  content: "\f432";
+  content: "\f106";
   text-shadow: 0px 1px 0 #FFF;
+  top: -.06em;
 }
 
 
 /* ADMIN BAR
     -------------------------------------------------- */
 #wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
-  font-family: 'entypo';
-  content: "\E788";
+  content: "\f1cd";
   color: #FFF;
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
   padding-right: 0px;
-  top: 5px;
-  font-size: 30px;
+  top: 2px;
   position: relative;
-  line-height: 0px;
 }
 
-#wpadminbar #wp-admin-bar-tc-customizr .ab-item:before, li#wp-admin-bar-tc-customizr a:before {
-  font-family: 'entypo';
-  content: "\E79A";
-  color: #FFF;
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  padding-right: 0px;
-  top: 4px;
-  font-size: 30px;
-  position: relative;
-  line-height: 0px;
-}
 
 li#wp-admin-bar-tc-customizr-help a {
   color: #FFF;
@@ -3262,41 +3044,6 @@ background: -ms-linear-gradient(top,  #1B8D71 1%,#27CDA5 100%,#27CDA5 100%); /* 
 background: linear-gradient(to bottom,  #1B8D71 1%,#27CDA5 100%,#27CDA5 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1B8D71', endColorstr='#27CDA5',GradientType=0 ); /* IE6-9 */
 }
-
-li#wp-admin-bar-tc-customizr a {
-  background-color: #21759B;
-  background-image: -webkit-gradient(linear,left top,left bottom,from(#2A95C5),to(#21759B));
-  background-image: -webkit-linear-gradient(top,#2A95C5,#21759B);
-  background-image: -moz-linear-gradient(top,#2A95C5,#21759B);
-  background-image: -ms-linear-gradient(top,#2A95C5,#21759B);
-  background-image: -o-linear-gradient(top,#2A95C5,#21759B);
-  background-image: linear-gradient(to bottom,#2A95C5,#21759B);
-  border-color: #21759B;
-  border-bottom-color: #1E6A8D;
-  -webkit-box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.5);
-  box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.5);
-  color: #FFF;
-  text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-
-
-#wpadminbar .ab-top-menu>li#wp-admin-bar-tc-customizr:hover>.ab-item {
-  background: #21759b; /* Old browsers */
-  background: -moz-linear-gradient(top,  #21759b 0%, #2e9fd2 100%, #27CDA5 100%, #2e9fd2 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#21759b), color-stop(100%,#2e9fd2), color-stop(100%,#27CDA5), color-stop(100%,#2e9fd2)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #21759b 0%,#2e9fd2 100%,#27CDA5 100%,#2e9fd2 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #21759b 0%,#2e9fd2 100%,#27CDA5 100%,#2e9fd2 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #21759b 0%,#2e9fd2 100%,#27CDA5 100%,#2e9fd2 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #21759b 0%,#2e9fd2 100%,#27CDA5 100%,#2e9fd2 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#21759b', endColorstr='#2e9fd2',GradientType=0 ); /* IE6-9 */
-  border-color: #1B607F;
-  -webkit-box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.6);
-  box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.6);
-  color: #FFF;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-}
-
 
 /* MEDIA PRINT
     -------------------------------------------------- */

@@ -49,16 +49,24 @@ if ( ! class_exists( 'TC_resources' ) ) :
 		* @package Customizr
 		* @since Customizr 1.1
 		*/
-		function tc_enqueue_front_styles() {
-	    wp_enqueue_style( 'customizr-common', TC_init::$instance -> tc_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
-      //Customizr active skin
-	    wp_register_style( 'customizr-skin', TC_init::$instance -> tc_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
-	    wp_enqueue_style( 'customizr-skin' );
-	    //Customizr stylesheet (style.css)
-	    wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
+        function tc_enqueue_front_styles() {
+          //Enqueue FontAwesome CSS
+          if ( true == TC_utils::$inst -> tc_opt( 'tc_font_awesome_css' ) ) {
+            $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+            wp_enqueue_style( 'customizr-fa', 
+                $_path . '/fonts/' . TC_init::$instance -> tc_maybe_use_min_style( 'font-awesome.css' ),
+                array() , CUSTOMIZR_VER, 'all' );
+          }
 
-	    //Customizer user defined style options : the custom CSS is written with a high priority here
-	    wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , '' ) );
+	      wp_enqueue_style( 'customizr-common', TC_init::$instance -> tc_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
+          //Customizr active skin
+	      wp_register_style( 'customizr-skin', TC_init::$instance -> tc_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
+	      wp_enqueue_style( 'customizr-skin' );
+	      //Customizr stylesheet (style.css)
+	      wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
+
+	      //Customizer user defined style options : the custom CSS is written with a high priority here
+	      wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , '' ) );
 		}
 
 
@@ -324,25 +332,21 @@ if ( ! class_exists( 'TC_resources' ) ) :
     * @since Customizr 3.3.2
     */
     public function tc_get_inline_font_icons_css() {
+      if ( false == TC_utils::$inst -> tc_opt( 'tc_font_awesome_icons' ) )
+        return;
+
       $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
       ob_start();
         ?>
         @font-face {
-          font-family: 'genericons';
-          src:url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.eot');
-          src:url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
-              url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.woff') format('woff'),
-              url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.ttf') format('truetype'),
-              url('<?php echo $_path ?>/fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg');
-        }
-        @font-face {
-          font-family: 'entypo';
-          src:url('<?php echo $_path ?>/fonts/fonts/entypo.eot');
-          src:url('<?php echo $_path ?>/fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'),
-          url('<?php echo $_path ?>/fonts/fonts/entypo.woff') format('woff'),
-          url('<?php echo $_path ?>/fonts/fonts/entypo.ttf') format('truetype'),
-          url('<?php echo $_path ?>/fonts/fonts/entypo.svg#genericonsregular') format('svg');
-        }
+          font-family: 'FontAwesome';
+          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot');
+          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2') format('woff2'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff') format('woff'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+        }        
         <?php
       $_font_css = ob_get_contents();
       if ($_font_css) ob_end_clean();
