@@ -62,7 +62,18 @@ if ( ! class_exists( 'TC_View' ) ) :
         return;
 
       do_action( "before_render_view_{$this -> id}" );
+      ?>
+      <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> id}"; ?> -->
+      <!-- START RENDERING VIEW ID : <?php echo $this -> id; ?> -->
+      <?php
+
         $this -> tc_render();
+
+      ?>
+      <!-- END OF RENDERING VIEW ID : <?php echo $this -> id; ?> -->
+      <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> id}"; ?> -->
+      <?php
+
       do_action( "after_render_view_{$this -> id}" );
     }
 
