@@ -146,10 +146,12 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     public function tc_set_model_base_properties( $model = array() ) {
       $id       = isset($model['id']) ? $model['id'] : "";
       $priority = isset($model['priority']) ? $model['priority'] : "";
+      $template = isset($model['template']) ? $model['template']  : "";//the template name can be used to define the id
+
       //makes sure we assign a unique ascending priority if not set
       $model['priority']  = $this -> tc_set_priority( $model['hook'] , $priority );
       //check or set the name unicity
-      $model['id']        = $this -> tc_set_unique_id( $id , $model['hook'], $model['priority'] );
+      $model['id']        = $this -> tc_set_unique_id( $id , $model['hook'], $model['priority'], $template );
 
       //don't go further if we still have no id set
       if ( ! $model['id'] ) {
@@ -537,13 +539,20 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
     //Recursively create a unique id when needed
     //@return string id
-    private function tc_set_unique_id( $id, $hook, $priority ) {
+    private function tc_set_unique_id( $id, $hook, $priority, $template ) {
       //add an event here
       $id = apply_filters('tc_set_model_unique_id' , $id, $hook, $priority );
 
-      //if id not set, then create a unique id from hook_priority
-      if ( empty($id) || is_null($id) )
-        $id = "{$hook}_{$priority}";
+      //if id not set, then :
+      //1) try to create a unique id from the template name if specified
+      //2) otherwise create a unique id from hook_priority
+      if ( empty($id) || is_null($id) ) {
+        if ( ! empty($template) )
+          $id = basename( $template );
+        else
+          $id = "{$hook}_{$priority}";
+      }
+
 
       //return now if the requested id is not already taken
       if ( ! $this -> tc_is_registered($id) && ! $this -> tc_is_pre_registered($id) )
@@ -559,7 +568,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       $id                 = implode( "_" , $id_exploded );
 
       //recursive check
-      return $this -> tc_set_unique_id( $id, $hook, $priority );
+      return $this -> tc_set_unique_id( $id, $hook, $priority, $template );
     }
 
 
