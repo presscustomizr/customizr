@@ -17,21 +17,29 @@ CZR() -> collection -> tc_register(
 CZR() -> collection -> tc_register(
   array( 'hook' => '__before_body__', 'template' => 'head' )
 );
+
 CZR() -> collection -> tc_register(
   array( 'hook' => '__body__', 'template' => 'header', 'priority' => 10 )
 );
+
 CZR() -> collection -> tc_register(
   array( 'hook' => '__body__', 'template' => 'content', 'priority' => 20 )
 );
+
+//CONTENT
 CZR() -> collection -> tc_register(
-  array( 'hook' => '__body__', 'template' => 'loop', 'priority' => 20, 'query' => array( 'page_id' => '2', 'post_type' => 'page') )
+  array( 'hook' => '__content__', 'template' => 'loop', 'priority' => 20, 'query' => array( 'page_id' => 2, 'post_per_pages' => 1) )
 );
+
 CZR() -> collection -> tc_register(
   array( 'hook' => '__loop__', 'template' => 'title', 'priority' => 10 )
 );
 CZR() -> collection -> tc_register(
   array( 'hook' => '__loop__', 'template' => 'page', 'priority' => 20 )
 );
+
+
+
 CZR() -> collection -> tc_register(
   array( 'hook' => '__body__', 'template' => 'footer', 'priority' => 30 )
 );
