@@ -133,10 +133,13 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       if ( ! array_key_exists($controller_group, self::$controllers_instances) ) {
         //this will actually load the class file and instanciate it
         $_instance = $this -> tc_instanciate_group_controller($controller_group);
+      } else {
+        $_instance = $this -> tc_get_controller_instance($controller_group);
       }
 
       //stop here if still nothing is instanciated
-      if ( !isset( $_instance) || ! is_object( $_instance ) ) {
+      if ( ! isset( $_instance) || ! is_object( $_instance ) ) {
+
         do_action( 'tc_dev_notice', 'View : '.$id.'. The control class for : ' . $controller_group . ' has not been instanciated.' );
         return array();
       }
@@ -162,6 +165,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       $_file  = sprintf( '%1$score/controllers/class-controller-%2$s.php' , TC_BASE, $group );
       $_class = "TC_controller_{$group}";
       $_instance = false;
+
       if ( file_exists($_file) )
         require_once( $_file );
       if ( class_exists($_class) ) {
@@ -182,6 +186,15 @@ if ( ! class_exists( 'TC_controllers' ) ) :
 
       $controller_instances[$group] = $_instance;
       self::$controllers_instances = $controller_instances;
+    }
+
+
+    //get an already instanciated controller group instance
+    public function tc_get_controller_instance( $group ) {
+      $controller_instances = self::$controllers_instances;
+      if ( ! array_key_exists($group, $controller_instances) )
+        return;
+      return $controller_instances[$group];
     }
 
 
