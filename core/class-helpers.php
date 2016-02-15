@@ -64,5 +64,6 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
         return call_user_func_array($cb, $params);
       }
     }
+
   }//end of class
 endif;
