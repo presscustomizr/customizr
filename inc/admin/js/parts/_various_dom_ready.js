@@ -136,6 +136,15 @@
     /* NUMBER */
     $('input[type="number"]').stepper();
 
+    //templates rendering
+    _render_doc_link();
+    
+    function _render_doc_link(){
+      var $_doc_link = _.template(
+        $( "script#customizr-doc-link" ).html()
+      );
+      $('#customize-info > .customize-panel-description').append( $_doc_link );
+    }
   });//end of $( function($) ) dom ready
 
 })( wp, jQuery);
