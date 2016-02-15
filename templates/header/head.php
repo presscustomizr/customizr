@@ -12,7 +12,7 @@
         background: #27cda5;
         text-align: center;
         min-height: 50px;
-        width: 90%;
+        width: 100%;
         padding: 5%;
         /* float: left; */
     }
@@ -20,10 +20,12 @@
       background: #564777;
       text-align: left;
       min-height: 400px;
-      width: 90%;
+      width: 100%;
       padding: 5%;
       color: #fff;
     }
+    header ul.navbar-nav { width: 100%; text-align: center;}
+    header .navbar-nav > li { float:none; display: inline-block; }
     </style>
     <?php wp_head(); ?>
 </head>
