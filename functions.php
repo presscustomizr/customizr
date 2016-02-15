@@ -18,6 +18,7 @@ $model_map = array(
   *********************************************/
   array( 'hook' => '__before_body__', 'template' => 'header/head' ),
   array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 ),
+  array( 'hook' => '__header__', 'template' => 'header/menu', 'priority' => 10 ),
 
   /*********************************************
   * CONTENT
