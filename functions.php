@@ -15,15 +15,15 @@ CZR() -> collection -> tc_register(
   array( 'hook' => '__rooot__', 'template' => 'rooot' )
 );
 CZR() -> collection -> tc_register(
-  array( 'hook' => '__before_body__', 'template' => 'head' )
+  array( 'hook' => '__before_body__', 'template' => 'header/head' )
 );
 
 CZR() -> collection -> tc_register(
-  array( 'hook' => '__body__', 'template' => 'header', 'priority' => 10 )
+  array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 )
 );
 
 CZR() -> collection -> tc_register(
-  array( 'hook' => '__body__', 'template' => 'content', 'priority' => 20 )
+  array( 'hook' => '__body__', 'template' => 'content/content', 'priority' => 20 )
 );
 
 //CONTENT
@@ -32,16 +32,16 @@ CZR() -> collection -> tc_register(
 );
 
 CZR() -> collection -> tc_register(
-  array( 'hook' => '__loop__', 'template' => 'title', 'priority' => 10 )
+  array( 'hook' => '__loop____content___20', 'template' => 'content/title', 'priority' => 10 )
 );
 CZR() -> collection -> tc_register(
-  array( 'hook' => '__loop__', 'template' => 'page', 'priority' => 20 )
+  array( 'hook' => '__loop____content___20', 'template' => 'content/page', 'priority' => 20 )
 );
 
 
 
 CZR() -> collection -> tc_register(
-  array( 'hook' => '__body__', 'template' => 'footer', 'priority' => 30 )
+  array( 'hook' => '__body__', 'template' => 'footer/footer', 'priority' => 30 )
 );
 
 

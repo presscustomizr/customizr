@@ -74,8 +74,11 @@ if ( ! class_exists( 'TC_View' ) ) :
         echo $this -> html;
 
       if ( ! empty( $this -> template ) ) {
+        //get the basename
+        $_template = basename( $this -> template );
+
         //add the view instance to the wp_query wp global
-        set_query_var( "{$this -> template}_model", $this );
+        set_query_var( "{$_template}_model", $this );
         get_template_part( "templates/{$this -> template}" );
       }
       // $path = '';

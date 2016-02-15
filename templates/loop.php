@@ -1,4 +1,7 @@
 <?php
+
+//a generic loop that can be used to display WP query
+
 global $wp_query, $_query, $wp_the_query;
 //do we have a custom query ?
 if ( false !== $loop_model -> query ) {
@@ -10,7 +13,8 @@ if ( false !== $loop_model -> query ) {
   if ( have_posts() ):
     while ( have_posts() ):
       the_post();
-      do_action('__loop__');
+
+      do_action("__loop__{$loop_model ->id}");
     endwhile;
   endif;
 
