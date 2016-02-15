@@ -9,13 +9,14 @@ if ( false !== $loop_model -> query ) {
   $wp_query = $_query;
 }
 
-
-  if ( have_posts() ):
-    while ( have_posts() ):
-      the_post();
-      do_action("in_{$loop_model ->id}");
-    endwhile;
-  endif;
+if ( CZR() -> controllers -> tc_is_no_results() || is_404() ) {
+  do_action("in_{$loop_model ->id}");
+} else if ( have_posts() && ! is_404() ) {
+  while ( have_posts() ):
+    the_post();
+    do_action("in_{$loop_model ->id}");
+  endwhile;
+}
 
 
 //Always reset the query to the main WP one

@@ -1,7 +1,13 @@
-<section>
-  <h1>I AM THE TEMPLATE OF THE VIEW <span style="color:blue"><?php echo $content_model -> id ?></span></h1>
-
-  <p style="text-align:center"><strong style="font-size:50px;font-family:arial">CONTENT</strong></p>
-  <?php do_action( '__content__'); ?>
-
-</section>
+<div class="entry-content">
+  <?php
+    the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
+    wp_link_pages( array(
+        'before'        => '<div class="btn-toolbar page-links"><div class="btn-group">' . __( 'Pages:' , 'customizr' ),
+        'after'         => '</div></div>',
+        'link_before'   => '<button class="btn btn-small">',
+        'link_after'    => '</button>',
+        'separator'     => '',
+    )
+            );
+  ?>
+</div>

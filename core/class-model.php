@@ -141,13 +141,18 @@ if ( ! class_exists( 'TC_Model' ) ) :
       if ( false === $this -> view_class || empty($this -> view_class) )
         return new TC_View( $this -> tc_get() );
 
-      if ( ! class_exists($this -> view_class) ) {
-        do_action('tc_dev_notice', "Model : " . $this -> id . ". The view class does not exist. The view has not been instanciated." );
-        return;
+      //A view class has been defined, let's try to load it and instanciate it
+      $view_class_name = sprintf( 'TC_%s_view_class', $this -> view_class );
+      if ( ! class_exists($view_class_name) ) {
+        //try to load the view class
+        $path = sprintf( '%1$score/views/class-view-%2$s.php' , TC_BASE, $this -> view_class );
+
+        if ( file_exists($path) )
+          require_once( $path );
       }
 
-      $view_class = $this -> view_class;
-      $instance = new $view_class( $this -> tc_get() );
+      if ( class_exists($view_class_name) )
+        $instance = new $view_class_name( $this -> tc_get() );
 
       if ( ! is_object($instance) ) {
         do_action('tc_dev_notice', "Model : " . $this -> id . ". The view has not been instanciated." );

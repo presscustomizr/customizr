@@ -1,5 +1,4 @@
 <?php
-
 //Fire
 require_once( get_template_directory() . '/core/init.php' );
 

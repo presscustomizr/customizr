@@ -52,12 +52,12 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       //the returned value can be a string or an array( instance, method)
       $controller_cb = $this -> tc_get_controller( $model );
       //FOR TEST ONLY
-      return true;
+      //return true;
 
       if ( ! empty( $controller_cb ) ) {
         return apply_filters( 'tc_set_control' , (bool) CZR() -> helpers -> tc_return_cb_result( $controller_cb ) );
       }
-      return;
+      return true;
     }
 
 
@@ -228,6 +228,19 @@ if ( ! class_exists( 'TC_controllers' ) ) :
     function tc_is_home_empty() {
       //check if the users has choosen the "no posts or page" option for home page
       return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
+    }
+
+
+
+    /**
+    * Boolean : check if we are in the no search results case
+    *
+    * @package Customizr
+    * @since 3.0.10
+    */
+    function tc_is_no_results() {
+      global $wp_query;
+      return ( is_search() && 0 == $wp_query -> post_count ) ? true : false;
     }
 
 
