@@ -1,0 +1,51 @@
+{
+  "name": "customizr",
+  "version": "3.4.18",
+  "description": "Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.",
+  "author": "nikeo",
+  "license": "GNU GPL v2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/presscustomizr/customizr"
+  },
+  "skins": {
+    "black": "#000",
+    "black2": "#394143",
+    "blue": "#08c",
+    "blue2": "#27CBCD",
+    "blue3": "#27CDA5",
+    "green": "#9db668",
+    "green2": "#26CE61",
+    "grey": "#5A5A5A",
+    "grey2": "#E4E4E4",
+    "orange": "#F78C40",
+    "orange2": "#E79B5D",
+    "purple": "#e67fb9",
+    "purple2": "#8183D8",
+    "red": "#e10707",
+    "red2": "#e7797a",
+    "yellow": "#e9a825",
+    "yellow2": "#d2d62a"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-checktextdomain": "^0.1.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compress": "^0.12.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-ftp-push": "^0.2.4",
+    "grunt-gitinfo": "^0.1.7",
+    "grunt-multi": "0.0.6",
+    "grunt-text-replace": "^0.3.12",
+    "grunt-wait": "^0.1.0",
+    "grunt-wp-i18n": "^0.4.9",
+    "jshint-stylish": "^1.0.0",
+    "load-grunt-config": "^0.16.0"
+  }
+}

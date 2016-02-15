@@ -15,6 +15,7 @@
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
  */
+<<<<<<< HEAD
 if ( have_comments() )
 	echo apply_filters( 'tc_comment_separator', '<hr class="featurette-divider '. current_filter() .'">' );
 ?>
@@ -26,3 +27,18 @@ if ( have_comments() )
 			do_action ( '__comment' );
 	?>
 </div><!-- #comments .comments-area -->
+=======
+
+if ( have_comments() ) {
+	echo apply_filters( 'tc_comment_separator', '<hr class="featurette-divider '. current_filter() .'">' );
+}
+?>
+
+<div id="comments" class="<?php echo implode( ' ', apply_filters( 'tc_comments_wrapper_class' , array('comments-area') ) ) ?>" >
+	<?php
+		comment_form();
+		if ( have_comments() && apply_filters( 'tc_display_comment_list', true ) )
+			do_action ( '__comment' );
+	?>
+</div><!-- //#comments .comments-area -->
+>>>>>>> upstream/master
