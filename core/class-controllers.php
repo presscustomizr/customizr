@@ -1,5 +1,5 @@
 <?php
-//the controllers are organized by groupd in 4 classes
+//the controllers are organized by groups in 4 classes
 //Header, Content, Footer, Modules.
 //The controller group classes are instanciated on demand if any of a view (or its child) requested it
 //If the model is used as a method parameter, it shall be an array()
@@ -142,8 +142,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       }
 
       //build the method name
-      $method_name = "tc_display_view_{$controller_cb}";//ex : favicon_control
-
+      $method_name = "tc_display_view_{$controller_cb}";//ex : tc_display_view_{favicon_control}()
 
 
       //make sure we have a class instance and that the requested controller method exists in it
@@ -160,7 +159,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
     //@param is a string : header, content, footer, modules
     //@return the $instance
     private function tc_instanciate_group_controller( $group ) {
-      $_file  = sprintf( '%1$sinc/controllers/class-controller-%2$s.php' , TC_BASE, $group );
+      $_file  = sprintf( '%1$score/controllers/class-controller-%2$s.php' , TC_BASE, $group );
       $_class = "TC_controller_{$group}";
       $_instance = false;
       if ( file_exists($_file) )
@@ -184,6 +183,40 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       $controller_instances[$group] = $_instance;
       self::$controllers_instances = $controller_instances;
     }
+
+
+
+    /******************************************************************
+    * HELPERS
+    ******************************************************************/
+        /**
+    * Return object post type
+    *
+    * @since Customizr 3.0.10
+    *
+    */
+    function tc_get_post_type() {
+      global $post;
+
+      if ( ! isset($post) )
+        return;
+
+      return $post -> post_type;
+    }
+
+
+
+    /**
+    * Check if we show posts or page content on home page
+    *
+    * @since Customizr 3.0.6
+    *
+    */
+    function tc_is_home_empty() {
+      //check if the users has choosen the "no posts or page" option for home page
+      return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
+    }
+
 
   }//end of class
 endif;
