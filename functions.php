@@ -24,9 +24,11 @@ CZR() -> collection -> tc_register(
   array( 'hook' => '__body__', 'template' => 'content', 'priority' => 20 )
 );
 CZR() -> collection -> tc_register(
+  array( 'hook' => '__body__', 'template' => 'page', 'priority' => 20, 'query' => array( 'pagename' => 'sample-page') )
+);
+CZR() -> collection -> tc_register(
   array( 'hook' => '__body__', 'template' => 'footer', 'priority' => 30 )
 );
-
 
 
 
