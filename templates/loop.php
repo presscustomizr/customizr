@@ -13,8 +13,7 @@ if ( false !== $loop_model -> query ) {
   if ( have_posts() ):
     while ( have_posts() ):
       the_post();
-
-      do_action("__loop__{$loop_model ->id}");
+      do_action("in_{$loop_model ->id}");
     endwhile;
   endif;
 

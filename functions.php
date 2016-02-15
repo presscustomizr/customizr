@@ -7,55 +7,36 @@ require_once( get_template_directory() . '/core/init.php' );
 // Fire Customizr
 CZR();
 
+$model_map = array(
+  /*********************************************
+  * ROOT HTML STRUCTURE
+  *********************************************/
+  array( 'hook' => '__rooot__', 'template' => 'rooot' ),
 
-/*********************************************
-* ROOT HTML STRUCTURE
-*********************************************/
-CZR() -> collection -> tc_register(
-  array( 'hook' => '__rooot__', 'template' => 'rooot' )
-);
+  /*********************************************
+  * HEADER
+  *********************************************/
+  array( 'hook' => '__before_body__', 'template' => 'header/head' ),
+  array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 ),
 
+  /*********************************************
+  * CONTENT
+  *********************************************/
+  array( 'hook' => '__body__', 'template' => 'content/content', 'priority' => 20 ),
+  array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20, 'query' => array( 'page_id' => 2 ) ),
+  array( 'hook' => 'in_main_loop', 'template' => 'content/title', 'priority' => 10 ),
+  array( 'hook' => 'in_main_loop', 'template' => 'content/page', 'priority' => 20 ),
 
-
-/*********************************************
-* HEADER
-*********************************************/
-CZR() -> collection -> tc_register(
-  array( 'hook' => '__before_body__', 'template' => 'header/head' )
-);
-CZR() -> collection -> tc_register(
-  array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 )
-);
-
-
-/*********************************************
-* CONTENT
-*********************************************/
-CZR() -> collection -> tc_register(
-  array( 'hook' => '__body__', 'template' => 'content/content', 'priority' => 20 )
-);
-CZR() -> collection -> tc_register(
-  array( 'hook' => '__content__', 'template' => 'loop', 'priority' => 20, 'query' => array( 'page_id' => 2, 'post_per_pages' => 1) )
-);
-
-CZR() -> collection -> tc_register(
-  array( 'hook' => '__loop____content___20', 'template' => 'content/title', 'priority' => 10 )
-);
-CZR() -> collection -> tc_register(
-  array( 'hook' => '__loop____content___20', 'template' => 'content/page', 'priority' => 20 )
-);
-
-
-
-/*********************************************
-* FOOTER
-*********************************************/
-CZR() -> collection -> tc_register(
+  /*********************************************
+  * FOOTER
+  *********************************************/
   array( 'hook' => '__body__', 'template' => 'footer/footer', 'priority' => 30 )
 );
 
 
-
+foreach ($model_map as $model ) {
+  CZR() -> collection -> tc_register( $model);
+}
 
 
 /*//print the collection each time it's updated
@@ -136,15 +117,15 @@ function register_test_views() {
   // );
 
 
-  CZR() -> collection -> tc_register(
-    array( 'hook' => '__content__', 'html' => '<h1>Yo Man this is some html to render</h1>' )
-  );
-  CZR() -> collection -> tc_register(
-    array( 'hook' => '__content__', 'callback' => array( 'TC_rendering', 'callback_met'), 'html' => '<h1>YOOOOOO</h1>' )
-  );
-  CZR() -> collection -> tc_register(
-    array( 'hook' => '__content__', 'callback' => 'callback_fn', 'cb_params' => array('custom1', 'custom2'), 'html' => '<h1>YAAAA</h1>' )
-  );
+  // CZR() -> collection -> tc_register(
+  //   array( 'hook' => '__content__', 'html' => '<h1>Yo Man this is some html to render</h1>' )
+  // );
+  // CZR() -> collection -> tc_register(
+  //   array( 'hook' => '__content__', 'callback' => array( 'TC_rendering', 'callback_met'), 'html' => '<h1>YOOOOOO</h1>' )
+  // );
+  // CZR() -> collection -> tc_register(
+  //   array( 'hook' => '__content__', 'callback' => 'callback_fn', 'cb_params' => array('custom1', 'custom2'), 'html' => '<h1>YAAAA</h1>' )
+  // );
 
   //CZR() -> collection -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'view_class' => '') );
 }
