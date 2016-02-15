@@ -67,8 +67,16 @@ if ( ! class_exists( 'TC_View' ) ) :
     }
 
 
+
     //might be overriden in the child view if any
     public function tc_render() {
+      global $wp_query, $_query, $wp_the_query;
+      //do we have a custom query ?
+      if ( false !== $this -> query ) {
+        $_query = new WP_Query( $this -> query );
+        $wp_query = $_query;
+      }
+
       if ( ! empty( $this -> html ) )
         echo $this -> html;
 
@@ -83,6 +91,9 @@ if ( ! class_exists( 'TC_View' ) ) :
 
       if ( ! empty( $this -> callback ) )
         CZR() -> helpers -> tc_fire_cb( $this -> callback, $this -> cb_params );
+
+      //Always reset the query to the main WP one
+      $wp_query = $wp_the_query;
     }
 
 
