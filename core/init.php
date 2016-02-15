@@ -32,9 +32,13 @@ if ( ! class_exists( 'TC___' ) ) :
         self::$instance -> collection = new TC_Collection();
         self::$instance -> controllers = new TC_Controllers();
         self::$instance -> helpers = new TC_Helpers();
-      /* For testing purposes */
+
+        /* For testing purposes */
         self::$instance -> tc_register_menus();
         add_action( 'wp_enqueue_scripts', array( self::$instance, 'tc_enqueue_resources' ) );
+
+        //register the model's map
+        add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
       }
       return self::$instance;
     }
@@ -92,17 +96,65 @@ if ( ! class_exists( 'TC___' ) ) :
     }
 
 
-    /* FOR TESTING PURPOSES */        
+    /* FOR TESTING PURPOSES */
     function tc_register_menus() {
       /* This theme uses wp_nav_menu() in one location. */
       register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
     }
 
     function tc_enqueue_resources(){
-      wp_enqueue_style( 'bootstrap-css', TC_BASE_URL . 'assets/bootstrap/css/bootstrap.css', array(), CUSTOMIZR_VER, 'all');     
-      wp_enqueue_script( 'bootstrap-js', TC_BASE_URL . 'assets/bootstrap/js/bootstrap.js', array(), CUSTOMIZR_VER, true);     
+      wp_enqueue_style( 'bootstrap-css', TC_BASE_URL . 'assets/bootstrap/css/bootstrap.css', array(), CUSTOMIZR_VER, 'all');
+      wp_enqueue_script( 'bootstrap-js', TC_BASE_URL . 'assets/bootstrap/js/bootstrap.js', array(), CUSTOMIZR_VER, true);
     }
-    /* FOR TESTING PURPOSES END */        
+    /* FOR TESTING PURPOSES END */
+
+    //hook : wp
+    function tc_register_model_map() {
+      foreach ($this -> tc_get_model_map() as $model ) {
+        CZR() -> collection -> tc_register( $model);
+      }
+    }
+
+
+    //returns an array of models describing the theme's views
+    private function tc_get_model_map() {
+      return apply_filters(
+        'tc_model_map',
+        array(
+          /*********************************************
+          * ROOT HTML STRUCTURE
+          *********************************************/
+          array( 'hook' => '__rooot__', 'template' => 'rooot' ),
+
+          /*********************************************
+          * HEADER
+          *********************************************/
+          array( 'hook' => '__before_body__', 'template' => 'header/head', 'early_hook' => 'something' ),
+          array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 ),
+          array( 'hook' => '__header__', 'template' => 'header/menu', 'priority' => 10 ),
+
+          /*********************************************
+          * CONTENT
+          *********************************************/
+          array( 'hook' => '__body__', 'template' => 'content/content', 'priority' => 20 ),
+          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20, 'query' => array( 'page_id' => 2 ) ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/title', 'priority' => 10 ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/page', 'priority' => 20 ),
+
+          //a post grid displayed in any content
+          array( 'hook' => '__content__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
+          array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
+          array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
+
+          /*********************************************
+          * FOOTER
+          *********************************************/
+          array( 'hook' => '__body__', 'template' => 'footer/footer', 'priority' => 30 )
+        )
+      );
+    }
+
+
   }
 endif;
 
