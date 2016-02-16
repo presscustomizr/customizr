@@ -173,7 +173,7 @@
     //2, show posts on front
     'page_for_posts' : {
        controls: [
-         'tc_blog_restrict_by_cat'    
+         'tc_blog_restrict_by_cat',
        ],
        callback : function (to) {
          return '0' !== to;  
@@ -181,15 +181,17 @@
     },
     'show_on_front' : {
       controls: [
-        'tc_blog_restrict_by_cat'    
+        'tc_blog_restrict_by_cat',
+        'tc_show_post_navigation_home'
       ],
-      callback : function (to) {
+      callback : function (to, targetSetId) {
         if ( 'posts' == to )
           return true;
-        if ( 'page' == to )
+        if ( 'page' == to && 'tc_blog_restrict_by_cat' == targetSetId ) //show cat picker also if a page for posts is set
           return '0' !== api( _build_setId('page_for_posts') ).get() ;
         return false;
       },
+
     },
     'tc_show_featured_pages': {
       controls: TCControlParams.FPControls,
@@ -462,11 +464,16 @@
     'tc_show_post_navigation' : {
       controls: [
         'tc_show_post_navigation_page',
+        'tc_show_post_navigation_home',
         'tc_show_post_navigation_single',
         'tc_show_post_navigation_archive'
       ],
       callback: function (to) {
         return '1' == to;
+      },
+      //display dependant if master setting value == value
+      cross: {
+        tc_show_post_navigation_home : { master : 'show_on_front' , callback : function (to) { return 'posts' == to; } },
       }
     },
     'tc_display_second_menu' : {
