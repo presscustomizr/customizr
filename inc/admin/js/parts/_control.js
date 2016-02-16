@@ -47,14 +47,17 @@
 
       //handle case when all choices become unselected
       _select.on('change', function(e){
-        if ( 0 === $(this).find("option:selected").length ) 
-          control.setting.set([]);    
+        if ( 0 === $(this).find("option:selected").length )
+          control.setting.set([]);
       });
-    }    
+    }
   });
   $.extend( api.controlConstructor, {
-    tc_multiple_picker : api.TCMultiplePickerControl    
+    tc_multiple_picker : api.TCMultiplePickerControl
   });
+
+
+
 
   /* TCCroppedImageControl */
   /**
@@ -76,7 +79,7 @@
       onSelect: function() {
         var attachment = this.frame.state().get( 'selection' ).first().toJSON();
         if ( ! ( attachment.mime && attachment.mime.indexOf("image") > -1 ) ){
-          //Todo: better error handling, show some message?  
+          //Todo: better error handling, show some message?
           this.frame.trigger( 'content:error' );
           return;
         }
@@ -87,12 +90,15 @@
         } else {
             this.frame.setState( 'cropper' );
         }
-      },    
+      },
     });
     $.extend( api.controlConstructor, {
       tc_cropped_image : api.TCCroppedImageControl
     });
   }//endif
+
+
+
 
   /**
    * @constructor
@@ -212,7 +218,7 @@
          'tc_blog_restrict_by_cat',
        ],
        callback : function (to) {
-         return '0' !== to;  
+         return '0' !== to;
        },
     },
     'show_on_front' : {
@@ -231,10 +237,10 @@
     },
     'tc_logo_upload' : {
       controls: [
-          'tc_logo_resize'    
+          'tc_logo_resize'
       ],
       callback : function( to ) {
-        return _.isNumber( to );  
+        return _.isNumber( to );
       }
     },
     'tc_show_featured_pages': {
