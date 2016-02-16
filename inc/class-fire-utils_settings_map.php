@@ -2172,10 +2172,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
               'tc_font_awesome_icons'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls',
-                                'label'       => __( "Load Font Awesome icon set", 'customizr' ),
+                                'label'       => __( "Load Font Awesome set of icons", 'customizr' ),
                                 'section'     => 'extresources_sec',
                                 'type'        => 'checkbox',
-                                'notice'      => __( 'Load the font awesome icon fonts. You might want to uncheck this option if you run a plugin which already loads font awesome (it will load the icon set from its CSS )', 'customizr' )
+                                'notice'      => sprintf('<strong>%1$s</strong>. %2$s',
+                                    __( 'Use with caution' , 'customizr'),
+                                    __( 'When checked, the Font Awesome icons will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you.', 'customizr' )
+                                )
               ),
               'tc_font_awesome_css'  =>  array(
                                 'default'       => 0,
@@ -2183,7 +2186,12 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( "Load Font Awesome CSS", 'customizr' ),
                                 'section'     => 'extresources_sec',
                                 'type'        => 'checkbox',
-                                'notice'      => __( 'Load the font awesome CSS. You might want to check this if you want to use the whole Font Awesome CSS (in this case you need to check the above option too to load the fonts too', 'customizr' )
+                                'notice'      => sprintf('%1$s </br>%2$s <a href="%3$s" target="_blank">%4$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.',
+                                    __( "When checked, the additional Font Awesome CSS stylesheet will be loaded. This stylesheet is not loaded by default to save bandwidth but you might need it if you want to use the whole Font Awesome CSS.", 'customizr' ),
+                                    __( "Check out some example of uses", 'customizr'),
+                                    esc_url('http://fontawesome.io/examples/'),
+                                    __('here', 'customizr')
+                                )
               )
 
       );
@@ -2532,7 +2540,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                             'panel'   => 'tc-advanced-panel'
         ),
         'extresources_sec'    => array(
-                            'title'     =>  __( 'Front-end external resources (Font Awesome)' , 'customizr' ),
+                            'title'     =>  __( 'Front-end Icons (Font Awesome)' , 'customizr' ),
                             'priority'    => 40,
                             'panel'   => 'tc-advanced-panel'
         )
