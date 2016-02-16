@@ -106,6 +106,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
           'files' => array( 'smoothScroll.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'underscore' )
         ),
+        'tc-outline' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'outline.js' ),
+          'dependencies' => array()
+        ),
         'tc-dropcap' => array(
           'path' => 'inc/assets/js/parts/',
           'files' => array( 'jqueryaddDropCap.js' ),
@@ -188,7 +193,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			else {
         wp_enqueue_script( 'underscore' );
         //!!mind the dependencies
-        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-smoothscroll' ) );
+        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-smoothscroll', 'tc-outline' ) );
 
         if ( $this -> tc_is_fancyboxjs_required() )
           $this -> tc_enqueue_script( 'tc-fancybox' );
