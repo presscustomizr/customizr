@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.18
+ * Customizr v3.4.19
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -404,12 +404,13 @@ td {
 .widget h3:before {
   color: #5a5a5a;
 }
-/*ARCHIVES ICONS*/
+/*ARCHIVES ICONS AND SINGULAR ICONS*/
+.single #content .entry-header .entry-title.format-icon:before,
+.page #content > article.page .entry-header .entry-title.format-icon:before,
 .search .search-header .format-icon:before,
 .archive .archive-header .format-icon:before {
   color: #5a5a5a;
   opacity: 1;
-  line-height: 0.2em;
 }
 /* WIDGETS STYLING */
 .widget.widget_archive li:before,
