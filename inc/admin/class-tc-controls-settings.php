@@ -321,6 +321,8 @@ if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'TC_C
     public $type = 'tc_cropped_image';
     public $title;
     public $notice;
+    public $dst_width;
+    public $dst_height;
 
 
     /**
@@ -337,6 +339,8 @@ if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'TC_C
         $this->json['title']  = !empty( $this -> title )  ? esc_html( $this -> title ) : '';
         $this->json['notice'] = !empty( $this -> notice ) ?           $this -> notice  : '';
 
+        $this->json['dst_width']  = isset( $this -> dst_width )  ?  $this -> dst_width  : $this -> width;
+        $this->json['dst_height'] = isset( $this -> dst_height ) ?  $this -> dst_height : $this -> height;
         //overload WP_Customize_Upload_Control
         //we need to re-build the absolute url of the logo src set in old Customizr
         $value = $this->value();
