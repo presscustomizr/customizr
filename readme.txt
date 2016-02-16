@@ -40,6 +40,24 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.19 February 16th 2016 =
+* Add : 3 new social icons: VKontakte, Yelp, Xing
+* Imp: woocommerce icon cart now rendered with font-awesome
+* Imp: remove outdated old ie fixes in the head
+* Imp: move front and back icons to Font Awesome set
+* Add: add customizer setting to optionally load font-awesome resources
+* Imp: logo - replace previous upload control in the customizer with cropped images control
+* Updated: translation fr_CA
+* Fix: slider - avoid caption increasing slides height
+* Fix: amend missing comma in the previous commit
+* Fix: better rendering of the social-block in sidebar and colophon when they take up more than one line
+* Fix: amend typo in the new control css
+* Fix: refine compatibility with old customizr versions
+* Fix: make icons in singular post / page contexts skin based
+* Fix: never display edit links in the customizer fixes #361
+* Fix: avoid outline showing up on links click in ff (v44) fixes #538
+* Fix: fix potential warning when using custom skins fixes #540
+
 = 3.4.18 January 30th 2016 =
 * Updated Italian translation plus a typo
 * Add: new option - display woocommerce cart in the header when sticky fixes #499

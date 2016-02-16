@@ -268,7 +268,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     * wp.media.controller.CustomizeImageCropper (wp-includes/js/media-views.js)
     *
     * In order to use image destination sizes different than the suggested ones
-    * 
+    *
     * A state for cropping an image.
     *
     * @class
@@ -283,14 +283,14 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
 
         cropDetails.dst_width  = control.params.dst_width;
         cropDetails.dst_height = control.params.dst_height;
-      
+
         return wp.ajax.post( 'crop-image', {
             wp_customize: 'on',
             nonce: attachment.get( 'nonces' ).edit,
             id: attachment.get( 'id' ),
             context: control.id,
             cropDetails: cropDetails
-        } );    
+        } );
       }
     });
 
@@ -339,7 +339,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         this.frame.on( 'cropped', this.onCropped, this );
         this.frame.on( 'skippedcrop', this.onSkippedCrop, this );
       },
-				        
+
       /**
       * After an image is selected in the media modal, switch to the cropper
       * state if the image isn't the right size.
