@@ -292,6 +292,8 @@ var czrapp = czrapp || {};
           czrapp.$_body.addClass("chrome");
       else if ( $.browser.webkit )
           czrapp.$_body.addClass("safari");
+      if ( $.browser.mozilla )
+          czrapp.$_body.addClass("mozilla");
       else if ( $.browser.msie || '8.0' === $.browser.version || '9.0' === $.browser.version || '10.0' === $.browser.version || '11.0' === $.browser.version )
           czrapp.$_body.addClass("ie").addClass("ie" + $.browser.version.replace(/[.0]/g, ''));
 
@@ -303,7 +305,8 @@ var czrapp = czrapp || {};
 
   $.extend( czrapp.methods.BrowserDetect = {} , _methods );
 
-})(jQuery, czrapp);var czrapp = czrapp || {};
+})(jQuery, czrapp);
+var czrapp = czrapp || {};
 /***************************
 * ADD JQUERY PLUGINS METHODS
 ****************************/
@@ -645,6 +648,12 @@ var czrapp = czrapp || {};
         break;
       }
     },//eventHandler
+ 
+    //outline firefox fix, see https://github.com/presscustomizr/customizr/issues/538
+    outline: function() {
+      if ( czrapp.$_body.hasClass( 'mozilla' ) )
+        tcOutline();
+    },
 
     //SMOOTH SCROLL
     smoothScroll: function() {
@@ -1840,7 +1849,7 @@ jQuery(function ($) {
     //DropdownPlace is here to ensure is loaded before UserExperience's secondMenuRespActions
     //this will simplify the checks on whether or not move dropdowns at start
     Czr_DropdownPlace : [],
-    Czr_UserExperience : ['eventListener', 'smoothScroll', 'anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'],
+    Czr_UserExperience : ['eventListener', 'outline','smoothScroll', 'anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'],
     Czr_StickyHeader : ['stickyHeaderEventListener', 'triggerStickyHeaderLoad' ],
     Czr_StickyFooter : ['stickyFooterEventListener'],
     Czr_SideNav : []

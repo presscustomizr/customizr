@@ -53,7 +53,7 @@
 **********************************************************************************/
 a:focus {
   outline: thin dotted #333;
-  outline: 5px auto #1ab2ff;
+  outline: thin auto #1ab2ff;
   outline-offset: -2px;
 }
 a {
@@ -146,7 +146,7 @@ blockquote {
 }
 .btn:focus {
   outline: thin dotted #333;
-  outline: 5px auto #1ab2ff;
+  outline: thin auto #1ab2ff;
   outline-offset: -2px;
 }
 .btn-group.open .btn-primary.dropdown-toggle {
@@ -232,7 +232,7 @@ input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
   outline: thin dotted #333;
-  outline: 5px auto #1ab2ff;
+  outline: thin auto #1ab2ff;
   outline-offset: -2px;
 }
 .navbar-link {

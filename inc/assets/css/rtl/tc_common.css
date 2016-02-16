@@ -6003,6 +6003,7 @@ footer#footer .colophon .credits a[class*=icon-] {
   line-height: 500px;
   overflow: hidden;
   min-height: 500px;
+  max-height: 500px;
 }
 .carousel .item > span {
   *zoom: 1;
@@ -8679,6 +8680,7 @@ li#wp-admin-bar-tc-customizr-help a {
     line-height: 385px;
     overflow: hidden;
     min-height: 385px;
+    max-height: 385px;
   }
   #left .round-div {
     left: -77px;
@@ -8889,6 +8891,7 @@ li#wp-admin-bar-tc-customizr-help a {
     line-height: 309px;
     overflow: hidden;
     min-height: 309px;
+    max-height: 309px;
   }
   .featurette {
     height: auto;
@@ -9174,6 +9177,7 @@ li#wp-admin-bar-tc-customizr-help a {
     line-height: 308px;
     overflow: hidden;
     min-height: 308px;
+    max-height: 308px;
   }
   .item .carousel-caption h1 {
     font-size: 22px;
@@ -9283,6 +9287,7 @@ li#wp-admin-bar-tc-customizr-help a {
     line-height: 190px;
     overflow: hidden;
     min-height: 190px;
+    max-height: 190px;
   }
   .carousel-caption {
     padding: 2%;
@@ -9364,6 +9369,7 @@ li#wp-admin-bar-tc-customizr-help a {
     line-height: 140px;
     overflow: hidden;
     min-height: 140px;
+    max-height: 140px;
   }
   .carousel-caption {
     padding: 2%;
