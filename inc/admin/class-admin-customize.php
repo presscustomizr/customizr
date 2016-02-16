@@ -247,7 +247,9 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'width',
 								'height',
 								'flex_width',
-								'flex_height'
+                                'flex_height',
+                                'dst_width',
+                                'dst_height'
 					)
 			);
 			return apply_filters( 'tc_customizer_arguments', $args );

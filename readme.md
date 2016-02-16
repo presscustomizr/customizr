@@ -1,4 +1,4 @@
-# Customizr v3.4.19 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=eri-trabiccolo-logo-from-media-beta)](https://travis-ci.org/Nikeo/customizr)
+# Customizr v3.4.19 [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=eri-trabiccolo-customizer-image-controls)](https://travis-ci.org/Nikeo/customizr)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 

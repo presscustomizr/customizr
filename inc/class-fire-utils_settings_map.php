@@ -156,7 +156,10 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'width'     => 250,
                                 'height'    => 100,
                                 'flex_width' => true,
-                                'flex_height' => true
+                                'flex_height' => true,
+                                //to keep the selected cropped size
+                                'dst_width'  => false,
+                                'dst_height'  => false
               ),
               //force logo resize 250 * 85
               'tc_logo_resize'  => array(
@@ -177,6 +180,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'height'    => 30,
                                 'flex_width' => true,
                                 'flex_height' => true,
+                                //to keep the selected cropped size
+                                'dst_width'  => false,
+                                'dst_height'  => false,
                                 'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
               ),
 
@@ -1240,6 +1246,9 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'height'        => 350,
                                 'flex_width'    => true,
                                 'flex_height'   => true,
+                                //to keep the selected cropped size
+                                'dst_width'     => false,
+                                'dst_height'    => false,
                                 'priority'      =>  73
               ),
 
