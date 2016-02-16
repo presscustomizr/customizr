@@ -7,7 +7,7 @@ module.exports = {
     dest: '<%= paths.front_js %>parts/main.js',
   },
   front_js: {
-		src: ['<%= paths.front_js %>parts/tc-js-params.js', '<%= paths.front_js %>parts/oldBrowserCompat.js', '<%= paths.front_js %>parts/bootstrap.js', '<%= paths.front_js %>parts/underscore-min.js', '<%= paths.front_js %>parts/jqueryimgOriginalSizes.js', '<%= paths.front_js %>parts/jqueryaddDropCap.js', '<%= paths.front_js %>parts/jqueryimgSmartLoad.js', '<%= paths.front_js %>parts/jqueryextLinks.js', '<%= paths.front_js %>parts/jqueryCenterImages.js', '<%= paths.front_js %>parts/smoothScroll.js', '<%= paths.front_js %>parts/main.js'],
+		src: ['<%= paths.front_js %>parts/tc-js-params.js', '<%= paths.front_js %>parts/oldBrowserCompat.js', '<%= paths.front_js %>parts/bootstrap.js', '<%= paths.front_js %>parts/underscore-min.js', '<%= paths.front_js %>parts/jqueryimgOriginalSizes.js', '<%= paths.front_js %>parts/jqueryaddDropCap.js', '<%= paths.front_js %>parts/jqueryimgSmartLoad.js', '<%= paths.front_js %>parts/jqueryextLinks.js', '<%= paths.front_js %>parts/jqueryCenterImages.js', '<%= paths.front_js %>parts/smoothScroll.js', '<%= paths.front_js %>parts/outline.js', '<%= paths.front_js %>parts/main.js'],
 		dest: '<%= paths.front_js %>tc-scripts.js',
 	},
 	admin_control_js:{

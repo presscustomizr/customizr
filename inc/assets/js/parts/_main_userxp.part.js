@@ -49,6 +49,12 @@ var czrapp = czrapp || {};
         break;
       }
     },//eventHandler
+ 
+    //outline firefox fix, see https://github.com/presscustomizr/customizr/issues/538
+    outline: function() {
+      if ( czrapp.$_body.hasClass( 'mozilla' ) )
+        tcOutline();
+    },
 
     //SMOOTH SCROLL
     smoothScroll: function() {
