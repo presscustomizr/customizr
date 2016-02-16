@@ -161,7 +161,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
             //admin link if user logged in
             $featured_page_link             = '';
             $customizr_link                 = '';
-            if ( is_user_logged_in() && current_user_can('edit_theme_options') ) {
+            if ( ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
               $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
                 TC_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
@@ -192,9 +192,15 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
             $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
 
             $featured_page_title            = apply_filters( 'tc_fp_title', get_the_title( $featured_page_id ), $fp_single_id, $featured_page_id );
+
+            $edit_enabled                   = false;
             //when are we displaying the edit link?
-            $edit_enabled                   = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : false;
-            $edit_enabled                   = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
+            //never display when customizing
+            if ( ! TC___::$instance -> tc_is_customizing() ) {
+              $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
+              $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
+            }
+            
             $edit_enabled                   = apply_filters( 'tc_edit_in_fp_title', $edit_enabled );
 
             $featured_text                  = apply_filters( 'tc_fp_text', TC_utils::$inst->tc_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
