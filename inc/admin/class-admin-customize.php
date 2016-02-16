@@ -158,8 +158,20 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		* @package Customizr
 		* @since Customizr 1.0
 		*/
-		function tc_augment_customizer( $type) {
-			locate_template( 'inc/admin/class-tc-controls-settings.php' , $load = true, $require_once = true );
+		function tc_augment_customizer( $manager ) {
+      //loads custom settings and controls classes for the Customizr theme
+      //- TC_Customize_Setting extends WP_Customize_Setting => to override the value() method
+      //- TC_controls extends WP_Customize_Control => overrides the render() method
+      //- TC_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control => introduced in v3.4.19, uses a js template to render the control
+      //- TC_Customize_Upload_Control extends WP_Customize_Control => old upload control used until v3.4.18, still used if current version of WP is < 4.3
+      //- TC_Customize_Multipicker_Control extends TC_controls => used for multiple cat picker for example
+      //- TC_Customize_Multipicker_Categories_Control extends TC_Customize_Multipicker_Control => extends the multipicker
+      //- TC_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown => needed for the multipicker to allow more than one "selected" attribute
+      locate_template( 'inc/admin/class-tc-controls-settings.php' , $load = true, $require_once = true );
+
+      //Registered types are eligible to be rendered via JS and created dynamically.
+      if ( class_exists('TC_Customize_Cropped_Image_Control') )
+        $manager -> register_control_type( 'TC_Customize_Cropped_Image_Control' );
 		}
 
 
@@ -206,6 +218,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'capability'		=>	'manage_options' ,
 								'setting_type'		=>	'option' ,
 								'sanitize_callback'	=>	null,
+								'sanitize_js_callback'	=>	null,
 								'transport'			=>	null
 					),
 					'controls' => array(
@@ -216,7 +229,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'type' ,
 								'choices' ,
 								'priority' ,
-								'sanitize_callback' ,
+								'sanitize_callback',
+								'sanitize_js_callback',
 								'notice' ,
 								'buttontext' ,//button specific
 								'link' ,//button specific
@@ -229,7 +243,11 @@ if ( ! class_exists( 'TC_customize' ) ) :
 								'active_callback',
 								'content_after',
 								'content_before',
-								'icon'
+								'icon',
+								'width',
+								'height',
+								'flex_width',
+								'flex_height'
 					)
 			);
 			return apply_filters( 'tc_customizer_arguments', $args );

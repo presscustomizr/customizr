@@ -47,14 +47,56 @@
 
       //handle case when all choices become unselected
       _select.on('change', function(e){
-        if ( 0 === $(this).find("option:selected").length ) 
-          control.setting.set([]);    
+        if ( 0 === $(this).find("option:selected").length )
+          control.setting.set([]);
       });
-    }    
+    }
   });
   $.extend( api.controlConstructor, {
-    tc_multiple_picker : api.TCMultiplePickerControl    
+    tc_multiple_picker : api.TCMultiplePickerControl
   });
+
+
+
+
+  /* TCCroppedImageControl */
+  /**
+   * @constructor
+   * @augments wp.customize.CroppedImageControl
+   * @augments wp.customize.Class
+  */
+  //CroppedImageControl is not available before wp 4.
+  if ( 'function' == typeof api.CroppedImageControl ) {
+    api.TCCroppedImageControl = api.CroppedImageControl.extend({
+      /**
+      * After an image is selected in the media modal, switch to the cropper
+      * state if the image isn't the right size.
+      *
+      * TC: We don't want to crop svg (cropping fails), gif (animated gifs become static )
+      * @Override
+      * See api.CroppedImageControl:onSelect() ( wp-admin/js/customize-controls.js )
+      */
+      onSelect: function() {
+        var attachment = this.frame.state().get( 'selection' ).first().toJSON();
+        if ( ! ( attachment.mime && attachment.mime.indexOf("image") > -1 ) ){
+          //Todo: better error handling, show some message?
+          this.frame.trigger( 'content:error' );
+          return;
+        }
+        if ( ( _.contains( ['image/svg+xml', 'image/gif'], attachment.mime ) ) || //do not crop gifs or svgs
+                this.params.width === attachment.width && this.params.height === attachment.height && ! this.params.flex_width && ! this.params.flex_height ) {
+            this.setImageFromAttachment( attachment );
+            this.frame.close();
+        } else {
+            this.frame.setState( 'cropper' );
+        }
+      },
+    });
+    $.extend( api.controlConstructor, {
+      tc_cropped_image : api.TCCroppedImageControl
+    });
+  }//endif
+
 
 
 
@@ -176,7 +218,7 @@
          'tc_blog_restrict_by_cat',
        ],
        callback : function (to) {
-         return '0' !== to;  
+         return '0' !== to;
        },
     },
     'show_on_front' : {
@@ -192,6 +234,14 @@
         return false;
       },
 
+    },
+    'tc_logo_upload' : {
+      controls: [
+          'tc_logo_resize'
+      ],
+      callback : function( to ) {
+        return _.isNumber( to );
+      }
     },
     'tc_show_featured_pages': {
       controls: TCControlParams.FPControls,

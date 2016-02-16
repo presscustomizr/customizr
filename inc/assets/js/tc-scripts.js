@@ -2985,7 +2985,7 @@ var TCParams = TCParams || {};
           return;
 
         //From photon.js: Modify given image's markup so that devicepx-jetpack.js will act on the image and it won't be reprocessed by this script.
-        $_img.removeAttr( ('data-tcjp-recalc-dims scale') );
+        $_img.removeAttr( 'data-tcjp-recalc-dims scale' );
 
         $_img.attr( 'width', _width );
         $_img.attr( 'height', _height );
@@ -4126,6 +4126,43 @@ smoothScroll._setCustomOptions = function( _options ){
 })();
 
 var smoothScroll;
+// modified version of
+// outline.js (https://github.com/lindsayevans/outline.js)
+// based on http://www.paciellogroup.com/blog/2012/04/how-to-remove-css-outlines-in-an-accessible-manner/
+var tcOutline;
+(function(d){
+  tcOutline = function() {
+	var style_element = d.createElement('STYLE'),
+	    dom_events = 'addEventListener' in d,
+	    add_event_listener = function(type, callback){
+			// Basic cross-browser event handling
+			if(dom_events){
+				d.addEventListener(type, callback);
+			}else{
+				d.attachEvent('on' + type, callback);
+			}
+		},
+	    set_css = function(css_text){
+			// Handle setting of <style> element contents in IE8
+			if ( !!style_element.styleSheet )
+                style_element.styleSheet.cssText = css_text; 
+            else 
+                style_element.innerHTML = css_text;
+		}
+	;
+
+	d.getElementsByTagName('HEAD')[0].appendChild(style_element);
+
+	// Using mousedown instead of mouseover, so that previously focused elements don't lose focus ring on mouse move
+	add_event_listener('mousedown', function(){
+		set_css('a:focus{outline:0}a::-moz-focus-inner{border:0;}');
+	});
+
+	add_event_listener('keydown', function(){
+		set_css('');
+	});
+  }
+})(document);
 //@global TCParams
 var czrapp = czrapp || {};
 
@@ -4420,6 +4457,8 @@ var czrapp = czrapp || {};
           czrapp.$_body.addClass("chrome");
       else if ( $.browser.webkit )
           czrapp.$_body.addClass("safari");
+      if ( $.browser.mozilla )
+          czrapp.$_body.addClass("mozilla");
       else if ( $.browser.msie || '8.0' === $.browser.version || '9.0' === $.browser.version || '10.0' === $.browser.version || '11.0' === $.browser.version )
           czrapp.$_body.addClass("ie").addClass("ie" + $.browser.version.replace(/[.0]/g, ''));
 
@@ -4431,7 +4470,8 @@ var czrapp = czrapp || {};
 
   $.extend( czrapp.methods.BrowserDetect = {} , _methods );
 
-})(jQuery, czrapp);var czrapp = czrapp || {};
+})(jQuery, czrapp);
+var czrapp = czrapp || {};
 /***************************
 * ADD JQUERY PLUGINS METHODS
 ****************************/
@@ -4773,6 +4813,12 @@ var czrapp = czrapp || {};
         break;
       }
     },//eventHandler
+ 
+    //outline firefox fix, see https://github.com/presscustomizr/customizr/issues/538
+    outline: function() {
+      if ( czrapp.$_body.hasClass( 'mozilla' ) )
+        tcOutline();
+    },
 
     //SMOOTH SCROLL
     smoothScroll: function() {
@@ -5968,7 +6014,7 @@ jQuery(function ($) {
     //DropdownPlace is here to ensure is loaded before UserExperience's secondMenuRespActions
     //this will simplify the checks on whether or not move dropdowns at start
     Czr_DropdownPlace : [],
-    Czr_UserExperience : ['eventListener', 'smoothScroll', 'anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'],
+    Czr_UserExperience : ['eventListener', 'outline','smoothScroll', 'anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'],
     Czr_StickyHeader : ['stickyHeaderEventListener', 'triggerStickyHeaderLoad' ],
     Czr_StickyFooter : ['stickyFooterEventListener'],
     Czr_SideNav : []

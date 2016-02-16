@@ -144,16 +144,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                    LOGO & FAVICON SECTION
     ------------------------------------------------------------------------------------------------------*/
     function tc_logo_favicon_option_map( $get_default = null ) {
+      global $wp_version;
       return array(
               'tc_logo_upload'  => array(
-                                'control'   =>  'TC_Customize_Upload_Control' ,
+                                'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'TC_Customize_Cropped_Image_Control' : 'TC_Customize_Upload_Control',
                                 'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'title'     => __( 'LOGO' , 'customizr'),
-                                'section'   => 'logo_sec' ,
-                                'type'      => 'tc_upload',
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' )
+                                'section'   => 'logo_sec',
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                        //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                'width'     => 250,
+                                'height'    => 100,
+                                'flex_width' => true,
+                                'flex_height' => true
               ),
-
               //force logo resize 250 * 85
               'tc_logo_resize'  => array(
                                 'default'   =>  1,
@@ -164,11 +168,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
               ),
               'tc_sticky_logo_upload'  => array(
-                                'control'   =>  'TC_Customize_Upload_Control' ,
+                                'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'TC_Customize_Cropped_Image_Control' : 'TC_Customize_Upload_Control',
                                 'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'section'   =>  'logo_sec' ,
-                                'type'      => 'tc_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                        //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                'width'     => 75,
+                                'height'    => 30,
+                                'flex_width' => true,
+                                'flex_height' => true,
                                 'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
               ),
 
@@ -1190,6 +1198,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                   POST LISTS SECTION
     ------------------------------------------------------------------------------------------------------*/
     function tc_post_list_option_map( $get_default = null ) {
+      global $wp_version;
       return array(
               'tc_post_list_excerpt_length'  =>  array(
                                 'default'       => 50,
@@ -1220,14 +1229,20 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'          => 'checkbox',
                                 'priority'      => 70
               ),
-              'tc_post_list_default_thumb' => array(
-                                'control'       =>  'TC_Customize_Upload_Control',
+
+              'tc_post_list_default_thumb'  => array(
+                                'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'TC_Customize_Cropped_Image_Control' : 'TC_Customize_Upload_Control',
                                 'label'         => __( 'Upload a default thumbnail' , 'customizr' ),
-                                'section'       =>  'post_lists_sec',
-                                'type'          =>  'tc_upload',
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number'),
-                                'priority'      =>  73,
+                                'section'   =>  'post_lists_sec' ,
+                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                        //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                'width'         => 570,
+                                'height'        => 350,
+                                'flex_width'    => true,
+                                'flex_height'   => true,
+                                'priority'      =>  73
               ),
+
 
               'tc_post_list_thumb_shape'  =>  array(
                                 'default'       => 'rounded',
@@ -2761,9 +2776,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
       $value = (int) $value; // Force the value into integer type.
         return ( 0 < $value ) ? $value : null;
     }
-
-
-
 
     /**
      * adds sanitization callback funtion : url
