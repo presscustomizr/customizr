@@ -23,9 +23,9 @@ if ( ! class_exists( 'TC_controllers' ) ) :
         'footer' => array(
           'widgets', 'colophon', 'back_to_top'
         ),
-        'modules' => array(
-          'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
-        )
+        // 'modules' => array(
+        //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
+        // )
       );
 
       //Store a group controller instance for later uses

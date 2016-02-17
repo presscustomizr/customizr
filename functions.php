@@ -30,7 +30,7 @@ function callback_fn( $text1 = "default1", $text2 = "default2"  ) {
 }
 
 
-class TC_test_view_class extends TC_View {
+class TC_test_model_class extends TC_View {
   public $test_class_property = 'YOUPI';
   static $instance;
 
@@ -72,7 +72,7 @@ function register_test_views() {
   //     'hook'        => '__content__',
   //     'id'          => 'joie',
   //     'template'    => 'custom',
-  //     'view_class'  => 'TC_test_view_class',
+  //     'model_class'  => 'TC_test_model_class',
   //     'early_setup' => 'TC_test_early_setup',
   //     'children' => array(
   //       'child1' => array(
@@ -98,7 +98,7 @@ function register_test_views() {
   //   array( 'hook' => '__content__', 'callback' => 'callback_fn', 'cb_params' => array('custom1', 'custom2'), 'html' => '<h1>YAAAA</h1>' )
   // );
 
-  //CZR() -> collection -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'view_class' => '') );
+  //CZR() -> collection -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'model_class' => '') );
 }
 
 //register_test_views();

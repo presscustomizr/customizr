@@ -3,40 +3,28 @@
 //Each view inherits its properties from a model instance.
 //The model decides if it has to instanciate the view or not, according to the context
 
-//Once properly instanciated, a view does not think to anything else than rendering what and where (hook) we ask it to.
-//A view may add specific properties to its instance, and doing so, extending its underlying model.
-//This class (and children) jobs are :
-//- assign its rendering callback to the specified hook
+//Once properly instanciated with the model as parameter, a view does not think to anything else than rendering what and where (hook) we ask it to.
+//This class jobs are :
 //- render either html, WordPress template or more complex content, depending on the its model settings.
 //- when renders on a template, the view must pass its model to the WordPress template through the $wp_query global
 
 
 if ( ! class_exists( 'TC_View' ) ) :
   class TC_View {
-    public $hook = "";//this is the default hook declared in the index.php template
-    public $id = "";
-    public $query = false;
-    public $priority = 10;
-    public $template = "";
-    public $html = "";
-    public $callback = "";
-    public $cb_params = array();
-    public $children = array();
-    public $controller = "";
-    public $visibility = true;//can be typically overriden by a check on a user option
+    public $model;
+    function __construct( $model ) {
+      // $keys = array_keys( get_object_vars( $this ) );
 
-    function __construct( $model = array() ) {
-      $keys = array_keys( get_object_vars( $this ) );
-
-      foreach ( $keys as $key ) {
-        if ( isset( $model[ $key ] ) ) {
-          $this->$key = $model[ $key ];
-        }
-      }
+      // foreach ( $keys as $key ) {
+      //   if ( isset( $model[ $key ] ) ) {
+      //     $this->$key = $model[ $key ];
+      //   }
+      // }
+      $this -> model = $model;
 
       //emit event on view instanciation
       //Will be listen to by the model and trigger the maybe_hook_view callback
-      do_action( "view_instanciated_{$this -> id}", $this );
+      do_action( "view_instanciated_{$this -> model -> id}", $this );
 
       //listens to a view pre-render => and fire the tc_apply_registered_changes_to_instance
       // => a change might have been registered
@@ -58,45 +46,45 @@ if ( ! class_exists( 'TC_View' ) ) :
       //will fire tc_apply_registered_changes_to_instance
       //do_action( 'pre_render_view', $this -> id );
 
-      if ( ! apply_filters( "tc_do_render_view_{$this -> id}", true ) )
+      if ( ! apply_filters( "tc_do_render_view_{$this -> model -> id}", true ) )
         return;
 
-      do_action( "before_render_view_{$this -> id}" );
+      do_action( "before_render_view_{$this -> model -> id}" );
       ?>
 
-      <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> id}"; ?> -->
-      <!-- START RENDERING VIEW ID : <?php echo $this -> id; ?> -->
+      <!-- HOOK CONTENT HERE : <?php echo "_before_view_{$this -> model -> id}"; ?> -->
+      <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
 
       <?php $this -> tc_render(); ?>
 
-      <!-- END OF RENDERING VIEW ID : <?php echo $this -> id; ?> -->
-      <!-- HOOK CONTENT HERE : <?php echo "after_render_view_{$this -> id}"; ?> -->
+      <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
+      <!-- HOOK CONTENT HERE : <?php echo "_after_view_{$this -> model -> id}"; ?> -->
       <?php
 
-      do_action( "after_render_view_{$this -> id}" );
+      do_action( "after_render_view_{$this -> model -> id}" );
     }
 
 
 
     //might be overriden in the child view if any
     public function tc_render() {
-      if ( ! empty( $this -> html ) )
-        echo $this -> html;
+      if ( ! empty( $this -> model -> html ) )
+        echo $this -> model -> html;
 
-      if ( ! empty( $this -> template ) ) {
+      if ( ! empty( $this -> model -> template ) ) {
         //get the basename
-        $_template = basename( $this -> template );
+        $_template = basename( $this -> model -> template );
 
         //add the view instance to the wp_query wp global
-        set_query_var( "{$_template}_model", $this );
-        get_template_part( "templates/{$this -> template}" );
+        set_query_var( "{$_template}_model", $this -> model );
+        get_template_part( "templates/{$this -> model -> template}" );
       }
       // $path = '';
       // $part = '';
       // get_template_part( $path , $part );
 
-      if ( ! empty( $this -> callback ) )
-        CZR() -> helpers -> tc_fire_cb( $this -> callback, $this -> cb_params );
+      if ( ! empty( $this -> model -> callback ) )
+        CZR() -> helpers -> tc_fire_cb( $this -> model -> callback, $this -> model -> cb_params );
     }
 
 
