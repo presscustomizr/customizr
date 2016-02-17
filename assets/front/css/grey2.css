@@ -1,0 +1,483 @@
+/*!
+ * Customizr v3.4.19
+ *
+ * Licensed under the GNU General Public License v2 or later
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ * Customized by Nicolas Guillaume (nikeo) and built upon the Twitter Bootstrap Framework (Designed and built with all the love in the world @twitter by @mdo and @fat)
+ */
+/***** CONTENT ****
+ => Core variables and mixins
+ => CSS Reset
+ => Grid system and page structure
+ => Base CSS
+ => Components: common
+ => Components: Buttons & Alerts
+ => Components: Nav
+ => Components: Popovers
+ => Components: Misc
+ => Utility classes
+ => Customizer specifics
+ ***** END OF CONTENT *****/
+/*********************************************************************************
+***************** Core variables and mixins **************************************
+**********************************************************************************/
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/*********************************************************************************
+*************************  Customizr skin rules **********************************
+**********************************************************************************/
+a:focus {
+  outline: thin dotted #333;
+  outline: thin auto #ffffff;
+  outline-offset: -2px;
+}
+a {
+  color: #e4e4e4;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #bebebe;
+  text-decoration: underline;
+}
+blockquote {
+  border-left: 5px solid #e4e4e4;
+}
+.btn-link {
+  border-color: transparent;
+  cursor: pointer;
+  color: #e4e4e4;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.btn-link:hover,
+.btn-link:focus {
+  color: #bebebe;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.btn-primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #d5d5d5;
+  background-image: -moz-linear-gradient(top, #e4e4e4, #bebebe);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e4e4e4), to(#bebebe));
+  background-image: -webkit-linear-gradient(top, #e4e4e4, #bebebe);
+  background-image: -o-linear-gradient(top, #e4e4e4, #bebebe);
+  background-image: linear-gradient(to bottom, #e4e4e4, #bebebe);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe4e4e4' , endColorstr='#ffbebebe' , GradientType=0);
+  border-color: #bebebe #bebebe #989898;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #bebebe;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #bebebe;
+  *background-color: #b1b1b1;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #a4a4a4 \9;
+}
+.btn-info {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #f9f9f9;
+  background-image: -moz-linear-gradient(top, #ffffff, #f1f1f1);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f1f1f1));
+  background-image: -webkit-linear-gradient(top, #ffffff, #f1f1f1);
+  background-image: -o-linear-gradient(top, #ffffff, #f1f1f1);
+  background-image: linear-gradient(to bottom, #ffffff, #f1f1f1);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff' , endColorstr='#fff1f1f1' , GradientType=0);
+  border-color: #f1f1f1 #f1f1f1 #cbcbcb;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #f1f1f1;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.btn-info.disabled,
+.btn-info[disabled] {
+  color: #ffffff;
+  background-color: #f1f1f1;
+  *background-color: #e4e4e4;
+}
+.btn-info:active,
+.btn-info.active {
+  background-color: #d7d7d7 \9;
+}
+.btn:focus {
+  outline: thin dotted #333;
+  outline: thin auto #ffffff;
+  outline-offset: -2px;
+}
+.btn-group.open .btn-primary.dropdown-toggle {
+  background-color: #bebebe;
+}
+.btn-group.open .btn-info.dropdown-toggle {
+  background-color: #f1f1f1;
+}
+.carousel-control:hover,
+.carousel-control:focus {
+  color: #e4e4e4;
+  text-decoration: none;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #dfdfdf;
+  background-image: -moz-linear-gradient(top, #e4e4e4, #d7d7d7);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e4e4e4), to(#d7d7d7));
+  background-image: -webkit-linear-gradient(top, #e4e4e4, #d7d7d7);
+  background-image: -o-linear-gradient(top, #e4e4e4, #d7d7d7);
+  background-image: linear-gradient(to bottom, #e4e4e4, #d7d7d7);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe4e4e4' , endColorstr='#ffd7d7d7' , GradientType=0);
+}
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear .2s, box-shadow linear .2s;
+  -moz-transition: border linear .2s, box-shadow linear .2s;
+  -o-transition: border linear .2s, box-shadow linear .2s;
+  transition: border linear .2s, box-shadow linear .2s;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: #ffffff;
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+  -webkit-box-shadow: 0 0 8px #ffffff;
+  -moz-box-shadow: 0 0 8px #ffffff;
+  box-shadow: 0 0 8px #ffffff;
+}
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: thin dotted #333;
+  outline: thin auto #ffffff;
+  outline-offset: -2px;
+}
+.navbar-link {
+  color: #777777;
+}
+.navbar-link:hover,
+.navbar-link:focus {
+  color: #e4e4e4;
+}
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  background-color: transparent;
+  color: #e4e4e4;
+  text-decoration: none;
+}
+.navbar .btn-navbar {
+  float: right;
+  padding: 7px 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #c8c8c8;
+  background-image: -moz-linear-gradient(top, #d7d7d7, #b1b1b1);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d7d7d7), to(#b1b1b1));
+  background-image: -webkit-linear-gradient(top, #d7d7d7, #b1b1b1);
+  background-image: -o-linear-gradient(top, #d7d7d7, #b1b1b1);
+  background-image: linear-gradient(to bottom, #d7d7d7, #b1b1b1);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd7d7d7' , endColorstr='#ffb1b1b1' , GradientType=0);
+  border-color: #b1b1b1 #b1b1b1 #8b8b8b;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #b1b1b1;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+}
+.navbar .btn-navbar:hover,
+.navbar .btn-navbar:focus,
+.navbar .btn-navbar:active,
+.navbar .btn-navbar.active,
+.navbar .btn-navbar.disabled,
+.navbar .btn-navbar[disabled] {
+  color: #ffffff;
+  background-color: #b1b1b1;
+  *background-color: #a4a4a4;
+}
+.navbar .btn-navbar:active,
+.navbar .btn-navbar.active {
+  background-color: #989898 \9;
+}
+.navbar .nav li.dropdown > a:hover .caret,
+.navbar .nav li.dropdown > a:focus .caret {
+  border-top-color: #e4e4e4;
+  border-bottom-color: #e4e4e4;
+}
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  color: #e4e4e4;
+}
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+  background-color: #e4e4e4;
+}
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+  color: #ffffff;
+  background-color: #e4e4e4;
+}
+.nav .dropdown-toggle .caret {
+  border-top-color: #e4e4e4;
+  border-bottom-color: #e4e4e4;
+  margin-top: 6px;
+}
+.nav .dropdown-toggle:hover .caret,
+.nav .dropdown-toggle:focus .caret {
+  border-top-color: #bebebe;
+  border-bottom-color: #bebebe;
+}
+a.thumbnail:hover,
+a.thumbnail:focus {
+  border-color: #e4e4e4;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+.tc-header {
+  border-top: 5px solid #e4e4e4;
+}
+.navbar .btn-navbar:hover,
+.navbar .btn-navbar:focus,
+.navbar .btn-navbar:active,
+.navbar .btn-navbar.active,
+.navbar .btn-navbar.disabled,
+.navbar .btn-navbar[disabled] {
+  background-color: #bebebe;
+  background-position: 0 -30px;
+}
+.navbar .nav-collapse.in + .btn-toggle-nav .icon-bar,
+.tc-is-mobile.tc-sn-visible .btn-toggle-nav .icon-bar,
+.no-csstransforms .tc-sn-visible .btn-toggle-nav .icon-bar,
+.navbar .btn-toggle-nav.hover .icon-bar {
+  background-color: #e4e4e4;
+}
+.navbar .btn-toggle-nav.hover .menu-label {
+  color: #e4e4e4;
+}
+.site-description {
+  color: #e4e4e4;
+}
+.navbar .nav > li.current-menu-item > a,
+.tc-regular-menu .navbar .nav > li.current-menu-ancestor > a {
+  color: #e4e4e4;
+}
+.navbar .nav > li.current-menu-item > a .caret,
+.tc-regular-menu .navbar .nav li.current-menu-ancestor > a .caret,
+.navbar .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.current-menu-item > a .caret,
+.tc-regular-menu .navbar .nav li.dropdown.current-menu-ancestor > a .caret,
+.navbar .nav li.dropdown.open.current-menu-ancestor > .dropdown-toggle .caret {
+  border-top-color: #e4e4e4;
+  border-bottom-color: #e4e4e4;
+}
+.dropdown-menu > li.current-menu-item > a,
+.tc-regular-menu .dropdown-menu > li.current-menu-ancestor > a {
+  color: #e4e4e4;
+  /*#gradient > .vertical(@dropdownLinkBackgroundHover, darken(@dropdownLinkBackgroundHover, 5%));*/
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  color: #e4e4e4;
+}
+.dropdown-submenu:hover > a:after,
+.dropdown-menu > li.current-menu-item > a:after,
+.tc-regular-menu .dropdown-menu > li.current-menu-ancestor > a:after {
+  border-left-color: #e4e4e4;
+}
+/* External Links style */
+a + span.tc-external:after {
+  color: #e4e4e4;
+}
+table {
+  border-bottom: 5px solid rgba(228, 228, 228, 0.5);
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 14px;
+  line-height: 2;
+  margin: 0 0 20px;
+  width: 100%;
+}
+th {
+  font-weight: bold;
+  border-bottom: 1px solid rgba(228, 228, 228, 0.5);
+}
+td {
+  border-top: 1px solid #ededed;
+  padding: 6px 10px 6px 0;
+}
+/*ICONS FOR WIDGETS*/
+.widget h3:before {
+  color: #e4e4e4;
+}
+/*ARCHIVES ICONS AND SINGULAR ICONS*/
+.single #content .entry-header .entry-title.format-icon:before,
+.page #content > article.page .entry-header .entry-title.format-icon:before,
+.search .search-header .format-icon:before,
+.archive .archive-header .format-icon:before {
+  color: #e4e4e4;
+  opacity: 1;
+}
+/* WIDGETS STYLING */
+.widget.widget_archive li:before,
+.widget.widget_categories li:before,
+.widget.widget_calendar li:before,
+.widget.widget_pages li:before,
+.widget.widget_links li:before,
+.widget.widget_meta li:before,
+.widget.widget_recent_entries li:before,
+.widget.widget_recent_comments li:before,
+.widget.widget_nav_menu li:before,
+.widget.widget_rss li:before {
+  color: #e4e4e4;
+}
+.social-block a:hover {
+  color: #e4e4e4;
+}
+/* SLIDER CONTROLS */
+.tc-carousel-control:hover {
+  color: #e4e4e4;
+}
+/* pagination */
+.page-links button.btn {
+  color: #e4e4e4;
+}
+/* Comment bubbles */
+.comments-link .tc-comment-bubble {
+  color: #e4e4e4;
+}
+.comments-link .default-bubble:before {
+  border: solid 2px #e4e4e4;
+}
+.comments-link .tc-comment-bubble {
+  color: #e4e4e4;
+  border: 2px solid #e4e4e4;
+}
+.comments-link .custom-bubble-one:before {
+  border-color: #e4e4e4 rgba(0, 0, 0, 0);
+}
+/* POST NAVIGATION*/
+h3.assistive-text {
+  color: #ffffff;
+}
+/* OTHER CUSTOMIZED WP CSS */
+#footer #calendar_wrap table a {
+  color: #e4e4e4;
+}
+#wp-calendar th {
+  background-color: #bebebe;
+  color: white;
+}
+/* FOOTER */
+/* Back to top */
+.btt-arrow,
+footer#footer .colophon a.back-to-top {
+  color: #e4e4e4;
+}
+/* GRID */
+.tc-grid-border .tc-grid {
+  border-bottom: 3px solid #e4e4e4;
+}
+/* Grid icons */
+.tc-grid-icon:before {
+  color: #e4e4e4;
+}
+/* Placeholder icons */
+.tc-placeholder-wrap::before,
+.tc-admin-notice:before {
+  color: #e4e4e4;
+}
