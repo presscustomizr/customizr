@@ -139,7 +139,7 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * CONTENT
           *********************************************/
-          array( 'hook' => '__body__', 'template' => 'content/content_wrapper', 'priority' => 20, 'view_class' => 'content_wrapper' ),
+          array( 'hook' => '__body__', 'template' => 'content/content_wrapper', 'priority' => 20, 'model_class' => 'content_wrapper' ),
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
           //headings
           array( 'hook' => 'in_main_loop', 'template' => 'content/headings', 'priority' => 10 ),

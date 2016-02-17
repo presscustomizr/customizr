@@ -22,7 +22,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public $hook = "";//this is the default hook declared in the index.php template
     public $_instance;
     public $id = "";
-    public $view_class = false;
+    public $model_class = false;
     public $query = false;
     public $priority = 10;
     public $template = "";
@@ -68,7 +68,6 @@ if ( ! class_exists( 'TC_Model' ) ) :
         add_action( 'wp'                                , array( $this, 'tc_maybe_instanciate_view' ), 999 );
       else
         $this -> tc_maybe_instanciate_view();
-
     }
 
 
@@ -90,12 +89,13 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public function tc_maybe_instanciate_view() {
       do_action( "pre_instanciate_view" );
 
+      //this check has already been done before instanciating the model.
+      //Do we really need this again here ?
       if ( ! CZR() -> controllers -> tc_is_possible($this -> tc_get())  )
         return;
 
-      //instanciate the view with the right class
-      $instance = $this -> tc_instanciate_view_class();
-
+      //instanciate the view with the current model object as param
+      $view_instance = new TC_View( $this );
     }//fn
 
 
@@ -110,13 +110,19 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //$this -> _instance can be used. It can be a child of this class.
     public function tc_maybe_hook_view($instance) {
       if ( empty($this -> id) ) {
-        do_action('tc_dev_notice', 'A view is missing an id' );
+        do_action('tc_dev_notice', 'A model is missing an id' );
         return;
       }
 
+      //What are the requested hook and priority ?
+      //=> this can be overriden in an extended model for example
+      //? using the tc_set_property ( 'hook' , 'value' ) could also be an option in an extended model ?
+      $_da_hook     = apply_filters("_da_hook_{$this -> id}" , $this -> hook );
+      $_da_priority = apply_filters("_da_priority_{$this -> id}" , $this -> priority );
+
       //Renders the view on the requested hook
-      if ( false !== $this -> hook ) {
-        add_action( $this -> hook, array( $instance , 'tc_maybe_render' ), $this -> priority );
+      if ( false !== $_da_hook ) {
+        add_action( $_da_hook, array( $instance , 'tc_maybe_render' ), $_da_priority );
         //emit an event each time a view is hooked
         do_action( 'view_hooked' , $this -> id );
       }
@@ -133,40 +139,6 @@ if ( ! class_exists( 'TC_Model' ) ) :
       do_action( 'view_unhooked' , $this -> id );
     }
 
-
-    //hook : 'wp'
-    //this method load the relevant view class file and return the instance
-    //@return instance object
-    private function tc_instanciate_view_class() {
-      if ( false === $this -> view_class || empty($this -> view_class) )
-        return new TC_View( $this -> tc_get() );
-
-      //A view class has been defined, let's try to load it and instanciate it
-      $view_class_name = sprintf( 'TC_%s_view_class', $this -> view_class );
-      if ( ! class_exists($view_class_name) ) {
-        //try to load the view class
-        $path = sprintf( '%1$score/views/class-view-%2$s.php' , TC_BASE, $this -> view_class );
-
-        if ( file_exists($path) )
-          require_once( $path );
-      }
-
-      if ( class_exists($view_class_name) )
-        $instance = new $view_class_name( $this -> tc_get() );
-
-      if ( ! is_object($instance) ) {
-        do_action('tc_dev_notice', "Model : " . $this -> id . ". The view has not been instanciated." );
-        return;
-      }
-
-      //A view must be TC_view or a child class of TC_view.
-      if ( ! is_subclass_of($instance, 'TC_View') ) {
-        do_action('tc_dev_notice', "Model : " . $this -> id . ". View Instanciation aborted : the specified view class must be a child of TC_View." );
-        return;
-      }
-
-      return $instance;
-    }
 
 
     /**********************************************************************************

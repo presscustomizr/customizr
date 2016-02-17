@@ -3,6 +3,7 @@
 //- registers and de-registers models
 //- ensures that each model has a unique id and is well formed
 //- Instanciates the relevant models according to their controllers (for models registered on or after 'wp')
+//- Instanciates the specified model extended class if any
 //- Handles the model's modifications, including deletion
 //- Make sure the collection is a public array of model's instance
 if ( ! class_exists( 'TC_Collection' ) ) :
@@ -89,28 +90,31 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //It also makes sure that the registered changes will be applied
       $model = apply_filters( 'tc_prepare_model' , $model );
 
-      //make sure the provided model has at least a hook
+      //make sure the provided model has at least a hook property set
       //the model must be an array of params
       //the hook is the only mandatory param
       //the id is optional => will be set unique on model setup
+      //if 'wp' has not been fired yet, we will pre-register this model for later registration
       if ( ! apply_filters( 'tc_can_register_model' , $model ) )
         return;
 
-      //Instanciates the model object
-      //at this stage, the model
+      //Instanciates the model object : at this stage the 'wp' hook has been fired and we're ready to instanciate the (maybe pre-registered) model
+      //at this stage, the model is an array and :
       //- has an id
       //- has a priority
       //- is at least assigned to a hook
       //- we've checked if it was registered for deletion
       //=> let's instanciate
-      $model = new TC_Model( $model );
+      $model = $this -> tc_instanciate_model($model);
 
+      //At this stage, the model has been registered to the collection.
+      //=> an event has been emitted on model instanciation, the collection has listened to this event and registered the model.
       if ( $this -> tc_is_registered( $model -> id ) ) {
         //emit an event on model registered
         //can be used with did_action() afterwards
         do_action( "model_registered_{$model -> id}" );
       } else {
-        do_action('tc_dev_notice', "A model instance was not registered. into the collection." );
+        do_action('tc_dev_notice', "A model instance ( " . $model -> id . ") was not registered. into the collection." );
         return;
       }
     }
@@ -248,7 +252,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
 
     //at this stage, the model has a unique id.
-    //implement the registered changes before adding view to collection
+    //implement the registered changes before adding model to collection
     //@return the args array()
     //hook : tc_prepare_model
     //@return updated model
@@ -270,6 +274,52 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       do_action('registered_changed_applied' , $id, $model );
 
       return $model;
+    }
+
+
+
+
+    /**********************************************************************************
+    * INSTANCIATE THE MODEL'S CLASS
+    ***********************************************************************************/
+    //some model's need to be augmented by an extended class.
+    //hook : 'wp'
+    //this method load the relevant model class file and return the instance
+    //@return instance object
+    private function tc_instanciate_model($model) {
+      $instance = null;
+
+      if ( ! isset($model['model_class']) || empty($model['model_class']) )
+        return new TC_Model( $model );
+
+      //A model class has been defined, let's try to load it and instanciate it
+      $model_class_basename = basename( $model['model_class'] );
+      $model_class_dirname  = dirname( $model['model_class'] );
+      $model_class_name     = sprintf( 'TC_%s_model_class', $model_class_basename );
+
+      if ( ! class_exists($model_class_name) ) {
+        //try to load the model class
+        $path = sprintf( '%1$score/models/%2$s/class-model-%3$s.php' , TC_BASE, $model_class_dirname, $model_class_basename );
+
+        if ( file_exists($path) )
+          require_once( $path );
+      }
+
+      if ( class_exists($model_class_name) )
+        $instance = new $model_class_name( $model );
+
+      if ( ! is_object($instance) ) {
+        do_action('tc_dev_notice', "Model : " . $model['id'] . ". The model has not been instanciated." );
+        return;
+      }
+
+      //A model must be TC_model or a child class of TC_model.
+      if ( ! is_subclass_of($instance, 'TC_Model') ) {
+        do_action('tc_dev_notice', "Model : " . $model['id'] . ". View Instanciation aborted : the specified model class must be a child of TC_Model." );
+        return;
+      }
+
+      return $instance;
     }
 
 
