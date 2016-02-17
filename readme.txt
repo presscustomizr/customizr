@@ -56,7 +56,7 @@ The exceptions to this license are as follows:
 * Fix: make icons in singular post / page contexts skin based
 * Fix: never display edit links in the customizer fixes #361
 * Fix: avoid outline showing up on links click in ff (v44) fixes #538
-* Fix: fix potential warning when using custom skins fixes #540
+* Fix: fix potential warning when using custom skins fixes #540 
 
 = 3.4.18 January 30th 2016 =
 * Updated Italian translation plus a typo
