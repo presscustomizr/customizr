@@ -27,7 +27,7 @@ var tcOutline;
 
 	// Using mousedown instead of mouseover, so that previously focused elements don't lose focus ring on mouse move
 	add_event_listener('mousedown', function(){
-		set_css('a:focus{outline:0}a::-moz-focus-inner{border:0;}');
+		set_css('input[type=file]:focus,input[type=radio]:focus,input[type=checkbox]:focus,select:focus,a:focus{outline:0}input[type=file]::-moz-focus-inner,input[type=radio]::-moz-focus-inner,input[type=checkbox]::-moz-focus-inner,select::-moz-focus-inner,a::-moz-focus-inner{border:0;}');
 	});
 
 	add_event_listener('keydown', function(){
