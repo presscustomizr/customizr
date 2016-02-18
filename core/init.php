@@ -177,8 +177,18 @@ if ( ! class_exists( 'TC___' ) ) :
           * HEADER
           *********************************************/
           array( 'hook' => '__before_body__', 'template' => 'header/head' ),
-          array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10, 'model_class' ),
-          array( 'hook' => '__header__', 'template' => 'header/menu', 'priority' => 10 ),
+          array( 'hook' => '__body__', 'template'   => 'header/header', 'priority' => 10 ),
+          //         array( 'hook' => '__header__', 'template' => 'header/logo_title_wrapper', 'priority' => 10, 'model_class' => 'header/logo_title_wrapper' ),
+          //logo
+          array( 'hook' => '__header__', 'template' => 'header/logo_wrapper', 'priority' => 10, 'model_class' => 'header/logo_wrapper' ),
+          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/logo'),
+          //uses an extended logo module - IT WORKS :D
+ //         array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/sticky_logo'),
+          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/logo', 'params' => array( 'type' => 'sticky' )),
+          //title         
+          array( 'hook' => '__header__', 'template' => 'header/title_wrapper', 'priority' => 10, 'model_class' => 'header/title_wrapper' ),
+          array( 'hook' => '__title_wrapper__', 'template' => 'header/title', 'priority' => 10 , 'model_class' => 'header/title'),
+
 
 
 
