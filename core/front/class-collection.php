@@ -297,13 +297,9 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       $model_class_dirname  = dirname( $model['model_class'] );
       $model_class_name     = sprintf( 'TC_%s_model_class', $model_class_basename );
 
-      if ( ! class_exists($model_class_name) ) {
+      if ( ! class_exists($model_class_name) )
         //try to load the model class
-        $path = sprintf( '%1$score/models/%2$s/class-model-%3$s.php' , TC_BASE, $model_class_dirname, $model_class_basename );
-
-        if ( file_exists($path) )
-          require_once( $path );
-      }
+        tc_fw_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
 
       if ( class_exists($model_class_name) )
         $instance = new $model_class_name( $model );

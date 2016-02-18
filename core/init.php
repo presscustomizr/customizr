@@ -71,6 +71,8 @@ if ( ! class_exists( 'TC___' ) ) :
       if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
       //TC_BASE is the root server path of the parent theme
       if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
+      //TC_FRAMEWORK_PREFIX is the root server path of the parent theme
+      if( ! defined( 'TC_FRAMEWORK_PREFIX' ) ) define( 'TC_FRAMEWORK_PREFIX' , 'core/front/' );
       //TC_BASE_CHILD is the root server path of the child theme
       if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , get_stylesheet_directory().'/' );
       //TC_BASE_URL http url of the loaded parent theme
@@ -87,12 +89,12 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
     private function tc_load() {
-      //load the new classes
-      require_once( sprintf( '%score/class-model.php' , TC_BASE ) );
-      require_once( sprintf( '%score/class-collection.php' , TC_BASE ) );
-      require_once( sprintf( '%score/class-view.php' , TC_BASE ) );
-      require_once( sprintf( '%score/class-controllers.php' , TC_BASE ) );
-      require_once( sprintf( '%score/class-helpers.php' , TC_BASE ) );
+      //load the new framework classes
+      $this -> tc_require_once( 'core/front/class-model.php' );
+      $this -> tc_require_once( 'core/front/class-collection.php' );
+      $this -> tc_require_once( 'core/front/class-view.php' );
+      $this -> tc_require_once( 'core/front/class-controllers.php' );
+      $this -> tc_require_once( 'core/front/class-helpers.php' );
     }
 
 
@@ -107,6 +109,30 @@ if ( ! class_exists( 'TC___' ) ) :
       wp_enqueue_script( 'bootstrap-js', TC_BASE_URL . 'assets/bootstrap/js/bootstrap.js', array(), CUSTOMIZR_VER, true);
     }
     /* FOR TESTING PURPOSES END */
+
+
+    //called when requiring a file will always give the precedence to the child-theme file if it exists
+    function tc_get_stylesheet_file( $path ) {
+      if ( ! file_exists( $filename = TC_BASE_CHILD . $path ) )
+        if ( ! file_exists( $filename = TC_BASE . $path ) )
+          return false;
+      
+      return $filename;
+    }
+
+    //requires a file only if exists
+    function tc_require_once( $path ) {
+      if ( false !== $filename = $this -> tc_get_stylesheet_file( $path ) ) {
+        require_once( $filename );
+        return true;
+      }
+      return false;
+    }
+
+    //requires a framework file only if exists
+    function tc_fw_require_once( $path ) {
+      return $this -> tc_require_once( TC_FRAMEWORK_PREFIX . $path );
+    }
 
     //hook : wp
     function tc_register_model_map() {
@@ -163,13 +189,31 @@ if ( ! class_exists( 'TC___' ) ) :
         )
       );
     }
-
-
   }
-endif;
+endif;//endif;
 
+/*
+ * @since 3.5.0
+ */
+//shortcut function to require a template file
+if ( ! function_exists('tc_require_once') ) {
+  function tc_require_once( $path ) {
+    return TC___::$instance -> tc_require_once( $path );
+  }
+}
 
-
+/*
+ * @since 3.5.0
+ */
+//shortcut function to require a template file
+if ( ! function_exists('tc_fw_require_once') ) {
+  function tc_fw_require_once( $path ) {
+    return TC___::$instance -> tc_fw_require_once( $path );
+  }
+}
+/*
+ * @since 3.5.0
+ */
 //shortcut function to instanciate easier
 if ( ! function_exists('tc_new') ) {
   function tc_new( $_to_load, $_args = array() ) {
@@ -177,7 +221,24 @@ if ( ! function_exists('tc_new') ) {
     return;
   }
 }
-//endif;
+/**
+* The tc__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.
+* It is shorter than the original apply_filters() and only used on already defined filters.
+*
+* By convention in Customizr, filter hooks are used as follow :
+* 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
+* 2) declared with apply_filters in methods to make the code extensible for developers
+* 3) accessed with tc__f() to return values (while front end content is handled with action hooks)
+*
+* Used everywhere in Customizr. Can pass up to five variables to the filter callback.
+*
+* @since Customizr 3.0
+*/
+if( ! function_exists( 'tc__f' ) ) :
+    function tc__f ( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
+       return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
+    }
+endif;
 
 /**
  * @since 3.5.0

@@ -162,12 +162,12 @@ if ( ! class_exists( 'TC_controllers' ) ) :
     //@param is a string : header, content, footer, modules
     //@return the $instance
     private function tc_instanciate_group_controller( $group ) {
-      $_file  = sprintf( '%1$score/controllers/class-controller-%2$s.php' , TC_BASE, $group );
+      $_path  = "controllers/class-controller-{$group}.php";
       $_class = "TC_controller_{$group}";
       $_instance = false;
 
-      if ( file_exists($_file) )
-        require_once( $_file );
+      tc_fw_require_once( $_path );
+
       if ( class_exists($_class) ) {
         $_instance = new $_class;
         do_action( 'group_controller_instanciated', $group, $_instance );
