@@ -7,7 +7,6 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       self::$instance =& $this;
     }
 
-
     function tc_display_view_head() {
       return true;
     }
@@ -15,5 +14,8 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       return true;
     }
 
+    function tc_display_view_sticky_logo() {
+      return false;
+    }
   }//end of class
 endif;
