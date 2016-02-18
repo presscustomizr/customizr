@@ -90,15 +90,15 @@ if ( ! class_exists( 'TC___' ) ) :
       $this -> tc_core = apply_filters( 'tc_core',
         array(
             'fire'      =>   array(
-              array('core' , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
-              array('core' , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
+              array('core'       , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
+              array('core'       , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
               array('core/utils' , 'utils_settings_map'),//customizer setting map
               array('core/utils' , 'utils'),//helpers used everywhere
-              array('core' , 'resources'),//loads front stylesheets (skins) and javascripts
-              array('core' , 'widgets'),//widget factory
-              array('core' , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
-              array('core/back' , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
-              array('core/back' , 'admin_page')//creates the welcome/help panel including changelog and system config
+              array('core'       , 'resources'),//loads front stylesheets (skins) and javascripts
+              array('core'       , 'widgets'),//widget factory
+              array('core'       , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
+              array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
+              array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
             ),
             'admin'     => array(
               array('core/back' , 'customize'),//loads customizer actions and resources
@@ -177,7 +177,7 @@ if ( ! class_exists( 'TC___' ) ) :
           * HEADER
           *********************************************/
           array( 'hook' => '__before_body__', 'template' => 'header/head' ),
-          array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10 ),
+          array( 'hook' => '__body__', 'template' => 'header/header', 'priority' => 10, 'model_class' ),
           array( 'hook' => '__header__', 'template' => 'header/menu', 'priority' => 10 ),
 
 
