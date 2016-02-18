@@ -236,12 +236,12 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="color"]:focu
   -------------------------------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src:url('../../assets/css/fonts/fonts/fontawesome-webfont.eot');
-  src:url('../../assets/css/fonts/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-      url('../../assets/css/fonts/fonts/fontawesome-webfont.woff2') format('woff2'),
-      url('../../assets/css/fonts/fonts/fontawesome-webfont.woff') format('woff'),
-      url('../../assets/css/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
-      url('../../assets/css/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+  src:url('../../shared/css/fonts/fonts/fontawesome-webfont.eot');
+  src:url('../../shared/css/fonts/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../../shared/css/fonts/fonts/fontawesome-webfont.woff2') format('woff2'),
+      url('../../shared/css/fonts/fonts/fontawesome-webfont.woff') format('woff'),
+      url('../../shared/css/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
+      url('../../shared/css/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
 } 
 span[class*=tc-icon] {
 	margin-bottom: 5px;

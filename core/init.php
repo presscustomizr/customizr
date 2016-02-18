@@ -28,14 +28,11 @@ if ( ! class_exists( 'TC___' ) ) :
       if ( ! isset( self::$instance ) && ! ( self::$instance instanceof TC___ ) ) {
         self::$instance = new TC___();
         self::$instance -> tc_setup_constants();
+        self::$instance -> tc_setup_loading();
         self::$instance -> tc_load();
         self::$instance -> collection = new TC_Collection();
         self::$instance -> controllers = new TC_Controllers();
         self::$instance -> helpers = new TC_Helpers();
-
-        /* For testing purposes */
-        self::$instance -> tc_register_menus();
-        add_action( 'wp_enqueue_scripts', array( self::$instance, 'tc_enqueue_resources' ) );
 
         //register the model's map
         add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
@@ -71,8 +68,10 @@ if ( ! class_exists( 'TC___' ) ) :
       if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
       //TC_BASE is the root server path of the parent theme
       if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
-      //TC_FRAMEWORK_PREFIX is the root server path of the parent theme
+      //TC_FRAMEWORK_PREFIX is the relative path where the framerk is located
       if( ! defined( 'TC_FRAMEWORK_PREFIX' ) ) define( 'TC_FRAMEWORK_PREFIX' , 'core/front/' );
+      //TC_ASSETS_PREFIX is the relative path where the assets are located
+      if( ! defined( 'TC_ASSETS_PREFIX' ) )   define( 'TC_ASSETS_PREFIX' , 'assets/' );
       //TC_BASE_CHILD is the root server path of the child theme
       if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , get_stylesheet_directory().'/' );
       //TC_BASE_URL http url of the loaded parent theme
@@ -86,53 +85,74 @@ if ( ! class_exists( 'TC___' ) ) :
 
     }//setup_contants()
 
+    private function tc_setup_loading() {
+      //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
+      $this -> tc_core = apply_filters( 'tc_core',
+        array(
+            'fire'      =>   array(
+              array('core' , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
+              array('core' , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
+              array('core/utils' , 'utils_settings_map'),//customizer setting map
+              array('core/utils' , 'utils'),//helpers used everywhere
+              array('core' , 'resources'),//loads front stylesheets (skins) and javascripts
+              array('core' , 'widgets'),//widget factory
+              array('core' , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
+              array('core/back' , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
+              array('core/back' , 'admin_page')//creates the welcome/help panel including changelog and system config
+            ),
+            'admin'     => array(
+              array('core/back' , 'customize'),//loads customizer actions and resources
+              array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
+            )
+        )
+      );
+      //check the context
+      if ( $this -> tc_is_pro() )
+        require_once( sprintf( '%score/init-pro.php' , TC_BASE ) );
 
+      self::$tc_option_group = 'tc_theme_options';
 
-    private function tc_load() {
-      //load the new framework classes
-      $this -> tc_require_once( 'core/front/class-model.php' );
-      $this -> tc_require_once( 'core/front/class-collection.php' );
-      $this -> tc_require_once( 'core/front/class-view.php' );
-      $this -> tc_require_once( 'core/front/class-controllers.php' );
-      $this -> tc_require_once( 'core/front/class-helpers.php' );
+      //set files to load according to the context : admin / front / customize
+      add_filter( 'tc_get_files_to_load' , array( $this , 'tc_set_files_to_load' ) );
     }
 
 
-    /* FOR TESTING PURPOSES */
-    function tc_register_menus() {
-      /* This theme uses wp_nav_menu() in one location. */
-      register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
-    }
+    /**
+    * Class instanciation using a singleton factory :
+    * Can be called to instanciate a specific class or group of classes
+    * @param  array(). Ex : array ('admin' => array( array( 'inc/admin' , 'meta_boxes') ) )
+    * @return  instances array()
+    *
+    * Thanks to Ben Doherty (https://github.com/bendoh) for the great programming approach
+    *
+    * @since Customizr 3.0
+    */
+    function tc_load( $_to_load = array(), $_no_filter = false ) {
+      //do we apply a filter ? optional boolean can force no filter
+      $_to_load = $_no_filter ? $_to_load : apply_filters( 'tc_get_files_to_load' , $_to_load );
+      if ( empty($_to_load) )
+        return;
 
-    function tc_enqueue_resources(){
-      wp_enqueue_style( 'bootstrap-css', TC_BASE_URL . 'assets/bootstrap/css/bootstrap.css', array(), CUSTOMIZR_VER, 'all');
-      wp_enqueue_script( 'bootstrap-js', TC_BASE_URL . 'assets/bootstrap/js/bootstrap.js', array(), CUSTOMIZR_VER, true);
-    }
-    /* FOR TESTING PURPOSES END */
-
-
-    //called when requiring a file will always give the precedence to the child-theme file if it exists
-    function tc_get_stylesheet_file( $path ) {
-      if ( ! file_exists( $filename = TC_BASE_CHILD . $path ) )
-        if ( ! file_exists( $filename = TC_BASE . $path ) )
-          return false;
+      foreach ( $this -> tc_core as $group => $files )
+        foreach ($files as $path_suffix ) {
+          $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
+        
+          $classname = 'TC_' . $path_suffix[1];
+          if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
+            continue;
+          //instanciates
+          $instances = class_exists($classname)  ? new $classname : '';
+        }
       
-      return $filename;
+      //load the new framework classes
+      $this -> tc_fw_require_once( 'class-model.php' );
+      $this -> tc_fw_require_once( 'class-collection.php' );
+      $this -> tc_fw_require_once( 'class-view.php' );
+      $this -> tc_fw_require_once( 'class-controllers.php' );
+      $this -> tc_fw_require_once( 'class-helpers.php' );
     }
 
-    //requires a file only if exists
-    function tc_require_once( $path ) {
-      if ( false !== $filename = $this -> tc_get_stylesheet_file( $path ) ) {
-        require_once( $filename );
-        return true;
-      }
-      return false;
-    }
 
-    //requires a framework file only if exists
-    function tc_fw_require_once( $path ) {
-      return $this -> tc_require_once( TC_FRAMEWORK_PREFIX . $path );
-    }
 
     //hook : wp
     function tc_register_model_map() {
@@ -189,26 +209,261 @@ if ( ! class_exists( 'TC___' ) ) :
         )
       );
     }
+
+    /***************************
+    * HELPERS
+    ****************************/
+    /**
+    * Check the context and return the modified array of class files to load and instanciate
+    * hook : tc_get_files_to_load
+    * @return boolean
+    *
+    * @since  Customizr 3.3+
+    */
+    function tc_set_files_to_load( $_to_load ) {
+      $_to_load = empty($_to_load) ? $this -> tc_core : $_to_load;
+      //Not customizing
+      //1) IS NOT CUSTOMIZING : tc_is_customize_left_panel() || tc_is_customize_preview_frame() || tc_doing_customizer_ajax()
+      //---1.1) IS ADMIN
+      //-------1.1.a) Doing AJAX
+      //-------1.1.b) Not Doing AJAX
+      //---1.2) IS NOT ADMIN
+      //2) IS CUSTOMIZING
+      //---2.1) IS LEFT PANEL => customizer controls
+      //---2.2) IS RIGHT PANEL => preview
+      if ( ! $this -> tc_is_customizing() )
+        {
+          if ( is_admin() ) {
+            //if doing ajax, we must not exclude the placeholders
+            //because ajax actions are fired by admin_ajax.php where is_admin===true.
+            if ( defined( 'DOING_AJAX' ) )
+              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
+            else
+              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
+          }
+          else
+            //Skips all admin classes
+            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
+        }
+      //Customizing
+      else
+        {
+          //left panel => skip all front end classes
+          if ( $this -> tc_is_customize_left_panel() ) {
+            $_to_load = $this -> tc_unset_core_classes(
+              $_to_load,
+              array( 'header' , 'content' , 'footer' ),
+              array( 'fire|inc|resources' , 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
+            );
+          }
+          if ( $this -> tc_is_customize_preview_frame() ) {
+            $_to_load = $this -> tc_unset_core_classes(
+              $_to_load,
+              array(),
+              array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
+            );
+          }
+        }
+      return $_to_load;
+    }
+
+
+
+    /**
+    * Helper
+    * Alters the original classes tree
+    * @param $_groups array() list the group of classes to unset like header, content, admin
+    * @param $_files array() list the single file to unset.
+    * Specific syntax for single files: ex in fire|inc/admin|admin_page
+    * => fire is the group, inc/admin is the path, admin_page is the file suffix.
+    * => will unset inc/admin/class-fire-admin_page.php
+    *
+    * @return array() describing the files to load
+    *
+    * @since  Customizr 3.0.11
+    */
+    public function tc_unset_core_classes( $_tree, $_groups = array(), $_files = array() ) {
+      if ( empty($_tree) )
+        return array();
+      if ( ! empty($_groups) ) {
+        foreach ( $_groups as $_group_to_remove ) {
+          unset($_tree[$_group_to_remove]);
+        }
+      }
+      if ( ! empty($_files) ) {
+        foreach ( $_files as $_concat ) {
+          //$_concat looks like : fire|inc|resources
+          $_exploded = explode( '|', $_concat );
+          //each single file entry must be a string like 'admin|inc/admin|customize'
+          //=> when exploded by |, the array size must be 3 entries
+          if ( count($_exploded) < 3 )
+            continue;
+
+          $gname = $_exploded[0];
+          $_file_to_remove = $_exploded[2];
+          if ( ! isset($_tree[$gname] ) )
+            continue;
+          foreach ( $_tree[$gname] as $_key => $path_suffix ) {
+            if ( false !== strpos($path_suffix[1], $_file_to_remove ) )
+              unset($_tree[$gname][$_key]);
+          }//end foreach
+        }//end foreach
+      }//end if
+      return $_tree;
+    }//end of fn
+
+    //called when requiring a file will - always give the precedence to the child-theme file if it exists
+    function tc_get_theme_file( $path_suffix ) {
+      if ( ! file_exists( $filename = TC_BASE_CHILD . $path_suffix ) )
+        if ( ! file_exists( $filename = TC_BASE . $path_suffix ) )
+          return false;
+      
+      return $filename;
+    }
+
+    //called when requiring a file url - will always give the precedence to the child-theme file if it exists
+    function tc_get_theme_file_url( $url_suffix ) {
+      if ( file_exists( TC_BASE_CHILD . $url_suffix ) )
+        return TC_BASE_URL_CHILD . $url_suffix;
+      if ( file_exists( $filename = TC_BASE . $url_suffix ) )
+        return TC_BASE_URL . $url_suffix;
+      
+      return false;
+    }
+
+    //requires a file only if exists
+    function tc_require_once( $path_suffix ) {
+      if ( false !== $filename = $this -> tc_get_theme_file( $path_suffix ) ) {
+        require_once( $filename );
+        return true;
+      }
+      return false;
+    }
+
+    //requires a framework file only if exists
+    function tc_fw_require_once( $path_suffix ) {
+      return $this -> tc_require_once( TC_FRAMEWORK_PREFIX . $path_suffix );
+    }
+
+    /**
+    * Are we in a customization context ? => ||
+    * 1) Left panel ?
+    * 2) Preview panel ?
+    * 3) Ajax action from customizer ?
+    * @return  bool
+    * @since  3.2.9
+    */
+    function tc_is_customizing() {
+      //checks if is customizing : two contexts, admin and front (preview frame)
+      return in_array( 1, array(
+        $this -> tc_is_customize_left_panel(),
+        $this -> tc_is_customize_preview_frame(),
+        $this -> tc_doing_customizer_ajax()
+      ) );
+    }
+
+
+    /**
+    * Is the customizer left panel being displayed ?
+    * @return  boolean
+    * @since  3.3+
+    */
+    function tc_is_customize_left_panel() {
+      global $pagenow;
+      return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
+    }
+
+
+    /**
+    * Is the customizer preview panel being displayed ?
+    * @return  boolean
+    * @since  3.3+
+    */
+    function tc_is_customize_preview_frame() {
+      return ! is_admin() && isset($_REQUEST['wp_customize']);
+    }
+
+
+    /**
+    * Always include wp_customize or customized in the custom ajax action triggered from the customizer
+    * => it will be detected here on server side
+    * typical example : the donate button
+    *
+    * @return boolean
+    * @since  3.3.2
+    */
+    function tc_doing_customizer_ajax() {
+      $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
+      return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
+    }
+
+
+    /**
+    * Checks if we use a child theme. Uses a deprecated WP functions (get _theme_data) for versions <3.4
+    * @return boolean
+    *
+    * @since  Customizr 3.0.11
+    */
+    function tc_is_child() {
+      // get themedata version wp 3.4+
+      if ( function_exists( 'wp_get_theme' ) ) {
+        //get WP_Theme object of customizr
+        $tc_theme       = wp_get_theme();
+        //define a boolean if using a child theme
+        return $tc_theme -> parent() ? true : false;
+      }
+      else {
+        $tc_theme       = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
+        return ! empty($tc_theme['Template']) ? true : false;
+      }
+    }
+
+    /**
+    * @return  boolean
+    * @since  3.4+
+    */
+    static function tc_is_pro() {
+      return file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
+    }
+
   }
 endif;//endif;
 
 /*
  * @since 3.5.0
  */
-//shortcut function to require a template file
+//shortcut function to get a theme file
+if ( ! function_exists('tc_get_theme_file') ) {
+  function tc_get_theme_file( $path_suffix ) {
+    return TC___::$instance -> tc_get_theme_file( $path_suffix );
+  }
+}
+/*
+ * @since 3.5.0
+ */
+//shortcut function to get a theme file
+if ( ! function_exists('tc_get_theme_file_url') ) {
+  function tc_get_theme_file_url( $url_suffix ) {
+    return TC___::$instance -> tc_get_theme_file_url( $url_suffix );
+  }
+}
+/*
+ * @since 3.5.0
+ */
+//shortcut function to require a theme file
 if ( ! function_exists('tc_require_once') ) {
-  function tc_require_once( $path ) {
-    return TC___::$instance -> tc_require_once( $path );
+  function tc_require_once( $path_suffix ) {
+    return TC___::$instance -> tc_require_once( $path_suffix );
   }
 }
 
 /*
  * @since 3.5.0
  */
-//shortcut function to require a template file
+//shortcut function to require a theme file
 if ( ! function_exists('tc_fw_require_once') ) {
-  function tc_fw_require_once( $path ) {
-    return TC___::$instance -> tc_fw_require_once( $path );
+  function tc_fw_require_once( $path_suffix ) {
+    return TC___::$instance -> tc_fw_require_once( $path_suffix );
   }
 }
 /*
