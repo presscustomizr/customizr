@@ -20,6 +20,17 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       return true;
     }
 
+    function tc_display_view_header_socials() {
+      //the block must be not instanciated when 
+      //1) NOT customizing 
+      //and
+      //2a) the relative display option is unchecked
+      //or
+      //2b) there are no social icons set
+      return ! ( ! TC___::$instance -> tc_is_customizing() && 
+            ( ( 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_header" ) ) ) || ! tc__f('__get_socials') ) );
+    }
+
     function tc_display_view_title() {
       return true;
     }
