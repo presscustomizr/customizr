@@ -192,8 +192,9 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__header__', 'template' => 'header/mobile_tagline_wrapper','priority' => 20, 'model_class' => 'header/mobile_tagline_wrapper'),
           array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 10, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
           //NAVBAR
-
-
+          array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20, 'model_class' => 'header/navbar_wrapper' ),
+          //tagline in navbar
+          array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
 
           /*********************************************
           * CONTENT
