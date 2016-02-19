@@ -6,7 +6,12 @@ class TC_content_wrapper_model_class extends TC_Model {
     return '__footer__';
   }
 
-  //fired before the model properties are parsed
+  /**
+  * @override
+  * fired before the model properties are parsed
+  * 
+  * return model params array() 
+  */
   function tc_extend_params( $model = array() ) {
     //set this model's properties
     $model[ 'content_layout' ] = 'span12';
