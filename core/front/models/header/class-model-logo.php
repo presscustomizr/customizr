@@ -5,35 +5,25 @@ class TC_logo_model_class extends TC_Model {
   public $alt = '';
   public $attr = '';
   public $class = '';
-  static $instance;
 
-  function __construct( $model = array() ) {
-    self::$instance =& $this;
-
-    //grab the model's id
-    //=> at this stage the properties have not yet been overriden
-    $_id = $model['id'];
-    
-    $this -> tc_set_default_properties( isset($model['params']) ? $model['params'] : array() );
-    //do things before firing the parent model's constructor
-    //add_filter("_da_hook_{$_id}", array($this, 'tc_change_hook') );
-    //set this model's properties
-
-    //Fires the parent constructor
-    parent::__construct( $model );
-
-  }
-
-  function tc_set_default_properties( $params = array() ) {
+  /**
+  * @override
+  * fired before the model properties are parsed
+  * 
+  * return model params array() 
+  */
+  function tc_extend_params( $model = array() ) {
+    $params = isset($model['params']) ? $model['params'] : array(); 
     $this -> logo_type = ! $this -> logo_type && isset( $params['type'] ) && 'sticky' == $params['type'] ? $params['type'] : $this -> logo_type;
     
     extract( $this -> tc_get_logo_src_args() );  
-    $this -> tc_set_property( 'src', $logo_src );
-    $this -> tc_set_property( 'alt', apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) );
-    $this -> tc_set_property( 'class', $logo_type );
+
+    $model[ 'src' ]   = $logo_src;
+    $model[ 'alt' ]   = apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) ;
+    $model[ 'class' ] = $logo_type ;
 
     //build other attrs
-    $this -> tc_set_property( 'attr', trim( sprintf('%1$s %2$s %3$s %4$s',
+    $model[ 'attr' ] = trim( sprintf('%1$s %2$s %3$s %4$s',
         $logo_width ? sprintf( 'width="%1$s"', $logo_width ) : '',
         $logo_height ? sprintf( 'height="%1$s"', $logo_height ) : '',
         ( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
@@ -41,7 +31,9 @@ class TC_logo_model_class extends TC_Model {
                                 apply_filters( 'tc_logo_max_height', 100 )
                                 ) : '',
         implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == TC_utils::$inst->tc_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
-    )));
+    ));
+
+    return $model;
   }
 
   function tc_get_logo_src_args() {
