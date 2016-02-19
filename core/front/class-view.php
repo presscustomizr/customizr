@@ -52,13 +52,13 @@ if ( ! class_exists( 'TC_View' ) ) :
       do_action( "before_render_view_{$this -> model -> id}" );
       ?>
 
-      <!-- HOOK CONTENT HERE : <?php echo "_before_view_{$this -> model -> id}"; ?> -->
+      <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> model -> id}"; ?> -->
       <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
 
       <?php $this -> tc_render(); ?>
 
       <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
-      <!-- HOOK CONTENT HERE : <?php echo "_after_view_{$this -> model -> id}"; ?> -->
+      <!-- HOOK CONTENT HERE : <?php echo "after_render_view_{$this -> model -> id}"; ?> -->
       <?php
 
       do_action( "after_render_view_{$this -> model -> id}" );
