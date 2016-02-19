@@ -23,6 +23,17 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
     function tc_display_view_title() {
       return true;
     }
+    
+    function tc_display_view_mobile_tagline_wrapper() {
+      return true;  
+    }
+
+    //do not display the tagline when:
+    //1) not in customizer preview (we just hide it in the model)
+    //2) the user choose to not display it
+    function tc_display_view_tagline() {
+      return ! TC___::$instance -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') );
+    }
 
     function tc_display_view_title_wrapper() {
       return ! $this -> tc_display_view_logo_wrapper();
