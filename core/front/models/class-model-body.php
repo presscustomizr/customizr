@@ -3,6 +3,8 @@ class TC_body_model_class extends TC_Model {
   public $classes;
   public $attributes;
 
+  /* TODO: INLINE STYLE */
+
   /**
   * @override
   * fired before the model properties are parsed

@@ -28,12 +28,19 @@ class TC_header_model_class extends TC_Model {
     $_show_menu          = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') );
     
     $_header_layout      = "logo-" . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) );
+    if ( (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') ) {
+      //adds the second menu state
+      $_secondary_menu     = TC_Utils::$inst -> tc_is_secondary_menu_enabled() ? 'tc-second-menu-on' : '';
+      $_secondary_menu    .= 'tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile';
+    }
+
     $_add_classes 			= array(
         $_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',
         $_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
         $_use_sticky_logo ? 'tc-sticky-logo-on' : '',
         $_shrink_title_logo ? 'tc-shrink-on' : 'tc-shrink-off',
         $_show_menu ? 'tc-menu-on' : 'tc-menu-off',
+        isset( $_secondary_menu ) ? $_secondary_menu : '',
         $_header_layout
 	);
     
