@@ -15,7 +15,13 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
     }
 
     function tc_display_view_sticky_logo() {
-      return false;
+      if ( ! esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_logo_upload") ) )
+        return false;
+      if ( ! ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") ) &&
+        esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') )
+      ) )
+        return false;
+      return true;
     }
   }//end of class
 endif;
