@@ -4,7 +4,8 @@ class TC_logo_wrapper_model_class extends TC_Model {
   public $link_class;
   public $link_title;
   public $link_url;
-  
+
+
   /**
   * @override
   * fired before the model properties are parsed
