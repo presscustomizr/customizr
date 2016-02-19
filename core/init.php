@@ -171,13 +171,13 @@ if ( ! class_exists( 'TC___' ) ) :
           * ROOT HTML STRUCTURE
           *********************************************/
           array( 'hook' => '__rooot__', 'template' => 'rooot' ),
-
+          array( 'hook' => '__html__',  'template' => 'header/head', 'priority' => 10 ),
+          array( 'hook' => '__html__',  'template' => 'body', 'priority' => 30, 'model_class' => 'body' ),
 
           /*********************************************
           * HEADER
           *********************************************/
-          array( 'hook' => '__before_body__', 'template' => 'header/head' ),
-          array( 'hook' => '__body__', 'template'   => 'header/header', 'priority' => 10, 'model_class' => 'header/header' ),
+          array( 'hook' => '__body__', 'template'  => 'header/header', 'priority' => 10, 'model_class' => 'header/header' ),
           //         array( 'hook' => '__header__', 'template' => 'header/logo_title_wrapper', 'priority' => 10, 'model_class' => 'header/logo_title_wrapper' ),
           //logo
           array( 'hook' => '__header__', 'template' => 'header/logo_wrapper', 'priority' => 10, 'model_class' => 'header/logo_wrapper' ),
