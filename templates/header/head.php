@@ -8,19 +8,11 @@
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
     <style type="text/css">
-    body > footer, body > header {
-        background: #27cda5;
-        text-align: center;
-        min-height: 50px;
-        width: 100%;
-        padding: 5%;
-        /* float: left; */
-    }
     body > section {
       background: #564777;
       text-align: left;
       min-height: 400px;
-      width: 100%;
+ /*     width: 100%;*/
       padding: 5%;
       color: #fff;
     }
