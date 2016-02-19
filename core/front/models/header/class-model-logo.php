@@ -82,6 +82,7 @@ class TC_logo_model_class extends TC_Model {
       return $args;
   }
 
+
   function tc_sticky_logo_css( $_css ) {
     if ( 'sticky' != $this -> logo_type )  
       return $_css;
