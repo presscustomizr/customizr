@@ -6,6 +6,11 @@ class TC_logo_model_class extends TC_Model {
   public $attr = '';
   public $class = '';
 
+  function __construct( $model = array() ) {
+    parent::__construct( $model );
+    //specific inline CSS
+    add_filter( 'tc_user_options_style', array( $this, 'tc_sticky_logo_css' ) );
+  }
   /**
   * @override
   * fired before the model properties are parsed
@@ -75,5 +80,23 @@ class TC_logo_model_class extends TC_Model {
       );
    
       return $args;
+  }
+
+  function tc_sticky_logo_css( $_css ) {
+    if ( 'sticky' != $this -> logo_type )  
+      return $_css;
+    $_css = sprintf( "%s\n%s",
+        $_css,
+        ".site-logo img.sticky {
+            display: none;
+         }\n
+        .sticky-enabled .tc-sticky-logo-on .site-logo img {
+            display: none;
+         }\n
+        .sticky-enabled .tc-sticky-logo-on .site-logo img.sticky{
+            display: inline-block;
+        }\n"
+    );
+    return $_css;  
   }
 }//end class
