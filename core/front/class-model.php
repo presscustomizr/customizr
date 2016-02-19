@@ -39,6 +39,10 @@ if ( ! class_exists( 'TC_Model' ) ) :
     function __construct( $model = array() ) {
       self::$instance =& $this;
 
+      //this is where extension classes can modify the model params before they're parsed
+      //becoming model properties
+      $model = $this -> tc_extend_params( $model );
+
       //equivalent of wp_parse_args() with default model property values
       $this -> tc_update( $model );
 
@@ -195,7 +199,13 @@ if ( ! class_exists( 'TC_Model' ) ) :
       return $model;
     }
 
-
+    //@return array()
+    //Extension models can use this to update the model params with a set of new ones
+    //is fired on instanciation
+    //@param = array()
+    protected function tc_extend_params( $model = array() ) {
+      return $model;  
+    }
 
     //@return void()
     //update the model properties with a set of new ones
