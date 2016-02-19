@@ -179,22 +179,32 @@ if ( ! class_exists( 'TC___' ) ) :
           * HEADER
           *********************************************/
           array( 'hook' => '__page_wrapper__', 'template'  => 'header/header', 'priority' => 10, 'model_class' => 'header/header' ),
+          
+         
           //LOGO
           array( 'hook' => '__header__', 'template' => 'header/logo_wrapper', 'priority' => 10, 'model_class' => 'header/logo_wrapper' ),
           array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/logo'),
           //uses an extended logo module - IT WORKS :D
  //         array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/sticky_logo'),
           array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 20 , 'model_class' => 'header/logo', 'params' => array( 'type' => 'sticky' )),
+         
           //TITLE
           array( 'hook' => '__header__', 'template' => 'header/title_wrapper', 'priority' => 10, 'model_class' => 'header/title_wrapper' ),
           array( 'hook' => '__title_wrapper__', 'template' => 'header/title', 'priority' => 10 , 'model_class' => 'header/title'),
+         
+         
           //MOBILE TAGLINE
           array( 'hook' => '__header__', 'template' => 'header/mobile_tagline_wrapper','priority' => 20, 'model_class' => 'header/mobile_tagline_wrapper'),
           array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 10, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
+         
+         
           //NAVBAR
           array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20, 'model_class' => 'header/navbar_wrapper' ),
+         
+          //socialblock in navbar
+          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'model_class' => 'modules/social_block', 'params' => array( 'where' => 'header' ) ),
           //tagline in navbar
-          array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
+          array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
 
           /*********************************************
           * CONTENT
@@ -203,6 +213,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
           //headings
           array( 'hook' => 'in_main_loop', 'template' => 'content/headings', 'priority' => 10 ),
+
 
           //page
           array( 'hook' => 'in_main_loop', 'template' => 'content/content', 'priority' => 20 ),
