@@ -164,9 +164,6 @@ if ( ! class_exists( 'TC___' ) ) :
 
     //returns an array of models describing the theme's views
     private function tc_get_model_map() {
-      //where to put this ? we need wp_footer printed after our footer template but still inside the __page_wrapper__
-      add_action( '__page_wrapper__', 'wp_footer', 40 );
-
       return apply_filters(
         'tc_model_map',
         array(
@@ -187,11 +184,14 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/logo'),
           //uses an extended logo module - IT WORKS :D
  //         array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/sticky_logo'),
-          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/logo', 'params' => array( 'type' => 'sticky' )),
+          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 20 , 'model_class' => 'header/logo', 'params' => array( 'type' => 'sticky' )),
           //TITLE
           array( 'hook' => '__header__', 'template' => 'header/title_wrapper', 'priority' => 10, 'model_class' => 'header/title_wrapper' ),
           array( 'hook' => '__title_wrapper__', 'template' => 'header/title', 'priority' => 10 , 'model_class' => 'header/title'),
-
+          //MOBILE TAGLINE
+          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline_wrapper','priority' => 20, 'model_class' => 'header/mobile_tagline_wrapper'),
+          array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 10, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
+          //NAVBAR
 
 
 
