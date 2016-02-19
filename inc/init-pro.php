@@ -43,7 +43,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
     private function tc_pro_load() {
       $_classes = apply_filters( 'tc_get_files_to_load_pro' , $this -> _pro_classes );
 
-      //loads and instanciates the activation / updates classes
+      //loads and instantiates the activation / updates classes
       foreach ( $_classes as $name => $params ) {
         //don't load activation classes if not admin
         if ( ! is_admin() && false !== strpos($params[0], 'activation-key') )
@@ -55,7 +55,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
             require_once ( $_file_path );
 
         $_args = isset( $params[1] ) ? $params[1] : null;
-        //instanciates only for the following classes, the other are instanciated in their respective files.
+        //instantiates only for the following classes, the other are instantiated in their respective files.
         if ( 'TC_activation_key' == $name || 'TC_theme_check_updates' == $name )
             new $name( $_args );
       }
@@ -63,7 +63,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
 
 
     /**
-    * Helper : returns the modified array of class files to load and instanciate
+    * Helper : returns the modified array of class files to load and instantiate
     * Check the context
     * hook : tc_get_files_to_load_pro
     *
