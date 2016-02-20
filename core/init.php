@@ -205,6 +205,9 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'model_class' => 'modules/social_block', 'params' => array( 'where' => 'header' ) ),
           //tagline in navbar
           array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
+ 
+          //RESET MARGIN TOP (for sticky header)
+          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20, 'model_class' => 'header/reset_margin_top' ),
 
           /*********************************************
           * CONTENT
