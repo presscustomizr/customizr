@@ -6,6 +6,13 @@ class TC_title_wrapper_model_class extends TC_Model {
   public $link_title;
   public $link_url;
 
+  function __construct( $model = array() ) {
+    parent::__construct( $model );
+    //specific inline CSS
+    add_filter( 'tc_user_options_style', array( $this, 'tc_title_wrapper_css' ) );
+  }
+
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -36,4 +43,24 @@ class TC_title_wrapper_model_class extends TC_Model {
     $_class[] = 'right' == $_layout ? 'pull-right' : 'pull-left';
     return $_class;
   }
+
+  function tc_title_wrapper_css( $_css ) {
+    //title shrink
+    //fire once
+    static $_fired = false;
+    if ( ! $_fired ) { 
+      $_fired = true;  
+      if ( ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header') ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ) || TC___::$instance -> tc_is_customizing() ) {
+        $_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );  
+      
+        $_css = sprintf("%s%s",
+            $_css,
+            "
+        .sticky-enabled .tc-shrink-on .brand .site-title {
+          {$_title_font}
+        }"
+        );
+      }
+    }//end title shrink (fire once)
+  }//end inline css func
 }
