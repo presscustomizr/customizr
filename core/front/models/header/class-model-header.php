@@ -1,7 +1,13 @@
 <?php
 class TC_header_model_class extends TC_Model {
   public $classes;
- 
+
+
+  function __construct( $model = array() ) {
+    parent::__construct( $model );
+    //specific inline CSS
+    add_filter( 'tc_user_options_style', array( $this, 'tc_header_inline_css' ) );
+  } 
   /**
   * @override
   * fired before the model properties are parsed
@@ -62,5 +68,29 @@ class TC_header_model_class extends TC_Model {
     ) )
       return false;
     return true;
+  }
+
+  function tc_header_inline_css( $_css ) {
+    //TOP BORDER
+    if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_top_border') ) ) {
+      $_css = sprintf("%s%s",
+        $_css,
+        "
+        header.tc-header {border-top: none;}
+        "
+      );
+    }
+    //HEADER Z-INDEX
+    if ( 100 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_z_index') ) ) {
+      $_custom_z_index = esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_z_index') );
+      $_css = sprintf("%s%s",
+        $_css,
+        "
+        .tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
+          z-index:{$_custom_z_index}
+        }"
+      );
+    }
+    return $_css;
   }
 }//end of class
