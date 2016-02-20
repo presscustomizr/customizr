@@ -21,8 +21,6 @@ class TC_logo_model_class extends TC_Model {
     $params = isset($model['params']) ? $model['params'] : array(); 
     $this -> logo_type = ! $this -> logo_type && isset( $params['type'] ) && 'sticky' == $params['type'] ? $params['type'] : $this -> logo_type;
 
-    echo $this -> logo_type;
-    echo "a";
     extract( $this -> tc_get_logo_src_args() );  
 
     $model[ 'src' ]   = $logo_src;
