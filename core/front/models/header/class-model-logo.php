@@ -9,7 +9,7 @@ class TC_logo_model_class extends TC_Model {
   function __construct( $model = array() ) {
     parent::__construct( $model );
     //specific inline CSS
-    add_filter( 'tc_user_options_style', array( $this, 'tc_sticky_logo_css' ) );
+    add_filter( 'tc_user_options_style', array( $this, 'tc_logo_css' ) );
   }
   /**
   * @override
@@ -20,7 +20,9 @@ class TC_logo_model_class extends TC_Model {
   function tc_extend_params( $model = array() ) {
     $params = isset($model['params']) ? $model['params'] : array(); 
     $this -> logo_type = ! $this -> logo_type && isset( $params['type'] ) && 'sticky' == $params['type'] ? $params['type'] : $this -> logo_type;
-    
+
+    echo $this -> logo_type;
+    echo "a";
     extract( $this -> tc_get_logo_src_args() );  
 
     $model[ 'src' ]   = $logo_src;
@@ -83,21 +85,41 @@ class TC_logo_model_class extends TC_Model {
   }
 
 
-  function tc_sticky_logo_css( $_css ) {
-    if ( 'sticky' != $this -> logo_type )  
-      return $_css;
-    $_css = sprintf( "%s\n%s",
+  function tc_logo_css( $_css ) {
+    //logos shrink
+    //fire once
+    static $_fired = false;
+    if ( ! $_fired ) { 
+      $_fired = true;  
+      if ( ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header') ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ) || TC___::$instance -> tc_is_customizing() ) {
+        $_logo_shrink  = implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
+        $_css = sprintf("%s%s",
+            $_css,
+            "
+        .sticky-enabled .tc-shrink-on .site-logo img {
+          {$_logo_shrink}
+        }"
+        );
+      }
+    }//end logos shrink (fire once)
+
+    //sticky-logo visibility  
+    if ( 'sticky' == $this -> logo_type ) {
+
+      $_css = sprintf( "%s%s",
         $_css,
-        ".site-logo img.sticky {
+        "
+        .site-logo img.sticky {
             display: none;
-         }\n
+         }
         .sticky-enabled .tc-sticky-logo-on .site-logo img {
             display: none;
-         }\n
-        .sticky-enabled .tc-sticky-logo-on .site-logo img.sticky{
+         }
+        .sticky-enabled .tc-sticky-logo-on .site-logo img.sticky {
             display: inline-block;
-        }\n"
-    );
+        }"
+      );
+    }//end sticky-logo css
     return $_css;  
   }
 }//end class
