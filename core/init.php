@@ -207,17 +207,23 @@ if ( ! class_exists( 'TC___' ) ) :
           //socialblock in navbar
           array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'model_class' => 'modules/social_block', 'params' => array( 'where' => 'header' ) ),
           //tagline in navbar
-          array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
+          array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline' ),
           //menu in navbar
           array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu', 'params' => array( 'type' => 'regular' ) ),
           //secondary
           array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu', 'params' => array( 'type' => 'regular' , 'theme_location' => 'secondary' ) ),
- 
+          //responsive menu button
+          array( 'hook' => '__navbar__', 'template' => 'header/menu_button', 'priority' => 40, 'model_class' => 'header/menu_button', 'params' => array( 'type' => 'regular') ),
+          //sidenav navbar menu button
+          array( 'hook' => '__navbar__', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => 'header/menu_button', 'params' => array( 'type' => 'sidenav' ) ),
+
           //RESET MARGIN TOP (for sticky header)
           array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20, 'model_class' => 'header/reset_margin_top' ),
 
           //SIDENAV
           array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav', 'priority' => 10, 'model_class' => 'header/sidenav' ),
+          //menu button
+          array( 'hook' => '__sidenav__', 'template' => 'header/menu_button', 'priority' => 10, 'model_class' => 'header/menu_button', 'params' => array( 'type' => 'aside' ) ),
           array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu', 'params' => array( 'type' => 'aside' ) ),
 
           /*********************************************
