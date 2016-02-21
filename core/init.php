@@ -103,7 +103,10 @@ if ( ! class_exists( 'TC___' ) ) :
             'admin'     => array(
               array('core/back' , 'customize'),//loads customizer actions and resources
               array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
-            )
+            ),
+            'header'    =>   array(
+              array('core/front', 'nav_walker')
+            )    
         )
       );
       //check the context
@@ -205,6 +208,8 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'model_class' => 'modules/social_block', 'params' => array( 'where' => 'header' ) ),
           //tagline in navbar
           array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
+          //menu in navbar
+          array( 'hook' => '__navbar__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu' ),
  
           //RESET MARGIN TOP (for sticky header)
           array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20, 'model_class' => 'header/reset_margin_top' ),
