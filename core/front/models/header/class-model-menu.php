@@ -209,11 +209,9 @@ class TC_menu_model_class extends TC_Model {
   * @since Customizr 3.2.0
   */
   function tc_add_body_classes($_classes) {
-    //fire once (only when the type is regular menu )
     //menu type class
-    if ( 'regular' == $this -> type ) {
+    if ( 'regular' == $this -> type  && ! TC_controller_header::$instance -> tc_display_view_sidenav() ) {
       array_push( $_classes, 'tc-regular-menu' );
-      $_fire_once = true;
     }
 
     return $_classes;
