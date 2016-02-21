@@ -17,7 +17,8 @@ class TC_menu_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     add_filter( 'body_class', array( $this, 'tc_add_body_classes' ) );
-      
+    add_filter( 'tc_user_options_style', array( $this, 'tc_add_second_menu_inline_style' ) );
+
     //IS THIS STILL USED? DON'T WE USE A CUSTOM FALLBACK? (tc_page_menu)?
     add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ) );
 
@@ -216,5 +217,123 @@ class TC_menu_model_class extends TC_Model {
 
     return $_classes;
   }
+
+      /*
+    * Second menu
+    * This actually "restore" regular menu style (user options in particular) by overriding the max-width: 979px media query
+    */
+    function tc_add_second_menu_inline_style( $_css ) {
+      if ( ! ( TC_Utils::$inst -> tc_is_secondary_menu_enabled() && 'secondary' == $this -> theme_location ) )
+        return $_css;
+      
+      return sprintf("%s\n%s",
+        $_css,
+        "@media (max-width: 979px) {
+          .tc-second-menu-on .nav-collapse {
+            width: inherit;
+            overflow: visible;
+            height: inherit;
+            position:relative;
+            top: inherit;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            background: inherit;
+          }
+          .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse, #tc-page-wrap .tc-second-menu-hide-when-mobile .nav-collapse.collapse .nav {
+            display:none;
+          }
+          .tc-second-menu-on .tc-hover-menu.nav ul.dropdown-menu {
+            display:none;
+          }
+          .tc-second-menu-on .navbar .nav-collapse ul.nav>li li a {
+            padding: 3px 20px;
+          }
+          .tc-second-menu-on .nav-collapse.collapse .nav {
+            display: block;
+            float: left;
+            margin: inherit;
+          }
+          .tc-second-menu-on .nav-collapse .nav>li {
+            float:left;
+          }
+          .tc-second-menu-on .nav-collapse .dropdown-menu {
+            position:absolute;
+            display: none;
+            -webkit-box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            -moz-box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            background-color: #fff;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding;
+            background-clip: padding-box;
+            padding: 5px 0;
+          }
+          .tc-second-menu-on .navbar .nav>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu:before{
+            content: '';
+            display: inline-block;
+            position: absolute;
+          }
+          .tc-second-menu-on .tc-hover-menu.nav .caret {
+            display:inline-block;
+          }
+          .tc-second-menu-on .tc-hover-menu.nav li:hover>ul {
+            display: block;
+          }
+          .tc-second-menu-on .nav a, .tc-second-menu-on .tc-hover-menu.nav a {
+            border-bottom: none;
+          }
+          .tc-second-menu-on .dropdown-menu>li>a {
+            padding: 3px 20px;
+          }
+          .tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a:focus,.tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a:hover,.tc-second-menu-on .tc-submenu-move .dropdown-submenu:focus>a, .tc-second-menu-on .tc-submenu-move .dropdown-submenu:hover>a {
+            padding-left: 1.63em
+          }
+          .tc-second-menu-on .tc-submenu-fade .nav>li>ul {
+            opacity: 0;
+            top: 75%;
+            visibility: hidden;
+            display: block;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            -ms-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+          }
+          .tc-second-menu-on .tc-submenu-fade .nav li.open>ul, .tc-second-menu-on .tc-submenu-fade .tc-hover-menu.nav li:hover>ul {
+            opacity: 1;
+            top: 95%;
+            visibility: visible;
+          }
+          .tc-second-menu-on .tc-submenu-move .dropdown-menu>li>a {
+            -webkit-transition: all ease .241s;
+            -moz-transition: all ease .241s;
+            -o-transition: all ease .241s;
+            transition: all ease .241s;
+          }
+          .tc-second-menu-on .dropdown-submenu>.dropdown-menu {
+            top: 110%;
+            left: 30%;
+            left: 30%\9;
+            top: 0\9;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+          }
+          .tc-second-menu-on .dropdown-submenu>a:after {
+            content: ' ';
+          }
+        }\n
+
+        .sticky-enabled .tc-second-menu-on .nav-collapse.collapse {
+          clear:none;
+        }\n"
+      );
+    }
 }
 

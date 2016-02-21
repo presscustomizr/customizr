@@ -12,19 +12,39 @@ class TC_menu_button_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $type          = 'sidenav';
-    $where         = 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
-    $button_class  = array( 'btn-toggle-nav', 'sn-toggle', $where );
-
-    $model[ 'wrapper_class' ] = join( ' ', $button_class );
-    $button_label    = sprintf( '<span class="menu-label">%s</span>',
-        '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Menu' , 'customizr')
+    $defaults      = array(  
+      'type'          => 'sidenav',
+      'where'         => 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left',
+      'in'            => ''
     );
+    $attr = isset( $model['params'] ) ? wp_parse_args( $model['params'], $defaults ) : $defaults;
 
-    $model[ 'button_label' ] =  (bool)esc_attr( TC_utils::$inst->tc_opt('tc_display_menu_label') ) ? $button_label : '';
-    $model[ 'button_title' ] =  '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Open the menu' , 'customizr');
+    //specific args treatment
+    //wrapper class
+    if ( ! isset( $attr[ 'wrapper_class' ] ) ) {
+      $attr[ 'wrapper_class' ]  = array( 'btn-toggle-nav', $attr[ 'where' ] );
+      $attr[ 'wrapper_class' ]  = 'sidenav' == $attr['type'] ? array_merge( $attr[ 'wrapper_class' ], array( 'sn-toggle') ) : $attr[ 'wrapper_class' ];
+    }
 
-    $model[ 'button_attr' ]  = false == true ? 'data-toggle="collapse" data-target=".nav-collapse"' : '';
-    return $model;
+    $attr[ 'wrapper_class' ]    = join( ' ', $attr[ 'wrapper_class' ] );
+
+    //button label
+    $attr[ 'button_label']     = isset( $attr[ 'button_label' ] ) ? $attr[ 'button_label' ] : 
+        sprintf( '<span class="menu-label">%s</span>',
+            'sidenav' == $attr[ 'in' ] ? __('Close', 'customizr') : __('Menu' , 'customizr')
+        );
+    $attr[ 'button_label' ]    =  (bool)esc_attr( TC_utils::$inst->tc_opt('tc_display_menu_label') ) ? $attr[ 'button_label' ] : '';
+
+    //button title
+    if ( ! isset( $attr[ 'button_title' ] ) )
+      $model[ 'button_title' ] =  '__sidenav__' == $attr[ 'in' ] ? __('Close', 'customizr') : __('Open the menu' , 'customizr');
+
+    //button attr
+    if ( ! isset( $attr[ 'button_attr' ] ) )
+      $model[ 'button_attr' ]  =  'regular' == $attr['type'] ? 'data-toggle="collapse" data-target=".nav-collapse"' : '';
+
+    unset( $model['params'] );
+
+    return array_merge( $model, $attr );
   }
 }
