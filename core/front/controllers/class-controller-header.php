@@ -40,43 +40,6 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       return true;  
     }
 
-    //when the 'main' navbar menu is allowed?
-    //1) menu allowed
-    //and
-    //2) menu type is not aside (sidenav)
-    function tc_display_view_navbar_menu() {
-      if ( ! isset( $this -> _cache[ 'view_navbar_menu' ] ) )
-        $this -> _cache[ 'view_navbar_menu' ] = $this -> tc_display_view_menu() && ! $this -> tc_display_view_sidenav();
-
-      return $this -> _cache[ 'view_navbar_menu' ];
-    }
-
-    //when the secondary navbar menu is allowed?
-    //1) menu allowed
-    //and
-    //2) menu type is sidenav but a secondary menu is chosen
-    function tc_display_view_navbar_secondary_menu() {
-      if ( ! isset( $this -> _cache[ 'view_navbar_secondary_menu' ] ) )
-        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> tc_display_view_menu() &&  ( $this -> tc_display_view_sidenav() && TC_Utils::$inst -> tc_is_secondary_menu_enabled() ) ;
-      return $this -> _cache[ 'view_navbar_secondary_menu' ];
-    }
- 
-    //when the sidenav menu is allowed?
-    //1) menu allowed
-    //and
-    //2) menu style is aside
-    function tc_display_view_sidenav() {
-      if ( ! isset( $this -> _cache[ 'view_sidevan' ] ) )
-        $this -> _cache[ 'view_sidenav' ] = $this -> tc_display_view_menu() && 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) );  
-      return $this -> _cache[ 'view_sidenav' ];
-    }
-
-    function tc_display_view_menu() {
-      if ( ! isset( $this -> _cache[ 'view_menu' ] ) )
-        $this -> _cache[ 'view_menu' ] =  ! ( (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') );
-      return $this -> _cache[ 'view_menu' ];
-    }
-
     //do not display the tagline when:
     //1) not in customizer preview (we just hide it in the model)
     //2) the user choose to not display it
@@ -147,6 +110,68 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       
       $this -> _cache[ 'view_sticky_logo' ] = $to_return;
       return $to_return;
+    }
+
+    //when the 'main' navbar menu is allowed?
+    //1) menu allowed
+    //and
+    //2) menu type is not aside (sidenav)
+    function tc_display_view_navbar_menu() {
+      if ( ! isset( $this -> _cache[ 'view_navbar_menu' ] ) )
+        $this -> _cache[ 'view_navbar_menu' ] = $this -> tc_display_view_menu() && ! $this -> tc_display_view_sidenav();
+
+      return $this -> _cache[ 'view_navbar_menu' ];
+    }
+
+    //when the secondary navbar menu is allowed?
+    //1) menu allowed
+    //and
+    //2) menu type is sidenav but a secondary menu is chosen
+    function tc_display_view_navbar_secondary_menu() {
+      if ( ! isset( $this -> _cache[ 'view_navbar_secondary_menu' ] ) )
+        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> tc_display_view_menu() &&  ( $this -> tc_display_view_sidenav() && TC_Utils::$inst -> tc_is_secondary_menu_enabled() ) ;
+      return $this -> _cache[ 'view_navbar_secondary_menu' ];
+    }
+ 
+    //when the sidenav menu is allowed?
+    //1) menu allowed
+    //and
+    //2) menu style is aside
+    function tc_display_view_sidenav() {
+      if ( ! isset( $this -> _cache[ 'view_sidevan' ] ) )
+        $this -> _cache[ 'view_sidenav' ] = $this -> tc_display_view_menu() && 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) );  
+      return $this -> _cache[ 'view_sidenav' ];
+    }
+
+    function tc_display_view_menu() {
+      if ( ! isset( $this -> _cache[ 'view_menu' ] ) )
+        $this -> _cache[ 'view_menu' ] =  ! ( (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') );
+      return $this -> _cache[ 'view_menu' ];
+    }
+   
+    //when the 'sidevan menu button' is allowed?
+    //1) menu button allowed
+    //2) menu style is aside ( sidenav)
+    //==
+    //tc_display_view_sidenav
+    function tc_display_view_sidenav_menu_button() {
+      return $this -> tc_display_view_sidenav(); //already cached
+    }
+    function tc_display_view_sidenav_navbar_menu_button() {
+      return $this -> tc_display_view_sidenav(); //already cached
+    }
+
+    //when the 'mobile menu button' is allowed?
+    //1) menu button allowed
+    //2) menu style is not aside (no sidenav)
+    function tc_display_view_mobile_menu_button() {
+      return $this -> tc_display_view_menu() && ! $this -> tc_display_view_sidenav(); //already cached
+    }
+
+    //when the 'menu button' is allowed?
+    //1) menu allowed
+    function tc_display_view_menu_button() {
+      return $this -> tc_display_view_menu(); /* already cached */
     }
 
   }//end of class
