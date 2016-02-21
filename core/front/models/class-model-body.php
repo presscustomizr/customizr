@@ -3,7 +3,13 @@ class TC_body_model_class extends TC_Model {
   public $classes;
   public $attributes;
 
-  /* TODO: INLINE STYLE */
+  /* TODO: SHOULD FIND A BETTER WAY TO EXTEND THE MODEL PARAMS/PROPERTIES
+   *  for example, the body_class filter should be accessible to all models instances
+   *  so that they can actually filter them.
+   *  We might do something like:
+   *  1) tc_extend_params to extend "early" params
+   *  2) another method to extend the model fired just before the view is instanciated/rendered
+  */
 
   /**
   * @override
@@ -47,6 +53,24 @@ class TC_body_model_class extends TC_Model {
     $_skin = sprintf( 'skin-%s' , basename( TC_init::$instance -> tc_get_style_src() ) );
     array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
 
+    //menu type class
+    $_menu_type = $this -> tc_is_sidenav_enabled() ? 'tc-side-menu' : 'tc-regular-menu';
+    array_push( $_classes, $_menu_type );
+    //sidenav where
+    $_where = str_replace( 'pull-menu-', '', esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
+    array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
+ 
     return $_classes;
+  }
+
+  /***************************************
+  * HELPERS
+  ****************************************/
+  /**
+  * @return bool
+  */
+ //used in other places, we need a different way
+  function tc_is_sidenav_enabled() {
+    return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) ) );
   }
 }
