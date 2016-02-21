@@ -9,13 +9,6 @@ class TC_menu_model_class extends TC_Model {
   public $fallback_cb;
   public $walker;
 
-  function __construct( $model = array() ) {
-    self::$instance =& $this;
-    //Fires the parent constructor
-    parent::__construct( $model );
-
-  }
-
   /**
   * @override
   * fired before the model properties are parsed
@@ -23,6 +16,8 @@ class TC_menu_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
+    add_filter( 'body_class', array( $this, 'tc_add_body_classes' ) );
+      
     //IS THIS STILL USED? DON'T WE USE A CUSTOM FALLBACK? (tc_page_menu)?
     add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ) );
 
@@ -41,7 +36,7 @@ class TC_menu_model_class extends TC_Model {
       $defaults['wrapper_class'] = implode( " ", ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' ) );
     }
 
-    $args = isset( $model['params'] ) ? wp_parse_args( $defaults, $model['params'] ) : $defaults;
+    $args = isset( $model['params'] ) ? wp_parse_args( $model['params'], $defaults ) : $defaults;
     if ( empty( $model['walker'] ) )
       $args['walker']  = ! TC_utils::$inst -> tc_has_location_menu($args['theme_location']) ? '' : new TC_nav_walker($args['theme_location']);
 
@@ -205,6 +200,23 @@ class TC_menu_model_class extends TC_Model {
 
     $args = array($pages, $depth, $r, $current_page);
     return call_user_func_array(array($walker, 'walk'), $args);
+  }
+
+  /*
+  * Callback of body_class hook
+  *
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_add_body_classes($_classes) {
+    //fire once (only when the type is regular menu )
+    //menu type class
+    if ( 'regular' == $this -> type ) {
+      array_push( $_classes, 'tc-regular-menu' );
+      $_fire_once = true;
+    }
+
+    return $_classes;
   }
 }
 

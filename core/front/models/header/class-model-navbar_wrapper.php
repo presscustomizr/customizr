@@ -9,6 +9,8 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
+    add_filter( 'body_class', array( $this, 'tc_add_body_classes' ) );
+
     $_class = $this -> get_navbar_classes();  
     $model[ 'class' ] = implode( " ", apply_filters( 'tc_navbar_wrapper_class', $_class ) );
     
@@ -31,5 +33,18 @@ class TC_navbar_wrapper_model_class extends TC_Model {
     if ( apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( TC_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) ) )
       array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
     return $_classes;    
+  }
+
+   /*
+  * Callback of body_class hook
+  *
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_add_body_classes($_classes) {
+    //No navbar box
+    if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
+      $_classes = array_merge( $_classes , array('no-navbar' ) );
+    return $_classes;
   }
 }
