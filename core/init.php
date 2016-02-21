@@ -209,7 +209,9 @@ if ( ! class_exists( 'TC___' ) ) :
           //tagline in navbar
           array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
           //menu in navbar
-          array( 'hook' => '__navbar__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu', 'params' => array( 'type' => 'regular' ) ),
+          array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu', 'params' => array( 'type' => 'regular' ) ),
+          //secondary
+          array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu', 'params' => array( 'type' => 'regular' , 'theme_location' => 'secondary' ) ),
  
           //RESET MARGIN TOP (for sticky header)
           array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20, 'model_class' => 'header/reset_margin_top' ),
