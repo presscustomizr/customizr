@@ -56,10 +56,12 @@ class TC_body_model_class extends TC_Model {
     //menu type class
     $_menu_type = $this -> tc_is_sidenav_enabled() ? 'tc-side-menu' : 'tc-regular-menu';
     array_push( $_classes, $_menu_type );
-    //sidenav where
-    $_where = str_replace( 'pull-menu-', '', esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
-    array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
- 
+
+    if ( $this -> tc_is_sidenav_enabled() ) {
+      //sidenav where
+      $_where = str_replace( 'pull-menu-', '', esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
+      array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
+    }
     return $_classes;
   }
 

@@ -209,10 +209,14 @@ if ( ! class_exists( 'TC___' ) ) :
           //tagline in navbar
           array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20, 'model_class' => 'header/tagline', 'params' => array( 'type' => 'mobile' ) ),
           //menu in navbar
-          array( 'hook' => '__navbar__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu' ),
+          array( 'hook' => '__navbar__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu', 'params' => array( 'type' => 'regular' ) ),
  
           //RESET MARGIN TOP (for sticky header)
           array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20, 'model_class' => 'header/reset_margin_top' ),
+
+          //SIDENAV
+          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav_wrapper', 'priority' => 10, 'model_class' => 'header/sidenav_wrapper' ),
+          array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => 'header/menu', 'params' => array( 'type' => 'aside' ) ),
 
           /*********************************************
           * CONTENT

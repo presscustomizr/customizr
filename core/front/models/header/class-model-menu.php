@@ -27,7 +27,7 @@ class TC_menu_model_class extends TC_Model {
     add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ) );
 
     $defaults = array(
-      'theme_location' => 'maina',
+      'theme_location' => 'main',
       'menu_class'     => implode( ' ', array( 'nav', 'sn-nav') ),
       'wrapper_class'  => implode( ' ', array( 'sn-nav-wrapper' ) ),
       'type'           => 'sidenav',
@@ -35,13 +35,19 @@ class TC_menu_model_class extends TC_Model {
       'walker'         => '',
     ); 
 
+    if ( isset( $model['params']['type'] ) && 'regular' == $model['params']['type'] ) {
+      $defaults['menu_class']    = implode( ' ', ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) );
+
+      $defaults['wrapper_class'] = implode( " ", ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' ) );
+    }
+
     $args = isset( $model['params'] ) ? wp_parse_args( $defaults, $model['params'] ) : $defaults;
+    if ( empty( $model['walker'] ) )
+      $args['walker']  = ! TC_utils::$inst -> tc_has_location_menu($args['theme_location']) ? '' : new TC_nav_walker($args['theme_location']);
+
     $model = array_merge( $model, $args );
     
     unset( $model['params']);
-
-    //set other properties
-    $model['walker']  = ! TC_utils::$inst -> tc_has_location_menu($model['theme_location']) ? '' : new TC_nav_walker($model['theme_location']);
 
     return $model;
   }
@@ -200,7 +206,5 @@ class TC_menu_model_class extends TC_Model {
     $args = array($pages, $depth, $r, $current_page);
     return call_user_func_array(array($walker, 'walk'), $args);
   }
-
-
 }
 
