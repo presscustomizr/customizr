@@ -1,5 +1,5 @@
 <?php
-class TC_sidenav_wrapper_model_class extends TC_Model {
+class TC_sidenav_model_class extends TC_Model {
   public $class;
   public $inner_class;
 
