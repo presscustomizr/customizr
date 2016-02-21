@@ -96,7 +96,7 @@ class TC_header_model_class extends TC_Model {
     return $_css;
   }
 
-  function tc_add_body_classes( $classes ) {
+  function tc_add_body_classes( $_classes ) {
     //STICKY HEADER
     if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
       $_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );
@@ -110,5 +110,6 @@ class TC_header_model_class extends TC_Model {
     else {
       $_classes = array_merge( $_classes, array('tc-no-sticky-header') );
     }
+    return $_classes;
   }
 }//end of class
