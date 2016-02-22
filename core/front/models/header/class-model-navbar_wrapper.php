@@ -17,7 +17,7 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   }
 
   /**
-  * parse this model properties
+  * parse this model properties for rendering
   */
   function pre_rendering_my_view_cb( $model ) {
     $model -> class = join( ' ', array_unique( $model -> class ) );
