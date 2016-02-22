@@ -7,8 +7,6 @@ class TC_header_model_class extends TC_Model {
     parent::__construct( $model );
     //specific inline CSS
     add_filter( 'tc_user_options_style', array( $this, 'tc_header_inline_css' ) );
-    //add body classes
-    add_filter( 'body_class', array( $this, 'tc_add_body_classes' ) );
   } 
   /**
   * @override
@@ -96,7 +94,7 @@ class TC_header_model_class extends TC_Model {
     return $_css;
   }
 
-  function tc_add_body_classes( $_classes ) {
+  function tc_body_class( $_classes ) {
     //STICKY HEADER
     if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
       $_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );

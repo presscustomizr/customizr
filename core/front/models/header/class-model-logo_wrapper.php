@@ -31,7 +31,7 @@ class TC_logo_wrapper_model_class extends TC_Model {
   function get_logo_wrapper_class() {
     $_class     = array( 'brand', 'span3' );  
     $_layout    = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
-    $_class[] = 'right' == $_layout ? 'pull-right' : 'pull-left';
+    $_class[]   = 'right' == $_layout ? 'pull-right' : 'pull-left';
     return $_class;
   }
 }

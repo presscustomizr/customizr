@@ -62,7 +62,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
       //maybe alter body class
       if ( method_exists( $this, 'tc_body_class' ) )
-        add_filter( 'body_class', array( $this, 'tc_body_class' );
+        add_filter( 'body_class', array( $this, 'tc_body_class' ) );
 
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param

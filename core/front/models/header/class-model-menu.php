@@ -16,7 +16,6 @@ class TC_menu_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    add_filter( 'body_class', array( $this, 'tc_add_body_classes' ) );
     add_filter( 'tc_user_options_style', array( $this, 'tc_add_second_menu_inline_style' ) );
 
     //IS THIS STILL USED? DON'T WE USE A CUSTOM FALLBACK? (tc_page_menu)?
@@ -209,7 +208,7 @@ class TC_menu_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_add_body_classes($_classes) {
+  function tc_body_class($_classes) {
     //menu type class
     if ( 'navbar' == $this -> type  && 'main' == $this -> theme_location ) {
       array_push( $_classes, 'tc-regular-menu' );

@@ -37,7 +37,7 @@ class TC_menu_button_model_class extends TC_Model {
 
     //button title
     if ( ! isset( $attr[ 'button_title' ] ) )
-      $model[ 'button_title' ] =  '__sidenav__' == $attr[ 'in' ] ? __('Close', 'customizr') : __('Open the menu' , 'customizr');
+      $model[ 'button_title' ] =  'sidenav' == $attr[ 'in' ] ? __('Close', 'customizr') : __('Open the menu' , 'customizr');
 
     //button attr
     if ( ! isset( $attr[ 'button_attr' ] ) )
