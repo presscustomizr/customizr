@@ -29,10 +29,10 @@ class TC_header_model_class extends TC_Model {
     $_show_menu          = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') );
     
     $_header_layout      = "logo-" . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) );
-    if ( (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') ) {
+    if ( ! (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') ) {
       //adds the second menu state
       $_secondary_menu     = TC_Utils::$inst -> tc_is_secondary_menu_enabled() ? 'tc-second-menu-on' : '';
-      $_secondary_menu    .= 'tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile';
+      $_secondary_menu    .= ' tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile';
     }
 
     $_add_classes 			= array(
