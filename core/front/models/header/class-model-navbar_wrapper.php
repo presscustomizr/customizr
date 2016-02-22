@@ -9,7 +9,6 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    add_filter( 'body_class', array( $this, 'tc_add_body_classes' ) );
 
     $model[ 'class' ] = array('navbar-wrapper', 'clearfix', 'span9');
     //$this -> get_navbar_classes();
@@ -31,7 +30,7 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_add_body_classes($_classes) {
+  function tc_body_class( $_classes ) {
     //No navbar box
     if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
       $_classes = array_merge( $_classes , array('no-navbar' ) );
