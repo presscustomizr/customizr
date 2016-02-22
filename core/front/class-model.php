@@ -121,7 +121,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public function tc_maybe_add_style() {
       //for now just add filter to tc_user_options_style
       if ( method_exists( $this, 'tc_user_options_style_cb' ) )
-        add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' );    
+        add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' ) );    
     }//fn
 
 

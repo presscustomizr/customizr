@@ -17,8 +17,6 @@ class TC_menu_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    add_filter( 'tc_user_options_style', array( $this, 'tc_add_second_menu_inline_style' ) );
-
     //IS THIS STILL USED? DON'T WE USE A CUSTOM FALLBACK? (tc_page_menu)?
     add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ) );
 
@@ -252,12 +250,13 @@ class TC_menu_model_class extends TC_Model {
      }
    }
 
-      /*
+    /**
+    * @hook tc_user_options_style
     * Second menu
     * This actually "restore" regular menu style (user options in particular) by overriding the max-width: 979px media query
     */
-    function tc_add_second_menu_inline_style( $_css ) {
-      if ( ! ( TC_Utils::$inst -> tc_is_secondary_menu_enabled() && 'secondary' == $this -> theme_location ) )
+    function tc_user_options_style_cb( $_css ) {
+      if (  'secondary' != $this -> theme_location )
         return $_css;
       
       return sprintf("%s\n%s",
