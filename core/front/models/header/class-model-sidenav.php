@@ -3,6 +3,11 @@ class TC_sidenav_model_class extends TC_Model {
   public $class;
   public $inner_class;
 
+  function __construct( $model = array() ) {
+    parent::__construct( $model );
+    //specific inline CSS
+    add_filter( 'tc_menu_open_on_click', array( $this, 'tc_disable_dropdown_on_click' ), 10, 3 );
+  }
   /**
   * @override
   * fired before the model properties are parsed
@@ -33,6 +38,17 @@ class TC_sidenav_model_class extends TC_Model {
     array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
     
     return $_classes;
+  }
+
+  /**
+  * This hooks is fired in the Walker_Page extensions, by the start_el() methods.
+  * It only concerns the main menu, when the sidenav is enabled.
+  * @since Customizr 3.4+
+  *
+  * hook :tc_menu_open_on_click
+  */
+  function tc_disable_dropdown_on_click( $replace, $search, $_location = null ) {
+    return 'main' == $_location ? $search : $replace ;
   }
 
   /**
