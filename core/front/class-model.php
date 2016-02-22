@@ -63,6 +63,9 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //maybe alter body class
       if ( method_exists( $this, 'tc_body_class' ) )
         add_filter( 'body_class', array( $this, 'tc_body_class' ) );
+      
+      //maybe add style (have to see if we have to put this just before the view is rendered)
+      $this -> tc_maybe_add_style();
 
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
@@ -110,6 +113,16 @@ if ( ! class_exists( 'TC_Model' ) ) :
       $view_instance = new TC_View( $this );
     }//fn
 
+
+
+    /**********************************************************************************
+    * ACTIONS ON MODEL INSTANCIATION : MAYBE ADD SPECIFIC MODEL STYLE
+    ***********************************************************************************/
+    public function tc_maybe_add_style() {
+      //for now just add filter to tc_user_options_style
+      if ( method_exists( $this, 'tc_user_options_style_cb' ) )
+        add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' );    
+    }//fn
 
 
     /***********************************************************************************
