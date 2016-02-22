@@ -9,6 +9,7 @@ class TC_menu_model_class extends TC_Model {
   public $fallback_cb;
   public $walker;
 
+  public $content;
   /**
   * @override
   * fired before the model properties are parsed
@@ -43,7 +44,6 @@ class TC_menu_model_class extends TC_Model {
     $model = array_merge( $model, $args );
     
     unset( $model['params']);
-
     return $model;
   }
 
@@ -55,7 +55,7 @@ class TC_menu_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.0
   */
-  function tc_add_menuclass( $ulclass) {
+  function tc_add_menuclass( $ulclass ) {
     $html =  preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
     return apply_filters( 'tc_add_menuclass', $html );
   }
