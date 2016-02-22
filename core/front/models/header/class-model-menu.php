@@ -232,14 +232,24 @@ class TC_menu_model_class extends TC_Model {
    * @hook to the pre_rendering_view
    */
    function pre_rendering_view_cb( $model ) {
-     //Navbar menus positions (not sidenav)
-     //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
-     //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
      if ( 'navbar_wrapper' == $model->id && 'navbar' == $this -> type ) {
+       //Navbar menus positions (not sidenav)
+       //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
+       //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
        if ( 'main' == $this -> theme_location )
          array_push( $model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
        elseif( 'secondary' == $this -> theme_location )
          array_push( $model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
+       //fire once
+       static $_fired = false;
+       if ( ! $_fired ) {
+         $_fired  = true;
+         if ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) )
+           array_push( $model -> class, 'tc-submenu-fade' );
+         if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) ) 
+           array_push( $model -> class, 'tc-submenu-move' );
+         array_push( $model -> class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' );    
+       }//end fire once block
      }
    }
 
