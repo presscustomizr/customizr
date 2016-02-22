@@ -138,7 +138,7 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
     //and
     //2) menu style is aside
     function tc_display_view_sidenav() {
-      if ( ! isset( $this -> _cache[ 'view_sidevan' ] ) )
+      if ( ! isset( $this -> _cache[ 'view_sidenav' ] ) )
         $this -> _cache[ 'view_sidenav' ] = $this -> tc_display_view_menu() && 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) );  
       return $this -> _cache[ 'view_sidenav' ];
     }
