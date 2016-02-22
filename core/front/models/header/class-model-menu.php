@@ -31,7 +31,7 @@ class TC_menu_model_class extends TC_Model {
       'walker'         => '',
     ); 
 
-    if ( isset( $model['params']['type'] ) && 'regular' == $model['params']['type'] ) {
+    if ( isset( $model['params']['type'] ) && 'navbar' == $model['params']['type'] ) {
       $defaults['menu_class']    = implode( ' ', ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) );
 
       $defaults['wrapper_class'] = implode( " ", ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' ) );
@@ -211,12 +211,37 @@ class TC_menu_model_class extends TC_Model {
   */
   function tc_add_body_classes($_classes) {
     //menu type class
-    if ( 'regular' == $this -> type  && ! TC_controller_header::$instance -> tc_display_view_sidenav() ) {
+    if ( 'navbar' == $this -> type  && 'main' == $this -> theme_location ) {
       array_push( $_classes, 'tc-regular-menu' );
     }
 
     return $_classes;
   }
+
+  /**
+   * @override
+   * add an action to the navbar_wrapper pre_rendering view hook in order to alter its model.
+   */ 
+   /*  
+   function tc_maybe_filter_views_model() {
+     add_action( 'pre_rendering_view_navbar_wrapper', array( $this, 'pre_rendering_view_cb' ) );
+   }
+   */
+
+   /**
+   * @hook to the pre_rendering_view
+   */
+   function pre_rendering_view_cb( $model ) {
+     //Navbar menus positions (not sidenav)
+     //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
+     //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
+     if ( 'navbar_wrapper' == $model->id && 'navbar' == $this -> type ) {
+       if ( 'main' == $this -> theme_location )
+         array_push( $model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
+       elseif( 'secondary' == $this -> theme_location )
+         array_push( $model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
+     }
+   }
 
       /*
     * Second menu

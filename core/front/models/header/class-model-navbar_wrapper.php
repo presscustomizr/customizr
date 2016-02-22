@@ -11,10 +11,16 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   function tc_extend_params( $model = array() ) {
     add_filter( 'body_class', array( $this, 'tc_add_body_classes' ) );
 
-    $_class = $this -> get_navbar_classes();  
-    $model[ 'class' ] = implode( " ", apply_filters( 'tc_navbar_wrapper_class', $_class ) );
+    $model[ 'class' ] = $this -> get_navbar_classes();
     
     return $model;
+  }
+
+  /**
+  * parse this model properties
+  */
+  function pre_rendering_my_view_cb( $model ) {
+    $model -> class = join( ' ', array_unique( $model -> class ) );
   }
 
   function get_navbar_classes() {
@@ -28,10 +34,10 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   //Navbar menus positions (not sidenav)
   //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
   //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
-    if ( ! apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) ) ) )
-      array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
-    if ( apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( TC_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) ) )
-      array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
+   /* if ( ! apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) ) ) )
+       array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );*/
+/*    if ( apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( TC_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) ) )
+        array_push( $_classes , esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );*/
     return $_classes;    
   }
 
