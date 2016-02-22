@@ -3,11 +3,6 @@ class TC_header_model_class extends TC_Model {
   public $classes;
 
 
-  function __construct( $model = array() ) {
-    parent::__construct( $model );
-    //specific inline CSS
-    add_filter( 'tc_user_options_style', array( $this, 'tc_header_inline_css' ) );
-  } 
   /**
   * @override
   * fired before the model properties are parsed
@@ -70,7 +65,13 @@ class TC_header_model_class extends TC_Model {
     return true;
   }
 
-  function tc_header_inline_css( $_css ) {
+  /**
+  * Adds a specific style to handle the header top border and z-index
+  * hook : tc_user_options_style
+  *
+  * @package Customizr
+  */
+  function tc_user_options_style_cb( $_css ) {
     //TOP BORDER
     if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_top_border') ) ) {
       $_css = sprintf("%s%s",
@@ -93,6 +94,7 @@ class TC_header_model_class extends TC_Model {
     }
     return $_css;
   }
+
 
   function tc_body_class( $_classes ) {
     //STICKY HEADER

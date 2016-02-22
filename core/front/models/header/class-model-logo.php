@@ -6,11 +6,7 @@ class TC_logo_model_class extends TC_Model {
   public $attr = '';
   public $class = '';
 
-  function __construct( $model = array() ) {
-    parent::__construct( $model );
-    //specific inline CSS
-    add_filter( 'tc_user_options_style', array( $this, 'tc_logo_css' ) );
-  }
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -83,7 +79,7 @@ class TC_logo_model_class extends TC_Model {
   }
 
 
-  function tc_logo_css( $_css ) {
+  function tc_user_options_style_cb( $_css ) {
     //logos shrink
     //fire once
     static $_fired = false;

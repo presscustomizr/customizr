@@ -15,8 +15,6 @@ class TC_sidenav_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    add_filter( 'tc_user_options_style', array( $this, 'tc_set_sidenav_style') );
-
     $model[ 'class' ]         = implode(' ', apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) );
     $model[ 'inner_class' ]   = implode(' ', apply_filters('tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') ) );  
     
@@ -58,7 +56,7 @@ class TC_sidenav_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.2.11
   */
-  function tc_set_sidenav_style( $_css ) {
+  function tc_user_options_style_cb( $_css ) {
     $sidenav_width = apply_filters( 'tc_sidenav_width', 330 );
 
     $_sidenav_mobile_css = '
