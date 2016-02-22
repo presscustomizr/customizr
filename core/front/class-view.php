@@ -49,6 +49,11 @@ if ( ! class_exists( 'TC_View' ) ) :
       if ( ! apply_filters( "tc_do_render_view_{$this -> model -> id}", true ) )
         return;
 
+      //allow filtering of the model before rendering (the view's model is passed by reference)
+      //
+      do_action_ref_array( 'pre_rendering_view', array(&$this -> model) );
+      do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
+      
       do_action( "before_render_view_{$this -> model -> id}" );
       ?>
 

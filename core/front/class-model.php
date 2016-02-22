@@ -72,6 +72,9 @@ if ( ! class_exists( 'TC_Model' ) ) :
         add_action( 'wp'                                , array( $this, 'tc_maybe_instanciate_view' ), 999 );
       else
         $this -> tc_maybe_instanciate_view();
+
+      //Allow models to filter other view's model before rendering
+      $this -> tc_maybe_filter_views_model();
     }
 
 
@@ -223,6 +226,25 @@ if ( ! class_exists( 'TC_Model' ) ) :
     }
 
 
+
+    /***********************************************************************************
+    * ACTIONS ON VIEW READY
+    * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
+    ***********************************************************************************/
+    // Maybe add pre_rendering_view action hook callback to filter the model before rendering
+    // Extesion classes might want to override this method, so to hook them to a specific pre rendering id
+    // I prefer to not allow the automatic hooking to a specific view without checking the existence of a callback to avoid the useless adding of a "dummy" cb ot the array of action callbacks
+    // Though makes sense to hook a certain model ID to its view pre_rendering to parse its own properties before rendering. Example:
+    // The class parameter will be stored in the model as an array to allow a better way to filter it ( e.g. avoid duplications), but to make it suitable for the rendering, it must be transformed in a string
+    // Maybe we can think about make the model attributes, when needed, a set of 
+    // value, "sanitize" callback and let the view class do this..
+    protected function tc_maybe_filter_views_model() {
+      if ( method_exists( $this, 'pre_rendering_view_cb' ) )
+        add_action( 'pre_rendering_view', array( $this, 'pre_rendering_view_cb' ) );
+      if ( method_exists( $this, "pre_rendering_my_view_cb" ) )
+        add_action( "pre_rendering_view_{$this -> id}", array($this, "pre_rendering_my_view_cb" ), 9999 );
+    }
+ 
 
     /**********************************************************************************
     * HELPERS

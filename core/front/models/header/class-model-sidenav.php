@@ -19,6 +19,7 @@ class TC_sidenav_model_class extends TC_Model {
     return $model;
   }
 
+
   /*
   * Callback of body_class hook
   *
