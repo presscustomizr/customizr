@@ -52,12 +52,17 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //3) a hook
       if ( ! $this -> tc_can_model_be_instanciated() )
         return;
-
+      
+  
       //this will trigger the collection update => the model will be registered in the collection
       do_action( 'model_instanciated' , $this -> id, $this );
 
       //Registers its children if any
       $this -> tc_maybe_register_children();
+
+      //maybe alter body class
+      if ( method_exists( $this, 'tc_body_class' ) )
+        add_filter( 'body_class', array( $this, 'tc_body_class' );
 
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
