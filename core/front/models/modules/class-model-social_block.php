@@ -15,11 +15,15 @@ class TC_social_block_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     $params                = isset( $model['params'] ) ? $model['params'] : array();  
-    $type                  = isset( $params['type'] )  ? $params['type'] : '';
+    $type                  = isset( $params['type'] )  ? $params['type']  : '';
     $where                 = isset( $params['where'] ) ? $params['where'] : '';
 
     $model[ 'content' ]    = tc__f( '__get_socials' );
-    $model[ 'tag']         = 'widget' == $type ? 'aside' : 'div';
+    switch ( $type )       {
+     case 'widget'           : $model[ 'tag' ] = 'aside'; break;
+     case 'colophon'         : $model[ 'tag' ] = 'span'; break;
+     default                 : $model[ 'tag' ] = 'div';
+    }
 
     //the block must be hidden via CSS when
     //1a) the relative display option is unchecked
@@ -35,10 +39,13 @@ class TC_social_block_model_class extends TC_Model {
     switch ( $where ) {
       case 'header' : 
         $model[ 'class' ] = implode( ' ', apply_filters( 'tc_social_header_block_class', array_merge( $model[ 'class' ], array( 'span5' ) ), $model ) );
-                       break;
+        break;
       case 'right-sidebar':
       case 'left-sidebar' : 
         $model[ 'class' ] = implode( ' ', apply_filters( 'tc_sidebar_social_block_class', array_merge( $model[ 'class' ], array( 'widget', 'widget_social' ) ) ), $model );
+        break;
+      case 'footer' :
+        $model[ 'class' ] = implode( ' ', array( 'tc-footer-social-links-wrapper' ) );
         break;
       default:
         $model[ 'class' ] = implode( ' ', apply_filters( "tc_social_${where}_block_class", $model['class'], $model ) ) ; 

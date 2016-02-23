@@ -21,11 +21,13 @@ if ( ! class_exists( 'TC_controllers' ) ) :
           '404', 'attachment', 'comments', 'headings', 'no_results', 'page', 'post', 'post_list', 'post_metas', 'post_navigation', 'sidebar'
         ),
         'footer' => array(
-          'widgets', 'colophon', 'back_to_top'
+          'footer_socials', 'btt_arrow', 'footer_btt'
+      //    'widgets', 'colophon', 'back_to_top'
         ),
-        // 'modules' => array(
+        'modules' => array(
         //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
-        // )
+        ),
+
       );
 
       //Store a group controller instance for later uses
