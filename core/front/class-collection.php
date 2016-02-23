@@ -289,31 +289,38 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     private function tc_instanciate_model($model) {
       $instance = null;
 
-      if ( ! isset($model['model_class']) || empty($model['model_class']) )
+      //try to instanciate the model specified in the model_class param
+      //if not found try to retrieve it from the template param (mandatory):
+      //a) The model_class, when specified, must refer to a valid model otherwise a notice will be fired.
+      //b) Also if a whatever model has been instanciated it must be a subclass of TC_Model - otherwise a notice will be fired.
+      //Else If no suitable model has been instanciated instanciate the base model class
+      foreach ( array( 'model_class', 'template' ) as $_model_class ) {
+        if ( ! isset($model[ $_model_class ]) || empty($model[ $_model_class ]) )
+          continue;
+        //A model class has been defined, let's try to load it and instanciate it
+        $model_class_basename = basename( $model[$_model_class ] );
+        $model_class_dirname  = dirname( $model[ $_model_class ] );
+        $model_class_name     = sprintf( 'TC_%s_model_class', $model_class_basename );
+
+        if ( ! class_exists($model_class_name) )
+          //try to load the model class
+          tc_fw_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+
+        if ( class_exists($model_class_name) )
+          $instance = new $model_class_name( $model );
+
+        if ( ! is_object($instance) &&  'model_class' == $_model_class ) {
+          do_action('tc_dev_notice', "Model : " . $model['id'] . ". The model has not been instanciated." );
+          return;
+        }
+        //A model must be TC_model or a child class of TC_model.
+        if ( is_object($instance) && ! is_subclass_of($instance, 'TC_Model') ) {
+          do_action('tc_dev_notice', "Model : " . $model['id'] . ". View Instanciation aborted : the specified model class must be a child of TC_Model." );
+          return;
+        } else break;
+      }//end for
+      if ( ! is_object( $instance ) )
         return new TC_Model( $model );
-
-      //A model class has been defined, let's try to load it and instanciate it
-      $model_class_basename = basename( $model['model_class'] );
-      $model_class_dirname  = dirname( $model['model_class'] );
-      $model_class_name     = sprintf( 'TC_%s_model_class', $model_class_basename );
-
-      if ( ! class_exists($model_class_name) )
-        //try to load the model class
-        tc_fw_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
-
-      if ( class_exists($model_class_name) )
-        $instance = new $model_class_name( $model );
-
-      if ( ! is_object($instance) ) {
-        do_action('tc_dev_notice', "Model : " . $model['id'] . ". The model has not been instanciated." );
-        return;
-      }
-
-      //A model must be TC_model or a child class of TC_model.
-      if ( ! is_subclass_of($instance, 'TC_Model') ) {
-        do_action('tc_dev_notice', "Model : " . $model['id'] . ". View Instanciation aborted : the specified model class must be a child of TC_Model." );
-        return;
-      }
 
       return $instance;
     }
