@@ -240,17 +240,34 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //404
           array( 'hook' => 'in_main_loop', 'template' => 'content/404', 'priority' => 20 ),
-
+          array( 'hook' => '__footer__', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>', 'priority' => 30 ),
 
           /*********************************************
           * FOOTER
           *********************************************/
           array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
-          
+
+
           //a post grid displayed in any content
           array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
           array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
           array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
+
+          //colophon
+          array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
+          //left block "socials"
+          array( 'hook' => '__colophon__', 'template' => 'footer/colophon_wrapper', 'id' => 'colophon_social_block', 'priority' => is_rtl() ? 30 : 10, 'params' => 
+                    array( 'class' => array( 'span3', 'social-block', is_rtl() ? 'pull-right' : 'pull-left' ) ) 
+          ),
+          //social block inside the left block
+          array( 'hook' => '__colophon_wrapper__', 'template' => 'modules/social_block', 'id' => 'footer_socials', 'params' => array( 'where' => 'footer', 'type' => 'footer' ) ),
+          //footer credits
+          array( 'hook' => '__colophon__', 'template' => 'footer/footer_credits', 'priority' => 20 ),
+          //footer colophon btt link
+          array( 'hook' => '__colophon__', 'template' => 'footer/footer_btt', 'priority' => is_rtl() ? 10 : 30 ),
+
+          //btt arrow
+          array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow', 'priority' => 10 ),
         )
       );
     }
