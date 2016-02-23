@@ -174,31 +174,31 @@ if ( ! class_exists( 'TC___' ) ) :
           * ROOT HTML STRUCTURE
           *********************************************/
           array( 'hook' => '__rooot__', 'template' => 'rooot' ),
-          array( 'hook' => '__html__',  'template' => 'header/head', 'priority' => 10 ),
+          array( 'hook' => '__html__',  'template' => 'header/head' ),
           array( 'hook' => '__html__',  'template' => 'body', 'priority' => 20 ),
           array( 'hook' => '__body__',  'template' => 'page_wrapper', 'priority' => 20 ),
 
           /*********************************************
           * HEADER
           *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template'  => 'header/header', 'priority' => 10 ),
+          array( 'hook' => '__page_wrapper__', 'template'  => 'header/header' ),
           
          
           //LOGO
-          array( 'hook' => '__header__', 'template' => 'header/logo_wrapper', 'priority' => 10 ),
-          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'priority' => 10 ),
+          array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
+          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo' ),
           //uses an extended logo module - IT WORKS :D
- //         array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 10 , 'model_class' => 'header/sticky_logo'),
+ //         array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => 'header/sticky_logo'),
           array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 20 , 'params' => array( 'type' => 'sticky' )),
          
           //TITLE
-          array( 'hook' => '__header__', 'template' => 'header/title_wrapper', 'priority' => 10  ),
-          array( 'hook' => '__title_wrapper__', 'template' => 'header/title', 'priority' => 10 ),
+          array( 'hook' => '__header__', 'template' => 'header/title_wrapper'  ),
+          array( 'hook' => '__title_wrapper__', 'template' => 'header/title' ),
          
          
           //MOBILE TAGLINE
           array( 'hook' => '__header__', 'template' => 'header/mobile_tagline_wrapper','priority' => 20 ),
-          array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 10, 'params' => array( 'type' => 'mobile' ) ),
+          array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'params' => array( 'type' => 'mobile' ) ),
          
          
           //NAVBAR
@@ -221,9 +221,9 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20 ),
 
           //SIDENAV
-          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav', 'priority' => 10 ),
+          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav' ),
           //menu button
-          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'priority' => 10, 'params' => array( 'type' => 'sidenav', 'in' => 'sidenav' ) ),
+          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'params' => array( 'type' => 'sidenav', 'in' => 'sidenav' ) ),
           array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'params' => array( 'type' => 'aside' ) ),
 
           /*********************************************
@@ -232,7 +232,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__page_wrapper__', 'template' => 'content/content_wrapper', 'priority' => 20, 'model_class' => 'content_wrapper' ),
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
           //headings
-          array( 'hook' => 'in_main_loop', 'template' => 'content/headings', 'priority' => 10 ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
 
 
           //page
@@ -267,7 +267,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__colophon__', 'template' => 'footer/footer_btt', 'priority' => is_rtl() ? 10 : 30 ),
 
           //btt arrow
-          array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow', 'priority' => 10 ),
+          array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow' ),
         )
       );
     }
