@@ -245,7 +245,7 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * FOOTER
           *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
+          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30, 'model_class' => 'footer/footer' ),
           
           //a post grid displayed in any content
           array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
