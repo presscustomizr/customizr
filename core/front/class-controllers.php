@@ -57,7 +57,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       //return true;
 
       if ( ! empty( $controller_cb ) ) {
-        return apply_filters( 'tc_set_control' , (bool) CZR() -> helpers -> tc_return_cb_result( $controller_cb ) );
+        return apply_filters( 'tc_set_control' , (bool) CZR() -> helpers -> tc_return_cb_result( $controller_cb, $model ) );
       }
       return true;
     }
