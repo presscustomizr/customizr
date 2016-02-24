@@ -21,17 +21,17 @@ class TC_menu_model_class extends TC_Model {
 
     $defaults = array(
       'theme_location' => 'main',
-      'menu_class'     => implode( ' ', array( 'nav', 'sn-nav') ),
-      'wrapper_class'  => implode( ' ', array( 'sn-nav-wrapper' ) ),
+      'menu_class'     => array( 'nav', 'sn-nav'),
+      'wrapper_class'  => array( 'sn-nav-wrapper' ),
       'type'           => 'sidenav',
       'fallback_cb'    => array( $this, 'tc_page_menu' ),
       'walker'         => '',
     ); 
 
     if ( isset( $model['params']['type'] ) && 'navbar' == $model['params']['type'] ) {
-      $defaults['menu_class']    = implode( ' ', ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) );
+      $defaults['menu_class']    = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' );
 
-      $defaults['wrapper_class'] = implode( " ", ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' ) );
+      $defaults['wrapper_class'] = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
     }
 
     $args = isset( $model['params'] ) ? wp_parse_args( $model['params'], $defaults ) : $defaults;
@@ -214,53 +214,77 @@ class TC_menu_model_class extends TC_Model {
     return $_classes;
   }
 
+
+
   /**
   * @override
-  * add an action to the navbar_wrapper pre_rendering view hook in order to alter its model.
+  * Allow filtering of the header class by registering to its pre view rendering hook
   */ 
-  /*  
   function tc_maybe_filter_views_model() {
-    add_action( 'pre_rendering_view_navbar_wrapper', array( $this, 'pre_rendering_view_cb' ) );
+    parent::tc_maybe_filter_views_model();
+    add_action( 'pre_rendering_view_header'         , array( $this, 'pre_rendering_view_header_cb' ) );
+    add_action( 'pre_rendering_view_navbar_wrapper' , array( $this, 'pre_rendering_view_navbar_wrapper_cb' ) );
   }
-  */
 
   /**
-  * @hook to the pre_rendering_view
-  */
-  function pre_rendering_view_cb( $model ) {
-    if ( 'navbar' == $this -> type ) {
-      //NAVBAR CLASSES
-      if ( 'navbar_wrapper' == $model -> id ) {
-        //Navbar menus positions (not sidenav)
-        //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
-        //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
-        if ( 'main' == $this -> theme_location )
-          array_push( $model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
-        elseif( 'secondary' == $this -> theme_location )
-          array_push( $model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
-        
-        //fire once ( in case is main or secondary menu )
-        static $_fired = false;
-        if ( $_fired ) return;
-        $_fired = true;
+  * parse this model properties for rendering
+  */ 
+  function pre_rendering_my_view_cb( $model ) {
+    $model -> menu_class      = join( ' ', array_unique( $model -> menu_class ) );    
+    $model -> wrapper_class   = join( ' ', array_unique( $model -> wrapper_class ) );    
+  }
 
-        if ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) )
-          array_push( $model -> class, 'tc-submenu-fade' );
-        if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) ) 
-          array_push( $model -> class, 'tc-submenu-move' );
-        array_push( $model -> class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' );    
-        //end fire once
-      }//end navbar_wrapper class
-      elseif ( 'header' == $model -> id ) { //header class for the secondary menu
-        if( 'secondary' == $this -> theme_location ) {
-          $model -> class = array_merge( $model -> class,  array(
-              'tc-second-menu-on',
-              'tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
-          ) );
-        }
-      }//end header class
-    }
+
+
+  /**
+  * @hook; pre_rendering_view_header
+  *
+  * parse header model before rendering to add 'sticky' menu visibility 
+  * and second menu classes
+  */ 
+  function pre_rendering_view_header_cb( $header_model ) {
+    if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) )
+      array_push( $header_model -> class, 
+        0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') ) ? 'tc-menu-on' : 'tc-menu-off'
+      );
+    
+    //header class for the secondary menu
+    if( 'secondary' == $this -> theme_location )
+      array_push( $header_model -> class,
+          'tc-second-menu-on',
+          'tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
+      );
+  }
+
+
+  /**
+  * @hook: pre_rendering_view_navbar_wrapper
+  */
+  function pre_rendering_view_navbar_wrapper_cb( $model ) {
+    if ( 'navbar' == $this -> type ) {
+      //Navbar menus positions (not sidenav)
+      //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
+      //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
+      if ( 'main' == $this -> theme_location )
+        array_push( $model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
+      elseif( 'secondary' == $this -> theme_location )
+        array_push( $model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
+    
+      //fire once ( in case is main or secondary menu )
+      static $_fired = false;
+      if ( $_fired ) return;
+      $_fired = true;
+
+      if ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) )
+        array_push( $model -> class, 'tc-submenu-fade' );
+      if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) ) 
+        array_push( $model -> class, 'tc-submenu-move' );
+      array_push( $model -> class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' );    
+      //end fire once
+    }//end navbar_wrapper class
   }//end fn
+
+
 
   /**
   * @hook tc_user_options_style
