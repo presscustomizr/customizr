@@ -12,14 +12,22 @@ class TC_widget_area_wrapper_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    //hack to render white color icons if skin is grey or black
-    $skin_class  = ( in_array( TC_utils::$inst->tc_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
-    $footer_widgets_wrapper_classes = apply_filters( 'tc_footer_widget_wrapper_class' , array('container' , 'footer-widgets', $skin_class) );
-    
-    $model['wrapper_class'] = 'footer' == $model['params']['where'] ? $footer_widgets_wrapper_classes : array(); 
+    $model[ 'wrapper_class' ] = array();
+    $model[ 'inner_classs'  ] = array();
+    $model[ 'position'  ]     = '';
 
-    $model['inner_class']   = apply_filters( 'tc_footer_widget_area', array('row' ,'widget-area') );
-    $model['position']      = 'footer';
+    if ( isset( $model['params']['where'] ) && 'footer' == $model['params']['where'] ) {
+       //hack to render white color icons if skin is grey or black
+       $skin_class  = ( in_array( TC_utils::$inst->tc_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
+       $footer_widgets_wrapper_classes = array('container' , 'footer-widgets', $skin_class);
+    
+       $model['wrapper_class'] = $footer_widgets_wrapper_classes; 
+
+       $model['inner_class']   = array('row' ,'widget-area');
+
+       $model['position']      = 'footer';
+    }
+
     return $model;
   }
 

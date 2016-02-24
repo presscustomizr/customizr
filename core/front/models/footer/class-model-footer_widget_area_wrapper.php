@@ -10,7 +10,8 @@ class TC_footer_widget_area_wrapper_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model['class'] = array('span4');
+    $n_footer_widgets = count( apply_filters( 'tc_footer_widgets', TC_init::$instance -> footer_widgets ) );
+    $model['class'] = $n_footer_widgets ? array('span' . 12/$n_footer_widgets) : array();
     $model['key']   = isset( $model['params']['key'] ) ? $model['params']['key'] : 'footer_one';
     return $model;
   }
