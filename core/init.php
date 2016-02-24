@@ -240,19 +240,27 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //404
           array( 'hook' => 'in_main_loop', 'template' => 'content/404', 'priority' => 20 ),
-          array( 'hook' => '__footer__', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>', 'priority' => 30 ),
 
           /*********************************************
           * FOOTER
           *********************************************/
           array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
 
+//          array( 'hook' => '__footer__', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>', 'priority' => 30 ),
 
           //a post grid displayed in any content
-          array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
-          array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
-          array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
-
+  //        array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
+  //        array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
+  //        array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
+            
+          //widget area in footer
+          array( 'hook' => '__footer__', 'template' => 'modules/widget_area_wrapper', 'params' => array( 'where' => 'footer' ) ),
+          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_one' ) ),
+          array( 'hook' => '__footer_widget_area_wrapper_footer_one__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_one' ) ),
+          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_two' ) ),
+          array( 'hook' => '__footer_widget_area_wrapper_footer_two__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_two' ) ),
+          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_three' ) ),
+          array( 'hook' => '__footer_widget_area_wrapper_footer_three__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_three' ) ),
           //colophon
           array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
           //left block "socials"
