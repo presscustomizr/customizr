@@ -21,7 +21,7 @@ class TC_logo_model_class extends TC_Model {
 
     $model[ 'src' ]   = $logo_src;
     $model[ 'alt' ]   = apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) ;
-    $model[ 'class' ] = $logo_type ;
+    $model[ 'class' ] = array( $logo_type );
 
     //build other attrs
     $model[ 'attr' ] = trim( sprintf('%1$s %2$s %3$s %4$s',
@@ -78,13 +78,36 @@ class TC_logo_model_class extends TC_Model {
       return $args;
   }
 
+    /**
+  * @override
+  * Allow filtering of the header class by registering to its pre view rendering hook
+  */ 
+  function tc_maybe_filter_views_model() {
+    parent::tc_maybe_filter_views_model();
+    add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
+  }
+
+  /**
+  * parse this model properties for rendering
+  */ 
+  function pre_rendering_my_view_cb( $model ) {
+    $model -> class      = join( ' ', array_unique( $model -> class ) );    
+  }
+
+  /**
+  * parse header model before rendering to add sticky logo
+  */ 
+  function pre_rendering_view_header_cb( $header_model ) {
+    if ( 'sticky' == $this -> logo_type )
+      array_push( $header_model -> class, 'tc-sticky-logo-on' );
+  } 
 
   function tc_user_options_style_cb( $_css ) {
     //logos shrink
     //fire once
     static $_fired = false;
     if ( ! $_fired ) { 
-      $_fired = true;  
+      $_fired = true;
       if ( ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header') ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ) || TC___::$instance -> tc_is_customizing() ) {
         $_logo_shrink  = implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
         $_css = sprintf("%s%s",
