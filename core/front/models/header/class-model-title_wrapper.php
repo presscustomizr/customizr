@@ -13,7 +13,7 @@ class TC_title_wrapper_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'class' ]               = apply_filters( 'tc_logo_class', $this -> get_title_wrapper_class(), $model ) );
+    $model[ 'class' ]               = apply_filters( 'tc_logo_class', $this -> get_title_wrapper_class(), $model );
     $model[ 'tag'        ]          = apply_filters( 'tc_site_title_tag', 'h1', $model);
     $model[ 'link_class' ]          = array( 'site-title' );
     $model[ 'link_title' ]          = apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' ,
