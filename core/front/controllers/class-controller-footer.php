@@ -1,5 +1,5 @@
 <?php
-if ( ! class_exists( 'TC_controller_socials' ) ) :
+if ( ! class_exists( 'TC_controller_footer' ) ) :
   class TC_controller_footer extends TC_controllers {
     static $instance;
     private $_cache;
