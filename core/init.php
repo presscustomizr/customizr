@@ -196,7 +196,8 @@ if ( ! class_exists( 'TC___' ) ) :
          
           //MOBILE TAGLINE
           array( 'hook' => '__header__', 'template' => 'header/mobile_tagline_wrapper','priority' => 20 ),
-          array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'params' => array( 'type' => 'mobile' ) ),
+          array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline') ),
+//      'params' => array( 'type' => 'mobile' ) ),
          
          
           //NAVBAR

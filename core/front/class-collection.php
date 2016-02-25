@@ -332,8 +332,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       $model_class_basename = basename( $_model_class );
       $model_class_dirname  = dirname( $_model_class );
 
- //     if ( ! class_exists($model_class_name) )
-        tc_fw_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+      tc_fw_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
 
       return $model_class_basename;
     }
