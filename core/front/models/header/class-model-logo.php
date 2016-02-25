@@ -14,14 +14,11 @@ class TC_logo_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $params = isset($model['params']) ? $model['params'] : array(); 
-    $this -> logo_type = ! $this -> logo_type && isset( $params['type'] ) && 'sticky' == $params['type'] ? $params['type'] : $this -> logo_type;
-
-    extract( $this -> tc_get_logo_src_args() );  
+    extract( $this -> tc_get_logo_src_args( $this -> logo_type ) );  
 
     $model[ 'src' ]   = $logo_src;
     $model[ 'alt' ]   = apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) ;
-    $model[ 'class' ] = array( $logo_type );
+    $model[ 'class' ] = array( $this -> logo_type );
 
     //build other attrs
     $model[ 'attr' ] = trim( sprintf('%1$s %2$s %3$s %4$s',
@@ -37,8 +34,8 @@ class TC_logo_model_class extends TC_Model {
     return $model;
   }
 
-  function tc_get_logo_src_args() {
-    $logo_type_sep          = $this-> logo_type ? '_sticky_' : '_';
+  function tc_get_logo_src_args( $logo_type ) {
+    $logo_type_sep          = $logo_type ? '_sticky_' : '_';
     $accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
     $args                   = array();     
     //check if the logo is a path or is numeric
@@ -78,37 +75,29 @@ class TC_logo_model_class extends TC_Model {
       return $args;
   }
 
-    /**
-  * @override
-  * Allow filtering of the header class by registering to its pre view rendering hook
-  */ 
-  function tc_maybe_filter_views_model() {
-    parent::tc_maybe_filter_views_model();
-    add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
-  }
-
   /**
   * parse this model properties for rendering
   */ 
   function pre_rendering_my_view_cb( $model ) {
-    $model -> class      = join( ' ', array_unique( $model -> class ) );    
+    if ( is_array( $model -> class ) )
+      $model -> class      = join( ' ', array_unique( $model -> class ) );    
   }
 
-  /**
-  * parse header model before rendering to add sticky logo
-  */ 
-  function pre_rendering_view_header_cb( $header_model ) {
-    if ( 'sticky' == $this -> logo_type )
-      array_push( $header_model -> class, 'tc-sticky-logo-on' );
-  } 
 
   function tc_user_options_style_cb( $_css ) {
     //logos shrink
     //fire once
     static $_fired = false;
-    if ( ! $_fired ) { 
-      $_fired = true;
-      if ( ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header') ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ) || TC___::$instance -> tc_is_customizing() ) {
+    if ( $_fired ) return $_css;
+
+    //when to print the shrink logo CSS?
+    //1) In customizing as the sticky_header is passed as postMessage
+    //or
+    //2) The sticky header is enabled
+    //and
+    //2.1) the shrink title_logo option is enabled
+    if ( TC___::$instance -> tc_is_customizing() ||
+        ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header') ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
         $_logo_shrink  = implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
         $_css = sprintf("%s%s",
             $_css,
@@ -117,26 +106,8 @@ class TC_logo_model_class extends TC_Model {
           {$_logo_shrink}
         }"
         );
-      }
-    }//end logos shrink (fire once)
-
-    //sticky-logo visibility  
-    if ( 'sticky' == $this -> logo_type ) {
-
-      $_css = sprintf( "%s%s",
-        $_css,
-        "
-        .site-logo img.sticky {
-            display: none;
-         }
-        .sticky-enabled .tc-sticky-logo-on .site-logo img {
-            display: none;
-         }
-        .sticky-enabled .tc-sticky-logo-on .site-logo img.sticky {
-            display: inline-block;
-        }"
-      );
-    }//end sticky-logo css
-    return $_css;  
+    }
+    return $_css;
+    //end logos shrink (fire once)
   }
 }//end class

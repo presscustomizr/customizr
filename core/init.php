@@ -187,9 +187,8 @@ if ( ! class_exists( 'TC___' ) ) :
           //LOGO
           array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
           array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo' ),
-          //uses an extended logo module - IT WORKS :D
-//         array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => 'header/sticky_logo'),
-          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 20 , 'params' => array( 'type' => 'sticky' )),
+          //uses an extended logo module 
+          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => 'header/sticky_logo'),
          
           //TITLE
           array( 'hook' => '__header__', 'template' => 'header/title_wrapper'  ),
