@@ -58,7 +58,7 @@ class TC_header_model_class extends TC_Model {
   }
 
 
-  function tc_body_class( $_classes//array )
+  function tc_body_class( $_classes/*array*/ ) {
     //STICKY HEADER
     if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
       array_push( $_classes, 'tc-sticky-header', 'sticky-disabled' );
