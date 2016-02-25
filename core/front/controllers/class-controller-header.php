@@ -32,7 +32,7 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
             ( ( 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_header" ) ) ) || ! tc__f('__get_socials') ) );
     }
 
-    function tc_display_view_mobile_tagline_wrapper() {
+    function tc_display_view_mobile_tagline() {
       return $this -> tc_display_view_tagline() ;  
     }
 

@@ -1,16 +1,14 @@
 <?php
 class TC_mobile_tagline_model_class extends TC_tagline_model_class {
-  public $type = 'mobile';
+  public $wrapper_class = array('container', 'outside');
+  public $class         = array('site-description');
 
-  /*
-  * @override
-  * fired before the model properties are parsed
-  * 
-  * return model params array() 
-  */
-  function tc_extend_params( $model = array() ) {
-    $model                = parent::tc_extend_params( $model ); 
-    $model[ 'class' ]     = apply_filters( 'tc_tagline_class', 'site-description', $model );
-    return $model;
+  /**
+  * parse this model properties for rendering
+  */ 
+  function pre_rendering_my_view_cb( $model ) {
+    parent::pre_rendering_my_view_cb( $model );
+    if ( is_array( $model -> wrapper_class ) )
+      $model -> wrapper_class = join( ' ', array_unique( $model -> wrapper_class ) );
   }
 }

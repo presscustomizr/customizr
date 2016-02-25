@@ -1,10 +1,9 @@
 <?php
 class TC_tagline_model_class extends TC_Model {
   public $content;
-  public $tag;
-  public $class;
+  public $tag   = 'h2';
+  public $class = array('site-description', 'inside', 'span7');
   public $attributes;
-  public $type;
 
   /*
   * @override
@@ -14,14 +13,11 @@ class TC_tagline_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'content' ]    = apply_filters( 'tc_tagline_text', __( esc_attr( get_bloginfo( 'description' ) ) ), $model );
-    $model[ 'tag']         = apply_filters( 'tc_tagline_tag', 'h2', $model );
+    $model[ 'tag']         = apply_filters( 'tc_tagline_tag', $this -> tag , $model );
 
     $model[ 'attributes' ] = ( TC___::$instance -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
 
-    //build tagline class:
-    $_class                = array( 'site-description', 'inside', 'span7' );
-
-    $model[ 'class' ]      = apply_filters( 'tc_tagline_class', $_class, $model );
+    $model[ 'class' ]      = apply_filters( 'tc_tagline_class', $this -> class, $model );
     return $model;
   }
 
@@ -33,6 +29,7 @@ class TC_tagline_model_class extends TC_Model {
     parent::tc_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
+
   /**
   * parse this model properties for rendering
   */ 
@@ -46,7 +43,7 @@ class TC_tagline_model_class extends TC_Model {
   */ 
   function pre_rendering_view_header_cb( $header_model ) {
     //fire once, as it is shared with the mobile tagline
-    //logos shrink
+    //tagline display on sticky header
     //fire once
     static $_fired = false;
     if ( $_fired ) return;
