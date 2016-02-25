@@ -89,6 +89,7 @@ class TC_logo_model_class extends TC_Model {
     //fire once
     static $_fired = false;
     if ( $_fired ) return $_css;
+    $_fired        = true;
 
     //when to print the shrink logo CSS?
     //1) In customizing as the sticky_header is passed as postMessage

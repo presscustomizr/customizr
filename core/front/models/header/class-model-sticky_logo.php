@@ -24,7 +24,7 @@ class TC_sticky_logo_model_class extends TC_logo_model_class{
   
   function tc_user_options_style_cb( $_css ) {
     $_css = sprintf( "%s%s",
-        $_css,
+        parent::tc_user_options_style_cb( $_css ),
         "
         .site-logo img.sticky {
             display: none;

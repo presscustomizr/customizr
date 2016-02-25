@@ -32,10 +32,6 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
             ( ( 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_header" ) ) ) || ! tc__f('__get_socials') ) );
     }
 
-    function tc_display_view_title() {
-      return true;
-    }
-    
     function tc_display_view_mobile_tagline_wrapper() {
       return true;  
     }
@@ -47,7 +43,7 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       return TC___::$instance -> tc_is_customizing() || ! ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) );
     }
 
-    function tc_display_view_title_wrapper() {
+    function tc_display_view_title() {
       return ! $this -> tc_display_view_logo_wrapper();
     }
 
