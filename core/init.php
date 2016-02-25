@@ -207,9 +207,9 @@ if ( ! class_exists( 'TC___' ) ) :
           //secondary
           array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'params' => array( 'type' => 'navbar' , 'theme_location' => 'secondary' ) ),
           //responsive menu button
-          array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40, 'params' => array( 'type' => 'regular') ),
+          array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
           //sidenav navbar menu button
-          array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'params' => array( 'type' => 'sidenav' ) ),
+          array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ), 'priority' => 25 ),
 
           //RESET MARGIN TOP (for sticky header)
           array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20 ),
@@ -217,7 +217,7 @@ if ( ! class_exists( 'TC___' ) ) :
           //SIDENAV
           array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav' ),
           //menu button
-          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'params' => array( 'type' => 'sidenav', 'in' => 'sidenav' ) ),
+          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
           array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'params' => array( 'type' => 'aside' ) ),
 
           /*********************************************
