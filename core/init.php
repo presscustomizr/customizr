@@ -199,7 +199,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
          
           //socialblock in navbar
-          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'params' => array( 'where' => 'header' ) ),
+          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
           //tagline in navbar
           array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
           //menu in navbar
@@ -258,11 +258,17 @@ if ( ! class_exists( 'TC___' ) ) :
           //colophon
           array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
           //left block "socials"
+/*
           array( 'hook' => '__colophon__', 'template' => 'footer/colophon_wrapper', 'id' => 'colophon_social_block', 'priority' => is_rtl() ? 30 : 10, 'params' => 
                     array( 'class' => array( 'span3', 'social-block', is_rtl() ? 'pull-right' : 'pull-left' ) ) 
           ),
           //social block inside the left block
           array( 'hook' => '__colophon_wrapper__', 'template' => 'modules/social_block', 'id' => 'footer_socials', 'params' => array( 'where' => 'footer', 'type' => 'footer' ) ),
+*/
+ //         array( 'hook' => '__colophon__', 'template' => 'footer/footer_social_block', 'id' => 'footer_socials', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ),  'priority' => is_rtl() ? 30 : 10 ),
+          //alternative, sharing the social block template 
+          array( 'hook' => '__colophon__', 'template' => 'footer/social_block', 'id' => 'footer_socials', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ),  'priority' => is_rtl() ? 30 : 10 ),
+          
           //footer credits
           array( 'hook' => '__colophon__', 'template' => 'footer/footer_credits', 'priority' => 20 ),
           //footer colophon btt link

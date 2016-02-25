@@ -21,7 +21,7 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) || TC___::$instance -> tc_is_customizing();    
     }
 
-    function tc_display_view_header_socials() {
+    function tc_display_view_header_social_block() {
       //the block must be not instanciated when 
       //1) NOT customizing 
       //and
