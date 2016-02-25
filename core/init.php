@@ -189,16 +189,11 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo' ),
           //uses an extended logo module 
           array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo') ),
-         
           //TITLE
           array( 'hook' => '__header__', 'template' => 'header/title'  ),
          
-         
           //MOBILE TAGLINE
-          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline_wrapper','priority' => 20 ),
-          array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline') ),
-//      'params' => array( 'type' => 'mobile' ) ),
-         
+          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline', 'id' => 'mobile_tagline', 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline'), 'priority' => 20 ),
          
           //NAVBAR
           array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
