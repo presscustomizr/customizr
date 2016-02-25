@@ -21,7 +21,8 @@ class TC_header_model_class extends TC_Model {
   * parse this model properties for rendering
   */ 
   function pre_rendering_my_view_cb( $model ) {
-    $model -> class = join( ' ', array_unique( $model -> class ) );    
+    if ( is_array( $model -> class ) )  
+      $model -> class = join( ' ', array_unique( $model -> class ) );    
   }
 
 
@@ -57,7 +58,7 @@ class TC_header_model_class extends TC_Model {
   }
 
 
-  function tc_body_class( $_classes ) {
+  function tc_body_class( $_classes//array )
     //STICKY HEADER
     if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
       array_push( $_classes, 'tc-sticky-header', 'sticky-disabled' );

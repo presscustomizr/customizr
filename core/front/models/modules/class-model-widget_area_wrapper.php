@@ -35,7 +35,9 @@ class TC_widget_area_wrapper_model_class extends TC_Model {
   * parse this model properties for rendering
   */
   function pre_rendering_my_view_cb( $model ) {
-    $model -> wrapper_class = join( ' ', array_unique( $model -> wrapper_class ) );
-    $model -> inner_class = join( ' ', array_unique( $model -> inner_class ) );
+    if ( is_array( $model -> wrapper_class ) )  
+      $model -> wrapper_class = join( ' ', array_unique( $model -> wrapper_class ) );
+    if ( is_array( $model -> inner_class ) )  
+      $model -> inner_class = join( ' ', array_unique( $model -> inner_class ) );
   }
 }
