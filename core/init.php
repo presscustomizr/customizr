@@ -191,8 +191,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => 'header/sticky_logo'),
          
           //TITLE
-          array( 'hook' => '__header__', 'template' => 'header/title_wrapper'  ),
-          array( 'hook' => '__title_wrapper__', 'template' => 'header/title' ),
+          array( 'hook' => '__header__', 'template' => 'header/title'  ),
          
          
           //MOBILE TAGLINE
