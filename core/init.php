@@ -238,6 +238,9 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * FOOTER
           *********************************************/
+          /* must be moved after the main container*/
+          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer_push', 'priority' => 29 ),
+
           array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
 
 //          array( 'hook' => '__footer__', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>', 'priority' => 30 ),
