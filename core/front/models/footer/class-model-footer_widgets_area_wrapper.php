@@ -1,8 +1,5 @@
 <?php
 class TC_footer_widgets_area_wrapper_model_class extends TC_widget_area_wrapper_model_class {
-  public $wrapper_class;
-  public $inner_class;
-  public $action_hook_suffix;
   
   /*
   * @override
