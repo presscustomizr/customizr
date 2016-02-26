@@ -1,6 +1,6 @@
 <?php
 class TC_menu_button_model_class extends TC_Model {
-  public $wrapper_class;
+  public $class;
   public $button_label;
   public $button_title;
   public $button_attr;
@@ -12,7 +12,7 @@ class TC_menu_button_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'wrapper_class' ] = array( 'btn-toggle-nav', 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left' );
+    $model[ 'class' ] = array( 'btn-toggle-nav', 'right' != esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left' );
 
     $model[ 'button_label'  ] = (bool)esc_attr( TC_utils::$inst->tc_opt('tc_display_menu_label') ) ? sprintf( '<span class="menu-label">%s</span>', __('Menu' , 'customizr') ) : '';
     $model[ 'button_title'  ] = __( 'Open the menu', 'customizr' );
@@ -26,7 +26,7 @@ class TC_menu_button_model_class extends TC_Model {
   * parse this model properties for rendering
   */ 
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> wrapper_class ) )
-      $model -> wrapper_class      = join( ' ', array_unique( $model -> wrapper_class ) );    
+    if ( is_array( $model -> class ) )
+      $model -> class      = join( ' ', array_unique( $model -> class ) );    
   }
 }
