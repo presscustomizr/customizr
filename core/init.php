@@ -223,7 +223,10 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * CONTENT
           *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template' => 'content/content_wrapper', 'priority' => 20, 'model_class' => 'content_wrapper' ),
+          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
+          array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 20 ),
+          
+          /*array( 'hook' => '__page_wrapper__', 'template' => 'content/content_wrapper', 'priority' => 20, 'model_class' => 'content_wrapper' ),
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
           //headings
           array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
@@ -238,12 +241,10 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * FOOTER
           *********************************************/
-          /* must be moved after the main container*/
-          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer_push', 'priority' => 29 ),
+          //sticky footer
+          array( 'hook' => 'after_render_view_main_container', 'template' => 'footer/footer_push', 'priority' => 100 ),
 
           array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
-
-//          array( 'hook' => '__footer__', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>', 'priority' => 30 ),
 
           //a post grid displayed in any content
   //        array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
