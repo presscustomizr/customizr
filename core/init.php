@@ -211,7 +211,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
           //RESET MARGIN TOP (for sticky header)
-          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20 ),
+          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 0 ),
 
           //SIDENAV
           array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav' ),
