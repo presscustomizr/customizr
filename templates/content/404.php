@@ -4,4 +4,5 @@
     <p>Sorry, but the requested page is not found. You might try a search below.</p>
     <?php echo get_search_form( $echo = false ) ?>
     <hr class="featurette-divider __loop">
+  </div>
 </div>
