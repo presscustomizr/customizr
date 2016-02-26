@@ -14,7 +14,7 @@ if ( ! class_exists( 'TC_controller_footer' ) ) :
     }
 
     function tc_display_view_footer_push () {
-      return esc_attr( TC_utils::$inst -> tc_opt( 'tc_sticky_footer') )|| TC___::$instance -> tc_is_customizing();
+      return esc_attr( TC_utils::$inst -> tc_opt( 'tc_sticky_footer') ) || TC___::$instance -> tc_is_customizing();
     }
 
     function tc_display_view_footer_socials() {

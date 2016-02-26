@@ -21,7 +21,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
           '404', 'attachment', 'comments', 'headings', 'no_results', 'page', 'post', 'post_list', 'post_metas', 'post_navigation', 'sidebar'
         ),
         'footer' => array(
-          'footer_socials', 'btt_arrow', 'footer_btt'
+          'footer_socials', 'btt_arrow', 'footer_btt', 'footer_push'
       //    'widgets', 'colophon', 'back_to_top'
         ),
         'modules' => array(
