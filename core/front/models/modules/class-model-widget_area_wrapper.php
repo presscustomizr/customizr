@@ -3,6 +3,7 @@ abstract class TC_widget_area_wrapper_model_class extends TC_Model {
   public $wrapper_class      = array();
   public $inner_class        = array();
   public $action_hook_suffix = '';
+  public $inner_id           = '';
 
   /**
   * parse this model properties for rendering

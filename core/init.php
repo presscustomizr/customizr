@@ -228,11 +228,11 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 20 ),
 
           /* LEFT SIDEBAR */
-          array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'content/sidebar', 'priority' => 30  /*by default is the left*/ ),
+          array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 10, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/left_sidebar' ) ),
           /* CONTENT WRAPPER id="content" class="{article container class }"*/
           array( 'hook' => '__main_container__', 'template' => 'content/content_wrapper', 'priority' => 20 ),
           /* RIGHT SIDEBAR */
-          array( 'hook' => '__main_container__', 'id' => 'right_sidebar', 'template' => 'content/sidebar', 'priority' => 30, array( 'parent' => 'content/sidebar', 'name' => 'content/sidebar_right' ) ),
+ //         array( 'hook' => '__main_container__', 'id' => 'right_sidebar', 'template' => 'content/sidebar', 'priority' => 30, array( 'parent' => 'content/sidebar', 'name' => 'content/sidebar_right' ) ),
 
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
           //headings
@@ -243,7 +243,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => 'in_main_loop', 'template' => 'content/content', 'priority' => 20 ),
 
           //404
-          array( 'hook' => 'in_main_loop', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
+          array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
 
           /*********************************************
           * FOOTER
