@@ -122,7 +122,7 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
         $to_return = false;
         //The sticky logo option, when exists, is numeric
         //check if the attachment exists and the filetype is allowed
-        $accepted_formats	    = apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
+        $accepted_formats	  = apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
    
         $_attachment_data     = apply_filters( "tc_sticky_logo_attachment_img" , wp_get_attachment_image_src( $sticky_logo_option , 'full' ) );
 
