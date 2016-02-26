@@ -175,9 +175,9 @@ if ( ! class_exists( 'TC___' ) ) :
           *********************************************/
           array( 'hook' => '__rooot__', 'template' => 'rooot' ),
           array( 'hook' => '__html__',  'template' => 'header/head' ),
+          array( 'hook' => 'wp_head' ,  'template' => 'header/favicon' ),
           array( 'hook' => '__html__',  'template' => 'body', 'priority' => 20 ),
           array( 'hook' => '__body__',  'template' => 'page_wrapper', 'priority' => 20 ),
-
           /*********************************************
           * HEADER
           *********************************************/

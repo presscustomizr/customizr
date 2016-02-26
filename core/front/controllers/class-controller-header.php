@@ -17,6 +17,33 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       return true;
     }
 
+    function tc_display_view_favicon() {
+      //is there a WP favicon set ?
+      //if yes then let WP do the job
+      if ( function_exists('has_site_icon') && has_site_icon() )
+        return;
+      $_fav_option  			= esc_attr( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
+     	if ( ! $_fav_option || is_null($_fav_option) )
+     		return;
+     	$_fav_src 				= '';
+     	//check if option is an attachement id or a path (for backward compatibility)
+     	if ( is_numeric($_fav_option) ) {
+     		$_attachement_id 	= $_fav_option;
+     		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'full' ) );
+     		$_fav_src 			= $_attachment_data[0];
+     	} else { //old treatment
+     		$_saved_path 		= esc_url ( TC_utils::$inst->tc_opt( 'tc_fav_upload') );
+     		//rebuild the path : check if the full path is already saved in DB. If not, then rebuild it.
+       	$upload_dir 		= wp_upload_dir();
+       	$_fav_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
+     	}
+     	//makes ssl compliant url
+     	$_fav_src 				= apply_filters( 'tc_fav_src' , is_ssl() ? str_replace('http://', 'https://', $_fav_src) : $_fav_src );
+      if( null == $_fav_src || !$_fav_src )
+        return;
+      return true;
+    }
+
     function tc_display_view_reset_margin_top() {
       return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) || TC___::$instance -> tc_is_customizing();    
     }
