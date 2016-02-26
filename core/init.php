@@ -223,10 +223,11 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * CONTENT
           *********************************************/
+          /* MAIN WRAPPERS */
           array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 20 ),
-          
-          /*array( 'hook' => '__page_wrapper__', 'template' => 'content/content_wrapper', 'priority' => 20, 'model_class' => 'content_wrapper' ),
+          /* CONTENT WRAPPER id="content" class="{article container class }"*/
+          array( 'hook' => '__main_container__', 'template' => 'content/content_wrapper', 'priority' => 40 ),
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
           //headings
           array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
