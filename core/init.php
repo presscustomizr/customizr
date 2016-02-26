@@ -248,13 +248,19 @@ if ( ! class_exists( 'TC___' ) ) :
   //        array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
             
           //widget area in footer
-          array( 'hook' => '__footer__', 'template' => 'modules/widget_area_wrapper', 'params' => array( 'where' => 'footer' ) ),
-          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_one' ) ),
+          array( 'hook' => '__footer__', 'id' => 'footer_widgets_wrapper', 'template' => 'modules/widget_area_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
+          //footer one wrapper and widget area
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_one', 'priority' => '10', 'template' => 'footer/footer_widget_area_wrapper' ),
           array( 'hook' => '__footer_widget_area_wrapper_footer_one__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_one' ) ),
-          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_two' ) ),
+
+          //footer two wrapper and widget area
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_two', 'priority' => '20', 'template' => 'footer/footer_widget_area_wrapper' ),
           array( 'hook' => '__footer_widget_area_wrapper_footer_two__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_two' ) ),
-          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_three' ) ),
+
+          //footer three wrapper and widget area
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '30', 'template' => 'footer/footer_widget_area_wrapper' ),
           array( 'hook' => '__footer_widget_area_wrapper_footer_three__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_three' ) ),
+
           //colophon
           array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
           //left block "socials"
