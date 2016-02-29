@@ -33,7 +33,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       if ( TC___::$instance -> tc_is_customizing() )
         return true;
 
-      $_socials = tc__f('__get_socials');
+      $_socials = TC_utils::$inst -> tc_get_social_networks();
       //(2a)
       if ( ! isset( $socials_map[ $model['hook'] ] ) )
         return (bool) $_socials;
