@@ -16,7 +16,7 @@ class TC_social_block_model_class extends TC_Model {
     $model[ 'class' ]       = $this -> tc_social_block_get_class( $model );
     $model[ 'where' ]       = $this -> tc_get_socials_where( $model );
     $model[ 'attributes' ]  = $this -> tc_social_block_get_attributes( $model );
-    $model[ 'content' ]     = $this -> tc_get_before_socials() . $this -> tc_get_after_socials();
+    $model[ 'content' ]     = $this -> tc_get_before_socials() . $model[ 'content' ] . $this -> tc_get_after_socials();
     return $model;
   }
 
