@@ -48,10 +48,11 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
     }
 
 
-
     public function tc_return_cb_result( $cb, $params = array() ) {
-      return $this -> tc_fire_cb( $cb, $params = array(), $return = true );  
+      return $this -> tc_fire_cb( $cb, $params, $return = true );  
     }
+
+
 
 
     /* Same as helpers above but passing the param argument as an exploded array of params*/
@@ -83,9 +84,9 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
     }
 
 
-
     public function tc_return_cb_result_array( $cb, $params = array() ) {
-      return $this -> tc_fire_cb_array( $cb, $params = array(), $return = true );  
+      return $this -> tc_fire_cb_array( $cb, $params, $return = true );  
     }
   }//end of class
+
 endif;

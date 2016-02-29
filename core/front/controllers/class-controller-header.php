@@ -48,16 +48,6 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) || TC___::$instance -> tc_is_customizing();    
     }
 
-    function tc_display_view_header_social_block() {
-      //the block must be not instanciated when 
-      //1) NOT customizing 
-      //and
-      //2a) the relative display option is unchecked
-      //or
-      //2b) there are no social icons set
-      return ! ( ! TC___::$instance -> tc_is_customizing() && 
-            ( ( 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_header" ) ) ) || ! tc__f('__get_socials') ) );
-    }
 
     function tc_display_view_mobile_tagline() {
       return $this -> tc_display_view_tagline() ;  
@@ -92,12 +82,12 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       $logo_option          = TC_utils::$inst->tc_opt( "tc_logo_upload");
       if ( $logo_option ) {
         //check if the attachment exists and the filetype is allowed
-        $accepted_formats	    = apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
+        $accepted_formats	= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
    
-        $_attachment_data     = apply_filters( "tc_logo_attachment_img" , wp_get_attachment_image_src( $logo_option , 'full' ) );
+        $_attachment_data   = apply_filters( "tc_logo_attachment_img" , wp_get_attachment_image_src( $logo_option , 'full' ) );
 
-        $_logo_src            = apply_filters( "tc_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
-        $filetype             = TC_utils::$inst -> tc_check_filetype ($_logo_src);
+        $_logo_src          = apply_filters( "tc_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
+        $filetype           = TC_utils::$inst -> tc_check_filetype ($_logo_src);
   
         if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
           $to_return = true;

@@ -33,25 +33,6 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return true;
     }
  
-    function tc_display_view_left_sidebar_social_block() {
-      return $this -> tc_display_view_left_sidebar() && $this -> tc_display_view_sidebar_social_block( 'left' );  
-    }
- 
-    function tc_display_view_right_sidebar_social_block() {
-      return $this -> tc_display_view_right_sidebar() && $this -> tc_display_view_sidebar_social_block( 'right' );  
-    }
-
-    function tc_display_view_sidebar_social_block( $position ) {
-      //the block must be not instanciated when 
-      //1) NOT customizing 
-      //and
-      //2a) the relative display option is unchecked
-      //or
-      //2b) there are no social icons set
-      return ! ( ! TC___::$instance -> tc_is_customizing() && 
-            ( ( 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$position}-sidebar" ) ) ) || ! tc__f('__get_socials') ) );     
-    }
-
     function tc_display_view_page() {
       return apply_filters( 'tc_show_page_content',
         'page' == $this -> tc_get_post_type()
