@@ -12,7 +12,7 @@ class TC_social_block_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'content' ]     = tc__f( '__get_socials' );
+    $model[ 'content' ]     = TC_utils::$inst -> tc_get_social_networks();
     $model[ 'class' ]       = $this -> tc_social_block_get_class( $model );
     $model[ 'where' ]       = $this -> tc_get_socials_where( $model );
     $model[ 'attributes' ]  = $this -> tc_social_block_get_attributes( $model );
