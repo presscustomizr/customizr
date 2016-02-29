@@ -19,7 +19,7 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
     //extract the position
     $this -> position              = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar' ) );
     
-    if ( ! in_array( $this -> position, array('right', 'left' ) ) || ! in_array( $screen_layout, array( self::$sidebar_map[$this -> position], 'b' ) ) )
+    if ( ! in_array( $this -> position, array('right', 'left' ) ) )
       return array();
 
     $global_layout        = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
