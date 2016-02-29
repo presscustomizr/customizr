@@ -296,15 +296,17 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //Else If no suitable model has been instanciated instanciate the base model class
       foreach ( array( 'model_class', 'template' ) as $_model_class ) {
         if ( ! isset($model[ $_model_class ]) || empty($model[ $_model_class ]) )
-          continue;
+            continue;
+        
         //A model class has been defined, let's try to load it and instanciate it
-        $model_class_basename = basename( $model[$_model_class ] );
-        $model_class_dirname  = dirname( $model[ $_model_class ] );
-        $model_class_name     = sprintf( 'TC_%s_model_class', $model_class_basename );
+        //The model_class arg can also be an array in the form array( 'parent' => parent_model_class (string), 'name' => model_class ('string') )
+        if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ){ 
+          $this -> tc_require_model_class( $model['model_class']['parent'] );  
+          $model_class     = $model[ $_model_class ]['name'];
+        }else
+          $model_class     = $model[ $_model_class ];  
 
-        if ( ! class_exists($model_class_name) )
-          //try to load the model class
-          tc_fw_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+        $model_class_name     = sprintf( 'TC_%s_model_class', $this -> tc_require_model_class( $model_class ) );  
 
         if ( class_exists($model_class_name) )
           $instance = new $model_class_name( $model );
@@ -326,7 +328,14 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     }
 
 
+    function tc_require_model_class( $_model_class ) {
+      $model_class_basename = basename( $_model_class );
+      $model_class_dirname  = dirname( $_model_class );
 
+      tc_fw_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+
+      return $model_class_basename;
+    }
     /**********************************************************************************
     * UPDATE COLLECION
     ***********************************************************************************/

@@ -46,7 +46,8 @@ class TC_logo_wrapper_model_class extends TC_Model {
   * parse this model properties for rendering
   */ 
   function pre_rendering_my_view_cb( $model ) {
-    $model -> class      = join( ' ', array_unique( $model -> class ) );    
+    if ( is_array( $model -> class ) )
+      $model -> class      = join( ' ', array_unique( $model -> class ) );
     $model -> link_class = join( ' ', array_unique( $model -> link_class ) );    
   }
 

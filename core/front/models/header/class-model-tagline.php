@@ -1,10 +1,9 @@
 <?php
 class TC_tagline_model_class extends TC_Model {
   public $content;
-  public $tag;
-  public $class;
+  public $tag   = 'h2';
+  public $class = array('site-description', 'inside', 'span7');
   public $attributes;
-  public $type;
 
   /*
   * @override
@@ -14,17 +13,11 @@ class TC_tagline_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'content' ]    = apply_filters( 'tc_tagline_text', __( esc_attr( get_bloginfo( 'description' ) ) ), $model );
-    $model[ 'tag']         = apply_filters( 'tc_tagline_tag', 'h2', $model );
+    $model[ 'tag']         = apply_filters( 'tc_tagline_tag', $this -> tag , $model );
 
     $model[ 'attributes' ] = ( TC___::$instance -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
 
-    $model['type']         = isset( $model['params']['type'] ) ? $model['params']['type'] : '';
-    //build tagline class:
-    $_class   = array( 'site-description' );
-    if ( 'mobile' != $model['type'] )
-      $_class = array_merge( $_class, array( 'inside', 'span7' ) );
-
-    $model[ 'class' ]     = apply_filters( 'tc_tagline_class', $_class, $model );
+    $model[ 'class' ]      = apply_filters( 'tc_tagline_class', $this -> class, $model );
     return $model;
   }
 
@@ -41,15 +34,25 @@ class TC_tagline_model_class extends TC_Model {
   * parse this model properties for rendering
   */
   function pre_rendering_my_view_cb( $model ) {
-    $model -> class = join( ' ', array_unique( $model -> class ) );
+    if ( is_array( $model -> class ) )
+      $model -> class = join( ' ', array_unique( $model -> class ) );
   }
 
   /**
   * parse header model before rendering to add 'destkop'&&'sticky' tagline visibility class
   */
   function pre_rendering_view_header_cb( $header_model ) {
-    if ( 'mobile' != $this -> type && esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) ) {
+    //fire once, as it is shared with the mobile tagline
+    //tagline display on sticky header
+    //fire once
+    static $_fired = false;
+    if ( $_fired ) return;
+    $_fired        = true;
+
+    if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) ) {
       $_class =        0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_tagline') ) ? 'tc-tagline-on' : 'tc-tagline-off';
+      if ( ! is_array( $header_model -> class ) )
+        $header_model -> class = explode( ' ', $header_model -> class );
       array_push( $header_model -> class, $_class );
     }
   }

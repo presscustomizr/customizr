@@ -175,9 +175,9 @@ if ( ! class_exists( 'TC___' ) ) :
           *********************************************/
           array( 'hook' => '__rooot__', 'template' => 'rooot' ),
           array( 'hook' => '__html__',  'template' => 'header/head' ),
+          array( 'hook' => 'wp_head' ,  'template' => 'header/favicon' ),
           array( 'hook' => '__html__',  'template' => 'body', 'priority' => 20 ),
           array( 'hook' => '__body__',  'template' => 'page_wrapper', 'priority' => 20 ),
-
           /*********************************************
           * HEADER
           *********************************************/
@@ -187,49 +187,60 @@ if ( ! class_exists( 'TC___' ) ) :
           //LOGO
           array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
           array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo' ),
-          //uses an extended logo module - IT WORKS :D
- //         array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => 'header/sticky_logo'),
-          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo', 'priority' => 20 , 'params' => array( 'type' => 'sticky' )),
-         
+          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo') ),
           //TITLE
-          array( 'hook' => '__header__', 'template' => 'header/title_wrapper'  ),
-          array( 'hook' => '__title_wrapper__', 'template' => 'header/title' ),
-         
+          array( 'hook' => '__header__', 'template' => 'header/title'  ),
          
           //MOBILE TAGLINE
-          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline_wrapper','priority' => 20 ),
-          array( 'hook' => '__mobile_tagline_wrapper__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'params' => array( 'type' => 'mobile' ) ),
-         
+          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline') ),
          
           //NAVBAR
           array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
          
           //socialblock in navbar
-          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'params' => array( 'where' => 'header' ) ),
+          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
           //tagline in navbar
           array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
           //menu in navbar
-          array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'params' => array( 'type' => 'navbar' ) ),
+          array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
           //secondary
-          array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'params' => array( 'type' => 'navbar' , 'theme_location' => 'secondary' ) ),
+          array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
           //responsive menu button
-          array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40, 'params' => array( 'type' => 'regular') ),
+          array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
           //sidenav navbar menu button
-          array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'params' => array( 'type' => 'sidenav' ) ),
+          array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
           //RESET MARGIN TOP (for sticky header)
-          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 20 ),
+          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 0 ),
 
           //SIDENAV
           array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav' ),
           //menu button
-          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'params' => array( 'type' => 'sidenav', 'in' => 'sidenav' ) ),
-          array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'params' => array( 'type' => 'aside' ) ),
+          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+          //menu
+          array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) ),
 
           /*********************************************
           * CONTENT
           *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template' => 'content/content_wrapper', 'priority' => 20, 'model_class' => 'content_wrapper' ),
+          /* MAIN WRAPPERS */
+          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
+          array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 20 ),
+
+          /* LEFT SIDEBAR */
+          array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 10, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
+            //left sidebar content
+          array( 'hook' => '__widget_area_left__', 'id' => 'left', 'template' => 'modules/widget_area' ),
+
+          /* CONTENT WRAPPER id="content" class="{article container class }"*/
+          array( 'hook' => '__main_container__', 'template' => 'content/content_wrapper', 'priority' => 20 ),
+
+          /* RIGHT SIDEBAR */
+          array( 'hook' => '__main_container__', 'id' => 'right_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 30, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
+            //rigth sidebar content
+          array( 'hook' => '__widget_area_right__', 'id' => 'right', 'template' => 'modules/widget_area' ),
+
+
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
           //headings
           array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
@@ -239,14 +250,15 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => 'in_main_loop', 'template' => 'content/content', 'priority' => 20 ),
 
           //404
-          array( 'hook' => 'in_main_loop', 'template' => 'content/404', 'priority' => 20 ),
+          array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
 
           /*********************************************
           * FOOTER
           *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
+          //sticky footer
+          array( 'hook' => 'after_render_view_main_container', 'template' => 'footer/footer_push', 'priority' => 100 ),
 
-//          array( 'hook' => '__footer__', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>', 'priority' => 30 ),
+          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
 
           //a post grid displayed in any content
   //        array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
@@ -254,21 +266,26 @@ if ( ! class_exists( 'TC___' ) ) :
   //        array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
             
           //widget area in footer
-          array( 'hook' => '__footer__', 'template' => 'modules/widget_area_wrapper', 'params' => array( 'where' => 'footer' ) ),
-          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_one' ) ),
+          array( 'hook' => '__footer__', 'id' => 'footer_widgets_wrapper', 'template' => 'modules/widget_area_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
+          //footer one wrapper and widget area
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_one', 'priority' => '10', 'template' => 'footer/footer_widget_area_wrapper' ),
           array( 'hook' => '__footer_widget_area_wrapper_footer_one__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_one' ) ),
-          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_two' ) ),
+
+          //footer two wrapper and widget area
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_two', 'priority' => '20', 'template' => 'footer/footer_widget_area_wrapper' ),
           array( 'hook' => '__footer_widget_area_wrapper_footer_two__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_two' ) ),
-          array( 'hook' => '__widget_area_footer__', 'template' => 'footer/footer_widget_area_wrapper', 'params' => array( 'key' => 'footer_three' ) ),
+
+          //footer three wrapper and widget area
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '30', 'template' => 'footer/footer_widget_area_wrapper' ),
           array( 'hook' => '__footer_widget_area_wrapper_footer_three__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_three' ) ),
+
           //colophon
           array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
           //left block "socials"
-          array( 'hook' => '__colophon__', 'template' => 'footer/colophon_wrapper', 'id' => 'colophon_social_block', 'priority' => is_rtl() ? 30 : 10, 'params' => 
-                    array( 'class' => array( 'span3', 'social-block', is_rtl() ? 'pull-right' : 'pull-left' ) ) 
-          ),
-          //social block inside the left block
-          array( 'hook' => '__colophon_wrapper__', 'template' => 'modules/social_block', 'id' => 'footer_socials', 'params' => array( 'where' => 'footer', 'type' => 'footer' ) ),
+ //         array( 'hook' => '__colophon__', 'template' => 'footer/footer_social_block', 'id' => 'footer_socials', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ),  'priority' => is_rtl() ? 30 : 10 ),
+          //alternative, sharing the social block template (get_template_part(template/modules/social_block) in the footer/social_block template)
+          array( 'hook' => '__colophon__', 'template' => 'footer/social_block', 'id' => 'footer_socials', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ),  'priority' => is_rtl() ? 30 : 10 ),
+          
           //footer credits
           array( 'hook' => '__colophon__', 'template' => 'footer/footer_credits', 'priority' => 20 ),
           //footer colophon btt link

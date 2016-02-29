@@ -9,7 +9,7 @@ class TC_widget_area_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'key' ] = $model['params'][ 'key' ];
+    $model[ 'key' ] = isset( $model['params'][ 'key' ] ) ? $model['params']['key'] : $model['id'];
     return $model;
   }
 }

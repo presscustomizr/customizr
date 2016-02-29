@@ -15,13 +15,13 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       self::$instance =& $this;
       $this -> controllers = array(
         'header' => array(
-          'head', 'title_wrapper', 'title', 'logo_wrapper', 'logo', 'sticky_logo', 'logo_title', 'tagline', 'mobile_tagline_wrapper', 'header_socials', 'reset_margin_top', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button', 'joie'
+          'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'header_social_block', 'reset_margin_top', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button', 'joie'
         ),
         'content' => array(
-          '404', 'attachment', 'comments', 'headings', 'no_results', 'page', 'post', 'post_list', 'post_metas', 'post_navigation', 'sidebar'
+          '404', 'attachment', 'comments', 'headings', 'no_results', 'page', 'post', 'post_list', 'post_metas', 'post_navigation', 'right_sidebar', 'left_sidebar'
         ),
         'footer' => array(
-          'footer_socials', 'btt_arrow', 'footer_btt'
+          'footer_socials', 'btt_arrow', 'footer_btt', 'footer_push'
       //    'widgets', 'colophon', 'back_to_top'
         ),
         'modules' => array(
