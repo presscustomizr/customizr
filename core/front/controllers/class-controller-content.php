@@ -21,6 +21,9 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     private function tc_display_view_sidebar( $position ) {
+      if ( TC_utils::$inst -> tc_is_home_empty() )
+        return false;
+
       static $sidebar_map = array(
         //id => allowed layout (- b both )
         'right'  => 'r',
