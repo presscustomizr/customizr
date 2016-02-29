@@ -243,10 +243,14 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__widget_area_right__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
             array( 'hook' => '__widget_area_right__', 'id' => 'right', 'template' => 'modules/widget_area' ),
 
+          //archive headings: before the loop
+          array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/archive_headings') ),
+          array( 'hook' => '__headings_archive__', 'template' => 'content/archive_title', 'priority' => 10 ),
+          array( 'hook' => '__headings_archive__', 'template' => 'content/archive_description', 'priority' => 20 ),
 
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
           //headings
-          array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
+ //         array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
 
 
           //page
