@@ -1008,11 +1008,11 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //narrow the tagline
       add_filter( 'tc_tagline_class', 'tc_woocommerce_force_tagline_width', 100 );
       function tc_woocommerce_force_tagline_width( $_class ) {
-        return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
+        return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ? str_replace('span7', 'span6', $_class) : $_class ;
       }
 
       //print the cart menu in the header
-      add_action( '__navbar', 'tc_woocommerce_header_cart', is_rtl() ? 9 : 19 );
+      add_action( '__navbar__', 'tc_woocommerce_header_cart', is_rtl() ? 9 : 19 );
       function tc_woocommerce_header_cart() {
         if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
           return;

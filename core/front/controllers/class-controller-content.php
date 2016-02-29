@@ -7,6 +7,26 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       self::$instance =& $this;
     }
 
+    function tc_display_view_right_sidebar() {
+      return $this -> tc_display_view_sidebar( 'right' );  
+    }
+
+    function tc_display_view_left_sidebar() {
+      return $this -> tc_display_view_sidebar( 'left' );  
+    }
+
+    private function tc_display_view_sidebar( $position ) {
+      static $sidebar_map = array(
+        //id => allowed layout (- b both )
+        'right'  => 'r',
+        'left'   => 'l'
+      );
+      
+      $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
+      if ( ! in_array( $screen_layout, array( $sidebar_map[$position], 'b' ) ) )
+        return false;
+      return true;
+    }
 
     function tc_display_view_page() {
       return apply_filters( 'tc_show_page_content',

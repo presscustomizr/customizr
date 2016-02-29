@@ -13,6 +13,10 @@ if ( ! class_exists( 'TC_controller_footer' ) ) :
       $this -> _cache = array();
     }
 
+    function tc_display_view_footer_push () {
+      return esc_attr( TC_utils::$inst -> tc_opt( 'tc_sticky_footer') ) || TC___::$instance -> tc_is_customizing();
+    }
+
     function tc_display_view_footer_socials() {
       //the block must be not instanciated when 
       //1) NOT customizing 
