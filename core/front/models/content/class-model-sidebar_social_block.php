@@ -6,7 +6,7 @@ class TC_sidebar_social_block_model_class extends TC_social_block_model_class {
   * @override
   */  
   function tc_get_socials_where( $model ) {
-    $this -> where = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar_social_block' ) ) . '-sidebar';
+    $this -> where = strpos( 'right', $model['hook'] ) > 0 ? 'right' : 'left';
     parent::tc_get_socials_where( $model );
   }
 

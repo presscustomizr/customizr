@@ -198,7 +198,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
          
           //socialblock in navbar
-          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'id' => 'header_socials', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
+          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
           //tagline in navbar
           array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
           //menu in navbar
@@ -231,7 +231,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 10, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
             //left sidebar content
             //socialblock in left sidebar
-            array( 'hook' => '__widget_area_left__', 'template' => 'modules/social_block', 'id' => 'left_sidebar_social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
+          array( 'hook' => '__widget_area_left__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
             array( 'hook' => '__widget_area_left__', 'id' => 'left', 'template' => 'modules/widget_area' ),
           /* CONTENT WRAPPER id="content" class="{article container class }"*/
           array( 'hook' => '__main_container__', 'template' => 'content/content_wrapper', 'priority' => 20 ),
@@ -240,7 +240,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__main_container__', 'id' => 'right_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 30, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
           //right sidebar content
           //socialblock in right sidebar
-            array( 'hook' => '__widget_area_right__', 'template' => 'modules/social_block', 'id' => 'right_sidebar_social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
+          array( 'hook' => '__widget_area_right__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
             array( 'hook' => '__widget_area_right__', 'id' => 'right', 'template' => 'modules/widget_area' ),
 
 
