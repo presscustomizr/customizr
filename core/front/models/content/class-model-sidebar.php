@@ -6,6 +6,8 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
       'right'  => 'r',
       'left'   => 'l'
   );
+
+
   /*
   * @override
   * fired before the model properties are parsed

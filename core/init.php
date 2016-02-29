@@ -238,7 +238,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
           /* RIGHT SIDEBAR */
           array( 'hook' => '__main_container__', 'id' => 'right_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 30, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
-          //rigth sidebar content
+          //right sidebar content
           //socialblock in right sidebar
             array( 'hook' => '__widget_area_right__', 'template' => 'modules/social_block', 'id' => 'right_sidebar_social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
             array( 'hook' => '__widget_area_right__', 'id' => 'right', 'template' => 'modules/widget_area' ),
