@@ -1,10 +1,9 @@
 <?php
 class TC_social_block_model_class extends TC_Model {
   public $content;
-  public $tag        = 'div';
-  public $class      = array('social-block');
-  public $attributes = '';
-  public $where      = 'header' ;
+  public $tag              = 'div';
+  public $class            = array('social-block');
+  public $attributes       = '';
 
   /*
   * @override
@@ -15,24 +14,36 @@ class TC_social_block_model_class extends TC_Model {
   function tc_extend_params( $model = array() ) {
     $model[ 'content' ]     = tc__f( '__get_socials' );
     $model[ 'class' ]       = $this -> tc_social_block_get_class( $model );
-    $model[ 'attributes' ]  = $this -> tc_social_block_get_attributes();
-
+    $model[ 'where' ]       = $this -> tc_get_socials_where( $model );
+    $model[ 'attributes' ]  = $this -> tc_social_block_get_attributes( $model );
+    $model[ 'content' ]     = $this -> tc_get_before_socials() . $this -> tc_get_after_socials();
     return $model;
+  }
+
+  protected function tc_get_socials_where( $model ) {
+    return isset($this -> where) ? $this-> where : '';    
+  }
+  protected function tc_get_before_socials() {
+    return '';
+  }
+
+  protected function tc_get_after_socials() {
+    return '';  
   }
 
   protected function tc_social_block_get_class( $model ) {
     return apply_filters( "tc_social_{$this -> where}_block_class", $this -> class, $model );
   }
 
-  protected function tc_social_block_get_attributes() {
-    $where   = $this -> where;  
+  protected function tc_social_block_get_attributes( $model ) {
+    $where   = $this -> where;
     //the block must be hidden via CSS when
     //1a) the relative display option is unchecked
     //or
     //1b) there are no social icons set
     //and
     //2) customizing 
-    $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $this -> content  ) && TC___::$instance -> tc_is_customizing();
+    $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['content']  ) && TC___::$instance -> tc_is_customizing();
     return $_hidden ? 'style="display:none;"' : $this -> attributes;
   }
 
