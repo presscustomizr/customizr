@@ -2,17 +2,22 @@
 if ( ! class_exists( 'TC_controller_content' ) ) :
   class TC_controller_content extends TC_controllers {
     static $instance;
+    static $_cache = array();
 
     function __construct( $_args = array()) {
       self::$instance =& $this;
     }
-
+ 
     function tc_display_view_right_sidebar() {
-      return $this -> tc_display_view_sidebar( 'right' );  
+      if ( ! isset( $_cache['right_sidebar'] ) )  
+        self::$_cache['right_sidebar'] = $this -> tc_display_view_sidebar( 'right' );  
+      return self::$_cache['right_sidebar'];
     }
 
     function tc_display_view_left_sidebar() {
-      return $this -> tc_display_view_sidebar( 'left' );  
+      if ( ! isset( $_cache['left_sidebar'] ) )  
+        self::$_cache['left_sidebar'] = $this -> tc_display_view_sidebar( 'left' );  
+      return self::$_cache['left_sidebar'];
     }
 
     private function tc_display_view_sidebar( $position ) {
@@ -26,6 +31,25 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       if ( ! in_array( $screen_layout, array( $sidebar_map[$position], 'b' ) ) )
         return false;
       return true;
+    }
+ 
+    function tc_display_view_left_sidebar_social_block() {
+      return $this -> tc_display_view_left_sidebar() && $this -> tc_display_view_sidebar_social_block( 'left' );  
+    }
+ 
+    function tc_display_view_right_sidebar_social_block() {
+      return $this -> tc_display_view_right_sidebar() && $this -> tc_display_view_sidebar_social_block( 'right' );  
+    }
+
+    function tc_display_view_sidebar_social_block( $position ) {
+      //the block must be not instanciated when 
+      //1) NOT customizing 
+      //and
+      //2a) the relative display option is unchecked
+      //or
+      //2b) there are no social icons set
+      return ! ( ! TC___::$instance -> tc_is_customizing() && 
+            ( ( 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$position}-sidebar" ) ) ) || ! tc__f('__get_socials') ) );     
     }
 
     function tc_display_view_page() {
