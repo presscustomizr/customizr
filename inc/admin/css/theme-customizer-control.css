@@ -116,21 +116,21 @@
 * ( the devices buttons are not visibile for window's width below 1025px
 */
 @media screen and (min-width: 980px) {
-  .expanded #customize-footer-actions {
+  .wp-customizer .expanded #customize-footer-actions {
     width: 380px;
   }
 }
 @media screen and (min-width: 1025px) {
-  .expanded #customize-footer-actions {
+  .wp-customizer .expanded #customize-footer-actions {
     height: 85px;
     background: inherit;
   }
-  #customize-controls .wp-full-overlay-sidebar-content {
+  .wp-customizer #customize-controls .wp-full-overlay-sidebar-content {
     bottom: 85px;
   }
 }
 @media screen and (min-width: 1401px) {
-  .expanded #customize-footer-actions {
+  .wp-customizer .expanded #customize-footer-actions {
     width: 440px;
   }
 }
