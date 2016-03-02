@@ -530,7 +530,11 @@
         'tc_sticky_logo_upload',
         'tc_woocommerce_header_cart_sticky'
       ],
-      callback: function (to) {
+      callback: function (to, targetSetId) {
+        if ( 'tc_woocommerce_header_cart_sticky' == targetSetId ) {
+          var _tc_wc_hc = _build_setId('tc_woocommerce_header_cart');
+          to = to && api.control( _tc_wc_hc ).active() && api( _tc_wc_hc ).get();
+        }
         return '1' == to;
       }
     },
@@ -683,12 +687,14 @@
       controls: [
         'tc_woocommerce_header_cart_sticky'
       ],
-      callback: function (to) {
-        return to;
+      callback: function (to, tID , changedSetId) {
+        return to && api.control( _build_setId( changedSetId ) ).active();
       },
       //display dependant if master setting value == value
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) { return to; } },
+        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) { 
+            return to; 
+        } },
       }
     }
   };
