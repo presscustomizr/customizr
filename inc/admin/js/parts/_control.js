@@ -531,11 +531,14 @@
         'tc_woocommerce_header_cart_sticky'
       ],
       callback: function (to, targetSetId) {
-        if ( 'tc_woocommerce_header_cart_sticky' == targetSetId ) {
-          var _tc_wc_hc = _build_setId('tc_woocommerce_header_cart');
-          to = to && api.control( _tc_wc_hc ).active() && api( _tc_wc_hc ).get();
-        }
         return '1' == to;
+      },
+      cross: {
+        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) { 
+          return to &&  //api.control.active is available since wp 4.0 as the php active_callback
+            //so let's skip this for older wp versions
+            ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
+        } }
       }
     },
     'tc_comment_bubble_color_type' : {
@@ -688,7 +691,9 @@
         'tc_woocommerce_header_cart_sticky'
       ],
       callback: function (to, tID , changedSetId) {
-        return to && api.control( _build_setId( changedSetId ) ).active();
+        return to &&  //api.control.active is available since wp 4.0 as the php active_callback
+        //so let's skip this for older wp versions
+        ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
       },
       //display dependant if master setting value == value
       cross: {
