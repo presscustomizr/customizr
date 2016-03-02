@@ -36,6 +36,22 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return true;
     }
  
+    function tc_display_view_posts_list_headings() {
+      if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
+        global $wp_query;  
+        self::$_cache['posts_list_headings'] = ( $wp_query -> is_posts_page && ! is_front_page() ) ||
+            is_archive(); 
+      }
+      return self::$_cache['posts_list_headings'];
+    }
+
+    function tc_display_view_posts_list_title() {
+      return $this -> tc_display_view_posts_list_headings();   
+    }
+    function tc_display_view_posts_list_description() {
+      return $this -> tc_display_view_posts_list_headings();   
+    }
+
     function tc_display_view_page() {
       return apply_filters( 'tc_show_page_content',
         'page' == $this -> tc_get_post_type()

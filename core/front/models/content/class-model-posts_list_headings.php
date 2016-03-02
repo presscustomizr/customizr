@@ -1,6 +1,6 @@
 <?php
-class TC_archive_headings_model_class extends TC_headings_model_class {
-  public $type = 'archive';
+class TC_posts_list_headings_model_class extends TC_headings_model_class {
+  public $type = 'posts_list';
 
   /**
   * @override

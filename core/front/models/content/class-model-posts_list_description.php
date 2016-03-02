@@ -1,5 +1,5 @@
 <?php
-class TC_archive_description_model_class extends TC_Model {
+class TC_posts_list_description_model_class extends TC_Model {
   public $description;  
 
   function tc_extend_params( $model = array() ) {

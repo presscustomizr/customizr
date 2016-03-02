@@ -43,6 +43,10 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //becoming model properties
       $model = $this -> tc_extend_params( $model );
 
+      //if model has been reset do exit
+      if ( ! $model )
+        return;
+
       //equivalent of wp_parse_args() with default model property values
       $this -> tc_update( $model );
 
