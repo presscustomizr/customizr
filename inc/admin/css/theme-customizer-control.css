@@ -1161,6 +1161,17 @@ body .select2-results {
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
+.customize-control-tc_cropped_image .placeholder {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    cursor: default;
+    border: 1px dashed #b4b9be;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 40px;
+}
 .customize-control-tc_cropped_image img {
   width: 100%;
   -webkit-border-radius: 2px;
@@ -1168,7 +1179,15 @@ body .select2-results {
 }
 .customize-control-tc_cropped_image .inner {
   line-height: 20px;
-  top: 10px;
+  top: 8px;
+  min-height: 40px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  color: #555;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 /* rtl */
 /* end tc cropped image */
