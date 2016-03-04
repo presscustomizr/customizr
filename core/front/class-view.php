@@ -55,13 +55,31 @@ if ( ! class_exists( 'TC_View' ) ) :
       do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
       
       do_action( "before_render_view_{$this -> model -> id}" );
-      ?>
+      /*
       <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> model -> id}"; ?> -->
       <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
-      <?php $this -> tc_render(); ?>
+       */
+      /* maybe print default wrapper */ 
+        if ( ! empty( $this -> model -> element_tag ) )
+          printf("<%s>", trim( sprintf( '%1$s %2$s %3$s %4$s %5$s %6$s',
+              $this -> model -> element_tag,
+              ! empty( $this -> model -> element_id )         ? 'id="'. $this -> model -> element_id .'"' : '',
+              ! empty( $this -> model -> element_class )      ? 'class="'. $this -> model -> element_class .'"' : '',
+              ! empty( $this -> model -> element_attributes ) ? $this -> model -> element_attributes : '',
+              is_user_logged_in() && current_user_can( 'edit_theme_options' ) ? 'data-model_id="'. $this -> model -> id .'"' : '',
+              is_user_logged_in() && current_user_can( 'edit_theme_options' ) ? 'data-template="'. $this -> model -> template . '"' : ''
+          ) ) );
+      ?>
+        <?php do_action( "before_render_view_inner_{$this -> model -> id}" ) ?>
+        <?php $this -> tc_render(); ?>
+        <?php do_action( "after_render_view_inner_{$this -> model -> id}" ) ?>
+      <?php /* maybe close default wrapper */ 
+        if ( ! empty( $this -> model -> element_tag ) )
+          printf( "</%s>", $this -> model -> element_tag );
+      /*      
       <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
       <!-- HOOK CONTENT HERE : <?php echo "after_render_view_{$this -> model -> id}"; ?> -->
-      <?php
+      */
       do_action( "after_render_view_{$this -> model -> id}" );
     }
 
