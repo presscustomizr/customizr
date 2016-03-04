@@ -2,6 +2,7 @@
 class TC_social_block_model_class extends TC_Model {
   public $content;
   public $element_class = array('social-block');
+  public $controller    = 'social_block';
 
   /*
   * @override
