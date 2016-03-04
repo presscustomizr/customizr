@@ -58,9 +58,9 @@ class TC_menu_model_class extends TC_Model {
     $_fired        = true;
 
     if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) ) {
-      if ( ! is_array( $header_model -> class ) )
-        $header_model -> class = explode( ' ', $header_model -> class );
-      array_push( $header_model -> class, 
+      if ( ! is_array( $header_model -> element_class ) )
+        $header_model -> element_class = explode( ' ', $header_model -> element_class );
+      array_push( $header_model -> element_class, 
         0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') ) ? 'tc-menu-on' : 'tc-menu-off'
       );
     }

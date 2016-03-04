@@ -1,6 +1,5 @@
 <?php
 class TC_title_model_class extends TC_Model {
-  public $class;
   public $tag;
   public $link_class;
   public $link_title;
@@ -13,7 +12,7 @@ class TC_title_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'class' ]               = apply_filters( 'tc_logo_class', $this -> get_title_wrapper_class(), $model );
+    $model[ 'element_class' ]       = apply_filters( 'tc_logo_class', $this -> get_title_wrapper_class(), $model );
     $model[ 'tag'        ]          = apply_filters( 'tc_site_title_tag', 'h1', $model);
     $model[ 'link_class' ]          = array( 'site-title' );
     $model[ 'link_title' ]          = apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' ,
@@ -31,7 +30,7 @@ class TC_title_model_class extends TC_Model {
   function get_title_wrapper_class() {
     $_class     = array( 'brand', 'span3' );  
     $_layout    = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
-    $_class[] = 'right' == $_layout ? 'pull-right' : 'pull-left';
+    $_class[]   = 'right' == $_layout ? 'pull-right' : 'pull-left';
     return $_class;
   }
 
@@ -47,8 +46,8 @@ class TC_title_model_class extends TC_Model {
   * parse this model properties for rendering
   */ 
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> class ) ) 
-      $model -> class      = join( ' ', array_unique( $model -> class ) );    
+    if ( is_array( $model -> element_class ) ) 
+      $model -> element_class      = join( ' ', array_unique( $model -> element_class ) );    
     $model -> link_class = join( ' ', array_unique( $model -> link_class ) );    
   }
 
@@ -58,10 +57,9 @@ class TC_title_model_class extends TC_Model {
   */ 
   function pre_rendering_view_header_cb( $header_model ) {
     if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) )
-      array_push( $header_model -> class, 
+      array_push( $header_model -> element_class, 
           0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
           0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
-
       );
   }
  

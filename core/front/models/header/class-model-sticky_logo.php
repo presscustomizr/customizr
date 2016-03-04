@@ -16,10 +16,10 @@ class TC_sticky_logo_model_class extends TC_logo_model_class{
   * parse header model before rendering to add sticky logo
   */ 
   function pre_rendering_view_header_cb( $header_model ) {
-    if ( ! is_array( $header_model -> class ) )
-      $header_model -> class = explode( " ", $header_model -> class );
+    if ( ! is_array( $header_model -> element_class ) )
+      $header_model -> element_class = explode( " ", $header_model -> element_class );
 
-    array_push( $header_model -> class, 'tc-sticky-logo-on' );
+    array_push( $header_model -> element_class, 'tc-sticky-logo-on' );
   } 
   
   function tc_user_options_style_cb( $_css ) {

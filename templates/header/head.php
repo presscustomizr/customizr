@@ -1,4 +1,3 @@
-<head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
     <?php if ( ! function_exists( '_wp_render_title_tag' ) ) :?>
@@ -20,4 +19,3 @@
     header .navbar-nav > li { float:none; display: inline-block; }
     </style>
     <?php wp_head(); ?>
-</head>
