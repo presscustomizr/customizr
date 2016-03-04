@@ -28,7 +28,6 @@ if ( ! class_exists( 'TC_controllers' ) ) :
           'social_block' 
         //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
         ),
-
       );
 
       //Store a group controller instance for later uses
@@ -85,7 +84,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
         $controller_cb = $model['controller'];
       }
       //IS THERE A PRE-DEFINED CONTROLLER FOR THE VIEW ?
-      else if ( $this -> tc_has_default_controller( $model['id'] ) ) {
+      else if ( $this -> tc_has_default_controller( $model['id'] ) ) { 
         $controller_cb = $this -> tc_get_default_controller($model['id']);
         //make sure the default controller is well formed
         //the default controller should look like array( instance, method )

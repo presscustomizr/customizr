@@ -1,7 +1,7 @@
 <?php
 class TC_colophon_model_class extends TC_Model {
-  public $class;
-
+  public $inner_class;
+  public $element_class = 'colophon';
 
   /**
   * @override
@@ -10,7 +10,7 @@ class TC_colophon_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'class' ] = apply_filters('tc_colophon_class', array( 'row-fluid' ), $model );
+    $model[ 'inner_class' ] = apply_filters('tc_colophon_class', array( 'row-fluid' ), $model );
     return $model;
   }
 
@@ -18,6 +18,6 @@ class TC_colophon_model_class extends TC_Model {
   * parse this model properties for rendering
   */ 
   function pre_rendering_my_view_cb( $model ) {
-    $model -> class = join( ' ', $model -> class );    
+    $model -> inner_class = join( ' ', $model -> inner_class );    
   }
 }//end of class

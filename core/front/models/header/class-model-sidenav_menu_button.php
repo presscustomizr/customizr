@@ -10,7 +10,7 @@ class TC_sidenav_menu_button_model_class extends TC_menu_button_model_class {
   function tc_extend_params( $model = array() ) {
     $model = parent::tc_extend_params( $model );  
     
-    array_push( $model[ 'class' ], 'sn-toggle' );
+    array_push( $model[ 'element_class' ], 'sn-toggle' );
     if ( '__sidenav__' == $model['hook'] ) {
       $_close_message             = __('Close', 'customizr' );  
       //button label
