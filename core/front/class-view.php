@@ -61,7 +61,7 @@ if ( ! class_exists( 'TC_View' ) ) :
        */
       /* maybe print default wrapper */ 
         if ( ! empty( $this -> model -> element_tag ) )
-            printf("<%s>", join( ' ', array_filter( array(
+            printf("<%s>\n", join( ' ', array_filter( array(
               $this -> model -> element_tag,
               ! empty( $this -> model -> element_id )         ? 'id="'. $this -> model -> element_id .'"' : '',
               ! empty( $this -> model -> element_class )      ? 'class="'. $this -> model -> element_class .'"' : '',
@@ -75,7 +75,7 @@ if ( ! class_exists( 'TC_View' ) ) :
         <?php do_action( "after_render_view_inner_{$this -> model -> id}" ) ?>
       <?php /* maybe close default wrapper */ 
         if ( ! empty( $this -> model -> element_tag ) )
-          printf( "</%s>", $this -> model -> element_tag );
+          printf( "</%s>\n", $this -> model -> element_tag );
       /*      
       <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
       <!-- HOOK CONTENT HERE : <?php echo "after_render_view_{$this -> model -> id}"; ?> -->

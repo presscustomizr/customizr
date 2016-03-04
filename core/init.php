@@ -173,21 +173,21 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * ROOT HTML STRUCTURE
           *********************************************/
-          array( 'hook' => '__rooot__', 'template' => 'rooot' ),
-          array( 'hook' => '__html__',  'template' => 'header/head' ),
-          array( 'hook' => 'wp_head' ,  'template' => 'header/favicon' ),
-          array( 'hook' => '__html__',  'template' => 'body', 'priority' => 20 ),
-          array( 'hook' => '__body__',  'template' => 'page_wrapper', 'priority' => 20 ),
+          array( 'hook' => '__rooot__', 'template' => 'rooot', 'element_tag' => false ),
+          array( 'hook' => '__html__',  'template' => 'header/head', 'element_tag' => 'head' ),
+          array( 'hook' => 'wp_head' ,  'template' => 'header/favicon', 'element_tag' => false ),
+          array( 'hook' => '__html__',  'template' => 'body', 'priority' => 20, 'element_tag' => false ),
+          array( 'hook' => '__body__',  'template' => 'page_wrapper', 'priority' => 20, 'element_id' => 'tc-page-wrap' ),
           /*********************************************
           * HEADER
           *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template'  => 'header/header' ),
+          array( 'hook' => '__page_wrapper__', 'template'  => 'header/header', 'element_tag' => 'header', 'element_attributes' => 'role="banner"'),
           
          
           //LOGO
           array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
-          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo' ),
-          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo') ),
+          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'element_tag' => false ),
+          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo'), 'element_tag' => false ),
           //TITLE
           array( 'hook' => '__header__', 'template' => 'header/title'  ),
          
