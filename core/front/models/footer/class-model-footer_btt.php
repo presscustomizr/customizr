@@ -1,6 +1,5 @@
 <?php
 class TC_footer_btt_model_class extends TC_Model {
-  public $wrapper_class;  
   public $class;
   public $link_class;
   public $text;
@@ -13,7 +12,7 @@ class TC_footer_btt_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'wrapper_class' ]             = apply_filters( 'tc_colophon_right_block_class', array( 'span3', 'backtop' ) );
+    $model[ 'element_class' ]             = apply_filters( 'tc_colophon_right_block_class', array( 'span3', 'backtop' ) );
     $model[ 'class' ]                     = array( is_rtl() ? 'pull-left' : 'pull-right' );
     $model[ 'link_class' ]                = array( 'back-to-top' );
     $model[ 'text' ]                      = __( 'Back to top', 'customizr' );
@@ -26,7 +25,7 @@ class TC_footer_btt_model_class extends TC_Model {
   */ 
   function pre_rendering_my_view_cb( $model ) {
     $model -> class         = join( ' ', $model -> class );    
-    $model -> wrapper_class = join( ' ', $model -> wrapper_class );    
+    $model -> element_class = join( ' ', $model -> element_class );    
     $model -> link_class    = join( ' ', $model -> link_class );    
   }
 }//end of class

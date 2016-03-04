@@ -1,7 +1,6 @@
 <?php
 class TC_footer_model_class extends TC_Model {
-  public $class;
-
+  public $element_id = 'footer';
 
   /**
   * @override
@@ -10,7 +9,7 @@ class TC_footer_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'class' ] = apply_filters('tc_footer_classes', array(), $model );
+    $model[ 'element_class' ] = apply_filters('tc_footer_classes', array(), $model );
     return $model;
   }
 
@@ -18,6 +17,6 @@ class TC_footer_model_class extends TC_Model {
   * parse this model properties for rendering
   */ 
   function pre_rendering_my_view_cb( $model ) {
-    $model -> class = join( ' ', $model -> class );    
+    $model -> element_class = join( ' ', $model -> element_class );    
   }
 }//end of class

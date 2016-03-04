@@ -61,7 +61,7 @@ if ( ! class_exists( 'TC_View' ) ) :
        */
       /* maybe print default wrapper */ 
         if ( ! empty( $this -> model -> element_tag ) )
-            printf("<%s>\n", join( ' ', array_filter( array(
+            printf("\n<%s>", join( ' ', array_filter( array(
               $this -> model -> element_tag,
               ! empty( $this -> model -> element_id )         ? 'id="'. $this -> model -> element_id .'"' : '',
               ! empty( $this -> model -> element_class )      ? 'class="'. $this -> model -> element_class .'"' : '',
@@ -69,11 +69,10 @@ if ( ! class_exists( 'TC_View' ) ) :
               is_user_logged_in() && current_user_can( 'edit_theme_options' ) ? 'data-model_id="'. $this -> model -> id .'"' : '',
               is_user_logged_in() && current_user_can( 'edit_theme_options' ) ? 'data-template="'. $this -> model -> template . '"' : ''
           ) ) ) );
-      ?>
-        <?php do_action( "before_render_view_inner_{$this -> model -> id}" ) ?>
-        <?php $this -> tc_render(); ?>
-        <?php do_action( "after_render_view_inner_{$this -> model -> id}" ) ?>
-      <?php /* maybe close default wrapper */ 
+        do_action( "before_render_view_inner_{$this -> model -> id}" );
+        $this -> tc_render();
+        do_action( "after_render_view_inner_{$this -> model -> id}" );
+        /* maybe close default wrapper */ 
         if ( ! empty( $this -> model -> element_tag ) )
           printf( "</%s>\n", $this -> model -> element_tag );
       /*      

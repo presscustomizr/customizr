@@ -1,8 +1,8 @@
 <?php
 class TC_posts_list_title_model_class extends TC_Model {
-  public $class;  
   public $pre_title;
   public $title;
+  public $element_tag = 'h1';
   
   private $context;
 
@@ -14,9 +14,9 @@ class TC_posts_list_title_model_class extends TC_Model {
     if ( ! $this -> context )
       return;
 
-    $model['class']     = apply_filters( 'tc_archive_icon', $this -> tc_get_class() );
-    $model['pre_title'] = apply_filters( "tc_{$this -> context}_archive_title" , $this -> tc_get_posts_list_pre_title() );
-    $model['title']     = apply_filters( "tc_{$this -> context}_title", $this -> tc_get_posts_list_title_content() );
+    $model['element_class']     = apply_filters( 'tc_archive_icon', $this -> tc_get_class() );
+    $model['pre_title']         = apply_filters( "tc_{$this -> context}_archive_title" , $this -> tc_get_posts_list_pre_title() );
+    $model['title']             = apply_filters( "tc_{$this -> context}_title", $this -> tc_get_posts_list_title_content() );
     /*we are getting rid of
     "tc_{context}_header_content" filter
     */
@@ -76,7 +76,7 @@ class TC_posts_list_title_model_class extends TC_Model {
   * parse this model properties for rendering
   */ 
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> class ) )
-      $model -> class = join( ' ', array_unique( $model -> class ) );
+    if ( is_array( $model -> element_class ) )
+      $model -> element_class = join( ' ', array_unique( $model -> element_class ) );
   }
 }

@@ -1,7 +1,7 @@
 <?php
 class TC_posts_list_description_model_class extends TC_Model {
   public $description;
-    
+  public $element_class = 'archive-meta'; 
   private $context;
 
   function tc_extend_params( $model = array() ) {

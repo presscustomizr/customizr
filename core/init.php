@@ -211,10 +211,10 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
           //RESET MARGIN TOP (for sticky header)
-          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 0 ),
+          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 0, 'element_tag' => false ),
 
           //SIDENAV
-          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav' ),
+          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav', 'element_tag' => 'nav', 'element_id' => 'tc-sn', 'element_class' => apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) ),
           //menu button
           array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
           //menu
@@ -224,7 +224,7 @@ if ( ! class_exists( 'TC___' ) ) :
           * CONTENT
           *********************************************/
           /* MAIN WRAPPERS */
-          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
+          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20, 'element_class' => apply_filters( 'tc_main_wrapper_classes' , array('container') ), 'element_id' => 'main-wrapper' ),
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 20 ),
 
           /* LEFT SIDEBAR */
@@ -264,9 +264,9 @@ if ( ! class_exists( 'TC___' ) ) :
           * FOOTER
           *********************************************/
           //sticky footer
-          array( 'hook' => 'after_render_view_main_container', 'template' => 'footer/footer_push', 'priority' => 100 ),
+          array( 'hook' => 'after_render_view_main_container', 'template' => 'footer/footer_push', 'priority' => 100, 'element_tag' => false ),
 
-          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
+          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30, 'element_tag' => 'footer' ),
 
           //a post grid displayed in any content
   //        array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
@@ -275,24 +275,20 @@ if ( ! class_exists( 'TC___' ) ) :
             
           //widget area in footer
           array( 'hook' => '__footer__', 'id' => 'footer_widgets_wrapper', 'template' => 'modules/widget_area_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
+
           //footer one wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_one', 'priority' => '10', 'template' => 'footer/footer_widget_area_wrapper' ),
-          array( 'hook' => '__footer_widget_area_wrapper_footer_one__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_one' ) ),
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_one', 'priority' => '10', 'template' => 'modules/widget_area', 'element_id' => 'footer-one' , 'model_class' => 'footer/footer_widget_area_wrapper'),
 
           //footer two wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_two', 'priority' => '20', 'template' => 'footer/footer_widget_area_wrapper' ),
-          array( 'hook' => '__footer_widget_area_wrapper_footer_two__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_two' ) ),
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_two', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-two' ),
 
           //footer three wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '30', 'template' => 'footer/footer_widget_area_wrapper' ),
-          array( 'hook' => '__footer_widget_area_wrapper_footer_three__', 'template' => 'modules/widget_area', 'params' => array( 'key' => 'footer_three' ) ),
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-three' ),
 
           //colophon
           array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
-          //left block "socials"
- //         array( 'hook' => '__colophon__', 'template' => 'footer/footer_social_block', 'id' => 'footer_socials', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ),  'priority' => is_rtl() ? 30 : 10 ),
-          //alternative, sharing the social block template (get_template_part(template/modules/social_block) in the footer/social_block template)
-          array( 'hook' => '__colophon__', 'template' => 'footer/social_block', 'id' => 'footer_socials', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ),  'priority' => is_rtl() ? 30 : 10 ),
+          //left block "socials" [CURRENTLY HACKED, TODO: FIND A BETTER SOLUTION]
+          array( 'hook' => '__colophon__', 'template' => 'modules/social_block', 'id' => 'footer_socials', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ),  'priority' => is_rtl() ? 30 : 10 ),
           
           //footer credits
           array( 'hook' => '__colophon__', 'template' => 'footer/footer_credits', 'priority' => 20 ),
@@ -300,7 +296,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__colophon__', 'template' => 'footer/footer_btt', 'priority' => is_rtl() ? 10 : 30 ),
 
           //btt arrow
-          array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow' ),
+          array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow', 'element_class' => 'tc-btt-wrapper'),
         )
       );
     }
