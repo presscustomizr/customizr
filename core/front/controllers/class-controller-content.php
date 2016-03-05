@@ -45,6 +45,11 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return self::$_cache['posts_list_headings'];
     }
 
+    function tc_display_view_post_list() {
+        //TODO: better way
+      return ! is_singular();
+    }
+
     function tc_display_view_posts_list_title() {
       return $this -> tc_display_view_posts_list_headings();   
     }
