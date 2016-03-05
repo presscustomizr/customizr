@@ -249,13 +249,19 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_description', 'priority' => 20 ),
           //TODO: search results and 404 will be treated differently
 
-          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop' ),
+          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'element_tag' => false ),
           //headings
  //         array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
+          //classical post list 
+          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list' ),
+            //content
+            array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'element_tag' => false ),
+            //thumb
+            array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_thumbnail', 'element_tag' => false ),
 
 
           //page
-          array( 'hook' => 'in_main_loop', 'template' => 'content/content', 'priority' => 20 ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/content', 'priority' => 20, 'id' => 'page' ),
 
           //404
           array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
