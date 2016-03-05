@@ -15,12 +15,4 @@ abstract class TC_headings_model_class extends TC_Model {
   }
 
   abstract function tc_get_class( $model = array() );
-
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> element_class ) )
-      $model -> element_class = join( ' ', array_unique( $model -> element_class ) );
-  }
 }

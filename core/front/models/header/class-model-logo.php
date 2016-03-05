@@ -75,15 +75,20 @@ class TC_logo_model_class extends TC_Model {
       return $args;
   }
 
+
   /**
+  * @override
   * parse this model properties for rendering
-  */ 
+  */
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> class ) )
-      $model -> class      = join( ' ', array_unique( $model -> class ) );    
+    parent::pre_rendering_my_view_cb( $model );
+    $model -> class = $this -> tc_stringify_model_property( 'class' );
   }
 
 
+  /*
+  * Custom CSS
+  */
   function tc_user_options_style_cb( $_css ) {
     //logos shrink
     //fire once
