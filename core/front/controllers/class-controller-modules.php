@@ -15,7 +15,8 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
         //structural hook => option filter
         '__widget_area_left__'  => 'left-sidebar',
         '__widget_area_right__' => 'right-sidebar',
-        '__navbar__'            => 'header'
+        '__navbar__'            => 'header',
+        '__colophon_one__'      => 'footer'
       );
 
       //the block must be instanciated when 

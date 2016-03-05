@@ -1,6 +1,5 @@
 <?php
 class TC_footer_btt_model_class extends TC_Model {
-  public $inner_class;
   public $link_class;
   public $text;
 

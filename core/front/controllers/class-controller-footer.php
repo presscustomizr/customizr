@@ -17,17 +17,6 @@ if ( ! class_exists( 'TC_controller_footer' ) ) :
       return esc_attr( TC_utils::$inst -> tc_opt( 'tc_sticky_footer') ) || TC___::$instance -> tc_is_customizing();
     }
 
-    function tc_display_view_footer_socials() {
-      //the block must be not instanciated when 
-      //1) NOT customizing 
-      //and
-      //2a) the relative display option is unchecked
-      //or
-      //2b) there are no social icons set
-      return ! ( ! TC___::$instance -> tc_is_customizing() && 
-            ( ( 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_footer" ) ) ) || ! tc__f('__get_socials') ) );
-    }
-
     function tc_display_view_btt_arrow() {
       if ( ! isset( $this -> _cache[ 'btt_arrow_view' ] ) )
         $this -> _cache[ 'btt_arrow_view' ] = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_back_to_top' ) );
