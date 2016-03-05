@@ -13,12 +13,4 @@ class TC_content_wrapper_model_class extends TC_Model {
     $model[ 'element_class' ]          = apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) );
     return $model;
   }
-
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> element_class ) )
-      $model -> element_class = join( ' ', array_unique( $model -> element_class ) );
-  }
 }

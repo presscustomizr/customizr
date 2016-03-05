@@ -28,7 +28,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public $template = "";
     public $element_tag = "div";
     public $element_id;
-    public $element_class;
+    public $element_class = "";
     public $element_attributes;
     public $html = "";
     public $callback = "";
@@ -267,14 +267,25 @@ if ( ! class_exists( 'TC_Model' ) ) :
     protected function tc_maybe_filter_views_model() {
       if ( method_exists( $this, 'pre_rendering_view_cb' ) )
         add_action( 'pre_rendering_view', array( $this, 'pre_rendering_view_cb' ) );
-      if ( method_exists( $this, "pre_rendering_my_view_cb" ) )
-        add_action( "pre_rendering_view_{$this -> id}", array($this, "pre_rendering_my_view_cb" ), 9999 );
+      //by default filter this module before rendering (for default properties parsing, e.g. element_class )
+      add_action( "pre_rendering_view_{$this -> id}", array($this, "pre_rendering_my_view_cb" ), 9999 );
     }
  
+
+    public function pre_rendering_my_view_cb( $model ) {
+      $model -> element_class = $this -> tc_stringify_model_property( 'element_class' );
+    }
+
 
     /**********************************************************************************
     * HELPERS
     ***********************************************************************************/
+    protected function tc_stringify_model_property( $property ) {
+      if ( isset( $this -> $property ) )
+       return CZR() -> helpers -> tc_stringify_array( $this -> $property );
+      return '';
+    }
+
     //@return bool
     private function tc_can_model_be_instanciated() {
       //the model must be an array of params

@@ -25,6 +25,6 @@ class TC_colophon_standard_model_class extends TC_colophon_model_class {
   function pre_rendering_my_view_cb( $model ) {
     parent::pre_rendering_my_view_cb( $model );  
     for ( $i = 1; $i<4; $i++ )
-      $model -> {"col_{$i}_class"} = join( ' ', $model -> {"col_{$i}_class"} );
+      $model -> {"col_{$i}_class"} = $this -> tc_stringify_model_property( "col_{$i}_class" );
   }
 }//end of class

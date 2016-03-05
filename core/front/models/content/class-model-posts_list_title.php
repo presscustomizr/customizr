@@ -72,11 +72,4 @@ class TC_posts_list_title_model_class extends TC_Model {
       case 'tax'            : return get_the_archive_title();
     }
   }
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> element_class ) )
-      $model -> element_class = join( ' ', array_unique( $model -> element_class ) );
-  }
 }

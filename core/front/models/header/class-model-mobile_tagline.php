@@ -2,13 +2,4 @@
 class TC_mobile_tagline_model_class extends TC_tagline_model_class {
   public $element_class = array('container', 'outside');
   public $class         = array('site-description');
-
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
-    if ( is_array( $model -> element_class ) )
-      $model -> element_class = join( ' ', array_unique( $model -> element_class ) );
-  }
 }

@@ -3,7 +3,6 @@ class TC_footer_btt_model_class extends TC_Model {
   public $link_class;
   public $text;
 
-
   /**
   * @override
   * fired before the model properties are parsed
@@ -21,8 +20,12 @@ class TC_footer_btt_model_class extends TC_Model {
   /**
   * parse this model properties for rendering
   */ 
+  /**
+  * @override
+  * parse this model properties for rendering
+  */
   function pre_rendering_my_view_cb( $model ) {
-    $model -> element_class = join( ' ', $model -> element_class );    
-    $model -> link_class    = join( ' ', $model -> link_class );    
+    parent::pre_rendering_my_view_cb( $model );
+    $model -> link_class = $this -> tc_stringify_model_property( 'link_class' );
   }
 }//end of class

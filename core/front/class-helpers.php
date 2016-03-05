@@ -19,6 +19,11 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
       <?php
     }
 
+    function tc_stringify_array( $array ) {
+      if ( is_array( $array ) )
+        $array = join( ' ', array_unique( array_filter( $array ) ) );
+      return $array;
+    }
 
     //A callback helper
     //a callback can be function or a method of a class

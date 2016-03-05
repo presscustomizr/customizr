@@ -15,15 +15,6 @@ class TC_header_model_class extends TC_Model {
     return $model;
   }
 
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> element_class ) )  
-      $model -> element_class = join( ' ', array_unique( $model -> element_class ) );    
-  }
-
-
 
   /**
   * Adds a specific style to handle the header top border and z-index

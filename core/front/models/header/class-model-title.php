@@ -42,14 +42,18 @@ class TC_title_model_class extends TC_Model {
     parent::tc_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
+  
+  
   /**
+  * @override
   * parse this model properties for rendering
-  */ 
+  */
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> element_class ) ) 
-      $model -> element_class      = join( ' ', array_unique( $model -> element_class ) );    
-    $model -> link_class = join( ' ', array_unique( $model -> link_class ) );    
+    parent::pre_rendering_my_view_cb( $model );
+    $model -> link_class = $this -> tc_stringify_model_property( 'link_class' );
   }
+
+
 
   /**
   * parse header model before rendering to add 'sticky' title visibility 

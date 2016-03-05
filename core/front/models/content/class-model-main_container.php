@@ -17,12 +17,11 @@ class TC_main_container_model_class extends TC_Model {
 
 
   /**
+  * @override
   * parse this model properties for rendering
-  */ 
+  */
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> element_class ) )
-      $model -> element_class = join( ' ', array_unique( $model -> class ) );
-    if ( is_array( $model -> column_content_class ) )
-      $model -> column_content_class = join( ' ', array_unique( $model -> column_content_class ) );
+    parent::pre_rendering_my_view_cb( $model );
+    $model -> column_content_class = $this -> tc_stringify_model_property( 'column_content_class' );
   }
 }
