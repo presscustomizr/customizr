@@ -288,9 +288,8 @@ if ( ! class_exists( 'TC___' ) ) :
           //colophon
           array( 'hook' => '__footer__', 'template' => 'footer/colophon_standard', 'model_class' => array( 'parent' => 'footer/colophon', 'name' => 'footer/colophon_standard'), 'priority' => 100 ),
           //TODO: COLOPHON BLOCKS ORDER IS RTL DEPENDANT
-
-          array( 'hook' => '__colophon_one__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ) ),
-          
+          //footer social
+          array( 'hook' => '__colophon_one__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ), 'controller' => 'social_block' ),
           //footer credits
           array( 'hook' => '__colophon_two__', 'template' => 'footer/footer_credits' ),
           //footer colophon btt link
