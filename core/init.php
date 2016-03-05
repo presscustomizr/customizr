@@ -286,14 +286,15 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-three' ),
 
           //colophon
-          array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
-          //left block "socials" [CURRENTLY HACKED, TODO: FIND A BETTER SOLUTION]
-          array( 'hook' => '__colophon__', 'template' => 'modules/social_block', 'id' => 'footer_socials', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ),  'priority' => is_rtl() ? 30 : 10 ),
+          array( 'hook' => '__footer__', 'template' => 'footer/colophon_standard', 'model_class' => array( 'parent' => 'footer/colophon', 'name' => 'footer/colophon_standard'), 'priority' => 100 ),
+          //TODO: COLOPHON BLOCKS ORDER IS RTL DEPENDANT
+
+          array( 'hook' => '__colophon_one__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ) ),
           
           //footer credits
-          array( 'hook' => '__colophon__', 'template' => 'footer/footer_credits', 'priority' => 20 ),
+          array( 'hook' => '__colophon_two__', 'template' => 'footer/footer_credits' ),
           //footer colophon btt link
-          array( 'hook' => '__colophon__', 'template' => 'footer/footer_btt', 'priority' => is_rtl() ? 10 : 30 ),
+          array( 'hook' => '__colophon_three__', 'template' => 'footer/footer_btt' ),
 
           //btt arrow
           array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow', 'element_class' => 'tc-btt-wrapper'),
