@@ -14,7 +14,7 @@ class TC_footer_credits_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'element_class' ]             = array( 'span6', 'credits' );
+    $model[ 'element_class' ]             = array( 'credits' );
     $model[ 'copyright_text' ]            = esc_attr( date( 'Y' ) );
     $model[ 'copyright_link_href' ]       = esc_url( home_url() );
     $model[ 'copyright_link_text_title' ] = esc_attr( get_bloginfo() );

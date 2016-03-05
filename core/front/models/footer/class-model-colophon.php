@@ -10,7 +10,7 @@ class TC_colophon_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'inner_class' ] = apply_filters('tc_colophon_class', array( 'row-fluid' ), $model );
+    $model[ 'inner_class' ] = apply_filters('tc_colophon_class', array( 'row-fluid' ) );
     return $model;
   }
 
