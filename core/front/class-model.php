@@ -286,6 +286,13 @@ if ( ! class_exists( 'TC_Model' ) ) :
       return '';
     }
 
+
+    public function tc_maybe_get_element_class() {
+      $_element_class = method_exists( $this, 'tc_get_element_class' ) ? $this -> tc_get_element_class() : '';
+      $_element_class = ! empty( $_element_class ) ? $_element_class : $this -> element_class;
+      return $_element_class ? 'class="'. $_element_class .'"' : '';
+    }
+
     //@return bool
     private function tc_can_model_be_instanciated() {
       //the model must be an array of params

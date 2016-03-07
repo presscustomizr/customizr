@@ -26,7 +26,8 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
     $model['content_cb']  = 'the_post_thumbnail';
     return $model;
   }
-  function tc_get_class() {
-    echo 'tc-thumbnail span4'; /*retrieved from the post_list layout */
+
+  function tc_get_element_class() {
+    return 'tc-thumbnail span4'; /*retrieved from the post_list layout */
   }
 }
