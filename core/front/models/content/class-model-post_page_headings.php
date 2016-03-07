@@ -1,6 +1,7 @@
 <?php
 class TC_post_page_headings_model_class extends TC_headings_model_class {
   public $type                                   = 'content';
+  //Defines post formats with no headers    
   private static $post_formats_with_no_heading   = array( 'aside' , 'status' , 'link' , 'quote' );
 
   function __construct( $model = array() ) {
