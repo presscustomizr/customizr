@@ -1,6 +1,5 @@
 <?php
 class TC_post_list_thumbnail_model_class extends TC_Model {
-  public $class_cb;
   public $content_cb;
 
   function __construct( $model = array() ) {
@@ -20,12 +19,11 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model['class_cb']    = array( $this, 'tc_get_class');
     $model['content_cb']  = 'the_post_thumbnail';
     return $model;
   }
 
   function tc_get_element_class() {
-    return 'tc-thumbnail span4'; /*retrieved from the post_list layout */
+    return 'tc-thumbnail ' . get_query_var('tc_thumbnail_width'); /*retrieved from the post_list layout */
   }
 }
