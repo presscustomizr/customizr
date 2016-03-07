@@ -66,7 +66,7 @@ if ( ! class_exists( 'TC_View' ) ) :
         printf("\n<%s>", join( ' ', array_filter( array(
               $this -> model -> element_tag,
               ! empty( $this -> model -> element_id )         ? 'id="'. $this -> model -> element_id .'"' : '',
-              ! empty( $this -> model -> element_class )      ? 'class="'. $this -> model -> element_class .'"' : '',
+              $this -> model -> tc_maybe_get_element_class(),
               ! empty( $this -> model -> element_attributes ) ? $this -> model -> element_attributes : '',
               is_user_logged_in() && current_user_can( 'edit_theme_options' ) ? 'data-model_id="'. $this -> model -> id .'"' : '',
               is_user_logged_in() && current_user_can( 'edit_theme_options' ) ? 'data-template="'. $this -> model -> template . '"' : ''
