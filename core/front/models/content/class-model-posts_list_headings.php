@@ -19,5 +19,4 @@ class TC_posts_list_headings_model_class extends TC_headings_model_class {
     
     return $_header_class;
   }
-
 }

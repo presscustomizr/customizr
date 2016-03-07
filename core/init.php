@@ -255,7 +255,13 @@ if ( ! class_exists( 'TC___' ) ) :
           //classical post list 
           array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'element_class' => 'row-fluid' ),
             //content
-            array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'element_tag' => false ),
+            //title
+            array( 'hook' => 'before_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+              array( 'hook' => '__headings_content__', 'template' => 'content/post_page_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
+            //post content/excerpt
+            array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'element_tag' => false),
+
+            array( 'hook' => 'beforepost_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'element_tag' => false ),
             //thumb
             array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_thumbnail', 'element_tag' => false ),
 
