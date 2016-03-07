@@ -55,13 +55,15 @@ if ( ! class_exists( 'TC_View' ) ) :
       do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
       
       do_action( "before_render_view_{$this -> model -> id}" );
-      /*
+      ?>
       <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> model -> id}"; ?> -->
+      <?php
+      /*
       <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
-       */
+      */
       /* maybe print default wrapper */ 
-        if ( ! empty( $this -> model -> element_tag ) )
-            printf("\n<%s>", join( ' ', array_filter( array(
+      if ( ! empty( $this -> model -> element_tag ) )
+        printf("\n<%s>", join( ' ', array_filter( array(
               $this -> model -> element_tag,
               ! empty( $this -> model -> element_id )         ? 'id="'. $this -> model -> element_id .'"' : '',
               ! empty( $this -> model -> element_class )      ? 'class="'. $this -> model -> element_class .'"' : '',
@@ -72,13 +74,15 @@ if ( ! class_exists( 'TC_View' ) ) :
         do_action( "before_render_view_inner_{$this -> model -> id}" );
         $this -> tc_render();
         do_action( "after_render_view_inner_{$this -> model -> id}" );
-        /* maybe close default wrapper */ 
-        if ( ! empty( $this -> model -> element_tag ) )
-          printf( "</%s>\n", $this -> model -> element_tag );
+      /* maybe close default wrapper */ 
+      if ( ! empty( $this -> model -> element_tag ) )
+        printf( "</%s>\n", $this -> model -> element_tag );
       /*      
       <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
+       */
+      ?>  
       <!-- HOOK CONTENT HERE : <?php echo "after_render_view_{$this -> model -> id}"; ?> -->
-      */
+      <?php
       do_action( "after_render_view_{$this -> model -> id}" );
     }
 
