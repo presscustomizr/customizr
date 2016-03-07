@@ -1,6 +1,5 @@
 <?php
 class TC_post_list_wrapper_model_class extends TC_Model {
-  public $element_class    = array( 'row-fluid' );
   public $place_1 ;
   public $place_2 ;
  

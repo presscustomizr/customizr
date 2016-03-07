@@ -9,13 +9,13 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
  
     function tc_display_view_right_sidebar() {
-      if ( ! isset( $_cache['right_sidebar'] ) )  
+      if ( ! isset( self::$_cache['right_sidebar'] ) )  
         self::$_cache['right_sidebar'] = $this -> tc_display_view_sidebar( 'right' );  
       return self::$_cache['right_sidebar'];
     }
 
     function tc_display_view_left_sidebar() {
-      if ( ! isset( $_cache['left_sidebar'] ) )  
+      if ( ! isset( self::$_cache['left_sidebar'] ) )  
         self::$_cache['left_sidebar'] = $this -> tc_display_view_sidebar( 'left' );  
       return self::$_cache['left_sidebar'];
     }
@@ -58,12 +58,31 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_page() {
-      return apply_filters( 'tc_show_page_content',
-        'page' == $this -> tc_get_post_type()
+      if ( ! isset( self::$_cache['page'] ) )  
+        self::$_cache['page'] =  'page' == $this -> tc_get_post_type()
         && is_singular()
-        && ! $this -> tc_is_home_empty()
-      );
+        && ! $this -> tc_is_home_empty();
+      
+      return apply_filters( 'tc_show_page_content', self::$_cache['page'] );
     }
+
+    function tc_display_view_post() {
+      //check conditional tags : we want to show single post or single custom post types
+      global $post;
+      if ( ! isset( self::$_cache['post'] ) )
+        self::$_cache['post'] = isset($post)
+        && 'page' != $post -> post_type
+        && 'attachment' != $post -> post_type
+        && is_singular()
+        && ! tc__f( '__is_home_empty');
+      return apply_filters( 'tc_show_single_post_content', self::$_cache['post'] );
+    }
+
+
+    function tc_display_view_singular_article() {
+      return $this -> tc_display_view_post() || $this -> tc_display_view_page();  
+    }
+
 
     function tc_display_view_404() {
       return is_404();

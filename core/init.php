@@ -244,7 +244,7 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => '__widget_area_right__', 'id' => 'right', 'template' => 'modules/widget_area' ),
 
           //posts_list headings: before the loop
-          array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings') ),
+          array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'), 'id' => 'posts_list_headings' ),
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_title', 'priority' => 10 ),
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_description', 'priority' => 20 ),
           //TODO: search results and 404 will be treated differently
@@ -253,15 +253,18 @@ if ( ! class_exists( 'TC___' ) ) :
           //headings
  //         array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
           //classical post list 
-          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list' ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'element_class' => 'row-fluid' ),
             //content
             array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'element_tag' => false ),
             //thumb
             array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_thumbnail', 'element_tag' => false ),
 
 
-          //page
-          array( 'hook' => 'in_main_loop', 'template' => 'content/content', 'priority' => 20, 'id' => 'page' ),
+          //page & post
+          array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'element_tag' => false, 'element_class' => 'row-fluid', 'id' => 'singular_article' ),
+
+          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page', 'element_tag' => 'div', ),
+          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'post', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/post_content' ) ),
 
           //404
           array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
