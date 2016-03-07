@@ -18,7 +18,7 @@ class TC_post_list_content_model_class extends TC_Model {
 
   function tc_get_element_class(){
     if ( (bool) get_query_var('tc_has_post_thumbnail', false) )
-      return 'tc-content span8'; /*retrieved from the post_list layout */ 
+      return 'tc-content ' . get_query_var( 'tc_content_width' );
     else
       return 'tc-content span12';
   }
