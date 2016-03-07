@@ -2,8 +2,6 @@
 class TC_post_list_thumbnail_model_class extends TC_Model {
   public $class_cb;
   public $content_cb;
-  public $type = 'thumbnail';
-
 
   function __construct( $model = array() ) {
     parent::__construct( $model );

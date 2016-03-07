@@ -254,22 +254,25 @@ if ( ! class_exists( 'TC___' ) ) :
  //         array( 'hook' => 'in_main_loop', 'template' => 'content/headings' ),
           //classical post list 
           array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'element_class' => 'row-fluid' ),
-            //content
-            //title
-            array( 'hook' => 'before_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-              array( 'hook' => '__headings_content__', 'template' => 'content/post_page_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
-            //post content/excerpt
-            array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'element_tag' => 'section' ),
+          
+          //content
+          //titles : shared by post lists and page/post content
+          array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+          array( 'hook' => 'before_render_view_inner_page', 'id' => 'page_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+          array( 'hook' => 'before_render_view_inner_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+              array( 'hook' => '__headings_content__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
+              array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
 
-            array( 'hook' => 'beforepost_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'element_tag' => false ),
+            //post content/excerpt
+            array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'id' => 'content', 'element_tag' => 'section' ),
             //thumb
-            array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_thumbnail', 'element_tag' => 'section' ),
+            array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_thumbnail', 'id' => 'thumbnail', 'element_tag' => 'section' ),
 
 
           //page & post
           array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'element_tag' => false, 'element_class' => 'row-fluid', 'id' => 'singular_article' ),
 
-          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page', 'element_tag' => 'div', ),
+          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page', 'element_tag' => 'div' ),
           array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'post', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/post_content' ) ),
 
           //404

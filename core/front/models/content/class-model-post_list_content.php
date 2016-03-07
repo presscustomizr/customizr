@@ -1,7 +1,7 @@
 <?php
 class TC_post_list_content_model_class extends TC_Model {
   public $content_cb;
-  public $type = 'content';
+  
   /**
   * @override
   * fired before the model properties are parsed

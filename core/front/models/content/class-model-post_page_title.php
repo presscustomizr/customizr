@@ -12,7 +12,7 @@ class TC_post_page_title_model_class extends TC_Model {
     return $model;
   }
 
-  function tc_get_title(){
-    echo '<a href="'.get_permalink().'">'.get_the_title().'</a>';
+  function tc_get_title() {
+    echo get_the_title();
   }
 }

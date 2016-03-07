@@ -83,6 +83,15 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return $this -> tc_display_view_post() || $this -> tc_display_view_page();  
     }
 
+    function tc_display_view_post_list_title() {
+      return apply_filters('tc_display_customizr_headings', $this -> tc_display_view_posts_list_headings() || is_front_page() );
+    } 
+
+    function tc_display_view_singular_title() {
+      if ( ! isset( self::$_cache['singular_title'] ) )
+        self::$_cache['singular_title'] =  is_singular() && ! ( is_front_page() && 'page' == get_option( 'show_on_front' ) );
+      return apply_filters('tc_display_customizr_headings', self::$_cache['singular_title'] )  && ! is_feed();
+    }
 
     function tc_display_view_404() {
       return is_404();
