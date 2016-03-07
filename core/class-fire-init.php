@@ -305,13 +305,6 @@ if ( ! class_exists( 'TC_init' ) ) :
             )
           );//end of array
 
-          //Default post list layout
-          $this -> post_list_layout   = array(
-            'content'           => 'span8',
-            'thumb'             => 'span4',
-            'show_thumb_first'  => false,
-            'alternate'         => true
-          );
 
           //Default 404 content
           $this -> content_404        = array(
