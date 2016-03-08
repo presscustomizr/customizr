@@ -93,6 +93,28 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return apply_filters('tc_display_customizr_headings', self::$_cache['singular_title'] )  && ! is_feed();
     }
 
+
+    function tc_display_view_post_metas() {
+     //post metas are always insanciated in customizing context
+     if ( TC___::$instance -> tc_is_customizing() )
+       return true;
+
+     if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
+       return false;    
+
+     if ( is_singular() && ! is_page() && ! tc__f('__is_home') )
+       return ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ); 
+     
+     if ( ! is_singular() && ! tc__f('__is_home') && ! is_page() )
+       return ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) );
+
+     if ( TC_utils::$inst -> tc_is_home() ) 
+       return ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) );
+
+     return false;
+    }
+
+
     function tc_display_view_404() {
       return is_404();
     }
