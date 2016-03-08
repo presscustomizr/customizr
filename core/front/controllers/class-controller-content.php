@@ -95,25 +95,38 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
 
     function tc_display_view_post_metas() {
+     if ( isset( self::$_cache['post_metas'] ) )
+       return self::$_cache['post_metas'];
+
      //post metas are always insanciated in customizing context
      if ( TC___::$instance -> tc_is_customizing() )
-       return true;
+       self::$_cache['post_metas'] = true;
 
-     if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
-       return false;    
+     elseif ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
+       self::$_cache['post_metas'] = false;
 
-     if ( is_singular() && ! is_page() && ! tc__f('__is_home') )
-       return ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ); 
+     elseif ( is_singular() && ! is_page() && ! tc__f('__is_home') )
+       self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ); 
      
-     if ( ! is_singular() && ! tc__f('__is_home') && ! is_page() )
-       return ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) );
+     elseif ( ! is_singular() && ! tc__f('__is_home') && ! is_page() )
+       self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) );
 
-     if ( TC_utils::$inst -> tc_is_home() ) 
-       return ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) );
+     elseif ( TC_utils::$inst -> tc_is_home() ) 
+       self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) );
+     else
+       self::$_cache['post_metas'] = false;
 
-     return false;
+     return self::$_cache['post_metas'];
     }
 
+
+    function tc_display_view_post_metas_text() {
+      return $this -> tc_display_view_post_metas() && 'buttons' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_design' ) );
+    }
+
+    function tc_display_view_post_metas_button() {
+      return $this -> tc_display_view_post_metas() && 'buttons' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_design' ) );  
+    }
 
     function tc_display_view_404() {
       return is_404();

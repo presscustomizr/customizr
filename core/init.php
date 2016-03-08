@@ -280,7 +280,11 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
 
           //Post metas in the headings
-          array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20 ),
+          //the default class/template is for the buttons type
+          array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
+          //the text one uses a different template
+          array( 'hook' => '__headings_content__', 'template' => 'content/post_metas_text', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
+          /* TODO: LINKS IN POST METAS FOR POSTS WITH NO TITLE ...*/
 
           //404
           array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),

@@ -54,9 +54,11 @@ class TC_post_metas_model_class extends TC_Model {
   /* END PUBLIC GETTERS */
 
   /* HELPERS */
-  private function tc_get_meta( $meta, $param = null, $separator = '' ) {
-    if ( ! isset( $_cache[ $meta ] ) )  
-      $_cache[ $meta ] = CZR() -> helpers -> tc_stringify_array( $this -> {"tc_meta_generate_{$meta}"}( $param ), $separator );
+  protected function tc_get_meta( $meta, $param = array(), $separator = '' ) {
+    if ( ! isset( $_cache[ $meta ] ) ) {
+      $param = is_array( $param ) ? $param : array( $param );
+      $_cache[ $meta ] = CZR() -> helpers -> tc_stringify_array( call_user_func_array( array( $this, "tc_meta_generate_{$meta}" ), $param ), $separator );
+    }
     return $_cache[ $meta ];
   }
 
@@ -70,7 +72,16 @@ class TC_post_metas_model_class extends TC_Model {
 
   private function tc_meta_generate_date( $pub_or_update ) {
     return $this -> tc_get_meta_date( $pub_or_update );    
-  } 
+  }
+
+  /* @override */
+  protected function tc_get_term_css_class( $_is_hierarchical ) {
+    $_classes         =  array( 'btn' , 'btn-mini' );
+    if ( $_is_hierarchical )
+      array_push( $_classes , 'btn-tag' );
+    return $_classes;
+  }
+
   /**
   * Helper
   * Return the date post metas
@@ -142,12 +153,9 @@ class TC_post_metas_model_class extends TC_Model {
   * @since Customizr 3.3.2
   */
   private function tc_meta_term_view( $term ) {
-    $_classes         =  array( 'btn' , 'btn-mini' );
     $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
-    if ( $_is_hierarchical ) //<= check if hierarchical (category) or not (tag)
-      array_push( $_classes , 'btn-tag' );
-    $_classes      = CZR() -> helpers -> tc_stringify_array( apply_filters( 'tc_meta_tax_class', 
-       'buttons' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_design' ) ) ? $_classes : array() , $_is_hierarchical, $term ) );
+
+    $_classes      = CZR() -> helpers -> tc_stringify_array( apply_filters( 'tc_meta_tax_class', $this -> tc_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
     // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
     // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
     // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.
@@ -162,6 +170,7 @@ class TC_post_metas_model_class extends TC_Model {
       )
     );
   }
+
         
   /**
   * Helper to return the current post terms of specified taxonomy type : hierarchical or not
