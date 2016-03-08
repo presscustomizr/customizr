@@ -279,6 +279,9 @@ if ( ! class_exists( 'TC___' ) ) :
           //post and page titles in singular context
             array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
 
+          //Post metas in the headings
+          array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20 ),
+
           //404
           array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
 
