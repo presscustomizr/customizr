@@ -19,9 +19,9 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
       <?php
     }
 
-    function tc_stringify_array( $array ) {
+    function tc_stringify_array( $array, $sep = ' ' ) {
       if ( is_array( $array ) )
-        $array = join( ' ', array_unique( array_filter( $array ) ) );
+        $array = join( $sep, array_unique( array_filter( $array ) ) );
       return $array;
     }
 

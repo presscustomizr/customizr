@@ -7,46 +7,57 @@ class TC_post_metas_model_class extends TC_Model {
     parent::__construct( $model );
     //Since we use only one instance for every post in a post list reset the cache after the view has been rendered
     add_action( "after_render_view_{$this -> id}", array( $this, 'tc_reset_cache' ) );
+    //render this?
+    add_filter( "tc_do_render_view_{$this -> id}",  array( $this, 'tc_post_has_metas') );
+  }
+
+  //render this?
+  public function tc_post_has_metas() {
+    return $this -> tc_get_cat_list() ||
+           $this -> tc_get_tag_list() ||
+           $this -> tc_get_author() ||
+           $this -> tc_get_publication_date() ||
+           $this -> tc_get_update_date();
   }
 
   public function tc_reset_cache() {
     $this -> _cache = array();    
   }
 
-  public function tc_get_cat_list() {
-    return $this -> tc_get_meta( 'tax', true );    
+  /* PUBLIC GETTERS */
+  public function tc_get_cat_list( $sep = '' ) {
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_categories' ) ) ? $this -> tc_get_meta( 'tax', true, $sep ) : '';    
   }
   
-  public function tc_get_tag_list() {
-    return $this -> tc_get_meta( 'tax', false );    
+  public function tc_get_tag_list( $sep = '' ) {
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_tags' ) ) ? $this -> tc_get_meta( 'tax', false, $sep ) : '';    
   }
 
   public function tc_get_author() {
-    return $this -> tc_get_meta( 'author' );    
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_author' ) ) ? $this -> tc_get_meta( 'author' ) : '';    
   }
 
   public function tc_get_publication_date() {
-    return $this -> tc_get_meta( 'date', 'publication' );    
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> tc_get_meta( 'date', 'publication' ) : '';    
   }
 
-  public function tc_get_update_date() {
-    return $this -> tc_get_meta( 'date', 'update' );    
+  public function tc_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
+    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = TC_utils::$inst -> tc_post_has_update() ) {
+      if ( 'days' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
+        $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
+        $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
+      }
+      return isset( $_update ) ? $_update : $this -> tc_get_meta( 'date', 'update' );
+    }
+    return false;
   }
+  /* END PUBLIC GETTERS */
 
-  private function tc_get_meta( $meta, $param = null ) {
+  /* HELPERS */
+  private function tc_get_meta( $meta, $param = null, $separator = '' ) {
     if ( ! isset( $_cache[ $meta ] ) )  
-      $_cache[ $meta ] = CZR() -> helpers -> tc_stringify_array( $this -> {"tc_meta_generate_{$meta}"}( $param ) );
-
+      $_cache[ $meta ] = CZR() -> helpers -> tc_stringify_array( $this -> {"tc_meta_generate_{$meta}"}( $param ), $separator );
     return $_cache[ $meta ];
-  }
-
-  private function tc_build_post_post_metas_model() {
-//    $cat_list   = $this -> tc_meta_generate_tax_list( true );
-    
-//    $tag_list   = $this -> tc_meta_generate_tax_list( false );
-//    $pub_date   = $this -> tc_get_meta_date( 'publication' );
-//    $auth       = $this -> tc_get_meta_author();
-//    $upd_date   = $this -> tc_get_meta_date( 'update' );
   }
 
   private function tc_meta_generate_tax( $hierarchical ) {
@@ -135,15 +146,16 @@ class TC_post_metas_model_class extends TC_Model {
     $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
     if ( $_is_hierarchical ) //<= check if hierarchical (category) or not (tag)
       array_push( $_classes , 'btn-tag' );
-    $_classes      = implode( ' ', apply_filters( 'tc_meta_tax_class', $_classes , $_is_hierarchical, $term ) );
+    $_classes      = CZR() -> helpers -> tc_stringify_array( apply_filters( 'tc_meta_tax_class', 
+       'buttons' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_design' ) ) ? $_classes : array() , $_is_hierarchical, $term ) );
     // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
     // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
     // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.
     // Just this change avoids the issue with 3.6.1, but I thought should be better make a check anyway on the return type of that function.
     $_term_link    = is_wp_error( get_term_link( $term ) ) ? '' : get_term_link( $term );
-    $_to_return    = $_term_link ? '<a class="%1$s" href="%2$s" title="%3$s"> %4$s </a>' :  '<span class="%1$s"> %4$s </a>';
+    $_to_return    = $_term_link ? '<a %1$s href="%2$s" title="%3$s"> %4$s </a>' :  '<span class="%1$s"> %4$s </a>';
     return apply_filters( 'tc_meta_term_view' , sprintf($_to_return,
-        $_classes,
+        $_classes ? 'class="'. $_classes .'"' : '',
         $_term_link,
         esc_attr( sprintf( __( "View all posts in %s", 'customizr' ), $term -> name ) ),
         $term -> name
@@ -226,5 +238,24 @@ class TC_post_metas_model_class extends TC_Model {
     );
     $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], TC_utils::tc_id() ) );
     return ! $_in_exclude_list && ! $_is_private;
-  }        
-}
+  }
+
+
+  /* Customizer: allow dynamic visibility in the preview */
+  function tc_body_class( $_classes/*array*/ ) {
+    if ( ! TC___::$instance -> tc_is_customizing() )
+      return $_classes;
+
+    if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
+       array_push( $_classes, 'hide-all-post-metas' );
+
+    if (
+        ( is_singular() && ! is_page() && ! tc__f('__is_home') && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ) ||
+        ( ! is_singular() && ! tc__f('__is_home') && ! is_page() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
+        ( tc__f('__is_home') ) && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) 
+    ) 
+      array_push( $_classes, 'tc-hide-post-metas' );
+    
+    return $_classes;
+  }
+}//end of class
