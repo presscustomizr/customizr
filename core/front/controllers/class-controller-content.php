@@ -46,8 +46,14 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_post_list() {
-        //TODO: better way
-      return ! is_singular();
+      global $wp_query;
+      //must be archive or search result. Returns false if home is empty in options.
+      return apply_filters( 'tc_post_list_controller',
+        ! is_singular()
+        && ! is_404()
+        && 0 != $wp_query -> post_count
+        && ! tc__f( '__is_home_empty')
+      );
     }
 
     function tc_display_view_posts_list_title() {
