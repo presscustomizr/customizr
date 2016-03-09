@@ -250,7 +250,7 @@ if ( ! class_exists( 'TC___' ) ) :
           //TODO: search results and 404 will be treated differently
 
           /* GENERIC LOOP */
-          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'element_tag' => false ),
+          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'element_tag' => false, 'priority' => 20 ),
 
           /*** ALTERNATE POST LIST ***/
           array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'element_class' => 'row-fluid' ),
@@ -289,6 +289,14 @@ if ( ! class_exists( 'TC___' ) ) :
           //404
           array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
 
+
+          /* Post navigation */
+          array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
+          array( 'hook' => '__content__', 'template' => 'content/post_navigation_posts', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ), 'priority' => 40 ),
+            //singular links'
+            array( 'hook' => 'post_navigation_singular', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_singular'), 'id' => 'post_navigation_links_singular'),
+            //posts links
+            array( 'hook' => 'post_navigation_posts', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_posts'), 'id' => 'post_navigation_links_posts' ),
           /*********************************************
           * FOOTER
           *********************************************/
@@ -474,12 +482,14 @@ if ( ! class_exists( 'TC___' ) ) :
     * @since  3.2.9
     */
     function tc_is_customizing() {
-      //checks if is customizing : two contexts, admin and front (preview frame)
-      return in_array( 1, array(
-        $this -> tc_is_customize_left_panel(),
-        $this -> tc_is_customize_preview_frame(),
-        $this -> tc_doing_customizer_ajax()
-      ) );
+      if ( ! isset( $this -> is_customizing ) )
+        //checks if is customizing : two contexts, admin and front (preview frame)
+        $this -> is_customizing = in_array( 1, array(
+          $this -> tc_is_customize_left_panel(),
+          $this -> tc_is_customize_preview_frame(),
+         $this -> tc_doing_customizer_ajax()
+        ) );
+      return $this -> is_customizing;
     }
 
 
