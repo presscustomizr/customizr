@@ -40,7 +40,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
         global $wp_query;  
         self::$_cache['posts_list_headings'] = ( $wp_query -> is_posts_page && ! is_front_page() ) ||
-            is_archive(); 
+            is_archive() || ( is_search() && ! is_singular() ); 
       }
       return self::$_cache['posts_list_headings'];
     }
@@ -52,7 +52,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         ! is_singular()
         && ! is_404()
         && 0 != $wp_query -> post_count
-        && ! tc__f( '__is_home_empty')
+        && ! $this -> tc_is_home_empty()
       );
     }
 
@@ -80,7 +80,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
         && is_singular()
-        && ! tc__f( '__is_home_empty');
+        && ! $this -> tc_is_home_empty();
       return apply_filters( 'tc_show_single_post_content', self::$_cache['post'] );
     }
 
@@ -111,10 +111,10 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
      elseif ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
        self::$_cache['post_metas'] = false;
 
-     elseif ( is_singular() && ! is_page() && ! tc__f('__is_home') )
+     elseif ( is_singular() && ! is_page() && ! TC_utils::$inst -> tc_is_home() )
        self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ); 
      
-     elseif ( ! is_singular() && ! tc__f('__is_home') && ! is_page() )
+     elseif ( ! is_singular() && ! TC_utils::$inst -> tc_is_home() && ! is_page() )
        self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) );
 
      elseif ( TC_utils::$inst -> tc_is_home() ) 
@@ -164,10 +164,72 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
       return self::$_cache['post_navigation_posts'];
     }
- 
+
+
+    function tc_display_view_404() {
+      return is_404();
+    }
+
+    function tc_display_view_headings() {
+      return true;
+    }
+
+    function tc_display_view_comments() {
+      return $this -> tc_are_comments_enabled();    
+    }
+
+    function tc_display_view_comment_list() {
+      return apply_filters( 'tc_display_comment_list', true );
+    }
+
+    function tc_display_view_comment_block_title() {
+      return $this -> tc_display_view_comment_list();
+    }
+
+    function tc_display_view_comment_navigation() {
+      return $this -> tc_display_view_comment_list() && get_option( 'page_comments' );
+    }
+
    /******************************
     VARIOUS HELPERS
     *******************************/
+    /**
+    * 1) if the page / post is password protected OR if is_home OR ! is_singular() => false
+    * 2) if comment_status == 'closed' => false
+    * 3) if user defined comment option in customizer == false => false
+    *
+    * By default, comments are globally disabled in pages and enabled in posts
+    *
+    * @return  boolean
+    *
+    * @package Customizr
+    * @since Customizr 3.3+
+    */
+    public function tc_are_comments_enabled() {
+      if ( ! isset(self::$_cache['comments_enabled'] ) ) {
+      
+        global $post;
+        // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
+        if ( isset( $post ) ) {
+          $_bool = ( post_password_required() || TC_utils::$inst -> tc_is_home() || ! is_singular() )  ? false : true;
+          
+          //2) if user has enabled comment for this specific post / page => true
+          //@todo contx : update default value user's value)
+          $_bool = ( 'closed' != $post -> comment_status ) ? true && $_bool : $_bool;
+
+          //3) check global user options for pages and posts
+          if ( is_page() )
+            $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
+          else
+            $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
+        } else
+          $_bool = false;
+        
+        self::$_cache['comments_enabled'] = $_bool;
+      }
+      return apply_filters( 'tc_are_comments_enabled', self::$_cache['comments_enabled'] );
+    }
+
     /**
     *
     * @return string or bool
@@ -180,7 +242,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         return 'single'; // exclude attachments
       if ( is_home() && 'posts' == get_option('show_on_front') )
         return 'home';
-      if ( !is_404() && !tc__f( '__is_home_empty') )
+      if ( !is_404() && !$this -> tc_is_home_empty() )
         return 'archive';
 
       return false;
@@ -199,14 +261,6 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     */
     function tc_is_post_navigation_enabled(){
       return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
-    }
-
-    function tc_display_view_404() {
-      return is_404();
-    }
-
-    function tc_display_view_headings() {
-      return true;
     }
 
   }//end of class

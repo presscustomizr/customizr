@@ -289,7 +289,14 @@ if ( ! class_exists( 'TC___' ) ) :
           //404
           array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
 
+          /* Comments */
+          /* comment list */
+          array( 'hook' => '__content__', 'template' => 'content/comments', 'element_class' => 'comments-area', 'element_id' => 'comments', 'priority' => '20'),
+            array( 'hook' => '__comments__', 'template' => 'content/comment_block_title', 'priority' => '10'),
+            array( 'hook' => '__comments__', 'template' => 'content/comment_list', 'element_tag' => 'ul', 'element_class' => 'commentlist', 'priority' => '20'),
+            array( 'hook' => '__comments__', 'template' => 'content/comment_navigation', 'priority' => '30'),
 
+          /* end Comments */
           /* Post navigation */
           array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
           array( 'hook' => '__content__', 'template' => 'content/post_navigation_posts', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ), 'priority' => 40 ),
@@ -297,6 +304,9 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => 'post_navigation_singular', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_singular'), 'id' => 'post_navigation_links_singular'),
             //posts links
             array( 'hook' => 'post_navigation_posts', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_posts'), 'id' => 'post_navigation_links_posts' ),
+          /* end post navigation */
+
+
           /*********************************************
           * FOOTER
           *********************************************/

@@ -18,7 +18,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
           'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'reset_margin_top', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button', 'joie'
         ),
         'content' => array(
-          '404', 'attachment', 'comments', 'headings', 'no_results', 'page', 'post', 'post_list', 'post_metas_button', 'post_metas_text', 'right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'posts_list_title', 'singular_article', 'singular_title', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts'
+          '404', 'attachment', 'headings', 'no_results', 'page', 'post', 'post_list', 'post_metas_button', 'post_metas_text', 'right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'posts_list_title', 'singular_article', 'singular_title', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment_block_title', 'comment_navigation'
         ),
         'footer' => array(
           'btt_arrow', 'footer_btt', 'footer_push'
