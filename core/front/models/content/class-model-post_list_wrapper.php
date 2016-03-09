@@ -72,4 +72,16 @@ class TC_post_list_wrapper_model_class extends TC_Model {
     $_layout['thumb']            = ( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $_layout['thumb'];
     return $_layout;
   }
+
+  /**
+  * hook : body_class
+  * @return  array of classes
+  *
+  * @package Customizr
+  * @since Customizr 3.3.2
+  */
+  function tc_body_class( $_class ) {
+    array_push( $_class , 'tc-post-list-context');
+    return $_class;
+  }
 }
