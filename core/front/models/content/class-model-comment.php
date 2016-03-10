@@ -1,9 +1,7 @@
 <?php
 class TC_comment_model_class extends TC_Model {
-  public $args;
   public $comment;
   public $comment_text;
-  public $depth;
   public $comment_wrapper_class;
   public $comment_avatar_class;
   public $comment_content_class;
@@ -56,8 +54,9 @@ class TC_comment_model_class extends TC_Model {
   }
 
   /**
-   * Template for comments
+   * Prepare template for comments
    *
+   * dynamic, props change at each loop cycle
    *
    * Used as a callback by wp_list_comments() for displaying the comments.
    *  Inspired from Twenty Twelve 1.0
@@ -66,26 +65,31 @@ class TC_comment_model_class extends TC_Model {
   */
   function tc_set_comment_properties( $comment, $args, $depth ) {
     global $post;
-
-    if ( ! ( $tc_show_comment_content = 1 == get_option( 'thread_comments' ) && ($depth < $args['max_depth']) && comments_open() ) ){
-      $this -> visibility = false;
-      return;
-    }
-    $this -> comment                 = $comment;
-    $this -> comment_text            = apply_filters( 'comment_text', get_comment_text( $comment->comment_ID , $args ), $comment, $args );
     
-    $this -> comment_reply_link_args = array_merge( $args,
+    if ( in_array( $comment -> type, array('trackback', 'pingback') ) ) {
+      $this -> tc_set_property( 'visibility', false );
+      return $comment;
+    }
+
+    $props = array(
+     'comment'                 => $comment,
+     'comment_text'            => apply_filters( 'comment_text', get_comment_text( $comment->comment_ID , $args ), $comment, $args ),
+     'comment_reply_link_args' => array_merge( $args,
         array(
           'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>',
-          'depth' => $depth,
-          'max_depth' => $args['max_depth'] ,
-          'add_below' => apply_filters( 'tc_comment_reply_below' , 'comment' )
+          'depth'      => $depth,
+          'max_depth'  => $args['max_depth'] ,
+          'add_below'  => apply_filters( 'tc_comment_reply_below' , 'comment' )
         )
+      ),
+     'is_current_post_author'   => ( $comment->user_id === $post->post_author ),
+     'has_edit_button'          => ! TC___::$instance -> tc_is_customizing(),
+     'is_awaiting_moderation'   => '0' == $comment->comment_approved,
     );
 
-    $this -> is_current_post_author     = ( $comment->user_id === $post->post_author );
-    $this -> has_edit_button            = ! TC___::$instance -> tc_is_customizing();
-
-    $this -> is_awaiting_moderation     = '0' == $comment->comment_approved;
+    foreach ( $props as $property => $value ) 
+      $this -> tc_set_property( $property, $value );
+ 
+    return $comment;
   }
 }

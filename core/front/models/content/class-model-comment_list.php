@@ -33,7 +33,8 @@ class TC_comment_list_model_class extends TC_Model {
     //get user defined max comment depth
     $max_comments_depth = get_option('thread_comments_depth');
     $args['max_depth']  = isset( $max_comments_depth ) ? $max_comments_depth : 5;
+    
     apply_filters_ref_array( 'tc_comment_callback_params', array( $comment, $args, $depth ) );
-    do_action( '__comment_loop__' );
+    do_action( '__comment_loop__' );//hook for comment and traceback,ping model/template
   }
 }
