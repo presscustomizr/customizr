@@ -247,7 +247,7 @@ if ( ! class_exists( 'TC___' ) ) :
           //404
           array( 'hook' => '__content__', 'id' => '404', 'template' => 'content/content_404', 'model_class' => 'content/404', 'element_tag' => false ),
           //no results
-            
+          array( 'hook' => '__content__', 'id' => 'no_results', 'template' => 'content/content_no_results', 'model_class' => 'content/404', 'element_tag' => false ),
 
           //Headings: before the loop (for list of posts, like blog, category, archives ...)
           array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'), 'id' => 'posts_list_headings' ),
