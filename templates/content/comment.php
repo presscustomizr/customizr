@@ -7,8 +7,6 @@ $args = $comment_model -> args;
     $max_comments_depth = get_option('thread_comments_depth');
     $max_comments_depth = isset( $max_comments_depth ) ? $max_comments_depth : 5;
 
-    ob_start();
-
     switch ( $comment->comment_type ) :
       case 'pingback' :
       case 'trackback' :
@@ -84,7 +82,4 @@ $args = $comment_model -> args;
       break;
     endswitch; // end comment_type check
 
-    $html = ob_get_contents();
-    if ($html) ob_end_clean();
-    echo apply_filters( 'tc_comment_callback' , $html, $comment, $args, $depth, $max_comments_depth );
 
