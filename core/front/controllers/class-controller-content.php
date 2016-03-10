@@ -40,7 +40,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
         global $wp_query;  
         self::$_cache['posts_list_headings'] = ( $wp_query -> is_posts_page && ! is_front_page() ) ||
-            is_archive() || ( is_search() && ! is_singular() ); 
+            is_archive() || ( is_search() && $wp_query -> post_count > 0 && ! is_singular() ); 
       }
       return self::$_cache['posts_list_headings'];
     }
@@ -137,6 +137,8 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_navigation_singular() {
       if ( TC___::$instance -> tc_is_customizing() )
         return true;
+      if ( ! $this -> tc_display_post_navigation() )   
+        return false;
       if ( isset( self::$_cache['post_navigation_singular'] ) )
         return self::$_cache['post_navigation_singular'];
 
@@ -153,6 +155,8 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_navigation_posts() {
       if ( TC___::$instance -> tc_is_customizing() )
         return true;
+      if ( ! $this -> tc_display_post_navigation() )   
+        return false;
       if ( isset( self::$_cache['post_navigation_posts'] ) )
         return self::$_cache['post_navigation_posts'];
 
@@ -165,9 +169,18 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return self::$_cache['post_navigation_posts'];
     }
 
+    function tc_display_post_navigation() {
+      global $wp_query;
+      return $wp_query -> post_count > 1;
+    }
 
     function tc_display_view_404() {
       return is_404();
+    }
+
+    function tc_display_view_no_results() {
+      global $wp_query;  
+      return is_search() && $wp_query -> post_count < 1;
     }
 
     function tc_display_view_headings() {
