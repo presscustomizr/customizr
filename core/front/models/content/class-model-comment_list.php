@@ -30,11 +30,7 @@ class TC_comment_list_model_class extends TC_Model {
    * @since Customizr 1.0
   */
   function tc_comment_callback( $comment, $args, $depth ) { 
-    $comment_list_instance = CZR() -> collection -> tc_get_model_instance( 'comment' );
-    if ( $comment_list_instance ) {
-      $comment_list_instance -> tc_comment_callback_( $comment, $args, $depth );
-      do_action( '__comment_loop__' );
-    }
-    return false;
+    apply_filters_ref_array( 'tc_comment_callback_params', array( $comment, $args, $depth ) );
+    do_action( '__comment_loop__' );
   }
 }
