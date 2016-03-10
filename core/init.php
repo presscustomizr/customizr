@@ -253,7 +253,8 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'), 'id' => 'posts_list_headings' ),
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_title', 'priority' => 10 ),
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_description', 'priority' => 20 ),
-          //TODO: search results and 404 will be treated differently
+          array( 'hook' => '__headings_posts_list__', 'id' => 'author_description', 'template' => 'content/author_info', 'element_tag' => false ,'priority' => 20 ),
+          //TODO: search results
 
           /* GENERIC LOOP */
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'element_tag' => false, 'priority' => 20 ),
@@ -282,6 +283,9 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'post', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/post_content' ) ),
             //post headings
             array( 'hook' => 'before_render_view_inner_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+            //post footer (wrapper of the author_info)
+            array( 'hook' => 'after_render_view_post', 'id' => 'post_footer', 'template' => 'content/author_info', 'element_tag' => 'footer', 'element_class' => 'entry-meta'),
+
           //post and page titles in singular context
             array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
 
