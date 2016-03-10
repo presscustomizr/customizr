@@ -295,7 +295,7 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => '__comments__', 'template' => 'content/comment_block_title', 'priority' => '10', 'element_tag' => false),
             array( 'hook' => '__comments__', 'template' => 'content/comment_list', 'element_tag' => 'ul', 'element_class' => 'commentlist', 'priority' => '20'),
               array( 'hook' => '__comment_loop__', 'template' => 'content/comment',  'id' => 'comment', 'element_tag' => false ),
-              //TODO TRACKBACK!!
+              array( 'hook' => '__comment_loop__', 'template' => 'content/tracepingback',  'id' => 'traceback', 'element_tag' => false ),
             array( 'hook' => '__comments__', 'template' => 'content/comment_navigation', 'priority' => '30'),
 
           /* end Comments */

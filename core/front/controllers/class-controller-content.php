@@ -182,6 +182,14 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return apply_filters( 'tc_display_comment_list', true );
     }
 
+    function tc_display_view_comment() {
+      return $this -> tc_are_comments_enabled();
+    }
+
+    function tc_display_view_tracepingback() {
+      return $this -> tc_are_comments_enabled();
+    }
+
     function tc_display_view_comment_block_title() {
       return $this -> tc_display_view_comment_list();
     }
