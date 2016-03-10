@@ -292,8 +292,9 @@ if ( ! class_exists( 'TC___' ) ) :
           /* Comments */
           /* comment list */
           array( 'hook' => '__content__', 'template' => 'content/comments', 'element_class' => 'comments-area', 'element_id' => 'comments', 'priority' => '20'),
-            array( 'hook' => '__comments__', 'template' => 'content/comment_block_title', 'priority' => '10'),
+            array( 'hook' => '__comments__', 'template' => 'content/comment_block_title', 'priority' => '10', 'element_tag' => false),
             array( 'hook' => '__comments__', 'template' => 'content/comment_list', 'element_tag' => 'ul', 'element_class' => 'commentlist', 'priority' => '20'),
+              array( 'hook' => '__comment_loop__', 'template' => 'content/comment',  'id' => 'comment', 'element_tag' => false ),
             array( 'hook' => '__comments__', 'template' => 'content/comment_navigation', 'priority' => '30'),
 
           /* end Comments */
