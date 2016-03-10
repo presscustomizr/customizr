@@ -243,6 +243,12 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__widget_area_right__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
             array( 'hook' => '__widget_area_right__', 'id' => 'right', 'template' => 'modules/widget_area' ),
 
+          /* OUTSIDE THE LOOP */
+          //404
+          array( 'hook' => '__content__', 'id' => '404', 'template' => 'content/content_404', 'model_class' => 'content/404', 'element_tag' => false ),
+          //no results
+            
+
           //Headings: before the loop (for list of posts, like blog, category, archives ...)
           array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'), 'id' => 'posts_list_headings' ),
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_title', 'priority' => 10 ),
@@ -269,7 +275,7 @@ if ( ! class_exists( 'TC___' ) ) :
           //page & post
           array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'element_tag' => false, 'element_class' => 'row-fluid', 'id' => 'singular_article' ),
           //page content
-          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page', 'element_tag' => 'div' ),
+          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page' ),
             //page headings
             array( 'hook' => 'before_render_view_inner_page', 'id' => 'page_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
           //post content
@@ -286,8 +292,6 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__headings_content__', 'template' => 'content/post_metas_text', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
           /* TODO: LINKS IN POST METAS FOR POSTS WITH NO TITLE ...*/
 
-          //404
-          array( 'hook' => 'in_main_loop', 'id' => '404', 'template' => 'content/_404', 'priority' => 20, 'model_class' => 'content/404' ),
 
           /* Comments */
           /* comment list */
