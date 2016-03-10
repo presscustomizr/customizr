@@ -60,7 +60,11 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return $this -> tc_display_view_posts_list_headings();   
     }
     function tc_display_view_posts_list_description() {
-      return $this -> tc_display_view_posts_list_headings();   
+      return $this -> tc_display_view_posts_list_headings() && ! is_author();
+    }
+    function tc_display_view_author_description() {
+      return ( $this -> tc_display_view_posts_list_headings() && is_author() ) &&
+             apply_filters ( 'tc_show_author_meta', get_the_author_meta('description') );
     }
 
     function tc_display_view_page() {
@@ -82,6 +86,17 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         && is_singular()
         && ! $this -> tc_is_home_empty();
       return apply_filters( 'tc_show_single_post_content', self::$_cache['post'] );
+    }
+
+    function tc_display_view_post_footer() {
+      if ( ! $this -> tc_display_view_post() || ! apply_filters( 'tc_show_single_post_footer', true ) )
+        return;
+      
+      //@todo check if some conditions below not redundant?
+      if ( ! apply_filters( 'tc_show_author_metas_in_post', esc_attr( TC_utils::$inst->tc_opt( 'tc_show_author_info' ) ) ) )
+        return;
+
+      return true;
     }
 
 
@@ -171,7 +186,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
     function tc_display_post_navigation() {
       global $wp_query;
-      return $wp_query -> post_count > 1;
+      return $wp_query -> post_count > 0;
     }
 
     function tc_display_view_404() {
