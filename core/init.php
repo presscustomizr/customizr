@@ -272,7 +272,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            array( 'hook' => '__headings_content__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
+            array( 'hook' => '__headings_content__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => 'h2' ),
           /*** ALTERNATE POST LIST END ***/
 
           //page & post
@@ -289,7 +289,7 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => 'after_render_view_post', 'id' => 'post_footer', 'template' => 'content/author_info', 'element_tag' => 'footer', 'element_class' => 'entry-meta'),
 
           //post and page titles in singular context
-            array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2', 'element_class' => 'entry-title' ),
+            array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2' ),
 
           //Post metas in the headings
           //the default class/template is for the buttons type

@@ -14,7 +14,7 @@ class TC_posts_list_title_model_class extends TC_Model {
     if ( ! $this -> context )
       return;
 
-    $model['element_class']     = apply_filters( 'tc_archive_icon', $this -> tc_get_class() );
+    $model['element_class']     = apply_filters( 'tc_archive_icon', $this -> tc_get_archive_title_class() );
     $model['pre_title']         = apply_filters( "tc_{$this -> context}_archive_title" , $this -> tc_get_posts_list_pre_title() );
     $model['title']             = apply_filters( "tc_{$this -> context}_title", $this -> tc_get_posts_list_title_content() );
     /*we are getting rid of
@@ -47,7 +47,7 @@ class TC_posts_list_title_model_class extends TC_Model {
     return false;  
   }
 
-  function tc_get_class() {
+  function tc_get_archive_title_class() {
       return ( esc_attr( TC_utils::$inst->tc_opt( 'tc_show_archive_title_icon' ) ) 
           && esc_attr( TC_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
   }
