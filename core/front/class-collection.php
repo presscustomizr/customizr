@@ -114,7 +114,8 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         //can be used with did_action() afterwards
         do_action( "model_registered_{$model -> id}" );
       } else {
-        do_action('tc_dev_notice', "A model instance ( " . $model -> id . ") was not registered. into the collection." );
+        $model = ! empty($model -> id) ? $model -> id : json_encode( $model );
+        do_action('tc_dev_notice', "A model instance ( " . $model . ") was not registered. into the collection." );
         return;
       }
     }
