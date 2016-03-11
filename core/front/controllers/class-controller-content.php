@@ -105,9 +105,16 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return true;
     }
 
+    function tc_display_view_attachment() {
+      if ( ! isset( self::$_cache['attachment'] ) ) {
+        global $post;
+        self::$_cache['attachment'] = ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() );
+      }
+      return self::$_cache['attachment'];
+    }
 
     function tc_display_view_singular_article() {
-      return $this -> tc_display_view_post() || $this -> tc_display_view_page();  
+      return $this -> tc_display_view_post() || $this -> tc_display_view_page() || $this -> tc_display_view_attachment() ;  
     }
 
     function tc_display_view_post_list_title() {

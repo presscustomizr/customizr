@@ -287,9 +287,11 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => 'before_render_view_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
             //post footer (wrapper of the author_info)
             array( 'hook' => 'after_render_view_post', 'id' => 'post_footer', 'template' => 'content/author_info', 'element_tag' => 'footer', 'element_class' => 'entry-meta'),
+          //attachment
+          array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/attachment_content' ) ),
 
           //post and page titles in singular context
-            array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h2' ),
+            array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h1' ),
 
           //Post metas in the headings
           //the default class/template is for the buttons type
