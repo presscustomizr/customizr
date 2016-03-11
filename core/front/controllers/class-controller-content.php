@@ -35,7 +35,10 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         return false;
       return true;
     }
- 
+
+    function tc_display_view_singular_headings() {
+      return is_singular() && ( is_page() || is_attachment() );    
+    }
     function tc_display_view_posts_list_headings() {
       if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
         global $wp_query;  
