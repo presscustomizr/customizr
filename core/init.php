@@ -280,7 +280,7 @@ if ( ! class_exists( 'TC___' ) ) :
           //page content
           array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page' ),
             //page headings
-            array( 'hook' => 'before_render_view_page', 'id' => 'page_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+            array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
           //post content
           array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'post', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/post_content' ) ),
             //post headings
