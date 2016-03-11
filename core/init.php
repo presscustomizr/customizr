@@ -252,9 +252,11 @@ if ( ! class_exists( 'TC___' ) ) :
           //Headings: before the loop (for list of posts, like blog, category, archives ...)
           array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'), 'id' => 'posts_list_headings' ),
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_title', 'priority' => 10 ),
+          //search results title
+          array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_search_title', 'priority' => 10, 'model_class' => array( 'parent' => 'content/posts_list_title', 'name' => 'content/posts_list_search_title' ) ),
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_description', 'priority' => 20 ),
+          //author description
           array( 'hook' => '__headings_posts_list__', 'id' => 'author_description', 'template' => 'content/author_info', 'element_tag' => false ,'priority' => 20 ),
-          //TODO: search results
 
           /* GENERIC LOOP */
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'element_tag' => false, 'priority' => 20 ),
