@@ -29,7 +29,7 @@ class TC_post_page_title_model_class extends TC_Model {
     return ! ( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', self::$post_formats_with_no_heading ) ) );
   }
 
-  function tc_get_the_post_page_context() { echo is_page(); echo is_singular();
+  function tc_get_the_post_page_context() {
     if ( ! is_singular() )  
       return 'post_list';
     if ( is_page() )

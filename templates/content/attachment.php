@@ -1,0 +1,9 @@
+<div class="entry-attachment">
+  <div class="attachment">
+    <a href="<?php echo $attachment_model -> link_url ?>" class="<?php echo $attachment_model -> attachment_class ?>" title="<?php the_title_attribute(); ?>" rel="<?php echo $attachment_model -> link_rel ?>"><?php echo wp_get_attachment_image( get_the_ID(), $attachment_model -> attachment_size ) ?></a>
+    <div class="entry-caption">
+      <?php the_excerpt(); ?>
+    </div>
+    <?php if ( $attachment_model -> has_gallery ) echo $attachment_model -> gallery ?>
+  </div>
+</div>
