@@ -1,5 +1,5 @@
-<header class="entry-header">
-  <h1 class="entry-title "><?php _e('No Search Results for :', 'customizr') ?> <span><?php echo get_search_query() ?></span></h1>
+<header class="search-header">
+  <h1 class="<?php echo $content_no_results_model -> title_class ?>"><?php _e('No Search Results for :', 'customizr') ?> <span><?php echo get_search_query() ?></span></h1>
   <hr class="featurette-divider after-page-title">
 </header>
 <article <?php echo $content_no_results_model -> article_selectors ?> >
