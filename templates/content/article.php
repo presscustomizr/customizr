@@ -1,3 +1,3 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class( $article_model -> element_class ); ?>>
+<article <?php echo $article_model -> article_selectors ?> >
   <?php do_action( "__article__" ) ?>
 </article>

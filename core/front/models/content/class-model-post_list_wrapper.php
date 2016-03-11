@@ -1,5 +1,5 @@
 <?php
-class TC_post_list_wrapper_model_class extends TC_Model {
+class TC_post_list_wrapper_model_class extends TC_article_model_class {
   public $place_1 ;
   public $place_2 ;
 

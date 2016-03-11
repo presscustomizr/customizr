@@ -627,7 +627,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @package Customizr
       * @since 3.1.0
       */
-      function tc_article_selectors() {
+      function tc_article_selectors( $echo = true ) {
 
         //gets global vars
         global $post;
@@ -658,9 +658,12 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         // 404
  //       $selectors                  = is_404() ? apply_filters( 'tc_404_selectors' , 'id="post-0" class="post error404 no-results not-found row-fluid"' ) : $selectors;
+        $selectors = apply_filters( 'tc_article_selectors', $selectors );
 
-        echo apply_filters( 'tc_article_selectors', $selectors );
-
+        if ( $echo )
+          echo $selectors;
+        else
+          return $selectors;    
       }//end of function
 
 

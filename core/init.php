@@ -262,7 +262,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'element_tag' => false, 'priority' => 20 ),
 
           /*** ALTERNATE POST LIST ***/
-          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'element_class' => 'row-fluid' ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
           
           //content
           //post content/excerpt
@@ -280,11 +280,11 @@ if ( ! class_exists( 'TC___' ) ) :
           //page content
           array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page' ),
             //page headings
-            array( 'hook' => 'before_render_view_inner_page', 'id' => 'page_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+            array( 'hook' => 'before_render_view_page', 'id' => 'page_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
           //post content
           array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'post', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/post_content' ) ),
             //post headings
-            array( 'hook' => 'before_render_view_inner_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+            array( 'hook' => 'before_render_view_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
             //post footer (wrapper of the author_info)
             array( 'hook' => 'after_render_view_post', 'id' => 'post_footer', 'template' => 'content/author_info', 'element_tag' => 'footer', 'element_class' => 'entry-meta'),
 
@@ -293,9 +293,9 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //Post metas in the headings
           //the default class/template is for the buttons type
-          array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
-          //the text one uses a different template
-          array( 'hook' => '__headings_content__', 'template' => 'content/post_metas_text', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
+            array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
+          //the text meta one uses a different template
+            array( 'hook' => '__headings_content__', 'template' => 'content/post_metas_text', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
           /* TODO: LINKS IN POST METAS FOR POSTS WITH NO TITLE ...*/
 
 
