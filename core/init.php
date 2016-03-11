@@ -289,7 +289,7 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => 'after_render_view_post', 'id' => 'post_footer', 'template' => 'content/author_info', 'element_tag' => 'footer', 'element_class' => 'entry-meta'),
           //attachment
           array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/attachment_content' ) ),
-
+            //TODO attachment metas!
           //post and page titles in singular context
             array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h1' ),
 
