@@ -34,7 +34,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     $this -> place_1      = 'content';
     $this -> place_2      = 'thumb';
 
-    if ( has_post_thumbnail() ) {
+    if ( $this -> tc_show_thumb() ) {
        // conditions to show the thumb first are:
        // a) alternate on
       //   a.1) position is left/top ( show_thumb_first true == 1 ) and current post number is odd (1,3,..)
@@ -83,5 +83,40 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
   function tc_body_class( $_class ) {
     array_push( $_class , 'tc-post-list-context');
     return $_class;
+  }
+
+  /* HELPERS */
+    /**
+  * @return boolean
+  * @package Customizr
+  * @since Customizr 3.3.2
+  */
+  private function tc_show_thumb() {
+    //when do we display the thumbnail ?
+    //1) there must be a thumbnail
+    //2) the excerpt option is not set to full
+    //3) user settings in customizer
+    //4) filter's conditions
+    return apply_filters( 'tc_show_thumb', array_product(
+        array(
+          $this -> tc_show_excerpt(),
+
+          has_post_thumbnail(),//TC_post_thumbnails::$instance -> tc_has_thumb(), 
+          0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) )
+        )
+      )
+    );
+  }
+
+  /**
+  * @return boolean whether excerpt instead of full content
+  * @package Customizr
+  * @since Customizr 3.3.2
+  */
+  private function tc_show_excerpt() {
+    //When do we show the post excerpt?
+    //1) when set in options
+    //2) + other filters conditions
+    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) );
   }
 }
