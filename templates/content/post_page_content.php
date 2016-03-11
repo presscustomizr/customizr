@@ -6,5 +6,5 @@ wp_link_pages( array(
     'link_before'   => '<button class="btn btn-small">',
     'link_after'    => '</button>',
     'separator'     => '',
-)
-        );
+    )
+);
