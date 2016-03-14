@@ -5086,7 +5086,7 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
   display: none;
 }
 /* do not display menu button when sticky enabled and tc-menu-off enabled */
-.sticky-enabled .tc-menu-off .btn-toggle-nav,
+.sticky-enabled .tc-header.tc-menu-off .btn-toggle-nav,
 .sticky-enabled .tc-menu-off .nav-collapse {
   display: none;
 }
