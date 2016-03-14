@@ -7228,7 +7228,7 @@ img.aligncenter {
   margin-bottom: 0.857142857rem;
 }
 /* OTHER CUSTOMIZED WP CSS */
-#calendar_wrap table {
+.calendar_wrap table {
   width: 100%;
   border-color: #e1e1e1;
   padding: 0;
@@ -7239,10 +7239,10 @@ img.aligncenter {
   border-collapse: collapse;
   border-spacing: 0;
 }
-#footer #calendar_wrap table {
+#footer .calendar_wrap table {
   color: #5a5a5a;
 }
-#footer #calendar_wrap table caption {
+#footer .calendar_wrap table caption {
   color: #EEE;
 }
 table caption {

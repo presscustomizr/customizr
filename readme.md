@@ -43,6 +43,14 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.20 March 14th 2016 =
+* Update: translations ru_RU and id_ID
+* Fix: calendar widget style in footer with multiple widget instances
+* Fix: disable smoothscroll touchpad support by default
+* Imp: move the woocommerce header options, option do display the shopping cart on scroll
+* Imp: wp 4.5 compatibility better rendering of the rating block in the customizer
+* Fix: do not display menu-button when mobile+scrolling+sticky+not_allowed fixes #571
+
 = 3.4.19 February 16th 2016 =
 * Add : 3 new social icons: VKontakte, Yelp, Xing
 * Imp: woocommerce icon cart now rendered with font-awesome
