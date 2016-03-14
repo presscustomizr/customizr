@@ -17,7 +17,7 @@ class TC_utils_thumbnails {
     function __construct () {
       self::$instance =& $this;
       //may be filter the thumbnail inline style
-      //add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'tc_change_thumb_inline_css' ), 10, 3 );
+      add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'tc_change_thumb_inline_css' ), 10, 3 );
     }
 
 
