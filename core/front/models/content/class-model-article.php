@@ -5,13 +5,17 @@ class TC_article_model_class extends TC_Model {
   /*
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
   */
-  function tc_extend_params( $model = array() ) { 
-    $model[ 'article_selectors' ]         = $this -> tc_get_article_selectors();
+  function __construct( $model = array() ) {
+    //Fires the parent constructor
+    parent::__construct( $model );
 
-    return $model;
+    //inside the loop but before rendering set some properties
+    add_action( $model['hook']          , array( $this, 'tc_set_article_selectors_property' ), 0 );
+  }
+
+  function tc_set_article_selectors_property() {
+    $this -> tc_set_property( 'article_selectors', $this -> tc_get_article_selectors() );
   }
 
   /**
@@ -21,7 +25,6 @@ class TC_article_model_class extends TC_Model {
   * @since 3.1.0
   */
   function tc_get_article_selectors( $echo = false ) {
-
     //gets global vars
     global $post;
     global $wp_query;
