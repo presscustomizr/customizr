@@ -5,8 +5,8 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
 
   //Default post list layout
   private static $default_post_list_layout   = array(
-            'content'           => 'span9',
-            'thumb'             => 'span3',
+            'content'           => 'span8',
+            'thumb'             => 'span4',
             'show_thumb_first'  => false,
             'alternate'         => true
           );
