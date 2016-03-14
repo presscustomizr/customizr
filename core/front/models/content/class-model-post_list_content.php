@@ -4,7 +4,6 @@ class TC_post_list_content_model_class extends TC_Model {
   public  $content_cb;
   private $content;
   public  $content_class;
-  public  $content_tag = 'section';
 
   function __construct( $model = array() ) {
     //Fires the parent constructor
