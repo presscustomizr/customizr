@@ -1,7 +1,8 @@
 <?php
 class TC_main_container_model_class extends TC_Model {
-  public $class = 'container';
-  public $column_content_class;
+  public $element_class         = 'container';
+  public $element_attributes    = 'role="main"';
+  public $column_content_class  = array('row', 'column-content-wrapper');
 
   /*
   * @override
@@ -10,18 +11,17 @@ class TC_main_container_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'column_content_class' ]      = apply_filters( 'tc_column_content_wrapper_classes' , array('row', 'column-content-wrapper') );
+    $model[ 'column_content_class' ]      = apply_filters( 'tc_column_content_wrapper_classes' , $this -> column_content_class );
     return $model;
   }
 
 
   /**
+  * @override
   * parse this model properties for rendering
-  */ 
+  */
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> class ) )
-      $model -> class = join( ' ', array_unique( $model -> class ) );
-    if ( is_array( $model -> column_content_class ) )
-      $model -> column_content_class = join( ' ', array_unique( $model -> column_content_class ) );
+    parent::pre_rendering_my_view_cb( $model );
+    $model -> column_content_class = $this -> tc_stringify_model_property( 'column_content_class' );
   }
 }

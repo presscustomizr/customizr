@@ -7,17 +7,17 @@ class TC_second_menu_model_class extends TC_menu_model_class {
   */
   function pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model ) {
     //Navbar regular menu position
-    if ( ! is_array( $navbar_wrapper_model -> class ) )
-      $navbar_wrapper_model -> class = explode( ' ', $navbar_wrapper_model -> class );
+    if ( ! is_array( $navbar_wrapper_model -> element_class ) )
+      $navbar_wrapper_model -> element_class = explode( ' ', $navbar_wrapper_model -> element_class );
 
-    array_push( $navbar_wrapper_model -> class, esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
+    array_push( $navbar_wrapper_model -> element_class, esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
 
     //this is the same with for the main regular menu
     if ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) )
-      array_push( $navbar_wrapper_model -> class, 'tc-submenu-fade' );
+      array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-fade' );
     if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) ) 
-      array_push( $navbar_wrapper_model -> class, 'tc-submenu-move' );
-    array_push( $navbar_wrapper_model -> class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' ); 
+      array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-move' );
+    array_push( $navbar_wrapper_model -> element_class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' ); 
 
   }
 
@@ -30,11 +30,11 @@ class TC_second_menu_model_class extends TC_menu_model_class {
   function pre_rendering_view_header_cb( $header_model ) {
     parent::pre_rendering_view_header_cb( $header_model );
     
-    if ( ! is_array( $header_model -> class ) )
-      $header_model -> class = explode( ' ', $header_model -> class );
+    if ( ! is_array( $header_model -> element_class ) )
+      $header_model -> class = explode( ' ', $header_model -> element_class );
 
     //header class for the secondary menu
-    array_push( $header_model -> class,
+    array_push( $header_model -> element_class,
           'tc-second-menu-on',
           'tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
     );

@@ -31,11 +31,12 @@ class TC_tagline_model_class extends TC_Model {
   }
 
   /**
+  * @override
   * parse this model properties for rendering
   */
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> class ) )
-      $model -> class = join( ' ', array_unique( $model -> class ) );
+    parent::pre_rendering_my_view_cb( $model );
+    $model -> class = $this -> tc_stringify_model_property( 'class' );
   }
 
   /**
@@ -51,9 +52,9 @@ class TC_tagline_model_class extends TC_Model {
 
     if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) ) {
       $_class =        0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_tagline') ) ? 'tc-tagline-on' : 'tc-tagline-off';
-      if ( ! is_array( $header_model -> class ) )
-        $header_model -> class = explode( ' ', $header_model -> class );
-      array_push( $header_model -> class, $_class );
+      if ( ! is_array( $header_model -> element_class ) )
+        $header_model -> element_class = explode( ' ', $header_model -> element_class );
+      array_push( $header_model -> element_class, $_class );
     }
   }
 }

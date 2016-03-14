@@ -32,7 +32,6 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $footer_widgets;
       public $widgets;
       public $post_list_layout;
-      public $post_formats_with_no_heading;
       public $content_404;
       public $content_no_results;
       public $default_slides;
@@ -306,16 +305,6 @@ if ( ! class_exists( 'TC_init' ) ) :
             )
           );//end of array
 
-          //Default post list layout
-          $this -> post_list_layout   = array(
-            'content'           => 'span8',
-            'thumb'             => 'span4',
-            'show_thumb_first'  => false,
-            'alternate'         => true
-          );
-
-          //Defines post formats with no headers
-          $this -> post_formats_with_no_heading   = array( 'aside' , 'status' , 'link' , 'quote' );
 
           //Default 404 content
           $this -> content_404        = array(

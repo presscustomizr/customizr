@@ -1,6 +1,5 @@
 <?php
 class TC_footer_credits_model_class extends TC_Model {
-  public $class;
   public $copyright_text;
   public $copyright_link_href;
   public $copyright_link_text_title;
@@ -15,7 +14,7 @@ class TC_footer_credits_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'class' ]                     = array( 'span6', 'credits' );
+    $model[ 'element_class' ]             = array( 'credits' );
     $model[ 'copyright_text' ]            = esc_attr( date( 'Y' ) );
     $model[ 'copyright_link_href' ]       = esc_url( home_url() );
     $model[ 'copyright_link_text_title' ] = esc_attr( get_bloginfo() );
@@ -23,12 +22,5 @@ class TC_footer_credits_model_class extends TC_Model {
     $model[ 'wp_powered_link_title' ]     = __('Powered by Wordpress', 'customizr');
 
     return $model;
-  }
-
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    $model -> class = join( ' ', $model -> class );    
   }
 }//end of class

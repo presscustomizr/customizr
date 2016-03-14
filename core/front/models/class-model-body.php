@@ -17,8 +17,6 @@ class TC_body_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    add_filter( 'body_class', array( $this, 'tc_add_body_classes' ) );
-
     //set this model's properties
     $model[ 'attributes' ] = apply_filters('tc_body_attributes' , 'itemscope itemtype="http://schema.org/WebPage"');
     return $model;
@@ -30,7 +28,7 @@ class TC_body_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_add_body_classes($_classes) {
+  function tc_body_class($_classes) {
     //SKIN CLASS
     $_skin = sprintf( 'skin-%s' , basename( TC_init::$instance -> tc_get_style_src() ) );
     array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );

@@ -1,7 +1,5 @@
 <?php
 class TC_header_model_class extends TC_Model {
-  public $class;
-
 
   /**
   * @override
@@ -10,21 +8,12 @@ class TC_header_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'class' ] = apply_filters('tc_header_classes', array(
+    $model[ 'element_class' ] = apply_filters('tc_header_classes', array(
         'tc-header' ,'clearfix', 'row-fluid',
         'logo-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) )
     ));
     return $model;
   }
-
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> class ) )  
-      $model -> class = join( ' ', array_unique( $model -> class ) );    
-  }
-
 
 
   /**

@@ -1,6 +1,5 @@
 <?php
 class TC_navbar_wrapper_model_class extends TC_Model {
-  public $class;
 
   /**
   * @override
@@ -10,21 +9,14 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
 
-    $model[ 'class' ] = apply_filters( 'tc_navbar_wrapper_class', array('navbar-wrapper', 'clearfix', 'span9') );
+    $model[ 'element_class' ] = apply_filters( 'tc_navbar_wrapper_class', array('navbar-wrapper', 'clearfix', 'span9') );
     
     return $model;
   }
 
-  /**
-  * parse this model properties for rendering
-  */
-  function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> class ) )
-      $model -> class = join( ' ', array_unique( $model -> class ) );
-  }
 
 
-   /*
+  /*
   * Callback of body_class hook
   *
   * @package Customizr
