@@ -1,28 +1,28 @@
 module.exports = {
-	//in development mode, only the default skin (grey : #5A5A5A ) is compiled when less files are updated
-	dev_common : {
-		files: [
-			{src: '<%= paths.less %>tc_common_gen.less', dest: '<%= paths.front_css %>tc_common.css'}
-		]
-	},
-  dev_skin : {
+  //in development mode, only the default skin (blue3 : #27CDA5 ) is compiled when less files are updated
+  dev_common : {
     files: [
-      {src: '<%= paths.less %>tc_skin_gen.less', dest: '<%= paths.front_css %>grey.css'}
+      {src: '<%= paths.less %>tc_common_gen.less', dest: '<%= paths.front_css %>tc_common.css'}
     ]
   },
-	//in production, skins are generated with modified less vars
-	//http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically
-	skin_generator: {
-		options: {
-			modifyVars: {
-				lnkCol : '<%= skin_color %>',
-				is_rtl: false,
+  dev_skin : {
+    files: [
+      {src: '<%= paths.less %>tc_skin_gen.less', dest: '<%= paths.front_css %>blue3.css'}
+    ]
+  },
+  //in production, skins are generated with modified less vars
+  //http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically
+  skin_generator: {
+    options: {
+      modifyVars: {
+        lnkCol : '<%= skin_color %>',
+        is_rtl: false,
         floatDirection : 'left',
         textAlign: 'left'
-			}
-		},
-		files: {"<%= paths.front_css %><%= skin_name %>.css": "<%= paths.less %>tc_skin_gen.less"}
-	},
+      }
+    },
+    files: {"<%= paths.front_css %><%= skin_name %>.css": "<%= paths.less %>tc_skin_gen.less"}
+  },
   prod_common : {
     options: {
       modifyVars: {

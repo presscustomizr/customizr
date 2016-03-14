@@ -17,39 +17,38 @@ module.exports = function(grunt) {
         front_js : 'inc/assets/js/',
         admin_css : 'inc/admin/css/',
         admin_js : 'inc/admin/js/',
-        dev_php : 'inc/_dev/',
-        inc_php : 'inc/',
         lang : 'inc/lang/'
       },
       //default less modifiers
       is_rtl: 'true',
       //check if a custom color is requested
-      skin_name : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? [ 'custom-skin-' , grunt.option.flags()[0].replace(/-|#/g, '') ].join('') : "grey",
-      skin_color : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? grunt.option.flags()[0].replace(/-/g, '') : "grey",
+      skin_name : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? [ 'custom-skin-' , grunt.option.flags()[0].replace(/-|#/g, '') ].join('') : "blue3",
+      skin_color : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? grunt.option.flags()[0].replace(/-/g, '') : "blue3",
       //https://www.npmjs.org/package/grunt-ssh
       //Check if the context var is set and == travis => avoid travis error with ftpauth no found
       credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
       customizr_tasks : {
         //DEV : clean the build and watch changes (see watch task)
-        'customizr_dev': ['clean' ,'watch'],
-        'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
+        'customizr_dev': ['watch']
 
-        //PROD
-        'prod_php' : ['concat:init_php', 'concat:front_php', 'concat:admin_php'],
-        'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'cssmin:prod_common_rtl'],
-        'prod_front_js': ['jshint', 'concat:front_main_parts_js', 'concat:front_js',  'uglify:part_front_js' , 'uglify:main_front_js'],
-        'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js'],
-        //https://www.npmjs.org/package/grunt-gitinfo
-        //Get Git info from a working copy and populate grunt.config with the data
-        'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
-        //final build meta task
-        'customizr_build' : ['prod_php', 'prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
+        //'customizr_dev': ['clean' ,'watch'],
+    //     'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
-        //TRAVIS ci virtual machine build check on js @todo check other resources?
-        'travis' : ['jshint'],
+        // //PROD
+        // 'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'cssmin:prod_common_rtl'],
+        // 'prod_front_js': ['jshint', 'concat:front_main_parts_js', 'concat:front_js',  'uglify:part_front_js' , 'uglify:main_front_js'],
+        // 'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js'],
+        // //https://www.npmjs.org/package/grunt-gitinfo
+        // //Get Git info from a working copy and populate grunt.config with the data
+        // 'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
+        // //final build meta task
+        // 'customizr_build' : ['prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
 
-        //CUSTOM SKIN : call it with grunt custom_skin --#hexcolor
-        'custom_skin' : ['less:custom_skin' , 'cssmin:custom_skin' ],
+        // //TRAVIS ci virtual machine build check on js @todo check other resources?
+        // 'travis' : ['jshint'],
+
+    //     //CUSTOM SKIN : call it with grunt custom_skin --#hexcolor
+    //     'custom_skin' : ['less:custom_skin' , 'cssmin:custom_skin' ],
       },
       uglify_requested_paths : {
         src : '' || grunt.option('src'),
@@ -85,8 +84,8 @@ module.exports = function(grunt) {
     grunt.log.writeln( 'WATCH EVENT INFOS : ', grunt.task.current.name , action, filepath, target);
 
     if ( 'admin_customizer_control_js' == target || 'admin_js' == target ) {
-        //if some js admin scripts have been changed in dev mode, jshint them dynamically
-        grunt.config('jshint.those', [filepath]);
+      //if some js admin scripts have been changed in dev mode, jshint them dynamically
+      grunt.config('jshint.those', [filepath]);
     }
   });
 };

@@ -47,7 +47,7 @@ module.exports = {
 		overwrite: true,
 		replacements: [ {
 			from: /^.*# Customizr v.*$/m,
-			to: '# Customizr v<%= pkg.version %> [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)'
+			to: '# Customizr v<%= pkg.version %> [![Build Status](https://travis-ci.org/Nikeo/customizr.svg?branch=<%= gitinfo.local.branch.current.name %>)](https://travis-ci.org/Nikeo/customizr)'
 		} ]
 	}
 };
