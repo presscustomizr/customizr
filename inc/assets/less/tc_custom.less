@@ -1939,7 +1939,12 @@ article.format-link .entry-content a:after{
   content: "\00bb";
   top:6px;
 }
-
+/* reset the previous rule for the more-link in format-link articles 
+*  the more-link has it's own "arrow"
+*/
+article.format-link .entry-content a.more-link:after { 
+  content: ''
+}
 article.format-status .entry-content {
 padding: 24px 24px 0;
 padding: 1.714285714rem;
