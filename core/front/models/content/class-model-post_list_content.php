@@ -40,7 +40,7 @@ class TC_post_list_content_model_class extends TC_Model {
   function tc_the_post_list_content( $more  = null ) {
     if ( $this -> content )
       echo $this -> content;
-    elseif ( 'the_excerpt' == $this -> render_content_cb )
+    elseif ( 'get_the_excerpt' == $this -> render_content_cb )
       echo apply_filters( 'the_excerpt', get_the_excerpt() );  
     else
       echo apply_filters( 'tc_the_content', call_user_func( $this -> render_content_cb, $more ) );
@@ -87,11 +87,10 @@ class TC_post_list_content_model_class extends TC_Model {
     }
     elseif ( in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside', 'video' ) ) ) {
       $content_class     = array( 'entry-content', apply_filters( 'tc_post_list_content_icon', 'format-icon' ) );
-      $has_pagination    = true;
       $render_content_cb = 'get_the_content';
     }
 
-    $this -> tc_update( compact( 'content_class', 'render_content_cb', 'has_pagination', 'content' ) );
+    $this -> tc_update( compact( 'content_class', 'render_content_cb', 'content' ) );
   }
 
   /**
