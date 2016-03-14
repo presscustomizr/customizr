@@ -54,9 +54,9 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     }
 
     set_query_var( 'tc_has_post_thumbnail', $has_post_thumbnail );
-    set_query_var( 'tc_content_width'     , $this -> tc_show_excerpt() ? $content : 'span12' );
+    set_query_var( 'tc_content_width'     , $this -> tc_show_thumb() ? $content : 'span12' );
     set_query_var( 'tc_thumbnail_width'   , $thumb );
-    set_query_var( 'tc_show_excerpt'      , $this -> tc_show_excerpt() );
+    set_query_var( 'tc_show_excerpt'      , $this -> tc_show_this_post_excerpt() );
   }
 
   /**
@@ -102,7 +102,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     //4) filter's conditions
     return apply_filters( 'tc_show_thumb', array_product(
         array(
-          $this -> tc_show_excerpt(),
+          $this -> tc_show_this_post_excerpt(),
           has_post_thumbnail(),//TC_post_thumbnails::$instance -> tc_has_thumb(), 
           0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) )
         )
@@ -120,5 +120,10 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     //1) when set in options
     //2) + other filters conditions
     return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) );
+  }
+
+  /* Makes sense only in the loop */
+  private function tc_show_this_post_excerpt() {
+    return $this -> tc_show_excerpt() && ! in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside', 'video' ) );    
   }
 }
