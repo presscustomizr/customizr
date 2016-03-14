@@ -134,9 +134,13 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_metas() {
      if ( isset( self::$_cache['post_metas'] ) )
        return self::$_cache['post_metas'];
-
+     
+     //disable in attachment context, attachment post metas have their own class
+     if ( is_attachment() )
+       self::$_cache['post_metas'] = false;
+        
      //post metas are always insanciated in customizing context
-     if ( TC___::$instance -> tc_is_customizing() )
+     elseif ( TC___::$instance -> tc_is_customizing() )
        self::$_cache['post_metas'] = true;
 
      elseif ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
@@ -163,6 +167,14 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
     function tc_display_view_post_metas_button() {
       return $this -> tc_display_view_post_metas() && 'buttons' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_design' ) );  
+    }
+
+    //when to display attachment post metas?
+    //a) in single attachment page
+    //b) eventually, in the search list when attachments are allowed
+    function tc_display_view_post_metas_attachment() {
+      return is_attachment() ||
+        is_search() && apply_filters( 'tc_include_attachments_in_search_results' , false );    
     }
 
     function tc_display_view_post_navigation_singular() {

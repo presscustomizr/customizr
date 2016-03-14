@@ -1,6 +1,6 @@
 <?php
 class TC_post_metas_model_class extends TC_Model {
-  private $_cache = array();
+  protected $_cache = array();
 
   function __construct( $model = array() ) {
     //Fires the parent constructor
@@ -13,11 +13,13 @@ class TC_post_metas_model_class extends TC_Model {
 
   //render this?
   public function tc_post_has_metas() {
+    if ( is_attachment() ) 
+      return false;
     return $this -> tc_get_cat_list() ||
-           $this -> tc_get_tag_list() ||
-           $this -> tc_get_author() ||
-           $this -> tc_get_publication_date() ||
-           $this -> tc_get_update_date();
+          $this -> tc_get_tag_list() ||
+          $this -> tc_get_author() ||
+          $this -> tc_get_publication_date() ||
+          $this -> tc_get_update_date();
   }
 
   public function tc_reset_cache() {
