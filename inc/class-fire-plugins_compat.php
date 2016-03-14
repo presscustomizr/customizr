@@ -975,34 +975,14 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_woocommerce_change_meta_boxes_priority($priority , $screen) {
          return ( 'product' == $screen ) ? 'default' : $priority ;
       }
-
-      //woocommerce options in the Customizer
-      //add new panel
-      add_filter( 'tc_add_panel_map', 'tc_woocommerce_popul_panel_map' );
-      function tc_woocommerce_popul_panel_map( $panel_map ) {
-        $tc_woocommerce_panel_map = array(
-            'tc-woocommerce-panel' => array(
-                  'priority'       => 50,
-                  'capability'     => 'edit_theme_options',
-                  'title'          => __( 'WooCommerce options' , 'customizr' ),
-                  'description'    => __( "WooCommerce settings for the Customizr theme." , 'customizr' )
-            )
-        );
-        return array_merge( $panel_map, $tc_woocommerce_panel_map );
+      
+      
+      // Allow HEADER CART OPTIONS in the customizer
+      // Returns a callback function needed by 'active_callback' to enable the options in the customizer
+      add_filter( 'tc_woocommerce_options_enabled', 'tc_woocommerce_options_enabled_cb' );
+      function tc_woocommerce_options_enabled_cb() {
+        return '__return_true';    
       }
-      //add new section
-      add_filter( 'tc_add_section_map', 'tc_woocommerce_popul_section_map' );
-      function tc_woocommerce_popul_section_map( $_sections ) {
-        $tc_woocommerce_section_map = array(
-            'tc_woocommerce_sec' => array(
-                  'title'          => __( 'Header Cart' , 'customizr' ),
-                  'priority'       => 50,
-                  'panel'          => 'tc-woocommerce-panel'
-            )
-        );
-        return array_merge( $_sections, $tc_woocommerce_section_map );
-      }
-      //end woocommerce options in the Customizer
 
       /* rendering the cart icon in the header */
       //narrow the tagline
