@@ -149,7 +149,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
     /**
     * Class instanciation using a singleton factory :
-    * Can be called to instanciate a specific class or group of classes
+    * Can be called to instantiate a specific class or group of classes
     * @param  array(). Ex : array ('admin' => array( array( 'inc/admin' , 'meta_boxes') ) )
     * @return  instances array()
     *
@@ -176,10 +176,10 @@ if ( ! class_exists( 'TC___' ) ) :
 
           $classname = 'TC_' . $path_suffix[1];
           if( ! isset( $instances[ $classname ] ) )  {
-            //check if the classname can be instanciated here
-            if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
+            //check if the classname can be instantiated here
+            if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'TC_nav_walker') ) ) )
               continue;
-            //instanciates
+            //instantiates
             $instances[ $classname ] = class_exists($classname)  ? new $classname : '';
           }
         }
@@ -193,7 +193,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * HELPERS
     ****************************/
     /**
-    * Check the context and return the modified array of class files to load and instanciate
+    * Check the context and return the modified array of class files to load and instantiate
     * hook : tc_get_files_to_load
     * @return boolean
     *
