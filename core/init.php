@@ -266,9 +266,9 @@ if ( ! class_exists( 'TC___' ) ) :
           
           //content
           //post content/excerpt
-          array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'id' => 'content', 'element_tag' => 'section' ),
+          array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content', 'element_tag' => 'section' ),
           //thumb
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_thumbnail', 'id' => 'thumbnail', 'element_tag' => 'section' ),
+          array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_thumbnail', 'id' => 'thumbnail', 'element_tag' => 'section' ),
 
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),

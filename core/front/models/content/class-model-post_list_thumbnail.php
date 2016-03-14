@@ -2,7 +2,6 @@
 class TC_post_list_thumbnail_model_class extends TC_Model {
   public $content_cb;
   public $content_class   = 'thumb-wrapper';
-  public $content_tag     = 'div';
 
   function __construct( $model = array() ) {
     parent::__construct( $model );
