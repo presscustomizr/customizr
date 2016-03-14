@@ -561,8 +561,15 @@
         'tc_sticky_logo_upload',
         'tc_woocommerce_header_cart_sticky'
       ],
-      callback: function (to) {
+      callback: function (to, targetSetId) {
         return '1' == to;
+      },
+      cross: {
+        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) { 
+          return to &&  //api.control.active is available since wp 4.0 as the php active_callback
+            //so let's skip this for older wp versions
+            ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
+        } }
       }
     },
     'tc_comment_bubble_color_type' : {
@@ -714,12 +721,16 @@
       controls: [
         'tc_woocommerce_header_cart_sticky'
       ],
-      callback: function (to) {
-        return to;
+      callback: function (to, tID , changedSetId) {
+        return to &&  //api.control.active is available since wp 4.0 as the php active_callback
+        //so let's skip this for older wp versions
+        ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
       },
       //display dependant if master setting value == value
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) { return to; } },
+        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) { 
+            return to; 
+        } },
       }
     }
   };
