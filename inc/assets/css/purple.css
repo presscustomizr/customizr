@@ -455,7 +455,7 @@ h3.assistive-text {
   color: #f3bfdc;
 }
 /* OTHER CUSTOMIZED WP CSS */
-#footer #calendar_wrap table a {
+#footer .calendar_wrap table a {
   color: #e67fb9;
 }
 #wp-calendar th {

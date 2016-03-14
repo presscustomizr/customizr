@@ -7252,6 +7252,9 @@ img.aligncenter {
 #footer .calendar_wrap table {
   color: #5a5a5a;
 }
+footer#footer .calendar_wrap table a {
+  font-size: inherit;
+}
 #footer .calendar_wrap table caption {
   color: #EEE;
 }
