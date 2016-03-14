@@ -53,7 +53,6 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
       $has_post_thumbnail = true;
     }
 
-    set_query_var( 'tc_has_post_thumbnail', $has_post_thumbnail );
     set_query_var( 'tc_content_width'     , $this -> tc_show_thumb() ? $content : 'span12' );
     set_query_var( 'tc_thumbnail_width'   , $thumb );
     set_query_var( 'tc_show_excerpt'      , $this -> tc_show_excerpt() );
@@ -89,7 +88,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
   }
 
   /* HELPERS */
-    /**
+  /**
   * @return boolean
   * @package Customizr
   * @since Customizr 3.3.2
@@ -103,7 +102,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     return apply_filters( 'tc_show_thumb', array_product(
         array(
           $this -> tc_show_excerpt(),
-          has_post_thumbnail(),//TC_post_thumbnails::$instance -> tc_has_thumb(), 
+          TC_utils_thumbnails::$instance -> tc_has_thumb(), 
           0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) )
         )
       )

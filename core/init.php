@@ -94,7 +94,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('core'       , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
               array('core/utils' , 'utils_settings_map'),//customizer setting map
               array('core/utils' , 'utils'),//helpers used everywhere
-              array('core/utils' , 'thumbnails'),//thumbnails helpers used almost everywhere
+              array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
               array('core'       , 'resources'),//loads front stylesheets (skins) and javascripts
               array('core'       , 'widgets'),//widget factory
               array('core'       , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
@@ -140,7 +140,6 @@ if ( ! class_exists( 'TC___' ) ) :
       foreach ( $this -> tc_core as $group => $files )
         foreach ($files as $path_suffix ) {
           $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
-        
           $classname = 'TC_' . $path_suffix[1];
           if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
             continue;
