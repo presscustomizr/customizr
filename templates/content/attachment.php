@@ -4,6 +4,7 @@
     <div class="entry-caption">
       <?php the_excerpt(); ?>
     </div>
+    <?php /* hidden fancybox gallery with all the attachments referring to the same post parent */ ?>
     <?php if ( $attachment_model -> has_gallery ) echo $attachment_model -> gallery ?>
   </div>
 </div>

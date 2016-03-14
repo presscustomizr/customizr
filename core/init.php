@@ -295,9 +295,12 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //Post metas in the headings
           //the default class/template is for the buttons type
-            array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
+            array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
           //the text meta one uses a different template
-            array( 'hook' => '__headings_content__', 'template' => 'content/post_metas_text', 'element_tag' => 'div', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
+            array( 'hook' => '__headings_content__', 'template' => 'content/post_metas_text', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
+          //attachment post mestas
+            array( 'hook' => '__headings_content__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
+
           /* TODO: LINKS IN POST METAS FOR POSTS WITH NO TITLE ...*/
 
 
