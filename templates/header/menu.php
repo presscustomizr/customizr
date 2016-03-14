@@ -1,4 +1,3 @@
-<div class="<?php echo $menu_model -> wrapper_class ?>">
 <?php
 wp_nav_menu( array(
   'theme_location'  => $menu_model -> theme_location,
@@ -7,4 +6,3 @@ wp_nav_menu( array(
   'walker'          => $menu_model -> walker
 ) );
 ?>
-</div>

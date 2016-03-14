@@ -2,7 +2,7 @@
 class TC_menu_model_class extends TC_Model {
   public $theme_location = 'main';
   public $menu_class;
-  public $wrapper_class;
+  public $element_class;
   public $fallback_cb;
   public $walker;
 
@@ -17,7 +17,7 @@ class TC_menu_model_class extends TC_Model {
     add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ) );
 
     $model[ 'menu_class' ]    = $this -> get_menu_class();
-    $model[ 'wrapper_class' ] = $this -> get_wrapper_class();
+    $model[ 'element_class' ] = $this -> get_element_class();
     $model['theme_location']  = $this -> theme_location;
     $model[ 'walker' ]        = ! TC_utils::$inst -> tc_has_location_menu($model['theme_location']) ? '' : new TC_nav_walker($model['theme_location']);
     $model[ 'fallback_cb' ]   = array( $this, 'tc_page_menu' );
@@ -29,7 +29,7 @@ class TC_menu_model_class extends TC_Model {
     return ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' );
   }
 
-  protected function get_wrapper_class() {
+  protected function get_element_class() {
     return ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
   }
 
@@ -58,25 +58,21 @@ class TC_menu_model_class extends TC_Model {
     $_fired        = true;
 
     if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) ) {
-      if ( ! is_array( $header_model -> class ) )
-        $header_model -> class = explode( ' ', $header_model -> class );
-      array_push( $header_model -> class, 
+      if ( ! is_array( $header_model -> element_class ) )
+        $header_model -> element_class = explode( ' ', $header_model -> element_class );
+      array_push( $header_model -> element_class, 
         0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') ) ? 'tc-menu-on' : 'tc-menu-off'
       );
     }
   }
-
-
   /**
+  * @override
   * parse this model properties for rendering
-  */ 
+  */
   function pre_rendering_my_view_cb( $model ) {
-    if ( is_array( $model -> menu_class ) )
-        $model -> menu_class      = join( ' ', array_unique( $model -> menu_class ) );
-    if ( is_array( $model -> wrapper_class ) )
-      $model -> wrapper_class   = join( ' ', array_unique( $model -> wrapper_class ) );
+    parent::pre_rendering_my_view_cb( $model );
+    $model -> menu_class = $this -> tc_stringify_model_property( 'menu_class' );
   }
-
 
 
   /**

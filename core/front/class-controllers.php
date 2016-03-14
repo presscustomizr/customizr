@@ -15,19 +15,19 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       self::$instance =& $this;
       $this -> controllers = array(
         'header' => array(
-          'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'header_social_block', 'reset_margin_top', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button', 'joie'
+          'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'reset_margin_top', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button', 
         ),
         'content' => array(
-          '404', 'attachment', 'comments', 'headings', 'no_results', 'page', 'post', 'post_list', 'post_metas', 'post_navigation', 'right_sidebar', 'left_sidebar'
+          '404', 'attachment', 'headings', 'no_results', 'page', 'post', 'post_footer', 'post_list', 'post_metas_button', 'post_metas_text', 'post_metas_attachment','right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'author_description', 'posts_list_title', 'posts_list_search_title', 'singular_article', 'singular_title', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment_block_title', 'comment', 'tracepingback', 'comment_navigation', 'author_info', 'singular_headings'
         ),
         'footer' => array(
-          'footer_socials', 'btt_arrow', 'footer_btt', 'footer_push'
+          'btt_arrow', 'footer_btt', 'footer_push'
       //    'widgets', 'colophon', 'back_to_top'
         ),
         'modules' => array(
+          'social_block' 
         //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
         ),
-
       );
 
       //Store a group controller instance for later uses
@@ -79,20 +79,28 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       $controller_cb = "";
 
       //IS A CONTROLLER SPECIFIED AS PROPERTY OF THIS MODEL ?
-      if ( isset($model['controller']) ) {
+      //and is a valid callback
+      if ( isset($model['controller']) && is_callable( $model['controller'] )) {
         //a callback can be function or a method of a class
-        $controller_cb = $model['controller'];
+        $controller_cb =  $model['controller'];
       }
       //IS THERE A PRE-DEFINED CONTROLLER FOR THE VIEW ?
-      else if ( $this -> tc_has_default_controller( $model['id'] ) ) {
-        $controller_cb = $this -> tc_get_default_controller($model['id']);
-        //make sure the default controller is well formed
-        //the default controller should look like array( instance, method )
-        if ( empty($controller_cb) ) {
-          do_action( 'tc_dev_notice', 'View : '.$model['id'].'. The default group controller has not been instanciated');
-          return "";
-        }
-      }//if
+      else {
+        //the default controller match can either be:
+        //a) based on the model id (has the precedence )
+        //b) based on the controller model field, when not a callback
+        //c) based on the template base name
+        $controller_ids   = array_filter( array( $model['id'], ! empty( $model['controller'] ) ? $model['controller'] : '', basename( $model['template'] ) ) );
+        if ( $this -> tc_has_default_controller( $controller_ids ) ) { 
+          $controller_cb = $this -> tc_get_default_controller( $controller_ids );
+          //make sure the default controller is well formed
+          //the default controller should look like array( instance, method )
+          if ( empty($controller_cb) ) {
+            do_action( 'tc_dev_notice', 'View : '.$model['id'].'. The default group controller has not been instanciated');
+            return "";
+          }//if
+        }//if has default controller
+      }//else
       return $controller_cb;
     }
 
@@ -100,30 +108,30 @@ if ( ! class_exists( 'TC_controllers' ) ) :
 
     //@return boolean
     //@walks the controllers setup array until a match is found
-    private function tc_has_default_controller($id) {
-      $bool = false;
-      foreach ( $this -> controllers as $group => $views_id ) {
-        if ( $bool )
-          continue;
-        if ( in_array($id, $views_id) )
-          $bool = true;
-      }//foreach
-      return $bool;
+    private function tc_has_default_controller( $controller_ids ) {
+      foreach ( $this -> controllers as $group => $views_id )
+        foreach( $controller_ids as $id )
+          if ( in_array($id, $views_id) )
+            return true;
+        //foreach
+      //foreach
+      return false;
     }
 
 
     //tries to find a default controller group for this method
     //@return array(instance, method) or array() if nothind found
-    private function tc_get_default_controller($id) {
+    private function tc_get_default_controller( $controller_ids ) {
       $controller_cb = false;
-      foreach ( $this -> controllers as $group => $views_id ) {
-        if ( false !== $controller_cb )
-          continue;
-        if ( in_array($id, $views_id) ) {
-          $controller_cb = $id;
-          $controller_group = $group;
-        }
-      }//foreach
+      foreach ( $this -> controllers as $group => $views_id )
+        foreach( $controller_ids as $id )
+          if ( in_array($id, $views_id) ) {
+            $controller_cb = $id;
+            $controller_group = $group;
+            break 2;
+          }//if
+        //foreach
+      //foreach
       //return here is no match found
       if ( ! $controller_cb ) {
         do_action( 'tc_dev_notice', 'View : '.$id.'. No control method found.');
@@ -141,7 +149,6 @@ if ( ! class_exists( 'TC_controllers' ) ) :
 
       //stop here if still nothing is instanciated
       if ( ! isset( $_instance) || ! is_object( $_instance ) ) {
-
         do_action( 'tc_dev_notice', 'View : '.$id.'. The control class for : ' . $controller_group . ' has not been instanciated.' );
         return array();
       }

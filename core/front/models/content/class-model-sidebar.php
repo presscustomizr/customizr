@@ -6,6 +6,8 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
       'right'  => 'r',
       'left'   => 'l'
   );
+
+
   /*
   * @override
   * fired before the model properties are parsed
@@ -17,7 +19,7 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
     $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
 
     //extract the position
-    $this -> position              = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar' ) );
+    $this -> position     = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar' ) );
     
     if ( ! in_array( $this -> position, array('right', 'left' ) ) )
       return array();
@@ -26,7 +28,7 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
     $sidebar_layout       = $global_layout[$screen_layout];
 
     //defines the sidebar wrapper class
-    $model['wrapper_class'] = apply_filters( 'tc_right_sidebar_class', array( $sidebar_layout['sidebar'], $this -> position, 'tc-sidebar') );
+    $model['element_class']           = apply_filters( "tc_{$this -> position }_sidebar_class", array( $sidebar_layout['sidebar'], $this -> position, 'tc-sidebar') );
 
     $model['inner_class']             = array('widget-area');
     $model['action_hook_suffix']      = '_'. $this -> position;

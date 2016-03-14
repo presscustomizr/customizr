@@ -1,2 +1,1 @@
-<?php
-echo '<h1>'.get_the_title().'</h1>';
+<?php do_action( "__headings_{$headings_model -> type}__" ) ?>
