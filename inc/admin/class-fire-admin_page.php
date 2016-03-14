@@ -113,7 +113,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
               </div><!-- .two-col -->
               <div class="feature-section col two-col">
                  <div class="col">
-                    <a class="button-secondary customizr-help" title="code snippets" href="<?php echo TC_WEBSITE ?>code-snippets/" target="_blank"><?php _e( 'Code snippets for developpers','customizr' ); ?></a>
+                    <a class="button-secondary customizr-help" title="code snippets" href="<?php echo TC_WEBSITE ?>code-snippets/" target="_blank"><?php _e( 'Code snippets for developers','customizr' ); ?></a>
                 </div>
                  <div class="last-feature col">
                     <a class="button-secondary customizr-help" title="help" href="<?php echo $_support_url; ?>" target="_blank">
