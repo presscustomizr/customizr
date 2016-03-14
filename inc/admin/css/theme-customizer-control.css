@@ -242,7 +242,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="color"]:focu
       url('../../assets/css/fonts/fonts/fontawesome-webfont.woff') format('woff'),
       url('../../assets/css/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
       url('../../assets/css/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
-} 
+}
 span[class*=tc-icon] {
 	margin-bottom: 5px;
 }
@@ -809,7 +809,7 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
 
 /* SELECT 2 SPECIFICS */
 body .select2-container {
-	width: 100%
+	width: 100%;
 }
 body .select2-drop {
 	z-index: 999999;
@@ -1135,7 +1135,7 @@ body .select2-results {
 /* Cropped Image style */
 /* Unified with the default cropped_image CSS */
 .customize-control-tc_cropped_image .upload-button {
-  float: right;    
+  float: right;
 }
 .customize-control-tc_cropped_image .remove-button {
   float: left;
@@ -1173,7 +1173,7 @@ body .select2-results {
 /* rtl */
 /* end tc cropped image */
 .rtl .customize-control-tc_cropped_image .upload-button {
-  float: left;    
+  float: left;
 }
 .rtl .customize-control-tc_cropped_image .remove-button {
   float: right;

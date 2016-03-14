@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.4.19\n"
+"Project-Id-Version: * Customizr v3.4.20\n"
 "POT-Creation-Date: 2015-08-22 15:54+0200\n"
-"PO-Revision-Date: 2016-01-14 17:00-0800\n"
+"PO-Revision-Date: 2016-03-02 12:00-0800\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
 "com>\n"
@@ -154,7 +154,7 @@ msgstr "Tambahkan kreasi dan animasi ke menu samping."
 
 #: admin/class-admin-customize.php:610
 msgid "Side menu animation demo"
-msgstr "Menu samping animasi demo"
+msgstr "Demo menu samping animasi"
 
 #: admin/class-admin-customize.php:623
 msgid "Customize your footer credits with Customizr Pro."
@@ -800,7 +800,7 @@ msgstr "Ikuti saya di Twitter"
 
 #: class-fire-init.php:200
 msgid "Twitter profile url"
-msgstr "Url Twitter profil"
+msgstr "Url profil Twitter"
 
 #: class-fire-init.php:204
 msgid "Follow me on Facebook"
@@ -808,7 +808,7 @@ msgstr "Ikuti saya di Facebook"
 
 #: class-fire-init.php:205
 msgid "Facebook profile url"
-msgstr "Url Facebook profil"
+msgstr "Url profil Facebook"
 
 #: class-fire-init.php:209
 msgid "Follow me on Google+"
@@ -816,7 +816,7 @@ msgstr "Ikuti saya di Google+"
 
 #: class-fire-init.php:210
 msgid "Google+ profile url"
-msgstr "Url Google+ profil"
+msgstr "Url profil Google+"
 
 #: class-fire-init.php:214
 msgid "Follow me on Instagram"
@@ -824,7 +824,7 @@ msgstr "Ikuti saya di Instagram"
 
 #: class-fire-init.php:215
 msgid "Instagram profile url"
-msgstr "Url Instagram profil"
+msgstr "Url profil Instagram"
 
 #: class-fire-init.php:219
 msgid "Follow me on Tumblr"
@@ -848,7 +848,7 @@ msgstr "Ikut saya di Wordpress"
 
 #: class-fire-init.php:230
 msgid "WordPress profile url"
-msgstr "Url Wordpress profil"
+msgstr "Url profil Wordpress"
 
 #: class-fire-init.php:234
 msgid "Follow me on Youtube"
@@ -864,7 +864,7 @@ msgstr "Pin saya du Pinterest"
 
 #: class-fire-init.php:240
 msgid "Pinterest profile url"
-msgstr "Url Pinterest profil"
+msgstr "Url profil Pinterest"
 
 #: class-fire-init.php:244
 msgid "Follow me on Github"
@@ -872,7 +872,7 @@ msgstr "Ikuti saya di Github"
 
 #: class-fire-init.php:245
 msgid "Github profile url"
-msgstr "Url Github profil"
+msgstr "Url profil Github"
 
 #: class-fire-init.php:249
 msgid "Follow me on Dribbble"
@@ -880,7 +880,7 @@ msgstr "Iktui saya di Dibbble"
 
 #: class-fire-init.php:250
 msgid "Dribbble profile url"
-msgstr "Url Dribbble profil"
+msgstr "Url profil Dribbble"
 
 #: class-fire-init.php:254
 msgid "Follow me on LinkedIn"
@@ -888,7 +888,7 @@ msgstr "Ikuti saya di LinkedIn"
 
 #: class-fire-init.php:255
 msgid "LinkedIn profile url"
-msgstr "Url LinkedIn Profil"
+msgstr "Url profil LinkedIn"
 
 #: class-fire-init.php:264
 msgid "Left Sidebar"
@@ -1000,13 +1000,13 @@ msgstr "Hapus centang opsi ini untuk menetapkan dimensi logo original"
 
 #: class-fire-utils_settings_map.php:165
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "Sticky Unggah Logo (format didiukung : .jpg, .png, .gif, svg, svgz)"
+msgstr "Unggah Logo Sticky (format didukung : .jpg, .png, .gif, svg, svgz)"
 
 #: class-fire-utils_settings_map.php:169
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
-"Gunakan kontrol pengunggahan ini untuk menspesifikasi logo berbeda pada mode "
+"Gunakan kontrol pengunggahan ini untuk menentukan logo berbeda pada mode "
 "sticky"
 
 #: class-fire-utils_settings_map.php:175
@@ -1049,7 +1049,7 @@ msgid ""
 "h2, h3., while the second will be the default font of your website for any "
 "texts or paragraphs."
 msgstr ""
-"Picker font memperbolehkan Anda mereview dan memilih antara beberapa pilihan "
+"Picker font memperbolehkan Anda meninjau dan memilih antara beberapa pilihan "
 "dari pasangan font dan font tunggal. Jika Anda memilih sepasang, font "
 "pertama akan diterapkan sebagai heading : nama situs, deskripsi situs, "
 "judul, h1, h2, h3, sedangkan yang kedua akan diterapkan sebagai default font "
@@ -1093,11 +1093,11 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:270
 msgid "Fade effect on link hover"
-msgstr "Efek fade pada link hover"
+msgstr "Efek memudar ketika menyentuh link"
 
 #: class-fire-utils_settings_map.php:280
 msgid "Display an icon next to external links"
-msgstr "Tampilkan ikon selanjutnya untuk link eksternal"
+msgstr "Tampilkan ikon disamping link eksternal"
 
 #: class-fire-utils_settings_map.php:284 class-fire-utils_settings_map.php:295
 msgid ""
@@ -1111,15 +1111,15 @@ msgstr "Buka link eksternal di tab baru"
 
 #: class-fire-utils_settings_map.php:311
 msgid "Display icons next to titles"
-msgstr "Tampilkan ikon selanjutnya untuk judul"
+msgstr "Tampilkan ikon disamping judul"
 
 #: class-fire-utils_settings_map.php:315
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
 msgstr ""
-"Ketika opsi ini dicentang, ikon kontekstual ditampilkan selanjutnya ke judul "
-"dari laman, postm arsip, dan WP built-in widget."
+"Ketika opsi ini dicentang, ikon kontekstual ditampilkan disamping judul dari "
+"laman, post, arsip, dan WP built-in widget."
 
 #: class-fire-utils_settings_map.php:321
 msgid "Display a page icon next to the page title"
@@ -1168,7 +1168,7 @@ msgstr "WP footer widget : tampilkan ikon setelah judul"
 
 #: class-fire-utils_settings_map.php:386
 msgid "Lightbox effect on images"
-msgstr "Lightbox efek pada gambar"
+msgstr "Efek lightbox pada gambar"
 
 #: class-fire-utils_settings_map.php:389
 msgid ""
@@ -1176,7 +1176,7 @@ msgid ""
 "image is clicked. Note : to enable this effect on the images of your pages "
 "and posts, images have to be linked to the Media File."
 msgstr ""
-"Jika diadakan, opsi ini mengaktifkan window muculan dengan zoom efek ketika "
+"Jika diadakan, opsi ini mengaktifkan jendela muculan dengan zoom efek ketika "
 "gambar di klik. Catatan : untuk menerapkan efek ini pada gambar dari post "
 "atau laman Anda, gambar harus ditautkan ke Berkas Media."
 
@@ -1199,7 +1199,7 @@ msgstr "Resolusi tinggi (Retina) support"
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr ""
-"Jika diadakan, website Anda akan support untuk resolusi tinggi perangkat."
+"Jika diadakan, website Anda akan support untuk perangkat beresolusi tinggi."
 
 #: class-fire-utils_settings_map.php:409
 msgid ""
@@ -1243,7 +1243,7 @@ msgid ""
 "horizontally according to their initial aspect ratio."
 msgstr ""
 "Opsi ini secara dinamis menengahkan gambar Anda pada perangkat apapun, "
-"secara vertikal atau horizontal mengharapkan pada aspek rasio mereka."
+"secara vertikal atau horizontal tergantung pada aspek rasio mereka."
 
 #: class-fire-utils_settings_map.php:455
 msgid "Dynamic sidebar reordering on small devices"
@@ -1259,7 +1259,7 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:473
 msgid "Display an author box after each single post content"
-msgstr "Tampilkan kotak author setelah single post manapun"
+msgstr "Tampilkan kotak penulis setiap setelah post tunggal"
 
 #: class-fire-utils_settings_map.php:477
 msgid ""
@@ -1267,8 +1267,8 @@ msgid ""
 "content. Note : the Biographical info field must be filled out in the user "
 "profile."
 msgstr ""
-"Centang opsi ini untuk menampilkan kotak tentang author di setiap single "
-"post. Catatan : Biografi info harus diisi pada user profil."
+"Centang opsi ini untuk menampilkan kotak tentang penulis di setiap post "
+"tunggal. Catatan : Biografi info harus diisi pada profil pengguna."
 
 #: class-fire-utils_settings_map.php:492
 msgid "Enable Smooth Scroll"
@@ -1308,7 +1308,7 @@ msgstr "Tampilkan garis atas"
 
 #: class-fire-utils_settings_map.php:536
 msgid "Uncheck this option to remove the colored top border."
-msgstr "Jangan centan opsi ini untuk menyingkirkan garis berwarna diatas."
+msgstr "Jangan centang opsi ini untuk menyingkirkan garis berwarna diatas."
 
 #: class-fire-utils_settings_map.php:542
 msgid "Display the tagline"
@@ -1343,8 +1343,8 @@ msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr ""
-"Jika di centang, opsi ini membuat header menempel pada header di laman "
-"ketika di scroll kebawah."
+"Jika di centang, opsi ini membuat header menempel pada bagian atas layar "
+"ketika laman di scroll kebawah."
 
 #: class-fire-utils_settings_map.php:581
 msgid "Sticky header : display the tagline"
@@ -1364,7 +1364,7 @@ msgstr "Sticky header : tampilkan menu"
 
 #: class-fire-utils_settings_map.php:613
 msgid "Also applied to the secondary menu if any."
-msgstr "Juga terapkan pada menu kedua jika ada."
+msgstr "Juga diterapkan pada menu kedua jika ada."
 
 #: class-fire-utils_settings_map.php:618
 msgid "Sticky header : semi-transparent on scroll"
@@ -1384,7 +1384,7 @@ msgstr "z-index"
 
 #: class-fire-utils_settings_map.php:656
 msgid "Display a secondary (horizontal) menu in the header."
-msgstr "Tampilkan menu (horizontal) kedua pada header."
+msgstr "Tampilkan menu kedua (horizontal) pada header."
 
 #: class-fire-utils_settings_map.php:660
 msgid ""
@@ -1433,7 +1433,7 @@ msgstr "Posisi menu (untuk menu \"utama\")"
 
 #: class-fire-utils_settings_map.php:700 class-fire-utils_settings_map.php:725
 msgid "Menu on the left"
-msgstr "Menu ri kiri"
+msgstr "Menu di kiri"
 
 #: class-fire-utils_settings_map.php:701 class-fire-utils_settings_map.php:726
 msgid "Menu on the right"
@@ -1462,11 +1462,11 @@ msgstr "Ubah layout header"
 
 #: class-fire-utils_settings_map.php:720
 msgid "Secondary (horizontal) menu design"
-msgstr "Menu (horizontal) kedua desain"
+msgstr "Desain menu kedua (horizontal)"
 
 #: class-fire-utils_settings_map.php:721
 msgid "Menu position (for the horizontal menu)"
-msgstr "Posisi menu (untuk horizontal menu)"
+msgstr "Posisi menu (untuk menu horizontal)"
 
 #: class-fire-utils_settings_map.php:736
 msgid "Select a submenu expansion option"
@@ -1482,23 +1482,23 @@ msgstr "Buka submenu saat disentuh"
 
 #: class-fire-utils_settings_map.php:748
 msgid "Reveal the sub-menus blocks with a fade effect"
-msgstr "Kotak submenu dengan fade efek"
+msgstr "Usahakan kotak submenu dengan efek memudar"
 
 #: class-fire-utils_settings_map.php:757
 msgid "Hover move effect for the sub menu items"
-msgstr "Gerakkan submenu ketika disentuh"
+msgstr "Goyang submenu ketika disentuh"
 
 #: class-fire-utils_settings_map.php:766
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
-msgstr "Pilih perangkat handphone (responsiv) untuk menu kedua."
+msgstr "Pilih (responsif) perangkat ponsel untuk menu kedua."
 
 #: class-fire-utils_settings_map.php:770
 msgid "Move before inside the side menu "
-msgstr "Gerakkan sebelum masuk side menu"
+msgstr "Pindahkan ke sebelum menu samping"
 
 #: class-fire-utils_settings_map.php:771
 msgid "Move after inside the side menu "
-msgstr "Gerakkan setelah masuk side menu"
+msgstr "Pindahkan ke setelah menu samping"
 
 #: class-fire-utils_settings_map.php:772
 msgid "Display in the header"
@@ -1646,7 +1646,7 @@ msgstr "Catatan : layout laman depan harus diatur pada bagian laman depan."
 
 #: class-fire-utils_settings_map.php:989
 msgid "Force default layout everywhere"
-msgstr "Paksa default layout ini dimanaoun"
+msgstr "Paksa default layout ini dimanapun"
 
 #: class-fire-utils_settings_map.php:992
 msgid ""
@@ -1858,19 +1858,19 @@ msgstr "Jumlah kolom per baris"
 
 #: class-fire-utils_settings_map.php:1212
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: class-fire-utils_settings_map.php:1213
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: class-fire-utils_settings_map.php:1214
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: class-fire-utils_settings_map.php:1215
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: class-fire-utils_settings_map.php:1218
 msgid ""
@@ -1989,8 +1989,8 @@ msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
 msgstr ""
-"Ketika opsi ini dicentang, post meta (seperti taksonomi, tanggal dan author) "
-"akan ditampilkan dibawah judul post."
+"Ketika opsi ini dicentang, post meta (seperti taksonomi, tanggal dan "
+"penulis) akan ditampilkan dibawah judul post."
 
 #: class-fire-utils_settings_map.php:1427
 msgid "Metas Design"
@@ -2043,11 +2043,11 @@ msgstr "Tampilkan tanggal publikasi"
 
 #: class-fire-utils_settings_map.php:1496
 msgid "Display the author"
-msgstr "Tampilkan author"
+msgstr "Tampilkan penulis"
 
 #: class-fire-utils_settings_map.php:1504
 msgid "Display the update date"
-msgstr "Tampilkan tanggal update"
+msgstr "Tampilkan tanggal revisi"
 
 #: class-fire-utils_settings_map.php:1508
 msgid ""
@@ -2061,44 +2061,44 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1514
 msgid "Select the last update format"
-msgstr "Pilih format terakhir di update"
+msgstr "Pilih format terakhir di revisi"
 
 #: class-fire-utils_settings_map.php:1518
 msgid "Nb of days since last update"
-msgstr "Hari sejak di terakhir update"
+msgstr "Hari sejak di terakhir revisi"
 
 #: class-fire-utils_settings_map.php:1519
 msgid "Date of the last update"
-msgstr "Tanggal update"
+msgstr "Tanggal revisi"
 
 #: class-fire-utils_settings_map.php:1527
 msgid "Recent update notice after post titles"
-msgstr "Pemberitahuan update setelah judul post"
+msgstr "Pemberitahuan revisi setelah judul post"
 
 #: class-fire-utils_settings_map.php:1528
 msgid "Display a recent update notice"
-msgstr "Tampilkan pemberitahuan update terbaru"
+msgstr "Tampilkan pemberitahuan revisi terbaru"
 
 #: class-fire-utils_settings_map.php:1532
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
 msgstr ""
-"Jika opsi ini dicentangm penyesuaian pemberitahuan update akan ditampilkan "
+"Jika opsi ini dicentang, penyesuaian pemberitahuan revisi akan ditampilkan "
 "setelah judul post."
 
 #: class-fire-utils_settings_map.php:1538
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
-"Tampilkan pemberitahuan jika update kurang dari (ketat) daripada hari ini"
+"Tampilkan pemberitahuan jika revisi kurang dari (dekat) daripada hari ini"
 
 #: class-fire-utils_settings_map.php:1544
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
 msgstr ""
-"Mengatur interval maksimum (dalam hari) selama pemberitahuan update terakhir "
+"Mengatur interval maksimum (dalam hari) selama pemberitahuan revisi terakhir "
 "akan ditampilkan."
 
 #: class-fire-utils_settings_map.php:1547
@@ -2107,7 +2107,7 @@ msgstr "Baru-baru ini diperbarui!"
 
 #: class-fire-utils_settings_map.php:1549
 msgid "Update notice text"
-msgstr "Teks pemberitahuan update"
+msgstr "Teks pemberitahuan revisi"
 
 #: class-fire-utils_settings_map.php:1558
 msgid "Update notice style"
@@ -2242,7 +2242,7 @@ msgstr "Kustom"
 
 #: class-fire-utils_settings_map.php:1730
 msgid "Other comments settings"
-msgstr "Pengaturan lain komentar"
+msgstr "Pengaturan komentar lainnya"
 
 #: class-fire-utils_settings_map.php:1731
 msgid "Enable comments on pages"
@@ -2254,7 +2254,7 @@ msgid ""
 "comments for a single page in the quick edit mode of the page list screen."
 msgstr ""
 "Jika dicentang, opsi ini akan memungkinkan komentar pada halaman. Anda dapat "
-"menonaktifkan komentar untuk satu halaman di mode edit cepat layar daftar "
+"menonaktifkan komentar untuk satu halaman di layar mode edit cepat daftar "
 "halaman."
 
 #: class-fire-utils_settings_map.php:1737
@@ -2300,9 +2300,9 @@ msgid ""
 "disabled in posts or pages. Unchecking this option allows you to not display "
 "this comment history."
 msgstr ""
-"Secara default, WordPress menampilkan komentar terakhir, bahkan jika "
+"Secara default, WordPress menampilkan komentar terakhir, bahkan saat "
 "komentar yang dinonaktifkan dalam posting atau halaman. Centang pilihan ini "
-"memungkinkan Anda untuk tidak menampilkan sejarah komentar ini."
+"memungkinkan Anda untuk tidak menampilkan sejarah komentar."
 
 #: class-fire-utils_settings_map.php:1780
 msgid "Display posts navigation"
@@ -2312,7 +2312,7 @@ msgstr "Tampilkan post navigasi"
 msgid ""
 "When this option is checked, the posts navigation is displayed below the "
 "posts"
-msgstr "Bila opsi ini dicentang, navigasi tulisan ditampilkan di bawah posting"
+msgstr "Bila opsi ini dicentang, tulisan navigasi ditampilkan di bawah posting"
 
 #: class-fire-utils_settings_map.php:1791
 msgid "Display navigation in pages"
@@ -2379,7 +2379,7 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1922
 msgid "child theme."
-msgstr ""
+msgstr "tema anak."
 
 #: class-fire-utils_settings_map.php:1923
 msgid "How to create and use a child theme ?"
@@ -2428,7 +2428,7 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:1987
 msgid "Global settings"
-msgstr "Pengaturan global"
+msgstr "Pengaturan Global"
 
 #: class-fire-utils_settings_map.php:1988
 msgid "Global settings for the Customizr theme :skin, socials, links..."
@@ -2436,7 +2436,7 @@ msgstr "Pengaturan global untuk tema Customizr: kulit, sosial, link ..."
 
 #: class-fire-utils_settings_map.php:1993
 msgid "Header"
-msgstr ""
+msgstr "Header"
 
 #: class-fire-utils_settings_map.php:1994
 msgid "Header settings for the Customizr theme."
@@ -2512,7 +2512,7 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:2121
 msgid "Site Title & Tagline"
-msgstr "Judul situs & Slogan"
+msgstr "Judul Situs & Slogan"
 
 #: class-fire-utils_settings_map.php:2126
 msgid "Logo &amp; Favicon"
@@ -2536,7 +2536,7 @@ msgstr "Font"
 
 #: class-fire-utils_settings_map.php:2140
 msgid "Set up the font global settings"
-msgstr "Mengatur pengaturan global huruf"
+msgstr "Mengatur pengaturan huruf global"
 
 #: class-fire-utils_settings_map.php:2146
 msgid "Set up your social links"
@@ -2568,11 +2568,11 @@ msgstr "Pengaturan berbagai gambar"
 
 #: class-fire-utils_settings_map.php:2168
 msgid "Authors"
-msgstr "Author"
+msgstr "Penulis"
 
 #: class-fire-utils_settings_map.php:2170
 msgid "Post authors settings"
-msgstr "Pengaturan post atuhor"
+msgstr "Pengaturan penulis post"
 
 #: class-fire-utils_settings_map.php:2174
 msgid "Smooth Scroll"
@@ -2600,7 +2600,7 @@ msgstr "Mengatur pilihan halaman depan"
 
 #: class-fire-utils_settings_map.php:2208
 msgid "Pages &amp; Posts Layout"
-msgstr "Laman &amp; Post Layout"
+msgstr "Layout Laman &amp; Post"
 
 #: class-fire-utils_settings_map.php:2210
 msgid "Set up layout options"
@@ -2624,7 +2624,7 @@ msgstr "Atur pilihan post tunggal"
 
 #: class-fire-utils_settings_map.php:2227
 msgid "Breadcrumb"
-msgstr ""
+msgstr "Breadcrumb"
 
 #: class-fire-utils_settings_map.php:2229
 msgid "Set up breadcrumb options"
@@ -2783,7 +2783,7 @@ msgstr "Cari:"
 
 #: parts/class-content-breadcrumb.php:524
 msgid "g:i a"
-msgstr ""
+msgstr "g:i a"
 
 #: parts/class-content-breadcrumb.php:527
 #, php-format
@@ -2792,11 +2792,11 @@ msgstr "Menit %1$s"
 
 #: parts/class-content-breadcrumb.php:527
 msgid "i"
-msgstr ""
+msgstr "i"
 
 #: parts/class-content-breadcrumb.php:530
 msgid "g a"
-msgstr ""
+msgstr "g a"
 
 #: parts/class-content-breadcrumb.php:546
 #: parts/class-content-breadcrumb.php:556
@@ -2805,20 +2805,20 @@ msgstr ""
 #: parts/class-content-breadcrumb.php:578
 #: parts/class-content-breadcrumb.php:777
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #: parts/class-content-breadcrumb.php:547
 #: parts/class-content-breadcrumb.php:568
 #: parts/class-content-breadcrumb.php:570
 #: parts/class-content-breadcrumb.php:781
 msgid "F"
-msgstr ""
+msgstr "F"
 
 #: parts/class-content-breadcrumb.php:550
 #: parts/class-content-breadcrumb.php:552
 #: parts/class-content-breadcrumb.php:785
 msgid "d"
-msgstr ""
+msgstr "d"
 
 #: parts/class-content-breadcrumb.php:559
 #: parts/class-content-breadcrumb.php:561
@@ -2860,7 +2860,7 @@ msgstr "tanggapan pada"
 
 #: parts/class-content-comments.php:154
 msgid "Pingback:"
-msgstr ""
+msgstr "Pingback:"
 
 #: parts/class-content-comments.php:154
 msgid "(Edit)"
@@ -2872,7 +2872,7 @@ msgstr "Balas"
 
 #: parts/class-content-comments.php:194
 msgid "Post author"
-msgstr ""
+msgstr "Post author"
 
 #: parts/class-content-comments.php:201
 #, php-format
@@ -3152,7 +3152,7 @@ msgstr "oleh"
 #: parts/class-content-post_navigation.php:89
 #: parts/class-content-post_navigation.php:144
 msgid "Post navigation"
-msgstr "Posting navigasi"
+msgstr "Post navigasi"
 
 #: parts/class-content-post_navigation.php:157
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"

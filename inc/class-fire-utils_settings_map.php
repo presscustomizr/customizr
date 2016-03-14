@@ -152,7 +152,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'title'     => __( 'LOGO' , 'customizr'),
                                 'section'   => 'logo_sec',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
-                        //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                                 'width'     => 250,
                                 'height'    => 100,
                                 'flex_width' => true,
