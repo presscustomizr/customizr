@@ -13,15 +13,17 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
 
   private $post_list_layout;
 
+  /* override */
   function __construct( $model = array() ) {
     //Fires the parent constructor
     parent::__construct( $model );
-    
+
     //set the post list layout based on the user's options
     $this -> post_list_layout  = $this -> tc_set_post_list_layout();
     //inside the loop but before rendering set some properties
     add_action( $model['hook'], array( $this, 'set_layout_hooks' ), 0 );
   } 
+
 
 
   function set_layout_hooks() {
@@ -52,8 +54,9 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     }
 
     set_query_var( 'tc_has_post_thumbnail', $has_post_thumbnail );
-    set_query_var( 'tc_content_width'     , $content );
+    set_query_var( 'tc_content_width'     , $this -> tc_show_excerpt() ? $content : 'span12' );
     set_query_var( 'tc_thumbnail_width'   , $thumb );
+    set_query_var( 'tc_show_excerpt'      , $this -> tc_show_excerpt() );
   }
 
   /**
@@ -100,7 +103,6 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     return apply_filters( 'tc_show_thumb', array_product(
         array(
           $this -> tc_show_excerpt(),
-
           has_post_thumbnail(),//TC_post_thumbnails::$instance -> tc_has_thumb(), 
           0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) )
         )
