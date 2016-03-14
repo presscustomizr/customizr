@@ -53,6 +53,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
       $has_post_thumbnail = true;
     }
 
+    set_query_var( 'tc_has_post_thumbnail', $has_post_thumbnail );
     set_query_var( 'tc_content_width'     , $this -> tc_show_thumb() ? $content : 'span12' );
     set_query_var( 'tc_thumbnail_width'   , $thumb );
     set_query_var( 'tc_show_excerpt'      , $this -> tc_show_excerpt() );
@@ -87,6 +88,12 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     return $_class;
   }
 
+  /* Following are here to allow to apply a filter on each loop ..
+  *  but we can think about move them in another place if we decide
+  *  the users MUST act only modifying models/templates
+  *
+  *  Actually they can be moved in another place anyway, but they are pretty specific of the "alternate" post list
+  */
   /* HELPERS */
   /**
   * @return boolean

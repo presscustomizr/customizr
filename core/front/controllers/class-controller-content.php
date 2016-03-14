@@ -177,6 +177,11 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         is_search() && apply_filters( 'tc_include_attachments_in_search_results' , false );    
     }
 
+    /* Thumbnails in post lists */
+    function tc_display_view_post_list_thumbnail() {
+      return  'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+    }
+
     function tc_display_view_post_navigation_singular() {
       if ( TC___::$instance -> tc_is_customizing() )
         return true;

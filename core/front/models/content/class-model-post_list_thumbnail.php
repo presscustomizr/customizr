@@ -11,8 +11,9 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   }
 
   function tc_has_post_thumbnail() {
-    return TC_utils_thumbnails::$instance -> tc_has_thumb();
+    return (bool) get_query_var('tc_has_post_thumbnail', false);
   }
+
   /**
   * @override
   * fired before the model properties are parsed
