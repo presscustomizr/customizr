@@ -178,9 +178,23 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     /* Thumbnails in post lists */
-    function tc_display_view_post_list_thumbnail() {
-      return  'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+    function tc_display_view_post_list_rectangular_thumb() {
+      return $this -> tc_display_view_post_list_thumbnail() && 
+            FALSE !== strpos( esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape'), 'rectangular' ), 'rectangular' );
     }
+
+    function tc_display_view_post_list_standard_thumb() {
+      return $this -> tc_display_view_post_list_thumbnail() &&
+            FALSE === strpos( esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') ), 'rectangular' );
+    }
+
+    /* Helper */
+    function tc_display_view_post_list_thumbnail() {
+      if ( ! isset( self::$_cache['post_list_thumbnail'] ) )
+        self::$_cache[ 'post_list_thumbnail' ] = 'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+      return self::$_cache[ 'post_list_thumbnail' ];
+    }
+    /* end  Thumbnails in post lists*/
 
     function tc_display_view_post_navigation_singular() {
       if ( TC___::$instance -> tc_is_customizing() )
