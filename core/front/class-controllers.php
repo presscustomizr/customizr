@@ -25,7 +25,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       //    'widgets', 'colophon', 'back_to_top'
         ),
         'modules' => array(
-          'social_block' 
+          'social_block', 'breadcrumb' 
         //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
         ),
       );
