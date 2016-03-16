@@ -2,7 +2,8 @@
 class TC_post_thumbnail_model_class extends TC_post_list_thumbnail_model_class {
   public $wrapper_class         = 'tc-thumbnail span12';
   public $link_class            = 'tc-rectangular-thumb';
-  
+  public $thumb_wrapper_class   = '';
+
   // backward compatiblity
   private $hook_map       = array(
     '__before_main_wrapper' => 'before_render_view_main_wrapper',
