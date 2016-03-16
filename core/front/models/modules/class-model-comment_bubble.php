@@ -25,15 +25,15 @@ class TC_comment_bubble_model_class extends TC_Model {
    
     $_bool = true;
 
-    if ( isset( $post ) ) {
+    if ( in_the_loop() && isset( $post ) ) {
 
-      $_bool = in_the_loop() && ! post_password_required() && 0 != get_comments_number() &&
+      $_bool =  ! post_password_required() && 0 != get_comments_number() &&
          in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
  
       $_bool = ( 'closed' != $post -> comment_status ) ? true && $_bool : $_bool;
 
      //3) check global user options for pages and posts
-      if ( is_page() )
+      if ( 'page' == get_post_type() )
         $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
       else
         $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
