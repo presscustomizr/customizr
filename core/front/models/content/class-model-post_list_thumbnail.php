@@ -1,6 +1,7 @@
 <?php
 class TC_post_list_thumbnail_model_class extends TC_Model {
-  public $wrapper_class   = 'thumb-wrapper';
+  public $wrapper_class;  
+  public $thumb_wrapper_class   = 'thumb-wrapper';
   public $link_class      = 'round-div';
 
   public  $thumb_size;
@@ -48,20 +49,23 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   function tc_set_this_properties() {
     if ( ! $this -> tc_has_post_thumbnail() )
       return;
-    $thumb_model = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
+    $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
 
-    $thumb_img        = apply_filters( 'tc_post_thumb_img', $tc_thumb, TC_utils::tc_id() );
+    $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, TC_utils::tc_id() );
     if ( ! $thumb_img )
       return;     
+
+    $wrapper_class          = $this -> tc_get_wrapper_class();
 
     $no_effect_class = $this -> tc_get_no_effect_class( $thumb_model );
 
     //add the effect
-    $link_class       =  apply_filters( 'tc_thumbnail_link_class', array_merge( array( $this -> link_class ), $no_effect_class ) );
-    $wrapper_class    =  apply_filters( 'tc_thumb_wrapper_class', array_merge( array( $this -> wrapper_class ), $no_effect_class ) );
+    $link_class             =  apply_filters( 'tc_thumbnail_link_class', array_merge( array( $this -> link_class ), $no_effect_class ) );
+    $thumb_wrapper_class    =  apply_filters( 'tc_thumb_wrapper_class', array_merge( array( $this -> thumb_wrapper_class ), $no_effect_class ) );
+
     //update the model
-    $this -> tc_update( compact( 'wrapper_class', 'link_class', 'thumb_img') );
+    $this -> tc_update( compact( 'thumb_wrapper', 'wrapper_class', 'link_class', 'thumb_img') );
   }
 
   function tc_get_no_effect_class( $thumb_model ) {
@@ -108,7 +112,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
 
   
   /* The template wrapper class */
-  function tc_get_element_class() {
+  function tc_get_wrapper_class() {
     return 'tc-thumbnail ' . get_query_var('tc_thumbnail_width'); /*retrieved from the post_list layout */
   }
 
@@ -118,7 +122,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   */
   function pre_rendering_my_view_cb( $model ) { 
     parent::pre_rendering_my_view_cb( $model );
-    foreach ( array('wrapper', 'link' ) as $property ) {
+    foreach ( array( 'wrapper', 'thumb_wrapper', 'link' ) as $property ) {
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
     }
   }
