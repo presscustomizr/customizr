@@ -1,6 +1,5 @@
 <?php
 class TC_post_list_thumbnail_model_class extends TC_Model {
-  public $the_thumbnail;
   public $wrapper_class   = 'thumb-wrapper';
   public $link_class      = 'round-div';
 
@@ -10,9 +9,9 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
 
   function __construct( $model = array() ) {
     parent::__construct( $model );
-
     //inside the loop but before rendering set some properties
-    add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), 0 );
+    //we need the -1 (or some < 0 number) as priority, as the thumb in single post page can be rendered at a certain hook with priority 0 (option based)
+    add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), -1 );
 
     //render this?
     add_filter( "tc_do_render_view_{$this -> id}",  array( $this, 'tc_has_post_thumbnail') );
@@ -26,9 +25,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'the_thumbnail' ]  = array( $this, 'tc_render_thumb');
     $model[ 'thumb_size' ]     = $this -> tc_get_thumb_size();
-    
     return $model;
   }
 
@@ -43,7 +40,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   }
 
 
-  function tc_has_post_thumbnail() {
+  function tc_has_post_thumbnail() { 
     return (bool) get_query_var( 'tc_has_post_thumbnail', false );
   }
 
@@ -51,7 +48,6 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   function tc_set_this_properties() {
     if ( ! $this -> tc_has_post_thumbnail() )
       return;
-
     $thumb_model = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
 
@@ -79,26 +75,12 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   }
 
 
-  /**********************
-  * THUMBNAIL VIEW
-  **********************/
-  /**
-  * Display or return the thumbnail view
-  * @param : echo bool
-  * @package Customizr
-  */
-  function tc_render_thumb( $echo = true ) {
-    if ( ! $echo )
-      return $this -> thumb_img;
-    echo $this -> thumb_img;
-  }
-
   /**
   *
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_get_thumb_size( $_default_size = 'tc-thumb' ) {
+  protected function tc_get_thumb_size( $_default_size = 'tc-thumb' ) {
     return $_default_size;  
   }
 

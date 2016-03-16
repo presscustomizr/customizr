@@ -294,6 +294,9 @@ if ( ! class_exists( 'TC___' ) ) :
           //post and page titles in singular context
             array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h1' ),
 
+            //post thumbnail
+            array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),
+
           //Post metas in the headings
           //the default class/template is for the buttons type
             array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
