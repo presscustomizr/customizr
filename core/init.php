@@ -34,11 +34,18 @@ if ( ! class_exists( 'TC___' ) ) :
         self::$instance -> controllers = new TC_Controllers();
         self::$instance -> helpers = new TC_Helpers();
 
+        //registers the header's model
+        add_action('header_model_alive' , array(self::$instance, 'tc_register_header_map') );
+
         //register the model's map
         add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
+
+
+
       }
       return self::$instance;
     }
+
 
 
     private function tc_setup_constants() {
@@ -106,7 +113,7 @@ if ( ! class_exists( 'TC___' ) ) :
             ),
             'header'    =>   array(
               array('core/front', 'nav_walker')
-            )    
+            )
         )
       );
       //check the context
@@ -139,14 +146,14 @@ if ( ! class_exists( 'TC___' ) ) :
       foreach ( $this -> tc_core as $group => $files )
         foreach ($files as $path_suffix ) {
           $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
-        
+
           $classname = 'TC_' . $path_suffix[1];
           if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
             continue;
           //instanciates
           $instances = class_exists($classname)  ? new $classname : '';
         }
-      
+
       //load the new framework classes
       $this -> tc_fw_require_once( 'class-model.php' );
       $this -> tc_fw_require_once( 'class-collection.php' );
@@ -158,10 +165,13 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
     //hook : wp
-    function tc_register_model_map() {
-      foreach ($this -> tc_get_model_map() as $model ) {
+    function tc_register_model_map( $_map = array() ) {
+      $_to_register =  ( empty( $_map ) || ! is_array($_map) ) ? $this -> tc_get_model_map() : $_map;
+
+      foreach ( $_to_register as $model ) {
         CZR() -> collection -> tc_register( $model);
       }
+
     }
 
 
@@ -170,55 +180,50 @@ if ( ! class_exists( 'TC___' ) ) :
       return apply_filters(
         'tc_model_map',
         array(
-          /*********************************************
-          * ROOT HTML STRUCTURE
-          *********************************************/
-          array( 'hook' => '__rooot__', 'template' => 'rooot', 'element_tag' => false ),
-          array( 'hook' => '__html__',  'template' => 'header/head', 'element_tag' => 'head' ),
-          array( 'hook' => 'wp_head' ,  'template' => 'header/favicon', 'element_tag' => false ),
-          array( 'hook' => '__html__',  'template' => 'body', 'priority' => 20, 'element_tag' => false ),
-          array( 'hook' => '__body__',  'template' => 'page_wrapper', 'priority' => 20, 'element_id' => 'tc-page-wrap' ),
+            /*********************************************
+            * ROOT HTML STRUCTURE
+            *********************************************/
+            array(
+              'hook' => '__rooot__',
+              'template' => 'rooot',
+              'element_tag' => false
+            ),
+            array(
+              'hook' => '__html__',
+              'template' => 'header/head',
+              'element_tag' => 'head'
+            ),
+            array(
+              'hook' => 'wp_head' ,
+              'template' => 'header/favicon',
+              'element_tag' => false
+            ),
+            array(
+              'hook' => '__html__',
+              'template' => 'body',
+              'priority' => 20,
+              'element_tag' => false
+            ),
+            array(
+              'hook' => '__body__',
+              'template' => 'page_wrapper',
+              'priority' => 20,
+              'element_id' => 'tc-page-wrap'
+            ),
+
+
           /*********************************************
           * HEADER
           *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template'  => 'header/header', 'element_tag' => 'header', 'element_attributes' => 'role="banner"'),
-          
-         
-          //LOGO
-          array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
-          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'element_tag' => false ),
-          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo'), 'element_tag' => false ),
-          //TITLE
-          array( 'hook' => '__header__', 'template' => 'header/title'  ),
-         
-          //MOBILE TAGLINE
-          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline') ),
-         
-          //NAVBAR
-          array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
-         
-          //socialblock in navbar
-          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
-          //tagline in navbar
-          array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
-          //menu in navbar
-          array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
-          //secondary
-          array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
-          //responsive menu button
-          array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
-          //sidenav navbar menu button
-          array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+          array(
+            'hook'        => '__page_wrapper__',
+            'template'    => 'header/header',
+            'element_tag' => 'header',
+            'element_attributes' => 'role="banner"'
+          ),
 
-          //RESET MARGIN TOP (for sticky header)
-          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 0, 'element_tag' => false ),
 
-          //SIDENAV
-          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav', 'element_tag' => 'nav', 'element_id' => 'tc-sn', 'element_class' => apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) ),
-          //menu button
-          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
-          //menu
-          array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) ),
+
 
           /*********************************************
           * CONTENT
@@ -263,7 +268,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
           /*** ALTERNATE POST LIST ***/
           array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
-          
+
           //content
           //post content/excerpt
           array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'id' => 'content', 'element_tag' => 'section' ),
@@ -336,7 +341,7 @@ if ( ! class_exists( 'TC___' ) ) :
   //        array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
   //        array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
   //        array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
-            
+
           //widget area in footer
           array( 'hook' => '__footer__', 'id' => 'footer_widgets_wrapper', 'template' => 'modules/widget_area_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
 
@@ -364,6 +369,52 @@ if ( ! class_exists( 'TC___' ) ) :
         )
       );
     }
+
+
+
+    function tc_register_header_map() {
+      $_header_map = array(
+          //LOGO
+          array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
+          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'element_tag' => false ),
+          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo'), 'element_tag' => false ),
+
+          //TITLE
+          array( 'hook' => '__header__', 'template' => 'header/title'  ),
+
+          //MOBILE TAGLINE
+          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline') ),
+
+          //NAVBAR
+          array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
+
+          //socialblock in navbar
+          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
+          //tagline in navbar
+          array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
+          //menu in navbar
+          array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
+          //secondary
+          array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+          //responsive menu button
+          array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
+          //sidenav navbar menu button
+          array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+
+          //RESET MARGIN TOP (for sticky header)
+          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 0, 'element_tag' => false ),
+
+          //SIDENAV
+          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav', 'element_tag' => 'nav', 'element_id' => 'tc-sn', 'element_class' => apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) ),
+          //menu button
+          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+          //menu
+          array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
+      );
+      $this -> tc_register_model_map( $_header_map );
+    }
+
+
 
     /***************************
     * HELPERS
@@ -472,7 +523,7 @@ if ( ! class_exists( 'TC___' ) ) :
       if ( ! file_exists( $filename = TC_BASE_CHILD . $path_suffix ) )
         if ( ! file_exists( $filename = TC_BASE . $path_suffix ) )
           return false;
-      
+
       return $filename;
     }
 
@@ -482,7 +533,7 @@ if ( ! class_exists( 'TC___' ) ) :
         return TC_BASE_URL_CHILD . $url_suffix;
       if ( file_exists( $filename = TC_BASE . $url_suffix ) )
         return TC_BASE_URL . $url_suffix;
-      
+
       return false;
     }
 
