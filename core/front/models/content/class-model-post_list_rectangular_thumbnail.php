@@ -1,8 +1,7 @@
 <?php
 class TC_post_list_rectangular_thumbnail_model_class extends TC_post_list_thumbnail_model_class {
-  public $the_thumbnail;
-  public $wrapper_class   = '';
-  public $link_class      = 'tc-rectangular-thumb';
+  public $thumb_wrapper_class   = '';
+  public $link_class            = 'tc-rectangular-thumb';
 
   /* override */
   function tc_get_no_effect_class( $thumb_model ) {
