@@ -1376,7 +1376,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
         if( ( 'post-new.php' == $hook || 'post.php' == $hook || 'media.php' == $hook) )  {
             //ajax refresh for slider options
             wp_enqueue_script( 'tc_ajax_slider' ,
-                sprintf('%1$sinc/admin/js/tc_ajax_slider%2$s.js' , TC_BASE_URL, $_min_version ),
+                sprintf('%1$sback/js/tc_ajax_slider%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version ),
                 array( 'jquery' ),
                 true
             );
@@ -1396,11 +1396,11 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //iphone like button style and script
             wp_enqueue_style( 'iphonecheckcss' ,
-                sprintf('%1$sinc/admin/css/iphonecheck%2$s.css' , TC_BASE_URL, $_min_version )
+                sprintf('%1$sback/css/iphonecheck%2$s.css' , TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version )
             );
             wp_enqueue_script( 'iphonecheck' ,
 
-                sprintf('%1$sinc/admin/js/jqueryIphonecheck%2$s.js' , TC_BASE_URL, $_min_version ),
+                sprintf('%1$sback/js/jqueryIphonecheck%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version ),
                 array('jquery'),
                 true
             );
@@ -1411,7 +1411,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //sortable stuffs
             wp_enqueue_style( 'sortablecss' ,
-                sprintf('%1$sinc/admin/css/tc_sortable%2$s.css' , TC_BASE_URL, $_min_version )
+                sprintf('%1$sback/css/tc_sortable%2$s.css' , TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version )
             );
 
             //wp built-in color picker style and script
@@ -1425,7 +1425,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 wp_enqueue_script( 'wp-color-picker' );
                  // load the minified version of custom script
                 wp_enqueue_script( 'cp_demo-custom' ,
-                    sprintf('%1$sinc/admin/js/color-picker%2$s.js' , TC_BASE_URL, $_min_version ),
+                    sprintf('%1$sback/js/color-picker%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX , $_min_version ),
                     array( 'jquery' , 'wp-color-picker' ),
                     true
                 );
@@ -1437,7 +1437,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 wp_enqueue_script( 'farbtastic' );
                 // load the minified version of custom script
                 wp_enqueue_script( 'cp_demo-custom' ,
-                    sprintf('%1$sinc/admin/js/color-picker%2$s.js' , TC_BASE_URL, $_min_version ),
+                    sprintf('%1$sback/js/color-picker%2$s.js' ,  TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version ),
                     array( 'jquery' , 'farbtastic' ),
                     true
                 );
