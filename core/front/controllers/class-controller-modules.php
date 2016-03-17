@@ -42,5 +42,16 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       //(3b)
       return ( 1 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$socials_map[ $model['hook'] ]}" ) ) && tc__f('__get_socials') );
     }
+
+    function tc_display_view_main_slider() {
+      //gets the front slider if any
+      $tc_front_slider              = esc_attr(TC_utils::$inst->tc_opt( 'tc_front_slider' ) );
+      //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
+      $_show_slider = TC_utils::$inst -> tc_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
+    
+      return apply_filters( 'tc_show_slider' , $_show_slider );
+ 
+    }
+
   }//end of class
 endif;

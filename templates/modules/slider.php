@@ -5,8 +5,8 @@
 
   <div class="<?php echo $slider_model -> inner_class ?>">
     <?php
-      foreach ($slider_model -> slides as $slide)
-        do_action( "in_slider_{$slider_model -> id}", $slide );
+      foreach ($slider_model -> slides as $slide_id => $slide_data )
+        do_action( "in_slider_{$slider_model -> id}", $slide_id, $slide_data );
     ?>
   </div><!-- /.carousel-inner -->
   <?php  do_action( '__after_carousel_inner' , $slider_model -> slides, $slider_model -> name_id )  ?>
