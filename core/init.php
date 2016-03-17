@@ -221,6 +221,12 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) ),
 
           /*********************************************
+          * SLIDER
+          *********************************************/ 
+          array( 'hook' => '__page_wrapper__', 'template'  => 'modules/slider', 'id' => 'main_slider', 'element_tag' => false ),
+            array( 'hook' => 'in_slider_main_slider', 'template'  => 'modules/slide', 'element_tag' => false ),
+
+          /*********************************************
           * CONTENT
           *********************************************/
           /* MAIN WRAPPERS */
