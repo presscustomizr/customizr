@@ -101,6 +101,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('core'       , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
               array('core/utils' , 'utils_settings_map'),//customizer setting map
               array('core/utils' , 'utils'),//helpers used everywhere
+              array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
               array('core'       , 'resources'),//loads front stylesheets (skins) and javascripts
               array('core'       , 'widgets'),//widget factory
               array('core'       , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
@@ -271,9 +272,11 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //content
           //post content/excerpt
-          array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_content', 'id' => 'content', 'element_tag' => 'section' ),
-          //thumb
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_element', 'model_class' => 'content/post_list_thumbnail', 'id' => 'thumbnail', 'element_tag' => 'section' ),
+          array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content', 'element_tag' => 'section' ),
+          //thumbs
+          array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_thumbnail', 'id' => 'post_list_standard_thumb', 'element_tag' => false ),
+          //the recangular thumb has a different model + a slighty different template
+          array( 'hook' => '__post_list_thumb__', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_list_rectangular_thumb', 'element_tag' => false, 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_list_rectangular_thumbnail') ),
 
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
@@ -293,10 +296,12 @@ if ( ! class_exists( 'TC___' ) ) :
             //post footer (wrapper of the author_info)
             array( 'hook' => 'after_render_view_post', 'id' => 'post_footer', 'template' => 'content/author_info', 'element_tag' => 'footer', 'element_class' => 'entry-meta'),
           //attachment
-          array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/attachment_content' ) ),
-            //TODO attachment metas!
+          array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/attachment_content' ) ),
           //post and page titles in singular context
             array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h1' ),
+
+            //post thumbnail
+            array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),
 
           //Post metas in the headings
           //the default class/template is for the buttons type
@@ -306,7 +311,7 @@ if ( ! class_exists( 'TC___' ) ) :
           //attachment post mestas
             array( 'hook' => '__headings_content__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
 
-          /* TODO: LINKS IN POST METAS FOR POSTS WITH NO TITLE ...*/
+          /* TODO: LINKS IN POST METAS FOR POSTS WITH NO TITLE ( needs to access the definition of the posts with no headings )...*/
 
 
           /* Comments */
