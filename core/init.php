@@ -243,6 +243,12 @@ if ( ! class_exists( 'TC___' ) ) :
         //we define the wrapper class here, we need a wrapper 'cause we don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
             'element_class' => 'container marketing' 
           ),
+            array( 
+              'hook' => '__featured_page__',
+              'template' => 'modules/featured_page',
+          //we define the wrapper class here, we need a wrapper 'cause we don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
+              'element_tag' => false
+            ),
 
           //breadcrumb
           array( 'hook' => '__main_wrapper__', 'template' => 'modules/breadcrumb', 'priority' => 20, 'element_tag' => false ),
