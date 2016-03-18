@@ -95,50 +95,32 @@ class TC_slide_model_class extends TC_Model {
 
     $_title                  = isset($data['title']) ? apply_filters( 'tc_slide_title', $data['title'] , $id, $slider_name_id ) : '';
     $_text                   = isset($data['text']) ? esc_html( apply_filters( 'tc_slide_text', $data['text'], $id, $slider_name_id ) ) : '';
-    
-    //    $color_style            = apply_filters( 'tc_slide_color', $data['color_style'], $id, $slider_name_id );
 
     $_button_text            = isset($data['button_text']) ? apply_filters( 'tc_slide_button_text', $data['button_text'], $id, $slider_name_id ) : '';
 
     //computes the link
     $button_link            = apply_filters( 'tc_slide_button_link', $data['link_url'] ? $data['link_url'] : 'javascript:void(0)', $id, $slider_name_id );
     
-
-
     // title elements
     if ( apply_filters( 'tc_slide_show_title', $_title != null, $slider_name_id ) ) {
       $title_tag    = apply_filters( 'tc_slide_title_tag', 'h1', $slider_name_id );
       $title        = $_title;
       $title_class  = implode( ' ', apply_filters( 'tc_slide_title_class', array( 'slide-title' ), $title , $slider_name_id ) );
     }
- /*   }else {
-      $title        = '';
-      $title_tag    = '';
-      $title_class  = '';
- }*/
 
     // text elements
     if (  apply_filters( 'tc_slide_show_text', $_text != null, $slider_name_id ) ) {
       $text         = $_text;
       $text_class   = implode( ' ', apply_filters( 'tc_slide_text_class', array( 'lead' ), $text, $slider_name_id ) );
     }
-/*    }else {
-      $text         = '';
-      $text_class   = '';
-    }
- */
+
     // button elements
     if ( apply_filters( 'tc_slide_show_button', $_button_text != null, $slider_name_id ) ) {
       $button_text  = $_button_text;
       $button_class = implode( ' ', apply_filters( 'tc_slide_button_class', array( 'btn', 'btn-large', 'btn-primary' ), $button_text, $slider_name_id ) ) ;
       $button_link  = apply_filters( 'tc_slide_button_link', $data['link_url'] ? $data['link_url'] : 'javascript:void(0)', $id, $slider_name_id ) ;
     }
-/*    }else {
-      $button_text  = '';
-      $button_class = '';
-      $button_link  = ''; 
-    }
- */
+
     //re-check the caption elements are set
     if ( ! ( $title || $text || $button_text ) )
       return array();

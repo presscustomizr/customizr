@@ -424,6 +424,29 @@ class TC_slider_model_class extends TC_Model {
     return ( ( $end_substr < $text_length ) && $more ) ? $text : $text . ' ' .$more ;
   }
 
+  /**
+  * hook : tc_slider_height, fired in tc_user_options_style
+  * @return number height value
+  *
+  * @package Customizr
+  * @since Customizr 3.3+
+  */
+  function tc_set_demo_slider_height( $_h ) {
+    //this custom demo height is applied when :
+    //1) current slider is demo
+    if ( 'demo' != $this -> tc_get_current_slider( $this -> tc_get_real_id() ) )
+      return $_h;
+    //2) height option has not been changed by user yet
+    //the possible customization context must be taken into account here
+    if ( TC___::$instance -> tc_is_customizing() ) {
+      if ( 500 != esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) )
+        return $_h;
+    } else {
+      if ( false !== (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height', TC___::$tc_option_group, $use_default = false ) ) )
+        return $_h;
+    }
+    return apply_filters( 'tc_set_demo_slider_height' , 750 );
+  }
 
   /*
   * Custom CSS
@@ -432,9 +455,10 @@ class TC_slider_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.2.6 
   */
-  function tc_user_options_style_cb( $_css ) { 
+  function tc_user_options_style_cb( $_css ) {
+    $slider_name_id =  $this -> tc_get_current_slider( $this -> tc_get_real_id() ) ;
     //custom css for the slider loader
-    if ( $this -> tc_is_slider_loader_active( $this -> tc_get_current_slider( $this -> tc_get_real_id() ) ) ) {
+    if ( $this -> tc_is_slider_loader_active( $slider_name_id ) ) {
         
       $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL . TC_ASSETS_PREFIX, 'img/slider-loader.gif') );
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
@@ -466,7 +490,9 @@ class TC_slider_model_class extends TC_Model {
   
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
-    $_custom_height     = apply_filters( 'tc_slider_height' , esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) );
+    $_custom_height     = esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') );
+    $_custom_height     = apply_filters( 'tc_slider_height' , 'demo' != $slider_name_id ? $_custom_height : $this -> tc_set_demo_slider_height( $_custom_height ) );
+
     $_slider_inline_css = "";
     //When shall we append custom slider style to the global custom inline stylesheet?
     $_bool = 500 != $_custom_height;
