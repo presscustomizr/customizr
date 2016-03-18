@@ -42,5 +42,25 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       //(3b)
       return ( 1 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$socials_map[ $model['hook'] ]}" ) ) && tc__f('__get_socials') );
     }
+
+    /* BREADCRUMB */
+    function tc_display_view_breadcrumb() {
+      if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_breadcrumb') ) ) )
+        return false;
+
+      if ( TC_utils::$inst -> tc_is_home() )
+        return 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
+      if ( is_page() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_pages' ) ) )
+        return false;
+      
+      if ( is_single() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
+        return false;
+      
+      if ( ! is_page() && ! is_single() && 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
+        return false;
+
+      return true;
+    }
+
   }//end of class
 endif;

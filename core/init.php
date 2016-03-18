@@ -234,6 +234,8 @@ if ( ! class_exists( 'TC___' ) ) :
           /* MAIN WRAPPERS */
           array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20, 'element_class' => apply_filters( 'tc_main_wrapper_classes' , array('container') ), 'element_id' => 'main-wrapper' ),
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 20 ),
+          //breadcrumb
+          array( 'hook' => '__main_wrapper__', 'template' => 'modules/breadcrumb', 'priority' => 10, 'element_tag' => false ),
 
           /* LEFT SIDEBAR */
           array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 10, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
