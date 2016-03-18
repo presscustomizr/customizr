@@ -113,7 +113,10 @@ if ( ! class_exists( 'TC___' ) ) :
               array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
             ),
             'header'    =>   array(
-              array('core/front', 'nav_walker')
+              array('core/front/utils', 'nav_walker')
+            ),
+            'content'   =>   array(
+              array('core/front/utils', 'gallery')
             )
         )
       );
