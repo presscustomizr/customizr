@@ -91,7 +91,7 @@ class TC_slider_model_class extends TC_Model {
   private function tc_get_the_slides( $slider_name_id, $img_size ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
-      return apply_filters( 'tc_default_slides', TC_init::$instance -> default_slides );
+      return apply_filters( 'tc_default_slides', $this -> tc_get_default_slides() );
      
     //if not demo or tc_posts_slider, we get slides from options
     $all_sliders    = TC_utils::$inst -> tc_opt( 'tc_sliders');
@@ -213,6 +213,46 @@ class TC_slider_model_class extends TC_Model {
   /******************************
   * HELPERS / SETTERS / CALLBACKS
   *******************************/
+
+  /* 
+  * Default slides: demo slider 
+  * Not a class property as they're really used very rarely, no need to reserve space
+  * for them
+  */
+  protected function tc_get_default_slides() {
+    //Default slides content
+    return array(
+      1 => array(
+        'title'         =>  '',
+        'text'          =>  '',
+        'button_text'   =>  '',
+        'link_id'       =>  null,
+        'link_url'      =>  null,
+        'active'        =>  'active',
+        'color_style'   =>  '',
+        'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                    TC_BASE_URL . TC_ASSETS_PREFIX . 'front/img/customizr-theme-responsive.png',
+                                    __( 'Customizr is a clean responsive theme' , 'customizr' )
+                            )
+      ),
+
+      2 => array(
+        'title'         =>  '',
+        'text'          =>  '',
+        'button_text'   =>  '',
+        'link_id'       =>  null,
+        'link_url'      =>  null,
+        'active'        =>  '',
+        'color_style'   =>  '',
+        'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                    TC_BASE_URL . TC_ASSETS_PREFIX . 'front/img/customizr-theme-customizer.png',
+                                    __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
+                            )
+      )
+    );///end of slides array  
+  }
+
+
 
   /**
   * @return  array of css classes
