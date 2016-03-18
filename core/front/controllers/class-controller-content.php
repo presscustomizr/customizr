@@ -87,13 +87,14 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
     function tc_display_view_post() {
       //check conditional tags : we want to show single post or single custom post types
-      global $post;
-      if ( ! isset( self::$_cache['post'] ) )
+      if ( ! isset( self::$_cache['post'] ) ) {
+        global $post;
         self::$_cache['post'] = isset($post)
-        && 'page' != $post -> post_type
-        && 'attachment' != $post -> post_type
-        && is_singular()
-        && ! $this -> tc_is_home_empty();
+                                && is_singular()
+                                && 'page' != $post -> post_type
+                                && 'attachment' != $post -> post_type
+                                && ! $this -> tc_is_home_empty();
+      }
       return apply_filters( 'tc_show_single_post_content', self::$_cache['post'] );
     }
 
@@ -175,6 +176,31 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_metas_attachment() {
       return is_attachment() ||
         is_search() && apply_filters( 'tc_include_attachments_in_search_results' , false );    
+    }
+
+    /* Thumbnails in post lists */
+    function tc_display_view_post_list_rectangular_thumb() {
+      return $this -> tc_display_view_post_list_thumbnail() && 
+            FALSE !== strpos( esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape'), 'rectangular' ), 'rectangular' );
+    }
+
+    function tc_display_view_post_list_standard_thumb() {
+      return $this -> tc_display_view_post_list_thumbnail() &&
+            FALSE === strpos( esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') ), 'rectangular' );
+    }
+
+    /* Helper */
+    function tc_display_view_post_list_thumbnail() {
+      if ( ! isset( self::$_cache['post_list_thumbnail'] ) )
+        self::$_cache[ 'post_list_thumbnail' ] = $this -> tc_display_view_post_list() && 'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+      return self::$_cache[ 'post_list_thumbnail' ];
+    }
+    /* end  Thumbnails in post lists*/
+
+    /* Single post thumbnail */
+    function tc_display_view_post_thumbnail() {
+      return $this -> tc_display_view_post() && 'hide' != esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
+        && apply_filters( 'tc_show_single_post_thumbnail' , TC_utils_thumbnails::$instance -> tc_has_thumb() ); 
     }
 
     function tc_display_view_post_navigation_singular() {
