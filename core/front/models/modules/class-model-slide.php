@@ -5,7 +5,7 @@ class TC_slide_model_class extends TC_Model {
   public $caption_class;
   
   public $name_id;
-  public $img;
+  public $slide_background;
 
   public $title;
   public $title_class;
@@ -57,18 +57,11 @@ class TC_slide_model_class extends TC_Model {
     $caption           = $this -> tc_get_slide_caption_model( $slide );
     $has_caption       = ! empty( $caption );
 
-    //color style
-    $color_style       = $data['color_style'];
-
-    //link target
-    $link_target       = isset( $data['link_target'] ) ? $data['link_target'] : '';
-
     //img elements
-    $img               = $data['slide_background'];
     $img_wrapper_class = apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) );
 
     $this -> tc_update(
-        array_merge( $caption, compact('item_class', 'img', 'img_wrapper_class', 'color_style', 'has_caption', 'link_target' ) )
+        array_merge( $data, $caption, compact('item_class', 'img_wrapper_class', 'has_caption') )
     );
   }
 
@@ -174,7 +167,6 @@ class TC_slide_model_class extends TC_Model {
         $data['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
       break;
     };
-    $data['link_target'] = '_blank';
     return $data;
   }
 
