@@ -285,6 +285,9 @@ if ( ! class_exists( 'TC___' ) ) :
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
             array( 'hook' => '__headings_content__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => 'h2' ),
+            //comment bubble
+            array( 'hook' => 'after_render_view_inner_post_list_title', 'template' => 'modules/comment_bubble', 'element_tag' => false ),
+
           /*** ALTERNATE POST LIST END ***/
 
           //page & post
@@ -306,6 +309,9 @@ if ( ! class_exists( 'TC___' ) ) :
 
             //post thumbnail
             array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),
+
+            //comment bubble
+            array( 'hook' => 'after_render_view_inner_singular_title', 'template' => 'modules/comment_bubble', 'id' => 'singular_comment_bubble', 'element_tag' => false ),
 
           //Post metas in the headings
           //the default class/template is for the buttons type
