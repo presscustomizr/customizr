@@ -239,6 +239,14 @@ if ( ! class_exists( 'TC___' ) ) :
             'id' => 'main_slider',
             'element_tag' => false
           ),
+          array(
+            'hook' => '__page_wrapper__',
+            'template'  => 'modules/slider',
+            'id' => 'main_slider',
+            'element_tag' => false,
+            'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/posts_slider' ),
+            'controler'   => 'main_slider'
+          ),
             array(
               'hook' => '__slide__',
               'template'  => 'modules/slide',

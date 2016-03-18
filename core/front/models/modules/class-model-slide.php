@@ -122,7 +122,7 @@ class TC_slide_model_class extends TC_Model {
     }
 
     //re-check the caption elements are set
-    if ( ! ( $title || $text || $button_text ) )
+    if ( ! ( isset($title) || isset($text) || isset($button_text) ) )
       return array();
 
     return compact( 'caption_class', 'title', 'title_class', 'title_tag', 'text', 'text_class', 'button_text', 'button_link', 'button_class' );

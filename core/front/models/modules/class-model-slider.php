@@ -45,13 +45,16 @@ class TC_slider_model_class extends TC_Model {
 
     $img_size           = apply_filters( 'tc_slider_img_size' , ( 'boxed' == $layout ) ? 'slider' : 'slider-full');
 
+    $slides             = $this -> tc_get_the_slides( $slider_name_id, $img_size );
+
+    //We need a way to silently fail when the model "decides" it doesn't have to be instanciated
+    if ( ! $slides )
+      return;   
+    
     $element_class      = $this -> tc_get_slider_element_class( $queried_id, $slider_name_id, $layout );
     $inner_class        = $this -> tc_get_inner_class();
 
-    $slides             = $this -> tc_get_the_slides( $slider_name_id, $img_size );
 
-    if ( ! $slides )
-      return;
 
     //set-up controls
     if ( apply_filters('tc_show_slider_controls' , ! wp_is_mobile() && count( $slides ) > 1) ) {
@@ -106,11 +109,14 @@ class TC_slider_model_class extends TC_Model {
   * @since Customizr 3.0.15
   *
   */
-  private function tc_get_the_slides( $slider_name_id, $img_size ) {
+  protected function tc_get_the_slides( $slider_name_id, $img_size ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
       return apply_filters( 'tc_default_slides', $this -> tc_get_default_slides() );
-     
+    else if ( 'tc_posts_slider' == $slider_name_id ) {
+      return array();  
+    }
+
     //if not demo or tc_posts_slider, we get slides from options
     $all_sliders    = TC_utils::$inst -> tc_opt( 'tc_sliders');
     $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
@@ -383,7 +389,7 @@ class TC_slider_model_class extends TC_Model {
   * @return  string
   *
   */
-  private function tc_get_current_slider($queried_id) {
+  private function tc_get_current_slider( $queried_id ) {
     //gets the current slider id
     $_home_slider     = TC_utils::$inst->tc_opt( 'tc_front_slider' );
     $slider_name_id   = ( TC_utils::$inst -> tc_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
