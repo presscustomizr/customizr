@@ -41,13 +41,12 @@ class TC_slide_model_class extends TC_Model {
       return;      
     }
 
+    //demo data
+    if ( 'demo' == $slide['slider_name_id'] && is_user_logged_in() )
+      $slide['data'] =  $this -> tc_set_demo_slide_data( $slide['data'], $slide['id'] );
+
     //array( $id, $data , $slider_name_id, $img_size )    
     extract ( $slide );
-    
-    //demo data
-    if ( 'demo' == $slider_name_id && is_user_logged_in() )
-      $slide['data'] =  $this -> tc_set_demo_slide_data( $data, $id );
-
 
     $item_class = sprintf('%1$s %2$s',
       $data['active'],
@@ -63,6 +62,7 @@ class TC_slide_model_class extends TC_Model {
 
     //link target
     $link_target       = isset( $data['link_target'] ) ? $data['link_target'] : '';
+
     //img elements
     $img               = $data['slide_background'];
     $img_wrapper_class = apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) );
@@ -148,6 +148,7 @@ class TC_slide_model_class extends TC_Model {
   }
 
 
+
   /******************************
   * HELPERS / SETTERS / CALLBACKS
   *******************************/
@@ -161,7 +162,6 @@ class TC_slide_model_class extends TC_Model {
   *
   */
   function tc_set_demo_slide_data( $data, $id ) {
-  
     switch ( $id ) {
       case 1 :
         $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
@@ -177,6 +177,7 @@ class TC_slide_model_class extends TC_Model {
     $data['link_target'] = '_blank';
     return $data;
   }
+
 
 
   /**
