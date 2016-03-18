@@ -5,8 +5,8 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
 
   //Default post list layout
   private static $default_post_list_layout   = array(
-            'content'           => 'span9',
-            'thumb'             => 'span3',
+            'content'           => 'span8',
+            'thumb'             => 'span4',
             'show_thumb_first'  => false,
             'alternate'         => true
           );
@@ -54,7 +54,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     }
 
     set_query_var( 'tc_has_post_thumbnail', $has_post_thumbnail );
-    set_query_var( 'tc_content_width'     , $this -> tc_show_excerpt() ? $content : 'span12' );
+    set_query_var( 'tc_content_width'     , $this -> tc_show_thumb() ? $content : 'span12' );
     set_query_var( 'tc_thumbnail_width'   , $thumb );
     set_query_var( 'tc_show_excerpt'      , $this -> tc_show_excerpt() );
   }
@@ -88,8 +88,14 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     return $_class;
   }
 
+  /* Following are here to allow to apply a filter on each loop ..
+  *  but we can think about move them in another place if we decide
+  *  the users MUST act only modifying models/templates
+  *
+  *  Actually they can be moved in another place anyway, but they are pretty specific of the "alternate" post list
+  */
   /* HELPERS */
-    /**
+  /**
   * @return boolean
   * @package Customizr
   * @since Customizr 3.3.2
@@ -103,7 +109,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     return apply_filters( 'tc_show_thumb', array_product(
         array(
           $this -> tc_show_excerpt(),
-          has_post_thumbnail(),//TC_post_thumbnails::$instance -> tc_has_thumb(), 
+          TC_utils_thumbnails::$instance -> tc_has_thumb(), 
           0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) )
         )
       )

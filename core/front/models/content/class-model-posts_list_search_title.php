@@ -11,7 +11,7 @@ class TC_posts_list_search_title_model_class extends TC_posts_list_title_model_c
     //the controlleer will check if we're in (not singular) context
     $model = parent::tc_extend_params( $model );  
     $model['element_class']                   = array( 'row-fluid' );
-    $model['title_class']                     = apply_filters( 'tc_archive_icon', $this -> tc_get_class() );
+    $model['title_class']                     = apply_filters( 'tc_archive_icon', $this -> tc_get_archive_title_class() );
     $model['title_wrapper_class']             = apply_filters( 'tc_search_result_header_title_class', array('span8') );
     $model['search_form_wrapper_class']       = apply_filters( 'tc_search_result_header_form_class', array('span4') );
     

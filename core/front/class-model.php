@@ -60,10 +60,13 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //3) a hook
       if ( ! $this -> tc_can_model_be_instanciated() )
         return;
-      
-  
+
+
       //this will trigger the collection update => the model will be registered in the collection
-      do_action( 'model_instanciated' , $this -> id, $this );
+      do_action( 'model_alive' , $this -> id, $this );
+
+      //specific event for this model.
+      do_action( "{$this -> id}_model_alive", $this -> id, $this );
 
       //Registers its children if any
       $this -> tc_maybe_register_children();
@@ -71,7 +74,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //maybe alter body class
       if ( method_exists( $this, 'tc_body_class' ) )
         add_filter( 'body_class', array( $this, 'tc_body_class' ) );
-      
+
       //maybe add style (have to see if we have to put this just before the view is rendered)
       $this -> tc_maybe_add_style();
 
@@ -129,7 +132,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public function tc_maybe_add_style() {
       //for now just add filter to tc_user_options_style
       if ( method_exists( $this, 'tc_user_options_style_cb' ) )
-        add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' ) );    
+        add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' ) );
     }//fn
 
 
@@ -233,7 +236,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //is fired on instanciation
     //@param = array()
     protected function tc_extend_params( $model = array() ) {
-      return $model;  
+      return $model;
     }
 
     //@return void()
@@ -262,7 +265,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     // I prefer to not allow the automatic hooking to a specific view without checking the existence of a callback to avoid the useless adding of a "dummy" cb ot the array of action callbacks
     // Though makes sense to hook a certain model ID to its view pre_rendering to parse its own properties before rendering. Example:
     // The class parameter will be stored in the model as an array to allow a better way to filter it ( e.g. avoid duplications), but to make it suitable for the rendering, it must be transformed in a string
-    // Maybe we can think about make the model attributes, when needed, a set of 
+    // Maybe we can think about make the model attributes, when needed, a set of
     // value, "sanitize" callback and let the view class do this..
     protected function tc_maybe_filter_views_model() {
       if ( method_exists( $this, 'pre_rendering_view_cb' ) )
@@ -270,7 +273,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //by default filter this module before rendering (for default properties parsing, e.g. element_class )
       add_action( "pre_rendering_view_{$this -> id}", array($this, "pre_rendering_my_view_cb" ), 9999 );
     }
- 
+
 
     public function pre_rendering_my_view_cb( $model ) {
       $model -> element_class = $this -> tc_stringify_model_property( 'element_class' );
