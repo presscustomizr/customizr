@@ -80,6 +80,14 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       return self::$_cache['comment_bubble'] && $this -> tc_display_view_post_list() ;
     }
 
+
+    function tc_display_view_featured_pages() {
+      //gets display fp option
+      $tc_show_featured_pages 	      = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
+      return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && TC_utils::$inst -> tc_is_home() );
+    }
+
+
     /* FOLLOWING COPIED FROM THE CONTENT CONTROLLER CLASS */
     /******************************
     VARIOUS HELPERS
