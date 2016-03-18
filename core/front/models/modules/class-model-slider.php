@@ -427,8 +427,12 @@ class TC_slider_model_class extends TC_Model {
 
   /*
   * Custom CSS
+  * @return css string
+  *
+  * @package Customizr
+  * @since Customizr 3.2.6 
   */
-  function tc_user_options_style_cb( $_css ) {    
+  function tc_user_options_style_cb( $_css ) { 
     //custom css for the slider loader
     if ( $this -> tc_is_slider_loader_active( $this -> tc_get_current_slider( $this -> tc_get_real_id() ) ) ) {
         
@@ -459,6 +463,56 @@ class TC_slider_model_class extends TC_Model {
                                     ) : '';
       $_css = sprintf( "%s\n%s%s", $_css, $_slider_loader_gif_css, $_pure_css_loader_css );
     }//end custom css for the slider loader
-    return $_css;
+  
+    // 1) Do we have a custom height ?
+    // 2) check if the setting must be applied to all context
+    $_custom_height     = apply_filters( 'tc_slider_height' , esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) );
+    $_slider_inline_css = "";
+    //When shall we append custom slider style to the global custom inline stylesheet?
+    $_bool = 500 != $_custom_height;
+    $_bool = $_bool && ( TC_utils::$inst -> tc_is_home() || 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height_apply_all') ) );
+    if ( ! apply_filters( 'tc_print_slider_inline_css' , $_bool ) )
+      return $_css;
+    $_resp_shrink_ratios = apply_filters( 'tc_slider_resp_shrink_ratios',
+      array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )
+    );
+    $_slider_inline_css = "
+      .carousel .item {
+        line-height: {$_custom_height}px;
+        min-height:{$_custom_height}px;
+        max-height:{$_custom_height}px;
+      }
+      .tc-slider-loader-wrapper {
+        line-height: {$_custom_height}px;
+        height:{$_custom_height}px;
+      }
+      .carousel .tc-slider-controls {
+        line-height: {$_custom_height}px;
+        max-height:{$_custom_height}px;
+      }\n";
+    foreach ( $_resp_shrink_ratios as $_w => $_ratio) {
+      if ( ! is_numeric($_ratio) )
+        continue;
+      $_item_dyn_height     = $_custom_height * $_ratio;
+      $_caption_dyn_height  = $_custom_height * ( $_ratio - 0.1 );
+      $_slider_inline_css .= "
+        @media (max-width: {$_w}px) {
+          .carousel .item {
+            line-height: {$_item_dyn_height}px;
+            max-height:{$_item_dyn_height}px;
+            min-height:{$_item_dyn_height}px;
+          }
+          .item .carousel-caption {
+            max-height: {$_caption_dyn_height}px;
+            overflow: hidden;
+          }
+          .carousel .tc-slider-loader-wrapper {
+            line-height: {$_item_dyn_height}px;
+            height:{$_item_dyn_height}px;
+          }
+        }\n";
+    }//end foreach
+    
+    return sprintf("%s\n%s", $_css, $_slider_inline_css);
   }
 }
