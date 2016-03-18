@@ -44,6 +44,11 @@ class TC_slide_model_class extends TC_Model {
     //array( $id, $data , $slider_name_id, $img_size )    
     extract ( $slide );
     
+    //demo data
+    if ( 'demo' == $slider_name_id && is_user_logged_in() )
+      $slide['data'] =  $this -> tc_set_demo_slide_data( $data, $id );
+
+
     $item_class = sprintf('%1$s %2$s',
       $data['active'],
       'slide-'.$id
@@ -57,7 +62,7 @@ class TC_slide_model_class extends TC_Model {
     $color_style       = $data['color_style'];
 
     //link target
-    $link_target       = $data['link_target'];
+    $link_target       = isset( $data['link_target'] ) ? $data['link_target'] : '';
     //img elements
     $img               = $data['slide_background'];
     $img_wrapper_class = apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) );
@@ -67,15 +72,7 @@ class TC_slide_model_class extends TC_Model {
     );
   }
 
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) { 
-    parent::pre_rendering_my_view_cb( $model );
-    foreach ( array( 'caption', 'text', 'title', 'button' ) as $property ) {
-      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
-    }
-  }
+
   /**
   * Slide caption submodel
   * @param $_view_model = array( $id, $data , $slider_name_id, $img_size )
@@ -88,6 +85,7 @@ class TC_slide_model_class extends TC_Model {
   function tc_get_slide_caption_model( $slide ) {
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $slide );
+    
     //filters the data before (=> used for demo for example )
     $data                   = apply_filters( 'tc_slide_caption_data', $data, $slider_name_id, $id );
     $show_caption           = ! ( $data['title'] == null && $data['text'] == null && $data['button_text'] == null ) ;
@@ -148,4 +146,47 @@ class TC_slide_model_class extends TC_Model {
 
     return compact( 'caption_class', 'title', 'title_class', 'title_tag', 'text', 'text_class', 'button_text', 'button_link', 'button_class' );
   }
+
+
+  /******************************
+  * HELPERS / SETTERS / CALLBACKS
+  *******************************/
+  /**
+  * Returns the modified caption data array with a link to the doc
+  * Only displayed for the demo slider and logged in users
+  * hook : tc_slide_caption_data
+  *
+  * @package Customizr
+  * @since Customizr 3.3.+
+  *
+  */
+  function tc_set_demo_slide_data( $data, $id ) {
+  
+    switch ( $id ) {
+      case 1 :
+        $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
+        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '102-customizr-theme-options-front-page/#front-page-slider' ) ); //do we need an anchor in the doc?
+        $data['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
+      break;
+      case 2 :
+        $data['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
+        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '3-creating-a-slider-with-customizr-wordpress-theme' ) );
+        $data['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
+      break;
+    };
+    $data['link_target'] = '_blank';
+    return $data;
+  }
+
+
+  /**
+  * parse this model properties for rendering
+  */ 
+  function pre_rendering_my_view_cb( $model ) { 
+    parent::pre_rendering_my_view_cb( $model );
+    foreach ( array( 'caption', 'text', 'title', 'button' ) as $property ) {
+      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
+    }
+  }
+
 }//end class
