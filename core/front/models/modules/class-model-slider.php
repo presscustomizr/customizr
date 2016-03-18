@@ -2,14 +2,17 @@
 class TC_slider_model_class extends TC_Model {
   public $inner_class;
   public $slides = array();
-  public $name_id;
+  public $slider_name_id;
   public $layout;
   public $img_size;
 
   public $left_control_class  = '';
   public $right_control_class = '';
 
-  public $has_controls = false;
+  public $has_controls        = false;
+  public $has_loader          = false;
+
+  public $pure_css_loader     = '';
 
   private $queried_id;
   private $is_slider_active;
@@ -35,24 +38,35 @@ class TC_slider_model_class extends TC_Model {
     if ( ! $this -> is_slider_active = $this -> tc_is_slider_active( $queried_id ) )
       return;
 
-    $name_id            = $this -> tc_get_current_slider( $queried_id );
-    $layout             = 0 == $this -> tc_get_slider_layout( $queried_id, $name_id ) ? 'boxed' : 'full';
+    $slider_name_id     = $this -> tc_get_current_slider( $queried_id );
+    $layout             = 0 == $this -> tc_get_slider_layout( $queried_id, $slider_name_id ) ? 'boxed' : 'full';
 
     $img_size           = apply_filters( 'tc_slider_img_size' , ( 'boxed' == $layout ) ? 'slider' : 'slider-full');
 
-    $element_class      = $this -> tc_get_slider_element_class( $queried_id, $name_id, $layout );
+    $element_class      = $this -> tc_get_slider_element_class( $queried_id, $slider_name_id, $layout );
     $inner_class        = $this -> tc_get_inner_class();
 
-    $slides             = $this -> tc_get_the_slides( $name_id, $img_size );
+    $slides             = $this -> tc_get_the_slides( $slider_name_id, $img_size );
 
     if ( ! $slides )
       return;
 
-    //set-up contorls
+    //set-up controls
     if ( apply_filters('tc_show_slider_controls' , ! wp_is_mobile() && count( $slides ) > 1) ) {
       $left_control_class  = ! is_rtl() ? 'left' : 'right';
       $right_control_class = ! is_rtl() ? 'right' : 'left';
       $has_controls        = true;
+    }
+
+    //set-up loader
+    if ( $this -> tc_is_slider_loader_active( $slider_name_id ) ) {
+      $has_loader       = true;
+  
+      if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) )
+        $pure_css_loader = sprintf( '<div class="tc-css-loader %1$s">%2$s</div>',
+            implode( ' ', apply_filters( 'tc_pure_css_loader_add_classes', array( 'tc-mr-loader') ) ),
+            apply_filters( 'tc_pure_css_loader_inner', '<div></div><div></div><div></div>') 
+        ); 
     }
 
     return array_merge( $model, compact( 
@@ -63,14 +77,16 @@ class TC_slider_model_class extends TC_Model {
         'img_size',
         'has_controls',
         'left_control_class',
-        'right_control_class'
+        'right_control_class',
+        'pure_css_loader',
+        'has_loader'
     ) );
   }
 
 
   function setup_slide_data( $id, $data ) {
     set_query_var( 'tc_slide', array( 
-          'slider_name_id' => $this -> name_id,
+          'slider_name_id' => $this -> slider_name_id,
           'data'           => $data,
           'img_size'       => $this -> img_size,
           'id'             => $id
@@ -276,12 +292,12 @@ class TC_slider_model_class extends TC_Model {
   * getter
   * Get current slider layout class
   * @param $queried_id the current page/post id
-  * @param $name_id the current slider name id
+  * @param $slider_name_id the current slider name id
   *
   * @return array()
   */
-  protected function tc_get_slider_element_class( $queried_id, $name_id, $layout ) {
-    $class        = array( 'carousel', 'customizr-slide', $name_id );
+  protected function tc_get_slider_element_class( $queried_id, $slider_name_id, $layout ) {
+    $class        = array( 'carousel', 'customizr-slide', $slider_name_id );
 
     //layout
     $layout_class = apply_filters( 'tc_slider_layout_class', 'boxed' == $layout ? 'container' : '' );
@@ -299,11 +315,11 @@ class TC_slider_model_class extends TC_Model {
   * getter
   * Get current slider layout
   * @param $queried_id the current page/post id
-  * @param $name_id the current slider name id
+  * @param $slider_name_id the current slider name id
   *
   * @return bool
   */
-  protected function tc_get_slider_layout( $queried_id, $name_id ) {
+  protected function tc_get_slider_layout( $queried_id, $slider_name_id ) {
     //gets slider options if any
     $layout_value                 = TC_utils::$inst -> tc_is_home() ? TC_utils::$inst->tc_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
     return apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
@@ -360,9 +376,26 @@ class TC_slider_model_class extends TC_Model {
   private function tc_get_current_slider($queried_id) {
     //gets the current slider id
     $_home_slider     = TC_utils::$inst->tc_opt( 'tc_front_slider' );
-    $name_id          = ( TC_utils::$inst -> tc_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
-    return apply_filters( 'tc_slider_name_id', $name_id , $queried_id);
+    $slider_name_id          = ( TC_utils::$inst -> tc_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
+    return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id);
   }
+
+
+  /**
+  * helper
+  * returns whether or not the slider loading icon must be displayed
+  * @return  boolean
+  *
+  */
+  private function tc_is_slider_loader_active( $slider_name_id ) {
+    //The slider loader must be printed when
+    //a) we have to render the demo slider
+    //b) display slider loading option is enabled (can be filtered)
+    return ( 'demo' == $slider_name_id
+        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ), $slider_name_id )
+    );
+  }
+
 
   /**
   * Helper
