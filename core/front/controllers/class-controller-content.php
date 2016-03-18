@@ -37,7 +37,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_singular_headings() {
-      return is_singular() && ( is_page() || is_attachment() );    
+      return is_singular() && ( is_page() || is_attachment() ) && ! is_front_page();    
     }
  
     function tc_display_view_posts_list_headings() {
