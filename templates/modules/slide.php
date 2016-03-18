@@ -1,17 +1,21 @@
 <div class="item <?php echo $slide_model -> item_class ?>">
-  <div class="<?php echo $slide_model -> img_wrapper_class ?>">
+  <?php if ( $slide_model -> link_whole_slide ) : ?>
+  <a class="tc-slide-link" href="<?php echo $slide_model -> link_url ?>" target="<?php echo $slide_model -> link_target ?>" title=<?php _e( 'Go to', 'customizr' ) ?>>
+  <?php endif ?>
+    <div class="<?php echo $slide_model -> img_wrapper_class ?>">
 
     <?php
-      do_action('__before_all_slides');
+        do_action('__before_all_slides');
  //     do_action_ref_array ("__before_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data ) );
-        echo $slide_model -> slide_background;  
-/*
- *       echo apply_filters( 'tc_slide_background', $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data );
- */
+          echo $slide_model -> slide_background;  
 /*do_action_ref_array ("__after_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data ) );*/
-      do_action('__after_all_slides');
+        do_action('__after_all_slides');
     ?>
-  </div> <!-- .carousel-image -->
+    </div> <!-- .carousel-image -->
+  <?php if ( $slide_model -> link_whole_slide ) : ?>
+  </a>
+  <?php endif; ?>
+
   <?php if ( $slide_model -> has_caption ) : ?>
   <div class="<?php echo $slide_model -> caption_class ?>">
     <?php if ( $slide_model -> title ): ?>

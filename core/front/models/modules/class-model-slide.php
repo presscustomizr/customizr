@@ -20,6 +20,7 @@ class TC_slide_model_class extends TC_Model {
 
   public $link_url;
   public $link_target;
+  public $link_whole_slide;
   
   public $color_style = '';
 
@@ -57,11 +58,13 @@ class TC_slide_model_class extends TC_Model {
     $caption           = $this -> tc_get_slide_caption_model( $slide );
     $has_caption       = ! empty( $caption );
 
+    $link_whole_slide  = isset($data['link_whole_slide']) && $data['link_whole_slide'] && $data['link_url'];
+
     //img elements
     $img_wrapper_class = apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) );
 
     $this -> tc_update(
-        array_merge( $data, $caption, compact('item_class', 'img_wrapper_class', 'has_caption') )
+        array_merge( $data, $caption, compact('item_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide' ) )
     );
   }
 
@@ -107,32 +110,35 @@ class TC_slide_model_class extends TC_Model {
       $title_tag    = apply_filters( 'tc_slide_title_tag', 'h1', $slider_name_id );
       $title        = $_title;
       $title_class  = implode( ' ', apply_filters( 'tc_slide_title_class', array( 'slide-title' ), $title , $slider_name_id ) );
-    }else {
+    }
+ /*   }else {
       $title        = '';
       $title_tag    = '';
       $title_class  = '';
-    }
+ }*/
 
     // text elements
     if (  apply_filters( 'tc_slide_show_text', $_text != null, $slider_name_id ) ) {
       $text         = $_text;
       $text_class   = implode( ' ', apply_filters( 'tc_slide_text_class', array( 'lead' ), $text, $slider_name_id ) );
-    }else {
+    }
+/*    }else {
       $text         = '';
       $text_class   = '';
     }
-
+ */
     // button elements
     if ( apply_filters( 'tc_slide_show_button', $_button_text != null, $slider_name_id ) ) {
       $button_text  = $_button_text;
       $button_class = implode( ' ', apply_filters( 'tc_slide_button_class', array( 'btn', 'btn-large', 'btn-primary' ), $button_text, $slider_name_id ) ) ;
       $button_link  = apply_filters( 'tc_slide_button_link', $data['link_url'] ? $data['link_url'] : 'javascript:void(0)', $id, $slider_name_id ) ;
-    }else {
+    }
+/*    }else {
       $button_text  = '';
       $button_class = '';
       $button_link  = ''; 
     }
-
+ */
     //re-check the caption elements are set
     if ( ! ( $title || $text || $button_text ) )
       return array();
