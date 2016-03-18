@@ -180,6 +180,8 @@ if ( ! class_exists( 'TC___' ) ) :
 
     //returns an array of models describing the theme's views
     private function tc_get_model_map() {
+//        add_filter( 'tc_get_real_id', '');
+        add_filter('tc_slider_name_id', function($slider, $a, $i){ if ( $i == 'main_slider_1' ) return 'prova'; return $slider; }, 10, 3);
       return apply_filters(
         'tc_model_map',
         array(
@@ -231,8 +233,17 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * SLIDER
           *********************************************/ 
-          array( 'hook' => '__page_wrapper__', 'template'  => 'modules/slider', 'id' => 'main_slider', 'element_tag' => false ),
-            array( 'hook' => 'in_slider_main_slider', 'template'  => 'modules/slide', 'element_tag' => false ),
+          array(
+            'hook' => '__page_wrapper__',
+            'template'  => 'modules/slider',
+            'id' => 'main_slider',
+            'element_tag' => false
+          ),
+            array(
+              'hook' => '__slide__',
+              'template'  => 'modules/slide',
+              'element_tag' => false
+            ),
 
           /*********************************************
           * CONTENT
@@ -298,7 +309,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
           /**** SINGULAR: PAGE POST ATTACHMENT ****/  
           array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'element_tag' => false, 'element_class' => 'row-fluid', 'id' => 'singular_article' ),
-          //page/attahcment headings
+          //page/attachment headings
             array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
           //page content
           array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page', 'priority' => 20 ),

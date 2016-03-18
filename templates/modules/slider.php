@@ -13,8 +13,12 @@
 
   <div class="<?php echo $slider_model -> inner_class ?>">
     <?php
-      foreach ($slider_model -> slides as $slide_id => $slide_data )
+      foreach ($slider_model -> slides as $slide_id => $slide_data ) {
+        //used by each slider instance to set up the current slide data
         do_action( "in_slider_{$slider_model -> id}", $slide_id, $slide_data );
+        //used by the slide model (we have just one instance of it as the slide data is set up by the slider model
+        do_action( "__slide__" );
+      }
     ?>
   </div><!-- /.carousel-inner -->
   <?php  do_action( '__after_carousel_inner' , $slider_model -> slides, $slider_model -> slider_name_id )  ?>

@@ -22,7 +22,6 @@ class TC_slider_model_class extends TC_Model {
 
     //hook to its own loop hook to set the current slide query var
     add_action( "in_slider_{$this -> id}", array( $this, 'setup_slide_data' ), -100, 2 );
-
   }
 
   /**
@@ -32,6 +31,9 @@ class TC_slider_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
+    //valorize this id as the model id so we can use it as filter param throughout the class  
+    $this -> id         = $model['id'];  
+    
     //gets the actual page id if we are displaying the posts page
     $this -> queried_id = $queried_id = $this -> tc_get_real_id();
 
@@ -70,9 +72,9 @@ class TC_slider_model_class extends TC_Model {
     }
 
     return array_merge( $model, compact( 
-        'name_id', 
+        'slider_name_id', 
         'element_class', 
-        'slides', 'layout', 
+        'slides', 
         'inner_class', 
         'img_size',
         'has_controls',
@@ -181,22 +183,8 @@ class TC_slider_model_class extends TC_Model {
     $color_style            = ( $text_color != null) ? 'style="color:'.$text_color.'"' : '';
     //attachment image
     $alt                    = apply_filters( 'tc_slide_background_alt' , trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true))) );
-    $slide_background_attr  = array( 'class' => 'slide' , 'alt' => $alt );
-    //allow responsive images?
-    if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      if ( 0 == esc_attr( TC_utils::$inst->tc_opt('tc_resp_slider_img') ) ) {
-        $slide_background_attr['srcset'] = " ";
-        //trick, => will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
-        //only when the passed srcset attr is not empty. This will avoid us to:
-        //a) add a filter to get rid of already computed srcset
-        // or
-        //b) use preg_replace to get rid of srcset and sizes attributes from the generated html
-        //Side effect:
-        //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html
-        //to avoid this we filter the attributes getting rid of the srcset if any.
-        //Basically this trick, even if ugly, will avoid the srcset attr computation
-        add_filter( 'wp_get_attachment_image_attributes', array( TC_utils_thumbnails::$instance, 'tc_remove_srcset_attr' ) );
-      }
+    $slide_background_attr  = array_filter( array_merge( array( 'class' => 'slide' , 'alt' => $alt ), $this -> tc_set_wp_responsive_slide_img_attr() ) );
+
     $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
     //adds all values to the slide array only if the content exists (=> handle the case when an attachment has been deleted for example). Otherwise go to next slide.
     if ( !isset($slide_background) || empty($slide_background) )
@@ -215,7 +203,29 @@ class TC_slider_model_class extends TC_Model {
     );
   }
 
-
+  /*
+  * By default we don't want the slider images to be responsive as wp intends as our slider isnot completely responsive (has fixed heights for different viewports)
+  *
+  * return array()
+  */ 
+  protected function tc_set_wp_responsive_slide_img_attr() {
+    //allow responsive images?
+    if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
+      if ( 0 == esc_attr( TC_utils::$inst->tc_opt('tc_resp_slider_img') ) ) {
+        //trick, => will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
+        //only when the passed srcset attr is not empty. This will avoid us to:
+        //a) add a filter to get rid of already computed srcset
+        // or
+        //b) use preg_replace to get rid of srcset and sizes attributes from the generated html
+        //Side effect:
+        //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html
+        //to avoid this we filter the attributes getting rid of the srcset if any.
+        //Basically this trick, even if ugly, will avoid the srcset attr computation
+        add_filter( 'wp_get_attachment_image_attributes', array( TC_utils_thumbnails::$instance, 'tc_remove_srcset_attr' ) );
+        return array( 'srcset' => ' ');
+      }
+    return array();
+  }
 
   /**
   * @override
@@ -334,7 +344,7 @@ class TC_slider_model_class extends TC_Model {
   protected function tc_get_real_id() {
     global $wp_query;
     $queried_id                   = get_queried_object_id();
-    return apply_filters( 'tc_slider_get_real_id', ( ! TC_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'tc_slider_get_real_id', ( ! TC_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID(), $this );
   }
 
 
@@ -376,8 +386,8 @@ class TC_slider_model_class extends TC_Model {
   private function tc_get_current_slider($queried_id) {
     //gets the current slider id
     $_home_slider     = TC_utils::$inst->tc_opt( 'tc_front_slider' );
-    $slider_name_id          = ( TC_utils::$inst -> tc_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
-    return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id);
+    $slider_name_id   = ( TC_utils::$inst -> tc_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
+    return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id, $this -> id );
   }
 
 
@@ -392,7 +402,7 @@ class TC_slider_model_class extends TC_Model {
     //a) we have to render the demo slider
     //b) display slider loading option is enabled (can be filtered)
     return ( 'demo' == $slider_name_id
-        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ), $slider_name_id )
+        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_display_slide_loader') ), $slider_name_id, $this -> id )
     );
   }
 
