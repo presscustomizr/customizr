@@ -290,12 +290,12 @@ if ( ! class_exists( 'TC___' ) ) :
 
           /*** ALTERNATE POST LIST END ***/
 
-          //page & post
+          /**** SINGULAR: PAGE POST ATTACHMENT ****/  
           array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'element_tag' => false, 'element_class' => 'row-fluid', 'id' => 'singular_article' ),
-          //page content
-          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page' ),
-            //page headings
+          //page/attahcment headings
             array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
+          //page content
+          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page', 'priority' => 20 ),
           //post content
           array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'post', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/post_content' ) ),
             //post headings
