@@ -53,7 +53,7 @@ class TC_slide_model_class extends TC_Model {
       $data['active'],
       'slide-'.$id
     );
-    
+
     //caption elements
     $caption           = $this -> tc_get_slide_caption_model( $slide );
     $has_caption       = ! empty( $caption );

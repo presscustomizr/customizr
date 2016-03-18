@@ -15,17 +15,17 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       self::$instance =& $this;
       $this -> controllers = array(
         'header' => array(
-          'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'reset_margin_top', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button', 
+          'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'reset_margin_top', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button',
         ),
         'content' => array(
-          '404', 'attachment', 'headings', 'no_results', 'page', 'post', 'post_footer', 'post_list', 'post_metas_button', 'post_metas_text', 'post_metas_attachment','right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'author_description', 'posts_list_title', 'posts_list_search_title', 'singular_article', 'singular_title', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment_block_title', 'comment', 'tracepingback', 'comment_navigation', 'author_info', 'singular_headings'
+          '404', 'attachment', 'headings', 'no_results', 'page', 'post', 'post_footer', 'post_list', 'post_metas_button', 'post_metas_text', 'post_metas_attachment','right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'author_description', 'posts_list_title', 'posts_list_search_title', 'singular_article', 'singular_title', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment_block_title', 'comment', 'tracepingback', 'comment_navigation', 'author_info', 'singular_headings', 'post_list_standard_thumb', 'post_list_rectangular_thumb', 'post_thumbnail'
         ),
         'footer' => array(
           'btt_arrow', 'footer_btt', 'footer_push'
       //    'widgets', 'colophon', 'back_to_top'
         ),
         'modules' => array(
-          'social_block', 'main_slider' 
+          'social_block', 'breadcrumb', 'comment_bubble', 'main_slider', 'main_posts_slider'
         //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
         ),
       );
@@ -91,7 +91,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
         //b) based on the controller model field, when not a callback
         //c) based on the template base name
         $controller_ids   = array_filter( array( $model['id'], ! empty( $model['controller'] ) ? $model['controller'] : '', basename( $model['template'] ) ) );
-        if ( $this -> tc_has_default_controller( $controller_ids ) ) { 
+        if ( $this -> tc_has_default_controller( $controller_ids ) ) {
           $controller_cb = $this -> tc_get_default_controller( $controller_ids );
           //make sure the default controller is well formed
           //the default controller should look like array( instance, method )

@@ -44,12 +44,12 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //2) model instance
       add_action ('pre_register_model'          , array( $this, 'tc_pre_register_model'), 10, 2 );
 
-      //a model_instanciated event is emitted each time a model object has been properly instanciated and setup
+      //a model_alive event is emitted each time a model object has been properly instanciated and setup
       //=> update the collection by registering the model
       //Takes 2 params
       //1) model id
       //2) model instance
-      add_action( 'model_instanciated'          , array( $this, 'tc_update_collection' ), 10, 2 );
+      add_action( 'model_alive'          , array( $this, 'tc_update_collection' ), 10, 2 );
 
       //on 'wp', the pre_registered (if any) are registered
       add_action( 'wp'                          , array($this, 'tc_register_pre_registered') );
@@ -298,16 +298,16 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       foreach ( array( 'model_class', 'template' ) as $_model_class ) {
         if ( ! isset($model[ $_model_class ]) || empty($model[ $_model_class ]) )
             continue;
-        
+
         //A model class has been defined, let's try to load it and instanciate it
         //The model_class arg can also be an array in the form array( 'parent' => parent_model_class (string), 'name' => model_class ('string') )
-        if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ){ 
-          $this -> tc_require_model_class( $model['model_class']['parent'] );  
+        if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ){
+          $this -> tc_require_model_class( $model['model_class']['parent'] );
           $model_class     = $model[ $_model_class ]['name'];
         }else
-          $model_class     = $model[ $_model_class ];  
+          $model_class     = $model[ $_model_class ];
 
-        $model_class_name     = sprintf( 'TC_%s_model_class', $this -> tc_require_model_class( $model_class ) );  
+        $model_class_name     = sprintf( 'TC_%s_model_class', $this -> tc_require_model_class( $model_class ) );
 
         if ( class_exists($model_class_name) )
           $instance = new $model_class_name( $model );
@@ -340,7 +340,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     /**********************************************************************************
     * UPDATE COLLECION
     ***********************************************************************************/
-    //hook : 'model_instanciated' and 'model_property_changed'
+    //hook : 'model_alive' and 'model_property_changed'
     //The job of this method is :
     //1) to add a model to the collection
     //2) or to update an existing model

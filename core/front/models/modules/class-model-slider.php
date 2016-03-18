@@ -70,9 +70,9 @@ class TC_slider_model_class extends TC_Model {
     }
 
     return array_merge( $model, compact( 
-        'name_id', 
+        'slider_name_id', 
         'element_class', 
-        'slides', 'layout', 
+        'slides', 
         'inner_class', 
         'img_size',
         'has_controls',
@@ -376,7 +376,7 @@ class TC_slider_model_class extends TC_Model {
   private function tc_get_current_slider($queried_id) {
     //gets the current slider id
     $_home_slider     = TC_utils::$inst->tc_opt( 'tc_front_slider' );
-    $slider_name_id          = ( TC_utils::$inst -> tc_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
+    $slider_name_id   = ( TC_utils::$inst -> tc_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
     return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id);
   }
 
