@@ -113,7 +113,10 @@ if ( ! class_exists( 'TC___' ) ) :
               array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
             ),
             'header'    =>   array(
-              array('core/front', 'nav_walker')
+              array('core/front/utils', 'nav_walker')
+            ),
+            'content'   =>   array(
+              array('core/front/utils', 'gallery')
             )
         )
       );
@@ -147,7 +150,6 @@ if ( ! class_exists( 'TC___' ) ) :
       foreach ( $this -> tc_core as $group => $files )
         foreach ($files as $path_suffix ) {
           $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
-
           $classname = 'TC_' . $path_suffix[1];
           if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
             continue;
