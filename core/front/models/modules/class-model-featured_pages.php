@@ -111,11 +111,8 @@ class TC_featured_pages_model_class extends TC_Model {
                                               $fp_single_id,
                                               $featured_page_id
                                           );
-      if ( $tc_show_featured_pages_img ) {
-        $has_holder                   = true;  
-        $fp_img                       =  $tc_show_featured_pages_img ? apply_filters ('fp_img_src' , $fp_holder_img, $fp_single_id , $featured_page_id ) : '';
-      }
-	}
+      $fp_img                       =  $tc_show_featured_pages_img ? apply_filters ('fp_img_src' , $fp_holder_img, $fp_single_id , $featured_page_id ) : '';
+    }
     else {
       $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
       $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
@@ -160,12 +157,14 @@ class TC_featured_pages_model_class extends TC_Model {
 
         $fp_img                         = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
       }
-      if ( $fp_img == $fp_holder_img ) {
-        //force enqueing holder js	
-        add_filter( 'tc_holder_js_required', '__return_true');
-        $has_holder                     = true;
-      }
     }//end else
+
+    //is the image the holder?
+    if ( isset( $fp_img ) && $fp_img == $fp_holder_img ) {
+      //force enqueing holder js	
+      add_filter( 'tc_holder_js_required', '__return_true');
+      $has_holder                     = true;
+    }
     return compact( 'featured_page_id', 'featured_page_title', 'featured_page_link', 'fp_img' , 'text', 'edit_enabled', 'has_holder' );
   }
   
