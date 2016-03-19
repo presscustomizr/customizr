@@ -43,7 +43,7 @@ class TC_featured_page_model_class extends TC_Model {
     extract( $fp );
 
     //img block elements
-    if ( isset( $data['fp_img'] ) )
+    if ( isset( $data['fp_img'] ) && $data['fp_img'] )
       $thumb_wrapper_class = isset( $data['has_holder'] ) && $data['has_holder'] ? 'tc-holder' : '';   
 
     //button block
@@ -54,11 +54,10 @@ class TC_featured_page_model_class extends TC_Model {
 
   function tc_setup_button_block( $fp_data, $fp_single_id ) {
     //button block
-    $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
-    if ( $tc_fp_button_text || TC___::$instance -> tc_is_customizing() ){
-      $fp_button_text  = $tc_fp_button_text;  
+    $fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
+    if ( $fp_button_text || TC___::$instance -> tc_is_customizing() ){
       $fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
-      $fp_button_class = $tc_fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';
+      $fp_button_class = $fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';
     }
     return compact( 'fp_button_class', 'fp_button_text' );
   }

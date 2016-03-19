@@ -83,6 +83,8 @@ class TC_featured_pages_model_class extends TC_Model {
 
 
   function tc_get_single_fp_model( $fp_single_id, $tc_show_featured_pages_img, $fp_holder_img ) {
+    $fp_img = '';
+
     //if fps are not set
     if ( null == TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
 
@@ -152,7 +154,6 @@ class TC_featured_pages_model_class extends TC_Model {
         //we need the holder if not fp_img
         if ( ! $fp_img ) {
           $fp_img                       = $fp_holder_img; 
-
         }
 
         $fp_img                         = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
@@ -160,7 +161,7 @@ class TC_featured_pages_model_class extends TC_Model {
     }//end else
 
     //is the image the holder?
-    if ( isset( $fp_img ) && $fp_img == $fp_holder_img ) {
+    if ( $fp_img == $fp_holder_img ) {
       //force enqueing holder js	
       add_filter( 'tc_holder_js_required', '__return_true');
       $has_holder                     = true;
