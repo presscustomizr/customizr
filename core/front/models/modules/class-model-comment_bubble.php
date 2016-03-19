@@ -90,13 +90,17 @@ class TC_comment_bubble_model_class extends TC_Model {
     //if color type is skin => bubble color is defined in the skin stylesheet
     if ( 'skin' != esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color_type' ) ) ) {
       $_custom_bubble_color = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color' ) );
+      $_comment_bubble_before_border_color = 'default' == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) ?
+            $_custom_bubble_color :
+            "$_custom_bubble_color transparent";
+
       $_css .= "
           .comments-link .tc-comment-bubble {
             color: {$_custom_bubble_color};
             border: 2px solid {$_custom_bubble_color};
           }
           .comments-link .tc-comment-bubble:before {
-            border-color: {$_custom_bubble_color} transparent;
+            border-color: {$_comment_bubble_before_border_color}
           }
         ";
     }
