@@ -100,7 +100,15 @@ class TC_slide_model_class extends TC_Model {
 
     //computes the link
     $button_link            = apply_filters( 'tc_slide_button_link', $data['link_url'] ? $data['link_url'] : 'javascript:void(0)', $id, $slider_name_id );
-    
+
+    //defaults => reset caption elements
+    $defaults  = array(
+      'title'        => '',
+      'text'         => '',
+      'button_text'  => ''
+    );
+
+
     // title elements
     if ( apply_filters( 'tc_slide_show_title', $_title != null, $slider_name_id ) ) {
       $title_tag    = apply_filters( 'tc_slide_title_tag', 'h1', $slider_name_id );
@@ -125,7 +133,12 @@ class TC_slide_model_class extends TC_Model {
     if ( ! ( isset($title) || isset($text) || isset($button_text) ) )
       return array();
 
-    return compact( 'caption_class', 'title', 'title_class', 'title_tag', 'text', 'text_class', 'button_text', 'button_link', 'button_class' );
+    $caption_elements = wp_parse_args( compact( 'title', 'button_text', 'text' ), $defaults );
+
+    return array_merge( 
+        $caption_elements,
+        compact( 'caption_class', 'title_class', 'title_tag', 'text_class', 'button_link', 'button_class' ) 
+    );
   }
 
 
