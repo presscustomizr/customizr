@@ -132,5 +132,35 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       );
     }
 
+    function tc_display_view_post_list_grid() {
+      $bool = apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
+      //hack until we implement the "routers"
+      add_filter( 'tc_is_not_grid', $bool ? '__return_false' : '__return_true' );
+      return $bool;
+    }
+    
+
+    /* returns the type of post list we're in if any, an empty string otherwise */
+    private function tc_get_grid_context() {
+      global $wp_query;
+        
+      if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
+              $wp_query->is_posts_page )
+          return 'blog';
+      else if ( is_search() && $wp_query->post_count > 0 )
+          return 'search';
+      else if ( is_archive() )
+          return 'archive';
+      return '';
+    }
+
+    /* performs the match between the option where to use post list grid
+     * and the post list we're in */
+    private function tc_is_grid_context_matching() {
+      $_type = $this -> tc_get_grid_context();
+      $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_in_' . $_type ) ) );
+      return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
+    }
+
   }//end of class
 endif;

@@ -50,15 +50,11 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_post_list() {
-      global $wp_query;
-      //must be archive or search result. Returns false if home is empty in options.
-      return apply_filters( 'tc_post_list_controller',
-        ! is_singular()
-        && ! is_404()
-        && 0 != $wp_query -> post_count
-        && ! $this -> tc_is_home_empty()
-      );
+      return $this -> tc_is_list_of_posts() &&
+            //hack until we implement the "routers"
+            apply_filters( 'tc_is_not_grid', false );    
     }
+
 
     function tc_display_view_posts_list_title() {
       return $this -> tc_display_view_posts_list_headings() && ! is_search();   
@@ -283,6 +279,17 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
    /******************************
     VARIOUS HELPERS
     *******************************/
+    private function tc_is_list_of_posts() {
+      global $wp_query;
+      //must be archive or search result. Returns false if home is empty in options.
+      return apply_filters( 'tc_post_list_controller',
+        ! is_singular()
+        && ! is_404()
+        && 0 != $wp_query -> post_count
+        && ! $this -> tc_is_home_empty()
+      );
+    }
+
     /**
     * 1) if the page / post is password protected OR if is_home OR ! is_singular() => false
     * 2) if comment_status == 'closed' => false
