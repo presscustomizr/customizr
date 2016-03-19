@@ -28,5 +28,5 @@
     </div><!--/.widget-front-->
 <?php if ( $featured_page_model -> is_last_of_row ) : ?>
   </div>
-<?php endif ?>
+<?php endif;
 
