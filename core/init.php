@@ -277,11 +277,17 @@ if ( ! class_exists( 'TC___' ) ) :
             'template'    => 'modules/grid_wrapper',
             'priority'    => 10,
             'element_tag' => false,
-            'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid_wrapper')
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid_wrapper'),
+            'controller'  => 'post_list_grid'
           ),
-
+            //grid item
+             array( 
+              'hook'        => '__grid__',
+              'template'    => 'modules/grid_item',
+              'element_tag' => false,
+            ),
           /*** ALTERNATE POST LIST ***/
- //         array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
 
           //content
           //post content/excerpt

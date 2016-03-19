@@ -21,8 +21,9 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   }
 
   function set_this_properties() {
-    //
-    $section_wrapper = $this -> tc_get_section_wrapper_params();
+    //section properties which refers to the section wrapper
+    $section_wrapper = $this -> tc_get_section_wrapper_properties();
+
     $this -> tc_update( $section_wrapper );
   }
 
@@ -30,7 +31,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   /*
   * Wrap articles in a grid section
   */
-  function tc_get_section_wrapper_params() {
+  function tc_get_section_wrapper_properties() {
     global $wp_query;
     
     $current_post      = $wp_query -> current_post;
@@ -73,6 +74,35 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   private function tc_force_current_post_expansion(){
     global $wp_query;
     return ( $this -> expanded_sticky && 0 == $wp_query -> current_post );
+  }
+
+  /**
+  * @override 
+  * Apply proper class to articles selectors to control articles width
+  * hook : tc_post_list_selectors
+  */
+  function tc_grid_set_article_selectors( $selectors ){
+    return str_replace( 'row-fluid', $_class, $selectors );
+  }
+
+
+  /**
+  * @override
+  * Returns the classes for the post div.
+  *
+  * @param string|array $class One or more classes to add to the class list.
+  * @param int $post_id An optional post ID.
+  * @package Customizr
+  * @since 3.0.10
+  */
+  function tc_get_post_class( $class = '', $post_id = null ) {
+    $_class = sprintf( '%1$s tc-grid span%2$s',
+      apply_filters( 'tc_grid_add_expanded_class', $this -> tc_force_current_post_expansion() ) ? 'expanded' : '',
+      is_numeric( $this -> tc_get_grid_section_cols() ) ? 12 / $this -> tc_get_grid_section_cols() : 6
+    );
+     
+    //Separates classes with a single space, collates classes for post DIV
+    return 'class="' . join( ' ', get_post_class( $_class ) ) . '"';
   }
 
 }
