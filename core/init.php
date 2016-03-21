@@ -286,15 +286,14 @@ if ( ! class_exists( 'TC___' ) ) :
               'template'    => 'modules/grid_item',
               'element_tag' => false,
              ),
-             //post in post lists headings
-             array( 'hook' => '__grid_headings__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-             //comment bubble
+             //grid headings
+             array( 'hook' => '__grid_headings__', 'template' => 'modules/grid_headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+            //grid title
              array( 
-                 'hook' => '__comment_bubble__', 
-                 'template' => 'modules/comment_bubble', 
-                 'element_tag' => false 
+              'hook'        => '__grid_title__',
+              'template'    => 'modules/grid_title',
+              'element_tag' => false,
              ),
-             //post metas
 
 
           /* END GRID */
@@ -311,9 +310,9 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            array( 'hook' => '__headings_content__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => 'h2' ),
+            array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => 'h2' ),
             //comment bubble
-            array( 'hook' => 'after_render_view_inner_post_list_title', 'template' => 'modules/comment_bubble', 'element_tag' => false ),
+            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'element_tag' => false ),
 
           /*** ALTERNATE POST LIST END ***/
 
@@ -332,21 +331,21 @@ if ( ! class_exists( 'TC___' ) ) :
           //attachment
           array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/attachment_content' ), 'element_tag' => false ),
           //post and page titles in singular context
-            array( 'hook' => '__headings_content__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h1' ),
+            array( 'hook' => '__post_page_title__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h1' ),
 
             //post thumbnail
             array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),
 
             //comment bubble
-            array( 'hook' => 'after_render_view_inner_singular_title', 'template' => 'modules/comment_bubble', 'id' => 'singular_comment_bubble', 'element_tag' => false ),
+            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'id' => 'singular_comment_bubble', 'element_tag' => false ),
 
           //Post metas in the headings
           //the default class/template is for the buttons type
-            array( 'hook' => '__headings_content__', 'template' => 'content/post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
+            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
           //the text meta one uses a different template
-            array( 'hook' => '__headings_content__', 'template' => 'content/post_metas_text', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
+            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas_text', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
           //attachment post mestas
-            array( 'hook' => '__headings_content__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
+            array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
 
           /* TODO: LINKS IN POST METAS FOR POSTS WITH NO TITLE ( needs to access the definition of the posts with no headings )...*/
 

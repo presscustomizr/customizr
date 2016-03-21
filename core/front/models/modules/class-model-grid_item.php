@@ -15,12 +15,6 @@ class TC_grid_item_model_class extends TC_model {
 
   } 
 
-
-  function tc_has_post_thumbnail() { 
-    return (bool) get_query_var( 'tc_has_post_thumbnail', true );
-  }
-
-
   function tc_set_this_properties() {
     //thumb
     $thumb_properties       = $this -> tc_get_thumb_properties();
