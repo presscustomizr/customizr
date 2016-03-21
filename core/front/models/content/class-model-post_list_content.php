@@ -1,6 +1,5 @@
 <?php
 class TC_post_list_content_model_class extends TC_Model {
-  public  $render_content_cb;
   public  $content_cb;
   private $content;
   public  $content_class;
@@ -20,18 +19,6 @@ class TC_post_list_content_model_class extends TC_Model {
   }
 
 
-  /**
-  * @override
-  * fired before the model properties are parsed
-  * 
-  * return model params array() 
-  */
-  function tc_extend_params( $model = array() ) {
-    $model[ 'content_cb' ] = array($this, 'tc_the_post_list_content');
-    return $model;
-  }
-
-
   function tc_get_element_class(){
     return 'tc-content ' . get_query_var( 'tc_content_width' );
   }
@@ -40,10 +27,10 @@ class TC_post_list_content_model_class extends TC_Model {
   function tc_the_post_list_content( $more  = null ) {
     if ( $this -> content )
       echo $this -> content;
-    elseif ( 'get_the_excerpt' == $this -> render_content_cb )
+    elseif ( 'get_the_excerpt' == $this -> content_cb )
       echo apply_filters( 'the_excerpt', get_the_excerpt() );  
     else
-      echo apply_filters( 'tc_the_content', call_user_func( $this -> render_content_cb, $more ) );
+      echo apply_filters( 'tc_the_content', get_the_content( $more ) );
   }
 
   
@@ -78,7 +65,8 @@ class TC_post_list_content_model_class extends TC_Model {
   function tc_set_this_properties() {
     $show_excerpt        = get_query_var( 'tc_show_excerpt' );  
     $content_class       = array( 'entry-summary' );
-    $render_content_cb   = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
+    $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
+    $content             = '';
 
     if ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) )
     {
@@ -87,10 +75,10 @@ class TC_post_list_content_model_class extends TC_Model {
     }
     elseif ( in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside', 'video' ) ) ) {
       $content_class     = array( 'entry-content', apply_filters( 'tc_post_list_content_icon', 'format-icon' ) );
-      $render_content_cb = 'get_the_content';
+      $content_cb        = 'get_the_content';
     }
 
-    $this -> tc_update( compact( 'content_class', 'render_content_cb', 'content' ) );
+    $this -> tc_update( compact( 'content_class', 'content_cb', 'content' ) );
   }
 
   /**
