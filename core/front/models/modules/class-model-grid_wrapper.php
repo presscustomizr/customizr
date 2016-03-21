@@ -12,8 +12,6 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   //number of cols of the grid
   public $grid_cols;
 
-  public $figure_class;
-  public $has_heading_in_caption;
 //  public $text;
 
   private $expanded_sticky = true;
@@ -39,6 +37,9 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   function tc_extend_params( $model = array() ) {
     $this -> post_id = TC_utils::tc_id();
 
+    //temporary hack
+    $this -> expanded_sticky = $this -> expanded_sticky && get_query_var( 'paged' ) < 2;
+
     $element_class = array();  
     //wrapper classes based on the user options
     if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
@@ -56,30 +57,16 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
 
   function set_this_properties() {
     $element_wrapper        = $this -> tc_get_element_wrapper_properties();
-    //figure class
-    $figure_properties      = $this -> tc_get_figure_properties();
 
-    $has_heading_in_caption = array(true);
     //section properties which refers to the section row wrapper
     $section_row_wrapper    = $this -> tc_get_section_row_wrapper_properties();
-    $this -> tc_update( array_merge( $element_wrapper, $section_row_wrapper, $figure_properties, $has_heading_in_caption ) );
+    $this -> tc_update( array_merge( $element_wrapper, $section_row_wrapper ) );
 
     //hack
     set_query_var( 'section_cols', $section_row_wrapper['section_cols'] );
   }
 
-  /*
-  *
-  */
-  function tc_get_figure_properties() {
-    $has_thumb           = $this -> tc_grid_show_thumb();
-    $figure_class        = array( $has_thumb ? 'has-thumb' : 'no-thumb' );
 
-    //if 1 col layout or current post is the expanded => golden ratio should be disabled
-    if ( ( '1' == $this -> tc_get_grid_cols() || $this -> tc_force_current_post_expansion() ) && ! wp_is_mobile() )
-      array_push( $figure_class, 'no-gold-ratio' );
-    return compact( 'figure_class', 'has_thumb' );
-  }
 
   /*
   * post list wrapper
@@ -87,7 +74,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   function tc_get_element_wrapper_properties() {
     global $wp_query;
     $is_loop_start = 0 == $wp_query -> current_post;
-    $is_loop_end   = $wp_query -> current_post == $wp_query -> post_count ;
+    $is_loop_end   = $wp_query -> current_post == $wp_query -> post_count -1 ;
 
     return compact( 'is_loop_start', 'is_loop_end' );
   }
@@ -168,13 +155,6 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
     return 'class="' . join( ' ', get_post_class( $_class ) ) . '"';
   }
 
-
-  /**
-  * @return  boolean
-  */
-  private function tc_grid_show_thumb() {
-    return TC_utils_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
-  }
 
   /**
   * parse this model properties for rendering

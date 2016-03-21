@@ -286,21 +286,18 @@ if ( ! class_exists( 'TC___' ) ) :
               'template'    => 'modules/grid_item',
               'element_tag' => false,
              ),
-              //thumb
-              array(
-                'hook'        =>  '__grid_thumb__',
-                'template'    => 'modules/grid_thumbnail',
-                'element_tag' => false
-              ),
-              //figcaption
-              array(
-                'hook'        =>  '__grid_caption__',
-                'template'    => 'modules/grid_caption',
-                'element_tag' => false
-            ),
-            //post in post lists headings
-             array( 'hook' => '__grid_heading__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+             //post in post lists headings
+             array( 'hook' => '__grid_headings__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+             //comment bubble
+             array( 
+                 'hook' => '__comment_bubble__', 
+                 'template' => 'modules/comment_bubble', 
+                 'element_tag' => false 
+             ),
+             //post metas
 
+
+          /* END GRID */
           /*** ALTERNATE POST LIST ***/
           array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
 
