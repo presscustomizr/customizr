@@ -63,7 +63,10 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
     $this -> tc_update( array_merge( $element_wrapper, $section_row_wrapper ) );
 
     //hack
-    set_query_var( 'section_cols', $section_row_wrapper['section_cols'] );
+    set_query_var( 'grid', array( 'section_cols' => $section_row_wrapper['section_cols'] ,
+        'is_expanded' => $this -> tc_force_current_post_expansion() 
+      )
+    );
   }
 
 
@@ -131,7 +134,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   */
   private function tc_force_current_post_expansion(){
     global $wp_query;
-    return ( $this -> expanded_sticky && 0 == $wp_query -> current_post );
+    return ( $this -> expanded_sticky && 0 == $wp_query -> current_post ) ;
   }
 
 
