@@ -1,1 +1,1 @@
-<a href="<?php the_permalink() ?>"><?php call_user_func( $post_page_title_model -> title_cb ); ?></a>
+<a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php the_title() ?></a>
