@@ -6,6 +6,8 @@ class TC_grid_item_model_class extends TC_model {
   public  $icon_attributes;
   public  $has_icon;
 
+  public $is_expanded;
+
   function __construct( $model = array() ) {
     parent::__construct( $model );
     //inside the loop but before rendering set some properties
@@ -16,26 +18,28 @@ class TC_grid_item_model_class extends TC_model {
   } 
 
   function tc_set_this_properties() {
+    $grid                   = get_query_var( 'grid' );
+    extract( $grid );
     //thumb
-    $thumb_properties       = $this -> tc_get_thumb_properties();
+    $thumb_properties       = $this -> tc_get_thumb_properties( $section_cols );
     extract( $thumb_properties );
     //figure class
-    $figure_class           = $this -> tc_get_figure_class( $has_thumb );
+    $figure_class           = $this -> tc_get_figure_class( $has_thumb, $section_cols );
 
-    $icon_visibility        = $this -> tc_set_grid_icon_visibility(); 
+    $icon_visibility        = $this -> tc_set_grid_icon_visibility();
     //update the model
-    $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class') ) );
+    $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded' ) ) );
   }
 
   /*
   * thumb properties
   */
-  function tc_get_thumb_properties() {
+  function tc_get_thumb_properties( $section_cols ) {
     $has_thumb           = $this -> tc_grid_show_thumb();
     $thumb_img           = null;
     
     if ( $has_thumb ) {
-      $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> tc_get_thumb_size() );
+      $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> tc_get_thumb_size( $section_cols ) );
       extract( $thumb_model );
 
       if ( ! isset( $tc_thumb ) )
@@ -51,11 +55,11 @@ class TC_grid_item_model_class extends TC_model {
   /*
   * figure class
   */
-  function tc_get_figure_class( $has_thumb ) {
+  function tc_get_figure_class( $has_thumb, $section_cols ) {
     $figure_class        = array( $has_thumb ? 'has-thumb' : 'no-thumb' );
 
     //if 1 col layout or current post is the expanded => golden ratio should be disabled
-    if ( ( '1' == get_query_var('section_cols') ) && ! wp_is_mobile() )
+    if ( ( '1' == $section_cols ) && ! wp_is_mobile() )
       array_push( $figure_class, 'no-gold-ratio' );
     return $figure_class;
   }
@@ -64,8 +68,8 @@ class TC_grid_item_model_class extends TC_model {
   /*
   * hook : tc_thumb_size_name
   */
-  function tc_get_thumb_size(){
-    return ( 1 == get_query_var( 'section_cols', 1 ) ) ? 'tc-grid-full' : 'tc-grid';
+  function tc_get_thumb_size( $section_cols ){
+    return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
   }
 
   /**
