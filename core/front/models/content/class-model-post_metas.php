@@ -13,7 +13,7 @@ class TC_post_metas_model_class extends TC_Model {
 
   //render this?
   public function tc_post_has_metas() {
-    if ( is_attachment() ) 
+    if ( is_attachment() )//in post lists
       return false;
     return $this -> tc_get_cat_list() ||
           $this -> tc_get_tag_list() ||
@@ -265,7 +265,7 @@ class TC_post_metas_model_class extends TC_Model {
         ( ! is_singular() && ! tc__f('__is_home') && ! is_page() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
         ( tc__f('__is_home') ) && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) 
     ) 
-      array_push( $_classes, 'tc-hide-post-metas' );
+      array_push( $_classes, 'hide-post-metas' );
     
     return $_classes;
   }
