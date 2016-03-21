@@ -6,7 +6,7 @@
   wp_link_pages( array(
           'before'  => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ),
           'after'   => '</div>',
-          'echo'    => 0
+          'echo'    => 1
   ) );
 ?>
 </section>
