@@ -65,7 +65,11 @@ class TC_grid_item_model_class extends TC_model {
     $thumb_img           = null;
     
     if ( $has_thumb ) {
-      $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> tc_get_thumb_size( $section_cols ) );
+      $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( 
+          $thumb_size                = $this -> tc_get_thumb_size_name( $section_cols ),
+          null, null, null, 
+          $_filtered_thumb_size_name = $this -> tc_get_filtered_thumb_size_name( $section_cols ) 
+      );
       extract( $thumb_model );
 
       if ( ! isset( $tc_thumb ) )
@@ -94,9 +98,18 @@ class TC_grid_item_model_class extends TC_model {
   /*
   * get the thumb size name to use according to the grid element width
   */
-  function tc_get_thumb_size( $section_cols ){
+  function tc_get_thumb_size_name( $section_cols ){
     return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
   }
+
+  /*
+  * get the thumb size name used in the TC_utils_thumbnails to set the proper inline style
+  * if needed, accordint to the grid element width 
+  */
+  function tc_get_filtered_thumb_size_name( $section_cols ){
+    return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
+  }
+
 
   /*
   * grid icon visibility 
