@@ -498,11 +498,11 @@ if ( ! class_exists( 'TC_init' ) ) :
         add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
 
         //slider full width
-        $slider_full_size = apply_filters( 'tc_slider_full_size' , $this -> slider_full_size );
+        $slider_full_size = apply_filters( 'tc_slider_full_size' , $this -> tc_slider_full_size );
         add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
 
         //slider boxed
-        $slider_size      = apply_filters( 'tc_slider_size' , $this -> slider_size );
+        $slider_size      = apply_filters( 'tc_slider_size' , $this -> tc_slider_size );
         add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
 
         //add support for svg and svgz format in media upload
