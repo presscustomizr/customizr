@@ -15,7 +15,7 @@ class TC_article_model_class extends TC_Model {
   }
 
   function tc_set_article_selectors_property() {
-    $this -> tc_set_property( 'article_selectors', $this -> tc_get_article_selectors() );
+    $this -> tc_set_property( 'article_selectors', $this -> tc_get_the_article_selectors() );
   }
 
   /**
@@ -24,7 +24,7 @@ class TC_article_model_class extends TC_Model {
   * @package Customizr
   * @since 3.1.0
   */
-  function tc_get_article_selectors( $echo = false ) {
+  function tc_get_the_article_selectors( $echo = false ) {
     //gets global vars
     global $post;
     global $wp_query;

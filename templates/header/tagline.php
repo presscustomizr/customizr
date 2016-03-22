@@ -1,3 +1,3 @@
-<<?php echo $tagline_model -> tag ?> class="<?php echo $tagline_model -> class ?>" <?php echo $tagline_model -> attributes ?>>
-  <?php echo $tagline_model -> content ?>
-</<?php echo $tagline_model -> tag ?>>
+<<?php echo tc_get( 'tag' ) ?> class="<?php echo tc_get( 'class' ) ?>" <?php echo tc_get( 'attributes' ) ?>>
+  <?php echo tc_get( 'content' ) ?>
+</<?php echo tc_get( 'tag' ) ?>>

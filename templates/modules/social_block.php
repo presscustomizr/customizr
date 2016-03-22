@@ -1,1 +1,1 @@
-<?php echo $social_block_model -> content ?>
+<?php echo tc_get( 'content' ) ?>

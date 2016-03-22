@@ -15,22 +15,17 @@ class TC_post_list_content_model_class extends TC_Model {
     add_filter( 'tc_the_content'        , array( $this , 'tc_add_support_for_shortcode_special_chars') );
 
     //inside the loop but before rendering set some properties
-    add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), 0 );
+    add_action( $this -> hook          , array( $this, 'tc_set_this_properties' ), 0 );
   }
 
 
-  function tc_get_element_class(){
-    return 'tc-content ' . get_query_var( 'tc_content_width' );
-  }
-
-
-  function tc_the_post_list_content( $more  = null ) {
+  function tc_get_post_list_content( $more  = null ) {
     if ( $this -> content )
-      echo $this -> content;
+      return $this -> content;
     elseif ( 'get_the_excerpt' == $this -> content_cb )
-      echo apply_filters( 'the_excerpt', get_the_excerpt() );  
+      return apply_filters( 'the_excerpt', get_the_excerpt() );  
     else
-      echo apply_filters( 'tc_the_content', get_the_content( $more ) );
+      return apply_filters( 'tc_the_content', get_the_content( $more ) );
   }
 
   
@@ -67,6 +62,7 @@ class TC_post_list_content_model_class extends TC_Model {
     $content_class       = array( 'entry-summary' );
     $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
     $content             = '';
+    $element_class       = 'tc-content ' . get_query_var( 'tc_content_width' );
 
     if ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) )
     {
@@ -77,8 +73,7 @@ class TC_post_list_content_model_class extends TC_Model {
       $content_class     = array( 'entry-content', apply_filters( 'tc_post_list_content_icon', 'format-icon' ) );
       $content_cb        = 'get_the_content';
     }
-
-    $this -> tc_update( compact( 'content_class', 'content_cb', 'content' ) );
+    $this -> tc_update( compact( 'element_class', 'content_class', 'content_cb', 'content' ) );
   }
 
   /**

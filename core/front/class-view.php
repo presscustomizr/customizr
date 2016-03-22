@@ -98,8 +98,11 @@ if ( ! class_exists( 'TC_View' ) ) :
         $_template = basename( $this -> model -> template );
 
         //add the view instance to the wp_query wp global
-        set_query_var( "{$_template}_model", $this -> model );
+  //      set_query_var( "tc_model", $this -> model );
+        tc_set_current_model( $this -> model );
         get_template_part( "templates/{$this -> model -> template}" );
+        tc_reset_current_model();
+//        set_query_var( 'tc_model', $this -> model );
       }
       // $path = '';
       // $part = '';

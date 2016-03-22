@@ -1,3 +1,3 @@
-<article <?php echo $article_model -> article_selectors ?> >
-  <?php do_action( "__article__" ) ?>
+<article <?php echo tc_get( 'article_selectors' ) ?> >
+  <?php do_action( '__article__' ) ?>
 </article>

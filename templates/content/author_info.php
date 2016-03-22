@@ -1,10 +1,10 @@
 <hr class="featurette-divider">
 <div class="author-info">
-  <div class="<?php echo $author_info_model -> author_wrapper_class ?>"> 
-    <div class="<?php echo $author_info_model -> author_avatar_class ?>">
-     <?php echo get_avatar( get_the_author_meta( 'user_email' ), $author_info_model -> author_avatar_size ) ?>
+  <div class="<?php echo tc_get( 'author_wrapper_class' ) ?>"> 
+    <div class="<?php echo tc_get( 'author_avatar_class' ) ?>">
+     <?php echo get_avatar( get_the_author_meta( 'user_email' ), tc_get( 'author_avatar_size' ) ) ?>
     </div>
-    <div class="<?php echo $author_info_model -> author_content_class ?>">
+    <div class="<?php echo tc_get( 'author_content_class' ) ?>">
       <h3><?php _e( 'About' , 'customizr' ) ?> <?php the_author() ?></h3>
       <p><?php the_author_meta( 'description' ) ?></p>
       <div class="author-link">

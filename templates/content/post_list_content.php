@@ -1,8 +1,8 @@
-<section class="<?php echo $post_list_content_model -> content_class ?>">
-<?php 
-  $post_list_content_model -> tc_the_post_list_content(
+<section class="<?php echo tc_get( 'content_class' ) ?>">
+<?php
+  echo tc_get( 'post_list_content', array(
      __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' )
-  );
+ ) );
   wp_link_pages( array(
           'before'  => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ),
           'after'   => '</div>',

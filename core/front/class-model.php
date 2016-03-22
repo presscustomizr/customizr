@@ -221,6 +221,13 @@ if ( ! class_exists( 'TC_Model' ) ) :
       do_action( 'model_property_changed', $this -> id, $this , $property, $value );
     }
 
+    //normalizes the way we can access and change a single model property
+    //@return the property
+    public function tc_get_property( $property, $args = array() ) {
+      if ( method_exists( $this, "tc_get_{$property}" ) )
+        return call_user_func_array( array($this, "tc_get_{$property}"), $args );
+      return isset ( $this -> $property ) ? $this -> $property : '';
+    }
 
     //@returns the model property as an array of params
     public function tc_get() {

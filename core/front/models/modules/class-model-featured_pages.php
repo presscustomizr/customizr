@@ -53,7 +53,7 @@ class TC_featured_pages_model_class extends TC_Model {
     $span_value      = ( $fp_per_row > 7) ? 1 : $span_value;
     $span_value      = isset( $span_array[$fp_per_row] ) ? $span_array[$fp_per_row] :  $span_value;
 
-    $featured_pages = $this -> tc_get_featured_pages( $fp_nb, $fp_ids, $tc_show_featured_pages_img, $fp_holder_img );
+    $featured_pages = $this -> tc_get_the_featured_pages( $fp_nb, $fp_ids, $tc_show_featured_pages_img, $fp_holder_img );
 
     return array_merge( $model, compact( 'fp_nb', 'fp_per_row', 'span_value', 'featured_pages', 'fp_ids' ) );
   }
@@ -72,7 +72,7 @@ class TC_featured_pages_model_class extends TC_Model {
   }
 
 
-  function tc_get_featured_pages( $fp_nb, $fp_ids, $tc_show_featured_pages_img, $fp_holder_img ) {
+  function tc_get_the_featured_pages( $fp_nb, $fp_ids, $tc_show_featured_pages_img, $fp_holder_img ) {
     $featured_pages = array();
    
     foreach ( range(0, $fp_nb - 1 ) as $fp_id )
