@@ -33,13 +33,15 @@ class TC_utils_thumbnails {
     * @package Customizr
     * @since Customizr 1.0
     */
-    function tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null, $_enable_wp_responsive_imgs = null ) {
+    function tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null, $_enable_wp_responsive_imgs = null, $_filtered_thumb_size_name = null ) {
       if ( ! $this -> tc_has_thumb( $_post_id, $_custom_thumb_id ) )
         return array();
 
       $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'tc_thumb_size_name' , 'tc-thumb' ) : $requested_size;
       $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
-      $_filtered_thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size );
+      
+      $_filtered_thumb_size_name  = $_filtered_thumb_size_name ? $_filtered_thumb_size_name : 'tc_thumb_size';
+      $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, TC_init::$instance -> $_filtered_thumb_size_name );
       $_model                     = array();
       $_img_attr                  = array();
       $tc_thumb_height            = '';
