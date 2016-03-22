@@ -239,7 +239,7 @@ if ( ! class_exists( 'TC___' ) ) :
             'id' => 'main_slider',
             'element_tag' => false
           ),
-          array(
+          array(//slider of posts
             'hook' => '__page_wrapper__',
             'template'  => 'modules/slider',
             'id' => 'main_slider',
@@ -271,7 +271,6 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 
               'hook' => '__featured_page__',
               'template' => 'modules/featured_page',
-          //we define the wrapper class here, we need a wrapper 'cause we don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
               'element_tag' => false
             ),
 
@@ -327,15 +326,6 @@ if ( ! class_exists( 'TC___' ) ) :
               'template'    => 'modules/grid_item',
               'element_tag' => false,
              ),
-             //grid headings
-             array( 'hook' => '__grid_headings__', 'template' => 'modules/grid_headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            //grid title
-             array( 
-              'hook'        => '__grid_title__',
-              'template'    => 'modules/grid_title',
-              'element_tag' => false,
-             ),
-
 
           /* END GRID */
           /*** ALTERNATE POST LIST ***/

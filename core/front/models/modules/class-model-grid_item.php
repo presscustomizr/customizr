@@ -6,7 +6,8 @@ class TC_grid_item_model_class extends TC_model {
   public  $icon_attributes;
   public  $has_icon;
 
-  public $is_expanded;
+  public  $is_expanded;
+  public  $title;
 
   function __construct( $model = array() ) {
     parent::__construct( $model );
@@ -27,9 +28,34 @@ class TC_grid_item_model_class extends TC_model {
     $figure_class           = $this -> tc_get_figure_class( $has_thumb, $section_cols );
 
     $icon_visibility        = $this -> tc_set_grid_icon_visibility();
+
+    $title        = $this -> tc_set_grid_title_length( get_the_title() );
     //update the model
-    $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded' ) ) );
+    $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded', 'title' ) ) );
   }
+
+
+  /**
+  * Limits the length of the post titles in grids to a custom number of characters
+  * @return string
+  */
+  function tc_set_grid_title_length( $_title ) {
+    $_max = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_num_words') );
+    $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
+    $_max = $_max <= 0 ? 1 : $_max;
+
+    if ( empty($_title) || ! is_string($_title) )
+      return $_title;
+
+    if ( count( explode( ' ', $_title ) ) > $_max ) {
+      $_words = array_slice( explode( ' ', $_title ), 0, $_max );
+      $_title = sprintf( '%s ...',
+        implode( ' ', $_words )
+      );
+    }
+    return $_title;
+  }
+
 
   /*
   * thumb properties
@@ -66,13 +92,14 @@ class TC_grid_item_model_class extends TC_model {
 
 
   /*
-  * hook : tc_thumb_size_name
+  * get the thumb size name to use according to the grid element width
   */
   function tc_get_thumb_size( $section_cols ){
     return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
   }
 
-  /**
+  /*
+  * grid icon visibility 
   */
   function tc_set_grid_icon_visibility() {
     $has_icon        = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_icons') );
@@ -86,12 +113,16 @@ class TC_grid_item_model_class extends TC_model {
 
 
 
+  /**** HELPER ****/
+
   /**
   * @return  boolean
   */
   private function tc_grid_show_thumb() {
     return TC_utils_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
   }
+
+
 
   /**
   * parse this model properties for rendering
