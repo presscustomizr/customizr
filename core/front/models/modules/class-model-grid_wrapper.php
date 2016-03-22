@@ -12,7 +12,6 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   //number of cols of the grid
   public $grid_cols;
 
-//  public $text;
 
   private $expanded_sticky = true;
 
@@ -62,9 +61,10 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
     $section_row_wrapper    = $this -> tc_get_section_row_wrapper_properties();
     $this -> tc_update( array_merge( $element_wrapper, $section_row_wrapper ) );
 
-    //hack
-    set_query_var( 'grid', array( 'section_cols' => $section_row_wrapper['section_cols'] ,
-        'is_expanded' => $this -> tc_force_current_post_expansion() 
+    set_query_var( 'grid', 
+      array( 
+        'section_cols' => $section_row_wrapper['section_cols'] ,
+        'is_expanded'  => $this -> tc_force_current_post_expansion() 
       )
     );
   }

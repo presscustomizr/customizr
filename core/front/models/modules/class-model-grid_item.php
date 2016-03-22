@@ -95,20 +95,7 @@ class TC_grid_item_model_class extends TC_model {
   }
 
 
-  /*
-  * get the thumb size name to use according to the grid element width
-  */
-  function tc_get_thumb_size_name( $section_cols ){
-    return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
-  }
-
-  /*
-  * get the thumb size name used in the TC_utils_thumbnails to set the proper inline style
-  * if needed, accordint to the grid element width 
-  */
-  function tc_get_filtered_thumb_size_name( $section_cols ){
-    return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
-  }
+ 
 
 
   /*
@@ -131,10 +118,26 @@ class TC_grid_item_model_class extends TC_model {
   /**
   * @return  boolean
   */
+  
+  
+  /*
+  * get the thumb size name to use according to the grid element width
+  */
+  function tc_get_thumb_size_name( $section_cols ){
+    return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
+  }
+
+  
+  /*
+  * get the thumb size name used in the TC_utils_thumbnails to set the proper inline style
+  * if needed, accordint to the grid element width 
+  */
+  function tc_get_filtered_thumb_size_name( $section_cols ){
+    return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
+  }
   private function tc_grid_show_thumb() {
     return TC_utils_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
   }
-
 
 
   /**
