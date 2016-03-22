@@ -18,8 +18,8 @@ if ( ! class_exists( 'TC_init' ) ) :
       //declares the filtered default settings
       public $global_layout;
       public $tc_thumb_size;
-      public $slider_full_size;
-      public $slider_size;
+      public $tc_slider_full_size;
+      public $tc_slider_size;
       public $tc_grid_full_size;
       public $tc_grid_size;
       public $skins;
@@ -70,11 +70,12 @@ if ( ! class_exists( 'TC_init' ) ) :
           );
 
           //Default images sizes
-          $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
-          $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
-          $this -> slider_size        = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
-          $this -> tc_grid_full_size  = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
-          $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
+          $this -> tc_thumb_size        = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
+          $this -> tc_lider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
+          $this -> tc_slider_size       = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
+          $this -> tc_grid_full_size    = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
+          $this -> tc_grid_size         = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
+          $this -> tc_rectangular_size  = array( 'width' => 1170 , 'height' => 250 , 'crop' => true ); //size name : tc_rectangular_size
 
 
           //Default skins array
@@ -386,10 +387,7 @@ if ( ! class_exists( 'TC_init' ) ) :
         if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
           $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
           $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
-          $_rectangular_size    = apply_filters(
-            'tc_rectangular_size' ,
-            array( 'width' => '1170' , 'height' => $_user_height , 'crop' => true )
-          );
+          $_rectangular_size = apply_filters( 'tc_rectangular_size' , array_merge( $this -> tc_rectangular_size, array( 'height' => $_user_height ) ) );
           add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
         }
 
