@@ -1,1 +1,1 @@
-<?php dynamic_sidebar( $widget_area_model -> key ); ?>
+<?php dynamic_sidebar(  tc_get( 'key' ) ); ?>

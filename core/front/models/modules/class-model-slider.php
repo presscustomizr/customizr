@@ -52,7 +52,7 @@ class TC_slider_model_class extends TC_Model {
       return;   
     
     $element_class      = $this -> tc_get_slider_element_class( $queried_id, $slider_name_id, $layout );
-    $inner_class        = $this -> tc_get_inner_class();
+    $inner_class        = $this -> tc_get_slider_inner_class();
 
 
 
@@ -294,7 +294,7 @@ class TC_slider_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.3+
   */
-  function tc_get_inner_class() {
+  function tc_get_slider_inner_class() {
     $class = array('carousel-inner');
 
     if( (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_center_slider_img') ) )

@@ -1,1 +1,1 @@
-<?php echo $posts_list_description_model -> description ?>
+<?php echo tc_get('description') ?>

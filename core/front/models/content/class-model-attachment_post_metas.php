@@ -25,7 +25,7 @@ class TC_attachment_post_metas_model_class extends TC_post_metas_model_class {
     return $this -> tc_get_meta( 'parent', 'title' );    
   }
 
-  public function tc_is_attachment_size_defined() {
+  public function tc_get_attachment_size() {
     return $this -> tc_get_attachment_width() && $this -> tc_get_attachment_height();    
   }
 

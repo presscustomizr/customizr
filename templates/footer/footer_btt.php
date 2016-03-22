@@ -1,1 +1,1 @@
-<a class="<?php echo $footer_btt_model -> link_class ?>" href="#"><?php echo $footer_btt_model -> text ?></a>
+<a class="<?php echo tc_get( 'link_class' ) ?>" href="#"><?php echo tc_get( 'text' ) ?></a>

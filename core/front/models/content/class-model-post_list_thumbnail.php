@@ -56,7 +56,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
     if ( ! $thumb_img )
       return;     
 
-    $wrapper_class          = $this -> tc_get_wrapper_class();
+    $wrapper_class          = $this -> tc_get_the_wrapper_class();
 
     $no_effect_class = $this -> tc_get_no_effect_class( $thumb_model );
 
@@ -112,8 +112,8 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
 
   
   /* The template wrapper class */
-  function tc_get_wrapper_class() {
-    return 'tc-thumbnail ' . get_query_var('tc_thumbnail_width'); /*retrieved from the post_list layout */
+  function tc_get_the_wrapper_class() {
+    return array( 'tc-thumbnail', get_query_var('tc_thumbnail_width', '') ); /*retrieved from the post_list layout */
   }
 
   /**

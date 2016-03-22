@@ -1,1 +1,1 @@
-<?php wp_list_comments( $comment_list_model -> args ) ?>
+<?php wp_list_comments( tc_get('args') ) ?>

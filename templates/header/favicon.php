@@ -1,1 +1,1 @@
-<link id="czr-favicon" rel="shortcut icon" href="<?php echo $favicon_model -> src ?>" type="<?php echo $favicon_model -> type ?>">
+<link id="czr-favicon" rel="shortcut icon" href="<?php echo tc_get('src') ?>" type="<?php echo tc_get('type') ?>">

@@ -24,6 +24,9 @@ if ( ! class_exists( 'TC___' ) ) :
     public $views;//object, stores the views
     public $controllers;//object, stores the controllers
 
+    //stack
+    public $current_model = array();
+
     public static function tc_instance() {
       if ( ! isset( self::$instance ) && ! ( self::$instance instanceof TC___ ) ) {
         self::$instance = new TC___();
@@ -258,7 +261,7 @@ if ( ! class_exists( 'TC___' ) ) :
           *********************************************/
           /* MAIN WRAPPERS */
           array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20, 'element_class' => apply_filters( 'tc_main_wrapper_classes' , array('container') ), 'element_id' => 'main-wrapper' ),
-          array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 20 ),
+          array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 30 ),
           
           //Featured Pages
           array( 
@@ -623,6 +626,36 @@ if ( ! class_exists( 'TC___' ) ) :
       return $this -> tc_require_once( TC_FRAMEWORK_PREFIX . $path_suffix );
     }
 
+
+    /*
+    * Stores the current model in the class current_model stack
+    * called by the View class before requiring the view template 
+    * @param $model
+    */
+    function tc_set_current_model( $model ) {
+      $this -> current_model[ $model -> id ] = &$model;
+    }
+
+
+    /*
+    * Pops the current model from the current_model stack
+    * called by the View class after the view template has been required/rendered
+    */
+    function tc_reset_current_model() {
+      array_pop( $this -> current_model );    
+    }
+
+
+    /*
+    * An handly function to get a current model property
+    * @param $property (string), the property to get
+    * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
+    */
+    function tc_get( $property, $args = array() ) {
+      $current_model = end( $this -> current_model );
+      return $current_model -> tc_get_property( $property, $args );
+    }
+
     /**
     * Are we in a customization context ? => ||
     * 1) Left panel ?
@@ -746,6 +779,39 @@ if ( ! function_exists('tc_fw_require_once') ) {
     return TC___::$instance -> tc_fw_require_once( $path_suffix );
   }
 }
+
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to set the current model which will be accessible by the tc_get
+if ( ! function_exists('tc_set_current_model') ) {
+  function tc_set_current_model( $model ) {
+    return TC___::$instance -> tc_set_current_model( $model );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to reset the current model
+if ( ! function_exists('tc_reset_current_model') ) {
+  function tc_reset_current_model() {
+    return TC___::$instance -> tc_reset_current_model();
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to get a current model property
+if ( ! function_exists('tc_get') ) {
+  function tc_get( $property, $args = array() ) {
+    return TC___::$instance -> tc_get( $property, $args );
+  }
+}
+
+
 /*
  * @since 3.5.0
  */

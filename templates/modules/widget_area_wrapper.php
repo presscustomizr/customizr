@@ -1,3 +1,3 @@
-<div id="<?php echo $widget_area_wrapper_model -> inner_id ?>" class="<?php echo $widget_area_wrapper_model -> inner_class ?>" role="complementary">
-  <?php do_action("__widget_area{$widget_area_wrapper_model -> action_hook_suffix}__") ?>
+<div id="<?php echo tc_get( 'inner_id' ) ?>" class="<?php echo tc_get( 'inner_class' ) ?>" role="complementary">
+  <?php do_action( '__widget_area'. tc_get( 'action_hook_suffix' ) . '__' ) ?>
 </div>
