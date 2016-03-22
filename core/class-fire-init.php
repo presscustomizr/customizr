@@ -34,7 +34,6 @@ if ( ! class_exists( 'TC_init' ) ) :
       public $post_list_layout;
       public $content_404;
       public $content_no_results;
-      public $default_slides;
 
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
@@ -320,37 +319,6 @@ if ( ! class_exists( 'TC_init' ) ) :
             'author'            => __( 'Sir Winston Churchill' , 'customizr' ),
             'text'              => __( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.' , 'customizr' )
           );
-
-          //Default slides content
-          $this -> default_slides     = array(
-            1 => array(
-              'title'         =>  '',
-              'text'          =>  '',
-              'button_text'   =>  '',
-              'link_id'       =>  null,
-              'link_url'      =>  null,
-              'active'        =>  'active',
-              'color_style'   =>  '',
-              'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL . TC_ASSETS_PREFIX . 'front/img/customizr-theme-responsive.png',
-                                          __( 'Customizr is a clean responsive theme' , 'customizr' )
-                                  )
-            ),
-
-            2 => array(
-              'title'         =>  '',
-              'text'          =>  '',
-              'button_text'   =>  '',
-              'link_id'       =>  null,
-              'link_url'      =>  null,
-              'active'        =>  '',
-              'color_style'   =>  '',
-              'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL . TC_ASSETS_PREFIX . 'front/img/customizr-theme-customizer.png',
-                                          __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
-                                  )
-            )
-          );///end of slides array
 
           //Set image options set by user @since v3.2.0
           //! must be included in utils to be available in admin for plugins like regenerate thumbnails
