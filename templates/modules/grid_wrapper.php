@@ -1,10 +1,10 @@
 <?php if ( tc_get( 'is_loop_start' ) ) : ?>
-<section class="tc-post-list-grid <?php echo tc_get( 'element_class' ) ?>">
+<section class="tc-post-list-grid <?php tc_echo( 'element_class' ) ?>">
 <?php endif; ?>
   <?php if ( tc_get( 'is_first_of_row' ) ) : ?>
-  <section class="row-fluid grid-cols-<?php echo tc_get( 'section_cols' ) ?>">
+  <section class="row-fluid grid-cols-<?php tc_echo( 'section_cols' ) ?>">
   <?php endif ?>
-    <article <?php echo tc_get( 'article_selectors' ) ?> >
+    <article <?php tc_echo( 'article_selectors' ) ?> >
       <?php do_action('__grid__') ?>
     </article>
     <hr class="featurette-divider __after_article">

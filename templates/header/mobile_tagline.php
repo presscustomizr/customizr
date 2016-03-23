@@ -1,3 +1,3 @@
-<<?php echo tc_get( 'tag' ) ?> class="<?php echo tc_get( 'class' ) ?>" <?php echo tc_get( 'attributes' ) ?>>
-  <?php echo tc_get( 'content' ) ?>
-</<?php echo tc_get( 'tag' ) ?>>
+<<?php tc_echo( 'tag' ) ?> class="<?php tc_echo( 'class' ) ?>" <?php tc_echo( 'attributes' ) ?>>
+  <?php tc_echo( 'content' ) ?>
+</<?php tc_echo( 'tag' ) ?>>

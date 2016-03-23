@@ -1,1 +1,1 @@
-<?php echo tc_get('description') ?>
+<?php tc_echo('description') ?>

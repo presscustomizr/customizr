@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="<?php echo tc_get( 'inner_class' ) ?>">
+    <div class="<?php tc_echo( 'inner_class' ) ?>">
         <?php
             //colophon blocks actions priorities
             //renders blocks
