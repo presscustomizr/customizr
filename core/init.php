@@ -460,7 +460,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__header__', 'template' => 'header/title'  ),
 
           //MOBILE TAGLINE
-          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline') ),
+          array( 'hook' => '__header__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline'), 'element_tag' => false ),
 
           //NAVBAR
           array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
