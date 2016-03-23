@@ -1,6 +1,5 @@
 <?php
 class TC_logo_wrapper_model_class extends TC_Model {
-  public $class;
   public $link_class;
   public $link_title;
   public $link_url;

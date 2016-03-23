@@ -26,7 +26,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public $query = false;
     public $priority = 10;
     public $template = "";
-    public $element_tag = "div";
+    public $element_tag;
     public $element_id;
     public $element_class = "";
     public $element_attributes;

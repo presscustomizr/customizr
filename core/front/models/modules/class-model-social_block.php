@@ -1,8 +1,8 @@
 <?php
 class TC_social_block_model_class extends TC_Model {
-  public $content;
-  public $element_class = array('social-block');
-
+  public $social_block;
+  public $element_class = array();
+  public $element_tag   = 'div';
   /*
   * @override
   * fired before the model properties are parsed
@@ -10,11 +10,11 @@ class TC_social_block_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'content' ]             = TC_utils::$inst -> tc_get_social_networks();
+    $model[ 'social_block' ]        = TC_utils::$inst -> tc_get_social_networks();
     $model[ 'element_class' ]       = $this -> tc_social_block_get_class( $model );
     $model[ 'where' ]               = $this -> tc_get_socials_where( $model );
     $model[ 'element_attributes' ]  = $this -> tc_social_block_get_attributes( $model );
-    $model[ 'content' ]             = $this -> tc_get_before_socials() . $model[ 'content' ] . $this -> tc_get_after_socials();
+    $model[ 'social_block' ]        = $this -> tc_get_before_socials() . $model[ 'social_block' ] . $this -> tc_get_after_socials();
     return $model;
   }
 
@@ -41,7 +41,7 @@ class TC_social_block_model_class extends TC_Model {
     //1b) there are no social icons set
     //and
     //2) customizing 
-    $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['content']  ) && TC___::$instance -> tc_is_customizing();
+    $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && TC___::$instance -> tc_is_customizing();
     return $_hidden ? 'style="display:none;"' : '';
   }
 

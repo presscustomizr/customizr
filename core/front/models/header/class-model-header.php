@@ -33,14 +33,14 @@ class TC_header_model_class extends TC_Model {
     $children = array(
           //LOGO
           array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
-          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'element_tag' => false ),
-          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo'), 'element_tag' => false ),
+          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo'),
+          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo') ),
 
           //TITLE
           array( 'hook' => '__header__', 'template' => 'header/title'  ),
 
           //MOBILE TAGLINE
-          array( 'hook' => '__header__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline'), 'element_tag' => false ),
+          array( 'hook' => '__header__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline') ),
 
           //NAVBAR
           array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
@@ -59,10 +59,10 @@ class TC_header_model_class extends TC_Model {
           array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
           //SIDENAV
-          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav', 'element_tag' => 'nav', 'element_id' => 'tc-sn', 'element_class' => apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) ),
-          //menu button
+          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav' ),
+          //sidenav menu button
           array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
-          //menu
+          //sidenav menu
           array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
       );
 
