@@ -58,10 +58,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'TC_post_thumbnails' ) )
-        TC___::$instance -> tc_load( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
-      if ( class_exists( 'TC_post_thumbnails' ) )
-        TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
+      if ( ! class_exists( 'TC_utils_thumbnails' ) )
+        TC___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
+      if ( class_exists( 'TC_utils_thumbnails' ) )
+        TC_utils_thumbnails::$instance -> tc_set_thumb_info( $post_id );
     }
 
     /*
@@ -79,12 +79,12 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
  
-      if ( ! class_exists( 'TC_post_thumbnails' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+      if ( ! class_exists( 'TC_utils_thumbnails' ) )
+        TC___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
       if ( ! class_exists( 'TC_slider' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'slider') ) ), true );
+        TC___::$instance -> tc_load( array('content' => array( array('inc/parts', 'slider') ) ), true );
 
-      TC_slider::$instance -> tc_cache_posts_slider();
+      //TC_slider::$instance -> tc_cache_posts_slider();
     }
  
 
