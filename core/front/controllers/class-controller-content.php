@@ -268,14 +268,6 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return $this -> tc_are_comments_enabled();
     }
 
-    function tc_display_view_comment_block_title() {
-      return $this -> tc_display_view_comment_list();
-    }
-
-    function tc_display_view_comment_navigation() {
-      return $this -> tc_display_view_comment_list() && get_option( 'page_comments' );
-    }
-
    /******************************
     VARIOUS HELPERS
     *******************************/
