@@ -1,8 +1,7 @@
 <?php
 class TC_post_thumbnail_model_class extends TC_post_list_thumbnail_model_class {
-  public $wrapper_class         = 'tc-thumbnail span12';
   public $link_class            = 'tc-rectangular-thumb';
-  public $thumb_wrapper_class   = '';
+  public $thumb_wrapper_class   = 'span12';
 
   // backward compatiblity
   private $hook_map       = array(
@@ -50,9 +49,8 @@ class TC_post_thumbnail_model_class extends TC_post_list_thumbnail_model_class {
     return explode( '|', esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) ) );   
   }
 
-  function tc_get_element_class() {
+  function tc_get_the_wrapper_class() {
     return array( 'row-fluid', 'tc-single-post-thumbnail-wrapper', current_filter() );
-      //'tc-thumbnail span12';    
   }
 
   function tc_has_post_thumbnail() { 

@@ -2,7 +2,7 @@
 class TC_post_list_content_model_class extends TC_Model {
   public  $content_cb;
   private $content;
-  public  $content_class;
+  public  $content_width_class;
 
   function __construct( $model = array() ) {
     //Fires the parent constructor
@@ -59,21 +59,21 @@ class TC_post_list_content_model_class extends TC_Model {
 
   function tc_set_this_properties() {
     $show_excerpt        = get_query_var( 'tc_show_excerpt' );  
-    $content_class       = array( 'entry-summary' );
+    $content_width_class = array( 'entry-summary' );
     $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
     $content             = '';
-    $element_class       = 'tc-content ' . get_query_var( 'tc_content_width' );
+    $element_class       = get_query_var( 'tc_content_width' );
 
     if ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) )
     {
-      $content_class     = array( 'entry-content');
-      $content           = '<p class="format-icon"></p>';
+      $content_width_class = array( 'entry-content' );
+      $content             = '<p class="format-icon"></p>';
     }
     elseif ( in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside', 'video' ) ) ) {
-      $content_class     = array( 'entry-content', apply_filters( 'tc_post_list_content_icon', 'format-icon' ) );
-      $content_cb        = 'get_the_content';
+      $content_width_class = array( 'entry-content', apply_filters( 'tc_post_list_content_icon', 'format-icon' ) );
+      $content_cb          = 'get_the_content';
     }
-    $this -> tc_update( compact( 'element_class', 'content_class', 'content_cb', 'content' ) );
+    $this -> tc_update( compact( 'element_class', 'content_witdh_class', 'content_cb', 'content' ) );
   }
 
   /**
@@ -81,6 +81,6 @@ class TC_post_list_content_model_class extends TC_Model {
   */ 
   function pre_rendering_my_view_cb( $model ) {
     parent::pre_rendering_my_view_cb( $model );  
-    $model -> content_class = $this -> tc_stringify_model_property( 'content_class' );
+    $model -> content_width_class = $this -> tc_stringify_model_property( 'content_width_class' );
   }
 }
