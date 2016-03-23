@@ -1,4 +1,5 @@
-<div class="navbar resp">
+<div class="navbar-wrapper clearfix <?php tc_echo( 'element_class' ) ?>">
+  <div class="navbar resp">
     <div class="navbar-inner" role="navigation">
         <div class="row-fluid">
         <?php
@@ -6,4 +7,5 @@
         ?>
         </div><!-- /.row-fluid -->
     </div><!-- /.navbar-inner -->
-</div><!-- /.navbar  -->
+  </div><!-- /.navbar  -->
+</div>
