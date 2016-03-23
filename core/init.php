@@ -385,14 +385,12 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
           /* Comments */
-          /* comment list */
+          /* contains the comment form */
           array( 'hook' => '__content__', 'template' => 'content/comments', 'element_class' => 'comments-area', 'element_id' => 'comments', 'priority' => '20'),
-            array( 'hook' => '__comments__', 'template' => 'content/comment_block_title', 'priority' => '10', 'element_tag' => false),
-            array( 'hook' => '__comments__', 'template' => 'content/comment_list', 'element_tag' => 'ul', 'element_class' => 'commentlist', 'priority' => '20'),
+            /* comment list */
+            array( 'hook' => '__comments__', 'template' => 'content/comment_list', 'element_tag' => false),
               array( 'hook' => '__comment_loop__', 'template' => 'content/comment',  'id' => 'comment', 'element_tag' => false ),
               array( 'hook' => '__comment_loop__', 'template' => 'content/tracepingback',  'id' => 'traceback', 'element_tag' => false ),
-            array( 'hook' => '__comments__', 'template' => 'content/comment_navigation', 'priority' => '30'),
-
           /* end Comments */
           /* Post navigation */
           array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
