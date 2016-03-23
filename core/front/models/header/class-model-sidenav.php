@@ -1,22 +1,9 @@
 <?php
 class TC_sidenav_model_class extends TC_Model {
-  public $inner_class;
 
   function __construct( $model = array() ) {
     parent::__construct( $model );
-    //specific inline CSS
     add_filter( 'tc_menu_open_on_click', array( $this, 'tc_disable_dropdown_on_click' ), 10, 3 );
-  }
-  /**
-  * @override
-  * fired before the model properties are parsed
-  * 
-  * return model params array() 
-  */
-  function tc_extend_params( $model = array() ) {
-    $model[ 'inner_class' ]   = apply_filters('tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') );  
-    
-    return $model;
   }
 
 
