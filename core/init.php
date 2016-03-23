@@ -105,6 +105,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('core/utils' , 'utils_settings_map'),//customizer setting map
               array('core/utils' , 'utils'),//helpers used everywhere
               array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
+              array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
               array('core'       , 'resources'),//loads front stylesheets (skins) and javascripts
               array('core'       , 'widgets'),//widget factory
               array('core'       , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
@@ -344,7 +345,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => 'h2' ),
+            array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => false ),
             //comment bubble
             array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'element_tag' => false ),
 
@@ -365,7 +366,7 @@ if ( ! class_exists( 'TC___' ) ) :
           //attachment
           array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/attachment_content' ), 'element_tag' => false ),
           //post and page titles in singular context
-            array( 'hook' => '__post_page_title__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h1' ),
+            array( 'hook' => '__post_page_title__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => false ),
 
             //post thumbnail
             array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),

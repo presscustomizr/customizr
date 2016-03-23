@@ -20,7 +20,9 @@
   </figure>
 <?php if( ! tc_get( 'is_expanded' ) ) : ?>
   <header class="entry-header">
+  <?php if ( tc_post_has_title() ) : ?>
     <h2 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php tc_echo( 'title' ) ?></a></h2>
+  <?php endif ?>
     <?php do_action('__post_metas__') ?>
   </header>
 <?php endif ?>

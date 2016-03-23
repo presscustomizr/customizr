@@ -25,3 +25,6 @@
     __('%s days ago', 'customizr') 
   ) ); ?>)</span>
 <?php endif; ?>
+<?php if ( ! is_singular() && ! tc_post_has_title() ): ?>
+ | <a href="<?php the_permalink() ?>" title="<?php _e('Open', 'customizr') ?>"><?php _e('Open', 'customizr') ?> &raquo;</a>
+<?php endif;
