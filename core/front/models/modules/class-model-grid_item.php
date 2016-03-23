@@ -62,10 +62,10 @@ class TC_grid_item_model_class extends TC_model {
   */
   function tc_get_thumb_properties( $section_cols ) {
     $has_thumb           = $this -> tc_grid_show_thumb();
-    $thumb_img           = null;
+    $thumb_img           = '';
     
     if ( $has_thumb ) {
-      $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( 
+      $thumb_model                   = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( 
           $thumb_size                = $this -> tc_get_thumb_size_name( $section_cols ),
           null, null, null, 
           $_filtered_thumb_size_name = $this -> tc_get_filtered_thumb_size_name( $section_cols ) 
