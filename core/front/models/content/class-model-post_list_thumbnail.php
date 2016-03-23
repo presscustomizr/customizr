@@ -2,7 +2,7 @@
 class TC_post_list_thumbnail_model_class extends TC_Model {
   public $wrapper_class;  
   public $thumb_wrapper_class   = 'thumb-wrapper';
-  public $link_class      = 'round-div';
+  public $link_class            = 'round-div';
 
   public  $thumb_size;
   public  $thumb_img;
@@ -113,7 +113,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   
   /* The template wrapper class */
   function tc_get_the_wrapper_class() {
-    return array( 'tc-thumbnail', get_query_var('tc_thumbnail_width', '') ); /*retrieved from the post_list layout */
+    return array( get_query_var('tc_thumbnail_width', '') ); /*retrieved from the post_list layout */
   }
 
   /**

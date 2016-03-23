@@ -298,17 +298,16 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_search_title', 'priority' => 10, 'model_class' => array( 'parent' => 'content/posts_list_title', 'name' => 'content/posts_list_search_title' ) ),
           array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_description', 'priority' => 20 ),
           //author description
-          array( 'hook' => '__headings_posts_list__', 'id' => 'author_description', 'template' => 'content/author_info', 'element_tag' => false ,'priority' => 20 ),
+          array( 'hook' => '__headings_posts_list__', 'id' => 'author_description', 'template' => 'content/author_info', 'priority' => 20 ),
 
           /* GENERIC LOOP */
-          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'element_tag' => false, 'priority' => 20 ),
+          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20 ),
 
           /*** GRID (POST LIST) ***/
           array( 
             'hook'        => 'in_main_loop',
             'template'    => 'modules/grid_wrapper',
             'priority'    => 10,
-            'element_tag' => false,
             'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid_wrapper'),
             'controller'  => 'post_list_grid'
           ),
@@ -316,51 +315,50 @@ if ( ! class_exists( 'TC___' ) ) :
              array( 
               'hook'        => '__grid__',
               'template'    => 'modules/grid_item',
-              'element_tag' => false,
              ),
 
           /* END GRID */
           /*** ALTERNATE POST LIST ***/
-          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
 
           //content
           //post content/excerpt
-          array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content', 'element_tag' => 'section' ),
+          array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content' ),
           //thumbs
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_thumbnail', 'id' => 'post_list_standard_thumb', 'element_tag' => false ),
+          array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_thumbnail', 'id' => 'post_list_standard_thumb' ),
           //the recangular thumb has a different model + a slighty different template
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_list_rectangular_thumb', 'element_tag' => false, 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_list_rectangular_thumbnail') ),
+          array( 'hook' => '__post_list_thumb__', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_list_rectangular_thumb', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_list_rectangular_thumbnail') ),
 
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => false ),
+            array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title', 'id' => 'post_list_title' ),
             //comment bubble
-            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'element_tag' => false ),
+            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble' ),
 
           /*** ALTERNATE POST LIST END ***/
 
           /**** SINGULAR: PAGE POST ATTACHMENT ****/  
-          array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'element_tag' => false, 'element_class' => 'row-fluid', 'id' => 'singular_article' ),
+          array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'id' => 'singular_article' ),
           //page/attachment headings
             array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
           //page content
-          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page', 'priority' => 20 ),
+          array( 'hook' => '__article__', 'template' => 'content/page_content', 'id' => 'page', 'priority' => 20 ),
           //post content
-          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'post', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/post_content' ) ),
+          array( 'hook' => '__article__', 'template' => 'content/post_content', 'id' => 'post', 'model_class' => 'content/post_content' ),
             //post headings
             array( 'hook' => 'before_render_view_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            //post footer (wrapper of the author_info)
-            array( 'hook' => 'after_render_view_post', 'id' => 'post_footer', 'template' => 'content/author_info', 'element_tag' => 'footer', 'element_class' => 'entry-meta'),
+            //post footer
+            array( 'hook' => 'post_footer', 'id' => 'post_footer', 'template' => 'content/author_info' ),
           //attachment
-          array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/attachment_content' ), 'element_tag' => false ),
+          array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'model_class' => 'content/attachment_content' ),
           //post and page titles in singular context
-            array( 'hook' => '__post_page_title__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => false ),
+            array( 'hook' => '__post_page_title__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title' ),
 
             //post thumbnail
-            array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),
+            array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),
 
             //comment bubble
-            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'id' => 'singular_comment_bubble', 'element_tag' => false ),
+            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'id' => 'singular_comment_bubble' ),
 
           //Post metas in the headings
           //the default class/template is for the buttons type

@@ -1,5 +1,5 @@
 <?php
-class TC_attachment_content_model_class extends TC_post_page_content_model_class {
+class TC_attachment_content_model_class extends TC_Model {
   public $gallery;
   public $has_gallery;
   public $link_url;
