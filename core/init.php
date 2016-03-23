@@ -430,7 +430,8 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-three' ),
 
           //colophon
-          array( 'hook' => '__footer__', 'template' => 'footer/colophon_standard', 'model_class' => array( 'parent' => 'footer/colophon', 'name' => 'footer/colophon_standard'), 'priority' => 100 ),
+          array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'model_class' => array( 'parent' => 'footer/colophon_base', 'name' => 'footer/colophon'), 'priority' => 100 ),
+
           //TODO: COLOPHON BLOCKS ORDER IS RTL DEPENDANT
           //footer social
           array( 'hook' => '__colophon_one__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ) ),
