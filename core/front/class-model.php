@@ -69,8 +69,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       do_action( "{$this -> id}_model_alive", $this -> id, $this );
 
       //set-up the children
-      if ( method_exists( $this, 'tc_setup_children') )
-        $this -> tc_setup_children();
+      $this -> tc_maybe_setup_children();
 
       //Registers its children if any
       $this -> tc_maybe_register_children();
@@ -137,6 +136,19 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //for now just add filter to tc_user_options_style
       if ( method_exists( $this, 'tc_user_options_style_cb' ) )
         add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' ) );
+    }//fn
+
+    
+    /**********************************************************************************
+    * ACTIONS ON MODEL INSTANCIATION : MAYBE SETUP CHILDREN FOR SUCCESSIVE REGISTRATION
+    ***********************************************************************************/
+    public function tc_maybe_setup_children() {
+      //set-up the children
+      if ( ! method_exists( $this, 'tc_setup_children') )
+        return;
+
+      $children = $this -> tc_setup_children();
+      $this -> tc_set_property( 'children', $children );
     }//fn
 
 

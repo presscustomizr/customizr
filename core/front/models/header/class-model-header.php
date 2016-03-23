@@ -66,7 +66,7 @@ class TC_header_model_class extends TC_Model {
           array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
       );
 
-    $this -> tc_set_property( 'children', $children );
+    return $children;
   }
 
   /**
