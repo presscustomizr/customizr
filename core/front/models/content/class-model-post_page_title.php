@@ -8,7 +8,7 @@ class TC_post_page_title_model_class extends TC_Model {
     parent::__construct( $model );
     
     //render this?
-    add_filter( "tc_do_render_view_{$this -> id}",  array( $this, 'tc_post_has_headings') );
+    add_filter( "tc_do_render_view_{$this -> id}",  'tc_post_has_title' );
   }
 
   /**
@@ -21,10 +21,6 @@ class TC_post_page_title_model_class extends TC_Model {
     $this -> context            = $this -> tc_get_the_post_page_context();
     $model['element_class']     = apply_filters( 'tc_content_title_icon', $this -> tc_get_post_page_title_class( 'entry-title' ) );
     return $model;
-  }
-
-  function tc_post_has_headings() {
-    return ! ( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', self::$post_formats_with_no_heading ) ) );
   }
 
   function tc_get_the_post_page_context() {
