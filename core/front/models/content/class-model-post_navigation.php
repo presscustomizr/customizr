@@ -7,7 +7,7 @@ abstract class TC_post_navigation_model_class extends TC_Model {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'element_class' ]       = $this -> tc_get_pn_element_class( array( 'navigation') );
+    $model[ 'element_class' ]       = $this -> tc_get_pn_element_class( array('navigation') );
 
     return $model; 
   }

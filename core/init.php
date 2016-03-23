@@ -195,29 +195,24 @@ if ( ! class_exists( 'TC___' ) ) :
             array(
               'hook' => '__rooot__',
               'template' => 'rooot',
-              'element_tag' => false
             ),
             array(
               'hook' => '__html__',
               'template' => 'header/head',
-              'element_tag' => false
             ),
             array(
               'hook' => 'wp_head' ,
               'template' => 'header/favicon',
-              'element_tag' => false
             ),
             array(
               'hook' => '__html__',
               'template' => 'body',
               'priority' => 20,
-              'element_tag' => false
             ),
             array(
               'hook' => '__body__',
               'template' => 'page_wrapper',
               'priority' => 20,
-              'element_tag' => false
             ),
 
 
@@ -227,7 +222,6 @@ if ( ! class_exists( 'TC___' ) ) :
           array(
             'hook'        => '__page_wrapper__',
             'template'    => 'header/header',
-            'element_tag' => false,
           ),
 
 
@@ -240,27 +234,24 @@ if ( ! class_exists( 'TC___' ) ) :
             'hook' => '__page_wrapper__',
             'template'  => 'modules/slider',
             'id' => 'main_slider',
-            'element_tag' => false
           ),
           array(//slider of posts
             'hook' => '__page_wrapper__',
             'template'  => 'modules/slider',
             'id' => 'main_slider',
-            'element_tag' => false,
             'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/posts_slider' ),
             'controler'   => 'main_slider'
           ),
             array(
               'hook' => '__slide__',
               'template'  => 'modules/slide',
-              'element_tag' => false
             ),
 
           /*********************************************
           * CONTENT
           *********************************************/
           /* MAIN WRAPPERS */
-          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20, 'element_class' => apply_filters( 'tc_main_wrapper_classes' , array('container') ), 'element_id' => 'main-wrapper' ),
+          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 30 ),
           
           //Featured Pages
@@ -268,17 +259,15 @@ if ( ! class_exists( 'TC___' ) ) :
             'hook' => '__main_wrapper__',
             'template' => 'modules/featured_pages',
             'priority' => 10,
-        //we define the wrapper class here, we need a wrapper 'cause we don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
-            'element_class' => 'container marketing' 
+        //We don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
           ),
             array( 
               'hook' => '__featured_page__',
               'template' => 'modules/featured_page',
-              'element_tag' => false
             ),
 
           //breadcrumb
-          array( 'hook' => '__main_wrapper__', 'template' => 'modules/breadcrumb', 'priority' => 20, 'element_tag' => false ),
+          array( 'hook' => '__main_wrapper__', 'template' => 'modules/breadcrumb', 'priority' => 20 ),
 
           /* LEFT SIDEBAR */
           array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 10, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
@@ -298,9 +287,9 @@ if ( ! class_exists( 'TC___' ) ) :
 
           /* OUTSIDE THE LOOP */
           //404
-          array( 'hook' => '__content__', 'id' => '404', 'template' => 'content/content_404', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/404'), 'element_tag' => false ),
+          array( 'hook' => '__content__', 'id' => '404', 'template' => 'content/content_404', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/404') ),
           //no results
-          array( 'hook' => '__content__', 'id' => 'no_results', 'template' => 'content/content_no_results', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results'), 'element_tag' => false ),
+          array( 'hook' => '__content__', 'id' => 'no_results', 'template' => 'content/content_no_results', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results') ),
 
           //Headings: before the loop (for list of posts, like blog, category, archives ...)
           array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'), 'id' => 'posts_list_headings' ),
@@ -375,23 +364,23 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //Post metas in the headings
           //the default class/template is for the buttons type
-            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
+            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'priority' => 20, 'id' => 'post_metas_button' ),
           //the text meta one uses a different template
-            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas_text', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
+            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas_text', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
           //attachment post mestas
-            array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
+            array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
 
 
           /* Comments */
           /* contains the comment form */
-          array( 'hook' => '__content__', 'template' => 'content/comments', 'element_class' => 'comments-area', 'element_id' => 'comments', 'priority' => '20'),
+          array( 'hook' => '__content__', 'template' => 'content/comments', 'priority' => '20'),
             /* comment list */
-            array( 'hook' => '__comments__', 'template' => 'content/comment_list', 'element_tag' => false),
+            array( 'hook' => '__comments__', 'template' => 'content/comment_list' ),
           /* end Comments */
 
           /* Post navigation */
-          array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
-          array( 'hook' => '__content__', 'template' => 'content/post_navigation_posts', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ), 'priority' => 40 ),
+          array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
+          array( 'hook' => '__content__', 'template' => 'content/post_navigation_posts', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ), 'priority' => 40 ),
             //singular links'
             array( 'hook' => 'post_navigation_singular', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_singular'), 'id' => 'post_navigation_links_singular'),
             //posts links
@@ -402,15 +391,9 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * FOOTER
           *********************************************/
+          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 ),
           //sticky footer
-          array( 'hook' => 'after_render_view_main_container', 'template' => 'footer/footer_push', 'priority' => 100, 'element_tag' => false ),
-
-          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30, 'element_tag' => 'footer' ),
-
-          //a post grid displayed in any content
-  //        array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
-  //        array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
-  //        array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
+          array( 'hook' => 'after_render_view_main_container', 'template' => 'footer/footer_push', 'priority' => 100 ),
 
           //widget area in footer
           array( 'hook' => '__footer__', 'id' => 'footer_widgets_wrapper', 'template' => 'modules/widget_area_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
@@ -425,7 +408,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-three' ),
 
           //colophon
-          array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'model_class' => array( 'parent' => 'footer/colophon_base', 'name' => 'footer/colophon'), 'priority' => 100 ),
+          array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
 
           //TODO: COLOPHON BLOCKS ORDER IS RTL DEPENDANT
           //footer social
@@ -436,7 +419,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__colophon_three__', 'template' => 'footer/footer_btt' ),
 
           //btt arrow
-          array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow', 'element_class' => 'tc-btt-wrapper'),
+          array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow')
         )
       );
     }

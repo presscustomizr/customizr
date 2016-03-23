@@ -1,5 +1,5 @@
 <?php
-class TC_colophon_model_class extends TC_colophon_base_model_class {
+class TC_colophon_model_class extends TC_Model {
   public $col_1_class;
   public $col_2_class;
   public $col_3_class;
@@ -11,7 +11,6 @@ class TC_colophon_model_class extends TC_colophon_base_model_class {
   * return model params array() 
   */
   function tc_extend_params( $model = array() ) {
-    $model                  = parent::tc_extend_params( $model );
     $model[ 'col_1_class' ] = apply_filters( 'tc_colophon_left_block_class', array( 'span3', is_rtl() ? 'pull-right' : 'pull-left' ) );
     $model[ 'col_2_class' ] = apply_filters( 'tc_colophon_center_block_class', array( 'span6' ) );
     $model[ 'col_3_class' ] = apply_filters( 'tc_colophon_right_block_class', array( 'span3' ) );
