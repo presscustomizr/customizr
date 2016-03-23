@@ -1,7 +1,6 @@
 <?php
 abstract class TC_headings_model_class extends TC_Model {
   public $type;
-  public $element_tag = "header";
 
   /**
   * @override

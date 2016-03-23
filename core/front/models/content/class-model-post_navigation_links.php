@@ -4,8 +4,7 @@ abstract class TC_post_navigation_links_model_class extends TC_model {
   public $next_arrow;
   public $prev_link;
   public $next_link;
-  public $element_class = 'pager';
-  public $element_tag   = 'ul';
+
   /**
   * @override
   * fired before the model properties are parsed
