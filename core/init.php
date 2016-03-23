@@ -399,13 +399,13 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__footer__', 'id' => 'footer_widgets_wrapper', 'template' => 'modules/widget_area_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
 
           //footer one wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_one', 'priority' => '10', 'template' => 'modules/widget_area', 'element_id' => 'footer-one' , 'model_class' => 'footer/footer_widget_area_wrapper'),
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_one', 'priority' => '10', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper'),
 
           //footer two wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_two', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-two' ),
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_two', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper' ),
 
           //footer three wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-three' ),
+          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper'),
 
           //colophon
           array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),

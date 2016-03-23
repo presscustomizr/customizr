@@ -1,6 +1,5 @@
 <?php
 abstract class TC_widget_area_wrapper_model_class extends TC_Model {
-  public $element_class      = array();
   public $inner_class        = array();
   public $action_hook_suffix = '';
   public $inner_id           = '';
