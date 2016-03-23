@@ -38,7 +38,7 @@ if ( ! class_exists( 'TC___' ) ) :
         self::$instance -> helpers = new TC_Helpers();
 
         //registers the header's model
-        add_action('header_model_alive' , array(self::$instance, 'tc_register_header_map') );
+ //       add_action('header_model_alive' , array(self::$instance, 'tc_register_header_map') );
 
         //register the model's map
         add_action('wp'         , array(self::$instance, 'tc_register_model_map') );

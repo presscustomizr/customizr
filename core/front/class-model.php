@@ -68,6 +68,10 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //specific event for this model.
       do_action( "{$this -> id}_model_alive", $this -> id, $this );
 
+      //set-up the children
+      if ( method_exists( $this, 'tc_setup_children') )
+        $this -> tc_setup_children();
+
       //Registers its children if any
       $this -> tc_maybe_register_children();
 
@@ -189,11 +193,14 @@ if ( ! class_exists( 'TC_Model' ) ) :
       $children_collection = array();
       foreach ( $this -> children as $id => $model ) {
         //re-inject the id into the view_params
-        $model['id'] = $id;
-        CZR() -> collection -> tc_register( $model );
-        $children_collection[$id] = $model;
+ //       $model['id'] = $id;
+        $id = CZR() -> collection -> tc_register( $model );
+        if ( $id )
+          $children_collection[$id] = $model;
       }//foreach
 
+      //update the children property, at this stage will contain a list of the model ids of the registered children
+      $this -> tc_set_property( 'children', array_keys( $children_collection ) );
       //emit an event if a children collection has been registered
       //=> will fire the instanciation of the children collection with tc_maybe_instanciate_collection
       do_action( 'children_registered', $children_collection );
