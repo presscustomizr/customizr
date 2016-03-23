@@ -12,7 +12,7 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
 
     //hook : tc_dev_notice
     function tc_print_r($message) {
-      if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) )
+      if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) || is_feed() )
         return;
       ?>
         <pre><h6 style="color:red"><?php echo $message ?></h6></pre>
