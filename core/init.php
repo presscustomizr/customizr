@@ -200,7 +200,7 @@ if ( ! class_exists( 'TC___' ) ) :
             array(
               'hook' => '__html__',
               'template' => 'header/head',
-              'element_tag' => 'head'
+              'element_tag' => false
             ),
             array(
               'hook' => 'wp_head' ,
@@ -217,7 +217,7 @@ if ( ! class_exists( 'TC___' ) ) :
               'hook' => '__body__',
               'template' => 'page_wrapper',
               'priority' => 20,
-              'element_id' => 'tc-page-wrap'
+              'element_tag' => false
             ),
 
 
@@ -227,7 +227,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array(
             'hook'        => '__page_wrapper__',
             'template'    => 'header/header',
-            'element_tag' => 'header',
+            'element_tag' => false,
             'element_attributes' => 'role="banner"'
           ),
 
