@@ -25,7 +25,7 @@ class TC_grid_item_model_class extends TC_model {
     $thumb_properties       = $this -> tc_get_thumb_properties( $section_cols );
     extract( $thumb_properties );
     //figure class
-    $figure_class           = $this -> tc_get_figure_class( $has_thumb, $section_cols );
+    $figure_class           = $this -> tc_get_the_figure_class( $has_thumb, $section_cols );
 
     $icon_visibility        = $this -> tc_set_grid_icon_visibility();
 
@@ -85,7 +85,7 @@ class TC_grid_item_model_class extends TC_model {
   /*
   * figure class
   */
-  function tc_get_figure_class( $has_thumb, $section_cols ) {
+  function tc_get_the_figure_class( $has_thumb, $section_cols ) {
     $figure_class        = array( $has_thumb ? 'has-thumb' : 'no-thumb' );
 
     //if 1 col layout or current post is the expanded => golden ratio should be disabled
