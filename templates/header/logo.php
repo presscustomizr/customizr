@@ -1,1 +1,1 @@
-<img src="<?php echo tc_get( 'src' ) ?>" alt="<?php echo tc_get( 'alt' ) ?>" class="<?php echo tc_get( 'class') ?>" <?php echo tc_get( 'attr' ) ?>> 
+<img src="<?php tc_echo( 'src' ) ?>" alt="<?php tc_echo( 'alt' ) ?>" class="<?php tc_echo( 'class') ?>" <?php tc_echo( 'attr' ) ?>> 

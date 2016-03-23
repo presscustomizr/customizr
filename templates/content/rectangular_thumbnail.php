@@ -1,7 +1,7 @@
-<section class="<?php echo tc_get( 'wrapper_class' ) ?>">
- <div class="<?php echo tc_get( 'thumb_wrapper_class' ) ?>">
-  <a class="<?php echo tc_get( 'link_class' ) ?>" href="<?php the_permalink() ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ) ?>">
-    <?php echo tc_get( 'thumb_img' ) ?>
+<section class="<?php tc_echo( 'wrapper_class' ) ?>">
+ <div class="<?php tc_echo( 'thumb_wrapper_class' ) ?>">
+  <a class="<?php tc_echo( 'link_class' ) ?>" href="<?php the_permalink() ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ) ?>">
+    <?php tc_echo( 'thumb_img' ) ?>
   </a>
  </div>
 </section>

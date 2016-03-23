@@ -1,1 +1,1 @@
-<a class="<?php echo tc_get( 'link_class' ) ?>" href="#"><?php echo tc_get( 'text' ) ?></a>
+<a class="<?php tc_echo( 'link_class' ) ?>" href="#"><?php tc_echo( 'text' ) ?></a>

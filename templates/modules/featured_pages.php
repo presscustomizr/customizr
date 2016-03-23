@@ -4,4 +4,4 @@
     do_action( '__featured_page__' );
   }
 ?>
-<hr class="featurette-divider <?php echo tc_get( 'hook' ) ?>">
+<hr class="featurette-divider <?php tc_echo( 'hook' ) ?>">

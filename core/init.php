@@ -656,6 +656,15 @@ if ( ! class_exists( 'TC___' ) ) :
       return $current_model -> tc_get_property( $property, $args );
     }
 
+    /*
+    * An handly function to print a current model property (wrapper for tc_get)
+    * @param $property (string), the property to get
+    * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
+    */
+    function tc_echo( $property, $args = array() ) {
+      echo tc_get( $property, $args );  
+    }
+
     /**
     * Are we in a customization context ? => ||
     * 1) Left panel ?
@@ -811,6 +820,15 @@ if ( ! function_exists('tc_get') ) {
   }
 }
 
+/*
+ * @since 3.5.0
+ */
+//shortcut function to echo a current model property
+if ( ! function_exists('tc_echo') ) {
+  function tc_echo( $property, $args = array() ) {
+    return TC___::$instance -> tc_echo( $property, $args );
+  }
+}
 
 /*
  * @since 3.5.0

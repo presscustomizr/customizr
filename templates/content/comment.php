@@ -1,11 +1,11 @@
 <li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>">
   <article id="comment-<?php comment_ID() ?>" class="comment">
-    <div class="<?php echo tc_get( 'comment_wrapper_class' ) ?>">
-      <div class="<?php echo tc_get( 'comment_avatar_class' ) ?>">
+    <div class="<?php tc_echo( 'comment_wrapper_class' ) ?>">
+      <div class="<?php tc_echo( 'comment_avatar_class' ) ?>">
        <?php echo get_avatar( tc_get( 'comment' ), tc_get( 'comment_avatar_size' ) ) ?>
       </div>
-      <div class="<?php echo tc_get( 'comment_content_class' ) ?>">
-        <div class="<?php echo tc_get( 'comment_reply_btn_class' ) ?>">
+      <div class="<?php tc_echo( 'comment_content_class' ) ?>">
+        <div class="<?php tc_echo( 'comment_reply_btn_class' ) ?>">
           <?php comment_reply_link( tc_get( 'comment_reply_link_args' ) ) ?>
         </div>
         <header class="comment-meta comment-author vcard">
@@ -26,7 +26,7 @@
       <?php if ( tc_get( 'is_awaiting_moderation' ) ): ?>
         <p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' , 'customizr' ) ?></p>
       <?php endif; ?>
-        <section class="comment-content comment"><?php echo tc_get( 'comment_text' ) ?></section>
+        <section class="comment-content comment"><?php tc_echo( 'comment_text' ) ?></section>
       </div>
     </div>
   </article>

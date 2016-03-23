@@ -1,1 +1,1 @@
-<?php echo tc_get( 'pre_title' ) ?> <?php echo tc_get( 'title' ) ?>
+<?php tc_echo( 'pre_title' ) ?> <?php tc_echo( 'title' ) ?>

@@ -1,6 +1,6 @@
-<section class="<?php echo tc_get( 'content_class' ) ?>">
+<section class="<?php tc_echo( 'content_class' ) ?>">
 <?php
-  echo tc_get( 'post_list_content', array(
+  tc_echo( 'post_list_content', array(
      __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' )
  ) );
   wp_link_pages( array(
