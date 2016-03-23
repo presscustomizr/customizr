@@ -118,6 +118,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         do_action('tc_dev_notice', "A model instance ( " . $model . ") was not registered. into the collection." );
         return;
       }
+      return $model -> id;
     }
 
 
