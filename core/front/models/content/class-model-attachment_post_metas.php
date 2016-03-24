@@ -2,8 +2,8 @@
 class TC_attachment_post_metas_model_class extends TC_post_metas_model_class {
 
   //override
-  public function tc_post_has_metas() {
-    return is_attachment(); //in post lists. In single attachments the controller will prevent the model instantiation at wp
+  function tc_maybe_render_this_model_view() {
+    return $this -> visibility && is_attachment(); //in post lists. In single (not attachments) the controller will prevent the model instantiation at wp
   }
 
 

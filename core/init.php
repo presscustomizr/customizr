@@ -329,34 +329,15 @@ if ( ! class_exists( 'TC___' ) ) :
 
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title', 'id' => 'post_list_title' ),
-            //comment bubble
-            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble' ),
+
 
           /*** ALTERNATE POST LIST END ***/
+          
+          /* IN ALTERNATE POST LIST AND SINGULARS !!! */
+          array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title'/*,'id' => 'post_list_title'*/ ),
+          //comment bubble
+          array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble' ),
 
-          /**** SINGULAR: PAGE POST ATTACHMENT ****/  
-          array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'id' => 'singular_article' ),
-          //page/attachment headings
-            array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
-          //page content
-          array( 'hook' => '__article__', 'template' => 'content/page_content', 'id' => 'page', 'priority' => 20 ),
-          //post content
-          array( 'hook' => '__article__', 'template' => 'content/post_content', 'id' => 'post', 'model_class' => 'content/post_content' ),
-            //post headings
-            array( 'hook' => 'before_render_view_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            //post footer
-            array( 'hook' => '__post_footer__', 'id' => 'post_footer', 'template' => 'content/author_info' ),
-          //attachment
-          array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'model_class' => 'content/attachment_content' ),
-          //post and page titles in singular context
-            array( 'hook' => '__post_page_title__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title' ),
-
-            //single post thumbnail
-            array( 'hook' => 'before_render_view_post', 'template' => 'content/thumbnail_rectangular', 'id' => 'post_thumbnail', 'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single') ),
-
-            //comment bubble
-            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'id' => 'singular_comment_bubble' ),
 
           //Post metas in the headings
           //the default class/template is for the buttons type
@@ -365,6 +346,23 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => '__post_metas__', 'template' => 'content/post_metas_text', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
           //attachment post mestas
             array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
+
+         
+
+          /**** SINGULAR: PAGE POST ATTACHMENT ****/  
+          array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'id' => 'singular_article' ),
+          //page/attachment/post headings
+            array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
+            //page content
+            array( 'hook' => '__article__', 'template' => 'content/page_content', 'id' => 'page', 'priority' => 20 ),
+            //post content
+            array( 'hook' => '__article__', 'template' => 'content/post_content', 'id' => 'post', 'priority' => 20 ),
+              //single post thumbnail
+              array( 'hook' => 'before_render_view_post', 'template' => 'content/thumbnail_rectangular', 'id' => 'post_thumbnail', 'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single') ),
+              //post footer
+              array( 'hook' => '__post_footer__', 'id' => 'post_footer', 'template' => 'content/author_info' ),
+          //attachment
+          array( 'hook' => '__article__', 'template' => 'content/attachment_content', 'id' => 'attachment'),
 
 
           /* Comments */

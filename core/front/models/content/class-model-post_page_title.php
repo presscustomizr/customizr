@@ -1,6 +1,6 @@
 <?php
 class TC_post_page_title_model_class extends TC_Model {
-  private $context;
+  public $context;
 
   /*
   * @override

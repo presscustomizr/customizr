@@ -80,8 +80,8 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
           && (bool) apply_filters( 'tc_comments_in_title', true );
       }
 
-      if ( 'singular_comment_bubble' == $model['id'] ) {
-        return is_singular() && self::$_cache['comment_bubble'] && $this -> tc_are_comments_enabled() &&
+      if ( is_singular() ) {
+        return /*is_singular() && */self::$_cache['comment_bubble'] && $this -> tc_are_comments_enabled() &&
                   in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
           //we need the comments enabled and post list controller here! why don't we require all the controllers?...they won't be a load
       }
