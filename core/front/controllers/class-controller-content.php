@@ -200,36 +200,39 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         && apply_filters( 'tc_show_single_post_thumbnail' , TC_utils_thumbnails::$instance -> tc_has_thumb() ); 
     }
 
+
     function tc_display_view_post_navigation_singular() {
-      if ( TC___::$instance -> tc_is_customizing() )
-        return true;
       if ( ! $this -> tc_display_post_navigation() )   
         return false;
-      if ( isset( self::$_cache['post_navigation_singular'] ) )
-        return self::$_cache['post_navigation_singular'];
-
-      self::$_cache['post_navigation_singular'] = false;
-      if ( $this -> tc_is_post_navigation_enabled() ) {
+    
+      if ( ! isset( self::$_cache['post_navigation_singular'] ) ) {
+          
+        self::$_cache['post_navigation_singular'] = false;
+    
         $_context = $this -> tc_get_post_navigation_context();
-
-        self::$_cache['post_navigation_singular'] = in_array( $_context, array('page', 'single') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
+        if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('page', 'single') ) )
+          self::$_cache['post_navigation_singular'] = true;
+        elseif ( $this -> tc_is_post_navigation_enabled() )
+          self::$_cache['post_navigation_singular'] = in_array( $_context, array('page', 'single') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
       }
 
       return self::$_cache['post_navigation_singular'];
     }
 
+
     function tc_display_view_post_navigation_posts() {
-      if ( TC___::$instance -> tc_is_customizing() )
-        return true;
       if ( ! $this -> tc_display_post_navigation() )   
         return false;
-      if ( isset( self::$_cache['post_navigation_posts'] ) )
-        return self::$_cache['post_navigation_posts'];
-
-      self::$_cache['post_navigation_posts'] = false;
-      if ( $this -> tc_is_post_navigation_enabled() ) {
+    
+      if ( ! isset( self::$_cache['post_navigation_posts'] ) ) {
+          
+        self::$_cache['post_navigation_posts'] = false;
+    
         $_context = $this -> tc_get_post_navigation_context();
-        self::$_cache['post_navigation_posts'] = in_array( $_context, array('home', 'archive') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
+        if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('home', 'archive') ) )
+          self::$_cache['post_navigation_posts'] = true;
+        elseif ( $this -> tc_is_post_navigation_enabled() )
+          self::$_cache['post_navigation_posts'] = in_array( $_context, array('home', 'archive') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
       }
 
       return self::$_cache['post_navigation_posts'];
@@ -341,7 +344,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     * @param (string or bool) the context
     * @return bool
     */
-    function tc_is_post_navigation_context_enabled( $_context ) {
+    function tc_is_post_navigation_context_enabled( $_context ) { 
       return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
     }
 
