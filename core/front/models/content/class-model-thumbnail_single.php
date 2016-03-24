@@ -7,7 +7,7 @@ class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
   private $hook_map       = array(
     '__before_main_wrapper' => 'before_render_view_main_wrapper',
     '__before_content'      => 'before_render_view_post_headings',
-    '__after_content_title' => 'after_render_view_singular_title'    
+    '__after_content_title' => '__headings_content__'    
   );
 
   function __construct( $model = array() ) {

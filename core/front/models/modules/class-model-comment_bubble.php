@@ -49,7 +49,7 @@ class TC_comment_bubble_model_class extends TC_Model {
   * 
   * return model params array() 
   */
-  function tc_extend_params( $model = array() ) {  
+  function tc_extend_params( $model = array() ) {
     $shape                      = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ); 
     $model[ 'inner_class' ]     = 'default' == $shape ? 'default-bubble' : $shape;
     return $model;
