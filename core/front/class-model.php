@@ -95,6 +95,9 @@ if ( ! class_exists( 'TC_Model' ) ) :
       else
         $this -> tc_maybe_instanciate_view();
 
+      //Allow models to filter their view visibility
+      add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_this_model_view' ) );
+
       //Allow models to filter other view's model before rendering
       $this -> tc_maybe_filter_views_model();
     }
@@ -286,6 +289,13 @@ if ( ! class_exists( 'TC_Model' ) ) :
     * ACTIONS ON VIEW READY
     * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
     ***********************************************************************************/
+    //@hook tc_do_render_view_{$this -> id}
+    //@return bool
+    // Controls the rendering of the model's view
+    public function tc_maybe_render_this_model_view( $bool ) {
+      return $bool && $this -> visibility;
+    }
+
     // Maybe add pre_rendering_view action hook callback to filter the model before rendering
     // Extesion classes might want to override this method, so to hook them to a specific pre rendering id
     // I prefer to not allow the automatic hooking to a specific view without checking the existence of a callback to avoid the useless adding of a "dummy" cb ot the array of action callbacks
