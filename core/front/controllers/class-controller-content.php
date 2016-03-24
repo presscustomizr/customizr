@@ -37,14 +37,12 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_singular_headings() {
-      return is_singular() && ( is_page() || is_attachment() ) && ! is_front_page();    
+      return $this -> tc_display_view_post() || $this -> tc_display_view_attachment() || ( $this -> tc_display_view_page() && ! is_front_page() );
     }
  
     function tc_display_view_posts_list_headings() {
       if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
-        global $wp_query;  
-        self::$_cache['posts_list_headings'] = ( $wp_query -> is_posts_page && ! is_front_page() ) ||
-            is_archive() || ( is_search() && $wp_query -> post_count > 0 && ! is_singular() ); 
+        self::$_cache['posts_list_headings'] = $this -> tc_display_view_post_list();
       }
       return self::$_cache['posts_list_headings'];
     }
@@ -170,9 +168,9 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     //when to display attachment post metas?
     //a) in single attachment page
     //b) eventually, in the search list when attachments are allowed
-    function tc_display_view_post_metas_attachment() {
+    function tc_display_view_post_metas_attachment() { 
       return is_attachment() ||
-        is_search() && apply_filters( 'tc_include_attachments_in_search_results' , false );    
+        ( is_search() && apply_filters( 'tc_include_attachments_in_search_results' , false ) );
     }
 
     /* Thumbnails in post lists */
