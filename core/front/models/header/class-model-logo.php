@@ -3,8 +3,6 @@ class TC_logo_model_class extends TC_Model {
   public $src = '';
   public $logo_type = '';
   public $alt = '';
-  public $attr = '';
-  public $class = '';
 
 
   /**
@@ -18,10 +16,10 @@ class TC_logo_model_class extends TC_Model {
 
     $model[ 'src' ]   = $logo_src;
     $model[ 'alt' ]   = apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) ;
-    $model[ 'class' ] = array( $this -> logo_type );
+    $model[ 'element_class' ] = array( $this -> logo_type );
 
     //build other attrs
-    $model[ 'attr' ] = trim( sprintf('%1$s %2$s %3$s %4$s',
+    $model[ 'element_attributes' ] = trim( sprintf('%1$s %2$s %3$s %4$s',
         $logo_width ? sprintf( 'width="%1$s"', $logo_width ) : '',
         $logo_height ? sprintf( 'height="%1$s"', $logo_height ) : '',
         ( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
@@ -74,17 +72,6 @@ class TC_logo_model_class extends TC_Model {
    
       return $args;
   }
-
-
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
-    $model -> class = $this -> tc_stringify_model_property( 'class' );
-  }
-
 
   /*
   * Custom CSS

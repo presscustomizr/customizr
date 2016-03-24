@@ -1,4 +1,4 @@
-<div class="navbar-wrapper clearfix <?php tc_echo( 'element_class' ) ?>">
+<div class="navbar-wrapper clearfix <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
   <div class="navbar resp">
     <div class="navbar-inner" role="navigation">
         <div class="row-fluid">
