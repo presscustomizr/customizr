@@ -1,5 +1,5 @@
 <?php
-class TC_post_thumbnail_model_class extends TC_post_list_thumbnail_model_class {
+class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
   public $link_class            = 'tc-rectangular-thumb';
   public $thumb_wrapper_class   = 'span12';
 
@@ -7,7 +7,7 @@ class TC_post_thumbnail_model_class extends TC_post_list_thumbnail_model_class {
   private $hook_map       = array(
     '__before_main_wrapper' => 'before_render_view_main_wrapper',
     '__before_content'      => 'before_render_view_post_headings',
-    '__after_content_title' => '__headings_content__'    
+    '__after_content_title' => 'after_render_view_singular_title'    
   );
 
   function __construct( $model = array() ) {

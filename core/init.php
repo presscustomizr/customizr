@@ -323,9 +323,9 @@ if ( ! class_exists( 'TC___' ) ) :
           //post content/excerpt
           array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content' ),
           //thumbs
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_thumbnail', 'id' => 'post_list_standard_thumb' ),
+          array( 'hook' => '__post_list_thumb__', 'template' => 'content/thumbnail', 'id' => 'post_list_standard_thumb' ),
           //the recangular thumb has a different model + a slighty different template
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_list_rectangular_thumb', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_list_rectangular_thumbnail') ),
+          array( 'hook' => '__post_list_thumb__', 'template' => 'content/thumbnail_rectangular', 'id' => 'post_list_rectangular_thumb', 'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_rectangular') ),
 
           //post in post lists headings
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
@@ -352,8 +352,8 @@ if ( ! class_exists( 'TC___' ) ) :
           //post and page titles in singular context
             array( 'hook' => '__post_page_title__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title' ),
 
-            //post thumbnail
-            array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),
+            //single post thumbnail
+            array( 'hook' => 'before_render_view_post', 'template' => 'content/thumbnail_rectangular', 'id' => 'post_thumbnail', 'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single') ),
 
             //comment bubble
             array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'id' => 'singular_comment_bubble' ),
