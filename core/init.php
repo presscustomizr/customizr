@@ -346,7 +346,7 @@ if ( ! class_exists( 'TC___' ) ) :
             //post headings
             array( 'hook' => 'before_render_view_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
             //post footer
-            array( 'hook' => 'post_footer', 'id' => 'post_footer', 'template' => 'content/author_info' ),
+            array( 'hook' => '__post_footer__', 'id' => 'post_footer', 'template' => 'content/author_info' ),
           //attachment
           array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'model_class' => 'content/attachment_content' ),
           //post and page titles in singular context

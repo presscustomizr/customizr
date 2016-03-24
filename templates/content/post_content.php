@@ -10,6 +10,6 @@
     )
   );
   ?>
+
 </section>
-<?php /* hack waiting for tc_render so we can "require" the author info*/ ?>
-<footer><?php do_action( 'post_footer' ) ?></footer>
+<footer><?php do_action( '__post_footer__' ) ?></footer>

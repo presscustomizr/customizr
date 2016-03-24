@@ -1,4 +1,4 @@
-<div class="item <?php tc_echo( 'item_class' ) ?>">
+<div class="item <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
   
   <div class="<?php tc_echo( 'img_wrapper_class' ) ?>">
   <?php if ( tc_get( 'link_whole_slide' ) ) : ?>

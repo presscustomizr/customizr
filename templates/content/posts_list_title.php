@@ -1,1 +1,1 @@
-<?php tc_echo( 'pre_title' ) ?> <?php tc_echo( 'title' ) ?>
+<<?php tc_echo('element_tag') /* can be an h1 for normal posts list, or a div for the search list title*/?>  class="<?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?> ><?php tc_echo( 'pre_title' ) ?> <?php tc_echo( 'title' ) ?></<?php tc_echo('element_tag') ?>>

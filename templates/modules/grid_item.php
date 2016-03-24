@@ -1,4 +1,4 @@
-<section class="tc-grid-post">
+<section class="tc-grid-post" <?php tc_echo('element_attributes') ?>>
   <figure class="tc-grid-figure <?php tc_echo( 'figure_class' ) ?>">
     <?php if ( tc_get( 'has_icon' ) ): ?>
       <div class="tc-grid-icon format-icon" <?php tc_echo( 'icon_attributes' ) ?>></div>

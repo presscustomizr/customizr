@@ -1,5 +1,5 @@
 <?php if ( tc_get( 'is_first_of_row' ) ) : ?>
-  <div class="row widget-area">
+<div class="row widget-area" <?php tc_echo('element_attributes') ?>>
 <?php endif ?>
     <div class="widget-front">
       <div class="span<?php tc_echo( 'span_value' ) ?> fp-<?php tc_echo( 'fp_id' ) ?>">

@@ -58,25 +58,32 @@ if ( ! class_exists( 'TC_View' ) ) :
       ?>
       <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> model -> id}"; ?> -->
       <?php
+      /* Maybe merge debug info into the model element attributes */
+      if ( ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' ) )
+        $this -> model -> element_attributes =  join( ' ', array( 
+            $this -> model -> element_attributes,
+            'data-model_id="'. $this -> model -> id .'"',
+            'data-template="'. $this -> model -> template .'"'
+        )); 
       /*
       <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
       */
       /* maybe print default wrapper */ 
-      if ( ! empty( $this -> model -> element_tag ) )
+    /*  if ( ! empty( $this -> model -> element_tag ) )
         printf("\n<%s>", join( ' ', array_filter( array(
               $this -> model -> element_tag,
               ! empty( $this -> model -> element_id )         ? 'id="'. $this -> model -> element_id .'"' : '',
               $this -> model -> tc_maybe_get_element_class(),
               ! empty( $this -> model -> element_attributes ) ? $this -> model -> element_attributes : '',
-              is_user_logged_in() && current_user_can( 'edit_theme_options' ) ? 'data-model_id="'. $this -> model -> id .'"' : '',
-              is_user_logged_in() && current_user_can( 'edit_theme_options' ) ? 'data-template="'. $this -> model -> template . '"' : ''
-          ) ) ) );
+              is_user_logged_in() && current_user_can( 'edit_theme_options' ) ?  .'"' : '',
+              is_user_logged_in() && current_user_can( 'edit_theme_options' ) ?  . '"' : ''
+          ) ) ) );*/
  //       do_action( "before_render_view_inner_{$this -> model -> id}" );
         $this -> tc_render();
  //       do_action( "after_render_view_inner_{$this -> model -> id}" );
       /* maybe close default wrapper */ 
-      if ( ! empty( $this -> model -> element_tag ) )
-        printf( "</%s>\n", $this -> model -> element_tag );
+    /*  if ( ! empty( $this -> model -> element_tag ) )
+        printf( "</%s>\n", $this -> model -> element_tag );*/
       /*      
       <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
        */
