@@ -50,7 +50,6 @@ if ( ! class_exists( 'TC_View' ) ) :
         return;
 
       //allow filtering of the model before rendering (the view's model is passed by reference)
-      //
       do_action_ref_array( 'pre_rendering_view', array(&$this -> model) );
       do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
       
