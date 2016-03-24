@@ -1,4 +1,4 @@
-<div class="entry-meta">
+<div class="entry-meta" <?php tc_echo('element_attributes') ?>>
   <?php if ( tc_get( 'publication_date' ) ) : ?>
   <span class="pub-date"><?php tc_echo( 'publication_date')  ?></span>
   <?php endif; ?>

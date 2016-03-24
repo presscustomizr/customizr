@@ -1,7 +1,6 @@
 <?php
 class TC_posts_list_description_model_class extends TC_Model {
   public $description;
-  public $element_class = 'archive-meta'; 
   private $context;
 
   function tc_extend_params( $model = array() ) {
@@ -43,19 +42,14 @@ class TC_posts_list_description_model_class extends TC_Model {
 
   function tc_get_posts_list_description( $context = null ) {
     $context = $context ? $context : $this -> context;
-
+   //we should have some filter here, to allow the processing of the description
+    //for example to allow shortcodes in it.... (requested at least twice from users, in my memories)
     switch ( $context ) {
       case 'page_for_posts' : return get_the_content(); //use the content as description in blog page?
-      case 'author'         : return 'AUTHOR DESCRIPTION IS TOO MUCH COMPLEX, MOVE IT INTO ANOTHER MODEL/TEMPLATE';
       case 'category'       : return category_description();
       case 'tag'            : return tag_description();
       case 'tax'            : return get_the_archive_description();
       default               : return '';
     }
-  }
-  function tc_get_description_content() {
-    //we should have some filter here, to allow the processing of the description
-    //for example to allow shortcodes in it.... (requested at least twice from users, in my memories)
-    return category_description();    
   }
 }  

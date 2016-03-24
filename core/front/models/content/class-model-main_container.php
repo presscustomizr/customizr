@@ -1,6 +1,5 @@
 <?php
 class TC_main_container_model_class extends TC_Model {
-  public $element_class         = 'container';
   public $element_attributes    = 'role="main"';
   public $column_content_class  = array('row', 'column-content-wrapper');
 

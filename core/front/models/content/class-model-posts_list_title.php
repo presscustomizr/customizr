@@ -2,7 +2,6 @@
 class TC_posts_list_title_model_class extends TC_Model {
   public $pre_title;
   public $title;
-  public $element_tag = 'h1';
   
   private $context;
 

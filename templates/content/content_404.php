@@ -1,6 +1,6 @@
-<header class="entry-header">
+<header class="entry-header"<?php tc_echo('element_attributes') ?>>
   <h1 class="entry-title "><?php _e('Ooops, page not found', 'customizr') ?></h1>
-  <hr class="featurette-divider after-page-title">
+  <hr class="featurette-divider headings after-404-title">
 </header>
 <article <?php tc_echo( 'article_selectors' ) ?> >
   <div class="<?php tc_echo( 'wrapper_class' ) ?>">

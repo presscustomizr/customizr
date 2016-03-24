@@ -1,4 +1,4 @@
-<ul class="pager">
+<ul class="pager" <?php tc_echo('element_attributes') ?>>
   <?php if ( tc_get( 'prev_link' ) ): ?>
   <li class="previous">
     <span class="nav-previous">

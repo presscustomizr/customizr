@@ -1,4 +1,4 @@
-<div class="entry-meta">
+<div class="entry-meta" <?php tc_echo('element_attributes') ?>>
   <span class="meta-prep meta-prep-entry-date"><?php _e('Published' , 'customizr') ?></span>
     <span class="entry-date">
       <?php tc_echo( 'publication_date' ) ?>

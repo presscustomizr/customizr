@@ -1,6 +1,6 @@
-<header class="search-header">
+<header class="search-header" <?php tc_echo('element_attributes') ?>>
   <h1 class="<?php tc_echo( 'title_class' ) ?>"><?php _e('No Search Results for :', 'customizr') ?> <span><?php echo get_search_query() ?></span></h1>
-  <hr class="featurette-divider after-page-title">
+  <hr class="featurette-divider headings after-noresults-title">
 </header>
 <article <?php tc_echo( 'article_selectors' ) ?> >
   <div class="<?php tc_echo( 'wrapper_class' ) ?>">

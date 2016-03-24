@@ -1202,11 +1202,15 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                  && dsq_is_installed() && dsq_can_replace();
         }
       }
+      /* Since 3.5.0 the comments_template is wrapped it the "comments" id 
+      so we don't need the disqus wrapper anymore */
       //replace the default comment link anchor with a more descriptive disqus anchor
       add_filter( 'tc_bubble_comment_anchor', 'tc_disqus_bubble_comment_anchor' );
       function tc_disqus_bubble_comment_anchor( $anchor ) {
-        return tc_disqus_comments_enabled() ? '#tc-disqus-comments' : $anchor;
+ //       return tc_disqus_comments_enabled() ? '#tc-disqus-comments' : $anchor;
+        return tc_disqus_comments_enabled() ? '#comments' : $anchor;
       }
+      /*
       //wrap disqus comments template in a convenient div
       add_action( 'tc_before_comments_template' , 'tc_disqus_comments_wrapper' );
       add_action( 'tc_after_comments_template'  , 'tc_disqus_comments_wrapper' );
@@ -1219,7 +1223,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                                                break;
           case 'tc_after_comments_template'  : echo '</div>';
         }
-      }
+      }*/
     }//end disqus compat
 
 
