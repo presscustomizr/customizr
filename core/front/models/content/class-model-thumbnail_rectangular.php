@@ -1,5 +1,5 @@
 <?php
-class TC_post_list_rectangular_thumbnail_model_class extends TC_post_list_thumbnail_model_class {
+class TC_rectangular_thumbnail_model_class extends TC_thumbnail_model_class {
   public $thumb_wrapper_class   = '';
   public $link_class            = 'tc-rectangular-thumb';
 
