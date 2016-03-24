@@ -20,8 +20,6 @@ class TC_comment_model_class extends TC_Model {
 
     //parse the comment callback params so to set this propertied
     add_filter( 'tc_comment_callback_params', array( $this, 'tc_set_comment_properties'), 10, 3 );
-    //render this?
-    add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_comment' ) ); 
   }
   /**
   * @override
@@ -37,10 +35,6 @@ class TC_comment_model_class extends TC_Model {
     $model[ 'comment_avatar_size' ]     = apply_filters( 'tc_comment_avatar_size', 80 );
 
     return $model;
-  }
-
-  function tc_maybe_render_comment() {
-    return $this -> visibility;     
   }
 
   /**
@@ -70,6 +64,8 @@ class TC_comment_model_class extends TC_Model {
       $this -> tc_set_property( 'visibility', false );
       return $comment;
     }
+
+    $this -> tc_set_property( 'visibility', true );
 
     $props = array(
      'comment'                 => $comment,

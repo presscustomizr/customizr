@@ -7,7 +7,7 @@ class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
   private $hook_map       = array(
     '__before_main_wrapper' => 'before_render_view_main_wrapper',
     '__before_content'      => 'before_render_view_post_headings',
-    '__after_content_title' => '__headings_content__'    
+    '__after_content_title' => '__post_page_title__'    
   );
 
   function __construct( $model = array() ) {
@@ -53,8 +53,8 @@ class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
     return array( 'row-fluid', 'tc-single-post-thumbnail-wrapper', current_filter() );
   }
 
-  function tc_has_post_thumbnail() { 
-    return true; /*the actual check is done in the controller*/
+  function tc_maybe_render_this_model_view() { 
+    return $this -> visibility; /*the actual check is done in the controller*/
   }
   
   /**

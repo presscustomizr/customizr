@@ -96,7 +96,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
         $this -> tc_maybe_instanciate_view();
 
       //Allow models to filter their view visibility
-      add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_this_model_view' ) );
+      add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_this_model_view' ), 0 );
 
       //Allow models to filter other view's model before rendering
       $this -> tc_maybe_filter_views_model();
@@ -292,8 +292,8 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //@hook tc_do_render_view_{$this -> id}
     //@return bool
     // Controls the rendering of the model's view
-    public function tc_maybe_render_this_model_view( $bool ) {
-      return $bool && $this -> visibility;
+    public function tc_maybe_render_this_model_view() {
+      return $this -> visibility;
     }
 
     // Maybe add pre_rendering_view action hook callback to filter the model before rendering

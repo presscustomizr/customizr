@@ -15,16 +15,20 @@ class TC_comment_bubble_model_class extends TC_Model {
     add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), -1 );
   }
 
-  //@override
   //when in the post list loop
   //render this?
-  /* This is actually a merge of the tc_is_bubble_enabled and tc_are_comments_enabled */
-  function tc_maybe_render_this_model_view( $_bool ) {
-    $_bool = parent::tc_maybe_render_this_model_view( $_bool );
+  /*
+  * @override
+  * This is actually a merge of the tc_is_bubble_enabled and tc_are_comments_enabled 
+  */
+  function tc_maybe_render_this_model_view () {
+    $_bool = $this -> visibility;
+
     if ( ! $_bool )
       return;
 
     global $post;
+   
     if ( in_the_loop() && isset( $post ) ) {
 
       $_bool =  ! post_password_required() && 0 != get_comments_number() &&
@@ -49,7 +53,7 @@ class TC_comment_bubble_model_class extends TC_Model {
   * 
   * return model params array() 
   */
-  function tc_extend_params( $model = array() ) {
+  function tc_extend_params( $model = array() ) {  
     $shape                      = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ); 
     $model[ 'inner_class' ]     = 'default' == $shape ? 'default-bubble' : $shape;
     return $model;

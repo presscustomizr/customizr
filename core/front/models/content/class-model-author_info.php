@@ -4,17 +4,12 @@ class TC_author_info_model_class extends TC_Model {
   public $author_avatar_class;
   public $author_avatar_size;
   public $author_content_class;
-  
-  
-  function __construct( $model = array() ) {
-    parent::__construct( $model );
 
-    //render this?
-    add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_author_info' ) ); 
-  }
-
-  function tc_maybe_render_author_info() {
-    return ( bool ) get_the_author_meta( 'description' );    
+  /*
+  * @override
+  */
+  function tc_maybe_render_this_model_view() {
+    return $this -> visibility && ( bool ) get_the_author_meta( 'description' );    
   }
 
   function tc_extend_params( $model = array() ) {
