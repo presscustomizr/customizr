@@ -238,7 +238,8 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
     function tc_display_post_navigation() {
       global $wp_query;
-      return $wp_query -> post_count > 0;
+      $bool  =  $wp_query -> post_count > 0;
+      return is_singular() ?  $bool && ! is_attachment() : $bool;
     }
 
     function tc_display_view_404() {
