@@ -237,7 +237,7 @@ if ( ! class_exists( 'TC___' ) ) :
             'hook' => '__page_wrapper__',
             'template'  => 'modules/slider',
             'id' => 'main_posts_slider',
-            'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/posts_slider' ),
+            'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ),
             'controler'   => 'main_slider'
           ),
             array(

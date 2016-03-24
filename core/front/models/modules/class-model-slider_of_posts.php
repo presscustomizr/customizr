@@ -1,5 +1,5 @@
 <?php
-class TC_posts_slider_model_class extends TC_slider_model_class {
+class TC_slider_of_posts_model_class extends TC_slider_model_class {
 
   /**
   * @override 
