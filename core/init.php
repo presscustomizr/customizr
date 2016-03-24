@@ -184,8 +184,6 @@ if ( ! class_exists( 'TC___' ) ) :
 
     //returns an array of models describing the theme's views
     private function tc_get_model_map() {
-//        add_filter( 'tc_get_real_id', '');
-        add_filter('tc_slider_name_id', function($slider, $a, $i){ if ( $i == 'main_slider_1' ) return 'prova'; return $slider; }, 10, 3);
       return apply_filters(
         'tc_model_map',
         array(
@@ -238,7 +236,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array(//slider of posts
             'hook' => '__page_wrapper__',
             'template'  => 'modules/slider',
-            'id' => 'main_slider',
+            'id' => 'main_posts_slider',
             'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/posts_slider' ),
             'controler'   => 'main_slider'
           ),
