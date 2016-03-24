@@ -1,12 +1,13 @@
 <?php
 class TC_comment_list_model_class extends TC_Model {
   public $args;
-
-  function __construct( $model = array() ) {
-    parent::__construct( $model );
-    
-    //render this?
-    add_filter( "tc_do_render_view_{$this -> id}",  'have_comments' ); 
+  
+  
+  /*
+  * @override
+  */
+  function tc_maybe_render_this_model_view() {
+    return $this -> visibility && have_comments();
   }
 
   /**

@@ -12,9 +12,6 @@ class TC_thumbnail_model_class extends TC_Model {
     //inside the loop but before rendering set some properties
     //we need the -1 (or some < 0 number) as priority, as the thumb in single post page can be rendered at a certain hook with priority 0 (option based)
     add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), -1 );
-
-    //render this?
-    add_filter( "tc_do_render_view_{$this -> id}",  array( $this, 'tc_has_post_thumbnail') );
   }
 
 
@@ -40,13 +37,13 @@ class TC_thumbnail_model_class extends TC_Model {
   }
 
 
-  function tc_has_post_thumbnail() { 
-    return (bool) get_query_var( 'tc_has_post_thumbnail', false );
+  function tc_maybe_render_this_model_view() {
+    return $this -> visibility && (bool) get_query_var( 'tc_has_post_thumbnail', false );
   }
 
 
   function tc_set_this_properties() {
-    if ( ! $this -> tc_has_post_thumbnail() )
+    if ( ! $this -> tc_maybe_render_this_model_view() )
       return;
     $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
@@ -97,7 +94,7 @@ class TC_thumbnail_model_class extends TC_Model {
   * @since Customizr 3.2.0
   */
   function tc_add_thumb_shape_name( $model ) {
-    if ( ! $this -> tc_has_post_thumbnail() )
+    if ( ! $this -> tc_maybe_render_this_model_view() )
       return;
     
     $position                    = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );

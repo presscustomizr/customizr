@@ -8,12 +8,6 @@ class TC_tracepingback_model_class extends TC_Model {
 
     //parse the comment callback params so to set this propertied
     add_filter( 'tc_comment_callback_params', array( $this, 'tc_set_tracepingback_properties'), 10, 3 );
-    //render this?
-    add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_tracepingback' ) ); 
-  }
-
-  function tc_maybe_render_tracepingback() {
-    return $this -> visibility;     
   }
 
   /**
@@ -32,6 +26,7 @@ class TC_tracepingback_model_class extends TC_Model {
       return $comment;
     }
 
+    $this -> tc_set_property( 'visibility', true );
     $this -> tc_set_property( 'has_edit_button', ! TC___::$instance -> tc_is_customizing() );
     return $comment;
   }

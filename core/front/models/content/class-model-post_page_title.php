@@ -1,16 +1,13 @@
 <?php
 class TC_post_page_title_model_class extends TC_Model {
-  private static $post_formats_with_no_heading   = array( 'aside' , 'status' , 'link' , 'quote' );
-
   private $context;
 
-  function __construct( $model = array() ) {
-    parent::__construct( $model );
-    
-    //render this?
-    add_filter( "tc_do_render_view_{$this -> id}",  'tc_post_has_title' );
+  /*
+  * @override
+  */
+  function tc_maybe_render_this_model_view() {
+    return $this -> visibility && tc_post_has_title();    
   }
-
   /**
   * @override
   * fired before the model properties are parsed

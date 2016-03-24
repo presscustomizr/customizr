@@ -7,14 +7,18 @@ class TC_post_metas_model_class extends TC_Model {
     parent::__construct( $model );
     //Since we use only one instance for every post in a post list reset the cache after the view has been rendered
     add_action( "after_render_view_{$this -> id}", array( $this, 'tc_reset_cache' ) );
-    //render this?
-    add_filter( "tc_do_render_view_{$this -> id}",  array( $this, 'tc_post_has_metas') );
   }
 
-  //render this?
-  public function tc_post_has_metas() {
-    if ( is_attachment() )//in post lists
-      return false;
+
+  /*
+  * @override
+  */
+  function tc_maybe_render_this_model_view() {
+    if ( ! $this -> visibility )
+      return;
+    if ( is_attachment() )
+        return;
+
     return $this -> tc_get_cat_list() ||
           $this -> tc_get_tag_list() ||
           $this -> tc_get_author() ||
