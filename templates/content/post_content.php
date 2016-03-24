@@ -13,4 +13,4 @@
   ?>
   <?php do_action( 'after_render_view_inner_post_content' ) ?>
 </section>
-<footer><?php do_action( '__post_footer__' ) ?></footer>
+<footer class="entry-meta"><?php do_action( '__post_footer__' ) ?></footer>
