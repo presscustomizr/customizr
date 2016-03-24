@@ -1,4 +1,4 @@
-<div class ="entry-content <?php tc_echo( 'element_class' ) ?>">
+<div class ="entry-content <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
   <?php
   the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
   wp_link_pages( array(

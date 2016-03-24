@@ -1,4 +1,4 @@
-<li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>">
+<li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>" <?php tc_echo('element_attributes') ?>>
   <article id="comment-<?php comment_ID() ?>" class="comment">
     <div class="<?php tc_echo( 'comment_wrapper_class' ) ?>">
       <div class="<?php tc_echo( 'comment_avatar_class' ) ?>">

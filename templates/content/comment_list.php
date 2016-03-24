@@ -1,4 +1,4 @@
-<h2 id="tc-comment-title" class="comments-title"><?php /* Comments list title */
+<h2 id="tc-comment-title" class="comments-title" <?php tc_echo('element_attributes') ?>><?php /* Comments list title */
   comments_number( false, __( 'One thought on', 'customizr'), '% ' . __( 'thoughts on', 'customizr' ) )
 ?> &ldquo;</span><?php the_title() ?></span>&rdquo;</h2>
 <ul class="commentlist">

@@ -1,4 +1,4 @@
-<div class="entry-meta">
+<div class="entry-meta" <?php tc_echo('element_attributes') ?>>
   <?php _e('This entry was posted', 'customizr') ?>
   <?php if ( tc_get( 'cat_list' ) ) : ?>
    <span class="w-cat"><?php _e( 'in', 'customizr' ) ?> <?php tc_echo( 'cat_list()' ) ?></span>
