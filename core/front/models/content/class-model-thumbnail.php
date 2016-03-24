@@ -3,8 +3,8 @@ class TC_thumbnail_model_class extends TC_Model {
   public $thumb_wrapper_class   = 'thumb-wrapper';
   public $link_class            = 'round-div';
 
-  public  $thumb_size;
-  public  $thumb_img;
+  public $thumb_size;
+  public $thumb_img;
 
 
   function __construct( $model = array() ) {
