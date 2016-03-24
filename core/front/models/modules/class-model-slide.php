@@ -1,6 +1,5 @@
 <?php
 class TC_slide_model_class extends TC_Model {
-  public $item_class;
   public $img_wrapper_class;
   public $caption_class;
   
@@ -49,10 +48,7 @@ class TC_slide_model_class extends TC_Model {
     //array( $id, $data , $slider_name_id, $img_size )    
     extract ( $slide );
 
-    $item_class = sprintf('%1$s %2$s',
-      $data['active'],
-      'slide-'.$id
-    );
+    $element_class = array_filter( array( 'slide-'. $id, $data['active'] ) );
 
     //caption elements
     $caption           = $this -> tc_get_slide_caption_model( $slide );
@@ -64,7 +60,7 @@ class TC_slide_model_class extends TC_Model {
     $img_wrapper_class = apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) );
 
     $this -> tc_update(
-        array_merge( $data, $caption, compact('item_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide' ) )
+        array_merge( $data, $caption, compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide' ) )
     );
   }
 

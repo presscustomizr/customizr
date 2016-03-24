@@ -324,7 +324,7 @@ class TC_slider_model_class extends TC_Model {
     if ( 500 != esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) )
       array_push( $class, 'custom-slider-height' );
 
-    return $class;
+    return array_filter( $class );
   }
 
   /*
