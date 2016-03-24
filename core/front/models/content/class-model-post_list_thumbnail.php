@@ -1,6 +1,5 @@
 <?php
 class TC_post_list_thumbnail_model_class extends TC_Model {
-  public $wrapper_class;  
   public $thumb_wrapper_class   = 'thumb-wrapper';
   public $link_class            = 'round-div';
 
@@ -56,7 +55,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
     if ( ! $thumb_img )
       return;     
 
-    $wrapper_class          = $this -> tc_get_the_wrapper_class();
+    $element_class          = $this -> tc_get_the_wrapper_class();
 
     $no_effect_class = $this -> tc_get_no_effect_class( $thumb_model );
 
@@ -65,7 +64,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
     $thumb_wrapper_class    =  apply_filters( 'tc_thumb_wrapper_class', array_merge( array( $this -> thumb_wrapper_class ), $no_effect_class ) );
 
     //update the model
-    $this -> tc_update( compact( 'thumb_wrapper', 'wrapper_class', 'link_class', 'thumb_img') );
+    $this -> tc_update( compact( 'thumb_wrapper', 'element_class', 'link_class', 'thumb_img') );
   }
 
   function tc_get_no_effect_class( $thumb_model ) {
@@ -122,7 +121,7 @@ class TC_post_list_thumbnail_model_class extends TC_Model {
   */
   function pre_rendering_my_view_cb( $model ) { 
     parent::pre_rendering_my_view_cb( $model );
-    foreach ( array( 'wrapper', 'thumb_wrapper', 'link' ) as $property ) {
+    foreach ( array( 'thumb_wrapper', 'link' ) as $property ) {
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
     }
   }
