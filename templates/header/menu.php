@@ -1,4 +1,4 @@
-<div class="<?php tc_echo('element_class') ?>"> 
+<div class="<?php tc_echo('element_class') ?>" <?php tc_echo('element_attributes') ?>> 
   <?php
   wp_nav_menu( array(
     'theme_location'  => tc_get( 'theme_location' ),

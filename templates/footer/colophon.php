@@ -1,4 +1,4 @@
-<div class="colophon">
+<div class="colophon" <?php tc_echo('element_attributes') ?>>
   <div class="container">
     <div class="row-fluid">
       <div class="<?php tc_echo( 'col_1_class' ) ?>"> <?php do_action( '__colophon_one__' ) ?> </div>
