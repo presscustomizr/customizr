@@ -356,7 +356,7 @@ if ( ! class_exists( 'TC___' ) ) :
           //the default class/template is for the buttons type
             array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'priority' => 20, 'id' => 'post_metas_button' ),
           //the text meta one uses a different template
-            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas_text', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
+            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'priority' => 20, 'id' => 'post_metas_text', 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
           //attachment post mestas
             array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
 

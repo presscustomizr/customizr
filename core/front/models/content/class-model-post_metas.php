@@ -2,6 +2,8 @@
 class TC_post_metas_model_class extends TC_Model {
   protected $_cache = array();
 
+  public    $type   = 'post_metas';
+
   function __construct( $model = array() ) {
     //Fires the parent constructor
     parent::__construct( $model );
