@@ -6,6 +6,7 @@ class TC_thumbnail_model_class extends TC_Model {
   public $thumb_size;
   public $thumb_img;
 
+  public $type                  = 'standard';
 
   function __construct( $model = array() ) {
     parent::__construct( $model );

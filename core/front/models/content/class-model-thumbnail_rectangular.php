@@ -1,7 +1,9 @@
 <?php
-class TC_rectangular_thumbnail_model_class extends TC_thumbnail_model_class {
+class TC_thumbnail_rectangular_model_class extends TC_thumbnail_model_class {
   public $thumb_wrapper_class   = '';
   public $link_class            = 'tc-rectangular-thumb';
+
+  public $type                  = 'rectangular';
 
   /* override */
   function tc_get_no_effect_class( $thumb_model ) {
