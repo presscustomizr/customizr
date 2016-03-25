@@ -1,20 +1,11 @@
 <?php
 class TC_comment_bubble_model_class extends TC_Model {
-  public $link;
   public $inner_class;
-  public $text;
 
   /* DO WE WANT TO SPLIT THIS IN TWO? USING TWO DIFFERENT TEMPLATES TOO???
   *  Maybe we can do this later when we'll have the "routers" so we can register just one of the comment bubbles type based on the user options
-  */
-
-  function __construct( $model = array() ) {
-    parent::__construct( $model );
-
-    //inside the loop but before rendering set some properties
-    add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), -1 );
-  }
-
+  
+  
   //when in the post list loop
   //render this?
   /*
@@ -59,19 +50,6 @@ class TC_comment_bubble_model_class extends TC_Model {
     return $model;
   }
 
-
-  function tc_set_this_properties() {
-    $link = sprintf( "%s%s", 
-        is_singular() ? '' : get_permalink(),
-        apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title')
-    );
-
-    $text = number_format_i18n( get_comments_number() );
-    $text .= FALSE === strpos( $this -> inner_class, 'default' ) ? ' ' . _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ) : '';
-
-    $this -> tc_update( compact( 'link', 'text' ) );
-  }   
-
   /**
   * @override
   * parse this model properties for rendering
@@ -81,6 +59,26 @@ class TC_comment_bubble_model_class extends TC_Model {
     $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
   }
 
+
+  /*
+  * @param comments_number
+  * @param text, additional text for non default bubble 
+  */
+  function tc_get_comment_bubble_text( $comments_number, $text ) {
+    return FALSE === strpos( $this -> inner_class, 'default' ) ? "$comments_number $text" : $comments_number;
+  }
+
+  /*
+  * @param link (stirng url) the link
+  * @param add_anchor (bool) whether or not add an anchor to the link, default true
+  */
+  function tc_get_comment_bubble_link( $link, $add_anchor = true ) {
+    $link = sprintf( "%s%s", 
+        is_singular() ? '' : esc_url( $link ),
+        $add_anchor ? apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title') : ''
+    );
+    return $link;
+  }
 
   /*
   * Callback of tc_user_options_style hook

@@ -1207,8 +1207,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //replace the default comment link anchor with a more descriptive disqus anchor
       add_filter( 'tc_bubble_comment_anchor', 'tc_disqus_bubble_comment_anchor' );
       function tc_disqus_bubble_comment_anchor( $anchor ) {
- //       return tc_disqus_comments_enabled() ? '#tc-disqus-comments' : $anchor;
-        return tc_disqus_comments_enabled() ? '#comments' : $anchor;
+        return tc_disqus_comments_enabled() ? '#disqus_thread' : $anchor;
       }
       /*
       //wrap disqus comments template in a convenient div
