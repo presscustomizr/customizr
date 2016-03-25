@@ -24,8 +24,17 @@ class TC_comment_list_model_class extends TC_Model {
   
   function tc_setup_children() {
     $children = array(
-      array( 'hook' => '__comment_loop__', 'template' => 'content/comment',  'id' => 'comment', 'element_tag' => false ),
-      array( 'hook' => '__comment_loop__', 'template' => 'content/tracepingback',  'id' => 'traceback', 'element_tag' => false ),
+      array(
+        'hook'        => '__comment_loop__',
+        'template'    => 'content/comment',
+        'id'          => 'comment'
+      ),
+      array(
+        'hook'        => '__comment_loop__',
+        'template'    => 'content/comment',
+        'id'          => 'trackback',
+        'model_class' => array( 'parent' => 'content/comment', 'name' => 'content/trackpingback' )
+      ),
     );
 
     return $children;

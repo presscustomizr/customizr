@@ -1,8 +1,18 @@
+<?php if ( 'trackpingback' == tc_get('type') ) : ?>
+<li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>" <?php tc_echo('element_attributes') ?>>
+  <article id="comment-<?php comment_ID() ?>" class="comment">
+    <p><?php _e( 'Pingback:' , 'customizr' ); ?> <?php comment_author_link(); ?>
+    <?php if ( tc_get( 'has_edit_button' ) ) 
+      edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' );
+    ?>
+   </p>
+  </article>
+<?php else : ?>
 <li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>" <?php tc_echo('element_attributes') ?>>
   <article id="comment-<?php comment_ID() ?>" class="comment">
     <div class="<?php tc_echo( 'comment_wrapper_class' ) ?>">
       <div class="<?php tc_echo( 'comment_avatar_class' ) ?>">
-       <?php echo get_avatar( tc_get( 'comment' ), tc_get( 'comment_avatar_size' ) ) ?>
+       <?php echo get_avatar( $comment, tc_get( 'comment_avatar_size' ) ) ?>
       </div>
       <div class="<?php tc_echo( 'comment_content_class' ) ?>">
         <div class="<?php tc_echo( 'comment_reply_btn_class' ) ?>">
@@ -30,3 +40,4 @@
       </div>
     </div>
   </article>
+<?php endif;
