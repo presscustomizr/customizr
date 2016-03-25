@@ -28,39 +28,39 @@ class TC_breadcrumb_model_class extends TC_Model {
     $this -> breadcrumb = $this -> tc_breadcrumb_trail( $this -> args );
   }
 
-    function _get_args() {
-    	$args =  array(
-		  'container'  => 'div' , // div, nav, p, etc.
-		  'separator'  => '&raquo;' ,
-		  'before'     => false,
-		  'after'      => false,
-		  'front_page' => true,
-		  'show_home'  => __( 'Home' , 'customizr' ),
-		  'network'    => false,
-		  'echo'       => false
-	  	);
+  function _get_args() {
+    $args =  array(
+      'container'  => 'div' , // div, nav, p, etc.
+      'separator'  => '&raquo;' ,
+      'before'     => false,
+      'after'      => false,
+      'front_page' => true,
+      'show_home'  => __( 'Home' , 'customizr' ),
+      'network'    => false,
+      'echo'       => false
+    );
 
-	  	/* Set up the default arguments for the breadcrumb. */
-		$defaults = array(
-			'container'  => 'div' , // div, nav, p, etc.
-			'separator'  => '/' ,
-			'before'     => __( 'Browse:' , 'customizr' ),
-			'after'      => false,
-			'front_page' => true,
-			'show_home'  => __( 'Home' , 'customizr' ),
-			'network'    => false,
-			'echo'       => true
-		);
+    /* Set up the default arguments for the breadcrumb. */
+    $defaults = array(
+      'container'  => 'div' , // div, nav, p, etc.
+      'separator'  => '/' ,
+      'before'     => __( 'Browse:' , 'customizr' ),
+      'after'      => false,
+      'front_page' => true,
+      'show_home'  => __( 'Home' , 'customizr' ),
+      'network'    => false,
+      'echo'       => true
+    );
 
-		/* Allow singular post views to have a taxonomy's terms prefixing the trail. */
-		if ( is_singular() ) {
-			$post = get_queried_object();
-			$defaults["singular_breadcrumb_taxonomy"] = apply_filters( 'tc_display_taxonomies_in_breadcrumb' , true , $post->post_type );
-		}
+    /* Allow singular post views to have a taxonomy's terms prefixing the trail. */
+    if ( is_singular() ) {
+      $post = get_queried_object();
+      $defaults["singular_breadcrumb_taxonomy"] = apply_filters( 'tc_display_taxonomies_in_breadcrumb' , true , $post->post_type );
+    }
 
-		/* Parse the arguments and extract them for easy variable naming. */
-		return  apply_filters( 'tc_breadcrumb_trail_args' , wp_parse_args( $args, $defaults) , $args , $defaults );
-    }//end of function
+    /* Parse the arguments and extract them for easy variable naming. */
+    return  apply_filters( 'tc_breadcrumb_trail_args' , wp_parse_args( $args, $defaults) , $args , $defaults );
+  }//end of function
 
 
 

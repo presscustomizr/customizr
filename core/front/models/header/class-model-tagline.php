@@ -1,9 +1,8 @@
 <?php
 class TC_tagline_model_class extends TC_Model {
-  public $tag       = 'h2';
   public $element_class     = array('inside', 'span7');
  // public $attributes;
-  public $context   = 'desktop';
+  public $context           = 'desktop';
 
   /*
   * @override
@@ -12,8 +11,6 @@ class TC_tagline_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'tag']         = apply_filters( 'tc_tagline_tag', $this -> tag , $model );
-
     $model[ 'element_attributes' ] = ( TC___::$instance -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
 
     $model[ 'element_class' ]      = apply_filters( 'tc_tagline_class', $this -> element_class, $model );

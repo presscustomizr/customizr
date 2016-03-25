@@ -1,7 +1,6 @@
 <?php
 class TC_title_model_class extends TC_Model {
   public $link_class;
-  public $link_title;
   public $link_url;
 
   /**
@@ -12,7 +11,6 @@ class TC_title_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'element_class' ]       = apply_filters( 'tc_logo_class', $this -> get_title_wrapper_class(), $model );
-    $model[ 'link_class' ]          = array( 'site-title' );
     $model[ 'link_title' ]          = apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' ,
                                              __( esc_attr( get_bloginfo( 'name' ) ) ), 
                                              __( esc_attr( get_bloginfo( 'description' ) ) )
@@ -40,17 +38,6 @@ class TC_title_model_class extends TC_Model {
     parent::tc_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
-  
-  
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
-    $model -> link_class = $this -> tc_stringify_model_property( 'link_class' );
-  }
-
 
 
   /**

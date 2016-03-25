@@ -2,7 +2,6 @@
 class TC_comment_list_model_class extends TC_Model {
   public $args;
   
-  
   /*
   * @override
   */

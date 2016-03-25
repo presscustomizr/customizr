@@ -25,15 +25,9 @@ class TC_slide_model_class extends TC_Model {
 
   public $has_caption;
 
-  function __construct( $model ) {
-    parent::__construct( $model );
-
-    //inside the slider loop but before rendering set some properties    
-    add_action( $this -> hook          , array( $this, 'tc_set_this_properties' ), -1 );    
-  }
 
 
-  function tc_set_this_properties() {
+  function tc_setup_late_properties() {
     //get the current slide;
     $slide   = get_query_var( 'tc_slide', null );
     if ( empty( $slide ) ) {
@@ -172,8 +166,8 @@ class TC_slide_model_class extends TC_Model {
   /**
   * parse this model properties for rendering
   */ 
-  function pre_rendering_my_view_cb( $model ) { 
-    parent::pre_rendering_my_view_cb( $model );
+  function tc_sanitize_model_properties( $model ) { 
+    parent::tc_sanitize_model_properties( $model );
     foreach ( array( 'caption', 'text', 'title', 'button' ) as $property ) {
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
     }

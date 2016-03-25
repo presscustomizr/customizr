@@ -11,8 +11,8 @@ class TC_sidenav_model_class extends TC_Model {
   * @override
   * parse this model properties for rendering
   */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );
     $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
   }
 

@@ -24,8 +24,8 @@ class TC_footer_widgets_area_wrapper_model_class extends TC_widget_area_wrapper_
   * @override
   * parse this model properties for rendering
   */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );
     $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
   } 
 }

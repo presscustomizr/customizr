@@ -1,6 +1,5 @@
 <?php
 class TC_logo_wrapper_model_class extends TC_Model {
-  public $link_class;
   public $link_title;
   public $link_url;
 
@@ -13,7 +12,6 @@ class TC_logo_wrapper_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'element_class' ]      = apply_filters( 'tc_logo_class', $this -> get_logo_wrapper_class(), $model );
-    $model[ 'link_class' ]         = array( 'site-logo' );
     $model[ 'link_title' ]         = apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' ,
                                              __( esc_attr( get_bloginfo( 'name' ) ) ), 
                                              __( esc_attr( get_bloginfo( 'description' ) ) )
@@ -42,16 +40,6 @@ class TC_logo_wrapper_model_class extends TC_Model {
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
   
-  
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
-    $model -> link_class = $this -> tc_stringify_model_property( 'link_class' );
-  }
-
 
   /**
   * parse header model before rendering to add 'sticky' logo wrapper visibility

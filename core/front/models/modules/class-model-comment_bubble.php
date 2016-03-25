@@ -46,7 +46,7 @@ class TC_comment_bubble_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {  
     $shape                      = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ); 
-    $model[ 'inner_class' ]     = 'default' == $shape ? 'default-bubble' : $shape;
+    $model[ 'inner_class' ]     = array( 'default' == $shape ? 'default-bubble' : $shape );
     return $model;
   }
 
@@ -54,8 +54,8 @@ class TC_comment_bubble_model_class extends TC_Model {
   * @override
   * parse this model properties for rendering
   */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );
     $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
   }
 

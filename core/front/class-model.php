@@ -311,8 +311,20 @@ if ( ! class_exists( 'TC_Model' ) ) :
     }
 
 
+    /*
+    * Before rendering this model view allow the setup of the late properties (e.g. in the loops)
+    * Always sanitize those properties for being printed ( e.g. array to string ) 
+    */
     public function pre_rendering_my_view_cb( $model ) {
-      $model -> element_class = $this -> tc_stringify_model_property( 'element_class' );
+      if ( method_exists( $this, 'tc_setup_late_properties' ) )
+        $this -> tc_setup_late_properties();
+
+      $this -> tc_sanitize_model_properties( $model );
+    }
+
+
+    protected function tc_sanitize_model_properties( $model ) {
+      $this -> element_class  = $this -> tc_stringify_model_property( 'element_class' );
     }
 
 

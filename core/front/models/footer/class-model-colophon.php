@@ -21,8 +21,8 @@ class TC_colophon_model_class extends TC_Model {
   /**
   * parse this model properties for rendering
   */ 
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );  
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );  
     for ( $i = 1; $i<4; $i++ )
       $model -> {"col_{$i}_class"} = $this -> tc_stringify_model_property( "col_{$i}_class" );
   }
