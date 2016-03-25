@@ -42,7 +42,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
  
     function tc_display_view_posts_list_headings() {
       if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
-        self::$_cache['posts_list_headings'] = $this -> tc_display_view_post_list();
+        self::$_cache['posts_list_headings'] = ! TC_utils::$inst -> tc_is_home() && $this -> tc_is_list_of_posts();
       }
       return self::$_cache['posts_list_headings'];
     }
@@ -50,7 +50,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_list() {
       return $this -> tc_is_list_of_posts() &&
             //hack until we implement the "routers"
-            apply_filters( 'tc_is_not_grid', false );    
+            apply_filters( 'tc_is_not_grid', true );    
     }
 
 
@@ -59,13 +59,13 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_posts_list_search_title() {
-      global $wp_query;  
-      return $this -> tc_display_view_posts_list_headings() && is_search() && $wp_query -> post_count > 0;
+      return $this -> tc_display_view_posts_list_headings() && is_search();
     }
 
     function tc_display_view_posts_list_description() {
       return $this -> tc_display_view_posts_list_headings() && ! is_author() && ! is_search();
     }
+
     function tc_display_view_author_description() {
       return ( $this -> tc_display_view_posts_list_headings() && is_author() ) &&
              apply_filters ( 'tc_show_author_meta', get_the_author_meta('description') );
