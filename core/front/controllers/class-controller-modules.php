@@ -16,7 +16,8 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
         '__widget_area_left__'  => 'left-sidebar',
         '__widget_area_right__' => 'right-sidebar',
         '__navbar__'            => 'header',
-        '__colophon_one__'      => 'footer'
+        '__colophon_one__'      => 'footer',
+        '__colophon_three__'    => 'footer'
       );
 
       //the block must be instanciated when
