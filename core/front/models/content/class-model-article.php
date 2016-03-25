@@ -4,7 +4,6 @@ class TC_article_model_class extends TC_Model {
   
   /*
   * @override
-  * fired before the model properties are parsed
   */
   function __construct( $model = array() ) {
     //Fires the parent constructor
