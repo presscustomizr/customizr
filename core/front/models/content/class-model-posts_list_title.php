@@ -3,7 +3,7 @@ class TC_posts_list_title_model_class extends TC_Model {
   public $pre_title;
   public $title;
   
-  private $context;
+  public $context;
 
   function tc_extend_params( $model = array() ) {
     //the controlleer will check if we're in (not singular) context
