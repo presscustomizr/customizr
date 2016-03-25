@@ -1,4 +1,16 @@
-<?php if ( 'trackpingback' == tc_get('type') ) : ?>
+<?php
+/**
+ * The template for displaying the single comment/track-pingback in the list of comments
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+
+/* Case we're displaying a track or ping back */
+if ( 'trackpingback' == tc_get('type') ) : 
+
+?>
 <li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>" <?php tc_echo('element_attributes') ?>>
   <article id="comment-<?php comment_ID() ?>" class="comment">
     <p><?php _e( 'Pingback:' , 'customizr' ); ?> <?php comment_author_link(); ?>
@@ -7,7 +19,11 @@
     ?>
    </p>
   </article>
-<?php else : ?>
+<?php 
+/* Case we're displaying a standard comment */
+else : 
+
+?>
 <li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>" <?php tc_echo('element_attributes') ?>>
   <article id="comment-<?php comment_ID() ?>" class="comment">
     <div class="<?php tc_echo( 'comment_wrapper_class' ) ?>">
