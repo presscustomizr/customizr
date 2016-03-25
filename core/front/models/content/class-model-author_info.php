@@ -24,8 +24,8 @@ class TC_author_info_model_class extends TC_Model {
   /**
   * parse this model properties for rendering
   */ 
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );
     foreach ( array('wrapper', 'avatar', 'content' ) as $property )
       $model -> {"author_{$property}_class"} = $this -> tc_stringify_model_property( "author_{$property}_class" );
   }

@@ -11,22 +11,24 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
             'alternate'         => true
           );
 
-  private $post_list_layout;
+  public $post_list_layout;
 
-  /* override */
-  function __construct( $model = array() ) {
-    //Fires the parent constructor
-    parent::__construct( $model );
+  /**
+  * @override
+  * fired before the model properties are parsed
+  * 
+  * return model params array() 
+  */
+  function tc_extend_params( $model = array() ) {
+    $model[ 'post_list_layout' ]  = $this -> tc_get_the_post_list_layout();
+    return $model;
+  }
 
-    //set the post list layout based on the user's options
-    $this -> post_list_layout  = $this -> tc_set_post_list_layout();
-    //inside the loop but before rendering set some properties
-    add_action( $model['hook'], array( $this, 'set_layout_hooks' ), 0 );
-  } 
 
 
 
-  function set_layout_hooks() {
+  function tc_setup_late_properties() {
+    parent::tc_setup_late_properties();
     global $wp_query;
     
     extract( apply_filters( 'tc_post_list_layout', $this -> post_list_layout ) );
@@ -64,7 +66,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_set_post_list_layout() {
+  function tc_get_the_post_list_layout() {
     $_layout                     = self::$default_post_list_layout;  
     $_position                   = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
     //since 3.4.16 the alternate layout is not available when the position is top or bottom

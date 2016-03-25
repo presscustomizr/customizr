@@ -13,9 +13,6 @@ class TC_post_list_content_model_class extends TC_Model {
 
     //filter our countent
     add_filter( 'tc_the_content'        , array( $this , 'tc_add_support_for_shortcode_special_chars') );
-
-    //inside the loop but before rendering set some properties
-    add_action( $this -> hook          , array( $this, 'tc_set_this_properties' ), 0 );
   }
 
 
@@ -57,7 +54,7 @@ class TC_post_list_content_model_class extends TC_Model {
   }
 
 
-  function tc_set_this_properties() {
+  function tc_setup_late_properties() {
     $show_excerpt        = get_query_var( 'tc_show_excerpt' );  
     $content_width_class = array( 'entry-summary' );
     $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
@@ -79,8 +76,8 @@ class TC_post_list_content_model_class extends TC_Model {
   /**
   * parse this model properties for rendering
   */ 
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );  
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );  
     $model -> content_width_class = $this -> tc_stringify_model_property( 'content_width_class' );
   }
 }

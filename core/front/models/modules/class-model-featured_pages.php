@@ -186,13 +186,6 @@ class TC_featured_pages_model_class extends TC_Model {
     return $fp_img;
   }
 
-
-  function tc_show_featured_pages() {
-    //gets display fp option
-    $tc_show_featured_pages 	      = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
-    return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && tc__f('__is_home') );
-  }
-
   function tc_show_featured_pages_img() {
     //gets  display img option
     return apply_filters( 'tc_show_featured_pages_img', esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) );

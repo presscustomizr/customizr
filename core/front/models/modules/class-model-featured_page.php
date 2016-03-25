@@ -22,16 +22,10 @@ class TC_featured_page_model_class extends TC_Model {
 
   public $is_first_of_row;
   public $is_last_of_row;
-
-  function __construct( $model ) {
-    parent::__construct( $model );
-    //WE DON'T REALLY NEED TO SET A QUERY VAR AS WE CAN PASS THE VALUES ASS PARAMS TO THE HOOK CALLBACK
-    //THEN IT BECOMES JUST A MATTER OF WHAT TO PASS..
-    //inside the slider loop but before rendering set some properties    
-    add_action( $this -> hook          , array( $this, 'tc_set_this_properties' ), -1 );    
-  }
-  
-  function tc_set_this_properties() {
+ 
+  //WE DON'T REALLY NEED TO SET A QUERY VAR AS WE CAN PASS THE VALUES ASS PARAMS TO THE HOOK CALLBACK
+  //THEN IT BECOMES JUST A MATTER OF WHAT TO PASS..
+  function tc_setup_late_properties() {
     //get the current slide;
     $fp   = get_query_var( 'tc_fp', null );
     if ( empty( $fp ) ) {
@@ -52,6 +46,7 @@ class TC_featured_page_model_class extends TC_Model {
     $this -> tc_update( array_merge( $data, $button_block, compact( 'thumb_wrapper_class', 'span_value', 'fp_id', 'is_first_of_row', 'is_last_of_row' ) ) );
   }
 
+
   function tc_setup_button_block( $fp_data, $fp_single_id ) {
     //button block
     $fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
@@ -61,4 +56,5 @@ class TC_featured_page_model_class extends TC_Model {
     }
     return compact( 'fp_button_class', 'fp_button_text' );
   }
+
 }

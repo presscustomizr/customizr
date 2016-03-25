@@ -8,13 +8,14 @@ class TC_thumbnail_model_class extends TC_Model {
 
   public $type                  = 'standard';
 
+  /*
   function __construct( $model = array() ) {
     parent::__construct( $model );
     //inside the loop but before rendering set some properties
     //we need the -1 (or some < 0 number) as priority, as the thumb in single post page can be rendered at a certain hook with priority 0 (option based)
     add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), -1 );
   }
-
+*/
 
   /**
   * @override
@@ -43,9 +44,7 @@ class TC_thumbnail_model_class extends TC_Model {
   }
 
 
-  function tc_set_this_properties() {
-    if ( ! $this -> tc_maybe_render_this_model_view() )
-      return;
+  function tc_setup_late_properties() {
     $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
 
@@ -95,15 +94,12 @@ class TC_thumbnail_model_class extends TC_Model {
   * @since Customizr 3.2.0
   */
   function tc_add_thumb_shape_name( $model ) {
-    if ( ! $this -> tc_maybe_render_this_model_view() )
-      return;
-    
     $position                    = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
     $thumb_shape                 = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
 
     $new_class                   = "thumb-position-$position $thumb_shape";
 
-    $model -> article_selectors  = str_replace( 'class="', 'class="' . $new_class . ' ', $model -> article_selectors );
+    $model -> post_class         = $model ->post_class . " " . $new_class;
   }
 
 

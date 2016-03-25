@@ -7,14 +7,8 @@ class TC_attachment_content_model_class extends TC_Model {
   public $attachment_size;
   public $attachment_class;
 
-  function __construct( $model = array() ) {
-    //Fires the parent constructor
-    parent::__construct( $model );
-    //inside the loop but before rendering set some properties
-    add_action( $model['hook'], array( $this, 'on_this_rendering' ), 0 );
-  }
-
-  function on_this_rendering() {
+  
+  function tc_setup_late_properties() {
     global $post;
 
     $gallery     = '';

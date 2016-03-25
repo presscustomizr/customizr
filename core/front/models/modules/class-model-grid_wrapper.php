@@ -17,15 +17,6 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
 
   private $post_id;
 
-  /* override */
-  function __construct( $model ) {
-    //Fires the parent constructor
-    parent::__construct( $model );
-
-    //inside the loop but before rendering set some properties
-    add_action( $this -> hook, array( $this, 'set_this_properties' ), 0 );
-  }
-
 
   /**
   * @override
@@ -54,7 +45,9 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
 
 
 
-  function set_this_properties() {
+  //inside the loop but before rendering set some properties
+  function tc_setup_late_properties() {
+    parent::tc_setup_late_properties();
     $element_wrapper        = $this -> tc_get_element_wrapper_properties();
 
     //section properties which refers to the section row wrapper
@@ -148,7 +141,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   * @package Customizr
   * @since 3.0.10
   */
-  function tc_get_post_class( $class = '', $post_id = null ) {
+  function tc_get_the_post_class( $class = '', $post_id = null ) {
     $_class = sprintf( '%1$s tc-grid span%2$s',
       apply_filters( 'tc_grid_add_expanded_class', $this -> tc_force_current_post_expansion() ) ? 'expanded' : '',
       is_numeric( $this -> tc_get_grid_section_cols() ) ? 12 / $this -> tc_get_grid_section_cols() : 6
@@ -156,16 +149,6 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
      
     //Separates classes with a single space, collates classes for post DIV
     return 'class="' . join( ' ', get_post_class( $_class ) ) . '"';
-  }
-
-
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );  
-    foreach ( array('figure') as $property )
-      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
   }
 
 

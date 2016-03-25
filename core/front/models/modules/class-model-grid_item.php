@@ -9,16 +9,8 @@ class TC_grid_item_model_class extends TC_model {
   public  $is_expanded;
   public  $title;
 
-  function __construct( $model = array() ) {
-    parent::__construct( $model );
-    //inside the loop but before rendering set some properties
-    //we need the -1 (or some < 0 number) as priority, as the thumb in single post page can be rendered at a certain hook with priority 0 (option based)
-    add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), -1 );
 
-
-  } 
-
-  function tc_set_this_properties() {
+  function tc_setup_late_properties() {
     $grid                   = get_query_var( 'grid' );
     extract( $grid );
     //thumb
@@ -135,6 +127,7 @@ class TC_grid_item_model_class extends TC_model {
   function tc_get_filtered_thumb_size_name( $section_cols ){
     return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
   }
+
   private function tc_grid_show_thumb() {
     return TC_utils_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
   }
@@ -143,8 +136,8 @@ class TC_grid_item_model_class extends TC_model {
   /**
   * parse this model properties for rendering
   */ 
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );  
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );  
     foreach ( array('figure') as $property )
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
   }
