@@ -238,7 +238,7 @@ if ( ! class_exists( 'TC___' ) ) :
             'template'  => 'modules/slider',
             'id' => 'main_posts_slider',
             'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ),
-            'controler'   => 'main_slider'
+            'controller'   => 'main_slider'
           ),
             array(
               'hook' => '__slide__',
@@ -320,15 +320,27 @@ if ( ! class_exists( 'TC___' ) ) :
           /*** ALTERNATE POST LIST ***/
           array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
 
-          //content
+          /* CONTENT */
           //post content/excerpt
           array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content' ),
-          //thumbs
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/thumbnail', 'id' => 'post_list_standard_thumb' ),
-          //the recangular thumb has a different model + a slighty different template
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/thumbnail_rectangular', 'id' => 'post_list_rectangular_thumb', 'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_rectangular') ),
 
-          //post in post lists headings
+          /* THUMBS */
+          array(
+            'hook'        => '__post_list_thumb__',
+            'template'    => 'content/post_list_thumbnail',
+            'id'          => 'post_list_standard_thumb',
+            'model_class' => 'content/thumbnail'
+          ),
+          
+          //the recangular thumb has a different model + a slighty different template
+          array(
+            'hook'        => '__post_list_thumb__',
+            'template'    => 'content/post_list_thumbnail',
+            'id'          => 'post_list_rectangular_thumb',
+            'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_rectangular')
+          ),
+
+          //post headings in post lists
           array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
 
 
@@ -359,7 +371,7 @@ if ( ! class_exists( 'TC___' ) ) :
             //post content
             array( 'hook' => '__article__', 'template' => 'content/post_content', 'id' => 'post', 'priority' => 20 ),
               //single post thumbnail
-              array( 'hook' => 'before_render_view_post', 'template' => 'content/thumbnail_rectangular', 'id' => 'post_thumbnail', 'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single') ),
+              array( 'hook' => 'before_render_view_post', 'template' => 'content/thumbnail_single', 'id' => 'post_thumbnail', 'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single') ),
               //post footer
               array( 'hook' => '__post_footer__', 'id' => 'post_footer', 'template' => 'content/author_info' ),
           //attachment
