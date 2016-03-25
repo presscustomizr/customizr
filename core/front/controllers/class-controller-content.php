@@ -259,15 +259,15 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_comment_list() {
-      return apply_filters( 'tc_display_comment_list', true );
+      return apply_filters( 'tc_display_comment_list', $this -> tc_display_view_comments() );
     }
 
     function tc_display_view_comment() {
-      return $this -> tc_are_comments_enabled();
+      return $this -> tc_display_view_comment_list();
     }
 
-    function tc_display_view_tracepingback() {
-      return $this -> tc_are_comments_enabled();
+    function tc_display_view_trackpingback() {
+      return $this -> tc_display_view_comment_list();
     }
 
    /******************************
@@ -281,6 +281,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         && ! is_404()
         && 0 != $wp_query -> post_count
         && ! $this -> tc_is_home_empty()
+        && ! is_admin()
       );
     }
 

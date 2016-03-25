@@ -370,6 +370,7 @@ if ( ! class_exists( 'TC___' ) ) :
           /* contains the comment form */
           array( 'hook' => '__content__', 'template' => 'content/comments', 'priority' => '20'),
             /* comment list */
+            /* contains the comment and (track|ping)back registration */
             array( 'hook' => '__comments__', 'template' => 'content/comment_list' ),
           /* end Comments */
 
