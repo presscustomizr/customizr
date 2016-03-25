@@ -378,13 +378,16 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__article__', 'template' => 'content/attachment_content', 'id' => 'attachment'),
 
 
-          /* Comments */
-          /* contains the comment form */
+          /*** COMMENTS ***/
+          /*
+          * contains the comment form 
+          *
+          * contains comment list registration
+          * the comment list contains the comment and (track|ping)back registration
+          */
           array( 'hook' => '__content__', 'template' => 'content/comments', 'priority' => '20'),
-            /* comment list */
-            /* contains the comment and (track|ping)back registration */
-            array( 'hook' => '__comments__', 'template' => 'content/comment_list' ),
           /* end Comments */
+
 
           /* Post navigation */
           array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
