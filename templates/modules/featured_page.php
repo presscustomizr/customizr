@@ -16,7 +16,7 @@
                 <a class="post-edit-link" href="<?php echo get_edit_post_link( tc_get( 'featured_page_id' ) ) ?>" title="<?php tc_echo( 'featured_page_title' ) ?>" target="_blank"><?php _e( 'Edit' , 'customizr' ) ?></a>
               </span>
             <?php endif ?>
-        </h2>    
+        </h2>
       <?php /* END FP TITLE */ ?>
       <?php /* FP TEXT */ ?>
         <p class="fp-text-<?php tc_echo( 'fp_id' ) ?>"><?php tc_echo( 'text' ) ?></p>

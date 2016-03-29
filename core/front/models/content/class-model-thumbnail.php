@@ -20,8 +20,8 @@ class TC_thumbnail_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'thumb_size' ]     = $this -> tc_get_thumb_size();
@@ -50,7 +50,7 @@ class TC_thumbnail_model_class extends TC_Model {
 
     $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, TC_utils::tc_id() );
     if ( ! $thumb_img )
-      return;     
+      return;
 
     $element_class          = $this -> tc_get_the_wrapper_class();
 
@@ -65,12 +65,12 @@ class TC_thumbnail_model_class extends TC_Model {
   }
 
   function tc_get_no_effect_class( $thumb_model ) {
-    extract( $thumb_model );  
+    extract( $thumb_model );
     //handles the case when the image dimensions are too small
     $thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size , TC_utils::tc_id() );
     $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
     $no_effect_class  = ( esc_attr( TC_utils::$inst->tc_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
-    
+
     return array( $no_effect_class );
   }
 
@@ -81,7 +81,7 @@ class TC_thumbnail_model_class extends TC_Model {
   * @since Customizr 3.2.0
   */
   protected function tc_get_thumb_size( $_default_size = 'tc-thumb' ) {
-    return $_default_size;  
+    return $_default_size;
   }
 
 
@@ -103,7 +103,7 @@ class TC_thumbnail_model_class extends TC_Model {
   }
 
 
-  
+
   /* The template wrapper class */
   function tc_get_the_wrapper_class() {
     return array( get_query_var('tc_thumbnail_width', '') ); /*retrieved from the post_list layout */
@@ -113,7 +113,7 @@ class TC_thumbnail_model_class extends TC_Model {
   * @override
   * parse this model properties for rendering
   */
-  function pre_rendering_my_view_cb( $model ) { 
+  function pre_rendering_my_view_cb( $model ) {
     parent::pre_rendering_my_view_cb( $model );
     foreach ( array( 'thumb_wrapper', 'link' ) as $property ) {
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );

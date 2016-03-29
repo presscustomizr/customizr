@@ -9,8 +9,8 @@ class TC_menu_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'menu_class' ]     = $this -> get_menu_class();
@@ -47,7 +47,7 @@ class TC_menu_model_class extends TC_Model {
   * @hook; pre_rendering_view_header
   *
   * parse header model before rendering to add 'sticky' menu visibility class
-  */ 
+  */
   function pre_rendering_view_header_cb( $header_model ) {
     //fire once
     static $_fired = false;
@@ -57,7 +57,7 @@ class TC_menu_model_class extends TC_Model {
     if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) ) {
       if ( ! is_array( $header_model -> element_class ) )
         $header_model -> element_class = explode( ' ', $header_model -> element_class );
-      array_push( $header_model -> element_class, 
+      array_push( $header_model -> element_class,
         0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') ) ? 'tc-menu-on' : 'tc-menu-off'
       );
     }
@@ -129,8 +129,8 @@ class TC_menu_model_class extends TC_Model {
     else
       return $menu;
   }
-   
-  
+
+
   /**
    * Retrieve or display list of pages in list (li) format.
    * Modified copy of wp_list_pages

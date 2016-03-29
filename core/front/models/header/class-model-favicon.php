@@ -6,13 +6,13 @@ class TC_favicon_model_class extends TC_Model {
   /*
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $_fav_option  = TC_utils::$inst->tc_opt( 'tc_fav_upload');
     $_fav_src     = '';
-    
+
     //check if option is an attachement id or a path (for backward compatibility)
     if ( is_numeric($_fav_option) ) {
       $_attachement_id  = esc_attr( $_fav_option );
@@ -26,14 +26,14 @@ class TC_favicon_model_class extends TC_Model {
     }
     //makes ssl compliant url
     $_fav_src           = apply_filters( 'tc_fav_src' , is_ssl() ? str_replace('http://', 'https://', $_fav_src) : $_fav_src );
-    
+
     $type = "image/x-icon";
     if ( strpos( $_fav_src, '.png') ) $type = "image/png";
     if ( strpos( $_fav_src, '.gif') ) $type = "image/gif";
 
     $model[ 'src' ]        = $_fav_src;
     $model[ 'type' ]       = $type;
-    
+
     return $model;
   }
 }

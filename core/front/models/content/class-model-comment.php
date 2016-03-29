@@ -25,12 +25,12 @@ class TC_comment_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'has_edit_button' ]         = ! TC___::$instance -> tc_is_customizing();
-    $model                              = $this -> tc_set_early_properties( $model );    
+    $model                              = $this -> tc_set_early_properties( $model );
     return $model;
   }
 
@@ -41,7 +41,7 @@ class TC_comment_model_class extends TC_Model {
     $model[ 'comment_content_class' ]   = apply_filters( 'tc_comment_content_class', array('span10') );
     $model[ 'comment_reply_btn_class' ] = apply_filters( 'tc_comment_reply_btn_class', array('reply btn btn-small' ) );
     $model[ 'comment_avatar_size' ]     = apply_filters( 'tc_comment_avatar_size', 80 );
-    
+
     return $model;
   }
 

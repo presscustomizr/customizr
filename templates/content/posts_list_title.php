@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * The template for displaying the list of posts titles (archives, categories, search results ..)
  *
@@ -8,7 +8,7 @@
  */
 
 /* Case we're displaying the search results */
-if ( 'search_results' == tc_get('context') ) : 
+if ( 'search_results' == tc_get('context') ) :
 
 ?>
 <div class="row-fluid" <?php tc_echo('element_attributes') ?>>
@@ -21,9 +21,9 @@ if ( 'search_results' == tc_get('context') ) :
     <?php get_search_form() ?>
   </div>
 </div>
-<?php 
+<?php
 
-else : 
+else :
 /* All other cases */
 ?>
 <h1 class="<?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?> ><?php tc_echo( 'pre_title' ) ?> <?php tc_echo( 'title' ) ?></h1>

@@ -5,8 +5,8 @@ abstract class TC_headings_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'element_class' ]          = apply_filters( "tc_{$this -> type}_header_class", $this -> tc_get_class( $model ), $model );

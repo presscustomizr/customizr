@@ -3,16 +3,16 @@ abstract class TC_post_navigation_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'element_class' ]       = $this -> tc_get_pn_element_class( array('navigation') );
 
-    return $model; 
+    return $model;
   }
 
-  /* visibility in the customizer */    
+  /* visibility in the customizer */
   function tc_get_pn_element_class( $_nav_classes ) {
     if ( ! TC___::$instance -> tc_is_customizing() )
       return $_nav_classes;
@@ -26,10 +26,10 @@ abstract class TC_post_navigation_model_class extends TC_Model {
 
     return $_nav_classes;
   }
-  
+
   abstract function tc_get_context();
 
- 
+
   /*
   * @param (string or bool) the context
   * @return bool

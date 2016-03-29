@@ -10,7 +10,7 @@ class TC_comments_model_class extends TC_Model {
 
     add_filter ( 'comment_form_defaults'  , array( $this , 'tc_set_comment_title') );
   }
- 
+
   function tc_setup_children() {
     $children = array(
       array(

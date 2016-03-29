@@ -8,10 +8,10 @@
  */
 ?>
 <div class="entry-meta" <?php tc_echo('element_attributes') ?>>
-<?php 
+<?php
 
   /* Case we're displaying the textual version */
-  if ( 'post_metas_text' == tc_get('type') ) : 
+  if ( 'post_metas_text' == tc_get('type') ) :
 
 ?>
   <?php if ( tc_get( 'publication_date' ) ) : ?>
@@ -34,17 +34,17 @@
   // 3) text for "more than 1 day ago"
   // accept %s as placeholder
   // used when update date shown in days option selected
-  ?> 
+  ?>
   <span class="up-date">(<?php _e( 'updated', 'customizr') ?>: <?php tc_echo( 'update_date', array (
-      __('today', 'customizr'), 
-      __('1 day ago', 'customizr'), 
-      __('%s days ago', 'customizr') 
+      __('today', 'customizr'),
+      __('1 day ago', 'customizr'),
+      __('%s days ago', 'customizr')
     ) ); ?>)</span>
   <?php endif ?>
-<?php 
-  
+<?php
+
   /* Case we're displaying the standard (with buttons) version */
-  else : 
+  else :
 
 ?>
   <?php _e('This entry was posted', 'customizr') ?>
@@ -67,11 +67,11 @@
   // 3) text for "more than 1 day ago"
   // accept %s as placeholder
   // used when update date shown in days option selected
-  ?> 
-   <span class="up-date">(<?php _e( 'updated', 'customizr') ?>: <?php tc_echo( 'update_date' , array ( 
-        __('today', 'customizr') , 
-        __('1 day ago', 'customizr'), 
-        __('%s days ago', 'customizr') 
+  ?>
+   <span class="up-date">(<?php _e( 'updated', 'customizr') ?>: <?php tc_echo( 'update_date' , array (
+        __('today', 'customizr') ,
+        __('1 day ago', 'customizr'),
+        __('%s days ago', 'customizr')
      ) ) ?>)</span>
   <?php endif ?>
 <?php

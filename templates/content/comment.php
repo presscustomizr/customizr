@@ -8,20 +8,20 @@
  */
 
 /* Case we're displaying a track or ping back */
-if ( 'trackpingback' == tc_get('type') ) : 
+if ( 'trackpingback' == tc_get('type') ) :
 
 ?>
 <li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>" <?php tc_echo('element_attributes') ?>>
   <article id="comment-<?php comment_ID() ?>" class="comment">
     <p><?php _e( 'Pingback:' , 'customizr' ); ?> <?php comment_author_link(); ?>
-    <?php if ( tc_get( 'has_edit_button' ) ) 
+    <?php if ( tc_get( 'has_edit_button' ) )
       edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' );
     ?>
    </p>
   </article>
-<?php 
+<?php
 /* Case we're displaying a standard comment */
-else : 
+else :
 
 ?>
 <li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>" <?php tc_echo('element_attributes') ?>>
@@ -41,7 +41,7 @@ else :
             <span><?php _e( 'Post author' , 'customizr' ) ?></span>
           <?php endif; ?>
           <?php if ( tc_get( 'has_edit_button' ) ): ?>
-            <?php edit_comment_link( __( 'Edit' , 'customizr' ), '<p class="edit-link btn btn-success btn-mini">', '</p>' ) 
+            <?php edit_comment_link( __( 'Edit' , 'customizr' ), '<p class="edit-link btn btn-success btn-mini">', '</p>' )
             ?>
           <?php endif; ?>
           </cite>

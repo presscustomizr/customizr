@@ -4,13 +4,13 @@ class TC_comment_bubble_model_class extends TC_Model {
 
   /* DO WE WANT TO SPLIT THIS IN TWO? USING TWO DIFFERENT TEMPLATES TOO???
   *  Maybe we can do this later when we'll have the "routers" so we can register just one of the comment bubbles type based on the user options
-  
-  
+
+
   //when in the post list loop
   //render this?
   /*
   * @override
-  * This is actually a merge of the tc_is_bubble_enabled and tc_are_comments_enabled 
+  * This is actually a merge of the tc_is_bubble_enabled and tc_are_comments_enabled
   */
   function tc_maybe_render_this_model_view () {
     $_bool = $this -> visibility;
@@ -19,12 +19,12 @@ class TC_comment_bubble_model_class extends TC_Model {
       return;
 
     global $post;
-   
+
     if ( in_the_loop() && isset( $post ) ) {
 
       $_bool =  ! post_password_required() && 0 != get_comments_number() &&
          in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
- 
+
       $_bool = ( 'closed' != $post -> comment_status ) ? true && $_bool : $_bool;
 
      //3) check global user options for pages and posts
@@ -33,7 +33,7 @@ class TC_comment_bubble_model_class extends TC_Model {
       else
         $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
     }else
-      $_bool = false;    
+      $_bool = false;
 
     return $_bool;
   }
@@ -41,11 +41,11 @@ class TC_comment_bubble_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
-  function tc_extend_params( $model = array() ) {  
-    $shape                      = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ); 
+  function tc_extend_params( $model = array() ) {
+    $shape                      = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) );
     $model[ 'inner_class' ]     = array( 'default' == $shape ? 'default-bubble' : $shape );
     return $model;
   }
@@ -62,7 +62,7 @@ class TC_comment_bubble_model_class extends TC_Model {
 
   /*
   * @param comments_number
-  * @param text, additional text for non default bubble 
+  * @param text, additional text for non default bubble
   */
   function tc_get_comment_bubble_text( $comments_number, $text ) {
     return FALSE === strpos( $this -> inner_class, 'default' ) ? "$comments_number $text" : $comments_number;
@@ -73,7 +73,7 @@ class TC_comment_bubble_model_class extends TC_Model {
   * @param add_anchor (bool) whether or not add an anchor to the link, default true
   */
   function tc_get_comment_bubble_link( $link, $add_anchor = true ) {
-    $link = sprintf( "%s%s", 
+    $link = sprintf( "%s%s",
         is_singular() ? '' : esc_url( $link ),
         $add_anchor ? apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title') : ''
     );

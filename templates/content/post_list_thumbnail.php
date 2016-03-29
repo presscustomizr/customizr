@@ -9,27 +9,27 @@
 ?>
 <section class="tc-thumbnail <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
  <div class="<?php tc_echo( 'thumb_wrapper_class' ) ?>">
-  <?php 
+  <?php
 
-    /* Case rectangular thumbnail */    
-    if ( 'rectangular' == tc_get('type') ) : 
+    /* Case rectangular thumbnail */
+    if ( 'rectangular' == tc_get('type') ) :
 
   ?>
    <a class="<?php tc_echo( 'link_class' ) ?>" href="<?php the_permalink() ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ) ?>">
      <?php tc_echo( 'thumb_img' ) ?>
    </a>
- <?php 
+ <?php
 
     /* Case standard thumbnail (rounded/square) */
-    else : 
- 
+    else :
+
  ?>
    <div class="round-div"></div>
    <a class="<?php tc_echo( 'link_class' ) ?>" href="<?php the_permalink() ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
    <?php tc_echo( 'thumb_img' ) ?>
- <?php 
+ <?php
 
-      endif; 
+      endif;
 
  ?>
  </div>

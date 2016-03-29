@@ -6,8 +6,8 @@ class TC_social_block_model_class extends TC_Model {
   /*
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'social_block' ]        = TC_utils::$inst -> tc_get_social_networks();
@@ -19,14 +19,14 @@ class TC_social_block_model_class extends TC_Model {
   }
 
   protected function tc_get_socials_where( $model ) {
-    return isset( $this -> where ) ? $this-> where : '';    
+    return isset( $this -> where ) ? $this-> where : '';
   }
   protected function tc_get_before_socials() {
     return '';
   }
 
   protected function tc_get_after_socials() {
-    return '';  
+    return '';
   }
 
   protected function tc_social_block_get_class( $model ) {
@@ -40,7 +40,7 @@ class TC_social_block_model_class extends TC_Model {
     //or
     //1b) there are no social icons set
     //and
-    //2) customizing 
+    //2) customizing
     $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && TC___::$instance -> tc_is_customizing();
     return $_hidden ? 'style="display:none;"' : '';
   }

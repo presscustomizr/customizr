@@ -20,13 +20,13 @@ class TC_post_list_content_model_class extends TC_Model {
     if ( $this -> content )
       return $this -> content;
     elseif ( 'get_the_excerpt' == $this -> content_cb )
-      return apply_filters( 'the_excerpt', get_the_excerpt() );  
+      return apply_filters( 'the_excerpt', get_the_excerpt() );
     else
       return apply_filters( 'tc_the_content', get_the_content( $more ) );
   }
 
-  
-  
+
+
   /**
   * hook : excerpt_length hook
   * @return string
@@ -55,7 +55,7 @@ class TC_post_list_content_model_class extends TC_Model {
 
 
   function tc_setup_late_properties() {
-    $show_excerpt        = get_query_var( 'tc_show_excerpt' );  
+    $show_excerpt        = get_query_var( 'tc_show_excerpt' );
     $content_width_class = array( 'entry-summary' );
     $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
     $content             = '';
@@ -75,9 +75,9 @@ class TC_post_list_content_model_class extends TC_Model {
 
   /**
   * parse this model properties for rendering
-  */ 
+  */
   function tc_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );  
+    parent::tc_sanitize_model_properties( $model );
     $model -> content_width_class = $this -> tc_stringify_model_property( 'content_width_class' );
   }
 }

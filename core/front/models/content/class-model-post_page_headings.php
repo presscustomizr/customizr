@@ -6,6 +6,6 @@ class TC_post_page_headings_model_class extends TC_headings_model_class {
   * @override
   */
   function tc_get_class( $model = array() ) {
-    return 'entry-header';  
+    return 'entry-header';
   }
 }

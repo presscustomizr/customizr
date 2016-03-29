@@ -1,5 +1,5 @@
 <div class="item <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
-  
+
   <div class="<?php tc_echo( 'img_wrapper_class' ) ?>">
   <?php if ( tc_get( 'link_whole_slide' ) ) : ?>
     <a class="tc-slide-link" href="<?php tc_echo( 'link_url' ) ?>" target="<?php tc_echo( 'link_target' ) ?>" title=<?php _e( 'Go to', 'customizr' ) ?>>
@@ -7,7 +7,7 @@
     <?php
         do_action('__before_all_slides');
  //     do_action_ref_array ("__before_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data ) );
-          tc_echo( 'slide_background' );  
+          tc_echo( 'slide_background' );
 /*do_action_ref_array ("__after_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data ) );*/
         do_action('__after_all_slides');
     ?>

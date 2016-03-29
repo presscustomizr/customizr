@@ -22,7 +22,7 @@ class TC_featured_page_model_class extends TC_Model {
 
   public $is_first_of_row;
   public $is_last_of_row;
- 
+
   //WE DON'T REALLY NEED TO SET A QUERY VAR AS WE CAN PASS THE VALUES ASS PARAMS TO THE HOOK CALLBACK
   //THEN IT BECOMES JUST A MATTER OF WHAT TO PASS..
   function tc_setup_late_properties() {
@@ -30,18 +30,18 @@ class TC_featured_page_model_class extends TC_Model {
     $fp   = get_query_var( 'tc_fp', null );
     if ( empty( $fp ) ) {
       $this -> tc_set_property( 'visibility', false );
-      return;      
+      return;
     }
-    
+
     // array( 'is_first_of_row', 'is_last_of_row', 'data', 'fp_id', 'span_value' )
     extract( $fp );
 
     //img block elements
     if ( isset( $data['fp_img'] ) && $data['fp_img'] )
-      $thumb_wrapper_class = isset( $data['has_holder'] ) && $data['has_holder'] ? 'tc-holder' : '';   
+      $thumb_wrapper_class = isset( $data['has_holder'] ) && $data['has_holder'] ? 'tc-holder' : '';
 
     //button block
-    $button_block = $this -> tc_setup_button_block( $data, $fp_id ); 
+    $button_block = $this -> tc_setup_button_block( $data, $fp_id );
 
     $this -> tc_update( array_merge( $data, $button_block, compact( 'thumb_wrapper_class', 'span_value', 'fp_id', 'is_first_of_row', 'is_last_of_row' ) ) );
   }

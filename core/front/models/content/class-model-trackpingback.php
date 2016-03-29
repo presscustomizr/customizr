@@ -14,7 +14,7 @@ class TC_trackpingback_model_class extends TC_comment_model_class {
   * @override
   */
   function pre_rendering_my_view_cb( $model ) {
-    return;    
+    return;
   }
 
 

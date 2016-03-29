@@ -1,6 +1,6 @@
 <?php
 class TC_post_navigation_links_posts_model_class extends TC_post_navigation_links_model_class {
-    
+
   /* override */
   function tc_get_the_previous_link( $model ) {
     $next_posts_link_args      = apply_filters(

@@ -1,6 +1,6 @@
 <div id="customizr-slider-<?php tc_echo( 'id' ) ?>" class="<?php tc_echo( 'element_class' ) ?> " <?php tc_echo('element_attributes') ?>>
   <?php /* $slider_model_id -> tc_render_slider_loader_view( $slider_model-> slider_name_id ); */ ?>
-  <?php if ( tc_get( 'has_loader' ) ) : ?>    
+  <?php if ( tc_get( 'has_loader' ) ) : ?>
     <div id="tc-slider-loader-wrapper-<?php tc_echo( 'id' ) ?>" class="tc-slider-loader-wrapper" style="display:none;">
       <div class="tc-img-gif-loader"></div>
       <?php tc_echo( 'pure_css_loader' ) ?>
@@ -22,7 +22,7 @@
     ?>
   </div><!-- /.carousel-inner -->
   <?php  do_action( '__after_carousel_inner' , tc_get( 'slides' ), tc_get( 'slider_name_id' ) )  ?>
-    
+
   <?php if ( tc_get( 'has_controls' ) ) : ?>
     <div class="tc-slider-controls <?php tc_echo( 'left_control_class' ) ?>">
       <a class="tc-carousel-control" href="#customizr-slider-<?php tc_echo( 'id' ) ?>" data-slide="prev">&lsaquo;</a>

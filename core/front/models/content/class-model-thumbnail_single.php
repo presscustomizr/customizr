@@ -7,7 +7,7 @@ class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
   private $hook_map       = array(
     '__before_main_wrapper' => 'before_render_view_main_wrapper',
     '__before_content'      => 'before_render_view_singular_headings',
-    '__after_content_title' => '__post_page_title__'    
+    '__after_content_title' => '__post_page_title__'
   );
 
   function __construct( $model = array() ) {
@@ -30,12 +30,12 @@ class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
 
   /* override */
   function tc_get_no_effect_class( $thumb_model ) {
-    return array(); 
+    return array();
   }
 
   /**
   * override
-  * 
+  *
   * @package Customizr
   * @since Customizr 3.2.0
   */
@@ -46,17 +46,17 @@ class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
   }
 
   private function tc_get_thumb_option_hook() {
-    return explode( '|', esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) ) );   
+    return explode( '|', esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) ) );
   }
 
   function tc_get_the_wrapper_class() {
     return array( 'row-fluid', 'tc-single-post-thumbnail-wrapper', current_filter() );
   }
 
-  function tc_maybe_render_this_model_view() { 
+  function tc_maybe_render_this_model_view() {
     return $this -> visibility; /*the actual check is done in the controller*/
   }
-  
+
   /**
   * @return css string
   *
