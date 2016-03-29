@@ -51,5 +51,4 @@ class TC_recently_updated_model_class extends TC_Model {
 
     return array_merge( $model, compact( 'element_class', 'recently_updated_text' ) );
   }
-
 }

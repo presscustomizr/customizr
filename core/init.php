@@ -319,6 +319,8 @@ if ( ! class_exists( 'TC___' ) ) :
           /* CONTENT */
           //post content/excerpt
           array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content' ),
+            //post headings in post lists
+            array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
 
           /* THUMBS */
           array(
@@ -336,8 +338,6 @@ if ( ! class_exists( 'TC___' ) ) :
             'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_rectangular')
           ),
 
-          //post headings in post lists
-          array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
 
 
           /*** ALTERNATE POST LIST END ***/
@@ -349,11 +349,17 @@ if ( ! class_exists( 'TC___' ) ) :
             'hook' => '__after_inner_post_page_title__',
             'template' => 'modules/comment_bubble' 
           ),
+          //edit post links
+          array(
+            'hook' => '__after_inner_post_page_title__',
+            'template' => 'modules/edit_button',
+            'priority' => 20
+          ),
           //recently updated
           array(
             'hook'     => '__after_inner_post_page_title__',
             'template' => 'modules/recently_updated',
-            'priority' => 20
+            'priority' => 30
           ),
 
           //Post metas in the headings
