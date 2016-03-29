@@ -303,6 +303,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20 ),
 
           /*** GRID (POST LIST) ***/
+          /* Contains the grid-item and its submodules registrations */
           array( 
             'hook'        => 'in_main_loop',
             'template'    => 'modules/grid_wrapper',
@@ -310,24 +311,8 @@ if ( ! class_exists( 'TC___' ) ) :
             'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid_wrapper'),
             'controller'  => 'post_list_grid'
           ),
-            //grid item
-             array( 
-              'hook'        => '__grid__',
-              'template'    => 'modules/grid_item',
-            ),
-            //comment bubble
-            array(
-              'hook' => '__comment_bubble__',
-              'template' => 'modules/comment_bubble' 
-            ),
-            //recently updated
-            array(
-              'hook'     => '__recently_updated__',
-              'template' => 'modules/recently_updated',
-              'priority' => 20
-            ),
-
           /* END GRID */
+
           /*** ALTERNATE POST LIST ***/
           array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
 
