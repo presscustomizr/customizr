@@ -122,7 +122,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       /* Disqus Comment System */
       if ( current_theme_supports( 'disqus') && $this -> tc_is_plugin_active('disqus-comment-system/disqus.php') )
         $this -> tc_set_disqus_compat();
- 
+
       /* Ultimate Responsive Image Slider  */
       if ( current_theme_supports( 'uris' ) && $this -> tc_is_plugin_active('ultimate-responsive-image-slider/ultimate-responsive-image-slider.php') )
         $this -> tc_set_uris_compat();
@@ -137,16 +137,16 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     * @since Customizr 3.4+
     */
     private function tc_set_jetpack_compat() {
-      //jetpack image carousel 
+      //jetpack image carousel
       //this filter doesn't exist anymore it has been replaced by
       //tc_is_gallery_enabled
       //I think we can remove the following compatibility as everything seems to work (considering that it doesn't do anything atm)
       //and we haven't received any complain
       //Also we now have a whole gallery section of settings and we coul redirect users there to fine tune it
-      add_filter( 'tc_gallery_bool', '__return_false' ); 
+      add_filter( 'tc_gallery_bool', '__return_false' );
 
       //Photon jetpack's module conflicts with our smartload feature:
-      //Photon removes the width,height attribute in php, then in js it compute them (when they have the special attribute 'data-recalc-dims') 
+      //Photon removes the width,height attribute in php, then in js it compute them (when they have the special attribute 'data-recalc-dims')
       //based on the img src. When smartload is enabled the images parsed by its js which are not already smartloaded are dummy
       //and their width=height is 1. The image is correctly loaded but the space
       //assigned to it will be 1x1px. Photon js, is compatible with Auttomatic plugin lazy load and it sets the width/height
@@ -157,8 +157,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) )
         add_filter( 'tc_img_smartloaded', 'tc_jp_smartload_img');
       function tc_jp_smartload_img( $img ) {
-        return str_replace( 'data-recalc-dims', 'data-tcjp-recalc-dims', $img );    
-      }    
+        return str_replace( 'data-recalc-dims', 'data-tcjp-recalc-dims', $img );
+      }
     }//end jetpack compat
 
 
@@ -1051,7 +1051,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //add woommerce header cart classes to the header (sticky enabled)
       add_filter( 'tc_header_classes'   , 'tc_woocommerce_set_header_classes');
       function tc_woocommerce_set_header_classes( $_classes ) {
-        if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )  
+        if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
           $_classes[]          = ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
         return $_classes;
       }
@@ -1202,7 +1202,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                  && dsq_is_installed() && dsq_can_replace();
         }
       }
-      /* Since 3.5.0 the comments_template is wrapped it the "comments" id 
+      /* Since 3.5.0 the comments_template is wrapped it the "comments" id
       so we don't need the disqus wrapper anymore */
       //replace the default comment link anchor with a more descriptive disqus anchor
       add_filter( 'tc_bubble_comment_anchor', 'tc_disqus_bubble_comment_anchor' );
@@ -1237,7 +1237,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_uris_disable_img_smartload( $options ){
         if ( ! is_array( $options ) )
           $options = array();
-        
+
         if ( ! is_array( $options['opts'] ) )
           $options['opts'] = array();
 
