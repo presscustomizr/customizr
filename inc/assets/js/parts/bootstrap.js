@@ -1656,7 +1656,7 @@ var TCParams = TCParams || {};
 
       if ( TCParams && 1 == TCParams.dropdowntoViewport )
       {
-        var tcVisible = czrapp.$_window.height() - this.$element.offset().top + czrapp.$_window.scrollTop();
+        var tcVisible = window.innerHeight - this.$element.offset().top + czrapp.$_window.scrollTop();
         this.$element.css('max-height' , tcVisible + 'px');
       }
       else if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader )
