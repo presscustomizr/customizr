@@ -2,7 +2,7 @@
 class TC_slider_of_posts_model_class extends TC_slider_model_class {
 
   /**
-  * @override 
+  * @override
   * Helper
   * Return an array of the slide models from option or default
   * Returns and array of slides with data
@@ -12,23 +12,23 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
   *
   */
   protected function tc_get_the_slides( $slider_name_id, $img_size ) {
-    /* This is where we check this model is allowed 
+    /* This is where we check this model is allowed
     *  otherwise we have to chose which one to display in the controller,
     *  this means that the controller might repeat some functions which are
     *  defined in the slider class
-    */  
+    */
     if ( 'tc_posts_slider' != $slider_name_id )
       return array();
 
     $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! TC___::$instance -> tc_is_customizing() );
     //Do not use transient when in the customizer preview (this class is not called in the customize left panel)
     $store_transient = $load_transient = $use_transient;
-    
+
     // delete transient when in the customize preview
     if ( ! $use_transient )
       delete_transient( 'tc_posts_slides' );
 
-    return apply_filters( 'tc_the_slides', $this -> tc_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );  
+    return apply_filters( 'tc_the_slides', $this -> tc_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );
   }
 
   /**
@@ -176,8 +176,8 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
       set_transient( $transient_name, $pre_slides , 60*60*24*365*20 );//20 years of peace
     return $pre_slides;
   }
-  
-  
+
+
   /**
   * Helper
   * Returns the array of eligible posts for the slider of posts
@@ -243,8 +243,8 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
     $_posts = $wpdb->get_results( $sql );
     return apply_filters( 'tc_query_posts_slider', $_posts, $args );
   }
-  
-  
+
+
   /**
   * Helper
   * Returns the SQL to retrieve the posts which have a thumbnail OR attachments
@@ -259,8 +259,8 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
         $this -> tc_get_posts_have_attachment_sql( $_columns, $_pa_where )
     ));
   }
-  
-  
+
+
   /**
   * Helper
   * Returns the SQL to retrieve the posts which have a thumbnail
@@ -362,7 +362,7 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
         'slide_background'
     ), $ID );
   }
-  
+
   /******************************
   * HELPERS / SETTERS / CALLBACKS
   *******************************/

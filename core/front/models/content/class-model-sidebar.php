@@ -11,16 +11,16 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
   /*
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model                = parent::tc_extend_params( $model );   
+    $model                = parent::tc_extend_params( $model );
     $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
 
     //extract the position
     $this -> position     = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar' ) );
-    
+
     if ( ! in_array( $this -> position, array('right', 'left' ) ) )
       return array();
 
@@ -33,7 +33,7 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
     $model['inner_class']             = array('widget-area');
     $model['action_hook_suffix']      = '_'. $this -> position;
     $model['inner_id']                = $this -> position;
-    
+
     return $model;
   }
 }

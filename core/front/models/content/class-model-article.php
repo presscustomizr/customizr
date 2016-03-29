@@ -1,6 +1,6 @@
 <?php
 class TC_article_model_class extends TC_Model {
-  public $article_selectors;  
+  public $article_selectors;
 
   public $post_class = 'row-fluid';
 
@@ -40,12 +40,12 @@ class TC_article_model_class extends TC_Model {
     //checks if attachement is image and add a selector
     $format_image               = wp_attachment_is_image() ? 'format-image' : '';
     $selectors                  = ( isset($post) && 'attachment' == $post -> post_type && is_singular() ) ? apply_filters( 'tc_attachment_selectors' , 'id="post-'.get_the_ID().'" '.$this -> tc_get_post_class(array('row-fluid', $format_image) ) ) : $selectors;
-    
+
     $selectors = apply_filters( 'tc_article_selectors', $selectors );
 
-    return $selectors;    
+    return $selectors;
   }//end of function
-  
+
 
   /**
   * Returns the classes for the post div.

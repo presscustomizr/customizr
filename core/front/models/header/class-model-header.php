@@ -1,13 +1,13 @@
 <?php
 class TC_header_model_class extends TC_Model {
-  public $has_sticky_pusher    = false;  
+  public $has_sticky_pusher    = false;
   public $pusher_margin_top    = 103;
 
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $element_class = apply_filters('tc_header_classes', array(
@@ -16,7 +16,7 @@ class TC_header_model_class extends TC_Model {
     ));
     if ( true == $has_sticky_pusher = $this -> tc_has_pusher_margin_top() )
       $pusher_margin_top = apply_filters( 'tc_default_sticky_header_height', 103 );
-    
+
     return array_merge( $model, compact( 'element_class', 'has_sticky_pusher', 'pusher_margin_top') );
   }
 
@@ -105,7 +105,7 @@ class TC_header_model_class extends TC_Model {
     //STICKY HEADER
     if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
       array_push( $_classes, 'tc-sticky-header', 'sticky-disabled' );
-      
+
       //STICKY TRANSPARENT ON SCROLL
       if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_transparent_on_scroll' ) ) )
         array_push( $_classes, 'tc-transparent-on-scroll' );
@@ -114,7 +114,7 @@ class TC_header_model_class extends TC_Model {
     }
     else
       array_push( $_classes, 'tc-no-sticky-header' );
-    
+
     return $_classes;
   }
 }//end of class

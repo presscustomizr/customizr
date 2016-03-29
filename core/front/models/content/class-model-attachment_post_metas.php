@@ -18,15 +18,15 @@ class TC_attachment_post_metas_model_class extends TC_post_metas_model_class {
 
 
   public function tc_get_attachment_parent_url() {
-    return $this -> tc_get_meta( 'parent', 'url' );    
+    return $this -> tc_get_meta( 'parent', 'url' );
   }
 
   public function tc_get_attachment_parent_title() {
-    return $this -> tc_get_meta( 'parent', 'title' );    
+    return $this -> tc_get_meta( 'parent', 'title' );
   }
 
   public function tc_get_attachment_size() {
-    return $this -> tc_get_attachment_width() && $this -> tc_get_attachment_height();    
+    return $this -> tc_get_attachment_width() && $this -> tc_get_attachment_height();
   }
 
 
@@ -38,7 +38,7 @@ class TC_attachment_post_metas_model_class extends TC_post_metas_model_class {
 
   public function tc_meta_generate_parent( $what ) {
     $parent = $this -> tc_get_attachment_parent();
-    
+
     switch ( $what ) {
       case 'title' : return ( get_the_title( $parent ) );
       case 'url'   : return esc_url( get_permalink( $parent ) );
@@ -48,9 +48,9 @@ class TC_attachment_post_metas_model_class extends TC_post_metas_model_class {
 
   /* Helpers */
   private function tc_get_attachment_parent() {
-    return $this -> tc_get_meta( 'attachment_parent' );    
+    return $this -> tc_get_meta( 'attachment_parent' );
   }
- 
+
   public function tc_meta_generate_attachment_parent() {
     global $post;
     return $post -> post_parent;

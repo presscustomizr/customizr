@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * The template for displaying the post and page titles in singular and post lists contexts
  *
@@ -8,7 +8,7 @@
  */
 
 /* Titles in list of posts (alternate layout) */
-if ( 'post_list' == tc_get('context') ) : 
+if ( 'post_list' == tc_get('context') ) :
 
 ?>
 <h2 class="<?php tc_echo( 'element_class') ?>" <?php tc_echo('element_attributes') ?>>
@@ -16,9 +16,9 @@ if ( 'post_list' == tc_get('context') ) :
   <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php the_title() ?></a>
   <?php do_action( '__after_inner_post_page_title__' ) ?>
 </h2>
-<?php 
-    
-/* Titles in singular contexts */ 
+<?php
+
+/* Titles in singular contexts */
 else :
 
 ?>

@@ -8,11 +8,11 @@ class TC_logo_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    extract( $this -> tc_get_logo_src_args( $this -> logo_type ) );  
+    extract( $this -> tc_get_logo_src_args( $this -> logo_type ) );
 
     $model[ 'src' ]   = $logo_src;
     $model[ 'alt' ]   = apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) ;
@@ -35,7 +35,7 @@ class TC_logo_model_class extends TC_Model {
   function tc_get_logo_src_args( $logo_type ) {
     $logo_type_sep          = $logo_type ? '_sticky_' : '_';
     $accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
-    $args                   = array();     
+    $args                   = array();
     //check if the logo is a path or is numeric
     //get src for both cases
     $_logo_src 			    = '';
@@ -69,7 +69,7 @@ class TC_logo_model_class extends TC_Model {
                 'logo_height' 			=> $_height,
                 'logo_type'             => trim($logo_type_sep,'_')
       );
-   
+
       return $args;
   }
 

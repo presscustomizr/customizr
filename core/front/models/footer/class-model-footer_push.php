@@ -1,6 +1,6 @@
 <?php
 class TC_footer_push_model_class extends TC_Model {
-   
+
   function tc_body_class( $_classes ) {
     //this module can be instantiated in the customizer also when the relative option is disabled
     //as it's transported via postMessage. The body class above is hence handled in the preview js
@@ -9,7 +9,7 @@ class TC_footer_push_model_class extends TC_Model {
       array_push( $_classes, 'tc-sticky-footer' );
     return $_classes;
   }
-  
+
   /*
   * Callback of tc_user_options_style hook
   * @return css string

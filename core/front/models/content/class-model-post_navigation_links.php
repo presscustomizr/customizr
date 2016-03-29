@@ -8,15 +8,15 @@ abstract class TC_post_navigation_links_model_class extends TC_model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-   $model[ 'prev_arrow' ]       = is_rtl() ? '&rarr;' : '&larr;'; 
+   $model[ 'prev_arrow' ]       = is_rtl() ? '&rarr;' : '&larr;';
    $model[ 'next_arrow' ]       = is_rtl() ? '&larr;' : '&rarr;';
    $model[ 'prev_link' ]        = $this -> tc_get_the_previous_link( $model );
    $model[ 'next_link' ]        = $this -> tc_get_the_next_link( $model );
- 
+
    return $model;
   }
 

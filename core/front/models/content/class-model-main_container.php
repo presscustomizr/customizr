@@ -6,8 +6,8 @@ class TC_main_container_model_class extends TC_Model {
   /*
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'column_content_class' ]      = apply_filters( 'tc_column_content_wrapper_classes' , $this -> column_content_class );

@@ -3,5 +3,5 @@
 <?php endif ?>
   <?php dynamic_sidebar(  tc_get( 'id' ) ) ?>
 <?php if ( tc_get('element_id') ) : ?>
-  </div>  
+  </div>
 <?php endif;

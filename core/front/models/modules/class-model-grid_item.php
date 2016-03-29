@@ -55,18 +55,18 @@ class TC_grid_item_model_class extends TC_model {
   function tc_get_thumb_properties( $section_cols ) {
     $has_thumb           = $this -> tc_grid_show_thumb();
     $thumb_img           = '';
-    
+
     if ( $has_thumb ) {
-      $thumb_model                   = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( 
+      $thumb_model                   = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model(
           $thumb_size                = $this -> tc_get_thumb_size_name( $section_cols ),
-          null, null, null, 
-          $_filtered_thumb_size_name = $this -> tc_get_filtered_thumb_size_name( $section_cols ) 
+          null, null, null,
+          $_filtered_thumb_size_name = $this -> tc_get_filtered_thumb_size_name( $section_cols )
       );
       extract( $thumb_model );
 
       if ( ! isset( $tc_thumb ) )
-        return;    
-      
+        return;
+
       $thumb_img              = apply_filters( 'tc-grid-thumb-img', $tc_thumb, TC_utils::tc_id() );
     }
 
@@ -87,11 +87,11 @@ class TC_grid_item_model_class extends TC_model {
   }
 
 
- 
+
 
 
   /*
-  * grid icon visibility 
+  * grid icon visibility
   */
   function tc_set_grid_icon_visibility() {
     $has_icon        = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_icons') );
@@ -100,7 +100,7 @@ class TC_grid_item_model_class extends TC_model {
       $icon_attributes = sprintf('style="display:%1$s">',
           $has_icon ? 'inline-block' : 'none'
       );
-    return compact( 'icon_enabled', 'icon_attributes' ); 
+    return compact( 'icon_enabled', 'icon_attributes' );
   }
 
 
@@ -110,8 +110,8 @@ class TC_grid_item_model_class extends TC_model {
   /**
   * @return  boolean
   */
-  
-  
+
+
   /*
   * get the thumb size name to use according to the grid element width
   */
@@ -119,10 +119,10 @@ class TC_grid_item_model_class extends TC_model {
     return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
   }
 
-  
+
   /*
   * get the thumb size name used in the TC_utils_thumbnails to set the proper inline style
-  * if needed, accordint to the grid element width 
+  * if needed, accordint to the grid element width
   */
   function tc_get_filtered_thumb_size_name( $section_cols ){
     return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
@@ -135,9 +135,9 @@ class TC_grid_item_model_class extends TC_model {
 
   /**
   * parse this model properties for rendering
-  */ 
+  */
   function tc_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );  
+    parent::tc_sanitize_model_properties( $model );
     foreach ( array('figure') as $property )
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
   }

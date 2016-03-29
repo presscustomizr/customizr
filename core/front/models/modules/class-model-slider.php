@@ -27,13 +27,13 @@ class TC_slider_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    //valorize this id as the model id so we can use it as filter param throughout the class  
-    $this -> id         = $model['id'];  
-    
+    //valorize this id as the model id so we can use it as filter param throughout the class
+    $this -> id         = $model['id'];
+
     //gets the actual page id if we are displaying the posts page
     $this -> queried_id = $queried_id = $this -> tc_get_real_id();
 
@@ -49,8 +49,8 @@ class TC_slider_model_class extends TC_Model {
 
     //We need a way to silently fail when the model "decides" it doesn't have to be instanciated
     if ( ! $slides )
-      return;   
-    
+      return;
+
     $element_class      = $this -> tc_get_slider_element_class( $queried_id, $slider_name_id, $layout );
     $inner_class        = $this -> tc_get_slider_inner_class();
 
@@ -66,19 +66,19 @@ class TC_slider_model_class extends TC_Model {
     //set-up loader
     if ( $this -> tc_is_slider_loader_active( $slider_name_id ) ) {
       $has_loader       = true;
-  
+
       if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) )
         $pure_css_loader = sprintf( '<div class="tc-css-loader %1$s">%2$s</div>',
             implode( ' ', apply_filters( 'tc_pure_css_loader_add_classes', array( 'tc-mr-loader') ) ),
-            apply_filters( 'tc_pure_css_loader_inner', '<div></div><div></div><div></div>') 
-        ); 
+            apply_filters( 'tc_pure_css_loader_inner', '<div></div><div></div><div></div>')
+        );
     }
 
-    return array_merge( $model, compact( 
-        'slider_name_id', 
-        'element_class', 
-        'slides', 
-        'inner_class', 
+    return array_merge( $model, compact(
+        'slider_name_id',
+        'element_class',
+        'slides',
+        'inner_class',
         'img_size',
         'has_controls',
         'left_control_class',
@@ -90,7 +90,7 @@ class TC_slider_model_class extends TC_Model {
 
 
   function setup_slide_data( $id, $data ) {
-    set_query_var( 'tc_slide', array( 
+    set_query_var( 'tc_slide', array(
           'slider_name_id' => $this -> slider_name_id,
           'data'           => $data,
           'img_size'       => $this -> img_size,
@@ -114,7 +114,7 @@ class TC_slider_model_class extends TC_Model {
     if ( 'demo' == $slider_name_id )
       return apply_filters( 'tc_default_slides', $this -> tc_get_default_slides() );
     else if ( 'tc_posts_slider' == $slider_name_id ) {
-      return array();  
+      return array();
     }
 
     //if not demo or tc_posts_slider, we get slides from options
@@ -123,7 +123,7 @@ class TC_slider_model_class extends TC_Model {
     //if the slider not longer exists or exists but is empty, return false
     if ( ! $this -> tc_slider_exists( $saved_slides) )
       return;
-      
+
     //inititalize the slides array
     $slides   = array();
     //init slide active state index
@@ -141,7 +141,7 @@ class TC_slider_model_class extends TC_Model {
       $slides[$id] = $slide_model;
       $_loop_index++;
     }//end of slides loop
-    
+
     //returns the slides or false if nothing
     return apply_filters('tc_the_slides', ! empty($slides) ? $slides : false );
   }
@@ -213,7 +213,7 @@ class TC_slider_model_class extends TC_Model {
   * By default we don't want the slider images to be responsive as wp intends as our slider isnot completely responsive (has fixed heights for different viewports)
   *
   * return array()
-  */ 
+  */
   protected function tc_set_wp_responsive_slide_img_attr() {
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
@@ -246,8 +246,8 @@ class TC_slider_model_class extends TC_Model {
   * HELPERS / SETTERS / CALLBACKS
   *******************************/
 
-  /* 
-  * Default slides: demo slider 
+  /*
+  * Default slides: demo slider
   * Not a class property as they're really used very rarely, no need to reserve space
   * for them
   */
@@ -283,7 +283,7 @@ class TC_slider_model_class extends TC_Model {
                                     __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                             )
       )
-    );///end of slides array  
+    );///end of slides array
   }
 
 
@@ -299,7 +299,7 @@ class TC_slider_model_class extends TC_Model {
 
     if( (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_center_slider_img') ) )
       array_push( $class, 'center-slides-enabled' );
-    
+
     return apply_filters( 'tc_carousel_inner_classes', $class );
   }
 
@@ -469,13 +469,13 @@ class TC_slider_model_class extends TC_Model {
   * @return css string
   *
   * @package Customizr
-  * @since Customizr 3.2.6 
+  * @since Customizr 3.2.6
   */
   function tc_user_options_style_cb( $_css ) {
     $slider_name_id =  $this -> tc_get_current_slider( $this -> tc_get_real_id() ) ;
     //custom css for the slider loader
     if ( $this -> tc_is_slider_loader_active( $slider_name_id ) ) {
-        
+
       $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL . TC_ASSETS_PREFIX, 'img/slider-loader.gif') );
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
       if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) ) {
@@ -484,26 +484,26 @@ class TC_slider_model_class extends TC_Model {
         // Basically 'cause the loader is something we see when the page "loads" then it disappears so a live change of the skin
         // will still have no visive impact on it. This will avoid us to rebuild the custom skins.
         $_current_skin_colors      = TC_utils::$inst -> tc_get_skin_color( 'pair' );
-        $_pure_css_loader_css      = apply_filters( 'tc_slider_loader_css', sprintf( 
+        $_pure_css_loader_css      = apply_filters( 'tc_slider_loader_css', sprintf(
             '.tc-slider-loader-wrapper .tc-css-loader > div { border-color:%s; }',
             //we can use the primary or the secondary skin color
             'primary' == apply_filters( 'tc_slider_loader_color', 'primary') ? $_current_skin_colors[0] : $_current_skin_colors[1]
-        )); 
+        ));
       }else {
         $_slider_loader_gif_class = '';
         $_pure_css_loader_css     = '';
       }
-      
-      $_slider_loader_gif_css     = $_slider_loader_src ? sprintf( 
+
+      $_slider_loader_gif_css     = $_slider_loader_src ? sprintf(
                                        '%1$s .tc-slider-loader-wrapper .tc-img-gif-loader {
                                                background: url(\'%2$s\') no-repeat center center;
                                         }',
                                         $_slider_loader_gif_class,
-                                        $_slider_loader_src 
+                                        $_slider_loader_src
                                     ) : '';
       $_css = sprintf( "%s\n%s%s", $_css, $_slider_loader_gif_css, $_pure_css_loader_css );
     }//end custom css for the slider loader
-  
+
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
     $_custom_height     = esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') );
@@ -554,7 +554,7 @@ class TC_slider_model_class extends TC_Model {
           }
         }\n";
     }//end foreach
-    
+
     return sprintf("%s\n%s", $_css, $_slider_inline_css);
   }
 }

@@ -8,7 +8,7 @@ class TC_posts_list_description_model_class extends TC_Model {
     $this -> context  = $this -> tc_get_the_posts_list_context();
 
     if ( ! $this -> context )
-      return;   
+      return;
 
     $model['description']   = apply_filters( "tc_{$this -> context}_description", $this -> tc_get_posts_list_description() );
 
@@ -17,7 +17,7 @@ class TC_posts_list_description_model_class extends TC_Model {
 
   //you can find the same in the posts_list_title model
   function tc_get_the_posts_list_context() {
-    global $wp_query;  
+    global $wp_query;
     if ( $wp_query -> is_posts_page && ! is_front_page() )
       return 'page_for_posts';
 
@@ -37,7 +37,7 @@ class TC_posts_list_description_model_class extends TC_Model {
       if ( apply_filters('tc_show_tax_archive_title', true ) )
         return 'tax';
     }
-    return false;  
+    return false;
   }
 
   function tc_get_posts_list_description( $context = null ) {
@@ -52,4 +52,4 @@ class TC_posts_list_description_model_class extends TC_Model {
       default               : return '';
     }
   }
-}  
+}

@@ -1,6 +1,6 @@
 <hr class="featurette-divider">
 <div class="author-info" <?php tc_echo('element_attributes') ?>>
-  <div class="<?php tc_echo( 'author_wrapper_class' ) ?>"> 
+  <div class="<?php tc_echo( 'author_wrapper_class' ) ?>">
     <div class="<?php tc_echo( 'author_avatar_class' ) ?>">
      <?php echo get_avatar( get_the_author_meta( 'user_email' ), tc_get( 'author_avatar_size' ) ) ?>
     </div>

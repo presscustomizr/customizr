@@ -2,7 +2,7 @@
 class TC_slide_model_class extends TC_Model {
   public $img_wrapper_class;
   public $caption_class;
-  
+
   public $name_id;
   public $slide_background;
 
@@ -20,7 +20,7 @@ class TC_slide_model_class extends TC_Model {
   public $link_url;
   public $link_target;
   public $link_whole_slide;
-  
+
   public $color_style = '';
 
   public $has_caption;
@@ -32,14 +32,14 @@ class TC_slide_model_class extends TC_Model {
     $slide   = get_query_var( 'tc_slide', null );
     if ( empty( $slide ) ) {
       $this -> tc_set_property( 'visibility', false );
-      return;      
+      return;
     }
 
     //demo data
     if ( 'demo' == $slide['slider_name_id'] && is_user_logged_in() )
       $slide['data'] =  $this -> tc_set_demo_slide_data( $slide['data'], $slide['id'] );
 
-    //array( $id, $data , $slider_name_id, $img_size )    
+    //array( $id, $data , $slider_name_id, $img_size )
     extract ( $slide );
 
     $element_class = array_filter( array( 'slide-'. $id, $data['active'] ) );
@@ -66,12 +66,12 @@ class TC_slide_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.3+
   *
-  * return array( 'button' => array(), $text, 
+  * return array( 'button' => array(), $text,
   */
   function tc_get_slide_caption_model( $slide ) {
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $slide );
-    
+
     //filters the data before (=> used for demo for example )
     $data                   = apply_filters( 'tc_slide_caption_data', $data, $slider_name_id, $id );
     $show_caption           = ! ( $data['title'] == null && $data['text'] == null && $data['button_text'] == null ) ;
@@ -125,9 +125,9 @@ class TC_slide_model_class extends TC_Model {
 
     $caption_elements = wp_parse_args( compact( 'title', 'button_text', 'text' ), $defaults );
 
-    return array_merge( 
+    return array_merge(
         $caption_elements,
-        compact( 'caption_class', 'title_class', 'title_tag', 'text_class', 'button_link', 'button_class' ) 
+        compact( 'caption_class', 'title_class', 'title_tag', 'text_class', 'button_link', 'button_class' )
     );
   }
 
@@ -165,8 +165,8 @@ class TC_slide_model_class extends TC_Model {
 
   /**
   * parse this model properties for rendering
-  */ 
-  function tc_sanitize_model_properties( $model ) { 
+  */
+  function tc_sanitize_model_properties( $model ) {
     parent::tc_sanitize_model_properties( $model );
     foreach ( array( 'caption', 'text', 'title', 'button' ) as $property ) {
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );

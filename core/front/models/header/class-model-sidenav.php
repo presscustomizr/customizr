@@ -29,7 +29,7 @@ class TC_sidenav_model_class extends TC_Model {
     //sidenav where
     $_where = str_replace( 'pull-menu-', '', esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
     array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
-    
+
     return $_classes;
   }
 

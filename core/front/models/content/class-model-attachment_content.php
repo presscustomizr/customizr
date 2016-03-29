@@ -7,7 +7,7 @@ class TC_attachment_content_model_class extends TC_Model {
   public $attachment_size;
   public $attachment_class;
 
-  
+
   function tc_setup_late_properties() {
     global $post;
 
@@ -26,7 +26,7 @@ class TC_attachment_content_model_class extends TC_Model {
       foreach ( $attachments as $k => $attachment )
         if ( $attachment->ID == $post->ID )
             break;
-    
+
       $k++;
 
       // If there is more than 1 attachment in a gallery
@@ -48,8 +48,8 @@ class TC_attachment_content_model_class extends TC_Model {
       $link_url          = esc_url( $next_attachment_url );
       $link_rel          = 'attachment';
       $attachemnt_class  = 'attachment';
-    } else {// if fancybox option checked 
-    
+    } else {// if fancybox option checked
+
       $attachment_infos       = wp_get_attachment_image_src( $post->ID , 'large' );
       $attachment_src         = $attachment_infos[0];
       $attachment_class       = 'grouped_elements';
@@ -72,11 +72,11 @@ class TC_attachment_content_model_class extends TC_Model {
                                     );
       }
     }//end else
-  
+
     $attachment_size = apply_filters( 'tc_customizr_attachment_size' , array( 960, 960 ) );
     $has_gallery     = ! empty ( $gallery );
 
     //update the model
     $this -> tc_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'has_gallery', 'attachment_class' ) );
   }
-}  
+}
