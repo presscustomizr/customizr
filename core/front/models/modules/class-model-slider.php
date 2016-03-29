@@ -31,6 +31,8 @@ class TC_slider_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
+    if ( ! isset( $model['id'] ) )
+      return;
     //valorize this id as the model id so we can use it as filter param throughout the class
     $this -> id         = $model['id'];
 
