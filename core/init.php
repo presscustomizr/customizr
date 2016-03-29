@@ -227,7 +227,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
           /*********************************************
           * SLIDER
-          *********************************************/ 
+          *********************************************/
           array(
             'hook' => '__page_wrapper__',
             'template'  => 'modules/slider',
@@ -244,6 +244,12 @@ if ( ! class_exists( 'TC___' ) ) :
               'hook' => '__slide__',
               'template'  => 'modules/slide',
             ),
+                //edit link
+                array(
+                  'hook'        => '__after_all_slides_caption__',
+                  'template'    => 'modules/edit_button',
+                  'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slide')
+                ),
 
           /*********************************************
           * CONTENT
@@ -251,15 +257,15 @@ if ( ! class_exists( 'TC___' ) ) :
           /* MAIN WRAPPERS */
           array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 30 ),
-          
+
           //Featured Pages
-          array( 
+          array(
             'hook' => '__main_wrapper__',
             'template' => 'modules/featured_pages',
             'priority' => 10,
         //We don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
           ),
-            array( 
+            array(
               'hook' => '__featured_page__',
               'template' => 'modules/featured_page',
             ),
@@ -304,7 +310,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
           /*** GRID (POST LIST) ***/
           /* Contains the grid-item and its submodules registrations */
-          array( 
+          array(
             'hook'        => 'in_main_loop',
             'template'    => 'modules/grid_wrapper',
             'priority'    => 10,
@@ -329,7 +335,7 @@ if ( ! class_exists( 'TC___' ) ) :
             'id'          => 'post_list_standard_thumb',
             'model_class' => 'content/thumbnail'
           ),
-          
+
           //the recangular thumb has a different model + a slighty different template
           array(
             'hook'        => '__post_list_thumb__',
@@ -341,13 +347,13 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
           /*** ALTERNATE POST LIST END ***/
-          
+
           /* IN ALTERNATE POST LIST AND SINGULARS !!! */
           array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title'/*,'id' => 'post_list_title'*/ ),
           //comment bubble
           array(
             'hook' => '__after_inner_post_page_title__',
-            'template' => 'modules/comment_bubble' 
+            'template' => 'modules/comment_bubble'
           ),
           //edit post links
           array(
@@ -370,9 +376,9 @@ if ( ! class_exists( 'TC___' ) ) :
           //attachment post mestas
             array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
 
-         
 
-          /**** SINGULAR: PAGE POST ATTACHMENT ****/  
+
+          /**** SINGULAR: PAGE POST ATTACHMENT ****/
           array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'id' => 'singular_article' ),
           //page/attachment/post headings
             array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
@@ -390,7 +396,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
           /*** COMMENTS ***/
           /*
-          * contains the comment form 
+          * contains the comment form
           *
           * contains comment list registration
           * the comment list contains the comment and (track|ping)back registration
@@ -600,7 +606,7 @@ if ( ! class_exists( 'TC___' ) ) :
 
     /*
     * Stores the current model in the class current_model stack
-    * called by the View class before requiring the view template 
+    * called by the View class before requiring the view template
     * @param $model
     */
     function tc_set_current_model( $model ) {
@@ -613,7 +619,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * called by the View class after the view template has been required/rendered
     */
     function tc_reset_current_model() {
-      array_pop( $this -> current_model );    
+      array_pop( $this -> current_model );
     }
 
 
@@ -633,7 +639,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
     function tc_echo( $property, $args = array() ) {
-      echo tc_get( $property, $args );  
+      echo tc_get( $property, $args );
     }
 
     /**

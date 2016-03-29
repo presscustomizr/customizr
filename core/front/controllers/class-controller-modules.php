@@ -104,13 +104,18 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
 
     /*
     * The edit link is allowed when:
-    * 1) not customizing
-    * 2) current user can edit posts
+    * 1) user logged in
+    * 2) not customizing
+    * 3) current user can edit posts
     * inside the model another check will be done on the user capability to edit the current post
     * and in the loop
     */
     function tc_display_view_edit_button() {
-      return apply_filters( 'tc_edit_in_title', ! TC___::$instance -> tc_is_customizing() );
+      return apply_filters( 'tc_edit_in_title',
+          is_user_logged_in()
+       && ! TC___::$instance -> tc_is_customizing()
+       && current_user_can( 'edit_posts' )
+      );
     }
     /* FOLLOWING COPIED FROM THE CONTENT CONTROLLER CLASS */
     /******************************
