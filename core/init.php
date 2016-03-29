@@ -105,6 +105,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('core/utils' , 'utils_settings_map'),//customizer setting map
               array('core/utils' , 'utils'),//helpers used everywhere
               array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
+              array('core/utils' , 'utils_query'),//query helpers used almost everywhere
               array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
               array('core'       , 'resources'),//loads front stylesheets (skins) and javascripts
               array('core'       , 'widgets'),//widget factory
@@ -252,14 +253,14 @@ if ( ! class_exists( 'TC___' ) ) :
                   'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slide'),
                   'controller'  => 'edit_button'
               ),
-          //edit slider button
-          array(
-            'hook'        => '__after_carousel_inner__',
-            'template'    => 'modules/edit_button',
-            'id'          => 'slider_edit_button',
-            'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slider'),
-            'controller'  => 'edit_button'
-          ),
+            //edit slider button
+            array(
+              'hook'        => '__after_carousel_inner__',
+              'template'    => 'modules/edit_button',
+              'id'          => 'slider_edit_button',
+              'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slider'),
+              'controller'  => 'edit_button'
+            ),
 
           /*********************************************
           * CONTENT
