@@ -98,6 +98,10 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
     }
 
 
+    function tc_display_view_recently_updated() {
+      return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_in_title' ) );
+    }
+
     /* FOLLOWING COPIED FROM THE CONTENT CONTROLLER CLASS */
     /******************************
     VARIOUS HELPERS
