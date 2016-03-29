@@ -1,5 +1,6 @@
 <?php
 class TC_slider_of_posts_model_class extends TC_slider_model_class {
+  public $slider_type = 'slider_of_posts';
 
   /**
   * @override

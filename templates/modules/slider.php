@@ -1,5 +1,15 @@
+<?php
+/**
+ * The template for displaying the theme's slider (wrapper)
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+
+?>
 <div id="customizr-slider-<?php tc_echo( 'id' ) ?>" class="<?php tc_echo( 'element_class' ) ?> " <?php tc_echo('element_attributes') ?>>
-  <?php /* $slider_model_id -> tc_render_slider_loader_view( $slider_model-> slider_name_id ); */ ?>
+
   <?php if ( tc_get( 'has_loader' ) ) : ?>
     <div id="tc-slider-loader-wrapper-<?php tc_echo( 'id' ) ?>" class="tc-slider-loader-wrapper" style="display:none;">
       <div class="tc-img-gif-loader"></div>
@@ -9,7 +19,7 @@
       document.getElementById("tc-slider-loader-wrapper-<?php tc_echo( 'id' ) ?>").style.display="block";
     </script>
   <?php endif ?>
-  <?php do_action( '__before_carousel_inner' , tc_get( 'slides' ), tc_get( 'slider_name_id' ) ) ?>
+  <?php do_action( '__before_carousel_inner__' ); ?>
 
   <div class="<?php tc_echo( 'inner_class' ) ?>">
     <?php
@@ -21,7 +31,7 @@
       }
     ?>
   </div><!-- /.carousel-inner -->
-  <?php  do_action( '__after_carousel_inner' , tc_get( 'slides' ), tc_get( 'slider_name_id' ) )  ?>
+  <?php  do_action( '__after_carousel_inner__' ) ?>
 
   <?php if ( tc_get( 'has_controls' ) ) : ?>
     <div class="tc-slider-controls <?php tc_echo( 'left_control_class' ) ?>">
@@ -30,5 +40,5 @@
     <div class="tc-slider-controls <?php tc_echo( 'right_control_class' ) ?>">
       <a class="tc-carousel-control" href="#customizr-slider-<?php tc_echo( 'id' ) ?>" data-slide="next">&rsaquo;</a>
     </div>
-  <?php endif; ?>
+  <?php endif ?>
 </div><!-- /#customizr-slider -->
