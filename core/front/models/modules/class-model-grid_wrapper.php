@@ -43,7 +43,32 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
     return $model;
   }
 
-
+  /*
+  * 
+  *  Children setup
+  */
+  function tc_setup_children() {
+    $children = array(     
+      //grid item
+      array( 
+        'hook'        => '__grid__',
+        'template'    => 'modules/grid_item',
+      ),
+        //comment bubble
+        array(
+          'hook' => '__comment_bubble__',
+          'template' => 'modules/comment_bubble' 
+        ),
+        //recently updated
+        array(
+          'hook'     => '__recently_updated__',
+          'template' => 'modules/recently_updated',
+          'priority' => 20
+      )
+    );
+    
+    return $children;
+  }
 
   //inside the loop but before rendering set some properties
   function tc_setup_late_properties() {
