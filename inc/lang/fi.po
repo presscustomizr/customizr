@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: * Customizr v3.4.20\n"
 "Report-Msgid-Bugs-To: http://themesandco.com/contact/\n"
 "POT-Creation-Date: 2015-08-22 15:55+0200\n"
-"PO-Revision-Date: 2015-08-22 15:55+0200\n"
-"Last-Translator: Juha Tiihonen <tiihonen@iki.fi>\n"
+"PO-Revision-Date: 2016-03-29 22:56+0300\n"
+"Last-Translator: Daniel Landau <daniel@landau.fi>\n"
 "Language-Team: Customizr translation contributors <contact@themesandco.com>\n"
-"Language: en_US\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -22,11 +22,11 @@ msgstr ""
 
 #: admin/class-admin-customize.php:89
 msgid "&mdash; Select &mdash;"
-msgstr ""
+msgstr "&mdash; Valitse &mdash;"
 
 #: admin/class-admin-customize.php:125
 msgid "Assign menus to locations"
-msgstr ""
+msgstr "Aseta valikot sijainteihin"
 
 #: admin/class-admin-customize.php:133
 #, php-format
@@ -34,19 +34,20 @@ msgid ""
 "You haven't created any menu yet. %s or check the %s to learn more about "
 "menus."
 msgstr ""
+"Et ole vielä luonut valikkoja. %s tai katso %s oppiaksesi lisää valikoista."
 
 #: admin/class-admin-customize.php:134
 msgid "Create a new menu now"
-msgstr ""
+msgstr "Luo uusi valikko nyt"
 
 #: admin/class-admin-customize.php:135 class-fire-utils_settings_map.php:1330
 #: parts/class-content-post.php:206
 msgid "WordPress documentation"
-msgstr ""
+msgstr "Wordpressin dokumentaatio"
 
 #: admin/class-admin-customize.php:152
 msgid "SITE ICON"
-msgstr ""
+msgstr "Sivuston kuvake"
 
 #: admin/class-admin-customize.php:348
 msgid "More grid design options"
@@ -62,10 +63,12 @@ msgid ""
 "properly displayed on all devices. You might consider to re-upload your "
 "favicon with the new control below."
 msgstr ""
+"Sivuston favicon käsitellään vanhalla menetelmällä, joka ei näy oikein "
+"kaikilla laitteilla. Harkitse lataavasi faviconin uudestaan alla."
 
 #: admin/class-admin-customize.php:534
 msgid "dismiss"
-msgstr ""
+msgstr "sulje"
 
 #: admin/class-admin-customize.php:537
 msgid "Hi! This is"
@@ -120,17 +123,19 @@ msgstr "Tarvitsetko lisää kustomointiasetuksia ja ensiluokkaista tukea?"
 #: admin/class-admin-customize.php:585 admin/class-admin-customize.php:599
 #: admin/class-admin-customize.php:613 admin/class-admin-customize.php:625
 msgid "Get Customizr Pro"
-msgstr ""
+msgstr "Osta Customizr Pro"
 
 #: admin/class-admin-customize.php:572
 msgid ""
 "Need more control on your fonts ? Style any text in live preview ( size, "
 "color, font family, effect, ...) with Customizr Pro."
 msgstr ""
+"Tarvitsetko lisää kontrollia fontteihin? Tyylitä (koko, väri, fontti, "
+"efekti) mikä tahansa teksti live-esikatselulla Customizr Prolla."
 
 #: admin/class-admin-customize.php:583
 msgid "Add unlimited featured pages with Customizr Pro."
-msgstr ""
+msgstr "Lisää rajattomasti korostettuja sivuja Customizr Prolla."
 
 #: admin/class-admin-customize.php:595
 msgid ""
@@ -350,7 +355,7 @@ msgstr ""
 
 #: admin/class-admin-meta_boxes.php:692
 msgid "Open link in a new page/tab"
-msgstr ""
+msgstr "Avaa linkki uudella sivulla/välilehdellä"
 
 #: admin/class-admin-meta_boxes.php:699
 msgid "Link the whole slide"
@@ -394,7 +399,7 @@ msgstr "Painikkeen teksti"
 
 #: admin/class-admin-meta_boxes.php:896
 msgid "Link"
-msgstr ""
+msgstr "Linkki"
 
 #: admin/class-admin-meta_boxes.php:897 parts/class-content-breadcrumb.php:645
 #: parts/class-content-breadcrumb.php:678
@@ -419,11 +424,11 @@ msgstr "Nykyinen kuva"
 
 #: admin/class-fire-admin_init.php:263
 msgid "Good, you've just upgraded to"
-msgstr ""
+msgstr "Hyvä, olet juuri päivittänyt versioon"
 
 #: admin/class-fire-admin_init.php:265
 msgid "version"
-msgstr ""
+msgstr "versio"
 
 #: admin/class-fire-admin_init.php:274
 msgid "We'd like to introduce the new features we've been working on."
@@ -443,7 +448,7 @@ msgstr ""
 
 #: admin/class-fire-admin_init.php:285
 msgid "close"
-msgstr ""
+msgstr "sulje"
 
 #: admin/class-fire-admin_page.php:41
 msgid "About Customizr"
@@ -451,21 +456,21 @@ msgstr "Lisätietoa Customizr-teemasta"
 
 #: admin/class-fire-admin_page.php:74
 msgid "Need help with"
-msgstr ""
+msgstr "Tarvitsetko apua: "
 
 #: admin/class-fire-admin_page.php:79
 msgid "Welcome to"
-msgstr ""
+msgstr "Tervetuloa"
 
 #: admin/class-fire-admin_page.php:92
 #, php-format
 msgid "The best way to start is to read the %s."
-msgstr ""
+msgstr "Paras tapa aloittaa on lukea %s."
 
 #: admin/class-fire-admin_page.php:93 admin/class-fire-admin_page.php:137
 #: parts/class-header-menu.php:393
 msgid "documentation"
-msgstr ""
+msgstr "dokumentaatio"
 
 #: admin/class-fire-admin_page.php:97
 msgid ""
@@ -485,7 +490,7 @@ msgstr ""
 
 #: admin/class-fire-admin_page.php:99
 msgid "home page"
-msgstr ""
+msgstr "kotisivu"
 
 #: admin/class-fire-admin_page.php:107
 msgid "Read the documentation"
@@ -1477,7 +1482,7 @@ msgstr ""
 
 #: class-fire-utils_settings_map.php:773
 msgid "Hide"
-msgstr ""
+msgstr "Piilota"
 
 #: class-fire-utils_settings_map.php:781
 msgid "Remove all the menus."
@@ -2440,7 +2445,7 @@ msgid "Advanced settings for the Customizr theme."
 msgstr "Customizr-teeman edistyneet valinnat."
 
 #: class-fire-utils_settings_map.php:2094
-#, fuzzy, php-format
+#, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural ""
 "Your theme supports %s menus. Select which menu appears in each location."
@@ -2871,11 +2876,10 @@ msgid "Comment(s) on"
 msgstr "Kommentit aiheesta"
 
 #: parts/class-content-comments.php:363
-#, fuzzy
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "kommentti"
-msgstr[1] "kommentti"
+msgstr[1] "kommentit"
 
 #: parts/class-content-featured_pages.php:41
 #, php-format
@@ -3295,7 +3299,7 @@ msgstr ""
 
 #: parts/class-header-menu.php:819
 msgid "Pages"
-msgstr ""
+msgstr "Sivut"
 
 #~ msgid "Images"
 #~ msgstr "Kuvat"
