@@ -49,7 +49,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       $tc_front_slider              = esc_attr(TC_utils::$inst->tc_opt( 'tc_front_slider' ) );
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
       $_show_slider = TC_utils::$inst -> tc_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
-    
+
       return apply_filters( 'tc_show_slider' , $_show_slider );
 
     }
@@ -102,6 +102,16 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_in_title' ) );
     }
 
+    /*
+    * The edit link is allowed when:
+    * 1) not customizing
+    * 2) current user can edit posts
+    * inside the model another check will be done on the user capability to edit the current post
+    * and in the loop
+    */
+    function tc_display_view_edit_button() {
+      return apply_filters( 'tc_edit_in_title', ! TC___::$instance -> tc_is_customizing() );
+    }
     /* FOLLOWING COPIED FROM THE CONTENT CONTROLLER CLASS */
     /******************************
     VARIOUS HELPERS
@@ -160,12 +170,12 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       add_filter( 'tc_is_not_grid', $bool ? '__return_false' : '__return_true' );
       return $bool;
     }
-    
+
 
     /* returns the type of post list we're in if any, an empty string otherwise */
     private function tc_get_grid_context() {
       global $wp_query;
-        
+
       if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
               $wp_query->is_posts_page )
           return 'blog';

@@ -63,8 +63,12 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
         array(
           'hook'     => '__recently_updated__',
           'template' => 'modules/recently_updated',
-          'priority' => 20
-      )
+        ),
+        //edit button
+        array(
+          'hook'     => '__edit_button__',
+          'template' => 'modules/edit_button'   
+        )
     );
 
     return $children;
