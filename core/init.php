@@ -314,7 +314,18 @@ if ( ! class_exists( 'TC___' ) ) :
              array( 
               'hook'        => '__grid__',
               'template'    => 'modules/grid_item',
-             ),
+            ),
+            //comment bubble
+            array(
+              'hook' => '__comment_bubble__',
+              'template' => 'modules/comment_bubble' 
+            ),
+            //recently updated
+            array(
+              'hook'     => '__recently_updated__',
+              'template' => 'modules/recently_updated',
+              'priority' => 20
+            ),
 
           /* END GRID */
           /*** ALTERNATE POST LIST ***/
@@ -349,8 +360,16 @@ if ( ! class_exists( 'TC___' ) ) :
           /* IN ALTERNATE POST LIST AND SINGULARS !!! */
           array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title'/*,'id' => 'post_list_title'*/ ),
           //comment bubble
-          array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble' ),
-
+          array(
+            'hook' => '__after_inner_post_page_title__',
+            'template' => 'modules/comment_bubble' 
+          ),
+          //recently updated
+          array(
+            'hook'     => '__after_inner_post_page_title__',
+            'template' => 'modules/recently_updated',
+            'priority' => 20
+          ),
 
           //Post metas in the headings
           //the default class/template is for the buttons type
