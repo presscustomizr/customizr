@@ -288,7 +288,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //hook : 'wp'
     //this method load the relevant model class file and return the instance
     //@return instance object
-    private function tc_instanciate_model($model) {
+    public function tc_instanciate_model($model) {
       $instance = null;
 
       //try to instanciate the model specified in the model_class param
@@ -330,7 +330,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     }
 
 
-    function tc_require_model_class( $_model_class ) {
+    private function tc_require_model_class( $_model_class ) {
       $model_class_basename = basename( $_model_class );
       $model_class_dirname  = dirname( $_model_class );
 
