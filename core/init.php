@@ -244,12 +244,22 @@ if ( ! class_exists( 'TC___' ) ) :
               'hook' => '__slide__',
               'template'  => 'modules/slide',
             ),
-                //edit link
+                //edit slide button
                 array(
                   'hook'        => '__after_all_slides_caption__',
                   'template'    => 'modules/edit_button',
-                  'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slide')
-                ),
+                  'id'          => 'slide_edit_button',
+                  'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slide'),
+                  'controller'  => 'edit_button'
+              ),
+          //edit slider button
+          array(
+            'hook'        => '__after_carousel_inner__',
+            'template'    => 'modules/edit_button',
+            'id'          => 'slider_edit_button',
+            'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slider'),
+            'controller'  => 'edit_button'
+          ),
 
           /*********************************************
           * CONTENT
