@@ -314,7 +314,7 @@ if ( ! class_exists( 'TC___' ) ) :
             'id'          => 'no_results',
             'template'    => 'content/content_no_results',
             'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results')
-        ),
+          ),
 
           //Headings: before the loop (for list of posts, like blog, category, archives ...)
           //sub-modules registration inside
@@ -361,30 +361,27 @@ if ( ! class_exists( 'TC___' ) ) :
           ),
           /*** END ALTERNATE POST LIST ***/
 
+          /*********************************************
+          * POST/PAGE/ATTACHMENTS HEADINGS
+          *********************************************/
           /* IN ALTERNATE POST LIST AND SINGULARS !!! */
           /*
-          * post and page titles
-          * comment_buble, edit_button, recently_update registrations inside
+          * page/attachment/post headings
+          * contains the post metas and title registration
           */
           array(
-            'hook'        => '__post_page_title__',
-            'template'    => 'content/post_page_title'
+            'hook'        => '__article__',
+            'id'          => 'singular_headings',
+            'template'    => 'content/headings',
+            'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ),
+            'priority'    => 10
           ),
-
-
-          //Post metas ( in the headings )
-          //the default class/template is for the buttons type
-            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'priority' => 20, 'id' => 'post_metas_button' ),
-          //the text meta one uses a different template
-            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'priority' => 20, 'id' => 'post_metas_text', 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
-          //attachment post mestas
-            array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
 
 
           /*********************************************
           * Singular: PAGE POST ATTACHMENT
           *********************************************/
-          /* contains post page attachement content/headings/footer registration */
+          /* contains post page attachement content/post-footer registration */
           array(
             'hook'        => 'in_main_loop',
             'template'    => 'content/article',
@@ -392,6 +389,7 @@ if ( ! class_exists( 'TC___' ) ) :
             'id'          => 'singular_article',
             'model_class' => array( 'parent' => 'content/article', 'name' => 'content/singular_wrapper' )
           ),
+
 
           /*********************************************
           * Comments
