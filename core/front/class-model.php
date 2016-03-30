@@ -47,9 +47,11 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //becoming model properties
       $model = $this -> tc_extend_params( $model );
 
-      //if model has been reset do exit
-      if ( ! $model )
+      //if model has been reset do silent exit, unsetting its id
+      if ( empty( $model ) ) {
+        $this -> tc_set_property( 'id', '' );
         return;
+      }
 
       //equivalent of wp_parse_args() with default model property values
       $this -> tc_update( $model );
@@ -141,7 +143,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
         add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' ) );
     }//fn
 
-    
+
     /**********************************************************************************
     * ACTIONS ON MODEL INSTANCIATION : MAYBE SETUP CHILDREN FOR SUCCESSIVE REGISTRATION
     ***********************************************************************************/
@@ -313,7 +315,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
     /*
     * Before rendering this model view allow the setup of the late properties (e.g. in the loops)
-    * Always sanitize those properties for being printed ( e.g. array to string ) 
+    * Always sanitize those properties for being printed ( e.g. array to string )
     */
     public function pre_rendering_my_view_cb( $model ) {
       if ( method_exists( $this, 'tc_setup_late_properties' ) )
