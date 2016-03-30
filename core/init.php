@@ -419,10 +419,6 @@ if ( ! class_exists( 'TC___' ) ) :
           /* Post navigation */
           array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
           array( 'hook' => '__content__', 'template' => 'content/post_navigation_posts', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ), 'priority' => 40 ),
-            //singular links'
-            array( 'hook' => 'post_navigation_singular', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_singular'), 'id' => 'post_navigation_links_singular'),
-            //posts links
-            array( 'hook' => 'post_navigation_posts', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_posts'), 'id' => 'post_navigation_links_posts' ),
           /* end post navigation */
 
 
