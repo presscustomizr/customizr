@@ -39,9 +39,6 @@ if ( ! class_exists( 'TC___' ) ) :
 
         //register the model's map
         add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
-
-
-
       }
       return self::$instance;
     }
