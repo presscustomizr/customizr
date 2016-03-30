@@ -25,6 +25,7 @@ if ( 'post_list' == tc_get( 'type' ) ):
 else :
 
 ?>
+  <hr class="featurette-divider">
   <h3 class="assistive-text">
     <?php  _e( 'Post navigation' , 'customizr' ) ?>
   </h3>
