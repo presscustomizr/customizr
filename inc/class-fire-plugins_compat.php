@@ -992,8 +992,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       }
 
       // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
-      add_filter( 'woocommerce_add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment' );
-      function woocommerce_header_add_to_cart_fragment( $fragments ) {
+      add_filter( 'woocommerce_add_to_cart_fragments', 'tc_woocommerce_add_to_cart_fragment' );
+      function tc_woocommerce_add_to_cart_fragment( $fragments ) {
         if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ) {
           $_cart_count = WC()->cart->get_cart_contents_count();
           $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
