@@ -13,6 +13,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
 
   public $post_list_layout;
 
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -25,7 +26,34 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
   }
 
 
+  function tc_setup_children() {
 
+    $children = array (
+      /* CONTENT */
+      //post content/excerpt
+      array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content' ),
+        //post headings in post lists
+        array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+
+      /* THUMBS */
+      array(
+        'hook'        => '__post_list_thumb__',
+        'template'    => 'content/post_list_thumbnail',
+        'id'          => 'post_list_standard_thumb',
+        'model_class' => 'content/thumbnail'
+      ),
+
+      //the recangular thumb has a different model + a slighty different template
+      array(
+        'hook'        => '__post_list_thumb__',
+        'template'    => 'content/post_list_thumbnail',
+        'id'          => 'post_list_rectangular_thumb',
+        'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_rectangular')
+      )
+    );
+
+    return $children;
+  }
 
   function tc_setup_late_properties() {
     parent::tc_setup_late_properties();

@@ -262,10 +262,14 @@ if ( ! class_exists( 'TC___' ) ) :
             ),
           /** end featured pages **/
 
-          /* BREADCRUMB */
+          /*********************************************
+          * Breadcrumb
+          *********************************************/
           array( 'hook' => '__main_wrapper__', 'template' => 'modules/breadcrumb', 'priority' => 20 ),
 
-          /* LEFT SIDEBAR */
+          /********************************************************************
+          * Left sidebar
+          ********************************************************************/
           array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 10, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
             //left sidebar content
             //socialblock in left sidebar
@@ -273,12 +277,14 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => '__widget_area_left__', 'id' => 'left', 'template' => 'modules/widget_area' ),
 
 
-          /*********************************************
-          * Content wrappers : id="content" class="{article container class }"
-          *********************************************/
+          /********************************************************************
+          * Content wrapper : id="content" class="{article container class }"
+          ********************************************************************/
           array( 'hook' => '__main_container__', 'template' => 'content/content_wrapper', 'priority' => 20 ),
 
-          /* RIGHT SIDEBAR */
+          /********************************************************************
+          * Right sidebar
+          ********************************************************************/
           array( 'hook' => '__main_container__', 'id' => 'right_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 30, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
           //right sidebar content
           //socialblock in right sidebar
@@ -301,13 +307,15 @@ if ( ! class_exists( 'TC___' ) ) :
           //author description
           array( 'hook' => '__headings_posts_list__', 'id' => 'author_description', 'template' => 'content/author_info', 'priority' => 20 ),
 
-          /* GENERIC LOOP */
+
+          /********************************************************************
+          * GENERIC LOOP
+          ********************************************************************/
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20 ),
 
           /*********************************************
           * GRID (POST LIST)
           *********************************************/
-          /* Contains the grid-item and its submodules registrations */
           array(
             'hook'        => 'in_main_loop',
             'template'    => 'modules/grid_wrapper',
@@ -320,55 +328,38 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * ALTERNATE POST LIST
           *********************************************/
-          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
-
-          /* CONTENT */
-          //post content/excerpt
-          array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content' ),
-            //post headings in post lists
-            array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-
-          /* THUMBS */
+          /* Contains the alternate post list elements and their submodules registrations */
           array(
-            'hook'        => '__post_list_thumb__',
-            'template'    => 'content/post_list_thumbnail',
-            'id'          => 'post_list_standard_thumb',
-            'model_class' => 'content/thumbnail'
+            'hook'        => 'in_main_loop',
+            'template'    => 'content/post_list_wrapper',
+            'priority'    => 10,
+            'controller'  => 'post_list',
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' )
           ),
-
-          //the recangular thumb has a different model + a slighty different template
-          array(
-            'hook'        => '__post_list_thumb__',
-            'template'    => 'content/post_list_thumbnail',
-            'id'          => 'post_list_rectangular_thumb',
-            'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_rectangular')
-          ),
-
-
-
-          /*** ALTERNATE POST LIST END ***/
+          /*** END ALTERNATE POST LIST ***/
 
           /* IN ALTERNATE POST LIST AND SINGULARS !!! */
-          array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title'/*,'id' => 'post_list_title'*/ ),
+          //post and page titles
+          array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title' ),
           //comment bubble
           array(
-            'hook' => '__after_inner_post_page_title__',
-            'template' => 'modules/comment_bubble'
+            'hook'      => '__after_inner_post_page_title__',
+            'template'  => 'modules/comment_bubble'
           ),
           //edit post links
           array(
-            'hook' => '__after_inner_post_page_title__',
-            'template' => 'modules/edit_button',
-            'priority' => 20
+            'hook'      => '__after_inner_post_page_title__',
+            'template'  => 'modules/edit_button',
+            'priority'  => 20
           ),
           //recently updated
           array(
-            'hook'     => '__after_inner_post_page_title__',
-            'template' => 'modules/recently_updated',
-            'priority' => 30
+            'hook'      => '__after_inner_post_page_title__',
+            'template'  => 'modules/recently_updated',
+            'priority'  => 30
           ),
 
-          //Post metas in the headings
+          //Post metas ( in the headings )
           //the default class/template is for the buttons type
             array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'priority' => 20, 'id' => 'post_metas_button' ),
           //the text meta one uses a different template
