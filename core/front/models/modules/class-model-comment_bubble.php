@@ -1,6 +1,6 @@
 <?php
 class TC_comment_bubble_model_class extends TC_Model {
-  public $inner_class;
+  public $type;
 
   /* DO WE WANT TO SPLIT THIS IN TWO? USING TWO DIFFERENT TEMPLATES TOO???
   *  Maybe we can do this later when we'll have the "routers" so we can register just one of the comment bubbles type based on the user options
@@ -38,6 +38,7 @@ class TC_comment_bubble_model_class extends TC_Model {
     return $_bool;
   }
 
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -45,28 +46,11 @@ class TC_comment_bubble_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $shape                      = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) );
-    $model[ 'inner_class' ]     = array( 'default' == $shape ? 'default-bubble' : $shape );
+    $model[ 'type' ]            =  esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) );
     return $model;
   }
 
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function tc_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
-    $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
-  }
 
-
-  /*
-  * @param comments_number
-  * @param text, additional text for non default bubble
-  */
-  function tc_get_comment_bubble_text( $comments_number, $text ) {
-    return FALSE === strpos( $this -> inner_class, 'default' ) ? "$comments_number $text" : $comments_number;
-  }
 
   /*
   * @param link (stirng url) the link
@@ -80,6 +64,8 @@ class TC_comment_bubble_model_class extends TC_Model {
     return $link;
   }
 
+
+
   /*
   * Callback of tc_user_options_style hook
   * @return css string
@@ -88,11 +74,19 @@ class TC_comment_bubble_model_class extends TC_Model {
   * @since Customizr 3.3.2
   */
   function tc_user_options_style_cb( $_css ) {
+    //fire once;
+    static $_fired = false;
+
+    if ( $_fired )
+      return $_css;
+
+    $_fired        = true;
+
     //apply custom color only if type custom
     //if color type is skin => bubble color is defined in the skin stylesheet
     if ( 'skin' != esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color_type' ) ) ) {
       $_custom_bubble_color = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color' ) );
-      $_comment_bubble_before_border_color = 'default' == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) ?
+      $_comment_bubble_before_border_color = 'default' == $this -> type ?
             $_custom_bubble_color :
             "$_custom_bubble_color transparent";
 
@@ -106,7 +100,7 @@ class TC_comment_bubble_model_class extends TC_Model {
           }
         ";
     }
-    if ( 'default' == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) )
+    if ( 'default' == $this -> type )
       return $_css;
     $_css .= "
         .comments-link .custom-bubble-one {
