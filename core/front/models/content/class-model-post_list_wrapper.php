@@ -31,9 +31,17 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
     $children = array (
       /* CONTENT */
       //post content/excerpt
-      array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content' ),
+      array(
+        'hook' => '__post_list_content__',
+        'template' => 'content/post_list_content',
+        'id' => 'content'
+      ),
         //post headings in post lists
-        array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
+        array(
+          'hook' => 'before_render_view_inner_content',
+          'template' => 'content/headings',
+          'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' )
+        ),
 
       /* THUMBS */
       array(
@@ -54,6 +62,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
 
     return $children;
   }
+
 
   function tc_setup_late_properties() {
     parent::tc_setup_late_properties();

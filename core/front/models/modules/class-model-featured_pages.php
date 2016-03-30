@@ -59,6 +59,19 @@ class TC_featured_pages_model_class extends TC_Model {
   }
 
 
+
+  function tc_setup_children() {
+    $children = array(
+      array(
+        'hook'      => '__featured_page__',
+        'template'  => 'modules/featured_page',
+      ),
+    );
+
+    return $children;
+  }
+
+  //hook to its own loop hook to set the current slide query var
   function setup_featured_page_data( $index, $featured_page ) {
     $j = ( $this -> fp_per_row > 1 ) ? $index % $this -> fp_per_row : $index;
 

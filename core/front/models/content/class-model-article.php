@@ -24,22 +24,9 @@ class TC_article_model_class extends TC_Model {
 
     $post_class                 = $this -> tc_get_the_post_class( $this -> post_class );
 
-    // SINGLE POST
-    $single_post_selector_bool  = isset($post) && 'page' != $post -> post_type && 'attachment' != $post -> post_type && is_singular();
-    $selectors                  = $single_post_selector_bool ? apply_filters( 'tc_single_post_selectors' ,'id="post-'.get_the_ID().'" '. $post_class ) : $selectors;
-
     // POST LIST
     $post_list_selector_bool    = ( isset($post) && !is_singular() && !is_404() && !tc__f( '__is_home_empty') ) || ( is_search() && 0 != $wp_query -> post_count );
     $selectors                  = $post_list_selector_bool ? apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $post_class ) : $selectors;
-
-    // PAGE
-    $page_selector_bool         = isset($post) && 'page' == tc__f('__post_type') && is_singular() && !tc__f( '__is_home_empty');
-    $selectors                  = $page_selector_bool ? apply_filters( 'tc_page_selectors' , 'id="page-'.get_the_ID().'" '. $post_class ) : $selectors;
-
-    // ATTACHMENT
-    //checks if attachement is image and add a selector
-    $format_image               = wp_attachment_is_image() ? 'format-image' : '';
-    $selectors                  = ( isset($post) && 'attachment' == $post -> post_type && is_singular() ) ? apply_filters( 'tc_attachment_selectors' , 'id="post-'.get_the_ID().'" '.$this -> tc_get_post_class(array('row-fluid', $format_image) ) ) : $selectors;
 
     $selectors = apply_filters( 'tc_article_selectors', $selectors );
 
