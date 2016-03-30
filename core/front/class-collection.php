@@ -113,11 +113,11 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         //emit an event on model registered
         //can be used with did_action() afterwards
         do_action( "model_registered_{$model -> id}" );
-      } else {
-        $model = ! empty($model -> id) ? $model -> id : json_encode( $model );
-        do_action('tc_dev_notice', "A model instance ( " . $model . ") was not registered. into the collection." );
+      } elseif ( ! empty( $model -> id ) ) {
+        do_action('tc_dev_notice', "A model instance ( " . $model -> id . ") was not registered. into the collection." );
         return;
-      }
+      } else //silent exit ( for those models whose instatiation has been stopped in the constructor as result of the model business logic )
+        return;
       return $model -> id;
     }
 

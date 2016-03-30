@@ -50,7 +50,7 @@ class TC_slider_model_class extends TC_Model {
     $slides             = $this -> tc_get_the_slides( $slider_name_id, $img_size );
 
     //We need a way to silently fail when the model "decides" it doesn't have to be instanciated
-    if ( ! $slides )
+    if ( empty( $slides ) )
       return;
 
     $element_class      = $this -> tc_get_slider_element_class( $queried_id, $slider_name_id, $layout );
