@@ -222,16 +222,17 @@ if ( ! class_exists( 'TC___' ) ) :
           * SLIDER
           *********************************************/
           array(
-            'hook' => '__page_wrapper__',
-            'template'  => 'modules/slider',
-            'id' => 'main_slider',
+            'hook'        => '__page_wrapper__',
+            'template'    => 'modules/slider',
+            'id'          => 'main_slider',
           ),
-          array(//slider of posts
-            'hook' => '__page_wrapper__',
-            'template'  => 'modules/slider',
-            'id' => 'main_posts_slider',
+          //slider of posts
+          array(
+            'hook'        => '__page_wrapper__',
+            'template'    => 'modules/slider',
+            'id'          => 'main_posts_slider',
             'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ),
-            'controller'   => 'main_slider'
+            'controller'  => 'main_slider'
           ),
           /** end slider **/
 
@@ -250,68 +251,90 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * Featured Pages
           *********************************************/
+          /* contains the featured page item registration */
           array(
-            'hook' => '__main_wrapper__',
-            'template' => 'modules/featured_pages',
-            'priority' => 10,
-        //We don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
+            'hook'        => '__main_wrapper__',
+            'template'    => 'modules/featured_pages',
+            'priority'    => 10,
           ),
-            array(
-              'hook' => '__featured_page__',
-              'template' => 'modules/featured_page',
-            ),
           /** end featured pages **/
 
           /*********************************************
           * Breadcrumb
           *********************************************/
-          array( 'hook' => '__main_wrapper__', 'template' => 'modules/breadcrumb', 'priority' => 20 ),
+          array(
+            'hook'        => '__main_wrapper__',
+            'template'    => 'modules/breadcrumb', 'priority' => 20 ),
 
           /********************************************************************
           * Left sidebar
           ********************************************************************/
-          array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 10, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
-            //left sidebar content
-            //socialblock in left sidebar
-          array( 'hook' => '__widget_area_left__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
-            array( 'hook' => '__widget_area_left__', 'id' => 'left', 'template' => 'modules/widget_area' ),
+          //the model content/sidebar contains the left sidebar content registration
+          array(
+            'hook'        => '__main_container__',
+            'id'          => 'left_sidebar',
+            'template'    => 'modules/widget_area_wrapper',
+            'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ),
+            'priority'    => 10,
 
-
+          ),
           /********************************************************************
           * Content wrapper : id="content" class="{article container class }"
           ********************************************************************/
-          array( 'hook' => '__main_container__', 'template' => 'content/content_wrapper', 'priority' => 20 ),
+          array(
+            'hook'        => '__main_container__',
+            'template'    => 'content/content_wrapper',
+            'priority'    => 20
+          ),
 
           /********************************************************************
           * Right sidebar
           ********************************************************************/
-          array( 'hook' => '__main_container__', 'id' => 'right_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 30, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
-          //right sidebar content
-          //socialblock in right sidebar
-          array( 'hook' => '__widget_area_right__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
-            array( 'hook' => '__widget_area_right__', 'id' => 'right', 'template' => 'modules/widget_area' ),
+          //the model content/sidebar contains the right sidebar content registration
+          array(
+            'hook'        => '__main_container__',
+            'id'          => 'right_sidebar',
+            'template'    => 'modules/widget_area_wrapper',
+            'priority'    => 30,
+            'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' )
+          ),
+
 
           /* OUTSIDE THE LOOP */
           //404
-          array( 'hook' => '__content__', 'id' => '404', 'template' => 'content/content_404', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/404') ),
+          array(
+            'hook'        => '__content__',
+            'id' => '404',
+            'template'    => 'content/content_404',
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/404')
+          ),
           //no results
-          array( 'hook' => '__content__', 'id' => 'no_results', 'template' => 'content/content_no_results', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results') ),
+          array(
+            'hook'        => '__content__',
+            'id'          => 'no_results',
+            'template'    => 'content/content_no_results',
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results')
+        ),
 
           //Headings: before the loop (for list of posts, like blog, category, archives ...)
-          array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'), 'id' => 'posts_list_headings' ),
-          array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_title', 'priority' => 10 ),
-          //search results title
-          array( 'hook' => '__headings_posts_list__', 'id' => 'posts_list_search_title', 'template' => 'content/posts_list_title', 'priority' => 10, 'model_class' => array( 'parent' => 'content/posts_list_title', 'name' => 'content/posts_list_search_title' ) ),
-          //description
-          array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_description', 'priority' => 20 ),
-          //author description
-          array( 'hook' => '__headings_posts_list__', 'id' => 'author_description', 'template' => 'content/author_info', 'priority' => 20 ),
+          //sub-modules registration inside
+          array(
+            'hook'        => '__content__',
+            'template'    => 'content/headings',
+            'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'),
+            'id'          => 'posts_list_headings'
+          ),
 
 
           /********************************************************************
           * GENERIC LOOP
           ********************************************************************/
-          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20 ),
+          array(
+            'hook'        => '__content__',
+            'id'          => 'main_loop',
+            'template'    => 'loop',
+            'priority' => 20
+          ),
 
           /*********************************************
           * GRID (POST LIST)
@@ -339,25 +362,15 @@ if ( ! class_exists( 'TC___' ) ) :
           /*** END ALTERNATE POST LIST ***/
 
           /* IN ALTERNATE POST LIST AND SINGULARS !!! */
-          //post and page titles
-          array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title' ),
-          //comment bubble
+          /*
+          * post and page titles
+          * comment_buble, edit_button, recently_update registrations inside
+          */
           array(
-            'hook'      => '__after_inner_post_page_title__',
-            'template'  => 'modules/comment_bubble'
+            'hook'        => '__post_page_title__',
+            'template'    => 'content/post_page_title'
           ),
-          //edit post links
-          array(
-            'hook'      => '__after_inner_post_page_title__',
-            'template'  => 'modules/edit_button',
-            'priority'  => 20
-          ),
-          //recently updated
-          array(
-            'hook'      => '__after_inner_post_page_title__',
-            'template'  => 'modules/recently_updated',
-            'priority'  => 30
-          ),
+
 
           //Post metas ( in the headings )
           //the default class/template is for the buttons type
@@ -368,36 +381,38 @@ if ( ! class_exists( 'TC___' ) ) :
             array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
 
 
+          /*********************************************
+          * Singular: PAGE POST ATTACHMENT
+          *********************************************/
+          /* contains post page attachement content/headings/footer registration */
+          array(
+            'hook'        => 'in_main_loop',
+            'template'    => 'content/article',
+            'priority'    => 10,
+            'id'          => 'singular_article',
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/singular_wrapper' )
+          ),
 
-          /**** SINGULAR: PAGE POST ATTACHMENT ****/
-          array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'id' => 'singular_article' ),
-          //page/attachment/post headings
-            array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
-            //page content
-            array( 'hook' => '__article__', 'template' => 'content/page_content', 'id' => 'page', 'priority' => 20 ),
-            //post content
-            array( 'hook' => '__article__', 'template' => 'content/post_content', 'id' => 'post', 'priority' => 20 ),
-              //single post thumbnail
-              array( 'hook' => 'before_render_view_post', 'template' => 'content/thumbnail_single', 'id' => 'post_thumbnail', 'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single') ),
-              //post footer
-              array( 'hook' => '__post_footer__', 'id' => 'post_footer', 'template' => 'content/author_info' ),
-          //attachment
-          array( 'hook' => '__article__', 'template' => 'content/attachment_content', 'id' => 'attachment'),
-
-
-          /*** COMMENTS ***/
+          /*********************************************
+          * Comments
+          *********************************************/
           /*
           * contains the comment form
           *
           * contains comment list registration
           * the comment list contains the comment and (track|ping)back registration
           */
-          array( 'hook' => '__content__', 'template' => 'content/comments', 'priority' => '20'),
+          array(
+            'hook'     => '__content__',
+            'template' => 'content/comments',
+            'priority' => '20'
+          ),
           /* end Comments */
 
-
-          /* Post navigation */
-          /* contain the post navigation links registration */
+          /*********************************************
+          * Post navigation
+          *********************************************/
+          /* contains the post navigation links registration */
           /* in singlar */
           array(
             'hook' => '__content__',
@@ -416,7 +431,7 @@ if ( ! class_exists( 'TC___' ) ) :
             'priority' => 40
           ),
           /* end post navigation */
-
+          /** END CONTENT **/
 
           /*********************************************
           * FOOTER

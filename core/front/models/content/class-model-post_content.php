@@ -14,4 +14,17 @@ class TC_post_content_model_class extends TC_Model {
 
     return $model;
   }
+
+  function tc_setup_children() {
+    $children = array(
+      //single post thumbnail
+      array(
+        'hook'        => 'before_render_view_post',
+        'template'    => 'content/thumbnail_single',
+        'id'          => 'post_thumbnail',
+        'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single')
+      )
+    );
+    return $children;
+  }
 }
