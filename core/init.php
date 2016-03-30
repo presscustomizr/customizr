@@ -411,8 +411,8 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
           /* Post navigation */
-          array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
-          array( 'hook' => '__content__', 'template' => 'content/post_navigation_posts', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ), 'priority' => 40 ),
+          array( 'hook' => '__content__', 'template' => 'content/post_navigation', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'id' => 'post_navigation_singular', 'priority' => 40 ),
+          array( 'hook' => '__content__', 'template' => 'content/post_navigation', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ), 'id' => 'post_navigation_posts', 'priority' => 40 ),
           /* end post navigation */
 
 
