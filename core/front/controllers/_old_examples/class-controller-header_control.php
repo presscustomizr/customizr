@@ -19,7 +19,7 @@ if ( ! class_exists( 'TC_header_control' ) ) :
     function __construct( $_args = array() ) {
       self::$instance =& $this;
 
-      //Instanciates the parent class.
+      //Instantiates the parent class.
       parent::__construct( $_args );
     }
 
@@ -68,8 +68,8 @@ if ( ! class_exists( 'TC_header_control' ) ) :
       //MENUS
       if ( ! (bool) TC_utils::$inst->tc_opt('tc_hide_all_menus') ) {
         tc_new( array('header' => array( array('inc/views/header', 'menu') ) ) );
-        //the custom nav walker classes will be instanciated when firing the menus
-        tc_new( array('header' => array( array('inc/views/header', 'nav_walker') ) ), array( '_instanciate' => false ) );
+        //the custom nav walker classes will be instantiated when firing the menus
+        tc_new( array('header' => array( array('inc/views/header', 'nav_walker') ) ), array( '_instantiate' => false ) );
       }
     }
 

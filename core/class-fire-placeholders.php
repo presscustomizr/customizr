@@ -1,6 +1,6 @@
 <?php
 /**
-* This class must be instanciated if is_admin() for the ajax call to work
+* This class must be instantiated if is_admin() for the ajax call to work
 * => because ajax request are fired with the admin_url(), even on front-end.
 * more here : https://codex.wordpress.org/AJAX_in_Plugins
 *

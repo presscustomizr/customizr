@@ -7,7 +7,7 @@ class TC_body_model_class extends TC_Model {
    *  so that they can actually filter them.
    *  We might do something like:
    *  1) tc_extend_params to extend "early" params
-   *  2) another method to extend the model fired just before the view is instanciated/rendered
+   *  2) another method to extend the model fired just before the view is instantiated/rendered
   */
 
   /**

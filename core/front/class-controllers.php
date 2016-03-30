@@ -1,9 +1,9 @@
 <?php
 //the controllers are organized by groups in 4 classes
 //Header, Content, Footer, Modules.
-//The controller group classes are instanciated on demand if any of a view (or its child) requested it
+//The controller group classes are instantiated on demand if any of a view (or its child) requested it
 //If the model is used as a method parameter, it shall be an array()
-//=> because a controller can be checked and fired before the model has been instanciated
+//=> because a controller can be checked and fired before the model has been instantiated
 //=> always check the existence of the id
 if ( ! class_exists( 'TC_controllers' ) ) :
   class TC_controllers {
@@ -34,7 +34,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       //takes 2 params
       //group name (string)
       //group controller instance (object)
-      add_action( 'group_controller_instanciated', array( $this, 'tc_store_controller_instance'),10, 2);
+      add_action( 'group_controller_instantiated', array( $this, 'tc_store_controller_instance'),10, 2);
     }//__construct()
 
 
@@ -46,7 +46,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
     //1) checks if a controller has been specified for the view. It can be either a function, or the method of a class
     //
     //2) if nothing is specified for the view, then checks if the view controller belongs to a particular group
-    //if a match is found, then the group controller class is instanciated if not yet
+    //if a match is found, then the group controller class is instantiated if not yet
     //then the existence of the controller method is checked and fired if exists
     //
     //3) if no match is found, the view is not allowed
@@ -96,7 +96,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
           //make sure the default controller is well formed
           //the default controller should look like array( instance, method )
           if ( empty($controller_cb) ) {
-            do_action( 'tc_dev_notice', 'View : '.$model['id'].'. The default group controller has not been instanciated');
+            do_action( 'tc_dev_notice', 'View : '.$model['id'].'. The default group controller has not been instantiated');
             return "";
           }//if
         }//if has default controller
@@ -139,17 +139,17 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       }
 
 
-      //Is this group controller instanciated ?
+      //Is this group controller instantiated ?
       if ( ! array_key_exists($controller_group, self::$controllers_instances) ) {
-        //this will actually load the class file and instanciate it
-        $_instance = $this -> tc_instanciate_group_controller($controller_group);
+        //this will actually load the class file and instantiate it
+        $_instance = $this -> tc_instantiate_group_controller($controller_group);
       } else {
         $_instance = $this -> tc_get_controller_instance($controller_group);
       }
 
-      //stop here if still nothing is instanciated
+      //stop here if still nothing is instantiated
       if ( ! isset( $_instance) || ! is_object( $_instance ) ) {
-        do_action( 'tc_dev_notice', 'View : '.$id.'. The control class for : ' . $controller_group . ' has not been instanciated.' );
+        do_action( 'tc_dev_notice', 'View : '.$id.'. The control class for : ' . $controller_group . ' has not been instantiated.' );
         return array();
       }
 
@@ -167,10 +167,10 @@ if ( ! class_exists( 'TC_controllers' ) ) :
 
 
     //load the class file if exists
-    //instanciate the class is exists
+    //instantiate the class is exists
     //@param is a string : header, content, footer, modules
     //@return the $instance
-    private function tc_instanciate_group_controller( $group ) {
+    private function tc_instantiate_group_controller( $group ) {
       $_path  = "controllers/class-controller-{$group}.php";
       $_class = "TC_controller_{$group}";
       $_instance = false;
@@ -179,13 +179,13 @@ if ( ! class_exists( 'TC_controllers' ) ) :
 
       if ( class_exists($_class) ) {
         $_instance = new $_class;
-        do_action( 'group_controller_instanciated', $group, $_instance );
+        do_action( 'group_controller_instantiated', $group, $_instance );
       }
       return $_instance;
     }
 
 
-    //listens to group_controller_instanciated
+    //listens to group_controller_instantiated
     //stores the groupd controller instance in the property : self::$controllers_instances
     //@return void()
     public function tc_store_controller_instance( $group , $_instance ) {
@@ -198,7 +198,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
     }
 
 
-    //get an already instanciated controller group instance
+    //get an already instantiated controller group instance
     public function tc_get_controller_instance( $group ) {
       $controller_instances = self::$controllers_instances;
       if ( ! array_key_exists($group, $controller_instances) )

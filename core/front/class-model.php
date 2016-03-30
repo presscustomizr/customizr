@@ -1,14 +1,14 @@
 <?php
 //Models contain the underlying data of each views.
 
-//A model is an object instanciated by the collection class.
-//Before instanciation, the collection class has made sure that the model has at least :
+//A model is an object instantiated by the collection class.
+//Before instantiation, the collection class has made sure that the model has at least :
 //1) a unique id
 //2) a hook
 //3) a priority set.
 
 //Once alive, a model's job is :
-//- instanciate its view. The model must check if its related view has to be instanciated with the default view class or a child of it.
+//- instantiate its view. The model must check if its related view has to be instantiated with the default view class or a child of it.
 //- assign the view to its rendering hook
 //- register its child models if any
 
@@ -38,7 +38,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public $controller = "";
     public $visibility = true;//can be typically overriden by a check on a user option
 
-    //on instanciation the id is unique and the priority propery setup
+    //on instantiation the id is unique and the priority propery setup
     //=> those treatments have been managed by the collection
     function __construct( $model = array() ) {
       self::$instance =& $this;
@@ -60,7 +60,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //1) a unique id
       //2) a priority set
       //3) a hook
-      if ( ! $this -> tc_can_model_be_instanciated() )
+      if ( ! $this -> tc_can_model_be_instantiated() )
         return;
 
 
@@ -85,17 +85,17 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
-      add_action( "view_instanciated_{$this -> id}"   , array( $this, 'tc_add_view_to_model'), 10, 1 );
+      add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_add_view_to_model'), 10, 1 );
 
       //takes the view instance as param
-      add_action( "view_instanciated_{$this -> id}"   , array( $this, 'tc_maybe_hook_view'), 20, 1 );
+      add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_maybe_hook_view'), 20, 1 );
 
-      //Maybe instanciate the model's view
-      //listens to 'wp' if not fired yet, or fire the instanciation
+      //Maybe instantiate the model's view
+      //listens to 'wp' if not fired yet, or fire the instantiation
       if ( ! did_action('wp') )
-        add_action( 'wp'                                , array( $this, 'tc_maybe_instanciate_view' ), 999 );
+        add_action( 'wp'                                , array( $this, 'tc_maybe_instantiate_view' ), 999 );
       else
-        $this -> tc_maybe_instanciate_view();
+        $this -> tc_maybe_instantiate_view();
 
       //Allow models to filter their view visibility
       add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_this_model_view' ), 0 );
@@ -107,7 +107,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
     //add this instance to the view description in the collection
     //=> can be used later for deregistration
-    //hook : view_instanciated
+    //hook : view_instantiated
     function tc_add_view_to_model( $view_instance ) {
        $this -> tc_set_property( '_instance', $view_instance );
     }
@@ -120,15 +120,15 @@ if ( ! class_exists( 'TC_Model' ) ) :
     ***********************************************************************************/
     //default hook : wp | 1000
     //@return void()
-    public function tc_maybe_instanciate_view() {
-      do_action( "pre_instanciate_view" );
+    public function tc_maybe_instantiate_view() {
+      do_action( "pre_instantiate_view" );
 
-      //this check has already been done before instanciating the model.
+      //this check has already been done before instantiating the model.
       //Do we really need this again here ?
       if ( ! CZR() -> controllers -> tc_is_possible($this -> tc_get())  )
         return;
 
-      //instanciate the view with the current model object as param
+      //instantiate the view with the current model object as param
       $view_instance = new TC_View( $this );
     }//fn
 
@@ -161,7 +161,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     * ACTIONS ON VIEW READY
     * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
     ***********************************************************************************/
-    //hook : 'view_instanciated'
+    //hook : 'view_instantiated'
     //@param view instance object, can be TC_View or a child of TC_View
     //hook the rendering method to the hook
     //$this -> _instance can be used. It can be a child of this class.
@@ -219,7 +219,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //update the children property, at this stage will contain a list of the model ids of the registered children
       $this -> tc_set_property( 'children', array_keys( $children_collection ) );
       //emit an event if a children collection has been registered
-      //=> will fire the instanciation of the children collection with tc_maybe_instanciate_collection
+      //=> will fire the instantiation of the children collection with tc_maybe_instantiate_collection
       do_action( 'children_registered', $children_collection );
     }
 
@@ -264,7 +264,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
     //@return array()
     //Extension models can use this to update the model params with a set of new ones
-    //is fired on instanciation
+    //is fired on instantiation
     //@param = array()
     protected function tc_extend_params( $model = array() ) {
       return $model;
@@ -272,7 +272,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
     //@return void()
     //update the model properties with a set of new ones
-    //is fired on instanciation
+    //is fired on instantiation
     //@param = array()
     public function tc_update( $model = array() ) {
       $keys = array_keys( get_object_vars( $this ) );
@@ -341,10 +341,10 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
 
     //@return bool
-    private function tc_can_model_be_instanciated() {
+    private function tc_can_model_be_instantiated() {
       //the model must be an array of params
       //the hook is the only mandatory param
-      //the id is optional => will be set unique on model instanciation
+      //the id is optional => will be set unique on model instantiation
       if ( ! is_numeric( $this -> priority ) || empty($this -> id) || empty( $this -> hook ) ) {
         do_action('tc_dev_notice', "In TC_Model class, a model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
         return;
@@ -354,7 +354,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
     //checks if the model exists and is an instance
     //@return bool
-    public function tc_has_instanciated_view() {
+    public function tc_has_instantiated_view() {
       return is_object( $this -> _instance );
     }
 
