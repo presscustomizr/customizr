@@ -137,8 +137,8 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
     /**
-    * Class instanciation using a singleton factory :
-    * Can be called to instanciate a specific class or group of classes
+    * Class instantiation using a singleton factory :
+    * Can be called to instantiate a specific class or group of classes
     * @param  array(). Ex : array ('admin' => array( array( 'inc/admin' , 'meta_boxes') ) )
     * @return  instances array()
     *
@@ -156,9 +156,9 @@ if ( ! class_exists( 'TC___' ) ) :
         foreach ($files as $path_suffix ) {
           $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
           $classname = 'TC_' . $path_suffix[1];
-          if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
+          if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'TC_nav_walker') ) ) )
             continue;
-          //instanciates
+          //instantiates
           $instances = class_exists($classname)  ? new $classname : '';
         }
 
@@ -483,7 +483,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * HELPERS
     ****************************/
     /**
-    * Check the context and return the modified array of class files to load and instanciate
+    * Check the context and return the modified array of class files to load and instantiate
     * hook : tc_get_files_to_load
     * @return boolean
     *
@@ -821,7 +821,7 @@ if ( ! function_exists('tc_echo') ) {
 /*
  * @since 3.5.0
  */
-//shortcut function to instanciate easier
+//shortcut function to instantiate easier
 if ( ! function_exists('tc_new') ) {
   function tc_new( $_to_load, $_args = array() ) {
     TC___::$instance -> tc__( $_to_load , $_args );

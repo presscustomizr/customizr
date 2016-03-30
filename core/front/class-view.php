@@ -1,9 +1,9 @@
 <?php
 //This is the view class. Each front end part of the Customizr theme is rendered through a view instance.
 //Each view inherits its properties from a model instance.
-//The model decides if it has to instanciate the view or not, according to the context
+//The model decides if it has to instantiate the view or not, according to the context
 
-//Once properly instanciated with the model as parameter, a view does not think to anything else than rendering what and where (hook) we ask it to.
+//Once properly instantiated with the model as parameter, a view does not think to anything else than rendering what and where (hook) we ask it to.
 //This class jobs are :
 //- render either html, WordPress template or more complex content, depending on the its model settings.
 //- when renders on a template, the view must pass its model to the WordPress template through the $wp_query global
@@ -22,9 +22,9 @@ if ( ! class_exists( 'TC_View' ) ) :
       // }
       $this -> model = $model;
 
-      //emit event on view instanciation
+      //emit event on view instantiation
       //Will be listen to by the model and trigger the maybe_hook_view callback
-      do_action( "view_instanciated_{$this -> model -> id}", $this );
+      do_action( "view_instantiated_{$this -> model -> id}", $this );
 
       //listens to a view pre-render => and fire the tc_apply_registered_changes_to_instance
       // => a change might have been registered
@@ -109,7 +109,7 @@ if ( ! class_exists( 'TC_View' ) ) :
     //@return void()
     //called directly sometimes
     //fired on 'pre_render_view'
-    //fired on tc_change if view is instanciated
+    //fired on tc_change if view is instantiated
     public function tc_apply_registered_changes_to_instance( $id, $new_params = array() ) {
       if ( ! CZR() -> collection -> tc_has_registered_change( $id ) )
         return;
@@ -124,7 +124,7 @@ if ( ! class_exists( 'TC_View' ) ) :
     }
 
 
-    //at this stage, the view is instanciated
+    //at this stage, the view is instantiated
     //@return void()
     private function tc_update_model_instance( $id, $new_params ) {
       //get current params

@@ -346,7 +346,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 						$option_controls[$con] = isset( $options[$con]) ?  $options[$con] : null;
 					}
 
-					//add control with a class instanciation if not default
+					//add control with a class instantiation if not default
 					if( ! isset( $options['control']) )
 						$wp_customize	-> add_control( $_opt_name, $option_controls );
 					else

@@ -2,16 +2,16 @@
 //This is the class managing the collection of models. Here's what it does :
 //- registers and de-registers models
 //- ensures that each model has a unique id and is well formed
-//- Instanciates the relevant models according to their controllers (for models registered on or after 'wp')
-//- Instanciates the specified model extended class if any
+//- Instantiates the relevant models according to their controllers (for models registered on or after 'wp')
+//- Instantiates the specified model extended class if any
 //- Handles the model's modifications, including deletion
 //- Make sure the collection is a public array of model's instance
 if ( ! class_exists( 'TC_Collection' ) ) :
   class TC_Collection {
     static $instance;
     //public $group = "";//header,content,footer,modules
-    //private $args = array();//will store the updated args on model creation and use them to instanciate the child
-    public static $pre_registered = array();//will store the models before they are actually checked, instanciated and registered => before 'wp'
+    //private $args = array();//will store the updated args on model creation and use them to instantiate the child
+    public static $pre_registered = array();//will store the models before they are actually checked, instantiated and registered => before 'wp'
     public static $collection = array();//will store all registered model instances
     public static $_delete_candidates = array();//will store deletion of models not added yet
     public static $_change_candidates = array();//will store change of models not added yet
@@ -38,13 +38,13 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //3) or simply abort registration
       add_filter( 'tc_can_register_model'       , array( $this, 'tc_check_can_register_model'), 10, 1 );
 
-      //if 'wp' has not been fired yet, we will pre-register this model for later instanciation
+      //if 'wp' has not been fired yet, we will pre-register this model for later instantiation
       //2 params :
       //1) model id
       //2) model instance
       add_action ('pre_register_model'          , array( $this, 'tc_pre_register_model'), 10, 2 );
 
-      //a model_alive event is emitted each time a model object has been properly instanciated and setup
+      //a model_alive event is emitted each time a model object has been properly instantiated and setup
       //=> update the collection by registering the model
       //Takes 2 params
       //1) model id
@@ -98,17 +98,17 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       if ( ! apply_filters( 'tc_can_register_model' , $model ) )
         return;
 
-      //Instanciates the model object : at this stage the 'wp' hook has been fired and we're ready to instanciate the (maybe pre-registered) model
+      //Instantiates the model object : at this stage the 'wp' hook has been fired and we're ready to instantiate the (maybe pre-registered) model
       //at this stage, the model is an array and :
       //- has an id
       //- has a priority
       //- is at least assigned to a hook
       //- we've checked if it was registered for deletion
-      //=> let's instanciate
-      $model = $this -> tc_instanciate_model($model);
+      //=> let's instantiate
+      $model = $this -> tc_instantiate_model($model);
 
       //At this stage, the model has been registered to the collection.
-      //=> an event has been emitted on model instanciation, the collection has listened to this event and registered the model.
+      //=> an event has been emitted on model instantiation, the collection has listened to this event and registered the model.
       if ( $this -> tc_is_registered( $model -> id ) ) {
         //emit an event on model registered
         //can be used with did_action() afterwards
@@ -129,7 +129,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //Check if the model is registered for deletion first
     //the model must be an array of params
     //the hook is the only mandatory param
-    //the id is optional => will be set unique on model instanciation
+    //the id is optional => will be set unique on model instantiation
     public function tc_is_model_eligible( $model = array() ) {
       //is model registered for deletion ?
       if ( isset( $model['id'] ) && $this -> tc_has_registered_deletion( $model['id'] ) )
@@ -187,7 +187,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         return;
 
       //if the model has early hooks (before wp) , typically a pre_get_post action for example
-      // => the the model has to be instanciated
+      // => the the model has to be instantiated
       if ( isset($model['early_setup']) && ! empty($model['early_setup']) )
         return true;
 
@@ -288,19 +288,19 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //hook : 'wp'
     //this method load the relevant model class file and return the instance
     //@return instance object
-    public function tc_instanciate_model($model) {
+    public function tc_instantiate_model($model) {
       $instance = null;
 
-      //try to instanciate the model specified in the model_class param
+      //try to instantiate the model specified in the model_class param
       //if not found try to retrieve it from the template param (mandatory):
       //a) The model_class, when specified, must refer to a valid model otherwise a notice will be fired.
-      //b) Also if a whatever model has been instanciated it must be a subclass of TC_Model - otherwise a notice will be fired.
-      //Else If no suitable model has been instanciated instanciate the base model class
+      //b) Also if a whatever model has been instantiated it must be a subclass of TC_Model - otherwise a notice will be fired.
+      //Else If no suitable model has been instantiated instantiate the base model class
       foreach ( array( 'model_class', 'template' ) as $_model_class ) {
         if ( ! isset($model[ $_model_class ]) || empty($model[ $_model_class ]) )
             continue;
 
-        //A model class has been defined, let's try to load it and instanciate it
+        //A model class has been defined, let's try to load it and instantiate it
         //The model_class arg can also be an array in the form array( 'parent' => parent_model_class (string), 'name' => model_class ('string') )
         if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ){
           $this -> tc_require_model_class( $model['model_class']['parent'] );
@@ -314,12 +314,12 @@ if ( ! class_exists( 'TC_Collection' ) ) :
           $instance = new $model_class_name( $model );
 
         if ( ! is_object($instance) &&  'model_class' == $_model_class ) {
-          do_action('tc_dev_notice', "Model : " . $model['id'] . ". The model has not been instanciated." );
+          do_action('tc_dev_notice', "Model : " . $model['id'] . ". The model has not been instantiated." );
           return;
         }
         //A model must be TC_model or a child class of TC_model.
         if ( is_object($instance) && ! is_subclass_of($instance, 'TC_Model') ) {
-          do_action('tc_dev_notice', "Model : " . $model['id'] . ". View Instanciation aborted : the specified model class must be a child of TC_Model." );
+          do_action('tc_dev_notice', "Model : " . $model['id'] . ". View Instantiation aborted : the specified model class must be a child of TC_Model." );
           return;
         } else break;
       }//end for
@@ -454,8 +454,8 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     /**********************************************************************************
     * CHANGE A REGISTERED MODEL
     ***********************************************************************************/
-    //if the model is registered and already instanciated => de-register it, register it again with the new params and update the promise change array
-    //if the model is registered in the collection but not instanciated yet => simply update the collection
+    //if the model is registered and already instantiated => de-register it, register it again with the new params and update the promise change array
+    //if the model is registered in the collection but not instantiated yet => simply update the collection
     //if the model is not-registered in the collection, register a promise for change
     //@return void()
     //@todo : allow several changes for a model ?
@@ -479,11 +479,11 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       if ( ! $model_instance )
         $this -> tc_register_change( $id, $new_model );
       else {
-        //if the view has already been instanciated
+        //if the view has already been instantiated
         //- the previously hooked actions have to be unhooked
         //- the model is destroyed
         //- the model is registered again with the new params
-        if ( $model_instance -> tc_has_instanciated_view() ) {
+        if ( $model_instance -> tc_has_instantiated_view() ) {
           $model_instance -> tc_unhook_view();
         }
         //delete the current version of the model

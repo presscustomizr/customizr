@@ -81,12 +81,12 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
 
       if ( ! class_exists( 'TC_utils_thumbnails' ) )
         TC___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
-      /* Instanciate slider of posts */
+      /* Instantiate slider of posts */
       if ( ! class_exists( 'TC_slider_of_posts_model_class' ) ) {
-        $slider          = CZR() -> collection -> tc_instanciate_model( array( 'model_class'  => 'modules/slider') );
+        $slider          = CZR() -> collection -> tc_instantiate_model( array( 'model_class'  => 'modules/slider') );
         if ( ! $slider )
           return;
-        $slider_of_posts = CZR() -> collection -> tc_instanciate_model( array( 'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ) ) );
+        $slider_of_posts = CZR() -> collection -> tc_instantiate_model( array( 'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ) ) );
 
         //Cache posts slider
         if ( $slider_of_posts )

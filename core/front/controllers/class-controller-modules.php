@@ -20,7 +20,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
         '__colophon_three__'    => 'footer'
       );
 
-      //the block must be instanciated when
+      //the block must be instantiated when
       //1) IS customizing or no model hook set
       //or
       //2a) the block is displayed in a non-standard (not option mapped) structural hook
