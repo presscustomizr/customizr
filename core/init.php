@@ -218,8 +218,6 @@ if ( ! class_exists( 'TC___' ) ) :
           ),
 
 
-
-
           /*********************************************
           * SLIDER
           *********************************************/
@@ -235,35 +233,23 @@ if ( ! class_exists( 'TC___' ) ) :
             'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ),
             'controller'   => 'main_slider'
           ),
-            array(
-              'hook' => '__slide__',
-              'template'  => 'modules/slide',
-            ),
-                //edit slide button
-                array(
-                  'hook'        => '__after_all_slides_caption__',
-                  'template'    => 'modules/edit_button',
-                  'id'          => 'slide_edit_button',
-                  'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slide'),
-                  'controller'  => 'edit_button'
-              ),
-            //edit slider button
-            array(
-              'hook'        => '__after_carousel_inner__',
-              'template'    => 'modules/edit_button',
-              'id'          => 'slider_edit_button',
-              'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slider'),
-              'controller'  => 'edit_button'
-            ),
+          /** end slider **/
+
 
           /*********************************************
           * CONTENT
           *********************************************/
-          /* MAIN WRAPPERS */
+
+          /*********************************************
+          * Main wrappers
+          *********************************************/
           array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 30 ),
 
-          //Featured Pages
+
+          /*********************************************
+          * Featured Pages
+          *********************************************/
           array(
             'hook' => '__main_wrapper__',
             'template' => 'modules/featured_pages',
@@ -274,8 +260,9 @@ if ( ! class_exists( 'TC___' ) ) :
               'hook' => '__featured_page__',
               'template' => 'modules/featured_page',
             ),
+          /** end featured pages **/
 
-          //breadcrumb
+          /* BREADCRUMB */
           array( 'hook' => '__main_wrapper__', 'template' => 'modules/breadcrumb', 'priority' => 20 ),
 
           /* LEFT SIDEBAR */
@@ -284,7 +271,11 @@ if ( ! class_exists( 'TC___' ) ) :
             //socialblock in left sidebar
           array( 'hook' => '__widget_area_left__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
             array( 'hook' => '__widget_area_left__', 'id' => 'left', 'template' => 'modules/widget_area' ),
-          /* CONTENT WRAPPER id="content" class="{article container class }"*/
+
+
+          /*********************************************
+          * Content wrappers : id="content" class="{article container class }"
+          *********************************************/
           array( 'hook' => '__main_container__', 'template' => 'content/content_wrapper', 'priority' => 20 ),
 
           /* RIGHT SIDEBAR */
@@ -313,7 +304,9 @@ if ( ! class_exists( 'TC___' ) ) :
           /* GENERIC LOOP */
           array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'priority' => 20 ),
 
-          /*** GRID (POST LIST) ***/
+          /*********************************************
+          * GRID (POST LIST)
+          *********************************************/
           /* Contains the grid-item and its submodules registrations */
           array(
             'hook'        => 'in_main_loop',
@@ -324,7 +317,9 @@ if ( ! class_exists( 'TC___' ) ) :
           ),
           /* END GRID */
 
-          /*** ALTERNATE POST LIST ***/
+          /*********************************************
+          * ALTERNATE POST LIST
+          *********************************************/
           array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
 
           /* CONTENT */
