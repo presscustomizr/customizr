@@ -11,7 +11,7 @@
   <figure class="tc-grid-figure <?php tc_echo( 'figure_class' ) ?>">
     <?php
 
-    if ( tc_get( 'has_icon' ) ):
+    if ( tc_get( 'icon_enabled' ) ):
 
     ?>
       <div class="tc-grid-icon format-icon" <?php tc_echo( 'icon_attributes' ) ?>></div>
