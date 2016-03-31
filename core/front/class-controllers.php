@@ -90,7 +90,12 @@ if ( ! class_exists( 'TC_controllers' ) ) :
         //a) based on the model id (has the precedence )
         //b) based on the controller model field, when not a callback
         //c) based on the template base name
-        $controller_ids   = array_filter( array( $model['id'], ! empty( $model['controller'] ) ? $model['controller'] : '', basename( $model['template'] ) ) );
+        $controller_ids   = array_filter( array(
+            $model['id'],
+            ! empty( $model['controller'] ) ? $model['controller'] : '',
+            ! empty( $model[ 'template' ] ) ? basename( $model['template'] ): ''
+          )
+        );
         if ( $this -> tc_has_default_controller( $controller_ids ) ) {
           $controller_cb = $this -> tc_get_default_controller( $controller_ids );
           //make sure the default controller is well formed
