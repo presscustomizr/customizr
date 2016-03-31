@@ -86,14 +86,13 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         $slider          = CZR() -> collection -> tc_instantiate_model( array( 'model_class'  => 'modules/slider') );
         if ( ! $slider )
           return;
-        $slider_of_posts = CZR() -> collection -> tc_instantiate_model( array( 'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ) ) );
+        $slider_of_posts = CZR() -> collection -> tc_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ) ) );
+      } else
+        $slider_of_posts = CZR() -> collection -> tc_get_model_instance( 'slider_of_posts' );
 
-        //Cache posts slider
-        if ( $slider_of_posts )
-         $slider_of_posts -> tc_cache_posts_slider();
-      //TC_slider::$instance -> tc_cache_posts_slider();
-      }
-
+      //Cache posts slider
+      if ( $slider_of_posts )
+        $slider_of_posts -> tc_cache_posts_slider();
     }
 
 
