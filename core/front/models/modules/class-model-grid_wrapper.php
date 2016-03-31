@@ -35,6 +35,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
     return $model;
   }
 
+
   /*
   *
   *  Children setup
@@ -206,6 +207,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   }
 
 
+
   /******************************
   VARIOUS HELPERS
   *******************************/
@@ -224,6 +226,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
 
     return apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
   }
+
 
   /**
   * hook : tc_article_container_class
