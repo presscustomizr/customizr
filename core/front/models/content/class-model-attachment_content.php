@@ -1,7 +1,6 @@
 <?php
 class TC_attachment_content_model_class extends TC_Model {
   public $gallery;
-  public $has_gallery;
   public $link_url;
   public $link_rel;
   public $attachment_size;
@@ -12,7 +11,6 @@ class TC_attachment_content_model_class extends TC_Model {
     global $post;
 
     $gallery     = '';
-    $has_gallery = false;
     $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
     //did we activate the fancy box in customizer?
@@ -74,9 +72,8 @@ class TC_attachment_content_model_class extends TC_Model {
     }//end else
 
     $attachment_size = apply_filters( 'tc_customizr_attachment_size' , array( 960, 960 ) );
-    $has_gallery     = ! empty ( $gallery );
 
     //update the model
-    $this -> tc_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'has_gallery', 'attachment_class' ) );
+    $this -> tc_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'attachment_class' ) );
   }
 }

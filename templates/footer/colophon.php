@@ -1,3 +1,12 @@
+<?php
+/**
+ * The template for displaying the standard colophon
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
 <div class="colophon" <?php tc_echo('element_attributes') ?>>
   <div class="container">
     <div class="row-fluid">

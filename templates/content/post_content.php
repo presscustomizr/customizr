@@ -1,3 +1,12 @@
+<?php
+/**
+ * The template for displaying the single post content
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
 <section class ="entry-content <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
   <?php do_action( 'before_render_view_inner_post_content' ) ?>
   <?php

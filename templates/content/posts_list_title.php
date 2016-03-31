@@ -8,7 +8,7 @@
  */
 
 /* Case we're displaying the search results */
-if ( 'search_results' == tc_get('context') ) :
+if ( 'search_results' == tc_get( 'context' ) ) :
 
 ?>
 <div class="row-fluid" <?php tc_echo('element_attributes') ?>>
