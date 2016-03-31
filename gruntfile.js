@@ -12,11 +12,11 @@ module.exports = function(grunt) {
         data: {
 			pkg: grunt.file.readJSON( 'package.json' ),
 			paths : {
-				less : 'inc/assets/less/',
-				front_css : 'inc/assets/css/',
-				front_js : 'inc/assets/js/',
-				admin_css : 'inc/admin/css/',
-				admin_js : 'inc/admin/js/',
+				less : 'assets/front/less/',
+				front_css : 'assets/front/css/',
+				front_js : 'assets/front/js/',
+				admin_css : 'assets/back/css/',
+				admin_js : 'assets/back/js/',
 				lang : 'inc/lang/'
 			},
 			//default less modifiers
