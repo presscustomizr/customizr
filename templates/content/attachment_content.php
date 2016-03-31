@@ -1,3 +1,12 @@
+<?php
+/**
+ * The template for displaying the single attachment content
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
 <nav id="image-navigation" class="navigation" role="navigation" <?php tc_echo('element_attributes') ?>>
     <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous' , 'customizr' ) ); ?></span>
     <span class="next-image"><?php next_image_link( false, __( 'Next &rarr;' , 'customizr' ) ); ?></span>
@@ -9,8 +18,10 @@
       <div class="entry-caption">
         <?php the_excerpt(); ?>
       </div>
-      <?php /* hidden fancybox gallery with all the attachments referring to the same post parent */ ?>
-      <?php if ( tc_get( 'has_gallery' ) ) tc_echo( 'gallery' ) ?>
+      <?php /* hidden fancybox gallery with all the attachments referring to the same post parent */
+      tc_echo( 'gallery' )
+
+      ?>
     </div>
   </div>
 </section>

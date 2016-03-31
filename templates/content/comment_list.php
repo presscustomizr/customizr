@@ -1,10 +1,32 @@
+<?php
+/**
+ * The template for displaying the comment list:
+ * title
+ * wp_list_comments
+ * comment navigation
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
 <h2 id="tc-comment-title" class="comments-title" <?php tc_echo('element_attributes') ?>><?php /* Comments list title */
   comments_number( false, __( 'One thought on', 'customizr'), '% ' . __( 'thoughts on', 'customizr' ) )
 ?> &ldquo;</span><?php the_title() ?></span>&rdquo;</h2>
 <ul class="commentlist">
-  <?php wp_list_comments( tc_get('args') )   /* Comments list */ ?>
+  <?php
+
+  /* Comments list */
+  wp_list_comments( tc_get('args') )
+
+  ?>
 </ul>
-<?php if ( get_option( 'page_comments' ) && get_comment_pages_count() > 1) : /* Comments Navigation */ ?>
+<?php
+
+/* Comments Navigation */
+if ( get_option( 'page_comments' ) && get_comment_pages_count() > 1) :
+
+?>
 <nav id="comment-nav-below" class="navigation" role="navigation">
   <h3 class="assistive-text section-heading"><?php _e( 'Comment navigation' , 'customizr' ); ?></h3>
   <ul class="pager">

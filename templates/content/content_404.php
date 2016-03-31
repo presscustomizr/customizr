@@ -1,3 +1,12 @@
+<?php
+/**
+ * The template for displaying the 404 content
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
 <header class="entry-header"<?php tc_echo('element_attributes') ?>>
   <h1 class="entry-title "><?php _e('Ooops, page not found', 'customizr') ?></h1>
   <hr class="featurette-divider headings after-404-title">

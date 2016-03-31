@@ -1,3 +1,12 @@
+<?php
+/**
+ * The template for displaying the content of a search with no results
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
 <header class="search-header" <?php tc_echo('element_attributes') ?>>
   <h1 class="<?php tc_echo( 'title_class' ) ?>"><?php _e('No Search Results for :', 'customizr') ?> <span><?php echo get_search_query() ?></span></h1>
   <hr class="featurette-divider headings after-noresults-title">

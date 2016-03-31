@@ -1,3 +1,13 @@
+<?php
+/**
+ * The template for displaying the attachments metas
+ * (in singular and list of posts context)
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
 <div class="entry-meta" <?php tc_echo('element_attributes') ?>>
   <span class="meta-prep meta-prep-entry-date"><?php _e('Published' , 'customizr') ?></span>
     <span class="entry-date">

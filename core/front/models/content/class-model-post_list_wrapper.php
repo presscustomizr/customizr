@@ -38,7 +38,7 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
       ),
         //post headings in post lists
         array(
-          'hook' => 'before_render_view_inner_content',
+          'hook' => 'before_post_list_entry_content',
           'template' => 'content/headings',
           'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' )
         ),
