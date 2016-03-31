@@ -247,6 +247,7 @@ if ( ! class_exists( 'TC___' ) ) :
           * Main wrappers
           *********************************************/
           array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
+          /* contains left/right sidebars and content wrapper (article container) registrations */
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 30 ),
 
 
@@ -267,39 +268,6 @@ if ( ! class_exists( 'TC___' ) ) :
           array(
             'hook'        => '__main_wrapper__',
             'template'    => 'modules/breadcrumb', 'priority' => 20 ),
-
-          /********************************************************************
-          * Left sidebar
-          ********************************************************************/
-          //the model content/sidebar contains the left sidebar content registration
-          array(
-            'hook'        => '__main_container__',
-            'id'          => 'left_sidebar',
-            'template'    => 'modules/widget_area_wrapper',
-            'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ),
-            'priority'    => 10,
-
-          ),
-          /********************************************************************
-          * Content wrapper : id="content" class="{article container class }"
-          ********************************************************************/
-          array(
-            'hook'        => '__main_container__',
-            'template'    => 'content/content_wrapper',
-            'priority'    => 20
-          ),
-
-          /********************************************************************
-          * Right sidebar
-          ********************************************************************/
-          //the model content/sidebar contains the right sidebar content registration
-          array(
-            'hook'        => '__main_container__',
-            'id'          => 'right_sidebar',
-            'template'    => 'modules/widget_area_wrapper',
-            'priority'    => 30,
-            'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' )
-          ),
 
 
           /* OUTSIDE THE LOOP */
