@@ -1,6 +1,5 @@
 <?php
 class TC_main_container_model_class extends TC_Model {
-  public $element_attributes    = 'role="main"';
   public $column_content_class  = array('row', 'column-content-wrapper');
 
   /*
@@ -14,6 +13,45 @@ class TC_main_container_model_class extends TC_Model {
     return $model;
   }
 
+
+  function tc_setup_children() {
+    $children = array(
+      /********************************************************************
+      * Left sidebar
+      ********************************************************************/
+      //the model content/sidebar contains the left sidebar content registration
+      array(
+        'hook'        => '__main_container__',
+        'id'          => 'left_sidebar',
+        'template'    => 'modules/widget_area_wrapper',
+        'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ),
+        'priority'    => 10,
+
+      ),
+      /********************************************************************
+      * Content wrapper : id="content" class="{article container class }"
+      ********************************************************************/
+      array(
+        'hook'        => '__main_container__',
+        'template'    => 'content/content_wrapper',
+        'priority'    => 20
+      ),
+
+      /********************************************************************
+      * Right sidebar
+      ********************************************************************/
+      //the model content/sidebar contains the right sidebar content registration
+      array(
+        'hook'        => '__main_container__',
+        'id'          => 'right_sidebar',
+        'template'    => 'modules/widget_area_wrapper',
+        'priority'    => 30,
+        'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' )
+      )
+    );
+
+    return $children;
+  }
 
   /**
   * @override
