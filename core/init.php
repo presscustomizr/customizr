@@ -37,8 +37,9 @@ if ( ! class_exists( 'TC___' ) ) :
         self::$instance -> controllers = new TC_Controllers();
         self::$instance -> helpers = new TC_Helpers();
 
-        //register the model's map
-        add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
+        //register the model's map in front
+        if ( ! is_admin() )
+          add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
       }
       return self::$instance;
     }
@@ -116,7 +117,8 @@ if ( ! class_exists( 'TC___' ) ) :
             ),
             'content'   =>   array(
               array('core/front/utils', 'gallery')
-            )
+            ),
+            'addons'    => apply_filters( 'tc_addons_classes' , array() )
         )
       );
       //check the context
@@ -133,7 +135,7 @@ if ( ! class_exists( 'TC___' ) ) :
     /**
     * Class instantiation using a singleton factory :
     * Can be called to instantiate a specific class or group of classes
-    * @param  array(). Ex : array ('admin' => array( array( 'inc/admin' , 'meta_boxes') ) )
+    * @param  array(). Ex : array ('admin' => array( array( 'core/back' , 'meta_boxes') ) )
     * @return  instances array()
     *
     * Thanks to Ben Doherty (https://github.com/bendoh) for the great programming approach
@@ -146,7 +148,7 @@ if ( ! class_exists( 'TC___' ) ) :
       if ( empty($_to_load) )
         return;
 
-      foreach ( $this -> tc_core as $group => $files )
+      foreach ( $_to_load as $group => $files )
         foreach ($files as $path_suffix ) {
           $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
           $classname = 'TC_' . $path_suffix[1];
@@ -471,13 +473,13 @@ if ( ! class_exists( 'TC___' ) ) :
             //if doing ajax, we must not exclude the placeholders
             //because ajax actions are fired by admin_ajax.php where is_admin===true.
             if ( defined( 'DOING_AJAX' ) )
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
+              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
             else
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
+              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize', 'fire|core|placeholders' ) );
           }
           else
             //Skips all admin classes
-            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
+            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/back|admin_init', 'fire|core/back|admin_page') );
         }
       //Customizing
       else
@@ -487,14 +489,14 @@ if ( ! class_exists( 'TC___' ) ) :
             $_to_load = $this -> tc_unset_core_classes(
               $_to_load,
               array( 'header' , 'content' , 'footer' ),
-              array( 'fire|inc|resources' , 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
+              array( 'fire|core|resources' , 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
             );
           }
           if ( $this -> tc_is_customize_preview_frame() ) {
             $_to_load = $this -> tc_unset_core_classes(
               $_to_load,
               array(),
-              array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
+              array( 'fire|core/back|admin_init', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
             );
           }
         }
@@ -508,9 +510,9 @@ if ( ! class_exists( 'TC___' ) ) :
     * Alters the original classes tree
     * @param $_groups array() list the group of classes to unset like header, content, admin
     * @param $_files array() list the single file to unset.
-    * Specific syntax for single files: ex in fire|inc/admin|admin_page
-    * => fire is the group, inc/admin is the path, admin_page is the file suffix.
-    * => will unset inc/admin/class-fire-admin_page.php
+    * Specific syntax for single files: ex in fire|core/back|admin_page
+    * => fire is the group, core/back is the path, admin_page is the file suffix.
+    * => will unset core/back/class-fire-admin_page.php
     *
     * @return array() describing the files to load
     *
@@ -526,9 +528,9 @@ if ( ! class_exists( 'TC___' ) ) :
       }
       if ( ! empty($_files) ) {
         foreach ( $_files as $_concat ) {
-          //$_concat looks like : fire|inc|resources
+          //$_concat looks like : fire|core|resources
           $_exploded = explode( '|', $_concat );
-          //each single file entry must be a string like 'admin|inc/admin|customize'
+          //each single file entry must be a string like 'admin|core/back|customize'
           //=> when exploded by |, the array size must be 3 entries
           if ( count($_exploded) < 3 )
             continue;
@@ -698,7 +700,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @since  3.4+
     */
     static function tc_is_pro() {
-      return file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
+      return file_exists( sprintf( '%score/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
     }
 
   }
