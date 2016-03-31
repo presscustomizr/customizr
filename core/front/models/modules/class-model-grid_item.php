@@ -21,7 +21,7 @@ class TC_grid_item_model_class extends TC_model {
 
     $icon_visibility        = $this -> tc_set_grid_icon_visibility();
 
-    $title        = $this -> tc_set_grid_title_length( get_the_title() );
+    $title                  = $this -> tc_set_grid_title_length( get_the_title() );
     //update the model
     $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded', 'title' ) ) );
   }

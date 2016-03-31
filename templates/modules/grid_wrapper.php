@@ -30,7 +30,7 @@ endif;
 
    ?>
     <article <?php tc_echo( 'article_selectors' ) ?> >
-      <?php do_action('__grid__') ?>
+      <?php do_action( '__grid__' ) ?>
     </article>
     <hr class="featurette-divider __after_article">
   <?php

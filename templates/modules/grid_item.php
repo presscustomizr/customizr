@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * The template for displaying the post list grid item (expanded or not)
  *
@@ -7,7 +7,6 @@
  * @since Customizr 3.5.0
  */
 ?>
-
 <section class="tc-grid-post" <?php tc_echo('element_attributes') ?>>
   <figure class="tc-grid-figure <?php tc_echo( 'figure_class' ) ?>">
     <?php
@@ -59,7 +58,7 @@
     /* Edit link in the figure for the expanded item */
     if( tc_get( 'is_expanded' ) )
       do_action( '__edit_button__' );
-    ?>      
+    ?>
   </figure>
 <?php
 
