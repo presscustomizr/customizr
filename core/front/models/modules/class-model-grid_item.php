@@ -97,8 +97,8 @@ class TC_grid_item_model_class extends TC_model {
     $icon_enabled        = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_icons') );
     $icon_attributes     = '';
     if ( TC___::$instance -> tc_is_customizing() )
-      $icon_attributes   = sprintf('style="display:%1$s">',
-          $has_icon ? 'inline-block' : 'none'
+      $icon_attributes   = sprintf('style="display:%1$s"',
+          $icon_enabled ? 'inline-block' : 'none'
       );
     return compact( 'icon_enabled', 'icon_attributes' );
   }
