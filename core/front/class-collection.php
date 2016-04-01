@@ -107,6 +107,13 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //=> let's instantiate
       $model = $this -> tc_instantiate_model($model);
 
+      //abort if the model has not been instantiated
+      if ( ! is_object($model) ) {
+        $_model_id = isset( $model['id'] ) ? $model['id'] : 'undefined';
+        do_action('tc_dev_notice', "The model ( " . $_model_id . ") was not instantiated and could not be registered into the collection." );
+        return;
+      }
+
       //At this stage, the model has been registered to the collection.
       //=> an event has been emitted on model instantiation, the collection has listened to this event and registered the model.
       if ( $this -> tc_is_registered( $model -> id ) ) {
@@ -114,7 +121,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         //can be used with did_action() afterwards
         do_action( "model_registered_{$model -> id}" );
       } elseif ( ! empty( $model -> id ) ) {
-        do_action('tc_dev_notice', "A model instance ( " . $model -> id . ") was not registered. into the collection." );
+        do_action('tc_dev_notice', "A model instance ( " . $model -> id . ") was not registered into the collection." );
         return;
       } else //silent exit ( for those models whose instatiation has been stopped in the constructor as result of the model business logic )
         return;
@@ -295,25 +302,26 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //if not found try to retrieve it from the template param (mandatory):
       //a) The model_class, when specified, must refer to a valid model otherwise a notice will be fired.
       //b) Also if a whatever model has been instantiated it must be a subclass of TC_Model - otherwise a notice will be fired.
-      //Else If no suitable model has been instantiated instantiate the base model class
+      //c) Else If no suitable model has been instantiated instantiate the base model class
       foreach ( array( 'model_class', 'template' ) as $_model_class ) {
         if ( ! isset($model[ $_model_class ]) || empty($model[ $_model_class ]) )
             continue;
 
         //A model class has been defined, let's try to load it and instantiate it
         //The model_class arg can also be an array in the form array( 'parent' => parent_model_class (string), 'name' => model_class ('string') )
-        if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ){
+        if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ) {
           $this -> tc_require_model_class( $model['model_class']['parent'] );
           $model_class     = $model[ $_model_class ]['name'];
-        }else
+        } else {
           $model_class     = $model[ $_model_class ];
+        }
 
         $model_class_name     = sprintf( 'TC_%s_model_class', $this -> tc_require_model_class( $model_class ) );
 
         if ( class_exists($model_class_name) )
           $instance = new $model_class_name( $model );
 
-        if ( ! is_object($instance) &&  'model_class' == $_model_class ) {
+        if ( ! is_object($instance) && 'model_class' == $_model_class ) {
           do_action('tc_dev_notice', "Model : " . $model['id'] . ". The model has not been instantiated." );
           return;
         }
@@ -322,7 +330,8 @@ if ( ! class_exists( 'TC_Collection' ) ) :
           do_action('tc_dev_notice', "Model : " . $model['id'] . ". View Instantiation aborted : the specified model class must be a child of TC_Model." );
           return;
         } else break;
-      }//end for
+      }//end foreach
+
       if ( ! is_object( $instance ) )
         return new TC_Model( $model );
 
@@ -465,16 +474,6 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
       $current_model  = $this -> tc_get_model($id);//gets the model as an array of parameters
       $model_instance = $this -> tc_get_model_instance($id);
-      ?>
-          <pre>
-            <?php print_r('MODEL INSTANCE'); ?>
-          </pre>
-        <?php
-        ?>
-          <pre>
-            <?php print_r($model_instance); ?>
-          </pre>
-        <?php
 
       if ( ! $model_instance )
         $this -> tc_register_change( $id, $new_model );
@@ -490,16 +489,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         $this -> tc_delete( $id );
         //reset the new_model with existing properties
         $new_model = wp_parse_args( $new_model, $current_model );
-        ?>
-          <pre>
-            <?php print_r('NEW MODEL'); ?>
-          </pre>
-        <?php
-        ?>
-          <pre>
-            <?php print_r($new_model); ?>
-          </pre>
-        <?php
+
         //register the new version of the model
         $this -> tc_register( $new_model );
       }
