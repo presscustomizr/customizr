@@ -174,7 +174,9 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //do we have a hook ?
       //if not check if template_redirect has already been fired, to see if we are in a tc_render case
       if ( empty($this -> hook) || ! $this -> hook ) {
-        $instance -> tc_maybe_render();
+        if ( did_action('template_redirect') )
+          $instance -> tc_maybe_render();
+
         return;//this is the end, beautiful friend.
       }
 
