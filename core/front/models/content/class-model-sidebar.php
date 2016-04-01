@@ -8,38 +8,20 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
   );
 
   function tc_setup_children() {
-    $children = array();
-    if ( 'left' == $this -> position ) {
-      $children = array(
-        //left sidebar content
-        //socialblock in left sidebar
-        array(
-          'hook'        => '__widget_area_left__',
-          'template'    => 'modules/social_block',
-          'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' )
-        ),
-        array(
-          'hook'        => '__widget_area_left__',
-          'id'          => 'left',
-          'template'    => 'modules/widget_area'
-        )
-      );
-    } elseif( 'right' == $this -> position ) {
-      $children = array(
-        //right sidebar content
-        array(
-          'hook'        => '__widget_area_right__',
-          'template'    => 'modules/social_block',
-          'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' )
-        ),
-        array(
-          'hook'        => '__widget_area_right__',
-          'id'          => 'right',
-          'template'    => 'modules/widget_area'
-        )
-      );
-    }
-
+    $children = array(
+      //left/right sidebar content
+      array(
+        'hook'        => "__widget_area_{$this->position}__",
+        'template'    => 'modules/social_block',
+        'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' )
+      ),
+      //socialblock in left/right sidebar
+      array(
+        'hook'        => "__widget_area_{$this->position}__",
+        'id'          => $this->position,
+        'template'    => 'modules/widget_area'
+      )
+    );
     return $children;
   }
 
