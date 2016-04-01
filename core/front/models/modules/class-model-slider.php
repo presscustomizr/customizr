@@ -30,14 +30,14 @@ class TC_slider_model_class extends TC_Model {
         'hook' => '__slide__',
         'template'  => 'modules/slide',
       ),
-        //edit slide button
-        array(
-          'hook'        => '__after_all_slides_caption__',
-          'template'    => 'modules/edit_button',
-          'id'          => 'slide_edit_button',
-          'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slide'),
-          'controller'  => 'edit_button'
-        ),
+      //edit slide button
+      array(
+        'hook'        => '__after_all_slides_caption__',
+        'template'    => 'modules/edit_button',
+        'id'          => 'slide_edit_button',
+        'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slide'),
+        'controller'  => 'edit_button'
+      ),
       //edit slider button
       array(
         'hook'        => '__after_carousel_inner__',
