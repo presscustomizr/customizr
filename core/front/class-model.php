@@ -83,6 +83,9 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //maybe add style (have to see if we have to put this just before the view is rendered)
       $this -> tc_maybe_add_style();
 
+      //Allow models to filter other view's model before rendering
+      $this -> tc_maybe_filter_views_model();
+
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
       add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_add_view_to_model'), 10, 1 );
@@ -100,9 +103,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //Allow models to filter their view visibility
       add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_this_model_view' ), 0 );
 
-      //Allow models to filter other view's model before rendering
-      $this -> tc_maybe_filter_views_model();
-    }
+    }//construct
 
 
     //add this instance to the view description in the collection
@@ -311,7 +312,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     }
 
     // Maybe add pre_rendering_view action hook callback to filter the model before rendering
-    // Extesion classes might want to override this method, so to hook them to a specific pre rendering id
+    // Extended classes might want to override this method, so to hook them to a specific pre rendering id
     // I prefer to not allow the automatic hooking to a specific view without checking the existence of a callback to avoid the useless adding of a "dummy" cb ot the array of action callbacks
     // Though makes sense to hook a certain model ID to its view pre_rendering to parse its own properties before rendering. Example:
     // The class parameter will be stored in the model as an array to allow a better way to filter it ( e.g. avoid duplications), but to make it suitable for the rendering, it must be transformed in a string
@@ -320,6 +321,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     protected function tc_maybe_filter_views_model() {
       if ( method_exists( $this, 'pre_rendering_view_cb' ) )
         add_action( 'pre_rendering_view', array( $this, 'pre_rendering_view_cb' ) );
+
       //by default filter this module before rendering (for default properties parsing, e.g. element_class )
       add_action( "pre_rendering_view_{$this -> id}", array($this, "pre_rendering_my_view_cb" ), 9999 );
     }

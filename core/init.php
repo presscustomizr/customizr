@@ -196,10 +196,10 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * HEADER
           *********************************************/
-          array(
-            'hook'        => '__page_wrapper__',
-            'template'    => 'header/header',
-          ),
+          // array(
+          //   'hook'        => '__page_wrapper__',
+          //   'template'    => 'header/header',
+          // ),
 
 
           /*********************************************
@@ -208,7 +208,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array(
             'hook'        => '__page_wrapper__',
             'template'    => 'modules/slider',
-            'id'          => 'main_slider',
+            'id'          => 'main_slider'
           ),
           //slider of posts
           array(
@@ -228,7 +228,7 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * Main wrappers
           *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
+          //array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
           /* contains left/right sidebars and content wrapper (article container) registrations */
           array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 30 ),
 
@@ -387,7 +387,7 @@ if ( ! class_exists( 'TC___' ) ) :
           * FOOTER
           *********************************************/
           /* contains all the footer children registration */
-          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 )
+          //array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 )
           /* end Footer */
         )
       );
@@ -759,7 +759,7 @@ if ( ! function_exists('tc_render_template') ) {
     CZR() -> collection -> tc_register(
       array(
         'hook'        => false,
-        'template'    => $template,
+        'template'    => $template
       )
     );
   }
