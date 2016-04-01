@@ -30,7 +30,7 @@ class TC_social_block_model_class extends TC_Model {
   }
 
   protected function tc_social_block_get_class( $model ) {
-    return apply_filters( "tc_social_{$this -> where}_block_class", $this -> element_class, $model );
+    return apply_filters( "tc_{$this -> where}_block_social_class", $this -> element_class, $model );
   }
 
   protected function tc_social_block_get_attributes( $model ) {

@@ -1,7 +1,6 @@
 <?php
 class TC_sidebar_social_block_model_class extends TC_social_block_model_class {
-  public $tag        = 'aside';
-
+  public $element_tag        = 'aside';
   /*
   * @override
   */
@@ -22,6 +21,6 @@ class TC_sidebar_social_block_model_class extends TC_social_block_model_class {
   * @override
   */
   function tc_social_block_get_class( $model ) {
-    return apply_filters( 'tc_sidebar_block_social_class' , array('social-block', 'widget', 'widget_social'), $model );
+    return apply_filters( 'tc_sidebar_block_social_class' , array( 'widget', 'widget_social' ), $model );
   }
 }
