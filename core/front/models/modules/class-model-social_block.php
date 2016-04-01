@@ -1,36 +1,36 @@
 <?php
 class TC_social_block_model_class extends TC_Model {
-  public $content;
-  public $element_class = array('social-block');
-
+  public $social_block;
+  public $element_class = array();
+  public $element_tag   = 'div';
   /*
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'content' ]             = TC_utils::$inst -> tc_get_social_networks();
+    $model[ 'social_block' ]        = TC_utils::$inst -> tc_get_social_networks();
     $model[ 'element_class' ]       = $this -> tc_social_block_get_class( $model );
     $model[ 'where' ]               = $this -> tc_get_socials_where( $model );
     $model[ 'element_attributes' ]  = $this -> tc_social_block_get_attributes( $model );
-    $model[ 'content' ]             = $this -> tc_get_before_socials() . $model[ 'content' ] . $this -> tc_get_after_socials();
+    $model[ 'social_block' ]        = $this -> tc_get_before_socials() . $model[ 'social_block' ] . $this -> tc_get_after_socials();
     return $model;
   }
 
   protected function tc_get_socials_where( $model ) {
-    return isset( $this -> where ) ? $this-> where : '';    
+    return isset( $this -> where ) ? $this-> where : '';
   }
   protected function tc_get_before_socials() {
     return '';
   }
 
   protected function tc_get_after_socials() {
-    return '';  
+    return '';
   }
 
   protected function tc_social_block_get_class( $model ) {
-    return apply_filters( "tc_social_{$this -> where}_block_class", $this -> element_class, $model );
+    return apply_filters( "tc_{$this -> where}_block_social_class", $this -> element_class, $model );
   }
 
   protected function tc_social_block_get_attributes( $model ) {
@@ -40,8 +40,8 @@ class TC_social_block_model_class extends TC_Model {
     //or
     //1b) there are no social icons set
     //and
-    //2) customizing 
-    $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['content']  ) && TC___::$instance -> tc_is_customizing();
+    //2) customizing
+    $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && TC___::$instance -> tc_is_customizing();
     return $_hidden ? 'style="display:none;"' : '';
   }
 

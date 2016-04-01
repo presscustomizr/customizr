@@ -24,6 +24,9 @@ if ( ! class_exists( 'TC___' ) ) :
     public $views;//object, stores the views
     public $controllers;//object, stores the controllers
 
+    //stack
+    public $current_model = array();
+
     public static function tc_instance() {
       if ( ! isset( self::$instance ) && ! ( self::$instance instanceof TC___ ) ) {
         self::$instance = new TC___();
@@ -34,14 +37,9 @@ if ( ! class_exists( 'TC___' ) ) :
         self::$instance -> controllers = new TC_Controllers();
         self::$instance -> helpers = new TC_Helpers();
 
-        //registers the header's model
-        add_action('header_model_alive' , array(self::$instance, 'tc_register_header_map') );
-
-        //register the model's map
-        add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
-
-
-
+        //register the model's map in front
+        if ( ! is_admin() )
+          add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
       }
       return self::$instance;
     }
@@ -102,6 +100,8 @@ if ( ! class_exists( 'TC___' ) ) :
               array('core/utils' , 'utils_settings_map'),//customizer setting map
               array('core/utils' , 'utils'),//helpers used everywhere
               array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
+              array('core/utils' , 'utils_query'),//query helpers used almost everywhere
+              array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
               array('core'       , 'resources'),//loads front stylesheets (skins) and javascripts
               array('core'       , 'widgets'),//widget factory
               array('core'       , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
@@ -117,7 +117,8 @@ if ( ! class_exists( 'TC___' ) ) :
             ),
             'content'   =>   array(
               array('core/front/utils', 'gallery')
-            )
+            ),
+            'addons'    => apply_filters( 'tc_addons_classes' , array() )
         )
       );
       //check the context
@@ -132,9 +133,9 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
     /**
-    * Class instanciation using a singleton factory :
-    * Can be called to instanciate a specific class or group of classes
-    * @param  array(). Ex : array ('admin' => array( array( 'inc/admin' , 'meta_boxes') ) )
+    * Class instantiation using a singleton factory :
+    * Can be called to instantiate a specific class or group of classes
+    * @param  array(). Ex : array ('admin' => array( array( 'core/back' , 'meta_boxes') ) )
     * @return  instances array()
     *
     * Thanks to Ben Doherty (https://github.com/bendoh) for the great programming approach
@@ -147,13 +148,13 @@ if ( ! class_exists( 'TC___' ) ) :
       if ( empty($_to_load) )
         return;
 
-      foreach ( $this -> tc_core as $group => $files )
+      foreach ( $_to_load as $group => $files )
         foreach ($files as $path_suffix ) {
           $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
           $classname = 'TC_' . $path_suffix[1];
-          if ( in_array( $classname, apply_filters( 'tc_dont_instanciate_in_init', array( 'TC_nav_walker') ) ) )
+          if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'TC_nav_walker') ) ) )
             continue;
-          //instanciates
+          //instantiates
           $instances = class_exists($classname)  ? new $classname : '';
         }
 
@@ -180,8 +181,6 @@ if ( ! class_exists( 'TC___' ) ) :
 
     //returns an array of models describing the theme's views
     private function tc_get_model_map() {
-//        add_filter( 'tc_get_real_id', '');
-        add_filter('tc_slider_name_id', function($slider, $a, $i){ if ( $i == 'main_slider_1' ) return 'prova'; return $slider; }, 10, 3);
       return apply_filters(
         'tc_model_map',
         array(
@@ -191,29 +190,24 @@ if ( ! class_exists( 'TC___' ) ) :
             array(
               'hook' => '__rooot__',
               'template' => 'rooot',
-              'element_tag' => false
             ),
             array(
               'hook' => '__html__',
               'template' => 'header/head',
-              'element_tag' => 'head'
             ),
             array(
               'hook' => 'wp_head' ,
               'template' => 'header/favicon',
-              'element_tag' => false
             ),
             array(
               'hook' => '__html__',
               'template' => 'body',
               'priority' => 20,
-              'element_tag' => false
             ),
             array(
               'hook' => '__body__',
               'template' => 'page_wrapper',
               'priority' => 20,
-              'element_id' => 'tc-page-wrap'
             ),
 
 
@@ -223,278 +217,200 @@ if ( ! class_exists( 'TC___' ) ) :
           array(
             'hook'        => '__page_wrapper__',
             'template'    => 'header/header',
-            'element_tag' => 'header',
-            'element_attributes' => 'role="banner"'
           ),
-
-
 
 
           /*********************************************
           * SLIDER
-          *********************************************/ 
+          *********************************************/
           array(
-            'hook' => '__page_wrapper__',
-            'template'  => 'modules/slider',
-            'id' => 'main_slider',
-            'element_tag' => false
+            'hook'        => '__page_wrapper__',
+            'template'    => 'modules/slider',
+            'id'          => 'main_slider',
           ),
+          //slider of posts
           array(
-            'hook' => '__page_wrapper__',
-            'template'  => 'modules/slider',
-            'id' => 'main_slider',
-            'element_tag' => false,
-            'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/posts_slider' ),
-            'controler'   => 'main_slider'
+            'hook'        => '__page_wrapper__',
+            'template'    => 'modules/slider',
+            'id'          => 'main_posts_slider',
+            'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ),
+            'controller'  => 'main_slider'
           ),
-            array(
-              'hook' => '__slide__',
-              'template'  => 'modules/slide',
-              'element_tag' => false
-            ),
+          /** end slider **/
+
 
           /*********************************************
           * CONTENT
           *********************************************/
-          /* MAIN WRAPPERS */
-          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20, 'element_class' => apply_filters( 'tc_main_wrapper_classes' , array('container') ), 'element_id' => 'main-wrapper' ),
-          array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 20 ),
-          
-          //Featured Pages
-          array( 
-            'hook' => '__main_wrapper__',
-            'template' => 'modules/featured_pages',
-            'priority' => 10,
-        //we define the wrapper class here, we need a wrapper 'cause we don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
-            'element_class' => 'container marketing' 
+
+          /*********************************************
+          * Main wrappers
+          *********************************************/
+          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
+          /* contains left/right sidebars and content wrapper (article container) registrations */
+          array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 30 ),
+
+
+          /*********************************************
+          * Featured Pages
+          *********************************************/
+          /* contains the featured page item registration */
+          array(
+            'hook'        => '__main_wrapper__',
+            'template'    => 'modules/featured_pages',
+            'priority'    => 10,
           ),
-            array( 
-              'hook' => '__featured_page__',
-              'template' => 'modules/featured_page',
-          //we define the wrapper class here, we need a wrapper 'cause we don't want to lose the former pre-fp loop hooks . Actually we might thing to have those action hooks inside the template. Why did we decide otherwise?
-              'element_tag' => false
-            ),
+          /** end featured pages **/
 
-          //breadcrumb
-          array( 'hook' => '__main_wrapper__', 'template' => 'modules/breadcrumb', 'priority' => 20, 'element_tag' => false ),
+          /*********************************************
+          * Breadcrumb
+          *********************************************/
+          array(
+            'hook'        => '__main_wrapper__',
+            'template'    => 'modules/breadcrumb', 'priority' => 20 ),
 
-          /* LEFT SIDEBAR */
-          array( 'hook' => '__main_container__', 'id' => 'left_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 10, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
-            //left sidebar content
-            //socialblock in left sidebar
-          array( 'hook' => '__widget_area_left__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
-            array( 'hook' => '__widget_area_left__', 'id' => 'left', 'template' => 'modules/widget_area' ),
-          /* CONTENT WRAPPER id="content" class="{article container class }"*/
-          array( 'hook' => '__main_container__', 'template' => 'content/content_wrapper', 'priority' => 20 ),
-
-          /* RIGHT SIDEBAR */
-          array( 'hook' => '__main_container__', 'id' => 'right_sidebar', 'template' => 'modules/widget_area_wrapper', 'priority' => 30, 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebar' ) ),
-          //right sidebar content
-          //socialblock in right sidebar
-          array( 'hook' => '__widget_area_right__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' ) ),
-            array( 'hook' => '__widget_area_right__', 'id' => 'right', 'template' => 'modules/widget_area' ),
 
           /* OUTSIDE THE LOOP */
           //404
-          array( 'hook' => '__content__', 'id' => '404', 'template' => 'content/content_404', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/404'), 'element_tag' => false ),
+          array(
+            'hook'        => '__content__',
+            'id' => '404',
+            'template'    => 'content/content_404',
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/404')
+          ),
           //no results
-          array( 'hook' => '__content__', 'id' => 'no_results', 'template' => 'content/content_no_results', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results'), 'element_tag' => false ),
+          array(
+            'hook'        => '__content__',
+            'id'          => 'no_results',
+            'template'    => 'content/content_no_results',
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results')
+          ),
 
           //Headings: before the loop (for list of posts, like blog, category, archives ...)
-          array( 'hook' => '__content__', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'), 'id' => 'posts_list_headings' ),
-          array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_title', 'priority' => 10 ),
-          //search results title
-          array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_search_title', 'priority' => 10, 'model_class' => array( 'parent' => 'content/posts_list_title', 'name' => 'content/posts_list_search_title' ) ),
-          array( 'hook' => '__headings_posts_list__', 'template' => 'content/posts_list_description', 'priority' => 20 ),
-          //author description
-          array( 'hook' => '__headings_posts_list__', 'id' => 'author_description', 'template' => 'content/author_info', 'element_tag' => false ,'priority' => 20 ),
+          //sub-modules registration inside
+          array(
+            'hook'        => '__content__',
+            'template'    => 'content/headings',
+            'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'),
+            'id'          => 'posts_list_headings'
+          ),
 
-          /* GENERIC LOOP */
-          array( 'hook' => '__content__', 'id' => 'main_loop', 'template' => 'loop', 'element_tag' => false, 'priority' => 20 ),
 
-          /*** GRID (POST LIST) ***/
-          array( 
+          /********************************************************************
+          * GENERIC LOOP
+          ********************************************************************/
+          array(
+            'hook'        => '__content__',
+            'id'          => 'main_loop',
+            'template'    => 'loop',
+            'priority' => 20
+          ),
+
+          /*********************************************
+          * GRID (POST LIST)
+          *********************************************/
+          array(
             'hook'        => 'in_main_loop',
             'template'    => 'modules/grid_wrapper',
             'priority'    => 10,
-            'element_tag' => false,
             'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid_wrapper'),
             'controller'  => 'post_list_grid'
           ),
-            //grid item
-             array( 
-              'hook'        => '__grid__',
-              'template'    => 'modules/grid_item',
-              'element_tag' => false,
-             ),
-             //grid headings
-             array( 'hook' => '__grid_headings__', 'template' => 'modules/grid_headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            //grid title
-             array( 
-              'hook'        => '__grid_title__',
-              'template'    => 'modules/grid_title',
-              'element_tag' => false,
-             ),
-
-
           /* END GRID */
-          /*** ALTERNATE POST LIST ***/
-          array( 'hook' => 'in_main_loop', 'template' => 'content/post_list_wrapper', 'priority' => 10, 'element_tag' => false, 'controller' => 'post_list', 'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' ) ),
 
-          //content
-          //post content/excerpt
-          array( 'hook' => '__post_list_content__', 'template' => 'content/post_list_content', 'id' => 'content', 'element_tag' => 'section' ),
-          //thumbs
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/post_list_thumbnail', 'id' => 'post_list_standard_thumb', 'element_tag' => false ),
-          //the recangular thumb has a different model + a slighty different template
-          array( 'hook' => '__post_list_thumb__', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_list_rectangular_thumb', 'element_tag' => false, 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_list_rectangular_thumbnail') ),
+          /*********************************************
+          * ALTERNATE POST LIST
+          *********************************************/
+          /* Contains the alternate post list elements and their submodules registrations */
+          array(
+            'hook'        => 'in_main_loop',
+            'template'    => 'content/post_list_wrapper',
+            'priority'    => 10,
+            'controller'  => 'post_list',
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' )
+          ),
+          /*** END ALTERNATE POST LIST ***/
 
-          //post in post lists headings
-          array( 'hook' => 'before_render_view_inner_content', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            array( 'hook' => '__post_page_title__', 'template' => 'content/post_page_title', 'id' => 'post_list_title', 'element_tag' => 'h2' ),
-            //comment bubble
-            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'element_tag' => false ),
-
-          /*** ALTERNATE POST LIST END ***/
-
-          /**** SINGULAR: PAGE POST ATTACHMENT ****/  
-          array( 'hook' => 'in_main_loop', 'template' => 'content/article', 'priority' => 10, 'element_tag' => false, 'element_class' => 'row-fluid', 'id' => 'singular_article' ),
-          //page/attachment headings
-            array( 'hook' => '__article__', 'id' => 'singular_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ), 'priority' => 10 ),
-          //page content
-          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'page', 'priority' => 20 ),
-          //post content
-          array( 'hook' => '__article__', 'template' => 'content/post_page_content', 'id' => 'post', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/post_content' ) ),
-            //post headings
-            array( 'hook' => 'before_render_view_post', 'id' => 'post_headings', 'template' => 'content/headings', 'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ) ),
-            //post footer (wrapper of the author_info)
-            array( 'hook' => 'after_render_view_post', 'id' => 'post_footer', 'template' => 'content/author_info', 'element_tag' => 'footer', 'element_class' => 'entry-meta'),
-          //attachment
-          array( 'hook' => '__article__', 'template' => 'content/attachment', 'id' => 'attachment', 'model_class' => array( 'parent' => 'content/post_page_content', 'name' => 'content/attachment_content' ), 'element_tag' => false ),
-          //post and page titles in singular context
-            array( 'hook' => '__post_page_title__', 'template' => 'content/singular_title', 'model_class' => 'content/post_page_title', 'element_tag' => 'h1' ),
-
-            //post thumbnail
-            array( 'hook' => 'before_render_view_post', 'template' => 'content/rectangular_thumbnail', 'id' => 'post_thumbnail', 'element_tag' => 'section', 'model_class' => array( 'parent' => 'content/post_list_thumbnail', 'name' => 'content/post_thumbnail') ),
-
-            //comment bubble
-            array( 'hook' => '__comment_bubble__', 'template' => 'modules/comment_bubble', 'id' => 'singular_comment_bubble', 'element_tag' => false ),
-
-          //Post metas in the headings
-          //the default class/template is for the buttons type
-            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'id' => 'post_metas_button' ),
-          //the text meta one uses a different template
-            array( 'hook' => '__post_metas__', 'template' => 'content/post_metas_text', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ) ),
-          //attachment post mestas
-            array( 'hook' => '__post_metas__', 'id' => 'post_metas_attachment', 'template' => 'content/attachment_post_metas', 'element_class' => 'entry-meta', 'priority' => 20, 'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' ) ),
-
-          /* TODO: LINKS IN POST METAS FOR POSTS WITH NO TITLE ( needs to access the definition of the posts with no headings )...*/
+          /*********************************************
+          * POST/PAGE/ATTACHMENTS HEADINGS
+          *********************************************/
+          /* IN ALTERNATE POST LIST AND SINGULARS !!! */
+          /*
+          * page/attachment/post headings
+          * contains the post metas and title registration
+          */
+          array(
+            'hook'        => '__article__',
+            'id'          => 'singular_headings',
+            'template'    => 'content/headings',
+            'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ),
+            'priority'    => 10
+          ),
 
 
-          /* Comments */
-          /* comment list */
-          array( 'hook' => '__content__', 'template' => 'content/comments', 'element_class' => 'comments-area', 'element_id' => 'comments', 'priority' => '20'),
-            array( 'hook' => '__comments__', 'template' => 'content/comment_block_title', 'priority' => '10', 'element_tag' => false),
-            array( 'hook' => '__comments__', 'template' => 'content/comment_list', 'element_tag' => 'ul', 'element_class' => 'commentlist', 'priority' => '20'),
-              array( 'hook' => '__comment_loop__', 'template' => 'content/comment',  'id' => 'comment', 'element_tag' => false ),
-              array( 'hook' => '__comment_loop__', 'template' => 'content/tracepingback',  'id' => 'traceback', 'element_tag' => false ),
-            array( 'hook' => '__comments__', 'template' => 'content/comment_navigation', 'priority' => '30'),
+          /*********************************************
+          * Singular: PAGE POST ATTACHMENT
+          *********************************************/
+          /* contains post page attachement content/post-footer registration */
+          array(
+            'hook'        => 'in_main_loop',
+            'template'    => 'content/article',
+            'priority'    => 10,
+            'id'          => 'singular_article',
+            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/singular_wrapper' )
+          ),
 
+
+          /*********************************************
+          * Comments
+          *********************************************/
+          /*
+          * contains the comment form
+          *
+          * contains comment list registration
+          * the comment list contains the comment and (track|ping)back registration
+          */
+          array(
+            'hook'     => '__content__',
+            'template' => 'content/comments',
+            'priority' => '20'
+          ),
           /* end Comments */
-          /* Post navigation */
-          array( 'hook' => '__content__', 'template' => 'content/post_navigation_singular', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_singular' ), 'priority' => 40 ),
-          array( 'hook' => '__content__', 'template' => 'content/post_navigation_posts', 'element_tag' => 'nav', 'element_id' => 'nav-below', 'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ), 'priority' => 40 ),
-            //singular links'
-            array( 'hook' => 'post_navigation_singular', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_singular'), 'id' => 'post_navigation_links_singular'),
-            //posts links
-            array( 'hook' => 'post_navigation_posts', 'template' => 'content/post_navigation_links', 'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_posts'), 'id' => 'post_navigation_links_posts' ),
-          /* end post navigation */
 
+          /*********************************************
+          * Post navigation
+          *********************************************/
+          /* contains the post navigation links registration */
+          /* in singlar */
+          array(
+            'hook' => '__content__',
+            'template' => 'content/post_navigation',
+            'model_class' => array( 'parent' => 'content/post_navigation',
+            'name' => 'content/post_navigation_singular' ),
+            'id' => 'post_navigation_singular',
+            'priority' => 40
+          ),
+          /* in post lists */
+          array(
+            'hook' => '__content__',
+            'template' => 'content/post_navigation',
+            'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ),
+            'id' => 'post_navigation_posts',
+            'priority' => 40
+          ),
+          /* end post navigation */
+          /** END CONTENT **/
 
           /*********************************************
           * FOOTER
           *********************************************/
-          //sticky footer
-          array( 'hook' => 'after_render_view_main_container', 'template' => 'footer/footer_push', 'priority' => 100, 'element_tag' => false ),
-
-          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30, 'element_tag' => 'footer' ),
-
-          //a post grid displayed in any content
-  //        array( 'hook' => '__footer__', 'template' => 'modules/grid-wrapper', 'priority' => 20 ),
-  //        array( 'hook' => 'in_grid_wrapper', 'id' => 'secondary_loop', 'template' => 'loop', 'query' => array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => 1 ) ),
-  //        array( 'hook' => 'in_secondary_loop', 'template' => 'modules/grid-item' ),
-
-          //widget area in footer
-          array( 'hook' => '__footer__', 'id' => 'footer_widgets_wrapper', 'template' => 'modules/widget_area_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
-
-          //footer one wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_one', 'priority' => '10', 'template' => 'modules/widget_area', 'element_id' => 'footer-one' , 'model_class' => 'footer/footer_widget_area_wrapper'),
-
-          //footer two wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_two', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-two' ),
-
-          //footer three wrapper and widget area
-          array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper', 'element_id' => 'footer-three' ),
-
-          //colophon
-          array( 'hook' => '__footer__', 'template' => 'footer/colophon_standard', 'model_class' => array( 'parent' => 'footer/colophon', 'name' => 'footer/colophon_standard'), 'priority' => 100 ),
-          //TODO: COLOPHON BLOCKS ORDER IS RTL DEPENDANT
-          //footer social
-          array( 'hook' => '__colophon_one__', 'template' => 'modules/social_block', 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ) ),
-          //footer credits
-          array( 'hook' => '__colophon_two__', 'template' => 'footer/footer_credits' ),
-          //footer colophon btt link
-          array( 'hook' => '__colophon_three__', 'template' => 'footer/footer_btt' ),
-
-          //btt arrow
-          array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow', 'element_class' => 'tc-btt-wrapper'),
+          /* contains all the footer children registration */
+          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 )
+          /* end Footer */
         )
       );
     }
 
-
-
-    function tc_register_header_map() {
-      $_header_map = array(
-          //LOGO
-          array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
-          array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo', 'element_tag' => false ),
-          array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/sticky_logo'), 'element_tag' => false ),
-
-          //TITLE
-          array( 'hook' => '__header__', 'template' => 'header/title'  ),
-
-          //MOBILE TAGLINE
-          array( 'hook' => '__header__', 'template' => 'header/mobile_tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/mobile_tagline') ),
-
-          //NAVBAR
-          array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
-
-          //socialblock in navbar
-          array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
-          //tagline in navbar
-          array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
-          //menu in navbar
-          array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
-          //secondary
-          array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
-          //responsive menu button
-          array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
-          //sidenav navbar menu button
-          array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
-
-          //RESET MARGIN TOP (for sticky header)
-          array( 'hook' => 'after_render_view_header', 'template' => 'header/reset_margin_top', 'priority' => 0, 'element_tag' => false ),
-
-          //SIDENAV
-          array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav', 'element_tag' => 'nav', 'element_id' => 'tc-sn', 'element_class' => apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) ),
-          //menu button
-          array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
-          //menu
-          array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
-      );
-      $this -> tc_register_model_map( $_header_map );
-    }
 
 
 
@@ -502,7 +418,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * HELPERS
     ****************************/
     /**
-    * Check the context and return the modified array of class files to load and instanciate
+    * Check the context and return the modified array of class files to load and instantiate
     * hook : tc_get_files_to_load
     * @return boolean
     *
@@ -525,13 +441,13 @@ if ( ! class_exists( 'TC___' ) ) :
             //if doing ajax, we must not exclude the placeholders
             //because ajax actions are fired by admin_ajax.php where is_admin===true.
             if ( defined( 'DOING_AJAX' ) )
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
+              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
             else
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
+              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize', 'fire|core|placeholders' ) );
           }
           else
             //Skips all admin classes
-            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
+            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/back|admin_init', 'fire|core/back|admin_page') );
         }
       //Customizing
       else
@@ -541,14 +457,14 @@ if ( ! class_exists( 'TC___' ) ) :
             $_to_load = $this -> tc_unset_core_classes(
               $_to_load,
               array( 'header' , 'content' , 'footer' ),
-              array( 'fire|inc|resources' , 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
+              array( 'fire|core|resources' , 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
             );
           }
           if ( $this -> tc_is_customize_preview_frame() ) {
             $_to_load = $this -> tc_unset_core_classes(
               $_to_load,
               array(),
-              array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
+              array( 'fire|core/back|admin_init', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
             );
           }
         }
@@ -562,9 +478,9 @@ if ( ! class_exists( 'TC___' ) ) :
     * Alters the original classes tree
     * @param $_groups array() list the group of classes to unset like header, content, admin
     * @param $_files array() list the single file to unset.
-    * Specific syntax for single files: ex in fire|inc/admin|admin_page
-    * => fire is the group, inc/admin is the path, admin_page is the file suffix.
-    * => will unset inc/admin/class-fire-admin_page.php
+    * Specific syntax for single files: ex in fire|core/back|admin_page
+    * => fire is the group, core/back is the path, admin_page is the file suffix.
+    * => will unset core/back/class-fire-admin_page.php
     *
     * @return array() describing the files to load
     *
@@ -580,9 +496,9 @@ if ( ! class_exists( 'TC___' ) ) :
       }
       if ( ! empty($_files) ) {
         foreach ( $_files as $_concat ) {
-          //$_concat looks like : fire|inc|resources
+          //$_concat looks like : fire|core|resources
           $_exploded = explode( '|', $_concat );
-          //each single file entry must be a string like 'admin|inc/admin|customize'
+          //each single file entry must be a string like 'admin|core/back|customize'
           //=> when exploded by |, the array size must be 3 entries
           if ( count($_exploded) < 3 )
             continue;
@@ -631,6 +547,45 @@ if ( ! class_exists( 'TC___' ) ) :
     //requires a framework file only if exists
     function tc_fw_require_once( $path_suffix ) {
       return $this -> tc_require_once( TC_FRAMEWORK_PREFIX . $path_suffix );
+    }
+
+
+    /*
+    * Stores the current model in the class current_model stack
+    * called by the View class before requiring the view template
+    * @param $model
+    */
+    function tc_set_current_model( $model ) {
+      $this -> current_model[ $model -> id ] = &$model;
+    }
+
+
+    /*
+    * Pops the current model from the current_model stack
+    * called by the View class after the view template has been required/rendered
+    */
+    function tc_reset_current_model() {
+      array_pop( $this -> current_model );
+    }
+
+
+    /*
+    * An handly function to get a current model property
+    * @param $property (string), the property to get
+    * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
+    */
+    function tc_get( $property, $args = array() ) {
+      $current_model = end( $this -> current_model );
+      return $current_model -> tc_get_property( $property, $args );
+    }
+
+    /*
+    * An handly function to print a current model property (wrapper for tc_get)
+    * @param $property (string), the property to get
+    * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
+    */
+    function tc_echo( $property, $args = array() ) {
+      echo tc_get( $property, $args );
     }
 
     /**
@@ -713,7 +668,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @since  3.4+
     */
     static function tc_is_pro() {
-      return file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
+      return file_exists( sprintf( '%score/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
     }
 
   }
@@ -756,10 +711,52 @@ if ( ! function_exists('tc_fw_require_once') ) {
     return TC___::$instance -> tc_fw_require_once( $path_suffix );
   }
 }
+
+
 /*
  * @since 3.5.0
  */
-//shortcut function to instanciate easier
+//shortcut function to set the current model which will be accessible by the tc_get
+if ( ! function_exists('tc_set_current_model') ) {
+  function tc_set_current_model( $model ) {
+    return TC___::$instance -> tc_set_current_model( $model );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to reset the current model
+if ( ! function_exists('tc_reset_current_model') ) {
+  function tc_reset_current_model() {
+    return TC___::$instance -> tc_reset_current_model();
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to get a current model property
+if ( ! function_exists('tc_get') ) {
+  function tc_get( $property, $args = array() ) {
+    return TC___::$instance -> tc_get( $property, $args );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to echo a current model property
+if ( ! function_exists('tc_echo') ) {
+  function tc_echo( $property, $args = array() ) {
+    return TC___::$instance -> tc_echo( $property, $args );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to instantiate easier
 if ( ! function_exists('tc_new') ) {
   function tc_new( $_to_load, $_args = array() ) {
     TC___::$instance -> tc__( $_to_load , $_args );

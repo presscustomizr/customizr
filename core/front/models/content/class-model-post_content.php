@@ -1,17 +1,30 @@
 <?php
-class TC_post_content_model_class extends TC_post_page_content_model_class {
-   
+class TC_post_content_model_class extends TC_Model {
+
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
-  */  
+  *
+  * return model params array()
+  */
   function tc_extend_params( $model = array() ) {
     $icon_class             = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'tc_post_format_icon', 'format-icon' ) :'' ;
 
-    $model['element_class'] = array( $this -> element_class, $icon_class );
+    $model['element_class'] = array( $icon_class );
 
     return $model;
+  }
+
+  function tc_setup_children() {
+    $children = array(
+      //single post thumbnail
+      array(
+        'hook'        => 'before_render_view_post',
+        'template'    => 'content/thumbnail_single',
+        'id'          => 'post_thumbnail',
+        'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single')
+      )
+    );
+    return $children;
   }
 }

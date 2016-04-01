@@ -7,20 +7,55 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
       'left'   => 'l'
   );
 
+  function tc_setup_children() {
+    $children = array();
+    if ( 'left' == $this -> position ) {
+      $children = array(
+        //left sidebar content
+        //socialblock in left sidebar
+        array(
+          'hook'        => '__widget_area_left__',
+          'template'    => 'modules/social_block',
+          'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' )
+        ),
+        array(
+          'hook'        => '__widget_area_left__',
+          'id'          => 'left',
+          'template'    => 'modules/widget_area'
+        )
+      );
+    } elseif( 'right' == $this -> position ) {
+      $children = array(
+        //right sidebar content
+        array(
+          'hook'        => '__widget_area_right__',
+          'template'    => 'modules/social_block',
+          'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' )
+        ),
+        array(
+          'hook'        => '__widget_area_right__',
+          'id'          => 'right',
+          'template'    => 'modules/widget_area'
+        )
+      );
+    }
+
+    return $children;
+  }
 
   /*
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model                = parent::tc_extend_params( $model );   
+    $model                = parent::tc_extend_params( $model );
     $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
 
     //extract the position
     $this -> position     = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar' ) );
-    
+
     if ( ! in_array( $this -> position, array('right', 'left' ) ) )
       return array();
 
@@ -33,7 +68,7 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
     $model['inner_class']             = array('widget-area');
     $model['action_hook_suffix']      = '_'. $this -> position;
     $model['inner_id']                = $this -> position;
-    
+
     return $model;
   }
 }

@@ -4,13 +4,13 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
 
-    $model[ 'element_class' ] = apply_filters( 'tc_navbar_wrapper_class', array('navbar-wrapper', 'clearfix', 'span9') );
-    
+    $model[ 'element_class' ] = apply_filters( 'tc_navbar_wrapper_class', array('span9') );
+
     return $model;
   }
 

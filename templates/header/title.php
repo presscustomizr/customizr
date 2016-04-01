@@ -1,5 +1,7 @@
-<<?php echo $title_model -> tag; ?>>
-  <a class="<?php echo $title_model -> link_class;?>" href="<?php echo $title_model -> link_url; ?>" title="<?php echo $title_model -> link_title; ?>" >
-    <?php _e( esc_attr( get_bloginfo( 'name' ) ) ); ?>
-  </a>
-</<?php echo $title_model -> tag; ?>>
+<div class="<?php tc_echo('element_class') ?>" <?php tc_echo('element_attributes') ?>>
+  <h1>
+    <a class="site-title" href="<?php tc_echo( 'link_url' ) ?>" title="<?php tc_echo( 'link_title' ) ?>" >
+      <?php _e( esc_attr( get_bloginfo( 'name' ) ) ); ?>
+    </a>
+  </h1>
+</div>

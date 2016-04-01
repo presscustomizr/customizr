@@ -1,7 +1,36 @@
-<section class="<?php echo $post_list_thumbnail_model -> wrapper_class ?>">
-  <div class="<?php echo $post_list_thumbnail_model -> thumb_wrapper_class ?>">
-    <div class="round-div"></div>
-    <a class="<?php echo $post_list_thumbnail_model -> link_class ?>" href="<?php the_permalink() ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
-    <?php echo $post_list_thumbnail_model -> thumb_img ?>
-  </div>
+<?php
+/**
+ * The template for displaying the thumbnails in post lists (alternate layout) contexts
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
+<section class="tc-thumbnail <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
+ <div class="<?php tc_echo( 'thumb_wrapper_class' ) ?>">
+  <?php
+
+    /* Case rectangular thumbnail */
+    if ( 'rectangular' == tc_get('type') ) :
+
+  ?>
+   <a class="<?php tc_echo( 'link_class' ) ?>" href="<?php the_permalink() ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ) ?>">
+     <?php tc_echo( 'thumb_img' ) ?>
+   </a>
+ <?php
+
+    /* Case standard thumbnail (rounded/square) */
+    else :
+
+ ?>
+   <div class="round-div"></div>
+   <a class="<?php tc_echo( 'link_class' ) ?>" href="<?php the_permalink() ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
+   <?php tc_echo( 'thumb_img' ) ?>
+ <?php
+
+      endif;
+
+ ?>
+ </div>
 </section>

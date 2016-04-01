@@ -48,7 +48,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
         add_filter( '__is_home_empty'         , array( $this , 'tc_is_home_empty' ) );
         add_filter( '__post_type'             , array( $this , 'tc_get_post_type' ) );
         add_filter( '__is_no_results'         , array( $this , 'tc_is_no_results') );
- //       add_filter( '__article_selectors'     , array( $this , 'tc_article_selectors' ) );
 
         //social networks
         add_filter( '__get_socials'           , array( $this , 'tc_get_social_networks' ) );
@@ -701,7 +700,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
     /**
     * @return a date diff object
-    * @uses  date_diff if php version >=5.3.0, instanciates a fallback class if not
+    * @uses  date_diff if php version >=5.3.0, instantiates a fallback class if not
     *
     * @since 3.2.8
     *

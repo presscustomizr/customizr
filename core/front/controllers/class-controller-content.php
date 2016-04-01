@@ -37,14 +37,12 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_singular_headings() {
-      return is_singular() && ( is_page() || is_attachment() ) && ! is_front_page();    
+      return $this -> tc_display_view_post() || $this -> tc_display_view_attachment() || ( $this -> tc_display_view_page() && ! is_front_page() );
     }
  
     function tc_display_view_posts_list_headings() {
       if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
-        global $wp_query;  
-        self::$_cache['posts_list_headings'] = ( $wp_query -> is_posts_page && ! is_front_page() ) ||
-            is_archive() || ( is_search() && $wp_query -> post_count > 0 && ! is_singular() ); 
+        self::$_cache['posts_list_headings'] = ! TC_utils::$inst -> tc_is_home() && $this -> tc_is_list_of_posts();
       }
       return self::$_cache['posts_list_headings'];
     }
@@ -52,7 +50,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_list() {
       return $this -> tc_is_list_of_posts() &&
             //hack until we implement the "routers"
-            apply_filters( 'tc_is_not_grid', false );    
+            apply_filters( 'tc_is_not_grid', true );    
     }
 
 
@@ -61,13 +59,13 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_posts_list_search_title() {
-      global $wp_query;  
-      return $this -> tc_display_view_posts_list_headings() && is_search() && $wp_query -> post_count > 0;
+      return $this -> tc_display_view_posts_list_headings() && is_search();
     }
 
     function tc_display_view_posts_list_description() {
       return $this -> tc_display_view_posts_list_headings() && ! is_author() && ! is_search();
     }
+
     function tc_display_view_author_description() {
       return ( $this -> tc_display_view_posts_list_headings() && is_author() ) &&
              apply_filters ( 'tc_show_author_meta', get_the_author_meta('description') );
@@ -170,9 +168,9 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     //when to display attachment post metas?
     //a) in single attachment page
     //b) eventually, in the search list when attachments are allowed
-    function tc_display_view_post_metas_attachment() {
+    function tc_display_view_post_metas_attachment() { 
       return is_attachment() ||
-        is_search() && apply_filters( 'tc_include_attachments_in_search_results' , false );    
+        ( is_search() && apply_filters( 'tc_include_attachments_in_search_results' , false ) );
     }
 
     /* Thumbnails in post lists */
@@ -200,36 +198,39 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         && apply_filters( 'tc_show_single_post_thumbnail' , TC_utils_thumbnails::$instance -> tc_has_thumb() ); 
     }
 
+
     function tc_display_view_post_navigation_singular() {
-      if ( TC___::$instance -> tc_is_customizing() )
-        return true;
       if ( ! $this -> tc_display_post_navigation() )   
         return false;
-      if ( isset( self::$_cache['post_navigation_singular'] ) )
-        return self::$_cache['post_navigation_singular'];
-
-      self::$_cache['post_navigation_singular'] = false;
-      if ( $this -> tc_is_post_navigation_enabled() ) {
+    
+      if ( ! isset( self::$_cache['post_navigation_singular'] ) ) {
+          
+        self::$_cache['post_navigation_singular'] = false;
+    
         $_context = $this -> tc_get_post_navigation_context();
-
-        self::$_cache['post_navigation_singular'] = in_array( $_context, array('page', 'single') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
+        if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('page', 'single') ) )
+          self::$_cache['post_navigation_singular'] = true;
+        elseif ( $this -> tc_is_post_navigation_enabled() )
+          self::$_cache['post_navigation_singular'] = in_array( $_context, array('page', 'single') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
       }
 
       return self::$_cache['post_navigation_singular'];
     }
 
+
     function tc_display_view_post_navigation_posts() {
-      if ( TC___::$instance -> tc_is_customizing() )
-        return true;
       if ( ! $this -> tc_display_post_navigation() )   
         return false;
-      if ( isset( self::$_cache['post_navigation_posts'] ) )
-        return self::$_cache['post_navigation_posts'];
-
-      self::$_cache['post_navigation_posts'] = false;
-      if ( $this -> tc_is_post_navigation_enabled() ) {
+    
+      if ( ! isset( self::$_cache['post_navigation_posts'] ) ) {
+          
+        self::$_cache['post_navigation_posts'] = false;
+    
         $_context = $this -> tc_get_post_navigation_context();
-        self::$_cache['post_navigation_posts'] = in_array( $_context, array('home', 'archive') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
+        if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('home', 'archive') ) )
+          self::$_cache['post_navigation_posts'] = true;
+        elseif ( $this -> tc_is_post_navigation_enabled() )
+          self::$_cache['post_navigation_posts'] = in_array( $_context, array('home', 'archive') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
       }
 
       return self::$_cache['post_navigation_posts'];
@@ -237,7 +238,8 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
     function tc_display_post_navigation() {
       global $wp_query;
-      return $wp_query -> post_count > 0;
+      $bool  =  $wp_query -> post_count > 0;
+      return is_singular() ?  $bool && ! is_attachment() : $bool;
     }
 
     function tc_display_view_404() {
@@ -257,23 +259,15 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_comment_list() {
-      return apply_filters( 'tc_display_comment_list', true );
+      return apply_filters( 'tc_display_comment_list', $this -> tc_display_view_comments() );
     }
 
     function tc_display_view_comment() {
-      return $this -> tc_are_comments_enabled();
-    }
-
-    function tc_display_view_tracepingback() {
-      return $this -> tc_are_comments_enabled();
-    }
-
-    function tc_display_view_comment_block_title() {
       return $this -> tc_display_view_comment_list();
     }
 
-    function tc_display_view_comment_navigation() {
-      return $this -> tc_display_view_comment_list() && get_option( 'page_comments' );
+    function tc_display_view_trackpingback() {
+      return $this -> tc_display_view_comment_list();
     }
 
    /******************************
@@ -287,6 +281,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         && ! is_404()
         && 0 != $wp_query -> post_count
         && ! $this -> tc_is_home_empty()
+        && ! is_admin()
       );
     }
 
@@ -349,7 +344,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     * @param (string or bool) the context
     * @return bool
     */
-    function tc_is_post_navigation_context_enabled( $_context ) {
+    function tc_is_post_navigation_context_enabled( $_context ) { 
       return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
     }
 

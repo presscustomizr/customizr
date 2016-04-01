@@ -1,1 +1,1 @@
-<img src="<?php echo $logo_model -> src ?>" alt="<?php echo $logo_model -> alt ?>" class="<?php echo $logo_model -> class ?>" <?php echo $logo_model -> attr ?>> 
+<img src="<?php tc_echo( 'src' ) ?>" alt="<?php tc_echo( 'alt' ) ?>" class="<?php tc_echo( 'element_class') ?>" <?php tc_echo( 'element_attributes' ) ?>>

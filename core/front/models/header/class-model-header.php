@@ -1,18 +1,72 @@
 <?php
 class TC_header_model_class extends TC_Model {
+  public $has_sticky_pusher    = false;
+  public $pusher_margin_top    = 103;
 
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'element_class' ] = apply_filters('tc_header_classes', array(
+    $element_class = apply_filters('tc_header_classes', array(
         'tc-header' ,'clearfix', 'row-fluid',
         'logo-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout' ) )
     ));
-    return $model;
+    if ( true == $has_sticky_pusher = $this -> tc_has_pusher_margin_top() )
+      $pusher_margin_top = apply_filters( 'tc_default_sticky_header_height', 103 );
+
+    return array_merge( $model, compact( 'element_class', 'has_sticky_pusher', 'pusher_margin_top') );
+  }
+
+
+  function tc_has_pusher_margin_top() {
+    //with the contx in the future the existing of the push might be an option
+    //e.g. not having it in a particular page so to allow the header to overlap
+    //a slider/image, hence the reason of this method existence
+    return esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) )
+              || TC___::$instance -> tc_is_customizing();
+  }
+
+  function tc_setup_children() {
+    $children = array(
+      //LOGO
+      array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
+      array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo'),
+      array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
+
+      //TITLE
+      array( 'hook' => '__header__', 'template' => 'header/title'  ),
+
+      //MOBILE TAGLINE
+      array( 'hook' => '__header__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/tagline_mobile') ),
+
+      //NAVBAR
+      array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
+
+      //socialblock in navbar
+      array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
+      //tagline in navbar
+      array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
+      //menu in navbar
+      array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
+      //secondary
+      array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+      //responsive menu button
+      array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
+      //sidenav navbar menu button
+      array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+
+      //SIDENAV
+      array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav' ),
+      //sidenav menu button
+      array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      //sidenav menu
+      array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
+      );
+
+    return $children;
   }
 
 
@@ -51,7 +105,7 @@ class TC_header_model_class extends TC_Model {
     //STICKY HEADER
     if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
       array_push( $_classes, 'tc-sticky-header', 'sticky-disabled' );
-      
+
       //STICKY TRANSPARENT ON SCROLL
       if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_transparent_on_scroll' ) ) )
         array_push( $_classes, 'tc-transparent-on-scroll' );
@@ -60,7 +114,7 @@ class TC_header_model_class extends TC_Model {
     }
     else
       array_push( $_classes, 'tc-no-sticky-header' );
-    
+
     return $_classes;
   }
 }//end of class

@@ -16,10 +16,11 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
         '__widget_area_left__'  => 'left-sidebar',
         '__widget_area_right__' => 'right-sidebar',
         '__navbar__'            => 'header',
-        '__colophon_one__'      => 'footer'
+        '__colophon_one__'      => 'footer',
+        '__colophon_three__'    => 'footer'
       );
 
-      //the block must be instanciated when
+      //the block must be instantiated when
       //1) IS customizing or no model hook set
       //or
       //2a) the block is displayed in a non-standard (not option mapped) structural hook
@@ -48,7 +49,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       $tc_front_slider              = esc_attr(TC_utils::$inst->tc_opt( 'tc_front_slider' ) );
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
       $_show_slider = TC_utils::$inst -> tc_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
-    
+
       return apply_filters( 'tc_show_slider' , $_show_slider );
 
     }
@@ -80,8 +81,8 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
           && (bool) apply_filters( 'tc_comments_in_title', true );
       }
 
-      if ( 'singular_comment_bubble' == $model['id'] ) {
-        return is_singular() && self::$_cache['comment_bubble'] && $this -> tc_are_comments_enabled() &&
+      if ( is_singular() ) {
+        return /*is_singular() && */self::$_cache['comment_bubble'] && $this -> tc_are_comments_enabled() &&
                   in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
           //we need the comments enabled and post list controller here! why don't we require all the controllers?...they won't be a load
       }
@@ -97,6 +98,25 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
     }
 
 
+    function tc_display_view_recently_updated() {
+      return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_in_title' ) );
+    }
+
+    /*
+    * The edit link is allowed when:
+    * 1) user logged in
+    * 2) not customizing
+    * 3) current user can edit posts
+    * inside the model another check will be done on the user capability to edit the current post
+    * and in the loop
+    */
+    function tc_display_view_edit_button() {
+      return apply_filters( 'tc_edit_in_title',
+          is_user_logged_in()
+       && ! TC___::$instance -> tc_is_customizing()
+       && current_user_can( 'edit_posts' )
+      );
+    }
     /* FOLLOWING COPIED FROM THE CONTENT CONTROLLER CLASS */
     /******************************
     VARIOUS HELPERS
@@ -155,12 +175,12 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       add_filter( 'tc_is_not_grid', $bool ? '__return_false' : '__return_true' );
       return $bool;
     }
-    
+
 
     /* returns the type of post list we're in if any, an empty string otherwise */
     private function tc_get_grid_context() {
       global $wp_query;
-        
+
       if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
               $wp_query->is_posts_page )
           return 'blog';

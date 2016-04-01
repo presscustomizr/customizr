@@ -555,15 +555,15 @@
   $.extend( _preview_cbs, {
     tc_grid_shadow : function( to ) {
       if ( false !== to )
-        $('.article-container').addClass('tc-grid-shadow');
+        $('section.tc-post-list-grid').addClass('tc-grid-shadow');
       else
-        $('.article-container').removeClass('tc-grid-shadow');
+        $('section.tc-post-list-grid').removeClass('tc-grid-shadow');
     },
     tc_grid_bottom_border : function( to ) {
       if ( false !== to )
-        $('.article-container').addClass('tc-grid-border');
+        $('section.tc-post-list-grid').addClass('tc-grid-border');
       else
-        $('.article-container').removeClass('tc-grid-border');
+        $('section.tc-post-list-grid').removeClass('tc-grid-border');
     },
     tc_grid_icons : function( to ) {
       if ( false === to )

@@ -1,35 +1,56 @@
-<div class="item <?php echo $slide_model -> item_class ?>">
-  <?php if ( $slide_model -> link_whole_slide ) : ?>
-  <a class="tc-slide-link" href="<?php echo $slide_model -> link_url ?>" target="<?php echo $slide_model -> link_target ?>" title=<?php _e( 'Go to', 'customizr' ) ?>>
+<?php
+/**
+ * The template for displaying a single slide item
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
+<div class="item <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
+
+  <div class="<?php tc_echo( 'img_wrapper_class' ) ?>">
+  <?php if ( tc_get( 'link_whole_slide' ) ) : ?>
+    <a class="tc-slide-link" href="<?php tc_echo( 'link_url' ) ?>" target="<?php tc_echo( 'link_target' ) ?>" title=<?php _e( 'Go to', 'customizr' ) ?>>
   <?php endif ?>
-    <div class="<?php echo $slide_model -> img_wrapper_class ?>">
-
     <?php
-        do_action('__before_all_slides');
+        do_action('__before_all_slides_background__');
  //     do_action_ref_array ("__before_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data ) );
-          echo $slide_model -> slide_background;  
+          tc_echo( 'slide_background' );
 /*do_action_ref_array ("__after_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data ) );*/
-        do_action('__after_all_slides');
+        do_action('__after_all_slides_background__');
     ?>
-    </div> <!-- .carousel-image -->
-  <?php if ( $slide_model -> link_whole_slide ) : ?>
-  </a>
+  <?php if ( tc_get( 'link_whole_slide' ) ) : ?>
+    </a>
   <?php endif; ?>
+  </div> <!-- .carousel-image -->
 
-  <?php if ( $slide_model -> has_caption ) : ?>
-  <div class="<?php echo $slide_model -> caption_class ?>">
-    <?php if ( $slide_model -> title ): ?>
+  <?php 
+    
+  if ( tc_get( 'has_caption' ) ) : 
+
+  do_action('__before_all_slides_caption__');
+
+  ?>
+  <div class="<?php tc_echo( 'caption_class' ) ?>">
+    <?php if ( tc_get( 'title' ) ): ?>
     <!-- TITLE -->
-      <<?php echo $slide_model -> title_tag ?> class ="<?php echo $slide_model -> title_class ?>" <?php echo $slide_model -> color_style ?>><?php echo $slide_model -> title ?></<?php echo $slide_model -> title_tag ?>>
+      <<?php tc_echo( 'title_tag' ) ?> class ="<?php tc_echo( 'title_class' ) ?>" <?php tc_echo( 'color_style' ) ?>><?php tc_echo( 'title' ) ?></<?php tc_echo( 'title_tag' ) ?>>
     <?php endif; ?>
-    <?php if ( $slide_model -> text ): ?>
+    <?php if ( tc_get( 'text' ) ) : ?>
     <!-- TEXT -->
-      <p class ="<?php echo $slide_model -> text_class ?>" <?php echo $slide_model -> color_style ?>><?php echo $slide_model -> text ?></p>
+      <p class ="<?php tc_echo( 'text_class' ) ?>" <?php tc_echo( 'color_style' ) ?>><?php tc_echo( 'text' ) ?></p>
     <?php endif; ?>
     <!-- BUTTON -->
-    <?php if ( $slide_model -> button_text ): ?>
-      <a class="<?php echo $slide_model -> button_class ?>" href="<?php echo $slide_model -> button_link ?>" target="<?php echo $slide_model -> link_target ?>"><?php echo $slide_model -> button_text ?></a>
+    <?php if ( tc_get( 'button_text' ) ): ?>
+      <a class="<?php tc_echo( 'button_class' ) ?>" href="<?php tc_echo( 'button_link' ) ?>" target="<?php tc_echo( 'link_target' ) ?>"><?php tc_echo( 'button_text' ) ?></a>
     <?php endif; ?>
   </div>
-  <?php endif; ?>
+  <?php 
+
+  do_action('__after_all_slides_caption__');
+  /* endif caption*/
+  endif; 
+
+  ?>
 </div><! -- /.item -->
