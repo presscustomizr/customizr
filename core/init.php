@@ -187,10 +187,10 @@ if ( ! class_exists( 'TC___' ) ) :
             /*********************************************
             * ROOT HTML STRUCTURE
             *********************************************/
-            array(
-              'hook' => '__rooot__',
-              'template' => 'rooot',
-            ),
+            // array(
+            //   'hook' => '__rooot__',
+            //   'template' => 'rooot',
+            // ),
             array(
               'hook' => '__html__',
               'template' => 'header/head',
@@ -576,7 +576,7 @@ if ( ! class_exists( 'TC___' ) ) :
     */
     function tc_get( $property, $args = array() ) {
       $current_model = end( $this -> current_model );
-      return $current_model -> tc_get_property( $property, $args );
+      return is_object($current_model) ? $current_model -> tc_get_property( $property, $args ) : false;
     }
 
     /*
