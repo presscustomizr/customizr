@@ -52,26 +52,26 @@ if ( ! class_exists( 'TC_View' ) ) :
       //allow filtering of the model before rendering (the view's model is passed by reference)
       do_action_ref_array( 'pre_rendering_view', array(&$this -> model) );
       do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
-      
+
       do_action( "before_render_view_{$this -> model -> id}" );
       ?>
       <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> model -> id}"; ?> -->
       <?php
       /* Maybe merge debug info into the model element attributes */
       if ( ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' ) )
-        $this -> model -> element_attributes =  join( ' ', array( 
+        $this -> model -> element_attributes =  join( ' ', array(
             $this -> model -> element_attributes,
             'data-model_id="'. $this -> model -> id .'"',
             'data-template="'. $this -> model -> template .'"'
-        )); 
+        ));
       /*
       <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
       */
         $this -> tc_render();
-      /*      
+      /*
       <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
        */
-      ?>  
+      ?>
       <!-- HOOK CONTENT HERE : <?php echo "after_render_view_{$this -> model -> id}"; ?> -->
       <?php
       do_action( "after_render_view_{$this -> model -> id}" );
