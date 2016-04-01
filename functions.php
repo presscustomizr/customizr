@@ -9,7 +9,6 @@ CZR();
 
 
 
-
 /*//print the collection each time it's updated
 add_action( 'collection_updated', function( $id, $model = null )  {
   ?>
@@ -30,7 +29,7 @@ function callback_fn( $text1 = "default1", $text2 = "default2"  ) {
 }
 
 
-class TC_test_model_class extends TC_View {
+/*class TC_test_model_class extends TC_View {
   public $test_class_property = 'YOUPI';
   static $instance;
 
@@ -41,12 +40,12 @@ class TC_test_model_class extends TC_View {
       parent::__construct( $model );
   }
 
-  /*public function tc_render() {
+  public function tc_render() {
     ?>
       <h1>MY ID IS <span style="color:blue"><?php echo $this -> id ?></span>, AND I AM RENDERED BY THE VIEW CLASS</h1>
     <?php
-  }*/
-}
+  }
+}*/
 
 
 class TC_rendering {

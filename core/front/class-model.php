@@ -88,7 +88,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_add_view_to_model'), 10, 1 );
 
       //takes the view instance as param
-      add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_maybe_hook_view'), 20, 1 );
+      add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_maybe_hook_or_render_view'), 20, 1 );
 
       //Maybe instantiate the model's view
       //listens to 'wp' if not fired yet, or fire the instantiation
@@ -162,13 +162,20 @@ if ( ! class_exists( 'TC_Model' ) ) :
     * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
     ***********************************************************************************/
     //hook : 'view_instantiated'
-    //@param view instance object, can be TC_View or a child of TC_View
+    //@param $instance is the view instance object, can be TC_View or a child of TC_View
     //hook the rendering method to the hook
     //$this -> _instance can be used. It can be a child of this class.
-    public function tc_maybe_hook_view($instance) {
+    public function tc_maybe_hook_or_render_view($instance) {
       if ( empty($this -> id) ) {
-        do_action('tc_dev_notice', 'A model is missing an id' );
+        do_action('tc_dev_notice', 'In TC_Model, a model is missing its id.' );
         return;
+      }
+
+      //do we have a hook ?
+      //if not check if template_redirect has already been fired, to see if we are in a tc_render case
+      if ( empty($this -> hook) || ! $this -> hook ) {
+        $instance -> tc_maybe_render();
+        return;//this is the end, beautiful friend.
       }
 
       //What are the requested hook and priority ?
@@ -178,11 +185,14 @@ if ( ! class_exists( 'TC_Model' ) ) :
       $_da_priority = apply_filters("_da_priority_{$this -> id}" , $this -> priority );
 
       //Renders the view on the requested hook
-      if ( false !== $_da_hook ) {
-        add_action( $_da_hook, array( $instance , 'tc_maybe_render' ), $_da_priority );
-        //emit an event each time a view is hooked
-        do_action( 'view_hooked' , $this -> id );
-      }
+      //'cause yes we do have a hook at this point, who doubts about that ?
+      //Well me, but I know I shouldn't. I'm just a freaky damned scary lone coder in the night riding a sparkle horse.
+      if ( false == $_da_hook )
+        return;
+
+      add_action( $_da_hook, array( $instance , 'tc_maybe_render' ), $_da_priority );
+      //emit an event each time a view is hooked
+      do_action( 'view_hooked' , $this -> id );
     }
 
 
@@ -341,12 +351,14 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
 
     //@return bool
+    //at this stage the mode must at least have :
+    //1) a unique id
+    //2) a priority set
     private function tc_can_model_be_instantiated() {
       //the model must be an array of params
       //the hook is the only mandatory param
-      //the id is optional => will be set unique on model instantiation
-      if ( ! is_numeric( $this -> priority ) || empty($this -> id) || empty( $this -> hook ) ) {
-        do_action('tc_dev_notice', "In TC_Model class, a model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
+      if ( ! is_numeric( $this -> priority ) || empty($this -> id) ) {
+        do_action('tc_dev_notice', "In TC_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
         return;
       }
       return true;

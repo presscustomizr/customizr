@@ -187,27 +187,9 @@ if ( ! class_exists( 'TC___' ) ) :
             /*********************************************
             * ROOT HTML STRUCTURE
             *********************************************/
-            // array(
-            //   'hook' => '__rooot__',
-            //   'template' => 'rooot',
-            // ),
-            array(
-              'hook' => '__html__',
-              'template' => 'header/head',
-            ),
             array(
               'hook' => 'wp_head' ,
               'template' => 'header/favicon',
-            ),
-            array(
-              'hook' => '__html__',
-              'template' => 'body',
-              'priority' => 20,
-            ),
-            array(
-              'hook' => '__body__',
-              'template' => 'page_wrapper',
-              'priority' => 20,
             ),
 
 
@@ -671,8 +653,11 @@ if ( ! class_exists( 'TC___' ) ) :
       return file_exists( sprintf( '%score/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
     }
 
-  }
+  }//end of class
 endif;//endif;
+
+
+
 
 /*
  * @since 3.5.0
@@ -763,6 +748,23 @@ if ( ! function_exists('tc_new') ) {
     return;
   }
 }
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to instantiate a model + render its template
+//model and template should share the same name
+if ( ! function_exists('tc_render_template') ) {
+  function tc_render_template( $template ) {
+    CZR() -> collection -> tc_register(
+      array(
+        'hook'        => false,
+        'template'    => $template,
+      )
+    );
+  }
+}
+
 /**
 * The tc__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.
 * It is shorter than the original apply_filters() and only used on already defined filters.
