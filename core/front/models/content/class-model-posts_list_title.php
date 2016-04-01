@@ -2,9 +2,8 @@
 class TC_posts_list_title_model_class extends TC_Model {
   public $pre_title;
   public $title;
-  public $element_tag = 'h1';
-  
-  private $context;
+
+  public $context;
 
   function tc_extend_params( $model = array() ) {
     //the controlleer will check if we're in (not singular) context
@@ -24,7 +23,7 @@ class TC_posts_list_title_model_class extends TC_Model {
   }
 
   function tc_get_the_posts_list_context() {
-    global $wp_query;  
+    global $wp_query;
     if ( $wp_query -> is_posts_page && ! is_front_page() )
       return 'page_for_posts';
 
@@ -44,18 +43,18 @@ class TC_posts_list_title_model_class extends TC_Model {
       if ( apply_filters('tc_show_tax_archive_title', true ) )
         return 'tax';
     }
-    return false;  
+    return false;
   }
 
   function tc_get_archive_title_class() {
-      return ( esc_attr( TC_utils::$inst->tc_opt( 'tc_show_archive_title_icon' ) ) 
+      return ( esc_attr( TC_utils::$inst->tc_opt( 'tc_show_archive_title_icon' ) )
           && esc_attr( TC_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
   }
 
   function tc_get_posts_list_pre_title( $context = null ) {
     $context = $context ? $context : $this -> context;
     $context = 'category' == $context ? 'cat' : $context;
-    return esc_attr( TC_utils::$inst->tc_opt( "tc_{$context}_title" ) );   
+    return esc_attr( TC_utils::$inst->tc_opt( "tc_{$context}_title" ) );
   }
 
   function tc_get_posts_list_title_content( $context = null ) {

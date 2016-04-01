@@ -1,9 +1,8 @@
 <?php
 class TC_tagline_model_class extends TC_Model {
-  public $content;
-  public $tag   = 'h2';
-  public $class = array('site-description', 'inside', 'span7');
-  public $attributes;
+  public $element_class     = array('inside', 'span7');
+ // public $attributes;
+  public $context           = 'desktop';
 
   /*
   * @override
@@ -12,12 +11,9 @@ class TC_tagline_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'content' ]    = apply_filters( 'tc_tagline_text', __( esc_attr( get_bloginfo( 'description' ) ) ), $model );
-    $model[ 'tag']         = apply_filters( 'tc_tagline_tag', $this -> tag , $model );
+    $model[ 'element_attributes' ] = ( TC___::$instance -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
 
-    $model[ 'attributes' ] = ( TC___::$instance -> tc_is_customizing() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
-
-    $model[ 'class' ]      = apply_filters( 'tc_tagline_class', $this -> class, $model );
+    $model[ 'element_class' ]      = apply_filters( 'tc_tagline_class', $this -> element_class, $model );
     return $model;
   }
 
@@ -30,14 +26,6 @@ class TC_tagline_model_class extends TC_Model {
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
 
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
-    $model -> class = $this -> tc_stringify_model_property( 'class' );
-  }
 
   /**
   * parse header model before rendering to add 'destkop'&&'sticky' tagline visibility class

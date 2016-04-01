@@ -12,7 +12,7 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
 
     //hook : tc_dev_notice
     function tc_print_r($message) {
-      if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) )
+      if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) || is_feed() )
         return;
       ?>
         <pre><h6 style="color:red"><?php echo $message ?></h6></pre>
@@ -35,7 +35,7 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
         if ( is_object($cb[0]) ) {
           $to_return = call_user_func( array( $cb[0] ,  $cb[1] ), $params );
         }
-        //instanciated with an instance property holding the object ?
+        //instantiated with an instance property holding the object ?
         else if ( class_exists($cb[0]) && isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
           $to_return = call_user_func( array( $cb[0]::$instance ,  $cb[1] ), $params );
         }
@@ -71,7 +71,7 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
         if ( is_object($cb[0]) ) {
           $to_return = call_user_func_array( array( $cb[0] ,  $cb[1] ), $params );
         }
-        //instanciated with an instance property holding the object ?
+        //instantiated with an instance property holding the object ?
         else if ( class_exists($cb[0]) && isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
           $to_return = call_user_func_array( array( $cb[0]::$instance ,  $cb[1] ), $params );
         }

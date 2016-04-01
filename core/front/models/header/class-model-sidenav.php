@@ -1,22 +1,9 @@
 <?php
 class TC_sidenav_model_class extends TC_Model {
-  public $inner_class;
 
   function __construct( $model = array() ) {
     parent::__construct( $model );
-    //specific inline CSS
     add_filter( 'tc_menu_open_on_click', array( $this, 'tc_disable_dropdown_on_click' ), 10, 3 );
-  }
-  /**
-  * @override
-  * fired before the model properties are parsed
-  * 
-  * return model params array() 
-  */
-  function tc_extend_params( $model = array() ) {
-    $model[ 'inner_class' ]   = apply_filters('tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') );  
-    
-    return $model;
   }
 
 
@@ -24,8 +11,8 @@ class TC_sidenav_model_class extends TC_Model {
   * @override
   * parse this model properties for rendering
   */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );
     $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
   }
 
@@ -42,7 +29,7 @@ class TC_sidenav_model_class extends TC_Model {
     //sidenav where
     $_where = str_replace( 'pull-menu-', '', esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
     array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
-    
+
     return $_classes;
   }
 

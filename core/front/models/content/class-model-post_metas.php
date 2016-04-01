@@ -2,19 +2,25 @@
 class TC_post_metas_model_class extends TC_Model {
   protected $_cache = array();
 
+  public    $type   = 'post_metas';
+
   function __construct( $model = array() ) {
     //Fires the parent constructor
     parent::__construct( $model );
     //Since we use only one instance for every post in a post list reset the cache after the view has been rendered
     add_action( "after_render_view_{$this -> id}", array( $this, 'tc_reset_cache' ) );
-    //render this?
-    add_filter( "tc_do_render_view_{$this -> id}",  array( $this, 'tc_post_has_metas') );
   }
 
-  //render this?
-  public function tc_post_has_metas() {
-    if ( is_attachment() )//in post lists
-      return false;
+
+  /*
+  * @override
+  */
+  function tc_maybe_render_this_model_view() {
+    if ( ! $this -> visibility )
+      return;
+    if ( is_attachment() )
+        return;
+
     return $this -> tc_get_cat_list() ||
           $this -> tc_get_tag_list() ||
           $this -> tc_get_author() ||
@@ -23,24 +29,24 @@ class TC_post_metas_model_class extends TC_Model {
   }
 
   public function tc_reset_cache() {
-    $this -> _cache = array();    
+    $this -> _cache = array();
   }
 
   /* PUBLIC GETTERS */
   public function tc_get_cat_list( $sep = '' ) {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_categories' ) ) ? $this -> tc_get_meta( 'tax', true, $sep ) : '';    
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_categories' ) ) ? $this -> tc_get_meta( 'tax', true, $sep ) : '';
   }
-  
+
   public function tc_get_tag_list( $sep = '' ) {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_tags' ) ) ? $this -> tc_get_meta( 'tax', false, $sep ) : '';    
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_tags' ) ) ? $this -> tc_get_meta( 'tax', false, $sep ) : '';
   }
 
   public function tc_get_author() {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_author' ) ) ? $this -> tc_get_meta( 'author' ) : '';    
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_author' ) ) ? $this -> tc_get_meta( 'author' ) : '';
   }
 
   public function tc_get_publication_date() {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> tc_get_meta( 'date', 'publication' ) : '';    
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> tc_get_meta( 'date', 'publication' ) : '';
   }
 
   public function tc_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
@@ -65,15 +71,15 @@ class TC_post_metas_model_class extends TC_Model {
   }
 
   private function tc_meta_generate_tax( $hierarchical ) {
-    return $this -> tc_meta_generate_tax_list( $hierarchical );    
+    return $this -> tc_meta_generate_tax_list( $hierarchical );
   }
-  
+
   private function tc_meta_generate_author() {
-    return $this -> tc_get_meta_author();    
+    return $this -> tc_get_meta_author();
   }
 
   private function tc_meta_generate_date( $pub_or_update ) {
-    return $this -> tc_get_meta_date( $pub_or_update );    
+    return $this -> tc_get_meta_date( $pub_or_update );
   }
 
   /* @override */
@@ -145,7 +151,7 @@ class TC_post_metas_model_class extends TC_Model {
               //apply_filters( 'tc_meta_generate_tax_list', implode( apply_filters( 'tc_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
   }
 
-      
+
   /**
   * Helper
   * @return string of the single term view
@@ -173,7 +179,7 @@ class TC_post_metas_model_class extends TC_Model {
     );
   }
 
-        
+
   /**
   * Helper to return the current post terms of specified taxonomy type : hierarchical or not
   *
@@ -210,12 +216,12 @@ class TC_post_metas_model_class extends TC_Model {
       }
       if ( (bool) $hierarchical === (bool) $_tax_object['hierarchical'] )
         $_tax_type_list[$_tax_name] = $_tax_object;
-    
+
       next($tax_list);
     }
     if ( empty($_tax_type_list) )
       return false;
-     
+
     //fill the post terms array
     foreach ($_tax_type_list as $tax_name => $data ) {
       $_current_tax_terms = get_the_terms( TC_utils::tc_id() , $tax_name );
@@ -263,10 +269,10 @@ class TC_post_metas_model_class extends TC_Model {
     if (
         ( is_singular() && ! is_page() && ! tc__f('__is_home') && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ) ||
         ( ! is_singular() && ! tc__f('__is_home') && ! is_page() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
-        ( tc__f('__is_home') ) && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) 
-    ) 
+        ( tc__f('__is_home') ) && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) )
+    )
       array_push( $_classes, 'hide-post-metas' );
-    
+
     return $_classes;
   }
 }//end of class

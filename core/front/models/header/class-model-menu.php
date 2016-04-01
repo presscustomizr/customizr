@@ -9,18 +9,15 @@ class TC_menu_model_class extends TC_Model {
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    //IS THIS STILL USED? DON'T WE USE A CUSTOM FALLBACK? (tc_page_menu)?
-    add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ) );
-
-    $model[ 'menu_class' ]    = $this -> get_menu_class();
-    $model[ 'element_class' ] = $this -> get_element_class();
-    $model['theme_location']  = $this -> theme_location;
-    $model[ 'walker' ]        = ! TC_utils::$inst -> tc_has_location_menu($model['theme_location']) ? '' : new TC_nav_walker($model['theme_location']);
-    $model[ 'fallback_cb' ]   = array( $this, 'tc_page_menu' );
+    $model[ 'menu_class' ]     = $this -> get_menu_class();
+    $model[ 'element_class' ]  = $this -> get_element_class();
+    $model[ 'theme_location' ] = $this -> theme_location;
+    $model[ 'walker' ]         = ! TC_utils::$inst -> tc_has_location_menu( $model['theme_location'] ) ? '' : new TC_nav_walker( $model['theme_location'] );
+    $model[ 'fallback_cb' ]    = array( $this, 'tc_page_menu' );
 
     return $model;
   }
@@ -50,7 +47,7 @@ class TC_menu_model_class extends TC_Model {
   * @hook; pre_rendering_view_header
   *
   * parse header model before rendering to add 'sticky' menu visibility class
-  */ 
+  */
   function pre_rendering_view_header_cb( $header_model ) {
     //fire once
     static $_fired = false;
@@ -60,32 +57,22 @@ class TC_menu_model_class extends TC_Model {
     if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) ) {
       if ( ! is_array( $header_model -> element_class ) )
         $header_model -> element_class = explode( ' ', $header_model -> element_class );
-      array_push( $header_model -> element_class, 
+      array_push( $header_model -> element_class,
         0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_menu') ) ? 'tc-menu-on' : 'tc-menu-off'
       );
     }
   }
+
+
   /**
   * @override
   * parse this model properties for rendering
   */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
+  function tc_sanitize_model_properties( $model ) {
+    parent::tc_sanitize_model_properties( $model );
     $model -> menu_class = $this -> tc_stringify_model_property( 'menu_class' );
   }
 
-
-  /**
-  * Adds a specific class to the ul wrapper
-  * hook : 'wp_page_menu'
-  *
-  * @package Customizr
-  * @since Customizr 3.0
-  */
-  function tc_add_menuclass( $ulclass ) {
-    $html =  preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
-    return apply_filters( 'tc_add_menuclass', $html );
-  }
 
 
   /**
@@ -142,8 +129,8 @@ class TC_menu_model_class extends TC_Model {
     else
       return $menu;
   }
-   
-  
+
+
   /**
    * Retrieve or display list of pages in list (li) format.
    * Modified copy of wp_list_pages

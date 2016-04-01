@@ -4,24 +4,23 @@ abstract class TC_post_navigation_links_model_class extends TC_model {
   public $next_arrow;
   public $prev_link;
   public $next_link;
-  public $element_class = 'pager';
-  public $element_tag   = 'ul';
+
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-   $model[ 'prev_arrow' ]       = is_rtl() ? '&rarr;' : '&larr;'; 
+   $model[ 'prev_arrow' ]       = is_rtl() ? '&rarr;' : '&larr;';
    $model[ 'next_arrow' ]       = is_rtl() ? '&larr;' : '&rarr;';
-   $model[ 'prev_link' ]        = $this -> tc_get_previous_link( $model );
-   $model[ 'next_link' ]        = $this -> tc_get_next_link( $model );
- 
+   $model[ 'prev_link' ]        = $this -> tc_get_the_previous_link( $model );
+   $model[ 'next_link' ]        = $this -> tc_get_the_next_link( $model );
+
    return $model;
   }
 
-  abstract function tc_get_previous_link( $model );
-  abstract function tc_get_next_link( $model );
+  abstract function tc_get_the_previous_link( $model );
+  abstract function tc_get_the_next_link( $model );
 
 }

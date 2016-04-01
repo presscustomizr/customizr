@@ -15,9 +15,9 @@ class TC_second_menu_model_class extends TC_menu_model_class {
     //this is the same with for the main regular menu
     if ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) )
       array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-fade' );
-    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) ) 
+    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) )
       array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-move' );
-    array_push( $navbar_wrapper_model -> element_class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' ); 
+    array_push( $navbar_wrapper_model -> element_class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' );
 
   }
 
@@ -26,10 +26,10 @@ class TC_second_menu_model_class extends TC_menu_model_class {
   * @hook; pre_rendering_view_header
   *
   * parse header model before rendering to add second menu classes
-  */ 
+  */
   function pre_rendering_view_header_cb( $header_model ) {
     parent::pre_rendering_view_header_cb( $header_model );
-    
+
     if ( ! is_array( $header_model -> element_class ) )
       $header_model -> class = explode( ' ', $header_model -> element_class );
 

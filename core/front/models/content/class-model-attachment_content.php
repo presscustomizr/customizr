@@ -1,24 +1,16 @@
 <?php
-class TC_attachment_content_model_class extends TC_post_page_content_model_class {
+class TC_attachment_content_model_class extends TC_Model {
   public $gallery;
-  public $has_gallery;
   public $link_url;
   public $link_rel;
   public $attachment_size;
   public $attachment_class;
 
-  function __construct( $model = array() ) {
-    //Fires the parent constructor
-    parent::__construct( $model );
-    //inside the loop but before rendering set some properties
-    add_action( $model['hook'], array( $this, 'on_this_rendering' ), 0 );
-  }
 
-  function on_this_rendering() {
+  function tc_setup_late_properties() {
     global $post;
 
     $gallery     = '';
-    $has_gallery = false;
     $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
     //did we activate the fancy box in customizer?
@@ -32,7 +24,7 @@ class TC_attachment_content_model_class extends TC_post_page_content_model_class
       foreach ( $attachments as $k => $attachment )
         if ( $attachment->ID == $post->ID )
             break;
-    
+
       $k++;
 
       // If there is more than 1 attachment in a gallery
@@ -54,8 +46,8 @@ class TC_attachment_content_model_class extends TC_post_page_content_model_class
       $link_url          = esc_url( $next_attachment_url );
       $link_rel          = 'attachment';
       $attachemnt_class  = 'attachment';
-    } else {// if fancybox option checked 
-    
+    } else {// if fancybox option checked
+
       $attachment_infos       = wp_get_attachment_image_src( $post->ID , 'large' );
       $attachment_src         = $attachment_infos[0];
       $attachment_class       = 'grouped_elements';
@@ -78,11 +70,10 @@ class TC_attachment_content_model_class extends TC_post_page_content_model_class
                                     );
       }
     }//end else
-  
+
     $attachment_size = apply_filters( 'tc_customizr_attachment_size' , array( 960, 960 ) );
-    $has_gallery     = ! empty ( $gallery );
 
     //update the model
-    $this -> tc_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'has_gallery', 'attachment_class' ) );
+    $this -> tc_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'attachment_class' ) );
   }
-}  
+}

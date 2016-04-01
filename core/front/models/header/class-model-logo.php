@@ -3,25 +3,23 @@ class TC_logo_model_class extends TC_Model {
   public $src = '';
   public $logo_type = '';
   public $alt = '';
-  public $attr = '';
-  public $class = '';
 
 
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    extract( $this -> tc_get_logo_src_args( $this -> logo_type ) );  
+    extract( $this -> tc_get_logo_src_args( $this -> logo_type ) );
 
     $model[ 'src' ]   = $logo_src;
     $model[ 'alt' ]   = apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) ;
-    $model[ 'class' ] = array( $this -> logo_type );
+    $model[ 'element_class' ] = array( $this -> logo_type );
 
     //build other attrs
-    $model[ 'attr' ] = trim( sprintf('%1$s %2$s %3$s %4$s',
+    $model[ 'element_attributes' ] = trim( sprintf('%1$s %2$s %3$s %4$s',
         $logo_width ? sprintf( 'width="%1$s"', $logo_width ) : '',
         $logo_height ? sprintf( 'height="%1$s"', $logo_height ) : '',
         ( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
@@ -37,7 +35,7 @@ class TC_logo_model_class extends TC_Model {
   function tc_get_logo_src_args( $logo_type ) {
     $logo_type_sep          = $logo_type ? '_sticky_' : '_';
     $accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
-    $args                   = array();     
+    $args                   = array();
     //check if the logo is a path or is numeric
     //get src for both cases
     $_logo_src 			    = '';
@@ -71,20 +69,9 @@ class TC_logo_model_class extends TC_Model {
                 'logo_height' 			=> $_height,
                 'logo_type'             => trim($logo_type_sep,'_')
       );
-   
+
       return $args;
   }
-
-
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );
-    $model -> class = $this -> tc_stringify_model_property( 'class' );
-  }
-
 
   /*
   * Custom CSS

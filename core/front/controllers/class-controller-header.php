@@ -44,13 +44,10 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
       return true;
     }
 
-    function tc_display_view_reset_margin_top() {
-      return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) ) || TC___::$instance -> tc_is_customizing();    
-    }
 
 
     function tc_display_view_mobile_tagline() {
-      return $this -> tc_display_view_tagline() ;  
+      return $this -> tc_display_view_tagline();  
     }
 
     //do not display the tagline when:

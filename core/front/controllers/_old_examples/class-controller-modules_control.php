@@ -23,7 +23,7 @@ if ( ! class_exists( 'TC_modules_control' ) ) :
     function __construct( $_args = array() ) {
       self::$instance =& $this;
 
-      //Instanciates the parent class.
+      //Instantiates the parent class.
       parent::__construct( $_args );
     }
 

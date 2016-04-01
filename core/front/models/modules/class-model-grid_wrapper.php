@@ -9,38 +9,21 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   //number of cols of the current section
   public $section_cols;
 
-  //number of cols of the grid
-  public $grid_cols;
-
-//  public $text;
-
-  private $expanded_sticky = true;
+  public $expanded_sticky;
 
   private $post_id;
-
-  /* override */
-  function __construct( $model ) {
-    //Fires the parent constructor
-    parent::__construct( $model );
-
-    //inside the loop but before rendering set some properties
-    add_action( $this -> hook, array( $this, 'set_this_properties' ), 0 );
-  }
 
 
   /**
   * @override
   * fired before the model properties are parsed
-  * 
-  * return model params array() 
+  *
+  * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $this -> post_id = TC_utils::tc_id();
+    $this -> post_id              = TC_utils::tc_id();
 
-    //temporary hack
-    $this -> expanded_sticky = $this -> expanded_sticky && get_query_var( 'paged' ) < 2;
-
-    $element_class = array();  
+    $element_class                = array();
     //wrapper classes based on the user options
     if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
       array_push( $element_class, 'tc-grid-shadow' );
@@ -48,23 +31,83 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
       array_push( $element_class, 'tc-grid-border' );
 
     $model[ 'element_class' ]     = $element_class;
-    $model[ 'grid_cols' ]         = $this -> tc_get_grid_cols();
 
     return $model;
   }
 
 
+  /*
+  *
+  *  Children setup
+  */
+  function tc_setup_children() {
+    $children = array(
+      //grid item
+      array(
+        'hook'        => '__grid__',
+        'template'    => 'modules/grid_item',
+      ),
+        //comment bubble
+        array(
+          'hook' => '__comment_bubble__',
+          'template' => 'modules/comment_bubble'
+        ),
+        //recently updated
+        array(
+          'hook'     => '__recently_updated__',
+          'template' => 'modules/recently_updated',
+        ),
+        //edit button
+        array(
+          'hook'     => '__edit_button__',
+          'template' => 'modules/edit_button'
+        ),
+        //Post metas ( in the headings )
+        //the default class/template is for the buttons type
+        array(
+          'hook' => '__post_metas__',
+          'template' => 'content/post_metas',
+          'id' => 'post_metas_button',
+          'priority' => 20
+        ),
+        //the text meta one uses a different template
+        array(
+          'hook' => '__post_metas__',
+          'template' => 'content/post_metas',
+          'id' => 'post_metas_text',
+          'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/post_metas_text' ),
+          'priority' => 20,
+        ),
+        //attachment post mestas
+        array(
+          'hook' => '__post_metas__',
+          'id' => 'post_metas_attachment',
+          'template' => 'content/attachment_post_metas',
+          'priority' => 20,
+          'model_class' => array( 'parent' => 'content/post_metas', 'name' => 'content/attachment_post_metas' )
+        )
+    );
 
-  function set_this_properties() {
+    return $children;
+  }
+
+
+  //inside the loop but before rendering set some properties
+  function tc_setup_late_properties() {
+    parent::tc_setup_late_properties();
     $element_wrapper        = $this -> tc_get_element_wrapper_properties();
+
+    //check if the current post is the expanded one
+    $is_expanded            = $this -> tc_force_current_post_expansion();
 
     //section properties which refers to the section row wrapper
     $section_row_wrapper    = $this -> tc_get_section_row_wrapper_properties();
     $this -> tc_update( array_merge( $element_wrapper, $section_row_wrapper ) );
 
-    //hack
-    set_query_var( 'grid', array( 'section_cols' => $section_row_wrapper['section_cols'] ,
-        'is_expanded' => $this -> tc_force_current_post_expansion() 
+    set_query_var( 'grid',
+      array(
+        'section_cols' => $section_row_wrapper['section_cols'],
+        'is_expanded'  => $is_expanded
       )
     );
   }
@@ -88,17 +131,18 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   */
   function tc_get_section_row_wrapper_properties() {
     global $wp_query;
-    
+
     $current_post      = $wp_query -> current_post;
-    $start_post        = $this -> expanded_sticky ? 1 : 0;
-    $section_cols      = $this -> tc_get_grid_section_cols();
+    $start_post        = ! empty( $this -> expanded_sticky ) ? 1 : 0;
+    $section_cols      = $this     -> tc_get_grid_section_cols();
 
-    $is_first_of_row = false;
-    $is_last_of_row  = false;
+    $is_first_of_row   = false;
+    $is_last_of_row    = false;
 
-    if ( $start_post == $current_post || 0 == ( $current_post - $start_post ) % $section_cols ) 
+
+    if ( $start_post == $current_post || 0 == ( $current_post - $start_post ) % $section_cols )
       $is_first_of_row = true;
-   
+
     if ( $wp_query->post_count == ( $current_post + 1 ) || 0 == ( ( $current_post - $start_post + 1 ) % $section_cols ) )
       $is_last_of_row  = true;
 
@@ -112,7 +156,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
     if ( ! isset( $this -> grid_cols ) )
       $grid_cols = $this -> tc_set_grid_cols( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_columns') ), TC_utils::tc_get_layout( $this -> post_id , 'class' ) );
     else
-      $grid_cols = $this -> grid_cols;       
+      $grid_cols = $this -> grid_cols;
 
     return apply_filters( 'tc_get_grid_cols', $grid_cols );
   }
@@ -134,7 +178,11 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   */
   private function tc_force_current_post_expansion(){
     global $wp_query;
-    return ( $this -> expanded_sticky && 0 == $wp_query -> current_post ) ;
+    $is_expanded = $this -> tc_maybe_has_sticky_expanded() && 0 == $wp_query -> current_post && get_query_var( 'paged' ) < 2 && is_sticky() ;
+    //set expanded sticky flag
+    if ( ! isset( $this -> expanded_sticky ) )
+      $this -> tc_set_property( 'expanded_sticky', $is_expanded );
+    return $is_expanded;
   }
 
 
@@ -148,25 +196,16 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   * @package Customizr
   * @since 3.0.10
   */
-  function tc_get_post_class( $class = '', $post_id = null ) {
+  function tc_get_the_post_class( $class = '', $post_id = null ) {
     $_class = sprintf( '%1$s tc-grid span%2$s',
       apply_filters( 'tc_grid_add_expanded_class', $this -> tc_force_current_post_expansion() ) ? 'expanded' : '',
       is_numeric( $this -> tc_get_grid_section_cols() ) ? 12 / $this -> tc_get_grid_section_cols() : 6
     );
-     
+
     //Separates classes with a single space, collates classes for post DIV
     return 'class="' . join( ' ', get_post_class( $_class ) ) . '"';
   }
 
-
-  /**
-  * parse this model properties for rendering
-  */ 
-  function pre_rendering_my_view_cb( $model ) {
-    parent::pre_rendering_my_view_cb( $model );  
-    foreach ( array('figure') as $property )
-      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
-  }
 
 
   /******************************
@@ -176,9 +215,16 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   * @return bool
   * check if we have to expand the first sticky post
   */
-  private function tc_is_sticky_expanded( $query = null ){ 
-    /* STUB */    
-    return $this -> expanded_sticky;
+  private function tc_maybe_has_sticky_expanded(){
+    global $wp_query;
+
+    if ( ! $wp_query -> is_main_query() )
+      return false;
+    if ( ! ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
+        $wp_query -> is_posts_page ) )
+      return false;
+
+    return apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
   }
 
 
@@ -223,7 +269,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
           'span1'   => '1',
         )
     );
-    
+
     if ( ! isset($_map[$_current_layout]) )
       return $_col_nb;
     if ( (int) $_map[$_current_layout] >= (int) $_col_nb )
@@ -305,7 +351,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
         'h' => $this -> tc_grid_build_css_rules( $_size , 'h' ),
         'p' => $this -> tc_grid_build_css_rules( $_size , 'p' )
       );
-      
+
       $_rules = $this -> tc_grid_assign_css_rules_to_selectors( $_med_query_sizes , $_css_prop, $_col_nb );
       $_media_queries_css .= "
         @media {$_med_query_sizes} {{$_rules}}
@@ -436,7 +482,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
   private function tc_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
     $_css = '';
     //Add one column font rules if there's a sticky post
-    if ( $this -> tc_is_sticky_expanded() || '1' == $_col_nb ) {
+    if ( $this -> tc_maybe_has_sticky_expanded() || '1' == $_col_nb ) {
       $_size      = $this -> tc_get_grid_font_sizes( $_col_nb = '1', $_media_query );//size like xxl
       $_h_one_col = $this -> tc_grid_build_css_rules( $_size , 'h' );
       $_p_one_col = $this -> tc_grid_build_css_rules( $_size , 'p' );
@@ -453,7 +499,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
     ";
     return $_css;
   }
-  
+
   /**
   * @return css string
   * @param column layout (string)
@@ -466,7 +512,7 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
     $_cols_class      = sprintf( 'grid-cols-%s' , $_col_nb );
     $_css = '';
     //Add one column height if there's a sticky post
-    if ( $this -> tc_is_sticky_expanded() && '1' != $_col_nb ) {
+    if ( $this -> tc_maybe_has_sticky_expanded() && '1' != $_col_nb ) {
       $_height_col_one = $this -> tc_get_grid_column_height( '1' );
       $_css .= ".grid-cols-1 figure {
             height:{$_height_col_one}px;
