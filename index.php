@@ -8,5 +8,8 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html <?php language_attributes(); ?> <?php tc_echo('element_attributes') ?>>
 <!--<![endif]-->
-  <?php do_action( '__html__' ); ?>
+  <?php
+    tc_render_template('header/head');
+    tc_render_template('body');
+  ?>
 </html>

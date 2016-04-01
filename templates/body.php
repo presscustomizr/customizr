@@ -1,4 +1,4 @@
 <body <?php body_class() ?> <?php echo tc_get( 'element_attributes' ); ?>  >
-  <?php do_action('__body__'); ?>
+  <?php tc_render_template('page_wrapper'); ?>
   <?php wp_footer() ?>
 </body>
