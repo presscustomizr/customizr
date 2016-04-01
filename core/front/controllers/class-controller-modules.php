@@ -41,7 +41,9 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
         return (bool) $_socials;
 
       //(3b)
-      return ( 1 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$socials_map[ $model['hook'] ]}" ) ) && tc__f('__get_socials') );
+      $_hook = $model['hook'];
+      $_opt_name = $socials_map[ $_hook ];
+      return ( 1 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$_opt_name}" ) ) && tc__f('__get_socials') );
     }
 
     function tc_display_view_main_slider() {
