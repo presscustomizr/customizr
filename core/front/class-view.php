@@ -53,9 +53,9 @@ if ( ! class_exists( 'TC_View' ) ) :
       do_action_ref_array( 'pre_rendering_view', array(&$this -> model) );
       do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
 
-      do_action( "before_render_view_{$this -> model -> id}" );
+      do_action( "__before_{$this -> model -> id}" );
       ?>
-      <!-- HOOK CONTENT HERE : <?php echo "before_render_view_{$this -> model -> id}"; ?> -->
+      <!-- HOOK CONTENT HERE : <?php echo "__before_{$this -> model -> id}"; ?> -->
       <?php
       /* Maybe merge debug info into the model element attributes */
       if ( ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' ) )
