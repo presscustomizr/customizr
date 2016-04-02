@@ -135,14 +135,14 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //hook : 'tc_can_use_model'
     //Check if the model is registered for deletion first
     //the model must be an array of params
-    //the hook is the only mandatory param
+    //the hook is the only mandatory param => not anymore since tc_render_template
     //the id is optional => will be set unique on model instantiation
     public function tc_is_model_eligible( $model = array() ) {
       //is model registered for deletion ?
       if ( isset( $model['id'] ) && $this -> tc_has_registered_deletion( $model['id'] ) )
         return;
 
-      if ( ! is_array($model) || empty($model) || ! isset($model['hook']) ) {
+      if ( ! is_array($model) || empty($model) ) {
         do_action('tc_dev_notice', "TC_collection : A model is not ready for the collection, it won't be registered. The model must be an array of params. The hook is the only mandatory param." );
         return;
       }
@@ -161,8 +161,13 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       $priority = isset($model['priority']) ? $model['priority'] : "";
       $template = isset($model['template']) ? $model['template']  : "";//the template name can be used to define the id
 
-      //makes sure we assign a unique ascending priority if not set
-      $model['priority']  = $this -> tc_set_priority( $model['hook'] , $priority );
+      if ( isset($model['hook']) && !empty($model['hook']) && false != $model['hook'] ) {
+        //makes sure we assign a unique ascending priority if not set
+        $model['priority']  = $this -> tc_set_priority( $model['hook'] , $priority );
+      } else {
+        $model['priority'] = 10;
+        $model['hook'] = "";
+      }
       //check or set the name unicity
       $model['id']        = $this -> tc_set_unique_id( $id , $model['hook'], $model['priority'], $template );
 
