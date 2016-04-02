@@ -75,7 +75,8 @@ class TC_header_model_class extends TC_Model {
       array( 'hook' => false, 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
 
       //sidenav navbar menu button
-      array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      //array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      array( 'hook' => false, 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
       //SIDENAV
       array( 'hook' => '__before_page_wrapper', 'template' => 'header/sidenav' ),
