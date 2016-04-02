@@ -20,6 +20,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //the model properties
     //each view will inherit those properties
     public $hook = "";//this is the default hook declared in the index.php template
+    public $render = false;
     public $_instance;
     public $id = "";
     public $model_class = false;
@@ -59,7 +60,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //at this stage the mode must at least have :
       //1) a unique id
       //2) a priority set
-      //3) a hook
+      //3) a hook => not anymore since tc_render_template()
       if ( ! $this -> tc_can_model_be_instantiated() )
         return;
 
@@ -172,12 +173,12 @@ if ( ! class_exists( 'TC_Model' ) ) :
         return;
       }
 
-      //do we have a hook ?
+      //Are we in tc_render_template case
+      //=> Typically yes if did_action('template_redirect'), since every model are registered on 'wp'
+      //AND if the render property is forced to true
       //if not check if template_redirect has already been fired, to see if we are in a tc_render case
-      if ( empty($this -> hook) || ! $this -> hook ) {
-        if ( did_action('template_redirect') )
-          $instance -> tc_maybe_render();
-
+      if ( did_action('template_redirect') && $this -> render ) {
+        $instance -> tc_maybe_render();
         return;//this is the end, beautiful friend.
       }
 
@@ -360,7 +361,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //2) a priority set
     private function tc_can_model_be_instantiated() {
       //the model must be an array of params
-      //the hook is the only mandatory param
+      //the hook is the only mandatory param => not anymore since tc_render_template()
       if ( ! is_numeric( $this -> priority ) || empty($this -> id) ) {
         do_action('tc_dev_notice', "In TC_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
         return;
