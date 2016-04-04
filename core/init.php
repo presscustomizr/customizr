@@ -266,26 +266,26 @@ if ( ! class_exists( 'TC___' ) ) :
           /*********************************************
           * GRID (POST LIST)
           *********************************************/
-          array(
-            'hook'        => 'in_main_loop',
-            'template'    => 'modules/grid_wrapper',
-            'priority'    => 10,
-            'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid_wrapper'),
-            'controller'  => 'post_list_grid'
-          ),
+          // array(
+          //   'hook'        => 'in_main_loop',
+          //   'template'    => 'modules/grid_wrapper',
+          //   'priority'    => 10,
+          //   'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid_wrapper'),
+          //   'controller'  => 'post_list_grid'
+          // ),
           /* END GRID */
 
           /*********************************************
           * ALTERNATE POST LIST
           *********************************************/
           /* Contains the alternate post list elements and their submodules registrations */
-          array(
-            'hook'        => 'in_main_loop',
-            'template'    => 'content/post_list_wrapper',
-            'priority'    => 10,
-            'controller'  => 'post_list',
-            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' )
-          ),
+          // array(
+          //   'hook'        => 'in_main_loop',
+          //   'template'    => 'content/post_list_wrapper',
+          //   'priority'    => 10,
+          //   'controller'  => 'post_list',
+          //   'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post_list_wrapper' )
+          // ),
           /*** END ALTERNATE POST LIST ***/
 
           /*********************************************
@@ -296,26 +296,26 @@ if ( ! class_exists( 'TC___' ) ) :
           * page/attachment/post headings
           * contains the post metas and title registration
           */
-          array(
-            'hook'        => '__article__',
-            'id'          => 'singular_headings',
-            'template'    => 'content/headings',
-            'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ),
-            'priority'    => 10
-          ),
+          // array(
+          //   'hook'        => '__article__',
+          //   'id'          => 'singular_headings',
+          //   'template'    => 'content/headings',
+          //   'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ),
+          //   'priority'    => 10
+          // ),
 
 
-          /*********************************************
-          * Singular: PAGE POST ATTACHMENT
-          *********************************************/
-          /* contains post page attachement content/post-footer registration */
-          array(
-            'hook'        => 'in_main_loop',
-            'template'    => 'content/article',
-            'priority'    => 10,
-            'id'          => 'singular_article',
-            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/singular_wrapper' )
-          ),
+          // /*********************************************
+          // * Singular: PAGE POST ATTACHMENT
+          // *********************************************/
+          // /* contains post page attachement content/post-footer registration */
+          // array(
+          //   'hook'        => 'in_main_loop',
+          //   'template'    => 'content/article',
+          //   'priority'    => 10,
+          //   'id'          => 'singular_article',
+          //   'model_class' => array( 'parent' => 'content/article', 'name' => 'content/singular_wrapper' )
+          // ),
 
 
           /*********************************************
