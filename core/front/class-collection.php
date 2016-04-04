@@ -129,6 +129,11 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     }
 
 
+
+
+
+
+
     /**********************************************************************************
     * BEFORE REGISTRATION
     ***********************************************************************************/
@@ -193,6 +198,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //@return boolean
     //@param array() raw model
     public function tc_check_can_register_model( $model = array() ) {
+
       //the first check is on the visibility
       //Typically : Has the user allowed this model's view in options ?
       if ( isset( $model['visibility']) && ! (bool) $model['visibility'] )
@@ -352,6 +358,14 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
       return $model_class_basename;
     }
+
+
+
+
+
+
+
+
     /**********************************************************************************
     * UPDATE COLLECION
     ***********************************************************************************/

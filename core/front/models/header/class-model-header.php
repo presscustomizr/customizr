@@ -75,14 +75,13 @@ class TC_header_model_class extends TC_Model {
       array( 'hook' => false, 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
 
       //sidenav navbar menu button
-      array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      //array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      array( 'hook' => false, 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
       //SIDENAV
-      array( 'hook' => '__before_page_wrapper', 'template' => 'header/sidenav' ),
-      //sidenav menu button
-      array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
-      //sidenav menu
-      array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
+      //array( 'hook' => '__before_page_wrapper', 'template' => 'header/sidenav' ),
+      //array( 'hook' => false, 'template' => 'header/sidenav' ), <= rendered in page_wrapper template now
+
       );
 
     return $children;

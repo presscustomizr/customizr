@@ -1,4 +1,6 @@
 <?php
+//@todo : breadcrumd tc_echo does not work in the template
+//@todo : remove the
 //Fire
 require_once( get_template_directory() . '/core/init.php' );
 
