@@ -50,7 +50,19 @@ if ( ! class_exists( 'TC_controllers' ) ) :
     //then the existence of the controller method is checked and fired if exists
     //
     //3) if no match is found, the view is not allowed
+    //@ $model can be
+    //  1) a model object,
+    //  2) a model array (not instanciated),
+    //  3) a string id of the model
     public function tc_is_possible( $model ) {
+      //if the specified param is an id, then get the model from the collection
+      if ( is_string($model) )
+        $model = array('id' => $model );
+
+      //abort with true if still no model at this stage.
+      if ( empty($model) )
+        return true;
+
       //the returned value can be a string or an array( instance, method)
       $controller_cb = $this -> tc_get_controller( $model );
       //FOR TEST ONLY

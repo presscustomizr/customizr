@@ -1,4 +1,6 @@
 <?php
+
+//@todo REMOVE
 class TC_main_container_model_class extends TC_Model {
   public $column_content_class  = array('row', 'column-content-wrapper');
 

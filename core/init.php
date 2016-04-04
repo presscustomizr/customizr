@@ -227,41 +227,41 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
 
-          /* OUTSIDE THE LOOP */
-          //404
-          array(
-            'hook'        => '__content__',
-            'id' => '404',
-            'template'    => 'content/content_404',
-            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/404')
-          ),
-          //no results
-          array(
-            'hook'        => '__content__',
-            'id'          => 'no_results',
-            'template'    => 'content/content_no_results',
-            'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results')
-          ),
+          // /* OUTSIDE THE LOOP */
+          // //404
+          // array(
+          //   'hook'        => '__content__',
+          //   'id' => '404',
+          //   'template'    => 'content/content_404',
+          //   'model_class' => array( 'parent' => 'content/article', 'name' => 'content/404')
+          // ),
+          // //no results
+          // array(
+          //   'hook'        => '__content__',
+          //   'id'          => 'no_results',
+          //   'template'    => 'content/content_no_results',
+          //   'model_class' => array( 'parent' => 'content/article', 'name' => 'content/no_results')
+          // ),
 
-          //Headings: before the loop (for list of posts, like blog, category, archives ...)
-          //sub-modules registration inside
-          array(
-            'hook'        => '__content__',
-            'template'    => 'content/headings',
-            'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'),
-            'id'          => 'posts_list_headings'
-          ),
+          // //Headings: before the loop (for list of posts, like blog, category, archives ...)
+          // //sub-modules registration inside
+          // array(
+          //   'hook'        => '__content__',
+          //   'template'    => 'content/headings',
+          //   'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/posts_list_headings'),
+          //   'id'          => 'posts_list_headings'
+          // ),
 
 
-          /********************************************************************
-          * GENERIC LOOP
-          ********************************************************************/
-          array(
-            'hook'        => '__content__',
-            'id'          => 'main_loop',
-            'template'    => 'loop',
-            'priority' => 20
-          ),
+          // /********************************************************************
+          // * GENERIC LOOP
+          // ********************************************************************/
+          // array(
+          //   'hook'        => '__content__',
+          //   'id'          => 'main_loop',
+          //   'template'    => 'loop',
+          //   'priority' => 20
+          // ),
 
           /*********************************************
           * GRID (POST LIST)
@@ -327,34 +327,34 @@ if ( ! class_exists( 'TC___' ) ) :
           * contains comment list registration
           * the comment list contains the comment and (track|ping)back registration
           */
-          array(
-            'hook'     => '__content__',
-            'template' => 'content/comments',
-            'priority' => '20'
-          ),
-          /* end Comments */
+          // array(
+          //   'hook'     => '__content__',
+          //   'template' => 'content/comments',
+          //   'priority' => '20'
+          // ),
+          // /* end Comments */
 
-          /*********************************************
-          * Post navigation
-          *********************************************/
-          /* contains the post navigation links registration */
-          /* in singlar */
-          array(
-            'hook' => '__content__',
-            'template' => 'content/post_navigation',
-            'model_class' => array( 'parent' => 'content/post_navigation',
-            'name' => 'content/post_navigation_singular' ),
-            'id' => 'post_navigation_singular',
-            'priority' => 40
-          ),
-          /* in post lists */
-          array(
-            'hook' => '__content__',
-            'template' => 'content/post_navigation',
-            'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ),
-            'id' => 'post_navigation_posts',
-            'priority' => 40
-          ),
+          // /*********************************************
+          // * Post navigation
+          // *********************************************/
+          // /* contains the post navigation links registration */
+          // /* in singlar */
+          // array(
+          //   'hook' => '__content__',
+          //   'template' => 'content/post_navigation',
+          //   'model_class' => array( 'parent' => 'content/post_navigation',
+          //   'name' => 'content/post_navigation_singular' ),
+          //   'id' => 'post_navigation_singular',
+          //   'priority' => 40
+          // ),
+          // /* in post lists */
+          // array(
+          //   'hook' => '__content__',
+          //   'template' => 'content/post_navigation',
+          //   'model_class' => array( 'parent' => 'content/post_navigation', 'name' => 'content/post_navigation_posts' ),
+          //   'id' => 'post_navigation_posts',
+          //   'priority' => 40
+          // ),
           /* end post navigation */
           /** END CONTENT **/
         )
@@ -735,7 +735,7 @@ if ( ! function_exists('tc_render_template') ) {
     }
     else {
       //$_model_instance = CZR() -> collection -> tc_get_model_instance( $_model_id );
-      CZR() -> collection -> tc_register( array('render' => true, 'template' => $_t ));
+      CZR() -> collection -> tc_register( array('render' => true, 'template' => $_t ) );
     }
   }
 }
@@ -743,7 +743,13 @@ if ( ! function_exists('tc_render_template') ) {
 //@return boolean
 function tc_has( $_t, $_id = null) {
   $_model_id = is_null($_id) ? $_t : $_id;
-  return CZR() -> collection -> tc_is_registered( $_model_id );
+  if ( CZR() -> collection -> tc_is_registered( $_model_id ) ) {
+    return true;
+  }
+  //if the model is not registered yet, let's test its eligibility by accessing directly its controller boolean if exists
+  else {
+    return CZR() -> controllers -> tc_is_possible( $_model_id );
+  }
 }
 
 
