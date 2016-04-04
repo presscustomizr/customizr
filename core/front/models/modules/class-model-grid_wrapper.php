@@ -1,5 +1,5 @@
 <?php
-class TC_grid_wrapper_model_class extends TC_article_model_class {
+class TC_grid_wrapper_model_class extends TC_Model {
   public $is_first_of_row;
   public $is_last_of_row;
 
@@ -94,7 +94,10 @@ class TC_grid_wrapper_model_class extends TC_article_model_class {
 
   //inside the loop but before rendering set some properties
   function tc_setup_late_properties() {
-    parent::tc_setup_late_properties();
+    //parent::tc_setup_late_properties();
+    $post_class = $this -> tc_get_the_post_class();
+    $this -> tc_set_property( 'article_selectors', CZR() -> helpers -> tc_get_the_article_selectors( $post_class ) );
+
     $element_wrapper        = $this -> tc_get_element_wrapper_properties();
 
     //check if the current post is the expanded one

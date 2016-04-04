@@ -7,16 +7,16 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function __construct( $_args = array()) {
       self::$instance =& $this;
     }
- 
+
     function tc_display_view_right_sidebar() {
-      if ( ! isset( self::$_cache['right_sidebar'] ) )  
-        self::$_cache['right_sidebar'] = $this -> tc_display_view_sidebar( 'right' );  
+      if ( ! isset( self::$_cache['right_sidebar'] ) )
+        self::$_cache['right_sidebar'] = $this -> tc_display_view_sidebar( 'right' );
       return self::$_cache['right_sidebar'];
     }
 
     function tc_display_view_left_sidebar() {
-      if ( ! isset( self::$_cache['left_sidebar'] ) )  
-        self::$_cache['left_sidebar'] = $this -> tc_display_view_sidebar( 'left' );  
+      if ( ! isset( self::$_cache['left_sidebar'] ) )
+        self::$_cache['left_sidebar'] = $this -> tc_display_view_sidebar( 'left' );
       return self::$_cache['left_sidebar'];
     }
 
@@ -29,7 +29,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         'right'  => 'r',
         'left'   => 'l'
       );
-      
+
       $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
       if ( ! in_array( $screen_layout, array( $sidebar_map[$position], 'b' ) ) )
         return false;
@@ -39,7 +39,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_singular_headings() {
       return $this -> tc_display_view_post() || $this -> tc_display_view_attachment() || ( $this -> tc_display_view_page() && ! is_front_page() );
     }
- 
+
     function tc_display_view_posts_list_headings() {
       if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
         self::$_cache['posts_list_headings'] = ! TC_utils::$inst -> tc_is_home() && $this -> tc_is_list_of_posts();
@@ -50,12 +50,12 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_list() {
       return $this -> tc_is_list_of_posts() &&
             //hack until we implement the "routers"
-            apply_filters( 'tc_is_not_grid', true );    
+            apply_filters( 'tc_is_not_grid', true );
     }
 
 
     function tc_display_view_posts_list_title() {
-      return $this -> tc_display_view_posts_list_headings() && ! is_search();   
+      return $this -> tc_display_view_posts_list_headings() && ! is_search();
     }
 
     function tc_display_view_posts_list_search_title() {
@@ -72,11 +72,11 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_page() {
-      if ( ! isset( self::$_cache['page'] ) )  
+      if ( ! isset( self::$_cache['page'] ) )
         self::$_cache['page'] =  'page' == $this -> tc_get_post_type()
         && is_singular()
         && ! $this -> tc_is_home_empty();
-      
+
       return apply_filters( 'tc_show_page_content', self::$_cache['page'] );
     }
 
@@ -96,7 +96,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_footer() {
       if ( ! $this -> tc_display_view_post() || ! apply_filters( 'tc_show_single_post_footer', true ) )
         return;
-      
+
       //@todo check if some conditions below not redundant?
       if ( ! apply_filters( 'tc_show_author_metas_in_post', esc_attr( TC_utils::$inst->tc_opt( 'tc_show_author_info' ) ) ) )
         return;
@@ -113,12 +113,12 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_singular_article() {
-      return $this -> tc_display_view_post() || $this -> tc_display_view_page() || $this -> tc_display_view_attachment() ;  
+      return $this -> tc_display_view_post() || $this -> tc_display_view_page() || $this -> tc_display_view_attachment() ;
     }
 
     function tc_display_view_post_list_title() {
       return apply_filters('tc_display_customizr_headings', $this -> tc_display_view_posts_list_headings() || is_front_page() );
-    } 
+    }
 
     function tc_display_view_singular_title() {
       if ( ! isset( self::$_cache['singular_title'] ) )
@@ -130,11 +130,11 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     function tc_display_view_post_metas() {
      if ( isset( self::$_cache['post_metas'] ) )
        return self::$_cache['post_metas'];
-     
+
      //disable in attachment context, attachment post metas have their own class
      if ( is_attachment() )
        self::$_cache['post_metas'] = false;
-        
+
      //post metas are always insanciated in customizing context
      elseif ( TC___::$instance -> tc_is_customizing() )
        self::$_cache['post_metas'] = true;
@@ -143,12 +143,12 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
        self::$_cache['post_metas'] = false;
 
      elseif ( is_singular() && ! is_page() && ! TC_utils::$inst -> tc_is_home() )
-       self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ); 
-     
+       self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) );
+
      elseif ( ! is_singular() && ! TC_utils::$inst -> tc_is_home() && ! is_page() )
        self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) );
 
-     elseif ( TC_utils::$inst -> tc_is_home() ) 
+     elseif ( TC_utils::$inst -> tc_is_home() )
        self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) );
      else
        self::$_cache['post_metas'] = false;
@@ -162,20 +162,20 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_post_metas_button() {
-      return $this -> tc_display_view_post_metas() && 'buttons' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_design' ) );  
+      return $this -> tc_display_view_post_metas() && 'buttons' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_design' ) );
     }
 
     //when to display attachment post metas?
     //a) in single attachment page
     //b) eventually, in the search list when attachments are allowed
-    function tc_display_view_post_metas_attachment() { 
+    function tc_display_view_post_metas_attachment() {
       return is_attachment() ||
         ( is_search() && apply_filters( 'tc_include_attachments_in_search_results' , false ) );
     }
 
     /* Thumbnails in post lists */
     function tc_display_view_post_list_rectangular_thumb() {
-      return $this -> tc_display_view_post_list_thumbnail() && 
+      return $this -> tc_display_view_post_list_thumbnail() &&
             FALSE !== strpos( esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape'), 'rectangular' ), 'rectangular' );
     }
 
@@ -195,18 +195,18 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     /* Single post thumbnail */
     function tc_display_view_post_thumbnail() {
       return $this -> tc_display_view_post() && 'hide' != esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'tc_show_single_post_thumbnail' , TC_utils_thumbnails::$instance -> tc_has_thumb() ); 
+        && apply_filters( 'tc_show_single_post_thumbnail' , TC_utils_thumbnails::$instance -> tc_has_thumb() );
     }
 
 
     function tc_display_view_post_navigation_singular() {
-      if ( ! $this -> tc_display_post_navigation() )   
+      if ( ! $this -> tc_display_post_navigation() )
         return false;
-    
+
       if ( ! isset( self::$_cache['post_navigation_singular'] ) ) {
-          
+
         self::$_cache['post_navigation_singular'] = false;
-    
+
         $_context = $this -> tc_get_post_navigation_context();
         if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('page', 'single') ) )
           self::$_cache['post_navigation_singular'] = true;
@@ -219,13 +219,13 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
 
     function tc_display_view_post_navigation_posts() {
-      if ( ! $this -> tc_display_post_navigation() )   
+      if ( ! $this -> tc_display_post_navigation() )
         return false;
-    
+
       if ( ! isset( self::$_cache['post_navigation_posts'] ) ) {
-          
+
         self::$_cache['post_navigation_posts'] = false;
-    
+
         $_context = $this -> tc_get_post_navigation_context();
         if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('home', 'archive') ) )
           self::$_cache['post_navigation_posts'] = true;
@@ -247,7 +247,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_no_results() {
-      return $this -> tc_is_no_results();  
+      return $this -> tc_is_no_results();
     }
 
     function tc_display_view_headings() {
@@ -255,7 +255,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_comments() {
-      return $this -> tc_are_comments_enabled();    
+      return $this -> tc_are_comments_enabled();
     }
 
     function tc_display_view_comment_list() {
@@ -273,7 +273,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
    /******************************
     VARIOUS HELPERS
     *******************************/
-    private function tc_is_list_of_posts() {
+    public function tc_is_list_of_posts() {
       global $wp_query;
       //must be archive or search result. Returns false if home is empty in options.
       return apply_filters( 'tc_post_list_controller',
@@ -299,12 +299,12 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     */
     public function tc_are_comments_enabled() {
       if ( ! isset(self::$_cache['comments_enabled'] ) ) {
-      
+
         global $post;
         // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
         if ( isset( $post ) ) {
           $_bool = ( post_password_required() || TC_utils::$inst -> tc_is_home() || ! is_singular() )  ? false : true;
-          
+
           //2) if user has enabled comment for this specific post / page => true
           //@todo contx : update default value user's value)
           $_bool = ( 'closed' != $post -> comment_status ) ? true && $_bool : $_bool;
@@ -316,7 +316,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
             $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
         } else
           $_bool = false;
-        
+
         self::$_cache['comments_enabled'] = $_bool;
       }
       return apply_filters( 'tc_are_comments_enabled', self::$_cache['comments_enabled'] );
@@ -344,7 +344,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     * @param (string or bool) the context
     * @return bool
     */
-    function tc_is_post_navigation_context_enabled( $_context ) { 
+    function tc_is_post_navigation_context_enabled( $_context ) {
       return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
     }
 
