@@ -9,30 +9,23 @@
 ?>
 <nav id="nav-below" class="<?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
 
-<?php
+  <?php if ( 'post_list' != tc_get( 'type' ) ) : ?>
+    <hr class="featurette-divider">
+  <?php endif; ?>
 
-/* Case: post lists context */
-if ( 'post_list' == tc_get( 'type' ) ):
-
-?>
   <h3 class="assistive-text">
     <?php  _e( 'Post navigation' , 'customizr' ) ?>
   </h3>
-  <?php do_action( '__post_navigation_posts__' ) ?>
-<?php
 
-/* Case: singular context */
-else :
+  <?php
+    if ( 'post_list' != tc_get( 'type' ) ) {
+      do_action( '__post_navigation_singular__' )
+      //tc_render_template('post_navigation_singular');
+    }
+    else {
+      do_action( '__post_navigation_posts__' )
+      //tc_render_template('post_navigation_posts');
+    }
+  ?>
 
-?>
-  <hr class="featurette-divider">
-  <h3 class="assistive-text">
-    <?php  _e( 'Post navigation' , 'customizr' ) ?>
-  </h3>
-  <?php do_action( '__post_navigation_singular__' ) ?>
-<?php
-
-  endif
-
-?>
 </nav>
