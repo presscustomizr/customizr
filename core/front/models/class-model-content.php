@@ -123,7 +123,7 @@ class TC_body_model_class extends TC_Model {
       array(
         'hook'        => false,
         'id'          => 'main_loop',
-        'template'    => 'loop',
+        'template'    => 'content/loop',
         'priority' => 20
       ),
 

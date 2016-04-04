@@ -1,14 +1,3 @@
-<body <?php body_class() ?> <?php echo tc_get( 'element_attributes' ); ?>  >
-  <?php
-    if ( tc_has('sidenav') && tc_has('header') ){ tc_render_template('header/sidenav'); };
-  ?>
-
-  <?php do_action('__before_page_wrapper'); ?>
-
-  <div id="tc-page-wrap">
-
-    <?php tc_render_template('header/header'); ?>
-
     <?php do_action('__before_main_wrapper'); ?>
 
     <div id="main-wrapper" class="container">
@@ -60,12 +49,3 @@
     </div><!-- #main-wrapper -->
 
     <?php do_action('__after_main_wrapper'); ?>
-
-    <?php tc_render_template('footer/footer'); ?>
-
-  </div><!-- #tc-page-wrap -->
-
-  <?php do_action('__after_page_wrapper'); ?>
-
-  <?php wp_footer() ?>
-</body>
