@@ -184,35 +184,27 @@ if ( ! class_exists( 'TC___' ) ) :
       return apply_filters(
         'tc_model_map',
         array(
-            /*********************************************
-            * ROOT HTML STRUCTURE
-            *********************************************/
-            array(
-              'hook' => 'wp_head' ,
-              'template' => 'header/favicon',
-            ),
-
-
           /*********************************************
-          * HEADER
+          * ROOT HTML STRUCTURE
           *********************************************/
           array(
-            'hook'        => '__page_wrapper__',
-            'template'    => 'header/header',
+            'hook' => 'wp_head' ,
+            'template' => 'header/favicon',
           ),
+
 
 
           /*********************************************
           * SLIDER
           *********************************************/
           array(
-            'hook'        => '__page_wrapper__',
+            'hook'        => '__before_main_wrapper',
             'template'    => 'modules/slider',
-            'id'          => 'main_slider',
+            'id'          => 'main_slider'
           ),
           //slider of posts
           array(
-            'hook'        => '__page_wrapper__',
+            'hook'        => '__before_main_wrapper',
             'template'    => 'modules/slider',
             'id'          => 'main_posts_slider',
             'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ),
@@ -222,34 +214,17 @@ if ( ! class_exists( 'TC___' ) ) :
 
 
           /*********************************************
-          * CONTENT
-          *********************************************/
-
-          /*********************************************
-          * Main wrappers
-          *********************************************/
-          array( 'hook' => '__page_wrapper__', 'template' => 'content/main_wrapper', 'priority' => 20 ),
-          /* contains left/right sidebars and content wrapper (article container) registrations */
-          array( 'hook' => '__main_wrapper__', 'template' => 'content/main_container', 'priority' => 30 ),
-
-
-          /*********************************************
           * Featured Pages
           *********************************************/
           /* contains the featured page item registration */
           array(
-            'hook'        => '__main_wrapper__',
+            'hook'        => '__before_main_container',
             'template'    => 'modules/featured_pages',
             'priority'    => 10,
           ),
           /** end featured pages **/
 
-          /*********************************************
-          * Breadcrumb
-          *********************************************/
-          array(
-            'hook'        => '__main_wrapper__',
-            'template'    => 'modules/breadcrumb', 'priority' => 20 ),
+
 
 
           /* OUTSIDE THE LOOP */
@@ -382,13 +357,6 @@ if ( ! class_exists( 'TC___' ) ) :
           ),
           /* end post navigation */
           /** END CONTENT **/
-
-          /*********************************************
-          * FOOTER
-          *********************************************/
-          /* contains all the footer children registration */
-          array( 'hook' => '__page_wrapper__', 'template' => 'footer/footer', 'priority' => 30 )
-          /* end Footer */
         )
       );
     }
@@ -754,16 +722,30 @@ if ( ! function_exists('tc_new') ) {
  */
 //shortcut function to instantiate a model + render its template
 //model and template should share the same name
+//some templates are shared by several models => that's when the $_id param is useful
 if ( ! function_exists('tc_render_template') ) {
-  function tc_render_template( $template ) {
-    CZR() -> collection -> tc_register(
-      array(
-        'hook'        => false,
-        'template'    => $template,
-      )
-    );
+  function tc_render_template( $_t, $_id = null ) {
+    if ( ! $_t || empty($_t) )
+        return;
+
+    $_model_id = is_null($_id) ? basename($_t) : $_id;
+
+    if ( CZR() -> collection -> tc_is_registered( $_model_id ) ) {
+      CZR() -> collection -> tc_get_model_instance( $_model_id ) -> _instance -> tc_maybe_render();
+    }
+    else {
+      //$_model_instance = CZR() -> collection -> tc_get_model_instance( $_model_id );
+      CZR() -> collection -> tc_register( array('render' => true, 'template' => $_t ));
+    }
   }
 }
+
+//@return boolean
+function tc_has( $_t, $_id = null) {
+  $_model_id = is_null($_id) ? $_t : $_id;
+  return CZR() -> collection -> tc_is_registered( $_model_id );
+}
+
 
 /**
 * The tc__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.

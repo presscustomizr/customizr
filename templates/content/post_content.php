@@ -8,7 +8,7 @@
  */
 ?>
 <section class ="entry-content <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
-  <?php do_action( 'before_render_view_inner_post_content' ) ?>
+  <?php do_action( '__before_inner_post_content' ) ?>
   <?php
   the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
   wp_link_pages( array(

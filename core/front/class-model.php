@@ -20,6 +20,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //the model properties
     //each view will inherit those properties
     public $hook = "";//this is the default hook declared in the index.php template
+    public $render = false;
     public $_instance;
     public $id = "";
     public $model_class = false;
@@ -59,7 +60,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //at this stage the mode must at least have :
       //1) a unique id
       //2) a priority set
-      //3) a hook
+      //3) a hook => not anymore since tc_render_template()
       if ( ! $this -> tc_can_model_be_instantiated() )
         return;
 
@@ -83,6 +84,9 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //maybe add style (have to see if we have to put this just before the view is rendered)
       $this -> tc_maybe_add_style();
 
+      //Allow models to filter other view's model before rendering
+      $this -> tc_maybe_filter_views_model();
+
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
       add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_add_view_to_model'), 10, 1 );
@@ -100,9 +104,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //Allow models to filter their view visibility
       add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_this_model_view' ), 0 );
 
-      //Allow models to filter other view's model before rendering
-      $this -> tc_maybe_filter_views_model();
-    }
+    }//construct
 
 
     //add this instance to the view description in the collection
@@ -171,12 +173,12 @@ if ( ! class_exists( 'TC_Model' ) ) :
         return;
       }
 
-      //do we have a hook ?
+      //Are we in tc_render_template case
+      //=> Typically yes if did_action('template_redirect'), since every model are registered on 'wp'
+      //AND if the render property is forced to true
       //if not check if template_redirect has already been fired, to see if we are in a tc_render case
-      if ( empty($this -> hook) || ! $this -> hook ) {
-        if ( did_action('template_redirect') )
-          $instance -> tc_maybe_render();
-
+      if ( did_action('template_redirect') && $this -> render ) {
+        $instance -> tc_maybe_render();
         return;//this is the end, beautiful friend.
       }
 
@@ -311,7 +313,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     }
 
     // Maybe add pre_rendering_view action hook callback to filter the model before rendering
-    // Extesion classes might want to override this method, so to hook them to a specific pre rendering id
+    // Extended classes might want to override this method, so to hook them to a specific pre rendering id
     // I prefer to not allow the automatic hooking to a specific view without checking the existence of a callback to avoid the useless adding of a "dummy" cb ot the array of action callbacks
     // Though makes sense to hook a certain model ID to its view pre_rendering to parse its own properties before rendering. Example:
     // The class parameter will be stored in the model as an array to allow a better way to filter it ( e.g. avoid duplications), but to make it suitable for the rendering, it must be transformed in a string
@@ -320,6 +322,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     protected function tc_maybe_filter_views_model() {
       if ( method_exists( $this, 'pre_rendering_view_cb' ) )
         add_action( 'pre_rendering_view', array( $this, 'pre_rendering_view_cb' ) );
+
       //by default filter this module before rendering (for default properties parsing, e.g. element_class )
       add_action( "pre_rendering_view_{$this -> id}", array($this, "pre_rendering_my_view_cb" ), 9999 );
     }
@@ -358,7 +361,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //2) a priority set
     private function tc_can_model_be_instantiated() {
       //the model must be an array of params
-      //the hook is the only mandatory param
+      //the hook is the only mandatory param => not anymore since tc_render_template()
       if ( ! is_numeric( $this -> priority ) || empty($this -> id) ) {
         do_action('tc_dev_notice', "In TC_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
         return;

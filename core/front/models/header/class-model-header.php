@@ -32,34 +32,54 @@ class TC_header_model_class extends TC_Model {
   function tc_setup_children() {
     $children = array(
       //LOGO
-      array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
-      array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo'),
-      array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
+      //array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
+      array( 'hook' => false, 'template' => 'header/logo_wrapper' ),
+
+      //array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo'),
+      //array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
+
+      array( 'hook' => false, 'template' => 'header/logo'),
+      array( 'hook' => false, 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
+
 
       //TITLE
-      array( 'hook' => '__header__', 'template' => 'header/title'  ),
+      //array( 'hook' => '__header__', 'template' => 'header/title'  ),
+      array( 'hook' => false, 'template' => 'header/title'  ),
 
       //MOBILE TAGLINE
-      array( 'hook' => '__header__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/tagline_mobile') ),
+      //array( 'hook' => '__header__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/tagline_mobile') ),
+      array( 'hook' => false, 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/tagline_mobile') ),
 
       //NAVBAR
-      array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
+      //array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
+      array( 'hook' => false, 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
 
       //socialblock in navbar
-      array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
+      //array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
+      array( 'hook' => false, 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
+
       //tagline in navbar
-      array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
+      //array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
+      array( 'hook' => false, 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
+
       //menu in navbar
-      array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
+      //array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
+      array( 'hook' => false, 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
+
       //secondary
-      array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+      //array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+      array( 'hook' => false, 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+
       //responsive menu button
-      array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
+      //array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
+      array( 'hook' => false, 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
+
       //sidenav navbar menu button
-      array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      //array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      array( 'hook' => false, 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
       //SIDENAV
-      array( 'hook' => 'before_render_view_page_wrapper', 'template' => 'header/sidenav' ),
+      array( 'hook' => '__before_page_wrapper', 'template' => 'header/sidenav' ),
       //sidenav menu button
       array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
       //sidenav menu
