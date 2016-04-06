@@ -89,11 +89,22 @@ if ( ! class_exists( 'TC_View' ) ) :
         $_template = basename( $this -> model -> template );
 
         //add the view instance to the wp_query wp global
-  //      set_query_var( "tc_model", $this -> model );
+        //set_query_var( "tc_model", $this -> model );
         tc_set_current_model( $this -> model );
-        get_template_part( "templates/{$this -> model -> template}" );
+
+          ob_start();
+            get_template_part( "templates/{$this -> model -> template}" );
+          $_temp_content = ob_get_contents();
+
+          if ( empty($_temp_content ) && ( defined('TC_DEV') && true === TC_DEV ) ) {
+            echo "The template ( " . $this -> model -> template . ") is empty or has a wrong name.";
+          }
+          ob_end_clean();
+          if ( ! empty($_temp_content) )
+            echo $_temp_content;
+
         tc_reset_current_model();
-//        set_query_var( 'tc_model', $this -> model );
+        // set_query_var( 'tc_model', $this -> model );
       }
       // $path = '';
       // $part = '';

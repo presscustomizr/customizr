@@ -10,22 +10,27 @@ if ( false !== tc_get( 'query' ) ) {
 }
 
 if ( CZR() -> controllers -> tc_is_no_results() || is_404() ) {
-
-
-  do_action( 'in_' . tc_get('id') );
-
-
+  if ( 'main_loop' == tc_get('id') ) {
+    if ( tc_has('404') ) { tc_render_template('content/content_404', '404'); }
+    elseif ( tc_has('no_results') ) { tc_render_template('content_no_results', 'no_results'); }
+  }
 } else if ( have_posts() && ! is_404() ) {
-
   while ( have_posts() ) {
     the_post();
     //if this is the main wp loop then, render the various templates depending on the context and the user options
     if ( 'main_loop' == tc_get('id') ) {
-      if ( tc_has('grid_wrapper') && CZR() -> controllers -> tc_is_possible('grid_wrapper') ) {
-        tc_render_template('modules/grid_wrapper');
+
+      // if ( tc_has('grid_wrapper') && CZR() -> controllers -> tc_is_possible('grid_wrapper') ) {
+      //   tc_render_template('modules/grid_wrapper');
+      // }
+
+      if ( tc_has('post_list') ){
+        tc_render_template('content/post-lists/post_list_wrapper', 'post_list');
       }
-      elseif ( tc_has('post_list_wrapper') ){ tc_render_template('content/post_list_wrapper'); }
-      elseif ( tc_has('singular_article') ) { tc_render_template('content/article','singular_article'); }
+
+      if ( tc_has('singular_article') ) {
+        tc_render_template('content/article','singular_article');
+      }
     }
     else {
       //if this is a custom loop, use a dynamic action hook to load a custom query loop

@@ -178,7 +178,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       if ( method_exists( $_instance , $method_name ) )
         return array( $_instance, $method_name );
 
-      do_action( 'tc_dev_notice', 'View : '.$id.'. The method : ' . $method_name . ' has not been found in group controller : '.$controller_group );
+      do_action( 'tc_dev_notice', 'model : '.$id.'. The method : ' . $method_name . ' has not been found in group controller : '.$controller_group );
       return array();
     }
 

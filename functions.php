@@ -4,206 +4,196 @@
 //Fire
 require_once( get_template_directory() . '/core/init.php' );
 
+/*
+ * @since 3.5.0
+ */
+//shortcut function to get a theme file
+if ( ! function_exists('tc_get_theme_file') ) {
+  function tc_get_theme_file( $path_suffix ) {
+    return TC___::$instance -> tc_get_theme_file( $path_suffix );
+  }
+}
+/*
+ * @since 3.5.0
+ */
+//shortcut function to get a theme file
+if ( ! function_exists('tc_get_theme_file_url') ) {
+  function tc_get_theme_file_url( $url_suffix ) {
+    return TC___::$instance -> tc_get_theme_file_url( $url_suffix );
+  }
+}
+/*
+ * @since 3.5.0
+ */
+//shortcut function to require a theme file
+if ( ! function_exists('tc_require_once') ) {
+  function tc_require_once( $path_suffix ) {
+    return TC___::$instance -> tc_require_once( $path_suffix );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to require a theme file
+if ( ! function_exists('tc_fw_require_once') ) {
+  function tc_fw_require_once( $path_suffix ) {
+    return TC___::$instance -> tc_fw_require_once( $path_suffix );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to set the current model which will be accessible by the tc_get
+if ( ! function_exists('tc_set_current_model') ) {
+  function tc_set_current_model( $model ) {
+    return TC___::$instance -> tc_set_current_model( $model );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to reset the current model
+if ( ! function_exists('tc_reset_current_model') ) {
+  function tc_reset_current_model() {
+    return TC___::$instance -> tc_reset_current_model();
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to get a current model property
+if ( ! function_exists('tc_get') ) {
+  function tc_get( $property, $args = array() ) {
+    return TC___::$instance -> tc_get( $property, $args );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to echo a current model property
+if ( ! function_exists('tc_echo') ) {
+  function tc_echo( $property, $args = array() ) {
+    return TC___::$instance -> tc_echo( $property, $args );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to instantiate easier
+if ( ! function_exists('tc_new') ) {
+  function tc_new( $_to_load, $_args = array() ) {
+    TC___::$instance -> tc__( $_to_load , $_args );
+    return;
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to instantiate a model + render its template
+//model and template should share the same name
+//some templates are shared by several models => that's when the $_id param is useful
+if ( ! function_exists('tc_render_template') ) {
+  function tc_render_template( $_t, $_id = null ) {
+    if ( ! $_t || empty($_t) )
+        return;
+
+    $_model_id = is_null($_id) ? basename($_t) : $_id;
+
+    if ( tc_is_registered( $_model_id ) ) {
+      //sets the template property on the fly based on what's requested
+      if ( ! tc_get_model_property( $_model_id, 'template') ) {
+        tc_get_model_instance( $_model_id ) -> tc_set_property('template' , $_t );
+      }
+      tc_get_view_instance($_model_id ) -> tc_maybe_render();
+    }
+    else {
+      //$_model_instance = CZR() -> collection -> tc_get_model_instance( $_model_id );
+      tc_register( array( 'id' => $_model_id, 'render' => true, 'template' => $_t ) );
+    }
+  }
+}
+
+//@return boolean
+//states if registered and possible
+//useful is a check has to be done in the template before "instant" registration.
+function tc_has( $_t, $_id = null) {
+  $_model_id = is_null($_id) ? $_t : $_id;
+  if ( CZR() -> collection -> tc_is_registered( $_model_id ) ) {
+    return true;
+  }
+  //if the model is not registered yet, let's test its eligibility by accessing directly its controller boolean if exists
+  else {
+    return CZR() -> controllers -> tc_is_possible( $_model_id );
+  }
+}
+
+//@return boolean
+//states if registered only
+function tc_is_registered( $_model_id ) {
+  return CZR() -> collection -> tc_is_registered( $_model_id );
+}
+
+//@return model object if exists
+function tc_get_model_instance( $_model_id ) {
+  if ( ! CZR() -> collection -> tc_is_registered( $_model_id ) )
+    return;
+  return CZR() -> collection -> tc_get_model_instance( $_model_id );
+}
+
+//@return model property if exists
+//@param _model_id string
+//@param property name string
+function tc_get_model_property( $_model_id, $_property ) {
+  if ( ! CZR() -> collection -> tc_is_registered( $_model_id ) )
+    return;
+  return CZR() -> collection -> tc_get_model_instance( $_model_id ) -> tc_get_property($_property);
+}
+
+//@return view model object if exists
+function tc_get_view_instance( $_model_id ) {
+  if ( ! isset(CZR() -> collection -> tc_get_model_instance( $_model_id ) -> _instance) )
+    return;
+  return CZR() -> collection -> tc_get_model_instance( $_model_id ) -> _instance;
+}
+
+
+function tc_register( $model = array() ) {
+  return CZR() -> collection -> tc_register( $model );
+}
+
+/**
+* The tc__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.
+* It is shorter than the original apply_filters() and only used on already defined filters.
+*
+* By convention in Customizr, filter hooks are used as follow :
+* 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
+* 2) declared with apply_filters in methods to make the code extensible for developers
+* 3) accessed with tc__f() to return values (while front end content is handled with action hooks)
+*
+* Used everywhere in Customizr. Can pass up to five variables to the filter callback.
+*
+* @since Customizr 3.0
+*/
+if( ! function_exists( 'tc__f' ) ) :
+    function tc__f ( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
+       return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
+    }
+endif;
+
+/**
+ * @since 3.5.0
+ * @return object CZR Instance
+ */
+function CZR() {
+  return TC___::tc_instance();
+}
 
 // Fire Customizr
 CZR();
-
-
-
-
-/*//print the collection each time it's updated
-add_action( 'collection_updated', function( $id, $model = null )  {
-  ?>
-    <pre>
-      <?php print_r( 'COLLECTION UPDATED : ' . $id); ?>
-    </pre>
-  <?php
-});*/
-
-
-/*******************************************************
-* SOME TEST VIEW CLASSES AND CALLBACKS
-*******************************************************/
-function callback_fn( $text1 = "default1", $text2 = "default2"  ) {
-  ?>
-    <h1>THIS IS RENDERED BY A CALLBACK FUNCTION WITH 2 OPTIONAL PARAMS : <?php echo $text1; ?> and <?php echo $text2; ?></h1>
-  <?php
-}
-
-
-/*class TC_test_model_class extends TC_View {
-  public $test_class_property = 'YOUPI';
-  static $instance;
-
-  function __construct( $model = array() ) {
-    self::$instance =& $this;
-    //Fires the parent constructor
-    if ( ! isset(parent::$instance) )
-      parent::__construct( $model );
-  }
-
-  public function tc_render() {
-    ?>
-      <h1>MY ID IS <span style="color:blue"><?php echo $this -> id ?></span>, AND I AM RENDERED BY THE VIEW CLASS</h1>
-    <?php
-  }
-}*/
-
-
-class TC_rendering {
-  function callback_met( $text1 = "default1", $text2 = "default2"  ) {
-    ?>
-      <h1>THIS IS RENDERED BY A CALLBACK METHOD IN A CLASS, WITH 2 OPTIONAL PARAMS : <?php echo $text1; ?> and <?php echo $text2; ?></h1>
-    <?php
-  }
-}
-
-
-
-//CZR() -> collection -> tc_delete( '__body___30');
-
-
-//CZR() -> collection -> tc_delete( 'joie');
-add_action( 'wp' , 'register_test_views');
-
-function register_test_views() {
-
-  // CZR() -> collection -> tc_register(
-  //   array(
-  //     'hook'        => '__content__',
-  //     'id'          => 'joie',
-  //     'template'    => 'custom',
-  //     'model_class'  => 'TC_test_model_class',
-  //     'early_setup' => 'TC_test_early_setup',
-  //     'children' => array(
-  //       'child1' => array(
-  //           'hook'        => 'in_custom_template',
-  //           'html'        => '<h2 style="color:green">I AM A CHID VIEW</h2>'
-  //       ),
-  //       'child2' => array(
-  //           'hook'        => 'in_custom_template',
-  //           'html'        => '<h2 style="color:purple">I AM ANOTHER CHID VIEW</h2>'
-  //       )
-  //     )
-  //   )
-  // );
-
-
-  // CZR() -> collection -> tc_register(
-  //   array( 'hook' => '__content__', 'html' => '<h1>Yo Man this is some html to render</h1>' )
-  // );
-  // CZR() -> collection -> tc_register(
-  //   array( 'hook' => '__content__', 'callback' => array( 'TC_rendering', 'callback_met'), 'html' => '<h1>YOOOOOO</h1>' )
-  // );
-  // CZR() -> collection -> tc_register(
-  //   array( 'hook' => '__content__', 'callback' => 'callback_fn', 'cb_params' => array('custom1', 'custom2'), 'html' => '<h1>YAAAA</h1>' )
-  // );
-
-  //CZR() -> collection -> tc_change( 'joie', array('template' => '', 'html' => '<h1>Yo Man this is a changed view</h1>', 'model_class' => '') );
-}
-
-//register_test_views();
-
-
-
-//Create a new test view
-// CZR() -> collection -> tc_register(
-//   array( 'hook' => '__after_header', 'template' => 'custom',  'html' => '<h1>Yo Man this some html to render 1</h1>' )
-// );
-
-
-
-
-
-
-
-/*add_action('__content__' , function() {
-  ?>
-    <pre>
-      <?php print_r( CZR() -> collection -> tc_get() ); ?>
-    </pre>
-  <?php
-}, 100);
-*/
-
-
-
-
-//@todo : tc_change does not work when the model is already instanciated
-//=> shall remove the actions on "view_instanciated_{$this -> id}"
-
-//@todo : children it would be good to add actions on pre_render_view, where we are in the parent's hook action.
-//=> late check if new children have been registered
-//=> if so, instanciate their views there
-//
-//@todo : the id could be based on the id, then template name, then hook_priority
-//
-//@todo : for logged in admin users, add a line of html comment before and after the view giving id, hook, priority
-//
-//@todo : move tc_apply_registered_changes_to_instance into the model ?
-//
-//@todo : pre_render_view stuffs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*add_action('__after_footer' , function() {
-  $args = array(
-    'post_type' => array('post'),
-    'post_status' => array('publish'),
-    'posts_per_page'         => 10
-  );
-
-  tc_new(
-    array('content' => array( array('inc/parts', 'loop_base') ) ),
-    array(
-      'name' => '',
-      'query' => new WP_Query( $args )
-    )
-  );
-});*/
-
-/*add_action( 'parse_query' , function($query) {
-  $test = array(
-    'is_single' => $query -> is_single(),
-    'is_home' => $query -> is_home()
-  );
-
-   if ( is_array() )
-    array_walk_recursive(, function(&$v) { $v = htmlspecialchars($v); });
-  ?>
-    <pre>
-      <br/><br/><br/><br/><br/><br/>
-      <?php print_r($test); ?>
-    </pre>
-  <?php
-  //wp_die();
-});*/
-
-// add_action('init' , function() {
-//   $args = array(
-//     'post_type' => array('post'),
-//     'post_status' => array('publish'),
-//     'posts_per_page'         => 3
-//   );
-
-//   tc_new(
-//     array('content' => array( array('inc/parts', 'post_list') ) ),
-//     array(
-//       '_singleton' => false,
-//       'loop_name' => 'custom-grid',
-//       'query' => new WP_Query( $args ),
-//       'render_on_hook' => '__after_header'
-//     )
-//   );
-// });

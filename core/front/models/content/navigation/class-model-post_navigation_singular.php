@@ -6,9 +6,9 @@ class TC_post_navigation_singular_model_class extends TC_post_navigation_model_c
     $children = array(
       //singular links'
       array(
-        'hook' => '__post_navigation_singular__',
-        'template' => 'content/post_navigation_links',
-        'model_class' => array( 'parent' => 'content/post_navigation_links', 'name' => 'content/post_navigation_links_singular'),
+        'hook' => false,
+        'template' => 'content/navigation/post_navigation_links',
+        'model_class' => array( 'parent' => 'content/navigation/post_navigation_links', 'name' => 'content/navigation/post_navigation_links_singular'),
         'id' => 'post_navigation_links_singular'
       ),
     );

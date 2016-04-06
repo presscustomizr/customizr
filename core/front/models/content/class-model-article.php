@@ -8,40 +8,9 @@ class TC_article_model_class extends TC_Model {
   function tc_setup_children() {
     $children = array(
       array(
-        'hook'        => false,//was '__article__'
         'id'          => 'singular_headings',
-        'template'    => 'content/headings',
-        'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post_page_headings' ),
-        'priority'    => 10
-      ),
-      //page content
-      array(
-        'hook'        => false,//was '__article__'
-        'template'    => 'content/page_content',
-        'id'          => 'page',
-        'priority'    => 20
-      ),
-      //post content
-      array(
-        'hook'        => false,//was '__article__'
-        'template'    => 'content/post_content',
-        'id'          => 'post',
-        'priority'    => 20
-      ),
-      //attachment
-      array(
-        'hook'        => false,//was '__article__'
-        'template'    => 'content/attachment_content',
-        'id'          => 'attachment',
-        'priority'    => 20
-      ),
-
-      //post footer
-      array(
-        'hook'        => '__post_footer__',
-        'id'          => 'post_footer',
-        'template'    => 'content/author_info'
-      ),
+        'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/singles/post_page_headings' ),
+      )
     );
     return $children;
   }
@@ -69,7 +38,7 @@ class TC_article_model_class extends TC_Model {
     //declares selector var
     $selectors                  = '';
 
-    $post_class                 = $this -> tc_get_the_post_class( $this -> post_class );
+    $post_class                 = CZR() -> helpers -> tc_get_the_post_class( $this -> post_class );
 
     // POST LIST
     $post_list_selector_bool    = ( isset($post) && !is_singular() && !is_404() && !tc__f( '__is_home_empty') ) || ( is_search() && 0 != $wp_query -> post_count );
@@ -99,7 +68,7 @@ class TC_article_model_class extends TC_Model {
     //declares selector var
     $selectors                  = '';
 
-    $post_class                 = $this -> tc_get_the_post_class( $this -> post_class );
+    $post_class                 = CZR() -> helpers -> tc_get_the_post_class( $this -> post_class );
 
     // SINGLE POST
     $single_post_selector_bool  = isset($post) && 'page' != $post -> post_type && 'attachment' != $post -> post_type && is_singular();

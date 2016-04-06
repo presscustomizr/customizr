@@ -64,7 +64,7 @@ class TC_featured_pages_model_class extends TC_Model {
     $children = array(
       array(
         'hook'      => '__featured_page__',
-        'template'  => 'modules/featured_page',
+        'template'  => 'modules/featured-pages/featured_page',
       ),
     );
 
