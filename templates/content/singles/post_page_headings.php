@@ -7,25 +7,18 @@
  * @since Customizr 3.5.0
  */
 
-/* Case we're displaying the headings of the list of posts, archives, categories, tags, search ,, */
-if ( 'content' != tc_get( 'type' ) ) :
-
-?>
-<header class="<?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
-  <?php do_action( '__headings_posts_list__' ) ?>
-  <hr class="featurette-divider headings post-lists">
-</header>
-<?php
-
 /* Case we're displaying the headings of the contents such as posts/pages/attachments both as singular and as elements of lists of posts */
-
-else :
-
 ?>
 <header class="<?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
-  <?php do_action( '__headings_content__' ) ?>
+  <?php
+    if ( tc_has('post_page_title') ) { tc_render_template('content/singles/post_page_title'); }
+
+    if ( tc_has('post_metas_button') ) { tc_render_template('content/post-metas/post_metas'); }
+    elseif ( tc_has('post_metas_text') ) { tc_render_template('content/post-metas/post_metas_text'); }
+    elseif ( tc_has('post_metas_attachment') ) { tc_render_template('content/posts-metas/attachment_post_metas'); }
+    //do_action( '__headings_content__' );
+  ?>
   <?php if ( is_singular() ) : ?>
     <hr class="featurette-divider headings singular-content">
   <?php endif ?>
 </header>
-<?php endif;

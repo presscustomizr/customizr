@@ -25,14 +25,14 @@ class TC_comment_list_model_class extends TC_Model {
     $children = array(
       array(
         'hook'        => '__comment_loop__',
-        'template'    => 'content/comment',
+        'template'    => 'content/comments/comment',
         'id'          => 'comment'
       ),
       array(
         'hook'        => '__comment_loop__',
-        'template'    => 'content/comment',
+        'template'    => 'content/comments/comment',
         'id'          => 'trackback',
-        'model_class' => array( 'parent' => 'content/comment', 'name' => 'content/trackpingback' )
+        'model_class' => array( 'parent' => 'content/comments/comment', 'name' => 'content/comments/trackpingback' )
       ),
     );
 

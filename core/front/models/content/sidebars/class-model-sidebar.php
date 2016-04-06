@@ -16,7 +16,7 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
         array(
           'hook'        => '__widget_area_left__',
           'template'    => 'modules/social_block',
-          'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' )
+          'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebars/sidebar_social_block' )
         ),
         array(
           'hook'        => '__widget_area_left__',
@@ -30,7 +30,7 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
         array(
           'hook'        => '__widget_area_right__',
           'template'    => 'modules/social_block',
-          'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebar_social_block' )
+          'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebars/sidebar_social_block' )
         ),
         array(
           'hook'        => '__widget_area_right__',

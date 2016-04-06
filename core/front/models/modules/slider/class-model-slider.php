@@ -19,7 +19,6 @@ class TC_slider_model_class extends TC_Model {
 
   function __construct( $model ) {
     parent::__construct( $model );
-
     //hook to its own loop hook to set the current slide query var
     add_action( "in_slider_{$this -> id}", array( $this, 'setup_slide_data' ), -100, 2 );
   }
@@ -28,7 +27,7 @@ class TC_slider_model_class extends TC_Model {
     $children = array(
       array(
         'hook' => '__slide__',
-        'template'  => 'modules/slide',
+        'template'  => 'modules/slider/slide',
       ),
       //edit slide button
       array(

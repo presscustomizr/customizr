@@ -35,6 +35,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     public $callback = "";
     public $cb_params = array();
     public $early_setup = false;
+    public $parent = '';//stores the model id string from which a child has been instantiated.
     public $children = array();
     public $controller = "";
     public $visibility = true;//can be typically overriden by a check on a user option
@@ -48,8 +49,10 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //becoming model properties
       $model = $this -> tc_extend_params( $model );
 
+
       //if model has been reset do silent exit, unsetting its id
       if ( empty( $model ) ) {
+        do_action('tc_dev_notice', 'in TC_MODEL construct : a model has no id ');
         $this -> tc_set_property( 'id', '' );
         return;
       }
@@ -63,13 +66,6 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //3) a hook => not anymore since tc_render_template()
       if ( ! $this -> tc_can_model_be_instantiated() )
         return;
-
-
-      //this will trigger the collection update => the model will be registered in the collection
-      do_action( 'model_alive' , $this -> id, $this );
-
-      //specific event for this model.
-      do_action( "{$this -> id}_model_alive", $this -> id, $this );
 
       //set-up the children
       $this -> tc_maybe_setup_children();
@@ -156,6 +152,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
       $children = $this -> tc_setup_children();
       $this -> tc_set_property( 'children', $children );
+      $this -> tc_set_property( 'parent', $this -> id );
     }//fn
 
 

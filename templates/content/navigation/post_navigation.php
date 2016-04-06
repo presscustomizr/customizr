@@ -19,12 +19,12 @@
 
   <?php
     if ( 'post_list' != tc_get( 'type' ) ) {
-      do_action( '__post_navigation_singular__' )
-      //tc_render_template('post_navigation_singular');
+      //do_action( '__post_navigation_singular__' );
+      tc_render_template('post_navigation_singular', 'post_navigation_links_singular');
     }
     else {
-      do_action( '__post_navigation_posts__' )
-      //tc_render_template('post_navigation_posts');
+      //do_action( '__post_navigation_posts__' );
+      tc_render_template('post_navigation_posts', 'post_navigation_links_posts');
     }
   ?>
 
