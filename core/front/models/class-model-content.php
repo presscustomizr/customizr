@@ -100,19 +100,17 @@ class TC_content_model_class extends TC_Model {
       *********************************************/
       //the default class/template is for the buttons type
       array(
-        'template' => 'content/post-metas/post_metas',
+        'model_class' => 'content/post-metas/post_metas',
         'id' => 'post_metas_button',
       ),
       //the text meta one uses a different template
       array(
-        'template' => 'content/post-metas/post_metas',
         'id' => 'post_metas_text',
         'model_class' => array( 'parent' => 'content/post-metas/post_metas', 'name' => 'content/post-metas/post_metas_text' ),
       ),
-      //attachment post mestas
+      //attachment post metas
       array(
         'id' => 'post_metas_attachment',
-        'template' => 'content/post-metas/attachment_post_metas',
         'model_class' => array( 'parent' => 'content/post-metas/post_metas', 'name' => 'content/post-metas/attachment_post_metas' )
       ),
 
