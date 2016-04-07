@@ -8,7 +8,7 @@
  * @since Customizr 3.5.0
  */
 ?>
-<section class="tc_content <?php tc_echo('element_class') ?>" <?php tc_echo('element_attributes') ?> >
+<section class="tc+content <?php tc_echo('element_class') ?>" <?php tc_echo('element_attributes') ?> >
 
   <?php do_action( 'before_post_list_entry_content' ) ?>
 
