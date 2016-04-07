@@ -3,7 +3,7 @@
     <div class="navbar-inner" role="navigation">
         <div class="row-fluid">
         <?php
-          if ( is_rtl() ) {
+          if ( ! is_rtl() ) {
             tc_render_template('modules/social_block');
             tc_render_template('header/tagline');
           } else {

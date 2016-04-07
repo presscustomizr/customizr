@@ -33,7 +33,8 @@ class TC_header_model_class extends TC_Model {
     $children = array(
       //LOGO
       //array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
-      //array( 'hook' => false, 'template' => 'header/logo_wrapper' ),
+      /* Registered as child here as it needs to filter the header class and the logos to add custom style css */
+      array( 'hook' => false, 'template' => 'header/logo_wrapper' ),
 
       //array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo'),
       //array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
@@ -52,7 +53,8 @@ class TC_header_model_class extends TC_Model {
 
       //NAVBAR
       //array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
-     // array( 'hook' => false, 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
+      /* Registered as child here as it needs to filter the body class (the header itself is registered in init) */
+      array( 'hook' => false, 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
 
       //socialblock in navbar
       //array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
@@ -80,9 +82,11 @@ class TC_header_model_class extends TC_Model {
 
       //SIDENAV
       //array( 'hook' => '__before_page_wrapper', 'template' => 'header/sidenav' ),
-      //array( 'hook' => false, 'template' => 'header/sidenav' ), <= rendered in page_wrapper template now
 
-      );
+      /* Registered as child here as it needs to filter the body class class and the logos to add custom styles */
+      array( 'hook' => false, 'template' => 'header/sidenav' ), //<= rendered in page_wrapper template now
+
+    );
 
     return $children;
   }

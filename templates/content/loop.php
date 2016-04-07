@@ -20,15 +20,15 @@ if ( CZR() -> controllers -> tc_is_no_results() || is_404() ) {
     //if this is the main wp loop then, render the various templates depending on the context and the user options
     if ( 'main_loop' == tc_get('id') ) {
 
-      // if ( tc_has('grid_wrapper') && CZR() -> controllers -> tc_is_possible('grid_wrapper') ) {
-      //   tc_render_template('modules/grid_wrapper');
-      // }
+      if ( tc_has('post_list_grid') /*&& CZR() -> controllers -> tc_is_possible('grid_wrapper') */) {
+        tc_render_template('modules/grid/grid_wrapper', 'post_list_grid');
+      }
 
-      if ( tc_has('post_list') ){
+      elseif ( tc_has('post_list') ){
         tc_render_template('content/post-lists/post_list_wrapper', 'post_list');
       }
 
-      if ( tc_has('singular_article') ) {
+      elseif ( tc_has('singular_article') ) {
         tc_render_template('content/article','singular_article');
       }
     }
