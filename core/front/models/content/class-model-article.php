@@ -7,9 +7,12 @@ class TC_article_model_class extends TC_Model {
 
   function tc_setup_children() {
     $children = array(
+      //single post thumbnail
       array(
-        'id'          => 'singular_headings',
-        'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/singles/post_page_headings' ),
+        'hook'        => '__before_post',
+        'template'    => 'content/singles/thumbnail_single',
+        'id'          => 'post_thumbnail',
+        'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/singles/thumbnail_single')
       )
     );
     return $children;
