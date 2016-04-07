@@ -62,30 +62,6 @@ class TC_grid_wrapper_model_class extends TC_Model {
           'hook'     => '__edit_button__',
           'template' => 'modules/edit_button'
         ),
-        //Post metas ( in the headings )
-        //the default class/template is for the buttons type
-        array(
-          'hook' => '__post_metas__',
-          'template' => 'content/post-metas/post_metas',
-          'id' => 'post_metas_button',
-          'priority' => 20
-        ),
-        //the text meta one uses a different template
-        array(
-          'hook' => '__post_metas__',
-          'template' => 'content/post_metas',
-          'id' => 'post_metas_text',
-          'model_class' => array( 'parent' => 'content/post-metas/post_metas', 'name' => 'content/post-metas/post_metas_text' ),
-          'priority' => 20,
-        ),
-        //attachment post mestas
-        array(
-          'hook' => '__post_metas__',
-          'id' => 'post_metas_attachment',
-          'template' => 'content/attachment_post_metas',
-          'priority' => 20,
-          'model_class' => array( 'parent' => 'content/post-metas/post_metas', 'name' => 'content/post-metas/attachment_post_metas' )
-        )
     );
 
     return $children;

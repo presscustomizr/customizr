@@ -69,16 +69,20 @@
   <header class="entry-header">
   <?php
 
-    if ( tc_post_has_title() ) :
+   if ( tc_post_has_title() ) :
 
   ?>
     <h2 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php tc_echo( 'title' ) ?></a><?php do_action( '__edit_button__' ); do_action( '__recently_updated__' ) ?></h2>
   <?php
 
-    endif
+   endif;
+
+   /* Post metas */
+   if ( tc_has('post_metas_button') ) { tc_render_template('post_metas_button'); }
+    elseif ( tc_has('post_metas_text') ) { tc_render_template('post_metas_text'); }
+    elseif ( tc_has('post_metas_attachment') ) { tc_render_template('post_metas_attachment'); }
 
   ?>
-    <?php do_action('__post_metas__') ?>
   </header>
 <?php
 
