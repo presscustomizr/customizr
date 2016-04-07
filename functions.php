@@ -158,9 +158,9 @@ function tc_get_model_property( $_model_id, $_property ) {
 
 //@return view model object if exists
 function tc_get_view_instance( $_model_id ) {
-  if ( ! isset(CZR() -> collection -> tc_get_model_instance( $_model_id ) -> _instance) )
+  if ( ! isset(CZR() -> collection -> tc_get_model_instance( $_model_id ) -> view_instance) )
     return;
-  return CZR() -> collection -> tc_get_model_instance( $_model_id ) -> _instance;
+  return CZR() -> collection -> tc_get_model_instance( $_model_id ) -> view_instance;
 }
 
 

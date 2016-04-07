@@ -21,7 +21,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //each view will inherit those properties
     public $hook = "";//this is the default hook declared in the index.php template
     public $render = false;
-    public $_instance;
+    public $view_instance;
     public $id = "";
     public $model_class = false;
     public $query = false;
@@ -107,7 +107,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //=> can be used later for deregistration
     //hook : view_instantiated
     function tc_add_view_to_model( $view_instance ) {
-       $this -> tc_set_property( '_instance', $view_instance );
+       $this -> tc_set_property( 'view_instance', $view_instance );
     }
 
 
@@ -163,7 +163,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //hook : 'view_instantiated'
     //@param $instance is the view instance object, can be TC_View or a child of TC_View
     //hook the rendering method to the hook
-    //$this -> _instance can be used. It can be a child of this class.
+    //$this -> view_instance can be used. It can be a child of this class.
     public function tc_maybe_hook_or_render_view($instance) {
       if ( empty($this -> id) ) {
         do_action('tc_dev_notice', 'In TC_Model, a model is missing its id.' );
@@ -200,7 +200,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //@param instance view
     //@return void()
     public function tc_unhook_view() {
-      if ( false == $this -> hook || ! is_object( $this -> _instance) )
+      if ( false == $this -> hook || ! is_object( $this -> view_instance) )
         return;
       remove_action( $this -> hook, array( $instance , 'tc_maybe_render' ), $this -> priority );
       //say it
@@ -369,7 +369,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
     //checks if the model exists and is an instance
     //@return bool
     public function tc_has_instantiated_view() {
-      return is_object( $this -> _instance );
+      return is_object( $this -> view_instance );
     }
 
   }//end of class
