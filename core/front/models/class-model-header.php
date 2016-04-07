@@ -33,7 +33,7 @@ class TC_header_model_class extends TC_Model {
     $children = array(
       //LOGO
       //array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
-      array( 'hook' => false, 'template' => 'header/logo_wrapper' ),
+      //array( 'hook' => false, 'template' => 'header/logo_wrapper' ),
 
       //array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo'),
       //array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
@@ -52,7 +52,7 @@ class TC_header_model_class extends TC_Model {
 
       //NAVBAR
       //array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
-      array( 'hook' => false, 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
+     // array( 'hook' => false, 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
 
       //socialblock in navbar
       //array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),

@@ -39,7 +39,5 @@ if ( CZR() -> controllers -> tc_is_no_results() || is_404() ) {
 
   }//endwhile;
 }
-
-
 //Always reset the query to the main WP one
 $wp_query = $wp_the_query;
