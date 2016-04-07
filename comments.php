@@ -10,5 +10,6 @@
  * @since Customizr 1.0
  */
 comment_form();
-do_action ( '__comments__' );
+if ( tc_has('comment') ) { tc_render_template('content/comments/comment_list', 'comment'); }
+//do_action ( '__comments__' );
 ?>
