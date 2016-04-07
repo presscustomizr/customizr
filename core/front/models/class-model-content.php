@@ -50,16 +50,7 @@ class TC_content_model_class extends TC_Model {
 
 
       /* OUTSIDE THE LOOP */
-      //404
-      array(
-        'id' => '404',
-        'model_class' => array( 'parent' => 'content/article', 'name' => 'content/singles/404')
-      ),
-      //no results
-      array(
-        'id'          => 'no_results',
-        'model_class' => array( 'parent' => 'content/article', 'name' => 'content/singles/no_results')
-      ),
+
 
       //Headings: before the loop (for list of posts, like blog, category, archives ...)
       //sub-modules registration inside

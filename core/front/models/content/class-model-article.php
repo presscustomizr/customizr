@@ -81,7 +81,7 @@ class TC_article_model_class extends TC_Model {
     // ATTACHMENT
     //checks if attachement is image and add a selector
     $format_image               = wp_attachment_is_image() ? 'format-image' : '';
-    $selectors                  = ( isset($post) && 'attachment' == $post -> post_type && is_singular() ) ? apply_filters( 'tc_attachment_selectors' , 'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( "{$this -> post_class} format-image" ) ) : $selectors;
+    $selectors                  = ( isset($post) && 'attachment' == $post -> post_type && is_singular() ) ? apply_filters( 'tc_attachment_selectors' , 'id="post-'.get_the_ID().'" '. CZR() -> helpers -> tc_get_the_post_class( "{$this -> post_class} format-image" ) ) : $selectors;
 
     $selectors = apply_filters( 'tc_article_selectors', $selectors );
 

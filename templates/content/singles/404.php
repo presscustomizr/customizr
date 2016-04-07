@@ -11,7 +11,7 @@
   <h1 class="entry-title "><?php _e('Ooops, page not found', 'customizr') ?></h1>
   <hr class="featurette-divider headings after-404-title">
 </header>
-<article <?php tc_echo( 'article_selectors' ) ?> >
+<article id="post-0" class="post error404 no-results not-found row-fluid">
   <div class="<?php tc_echo( 'wrapper_class' ) ?>">
     <div class="<?php tc_echo( 'inner_class' ) ?>">
       <blockquote><p><?php _e( 'Speaking the Truth in times of universal deceit is a revolutionary act.' , 'customizr' ) ?></p><cite><?php _e( 'George Orwell' , 'customizr' ) ?></cite></blockquote>
