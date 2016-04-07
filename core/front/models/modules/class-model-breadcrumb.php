@@ -18,15 +18,13 @@ class TC_breadcrumb_model_class extends TC_Model {
   public $breadcrumb;
   private $args;
 
-  /**
-  * @override
-  */
-  function __construct( $model ) {
-    parent::__construct( $model );
-
+  function tc_extend_params( $model = array() ) {
     $this -> args       = $this -> _get_args();
     $this -> breadcrumb = $this -> tc_breadcrumb_trail( $this -> args );
+
+    return $model;
   }
+
 
   function _get_args() {
     $args =  array(
