@@ -16,17 +16,25 @@
 
               <div id="content" class="<?php tc_echo( 'article_wrapper_class' ) ?>">
                 <?php
-                  if ( tc_has('posts_list_headings') ) { tc_render_template('content/post-lists/post_list_headings', 'posts_list_headings'); }
+                  /* 404 and search with no results */
+                  if ( CZR() -> controllers -> tc_is_no_results() || is_404() ) {
+                    if ( tc_has('404') ) { tc_render_template('content/singles/content_404', '404'); }
+                    elseif ( tc_has('no_results') ) { tc_render_template('content/singles/content_no_results', 'no_results'); }
+                  }
 
-                  if ( tc_has('main_loop') ) { tc_render_template('content/loop', 'main_loop'); }
+                  else {
+                    if ( tc_has('posts_list_headings') ) { tc_render_template('content/post-lists/post_list_headings', 'posts_list_headings'); }
 
-                  if ( tc_has('comments') ) { tc_render_template('content/comments/comments'); }
+                    if ( tc_has('main_loop') ) { tc_render_template('content/loop', 'main_loop'); }
 
-                  if ( is_singular() && tc_has('post_navigation_singular') )
-                    tc_render_template('content/navigation/post_navigation', 'post_navigation_singular');
-                  elseif ( /*is_archive() && DISPLAYED ALSO IN THE BLOC*/ tc_has('post_navigation_posts') )
-                    tc_render_template('content/navigation/post_navigation', 'post_navigation_posts');
+                    if ( tc_has('comments') ) { tc_render_template('content/comments/comments'); }
+
+                    if ( is_singular() && tc_has('post_navigation_singular') )
+                      tc_render_template('content/navigation/post_navigation', 'post_navigation_singular');
+                    elseif ( /*is_archive() && DISPLAYED ALSO IN THE BLOG*/ tc_has('post_navigation_posts') )
+                      tc_render_template('content/navigation/post_navigation', 'post_navigation_posts');
                   //do_action( '__content__')
+                  }
                 ?>
               </div>
 
