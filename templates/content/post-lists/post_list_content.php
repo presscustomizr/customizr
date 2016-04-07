@@ -1,6 +1,7 @@
 <?php
 /**
  * The template for displaying the content in a post list element
+ * In WP loop
  *
  * @package WordPress
  * @subpackage Customizr
