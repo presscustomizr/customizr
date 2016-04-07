@@ -197,7 +197,6 @@ if ( ! class_exists( 'TC___' ) ) :
           * HEADER
           *********************************************/
           array(
-            'hook'        => false,
             'template'    => 'header'
           ),
 
@@ -235,7 +234,6 @@ if ( ! class_exists( 'TC___' ) ) :
           * CONTENT
           *********************************************/
           array(
-            'hook'        => 'false',
             'template'    => 'content',
           ),
 
@@ -243,7 +241,6 @@ if ( ! class_exists( 'TC___' ) ) :
           * FOOTER
           *********************************************/
           array(
-            'hook'        => 'false',
             'template'    => 'footer',
           ),
         )
