@@ -116,16 +116,6 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         return;
       }
 
-      if ( ( defined('TC_DEV') && true === TC_DEV ) ) {
-        ?>
-          <script type="text/javascript">
-            console.log(
-              'New instantiated model. Params :' , '<?php echo json_encode($_model_params_array); ?>' , ' instance id : ' , '<?php echo $model -> id; ?>'
-            );
-          </script>
-        <?php
-      }
-
       //REGISTER THE MODEL INTO THE COLLECTION
       //At this stage, the model is an instanciated object
       //=> an event is emitted : this will trigger the collection update => the model will be registered in the collection
@@ -648,19 +638,9 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       }
 
 
-      //return now if the requested id is not already taken
-      if ( ! $this -> tc_is_registered($id) && ! $this -> tc_is_pre_registered($id) ) {
-        if ( ( defined('TC_DEV') && true === TC_DEV ) ) {
-          ?>
-            <script type="text/javascript">
-              console.log(
-                'unique id' , '<?php echo $id; ?>'
-              );
-            </script>
-          <?php
-        }
+      //return it now if available
+      if ( ! $this -> tc_is_registered($id) && ! $this -> tc_is_pre_registered($id) )
         return apply_filters('tc_set_model_unique_id' , $id, $hook, $priority );
-      }
 
       //add hyphen add the end if not there
       $id                 = ! is_numeric(substr($id, -1)) ? $id . '_0' : $id;
