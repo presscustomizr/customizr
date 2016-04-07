@@ -18,11 +18,6 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
     function __construct( $args = array() ) {
       self::$instance =& $this;
-
-      //the first check on the raw model provided
-      //=> if the model has been pre-registered and has an id, we also have to check here if it's registered for deletion
-      add_filter( 'tc_can_use_model'            , array( $this, 'tc_is_model_eligible'), 10, 1 );
-
       //listens to filter 'tc_prepare_model', takes 1 param : raw model array()
       //makes sure the model has a unique $id set and a proper priority for its rendereing hook
       //model as param
@@ -32,11 +27,6 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //model as param
       add_filter( 'tc_prepare_model'            , array( $this, 'tc_apply_registered_changes'), 20, 1 );
 
-      //Once the model is eligible and properly prepared (unique id), let's see if we can
-      //1) register it,
-      //2) pre-register it,
-      //3) or simply abort registration
-      add_filter( 'tc_can_register_model'       , array( $this, 'tc_check_can_register_model'), 10, 1 );
 
       //if 'wp' has not been fired yet, we will pre-register this model for later instantiation
       //2 params :
@@ -49,7 +39,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //Takes 2 params
       //1) model id
       //2) model instance
-      add_action( 'model_alive'          , array( $this, 'tc_update_collection' ), 10, 2 );
+      add_action( 'model_alive'                 , array( $this, 'tc_update_collection' ), 10, 2 );
 
       //on 'wp', the pre_registered (if any) are registered
       add_action( 'wp'                          , array($this, 'tc_register_pre_registered') );
@@ -81,8 +71,13 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     * REGISTER A MODEL TO THE COLLECTION
     ***********************************************************************************/
     public function tc_register( $model = array() ) {
-      if ( ! apply_filters( 'tc_can_use_model' , $model ) )
+      $_model_params_array = $model;
+
+      //the first check on the raw model provided
+      //=> if the model has been pre-registered and has an id, we also have to check here if it's registered for deletion
+      if ( ! $this -> tc_is_model_eligible( $model ) )
         return;
+
       //this pre-setup will ensure :
       //- the hook is there
       //- the id unicity
@@ -95,8 +90,13 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //the hook is the only mandatory param
       //the id is optional => will be set unique on model setup
       //if 'wp' has not been fired yet, we will pre-register this model for later registration
-      if ( ! apply_filters( 'tc_can_register_model' , $model ) )
+      ////Once the model is eligible and properly prepared (unique id), let's see if we can
+      //1) register it,
+      //2) pre-register it,
+      //3) or simply abort registration
+      if ( ! $this -> tc_can_register_model( $model ) )
         return;
+
 
       //Instantiates the model object : at this stage the 'wp' hook has been fired and we're ready to instantiate the (maybe pre-registered) model
       //at this stage, the model is an array and :
@@ -105,6 +105,8 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       //- is at least assigned to a hook
       //- we've checked if it was registered for deletion
       //=> let's instantiate
+      $_model_id = isset( $model['id'] ) ? $model['id'] : 'undefined';
+
       $model = $this -> tc_instantiate_model($model);
 
       //abort if the model has not been instantiated
@@ -114,8 +116,15 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         return;
       }
 
-      //At this stage, the model has been registered to the collection.
-      //=> an event has been emitted on model instantiation, the collection has listened to this event and registered the model.
+      //REGISTER THE MODEL INTO THE COLLECTION
+      //At this stage, the model is an instanciated object
+      //=> an event is emitted : this will trigger the collection update => the model will be registered in the collection
+      do_action( 'model_alive' , $_model_id, $model );
+
+      //specific event for this model.
+      do_action( "{$_model_id}_model_alive", $_model_id, $model );
+
+
       if ( $this -> tc_is_registered( $model -> id ) ) {
         //emit an event on model registered
         //can be used with did_action() afterwards
@@ -127,6 +136,11 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         return;
       return $model -> id;
     }
+
+
+
+
+
 
 
     /**********************************************************************************
@@ -143,7 +157,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         return;
 
       if ( ! is_array($model) || empty($model) ) {
-        do_action('tc_dev_notice', "TC_collection : A model is not ready for the collection, it won't be registered. The model must be an array of params. The hook is the only mandatory param." );
+        do_action('tc_dev_notice', "TC_collection : A model is not eligible for the collection, it won't be registered. The model must be an array of params." );
         return;
       }
       return true;
@@ -161,7 +175,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       $priority = isset($model['priority']) ? $model['priority'] : "";
       $template = isset($model['template']) ? $model['template']  : "";//the template name can be used to define the id
 
-      if ( isset($model['hook']) && !empty($model['hook']) && false != $model['hook'] ) {
+      if ( isset($model['hook']) && ! empty($model['hook']) && false != $model['hook'] ) {
         //makes sure we assign a unique ascending priority if not set
         $model['priority']  = $this -> tc_set_priority( $model['hook'] , $priority );
       } else {
@@ -188,31 +202,32 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     }
 
 
-    //hook : tc_can_register_model
     //at this point, the raw model has had a first setup to ensure id
     //@return boolean
     //@param array() raw model
-    public function tc_check_can_register_model( $model = array() ) {
+    private function tc_can_register_model( $model = array() ) {
+      $bool = false;
       //the first check is on the visibility
       //Typically : Has the user allowed this model's view in options ?
       if ( isset( $model['visibility']) && ! (bool) $model['visibility'] )
-        return;
+        $bool = false;
 
       //if the model has early hooks (before wp) , typically a pre_get_post action for example
       // => the the model has to be instantiated
       if ( isset($model['early_setup']) && ! empty($model['early_setup']) )
-        return true;
+        $bool = true;
 
       //if 'wp' has not been fired yet, we will pre-register this model for later registration
       if ( ! did_action('wp') ) {
         //we will use this event to fire the pre-registration
         do_action( 'pre_register_model', $model['id'], $model );
-        return;
+        $bool = false;
       }
       //if 'wp' has been fired (or is currently being fired) 1) check the controller if set
       else {
-        return CZR() -> controllers -> tc_is_possible( $model );
+        $bool = CZR() -> controllers -> tc_is_possible( $model );
       }
+      return apply_filters('tc_can_register_model', $bool, $model );
     }
 
 
@@ -317,14 +332,16 @@ if ( ! class_exists( 'TC_Collection' ) ) :
         if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ) {
           $this -> tc_require_model_class( $model['model_class']['parent'] );
           $model_class     = $model[ $_model_class ]['name'];
+
         } else {
           $model_class     = $model[ $_model_class ];
         }
 
         $model_class_name     = sprintf( 'TC_%s_model_class', $this -> tc_require_model_class( $model_class ) );
 
-        if ( class_exists($model_class_name) )
+        if ( class_exists($model_class_name) ) {
           $instance = new $model_class_name( $model );
+        }
 
         if ( ! is_object($instance) && 'model_class' == $_model_class ) {
           do_action('tc_dev_notice', "Model : " . $model['id'] . ". The model has not been instantiated." );
@@ -352,6 +369,14 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
       return $model_class_basename;
     }
+
+
+
+
+
+
+
+
     /**********************************************************************************
     * UPDATE COLLECION
     ***********************************************************************************/
@@ -555,6 +580,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     public function tc_get_model_instance( $id = null ) {
       if ( is_null($id) )
         return;
+
       $collection = self::$collection;
       if ( ! isset($collection[$id]) )
         return;
@@ -586,6 +612,8 @@ if ( ! class_exists( 'TC_Collection' ) ) :
       $available = true;
       //loop on the existing model object in the collection
       foreach ( $this -> tc_get() as $id => $model) {
+        if ( ! isset($model -> hook) )
+          continue;
         if ( $hook != $model -> hook )
           continue;
         if ( $hook == $model -> hook && $priority != $model -> priority )
@@ -599,9 +627,6 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //Recursively create a unique id when needed
     //@return string id
     private function tc_set_unique_id( $id, $hook, $priority, $template ) {
-      //add an event here
-      $id = apply_filters('tc_set_model_unique_id' , $id, $hook, $priority );
-
       //if id not set, then :
       //1) try to create a unique id from the template name if specified
       //2) otherwise create a unique id from hook_priority
@@ -612,9 +637,10 @@ if ( ! class_exists( 'TC_Collection' ) ) :
           $id = "{$hook}_{$priority}";
       }
 
-      //return now if the requested id is not already taken
+
+      //return it now if available
       if ( ! $this -> tc_is_registered($id) && ! $this -> tc_is_pre_registered($id) )
-        return $id;
+        return apply_filters('tc_set_model_unique_id' , $id, $hook, $priority );
 
       //add hyphen add the end if not there
       $id                 = ! is_numeric(substr($id, -1)) ? $id . '_0' : $id;
