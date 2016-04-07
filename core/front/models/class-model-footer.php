@@ -29,7 +29,7 @@ class TC_footer_model_class extends TC_Model {
       array( 'hook' => is_rtl() ? '__colophon_one__' : '__colophon_three__', 'template' => 'footer/footer_btt' ),
 
       //btt arrow
-      array( 'hook' => 'after_render_view_page_wrapper', 'template' => 'footer/btt_arrow')
+      array( 'hook' => '__after_page_wrapper', 'template' => 'footer/btt_arrow')
     );
 
     return $children;
