@@ -132,6 +132,7 @@ class TC_content_model_class extends TC_Model {
       array(
         'model_class' => 'modules/comment_bubble'
       ),
+
       /*********************************************
       * Post navigation
       *********************************************/

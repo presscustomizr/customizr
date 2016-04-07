@@ -22,7 +22,7 @@ class TC_post_content_model_class extends TC_Model {
         'hook'        => '__before_post',
         'template'    => 'content/thumbnail_single',
         'id'          => 'post_thumbnail',
-        'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/thumbnail_single')
+        'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/singles/thumbnail_single')
       )
     );
     return $children;
