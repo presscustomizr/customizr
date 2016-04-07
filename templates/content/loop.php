@@ -9,12 +9,7 @@ if ( false !== tc_get( 'query' ) ) {
   $wp_query = $_query;
 }
 
-if ( CZR() -> controllers -> tc_is_no_results() || is_404() ) {
-  if ( 'main_loop' == tc_get('id') ) {
-    if ( tc_has('404') ) { tc_render_template('content/content_404', '404'); }
-    elseif ( tc_has('no_results') ) { tc_render_template('content_no_results', 'no_results'); }
-  }
-} else if ( have_posts() && ! is_404() ) {
+if ( have_posts() && ! is_404() ) {
   while ( have_posts() ) {
     the_post();
     //if this is the main wp loop then, render the various templates depending on the context and the user options
