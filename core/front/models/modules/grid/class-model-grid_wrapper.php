@@ -45,7 +45,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
       //grid item
       array(
         'hook'        => '__grid__',
-        'template'    => 'modules/grid_item',
+        'template'    => 'modules/grid/grid_item',
       ),
         //comment bubble
         array(
