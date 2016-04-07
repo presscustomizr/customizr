@@ -125,6 +125,13 @@ class TC_content_model_class extends TC_Model {
         'model_class' => array( 'parent' => 'content/post-metas/post_metas', 'name' => 'content/post-metas/attachment_post_metas' )
       ),
 
+      /**************************
+      * Comment bubble
+      ******************************/
+      //comment bubble
+      array(
+        'model_class' => 'modules/comment_bubble'
+      ),
       /*********************************************
       * Post navigation
       *********************************************/
