@@ -79,12 +79,11 @@ class TC_content_model_class extends TC_Model {
       * GRID (POST LIST)
       *********************************************/
 
-      // array(
-      //   'hook'        => false,
-      //   'template'    => 'modules/grid_wrapper',
-      //   'priority'    => 10,
-      //   'controller'  => 'post_list_grid'
-      // ),
+      array(
+        'template'    => 'modules/grid/grid_wrapper',
+        'id'          => 'post_list_grid',
+        /*       'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid/grid_wrapper' )*/
+      ),
       /* END GRID */
 
       /*********************************************
@@ -93,7 +92,7 @@ class TC_content_model_class extends TC_Model {
 
       array(
         'id'          => 'post_list',
-        //'controller'  => 'post_list',
+        'controller'  => 'post_list',
         'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post-lists/post_list_wrapper' )
       ),
 

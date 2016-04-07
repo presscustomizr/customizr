@@ -24,7 +24,7 @@
 
                   if ( is_singular() && tc_has('post_navigation_singular') )
                     tc_render_template('content/navigation/post_navigation', 'post_navigation_singular');
-                  elseif ( is_archive() && tc_has('post_navigation_posts') )
+                  elseif ( /*is_archive() && DISPLAYED ALSO IN THE BLOC*/ tc_has('post_navigation_posts') )
                     tc_render_template('content/navigation/post_navigation', 'post_navigation_posts');
                   //do_action( '__content__')
                 ?>
