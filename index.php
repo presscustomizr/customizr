@@ -11,17 +11,19 @@
   <?php tc_render_template('header/head'); ?>
 
   <body <?php body_class(); ?> >
-    <?php
-      if ( tc_has('sidenav') && tc_has('header') ){ tc_render_template('header/sidenav'); };
-    ?>
+    <?php if ( tc_has('sidenav') && tc_has('header') ){ tc_render_template('header/sidenav'); }; ?>
 
     <?php do_action('__before_page_wrapper'); ?>
 
     <div id="tc-page-wrap">
+
       <?php tc_render_template('header'); ?>
-      <?php tc_render_template('content'); ?>
+
+        <?php tc_render_template('content'); ?>
+
       <?php tc_render_template('footer'); ?>
-    </div><!-- #tc-page-wrap -->
+
+    </div>
 
     <?php do_action('__after_page_wrapper'); ?>
 

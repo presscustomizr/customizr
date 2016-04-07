@@ -5,11 +5,9 @@
     else
       tc_render_template('header/title');
 
-    if ( tc_has('mobile_tagline') )
-      tc_render_template('header/tagline', 'mobile_tagline');
+    if ( tc_has('mobile_tagline') ) { tc_render_template('header/tagline', 'mobile_tagline'); }
 
-    tc_render_template('header/navbar_wrapper');
-    //do_action( '__header__');
+    if ( tc_has('navbar_wrapper') ) { tc_render_template('header/navbar_wrapper'); }
   ?>
 </header>
 <?php if ( tc_get('has_sticky_pusher') ): ?>
