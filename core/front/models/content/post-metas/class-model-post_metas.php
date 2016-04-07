@@ -97,7 +97,7 @@ class TC_post_metas_model_class extends TC_Model {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  private function tc_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
+  protected function tc_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
     if ( 'short' == $_format )
       $_format = 'j M, Y';
     $_format = apply_filters( 'tc_meta_date_format' , $_format );
