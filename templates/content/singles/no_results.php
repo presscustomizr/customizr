@@ -11,7 +11,7 @@
   <h1 class="<?php tc_echo( 'title_class' ) ?>"><?php _e('No Search Results for :', 'customizr') ?> <span><?php echo get_search_query() ?></span></h1>
   <hr class="featurette-divider headings after-noresults-title">
 </header>
-<article <?php tc_echo( 'article_selectors' ) ?> >
+<article id="post-0" class="post error404 no-results not-found row-fluid">
   <div class="<?php tc_echo( 'wrapper_class' ) ?>">
     <div class="<?php tc_echo( 'inner_class' ) ?>">
       <blockquote><p><?php _e( 'Success is the ability to go from one failure to another with no loss of enthusiasm...' , 'customizr' ) ?></p><cite><?php _e( 'Sir Winston Churchill' , 'customizr' ) ?></cite></blockquote>
