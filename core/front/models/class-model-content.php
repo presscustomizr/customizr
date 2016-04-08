@@ -55,11 +55,9 @@ class TC_content_model_class extends TC_Model {
       //Headings: before the loop (for list of posts, like blog, category, archives ...)
       //sub-modules registration inside
       array(
-        'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/post-lists/posts_list_headings'),
+        'model_class' => 'content/post-lists/posts_list_headings',
         'id'          => 'posts_list_headings'
       ),
-
-
 
       /*********************************************
       * INSIDE THE LOOP
@@ -94,6 +92,13 @@ class TC_content_model_class extends TC_Model {
         'id'          => 'singular_article',
         'model_class' => 'content/article'
       ),
+
+      /* TEMPORARY */
+      array(
+        'id' => 'post_page_headings',
+        'model_class' => 'content/singles/post_page_headings'
+      ),
+      /* TEMPORARY */
 
       /*********************************************
       * Post metas
@@ -148,6 +153,7 @@ class TC_content_model_class extends TC_Model {
   * parse this model properties for rendering
   */
   function tc_sanitize_model_properties( $model ) {
+
     parent::tc_sanitize_model_properties( $model );
     $model -> column_content_class = $this -> tc_stringify_model_property( 'column_content_class' );
     $model -> article_wrapper_class = $this -> tc_stringify_model_property( 'article_wrapper_class' );

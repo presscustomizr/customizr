@@ -8,11 +8,11 @@
  * @since Customizr 3.5.0
  */
 ?>
-<section class="tc+content <?php tc_echo('element_class') ?>" <?php tc_echo('element_attributes') ?> >
+<section class="tc-content <?php tc_echo('element_class') ?>" <?php tc_echo('element_attributes') ?> >
 
   <?php do_action( 'before_post_list_entry_content' ) ?>
 
-  <?php if ( tc_has('headings') ) { tc_render_template('content/singles/post_page_headings'); } ?>
+  <?php if ( tc_has('headings') ) { tc_render_template('content/post-lists/post_page_headings'); } ?>
 
   <section class="entry-content <?php tc_echo( 'content_class' ) ?>">
     <?php
