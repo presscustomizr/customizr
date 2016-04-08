@@ -36,12 +36,6 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
         'template' => 'content/post-lists/post_list_content',
         'id' => 'post_list_content'
       ),
-      //post headings in post lists
-      array(
-        'hook' => false,//'before_post_list_entry_content',
-        'template' => 'content/singles/post_page_headings',
-        'model_class' => array( 'parent' => 'content/headings', 'name' => 'content/singles/post_page_headings' )
-      ),
 
       /* THUMBS */
       array(

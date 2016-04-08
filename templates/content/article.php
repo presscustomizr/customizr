@@ -11,7 +11,7 @@
 <article <?php tc_echo( 'article_selectors' ) ?> <?php tc_echo('element_attributes') ?>>
   <?php
     if ( tc_has('singular_headings') ) {
-      tc_render_template('content/singles/post_page_headings', 'singular_headings');
+      tc_render_template('content/singles/singular_headings', 'singular_headings');
     }
     if ( tc_has('page') ) { tc_render_template('content/singles/page_content'); }
     elseif( tc_has('post') ) { tc_render_template('content/singles/post_content'); }

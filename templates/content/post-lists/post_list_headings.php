@@ -1,13 +1,13 @@
 <?php
 /**
- * The template for displaying the headings in post lists and singular
+ * The template for displaying the headings in list of posts:
+ * archives, categories, tags, search ,, titles
+ *
  *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0
  */
-
-/* Case we're displaying the headings of the list of posts, archives, categories, tags, search ,, */
 ?>
 <header class="<?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
   <?php
