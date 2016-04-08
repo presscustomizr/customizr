@@ -24,7 +24,7 @@ if ( have_posts() && ! is_404() ) {
       }
 
       elseif ( tc_has('singular_article') ) {
-        tc_render_template('content/article','singular_article');
+        tc_render_template('content/singles/article','singular_article');
       }
     }
     else {
