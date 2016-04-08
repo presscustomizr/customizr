@@ -1,11 +1,6 @@
 <?php
 class TC_comment_model_class extends TC_Model {
   public $comment_text;
-  public $comment_wrapper_class;
-  public $comment_avatar_class;
-  public $comment_content_class;
-  public $comment_reply_btn_class;
-  public $comment_avatar_size;
 
   public $comment_reply_link_args;
 
@@ -30,20 +25,9 @@ class TC_comment_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     $model[ 'has_edit_button' ]         = ! TC___::$instance -> tc_is_customizing();
-    $model                              = $this -> tc_set_early_properties( $model );
     return $model;
   }
 
-
-  function tc_set_early_properties( $model ) {
-    $model[ 'comment_wrapper_class' ]   = apply_filters( 'tc_comment_wrapper_class', array('row-fluid') );
-    $model[ 'comment_avatar_class'  ]   = apply_filters( 'tc_comment_avatar_class', array('comment-avatar', 'span2') );
-    $model[ 'comment_content_class' ]   = apply_filters( 'tc_comment_content_class', array('span10') );
-    $model[ 'comment_reply_btn_class' ] = apply_filters( 'tc_comment_reply_btn_class', array('reply btn btn-small' ) );
-    $model[ 'comment_avatar_size' ]     = apply_filters( 'tc_comment_avatar_size', 80 );
-
-    return $model;
-  }
 
   /**
   * @override

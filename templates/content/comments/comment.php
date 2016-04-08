@@ -26,12 +26,12 @@ else :
 ?>
 <li <?php comment_class() ?> id="li-comment-<?php comment_ID() ?>" <?php tc_echo('element_attributes') ?>>
   <article id="comment-<?php comment_ID() ?>" class="comment">
-    <div class="<?php tc_echo( 'comment_wrapper_class' ) ?>">
-      <div class="<?php tc_echo( 'comment_avatar_class' ) ?>">
-       <?php echo get_avatar( $comment, tc_get( 'comment_avatar_size' ) ) ?>
+    <div class="row-fluid">
+      <div class="comment-avatar span2">
+       <?php echo get_avatar( $comment, 80 ) ?>
       </div>
-      <div class="<?php tc_echo( 'comment_content_class' ) ?>">
-        <div class="<?php tc_echo( 'comment_reply_btn_class' ) ?>">
+      <div class="span10">
+        <div class="reply btn btn-small">
           <?php comment_reply_link( tc_get( 'comment_reply_link_args' ) ) ?>
         </div>
         <header class="comment-meta comment-author vcard">
