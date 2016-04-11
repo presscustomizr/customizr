@@ -213,7 +213,7 @@ if ( ! class_exists( 'TC___' ) ) :
             'hook'        => '__before_main_wrapper',
             'template'    => 'modules/slider/slider',
             'id'          => 'main_posts_slider',
-            'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ),
+            'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
             'controller'  => 'main_slider'
           ),
           /** end slider **/
