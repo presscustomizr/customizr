@@ -35,8 +35,9 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
         return true;
 
       $_socials = TC_utils::$inst -> tc_get_social_networks();
+
       //(2a)
-      if ( ! isset( $socials_map[ $model['id'] ] ) )
+      if ( ! array_key_exists( $model['id'], $socials_map ) )
         return (bool) $_socials;
 
       //(3b)
