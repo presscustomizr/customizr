@@ -1,3 +1,8 @@
+<?php
+/**
+ * The template for displaying the tagline (both mobile and desktop one)
+ */
+?>
 <?php if ( 'mobile' == tc_get('context') ) : ?>
 <div class="container outside">
 <?php endif ?>

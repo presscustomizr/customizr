@@ -1,3 +1,8 @@
+<?php
+/**
+ * The template for displaying the site head
+ */
+?>
 <head <?php tc_echo('element_attributes') ?>>
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />

@@ -1,3 +1,14 @@
+<?php
+/**
+ * The template for displaying the navbar wrapper.
+ * The navbar wrapper contains:
+ * Social Block
+ * Tagline
+ * ( Woocommerce Cart Icon )
+ * Navbar menus
+ * Navbar menu buttons
+ */
+?>
 <div class="navbar-wrapper clearfix <?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
   <div class="navbar resp">
     <div class="navbar-inner" role="navigation">
