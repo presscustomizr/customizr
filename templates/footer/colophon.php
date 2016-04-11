@@ -18,8 +18,11 @@
           if ( tc_has('footer_social_block') )
             tc_render_template('modules/social_block', 'footer_social_block');
     ?></div>
-      <div class="span6"> <?php do_action( '__colophon_two__' ) ?> </div>
-      <div class="span3 pull-left"><?php
+      <div class="span6"><?php
+        if ( tc_has('footer_credits') )
+         tc_render_template('footer/footer_credits');
+    ?></div>
+      <div class="span3"><?php
         if ( is_rtl() ) {
           if ( tc_has('footer_social_block') )
             tc_render_template('modules/social_block', 'footer_social_block');
