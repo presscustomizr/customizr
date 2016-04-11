@@ -1,5 +1,5 @@
 <?php
-class TC_footer_widgets_area_wrapper_model_class extends TC_widget_area_wrapper_model_class {
+class TC_footer_widgets_area_wrapper_model_class extends TC_Model {
 
   /*
   * @override
@@ -8,24 +8,9 @@ class TC_footer_widgets_area_wrapper_model_class extends TC_widget_area_wrapper_
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model       = parent::tc_extend_params( $model );
     //hack to render white color icons if skin is grey or black
-    $skin_class  = ( in_array( TC_utils::$inst->tc_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
-
-    $model['element_class'] = apply_filters( 'tc_footer_widget_element_class', array('container' , 'footer-widgets', $skin_class) );
-
-    $model['inner_class']             = array('row' ,'widget-area');
-    $model['action_hook_suffix']      = '_footer';
+    $model['element_class'] = ( in_array( TC_utils::$inst->tc_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
 
     return $model;
-  }
-
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function tc_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
-    $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
   }
 }

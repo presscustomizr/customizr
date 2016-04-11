@@ -17,9 +17,11 @@
           if ( ! is_rtl() ) {
             if ( tc_has('header_social_block') )
               tc_render_template('modules/social_block', 'header_social_block');
-            tc_render_template('header/tagline');
+            if ( tc_has('tagline') )
+              tc_render_template('header/tagline');
           } else {
-            tc_render_template('header/tagline');
+            if ( tc_has('tagline') )
+              tc_render_template('header/tagline');
             if ( tc_has('header_social_block') )
               tc_render_template('modules/social_block', 'header_social_block');
           }
