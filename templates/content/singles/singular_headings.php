@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying the headings in post lists and singular
+ * The template for displaying the headings in singular
  *
  * @package WordPress
  * @subpackage Customizr
