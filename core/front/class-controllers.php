@@ -21,7 +21,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
           '404', 'attachment', 'headings', 'no_results', 'page', 'post', 'post_footer', 'post_list', 'post_metas_button', 'post_metas_text', 'post_metas_attachment','right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'author_description', 'posts_list_title', 'posts_list_search_title', 'singular_article', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment', 'tracepingback', 'author_info', 'singular_headings', 'post_list_standard_thumb', 'post_list_rectangular_thumb', 'post_thumbnail'
         ),
         'footer' => array(
-          'btt_arrow', 'footer_btt', 'footer_push'
+          'btt_arrow', 'footer_btt', 'footer_push', 'footer_widgets_wrapper'
       //    'widgets', 'colophon', 'back_to_top'
         ),
         'modules' => array(

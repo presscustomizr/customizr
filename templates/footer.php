@@ -8,5 +8,9 @@
  */
 ?>
 <footer id="footer" <?php tc_echo('element_attributes') ?>>
-  <?php do_action( '__footer__'); ?>
+  <?php
+  if ( tc_has( 'footer_widgets_wrapper' ) )
+    tc_render_template( 'modules/widget_area_wrapper', 'footer_widgets_wrapper' );
+  tc_render_template( 'footer/colophon' );
+  ?>
 </footer>
