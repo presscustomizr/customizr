@@ -21,13 +21,6 @@ class TC_footer_model_class extends TC_Model {
       //colophon
       array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
 
-      //footer social
-      array( 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'footer/footer_social_block' ), 'id' => 'footer_social_block', 'controller' => 'social_block' ),
-
-      //footer credits
-      array( 'hook' => '__colophon_two__', 'template' => 'footer/footer_credits' ),
-      //footer colophon btt link
-
       //btt arrow
       array( 'hook' => '__after_page_wrapper', 'template' => 'footer/btt_arrow')
     );
