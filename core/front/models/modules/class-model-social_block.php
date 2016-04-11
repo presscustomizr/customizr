@@ -3,6 +3,8 @@ class TC_social_block_model_class extends TC_Model {
   public $social_block;
   public $element_class = array();
   public $element_tag   = 'div';
+  public $where         = null;
+
   /*
   * @override
   * fired before the model properties are parsed
@@ -19,7 +21,7 @@ class TC_social_block_model_class extends TC_Model {
   }
 
   protected function tc_get_socials_where( $model ) {
-    return isset( $this -> where ) ? $this-> where : '';
+    return ! is_null( $this -> where ) ? $this-> where : '';
   }
   protected function tc_get_before_socials() {
     return '';
