@@ -419,15 +419,15 @@ if ( ! class_exists( 'TC_Collection' ) ) :
     //keep in mind that the instance of the previous model with initial argument will still exists...
     //so will the additional class instance if any
     //@todo shall we store all models instances and delete them when requested ?
-    private function tc_deregister( $id, $model ) {
+    public function tc_deregister( $id, $model ) {
       if ( ! is_array($model) )
         return;
 
       //Removes the previously set action
-      if ( ! is_object($model['_instance']) )
+      if ( ! is_object($model['view_instance']) )
         do_action('tc_dev_notice', 'Attempt to de-register, but no model instance for id : '. $id );
       else if ( ! empty( $model['hook'] ) )
-        remove_action( $model['hook'], array( $model['_instance'], 'tc_maybe_render'), $model['priority'] );
+        remove_action( $model['hook'], array( $model['view_instance'], 'tc_maybe_render'), $model['priority'] );
 
       //Emit an event on model deregistered
       //=> will trigger the model delete action from collection

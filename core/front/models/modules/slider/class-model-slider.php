@@ -59,14 +59,17 @@ class TC_slider_model_class extends TC_Model {
   function tc_extend_params( $model = array() ) {
     if ( ! isset( $model['id'] ) )
       return;
+
     //valorize this id as the model id so we can use it as filter param throughout the class
     $this -> id         = $model['id'];
 
     //gets the actual page id if we are displaying the posts page
     $this -> queried_id = $queried_id = $this -> tc_get_real_id();
 
-    if ( ! $this -> is_slider_active = $this -> tc_is_slider_active( $queried_id ) )
-      return;
+    if ( ! $this -> is_slider_active = $this -> tc_is_slider_active( $queried_id ) ) {
+      $model['id'] = FALSE;
+      return $model;
+    }
 
     $slider_name_id     = $this -> tc_get_current_slider( $queried_id );
     $layout             = 0 == $this -> tc_get_slider_layout( $queried_id, $slider_name_id ) ? 'boxed' : 'full';
@@ -76,8 +79,10 @@ class TC_slider_model_class extends TC_Model {
     $slides             = $this -> tc_get_the_slides( $slider_name_id, $img_size );
 
     //We need a way to silently fail when the model "decides" it doesn't have to be instantiated
-    if ( empty( $slides ) )
-      return;
+    if ( empty( $slides ) ){
+      $model['id'] = FALSE;
+      return $model;
+    }
 
     $element_class      = $this -> tc_get_slider_element_class( $queried_id, $slider_name_id, $layout );
     $inner_class        = $this -> tc_get_slider_inner_class();
