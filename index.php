@@ -22,7 +22,6 @@
         <?php tc_render_template('content'); ?>
 
       <?php tc_render_template('footer'); ?>
-
     </div>
 
     <?php do_action('__after_page_wrapper'); ?>

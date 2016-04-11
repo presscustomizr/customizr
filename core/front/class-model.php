@@ -50,13 +50,15 @@ if ( ! class_exists( 'TC_Model' ) ) :
       $model = $this -> tc_extend_params( $model );
 
 
-      //if model has been reset do silent exit, unsetting its id
       if ( empty( $model ) ) {
         do_action('tc_dev_notice', 'in TC_MODEL construct : a model has no id ');
-        $this -> tc_set_property( 'id', '' );
+        return;
+      }elseif ( FALSE == $model['id'] ) {
+        //if model ID has been set to false silent exit. Useful in cases when in tc_extend_params the model
+        //itself understands that it has to exit its instantiation
+        CZR() -> collection -> tc_deregister( $this -> id, $this );
         return;
       }
-
       //equivalent of wp_parse_args() with default model property values
       $this -> tc_update( $model );
 
