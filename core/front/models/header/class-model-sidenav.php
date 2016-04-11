@@ -11,11 +11,11 @@ class TC_sidenav_model_class extends TC_Model {
     return array(
       //sidenav menu button
       // array( 'hook' => '__sidenav__', 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
-      array( 'hook' => false, 'id' => 'sidenav_menu_button', 'template' => 'header/menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      array( 'id' => 'sidenav_menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
       //sidenav menu
       // array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) ),
-      array( 'hook' => false, 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
+      array( 'id' => 'sidenav_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
     );
   }
 

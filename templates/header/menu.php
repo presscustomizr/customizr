@@ -1,3 +1,8 @@
+<?php
+/**
+ * The template for displaying a menu ( both main and secondary in navbar or/and the sidenav one)
+ */
+?>
 <div class="<?php tc_echo('element_class') ?>" <?php tc_echo('element_attributes') ?>>
   <?php
   wp_nav_menu( array(
