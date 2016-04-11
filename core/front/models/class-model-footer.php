@@ -7,7 +7,7 @@ class TC_footer_model_class extends TC_Model {
       array( 'hook' => 'after_render_view_main_container', 'template' => 'footer/footer_push', 'priority' => 100 ),
 
       //widget area in footer
-      array( 'hook' => '__footer__', 'id' => 'footer_widgets_wrapper', 'template' => 'modules/widget_area_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
+      array( 'id' => 'footer_widgets_wrapper', 'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'footer/footer_widgets_area_wrapper' ) ),
 
       //footer one wrapper and widget area
       array( 'hook' => '__widget_area_footer__', 'id' => 'footer_one', 'priority' => '10', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper'),
@@ -17,9 +17,6 @@ class TC_footer_model_class extends TC_Model {
 
       //footer three wrapper and widget area
       array( 'hook' => '__widget_area_footer__', 'id' => 'footer_three', 'priority' => '20', 'template' => 'modules/widget_area', 'model_class' => 'footer/footer_widget_area_wrapper'),
-
-      //colophon
-      array( 'hook' => '__footer__', 'template' => 'footer/colophon', 'priority' => 100 ),
 
       //btt arrow
       array( 'hook' => '__after_page_wrapper', 'template' => 'footer/btt_arrow')
