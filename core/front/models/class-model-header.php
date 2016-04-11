@@ -58,7 +58,7 @@ class TC_header_model_class extends TC_Model {
 
       //socialblock in navbar
       //array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
-      array( 'hook' => false, 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
+      array( 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ), 'id' => 'header_social_block', 'controller' => 'social_block' ),
 
       //tagline in navbar
       //array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),

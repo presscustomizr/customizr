@@ -12,12 +12,11 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
 
     function tc_display_view_social_block( $model ) {
       static $socials_map = array(
-        //structural hook => option filter
+        //id => option filter
         '__widget_area_left__'  => 'left-sidebar',
         '__widget_area_right__' => 'right-sidebar',
-        '__navbar__'            => 'header',
-        '__colophon_one__'      => 'footer',
-        '__colophon_three__'    => 'footer'
+        'header_social_block'   => 'header',
+        'footer_social_block'   => 'footer',
       );
 
       //the block must be instantiated when
@@ -37,14 +36,15 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
 
       $_socials = TC_utils::$inst -> tc_get_social_networks();
       //(2a)
-      if ( ! isset( $socials_map[ $model['hook'] ] ) )
+      if ( ! isset( $socials_map[ $model['id'] ] ) )
         return (bool) $_socials;
 
       //(3b)
-      $_hook = $model['hook'];
-      $_opt_name = $socials_map[ $_hook ];
+      $_id = $model['id'];
+      $_opt_name = $socials_map[ $_id ];
       return ( 1 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$_opt_name}" ) ) && tc__f('__get_socials') );
     }
+
 
     function tc_display_view_main_slider() {
       //gets the front slider if any
