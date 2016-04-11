@@ -1,20 +1,5 @@
 <?php
 class TC_post_navigation_posts_model_class extends TC_post_navigation_model_class {
-  public $type = 'post_list';
-
-  function tc_setup_children() {
-    $children = array(
-      //posts links
-      array(
-        'hook' => false,
-        'template' => 'content/navigation/post_navigation_links',
-        'model_class' => array( 'parent' => 'content/navigation/post_navigation_links', 'name' => 'content/navigation/post_navigation_links_posts'),
-        'id' => 'post_navigation_links_posts'
-      ),
-    );
-    return $children;
-  }
-
   /*
   * @override
   */
