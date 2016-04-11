@@ -94,8 +94,8 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       return apply_filters( 'tc_show_single_post_content', self::$_cache['post'] );
     }
 
-    function tc_display_view_post_footer() {
-      if ( ! $this -> tc_display_view_post() || ! apply_filters( 'tc_show_single_post_footer', true ) )
+    function tc_display_view_single_author_info() {
+      if ( ! ( $this -> tc_display_view_post() && get_the_author_meta( 'description' ) ) )
         return;
 
       //@todo check if some conditions below not redundant?
