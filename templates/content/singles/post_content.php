@@ -24,8 +24,8 @@
 </section>
 <footer class="entry-meta">
   <?php
-  if ( tc_has('author_description') ) {
-     tc_render_template('content/authors/author_info', 'author_description');
+  if ( tc_has('single_author_info') ) {
+     tc_render_template('content/authors/author_info', 'single_author_info');
   }
   ?>
 </footer>

@@ -10,11 +10,11 @@
 ?>
 <hr class="featurette-divider">
 <div class="author-info" <?php tc_echo('element_attributes') ?>>
-  <div class="<?php tc_echo( 'author_wrapper_class' ) ?>">
-    <div class="<?php tc_echo( 'author_avatar_class' ) ?>">
-     <?php echo get_avatar( get_the_author_meta( 'user_email' ), tc_get( 'author_avatar_size' ) ) ?>
+  <div class="row-fluid">
+    <div class="comment-avatar author-avatar span2">
+     <?php echo get_avatar( get_the_author_meta( 'user_email' ), 100 ) ?>
     </div>
-    <div class="<?php tc_echo( 'author_content_class' ) ?>">
+    <div class="span10">
       <h3><?php _e( 'About' , 'customizr' ) ?> <?php the_author() ?></h3>
       <p><?php the_author_meta( 'description' ) ?></p>
       <div class="author-link">
