@@ -1,29 +1,31 @@
 <?php
-class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
-  public $link_class            = 'tc-rectangular-thumb';
-  public $thumb_wrapper_class   = 'span12';
-
-  /* override */
-  function tc_get_no_effect_class( $thumb_model ) {
-    return array();
-  }
+class TC_thumbnail_single_model_class extends TC_Model{
+  public $thumb_position;
+  public $thumb_size;
+  public $thumb_img;
 
   /**
-  * override
+  * @override
+  * fired before the model properties are parsed
   *
-  * @package Customizr
-  * @since Customizr 3.2.0
+  * return model params array()
   */
-  function tc_get_thumb_size( $_default_size = 'tc-thumb' ) {
-    return '__before_main_wrapper' == TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'slider-full' : 'slider';
+  function tc_extend_params( $model = array() ) {
+    $thumb_position     = TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position();
+    $thumb_size         = '__before_main_wrapper' == TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'slider-full' : 'slider';
+
+    return array_merge( $model, compact( 'thumb_position', 'thumb_size' ) );
   }
 
-  function tc_get_the_wrapper_class() {
-    return array( 'row-fluid', 'tc-single-post-thumbnail-wrapper' );
-  }
+  function tc_setup_late_properties() {
+    $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
+    extract( $thumb_model );
 
-  function tc_maybe_render_this_model_view() {
-    return $this -> visibility; /*the actual check is done in the controller*/
+    $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, TC_utils::tc_id() );
+    if ( ! $thumb_img )
+      return;
+
+    $this -> tc_set_property( 'thumb_img', $thumb_img );
   }
 
   /**
