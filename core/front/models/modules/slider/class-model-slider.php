@@ -43,9 +43,23 @@ class TC_slider_model_class extends TC_Model {
         'template'    => 'modules/edit_button',
         'id'          => 'slider_edit_button',
         'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slider'),
-        'controller'  => 'edit_button'
+        'controller'  => 'edit_button',
+        'id'          => 10
       ),
     );
+
+    if ( 'demo' == $this -> slider_name_id )
+      array_push( $children,
+      //slider helpblock
+        array(
+          'hook'        => '__after_carousel_inner__',
+          'id'          => 'slider_notice',
+          'template'    => 'modules/help_block',
+          'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/slider_help_block' ),
+          'priority'    => 9
+        )
+      );
+
     return $children;
   }
 

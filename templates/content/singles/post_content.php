@@ -20,7 +20,7 @@
     )
   );
   ?>
-  <?php do_action( 'after_render_view_inner_post_content' ) ?>
+  <?php do_action( '__after_inner_post_content' ) ?>
 </section>
 <footer class="entry-meta">
   <?php

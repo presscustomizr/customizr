@@ -66,6 +66,13 @@ class TC_featured_pages_model_class extends TC_Model {
         'hook'      => '__featured_page__',
         'template'  => 'modules/featured-pages/featured_page',
       ),
+      //helpblock
+      array(
+        'hook'        => 'after_fp',
+        'id'          => 'fp_help_block',
+        'template'    => 'modules/help_block',
+        'model_class' => array( 'parent' => 'modules/help_block', 'name' => "modules/featured_pages_help_block" )
+      )
     );
 
     return $children;

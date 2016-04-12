@@ -8,7 +8,7 @@ class TC_post_metas_model_class extends TC_Model {
     //Fires the parent constructor
     parent::__construct( $model );
     //Since we use only one instance for every post in a post list reset the cache after the view has been rendered
-    add_action( "after_render_view_{$this -> id}", array( $this, 'tc_reset_cache' ) );
+    add_action( "__after_{$this -> id}", array( $this, 'tc_reset_cache' ) );
   }
 
 

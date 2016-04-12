@@ -20,6 +20,6 @@
     )
   );
   ?>
-  <?php do_action( 'after_render_view_inner_page_content' ) ?>
+  <?php do_action( '__after_inner_page_content' ) ?>
 </div>
 

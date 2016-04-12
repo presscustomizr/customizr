@@ -43,6 +43,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       /* beautify admin notice text using some defaults the_content filter callbacks */
       foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
         add_filter( 'tc_update_notice', $callback );
+
+      //PLACEHOLDERS AJAX SETUP HOOKS
+      add_action( 'init'                 , array( $this, 'tc_placeholders_ajax_setup') );
     }
 
 
@@ -429,5 +432,52 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       </script>
       <?php
     }
+
+
+    /*****************************************************
+    * ADMIN AJAX HOOKS ALL PLACEHOLDERS
+    *****************************************************/
+    /**
+    * hook : init => because we need to fire this function before the admin_ajax.php call
+    * @since v3.4+
+    */
+    function tc_placeholders_ajax_setup() {
+      if ( TC_utils::$inst->tc_opt('tc_display_front_help') )
+        add_action( 'wp_ajax_tc_notice_actions'         , array( $this, 'tc_notice_ajax_actions' ) );
+    }
+
+
+    /*****************************************************
+    * PLACEHOLDERS : AJAX JS AND CALLBACK
+    *****************************************************/
+    /**
+    * Two cases :
+    * 1) remove block/disable option
+    * 2) dismiss notice
+    * hook : wp_ajax_tc_notice_actions
+    *
+    * @package Customizr
+    * @since Customizr 3.4+
+    */
+    function tc_notice_ajax_actions() {
+      error_log( print_r( $_POST , 'minchia' ) );
+      if ( isset( $_POST['remove_action'] ) )
+        $_remove_action = esc_attr( $_POST['remove_action'] );
+      else
+        wp_die(0);
+      check_ajax_referer( 'tc-notice-nonce', 'TCNoticeNonce' );
+      switch ($_remove_action) {
+        case 'remove_block':
+          if ( isset( $_POST[ 'user_option' ] ) )
+            TC_utils::$inst -> tc_set_option( esc_attr( $_POST['user_option'] ) , 0 );
+        break;
+        case 'remove_notice':
+          if ( isset( $_POST[ 'notice_id' ] ) )
+            set_transient( 'tc_' . esc_attr( $_POST['notice_id'] ), 'disabled' , 60*60*24*365*20 );//20 years of peace
+        break;
+      }
+      wp_die();
+    }
+
   }//end of class
 endif;

@@ -22,6 +22,21 @@ class TC_article_model_class extends TC_Model {
       array(
         'id'          => 'singular_headings',
         'model_class' => 'content/singles/post_page_headings'
+      ),
+      //singular smartload help block
+      array(
+        'hook'        => is_page() ? '__before_page_content' : '__before_post_content',
+        'template'    => 'modules/help_block',
+        'id'          => 'singular_smartload_help_block',
+        'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/singular_smartload_help_block'),
+        'priority'    => 20
+      ),
+      //single post thumbnail help block
+      array(
+        'hook'        => '__before_inner_singular_article',
+        'template'    => 'modules/help_block',
+        'id'          => 'post_thumbnail_help_block',
+        'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/thumbnail_help_block'),
       )
     );
     return $children;

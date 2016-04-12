@@ -8,6 +8,8 @@
     <?php if ( tc_has( 'left_sidebar_social_block' ) )
       tc_render_template('modules/social_block', 'left_sidebar_social_block');
     ?>
+    <?php do_action( '__before_inner_left_sidebar' ) ?>
     <?php dynamic_sidebar( 'left-sidebar' ) ?>
+    <?php do_action( '__after_inner_left_sidebar' ) ?>
   </div>
 </div>
