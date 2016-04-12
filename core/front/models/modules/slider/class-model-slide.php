@@ -3,7 +3,6 @@ class TC_slide_model_class extends TC_Model {
   public $img_wrapper_class;
   public $caption_class;
 
-  public $name_id;
   public $slide_background;
 
   public $title;
@@ -24,37 +23,45 @@ class TC_slide_model_class extends TC_Model {
   public $color_style = '';
 
   public $has_caption;
+  public $slide_id;
 
-
+  public $slider_name_id;
 
   function tc_setup_late_properties() {
     //get the current slide;
-    $slide   = get_query_var( 'tc_slide', null );
-    if ( empty( $slide ) ) {
-      $this -> tc_set_property( 'visibility', false );
+    $slides        = tc_get( 'slides' );
+    if ( empty ( $slides ) )
       return;
-    }
+
+    $id             = key( $slides );
+    $slide          = current( $slides );
+
+    if ( empty( $slide ) )
+      return;
+
+    $slider_name_id = tc_get( 'slider_name_id' );
+    $img_size       = tc_get( 'img_size');
 
     //demo data
-    if ( 'demo' == $slide['slider_name_id'] && is_user_logged_in() )
-      $slide['data'] =  $this -> tc_set_demo_slide_data( $slide['data'], $slide['id'] );
+    if ( 'demo' == $slider_name_id && is_user_logged_in() )
+      $slide = array_merge( $slide,  $this -> tc_set_demo_slide_data( $slide, $id ) );
 
     //array( $id, $data , $slider_name_id, $img_size )
     extract ( $slide );
 
-    $element_class = array_filter( array( 'slide-'. $id, $data['active'] ) );
+    $element_class = array_filter( array( 'slide-'. $id, $active ) );
 
     //caption elements
-    $caption           = $this -> tc_get_slide_caption_model( $slide );
+    $caption           = $this -> tc_get_slide_caption_model( $slide, $slider_name_id, $id );
     $has_caption       = ! empty( $caption );
 
-    $link_whole_slide  = isset($data['link_whole_slide']) && $data['link_whole_slide'] && $data['link_url'];
+    $link_whole_slide  = isset($link_whole_slide) && $link_whole_slide && $link_url;
 
     //img elements
     $img_wrapper_class = apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) );
 
     $this -> tc_update(
-        array_merge( $data, $caption, compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide' ) )
+        array_merge( $slide, $caption, compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide', 'slider_name_id' ), array( 'slide_id' => $id ) )
     );
   }
 
@@ -68,13 +75,12 @@ class TC_slide_model_class extends TC_Model {
   *
   * return array( 'button' => array(), $text,
   */
-  function tc_get_slide_caption_model( $slide ) {
-    //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
+  function tc_get_slide_caption_model( $slide, $slider_name_id, $id ) {
     extract( $slide );
 
     //filters the data before (=> used for demo for example )
-    $data                   = apply_filters( 'tc_slide_caption_data', $data, $slider_name_id, $id );
-    $show_caption           = ! ( $data['title'] == null && $data['text'] == null && $data['button_text'] == null ) ;
+    $data                   = apply_filters( 'tc_slide_caption_data', $slide, $slider_name_id, $id );
+    $show_caption           = ! ( $title == null && $text == null && $button_text == null ) ;
     if ( ! apply_filters( 'tc_slide_show_caption', $show_caption , $slider_name_id ) )
       return array();
 
@@ -83,13 +89,13 @@ class TC_slide_model_class extends TC_Model {
     /* classes and tags can be skipped if we decided that must be changed only in the templates */
     $caption_class          = apply_filters( 'tc_slide_caption_class', array( 'carousel-caption' ), $show_caption, $slider_name_id );
 
-    $_title                  = isset($data['title']) ? apply_filters( 'tc_slide_title', $data['title'] , $id, $slider_name_id ) : '';
-    $_text                   = isset($data['text']) ? esc_html( apply_filters( 'tc_slide_text', $data['text'], $id, $slider_name_id ) ) : '';
+    $_title                  = isset($title) ? apply_filters( 'tc_slide_title', $title , $id, $slider_name_id ) : '';
+    $_text                   = isset($text) ? esc_html( apply_filters( 'tc_slide_text', $text, $id, $slider_name_id ) ) : '';
 
-    $_button_text            = isset($data['button_text']) ? apply_filters( 'tc_slide_button_text', $data['button_text'], $id, $slider_name_id ) : '';
+    $_button_text            = isset($button_text) ? apply_filters( 'tc_slide_button_text', $button_text, $id, $slider_name_id ) : '';
 
     //computes the link
-    $button_link            = apply_filters( 'tc_slide_button_link', $data['link_url'] ? $data['link_url'] : 'javascript:void(0)', $id, $slider_name_id );
+    $button_link            = apply_filters( 'tc_slide_button_link', $link_url ? $link_url : 'javascript:void(0)', $id, $slider_name_id );
 
     //defaults => reset caption elements
     $defaults  = array(
@@ -116,7 +122,7 @@ class TC_slide_model_class extends TC_Model {
     if ( apply_filters( 'tc_slide_show_button', $_button_text != null, $slider_name_id ) ) {
       $button_text  = $_button_text;
       $button_class = implode( ' ', apply_filters( 'tc_slide_button_class', array( 'btn', 'btn-large', 'btn-primary' ), $button_text, $slider_name_id ) ) ;
-      $button_link  = apply_filters( 'tc_slide_button_link', $data['link_url'] ? $data['link_url'] : 'javascript:void(0)', $id, $slider_name_id ) ;
+      $button_link  = apply_filters( 'tc_slide_button_link', $link_url ? $link_url : 'javascript:void(0)', $id, $slider_name_id ) ;
     }
 
     //re-check the caption elements are set
@@ -139,26 +145,25 @@ class TC_slide_model_class extends TC_Model {
   /**
   * Returns the modified caption data array with a link to the doc
   * Only displayed for the demo slider and logged in users
-  * hook : tc_slide_caption_data
   *
   * @package Customizr
   * @since Customizr 3.3.+
   *
   */
-  function tc_set_demo_slide_data( $data, $id ) {
+  function tc_set_demo_slide_data( $slide, $id ) {
     switch ( $id ) {
       case 1 :
-        $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
-        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '102-customizr-theme-options-front-page/#front-page-slider' ) ); //do we need an anchor in the doc?
-        $data['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
+        $slide['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
+        $slide['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '102-customizr-theme-options-front-page/#front-page-slider' ) ); //do we need an anchor in the doc?
+        $slide['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
       break;
       case 2 :
-        $data['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
-        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '3-creating-a-slider-with-customizr-wordpress-theme' ) );
-        $data['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
+        $slide['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
+        $slide['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '3-creating-a-slider-with-customizr-wordpress-theme' ) );
+        $slide['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
       break;
     };
-    return $data;
+    return $slide;
   }
 
 
