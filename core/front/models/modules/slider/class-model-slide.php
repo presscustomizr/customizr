@@ -29,30 +29,28 @@ class TC_slide_model_class extends TC_Model {
 
   function tc_setup_late_properties() {
     //get the current slide;
-    $slides        = tc_get( 'slides' );
-    if ( empty ( $slides ) )
+    $current_slide        = tc_get( 'current_slide' );
+
+    if ( empty ( $current_slide ) )
       return;
 
-    $id             = key( $slides );
-    $slide          = current( $slides );
-
-    if ( empty( $slide ) )
-      return;
+    //array( $slide, $slide_id );
+    extract( $current_slide );
 
     $slider_name_id = tc_get( 'slider_name_id' );
     $img_size       = tc_get( 'img_size');
 
     //demo data
     if ( 'demo' == $slider_name_id && is_user_logged_in() )
-      $slide = array_merge( $slide,  $this -> tc_set_demo_slide_data( $slide, $id ) );
+      $slide = array_merge( $slide,  $this -> tc_set_demo_slide_data( $slide, $slide_id ) );
 
-    //array( $id, $data , $slider_name_id, $img_size )
+    //array( $title, $text, $button_text, $link_id, $link_url, $link_target, $link_whole_slide, $active, $color_style, $slide_background )
     extract ( $slide );
 
-    $element_class = array_filter( array( 'slide-'. $id, $active ) );
+    $element_class = array_filter( array( 'slide-'. $slide_id, $active ) );
 
     //caption elements
-    $caption           = $this -> tc_get_slide_caption_model( $slide, $slider_name_id, $id );
+    $caption           = $this -> tc_get_slide_caption_model( $slide, $slider_name_id, $slide_id );
     $has_caption       = ! empty( $caption );
 
     $link_whole_slide  = isset($link_whole_slide) && $link_whole_slide && $link_url;
@@ -61,7 +59,7 @@ class TC_slide_model_class extends TC_Model {
     $img_wrapper_class = apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) );
 
     $this -> tc_update(
-        array_merge( $slide, $caption, compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide', 'slider_name_id' ), array( 'slide_id' => $id ) )
+        array_merge( $slide, $caption, compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide', 'slider_name_id', 'slide_id' ) )
     );
   }
 

@@ -7,12 +7,8 @@ class TC_featured_pages_model_class extends TC_Model {
   public $span_value;
   public $featured_pages;
 
+  public $current_fp = array();
 
-  function __construct( $model ) {
-    parent::__construct( $model );
-    //hook to its own loop hook to set the current slide query var
-    add_action( "in_featured_pages_{$this -> id}", array( $this, 'setup_featured_page_data' ), -100, 2 );
-  }
 
   /**
   * @override
@@ -72,19 +68,6 @@ class TC_featured_pages_model_class extends TC_Model {
     );
 
     return $children;
-  }
-
-  //hook to its own loop hook to set the current slide query var
-  function setup_featured_page_data( $index, $featured_page ) {
-    $j = ( $this -> fp_per_row > 1 ) ? $index % $this -> fp_per_row : $index;
-
-    set_query_var( 'tc_fp', array(
-      'is_first_of_row' => $j == 1,
-      'is_last_of_row'  => ( $j == 0 || $index == $this -> fp_nb ),
-      'data'            => $featured_page,
-      'fp_id'           => $this -> fp_ids[ $index - 1 ],
-      'span_value'      => $this -> span_value
-    ));
   }
 
 
@@ -185,6 +168,15 @@ class TC_featured_pages_model_class extends TC_Model {
     return compact( 'featured_page_id', 'featured_page_title', 'featured_page_link', 'fp_img' , 'text', 'edit_enabled', 'has_holder' );
   }
 
+  function tc_get_has_featured_page() {
+    $fp = current( $this -> featured_pages );
+    if ( empty( $fp ) )
+      return false;
+    $fp_index            = key( $this -> featured_pages );
+    $this -> tc_set_property( 'current_fp', compact( 'fp', 'fp_index' ) );
+    next( $this -> featured_pages );
+    return true;
+  }
 
   /******************************
   * HELPERS

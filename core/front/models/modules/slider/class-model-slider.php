@@ -18,6 +18,8 @@ class TC_slider_model_class extends TC_Model {
   private $is_slider_active;
 
 
+  public $current_slide      = array();
+
   function tc_setup_children() {
     $children = array(
       array(
@@ -256,6 +258,17 @@ class TC_slider_model_class extends TC_Model {
         return array( 'srcset' => ' ');
       }
     return array();
+  }
+
+
+  function tc_get_has_slide() {
+    $slide = current( $this -> slides );
+    if ( empty( $slide ) )
+      return false;
+    $slide_id            = key( $this -> slides );
+    $this -> tc_set_property( 'current_slide', compact( 'slide', 'slide_id' ) );
+    next( $this -> slides );
+    return true;
   }
 
   /**

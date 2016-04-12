@@ -8,9 +8,9 @@
  */
 
 if ( tc_get( 'is_first_of_row' ) ) : ?>
-<div class="row widget-area" <?php tc_echo('element_attributes') ?>>
+<div class="row widget-area" >
 <?php endif ?>
-    <div class="widget-front">
+    <div class="widget-front" <?php tc_echo('element_attributes') ?>>
       <div class="span<?php tc_echo( 'span_value' ) ?> fp-<?php tc_echo( 'fp_id' ) ?>">
       <?php if ( tc_get( 'fp_img' ) ) : /* FP IMAGE */?>
         <div class="thumb-wrapper <?php tc_echo( 'thumb_wrapper_class' ) ?>">

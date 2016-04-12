@@ -23,7 +23,7 @@
 
   <div class="<?php tc_echo( 'inner_class' ) ?>">
     <?php
-      foreach ( tc_get( 'slides' ) as $slide ) {
+      while ( tc_get( 'has_slide' ) ) {
         if ( tc_has( 'slide' ) )
           tc_render_template( 'modules/slider/slide', 'slide');
       }
