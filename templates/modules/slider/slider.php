@@ -33,7 +33,7 @@
     ?>
   </div><!-- /.carousel-inner -->
   <?php  do_action( '__after_carousel_inner__' ) ?>
-
+  <?php if ( tc_has( 'slider_edit_button' ) ) tc_render_template( 'modules/edit_button', 'slider_edit_button' )  ?>
   <?php if ( tc_get( 'has_controls' ) ) : ?>
     <div class="tc-slider-controls <?php tc_echo( 'left_control_class' ) ?>">
       <a class="tc-carousel-control" href="#customizr-slider-<?php tc_echo( 'id' ) ?>" data-slide="prev">&lsaquo;</a>
