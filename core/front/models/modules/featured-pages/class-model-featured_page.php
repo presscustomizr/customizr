@@ -23,27 +23,38 @@ class TC_featured_page_model_class extends TC_Model {
   public $is_first_of_row;
   public $is_last_of_row;
 
-  //WE DON'T REALLY NEED TO SET A QUERY VAR AS WE CAN PASS THE VALUES ASS PARAMS TO THE HOOK CALLBACK
-  //THEN IT BECOMES JUST A MATTER OF WHAT TO PASS..
-  function tc_setup_late_properties() {
-    //get the current slide;
-    $fp   = get_query_var( 'tc_fp', null );
-    if ( empty( $fp ) ) {
-      $this -> tc_set_property( 'visibility', false );
-      return;
-    }
 
-    // array( 'is_first_of_row', 'is_last_of_row', 'data', 'fp_id', 'span_value' )
+  function tc_setup_late_properties() {
+    //get the current fp
+    $current_fp        = tc_get( 'current_fp' );
+
+    if ( empty ( $current_fp ) )
+      return;
+
+    //array( $fp', $fp_index );
+    extract( $current_fp );
+
+    /* first and last of row */
+    $j = ( tc_get( 'fp_per_row' ) > 1 ) ? $fp_index % tc_get( 'fp_per_row' ) : $fp_index;
+
+    $is_first_of_row = $j == 1;
+    $is_last_of_row  = ( $j == 0 || $fp_index == tc_get( 'fp_nb' ) );
+
+    $fp_ids      = tc_get( 'fp_ids' );
+    $fp_id       = $fp_ids[ $fp_index - 1 ];
+
+    $span_value  = tc_get( 'span_value' );
+
+    //array( $fp_img', $has_holder, $featured_page_id, $featured_page_title', $featured_page_link', $edit_enabled, $text )
     extract( $fp );
 
     //img block elements
-    if ( isset( $data['fp_img'] ) && $data['fp_img'] )
-      $thumb_wrapper_class = isset( $data['has_holder'] ) && $data['has_holder'] ? 'tc-holder' : '';
+    if ( isset( $fp_img ) && $fp_img )
+      $thumb_wrapper_class = isset( $has_holder ) && $has_holder ? 'tc-holder' : '';
 
     //button block
-    $button_block = $this -> tc_setup_button_block( $data, $fp_id );
-
-    $this -> tc_update( array_merge( $data, $button_block, compact( 'thumb_wrapper_class', 'span_value', 'fp_id', 'is_first_of_row', 'is_last_of_row' ) ) );
+    $button_block = $this -> tc_setup_button_block( $fp, $fp_id );
+    $this -> tc_update( array_merge( $fp, $button_block, compact( 'thumb_wrapper_class', 'span_value', 'fp_id', 'is_first_of_row', 'is_last_of_row' ) ) );
   }
 
 
