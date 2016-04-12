@@ -1,6 +1,5 @@
 <?php
 class TC_content_model_class extends TC_Model {
-  public $element_attributes;
   public $column_content_class  = array('row', 'column-content-wrapper');
   public $article_wrapper_class;
 
@@ -21,7 +20,6 @@ class TC_content_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     //set this model's properties
-    $model[ 'element_attributes' ]    = apply_filters('tc_body_attributes' , 'itemscope itemtype="http://schema.org/WebPage"');
     $model[ 'column_content_class' ]  = apply_filters( 'tc_column_content_wrapper_classes' , $this -> column_content_class );
     $model[ 'article_wrapper_class' ] = apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) );
     return $model;
