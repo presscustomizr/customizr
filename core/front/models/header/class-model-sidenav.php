@@ -15,7 +15,16 @@ class TC_sidenav_model_class extends TC_Model {
 
       //sidenav menu
       // array( 'hook' => '__sidenav__', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) ),
-      array( 'id' => 'sidenav_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) )
+      array( 'id' => 'sidenav_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/sidenav_menu' ) ),
+
+      //sidenav help block
+      array(
+        'hook'        => '__after_sidenav_menu_button',
+        'template'    => 'modules/help_block',
+        'id'          => 'sidenav_help_block',
+        'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/sidenav_help_block'),
+        'priority'    => 20
+      ),
     );
   }
 

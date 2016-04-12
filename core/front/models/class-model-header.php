@@ -86,6 +86,22 @@ class TC_header_model_class extends TC_Model {
       /* Registered as child here as it needs to filter the body class class and the logos to add custom styles */
       array( 'hook' => false, 'template' => 'header/sidenav' ), //<= rendered in page_wrapper template now
 
+      //second_menu help block
+      array(
+        'hook'        => '__after_sidenav_navbar_menu_button',
+        'template'    => 'modules/help_block',
+        'id'          => 'second_menu_help_block',
+        'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/second_menu_help_block'),
+        'priority'    => 40
+      ),
+      //main menu help block
+      array(
+        'hook'        => '__after_mobile_menu_button',
+        'template'    => 'modules/help_block',
+        'id'          => 'second_menu_help_block',
+        'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/main_menu_help_block'),
+        'priority'    => 40
+      )
     );
 
     return $children;

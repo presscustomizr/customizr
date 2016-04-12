@@ -54,6 +54,14 @@ class TC_content_model_class extends TC_Model {
         'id'          => 'posts_list_headings'
       ),
 
+      //smartload help block
+      array(
+        'hook'        => '__before_main_loop',
+        'template'    => 'modules/help_block',
+        'id'          => 'post_list_smartload_help_block',
+        'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/post_list_smartload_help_block'),
+      ),
+
       /*********************************************
       * INSIDE THE LOOP
       *********************************************/

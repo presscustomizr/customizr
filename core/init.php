@@ -104,7 +104,6 @@ if ( ! class_exists( 'TC___' ) ) :
               array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
               array('core'       , 'resources'),//loads front stylesheets (skins) and javascripts
               array('core'       , 'widgets'),//widget factory
-              array('core'       , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
               array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
               array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
             ),
@@ -265,22 +264,14 @@ if ( ! class_exists( 'TC___' ) ) :
       //Not customizing
       //1) IS NOT CUSTOMIZING : tc_is_customize_left_panel() || tc_is_customize_preview_frame() || tc_doing_customizer_ajax()
       //---1.1) IS ADMIN
-      //-------1.1.a) Doing AJAX
-      //-------1.1.b) Not Doing AJAX
       //---1.2) IS NOT ADMIN
       //2) IS CUSTOMIZING
       //---2.1) IS LEFT PANEL => customizer controls
       //---2.2) IS RIGHT PANEL => preview
       if ( ! $this -> tc_is_customizing() )
         {
-          if ( is_admin() ) {
-            //if doing ajax, we must not exclude the placeholders
-            //because ajax actions are fired by admin_ajax.php where is_admin===true.
-            if ( defined( 'DOING_AJAX' ) )
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
-            else
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize', 'fire|core|placeholders' ) );
-          }
+          if ( is_admin() )
+            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
           else
             //Skips all admin classes
             $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/back|admin_init', 'fire|core/back|admin_page') );

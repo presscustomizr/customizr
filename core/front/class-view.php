@@ -72,9 +72,9 @@ if ( ! class_exists( 'TC_View' ) ) :
       <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
        */
       ?>
-      <!-- HOOK CONTENT HERE : <?php echo "after_render_view_{$this -> model -> id}"; ?> -->
+      <!-- HOOK CONTENT HERE : <?php echo "__after_{$this -> model -> id}"; ?> -->
       <?php
-      do_action( "after_render_view_{$this -> model -> id}" );
+      do_action( "__after_{$this -> model -> id}" );
     }
 
 

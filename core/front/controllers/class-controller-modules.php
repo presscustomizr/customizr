@@ -120,6 +120,30 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
        && current_user_can( 'edit_posts' )
       );
     }
+
+
+    /* Help blocks generic controller */
+    function tc_display_view_help_block() {
+      //never display when customizing or admin
+      if ( TC___::$instance -> tc_is_customizing() || is_admin() )
+        return;
+      //always display in DEV mode
+      if ( defined('TC_DEV') && true === TC_DEV )
+        return true;
+      /*
+      * Display help blocks if the option is enabled and current user is "admin"
+      */
+      /*
+      * User option to enabe/disable all notices
+      */
+      return apply_filters( 'tc_is_front_help_enabled' ,
+          TC_utils::$inst->tc_opt('tc_display_front_help')
+          && is_user_logged_in()
+          && current_user_can('edit_theme_options')
+      );
+    }
+
+
     /* FOLLOWING COPIED FROM THE CONTENT CONTROLLER CLASS */
     /******************************
     VARIOUS HELPERS
