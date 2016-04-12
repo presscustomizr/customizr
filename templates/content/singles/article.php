@@ -10,7 +10,7 @@
 ?>
 <article <?php tc_echo( 'article_selectors' ) ?> <?php tc_echo('element_attributes') ?>>
   <?php
-    do_action( '__before_singular_inner_content' );
+    if ( tc_has('post_thumbnail') && 'before_title' == tc_get( 'thumbnail_position' ) ) { tc_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
     if ( tc_has('singular_headings') ) {
       tc_render_template('content/singles/singular_headings', 'singular_headings');
     }

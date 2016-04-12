@@ -1,5 +1,7 @@
     <?php do_action('__before_main_wrapper'); ?>
-
+    <?php /* thumbnail in single post */
+      if ( tc_has('post_thumbnail') && 'before_title_full' == tc_get( 'thumbnail_position' ) ) { tc_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
+    ?>
     <div id="main-wrapper" class="container" <?php tc_echo('element_attributes') ?>>
 
       <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>

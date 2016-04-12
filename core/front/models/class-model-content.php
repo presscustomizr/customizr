@@ -2,15 +2,8 @@
 class TC_content_model_class extends TC_Model {
   public $column_content_class  = array('row', 'column-content-wrapper');
   public $article_wrapper_class;
+  public $thumbnail_position;
 
-
-  /* TODO: SHOULD FIND A BETTER WAY TO EXTEND THE MODEL PARAMS/PROPERTIES
-   *  for example, the body_class filter should be accessible to all models instances
-   *  so that they can actually filter them.
-   *  We might do something like:
-   *  1) tc_extend_params to extend "early" params
-   *  2) another method to extend the model fired just before the view is instantiated/rendered
-  */
 
   /**
   * @override
@@ -22,6 +15,10 @@ class TC_content_model_class extends TC_Model {
     //set this model's properties
     $model[ 'column_content_class' ]  = apply_filters( 'tc_column_content_wrapper_classes' , $this -> column_content_class );
     $model[ 'article_wrapper_class' ] = apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) );
+
+    //thumb position
+    $model[ 'thumbnail_position' ] = '__before_main_wrapper' == TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'before_title_full' : '';
+
     return $model;
   }
 
@@ -69,7 +66,6 @@ class TC_content_model_class extends TC_Model {
       array(
         'template'    => 'modules/grid/grid_wrapper',
         'id'          => 'post_list_grid',
-        /*       'model_class' => array( 'parent' => 'content/article', 'name' => 'modules/grid/grid_wrapper' )*/
       ),
       /* END GRID */
 

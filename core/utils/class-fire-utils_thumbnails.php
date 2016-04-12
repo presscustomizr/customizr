@@ -39,20 +39,20 @@ class TC_utils_thumbnails {
 
       $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'tc_thumb_size_name' , 'tc-thumb' ) : $requested_size;
       $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
-      
+
       $_filtered_thumb_size_name  = $_filtered_thumb_size_name ? $_filtered_thumb_size_name : 'tc_thumb_size';
       $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, TC_init::$instance -> $_filtered_thumb_size_name );
       $_model                     = array();
       $_img_attr                  = array();
       $tc_thumb_height            = '';
       $tc_thumb_width             = '';
-      
+
       //when null set it as the image setting for reponsive thumbnails (default)
       //because this method is also called from the slider of posts which refers to the slider responsive image setting
       //limit this just for wp version >= 4.4
       if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
         $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == TC_utils::$inst->tc_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
-      
+
       //try to extract $_thumb_id and $_thumb_type
       extract( $this -> tc_get_thumb_info( $_post_id, $_custom_thumb_id ) );
       if ( ! isset($_thumb_id) || ! $_thumb_id || is_null($_thumb_id) )
@@ -75,7 +75,7 @@ class TC_utils_thumbnails {
       if ( $_style )
         $_img_attr['style']   = $_style;
       $_img_attr              = apply_filters( 'tc_post_thumbnail_img_attributes' , $_img_attr );
- 
+
       //we might not want responsive images
       if ( false === $_enable_wp_responsive_imgs ) {
         //trick, will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
@@ -84,12 +84,12 @@ class TC_utils_thumbnails {
         // or
         //b) use preg_replace to get rid of srcset and sizes attributes from the generated html
         //Side effect:
-        //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html 
+        //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html
         //to avoid this we filter the attributes getting rid of the srcset if any.
         //Basically this trick, even if ugly, will avoid the srcset attr computation
         $_img_attr['srcset']  = " ";
         add_filter( 'wp_get_attachment_image_attributes', array( $this, 'tc_remove_srcset_attr' ) );
-      }  
+      }
       //get the thumb html
       if ( is_null($_custom_thumb_id) && has_post_thumbnail( $_post_id ) )
         //get_the_post_thumbnail( $post_id, $size, $attr )
@@ -143,6 +143,15 @@ class TC_utils_thumbnails {
     /**************************
     * EXPOSED HELPERS / SETTERS
     **************************/
+    /*
+    * @return string
+    */
+    public function tc_get_single_thumbnail_position() {
+      $_exploded_location     = explode( '|', esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) ) );
+      $_hook                  = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
+      return $_hook;
+    }
+
     /*
     * @return bool
     */
@@ -199,7 +208,7 @@ class TC_utils_thumbnails {
       //1) must be a non single post context
       //2) user option should be checked in customizer
       $_bool = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_use_attachment_as_thumb' ) );
-      
+
 /******************************************************************************************************
  *
  * WARNING !!!!!!!!!
@@ -299,11 +308,11 @@ class TC_utils_thumbnails {
     function tc_remove_srcset_attr( $attr ) {
       if ( isset( $attr[ 'srcset' ] ) ) {
         unset( $attr['srcset'] );
-        //to ensure a "local" removal we have to remove this filter callback, so it won't hurt 
+        //to ensure a "local" removal we have to remove this filter callback, so it won't hurt
         //responsive images sitewide
         remove_filter( current_filter(), array( $this, __FUNCTION__ ) );
       }
-      return $attr;    
+      return $attr;
     }
 
     /**********************
