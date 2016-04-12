@@ -39,18 +39,16 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
 
       /* THUMBS */
       array(
-        'hook'        => false,//'__post_list_thumb__',
         'template'    => 'content/post-lists/post_list_thumbnail',
         'id'          => 'post_list_standard_thumb',
-        'model_class' => 'content/thumbnail'
+        'model_class' => 'content/post-lists/thumbnail'
       ),
 
       //the recangular thumb has a different model + a slighty different template
       array(
-        'hook'        => false,//'__post_list_thumb__',
         'template'    => 'content/post-lists/post_list_thumbnail',
         'id'          => 'post_list_rectangular_thumb',
-        'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/post-lists/thumbnail_rectangular')
+        'model_class' => array( 'parent' => 'content/post-lists/thumbnail', 'name' => 'content/post-lists/thumbnail_rectangular')
       )
     );
 
