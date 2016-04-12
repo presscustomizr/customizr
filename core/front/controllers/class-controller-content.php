@@ -42,15 +42,13 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
     function tc_display_view_posts_list_headings() {
       if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
-        self::$_cache['posts_list_headings'] = ! TC_utils::$inst -> tc_is_home() && $this -> tc_is_list_of_posts();
+        self::$_cache['posts_list_headings'] = ! TC_utils::$inst -> tc_is_home() && TC_utils_query::$instance -> tc_is_list_of_posts();
       }
       return self::$_cache['posts_list_headings'];
     }
 
     function tc_display_view_post_list() {
-      return $this -> tc_is_list_of_posts() &&
-            //hack until we implement the "routers"
-            apply_filters( 'tc_is_not_grid', true );
+      return apply_filters( 'tc_display_view_post_list', TC_utils_query::$instance -> tc_is_list_of_posts() );
     }
 
 
@@ -73,25 +71,12 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_page() {
-      if ( ! isset( self::$_cache['page'] ) )
-        self::$_cache['page'] =  'page' == $this -> tc_get_post_type()
-        && is_singular()
-        && ! $this -> tc_is_home_empty();
-
-      return apply_filters( 'tc_show_page_content', self::$_cache['page'] );
+      return apply_filters( 'tc_show_page_content', TC_utils_query::$instance -> tc_is_single_page() );
     }
 
     function tc_display_view_post() {
       //check conditional tags : we want to show single post or single custom post types
-      if ( ! isset( self::$_cache['post'] ) ) {
-        global $post;
-        self::$_cache['post'] = isset($post)
-                                && is_singular()
-                                && 'page' != $post -> post_type
-                                && 'attachment' != $post -> post_type
-                                && ! $this -> tc_is_home_empty();
-      }
-      return apply_filters( 'tc_show_single_post_content', self::$_cache['post'] );
+      return apply_filters( 'tc_show_single_post_content', TC_utils_query::$instance -> tc_is_single_post() );
     }
 
     function tc_display_view_single_author_info() {
@@ -106,12 +91,9 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_attachment() {
-      if ( ! isset( self::$_cache['attachment'] ) ) {
-        global $post;
-        self::$_cache['attachment'] = ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() );
-      }
-      return self::$_cache['attachment'];
+      return apply_filters( 'tc_show_attachment_content', TC_utils_query::$instance -> tc_is_single_attachment() );
     }
+
 
     function tc_display_view_singular_article() {
       return $this -> tc_display_view_post() || $this -> tc_display_view_page() || $this -> tc_display_view_attachment() ;
@@ -248,7 +230,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_no_results() {
-      return $this -> tc_is_no_results();
+      return TC_utils_query::$instance -> tc_is_no_results();
     }
 
     function tc_display_view_headings() {
@@ -274,17 +256,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
    /******************************
     VARIOUS HELPERS
     *******************************/
-    public function tc_is_list_of_posts() {
-      global $wp_query;
-      //must be archive or search result. Returns false if home is empty in options.
-      return apply_filters( 'tc_post_list_controller',
-        ! is_singular()
-        && ! is_404()
-        && 0 != $wp_query -> post_count
-        && ! $this -> tc_is_home_empty()
-        && ! is_admin()
-      );
-    }
+
 
     /**
     * 1) if the page / post is password protected OR if is_home OR ! is_singular() => false
@@ -335,7 +307,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         return 'single'; // exclude attachments
       if ( is_home() && 'posts' == get_option('show_on_front') )
         return 'home';
-      if ( !is_404() && !$this -> tc_is_home_empty() )
+      if ( !is_404() && ! TC_utils_query::$instance -> tc_is_home_empty() )
         return 'archive';
 
       return false;
