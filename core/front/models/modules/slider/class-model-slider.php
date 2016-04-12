@@ -17,11 +17,6 @@ class TC_slider_model_class extends TC_Model {
   private $queried_id;
   private $is_slider_active;
 
-  function __construct( $model ) {
-    parent::__construct( $model );
-    //hook to its own loop hook to set the current slide query var
-    add_action( "in_slider_{$this -> id}", array( $this, 'setup_slide_data' ), -100, 2 );
-  }
 
   function tc_setup_children() {
     $children = array(
@@ -32,13 +27,13 @@ class TC_slider_model_class extends TC_Model {
       //edit slide button
       array(
         'id'          => 'slide_edit_button',
-        'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slide'),
+        'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/slider/edit_button_slide'),
         'controller'  => 'edit_button'
       ),
       //edit slider button
       array(
         'id'          => 'slider_edit_button',
-        'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/edit_button_slider'),
+        'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/slider/edit_button_slider'),
         'controller'  => 'edit_button',
       ),
     );
@@ -127,17 +122,6 @@ class TC_slider_model_class extends TC_Model {
         'pure_css_loader',
         'has_loader'
     ) );
-  }
-
-
-  function setup_slide_data( $id, $data ) {
-    set_query_var( 'tc_slide', array(
-          'slider_name_id' => $this -> slider_name_id,
-          'data'           => $data,
-          'img_size'       => $this -> img_size,
-          'id'             => $id
-      )
-    );
   }
 
 
