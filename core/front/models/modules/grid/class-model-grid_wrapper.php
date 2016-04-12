@@ -47,21 +47,6 @@ class TC_grid_wrapper_model_class extends TC_Model {
         'hook'        => '__grid__',
         'template'    => 'modules/grid/grid_item',
       ),
-        //comment bubble
-        array(
-          'hook' => '__comment_bubble__',
-          'template' => 'modules/comment_bubble'
-        ),
-        //recently updated
-        array(
-          'hook'     => '__recently_updated__',
-          'template' => 'modules/recently_updated',
-        ),
-        //edit button
-        array(
-          'hook'     => '__edit_button__',
-          'template' => 'modules/edit_button'
-        ),
     );
 
     return $children;
