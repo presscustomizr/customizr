@@ -1,5 +1,5 @@
 <?php
-class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
+class TC_sidebar_model_class extends TC_Model {
   public $position;
   private static $sidebar_map = array(
       //id => allowed layout (- b both )
@@ -10,18 +10,12 @@ class TC_sidebar_model_class extends TC_widget_area_wrapper_model_class {
   function tc_setup_children() {
 
     $children = array(
-      //left/right sidebar content
+      //left/right sidebar social block
       array(
-        'hook'        => "__widget_area_{$this->position}__",
-        'template'    => 'modules/social_block',
-        'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebars/sidebar_social_block' )
+        'id'          => "{$this -> position}_sidebar_social_block",
+        'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'content/sidebars/sidebar_social_block' ),
+        'controller'  => 'social_block'
       ),
-      //socialblock in left/right sidebar
-      array(
-        'hook'        => "__widget_area_{$this->position}__",
-        'id'          => $this->position,
-        'template'    => 'modules/widget_area'
-      )
     );
     return $children;
   }

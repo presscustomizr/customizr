@@ -25,12 +25,13 @@ class TC_content_model_class extends TC_Model {
 
   function tc_setup_children() {
     $children = array(
+
       /********************************************************************
       * Left sidebar
       ********************************************************************/
        array(
         'id'          => 'left_sidebar',
-        'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebars/sidebar' ),
+        'model_class' => 'content/sidebars/sidebar',
 
       ),
 
@@ -39,9 +40,8 @@ class TC_content_model_class extends TC_Model {
       ********************************************************************/
       array(
         'id'          => 'right_sidebar',
-        'model_class' => array( 'parent' => 'modules/widget_area_wrapper', 'name' => 'content/sidebars/sidebar' )
+        'model_class' => 'content/sidebars/sidebar'
       ),
-
 
 
       /* OUTSIDE THE LOOP */

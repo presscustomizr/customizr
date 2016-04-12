@@ -13,10 +13,10 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
     function tc_display_view_social_block( $model ) {
       static $socials_map = array(
         //id => option filter
-        '__widget_area_left__'  => 'left-sidebar',
-        '__widget_area_right__' => 'right-sidebar',
-        'header_social_block'   => 'header',
-        'footer_social_block'   => 'footer',
+        'left_sidebar_social_block'  => 'left-sidebar',
+        'right_sidebar_social_block' => 'right-sidebar',
+        'header_social_block'        => 'header',
+        'footer_social_block'        => 'footer',
       );
 
       //the block must be instantiated when
