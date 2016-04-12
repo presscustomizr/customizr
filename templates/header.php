@@ -1,3 +1,11 @@
+<?php
+/**
+ * The template for displaying the site header
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
 <header class="<?php tc_echo( 'element_class' ) ?>" role="banner" <?php tc_echo('element_attributes') ?>>
   <?php
     if ( tc_has('logo') )

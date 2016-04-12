@@ -23,11 +23,12 @@
 
   <div class="<?php tc_echo( 'inner_class' ) ?>">
     <?php
-      foreach (tc_get( 'slides' ) as $slide_id => $slide_data ) {
+      foreach ( tc_get( 'slides' ) as $slide_id => $slide_data ) {
         //used by each slider instance to set up the current slide data
         do_action( 'in_slider_' . tc_get( 'id' ) , $slide_id, $slide_data );
         //used by the slide model (we have just one instance of it as the slide data is set up by the slider model
-        do_action( '__slide__' );
+        if ( tc_has( 'slide' ) )
+          tc_render_template( 'modules/slider/slide', 'slide');
       }
     ?>
   </div><!-- /.carousel-inner -->

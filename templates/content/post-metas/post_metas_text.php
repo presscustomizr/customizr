@@ -2,6 +2,8 @@
 /**
  * The template for displaying the post metas block (either the buttons and the textual version)
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0

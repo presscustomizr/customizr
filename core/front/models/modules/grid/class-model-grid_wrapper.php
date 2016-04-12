@@ -44,8 +44,8 @@ class TC_grid_wrapper_model_class extends TC_Model {
     $children = array(
       //grid item
       array(
-        'hook'        => '__grid__',
-        'template'    => 'modules/grid/grid_item',
+        'id'          => 'grid_item',
+        'model_class' => 'modules/grid/grid_item',
       ),
     );
 

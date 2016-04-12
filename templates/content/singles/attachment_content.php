@@ -2,6 +2,8 @@
 /**
  * The template for displaying the single attachment content
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0

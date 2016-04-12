@@ -3,6 +3,8 @@
  * The template for displaying the attachments metas
  * (in singular and list of posts context)
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0

@@ -2,6 +2,8 @@
 /**
  * The template for displaying the grid item wrapper in lists of posts
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0
@@ -30,7 +32,7 @@ endif;
 
    ?>
     <article <?php tc_echo( 'article_selectors' ) ?> >
-      <?php do_action( '__grid__' ) ?>
+      <?php if ( tc_has( 'grid_item' ) ) tc_render_template( 'modules/grid/grid_item', 'grid_item' ); ?>
     </article>
     <hr class="featurette-divider __after_article">
   <?php

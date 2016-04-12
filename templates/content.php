@@ -1,4 +1,13 @@
-    <?php do_action('__before_main_wrapper'); ?>
+<?php
+/**
+ * The template for displaying the main content
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+?>
+<?php do_action('__before_main_wrapper'); ?>
     <?php /* thumbnail in single post */
       if ( tc_has('post_thumbnail') && 'before_title_full' == tc_get( 'thumbnail_position' ) ) { tc_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
     ?>
