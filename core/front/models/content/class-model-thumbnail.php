@@ -8,14 +8,6 @@ class TC_thumbnail_model_class extends TC_Model {
 
   public $type                  = 'standard';
 
-  /*
-  function __construct( $model = array() ) {
-    parent::__construct( $model );
-    //inside the loop but before rendering set some properties
-    //we need the -1 (or some < 0 number) as priority, as the thumb in single post page can be rendered at a certain hook with priority 0 (option based)
-    add_action( $model['hook']          , array( $this, 'tc_set_this_properties' ), -1 );
-  }
-*/
 
   /**
   * @override
