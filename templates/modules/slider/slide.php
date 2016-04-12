@@ -47,6 +47,8 @@
   <?php
 
   do_action('__after_all_slides_caption__');
+  if ( tc_has( 'slide_edit_button' ) )
+    tc_render_template( 'modules/edit_button', 'slide_edit_button' );
   /* endif caption*/
   endif;
 
