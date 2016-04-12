@@ -13,7 +13,7 @@
   <?php
     do_action( '__before_inner_singular_headings' );
     if ( tc_has('post_page_title') ) { tc_render_template('content/singles/singular_title', 'post_page_title'); }
-    do_action( '__after_single_title' );
+    do_action( '__after_singular_title' );
     /* Post metas */
     if ( tc_has('post_metas_button') ) { tc_render_template( 'content/post-metas/post_metas', 'post_metas_button'); }
     elseif ( tc_has('post_metas_text') ) { tc_render_template('content/post-metas/post_metas_text', 'post_metas_text'); }
