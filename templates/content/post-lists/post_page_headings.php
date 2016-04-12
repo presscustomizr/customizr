@@ -2,6 +2,8 @@
 /**
  * The template for displaying the headings of single post/page/attachment in post lists (alternate layout)
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0

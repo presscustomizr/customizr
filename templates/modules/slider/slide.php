@@ -15,9 +15,7 @@
   <?php endif ?>
     <?php
         do_action('__before_all_slides_background__');
- //     do_action_ref_array ("__before_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data ) );
           tc_echo( 'slide_background' );
-/*do_action_ref_array ("__after_slide_{$id}" , array( $data['slide_background'], $data['link_url'], $id, $slider_name_id, $data ) );*/
         do_action('__after_all_slides_background__');
     ?>
   <?php if ( tc_get( 'link_whole_slide' ) ) : ?>
@@ -25,9 +23,9 @@
   <?php endif; ?>
   </div> <!-- .carousel-image -->
 
-  <?php 
-    
-  if ( tc_get( 'has_caption' ) ) : 
+  <?php
+
+  if ( tc_get( 'has_caption' ) ) :
 
   do_action('__before_all_slides_caption__');
 
@@ -46,11 +44,11 @@
       <a class="<?php tc_echo( 'button_class' ) ?>" href="<?php tc_echo( 'button_link' ) ?>" target="<?php tc_echo( 'link_target' ) ?>"><?php tc_echo( 'button_text' ) ?></a>
     <?php endif; ?>
   </div>
-  <?php 
+  <?php
 
   do_action('__after_all_slides_caption__');
   /* endif caption*/
-  endif; 
+  endif;
 
   ?>
 </div><! -- /.item -->

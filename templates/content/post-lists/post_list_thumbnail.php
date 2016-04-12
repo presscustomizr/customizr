@@ -2,6 +2,8 @@
 /**
  * The template for displaying the thumbnails in post lists (alternate layout) contexts
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0

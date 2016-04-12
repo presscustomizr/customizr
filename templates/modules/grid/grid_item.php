@@ -2,6 +2,8 @@
 /**
  * The template for displaying the post list grid item (expanded or not)
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0
@@ -61,8 +63,8 @@
     <?php
 
     /* Edit link in the figure for the expanded item */
-    if( tc_get( 'is_expanded' ) )
-      do_action( '__edit_button__' );
+      if( tc_get( 'is_expanded' ) )
+        if ( tc_has( 'edit_button' ) ) tc_render_template( 'modules/edit_button', 'edit_button' );
     ?>
   </figure>
 <?php

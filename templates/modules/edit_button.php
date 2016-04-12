@@ -7,7 +7,9 @@
  * @since Customizr 3.5.0
  */
 
-/* Case post/page/attachment */
+/* Case post/page/attachment
+ * In WP loop
+ */
 $text = __( 'Edit', 'customizr' );
 
 if ( 'post' == tc_get( 'context' ) ) :

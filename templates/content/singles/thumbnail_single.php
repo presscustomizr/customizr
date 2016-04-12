@@ -1,6 +1,7 @@
 <?php
 /**
  * The template for displaying the thumbnail in single post page
+ * Depending on the optional position it can be inside or outside the WP loop
  *
  * @package WordPress
  * @subpackage Customizr

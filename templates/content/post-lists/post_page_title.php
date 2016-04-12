@@ -2,6 +2,8 @@
 /**
  * The template for displaying the post/page/attachment titles the lists of posts (alternate layout)
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0

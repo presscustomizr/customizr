@@ -1,4 +1,13 @@
-<?php if ( tc_get( 'is_first_of_row' ) ) : ?>
+<?php
+/**
+ * The template for displaying the single featured page
+ *
+ * @package WordPress
+ * @subpackage Customizr
+ * @since Customizr 3.5.0
+ */
+
+if ( tc_get( 'is_first_of_row' ) ) : ?>
 <div class="row widget-area" <?php tc_echo('element_attributes') ?>>
 <?php endif ?>
     <div class="widget-front">
@@ -11,7 +20,7 @@
       <?php endif /* END FP IMAGE*/ ?>
       <?php /* FP TITLE */ ?>
         <h2><?php tc_echo( 'featured_page_title' ) ?>
-            <?php if ( tc_get( 'edit_enabled' ) ): /* WE REALLY SHOULD USE A FUNCTION (or a model/template, so firing it with do_action('__edit_button') ) WHICH PRINTS A BUTTON GIVEN SOME PARAMS */?>
+            <?php if ( tc_get( 'edit_enabled' ) ): ?>
               <span class="edit-link btn btn-inverse btn-mini">
                 <a class="post-edit-link" href="<?php echo get_edit_post_link( tc_get( 'featured_page_id' ) ) ?>" title="<?php tc_echo( 'featured_page_title' ) ?>" target="_blank"><?php _e( 'Edit' , 'customizr' ) ?></a>
               </span>

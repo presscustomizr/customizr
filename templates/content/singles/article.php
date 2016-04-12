@@ -3,6 +3,8 @@
  * The template for displaying the article wrapper:
  * used for articles singulars (post/page/attachment)
  *
+ * In WP loop
+ *
  * @package WordPress
  * @subpackage Customizr
  * @since Customizr 3.5.0
