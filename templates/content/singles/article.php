@@ -10,6 +10,7 @@
 ?>
 <article <?php tc_echo( 'article_selectors' ) ?> <?php tc_echo('element_attributes') ?>>
   <?php
+    do_action( '__before_single_inner_content' );
     if ( tc_has('singular_headings') ) {
       tc_render_template('content/singles/singular_headings', 'singular_headings');
     }
@@ -17,5 +18,6 @@
     elseif( tc_has('post') ) { tc_render_template('content/singles/post_content'); }
     elseif( tc_has('attachment') ) { tc_render_template('content/singles/attachment_content'); }
 
+    do_action( '__after_single_inner_content' );
     //do_action( '__article__' ) ?>
 </article>
