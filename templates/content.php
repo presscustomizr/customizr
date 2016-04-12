@@ -11,7 +11,7 @@
       <div class="container" role="main">
         <div class="<?php tc_echo( 'column_content_class' ) ?>">
           <?php
-            if ( tc_has('left_sidebar') ) { tc_render_template('modules/widget_area_wrapper', 'left_sidebar'); }
+            if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
           ?>
 
               <?php do_action('__before_content'); ?>
@@ -43,7 +43,7 @@
               <?php do_action('__after_content'); ?>
 
             <?php
-            if ( tc_has('right_sidebar') ) { tc_render_template('modules/widget_area_wrapper', 'right_sidebar'); }
+            if ( tc_has('right_sidebar') ) { tc_render_template('content/sidebars/right_sidebar', 'right_sidebar'); }
             //tc_render_template('content/main_container');
             //do_action( '__main_container__')
           ?>
