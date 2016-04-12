@@ -17,7 +17,7 @@ class TC_article_model_class extends TC_Model {
       //single post thumbnail
       array(
         'id'          => 'post_thumbnail',
-        'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/singles/thumbnail_single')
+        'model_class' => 'content/singles/thumbnail_single'
       ),
       array(
         'id'          => 'singular_headings',
