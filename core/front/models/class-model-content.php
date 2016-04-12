@@ -87,13 +87,6 @@ class TC_content_model_class extends TC_Model {
         'model_class' => 'content/article'
       ),
 
-      /* TEMPORARY */
-      array(
-        'id' => 'post_page_headings',
-        'model_class' => 'content/singles/post_page_headings'
-      ),
-      /* TEMPORARY */
-
       /*********************************************
       * Post metas
       *********************************************/
@@ -147,10 +140,9 @@ class TC_content_model_class extends TC_Model {
   * parse this model properties for rendering
   */
   function tc_sanitize_model_properties( $model ) {
-
     parent::tc_sanitize_model_properties( $model );
-    $model -> column_content_class = $this -> tc_stringify_model_property( 'column_content_class' );
-    $model -> article_wrapper_class = $this -> tc_stringify_model_property( 'article_wrapper_class' );
+    foreach ( array( 'column_content', 'article_wrapper' ) as $property )
+      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
   }
 
 
@@ -168,4 +160,5 @@ class TC_content_model_class extends TC_Model {
 
     return $_classes;
   }
+
 }

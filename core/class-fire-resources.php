@@ -53,7 +53,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
           //Enqueue FontAwesome CSS
           if ( true == TC_utils::$inst -> tc_opt( 'tc_font_awesome_css' ) ) {
             $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . TC_ASSETS_PREFIX . 'front/css' );
-            wp_enqueue_style( 'customizr-fa', 
+            wp_enqueue_style( 'customizr-fa',
                 $_path . '/fonts/' . TC_init::$instance -> tc_maybe_use_min_style( 'font-awesome.css' ),
                 array() , CUSTOMIZR_VER, 'all' );
           }
@@ -350,7 +350,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
               url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff') format('woff'),
               url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
               url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
-        }        
+        }
         <?php
       $_font_css = ob_get_contents();
       if ($_font_css) ob_end_clean();

@@ -90,7 +90,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
           //we need the comments enabled and post list controller here! why don't we require all the controllers?...they won't be a load
       }
       //when in a list of posts demand the control to the model
-      return self::$_cache['comment_bubble'] && $this -> tc_display_view_post_list() ;
+      return self::$_cache['comment_bubble'] && TC_utils_query::$instance -> tc_is_list_of_posts() ;
     }
 
 
@@ -161,22 +161,8 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       return apply_filters( 'tc_are_comments_enabled', self::$_cache['comments_enabled'] );
     }
 
-    function tc_display_view_post_list() {
-      global $wp_query;
-      //must be archive or search result. Returns false if home is empty in options.
-      return apply_filters( 'tc_post_list_controller',
-        ! is_singular()
-        && ! is_404()
-        && 0 != $wp_query -> post_count
-        && ! $this -> tc_is_home_empty()
-      );
-    }
-
     function tc_display_view_post_list_grid() {
-      $bool = apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
-      //hack until we implement the "routers"
-      add_filter( 'tc_is_not_grid', $bool ? '__return_false' : '__return_true' );
-      return $bool;
+      return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
     }
 
 

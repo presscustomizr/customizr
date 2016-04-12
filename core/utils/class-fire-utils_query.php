@@ -35,6 +35,9 @@ class TC_utils_query {
     add_action ( 'pre_get_posts'         , array( $this , 'tc_include_attachments_in_search' ));
     //Include all post types in archive pages
     add_action ( 'pre_get_posts'         , array( $this , 'tc_include_cpt_in_lists' ));
+
+    //Add the context
+    add_filter ( 'tc_body_class'         , array( $this,  'tc_set_post_list_context_class') );
   }
 
 
@@ -120,6 +123,97 @@ class TC_utils_query {
          $query->set('ignore_sticky_posts', 1 );
          add_filter('tc_grid_expand_featured', '__return_false');
      }
+  }
+
+
+  /**
+  * hook : body_class
+  * @return  array of classes
+  *
+  * @package Customizr
+  * @since Customizr 3.3.2
+  */
+  function tc_set_post_list_context_class( $_class ) {
+    if ( $this ->  tc_is_list_of_posts() )
+      array_push( $_class , 'tc-post-list-context');
+    return $_class;
+  }
+
+
+  /******************************
+  VARIOUS HELPERS
+  *******************************/
+
+  /**
+  * Return object post type
+  *
+  * @since Customizr 3.0.10
+  *
+  */
+  function tc_get_post_type() {
+    global $post;
+
+    if ( ! isset($post) )
+      return;
+
+    return $post -> post_type;
+  }
+
+
+  public function tc_is_list_of_posts() {
+    global $wp_query;
+    //must be archive or search result. Returns false if home is empty in options.
+    return apply_filters( 'tc_post_list_controller',
+      ! is_singular()
+      && ! is_404()
+      && 0 != $wp_query -> post_count
+      && ! $this -> tc_is_home_empty()
+      && ! is_admin()
+    );
+  }
+
+
+  public function tc_is_single_post() {
+    global $post;
+    return isset($post)
+        && is_singular()
+        && 'page' != $post -> post_type
+        && 'attachment' != $post -> post_type
+        && ! TC_utils_query::$instance -> tc_is_home_empty();
+  }
+
+
+  public function tc_is_single_attachment() {
+    global $post;
+    return ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() );
+  }
+
+  public function tc_is_single_page() {
+    return 'page' == TC_utils_query::$instance -> tc_get_post_type()
+        && is_singular()
+        && ! TC_utils_query::$instance -> tc_is_home_empty();
+  }
+
+  /**
+  * Boolean : check if we are in the no search results case
+  *
+  * @package Customizr
+  * @since 3.0.10
+  */
+  function tc_is_no_results() {
+    global $wp_query;
+    return ( is_search() && 0 == $wp_query -> post_count ) ? true : false;
+  }
+
+  /**
+  * Check if we show posts or page content on home page
+  *
+  * @since Customizr 3.0.6
+  *
+  */
+  function tc_is_home_empty() {
+    //check if the users has choosen the "no posts or page" option for home page
+    return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
   }
 
 }//end of class

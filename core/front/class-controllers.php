@@ -222,53 +222,5 @@ if ( ! class_exists( 'TC_controllers' ) ) :
         return;
       return $controller_instances[$group];
     }
-
-
-
-    /******************************************************************
-    * HELPERS
-    ******************************************************************/
-        /**
-    * Return object post type
-    *
-    * @since Customizr 3.0.10
-    *
-    */
-    function tc_get_post_type() {
-      global $post;
-
-      if ( ! isset($post) )
-        return;
-
-      return $post -> post_type;
-    }
-
-
-
-    /**
-    * Check if we show posts or page content on home page
-    *
-    * @since Customizr 3.0.6
-    *
-    */
-    function tc_is_home_empty() {
-      //check if the users has choosen the "no posts or page" option for home page
-      return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
-    }
-
-
-
-    /**
-    * Boolean : check if we are in the no search results case
-    *
-    * @package Customizr
-    * @since 3.0.10
-    */
-    function tc_is_no_results() {
-      global $wp_query;
-      return ( is_search() && 0 == $wp_query -> post_count ) ? true : false;
-    }
-
-
   }//end of class
 endif;

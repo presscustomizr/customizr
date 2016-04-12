@@ -19,7 +19,7 @@
               <div id="content" class="<?php tc_echo( 'article_wrapper_class' ) ?>">
                 <?php
                   /* 404 and search with no results */
-                  if ( CZR() -> controllers -> tc_is_no_results() || is_404() ) {
+                  if ( TC_utils_query::$instance -> tc_is_no_results() || is_404() ) {
                     if ( tc_has('404') ) { tc_render_template('content/singles/404', '404'); }
                     elseif ( tc_has('no_results') ) { tc_render_template('content/singles/no_results', 'no_results'); }
                   }

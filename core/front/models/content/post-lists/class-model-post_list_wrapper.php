@@ -29,27 +29,22 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
   function tc_setup_children() {
 
     $children = array (
-      /* CONTENT */
-      //post content/excerpt
-      array(
-        'hook' => false,//'__post_list_content__',
-        'template' => 'content/post-lists/post_list_content',
-        'id' => 'post_list_content'
-      ),
-
       /* THUMBS */
       array(
-        'template'    => 'content/post-lists/post_list_thumbnail',
         'id'          => 'post_list_standard_thumb',
         'model_class' => 'content/post-lists/thumbnail'
       ),
-
       //the recangular thumb has a different model + a slighty different template
       array(
-        'template'    => 'content/post-lists/post_list_thumbnail',
         'id'          => 'post_list_rectangular_thumb',
         'model_class' => array( 'parent' => 'content/post-lists/thumbnail', 'name' => 'content/post-lists/thumbnail_rectangular')
-      )
+      ),
+      //Post/page headings
+      array(
+        'id' => 'post_page_headings',
+        'model_class' => 'content/singles/post_page_headings'
+      ),
+
     );
 
     return $children;
