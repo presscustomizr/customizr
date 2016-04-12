@@ -21,7 +21,7 @@
 
     ?>
     <?php tc_echo( 'thumb_img' ) ?>
-    <?php do_action( '__comment_bubble__' ) ?>
+    <?php if ( tc_has( 'comment_bubble' ) ) tc_render_template( 'modules/comment_bubble', 'comment_bubble' ) ?>
     <figcaption class="tc-grid-excerpt">
       <div class="entry-summary">
         <div class="tc-g-cont"><?php the_excerpt() ?></div>
@@ -31,7 +31,12 @@
         if( tc_get( 'is_expanded' ) ):
 
         ?>
-        <h2 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php tc_echo( 'title' ) ?></a><?php do_action( '__recently_updated__' ) ?></h2>
+
+        <h2 class="entry-title">
+          <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php tc_echo( 'title' ) ?></a>
+          <?php if ( tc_has( 'recently_updated' ) ) tc_render_template( 'modules/recently_updated', 'recently_updated' ) ?>
+        </h2>
+
         <?php
 
         /* end expanded title */
@@ -72,7 +77,11 @@
    if ( tc_post_has_title() ) :
 
   ?>
-    <h2 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php tc_echo( 'title' ) ?></a><?php do_action( '__edit_button__' ); do_action( '__recently_updated__' ) ?></h2>
+    <h2 class="entry-title">
+      <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php tc_echo( 'title' ) ?></a>
+  <?php if ( tc_has( 'edit_button' ) ) tc_render_template( 'modules/edit_button', 'edit_button' ) ?>
+  <?php if ( tc_has( 'recently_updated' ) ) tc_render_template( 'modules/recently_updated', 'recently_updated' ) ?>
+    </h2>
   <?php
 
    endif;
