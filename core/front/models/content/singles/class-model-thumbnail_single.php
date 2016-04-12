@@ -6,8 +6,8 @@ class TC_thumbnail_single_model_class extends TC_thumbnail_model_class {
   // backward compatiblity
   private $hook_map       = array(
     '__before_main_wrapper' => '__before_main_wrapper',
-    '__before_content'      => '__before_singular_headings',
-    '__after_content_title' => '__post_page_title__'
+    '__before_content'      => '__before_singular_inner_content',
+    '__after_content_title' => '__after_singular_title'
   );
 
   function __construct( $model = array() ) {
