@@ -2,7 +2,7 @@
 class TC_post_page_headings_model_class extends TC_Model {
   public $thumbnail_position;
 
-  function tc_extend_params( $model = array() ) { echo "sono qui";
+  function tc_extend_params( $model = array() ) {
     $model[ 'thumbnail_position' ] = '__after_content_title' == TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'after_title' : '';
 
     return $model;

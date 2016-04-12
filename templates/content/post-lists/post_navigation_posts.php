@@ -8,7 +8,6 @@
  */
 ?>
 <nav id="nav-below" class="<?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
-  <hr class="featurette-divider">
   <h3 class="assistive-text">
     <?php  _e( 'Post navigation' , 'customizr' ) ?>
   </h3>
