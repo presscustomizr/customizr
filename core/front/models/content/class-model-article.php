@@ -3,16 +3,25 @@ class TC_article_model_class extends TC_Model {
   public $article_selectors;
 
   public $post_class = 'row-fluid';
+  public $thumbnail_position;
+
+  function tc_extend_params( $model = array() ) {
+    $model[ 'thumbnail_position' ] = '__before_content' == TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'before_title' : '';
+
+    return $model;
+  }
 
 
   function tc_setup_children() {
     $children = array(
       //single post thumbnail
       array(
-        'hook'        => '__before_post',
-        'template'    => 'content/singles/thumbnail_single',
         'id'          => 'post_thumbnail',
         'model_class' => array( 'parent' => 'content/thumbnail', 'name' => 'content/singles/thumbnail_single')
+      ),
+      array(
+        'id'          => 'singular_headings',
+        'model_class' => 'content/singles/post_page_headings'
       )
     );
     return $children;
