@@ -56,7 +56,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
   //inside the loop but before rendering set some properties
   function tc_setup_late_properties() {
     //parent::tc_setup_late_properties();
-    $post_class = $this -> tc_get_the_post_class();
+    $post_class = $this -> tc_get_the_grid_post_class();
     $this -> tc_set_property( 'article_selectors', TC_utils_query::$instance -> tc_get_the_post_list_article_selectors( $post_class ) );
 
     $element_wrapper        = $this -> tc_get_element_wrapper_properties();
@@ -152,22 +152,16 @@ class TC_grid_wrapper_model_class extends TC_Model {
 
 
   /**
-  * @override
   * Returns the classes for the post div.
   *
-  * @param string|array $class One or more classes to add to the class list.
-  * @param int $post_id An optional post ID.
   * @package Customizr
   * @since 3.0.10
   */
-  function tc_get_the_post_class( $class = '', $post_id = null ) {
-    $_class = sprintf( '%1$s tc-grid span%2$s',
+  function tc_get_the_grid_post_class() {
+    return sprintf( '%1$s tc-grid span%2$s',
       apply_filters( 'tc_grid_add_expanded_class', $this -> tc_force_current_post_expansion() ) ? 'expanded' : '',
       is_numeric( $this -> tc_get_grid_section_cols() ) ? 12 / $this -> tc_get_grid_section_cols() : 6
     );
-
-    //Separates classes with a single space, collates classes for post DIV
-    return 'class="' . join( ' ', get_post_class( $_class ) ) . '"';
   }
 
 
