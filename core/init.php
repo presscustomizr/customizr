@@ -219,9 +219,8 @@ if ( ! class_exists( 'TC___' ) ) :
           *********************************************/
           /* contains the featured page item registration */
           array(
-            'hook'        => '__before_main_container',
-            'template'    => 'modules/featured-pages/featured_pages',
-            'priority'    => 10,
+            'id'          => 'featured_pages',
+            'model_class' => 'modules/featured-pages/featured_pages',
           ),
           /** end featured pages **/
 

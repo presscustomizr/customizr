@@ -23,9 +23,9 @@ class TC_help_block_model_class extends TC_Model {
      * So when extending this class, to actually *contextually* forbid an help block be sure you override
      * tc_is_notice_on!
      */
-    if ( ! apply_filters( "tc_is_{$this -> tc_get_the_data_notice_id()}_on", $this -> tc_is_notice_on() ) )
-      return;
-
+    if ( ! apply_filters( "tc_is_{$this -> tc_get_the_data_notice_id()}_on", $this -> tc_is_notice_on() ) ) {
+      $model['id'] = '';
+    }
     parent::__construct( $model );
 
     //emulate an "enqueue once"
