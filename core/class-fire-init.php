@@ -67,7 +67,7 @@ if ( ! class_exists( 'TC_init' ) ) :
 
           //Default images sizes
           $this -> tc_thumb_size        = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
-          $this -> tc_lider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
+          $this -> tc_slider_full_size  = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
           $this -> tc_slider_size       = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
           $this -> tc_grid_full_size    = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
           $this -> tc_grid_size         = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
@@ -485,11 +485,11 @@ if ( ! class_exists( 'TC_init' ) ) :
       */
       function tc_get_style_src( $_wot = 'skin' ) {
         $_sheet    = ( 'skin' == $_wot ) ? esc_attr( TC_utils::$inst->tc_opt( 'tc_skin' ) ) : 'tc_common.css';
-        $_sheet    = $this -> tc_maybe_use_min_style( $_sheet ); 
+        $_sheet    = $this -> tc_maybe_use_min_style( $_sheet );
 
         //Finds the good path : are we in a child theme and is there a skin to override?
         $remote_path    = tc_get_theme_file_url( TC_ASSETS_PREFIX . 'front/css/' . $_sheet );
-        
+
         //Checks if there is a rtl version of common if needed
         if ( 'skin' != $_wot && ( is_rtl() || ( defined( 'WPLANG' ) && ( 'ar' == WPLANG || 'he_IL' == WPLANG ) ) ) ){
           $remote_rtl_path   = tc_get_theme_file_url( TC_ASSETS_PREFIX . 'front/css/' . $_sheet );
@@ -512,7 +512,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       *
       * Returns the min or normal version of the passed css filename (basename.type)
       * depending on whether or not the minified version should be used
-      *  
+      *
       * @param $_sheet string
       *
       * @return string
