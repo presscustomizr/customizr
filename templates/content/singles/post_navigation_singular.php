@@ -20,7 +20,7 @@ $next_arr     = is_rtl() ? $l_arr : $r_arr;
   <ul class="pager">
     <?php if ( null != $prev_link = get_previous_post_link(
         '%link', //format
-        '<span class="meta-nav">' . $prev_arr . '</span> %title', //link
+        '<span class="meta-nav">' . $prev_arr . '</span> %title', //title
         false, //in_same_term
         '', //excluded_terms
         'category'//taxonomy
@@ -33,7 +33,7 @@ $next_arr     = is_rtl() ? $l_arr : $r_arr;
   <?php endif; ?>
   <?php if ( null != $next_link = get_next_post_link(
         '%link', //format
-        '%title <span class="meta-nav">' . $next_arr . '</span>', //link
+        '%title <span class="meta-nav">' . $next_arr . '</span>', //title
         false, //in_same_term
         '', //excluded_terms
         'category'//taxonomy
