@@ -280,7 +280,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
           //2) if user has enabled comment for this specific post / page => true
           //@todo contx : update default value user's value)
-          $_bool = ( 'closed' != $post -> comment_status ) ? true && $_bool : $_bool;
+          $_bool = ( 'closed' != $post -> comment_status ) ? $_bool : false;
 
           //3) check global user options for pages and posts
           if ( is_page() )
@@ -292,6 +292,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
         self::$_cache['comments_enabled'] = $_bool;
       }
+
       return apply_filters( 'tc_are_comments_enabled', self::$_cache['comments_enabled'] );
     }
 
