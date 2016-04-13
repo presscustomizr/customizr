@@ -209,14 +209,10 @@ class TC_utils_thumbnails {
       //2) user option should be checked in customizer
       $_bool = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_use_attachment_as_thumb' ) );
 
-/******************************************************************************************************
- *
- * WARNING !!!!!!!!!
- * TC_post is not available anymore
       if ( ! is_admin() )
-        $_bool == ! TC_post::$instance -> tc_single_post_display_controller() && $_bool;
-*************************************************************************************************** **/
-      if ( ! apply_filters( 'tc_use_attachement_as_thumb' , $_bool ) )
+        $_bool = ! TC_utils_query::$instance -> tc_is_single_post() && $_bool;
+
+      if ( ! apply_filters( 'tc_use_attachment_as_thumb' , $_bool ) )
         return;
 
       //Case if we display a post or a page
