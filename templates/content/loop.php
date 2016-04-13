@@ -15,7 +15,7 @@ if ( have_posts() && ! is_404() ) {
     //if this is the main wp loop then, render the various templates depending on the context and the user options
     if ( 'main_loop' == tc_get('id') ) {
 
-      if ( tc_has('post_list_grid') /*&& CZR() -> controllers -> tc_is_possible('grid_wrapper') */) {
+      if ( tc_has('post_list_grid') ) {
         tc_render_template('modules/grid/grid_wrapper', 'post_list_grid');
       }
 
@@ -36,3 +36,4 @@ if ( have_posts() && ! is_404() ) {
 }
 //Always reset the query to the main WP one
 $wp_query = $wp_the_query;
+wp_reset_postdata();

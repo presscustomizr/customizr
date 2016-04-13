@@ -38,7 +38,6 @@
 
           if ( tc_has('sidenav_navbar_menu_button') )
             tc_render_template('header/menu_button', 'sidenav_navbar_menu_button');
-          //do_action( '__navbar__' ); //hook of social, tagline, menu, ordered by priorities 10, 20, 20
         ?>
         </div><!-- /.row-fluid -->
     </div><!-- /.navbar-inner -->
