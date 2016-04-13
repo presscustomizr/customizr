@@ -9,7 +9,8 @@
  * @package Customizr
  * @since Customizr 1.0
  */
+if ( have_comments() ) : ?>
+  <hr class="featurette-divider">
+<?php endif;
 comment_form();
 if ( tc_has('comment_list') ) { tc_render_template('content/comments/comment_list', 'comment_list'); }
-//do_action ( '__comments__' );
-?>

@@ -31,9 +31,11 @@ else :
        <?php echo get_avatar( $comment, 80 ) ?>
       </div>
       <div class="span10">
+      <?php if ( false != $comment_reply_link = get_comment_reply_link( tc_get( 'comment_reply_link_args' ) ) ) : ?>
         <div class="reply btn btn-small">
-          <?php comment_reply_link( tc_get( 'comment_reply_link_args' ) ) ?>
+          <?php echo $comment_reply_link ?>
         </div>
+      <?php endif ?>
         <header class="comment-meta comment-author vcard">
           <cite class="fn">
             <?php comment_author_link() ?>

@@ -7,7 +7,6 @@
  * @since Customizr 3.5.0
  */
 ?>
-<hr class="featurette-divider">
 <div id="comments" class="comments-area" <?php tc_echo('element_attributes') ?>>
   <?php do_action('tc_before_comments_template') ?>
   <?php
