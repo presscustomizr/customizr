@@ -257,6 +257,13 @@ class TC_footer_widgets_help_block_model_class extends TC_sidebar_help_block_mod
 
   /*
   * @override
+  */
+  function tc_get_the_help_secondary_message() {
+    return '';
+  }
+
+  /*
+  * @override
   * the notice isn't enabled also when at least one footer widget area is active
   */
   function tc_is_notice_enabled() {
@@ -268,6 +275,7 @@ class TC_footer_widgets_help_block_model_class extends TC_sidebar_help_block_mod
       }
     return parent::tc_is_notice_enabled() && $bool;
   }
+
 }
 
 /*********************************
