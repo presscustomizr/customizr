@@ -203,17 +203,13 @@ if ( ! class_exists( 'TC___' ) ) :
           * SLIDER
           *********************************************/
           array(
-            'hook'        => '__before_main_wrapper',
-            'template'    => 'modules/slider/slider',
+            'model_class' => 'modules/slider/slider',
             'id'          => 'main_slider'
           ),
           //slider of posts
           array(
-            'hook'        => '__before_main_wrapper',
-            'template'    => 'modules/slider/slider',
             'id'          => 'main_posts_slider',
             'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
-            'controller'  => 'main_slider'
           ),
           /** end slider **/
 

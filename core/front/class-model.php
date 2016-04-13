@@ -54,9 +54,9 @@ if ( ! class_exists( 'TC_Model' ) ) :
         do_action('tc_dev_notice', 'in TC_MODEL construct : a model has no id ');
         return;
       }elseif ( FALSE == $model['id'] ) {
-        //if model ID has been set to false silent exit. Useful in cases when in tc_extend_params the model
+        //if model ID has been set to false => silent exit. Useful in cases when in tc_extend_params the model
         //itself understands that it has to exit its instantiation
-        CZR() -> collection -> tc_deregister( $this -> id, $this );
+        CZR() -> collection -> tc_delete( $this -> id );
         return;
       }
       //equivalent of wp_parse_args() with default model property values
@@ -66,9 +66,10 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //1) a unique id
       //2) a priority set
       //3) a hook => not anymore since tc_render_template()
-      if ( ! $this -> tc_can_model_be_instantiated() )
+      if ( ! $this -> tc_can_model_be_instantiated() ) {
+        CZR() -> collection -> tc_delete( $this -> id );
         return;
-
+      }
       //set-up the children
       $this -> tc_maybe_setup_children();
 

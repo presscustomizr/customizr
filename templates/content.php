@@ -7,6 +7,14 @@
  * @since Customizr 3.5.0
  */
 ?>
+<?php /* SLIDERS : standard and slider of posts */
+  if ( tc_has('main_slider') ) {
+    tc_render_template('modules/slider/slider', 'main_slider');
+  }
+  if( tc_has( 'main_posts_slider' ) ) {
+    tc_render_template('modules/slider/slider', 'main_posts_slider');
+  }
+?>
 <?php do_action('__before_main_wrapper'); ?>
     <?php /* thumbnail in single post */
       if ( tc_has('post_thumbnail') && 'before_title_full' == tc_get( 'thumbnail_position' ) ) { tc_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
