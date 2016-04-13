@@ -24,7 +24,7 @@ class TC_comment_list_model_class extends TC_Model {
   function tc_setup_children() {
     $children = array(
       array(
-        'model_class'    => 'content/comments/comment',
+        'model_class' => 'content/comments/comment',
         'id'          => 'comment'
       ),
       array(

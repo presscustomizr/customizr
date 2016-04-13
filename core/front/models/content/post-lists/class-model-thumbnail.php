@@ -27,7 +27,7 @@ class TC_thumbnail_model_class extends TC_Model {
   function tc_maybe_filter_views_model() {
     parent::tc_maybe_filter_views_model();
     /* WARNING : HERE WE MIGHT NEED THE PARENT CONCEPT */
-    add_action( 'pre_rendering_view_post_list_wrapper'         , array( $this, 'tc_add_thumb_shape_name' ) );
+    add_action( 'pre_rendering_view_post_list'         , array( $this, 'tc_add_thumb_shape_name' ) );
   }
 
 
