@@ -83,8 +83,7 @@ class TC_content_model_class extends TC_Model {
 
       array(
         'id'          => 'post_list',
-        'controller'  => 'post_list',
-        'model_class' => array( 'parent' => 'content/article', 'name' => 'content/post-lists/post_list_wrapper' )
+        'model_class' => 'content/post-lists/post_list_wrapper'
       ),
 
       /*********************************************
@@ -92,7 +91,7 @@ class TC_content_model_class extends TC_Model {
       *********************************************/
       array(
         'id'          => 'singular_article',
-        'model_class' => 'content/article'
+        'model_class' => 'content/singles/article'
       ),
 
       /*********************************************

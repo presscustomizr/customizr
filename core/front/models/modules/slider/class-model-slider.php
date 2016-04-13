@@ -262,9 +262,10 @@ class TC_slider_model_class extends TC_Model {
 
 
   function tc_get_has_slide() {
-    $slide = current( $this -> slides );
-    if ( empty( $slide ) )
-      return false;
+    $_slide = current( $this -> slides );
+    if ( empty( $_slide ) )
+        return false;
+    $slide = & $_slide;
     $slide_id            = key( $this -> slides );
     $this -> tc_set_property( 'current_slide', compact( 'slide', 'slide_id' ) );
     next( $this -> slides );

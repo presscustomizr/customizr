@@ -1,7 +1,9 @@
 <?php
-class TC_post_list_wrapper_model_class extends TC_article_model_class {
+class TC_post_list_wrapper_model_class extends TC_Model {
   public $place_1 ;
   public $place_2 ;
+  public $article_selectors;
+  public $post_class = 'row-fluid';
 
   //Default post list layout
   private static $default_post_list_layout   = array(
@@ -52,7 +54,8 @@ class TC_post_list_wrapper_model_class extends TC_article_model_class {
 
 
   function tc_setup_late_properties() {
-    parent::tc_setup_late_properties();
+    $this -> tc_set_property( 'article_selectors', TC_utils_query::$instance -> tc_get_the_post_list_article_selectors( $this -> post_class ) );
+
     global $wp_query;
 
     extract( apply_filters( 'tc_post_list_layout', $this -> post_list_layout ) );

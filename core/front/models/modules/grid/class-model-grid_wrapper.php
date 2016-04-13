@@ -57,7 +57,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
   function tc_setup_late_properties() {
     //parent::tc_setup_late_properties();
     $post_class = $this -> tc_get_the_post_class();
-    $this -> tc_set_property( 'article_selectors', CZR() -> helpers -> tc_get_the_article_selectors( $post_class ) );
+    $this -> tc_set_property( 'article_selectors', TC_utils_query::$instance -> tc_get_the_post_list_article_selectors( $post_class ) );
 
     $element_wrapper        = $this -> tc_get_element_wrapper_properties();
 
