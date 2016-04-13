@@ -227,5 +227,80 @@ class TC_utils_query {
     $queried_id                   = get_queried_object_id();
     return apply_filters( 'tc_get_real_id', ( ! TC_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
+
+
+
+  /**
+  * Returns or displays the selectors of the article depending on the context
+  *
+  * @package Customizr
+  * @since 3.1.0
+  */
+  function tc_get_the_post_list_article_selectors($post_class = '') {
+    //gets global vars
+    global $post;
+
+    //declares selector var
+    $selectors                  = '';
+
+    if ( isset($post) && $this -> tc_is_list_of_posts() )
+        //!is_singular() && !is_404() && !tc__f( '__is_home_empty') ) || ( is_search() && 0 != $wp_query -> post_count )
+      $selectors                = apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
+
+    return apply_filters( 'tc_article_selectors', $selectors );
+  }//end of function
+
+
+
+
+
+
+  /**
+  * @override
+  * Returns or displays the selectors of the article depending on the context
+  *
+  * @package Customizr
+  * @since 3.1.0
+  */
+  function tc_get_the_singular_article_selectors( $post_class = '' ) {
+    //gets global vars
+    global $post;
+
+    //declares selector var
+    $selectors                  = '';
+
+
+    // SINGLE POST
+    if ( isset($post) && 'page' != $post -> post_type && 'attachment' != $post -> post_type && is_singular() )
+      $selectors = apply_filters( 'tc_single_post_selectors' ,'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
+
+    // PAGE
+    elseif ( isset($post) && 'page' == tc__f('__post_type') && is_singular() && !tc__f( '__is_home_empty') )
+      $selectors = apply_filters( 'tc_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
+    // ATTACHMENT
+    elseif ( isset($post) && 'attachment' == $post -> post_type && is_singular() ) {
+      $post_class = wp_attachment_is_image() ? ' format-image' : '';
+      $selectors  = apply_filters( 'tc_attachment_selectors' , 'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
+    }
+
+    $selectors = apply_filters( 'tc_article_selectors', $selectors );
+
+    return $selectors;
+  }//end of function
+
+
+  /**
+  * Returns the classes for the post div.
+  *
+  * @param string|array $class One or more classes to add to the class list.
+  * @param int $post_id An optional post ID.
+  * @package Customizr
+  * @since 3.0.10
+  */
+  function tc_get_the_post_class( $class = '', $post_id = null ) {
+    //Separates classes with a single space, collates classes for post DIV
+    return 'class="' . join( ' ', get_post_class( $class, $post_id ) ) . '"';
+  }
+
 }//end of class
 endif;

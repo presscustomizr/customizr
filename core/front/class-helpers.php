@@ -88,55 +88,9 @@ if ( ! class_exists( 'TC_Helpers' ) ) :
         return $to_return;
     }
 
-
     public function tc_return_cb_result_array( $cb, $params = array() ) {
       return $this -> tc_fire_cb_array( $cb, $params, $return = true );
     }
-
-
-    /**
-    * Returns or displays the selectors of the article depending on the context
-    *
-    * @package Customizr
-    * @since 3.1.0
-    */
-    function tc_get_the_article_selectors($post_class = '') {
-      //gets global vars
-      global $post;
-      global $wp_query;
-
-      //declares selector var
-      $selectors                  = '';
-
-      if ( empty( $post_class ) )
-        $post_class  = $this -> tc_get_the_post_class( $post_class );
-
-      // POST LIST
-      $post_list_selector_bool    = ( isset($post) && !is_singular() && !is_404() && !tc__f( '__is_home_empty') ) || ( is_search() && 0 != $wp_query -> post_count );
-      $selectors                  = $post_list_selector_bool ? apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $post_class ) : $selectors;
-
-      $selectors = apply_filters( 'tc_article_selectors', $selectors );
-
-      return $selectors;
-    }//end of function
-
-
-
-    /**
-    * Returns the classes for the post div.
-    *
-    * @param string|array $class One or more classes to add to the class list.
-    * @param int $post_id An optional post ID.
-    * @package Customizr
-    * @since 3.0.10
-    */
-    function tc_get_the_post_class( $class = '', $post_id = null ) {
-      //Separates classes with a single space, collates classes for post DIV
-      return 'class="' . join( ' ', get_post_class( $class, $post_id ) ) . '"';
-    }
-
-
-
   }//end of class
 
 endif;
