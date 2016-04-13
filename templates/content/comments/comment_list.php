@@ -50,3 +50,7 @@ if ( get_option( 'page_comments' ) && get_comment_pages_count() > 1) :
   </ul>
 </nav>
 <?php endif; /* end comments list navigation */
+if ( ! comments_open() && get_comments_number() ) : ?>
+<p class="nocomments"><?php _e( 'Comments are closed.' , 'customizr' ) ?></p>
+<?php endif;
+
