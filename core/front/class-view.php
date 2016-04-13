@@ -59,11 +59,11 @@ if ( ! class_exists( 'TC_View' ) ) :
       <?php
       /* Maybe merge debug info into the model element attributes */
       if ( ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' ) )
-        $this -> model -> element_attributes =  join( ' ', array(
+        $this -> model -> element_attributes =  join( ' ', array_filter( array(
             $this -> model -> element_attributes,
             'data-model_id="'. $this -> model -> id .'"',
             'data-template="'. $this -> model -> template .'"'
-        ));
+        )) );
       /*
       <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
       */
