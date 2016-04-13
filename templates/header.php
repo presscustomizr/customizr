@@ -9,7 +9,7 @@
 ?>
 <header class="<?php tc_echo( 'element_class' ) ?>" role="banner" <?php tc_echo('element_attributes') ?>>
   <?php
-    if ( tc_has('logo') )
+    if ( tc_has('logo') || tc_has('sticky_logo') )
       tc_render_template('header/logo_wrapper');
     else
       tc_render_template('header/title');
