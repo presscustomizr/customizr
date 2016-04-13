@@ -98,7 +98,7 @@ class TC_header_model_class extends TC_Model {
       array(
         'hook'        => '__after_mobile_menu_button',
         'template'    => 'modules/help_block',
-        'id'          => 'second_menu_help_block',
+        'id'          => 'main_menu_help_block',
         'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/main_menu_help_block'),
         'priority'    => 40
       )

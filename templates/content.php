@@ -24,7 +24,13 @@
       <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
 
       <?php do_action('__before_main_container'); ?>
+     <?php
 
+      /* FEATURED PAGES */
+      if ( tc_has( 'featured_pages' ) )
+        tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
+
+      ?>
       <div class="container" role="main">
         <div class="<?php tc_echo( 'column_content_class' ) ?>">
           <?php
