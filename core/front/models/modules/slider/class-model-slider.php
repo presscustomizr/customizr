@@ -386,9 +386,7 @@ class TC_slider_model_class extends TC_Model {
   *
   */
   protected function tc_get_real_id() {
-    global $wp_query;
-    $queried_id                   = get_queried_object_id();
-    return apply_filters( 'tc_slider_get_real_id', ( ! TC_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID(), $this );
+    return apply_filters( 'tc_slider_get_real_id', TC_utils_query::$instance -> tc_get_real_id(), $this );
   }
 
 

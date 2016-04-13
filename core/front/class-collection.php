@@ -109,9 +109,13 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
       $model = $this -> tc_instantiate_model($model);
 
+      //Silent exit
+      if ( $this -> tc_has_registered_deletion( $model -> id ) )
+        return;
+
       //abort if the model has not been instantiated
       if ( ! is_object($model) ) {
-        $_model_id = isset( $model['id'] ) ? $model['id'] : 'undefined';
+        $_model_id = isset( $model -> id ) ? $model -> id : 'undefined';
         do_action('tc_dev_notice', "The model ( " . $_model_id . ") was not instantiated and could not be registered into the collection." );
         return;
       }

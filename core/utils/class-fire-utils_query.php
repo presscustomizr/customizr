@@ -216,5 +216,16 @@ class TC_utils_query {
     return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
   }
 
+  /**
+  * helper
+  * returns the actual page id if we are displaying the posts page
+  * @return  number
+  *
+  */
+  function tc_get_real_id() {
+    global $wp_query;
+    $queried_id                   = get_queried_object_id();
+    return apply_filters( 'tc_get_real_id', ( ! TC_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+  }
 }//end of class
 endif;
