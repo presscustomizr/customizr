@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying the post metas block (either the buttons and the textual version)
+ * The template for displaying the post metas block ( only text version )
  *
  * In WP loop
  *
@@ -36,5 +36,8 @@
       __('1 day ago', 'customizr'),
       __('%s days ago', 'customizr')
     ) ); ?>)</span>
+  <?php endif ?>
+  <?php if ( ! is_singular() && ! tc_post_has_title() ): ?>
+   | <a href="<?php the_permalink() ?>" title="<?php _e('Open', 'customizr') ?>"><?php _e('Open', 'customizr') ?> &raquo;</a>
   <?php endif ?>
 </div>

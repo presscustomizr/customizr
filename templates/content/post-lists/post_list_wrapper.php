@@ -22,8 +22,5 @@
       if ( tc_has('content') ) { tc_render_template('content/post-lists/post_list_content', 'post_list_content'); }
     }
   ?>
-
-  <?php //do_action( '__post_list_' . tc_get( 'place_1' ) . '__' ) ?>
-  <?php //do_action( '__post_list_' . tc_get( 'place_2' ) . '__' ) ?>
 </article>
 <hr class="featurette-divider">
