@@ -4,8 +4,10 @@ class TC_footer_model_class extends TC_Model {
   function tc_setup_children() {
     $children = array(
       //sticky footer
-      array( 'hook' => '__after_main_container', 'template' => 'footer/footer_push', 'priority' => 100 ),
-
+      array(
+        'id'          => 'footer_push',
+        'model_class' => 'footer/footer_push'
+      ),
      //footer widgets help block
       array(
         'hook'        => '__before_inner_footer',

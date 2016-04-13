@@ -7,13 +7,16 @@
  * @since Customizr 3.5.0
  */
 ?>
-<?php /* SLIDERS : standard and slider of posts */
+<?php
+
+  /* SLIDERS : standard or slider of posts */
   if ( tc_has('main_slider') ) {
     tc_render_template('modules/slider/slider', 'main_slider');
   }
   if( tc_has( 'main_posts_slider' ) ) {
     tc_render_template('modules/slider/slider', 'main_posts_slider');
   }
+
 ?>
 <?php do_action('__before_main_wrapper'); ?>
     <?php /* thumbnail in single post */
@@ -24,7 +27,7 @@
       <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
 
       <?php do_action('__before_main_container'); ?>
-     <?php
+      <?php
 
       /* FEATURED PAGES */
       if ( tc_has( 'featured_pages' ) )
@@ -74,6 +77,7 @@
       </div><!-- .container -->
 
       <?php do_action('__after_main_container'); ?>
+      <?php if ( tc_has('footer_push') ) { tc_render_template('footer/footer_push', 'footer_push'); } ?>
 
     </div><!-- #main-wrapper -->
 
