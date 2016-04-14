@@ -242,7 +242,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_comment_list() {
-      return apply_filters( 'tc_display_comment_list', $this -> tc_display_view_comments() );
+      return apply_filters( 'tc_display_comment_list', (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_show_comment_list' ) ) && $this -> tc_display_view_comments() );
     }
 
     function tc_display_view_comment() {
