@@ -54,6 +54,14 @@ class TC_posts_list_title_model_class extends TC_Model {
   function tc_get_posts_list_pre_title( $context = null ) {
     $context = $context ? $context : $this -> context;
     $context = 'category' == $context ? 'cat' : $context;
+
+    if ( in_array( $context, array( 'day', 'month', 'year') ) {
+      switch ( $context ) {
+        case 'day'            : return __( 'Daily Archives:' , 'customizr' );
+        case 'month'          : return __( 'Monthly Archives:', 'customizr' );
+        case 'year'           : return __( 'Yearly Archives:', 'customizr' );
+      }
+    }
     return esc_attr( TC_utils::$inst->tc_opt( "tc_{$context}_title" ) );
   }
 
