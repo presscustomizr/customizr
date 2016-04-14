@@ -3,23 +3,15 @@ class TC_second_menu_model_class extends TC_menu_model_class {
   public $theme_location = 'secondary';
 
   /**
+  * @override
   * @hook: pre_rendering_view_navbar_wrapper
   */
   function pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model ) {
-    //Navbar regular menu position
-    if ( ! is_array( $navbar_wrapper_model -> element_class ) )
-      $navbar_wrapper_model -> element_class = explode( ' ', $navbar_wrapper_model -> element_class );
+    parent::pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model );
 
     array_push( $navbar_wrapper_model -> element_class, esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
-
-    //this is the same with for the main regular menu
-    if ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) )
-      array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-fade' );
-    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) )
-      array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-move' );
-    array_push( $navbar_wrapper_model -> element_class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' );
-
   }
+
 
   /**
   * @override
@@ -43,7 +35,7 @@ class TC_second_menu_model_class extends TC_menu_model_class {
   /**
   * @hook tc_user_options_style
   * Second menu
-  * This actually "restore" regular menu style (user options in particular) by overriding the max-width: 979px media query
+  * This actually "restores" regular menu style (user options in particular) by overriding the max-width: 979px media query
   */
   function tc_user_options_style_cb( $_css ) {
     return sprintf("%s\n%s",
