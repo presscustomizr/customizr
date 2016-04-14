@@ -55,7 +55,7 @@ class TC_posts_list_title_model_class extends TC_Model {
     $context = $context ? $context : $this -> context;
     $context = 'category' == $context ? 'cat' : $context;
 
-    if ( in_array( $context, array( 'day', 'month', 'year') ) {
+    if ( in_array( $context, array( 'day', 'month', 'year') ) ) {
       switch ( $context ) {
         case 'day'            : return __( 'Daily Archives:' , 'customizr' );
         case 'month'          : return __( 'Monthly Archives:', 'customizr' );
