@@ -38,8 +38,7 @@ class TC_menu_model_class extends TC_Model {
   function tc_maybe_filter_views_model() {
     parent::tc_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header'         , array( $this, 'pre_rendering_view_header_cb' ) );
-    if ( method_exists( $this, 'pre_rendering_view_navbar_wrapper_cb' ) )
-      add_action( 'pre_rendering_view_navbar_wrapper' , array( $this, 'pre_rendering_view_navbar_wrapper_cb' ) );
+    add_action( 'pre_rendering_view_navbar_wrapper' , array( $this, 'pre_rendering_view_navbar_wrapper_cb' ) );
   }
 
 
@@ -63,6 +62,21 @@ class TC_menu_model_class extends TC_Model {
     }
   }
 
+  /**
+  * @hook: pre_rendering_view_navbar_wrapper
+  */
+  function pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model ) {
+    //Navbar regular menu position
+    if ( ! is_array( $navbar_wrapper_model -> element_class ) )
+      $navbar_wrapper_model -> element_class = explode( ' ', $navbar_wrapper_model -> element_class );
+
+    //this is the same for the main regular menu
+    if ( ! wp_is_mobile() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_fade_effect') ) )
+      array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-fade' );
+    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_submenu_item_move_effect') ) )
+      array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-move' );
+    array_push( $navbar_wrapper_model -> element_class, ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' );
+  }
 
   /**
   * @override

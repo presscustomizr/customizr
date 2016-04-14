@@ -16,12 +16,12 @@ class TC_regular_menu_model_class extends TC_menu_model_class {
   }
 
   /**
+  * @override
   * @hook: pre_rendering_view_navbar_wrapper
   */
   function pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model ) {
-    //Navbar regular menu position
-    if ( ! is_array( $navbar_wrapper_model -> element_class ) )
-      $navbar_wrapper_model -> element_class = explode( ' ', $navbar_wrapper_model -> element_class );
+    parent::pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model );
+
     array_push( $navbar_wrapper_model -> element_class, esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_position') ) );
   }
 

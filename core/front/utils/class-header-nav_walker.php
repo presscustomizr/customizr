@@ -44,7 +44,7 @@ if ( ! class_exists( 'TC_nav_walker' ) ) :
     }
 
 
-    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) { 
+    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
       $item_html = '';
       //ask the parent to do the hard work
       parent::start_el( $item_html, $item, $depth, $args, $id);

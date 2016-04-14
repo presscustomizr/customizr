@@ -10,13 +10,13 @@
 <header class="<?php tc_echo( 'element_class' ) ?>" role="banner" <?php tc_echo('element_attributes') ?>>
   <?php
     if ( tc_has('logo') || tc_has('sticky_logo') )
-      tc_render_template('header/logo_wrapper');
+      tc_render_template('header/logo_wrapper', 'logo_wrapper');
     else
       tc_render_template('header/title');
 
     if ( tc_has('mobile_tagline') ) { tc_render_template('header/tagline', 'mobile_tagline'); }
 
-    if ( tc_has('navbar_wrapper') ) { tc_render_template('header/navbar_wrapper'); }
+    if ( tc_has('navbar_wrapper') ) { tc_render_template('header/navbar_wrapper', 'navbar_wrapper'); }
   ?>
 </header>
 <?php if ( tc_get('has_sticky_pusher') ): ?>

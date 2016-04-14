@@ -32,59 +32,46 @@ class TC_header_model_class extends TC_Model {
   function tc_setup_children() {
     $children = array(
       //LOGO
-      //array( 'hook' => '__header__', 'template' => 'header/logo_wrapper' ),
-      /* Registered as child here as it needs to filter the header class and the logos to add custom style css */
-      array( 'hook' => false, 'template' => 'header/logo_wrapper' ),
+      /* Registered as child here as it needs to filter the header class and add custom style css */
+      array( 'model_class' => 'header/logo_wrapper', 'logo_wrapper' ),
 
-      //array( 'hook' => '__logo_wrapper__', 'template' => 'header/logo'),
-      //array( 'hook' => '__logo_wrapper__', 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
-
-      array( 'hook' => false, 'template' => 'header/logo'),
-      array( 'hook' => false, 'id' => 'sticky_logo', 'template' => 'header/logo' , 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
+      array( 'model_class' => 'header/logo', 'id' => 'logo' ),
+      array( 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky'), 'id' => 'sticky_logo' ),
 
 
       //TITLE
-      //array( 'hook' => '__header__', 'template' => 'header/title'  ),
-      array( 'hook' => false, 'template' => 'header/title'  ),
+      /* Registered as child here as it needs to filter the header class and add custom style css */
+      array( 'model_class' => 'header/title', 'id' => 'title'  ),
 
       //MOBILE TAGLINE
-      //array( 'hook' => '__header__', 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/tagline_mobile') ),
-      array( 'hook' => false, 'template' => 'header/tagline', 'id' => 'mobile_tagline', 'priority' => 20, 'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/tagline_mobile') ),
+      array(  'id' => 'mobile_tagline',  'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/tagline_mobile') ),
 
       //NAVBAR
-      //array( 'hook' => '__header__', 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
-      /* Registered as child here as it needs to filter the body class (the header itself is registered in init) */
-      array( 'hook' => false, 'template' => 'header/navbar_wrapper', 'priority' => 20 ),
+      /* Registered as child here as it needs to filter the body class (the header itself is registered in init)
+      * and its id is used to add further CSS classe by other elements
+      */
+      array( 'model_class' => 'header/navbar_wrapper', 'id' => 'navbar_wrapper' ),
 
       //socialblock in navbar
-      //array( 'hook' => '__navbar__', 'template' => 'modules/social_block', 'priority' => is_rtl() ? 20 : 10, 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ) ),
       array( 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ), 'id' => 'header_social_block', 'controller' => 'social_block' ),
 
       //tagline in navbar
-      //array( 'hook' => '__navbar__', 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
-      array( 'hook' => false, 'template' => 'header/tagline', 'priority' => is_rtl() ? 10 : 20 ),
+      //here because it acts on the header class
+      array( 'id' => 'tagline', 'model_class' => 'header/tagline' ),
 
       //menu in navbar
-      //array( 'hook' => '__navbar__', 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
-      array( 'hook' => false, 'id' => 'navbar_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
+      array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
 
       //secondary
-      //array( 'hook' => '__navbar__', 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
-      array( 'hook' => false, 'id' => 'navbar_secondary_menu', 'template' => 'header/menu', 'priority' => 30, 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+      array( 'id' => 'navbar_secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
 
-      //responsive menu button
-      //array( 'hook' => '__navbar__', 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
-      array( 'hook' => false, 'id' => 'mobile_menu_button', 'template' => 'header/menu_button', 'priority' => 40 ),
 
       //sidenav navbar menu button
-      //array( 'hook' => '__navbar__', 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
-      array( 'hook' => false, 'id' => 'sidenav_navbar_menu_button', 'template' => 'header/menu_button', 'priority' => 25, 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
+      array( 'id' => 'sidenav_navbar_menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
 
-      //SIDENAV
-      //array( 'hook' => '__before_page_wrapper', 'template' => 'header/sidenav' ),
 
       /* Registered as child here as it needs to filter the body class class and the logos to add custom styles */
-      array( 'hook' => false, 'template' => 'header/sidenav' ), //<= rendered in page_wrapper template now
+      array( 'id' => 'sidenav', 'model_class' => 'header/sidenav' ), //<= rendered in page_wrapper template now
 
       //second_menu help block
       array(

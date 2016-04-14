@@ -10,5 +10,13 @@ class TC_sidenav_menu_model_class extends TC_menu_model_class {
   protected function get_element_class() {
     return array( 'sn-nav-wrapper' );
   }
+
+  /**
+  * @override
+  * @hook: pre_rendering_view_navbar_wrapper
+  */
+  function pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model ) {
+    return;
+  }
 }//end class
 
