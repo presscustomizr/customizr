@@ -390,7 +390,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		        'TCPreviewParams',
 		        apply_filters('tc_js_customizer_preview_params' ,
 			        array(
-			        	'themeFolder' 		=> TC_BASE_URL,
+			        	'skinFolder' 		=> TC_BASE_URL . TC_ASSETS_PREFIX,
                 //can be hacked to override the preview params when a custom skin is used
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),

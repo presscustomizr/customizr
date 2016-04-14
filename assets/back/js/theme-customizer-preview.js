@@ -48,11 +48,11 @@
         $_body.removeClass( 'custom-background-empty custom-background-white' );
     },
     tc_skin : function( to ) {
-      if ( TCPreviewParams && TCPreviewParams.themeFolder ) {
+      if ( TCPreviewParams && TCPreviewParams.skinFolder ) {
         //add a new link to the live stylesheet instead of replacing the actual skin link => avoid the flash of unstyle content during the skin load
         var $skin_style_element = ( 0 === $('#live-skin-css').length ) ? $('<link>' , { id : 'live-skin-css' , rel : 'stylesheet'}) : $('#live-skin-css'),
             skinName = to.replace('.css' , '.min.css'),
-            skinURL = [ TCPreviewParams.themeFolder , '/inc/assets/css/' , skinName ].join('');
+            skinURL = [ TCPreviewParams.skinFolder , 'front/css/' , skinName ].join('');
 
         //check if the customSkin param is filtered
         if ( TCPreviewParams.customSkin && TCPreviewParams.customSkin.skinName && TCPreviewParams.customSkin.fullPath )
