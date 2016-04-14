@@ -1755,20 +1755,20 @@ var czrapp = czrapp || {};
         //is submenu 2nd level?
         if ( _is_dropdown_submenu ) {
           _offset = parseFloat( $dropdown_menu.css( this._prop ) ) - _dropdown_overflow - 5;
-          //does the parent menu item have "brothers/sisters"? in this case be sure the new position will
-          //not make it completely overlap parent menu item sibling. We can left 50px of space so
+          //does the parent menu item have "brothers" after it? in this case be sure the new position will
+          //not make it completely overlap parent menu item sibling. We can left 30px of space so
           //the user can access the sibling menu item.
           //So the condition are:
           //1) the parent menu item has siblings
           //and
-          //2) there's a space < 50px between the startin edges of the parent and child dropdown
+          //2) there's a space < 30px between the starting edges of the parent and child dropdown
           //or
-          //2.1) there's a space < 50px between the ending edges of the parent and child dropdown
+          //2.1) there's a space < 30px between the ending edges of the parent and child dropdown
           if ( $_parent_dropdown.next('.menu-item').length ) {
             var _submenu_overflows_parent = this._get_element_overflow( $dropdown_menu, _offset, $_parent_dropdown );
-            if ( _offset < 50  || _submenu_overflows_parent < 50 ) {
-              _offset = _submenu_overflows_parent - 50;
-            }
+            if ( _offset < 30  || _submenu_overflows_parent < 30 )
+              //the new offset is then the old one minus the amount of overflow (ex. in ltr align parent and child right edge ) minus 30px  
+              _offset = _offset - _submenu_overflows_parent - 30;
           }
         } else {
           _offset = -20 - _dropdown_overflow; //add some space (20px) on the right(rtl-> left)
