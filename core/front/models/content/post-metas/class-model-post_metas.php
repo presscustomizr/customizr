@@ -46,7 +46,7 @@ class TC_post_metas_model_class extends TC_Model {
   }
 
   public function tc_get_publication_date() {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> tc_get_meta( 'date', 'publication' ) : '';
+    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> tc_get_meta( 'pub_date' ) : '';
   }
 
   public function tc_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
@@ -55,7 +55,7 @@ class TC_post_metas_model_class extends TC_Model {
         $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
         $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
       }
-      return isset( $_update ) ? $_update : $this -> tc_get_meta( 'date', 'update' );
+      return isset( $_update ) ? $_update : $this -> tc_get_meta( 'up_date' );
     }
     return false;
   }
@@ -78,8 +78,12 @@ class TC_post_metas_model_class extends TC_Model {
     return $this -> tc_get_meta_author();
   }
 
-  private function tc_meta_generate_date( $pub_or_update ) {
-    return $this -> tc_get_meta_date( $pub_or_update );
+  private function tc_meta_generate_pub_date( $format = '' ) {
+    return $this -> tc_get_meta_date( 'publication', $format );
+  }
+
+  private function tc_meta_generate_up_date( $format = '' ) {
+    return $this -> tc_get_meta_date( 'update', $format );
   }
 
   /* @override */
