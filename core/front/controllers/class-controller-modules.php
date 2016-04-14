@@ -77,7 +77,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
     }
 
 
-    function tc_display_view_comment_bubble( $model ) {
+    function tc_display_view_comment_bubble() {
       if ( ! isset( self::$_cache['comment_bubble'] ) ) {
         self::$_cache[ 'comment_bubble' ] = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) )
           && (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_show_comment_list' ) )
@@ -85,9 +85,8 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       }
 
       if ( is_singular() ) {
-        return /*is_singular() && */self::$_cache['comment_bubble'] && $this -> tc_are_comments_enabled() &&
+        return self::$_cache['comment_bubble'] && CZR() -> controllers -> tc_is_possible( 'comment_list' ) &&
                   in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
-          //we need the comments enabled and post list controller here! why don't we require all the controllers?...they won't be a load
       }
       //when in a list of posts demand the control to the model
       return self::$_cache['comment_bubble'] && TC_utils_query::$instance -> tc_is_list_of_posts() ;
@@ -144,47 +143,9 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
     }
 
 
-    /* FOLLOWING COPIED FROM THE CONTENT CONTROLLER CLASS */
     /******************************
     VARIOUS HELPERS
     *******************************/
-    /**
-    * 1) if the page / post is password protected OR if is_home OR ! is_singular() => false
-    * 2) if comment_status == 'closed' => false
-    * 3) if user defined comment option in customizer == false => false
-    *
-    * By default, comments are globally disabled in pages and enabled in posts
-    *
-    * @return  boolean
-    *
-    * @package Customizr
-    * @since Customizr 3.3+
-    */
-    public function tc_are_comments_enabled() {
-      if ( ! isset(self::$_cache['comments_enabled'] ) ) {
-
-        global $post;
-        // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
-        if ( isset( $post ) ) {
-          $_bool = ( post_password_required() || TC_utils::$inst -> tc_is_home() || ! is_singular() )  ? false : true;
-
-          //2) if user has enabled comment for this specific post / page => true
-          //@todo contx : update default value user's value)
-          $_bool = ( 'closed' != $post -> comment_status ) ? true : $_bool;
-
-          //3) check global user options for pages and posts
-          if ( is_page() )
-            $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
-          else
-            $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
-        } else
-          $_bool = false;
-
-        self::$_cache['comments_enabled'] = $_bool;
-      }
-      return apply_filters( 'tc_are_comments_enabled', self::$_cache['comments_enabled'] );
-    }
-
     function tc_display_view_post_list_grid() {
       return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
     }

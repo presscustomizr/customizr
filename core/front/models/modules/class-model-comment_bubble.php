@@ -10,7 +10,6 @@ class TC_comment_bubble_model_class extends TC_Model {
   //render this?
   /*
   * @override
-  * This is actually a merge of the tc_is_bubble_enabled and tc_are_comments_enabled
   */
   function tc_maybe_render_this_model_view () {
     $_bool = $this -> visibility;
@@ -18,24 +17,12 @@ class TC_comment_bubble_model_class extends TC_Model {
     if ( ! $_bool )
       return;
 
-    global $post;
+    if ( in_the_loop() && CZR() -> controllers -> tc_is_possible( 'comment_list' ) ) {
+      global $post;
+      return $post -> comment_count > 0;
+    }
 
-    if ( in_the_loop() && isset( $post ) ) {
-
-      $_bool =  ! post_password_required() && 0 != get_comments_number() &&
-         in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
-
-      $_bool = ( 'closed' != $post -> comment_status ) ? true : $_bool;
-
-     //3) check global user options for pages and posts
-      if ( 'page' == get_post_type() )
-        $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
-      else
-        $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
-    }else
-      $_bool = false;
-
-    return $_bool;
+    return false;
   }
 
 
