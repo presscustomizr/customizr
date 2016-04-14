@@ -9,7 +9,7 @@
  * @package Customizr
  * @since Customizr 1.0
  */
-if ( have_comments() ) : ?>
+if ( comments_open() || tc_has( 'comment_list' )  ) : ?>
   <hr class="featurette-divider">
 <?php endif;
 comment_form();
