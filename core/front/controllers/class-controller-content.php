@@ -277,7 +277,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       if ( isset( $post ) ) {
         $_bool = post_password_required() ? false : true;
 
-        $_bool = in_the_loop() ? TC_utils::$inst -> tc_is_home() || ! is_singular() : $_bool;
+        $_bool = in_the_loop() ? $_bool && ( TC_utils::$inst -> tc_is_home() || ! is_singular() ) : $_bool;
 
         //2) if user has enabled comment for this specific post / page => true
         //@todo contx : update default value user's value)
