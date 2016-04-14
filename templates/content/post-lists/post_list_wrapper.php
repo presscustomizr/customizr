@@ -22,5 +22,5 @@
       if ( tc_has('content') ) { tc_render_template('content/post-lists/post_list_content', 'post_list_content'); }
     }
   ?>
+<hr class="featurette-divider __loop">
 </article>
-<hr class="featurette-divider">
