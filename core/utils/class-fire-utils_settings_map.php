@@ -106,8 +106,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
         'tc_sidebars_option_map',
         //FOOTER
         'tc_footer_global_settings_option_map',
-        //WOOCOMMERCE
-        'tc_woocommerce_option_map',
         //ADVANCED OPTIONS
         'tc_custom_css_option_map',
         'tc_performance_option_map',
@@ -587,6 +585,16 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 15,
                                 'transport'     => 'postMessage'
               ),
+              'tc_woocommerce_header_cart' => array(
+                                'default'   => 1,
+                                'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( 'Display the shopping cart in the header' , 'customizr' ) ),
+                                'control'   => 'TC_controls' ,
+                                'section'   => 'header_layout_sec',
+                                'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
+                                'type'      => 'checkbox' ,
+                                'priority'  => 18,
+                                'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
+              ),
               'tc_social_in_header' =>  array(
                                 'default'       => 1,
                                 'label'       => __( 'Social links in header' , 'customizr' ),
@@ -626,7 +634,18 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'priority'      => 40,
                                 'transport'     => 'postMessage',
               ),
-              'tc_sticky_show_title_logo'  =>  array(
+              'tc_woocommerce_header_cart_sticky' => array(
+                                'default'   => 1,
+                                'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( 'Sticky header: display the shopping cart' , 'customizr' ) ),
+                                'control'   => 'TC_controls' ,
+                                'section'   => 'header_layout_sec',
+                                'type'      => 'checkbox' ,
+                                'priority'  => 45,
+                                'transport' => 'postMessage',
+                                'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
+                                'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
+               ),
+               'tc_sticky_show_title_logo'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'TC_controls' ,
                                 'label'         => __( "Sticky header : display the title / logo" , "customizr" ),
@@ -2060,39 +2079,6 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
 
 
 
-    /******************************************************************************************************
-    *******************************************************************************************************
-    * PANEL : WOOCOMMERCE OPTIONS
-    *******************************************************************************************************
-    ******************************************************************************************************/
-    /*-----------------------------------------------------------------------------------------------------
-                                     HEADER CART
-    ------------------------------------------------------------------------------------------------------*/
-    function tc_woocommerce_option_map( $get_default = null ) {
-      return array(
-              'tc_woocommerce_header_cart' => array(
-                               'default'   => 1,
-                               'label'     => __( 'Display the shopping cart in the header' , 'customizr' ),
-                               'control'   => 'TC_controls' ,
-                               'section'   => 'tc_woocommerce_sec',
-                               'notice'    => __( "You can display a cart icon showing the number of items in your cart next to your header's tagline", 'customizr' ),
-                               'type'      => 'checkbox' ,
-                               'priority'  => 10,
-              ),
-              'tc_woocommerce_header_cart_sticky' => array(
-                               'default'   => 1,
-                               'label'     => __( 'Sticky header: display the shopping cart' , 'customizr' ),
-                               'control'   => 'TC_controls' ,
-                               'section'   => 'tc_woocommerce_sec',
-                               'type'      => 'checkbox' ,
-                               'priority'  => 15,
-                               'transport' => 'postMessage'
-              ),
-
-        );
-    }
-
-
 
     /******************************************************************************************************
     *******************************************************************************************************
@@ -2759,13 +2745,13 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     private function tc_build_skin_list() {
       $parent_skins   = $this -> tc_get_skins( TC_BASE . TC_ASSETS_PREFIX . 'front/css' );
       $child_skins    = array();
-      
+
       if ( TC___::$instance -> tc_is_child() ){
         $child_skins    = file_exists(TC_BASE_CHILD . TC_ASSETS_PREFIX . 'front/css') ? $this -> tc_get_skins(TC_BASE_CHILD . TC_ASSETS_PREFIX . 'front/css') : $child_skins;
         //backward compatibilty (the assets had a different relative path before 3.5)
         $child_skins    = empty( $child_skins ) && file_exists(TC_BASE_CHILD . 'inc/assets/css') ?  $this -> tc_get_skins(TC_BASE_CHILD . 'inc/assets/css') : $child_skins;
       }
-       
+
       $skin_list      = array_merge( $parent_skins , $child_skins );
 
       return apply_filters( 'tc_skin_list', $skin_list );
