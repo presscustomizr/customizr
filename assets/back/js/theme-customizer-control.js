@@ -235,6 +235,37 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     }
   };
 
+
+  //FIX FOR SECTION CONTENT HIDDEN BY THE FOOTER
+  //Problem fixed : since WP4.5, the footer of the customizer includes the device switcher
+  //but there's aso the rating link there.
+  //Therefore, in sections higher than the viewport, some content might be hidden
+  //This is fixed on each section expanded event
+  api.bind('ready', function() {
+    //wp.customize.Section is not available before wp 4.1
+    if ( 'function' != typeof (api.Section) )
+      return;
+    _.map( api.settings.sections, function( section, id ) {
+
+      var _section = api.section(id);
+      _section.expanded.callbacks.add( function( _expanded ) {
+          if ( ! _expanded )
+            return;
+          var $container = _section.container.closest( '.wp-full-overlay-sidebar-content' ),
+                $content = _section.container.find( '.accordion-section-content' );
+            //content resizing to the container height
+            _resizeContentHeight = function() {
+              $content.css( 'height', $container.innerHeight() );
+          };
+          _resizeContentHeight();
+          //this is set to off in the original expand callback if 'expanded' is false
+          $( window ).on( 'resize.customizer-section', _.debounce( _resizeContentHeight, 110 ) );
+        }
+      );//add
+    });//_.map
+  });
+
+
   /* Multiple Picker */
   /**
    * @constructor
