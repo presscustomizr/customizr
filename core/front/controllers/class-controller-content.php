@@ -271,29 +271,27 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     * @since Customizr 3.3+
     */
     public function tc_are_comments_enabled() {
-      if ( ! isset(self::$_cache['comments_enabled'] ) ) {
 
-        global $post;
-        // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
-        if ( isset( $post ) ) {
-          $_bool = ( post_password_required() || TC_utils::$inst -> tc_is_home() || ! is_singular() )  ? false : true;
+      global $post;
+      // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
+      if ( isset( $post ) ) {
+        $_bool = post_password_required() ? false : true;
 
-          //2) if user has enabled comment for this specific post / page => true
-          //@todo contx : update default value user's value)
-          $_bool = ( 'closed' != $post -> comment_status ) ? true : $_bool;
+        $_bool = in_the_loop() ? TC_utils::$inst -> tc_is_home() || ! is_singular() : $_bool;
 
-          //3) check global user options for pages and posts
-          if ( is_page() )
-            $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
-          else
-            $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
-        } else
-          $_bool = false;
+        //2) if user has enabled comment for this specific post / page => true
+        //@todo contx : update default value user's value)
+        $_bool = ( 'closed' != $post -> comment_status ) ? true : $_bool;
 
-        self::$_cache['comments_enabled'] = $_bool;
-      }
+        //3) check global user options for pages and posts
+        if ( 'page' == get_post_type() )
+          $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
+        else
+          $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
+      } else
+        $_bool = false;
 
-      return apply_filters( 'tc_are_comments_enabled', self::$_cache['comments_enabled'] );
+      return apply_filters( 'tc_are_comments_enabled', $_bool );
     }
 
     /**
