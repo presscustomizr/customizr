@@ -223,7 +223,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
             ));
 
       $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_smoothscroll') ) );
-      $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array() );
+      $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array( 'touchpadSupport' => false ) );
 
       //smart load
       $smart_load_enabled   = esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) );
