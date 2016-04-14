@@ -30,14 +30,14 @@
           if ( tc_has('navbar_menu') )
             tc_render_template('header/menu', 'navbar_menu');
 
-          if ( tc_has('navbar_secondary_menu') )
-            tc_render_template('header/menu', 'navbar_secondary_menu');
-
           if ( tc_has('mobile_menu_button') )
             tc_render_template('header/menu_button', 'mobile_menu_button');
 
           if ( tc_has('sidenav_navbar_menu_button') )
             tc_render_template('header/menu_button', 'sidenav_navbar_menu_button');
+
+          if ( tc_has('navbar_secondary_menu') )
+            tc_render_template('header/menu', 'navbar_secondary_menu');
         ?>
         </div><!-- /.row-fluid -->
     </div><!-- /.navbar-inner -->
