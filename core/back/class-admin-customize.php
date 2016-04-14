@@ -380,7 +380,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				'tc-customizer-preview' ,
 				sprintf('%1$sback/js/theme-customizer-preview%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-preview', 'underscore'),
-				CUSTOMIZR_VER ,
+				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				true
 			);
 
@@ -418,14 +418,14 @@ if ( ! class_exists( 'TC_customize' ) ) :
 				'tc-customizer-controls-style',
 				sprintf('%1$sback/css/theme-customizer-control%2$s.css' , TC_BASE_URL . TC_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
-				CUSTOMIZR_VER,
+				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				$media = 'all'
 			);
 			wp_enqueue_script(
 				'tc-customizer-controls',
 				sprintf('%1$sback/js/theme-customizer-control%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' , 'underscore'),
-				CUSTOMIZR_VER,
+				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				true
 			);
 
