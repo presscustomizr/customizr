@@ -987,21 +987,12 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         return '__return_true';
       }
 
-      //register wc cart in front
-      add_action( 'wp', 'tc_woocommerce_register_wc_cart' );
+      if ( ! is_admin() )
+        //register wc cart in front
+        add_action( 'wp', 'tc_woocommerce_register_wc_cart' );
 
       function tc_woocommerce_register_wc_cart() {
         tc_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'wc_cart', 'controller' => 'tc_woocommerce_wc_cart_enabled' ) );
-      }
-
-      // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
-      //add_filter( 'woocommerce_add_to_cart_fragments', 'tc_woocommerce_add_to_cart_fragment' );
-      function tc_woocommerce_add_to_cart_fragment( $fragments ) {
-        if ( tc_woocommerce_wc_cart_enabled() ) {
-          $_cart_count = WC()->cart->get_cart_contents_count();
-          $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
-        }
-        return $fragments;
       }
     }//end woocommerce compat
 

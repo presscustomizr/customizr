@@ -5,7 +5,7 @@ class TC_woocommerce_cart_model_class extends TC_Model {
 
   public function __construct( $model ) {
     parent::__construct( $model);
- //   add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'tc_woocommerce_add_to_cart_fragment' ) );
+    add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'tc_woocommerce_add_to_cart_fragment' ) );
     add_action( 'pre_rendering_view_header'        , array( $this, 'pre_rendering_view_header_cb' ) );
     add_action( 'pre_rendering_view_tagline'       , array( $this, 'pre_rendering_view_tagline_cb' ) );
   }
