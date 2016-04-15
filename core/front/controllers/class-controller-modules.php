@@ -147,7 +147,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
     VARIOUS HELPERS
     *******************************/
     function tc_display_view_post_list_grid() {
-      return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
+      return apply_filters( 'tc_is_grid_enabled', TC_utils_query::$instance -> tc_is_list_of_posts() && 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
     }
 
 
