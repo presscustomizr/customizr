@@ -900,10 +900,14 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                                                   break;
         }//end of switch on hook
       }//end of nested function
-      //Helper
+      //Helpers
       function tc_wc_is_checkout_cart() {
         return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
       }
+      function tc_woocommerce_wc_cart_enabled() {
+        return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) );
+      }
+
       // use Customizr title
       // initially used to display the edit button
       add_filter( 'the_title', 'tc_woocommerce_the_title' );
@@ -983,160 +987,22 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         return '__return_true';
       }
 
-      /* rendering the cart icon in the header */
-      //narrow the tagline
-      add_filter( 'tc_tagline_class', 'tc_woocommerce_force_tagline_width', 100 );
-      function tc_woocommerce_force_tagline_width( $_class ) {
-        return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ? str_replace('span7', 'span6', $_class) : $_class ;
+      //register wc cart in front
+      add_action( 'wp', 'tc_woocommerce_register_wc_cart' );
+
+      function tc_woocommerce_register_wc_cart() {
+        tc_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'wc_cart', 'controller' => 'tc_woocommerce_wc_cart_enabled' ) );
       }
 
-      //print the cart menu in the header
-      add_action( '__navbar__', 'tc_woocommerce_header_cart', is_rtl() ? 9 : 19 );
-      function tc_woocommerce_header_cart() {
-        if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
-          return;
-
-        $_main_item_class = '';
-        $_cart_count      = WC()->cart->get_cart_contents_count();
-        //highlight the cart icon when in the Cart or Ceckout page
-        if ( tc_wc_is_checkout_cart() ) {
-          $_main_item_class = 'current-menu-item';
+      // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
+      //add_filter( 'woocommerce_add_to_cart_fragments', 'tc_woocommerce_add_to_cart_fragment' );
+      function tc_woocommerce_add_to_cart_fragment( $fragments ) {
+        if ( tc_woocommerce_wc_cart_enabled() ) {
+          $_cart_count = WC()->cart->get_cart_contents_count();
+          $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
         }
-
-       ?>
-       <div class="tc-wc-menu tc-open-on-hover span1">
-         <ul class="tc-wc-header-cart nav tc-hover-menu">
-           <li class="<?php echo esc_attr( $_main_item_class ); ?> menu-item">
-             <a class="cart-contents" href="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" title="<?php _e( 'View your shopping cart', 'customizr' ); ?>">
-             <?php if ( $_cart_count > 0 ) { //do not display cart count if there are no items 'cause atm wc doesn't update this with ajax (storefront), do we want to look into this??>
-               <span class="count btn-link"><?php echo $_cart_count; ?></span>
-             <?php } ?>
-            </a>
-            <?php
-            ?>
-            <?php if ( ! tc_wc_is_checkout_cart() ) : //do not display the dropdown in the cart or checkout page ?>
-              <ul class="dropdown-menu">
-               <li>
-                 <?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
-                </li>
-              </ul>
-            <?php endif; ?>
-           </li>
-          </ul>
-        </div>
-      <?php
+        return $fragments;
       }
-
-      //add woommerce header cart classes to the header (sticky enabled)
-      add_filter( 'tc_header_classes'   , 'tc_woocommerce_set_header_classes');
-      function tc_woocommerce_set_header_classes( $_classes ) {
-        if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
-          $_classes[]          = ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
-        return $_classes;
-      }
-
-      //add woocommerce header cart CSS
-      add_filter('tc_user_options_style', 'tc_woocommerce_header_cart_css');
-      function tc_woocommerce_header_cart_css( $_css ) {
-        if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
-          return $_css;
-
-        /* The only real decision I took here is the following:
-        * I let the "count" number possibily overflow the parent (span1) width
-        * so that as it grows it won't break on a new line. This is quite an hack to
-        * keep the cart space as small as possible (span1) and do not hurt the tagline too much (from span7 to span6). Also nobody will, allegedly, have more than 10^3 products in its cart
-        */
-        $_header_layout      = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
-        $_resp_pos_css       = 'right' == $_header_layout ? 'float: left;' : '';
-        $_wc_t_align         = 'left';
-
-        //dropdown top arrow, as we open the drodpdown on the right we have to move the top arrow accordingly
-        $_dd_top_arrow       = '.navbar .tc-wc-menu .nav > li > .dropdown-menu:before { right: 9px; left: auto;} .navbar .tc-wc-menu .nav > li > .dropdown-menu:after { right: 10px; left: auto; }';
-
-        //rtl custom css
-        if ( is_rtl() ) {
-          $_wc_t_align       = 'right';
-          $_dd_top_arrow     = '';
-        }
-
-        return sprintf( "%s\n%s",
-              $_css,
-              ".sticky-enabled .tc-header.tc-wccart-off .tc-wc-menu { display: none; }
-               .sticky-enabled .tc-tagline-off.tc-wccart-on .tc-wc-menu { margin-left: 0; margin-top: 3px; }
-               .sticky-enabled .tc-tagline-off.tc-wccart-on .btn-toggle-nav { margin-top: 5px; }
-               .tc-header .tc-wc-menu .nav { text-align: right; }
-               $_dd_top_arrow
-               .tc-header .tc-wc-menu .dropdown-menu {
-                  right: 0; left: auto; width: 250px; padding: 2px;
-               }
-               .tc-header .tc-wc-menu {
-                 float: right; clear:none; margin-top: 1px;
-               }
-               .tc-header .tc-wc-menu .nav > li {
-                 float:none;
-               }
-               .tc-wc-menu ul.dropdown-menu .buttons a,
-               .tc-wc-menu ul {
-                 width: 100%;
-                 -webkit-box-sizing: border-box;
-                 -moz-box-sizing: border-box;
-                 box-sizing: border-box;
-               }
-               .tc-wc-menu ul.dropdown-menu .buttons a {
-                 margin: 10px 5px 0 0px; text-align: center;
-               }
-               .tc-wc-menu .nav > li > a:before {
-                 content: '\\f07a';
-                 position:absolute;
-                 font-size:1.6em; left: 0;
-               }
-               .tc-header .tc-wc-menu .nav > li > a {
-                 position: relative;
-                 padding-right: 0 !important;
-                 padding-left: 0 !important;
-                 display:inline-block;
-                 border-bottom: none;
-                 text-align: right;
-                 height: 1em;
-                 min-width:1.8em;
-               }
-               .tc-wc-menu .count {
-                 font-size: 0.7em;
-                 margin-left: 2.1em;
-                 position: relative;
-                 top: 1em;
-                 pointer-events: none;
-               }
-               .tc-wc-menu .woocommerce.widget_shopping_cart li {
-                 padding: 0.5em;
-               }
-               .tc-header .tc-wc-menu .woocommerce.widget_shopping_cart p,
-               .tc-header .tc-wc-menu .woocommerce.widget_shopping_cart li {
-                 padding-right: 1em;
-                 padding-left: 1em;
-                 text-align: $_wc_t_align;
-                 font-size: inherit; font-family: inherit;
-               }
-               .tc-wc-menu .widget_shopping_cart .product_list_widget li a.remove {
-                 position: relative; float: left; top: auto; margin-right: 0.2em;
-               }
-               /* hack for the first letter issue */
-               .tc-wc-menu .count:before {
-                 content: '';
-               }
-               .tc-wc-menu .widget_shopping_cart .product_list_widget {
-                 max-height: 10em;
-                 overflow-y: auto;
-                 padding: 1em 0;
-               }
-               @media (max-width: 979px) {
-                .tc-wc-menu[class*=span] { width: auto; margin-top:7px; $_resp_pos_css }
-                .tc-wc-menu .dropdown-menu { display: none !important;}
-              }
-              @media (max-width: 767px) { .sticky-enabled .tc-wccart-on .brand { width: 50%;} }
-        ");
-      }
-      /*end rendering the cart icon in the header */
     }//end woocommerce compat
 
 
