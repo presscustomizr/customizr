@@ -199,6 +199,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
 
+      //disables comments
       add_filter( 'tc_are_comments_enabled', 'tc_bbpress_disable_comments', 100);
       function tc_bbpress_disable_comments($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
