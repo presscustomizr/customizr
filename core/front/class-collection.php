@@ -109,7 +109,7 @@ if ( ! class_exists( 'TC_Collection' ) ) :
 
       $model = $this -> tc_instantiate_model($model);
 
-      //Silent exit
+      //Silent aborting for those models which "decided" in their constructor they're not allowed to be registered
       if ( $this -> tc_has_registered_deletion( $model -> id ) )
         return;
 
