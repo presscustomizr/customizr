@@ -741,30 +741,24 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_single();
         }
       }
-      // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'tc_tec_disable_tax_archive_title');
-      function tc_tec_disable_tax_archive_title( $bool ) {
-        return tc_is_tec_events_list() ? false : $bool;
+      /* Force the Page behavior */
+      add_filter( 'tc_is_list_of_posts', 'tc_tec_disable_list_of_posts' );
+      function tc_tec_disable_list_of_posts( $bool ) {
+        return ( function_exists('tribe_is_event_query') && tribe_is_event_query() ) ? false : $bool;
       }
-
-      // Events archive is displayed, wrongly, we our post lists classes, we have to prevent this
-      add_filter( 'tc_post_list_controller', 'tc_tec_disable_post_list');
-      add_filter( 'tc_is_grid_enabled', 'tc_tec_disable_post_list');
-      function tc_tec_disable_post_list( $bool ) {
-        return tc_is_tec_events_list() ? false : $bool;
+      add_filter( 'tc_is_single_post', 'tc_tec_disable_single_post' );
+      function tc_tec_disable_single_post( $bool ) {
+        return ( function_exists('tribe_is_event_query') && tribe_is_event_query() ) ? false : $bool;
       }
-
-      // Now we have to display a post or page content
-      add_filter( 'tc_show_single_post_content', 'tc_tec_show_content' );
-      function tc_tec_show_content( $bool ) {
-        //2 cases:
-        //1 - in events lists - we force showing single post content
-        //2 - in single events we have to prevent showing both page and post content
-        if ( tc_is_tec_events_list() )
-          return true;
-        else if( tc_is_tec_single_event() )
-          return false;
-        return $bool;
+      add_filter( 'tc_show_single_page_content', 'tc_tec_enable_single_page' );
+      function tc_tec_enable_single_page( $bool ) {
+        return ( function_exists('tribe_is_event_query') && tribe_is_event_query() ) ? true : $bool;
+      }
+      /* End force */
+      //disables post navigation
+      add_filter( 'tc_show_post_navigation', 'tc_tec_disable_post_navigation' );
+      function tc_tec_disable_post_navigation($bool) {
+        return ( function_exists('tribe_is_event_query') && tribe_is_event_query() ) ? false : $bool;
       }
 
       // Force the tax name in the breadcrumb when list of events shown as 'Month'
@@ -787,11 +781,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           return $breadcrumb;
         }
       }
-      //disables post navigation in single tec pages
-      add_filter( 'tc_show_post_navigation', 'tc_tec_disable_post_navigation' );
-      function tc_tec_disable_post_navigation($bool) {
-        return ( tc_is_tec_single_event() ) ? false : $bool;
-      }
+
     }//end the-events-calendar compat
 
 
