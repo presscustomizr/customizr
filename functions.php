@@ -123,13 +123,13 @@ if ( ! function_exists('tc_render_template') ) {
 //@return boolean
 //states if registered and possible
 //useful is a check has to be done in the template before "instant" registration.
-function tc_has( $_t, $_id = null) {
+function tc_has( $_t, $_id = null, $only_registered = false ) {
   $_model_id = is_null($_id) ? $_t : $_id;
   if ( CZR() -> collection -> tc_is_registered( $_model_id ) ) {
     return true;
   }
   //if the model is not registered yet, let's test its eligibility by accessing directly its controller boolean if exists
-  else {
+  elseif ( ! $only_registered ) {
     return CZR() -> controllers -> tc_is_possible( $_model_id );
   }
 }
