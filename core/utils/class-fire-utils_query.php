@@ -185,13 +185,16 @@ class TC_utils_query {
 
   public function tc_is_single_attachment() {
     global $post;
-    return ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() );
+    return apply_filters( 'tc_is_single_attacment',
+        ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() ) );
   }
 
   public function tc_is_single_page() {
-    return 'page' == TC_utils_query::$instance -> tc_get_post_type()
+    return apply_filters( 'tc_is_single_page',
+        'page' == TC_utils_query::$instance -> tc_get_post_type()
         && is_singular()
-        && ! TC_utils_query::$instance -> tc_is_home_empty();
+        && ! TC_utils_query::$instance -> tc_is_home_empty()
+    );
   }
 
   /**
