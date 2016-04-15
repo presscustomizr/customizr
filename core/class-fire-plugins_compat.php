@@ -204,6 +204,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_bbpress_disable_comments($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
+
+      //disable title icons
+      add_filter( 'tc_opt_tc_show_title_icon', 'tc_bbpress_disable_title_icon' );
+      function tc_bbpress_disable_title_icon($bool) {
+         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+      }
+
     }
 
     /**
@@ -213,6 +220,11 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function tc_set_buddypress_compat() {
+      //disable title icons
+      add_filter( 'tc_opt_tc_show_title_icon', 'tc_buddypress_disable_title_icon' );
+      function tc_buddypress_disable_title_icon($bool) {
+         return ( function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
+      }
       add_filter( 'tc_are_comments_enabled', 'tc_buddypress_disable_comments' );
       function tc_buddypress_disable_comments($bool){
         return ( is_page() && function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
@@ -232,6 +244,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_buddypress_maybe_disable_img_smartload() {
         add_filter( 'tc_opt_tc_img_smart_load', '__return_false' );
       }
+
     }
 
     /**
@@ -881,6 +894,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       add_action('woocommerce_before_main_content', 'tc_woocommerce_wrappers', 10);
       add_action('woocommerce_after_main_content', 'tc_woocommerce_wrappers', 10);
 
+
       //disable WooCommerce default breadcrumb
       if ( apply_filters( 'tc_disable_woocommerce_breadcrumb', true ) )
         remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
@@ -894,17 +908,24 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
                                                   break;
         }//end of switch on hook
       }//end of nested function
+
       //Helpers
       function tc_wc_is_checkout_cart() {
         return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
       }
+
       function tc_woocommerce_wc_cart_enabled() {
         return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) );
       }
 
+      //disable title icons
+      add_filter( 'tc_opt_tc_show_title_icon', 'tc_woocommerce_disable_title_icon' );
+      function tc_woocommerce_disable_title_icon($bool) {
+         return ( function_exists('tc_wc_is_checkout_cart') && tc_wc_is_checkout_cart() ) ? false : $bool;
+      }
       // use Customizr title
       // initially used to display the edit button
-      add_filter( 'the_title', 'tc_woocommerce_the_title' );
+    //  add_filter( 'the_title', 'tc_woocommerce_the_title' );
       function tc_woocommerce_the_title( $_title ){
         if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
             return apply_filters( 'tc_title_text', $_title );
@@ -922,6 +943,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_woocommerce_enable_shop_slider( $bool ){
         return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
       }
+
       //to allow the slider in the woocommerce shop page we need the shop page id
       add_filter('tc_slider_get_real_id', 'tc_woocommerce_shop_page_id');
       function tc_woocommerce_shop_page_id( $id ){
@@ -932,7 +954,6 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( !is_active_sidebar( 'shop') ) {
         remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
       }
-
 
       //disables post navigation
       add_filter( 'tc_show_post_navigation', 'tc_woocommerce_disable_post_navigation' );
