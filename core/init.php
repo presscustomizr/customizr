@@ -196,7 +196,8 @@ if ( ! class_exists( 'TC___' ) ) :
           * HEADER
           *********************************************/
           array(
-            'template'    => 'header'
+            'model_class'    => 'header',
+            'id'             => 'header'
           ),
 
           /*********************************************
@@ -228,14 +229,16 @@ if ( ! class_exists( 'TC___' ) ) :
           * CONTENT
           *********************************************/
           array(
-            'template'    => 'content',
+            'id'             => 'content',
+            'model_class'    => 'content',
           ),
 
           /*********************************************
           * FOOTER
           *********************************************/
           array(
-            'template'    => 'footer',
+            'id'           => 'footer',
+            'model_class'  => 'footer',
           ),
         )
       );
