@@ -163,7 +163,7 @@ class TC_utils_query {
   public function tc_is_list_of_posts() {
     global $wp_query;
     //must be archive or search result. Returns false if home is empty in options.
-    return apply_filters( 'tc_post_list_controller',
+    return apply_filters( 'tc_is_list_of_posts',
       ! is_singular()
       && ! is_404()
       && 0 != $wp_query -> post_count
@@ -175,11 +175,11 @@ class TC_utils_query {
 
   public function tc_is_single_post() {
     global $post;
-    return isset($post)
+    return apply_filters( 'tc_is_single_post', isset($post)
         && is_singular()
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
-        && ! TC_utils_query::$instance -> tc_is_home_empty();
+        && ! TC_utils_query::$instance -> tc_is_home_empty() );
   }
 
 

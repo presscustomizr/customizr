@@ -71,7 +71,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_page() {
-      return apply_filters( 'tc_show_page_content', TC_utils_query::$instance -> tc_is_single_page() );
+      return apply_filters( 'tc_show_single_page_content', TC_utils_query::$instance -> tc_is_single_page() );
     }
 
     function tc_display_view_post() {
@@ -112,7 +112,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
     function tc_display_view_post_metas() {
      if ( isset( self::$_cache['post_metas'] ) )
-       return self::$_cache['post_metas'];
+       return apply_filters( 'tc_show_post_metas', self::$_cache['post_metas'] );
 
      //disable in attachment context, attachment post metas have their own class
      if ( is_attachment() )
@@ -136,7 +136,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
      else
        self::$_cache['post_metas'] = false;
 
-     return self::$_cache['post_metas'];
+     return apply_filters( 'tc_show_post_metas', self::$_cache['post_metas'] );
     }
 
 
@@ -324,7 +324,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     * @return bool
     */
     function tc_is_post_navigation_enabled(){
-      return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
+      return apply_filters( 'tc_show_post_navigation', 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) );
     }
 
   }//end of class

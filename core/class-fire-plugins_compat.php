@@ -171,27 +171,21 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function tc_set_bbpress_compat() {
-      // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'tc_bbpress_disable_tax_archive_title');
-      function tc_bbpress_disable_tax_archive_title( $bool ){
+
+      /* Force the Page behavior */
+      add_filter( 'tc_is_list_of_posts', 'tc_bbpress_disable_list_of_posts' );
+      function tc_bbpress_disable_list_of_posts( $bool ) {
         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
-
-      //disables thumbnails and excerpt for post lists
-      add_filter( 'tc_show_post_list_thumb', 'tc_bbpress_disable_thumbnail' );
-      function tc_bbpress_disable_thumbnail($bool) {
-         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-      add_filter( 'tc_show_excerpt', 'tc_bbpress_disable_excerpt' );
-      function tc_bbpress_disable_excerpt($bool) {
-         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-
-      //disables Customizr author infos on forums
-      add_filter( 'tc_show_author_metas_in_post', 'tc_bbpress_disable_author_meta' );
-      function tc_bbpress_disable_author_meta($bool) {
+      add_filter( 'tc_is_single_post', 'tc_bbpress_disable_single_post' );
+      function tc_bbpress_disable_single_post( $bool ) {
         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
+      add_filter( 'tc_show_single_page_content', 'tc_bbpress_enable_single_page' );
+      function tc_bbpress_enable_single_page( $bool ) {
+        return ( function_exists('is_bbpress') && is_bbpress() ) ? true : $bool;
+      }
+      /* End force */
 
       //disables post navigation
       add_filter( 'tc_show_post_navigation', 'tc_bbpress_disable_post_navigation' );
@@ -205,9 +199,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
 
-      //disable the grid
-      add_filter( 'tc_set_grid_hooks' , 'tc_bbpress_disable_grid', 100 );
-      function tc_bbpress_disable_grid($bool) {
+      add_filter( 'tc_are_comments_enabled', 'tc_bbpress_disable_comments', 100);
+      function tc_bbpress_disable_comments($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
     }
@@ -1045,20 +1038,6 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_disqus_bubble_comment_anchor( $anchor ) {
         return tc_disqus_comments_enabled() ? '#disqus_thread' : $anchor;
       }
-      /*
-      //wrap disqus comments template in a convenient div
-      add_action( 'tc_before_comments_template' , 'tc_disqus_comments_wrapper' );
-      add_action( 'tc_after_comments_template'  , 'tc_disqus_comments_wrapper' );
-      function tc_disqus_comments_wrapper() {
-        if ( ! tc_disqus_comments_enabled() )
-          return;
-
-        switch ( current_filter() ) {
-          case 'tc_before_comments_template' : echo '<div id="tc-disqus-comments">';
-                                               break;
-          case 'tc_after_comments_template'  : echo '</div>';
-        }
-      }*/
     }//end disqus compat
 
 
