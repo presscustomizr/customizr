@@ -86,22 +86,25 @@ if ( ! class_exists( 'TC_View' ) ) :
 
       if ( ! empty( $this -> model -> template ) ) {
         //get the basename
-        $_template = basename( $this -> model -> template );
+        $_template      = basename( $this -> model -> template );
+        //get the filename
+        $_template_file = tc_get_theme_file("templates/{$this -> model -> template}.php" );
 
-        tc_set_current_model( $this -> model );
-
+        if ( false !== $_template_file ) {
+          tc_set_current_model( $this -> model );
           ob_start();
-            get_template_part( "templates/{$this -> model -> template}" );
+            load_template( $_template_file, $require_once = false );
           $_temp_content = ob_get_contents();
 
-          if ( empty($_temp_content ) && ( defined('TC_DEV') && true === TC_DEV ) ) {
-            echo "The template ( " . $this -> model -> template . ") is empty or could not be found.";
-          }
           ob_end_clean();
           if ( ! empty($_temp_content) )
             echo $_temp_content;
 
-        tc_reset_current_model();
+          tc_reset_current_model();
+        }
+        elseif ( empty($_temp_content ) && ( defined('TC_DEV') && true === TC_DEV ) ) {
+          echo "The template ( " . $this -> model -> template . ") is empty or could not be found.";
+        }
       }
       // $path = '';
       // $part = '';
