@@ -1075,6 +1075,14 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
         return $options;
       }
+      //exclude uris cpt among those post types to which add customizer
+      //meta boxes (layout/slider)
+      add_filter( 'tc_post_metaboxes_cpt', 'tc_uris_exclude_uris_cpt' );
+      function tc_uris_exclude_uris_cpt( $cpt = array() ) {
+        if ( ! empty( $cpt ) && array_key_exists( 'ris_gallery', $cpt ) )
+          unset( $cpt[ 'ris_gallery' ] );
+        return $cpt;
+      }
     }//end uris compat
 
 
