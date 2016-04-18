@@ -68,7 +68,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           //'public'   => true,
           '_builtin' => false
           );
-          $custom_post_types    = get_post_types($args);
+          $custom_post_types    = apply_filters( 'tc_post_metaboxes_cpt', get_post_types($args) );
 
           //2 - Merging with the builtin post types, pages and posts
           $builtin_post_types   = array(
@@ -261,7 +261,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           if ( isset($options['tc_sliders']) ) {
             $sliders                   = $options['tc_sliders'];
           }else
-            $sliders                   = array();  
+            $sliders                   = array();
 
           //post slider fields setup
           $post_slider_id            = 'post_slider_field';
@@ -283,9 +283,9 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           //sliders field
           $slider_id                 = 'slider_field';
 
-          if( $post_slider_check_value == true ): 
+          if( $post_slider_check_value == true ):
               $selectable_sliders    = apply_filters( 'tc_post_selectable_sliders', $sliders );
-              if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ): 
+              if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ):
 
           ?>
               <div class="meta-box-item-title">
@@ -313,7 +313,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                       printf( '<option value="%1$s" %2$s> %3$s</option>',
                           esc_attr( $id ),
                           selected( $current_post_slider, esc_attr( $id ), $echo = false ),
-                          $label  
+                          $label
                       );
                     }
                   ?>
@@ -358,10 +358,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                         </div>
                       </div>
                     <?php  do_action( '__show_slides' , $current_post_slides, $current_attachement_id = null); ?>
-                <?php else: //there are no slides 
+                <?php else: //there are no slides
                   do_action( '__no_slides', $postid, $current_post_slider );
                 ?>
-              <?php endif; //slides? ?>      
+              <?php endif; //slides? ?>
             <?php else://if no slider created yet and no slider of posts addon?>
 
                  <div class="meta-box-item-content">
