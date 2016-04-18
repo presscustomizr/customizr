@@ -342,21 +342,35 @@ if ( ! class_exists( 'TC___' ) ) :
     }//end of fn
 
     //called when requiring a file will - always give the precedence to the child-theme file if it exists
+    //then to a custom root (plugins)
+    //then to the theme root
     function tc_get_theme_file( $path_suffix ) {
-      if ( ! file_exists( $filename = TC_BASE_CHILD . $path_suffix ) )
-        if ( ! file_exists( $filename = TC_BASE . $path_suffix ) )
-          return false;
+      $path_prefixes = apply_filters( 'tc_include_paths'     , array( '' ) );
+      $roots         = apply_filters( 'tc_include_roots_path', array( TC_BASE_CHILD, TC_BASE ) );
 
-      return $filename;
+      foreach ( $roots as $root )
+        foreach ( $path_prefixes as $path_prefix )
+          if ( file_exists( $filename = $root . $path_prefix . $path_suffix ) )
+            return $filename;
+
+      return false;
     }
 
     //called when requiring a file url - will always give the precedence to the child-theme file if it exists
+    //then to a custom root (plugins)
+    //then to the theme root
     function tc_get_theme_file_url( $url_suffix ) {
-      if ( file_exists( TC_BASE_CHILD . $url_suffix ) )
-        return TC_BASE_URL_CHILD . $url_suffix;
-      if ( file_exists( $filename = TC_BASE . $url_suffix ) )
-        return TC_BASE_URL . $url_suffix;
+      $url_prefixes   = apply_filters( 'tc_include_paths'     , array( '' ) );
+      $roots          = apply_filters( 'tc_include_roots_path', array( TC_BASE_CHILD, TC_BASE ) );
+      $roots_urls     = apply_filters( 'tc_include_roots_url' , array( TC_BASE_URL_CHILD, TC_BASE_URL ) );
 
+      $combined_roots = array_combine( $roots, $roots_urls );
+
+      foreach ( $roots as $root )
+        foreach ( $url_prefixes as $url_prefix ) {
+          if ( file_exists( $filename = $root . $url_prefix . $url_suffix ) )
+            return array_key_exists( $root, $combined_roots) ? $combined_roots[ $root ] . $url_prefix . $url_suffix : false;
+        }
       return false;
     }
 
