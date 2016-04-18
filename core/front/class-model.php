@@ -153,7 +153,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       if ( ! method_exists( $this, 'tc_setup_children') )
         return;
 
-      $children = $this -> tc_setup_children();
+      $children = apply_filters( "tc_{$this -> id}_children_list", $this -> tc_setup_children() );
       $this -> tc_set_property( 'children', $children );
       $this -> tc_set_property( 'parent', $this -> id );
     }//fn

@@ -72,8 +72,8 @@ class TC_content_model_class extends TC_Model {
       *********************************************/
 
       array(
-        'template'    => 'modules/grid/grid_wrapper',
         'id'          => 'post_list_grid',
+        'model_class' => 'modules/grid/grid_wrapper',
       ),
       /* END GRID */
 
