@@ -279,7 +279,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         add_filter( $filter  , 'tc_remove_char_limit');
 
       //outputs the qtranslate translation for archive titles;
-      $tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results');
+      $tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results_archive');
       foreach ( $tc_archive_titles as $title )
         add_filter("tc_{$title}_title", 'tc_apply_qtranslate' , 20);
 
