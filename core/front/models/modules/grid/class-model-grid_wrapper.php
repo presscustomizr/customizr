@@ -23,14 +23,8 @@ class TC_grid_wrapper_model_class extends TC_Model {
   function tc_extend_params( $model = array() ) {
     $this -> post_id              = TC_utils::tc_id();
 
-    $element_class                = array();
     //wrapper classes based on the user options
-    if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
-      array_push( $element_class, 'tc-grid-shadow' );
-    if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_bottom_border') ) )
-      array_push( $element_class, 'tc-grid-border' );
-
-    $model[ 'element_class' ]     = $element_class;
+    $model[ 'element_class' ]     = $this -> tc_grid_container_set_classes( array() );
 
     return $model;
   }
@@ -187,9 +181,8 @@ class TC_grid_wrapper_model_class extends TC_Model {
 
 
   /**
-  * hook : tc_article_container_class
   * inside loop
-  * add custom classes to the grid .article-container element
+  * add custom classes to the grid container element
   */
   function tc_grid_container_set_classes( $_classes ) {
     array_push( $_classes, 'tc-post-list-grid' );
