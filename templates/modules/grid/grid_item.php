@@ -81,7 +81,7 @@
   ?>
     <h2 class="entry-title">
       <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php tc_echo( 'title' ) ?></a>
-  <?php if ( tc_has( 'edit_button' ) ) tc_render_template( 'modules/edit_button', 'edit_button' ) ?>
+  <?php if ( ! tc_get( 'has_edit_in_caption' ) && tc_has( 'edit_button' ) ) tc_render_template( 'modules/edit_button', 'edit_button' ) ?>
   <?php if ( tc_has( 'recently_updated' ) ) tc_render_template( 'modules/recently_updated', 'recently_updated' ) ?>
     </h2>
   <?php
