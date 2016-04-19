@@ -86,10 +86,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         TC___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
       /* Instantiate slider of posts */
       if ( ! class_exists( 'TC_slider_of_posts_model_class' ) ) {
-        $slider          = CZR() -> collection -> tc_instantiate_model( array( 'model_class'  => 'modules/slider') );
+        $slider          = CZR() -> collection -> tc_instantiate_model( array( 'model_class'  => 'modules/slider/slider') );
         if ( ! $slider )
           return;
-        $slider_of_posts = CZR() -> collection -> tc_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => array( 'parent' => 'modules/slider', 'name' => 'modules/slider_of_posts' ) ) );
+        $slider_of_posts = CZR() -> collection -> tc_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ) ) );
       } else
         $slider_of_posts = CZR() -> collection -> tc_get_model_instance( 'slider_of_posts' );
 
