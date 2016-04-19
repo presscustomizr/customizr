@@ -82,20 +82,29 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'TC_utils_thumbnails' ) )
-        TC___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
-      /* Instantiate slider of posts */
-      if ( ! class_exists( 'TC_slider_of_posts_model_class' ) ) {
-        $slider          = CZR() -> collection -> tc_instantiate_model( array( 'model_class'  => 'modules/slider/slider') );
-        if ( ! $slider )
-          return;
-        $slider_of_posts = CZR() -> collection -> tc_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ) ) );
-      } else
-        $slider_of_posts = CZR() -> collection -> tc_get_model_instance( 'slider_of_posts' );
+      $slider_of_posts = $this -> tc_maybe_get_slider_of_posts_instance();
 
       //Cache posts slider
       if ( $slider_of_posts )
         $slider_of_posts -> tc_cache_posts_slider();
+    }
+
+
+    public function tc_maybe_get_slider_of_posts_instance() {
+      $slider_of_posts = null;
+
+      if ( ! class_exists( 'TC_utils_thumbnails' ) )
+        TC___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
+      /* Instantiate slider of posts */
+       if ( ! class_exists( 'TC_slider_of_posts_model_class' ) ) {
+        $slider          = CZR() -> collection -> tc_instantiate_model( array( 'id' => 'slider', 'model_class' => 'modules/slider/slider') );
+        if ( ! $slider )
+          return;
+        $slider_of_posts = CZR() -> collection -> tc_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => 'modules/slider/slider_of_posts' ) );
+      } else
+        $slider_of_posts = CZR() -> collection -> tc_get_model_instance( 'slider_of_posts' );
+
+      return $slider_of_posts;
     }
 
 
