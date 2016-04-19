@@ -30,13 +30,13 @@
         <?php
 
         /* The expanded grid item has the title inside the caption */
-        if( tc_get( 'is_expanded' ) ):
+        if( tc_get( 'has_title_in_caption' ) ):
 
         ?>
 
         <h2 class="entry-title">
           <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php tc_echo( 'title' ) ?></a>
-          <?php if ( tc_has( 'recently_updated' ) ) tc_render_template( 'modules/recently_updated', 'recently_updated' ) ?>
+          <?php if ( tc_get( 'has_recently_updated' ) && tc_has( 'recently_updated' ) ) tc_render_template( 'modules/recently_updated', 'recently_updated' ) ?>
         </h2>
 
         <?php
@@ -50,7 +50,7 @@
       <?php
 
       /* additional effect for not expanded grid items with no img */
-      if( ! ( tc_get( 'is_expanded' ) || tc_get( 'thumb_img' ) ) ):
+      if( tc_get( 'has_fade_expt' ) /* ! ( tc_get( 'is_expanded' ) || tc_get( 'thumb_img' ) ) */ ):
 
       ?>
       <span class="tc-grid-fade_expt"></span>
@@ -63,7 +63,7 @@
     <?php
 
     /* Edit link in the figure for the expanded item */
-      if( tc_get( 'is_expanded' ) )
+      if( tc_get( 'has_edit_in_caption' ) )
         if ( tc_has( 'edit_button' ) ) tc_render_template( 'modules/edit_button', 'edit_button' );
     ?>
   </figure>
@@ -76,7 +76,7 @@
   <header class="entry-header">
   <?php
 
-   if ( tc_post_has_title() ) :
+   if ( ! tc_get( 'has_title_in_caption' ) && tc_post_has_title() ) :
 
   ?>
     <h2 class="entry-title">

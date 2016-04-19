@@ -9,6 +9,11 @@ class TC_grid_item_model_class extends TC_model {
   public  $is_expanded;
   public  $title;
 
+  public  $has_recently_updated = true;
+
+  public  $has_edit_in_caption;
+  public  $has_title_in_caption;
+  public  $has_fade_expt;
 
   function tc_setup_late_properties() {
     $grid                   = get_query_var( 'grid' );
@@ -16,14 +21,42 @@ class TC_grid_item_model_class extends TC_model {
     //thumb
     $thumb_properties       = $this -> tc_get_thumb_properties( $section_cols );
     extract( $thumb_properties );
+
     //figure class
     $figure_class           = $this -> tc_get_the_figure_class( $has_thumb, $section_cols );
 
     $icon_visibility        = $this -> tc_set_grid_icon_visibility();
 
-    $title                  = $this -> tc_set_grid_title_length( get_the_title() );
+    $title                  = $this -> tc_set_grid_title_length( get_the_title(), $is_expanded );
+
+    $has_title_in_caption   = $this -> tc_get_title_in_caption( $is_expanded );
+
+    $has_edit_in_caption    = $this -> tc_get_edit_in_caption( $is_expanded );
+
+    $has_fade_expt          = $this -> tc_get_fade_expt( $is_expanded, $thumb_img );
     //update the model
-    $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded', 'title' ) ) );
+    $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded', 'title', 'has_title_in_caption', 'has_fade_expt', 'has_edit_in_caption' ) ) );
+  }
+
+  /*
+  * has edit in caption
+  */
+  function tc_get_edit_in_caption( $is_expanded ) {
+    return $is_expanded;
+  }
+
+  /*
+  * has title in caption
+  */
+  function tc_get_title_in_caption( $is_expanded ) { echo "la madonna";
+    return $is_expanded;
+  }
+
+  /*
+  * has fade expt
+  */
+  function tc_get_fade_expt( $is_expanded, $thumb_img ) {
+    return ! ( $is_expanded || $thumb_img );
   }
 
 
@@ -31,7 +64,7 @@ class TC_grid_item_model_class extends TC_model {
   * Limits the length of the post titles in grids to a custom number of characters
   * @return string
   */
-  function tc_set_grid_title_length( $_title ) {
+  function tc_set_grid_title_length( $_title, $is_expanded ) {
     $_max = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_num_words') );
     $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
     $_max = $_max <= 0 ? 1 : $_max;
