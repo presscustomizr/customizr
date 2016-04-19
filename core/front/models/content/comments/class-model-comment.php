@@ -28,17 +28,6 @@ class TC_comment_model_class extends TC_Model {
     return $model;
   }
 
-
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function tc_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
-    foreach ( array('wrapper', 'content', 'avatar', 'reply_btn' ) as $property )
-      $model -> {"comment_{$property}_class"} = $this -> tc_stringify_model_property( "comment_{$property}_class" );
-  }
-
   /**
    * Prepare template for comments
    *
