@@ -1,31 +1,16 @@
-<!DOCTYPE html>
-<!--[if IE 7]>
-<html class="ie ie7" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if IE 8]>
-<html class="ie ie8" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html <?php language_attributes(); ?> >
-<!--<![endif]-->
-  <?php tc_render_template('header/head'); ?>
-
-  <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
-    <?php if ( tc_has('sidenav') && tc_has('header') ){ tc_render_template('header/sidenav'); }; ?>
-
-    <?php do_action('__before_page_wrapper'); ?>
-
-    <div id="tc-page-wrap">
-
-      <?php tc_render_template('header'); ?>
-
+<?php
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ *
+ *
+ * @package Wordpress
+ * @subpackage Customizr
+ * @since Twenty Customizr 3.5
+ */
+?>
+    <?php get_header() ?>
         <?php tc_render_template('content', 'main_content'); ?>
-
-      <?php tc_render_template('footer'); ?>
-    </div>
-
-    <?php do_action('__after_page_wrapper'); ?>
-    <?php if ( tc_has('btt_arrow') ){ tc_render_template('footer/btt_arrow'); }; ?>
-    <?php wp_footer() ?>
-  </body>
-</html>
+    <?php get_footer() ?>
