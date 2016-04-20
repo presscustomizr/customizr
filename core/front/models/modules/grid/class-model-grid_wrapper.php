@@ -13,6 +13,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
 
   private $post_id;
 
+  public $grid_item;
 
   /**
   * @override
@@ -60,14 +61,13 @@ class TC_grid_wrapper_model_class extends TC_Model {
 
     //section properties which refers to the section row wrapper
     $section_row_wrapper    = $this -> tc_get_section_row_wrapper_properties();
-    $this -> tc_update( array_merge( $element_wrapper, $section_row_wrapper ) );
 
-    set_query_var( 'grid',
-      array(
+    $grid_item              = array(
         'section_cols' => $section_row_wrapper['section_cols'],
         'is_expanded'  => $is_expanded
-      )
     );
+
+    $this -> tc_update( array_merge( $element_wrapper, $section_row_wrapper, compact( 'grid_item') ) );
   }
 
 

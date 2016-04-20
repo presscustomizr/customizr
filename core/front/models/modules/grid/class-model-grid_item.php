@@ -16,7 +16,10 @@ class TC_grid_item_model_class extends TC_model {
   public  $has_fade_expt;
 
   function tc_setup_late_properties() {
-    $grid                   = get_query_var( 'grid' );
+    $grid                   = tc_get( 'grid_item' );
+    if ( empty( $grid ) )
+      return;
+
     extract( $grid );
     //thumb
     $thumb_properties       = $this -> tc_get_thumb_properties( $section_cols );
