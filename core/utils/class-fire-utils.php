@@ -178,7 +178,6 @@ if ( ! class_exists( 'TC_utils' ) ) :
             $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
           break;
         }
-        print_r( $_to_return );
         return apply_filters( 'tc_get_skin_color' , $_to_return , $_what );
       }
 
