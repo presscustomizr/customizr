@@ -229,7 +229,7 @@ if ( ! class_exists( 'TC___' ) ) :
           * CONTENT
           *********************************************/
           array(
-            'id'             => 'content',
+            'id'             => 'main_content',
             'model_class'    => 'content',
           ),
 
