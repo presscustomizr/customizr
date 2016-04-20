@@ -911,14 +911,14 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //disable title icons
       add_filter( 'tc_opt_tc_show_title_icon', 'tc_woocommerce_disable_title_icon' );
       function tc_woocommerce_disable_title_icon($bool) {
-         return ( function_exists('tc_wc_is_checkout_cart') && tc_wc_is_checkout_cart() ) ? false : $bool;
+        return ( function_exists('tc_wc_is_checkout_cart') && tc_wc_is_checkout_cart() ) ? false : $bool;
       }
       // use Customizr title
       // initially used to display the edit button
     //  add_filter( 'the_title', 'tc_woocommerce_the_title' );
       function tc_woocommerce_the_title( $_title ){
         if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
-            return apply_filters( 'tc_title_text', $_title );
+          return apply_filters( 'tc_title_text', $_title );
         return $_title;
       }
 
@@ -1096,37 +1096,77 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     * originally used for woocommerce compatibility
     */
     function tc_mainwrapper_start() {
+      //set content as current model
+      $content_model = ( tc_get_model_instance( 'main_content' ) );
+
+      if ( ! $content_model )
+        return;
+
+      //allow filtering of the model before rendering (the view's model is passed by reference)
+      do_action_ref_array( 'pre_rendering_view', array(&$content_model) );
+      do_action_ref_array( "pre_rendering_view_{$content_model -> id}", array(&$content_model) );
+
+      do_action( '__before_main_content' );
+
+      tc_set_current_model( $content_model );
+
+      /* SLIDERS : standard or slider of posts */
+      if ( tc_has('main_slider') ) {
+        tc_render_template('modules/slider/slider', 'main_slider');
+      }
+      if( tc_has( 'main_posts_slider' ) ) {
+        tc_render_template('modules/slider/slider', 'main_posts_slider');
+      }
+
+    ?>
+    <?php do_action('__before_main_wrapper'); ?>
+      <?php /* thumbnail in single post */
+        if ( tc_has('post_thumbnail') && 'before_title_full' == tc_get( 'thumbnail_position' ) ) { tc_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
       ?>
-      <div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">
+      <div id="main-wrapper" class="container" <?php tc_echo('element_attributes') ?>>
 
-        <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
+        <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
 
+        <?php do_action('__before_main_container'); ?>
+        <?php
+
+        /* FEATURED PAGES */
+        if ( tc_has( 'featured_pages' ) )
+          tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
+
+        ?>
         <div class="container" role="main">
-          <div class="<?php echo implode(' ', apply_filters( 'tc_column_content_wrapper_classes' , array('row' ,'column-content-wrapper') ) ) ?>">
+          <div class="<?php tc_echo( 'column_content_class' ) ?>">
+            <?php
+              if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
+            ?>
 
-            <?php do_action( '__before_article_container'); ##hook of left sidebar?>
+               <?php do_action('__before_content'); ?>
 
-              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
-
-                <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
-      <?php
+            <div id="content" class="<?php tc_echo( 'article_wrapper_class' ) ?>">
+    <?php
     }
 
     function tc_mainwrapper_end() {
-      ?>
-                <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
+              ?>
+            </div>
 
-              </div><!--.article-container -->
+            <?php do_action('__after_content'); ?>
 
-              <?php do_action( '__after_article_container'); ##hook of left sidebar?>
+            <?php
+            if ( tc_has('right_sidebar') ) { tc_render_template('content/sidebars/right_sidebar', 'right_sidebar'); }
+            ?>
+          </div>
+        </div><!-- .container -->
 
-            </div><!--.row -->
-        </div><!-- .container role: main -->
+        <?php do_action('__after_main_container'); ?>
+        <?php if ( tc_has('footer_push') ) { tc_render_template('footer/footer_push', 'footer_push'); } ?>
 
-        <?php do_action( '__after_main_container' ); ?>
+      </div><!-- #main-wrapper -->
 
-      </div><!-- //#main-wrapper -->
-      <?php
+      <?php do_action('__after_main_wrapper');
+        do_action( '__after_main_content' );
+      tc_reset_current_model();
     }
 
 
