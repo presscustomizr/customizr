@@ -3,8 +3,7 @@
  * The template for displaying the author bio
  * used in the single post footer and in the list of posts of a specific author as description below the list of posts title
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

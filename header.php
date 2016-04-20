@@ -4,8 +4,7 @@
  *
  * Displays all of the head element and everything up until the header.tc-header div.
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5
  */
 ?><!DOCTYPE html>

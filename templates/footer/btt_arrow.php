@@ -2,8 +2,7 @@
 /**
  * The template for displaying the back to top arrow button
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

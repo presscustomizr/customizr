@@ -2,8 +2,7 @@
 /**
  * The template for displaying the comments block (wrapper for the comments template)
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

@@ -2,8 +2,7 @@
 /**
  * The template for displaying the comment bubble
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 /* At the moment the switch between the two layouts is handled in the model. Consider a split in the future */

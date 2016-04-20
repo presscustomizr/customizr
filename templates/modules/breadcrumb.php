@@ -2,8 +2,7 @@
 /**
  * The template for displaying the breadcrumb
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

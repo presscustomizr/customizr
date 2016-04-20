@@ -6,8 +6,7 @@
  * and one of the two required files for a theme (the other being style.css).
  *
  *
- * @package Wordpress
- * @subpackage Customizr
+ * @package Customizr
  * @since Twenty Customizr 3.5
  */
 ?>

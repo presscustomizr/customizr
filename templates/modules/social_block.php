@@ -2,8 +2,7 @@
 /**
  * The template for displaying the social links block
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>
