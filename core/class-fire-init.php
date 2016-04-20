@@ -497,9 +497,11 @@ if ( ! class_exists( 'TC_init' ) ) :
         }
 
         //Defines the active skin and fallback to blue.css if needed
-        if ( 'skin' == $_wot )
+        if ( 'skin' == $_wot ) {
+          //custom skin old tree compatibility for customizr-pro children only
+          $remote_path       = ( TC___::tc_is_pro() && TC___::$instance -> tc_is_child() && ! $remote_path ) ? tc_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
           $tc_get_style_src  = $remote_path ? $remote_path : TC_BASE_URL . TC_ASSETS_PREFIX . 'front/css/blue3.css';
-        else
+        } else
           $tc_get_style_src  = $remote_path ? $remote_path : TC_BASE_URL . TC_ASSETS_PREFIX . 'front/css/tc_common.css';
 
         return apply_filters ( 'tc_get_style_src' , $tc_get_style_src , $_wot );

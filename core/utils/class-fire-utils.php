@@ -134,7 +134,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         if ( false !== strpos( $matches[0], 'data-src' ) ||
             preg_match('/ data-smartload *= *"false" */', $matches[0]) )
-          return $matches[0];    
+          return $matches[0];
         else
           return apply_filters( 'tc_img_smartloaded',
             str_replace( 'srcset=', 'data-srcset=',
@@ -160,7 +160,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_get_skin_color( $_what = null ) {
         $_color_map    = TC_init::$instance -> skin_color_map;
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
-          
+
         $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_get_style_src() ) );
         //falls back to blue3 ( default #27CDA5 ) if not defined
         $_to_return = array( '#27CDA5', '#1b8d71' );
@@ -178,6 +178,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
             $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
           break;
         }
+        print_r( $_to_return );
         return apply_filters( 'tc_get_skin_color' , $_to_return , $_what );
       }
 
