@@ -55,11 +55,11 @@ class TC_post_list_content_model_class extends TC_Model {
 
 
   function tc_setup_late_properties() {
-    $show_excerpt        = get_query_var( 'tc_show_excerpt' );
+    $show_excerpt        = tc_get( 'tc_show_excerpt' );
     $content_width_class = array( 'entry-summary' );
     $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
     $content             = '';
-    $element_class       = get_query_var( 'tc_content_width' );
+    $element_class       = tc_get( 'tc_content_width' );
 
     if ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) )
     {

@@ -5,6 +5,12 @@ class TC_post_list_wrapper_model_class extends TC_Model {
   public $article_selectors;
   public $post_class = 'row-fluid';
 
+  public $tc_has_post_thumbnail;
+  public $tc_thumbnail_width;
+
+  public $tc_content_width;
+  public $tc_show_excerpt;
+
   //Default post list layout
   private static $default_post_list_layout   = array(
             'content'           => 'span8',
@@ -61,7 +67,7 @@ class TC_post_list_wrapper_model_class extends TC_Model {
     extract( apply_filters( 'tc_post_list_layout', $this -> post_list_layout ) );
 
 
-    $has_post_thumbnail   = false;
+    $tc_has_post_thumbnail   = false;
     $this -> place_1      = 'content';
     $this -> place_2      = 'thumb';
 
@@ -79,13 +85,14 @@ class TC_post_list_wrapper_model_class extends TC_Model {
         $this -> place_1 = 'thumb';
         $this -> place_2 = 'content';
       }
-      $has_post_thumbnail = true;
+      $tc_has_post_thumbnail = true;
     }
 
-    set_query_var( 'tc_has_post_thumbnail', $has_post_thumbnail );
-    set_query_var( 'tc_content_width'     , $this -> tc_show_thumb() ? $content : 'span12' );
-    set_query_var( 'tc_thumbnail_width'   , $thumb );
-    set_query_var( 'tc_show_excerpt'      , $this -> tc_show_excerpt() );
+    $tc_content_width     = $this -> tc_show_thumb() ? $content : 'span12';
+    $tc_show_excerpt      = $this -> tc_show_excerpt();
+    $tc_thumbnail_width   = $thumb;
+
+    $this -> tc_update( compact( 'tc_content_width', 'tc_show_excerpt', 'tc_thumbnail_width', 'tc_has_post_thumbnail' ) );
   }
 
   /**

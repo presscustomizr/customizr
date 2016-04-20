@@ -21,6 +21,9 @@ class TC_thumbnail_single_model_class extends TC_Model{
     $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
 
+    if ( ! isset( $tc_thumb ) || is_null( $tc_thumb ) )
+      return;
+
     $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, TC_utils::tc_id() );
     if ( ! $thumb_img )
       return;

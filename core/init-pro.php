@@ -30,16 +30,6 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
         );
         //set files to load according to the context : admin / front / customize
         add_filter( 'tc_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
-
-        //TEST PURPOSES!!!
-        //TEST IT BY REPLICATING THE THEME STRUCTURE IN THE following directory
-        add_filter( 'tc_include_paths',
-            function( $array ) {
-              array_unshift( $array, 'addons/bundle/footer-customizer/' );
-              return $array;
-            }
-
-        );
         //END TEST PURPOSES
         //load
         $this -> tc_pro_load();
