@@ -3,8 +3,7 @@
  * The template for displaying the back to top link
  * ( generally in the colophon right )
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

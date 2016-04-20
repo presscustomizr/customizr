@@ -3,8 +3,7 @@
  * The template for displaying the footer credits
  * (generally the central colophon element)
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

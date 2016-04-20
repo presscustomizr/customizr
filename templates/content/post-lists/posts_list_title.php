@@ -2,8 +2,7 @@
 /**
  * The template for displaying the list of posts titles (archives, categories, search results ..)
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 

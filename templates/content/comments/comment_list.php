@@ -5,8 +5,7 @@
  * wp_list_comments
  * comment navigation
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

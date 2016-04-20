@@ -4,8 +4,7 @@
  *
  * Contains the closing of the #tc-page-wrap div and all content after
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5
  */
 ?>

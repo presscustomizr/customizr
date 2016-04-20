@@ -2,8 +2,7 @@
 /**
  * The template for displaying the post navigation in singular (post/page)
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 

@@ -2,8 +2,7 @@
 /**
  * The template for displaying the recently updated label for posts in single and post lists contexts
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

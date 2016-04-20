@@ -2,8 +2,7 @@
 /**
  * The template for displaying the featured pages wrapper
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>

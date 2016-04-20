@@ -6,8 +6,7 @@
  * and so on.. by default it's placed after the main container (.container[role=main])
  * inside the #main-wrapper
  *
- * @package WordPress
- * @subpackage Customizr
+ * @package Customizr
  * @since Customizr 3.5.0
  */
 ?>
