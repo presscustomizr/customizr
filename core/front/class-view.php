@@ -85,8 +85,6 @@ if ( ! class_exists( 'TC_View' ) ) :
         echo $this -> model -> html;
 
       if ( ! empty( $this -> model -> template ) ) {
-        //get the basename
-        $_template      = basename( $this -> model -> template );
         //get the filename
         $_template_file = tc_get_theme_file("templates/{$this -> model -> template}.php" );
 
@@ -102,7 +100,7 @@ if ( ! class_exists( 'TC_View' ) ) :
 
           tc_reset_current_model();
         }
-        elseif ( empty($_temp_content ) && ( defined('TC_DEV') && true === TC_DEV ) ) {
+        if ( empty($_temp_content ) && ( defined('TC_DEV') && true === TC_DEV ) ) {
           echo "The template ( " . $this -> model -> template . ") is empty or could not be found.";
         }
       }
