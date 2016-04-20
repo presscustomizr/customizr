@@ -32,7 +32,7 @@ class TC_thumbnail_model_class extends TC_Model {
 
 
   function tc_maybe_render_this_model_view() {
-    return $this -> visibility && (bool) get_query_var( 'tc_has_post_thumbnail', false );
+    return $this -> visibility && (bool) tc_get( 'tc_has_post_thumbnail' );
   }
 
 
@@ -101,7 +101,7 @@ class TC_thumbnail_model_class extends TC_Model {
 
   /* The template wrapper class */
   function tc_get_the_wrapper_class() {
-    return array( get_query_var('tc_thumbnail_width', '') ); /*retrieved from the post_list layout */
+    return array( tc_get('tc_thumbnail_width') ); /*retrieved from the post_list layout */
   }
 
   /**
