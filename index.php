@@ -19,7 +19,7 @@
 
       <?php tc_render_template('header'); ?>
 
-        <?php tc_render_template('content'); ?>
+        <?php tc_render_template('content', 'main_content'); ?>
 
       <?php tc_render_template('footer'); ?>
     </div>

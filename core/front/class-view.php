@@ -62,7 +62,7 @@ if ( ! class_exists( 'TC_View' ) ) :
         $this -> model -> element_attributes =  join( ' ', array_filter( array(
             $this -> model -> element_attributes,
             'data-model_id="'. $this -> model -> id .'"',
-            'data-template="'. $this -> model -> template .'"'
+            isset( $this -> model -> template ) ? 'data-template="'. $this -> model -> template .'"' : ''
         )) );
       /*
       <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
