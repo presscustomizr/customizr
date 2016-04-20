@@ -8,7 +8,7 @@ if ( false !== tc_get( 'query' ) ) {
   $_query = new WP_Query( tc_get( 'query' ) );
   $wp_query = $_query;
 }
-
+do_action( '__before_tc_loop', tc_get( 'id' ) );
 if ( have_posts() && ! is_404() ) {
   while ( have_posts() ) {
     the_post();
@@ -34,6 +34,9 @@ if ( have_posts() && ! is_404() ) {
 
   }//endwhile;
 }
-//Always reset the query to the main WP one
-$wp_query = $wp_the_query;
-wp_reset_postdata();
+do_action( '__after_tc_loop', tc_get( 'id' ) );
+//Reset the query to the main WP one if needed
+if ( false !== tc_get( 'query' ) ) {
+  $wp_query = $wp_the_query;
+  wp_reset_postdata();
+}
