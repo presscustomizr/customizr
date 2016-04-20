@@ -48,7 +48,7 @@ class TC_grid_item_model_class extends TC_model {
   /*
   * has title in caption
   */
-  function tc_get_title_in_caption( $is_expanded ) { echo "la madonna";
+  function tc_get_title_in_caption( $is_expanded ) {
     return $is_expanded;
   }
 
