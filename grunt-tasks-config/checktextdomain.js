@@ -21,7 +21,7 @@ module.exports = {
 	},
 	files: {
 		src:  [
-			'inc/class-fire-init.php',
+			'core/class-fire-init.php',
 			'!node_modules/**'
 		],
 		expand: true

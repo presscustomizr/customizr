@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 				front_js : 'assets/front/js/',
 				admin_css : 'assets/back/css/',
 				admin_js : 'assets/back/js/',
-				lang : 'inc/lang/'
+				lang : 'assets/lang/'
 			},
 			//default less modifiers
 			is_rtl: 'true',
@@ -29,26 +29,24 @@ module.exports = function(grunt) {
 			credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
 			customizr_tasks : {
 				//DEV : clean the build and watch changes (see watch task)
-        'customizr_dev': ['watch']
+				'customizr_dev': ['clean' ,'watch'],
+        'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
-        //'customizr_dev': ['clean' ,'watch'],
-    //     'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
+				//PROD
+				'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'cssmin:prod_common_rtl'],
+				'prod_front_js': ['jshint', 'concat:front_main_parts_js', 'concat:front_js',  'uglify:part_front_js' , 'uglify:main_front_js'],
+				'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js'],
+				//https://www.npmjs.org/package/grunt-gitinfo
+				//Get Git info from a working copy and populate grunt.config with the data
+				'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
+				//final build meta task
+				'customizr_build' : ['prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
 
-				// //PROD
-				// 'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'cssmin:prod_common_rtl'],
-				// 'prod_front_js': ['jshint', 'concat:front_main_parts_js', 'concat:front_js',  'uglify:part_front_js' , 'uglify:main_front_js'],
-				// 'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js'],
-				// //https://www.npmjs.org/package/grunt-gitinfo
-				// //Get Git info from a working copy and populate grunt.config with the data
-				// 'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
-				// //final build meta task
-				// 'customizr_build' : ['prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
+				//TRAVIS ci virtual machine build check on js @todo check other resources?
+				'travis' : ['jshint'],
 
-				// //TRAVIS ci virtual machine build check on js @todo check other resources?
-				// 'travis' : ['jshint'],
-
-    //     //CUSTOM SKIN : call it with grunt custom_skin --#hexcolor
-    //     'custom_skin' : ['less:custom_skin' , 'cssmin:custom_skin' ],
+        //CUSTOM SKIN : call it with grunt custom_skin --#hexcolor
+        'custom_skin' : ['less:custom_skin' , 'cssmin:custom_skin' ],
 			},
 			uglify_requested_paths : {
 				src : '' || grunt.option('src'),
