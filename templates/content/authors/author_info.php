@@ -14,7 +14,7 @@
      <?php echo get_avatar( get_the_author_meta( 'user_email' ), 100 ) ?>
     </div>
     <div class="span10">
-      <h3><?php _e( 'About' , 'customizr' ) ?> <?php the_author() ?></h3>
+      <h2><?php _e( 'About' , 'customizr' ) ?> <?php the_author() ?></h2>
       <p><?php the_author_meta( 'description' ) ?></p>
       <div class="author-link">
         <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) ?>" rel="author">
