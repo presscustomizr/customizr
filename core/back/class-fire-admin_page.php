@@ -415,6 +415,8 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
       /* if ( is_array(get_current_screen()) )
         array_walk_recursive(get_current_screen(), function(&$v) { $v = htmlspecialchars($v); }); */
       $screen = get_current_screen();
+      if ( ! isset( $screen ) )
+        return;
       if ( 'appearance_page_welcome' != $screen-> id )
         return;
       ?>
