@@ -19,7 +19,7 @@ module.exports = {
 			'!readme.md',
 			'!**/*.db',
       '!patches/**',
-      '!inc/init-pro.php',
+      '!core/init-pro.php',
       '!custom-skins/**'
 		],
 		dest: 'build/free/<%= pkg.name %>/'
