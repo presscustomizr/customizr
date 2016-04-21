@@ -100,13 +100,7 @@ if ( ! class_exists( 'TC_View' ) ) :
 
           tc_reset_current_model();
         }
-        if ( empty($_temp_content ) && ( defined('TC_DEV') && true === TC_DEV ) ) {
-          echo "The template ( " . $this -> model -> template . ") is empty or could not be found.";
-        }
       }
-      // $path = '';
-      // $part = '';
-      // get_template_part( $path , $part );
 
       if ( ! empty( $this -> model -> callback ) )
         CZR() -> helpers -> tc_fire_cb( $this -> model -> callback, $this -> model -> cb_params );
