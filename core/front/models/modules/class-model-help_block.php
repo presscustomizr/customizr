@@ -463,7 +463,7 @@ class TC_singular_smartload_help_block_model_class extends TC_smartload_help_blo
      * but I think it's too much expensive for just having an help block
      */
     return parent::tc_is_notice_enabled() &&
-      apply_filters('tc_img_smartload_help_n_images', 1 ) <= preg_match_all( '/(<img[^>]+>)/i', $post->post_content, $matches );
+      apply_filters('tc_img_smartload_help_n_images', 2 ) <= preg_match_all( '/(<img[^>]+>)/i', $post->post_content, $matches );
 
   }
 
