@@ -7,7 +7,7 @@ module.exports = {
 			type: 'wp-theme',  // Type of project (wp-plugin or wp-theme).
 			exclude: ['node_modules/.*'], // List of files or directories to ignore.
 			processPot: function( pot, options ) {
-				pot.headers['Project-Id-Version'] = '* Customizr v3.2.5\n';
+				pot.headers['Project-Id-Version'] = '* Customizr v3.5.0\n';
 				pot.headers['report-msgid-bugs-to'] = 'http://presscustomizr.com/contact/';
 				pot.headers['plural-forms'] = 'nplurals=2; plural=(n > 1);\n;';
 				pot.headers['last-translator'] = 'Nicolas <contact@presscustomizr.com>\n';

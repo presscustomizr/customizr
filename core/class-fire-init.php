@@ -420,9 +420,9 @@ if ( ! class_exists( 'TC_init' ) ) :
 
         /*
          * Makes Customizr available for translation.
-         * Translations can be added to the /inc/lang/ directory.
+         * Translations can be added to the lang/ directory.
          */
-        load_theme_textdomain( 'customizr' , TC_BASE . '/assets/lang' );
+        load_theme_textdomain( 'customizr' , TC_BASE . 'lang' );
 
         /* Adds RSS feed links to <head> for posts and comments. */
         add_theme_support( 'automatic-feed-links' );

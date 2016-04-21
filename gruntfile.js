@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 				front_js : 'assets/front/js/',
 				admin_css : 'assets/back/css/',
 				admin_js : 'assets/back/js/',
-				lang : 'assets/lang/'
+				lang : 'lang/'
 			},
 			//default less modifiers
 			is_rtl: 'true',
