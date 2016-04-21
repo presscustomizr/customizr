@@ -211,6 +211,7 @@ if ( ! class_exists( 'TC___' ) ) :
           array(
             'id'          => 'main_posts_slider',
             'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
+            'controller'  => 'main_slider'
           ),
           /** end slider **/
 
