@@ -13,10 +13,10 @@
   <span class="pub-date"><?php tc_echo( 'publication_date')  ?></span>
   <?php endif; ?>
   <?php if ( tc_get( 'cat_list' ) ) : ?>
-   <span class="w-cat"><?php _e( 'in', 'customizr' ) ?> <?php tc_echo( 'cat_list', array('/') ) ?></span>
+   <span class="w-cat"><?php _e( 'in', 'customizr' ) ?> <?php tc_echo( 'cat_list', null, array('/') ) ?></span>
   <?php endif; ?>
   <?php if ( tc_get( 'tag_list' ) ): ?>
-   <span class="w-tags"><?php _e( 'tagged', 'customizr' ) ?> <?php tc_echo( 'tag_list', array('/') ) ?></span>
+   <span class="w-tags"><?php _e( 'tagged', 'customizr' ) ?> <?php tc_echo( 'tag_list', null, array('/') ) ?></span>
   <?php endif; ?>
 
   <?php if ( tc_get( 'author' ) ) : ?>

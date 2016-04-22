@@ -16,7 +16,7 @@
 
   <section class="entry-content <?php tc_echo( 'content_class' ) ?>">
     <?php
-      tc_echo( 'post_list_content', array(__( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ) );
+      tc_echo( 'post_list_content', null, array(__( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ) );
 
       wp_link_pages( array(
             'before'  => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ),

@@ -67,8 +67,8 @@ if ( ! function_exists('tc_reset_current_model') ) {
  */
 //shortcut function to get a current model property
 if ( ! function_exists('tc_get') ) {
-  function tc_get( $property, $args = array() ) {
-    return TC___::$instance -> tc_get( $property, $args );
+  function tc_get( $property, $model_id = null, $args = array() ) {
+    return TC___::$instance -> tc_get( $property, $model_id, $args );
   }
 }
 
@@ -77,8 +77,8 @@ if ( ! function_exists('tc_get') ) {
  */
 //shortcut function to echo a current model property
 if ( ! function_exists('tc_echo') ) {
-  function tc_echo( $property, $args = array() ) {
-    return TC___::$instance -> tc_echo( $property, $args );
+  function tc_echo( $property, $model_id = null, $args = array() ) {
+    return TC___::$instance -> tc_echo( $property, $model_id, $args );
   }
 }
 

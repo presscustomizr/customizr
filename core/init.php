@@ -407,13 +407,18 @@ if ( ! class_exists( 'TC___' ) ) :
     }
 
 
-    /*
+     /*
     * An handly function to get a current model property
     * @param $property (string), the property to get
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
-    function tc_get( $property, $args = array() ) {
-      $current_model = end( $this -> current_model );
+    function tc_get( $property, $model_id = null, $args = array() ) {
+      if ( ! is_null($model_id) ) {
+        if ( tc_is_registered($model_id) )
+          $current_model = tc_get_model_instance( $model_id );
+      } else {
+        $current_model = end( $this -> current_model );
+      }
       return is_object($current_model) ? $current_model -> tc_get_property( $property, $args ) : false;
     }
 
@@ -422,8 +427,8 @@ if ( ! class_exists( 'TC___' ) ) :
     * @param $property (string), the property to get
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
-    function tc_echo( $property, $args = array() ) {
-      echo tc_get( $property, $args );
+    function tc_echo( $property, $model_id = null, $args = array() ) {
+      echo tc_get( $property, $model_id, $args );
     }
 
     /**
