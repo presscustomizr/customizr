@@ -429,7 +429,8 @@ if ( ! class_exists( 'TC___' ) ) :
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
     function tc_echo( $property, $model_id = null, $args = array() ) {
-      echo tc_get( $property, $model_id, $args );
+      $prop_value = tc_get( $property, $model_id, $args );
+      echo $prop_value && is_array( $prop_value ) ? CZR() -> helpers -> tc_stringify_array( $prop_value ) : $prop_value;
     }
 
     /**
