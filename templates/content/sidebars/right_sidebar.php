@@ -9,7 +9,7 @@
       tc_render_template('modules/social_block', 'right_sidebar_social_block');
     ?>
     <?php do_action( '__before_inner_right_sidebar' ) ?>
-    <?php dynamic_sidebar( 'right-sidebar' ) ?>
+    <?php dynamic_sidebar( 'right' ) ?>
     <?php do_action( '__after_inner_right_sidebar' ) ?>
   </div>
 </div>
