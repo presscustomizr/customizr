@@ -30,7 +30,7 @@
   // accept %s as placeholder
   // used when update date shown in days option selected
   ?>
-  <span class="up-date">(<?php _e( 'updated', 'customizr') ?>: <?php tc_echo( 'update_date', array (
+  <span class="up-date">(<?php _e( 'updated', 'customizr') ?>: <?php tc_echo( 'update_date', null, array (
       __('today', 'customizr'),
       __('1 day ago', 'customizr'),
       __('%s days ago', 'customizr')

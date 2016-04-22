@@ -12,7 +12,7 @@ if ( 'default' == tc_get( 'type' ) ) :
 
 ?>
 <span class="comments-link" <?php tc_echo('element_attributes') ?>>
-  <a href="<?php tc_echo( 'comment_bubble_link', array( get_permalink() ) ) ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" data-disqus-identifier="javascript:this.page.identifier"><span class="tc-comment-bubble default-bubble"><?php echo number_format_i18n( get_comments_number() )?></span></a>
+  <a href="<?php tc_echo( 'comment_bubble_link', null, array( get_permalink() ) ) ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" data-disqus-identifier="javascript:this.page.identifier"><span class="tc-comment-bubble default-bubble"><?php echo number_format_i18n( get_comments_number() )?></span></a>
 </span>
 <?php
 
@@ -20,7 +20,7 @@ elseif ( 'custom-bubble-one' == tc_get('type') ):
 
 ?>
 <span class="comments-link" <?php tc_echo('element_attributes') ?>>
-  <a href="<?php tc_echo( 'comment_bubble_link', array( get_permalink() ) ) ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" data-disqus-identifier="javascript:this.page.identifier"><span class="tc-comment-bubble custom-bubble-one"><?php echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ) ?></span></a>
+  <a href="<?php tc_echo( 'comment_bubble_link', null, array( get_permalink() ) ) ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" data-disqus-identifier="javascript:this.page.identifier"><span class="tc-comment-bubble custom-bubble-one"><?php echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ) ?></span></a>
 </span>
 <?php
 
