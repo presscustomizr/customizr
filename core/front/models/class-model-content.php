@@ -59,7 +59,8 @@ class TC_content_model_class extends TC_Model {
         'hook'        => '__before_main_loop',
         'template'    => 'modules/help_block',
         'id'          => 'post_list_smartload_help_block',
-        'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/post_list_smartload_help_block'),
+        'model_class' => array( 'parent' => 'modules/help_block',
+          'name' => 'modules/post_list_smartload_help_block'),
       ),
 
       /*********************************************
@@ -87,13 +88,17 @@ class TC_content_model_class extends TC_Model {
       ),
 
       /*********************************************
-      * Singular: PAGE POST ATTACHMENT
+      * Singular: PAGE POST ATTACHMENT HEADINGS
       *********************************************/
       array(
-        'id'          => 'singular_article',
-        'model_class' => 'content/singles/article'
+        'id'          => 'singular_headings',
+        'model_class' => 'content/singles/post_page_headings'
       ),
-
+      //single post thumbnail
+      array(
+        'id'          => 'post_thumbnail',
+        'model_class' => 'content/singles/thumbnail_single'
+      ),
       /*********************************************
       * Post metas
       *********************************************/
@@ -105,12 +110,14 @@ class TC_content_model_class extends TC_Model {
       //the text meta one uses a different template
       array(
         'id' => 'post_metas_text',
-        'model_class' => array( 'parent' => 'content/post-metas/post_metas', 'name' => 'content/post-metas/post_metas_text' ),
+        'model_class' => array( 'parent' => 'content/post-metas/post_metas',
+          'name' => 'content/post-metas/post_metas_text' ),
       ),
       //attachment post metas
       array(
         'id' => 'post_metas_attachment',
-        'model_class' => array( 'parent' => 'content/post-metas/post_metas', 'name' => 'content/post-metas/attachment_post_metas' )
+        'model_class' => array( 'parent' => 'content/post-metas/post_metas',
+          'name' => 'content/post-metas/attachment_post_metas' )
       ),
 
       /**************************
@@ -128,12 +135,13 @@ class TC_content_model_class extends TC_Model {
       /* in singlar */
       array(
         'model_class' => array( 'parent' => 'content/navigation/post_navigation',
-        'name' => 'content/navigation/post_navigation_singular' ),
+          'name' => 'content/navigation/post_navigation_singular' ),
         'id' => 'post_navigation_singular',
       ),
       /* in post lists */
       array(
-        'model_class' => array( 'parent' => 'content/navigation/post_navigation', 'name' => 'content/navigation/post_navigation_posts' ),
+        'model_class' => array( 'parent' => 'content/navigation/post_navigation',
+          'name' => 'content/navigation/post_navigation_posts' ),
         'id' => 'post_navigation_posts',
       ),
     );

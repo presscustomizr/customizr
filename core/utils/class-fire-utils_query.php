@@ -272,19 +272,13 @@ class TC_utils_query {
     //declares selector var
     $selectors                  = '';
 
-
-    // SINGLE POST
-    if ( isset($post) && 'page' != $post -> post_type && 'attachment' != $post -> post_type && is_singular() )
-      $selectors = apply_filters( 'tc_single_post_selectors' ,'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
+    // SINGLE POST/ATTACHMENT
+    if ( isset($post) && 'page' != $post -> post_type && is_singular() )
+      $selectors = apply_filters( "tc_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
 
     // PAGE
     elseif ( isset($post) && 'page' == tc__f('__post_type') && is_singular() && !tc__f( '__is_home_empty') )
       $selectors = apply_filters( 'tc_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
-    // ATTACHMENT
-    elseif ( isset($post) && 'attachment' == $post -> post_type && is_singular() ) {
-      $post_class = wp_attachment_is_image() ? ' format-image' : '';
-      $selectors  = apply_filters( 'tc_attachment_selectors' , 'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
-    }
 
     $selectors = apply_filters( 'tc_article_selectors', $selectors );
 

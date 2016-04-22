@@ -1,10 +1,6 @@
 <?php
 /**
- * The template for displaying pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages and that
- * other "pages" on your WordPress site will use a different template.
+ * The template for displaying all attachments
  *
  *
  * @package Customizr
@@ -12,19 +8,6 @@
  */
 ?>
 <?php get_header() ?>
-
-  <?php
-
-    /* SLIDERS : standard or slider of posts */
-    if ( tc_has('main_slider') ) {
-      tc_render_template('modules/slider/slider', 'main_slider');
-    }
-    if( tc_has( 'main_posts_slider' ) ) {
-      tc_render_template('modules/slider/slider', 'main_posts_slider');
-    }
-
-  ?>
-
   <?php do_action('__before_main_wrapper'); ?>
 
     <div id="main-wrapper" class="container" <?php tc_echo('element_attributes', 'main_content') ?>>
@@ -50,13 +33,12 @@
                   if ( have_posts() ) {
                     while ( have_posts() ) {
                       the_post();
-                      tc_render_template('content/singles/page_content');
+                      tc_render_template('content/singles/attachment_content');
                     }//endwhile;
                   }//endif;
                 ?>
                 <?php
                   if ( tc_has('comments') ) tc_render_template('content/comments/comments');
-                  if ( tc_has('post_navigation_singular') ) tc_render_template('content/singles/post_navigation_singular', 'post_navigation_singular');
                 ?>
               </div>
 

@@ -1,10 +1,6 @@
 <?php
 /**
- * The template for displaying pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages and that
- * other "pages" on your WordPress site will use a different template.
+ * The template for displaying all single posts
  *
  *
  * @package Customizr
@@ -50,7 +46,7 @@
                   if ( have_posts() ) {
                     while ( have_posts() ) {
                       the_post();
-                      tc_render_template('content/singles/page_content');
+                      tc_render_template('content/singles/post_content');
                     }//endwhile;
                   }//endif;
                 ?>

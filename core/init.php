@@ -413,6 +413,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
     function tc_get( $property, $model_id = null, $args = array() ) {
+      $current_model = false;
       if ( ! is_null($model_id) ) {
         if ( tc_is_registered($model_id) )
           $current_model = tc_get_model_instance( $model_id );

@@ -76,4 +76,9 @@ class TC_attachment_content_model_class extends TC_Model {
     //update the model
     $this -> tc_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'attachment_class' ) );
   }
+
+  function tc_get_article_selectors() {
+    $post_class = wp_attachment_is_image() ? ' format-image' : '';
+    return TC_utils_query::$instance -> tc_get_the_singular_article_selectors( "row-fluid $post_class" );
+  }
 }

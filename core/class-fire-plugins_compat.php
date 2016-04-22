@@ -171,22 +171,6 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function tc_set_bbpress_compat() {
-
-      /* Force the Page behavior */
-      add_filter( 'tc_is_list_of_posts', 'tc_bbpress_disable_list_of_posts' );
-      function tc_bbpress_disable_list_of_posts( $bool ) {
-        return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-      add_filter( 'tc_is_single_post', 'tc_bbpress_disable_single_post' );
-      function tc_bbpress_disable_single_post( $bool ) {
-        return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-      add_filter( 'tc_show_single_page_content', 'tc_bbpress_enable_single_page' );
-      function tc_bbpress_enable_single_page( $bool ) {
-        return ( function_exists('is_bbpress') && is_bbpress() ) ? true : $bool;
-      }
-      /* End force */
-
       //disables post navigation
       add_filter( 'tc_show_post_navigation', 'tc_bbpress_disable_post_navigation' );
       function tc_bbpress_disable_post_navigation($bool) {
@@ -733,28 +717,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_post_type_archive();
         }
       }
-      /*
-      * Are we in single Event context?
-      */
-      if ( ! ( function_exists( 'tc_is_tec_single_event' ) ) ) {
-        function tc_is_tec_single_event() {
-          return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_single();
-        }
-      }
-      /* Force the Page behavior */
-      add_filter( 'tc_is_list_of_posts', 'tc_tec_disable_list_of_posts' );
-      function tc_tec_disable_list_of_posts( $bool ) {
-        return ( function_exists('tribe_is_event_query') && tribe_is_event_query() ) ? false : $bool;
-      }
-      add_filter( 'tc_is_single_post', 'tc_tec_disable_single_post' );
-      function tc_tec_disable_single_post( $bool ) {
-        return ( function_exists('tribe_is_event_query') && tribe_is_event_query() ) ? false : $bool;
-      }
-      add_filter( 'tc_show_single_page_content', 'tc_tec_enable_single_page' );
-      function tc_tec_enable_single_page( $bool ) {
-        return ( function_exists('tribe_is_event_query') && tribe_is_event_query() ) ? true : $bool;
-      }
-      /* End force */
+
       //disables post navigation
       add_filter( 'tc_show_post_navigation', 'tc_tec_disable_post_navigation' );
       function tc_tec_disable_post_navigation($bool) {
