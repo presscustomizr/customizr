@@ -1,10 +1,6 @@
 <?php
 /**
- * The template for displaying pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages and that
- * other "pages" on your WordPress site will use a different template.
+ * The template for displaying 404 pages (not found)
  *
  *
  * @package Customizr
@@ -12,19 +8,6 @@
  */
 ?>
 <?php get_header() ?>
-
-  <?php
-
-    /* SLIDERS : standard or slider of posts */
-    if ( tc_has('main_slider') ) {
-      tc_render_template('modules/slider/slider', 'main_slider');
-    }
-    if( tc_has( 'main_posts_slider' ) ) {
-      tc_render_template('modules/slider/slider', 'main_posts_slider');
-    }
-
-  ?>
-
   <?php do_action('__before_main_wrapper'); ?>
 
     <div id="main-wrapper" class="container" <?php tc_echo('element_attributes', 'main_content') ?>>
@@ -38,14 +21,14 @@
         tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
       ?>
       <div class="container" role="main">
-        <div class="<?php echo implode(' ', tc_get( 'column_content_class', 'main_content' ) );  ?>">
+        <div class="<?php tc_echo ('column_content_class', 'main_content' ) ?>">
           <?php
             if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
           ?>
 
               <?php do_action('__before_content'); ?>
 
-              <div id="content" class="<?php echo implode(' ', tc_get( 'article_wrapper_class', 'main_content' ) ); ?>">
+              <div id="content" class="<?php tc_echo( 'article_wrapper_class', 'main_content' ) ?>">
                 <?php
                   if ( have_posts() ) {
                     while ( have_posts() ) {

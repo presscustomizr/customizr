@@ -21,14 +21,14 @@
         tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
       ?>
       <div class="container" role="main">
-        <div class="<?php echo implode(' ', tc_get( 'column_content_class', 'main_content' ) );  ?>">
+        <div class="<?php tc_echo( 'column_content_class', 'main_content' ) ?>">
           <?php
             if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
           ?>
 
               <?php do_action('__before_content'); ?>
 
-              <div id="content" class="<?php echo implode(' ', tc_get( 'article_wrapper_class', 'main_content' ) ); ?>">
+              <div id="content" class="<?php tc_echo( 'article_wrapper_class', 'main_content' ) ?>">
                 <?php
                   if ( have_posts() ) {
                     while ( have_posts() ) {
