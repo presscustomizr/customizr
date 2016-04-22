@@ -1,6 +1,10 @@
 <?php
 /**
- * The template for displaying 404 pages (not found)
+ * The template for displaying pages
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages and that
+ * other "pages" on your WordPress site will use a different template.
  *
  *
  * @package Customizr
@@ -8,6 +12,19 @@
  */
 ?>
 <?php get_header() ?>
+
+  <?php
+
+    /* SLIDERS : standard or slider of posts */
+    if ( tc_has('main_slider') ) {
+      tc_render_template('modules/slider/slider', 'main_slider');
+    }
+    if( tc_has( 'main_posts_slider' ) ) {
+      tc_render_template('modules/slider/slider', 'main_posts_slider');
+    }
+
+  ?>
+
   <?php do_action('__before_main_wrapper'); ?>
 
     <div id="main-wrapper" class="container" <?php tc_echo('element_attributes', 'main_content') ?>>
