@@ -388,7 +388,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
       if ( version_compare( '4.5', $wp_version, '<=' ) )
         $_css = sprintf("%s%s",
   		            	$_css,
-                        'table { border-collapse: initial; }
+                        'table { border-collapse: separate; }
                          body table { border-collapse: collapse; }
                         ');
       return $_css;
