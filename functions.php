@@ -7,6 +7,26 @@ require_once( get_template_directory() . '/core/init.php' );
 /*
  * @since 3.5.0
  */
+//shortcut function to echo the column content wrapper class
+if ( ! function_exists('tc_column_content_wrapper_class') ) {
+  function tc_column_content_wrapper_class() {
+    return TC___::$instance -> tc_column_content_wrapper_class();
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to echo the article container class
+if ( ! function_exists('tc_article_container_class') ) {
+  function tc_article_container_class() {
+    return TC___::$instance -> tc_article_container_class();
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
 //shortcut function to get a theme file
 if ( ! function_exists('tc_get_theme_file') ) {
   function tc_get_theme_file( $path_suffix ) {
@@ -103,9 +123,6 @@ if ( ! function_exists('tc_new') ) {
   }
 }
 
-/*
- * @since 3.5.0
- */
 //shortcut function to instantiate a model + render its template
 //model and template should share the same name
 //some templates are shared by several models => that's when the $_id param is useful

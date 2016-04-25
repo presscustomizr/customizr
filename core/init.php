@@ -439,6 +439,20 @@ if ( ! class_exists( 'TC___' ) ) :
       echo $prop_value && is_array( $prop_value ) ? CZR() -> helpers -> tc_stringify_array( $prop_value ) : $prop_value;
     }
 
+    /*
+    * An handly function to print the content wrapper class
+    */
+    function tc_column_content_wrapper_class() {
+      echo CZR() -> helpers -> tc_stringify_array( TC_utils::tc_get_column_content_wrapper_class() );
+    }
+
+    /*
+    * An handly function to print the article containerr class
+    */
+    function tc_article_container_class() {
+      echo CZR() -> helpers -> tc_stringify_array( TC_utils::tc_get_article_container_class() );
+    }
+
     /**
     * Are we in a customization context ? => ||
     * 1) Left panel ?

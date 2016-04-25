@@ -29,20 +29,20 @@
       if ( tc_has( 'featured_pages' ) )
         tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
     ?>
-    <div id="main-wrapper" class="container" <?php tc_echo('element_attributes', 'main_content') ?>>
+    <div id="main-wrapper" class="container">
 
       <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
 
       <?php do_action('__before_main_container'); ?>
       <div class="container" role="main">
-        <div class="<?php tc_echo ('column_content_class', 'main_content' ) ?>">
+        <div class="<?php tc_column_content_wrapper_class() ?>">
           <?php
             if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
           ?>
 
               <?php do_action('__before_content'); ?>
 
-              <div id="content" class="<?php tc_echo( 'article_wrapper_class', 'main_content' ) ?>">
+              <div id="content" class="<?php tc_article_container_class() ?>">
                 <?php
                   if ( is_home() && ! is_front_page() )//blog page title
                     if ( tc_has('posts_list_headings') ) { tc_render_template('content/post-lists/posts_list_headings', 'posts_list_headings'); }
@@ -55,11 +55,18 @@
                       }
                       elseif ( tc_has('post_list') ){
                         tc_render_template('content/post-lists/post_list_wrapper', 'post_list');
+                      }else {
+                        tc_render_template('content/singles/page_content', 'page');
                       }
                     }//endwhile;
                   }
                 ?>
                 <?php
+                    if ( tc_has('comments') ) { tc_render_template('content/comments/comments'); }
+
+                    if ( is_singular() && tc_has('post_navigation_singular') )
+                      tc_render_template('content/singles/post_navigation_singular', 'post_navigation_singular');
+                    elseif ( is_home() && ! is_front_page() && tc_has('post_navigation_posts') )
                     if ( tc_has('post_navigation_posts') )
                       tc_render_template('content/post-lists/post_navigation_posts', 'post_navigation_posts');
                 ?>
