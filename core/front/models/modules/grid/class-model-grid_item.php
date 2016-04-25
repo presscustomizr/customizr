@@ -38,7 +38,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
 
     $has_fade_expt          = $this -> czr_fn_get_fade_expt( $is_expanded, $thumb_img );
     //update the model
-    $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded', 'title', 'has_title_in_caption', 'has_fade_expt', 'has_edit_in_caption' ) ) );
+    $this -> czr_fn_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded', 'title', 'has_title_in_caption', 'has_fade_expt', 'has_edit_in_caption' ) ) );
   }
 
   /*
@@ -103,7 +103,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
       if ( ! isset( $tc_thumb ) )
         return;
 
-      $thumb_img              = apply_filters( 'tc-grid-thumb-img', $tc_thumb, CZR_cl_utils::tc_id() );
+      $thumb_img              = apply_filters( 'tc-grid-thumb-img', $tc_thumb, CZR_cl_utils::czr_fn_id() );
     }
 
     return compact( 'has_thumb', 'thumb_img' );
@@ -173,8 +173,8 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   * parse this model properties for rendering
   */
   function czr_fn_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
+    parent::czr_fn_sanitize_model_properties( $model );
     foreach ( array('figure') as $property )
-      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
+      $model -> {"{$property}_class"} = $this -> czr_fn_stringify_model_property( "{$property}_class" );
   }
 }

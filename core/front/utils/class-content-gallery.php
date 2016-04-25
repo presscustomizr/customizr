@@ -17,7 +17,7 @@ if ( ! class_exists( 'CZR_cl_gallery' ) ) :
       function __construct () {
         self::$instance =& $this;
 
-        add_filter ( 'czr_fn_article_container_class' , array( $this, 'tc_add_gallery_class' ), 20 );
+        add_filter ( 'czr_fn_article_container_class' , array( $this, 'czr_fn_add_gallery_class' ), 20 );
         //adds a filter for link markup (allow lightbox)
         add_filter ( 'wp_get_attachment_link'     , array( $this, 'tc_modify_attachment_link') , 20, 6 );
       }
@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_cl_gallery' ) ) :
        *
        */
       function czr_fn_add_gallery_class( $_classes ){
-        if (  $this -> tc_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( 'tc_gallery_style' ) ) ) )
+        if (  $this -> czr_fn_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( 'tc_gallery_style' ) ) ) )
           array_push($_classes, 'tc-gallery-style');
         return $_classes;
       }
@@ -47,7 +47,7 @@ if ( ! class_exists( 'CZR_cl_gallery' ) ) :
        */
       function czr_fn_modify_attachment_link( $markup, $id, $size, $permalink, $icon, $text ) {
 
-        if ( ! $this -> tc_is_gallery_enabled() )
+        if ( ! $this -> czr_fn_is_gallery_enabled() )
           return $markup;
 
         $tc_gallery_fancybox = apply_filters( 'tc_gallery_fancybox', esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( 'tc_gallery_fancybox' ) ) , $id );

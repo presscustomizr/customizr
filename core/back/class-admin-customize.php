@@ -21,35 +21,35 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       //check if WP version >= 3.4 to include customizer functions
       //Shall we really keep this ?
       if ( ! version_compare( $wp_version, '3.4' , '>=' ) ) {
-        add_action( 'admin_menu'                    , array( $this , 'tc_add_fallback_page' ));
+        add_action( 'admin_menu'                    , array( $this , 'czr_fn_add_fallback_page' ));
         return;
       }
 
       self::$instance =& $this;
   		//add control class
-  		add_action ( 'customize_register'				                , array( $this , 'tc_augment_customizer' ),10,1);
+  		add_action ( 'customize_register'				                , array( $this , 'czr_fn_augment_customizer' ),10,1);
 
   		//add grid/post list buttons in the control views
-  		add_action( '__before_setting_control'                  , array( $this , 'tc_render_grid_control_link') );
+  		add_action( '__before_setting_control'                  , array( $this , 'czr_fn_render_grid_control_link') );
 
   		//control scripts and style
-  		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
+  		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'czr_fn_customize_controls_js_css' ));
   		//add the customizer built with the builder below
-  		add_action ( 'customize_register'				                , array( $this , 'tc_customize_register' ), 20, 1 );
+  		add_action ( 'customize_register'				                , array( $this , 'czr_fn_customize_register' ), 20, 1 );
 
       //modify some WP built-in settings / controls / sections
-      add_action ( 'customize_register'                       , array( $this , 'tc_alter_wp_customizer_settings' ), 30, 1 );
+      add_action ( 'customize_register'                       , array( $this , 'czr_fn_alter_wp_customizer_settings' ), 30, 1 );
 
       //preview scripts
-      //set with priority 20 to be fired after tc_customize_store_db_opt in CZR_cl_utils
-  		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ), 20 );
+      //set with priority 20 to be fired after czr_fn_customize_store_db_opt in CZR_cl_utils
+  		add_action ( 'customize_preview_init'			              , array( $this , 'czr_fn_customize_preview_js' ), 20 );
   		//Hide donate button
   		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
   		//Grunt Live reload script on DEV mode (CZR_DEV constant has to be defined. In wp_config for example)
       if ( defined('CZR_DEV') && true === CZR_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
-      	add_action( 'customize_controls_print_scripts'        , array( $this , 'tc_add_livereload_script') );
+      	add_action( 'customize_controls_print_scripts'        , array( $this , 'czr_fn_add_livereload_script') );
 
-      add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'tc_print_js_templates' ) );
+      add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'czr_fn_print_js_templates' ) );
     }
 
 
@@ -58,7 +58,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * Since the WP_Customize_Manager::$controls and $settings are protected properties, one way to alter them is to use the get_setting and get_control methods
     * Another way is to remove the control and add it back as an instance of a custom class and with new properties
     * and set new property values
-    * hook : tc_customize_register:30
+    * hook : czr_fn_customize_register:30
     * @return void()
     */
     function czr_fn_alter_wp_customizer_settings( $wp_customize ) {
@@ -78,7 +78,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
         $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
 
         //add a favicon title after the logo upload
-        add_action( '__after_setting_control' , array( $this , 'tc_add_favicon_title') );
+        add_action( '__after_setting_control' , array( $this , 'czr_fn_add_favicon_title') );
       }//end ALTER SITE ICON
 
 
@@ -182,9 +182,9 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		* @since Customizr 3.0
 		*/
 		function czr_fn_customize_register( $wp_customize) {
-			return $this -> tc_customize_factory (
+			return $this -> czr_fn_customize_factory (
         $wp_customize,
-        $this -> tc_customize_arguments(),
+        $this -> czr_fn_customize_arguments(),
         CZR_cl_utils_settings_map::$instance -> czr_fn_get_customizer_map()
       );
 		}
@@ -317,7 +317,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
           //=> grid customizer addon starts by gc_
           //When do we add a prefix ?
           $add_prefix = false;
-          if ( CZR_cl_utils::$inst -> tc_is_customizr_option( $key ) )
+          if ( CZR_cl_utils::$inst -> czr_fn_is_customizr_option( $key ) )
             $add_prefix = true;
           $_opt_name = $add_prefix ? "{$czr_option_group}[{$key}]" : $key;
 
@@ -445,7 +445,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 
 			//declares the common fp control fields and the dynamic arrays
 			$fp_controls 			= array(
-				'tc_theme_options[tc_show_featured_pages_img]',
+				'tc_theme_options[czr_fn_show_featured_pages_img]',
 				'tc_theme_options[tc_featured_page_button_text]'
 			);
 			$page_dropdowns 		= array();

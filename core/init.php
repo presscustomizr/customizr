@@ -436,21 +436,21 @@ if ( ! class_exists( 'CZR___' ) ) :
     */
     function czr_fn_echo( $property, $model_id = null, $args = array() ) {
       $prop_value = czr_fn_get( $property, $model_id, $args );
-      echo $prop_value && is_array( $prop_value ) ? CZR() -> helpers -> tc_stringify_array( $prop_value ) : $prop_value;
+      echo $prop_value && is_array( $prop_value ) ? CZR() -> helpers -> czr_fn_stringify_array( $prop_value ) : $prop_value;
     }
 
     /*
     * An handly function to print the content wrapper class
     */
     function czr_fn_column_content_wrapper_class() {
-      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::czr_fn_get_column_content_wrapper_class() );
+      echo CZR() -> helpers -> czr_fn_stringify_array( CZR_cl_utils::czr_fn_get_column_content_wrapper_class() );
     }
 
     /*
     * An handly function to print the article containerr class
     */
     function czr_fn_article_container_class() {
-      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::czr_fn_get_article_container_class() );
+      echo CZR() -> helpers -> czr_fn_stringify_array( CZR_cl_utils::czr_fn_get_article_container_class() );
     }
 
     /**

@@ -33,7 +33,7 @@ class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
     if ( ! isset( $tc_thumb ) || is_null( $tc_thumb ) )
       return;
 
-    $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, CZR_cl_utils::tc_id() );
+    $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, CZR_cl_utils::czr_fn_id() );
     if ( ! $thumb_img )
       return;
 
@@ -46,13 +46,13 @@ class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
     $thumb_wrapper_class    =  apply_filters( 'tc_thumb_wrapper_class', array_merge( array( $this -> thumb_wrapper_class ), $no_effect_class ) );
 
     //update the model
-    $this -> tc_update( compact( 'thumb_wrapper', 'element_class', 'link_class', 'thumb_img') );
+    $this -> czr_fn_update( compact( 'thumb_wrapper', 'element_class', 'link_class', 'thumb_img') );
   }
 
   function czr_fn_get_no_effect_class( $thumb_model ) {
     extract( $thumb_model );
     //handles the case when the image dimensions are too small
-    $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size , CZR_cl_utils::tc_id() );
+    $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size , CZR_cl_utils::czr_fn_id() );
     $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
     $no_effect_class  = ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
@@ -82,7 +82,7 @@ class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
   function pre_rendering_my_view_cb( $model ) {
     parent::pre_rendering_my_view_cb( $model );
     foreach ( array( 'thumb_wrapper', 'link' ) as $property ) {
-      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
+      $model -> {"{$property}_class"} = $this -> czr_fn_stringify_model_property( "{$property}_class" );
     }
   }
 

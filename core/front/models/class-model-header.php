@@ -97,7 +97,7 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
 
   /**
   * Adds a specific style to handle the header top border and z-index
-  * hook : tc_user_options_style
+  * hook : czr_fn_user_options_style
   *
   * @package Customizr
   */

@@ -47,7 +47,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
 
 
     function czr_fn_display_view_mobile_tagline() {
-      return $this -> tc_display_view_tagline();
+      return $this -> czr_fn_display_view_tagline();
     }
 
     //do not display the tagline when:
@@ -60,12 +60,12 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
     }
 
     function czr_fn_display_view_title() {
-      return ! $this -> tc_display_view_logo_wrapper();
+      return ! $this -> czr_fn_display_view_logo_wrapper();
     }
 
     function czr_fn_display_view_logo_wrapper() {
       //display the logo wrapper when one of them is available;
-      return $this -> tc_display_view_logo() || $this -> tc_display_view_sticky_logo();
+      return $this -> czr_fn_display_view_logo() || $this -> czr_fn_display_view_sticky_logo();
     }
 
     function czr_fn_display_view_logo() {
@@ -84,7 +84,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
         $_attachment_data   = apply_filters( "tc_logo_attachment_img" , wp_get_attachment_image_src( $logo_option , 'full' ) );
 
         $_logo_src          = apply_filters( "tc_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
-        $filetype           = CZR_cl_utils::$inst -> tc_check_filetype ($_logo_src);
+        $filetype           = CZR_cl_utils::$inst -> czr_fn_check_filetype ($_logo_src);
 
         if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
           $to_return = true;
@@ -114,7 +114,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
         $_attachment_data     = apply_filters( "tc_sticky_logo_attachment_img" , wp_get_attachment_image_src( $sticky_logo_option , 'full' ) );
 
         $_logo_src            = apply_filters( "tc_sticky_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
-        $filetype             = CZR_cl_utils::$inst -> tc_check_filetype ($_logo_src);
+        $filetype             = CZR_cl_utils::$inst -> czr_fn_check_filetype ($_logo_src);
 
         if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
           $to_return = true;
@@ -130,7 +130,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
     //2) menu type is not aside (sidenav)
     function czr_fn_display_view_navbar_menu() {
       if ( ! isset( $this -> _cache[ 'view_navbar_menu' ] ) )
-        $this -> _cache[ 'view_navbar_menu' ] = $this -> tc_display_view_menu() && ! $this -> tc_display_view_sidenav();
+        $this -> _cache[ 'view_navbar_menu' ] = $this -> czr_fn_display_view_menu() && ! $this -> czr_fn_display_view_sidenav();
 
       return $this -> _cache[ 'view_navbar_menu' ];
     }
@@ -141,7 +141,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
     //2) menu type is sidenav but a secondary menu is chosen
     function czr_fn_display_view_navbar_secondary_menu() {
       if ( ! isset( $this -> _cache[ 'view_navbar_secondary_menu' ] ) )
-        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> tc_display_view_menu() &&  ( $this -> tc_display_view_sidenav() && CZR_cl_Utils::$inst -> tc_is_secondary_menu_enabled() ) ;
+        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> czr_fn_display_view_menu() &&  ( $this -> czr_fn_display_view_sidenav() && CZR_cl_Utils::$inst -> czr_fn_is_secondary_menu_enabled() ) ;
       return $this -> _cache[ 'view_navbar_secondary_menu' ];
     }
 
@@ -151,7 +151,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
     //2) menu style is aside
     function czr_fn_display_view_sidenav() {
       if ( ! isset( $this -> _cache[ 'view_sidenav' ] ) )
-        $this -> _cache[ 'view_sidenav' ] = $this -> tc_display_view_menu() && 'aside' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_style' ) );
+        $this -> _cache[ 'view_sidenav' ] = $this -> czr_fn_display_view_menu() && 'aside' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_style' ) );
       return $this -> _cache[ 'view_sidenav' ];
     }
 
@@ -165,25 +165,25 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
     //1) menu button allowed
     //2) menu style is aside ( sidenav)
     //==
-    //tc_display_view_sidenav
+    //czr_fn_display_view_sidenav
     function czr_fn_display_view_sidenav_menu_button() {
-      return $this -> tc_display_view_sidenav(); //already cached
+      return $this -> czr_fn_display_view_sidenav(); //already cached
     }
     function czr_fn_display_view_sidenav_navbar_menu_button() {
-      return $this -> tc_display_view_sidenav(); //already cached
+      return $this -> czr_fn_display_view_sidenav(); //already cached
     }
 
     //when the 'mobile menu button' is allowed?
     //1) menu button allowed
     //2) menu style is not aside (no sidenav)
     function czr_fn_display_view_mobile_menu_button() {
-      return $this -> tc_display_view_menu() && ! $this -> tc_display_view_sidenav(); //already cached
+      return $this -> czr_fn_display_view_menu() && ! $this -> czr_fn_display_view_sidenav(); //already cached
     }
 
     //when the 'menu button' is allowed?
     //1) menu allowed
     function czr_fn_display_view_menu_button() {
-      return $this -> tc_display_view_menu(); /* already cached */
+      return $this -> czr_fn_display_view_menu(); /* already cached */
     }
 
   }//end of class

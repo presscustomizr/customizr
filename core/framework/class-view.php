@@ -55,11 +55,11 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
 
       do_action( "__before_{$this -> model -> id}" );
 
-      $tc_print_debug =  ! CZR___::$instance -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
+      $czr_fn_print_debug =  ! CZR___::$instance -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
 
       ?>
       <?php
-      if ( $tc_print_debug ) {
+      if ( $czr_fn_print_debug ) {
         echo "<!-- HOOK CONTENT HERE : __before_{$this -> model -> id} -->";
 
         /* Maybe merge debug info into the model element attributes */
@@ -71,9 +71,9 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
         echo "<!-- START RENDERING VIEW ID : {$this -> model -> id} -->";
       }
 
-        $this -> tc_render();
+        $this -> czr_fn_render();
 
-      if ( $tc_print_debug ) {
+      if ( $czr_fn_print_debug ) {
         echo "<!-- END OF RENDERING VIEW ID : {$this -> model -> id} -->";
         echo "<!-- HOOK CONTENT HERE : __after_{$this -> model -> id} -->";
       }
@@ -106,7 +106,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
       }
 
       if ( ! empty( $this -> model -> callback ) )
-        CZR() -> helpers -> tc_fire_cb( $this -> model -> callback, $this -> model -> cb_params );
+        CZR() -> helpers -> czr_fn_fire_cb( $this -> model -> callback, $this -> model -> cb_params );
     }
 
 
@@ -122,7 +122,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
 
       $new_params = empty($new_params) ? CZR() -> collection -> czr_fn_get_registered_changes( $id ) : $new_params;
 
-      $this -> tc_update_model_instance( $id, $new_params );
+      $this -> czr_fn_update_model_instance( $id, $new_params );
 
       //This event will trigger a removal of the change from the change list
       //=> tc_deregister_change

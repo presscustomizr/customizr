@@ -17,7 +17,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
     $model[ 'element_class' ]  = $this -> get_element_class();
     $model[ 'theme_location' ] = $this -> theme_location;
     $model[ 'walker' ]         = ! CZR_cl_utils::$inst -> czr_fn_has_location_menu( $model['theme_location'] ) ? '' : new CZR_cl_nav_walker( $model['theme_location'] );
-    $model[ 'fallback_cb' ]    = array( $this, 'tc_page_menu' );
+    $model[ 'fallback_cb' ]    = array( $this, 'czr_fn_page_menu' );
 
     return $model;
   }
@@ -36,7 +36,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
   * Allow filtering of the header class by registering to its pre view rendering hook
   */
   function czr_fn_maybe_filter_views_model() {
-    parent::tc_maybe_filter_views_model();
+    parent::czr_fn_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header'         , array( $this, 'pre_rendering_view_header_cb' ) );
     add_action( 'pre_rendering_view_navbar_wrapper' , array( $this, 'pre_rendering_view_navbar_wrapper_cb' ) );
   }
@@ -83,8 +83,8 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
   * parse this model properties for rendering
   */
   function czr_fn_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
-    $model -> menu_class = $this -> tc_stringify_model_property( 'menu_class' );
+    parent::czr_fn_sanitize_model_properties( $model );
+    $model -> menu_class = $this -> czr_fn_stringify_model_property( 'menu_class' );
   }
 
 
@@ -127,7 +127,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
 
     $list_args['echo'] = false;
     $list_args['title_li'] = '';
-    $menu .= str_replace( array( "\r", "\n", "\t" ), '', $this -> tc_list_pages($list_args) );
+    $menu .= str_replace( array( "\r", "\n", "\t" ), '', $this -> czr_fn_list_pages($list_args) );
 
     // if ( $menu )
     //   $menu = '<ul>' . $menu . '</ul>';
@@ -191,7 +191,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
         }
       }
 
-      $output .= $this -> tc_walk_page_tree( $pages, $r['depth'], $current_page, $r );
+      $output .= $this -> czr_fn_walk_page_tree( $pages, $r['depth'], $current_page, $r );
       if ( $r['title_li'] ) {
         $output .= '</ul></li>';
       }

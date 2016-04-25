@@ -313,7 +313,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           add_action( 'after_setup_theme'                       , array( $this, 'czr_fn_register_menus'));
 
           //add retina support for high resolution devices
-          add_filter( 'wp_generate_attachment_metadata'        , array( $this , 'tc_add_retina_support') , 10 , 2 );
+          add_filter( 'wp_generate_attachment_metadata'        , array( $this , 'czr_fn_add_retina_support') , 10 , 2 );
           add_filter( 'delete_attachment'                      , array( $this , 'tc_clean_retina_images') );
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
@@ -457,10 +457,10 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
         add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
 
         //add support for svg and svgz format in media upload
-        add_filter( 'upload_mimes'                        , array( $this , 'tc_custom_mtypes' ) );
+        add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
 
         //add help button to admin bar
-        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
+        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'czr_fn_add_help_button' ));
       }
 
 
@@ -485,7 +485,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       */
       function czr_fn_get_style_src( $_wot = 'skin' ) {
         $_sheet    = ( 'skin' == $_wot ) ? esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_skin' ) ) : 'tc_common.css';
-        $_sheet    = $this -> tc_maybe_use_min_style( $_sheet );
+        $_sheet    = $this -> czr_fn_maybe_use_min_style( $_sheet );
 
         //Finds the good path : are we in a child theme and is there a skin to override?
         $remote_path    = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' . $_sheet );
@@ -499,7 +499,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
         //Defines the active skin and fallback to blue.css if needed
         if ( 'skin' == $_wot ) {
           //custom skin old tree compatibility for customizr-pro children only
-          $remote_path       = ( CZR___::czr_fn_is_pro() && CZR___::$instance -> tc_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
+          $remote_path       = ( CZR___::czr_fn_is_pro() && CZR___::$instance -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
           $czr_fn_get_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/blue3.css';
         } else
           $czr_fn_get_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/tc_common.css';
@@ -537,7 +537,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * @since Customizr 3.1.19
       */
       function czr_fn_custom_mtypes( $mimes ) {
-        if (! apply_filters( 'tc_add_svg_mime_type' , true ) )
+        if (! apply_filters( 'czr_fn_add_svg_mime_type' , true ) )
           return $mimes;
 
         $mimes['svg']   = 'image/svg+xml';
@@ -685,7 +685,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           array_push( $_classes, esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_dropcap_design' ) ) );
 
         //adds the layout
-        $_layout = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::tc_id() , 'sidebar' );
+        $_layout = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::czr_fn_id() , 'sidebar' );
         if ( in_array( $_layout, array('b', 'l', 'r' , 'f') ) ) {
           array_push( $_classes, sprintf( 'tc-%s-sidebar',
             'f' == $_layout ? 'no' : $_layout

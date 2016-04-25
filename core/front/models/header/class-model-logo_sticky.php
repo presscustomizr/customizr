@@ -7,7 +7,7 @@ class CZR_cl_logo_sticky_model_class extends CZR_cl_logo_model_class{
   * Allow filtering of the header class by registering to its pre view rendering hook
   */
   function czr_fn_maybe_filter_views_model() {
-    parent::tc_maybe_filter_views_model();
+    parent::czr_fn_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
 
@@ -23,7 +23,7 @@ class CZR_cl_logo_sticky_model_class extends CZR_cl_logo_model_class{
 
   function czr_fn_user_options_style_cb( $_css ) {
     $_css = sprintf( "%s%s",
-        parent::tc_user_options_style_cb( $_css ),
+        parent::czr_fn_user_options_style_cb( $_css ),
         "
         .site-logo img.sticky {
             display: none;

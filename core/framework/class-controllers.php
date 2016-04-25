@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
       //takes 2 params
       //group name (string)
       //group controller instance (object)
-      add_action( 'group_controller_instantiated', array( $this, 'tc_store_controller_instance'),10, 2);
+      add_action( 'group_controller_instantiated', array( $this, 'czr_fn_store_controller_instance'),10, 2);
     }//__construct()
 
 
@@ -69,7 +69,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
       //return true;
 
       if ( ! empty( $controller_cb ) ) {
-        return apply_filters( 'czr_fn_set_control' , (bool) CZR() -> helpers -> tc_return_cb_result( $controller_cb, $model ) );
+        return apply_filters( 'czr_fn_set_control' , (bool) CZR() -> helpers -> czr_fn_return_cb_result( $controller_cb, $model ) );
       }
       return true;
     }
@@ -169,7 +169,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
       }
 
       //build the method name
-      $method_name = "tc_display_view_{$controller_cb}";//ex : tc_display_view_{favicon_control}()
+      $method_name = "czr_fn_display_view_{$controller_cb}";//ex : czr_fn_display_view_{favicon_control}()
 
 
       //make sure we have a class instance and that the requested controller method exists in it

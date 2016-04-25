@@ -44,9 +44,9 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //on 'wp', the pre_registered (if any) are registered
       add_action( 'wp'                          , array($this, 'czr_fn_register_pre_registered') );
 
-      //Reacts on 'tc_delete' event
+      //Reacts on 'czr_fn_delete' event
       //1 param = model id
-      add_action( 'tc_delete'                   , array( $this, 'tc_delete' ), 10, 1 );
+      add_action( 'czr_fn_delete'                   , array( $this, 'czr_fn_delete' ), 10, 1 );
 
       //listens to a model changed => update the model collection
       //model_property_changed takes two params :
@@ -59,9 +59,9 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       add_action( 'registered_changed_applied'  , array( $this, 'tc_deregister_change' ), 10, 1 );
 
       //reacts when a model has been deregistered from the collection
-      //=> fire tc_delete()
+      //=> fire czr_fn_delete()
       //=> take the model id as param
-      add_action( 'model_deregistered'          , array( $this , 'tc_delete'), 10, 1 );
+      add_action( 'model_deregistered'          , array( $this , 'czr_fn_delete'), 10, 1 );
     }
 
 
@@ -274,7 +274,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     function czr_fn_register_pre_registered() {
       foreach ( self::$pre_registered as $id => $model ) {
         //removes from the pre_registered list
-        $this -> tc_remove_pre_registered($id);
+        $this -> czr_fn_remove_pre_registered($id);
         //registers
         $this -> czr_fn_register($model);
       }
@@ -334,14 +334,14 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
         //A model class has been defined, let's try to load it and instantiate it
         //The model_class arg can also be an array in the form array( 'parent' => parent_model_class (string), 'name' => model_class ('string') )
         if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ) {
-          $this -> tc_require_model_class( $model['model_class']['parent'] );
+          $this -> czr_fn_require_model_class( $model['model_class']['parent'] );
           $model_class     = $model[ $_model_class ]['name'];
 
         } else {
           $model_class     = $model[ $_model_class ];
         }
 
-        $model_class_name     = sprintf( 'CZR_cl_%s_model_class', $this -> tc_require_model_class( $model_class ) );
+        $model_class_name     = sprintf( 'CZR_cl_%s_model_class', $this -> czr_fn_require_model_class( $model_class ) );
 
         if ( class_exists($model_class_name) ) {
           $instance = new $model_class_name( $model );
@@ -401,7 +401,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
       //Check if we have to run a registered deletion here
       if ( $this -> czr_fn_is_registered( $id ) && $this -> czr_fn_has_registered_deletion( $id ) ) {
-        do_action( 'tc_delete' , $id );
+        do_action( 'czr_fn_delete' , $id );
         return;
       }
 
@@ -520,7 +520,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
           $model_instance -> tc_unhook_view();
         }
         //delete the current version of the model
-        $this -> tc_delete( $id );
+        $this -> czr_fn_delete( $id );
         //reset the new_model with existing properties
         $new_model = wp_parse_args( $new_model, $current_model );
 

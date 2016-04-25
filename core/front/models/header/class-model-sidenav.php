@@ -3,7 +3,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
 
   function __construct( $model = array() ) {
     parent::__construct( $model );
-    add_filter( 'tc_menu_open_on_click', array( $this, 'tc_disable_dropdown_on_click' ), 10, 3 );
+    add_filter( 'tc_menu_open_on_click', array( $this, 'czr_fn_disable_dropdown_on_click' ), 10, 3 );
   }
 
 
@@ -33,8 +33,8 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
   * parse this model properties for rendering
   */
   function czr_fn_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
-    $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
+    parent::czr_fn_sanitize_model_properties( $model );
+    $model -> inner_class = $this -> czr_fn_stringify_model_property( 'inner_class' );
   }
 
 
@@ -67,7 +67,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
 
   /**
   * Adds a specific style for the sidenav
-  * hook : tc_user_options_style
+  * hook : czr_fn_user_options_style
   *
   * @package Customizr
   * @since Customizr 3.2.11

@@ -134,9 +134,9 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
   * parse this model properties for rendering
   */
   function czr_fn_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
+    parent::czr_fn_sanitize_model_properties( $model );
     foreach ( array( 'column_content', 'article_wrapper' ) as $property )
-      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
+      $model -> {"{$property}_class"} = $this -> czr_fn_stringify_model_property( "{$property}_class" );
   }
 
 

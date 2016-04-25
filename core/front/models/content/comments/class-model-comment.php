@@ -61,7 +61,7 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
      'is_awaiting_moderation'   => '0' == $comment->comment_approved,
     );
 
-    $this -> tc_update( $props );
+    $this -> czr_fn_update( $props );
     return $comment;
   }
 }

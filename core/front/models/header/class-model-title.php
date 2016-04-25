@@ -35,7 +35,7 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   * Allow filtering of the header class by registering to its pre view rendering hook
   */
   function czr_fn_maybe_filter_views_model() {
-    parent::tc_maybe_filter_views_model();
+    parent::czr_fn_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
 
@@ -54,7 +54,7 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
 
   /**
   * Adds a specific style to allow the title shrinking
-  * hook : tc_user_options_style
+  * hook : czr_fn_user_options_style
   *
   * @package Customizr
   */

@@ -25,7 +25,7 @@ if ( ! class_exists( 'CZR_cl_controller_footer' ) ) :
 
     //display btt link only if btt arrow disallowed
     function czr_fn_display_view_footer_btt() {
-      return ! $this -> tc_display_view_btt_arrow();
+      return ! $this -> czr_fn_display_view_btt_arrow();
     }
 
     function czr_fn_display_view_footer_widgets_wrapper() {

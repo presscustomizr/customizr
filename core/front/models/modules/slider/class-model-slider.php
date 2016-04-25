@@ -71,7 +71,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     //gets the actual page id if we are displaying the posts page
     $this -> queried_id = $queried_id = $this -> czr_fn_get_real_id();
 
-    if ( ! $this -> is_slider_active = $this -> tc_is_slider_active( $queried_id ) ) {
+    if ( ! $this -> is_slider_active = $this -> czr_fn_is_slider_active( $queried_id ) ) {
       $model['id'] = FALSE;
       return $model;
     }
@@ -102,7 +102,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     }
 
     //set-up loader
-    if ( $this -> tc_is_slider_loader_active( $slider_name_id ) ) {
+    if ( $this -> czr_fn_is_slider_loader_active( $slider_name_id ) ) {
       $has_loader       = true;
 
       if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) )
@@ -148,7 +148,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $all_sliders    = CZR_cl_utils::$inst -> czr_fn_opt( 'tc_sliders');
     $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
     //if the slider not longer exists or exists but is empty, return false
-    if ( ! $this -> tc_slider_exists( $saved_slides) )
+    if ( ! $this -> czr_fn_slider_exists( $saved_slides) )
       return;
 
     //inititalize the slides array
@@ -190,15 +190,15 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     //title
     $title                  = esc_attr(get_post_meta( $id, $key = 'slide_title_key' , $single = true ));
     $default_title_length   = apply_filters( 'tc_slide_title_length', 80 );
-    $title                  = $this -> tc_trim_text( $title, $default_title_length, '...' );
+    $title                  = $this -> czr_fn_trim_text( $title, $default_title_length, '...' );
     //lead text
     $text                   = get_post_meta( $id, $key = 'slide_text_key' , $single = true );
     $default_text_length    = apply_filters( 'tc_slide_text_length', 250 );
-    $text                   = $this -> tc_trim_text( $text, $default_text_length, '...' );
+    $text                   = $this -> czr_fn_trim_text( $text, $default_text_length, '...' );
     //button text
     $button_text            = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
     $default_button_length  = apply_filters( 'tc_slide_button_length', 80 );
-    $button_text            = $this -> tc_trim_text( $button_text, $default_button_length, '...' );
+    $button_text            = $this -> czr_fn_trim_text( $button_text, $default_button_length, '...' );
     //link post id
     $link_id                = apply_filters( 'tc_slide_link_id', esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true )), $id, $slider_name_id );
     //link
@@ -254,7 +254,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
         //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html
         //to avoid this we filter the attributes getting rid of the srcset if any.
         //Basically this trick, even if ugly, will avoid the srcset attr computation
-        add_filter( 'wp_get_attachment_image_attributes', array( CZR_cl_utils_thumbnails::$instance, 'tc_remove_srcset_attr' ) );
+        add_filter( 'wp_get_attachment_image_attributes', array( CZR_cl_utils_thumbnails::$instance, 'czr_fn_remove_srcset_attr' ) );
         return array( 'srcset' => ' ');
       }
     return array();
@@ -277,8 +277,8 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   * parse this model properties for rendering
   */
   function czr_fn_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
-    $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
+    parent::czr_fn_sanitize_model_properties( $model );
+    $model -> inner_class = $this -> czr_fn_stringify_model_property( 'inner_class' );
   }
 
   /******************************
@@ -376,7 +376,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   */
   protected function czr_fn_get_slider_layout( $queried_id, $slider_name_id ) {
     //gets slider options if any
-    $layout_value                 = CZR_cl_utils::$inst -> tc_is_home() ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
+    $layout_value                 = CZR_cl_utils::$inst -> czr_fn_is_home() ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
     return apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
   }
 
@@ -399,7 +399,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   */
   protected function czr_fn_is_slider_active( $queried_id ) {
     //is the slider set to on for the queried id?
-    if ( CZR_cl_utils::$inst -> tc_is_home() && CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) )
+    if ( CZR_cl_utils::$inst -> czr_fn_is_home() && CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) )
       return apply_filters( 'tc_slider_active_status', true , $queried_id );
     $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
     if ( ! empty( $_slider_on ) && $_slider_on )
@@ -429,7 +429,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   private function czr_fn_get_current_slider( $queried_id ) {
     //gets the current slider id
     $_home_slider     = CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' );
-    $slider_name_id   = ( CZR_cl_utils::$inst -> tc_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
+    $slider_name_id   = ( CZR_cl_utils::$inst -> czr_fn_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
     return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id, $this -> id );
   }
 
@@ -478,7 +478,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   }
 
   /**
-  * hook : tc_slider_height, fired in tc_user_options_style
+  * hook : tc_slider_height, fired in czr_fn_user_options_style
   * @return number height value
   *
   * @package Customizr
@@ -511,7 +511,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   function czr_fn_user_options_style_cb( $_css ) {
     $slider_name_id =  $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) ;
     //custom css for the slider loader
-    if ( $this -> tc_is_slider_loader_active( $slider_name_id ) ) {
+    if ( $this -> czr_fn_is_slider_loader_active( $slider_name_id ) ) {
 
       $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s/%2$s' , CZR_BASE_URL . CZR_ASSETS_PREFIX, 'img/slider-loader.gif') );
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
@@ -549,8 +549,8 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $_slider_inline_css = "";
     //When shall we append custom slider style to the global custom inline stylesheet?
     $_bool = 500 != $_custom_height;
-    $_bool = $_bool && ( CZR_cl_utils::$inst -> tc_is_home() || 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
-    if ( ! apply_filters( 'tc_print_slider_inline_css' , $_bool ) )
+    $_bool = $_bool && ( CZR_cl_utils::$inst -> czr_fn_is_home() || 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
+    if ( ! apply_filters( 'czr_fn_print_slider_inline_css' , $_bool ) )
       return $_css;
     $_resp_shrink_ratios = apply_filters( 'tc_slider_resp_shrink_ratios',
       array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )

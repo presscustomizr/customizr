@@ -16,7 +16,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
     function __construct($_location) {
       self::$instance =& $this;
       $this -> tc_location = $_location;
-      add_filter( 'tc_nav_menu_css_class' , array($this, 'tc_add_bootstrap_classes'), 10, 4 );
+      add_filter( 'tc_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
     }
 
 
@@ -102,7 +102,7 @@ endif;
 if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
   class CZR_cl_nav_walker_page extends Walker_Page {
     function __construct() {
-      add_filter('page_css_class' , array($this, 'tc_add_bootstrap_classes'), 10, 5 );
+      add_filter('page_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 5 );
     }
 
 

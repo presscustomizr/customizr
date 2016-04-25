@@ -33,7 +33,7 @@ class CZR_cl_second_menu_model_class extends CZR_cl_menu_model_class {
   }
 
   /**
-  * @hook tc_user_options_style
+  * @hook czr_fn_user_options_style
   * Second menu
   * This actually "restores" regular menu style (user options in particular) by overriding the max-width: 979px media query
   */

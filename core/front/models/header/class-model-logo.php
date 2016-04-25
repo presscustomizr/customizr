@@ -59,7 +59,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     //hook + makes ssl compliant
     $_logo_src    			= apply_filters( "tc{$logo_type_sep}logo_src" , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
     $logo_resize 			= ( $logo_type_sep == '_' ) ? esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_logo_resize') ) : '';
-    $filetype 				= CZR_cl_utils::$inst -> tc_check_filetype ($_logo_src);
+    $filetype 				= CZR_cl_utils::$inst -> czr_fn_check_filetype ($_logo_src);
     if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
       $args 		= array(
                 'logo_src' 				=> $_logo_src,

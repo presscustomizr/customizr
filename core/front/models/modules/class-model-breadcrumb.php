@@ -334,7 +334,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 			/* Display terms for specific post type taxonomy if requested. */
 			if (  isset($args["singular_breadcrumb_taxonomy"]) && $args["singular_breadcrumb_taxonomy"] )
 				//If post has parent, then don't add the taxonomy trail part
-				$trail 	= ( 1 < count($this -> tc_breadcrumb_trail_get_parents($post_id) ) ) ? $trail : $this -> tc_add_first_term_from_hierarchical_taxinomy( $trail , $post_id );
+				$trail 	= ( 1 < count($this -> tc_breadcrumb_trail_get_parents($post_id) ) ) ? $trail : $this -> czr_fn_add_first_term_from_hierarchical_taxinomy( $trail , $post_id );
 
 			/* End with the post title. */
 			$post_title = single_post_title( '' , false );
@@ -746,7 +746,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 				/* If using the %category% tag, add a link to the first category archive to match permalinks. */
 				/*elseif ( '%category%' == $tag && isset($args["singular_breadcrumb_taxonomy"]) && $args["singular_breadcrumb_taxonomy"] ) {
 
-					$trail 	= $this -> tc_add_first_term_from_hierarchical_taxinomy( $trail , $post_id );
+					$trail 	= $this -> czr_fn_add_first_term_from_hierarchical_taxinomy( $trail , $post_id );
 				}*/
 			}
 		}
@@ -850,7 +850,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 		$args				= $this -> args;
 
 		/*if (  isset($args["singular_breadcrumb_taxonomy"]) && $args["singular_breadcrumb_taxonomy"] )
-			$trail 	= $this -> tc_add_first_term_from_hierarchical_taxinomy( $trail , $parent_key );*/
+			$trail 	= $this -> czr_fn_add_first_term_from_hierarchical_taxinomy( $trail , $parent_key );*/
 
 		foreach (array_reverse($parents) as $key => $value)
 			$trail[] = $value;

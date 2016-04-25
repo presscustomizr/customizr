@@ -5,7 +5,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
 
   public function __construct( $model ) {
     parent::__construct( $model);
-    add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'tc_woocommerce_add_to_cart_fragment' ) );
+    add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'czr_fn_woocommerce_add_to_cart_fragment' ) );
     add_action( 'pre_rendering_view_header'        , array( $this, 'pre_rendering_view_header_cb' ) );
     add_action( 'pre_rendering_view_tagline'       , array( $this, 'pre_rendering_view_tagline_cb' ) );
   }
@@ -21,7 +21,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
 
   // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
   function czr_fn_woocommerce_add_to_cart_fragment( $fragments ) {
-    if ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ) {
+    if ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) ) ) {
       $_cart_count = WC()->cart->get_cart_contents_count();
       $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
     }
@@ -35,7 +35,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
     if ( ! is_array( $header_model -> element_class ) )
       $header_model -> element_class = explode( ' ', $header_model -> element_class );
 
-    $_class = ( 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
+    $_class = ( 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
     array_push( $header_model -> element_class, $_class );
   }
 
@@ -48,7 +48,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
 
 
   /**
-  * @hook tc_user_options_style
+  * @hook czr_fn_user_options_style
   */
   function czr_fn_user_options_style_cb( $_css ) {
     /* The only real decision I took here is the following:

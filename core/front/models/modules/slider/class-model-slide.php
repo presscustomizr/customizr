@@ -58,7 +58,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
     //img elements
     $img_wrapper_class = apply_filters( 'tc_slide_content_class', sprintf('carousel-image %1$s' , $img_size ) );
 
-    $this -> tc_update(
+    $this -> czr_fn_update(
         array_merge( $slide, $caption, compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide', 'slider_name_id', 'slide_id' ) )
     );
   }
@@ -170,9 +170,9 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
   * parse this model properties for rendering
   */
   function czr_fn_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
+    parent::czr_fn_sanitize_model_properties( $model );
     foreach ( array( 'caption', 'text', 'title', 'button' ) as $property ) {
-      $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
+      $model -> {"{$property}_class"} = $this -> czr_fn_stringify_model_property( "{$property}_class" );
     }
   }
 

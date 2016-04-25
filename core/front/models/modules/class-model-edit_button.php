@@ -9,7 +9,7 @@ class CZR_cl_edit_button_model_class extends CZR_cl_Model {
     if ( ! $this -> visibility )
       return;
 
-    if ( ! apply_filters( 'tc_edit_in_title', $this -> tc_is_edit_enabled() ) )
+    if ( ! apply_filters( 'tc_edit_in_title', $this -> czr_fn_is_edit_enabled() ) )
       return;
 
     return true;

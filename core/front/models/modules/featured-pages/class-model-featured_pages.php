@@ -18,7 +18,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
   */
   function czr_fn_extend_params( $model = array() ) {
 
-    $tc_show_featured_pages_img     = $this -> tc_show_featured_pages_img();
+    $czr_fn_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
     $_skin_color                    = CZR_cl_utils::$inst -> czr_fn_get_skin_color();
     $fp_holder_img                  = apply_filters (
@@ -49,7 +49,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
     $span_value      = ( $fp_per_row > 7) ? 1 : $span_value;
     $span_value      = isset( $span_array[$fp_per_row] ) ? $span_array[$fp_per_row] :  $span_value;
 
-    $featured_pages = $this -> czr_fn_get_the_featured_pages( $fp_nb, $fp_ids, $tc_show_featured_pages_img, $fp_holder_img );
+    $featured_pages = $this -> czr_fn_get_the_featured_pages( $fp_nb, $fp_ids, $czr_fn_show_featured_pages_img, $fp_holder_img );
 
     return array_merge( $model, compact( 'fp_nb', 'fp_per_row', 'span_value', 'featured_pages', 'fp_ids' ) );
   }
@@ -71,17 +71,17 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
   }
 
 
-  function czr_fn_get_the_featured_pages( $fp_nb, $fp_ids, $tc_show_featured_pages_img, $fp_holder_img ) {
+  function czr_fn_get_the_featured_pages( $fp_nb, $fp_ids, $czr_fn_show_featured_pages_img, $fp_holder_img ) {
     $featured_pages = array();
 
     foreach ( range(0, $fp_nb - 1 ) as $fp_id )
-      $featured_pages[ $fp_id + 1 ] = $this -> czr_fn_get_single_fp_model( $fp_ids[$fp_id], $tc_show_featured_pages_img, $fp_holder_img );
+      $featured_pages[ $fp_id + 1 ] = $this -> czr_fn_get_single_fp_model( $fp_ids[$fp_id], $czr_fn_show_featured_pages_img, $fp_holder_img );
 
     return $featured_pages;
   }
 
 
-  function czr_fn_get_single_fp_model( $fp_single_id, $tc_show_featured_pages_img, $fp_holder_img ) {
+  function czr_fn_get_single_fp_model( $fp_single_id, $czr_fn_show_featured_pages_img, $fp_holder_img ) {
     $fp_img = '';
 
     //if fps are not set
@@ -112,7 +112,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
                                               $fp_single_id,
                                               $featured_page_id
                                           );
-      $fp_img                       =  $tc_show_featured_pages_img ? apply_filters ('fp_img_src' , $fp_holder_img, $fp_single_id , $featured_page_id ) : '';
+      $fp_img                       =  $czr_fn_show_featured_pages_img ? apply_filters ('fp_img_src' , $fp_holder_img, $fp_single_id , $featured_page_id ) : '';
     }
     else {
       $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
@@ -142,7 +142,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
       $text                           = ( strlen($text) > $default_fp_text_length ) ? substr( $text , 0 , strpos( $text, ' ' , $default_fp_text_length) ). ' ...' : $text;
 
 
-      if ( $tc_show_featured_pages_img ) {
+      if ( $czr_fn_show_featured_pages_img ) {
        	//set the image : uses thumbnail if any then >> the first attached image then >> a holder script
         $fp_img_size                    = apply_filters( 'tc_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
         //allow user to specify a custom image id
@@ -196,7 +196,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
   function czr_fn_show_featured_pages_img() {
     //gets  display img option
-    return apply_filters( 'tc_show_featured_pages_img', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
+    return apply_filters( 'czr_fn_show_featured_pages_img', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
   }
 
 }

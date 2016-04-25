@@ -17,11 +17,11 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     function __construct () {
       self::$instance =& $this;
       //enqueue additional styling for admin screens
-      add_action( 'admin_init'            , array( $this , 'tc_admin_style' ) );
+      add_action( 'admin_init'            , array( $this , 'czr_fn_admin_style' ) );
 
       //Load the editor-style specific (post formats and RTL), the active skin, the user style.css
       //add user defined fonts in the editor style (@see the query args add_editor_style below)
-      add_action( 'after_setup_theme'     , array( $this, 'tc_add_editor_style') );
+      add_action( 'after_setup_theme'     , array( $this, 'czr_fn_add_editor_style') );
 
       add_filter( 'tiny_mce_before_init'  , array( $this, 'tc_user_defined_tinymce_css') );
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
@@ -36,16 +36,16 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       add_action ( 'delete_term'          , array( $this, 'tc_refresh_terms_pickers_options_cb'), 10, 3 );
 
       //UPDATE NOTICE
-      add_action( 'admin_notices'         , array( $this, 'tc_may_be_display_update_notice') );
+      add_action( 'admin_notices'         , array( $this, 'czr_fn_may_be_display_update_notice') );
       //always add the ajax action
       add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'tc_dismiss_update_notice_action' ) );
-      add_action( 'admin_footer'                  , array( $this , 'tc_write_ajax_dismis_script' ) );
+      add_action( 'admin_footer'                  , array( $this , 'czr_fn_write_ajax_dismis_script' ) );
       /* beautify admin notice text using some defaults the_content filter callbacks */
       foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
-        add_filter( 'tc_update_notice', $callback );
+        add_filter( 'czr_fn_update_notice', $callback );
 
       //PLACEHOLDERS AJAX SETUP HOOKS
-      add_action( 'init'                 , array( $this, 'tc_placeholders_ajax_setup') );
+      add_action( 'init'                 , array( $this, 'czr_fn_placeholders_ajax_setup') );
     }
 
 
@@ -82,7 +82,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      $slider_of_posts = $this -> tc_maybe_get_slider_of_posts_instance();
+      $slider_of_posts = $this -> czr_fn_maybe_get_slider_of_posts_instance();
 
       //Cache posts slider
       if ( $slider_of_posts )
@@ -237,8 +237,8 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
           CZR_cl_init::$instance -> czr_fn_get_style_src() , get_stylesheet_uri()
       );
 
-      if ( apply_filters( 'tc_add_custom_fonts_to_editor' , false != $this -> tc_maybe_add_gfonts_to_editor() ) )
-        $_stylesheets = array_merge( $_stylesheets , $this -> tc_maybe_add_gfonts_to_editor() );
+      if ( apply_filters( 'czr_fn_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
+        $_stylesheets = array_merge( $_stylesheets , $this -> czr_fn_maybe_add_gfonts_to_editor() );
 
       add_editor_style( $_stylesheets );
     }
@@ -255,7 +255,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     *
     */
     function czr_fn_user_defined_tinymce_css( $init ) {
-      if ( ! apply_filters( 'tc_add_custom_fonts_to_editor' , true ) )
+      if ( ! apply_filters( 'czr_fn_add_custom_fonts_to_editor' , true ) )
         return $init;
       //some plugins fire tiny mce editor in the customizer
       //in this case, the CZR_cl_resource class has to be loaded
@@ -263,7 +263,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         CZR___::$instance -> czr_fn_load( array('fire' => array( array('inc' , 'resources') ) ), true );
 
       //fonts
-      $_css = CZR_cl_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
+      $_css = CZR_cl_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
       //icons
       $_css .= CZR_cl_resources::$instance -> czr_fn_get_inline_font_icons_css();
      ?>
@@ -309,7 +309,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
         CZR_cl_utils::$inst->czr_fn_set_option( $opt_name, $last_update_notice_values );
         //already user of the theme ?
-        if ( CZR_cl_utils::$inst->tc_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
+        if ( CZR_cl_utils::$inst->czr_fn_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
           $show_new_notice = true;
       }
 
@@ -344,7 +344,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         <div class="updated" style="position:relative">
           <?php
             echo apply_filters(
-              'tc_update_notice',
+              'czr_fn_update_notice',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
                 __( "Good, you've just upgraded to", "customizr"),
                 "customizr-pro" == CZR___::$theme_name ? 'Customizr Pro' : 'Customizr',
@@ -355,7 +355,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
           ?>
           <?php
             echo apply_filters(
-              'tc_update_notice',
+              'czr_fn_update_notice',
               sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
                 CZR_WEBSITE . "category/customizr-releases/",
@@ -452,7 +452,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     */
     function czr_fn_placeholders_ajax_setup() {
       if ( CZR_cl_utils::$inst->czr_fn_opt('tc_display_front_help') )
-        add_action( 'wp_ajax_tc_notice_actions'         , array( $this, 'tc_notice_ajax_actions' ) );
+        add_action( 'wp_ajax_tc_notice_actions'         , array( $this, 'czr_fn_notice_ajax_actions' ) );
     }
 
 

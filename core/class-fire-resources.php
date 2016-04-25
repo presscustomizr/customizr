@@ -20,23 +20,23 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
 	    function __construct () {
 	        self::$instance =& $this;
-          add_action( 'wp_enqueue_scripts'            , array( $this , 'tc_enqueue_gfonts' ) , 0 );
-	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_styles' ) );
-            add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_scripts' ) );
+          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ) , 0 );
+	        add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_styles' ) );
+            add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_scripts' ) );
           //Custom Stylesheets
           //Write font icon
-          add_filter('tc_user_options_style'          , array( $this , 'tc_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
+          add_filter('czr_fn_user_options_style'          , array( $this , 'czr_fn_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
 	        //Custom CSS
-          add_filter('tc_user_options_style'          , array( $this , 'tc_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
-          add_filter('tc_user_options_style'          , array( $this , 'tc_write_fonts_inline_css') );
-          add_filter('tc_user_options_style'          , array( $this , 'tc_write_dropcap_inline_css') );
+          add_filter('czr_fn_user_options_style'          , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
+          add_filter('czr_fn_user_options_style'          , array( $this , 'czr_fn_write_fonts_inline_css') );
+          add_filter('czr_fn_user_options_style'          , array( $this , 'czr_fn_write_dropcap_inline_css') );
 
           //set random skin
           add_filter ('czr_opt_tc_skin'                , array( $this, 'czr_fn_set_random_skin' ) );
 
           //Grunt Live reload script on DEV mode (CZR_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('CZR_DEV') && true === CZR_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
-	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
+	        	add_action( 'wp_head' , array( $this , 'czr_fn_add_livereload_script' ) );
 
           //stores the front scripts map in a property
           $this -> tc_script_map = $this -> czr_fn_get_script_map();
@@ -54,7 +54,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
           if ( true == CZR_cl_utils::$inst -> czr_fn_opt( 'tc_font_awesome_css' ) ) {
             $_path = apply_filters( 'tc_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css' );
             wp_enqueue_style( 'customizr-fa',
-                $_path . '/fonts/' . CZR_cl_init::$instance -> tc_maybe_use_min_style( 'font-awesome.css' ),
+                $_path . '/fonts/' . CZR_cl_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
                 array() , CUSTOMIZR_VER, 'all' );
           }
 
@@ -66,7 +66,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 	      wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
 
 	      //Customizer user defined style options : the custom CSS is written with a high priority here
-	      wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , '' ) );
+	      wp_add_inline_style( 'customizr-skin', apply_filters( 'czr_fn_user_options_style' , '' ) );
 		}
 
 
@@ -186,25 +186,25 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
       //customizr scripts and libs
 	   	if ( $this -> czr_fn_load_concatenated_front_scripts() )	{
         if ( $this -> czr_fn_is_fancyboxjs_required() )
-          $this -> tc_enqueue_script( 'tc-fancybox' );
+          $this -> czr_fn_enqueue_script( 'tc-fancybox' );
         //!!tc-scripts includes underscore, tc-js-arraymap-proto
-        $this -> tc_enqueue_script( 'tc-scripts' );
+        $this -> czr_fn_enqueue_script( 'tc-scripts' );
 			}
 			else {
         wp_enqueue_script( 'underscore' );
         //!!mind the dependencies
-        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-smoothscroll', 'tc-outline' ) );
+        $this -> czr_fn_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-smoothscroll', 'tc-outline' ) );
 
         if ( $this -> czr_fn_is_fancyboxjs_required() )
-          $this -> tc_enqueue_script( 'tc-fancybox' );
+          $this -> czr_fn_enqueue_script( 'tc-fancybox' );
 
-        $this -> tc_enqueue_script( array( 'tc-dropcap' , 'tc-img-smartload', 'tc-ext-links', 'tc-center-images', 'tc-main-front' ) );
+        $this -> czr_fn_enqueue_script( array( 'tc-dropcap' , 'tc-img-smartload', 'tc-ext-links', 'tc-center-images', 'tc-main-front' ) );
 			}//end of load concatenate script if
 
       //carousel options
       //gets slider options if any for home/front page or for others posts/pages
-      $js_slidername      = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::tc_id() , $key = 'post_slider_key' , $single = true );
-      $js_sliderdelay     = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::tc_id() , $key = 'slider_delay_key' , $single = true );
+      $js_slidername      = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'post_slider_key' , $single = true );
+      $js_sliderdelay     = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'slider_delay_key' , $single = true );
 
 			//has the post comments ? adds a boolean parameter in js
 			global $wp_query;
@@ -236,7 +236,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
             )
       ));
 			//gets current screen layout
-    	$screen_layout      = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
+    	$screen_layout      = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::czr_fn_id() , 'sidebar'  );
     	//gets the global layout settings
     	$global_layout      = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
     	$sidebar_layout     = isset($global_layout[$screen_layout]['sidebar']) ? $global_layout[$screen_layout]['sidebar'] : false;
@@ -279,10 +279,10 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
               'imgSmartLoadOpts'    => $smart_load_opts,
               'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
               'gridGoldenRatioLimit' => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_thumb_height' ) ),
-              'isSecondMenuEnabled'  => CZR_cl_utils::$inst->tc_is_secondary_menu_enabled(),
+              'isSecondMenuEnabled'  => CZR_cl_utils::$inst-> czr_fn_is_secondary_menu_enabled(),
               'secondMenuRespSet'   => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_second_menu_resp_setting' ) )
 	        	),
-	        	CZR_cl_utils::tc_id()
+	        	CZR_cl_utils::czr_fn_id()
 		    )//end of filter
 	     );
 
@@ -315,13 +315,13 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
 		/**
     * Write the font icon in the custom stylesheet at the very beginning
-    * hook : tc_user_options_style
+    * hook : czr_fn_user_options_style
     * @package Customizr
     * @since Customizr 3.2.3
     */
 		function czr_fn_write_inline_font_icons_css( $_css = null ) {
       $_css               = isset($_css) ? $_css : '';
-      return apply_filters( 'tc_write_inline_font_icons',
+      return apply_filters( 'czr_fn_write_inline_font_icons',
         $this -> czr_fn_get_inline_font_icons_css() . "\n" . $_css,
         $_css
       );
@@ -360,7 +360,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
     /**
     * Writes the sanitized custom CSS from options array into the custom user stylesheet, at the very end (priority 9999)
-    * hook : tc_user_options_style
+    * hook : czr_fn_user_options_style
     * @package Customizr
     * @since Customizr 2.0.7
     */
@@ -370,7 +370,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
       if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
         return $_css;
 
-      return apply_filters( 'tc_write_custom_css',
+      return apply_filters( 'czr_fn_write_custom_css',
         $_css . "\n" . html_entity_decode( $tc_custom_css ),
         $_css,
         CZR_cl_utils::$inst->czr_fn_opt( 'tc_custom_css')
@@ -409,7 +409,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     function czr_fn_enqueue_gfonts() {
       $_font_pair         = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fonts' ) );
       $_all_font_pairs    = CZR_cl_init::$instance -> font_pairs;
-      if ( ! $this -> tc_is_gfont( $_font_pair , '_g_') )
+      if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
         return;
 
       wp_enqueue_style(
@@ -424,7 +424,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
 
     /**
-    * Callback of tc_user_options_style hook
+    * Callback of czr_fn_user_options_style hook
     * @return css string
     *
     * @package Customizr
@@ -458,7 +458,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
         foreach ($_selector_fonts as $_key => $_raw_font) {
           //create the $_family and $_weight vars
-          extract( $this -> czr_fn_get_font_css_prop( $_raw_font , $this -> tc_is_gfont( $_font_pair ) ) );
+          extract( $this -> czr_fn_get_font_css_prop( $_raw_font , $this -> czr_fn_is_gfont( $_font_pair ) ) );
 
           switch ($_key) {
             case 0 : //titles font
@@ -507,7 +507,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
 
     /**
-    * Callback of tc_user_options_style hook
+    * Callback of czr_fn_user_options_style hook
     * @return css string
     *
     * @package Customizr
@@ -621,7 +621,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
       //Enqueue the scripts with normalizes args
       foreach ( $_scripts as $_hand => $_params )
-        call_user_func_array( 'wp_enqueue_script',  $this -> tc_normalize_script_args( $_hand, $_params ) );
+        call_user_func_array( 'wp_enqueue_script',  $this -> czr_fn_normalize_script_args( $_hand, $_params ) );
 
     }//end of fn
 

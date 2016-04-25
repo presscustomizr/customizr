@@ -22,7 +22,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $this -> post_id              = CZR_cl_utils::tc_id();
+    $this -> post_id              = CZR_cl_utils::czr_fn_id();
 
     //wrapper classes based on the user options
     $model[ 'element_class' ]     = $this -> tc_grid_container_set_classes( array() );
@@ -67,7 +67,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
         'is_expanded'  => $is_expanded
     );
 
-    $this -> tc_update( array_merge( $element_wrapper, $section_row_wrapper, compact( 'grid_item') ) );
+    $this -> czr_fn_update( array_merge( $element_wrapper, $section_row_wrapper, compact( 'grid_item') ) );
   }
 
 
@@ -136,7 +136,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   */
   private function czr_fn_force_current_post_expansion(){
     global $wp_query;
-    $is_expanded = $this -> tc_maybe_has_sticky_expanded() && 0 == $wp_query -> current_post && get_query_var( 'paged' ) < 2 && is_sticky() ;
+    $is_expanded = $this -> czr_fn_maybe_has_sticky_expanded() && 0 == $wp_query -> current_post && get_query_var( 'paged' ) < 2 && is_sticky() ;
     //set expanded sticky flag
     if ( ! isset( $this -> expanded_sticky ) )
       $this -> czr_fn_set_property( 'expanded_sticky', $is_expanded );
@@ -433,7 +433,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   private function czr_fn_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
     $_css = '';
     //Add one column font rules if there's a sticky post
-    if ( $this -> tc_maybe_has_sticky_expanded() || '1' == $_col_nb ) {
+    if ( $this -> czr_fn_maybe_has_sticky_expanded() || '1' == $_col_nb ) {
       $_size      = $this -> czr_fn_get_grid_font_sizes( $_col_nb = '1', $_media_query );//size like xxl
       $_h_one_col = $this -> tc_grid_build_css_rules( $_size , 'h' );
       $_p_one_col = $this -> tc_grid_build_css_rules( $_size , 'p' );
@@ -463,7 +463,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
     $_cols_class      = sprintf( 'grid-cols-%s' , $_col_nb );
     $_css = '';
     //Add one column height if there's a sticky post
-    if ( $this -> tc_maybe_has_sticky_expanded() && '1' != $_col_nb ) {
+    if ( $this -> czr_fn_maybe_has_sticky_expanded() && '1' != $_col_nb ) {
       $_height_col_one = $this -> czr_fn_get_grid_column_height( '1' );
       $_css .= ".grid-cols-1 figure {
             height:{$_height_col_one}px;
@@ -509,7 +509,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
 
   /**
   * @return css string
-  * hook : tc_user_options_style
+  * hook : czr_fn_user_options_style
   * @since Customizr 3.2.18
   */
   function czr_fn_user_options_style_cb( $_css ){

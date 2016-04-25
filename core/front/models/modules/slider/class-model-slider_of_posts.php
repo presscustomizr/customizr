@@ -60,7 +60,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     //filter the pre_model
     $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides );
     //if the slider not longer exists or exists but is empty, return false
-    if ( ! $this -> tc_slider_exists( $pre_slides ) )
+    if ( ! $this -> czr_fn_slider_exists( $pre_slides ) )
       return false;
     //extract pre_slides model
     extract($pre_slides);
@@ -128,14 +128,14 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     if ( false !== $pre_slides )
       return $pre_slides;
     //retrieve posts from the db
-    $queried_posts    = $this -> tc_query_posts_slider( $args );
+    $queried_posts    = $this -> czr_fn_query_posts_slider( $args );
     if ( empty ( $queried_posts ) )
       return array();
     /*** tc_thumb setup filters ***/
     // remove smart load img parsing if any
     $smart_load_enabled = 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter( 'tc_thumb_html', array( CZR_cl_utils::$instance, 'tc_parse_imgs') );
+      remove_filter( 'tc_thumb_html', array( CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
     // prevent adding thumb inline style when no center img is added
     add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
     /*** end tc_thumb setup ***/
@@ -153,7 +153,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     /* tc_thumb reset filters */
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
-      add_filter('tc_thumb_html', array(CZR_cl_utils::$instance, 'tc_parse_imgs') );
+      add_filter('tc_thumb_html', array(CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
     // remove thumb style reset
     remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
     /* end tc_thumb reset filters */
@@ -431,7 +431,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     $button_text_length  = apply_filters( 'tc_posts_slider_button_text_length', 80 );
     $more                = apply_filters( 'tc_post_slide_more', '...');
     $button_text         = apply_filters( 'tc_posts_slider_button_text_pre_trim' , $button_text );
-    return $this -> tc_trim_text( $button_text, $button_text_length, $more );
+    return $this -> czr_fn_trim_text( $button_text, $button_text_length, $more );
   }
 
   /**
@@ -455,7 +455,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       $title = sprintf( $protected_title_format, $title );
     }
     $title = apply_filters( 'tc_post_title_pre_trim' , $title );
-    return $this -> tc_trim_text( $title, $default_title_length, $more);
+    return $this -> czr_fn_trim_text( $title, $default_title_length, $more);
   }
 
   /**
@@ -487,6 +487,6 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     $excerpt = shortcode_unautop( $excerpt );
     $excerpt = str_replace(']]>', ']]&gt;', $excerpt );
     $excerpt = apply_filters( 'tc_post_excerpt_pre_trim' , $excerpt );
-    return $this -> tc_trim_text( $excerpt, $default_text_length, $more);
+    return $this -> czr_fn_trim_text( $excerpt, $default_text_length, $more);
   }
 }
