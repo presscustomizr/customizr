@@ -10,20 +10,20 @@
 <?php get_header() ?>
   <?php do_action('__before_main_wrapper'); ?>
 
-    <div id="main-wrapper" class="container" <?php tc_echo('element_attributes', 'main_content') ?>>
+    <div id="main-wrapper" class="container">
 
       <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
 
       <?php do_action('__before_main_container'); ?>
       <div class="container" role="main">
-        <div class="<?php tc_echo ('column_content_class', 'main_content' ) ?>">
+        <div class="<?php tc_column_content_wrapper_class() ?>">
           <?php
             if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
           ?>
 
               <?php do_action('__before_content'); ?>
 
-              <div id="content" class="<?php tc_echo( 'article_wrapper_class', 'main_content' ) ?>">
+              <div id="content" class="<?php tc_article_container_class() ?>">
                 <?php tc_render_template('content/singles/404', '404') ?>
               </div>
 

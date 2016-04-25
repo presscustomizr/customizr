@@ -474,7 +474,25 @@ if ( ! class_exists( 'TC_utils' ) ) :
       }
 
 
+      /**
+      * This function returns the column content wrapper class
+      *
+      * @package Customizr
+      * @since Customizr 3.5
+      */
+      public static function tc_get_column_content_wrapper_class() {
+        return apply_filters( 'tc_column_content_wrapper_classes' , array('row', 'column-content-wrapper') );
+      }
 
+      /**
+      * This function returns the article container class
+      *
+      * @package Customizr
+      * @since Customizr 3.5
+      */
+      public static function tc_get_article_container_class() {
+        return apply_filters( 'tc_article_container_class' , array( self::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) );
+      }
 
 
 

@@ -1059,20 +1059,6 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
     * originally used for woocommerce compatibility
     */
     function tc_mainwrapper_start() {
-      //set content as current model
-      $content_model = ( tc_get_model_instance( 'main_content' ) );
-
-      if ( ! $content_model )
-        return;
-
-      //allow filtering of the model before rendering (the view's model is passed by reference)
-      do_action_ref_array( 'pre_rendering_view', array(&$content_model) );
-      do_action_ref_array( "pre_rendering_view_{$content_model -> id}", array(&$content_model) );
-
-      do_action( '__before_main_content' );
-
-      tc_set_current_model( $content_model );
-
       /* SLIDERS : standard or slider of posts */
       if ( tc_has('main_slider') ) {
         tc_render_template('modules/slider/slider', 'main_slider');
@@ -1083,36 +1069,28 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
     ?>
     <?php do_action('__before_main_wrapper'); ?>
-      <?php /* thumbnail in single post */
-        if ( tc_has('post_thumbnail') && 'before_title_full' == tc_get( 'thumbnail_position' ) ) { tc_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
-      ?>
+
       <div id="main-wrapper" class="container" <?php tc_echo('element_attributes') ?>>
 
         <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
 
         <?php do_action('__before_main_container'); ?>
-        <?php
 
-        /* FEATURED PAGES */
-        if ( tc_has( 'featured_pages' ) )
-          tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
-
-        ?>
         <div class="container" role="main">
-          <div class="<?php tc_echo( 'column_content_class' ) ?>">
+          <div class="<?php tc_column_content_wrapper_class() ?>">
             <?php
               if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
             ?>
 
-               <?php do_action('__before_content'); ?>
+                <?php do_action('__before_content'); ?>
 
-            <div id="content" class="<?php tc_echo( 'article_wrapper_class' ) ?>">
+                <div id="content" class="<?php tc_article_container_class() ?>">
     <?php
     }
 
     function tc_mainwrapper_end() {
               ?>
-            </div>
+                </div>
 
             <?php do_action('__after_content'); ?>
 
@@ -1128,8 +1106,6 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       </div><!-- #main-wrapper -->
 
       <?php do_action('__after_main_wrapper');
-        do_action( '__after_main_content' );
-      tc_reset_current_model();
     }
 
 

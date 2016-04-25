@@ -1,27 +1,5 @@
 <?php
 class TC_content_model_class extends TC_Model {
-  public $column_content_class  = array('row', 'column-content-wrapper');
-  public $article_wrapper_class;
-  public $thumbnail_position;
-
-
-  /**
-  * @override
-  * fired before the model properties are parsed
-  *
-  * return model params array()
-  */
-  function tc_extend_params( $model = array() ) {
-    //set this model's properties
-    $model[ 'column_content_class' ]  = apply_filters( 'tc_column_content_wrapper_classes' , $this -> column_content_class );
-    $model[ 'article_wrapper_class' ] = apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) );
-
-    //thumb position
-    $model[ 'thumbnail_position' ] = '__before_main_wrapper' == TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'before_title_full' : '';
-
-    return $model;
-  }
-
 
   function tc_setup_children() {
     $children = array(
@@ -99,6 +77,7 @@ class TC_content_model_class extends TC_Model {
         'id'          => 'post_thumbnail',
         'model_class' => 'content/singles/thumbnail_single'
       ),
+
       /*********************************************
       * Post metas
       *********************************************/
