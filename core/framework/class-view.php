@@ -54,26 +54,29 @@ if ( ! class_exists( 'TC_View' ) ) :
       do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
 
       do_action( "__before_{$this -> model -> id}" );
+
+      $tc_print_debug =  ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
+
       ?>
-      <!-- HOOK CONTENT HERE : <?php echo "__before_{$this -> model -> id}"; ?> -->
       <?php
-      /* Maybe merge debug info into the model element attributes */
-      if ( ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' ) )
+      if ( $tc_print_debug ) {
+        echo "<!-- HOOK CONTENT HERE : __before_{$this -> model -> id} -->";
+
+        /* Maybe merge debug info into the model element attributes */
         $this -> model -> element_attributes =  join( ' ', array_filter( array(
             $this -> model -> element_attributes,
             'data-model_id="'. $this -> model -> id .'"',
             isset( $this -> model -> template ) ? 'data-template="'. $this -> model -> template .'"' : ''
         )) );
-      /*
-      <!-- START RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
-      */
+        echo "<!-- START RENDERING VIEW ID : {$this -> model -> id} -->";
+      }
+
         $this -> tc_render();
-      /*
-      <!-- END OF RENDERING VIEW ID : <?php echo $this -> model -> id; ?> -->
-       */
-      ?>
-      <!-- HOOK CONTENT HERE : <?php echo "__after_{$this -> model -> id}"; ?> -->
-      <?php
+
+      if ( $tc_print_debug ) {
+        echo "<!-- END OF RENDERING VIEW ID : {$this -> model -> id} -->";
+        echo "<!-- HOOK CONTENT HERE : __after_{$this -> model -> id} -->";
+      }
       do_action( "__after_{$this -> model -> id}" );
     }
 
