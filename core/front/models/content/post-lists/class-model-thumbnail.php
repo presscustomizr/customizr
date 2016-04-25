@@ -20,16 +20,6 @@ class TC_thumbnail_model_class extends TC_Model {
     return $model;
   }
 
-  /**
-  * @override
-  * Allow filtering of the header class by registering to its pre view rendering hook
-  */
-  function tc_maybe_filter_views_model() {
-    parent::tc_maybe_filter_views_model();
-    /* WARNING : HERE WE MIGHT NEED THE PARENT CONCEPT */
-    add_action( 'pre_rendering_view_post_list'         , array( $this, 'tc_add_thumb_shape_name' ) );
-  }
-
 
   function tc_maybe_render_this_model_view() {
     return $this -> visibility && (bool) tc_get( 'tc_has_post_thumbnail' );
@@ -78,25 +68,6 @@ class TC_thumbnail_model_class extends TC_Model {
   protected function tc_get_thumb_size( $_default_size = 'tc-thumb' ) {
     return $_default_size;
   }
-
-
-
-  /**
-  * Callback of filter pre_rendering_view_post_list_wrapper
-  *
-  * @return  array() of classes
-  * @package Customizr
-  * @since Customizr 3.2.0
-  */
-  function tc_add_thumb_shape_name( $model ) {
-    $position                    = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
-    $thumb_shape                 = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
-
-    $new_class                   = "thumb-position-$position $thumb_shape";
-
-    $model -> post_class         = $model ->post_class . " " . $new_class;
-  }
-
 
 
   /* The template wrapper class */

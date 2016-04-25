@@ -3,7 +3,6 @@ class TC_post_list_wrapper_model_class extends TC_Model {
   public $place_1 ;
   public $place_2 ;
   public $article_selectors;
-  public $post_class = 'row-fluid';
 
   public $tc_has_post_thumbnail;
   public $tc_thumbnail_width;
@@ -11,6 +10,7 @@ class TC_post_list_wrapper_model_class extends TC_Model {
   public $tc_content_width;
   public $tc_show_excerpt;
 
+  public $post_class = 'row-fluid';
   //Default post list layout
   private static $default_post_list_layout   = array(
             'content'           => 'span8',
@@ -60,7 +60,6 @@ class TC_post_list_wrapper_model_class extends TC_Model {
 
 
   function tc_setup_late_properties() {
-    $this -> tc_set_property( 'article_selectors', TC_utils_query::$instance -> tc_get_the_post_list_article_selectors( $this -> post_class ) );
 
     global $wp_query;
 
@@ -92,7 +91,10 @@ class TC_post_list_wrapper_model_class extends TC_Model {
     $tc_show_excerpt      = $this -> tc_show_excerpt();
     $tc_thumbnail_width   = $thumb;
 
-    $this -> tc_update( compact( 'tc_content_width', 'tc_show_excerpt', 'tc_thumbnail_width', 'tc_has_post_thumbnail' ) );
+    $post_class           = $tc_has_post_thumbnail ? array_merge( array($this -> post_class), $this -> tc_get_thumb_shape_name() ) : $this -> post_class;
+    $article_selectors    = TC_utils_query::$instance -> tc_get_the_post_list_article_selectors( $post_class );
+
+    $this -> tc_update( compact( 'tc_content_width', 'tc_show_excerpt', 'tc_thumbnail_width', 'tc_has_post_thumbnail', 'article_selectors' ) );
   }
 
   /**
@@ -111,6 +113,22 @@ class TC_post_list_wrapper_model_class extends TC_Model {
     $_layout['thumb']            = ( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $_layout['thumb'];
     return $_layout;
   }
+
+
+  /**
+  *
+  * @return  array() of classes
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function tc_get_thumb_shape_name() {
+    $position                    = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
+    $thumb_shape                 = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
+
+    $_class                      = array( "thumb-position-{$position}", $thumb_shape);
+    return $_class;
+  }
+
 
   /**
   * hook : body_class
