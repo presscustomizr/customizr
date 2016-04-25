@@ -42,12 +42,12 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         add_filter( '__get_option'            , array( $this , 'czr_opt' ), 10, 2 );//deprecated
 
         //some useful filters
-        add_filter( '__ID'                    , array( $this , 'tc_id' ));//deprecated
+        add_filter( '__ID'                    , array( $this , 'czr_fn_id' ));//deprecated
         add_filter( '__screen_layout'         , array( $this , 'czr_fn_get_layout' ) , 10 , 2 );//deprecated
         add_filter( '__is_home'               , array( $this , 'czr_fn_is_home' ) );
         add_filter( '__is_home_empty'         , array( $this , 'czr_fn_is_home_empty' ) );
         add_filter( '__post_type'             , array( $this , 'czr_fn_get_post_type' ) );
-        add_filter( '__is_no_results'         , array( $this , 'tc_is_no_results') );
+        add_filter( '__is_no_results'         , array( $this , 'czr_fn_is_no_results') );
 
         //social networks
         add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ) );
@@ -101,7 +101,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
           add_filter( 'the_content'                       , array( $this , 'czr_fn_parse_imgs' ), PHP_INT_MAX );
           add_filter( 'tc_thumb_html'                     , array( $this , 'czr_fn_parse_imgs' ) );
         }
-        add_filter( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
+        add_filter( 'wp_title'                            , array( $this , 'czr_fn_wp_title' ), 10, 2 );
       }
 
 
@@ -757,7 +757,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         'current'   => date('Y-m-d g:i:s')
       );
       //ALL dates must be valid
-      if ( 1 != array_product( array_map( array($this , 'tc_is_date_valid') , $dates_to_check ) ) )
+      if ( 1 != array_product( array_map( array($this , 'czr_fn_is_date_valid') , $dates_to_check ) ) )
         return false;
 
       //Import variables into the current symbol table
@@ -768,8 +768,8 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       $updated                = new DateTime( $updated );
       $current                = new DateTime( $current );
 
-      $created_to_updated     = $this -> tc_date_diff( $created , $updated );
-      $updated_to_today       = $this -> tc_date_diff( $updated, $current );
+      $created_to_updated     = $this -> czr_fn_date_diff( $created , $updated );
+      $updated_to_today       = $this -> czr_fn_date_diff( $updated, $current );
 
       if ( true === $_bool )
         //return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? false : true;

@@ -15,7 +15,7 @@ if ( ! class_exists( 'CZR_cl_utils_texts' ) ) :
   class CZR_cl_utils_texts {
     static $instance;
     static $post_formats_with_no_heading = array( 'aside' , 'status' , 'link' , 'quote' );
-        
+
     function __construct () {
       self::$instance =& $this;
     }
@@ -27,8 +27,8 @@ if ( ! class_exists( 'CZR_cl_utils_texts' ) ) :
 endif;
 
 /* Exposed methods */
-if ( ! function_exists( 'tc_post_has_title' ) ):
+if ( ! function_exists( 'czr_fn_post_has_title' ) ):
   function czr_fn_post_has_title() {
-    return CZR_cl_utils_texts::$instance -> tc_post_has_headings();      
+    return CZR_cl_utils_texts::$instance -> czr_fn_post_has_headings();
   }
 endif;

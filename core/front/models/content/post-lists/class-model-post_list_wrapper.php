@@ -70,7 +70,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $this -> place_1      = 'content';
     $this -> place_2      = 'thumb';
 
-    if ( $this -> tc_show_thumb() ) {
+    if ( $this -> czr_fn_show_thumb() ) {
        // conditions to show the thumb first are:
        // a) alternate on
       //   a.1) position is left/top ( show_thumb_first true == 1 ) and current post number is odd (1,3,..)
@@ -87,8 +87,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       $czr_fn_has_post_thumbnail = true;
     }
 
-    $tc_content_width     = $this -> tc_show_thumb() ? $content : 'span12';
-    $tc_show_excerpt      = $this -> tc_show_excerpt();
+    $tc_content_width     = $this -> czr_fn_show_thumb() ? $content : 'span12';
+    $tc_show_excerpt      = $this -> czr_fn_show_excerpt();
     $tc_thumbnail_width   = $thumb;
 
     $post_class           = $czr_fn_has_post_thumbnail ? array_merge( array($this -> post_class), $this -> czr_fn_get_thumb_shape_name() ) : $this -> post_class;
@@ -162,7 +162,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     //4) filter's conditions
     return apply_filters( 'tc_show_thumb', array_product(
         array(
-          $this -> tc_show_excerpt(),
+          $this -> czr_fn_show_excerpt(),
           CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb(),
           0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_show_thumb' ) )
         )
