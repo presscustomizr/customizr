@@ -34,8 +34,8 @@
 
               <div id="content" class="<?php tc_echo( 'article_wrapper_class', 'main_content' ) ?>">
                 <?php
+                  if ( tc_has('posts_list_headings') ) { tc_render_template('content/post-lists/post_list_headings', 'posts_list_headings'); }
                   if ( have_posts() ) {
-                    if ( tc_has('posts_list_headings') ) { tc_render_template('content/post-lists/post_list_headings', 'posts_list_headings'); }
                     while ( have_posts() ) {
                       the_post();
 
