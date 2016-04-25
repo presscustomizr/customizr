@@ -7,14 +7,18 @@ class TC_post_list_content_model_class extends TC_Model {
   function __construct( $model = array() ) {
     //Fires the parent constructor
     parent::__construct( $model );
-
-    //filter the excerpt length
-    add_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
-
-    //filter our countent
-    add_filter( 'tc_the_content'        , array( $this , 'tc_add_support_for_shortcode_special_chars') );
+    add_action( "__before_{$this -> id }", array( $this, 'setup_text_hooks') );
+    add_action( "__after_{$this -> id }", array( $this, 'reset_text_hooks') );
   }
 
+  function setup_text_hooks() {
+    //filter the excerpt length
+    add_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
+  }
+
+  function reset_text_hooks() {
+    remove_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
+  }
 
   function tc_get_post_list_content( $more  = null ) {
     if ( $this -> content )
@@ -22,7 +26,8 @@ class TC_post_list_content_model_class extends TC_Model {
     elseif ( 'get_the_excerpt' == $this -> content_cb )
       return apply_filters( 'the_excerpt', get_the_excerpt() );
     else
-      return apply_filters( 'tc_the_content', get_the_content( $more ) );
+      //filter the content
+      return $this -> tc_add_support_for_shortcode_special_chars( get_the_content( $more ) );
   }
 
 
@@ -40,8 +45,6 @@ class TC_post_list_content_model_class extends TC_Model {
 
 
   /**
-  * hook : tc_the_content
-  * Applies tc_the_content filter to the passed string
   *
   * @param string
   * @return  string
