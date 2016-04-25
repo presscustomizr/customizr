@@ -1,12 +1,7 @@
 <?php
 /**
- * The template for displaying pages
- * (used also to display a static front page)
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages and that
- * other "pages" on your WordPress site will use a different template.
- *
+ * The template for displaying the blog
+ * (either your home displaying latest posts or your blog page)
  *
  * @package Customizr
  * @since Twenty Customizr 3.5
@@ -23,21 +18,19 @@
     if( tc_has( 'main_posts_slider' ) ) {
       tc_render_template('modules/slider/slider', 'main_posts_slider');
     }
-
   ?>
 
   <?php do_action('__before_main_wrapper'); ?>
-
+    <?php
+      /* FEATURED PAGES */
+      if ( tc_has( 'featured_pages' ) )
+        tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
+    ?>
     <div id="main-wrapper" class="container" <?php tc_echo('element_attributes', 'main_content') ?>>
 
       <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
 
       <?php do_action('__before_main_container'); ?>
-      <?php
-      /* FEATURED PAGES */
-      if ( tc_has( 'featured_pages' ) )
-        tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
-      ?>
       <div class="container" role="main">
         <div class="<?php tc_echo ('column_content_class', 'main_content' ) ?>">
           <?php
@@ -49,15 +42,22 @@
               <div id="content" class="<?php tc_echo( 'article_wrapper_class', 'main_content' ) ?>">
                 <?php
                   if ( have_posts() ) {
+                    if ( tc_has('posts_list_headings') ) { tc_render_template('content/post-lists/post_list_headings', 'posts_list_headings'); }
                     while ( have_posts() ) {
                       the_post();
-                      tc_render_template('content/singles/page_content');
+
+                      if ( tc_has('post_list_grid') ) {
+                        tc_render_template('modules/grid/grid_wrapper', 'post_list_grid');
+                      }
+                      elseif ( tc_has('post_list') ){
+                        tc_render_template('content/post-lists/post_list_wrapper', 'post_list');
+                      }
                     }//endwhile;
-                  }//endif;
+                  }
                 ?>
                 <?php
-                  if ( tc_has('comments') ) tc_render_template('content/comments/comments');
-                  if ( tc_has('post_navigation_singular') ) tc_render_template('content/singles/post_navigation_singular', 'post_navigation_singular');
+                    if ( tc_has('post_navigation_posts') )
+                      tc_render_template('content/post-lists/post_navigation_posts', 'post_navigation_posts');
                 ?>
               </div>
 
