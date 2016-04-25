@@ -2,22 +2,17 @@
 if ( ! class_exists( 'TC_controller_content' ) ) :
   class TC_controller_content extends TC_controllers {
     static $instance;
-    static $_cache = array();
 
     function __construct( $_args = array()) {
       self::$instance =& $this;
     }
 
     function tc_display_view_right_sidebar() {
-      if ( ! isset( self::$_cache['right_sidebar'] ) )
-        self::$_cache['right_sidebar'] = $this -> tc_display_view_sidebar( 'right' );
-      return self::$_cache['right_sidebar'];
+      return $this -> tc_display_view_sidebar( 'right' );
     }
 
     function tc_display_view_left_sidebar() {
-      if ( ! isset( self::$_cache['left_sidebar'] ) )
-        self::$_cache['left_sidebar'] = $this -> tc_display_view_sidebar( 'left' );
-      return self::$_cache['left_sidebar'];
+      return $this -> tc_display_view_sidebar( 'left' );
     }
 
     private function tc_display_view_sidebar( $position ) {
@@ -41,10 +36,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_posts_list_headings() {
-      if ( ! isset( self::$_cache['posts_list_headings'] ) ) {
-        self::$_cache['posts_list_headings'] = ! TC_utils::$inst -> tc_is_home() && TC_utils_query::$instance -> tc_is_list_of_posts();
-      }
-      return self::$_cache['posts_list_headings'];
+      return ! TC_utils::$inst -> tc_is_home() && TC_utils_query::$instance -> tc_is_list_of_posts();
     }
 
     function tc_display_view_post_list() {
@@ -104,39 +96,35 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
     }
 
     function tc_display_view_singular_title() {
-      if ( ! isset( self::$_cache['singular_title'] ) )
-        self::$_cache['singular_title'] =  is_singular() && ! ( is_front_page() && 'page' == get_option( 'show_on_front' ) );
-      return apply_filters('tc_display_customizr_headings', self::$_cache['singular_title'] )  && ! is_feed();
+      $display_singular_title = apply_filters( 'tc_display_singular_title', is_singular() && ! ( is_front_page() && 'page' == get_option( 'show_on_front' ) ));
+      return apply_filters('tc_display_customizr_headings', $display_singular_title )  && ! is_feed();
     }
 
 
     function tc_display_view_post_metas() {
-     if ( isset( self::$_cache['post_metas'] ) )
-       return apply_filters( 'tc_show_post_metas', self::$_cache['post_metas'] );
+      //disable in attachment context, attachment post metas have their own class
+      if ( is_attachment() )
+        $post_metas = false;
 
-     //disable in attachment context, attachment post metas have their own class
-     if ( is_attachment() )
-       self::$_cache['post_metas'] = false;
+      //post metas are always insanciated in customizing context
+      elseif ( TC___::$instance -> tc_is_customizing() )
+        $post_metas = true;
 
-     //post metas are always insanciated in customizing context
-     elseif ( TC___::$instance -> tc_is_customizing() )
-       self::$_cache['post_metas'] = true;
+      elseif ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
+        $post_metas = false;
 
-     elseif ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
-       self::$_cache['post_metas'] = false;
+      elseif ( is_singular() && ! is_page() && ! TC_utils::$inst -> tc_is_home() )
+        $post_metas = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) );
 
-     elseif ( is_singular() && ! is_page() && ! TC_utils::$inst -> tc_is_home() )
-       self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) );
+      elseif ( ! is_singular() && ! TC_utils::$inst -> tc_is_home() && ! is_page() )
+        $post_metas = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) );
 
-     elseif ( ! is_singular() && ! TC_utils::$inst -> tc_is_home() && ! is_page() )
-       self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) );
+      elseif ( TC_utils::$inst -> tc_is_home() )
+        $post_metas = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) );
+      else
+        $post_metas = false;
 
-     elseif ( TC_utils::$inst -> tc_is_home() )
-       self::$_cache['post_metas'] = ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) );
-     else
-       self::$_cache['post_metas'] = false;
-
-     return apply_filters( 'tc_show_post_metas', self::$_cache['post_metas'] );
+      return apply_filters( 'tc_show_post_metas', $post_metas );
     }
 
 
@@ -169,9 +157,8 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
 
     /* Helper */
     function tc_display_view_post_list_thumbnail() {
-      if ( ! isset( self::$_cache['post_list_thumbnail'] ) )
-        self::$_cache[ 'post_list_thumbnail' ] = $this -> tc_display_view_post_list() && 'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
-      return self::$_cache[ 'post_list_thumbnail' ];
+      $display_post_list_thumbnail = $this -> tc_display_view_post_list() && 'full' != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+      return $display_post_list_thumbnail;
     }
     /* end  Thumbnails in post lists*/
 
@@ -186,18 +173,15 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       if ( ! $this -> tc_display_post_navigation() )
         return false;
 
-      if ( ! isset( self::$_cache['post_navigation_singular'] ) ) {
+      $post_navigation_singular = false;
 
-        self::$_cache['post_navigation_singular'] = false;
+      $_context = $this -> tc_get_post_navigation_context();
+      if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('page', 'single') ) )
+        $post_navigation_singular = true;
+      elseif ( $this -> tc_is_post_navigation_enabled() )
+        $post_navigation_singular = in_array( $_context, array('page', 'single') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
 
-        $_context = $this -> tc_get_post_navigation_context();
-        if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('page', 'single') ) )
-          self::$_cache['post_navigation_singular'] = true;
-        elseif ( $this -> tc_is_post_navigation_enabled() )
-          self::$_cache['post_navigation_singular'] = in_array( $_context, array('page', 'single') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
-      }
-
-      return self::$_cache['post_navigation_singular'];
+      return $post_navigation_singular;
     }
 
 
@@ -205,18 +189,15 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       if ( ! $this -> tc_display_post_navigation() )
         return false;
 
-      if ( ! isset( self::$_cache['post_navigation_posts'] ) ) {
+      $post_navigation_posts = false;
 
-        self::$_cache['post_navigation_posts'] = false;
+      $_context = $this -> tc_get_post_navigation_context();
+      if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('home', 'archive') ) )
+        $post_navigation_posts = true;
+      elseif ( $this -> tc_is_post_navigation_enabled() )
+        $post_navigation_posts = in_array( $_context, array('home', 'archive') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
 
-        $_context = $this -> tc_get_post_navigation_context();
-        if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('home', 'archive') ) )
-          self::$_cache['post_navigation_posts'] = true;
-        elseif ( $this -> tc_is_post_navigation_enabled() )
-          self::$_cache['post_navigation_posts'] = in_array( $_context, array('home', 'archive') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
-      }
-
-      return self::$_cache['post_navigation_posts'];
+      return $post_navigation_posts;
     }
 
     function tc_display_post_navigation() {
