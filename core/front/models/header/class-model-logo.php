@@ -11,8 +11,8 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
   *
   * return model params array()
   */
-  function tc_extend_params( $model = array() ) {
-    extract( $this -> czr_get_logo_src_args( $this -> logo_type ) );
+  function czr_fn_extend_params( $model = array() ) {
+    extract( $this -> czr_fn_get_logo_src_args( $this -> logo_type ) );
 
     $model[ 'src' ]   = $logo_src;
     $model[ 'alt' ]   = apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) ;
@@ -26,13 +26,13 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
                                 apply_filters( 'tc_logo_max_width', 250 ),
                                 apply_filters( 'tc_logo_max_height', 100 )
                                 ) : '',
-        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == CZR_cl_utils::$inst->czr_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
+        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
     ));
 
     return $model;
   }
 
-  function czr_get_logo_src_args( $logo_type ) {
+  function czr_fn_get_logo_src_args( $logo_type ) {
     $logo_type_sep          = $logo_type ? '_sticky_' : '_';
     $accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
     $args                   = array();
@@ -42,7 +42,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     $_width 				= false;
     $_height 				= false;
     $_attachement_id 		= false;
-    $_logo_option  			= esc_attr( CZR_cl_utils::$inst->czr_opt( "tc{$logo_type_sep}logo_upload") );
+    $_logo_option  			= esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc{$logo_type_sep}logo_upload") );
     //check if option is an attachement id or a path (for backward compatibility)
     if ( is_numeric($_logo_option) ) {
       $_attachement_id 	    = $_logo_option;
@@ -53,12 +53,12 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     } else { //old treatment
       //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
       $upload_dir 			= wp_upload_dir();
-      $_saved_path 			= esc_url ( CZR_cl_utils::$inst->czr_opt( "tc{$logo_type_sep}logo_upload") );
+      $_saved_path 			= esc_url ( CZR_cl_utils::$inst->czr_fn_opt( "tc{$logo_type_sep}logo_upload") );
       $_logo_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
     }
     //hook + makes ssl compliant
     $_logo_src    			= apply_filters( "tc{$logo_type_sep}logo_src" , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
-    $logo_resize 			= ( $logo_type_sep == '_' ) ? esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_logo_resize') ) : '';
+    $logo_resize 			= ( $logo_type_sep == '_' ) ? esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_logo_resize') ) : '';
     $filetype 				= CZR_cl_utils::$inst -> tc_check_filetype ($_logo_src);
     if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
       $args 		= array(
@@ -76,7 +76,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
   /*
   * Custom CSS
   */
-  function tc_user_options_style_cb( $_css ) {
+  function czr_fn_user_options_style_cb( $_css ) {
     //logos shrink
     //fire once
     static $_fired = false;
@@ -89,8 +89,8 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     //2) The sticky header is enabled
     //and
     //2.1) the shrink title_logo option is enabled
-    if ( CZR___::$instance -> tc_is_customizing() ||
-        ( 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_header') ) && 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
+    if ( CZR___::$instance -> czr_fn_is_customizing() ||
+        ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header') ) && 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
         $_logo_shrink  = implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
         $_css = sprintf("%s%s",
             $_css,

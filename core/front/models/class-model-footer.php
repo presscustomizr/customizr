@@ -1,7 +1,7 @@
 <?php
 class CZR_cl_footer_model_class extends CZR_cl_Model {
 
-  function tc_setup_children() {
+  function czr_fn_setup_children() {
     $children = array(
       //sticky footer
       array(

@@ -9,14 +9,14 @@
  * @since Customizr 3.5.0
  */
 ?>
-<h2 id="tc-comment-title" class="comments-title" <?php czr_echo('element_attributes') ?>><?php /* Comments list title */
+<h2 id="tc-comment-title" class="comments-title" <?php czr_fn_echo('element_attributes') ?>><?php /* Comments list title */
   comments_number( false, __( 'One thought on', 'customizr'), '% ' . __( 'thoughts on', 'customizr' ) )
 ?> &ldquo;</span><?php the_title() ?></span>&rdquo;</h2>
 <ul class="commentlist">
   <?php
 
   /* Comments list */
-  wp_list_comments( czr_get('args') )
+  wp_list_comments( czr_fn_get('args') )
 
   ?>
 </ul>

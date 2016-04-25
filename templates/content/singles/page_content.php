@@ -8,9 +8,9 @@
  * @since Customizr 3.5.0
  */
 ?>
-<article <?php czr_echo( 'article_selectors' ) ?> <?php czr_echo( 'element_attributes' ) ?> >
+<article <?php czr_fn_echo( 'article_selectors' ) ?> <?php czr_fn_echo( 'element_attributes' ) ?> >
   <?php do_action( '__before_inner_page_article' ) ?>
-  <?php if ( czr_has('singular_headings') ) czr_render_template('content/singles/page_headings', 'singular_headings'); ?>
+  <?php if ( czr_fn_has('singular_headings') ) czr_fn_render_template('content/singles/page_headings', 'singular_headings'); ?>
   <?php do_action( '__before_page_entry_content' ) ?>
   <div class ="entry-content">
     <?php do_action( '__before_inner_page_content' ) ?>

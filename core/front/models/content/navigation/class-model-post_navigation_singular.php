@@ -3,7 +3,7 @@ class CZR_cl_post_navigation_singular_model_class extends CZR_cl_post_navigation
   /*
   * @override
   */
-  function czr_get_context() {
+  function czr_fn_get_context() {
     if ( is_page() )
       return 'page';
     if ( is_single() && ! is_attachment() )

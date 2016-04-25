@@ -9,15 +9,15 @@ class CZR_cl_edit_button_slide_model_class extends CZR_cl_edit_button_model_clas
   * Helper Boolean
   * @return boolean
   */
-  public function tc_is_edit_enabled() {
+  public function czr_fn_is_edit_enabled() {
     //get needed info from the current slide
-    $id             = czr_get( 'slide_id' );
-    $slider_name_id = czr_get( 'slider_name_id' );
+    $id             = czr_fn_get( 'slide_id' );
+    $slider_name_id = czr_fn_get( 'slider_name_id' );
 
     if ( ! $id || 'demo' == $slider_name_id )
       return;
 
-    $link_id = czr_get( 'link_id' );
+    $link_id = czr_fn_get( 'link_id' );
 
     $show_slide_edit_link  = current_user_can( 'edit_post', $id ) ? true : false;
 
@@ -27,9 +27,9 @@ class CZR_cl_edit_button_slide_model_class extends CZR_cl_edit_button_model_clas
   }
 
 
-  function tc_setup_late_properties() {
-    $edit_post_id          =  czr_get( 'slide_id' );
-    $edit_link_suffix      =  'tc_posts_slider' == czr_get( 'slider_name_id') ? '' : '#slider_sectionid';
+  function czr_fn_setup_late_properties() {
+    $edit_post_id          =  czr_fn_get( 'slide_id' );
+    $edit_link_suffix      =  'tc_posts_slider' == czr_fn_get( 'slider_name_id') ? '' : '#slider_sectionid';
     $this -> tc_update( compact( 'edit_post_id', 'edit_link_suffix' ) );
   }
 }

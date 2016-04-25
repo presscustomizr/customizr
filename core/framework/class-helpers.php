@@ -6,12 +6,12 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
     function __construct( $args = array() ) {
       self::$instance =& $this;
 
-      add_action( 'tc_dev_notice', array( $this, 'tc_print_r') );
+      add_action( 'tc_dev_notice', array( $this, 'czr_fn_print_r') );
     }
 
 
     //hook : tc_dev_notice
-    function tc_print_r($message) {
+    function czr_fn_print_r($message) {
       if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) || is_feed() )
         return;
       ?>
@@ -19,7 +19,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
       <?php
     }
 
-    function tc_stringify_array( $array, $sep = ' ' ) {
+    function czr_fn_stringify_array( $array, $sep = ' ' ) {
       if ( is_array( $array ) )
         $array = join( $sep, array_unique( array_filter( $array ) ) );
       return $array;
@@ -28,7 +28,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
     //A callback helper
     //a callback can be function or a method of a class
     //the class can be an instance!
-    public function tc_fire_cb( $cb, $params = array(), $return = false ) {
+    public function czr_fn_fire_cb( $cb, $params = array(), $return = false ) {
       $to_return = false;
       //method of a class => look for an array( 'class_name', 'method_name')
       if ( is_array($cb) && 2 == count($cb) ) {
@@ -53,7 +53,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
     }
 
 
-    public function tc_return_cb_result( $cb, $params = array() ) {
+    public function czr_fn_return_cb_result( $cb, $params = array() ) {
       return $this -> tc_fire_cb( $cb, $params, $return = true );
     }
 
@@ -64,7 +64,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
     //A callback helper
     //a callback can be function or a method of a class
     //the class can be an instance!
-    public function tc_fire_cb_array( $cb, $params = array(), $return = false ) {
+    public function czr_fn_fire_cb_array( $cb, $params = array(), $return = false ) {
       $to_return = false;
       //method of a class => look for an array( 'class_name', 'method_name')
       if ( is_array($cb) && 2 == count($cb) ) {
@@ -88,7 +88,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
         return $to_return;
     }
 
-    public function tc_return_cb_result_array( $cb, $params = array() ) {
+    public function czr_fn_return_cb_result_array( $cb, $params = array() ) {
       return $this -> tc_fire_cb_array( $cb, $params, $return = true );
     }
   }//end of class

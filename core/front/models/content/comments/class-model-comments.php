@@ -8,7 +8,7 @@ class CZR_cl_comments_model_class extends CZR_cl_Model {
     //Fires the parent constructor
     parent::__construct( $model );
 
-    add_filter ( 'comment_form_defaults'  , array( $this , 'tc_set_comment_title') );
+    add_filter ( 'comment_form_defaults'  , array( $this , 'czr_fn_set_comment_title') );
   }
 
   /**
@@ -17,7 +17,7 @@ class CZR_cl_comments_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_set_comment_title($_defaults) {
+  function czr_fn_set_comment_title($_defaults) {
     $_defaults['title_reply'] =  __( 'Leave a comment' , 'customizr' );
     return $_defaults;
   }

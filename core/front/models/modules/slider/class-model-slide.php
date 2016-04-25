@@ -27,9 +27,9 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
 
   public $slider_name_id;
 
-  function tc_setup_late_properties() {
+  function czr_fn_setup_late_properties() {
     //get the current slide;
-    $current_slide        = czr_get( 'current_slide' );
+    $current_slide        = czr_fn_get( 'current_slide' );
 
     if ( empty ( $current_slide ) )
       return;
@@ -37,12 +37,12 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
     //array( $slide, $slide_id );
     extract( $current_slide );
 
-    $slider_name_id = czr_get( 'slider_name_id' );
-    $img_size       = czr_get( 'img_size');
+    $slider_name_id = czr_fn_get( 'slider_name_id' );
+    $img_size       = czr_fn_get( 'img_size');
 
     //demo data
     if ( 'demo' == $slider_name_id && is_user_logged_in() )
-      $slide = array_merge( $slide,  $this -> tc_set_demo_slide_data( $slide, $slide_id ) );
+      $slide = array_merge( $slide,  $this -> czr_fn_set_demo_slide_data( $slide, $slide_id ) );
 
     //array( $title, $text, $button_text, $link_id, $link_url, $link_target, $link_whole_slide, $active, $color_style, $slide_background )
     extract ( $slide );
@@ -50,7 +50,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
     $element_class = array_filter( array( 'slide-'. $slide_id, $active ) );
 
     //caption elements
-    $caption           = $this -> czr_get_slide_caption_model( $slide, $slider_name_id, $slide_id );
+    $caption           = $this -> czr_fn_get_slide_caption_model( $slide, $slider_name_id, $slide_id );
     $has_caption       = ! empty( $caption );
 
     $link_whole_slide  = isset($link_whole_slide) && $link_whole_slide && $link_url;
@@ -73,7 +73,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
   *
   * return array( 'button' => array(), $text,
   */
-  function czr_get_slide_caption_model( $slide, $slider_name_id, $id ) {
+  function czr_fn_get_slide_caption_model( $slide, $slider_name_id, $id ) {
     extract( $slide );
 
     //filters the data before (=> used for demo for example )
@@ -148,7 +148,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
   * @since Customizr 3.3.+
   *
   */
-  function tc_set_demo_slide_data( $slide, $id ) {
+  function czr_fn_set_demo_slide_data( $slide, $id ) {
     switch ( $id ) {
       case 1 :
         $slide['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
@@ -169,7 +169,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
   /**
   * parse this model properties for rendering
   */
-  function tc_sanitize_model_properties( $model ) {
+  function czr_fn_sanitize_model_properties( $model ) {
     parent::tc_sanitize_model_properties( $model );
     foreach ( array( 'caption', 'text', 'title', 'button' ) as $property ) {
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );

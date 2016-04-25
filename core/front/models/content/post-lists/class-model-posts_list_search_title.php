@@ -5,23 +5,23 @@ class CZR_cl_posts_list_search_title_model_class extends CZR_cl_posts_list_title
   public $search_form_wrapper_class;
 
   /*  @override */
-  function tc_extend_params( $model = array() ) {
+  function czr_fn_extend_params( $model = array() ) {
     //the controlleer will check if we're in (not singular) context
-    $model = parent::tc_extend_params( $model );
-    $model['title_class']                     = apply_filters( 'tc_archive_icon', $this -> czr_get_archive_title_class() );
+    $model = parent::czr_fn_extend_params( $model );
+    $model['title_class']                     = apply_filters( 'tc_archive_icon', $this -> czr_fn_get_archive_title_class() );
     $model['title_wrapper_class']             = apply_filters( 'tc_search_result_header_title_class', array('span8') );
     $model['search_form_wrapper_class']       = apply_filters( 'tc_search_result_header_form_class', array('span4') );
 
     return $model;
   }
   /* @override */
-  function czr_get_the_posts_list_context() {
+  function czr_fn_get_the_posts_list_context() {
     return 'search_results';
   }
 
   /* @override */
-  function czr_get_posts_list_pre_title( $context = null ) {
-    return parent::czr_get_posts_list_pre_title( 'search' );
+  function czr_fn_get_posts_list_pre_title( $context = null ) {
+    return parent::czr_fn_get_posts_list_pre_title( 'search' );
   }
 
   /**

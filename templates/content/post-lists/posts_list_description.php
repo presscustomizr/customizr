@@ -7,6 +7,6 @@
  * @since Customizr 3.5.0
  */
 ?>
-<div class="archive-meta" <?php czr_echo('element_attributes') ?> >
-  <?php czr_echo( 'description' ) ?>
+<div class="archive-meta" <?php czr_fn_echo('element_attributes') ?> >
+  <?php czr_fn_echo( 'description' ) ?>
 </div>

@@ -5,7 +5,7 @@ class CZR_cl_edit_button_model_class extends CZR_cl_Model {
   /*
   * @override
   */
-  function tc_maybe_render_this_model_view () {
+  function czr_fn_maybe_render_this_model_view () {
     if ( ! $this -> visibility )
       return;
 
@@ -21,7 +21,7 @@ class CZR_cl_edit_button_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.3+
   */
-  public function tc_is_edit_enabled() {
+  public function czr_fn_is_edit_enabled() {
     if ( ! in_the_loop() )
       return;
 

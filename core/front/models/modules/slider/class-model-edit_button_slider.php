@@ -9,9 +9,9 @@ class CZR_cl_edit_button_slider_model_class extends CZR_cl_edit_button_model_cla
   * Helper Boolean
   * @return boolean
   */
-  public function tc_is_edit_enabled() {
+  public function czr_fn_is_edit_enabled() {
 
-    $slider_name_id = czr_get( 'slider_name_id' );
+    $slider_name_id = czr_fn_get( 'slider_name_id' );
 
     if ( ! $slider_name_id )
       return;
@@ -34,15 +34,15 @@ class CZR_cl_edit_button_slider_model_class extends CZR_cl_edit_button_model_cla
   }
 
 
-  function tc_setup_late_properties() {
+  function czr_fn_setup_late_properties() {
     if ( CZR_cl_utils::$inst -> tc_is_home() )
-      $slider_edit_link            = CZR_cl_utils::czr_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+      $slider_edit_link            = CZR_cl_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     elseif ( is_singular() ) {
       global $post;
       $slider_edit_link            = get_edit_post_link( $post -> ID ) . '#slider_sectionid';
     }
 
-    $slider_edit_link_type         = czr_get( 'slider_type' );
+    $slider_edit_link_type         = czr_fn_get( 'slider_type' );
 
     $this -> tc_update( compact( 'slider_edit_link', 'slider_edit_link_type' ) );
   }

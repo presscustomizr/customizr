@@ -29,10 +29,10 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
           'CZR_cl_pro_bundle'                  => array('/addons/bundle/pc-pro-bundle.php')
         );
         //set files to load according to the context : admin / front / customize
-        add_filter( 'czr_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
+        add_filter( 'czr_fn_get_files_to_load_pro' , array( $this , 'czr_fn_set_files_to_load_pro' ) );
         //END TEST PURPOSES
         //load
-        $this -> tc_pro_load();
+        $this -> czr_fn_pro_load();
     }//end of __construct()
 
 
@@ -41,8 +41,8 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
     * @return void()
     *
     */
-    private function tc_pro_load() {
-      $_classes = apply_filters( 'czr_get_files_to_load_pro' , $this -> _pro_classes );
+    private function czr_fn_pro_load() {
+      $_classes = apply_filters( 'czr_fn_get_files_to_load_pro' , $this -> _pro_classes );
 
       //loads and instantiates the activation / updates classes
       foreach ( $_classes as $name => $params ) {
@@ -66,13 +66,13 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
     /**
     * Helper : returns the modified array of class files to load and instantiate
     * Check the context
-    * hook : czr_get_files_to_load_pro
+    * hook : czr_fn_get_files_to_load_pro
     *
     * @return boolean
     * @since  Customizr 3.3+
     */
-    function tc_set_files_to_load_pro($_to_load) {
-      if ( ! is_admin() || ( is_admin() && CZR___::$instance -> tc_is_customizing() ) ) {
+    function czr_fn_set_files_to_load_pro($_to_load) {
+      if ( ! is_admin() || ( is_admin() && CZR___::$instance -> czr_fn_is_customizing() ) ) {
           unset($_to_load['CZR_cl_activation_key']);
           unset($_to_load['CZR_cl_theme_updater']);
           unset($_to_load['CZR_cl_theme_check_updates']);
@@ -85,5 +85,5 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
 endif;
 
 //may be load pro
-if ( CZR___::tc_is_pro() )
+if ( CZR___::czr_fn_is_pro() )
   new CZR_cl_init_pro(CZR___::$theme_name );

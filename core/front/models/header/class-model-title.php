@@ -9,7 +9,7 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   *
   * return model params array()
   */
-  function tc_extend_params( $model = array() ) {
+  function czr_fn_extend_params( $model = array() ) {
     $model[ 'element_class' ]       = apply_filters( 'tc_logo_class', $this -> get_title_wrapper_class(), $model );
     $model[ 'link_title' ]          = apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' ,
                                              __( esc_attr( get_bloginfo( 'name' ) ) ),
@@ -25,7 +25,7 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   /* the same in the logo wrapper class, some kind of unification will be needed IMHO */
   function get_title_wrapper_class() {
     $_class     = array( 'brand', 'span3' );
-    $_layout    = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_header_layout') );
+    $_layout    = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_header_layout') );
     $_class[]   = 'right' == $_layout ? 'pull-right' : 'pull-left';
     return $_class;
   }
@@ -34,7 +34,7 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   * @override
   * Allow filtering of the header class by registering to its pre view rendering hook
   */
-  function tc_maybe_filter_views_model() {
+  function czr_fn_maybe_filter_views_model() {
     parent::tc_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
@@ -45,10 +45,10 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   * and shrinking classes
   */
   function pre_rendering_view_header_cb( $header_model ) {
-    if ( esc_attr( CZR_cl_utils::$inst->czr_opt( "tc_sticky_header") || CZR___::$instance -> tc_is_customizing() ) )
+    if ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_sticky_header") || CZR___::$instance -> czr_fn_is_customizing() ) )
       array_push( $header_model -> element_class,
-          0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
-          0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
+          0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
+          0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
       );
   }
 
@@ -58,9 +58,9 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   *
   * @package Customizr
   */
-  function tc_user_options_style_cb( $_css ) {
+  function czr_fn_user_options_style_cb( $_css ) {
     //title shrink
-    if ( ( 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_header') ) && 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_shrink_title_logo') ) ) || CZR___::$instance -> tc_is_customizing() ) {
+    if ( ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header') ) && 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ) || CZR___::$instance -> czr_fn_is_customizing() ) {
       $_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
 
       $_css = sprintf("%s%s",

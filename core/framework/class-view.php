@@ -26,11 +26,11 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
       //Will be listen to by the model and trigger the maybe_hook_view callback
       do_action( "view_instantiated_{$this -> model -> id}", $this );
 
-      //listens to a view pre-render => and fire the tc_apply_registered_changes_to_instance
+      //listens to a view pre-render => and fire the czr_fn_apply_registered_changes_to_instance
       // => a change might have been registered
       //view id
       //view params
-      add_action( 'pre_render_view'             , array( $this, 'tc_apply_registered_changes_to_instance' ), 10, 1 );
+      add_action( 'pre_render_view'             , array( $this, 'czr_fn_apply_registered_changes_to_instance' ), 10, 1 );
     }
 
 
@@ -41,9 +41,9 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
     ***********************************************************************************/
     //hook : $model['hook']
     //NOTE : the $this here can be the child class $this.
-    public function tc_maybe_render() {
+    public function czr_fn_maybe_render() {
       //this event is used to check for late deletion or change before actually rendering
-      //will fire tc_apply_registered_changes_to_instance
+      //will fire czr_fn_apply_registered_changes_to_instance
       //do_action( 'pre_render_view', $this -> id );
 
       if ( ! apply_filters( "tc_do_render_view_{$this -> model -> id}", true ) )
@@ -55,7 +55,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
 
       do_action( "__before_{$this -> model -> id}" );
 
-      $tc_print_debug =  ! CZR___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
+      $tc_print_debug =  ! CZR___::$instance -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
 
       ?>
       <?php
@@ -83,16 +83,16 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
 
 
     //might be overriden in the child view if any
-    public function tc_render() {
+    public function czr_fn_render() {
       if ( ! empty( $this -> model -> html ) )
         echo $this -> model -> html;
 
       if ( ! empty( $this -> model -> template ) ) {
         //get the filename
-        $_template_file = czr_get_theme_file("templates/{$this -> model -> template}.php" );
+        $_template_file = czr_fn_get_theme_file("templates/{$this -> model -> template}.php" );
 
         if ( false !== $_template_file ) {
-          tc_set_current_model( $this -> model );
+          czr_fn_set_current_model( $this -> model );
           ob_start();
             load_template( $_template_file, $require_once = false );
           $_temp_content = ob_get_contents();
@@ -101,7 +101,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
           if ( ! empty($_temp_content) )
             echo $_temp_content;
 
-          tc_reset_current_model();
+          czr_fn_reset_current_model();
         }
       }
 
@@ -116,11 +116,11 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
     //called directly sometimes
     //fired on 'pre_render_view'
     //fired on tc_change if view is instantiated
-    public function tc_apply_registered_changes_to_instance( $id, $new_params = array() ) {
-      if ( ! CZR() -> collection -> czr_has_registered_change( $id ) )
+    public function czr_fn_apply_registered_changes_to_instance( $id, $new_params = array() ) {
+      if ( ! CZR() -> collection -> czr_fn_has_registered_change( $id ) )
         return;
 
-      $new_params = empty($new_params) ? CZR() -> collection -> czr_get_registered_changes( $id ) : $new_params;
+      $new_params = empty($new_params) ? CZR() -> collection -> czr_fn_get_registered_changes( $id ) : $new_params;
 
       $this -> tc_update_model_instance( $id, $new_params );
 
@@ -132,9 +132,9 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
 
     //at this stage, the view is instantiated
     //@return void()
-    private function tc_update_model_instance( $id, $new_params ) {
+    private function czr_fn_update_model_instance( $id, $new_params ) {
       //get current params
-      $current_params = $this -> czr_get_view($id);
+      $current_params = $this -> czr_fn_get_view($id);
       if ( ! $current_params || ! is_array($current_params) )
         return;
       //pre-process new params
@@ -144,7 +144,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
       //=> will automatically trigger the collection update
       foreach ($new_params as $property => $value) {
         if ( $value != $current_params[$property] )
-          $current_params['view_instance'] -> tc_set_property( $property, $value );
+          $current_params['view_instance'] -> czr_fn_set_property( $property, $value );
       }
     }
 
@@ -152,7 +152,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
     /**********************************************************************************
     * PUBLIC HELPERS
     ***********************************************************************************/
-    public function czr_get_instance() {
+    public function czr_fn_get_instance() {
       return $this;
     }
 

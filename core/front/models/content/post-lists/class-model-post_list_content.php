@@ -13,14 +13,14 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
   function setup_text_hooks() {
     //filter the excerpt length
-    add_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
+    add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
   function reset_text_hooks() {
-    remove_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
+    remove_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
-  function czr_get_post_list_content( $more  = null ) {
+  function czr_fn_get_post_list_content( $more  = null ) {
     if ( $this -> content )
       return $this -> content;
     elseif ( 'get_the_excerpt' == $this -> content_cb )
@@ -38,8 +38,8 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_set_excerpt_length( $length ) {
-    $_custom = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_excerpt_length' ) );
+  function czr_fn_set_excerpt_length( $length ) {
+    $_custom = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_excerpt_length' ) );
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
@@ -52,17 +52,17 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.3+
   */
-  function tc_add_support_for_shortcode_special_chars( $_content ) {
+  function czr_fn_add_support_for_shortcode_special_chars( $_content ) {
     return str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', $_content ) );
   }
 
 
-  function tc_setup_late_properties() {
-    $show_excerpt        = czr_get( 'tc_show_excerpt' );
+  function czr_fn_setup_late_properties() {
+    $show_excerpt        = czr_fn_get( 'tc_show_excerpt' );
     $content_width_class = array( 'entry-summary' );
     $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
     $content             = '';
-    $element_class       = czr_get( 'tc_content_width' );
+    $element_class       = czr_fn_get( 'tc_content_width' );
 
     if ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) )
     {
@@ -79,7 +79,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   /**
   * parse this model properties for rendering
   */
-  function tc_sanitize_model_properties( $model ) {
+  function czr_fn_sanitize_model_properties( $model ) {
     parent::tc_sanitize_model_properties( $model );
     $model -> content_width_class = $this -> tc_stringify_model_property( 'content_width_class' );
   }

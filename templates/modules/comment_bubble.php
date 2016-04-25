@@ -8,19 +8,19 @@
 /* At the moment the switch between the two layouts is handled in the model. Consider a split in the future */
 
 /* Case default bubble layout */
-if ( 'default' == czr_get( 'type' ) ) :
+if ( 'default' == czr_fn_get( 'type' ) ) :
 
 ?>
-<span class="comments-link" <?php czr_echo('element_attributes') ?>>
-  <a href="<?php czr_echo( 'comment_bubble_link', null, array( get_permalink() ) ) ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" data-disqus-identifier="javascript:this.page.identifier"><span class="tc-comment-bubble default-bubble"><?php echo number_format_i18n( get_comments_number() )?></span></a>
+<span class="comments-link" <?php czr_fn_echo('element_attributes') ?>>
+  <a href="<?php czr_fn_echo( 'comment_bubble_link', null, array( get_permalink() ) ) ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" data-disqus-identifier="javascript:this.page.identifier"><span class="tc-comment-bubble default-bubble"><?php echo number_format_i18n( get_comments_number() )?></span></a>
 </span>
 <?php
 
-elseif ( 'custom-bubble-one' == czr_get('type') ):
+elseif ( 'custom-bubble-one' == czr_fn_get('type') ):
 
 ?>
-<span class="comments-link" <?php czr_echo('element_attributes') ?>>
-  <a href="<?php czr_echo( 'comment_bubble_link', null, array( get_permalink() ) ) ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" data-disqus-identifier="javascript:this.page.identifier"><span class="tc-comment-bubble custom-bubble-one"><?php echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ) ?></span></a>
+<span class="comments-link" <?php czr_fn_echo('element_attributes') ?>>
+  <a href="<?php czr_fn_echo( 'comment_bubble_link', null, array( get_permalink() ) ) ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" data-disqus-identifier="javascript:this.page.identifier"><span class="tc-comment-bubble custom-bubble-one"><?php echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ) ?></span></a>
 </span>
 <?php
 

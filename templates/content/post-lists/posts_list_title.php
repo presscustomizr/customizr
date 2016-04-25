@@ -7,16 +7,16 @@
  */
 
 /* Case we're displaying the search results */
-if ( 'search_results' == czr_get( 'context' ) ) :
+if ( 'search_results' == czr_fn_get( 'context' ) ) :
 
 ?>
-<div class="row-fluid" <?php czr_echo('element_attributes') ?>>
-  <div class="<?php czr_echo( 'title_wrapper_class' ) ?>">
-    <h1 class="<?php czr_echo( 'title_class' ) ?>">
-      <?php czr_echo( 'pre_title' ) ?> <span><?php echo get_search_query() ?></span>
+<div class="row-fluid" <?php czr_fn_echo('element_attributes') ?>>
+  <div class="<?php czr_fn_echo( 'title_wrapper_class' ) ?>">
+    <h1 class="<?php czr_fn_echo( 'title_class' ) ?>">
+      <?php czr_fn_echo( 'pre_title' ) ?> <span><?php echo get_search_query() ?></span>
     </h1>
   </div>
-  <div class="<?php czr_echo( 'search_form_wrapper_class' ) ?>">
+  <div class="<?php czr_fn_echo( 'search_form_wrapper_class' ) ?>">
     <?php get_search_form() ?>
   </div>
 </div>
@@ -25,7 +25,7 @@ if ( 'search_results' == czr_get( 'context' ) ) :
 else :
 /* All other cases */
 ?>
-<h1 class="<?php czr_echo( 'element_class' ) ?>" <?php czr_echo('element_attributes') ?> ><?php czr_echo( 'pre_title' ) ?> <?php czr_echo( 'title' ) ?></h1>
+<h1 class="<?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?> ><?php czr_fn_echo( 'pre_title' ) ?> <?php czr_fn_echo( 'title' ) ?></h1>
 <?php
 
 endif;

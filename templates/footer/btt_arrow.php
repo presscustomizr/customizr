@@ -6,6 +6,6 @@
  * @since Customizr 3.5.0
  */
 ?>
-<div class="tc-btt-wrapper" <?php czr_echo('element_attributes') ?>>
+<div class="tc-btt-wrapper" <?php czr_fn_echo('element_attributes') ?>>
   <i class="btt-arrow"></i>
 </div>

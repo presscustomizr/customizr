@@ -11,7 +11,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
   }
 
 
-  function tc_extend_params( $model = array() ) {
+  function czr_fn_extend_params( $model = array() ) {
     $is_checkout_cart        = function_exists( 'tc_wc_is_checkout_cart' ) ? tc_wc_is_checkout_cart() : false;
     $current_menu_item_class = $is_checkout_cart ? 'current-menu-item' : '';
 
@@ -20,8 +20,8 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
 
 
   // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
-  function tc_woocommerce_add_to_cart_fragment( $fragments ) {
-    if ( 1 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_woocommerce_header_cart' ) ) ) {
+  function czr_fn_woocommerce_add_to_cart_fragment( $fragments ) {
+    if ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ) {
       $_cart_count = WC()->cart->get_cart_contents_count();
       $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
     }
@@ -35,7 +35,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
     if ( ! is_array( $header_model -> element_class ) )
       $header_model -> element_class = explode( ' ', $header_model -> element_class );
 
-    $_class = ( 1 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
+    $_class = ( 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
     array_push( $header_model -> element_class, $_class );
   }
 
@@ -50,13 +50,13 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
   /**
   * @hook tc_user_options_style
   */
-  function tc_user_options_style_cb( $_css ) {
+  function czr_fn_user_options_style_cb( $_css ) {
     /* The only real decision I took here is the following:
     * I let the "count" number possibily overflow the parent (span1) width
     * so that as it grows it won't break on a new line. This is quite an hack to
     * keep the cart space as small as possible (span1) and do not hurt the tagline too much (from span7 to span6). Also nobody will, allegedly, have more than 10^3 products in its cart
     */
-    $_header_layout      = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_header_layout') );
+    $_header_layout      = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_header_layout') );
     $_resp_pos_css       = 'right' == $_header_layout ? 'float: left;' : '';
     $_wc_t_align         = 'left';
 

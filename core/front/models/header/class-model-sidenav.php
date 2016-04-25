@@ -7,7 +7,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
   }
 
 
-  function tc_setup_children() {
+  function czr_fn_setup_children() {
     return array(
       //sidenav menu button
       array( 'id' => 'sidenav_menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),
@@ -32,7 +32,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
   * @override
   * parse this model properties for rendering
   */
-  function tc_sanitize_model_properties( $model ) {
+  function czr_fn_sanitize_model_properties( $model ) {
     parent::tc_sanitize_model_properties( $model );
     $model -> inner_class = $this -> tc_stringify_model_property( 'inner_class' );
   }
@@ -44,11 +44,11 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_body_class($_classes) {
+  function czr_fn_body_class($_classes) {
     array_push( $_classes, 'tc-side-menu' );
 
     //sidenav where
-    $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_position') ) );
+    $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_position') ) );
     array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
 
     return $_classes;
@@ -61,7 +61,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
   *
   * hook :tc_menu_open_on_click
   */
-  function tc_disable_dropdown_on_click( $replace, $search, $_location = null ) {
+  function czr_fn_disable_dropdown_on_click( $replace, $search, $_location = null ) {
     return 'main' == $_location ? $search : $replace ;
   }
 
@@ -72,7 +72,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.11
   */
-  function tc_user_options_style_cb( $_css ) {
+  function czr_fn_user_options_style_cb( $_css ) {
     $sidenav_width = apply_filters( 'tc_sidenav_width', 330 );
 
     $_sidenav_mobile_css = '

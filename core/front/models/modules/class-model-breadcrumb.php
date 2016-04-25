@@ -18,7 +18,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
   public $breadcrumb;
   private $args;
 
-  function tc_extend_params( $model = array() ) {
+  function czr_fn_extend_params( $model = array() ) {
     $this -> args       = $this -> _get_args();
     $this -> breadcrumb = $this -> tc_breadcrumb_trail( $this -> args );
 
@@ -94,7 +94,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 	 * @return string Output of the breadcrumb menu.
 	 */
 
-	function tc_breadcrumb_trail( $args = array() ) {
+	function czr_fn_breadcrumb_trail( $args = array() ) {
 
 		/* Create an empty variable for the breadcrumb. */
 		$breadcrumb = '';
@@ -153,7 +153,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 	 * @param array $args Mixed arguments for the menu.
 	 * @return array List of items to be shown in the trail.
 	 */
-	function tc_breadcrumb_trail_get_items( $args = array() ) {
+	function czr_fn_breadcrumb_trail_get_items( $args = array() ) {
 		global $wp_rewrite;
 
 		/* Set up an empty trail array and empty path. */
@@ -567,7 +567,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 	 * @param array $args Mixed arguments for the menu.
 	 * @return array List of items to be shown in the trail.
 	 */
-	function tc_breadcrumb_trail_get_bbpress_items( $args = array() ) {
+	function czr_fn_breadcrumb_trail_get_bbpress_items( $args = array() ) {
 
 		/* Set up a new trail items array. */
 		$trail = array();
@@ -696,7 +696,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 	 * @param array $args Mixed arguments for the menu.
 	 * @return array $trail Array of links to the post breadcrumb.
 	 */
-	function tc_breadcrumb_trail_map_rewrite_tags( $post_id = '' , $path = '' , $args = array() ) {
+	function czr_fn_breadcrumb_trail_map_rewrite_tags( $post_id = '' , $path = '' , $args = array() ) {
 
 		/* Set up an empty $trail array. */
 		$trail = array();
@@ -766,7 +766,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 	 * @param string $path Path of a potential parent page.
 	 * @return array $trail Array of parent page links.
 	 */
-	function tc_breadcrumb_trail_get_parents( $post_id = '' , $path = '' ) {
+	function czr_fn_breadcrumb_trail_get_parents( $post_id = '' , $path = '' ) {
 		/* Set up an empty trail array. */
 		$trail = array();
 
@@ -871,7 +871,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 	 * @param object|string $taxonomy The taxonomy of the term whose parents we want.
 	 * @return array $trail Array of links to parent terms.
 	 */
-	function tc_breadcrumb_trail_get_term_parents( $parent_id = '' , $taxonomy = '' ) {
+	function czr_fn_breadcrumb_trail_get_term_parents( $parent_id = '' , $taxonomy = '' ) {
 
 		/* Set up some default arrays. */
 		$trail = array();
@@ -903,7 +903,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 	}
 
 
-	function tc_add_first_term_from_hierarchical_taxinomy( $trail , $post_id ) {
+	function czr_fn_add_first_term_from_hierarchical_taxinomy( $trail , $post_id ) {
 		// get post by post id
 	  	$post = get_post( $post_id );
 

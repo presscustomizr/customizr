@@ -5,7 +5,7 @@ class CZR_cl_trackpingback_model_class extends CZR_cl_comment_model_class {
   /*
   * @override
   */
-  function tc_set_early_properties( $model ) {
+  function czr_fn_set_early_properties( $model ) {
     return $model;
   }
 
@@ -29,13 +29,13 @@ class CZR_cl_trackpingback_model_class extends CZR_cl_comment_model_class {
    * @package Customizr
    * @since Customizr 1.0
   */
-  function tc_set_comment_loop_properties( $comment, $args, $depth ) {
+  function czr_fn_set_comment_loop_properties( $comment, $args, $depth ) {
     if ( ! in_array( $comment -> comment_type, array('trackback', 'pingback') ) ) {
-      $this -> tc_set_property( 'visibility', false );
+      $this -> czr_fn_set_property( 'visibility', false );
       return $comment;
     }
 
-    $this -> tc_set_property( 'visibility', true );
+    $this -> czr_fn_set_property( 'visibility', true );
     return $comment;
   }
 }

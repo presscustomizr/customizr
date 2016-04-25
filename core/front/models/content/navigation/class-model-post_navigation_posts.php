@@ -3,7 +3,7 @@ class CZR_cl_post_navigation_posts_model_class extends CZR_cl_post_navigation_mo
   /*
   * @override
   */
-  function czr_get_context() {
+  function czr_fn_get_context() {
     if ( is_home() && 'posts' == get_option('show_on_front') )
       return 'home';
     if ( !is_404() && !tc__f( '__is_home_empty') )

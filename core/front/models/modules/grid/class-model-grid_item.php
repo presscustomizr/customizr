@@ -15,28 +15,28 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   public  $has_title_in_caption;
   public  $has_fade_expt;
 
-  function tc_setup_late_properties() {
-    $grid                   = czr_get( 'grid_item' );
+  function czr_fn_setup_late_properties() {
+    $grid                   = czr_fn_get( 'grid_item' );
     if ( empty( $grid ) )
       return;
 
     extract( $grid );
     //thumb
-    $thumb_properties       = $this -> czr_get_thumb_properties( $section_cols );
+    $thumb_properties       = $this -> czr_fn_get_thumb_properties( $section_cols );
     extract( $thumb_properties );
 
     //figure class
-    $figure_class           = $this -> czr_get_the_figure_class( $has_thumb, $section_cols );
+    $figure_class           = $this -> czr_fn_get_the_figure_class( $has_thumb, $section_cols );
 
-    $icon_visibility        = $this -> tc_set_grid_icon_visibility();
+    $icon_visibility        = $this -> czr_fn_set_grid_icon_visibility();
 
-    $title                  = $this -> tc_set_grid_title_length( get_the_title(), $is_expanded );
+    $title                  = $this -> czr_fn_set_grid_title_length( get_the_title(), $is_expanded );
 
-    $has_title_in_caption   = $this -> czr_get_title_in_caption( $is_expanded );
+    $has_title_in_caption   = $this -> czr_fn_get_title_in_caption( $is_expanded );
 
-    $has_edit_in_caption    = $this -> czr_get_edit_in_caption( $is_expanded );
+    $has_edit_in_caption    = $this -> czr_fn_get_edit_in_caption( $is_expanded );
 
-    $has_fade_expt          = $this -> czr_get_fade_expt( $is_expanded, $thumb_img );
+    $has_fade_expt          = $this -> czr_fn_get_fade_expt( $is_expanded, $thumb_img );
     //update the model
     $this -> tc_update( array_merge( $icon_visibility, compact( 'thumb_img', 'figure_class', 'is_expanded', 'title', 'has_title_in_caption', 'has_fade_expt', 'has_edit_in_caption' ) ) );
   }
@@ -44,21 +44,21 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   /*
   * has edit in caption
   */
-  function czr_get_edit_in_caption( $is_expanded ) {
+  function czr_fn_get_edit_in_caption( $is_expanded ) {
     return $is_expanded;
   }
 
   /*
   * has title in caption
   */
-  function czr_get_title_in_caption( $is_expanded ) {
+  function czr_fn_get_title_in_caption( $is_expanded ) {
     return $is_expanded;
   }
 
   /*
   * has fade expt
   */
-  function czr_get_fade_expt( $is_expanded, $thumb_img ) {
+  function czr_fn_get_fade_expt( $is_expanded, $thumb_img ) {
     return ! ( $is_expanded || $thumb_img );
   }
 
@@ -67,8 +67,8 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   * Limits the length of the post titles in grids to a custom number of characters
   * @return string
   */
-  function tc_set_grid_title_length( $_title, $is_expanded ) {
-    $_max = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_grid_num_words') );
+  function czr_fn_set_grid_title_length( $_title, $is_expanded ) {
+    $_max = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_num_words') );
     $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
     $_max = $_max <= 0 ? 1 : $_max;
 
@@ -88,15 +88,15 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   /*
   * thumb properties
   */
-  function czr_get_thumb_properties( $section_cols ) {
+  function czr_fn_get_thumb_properties( $section_cols ) {
     $has_thumb           = $this -> tc_grid_show_thumb();
     $thumb_img           = '';
 
     if ( $has_thumb ) {
-      $thumb_model                   = CZR_cl_utils_thumbnails::$instance -> czr_get_thumbnail_model(
-          $thumb_size                = $this -> czr_get_thumb_size_name( $section_cols ),
+      $thumb_model                   = CZR_cl_utils_thumbnails::$instance -> czr_fn_get_thumbnail_model(
+          $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
           null, null, null,
-          $_filtered_thumb_size_name = $this -> czr_get_filtered_thumb_size_name( $section_cols )
+          $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols )
       );
       extract( $thumb_model );
 
@@ -113,7 +113,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   /*
   * figure class
   */
-  function czr_get_the_figure_class( $has_thumb, $section_cols ) {
+  function czr_fn_get_the_figure_class( $has_thumb, $section_cols ) {
     $figure_class        = array( $has_thumb ? 'has-thumb' : 'no-thumb' );
 
     //if 1 col layout or current post is the expanded => golden ratio should be disabled
@@ -129,10 +129,10 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   /*
   * grid icon visibility
   */
-  function tc_set_grid_icon_visibility() {
-    $icon_enabled        = (bool) esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_grid_icons') );
+  function czr_fn_set_grid_icon_visibility() {
+    $icon_enabled        = (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_icons') );
     $icon_attributes     = '';
-    if ( CZR___::$instance -> tc_is_customizing() )
+    if ( CZR___::$instance -> czr_fn_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',
           $icon_enabled ? 'inline-block' : 'none'
       );
@@ -151,7 +151,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   /*
   * get the thumb size name to use according to the grid element width
   */
-  function czr_get_thumb_size_name( $section_cols ){
+  function czr_fn_get_thumb_size_name( $section_cols ){
     return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
   }
 
@@ -160,19 +160,19 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   * get the thumb size name used in the CZR_cl_utils_thumbnails to set the proper inline style
   * if needed, accordint to the grid element width
   */
-  function czr_get_filtered_thumb_size_name( $section_cols ){
+  function czr_fn_get_filtered_thumb_size_name( $section_cols ){
     return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
   }
 
-  private function tc_grid_show_thumb() {
-    return CZR_cl_utils_thumbnails::$instance -> czr_has_thumb() && 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_show_thumb' ) );
+  private function czr_fn_grid_show_thumb() {
+    return CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_show_thumb' ) );
   }
 
 
   /**
   * parse this model properties for rendering
   */
-  function tc_sanitize_model_properties( $model ) {
+  function czr_fn_sanitize_model_properties( $model ) {
     parent::tc_sanitize_model_properties( $model );
     foreach ( array('figure') as $property )
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );

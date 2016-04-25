@@ -15,7 +15,7 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
     parent::__construct( $model );
 
     //parse the comment callback params so to set this propertied
-    add_filter( 'tc_comment_callback_params', array( $this, 'tc_set_comment_loop_properties'), 10, 3 );
+    add_filter( 'tc_comment_callback_params', array( $this, 'czr_fn_set_comment_loop_properties'), 10, 3 );
   }
   /**
   * @override
@@ -23,8 +23,8 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
   *
   * return model params array()
   */
-  function tc_extend_params( $model = array() ) {
-    $model[ 'has_edit_button' ]         = ! CZR___::$instance -> tc_is_customizing();
+  function czr_fn_extend_params( $model = array() ) {
+    $model[ 'has_edit_button' ]         = ! CZR___::$instance -> czr_fn_is_customizing();
     return $model;
   }
 
@@ -38,14 +38,14 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
    * @package Customizr
    * @since Customizr 1.0
   */
-  function tc_set_comment_loop_properties( $comment, $args, $depth ) {
+  function czr_fn_set_comment_loop_properties( $comment, $args, $depth ) {
     global $post;
 
     if ( in_array( $comment -> comment_type, array('trackback', 'pingback') ) ) {
-      $this -> tc_set_property( 'visibility', false );
+      $this -> czr_fn_set_property( 'visibility', false );
       return $comment;
     }
-    $this -> tc_set_property( 'visibility', true );
+    $this -> czr_fn_set_property( 'visibility', true );
 
     $props = array(
      'comment_text'            => apply_filters( 'comment_text', get_comment_text( $comment->comment_ID , $args ), $comment, $args ),

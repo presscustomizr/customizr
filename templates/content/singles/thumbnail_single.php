@@ -7,11 +7,11 @@
  * @since Customizr 3.5.0
  */
 ?>
-<div class="row-fluid tc-single-post-thumbnail-wrapper <?php czr_echo( 'thumb_position' ) ?>" <?php czr_echo('element_attributes') ?>>
+<div class="row-fluid tc-single-post-thumbnail-wrapper <?php czr_fn_echo( 'thumb_position' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <section class="tc-thumbnail span12" >
    <div>
     <a class="tc-rectangular-thumb" href="<?php the_permalink() ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ) ?>">
-      <?php czr_echo( 'thumb_img' ) ?>
+      <?php czr_fn_echo( 'thumb_img' ) ?>
     </a>
    </div>
   </section>
