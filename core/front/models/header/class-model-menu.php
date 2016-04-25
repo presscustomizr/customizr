@@ -12,22 +12,22 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
   *
   * return model params array()
   */
-  function tc_extend_params( $model = array() ) {
+  function czr_fn_extend_params( $model = array() ) {
     $model[ 'menu_class' ]     = $this -> get_menu_class();
     $model[ 'element_class' ]  = $this -> get_element_class();
     $model[ 'theme_location' ] = $this -> theme_location;
-    $model[ 'walker' ]         = ! CZR_cl_utils::$inst -> czr_has_location_menu( $model['theme_location'] ) ? '' : new CZR_cl_nav_walker( $model['theme_location'] );
+    $model[ 'walker' ]         = ! CZR_cl_utils::$inst -> czr_fn_has_location_menu( $model['theme_location'] ) ? '' : new CZR_cl_nav_walker( $model['theme_location'] );
     $model[ 'fallback_cb' ]    = array( $this, 'tc_page_menu' );
 
     return $model;
   }
 
   protected function get_menu_class() {
-    return ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' );
+    return ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' );
   }
 
   protected function get_element_class() {
-    return ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
+    return ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
   }
 
 
@@ -35,7 +35,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
   * @override
   * Allow filtering of the header class by registering to its pre view rendering hook
   */
-  function tc_maybe_filter_views_model() {
+  function czr_fn_maybe_filter_views_model() {
     parent::tc_maybe_filter_views_model();
     add_action( 'pre_rendering_view_header'         , array( $this, 'pre_rendering_view_header_cb' ) );
     add_action( 'pre_rendering_view_navbar_wrapper' , array( $this, 'pre_rendering_view_navbar_wrapper_cb' ) );
@@ -53,11 +53,11 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
     if ( $_fired ) return $header_model;
     $_fired        = true;
 
-    if ( esc_attr( CZR_cl_utils::$inst->czr_opt( "tc_sticky_header") || CZR___::$instance -> tc_is_customizing() ) ) {
+    if ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_sticky_header") || CZR___::$instance -> czr_fn_is_customizing() ) ) {
       if ( ! is_array( $header_model -> element_class ) )
         $header_model -> element_class = explode( ' ', $header_model -> element_class );
       array_push( $header_model -> element_class,
-        0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_show_menu') ) ? 'tc-menu-on' : 'tc-menu-off'
+        0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_show_menu') ) ? 'tc-menu-on' : 'tc-menu-off'
       );
     }
   }
@@ -71,18 +71,18 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
       $navbar_wrapper_model -> element_class = explode( ' ', $navbar_wrapper_model -> element_class );
 
     //this is the same for the main regular menu
-    if ( ! wp_is_mobile() && 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_submenu_fade_effect') ) )
+    if ( ! wp_is_mobile() && 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_submenu_fade_effect') ) )
       array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-fade' );
-    if ( 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_submenu_item_move_effect') ) )
+    if ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) )
       array_push( $navbar_wrapper_model -> element_class, 'tc-submenu-move' );
-    array_push( $navbar_wrapper_model -> element_class, ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' );
+    array_push( $navbar_wrapper_model -> element_class, ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ?  'tc-open-on-hover' : 'tc-open-on-click' );
   }
 
   /**
   * @override
   * parse this model properties for rendering
   */
-  function tc_sanitize_model_properties( $model ) {
+  function czr_fn_sanitize_model_properties( $model ) {
     parent::tc_sanitize_model_properties( $model );
     $model -> menu_class = $this -> tc_stringify_model_property( 'menu_class' );
   }
@@ -94,7 +94,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
    * Modified copy of wp_page_menu()
    * @return string html menu
    */
-  function tc_page_menu( $args = array() ) {
+  function czr_fn_page_menu( $args = array() ) {
     $defaults = array('sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '');
     $args = wp_parse_args( $args, $defaults );
 
@@ -150,7 +150,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
    * Modified copy of wp_list_pages
    * @return string HTML list of pages.
   */
-  function tc_list_pages( $args = '' ) {
+  function czr_fn_list_pages( $args = '' ) {
     $defaults = array(
       'depth' => 0, 'show_date' => '',
       'date_format' => get_option( 'date_format' ),
@@ -214,7 +214,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
    * @since 2.1.0
    * @see Walker_Page::walk() for parameters and return description.
    */
-  function tc_walk_page_tree($pages, $depth, $current_page, $r) {
+  function czr_fn_walk_page_tree($pages, $depth, $current_page, $r) {
     // if ( empty($r['walker']) )
     //   $walker = new Walker_Page;
     // else

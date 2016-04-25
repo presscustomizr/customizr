@@ -32,14 +32,14 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_dropcap_inline_css') );
 
           //set random skin
-          add_filter ('czr_opt_tc_skin'                , array( $this, 'tc_set_random_skin' ) );
+          add_filter ('czr_opt_tc_skin'                , array( $this, 'czr_fn_set_random_skin' ) );
 
           //Grunt Live reload script on DEV mode (CZR_DEV constant has to be defined. In wp_config for example)
 	        if ( defined('CZR_DEV') && true === CZR_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
 	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
 
           //stores the front scripts map in a property
-          $this -> tc_script_map = $this -> czr_get_script_map();
+          $this -> tc_script_map = $this -> czr_fn_get_script_map();
 	    }
 
 
@@ -49,18 +49,18 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 		* @package Customizr
 		* @since Customizr 1.1
 		*/
-        function tc_enqueue_front_styles() {
+        function czr_fn_enqueue_front_styles() {
           //Enqueue FontAwesome CSS
-          if ( true == CZR_cl_utils::$inst -> czr_opt( 'tc_font_awesome_css' ) ) {
+          if ( true == CZR_cl_utils::$inst -> czr_fn_opt( 'tc_font_awesome_css' ) ) {
             $_path = apply_filters( 'tc_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css' );
             wp_enqueue_style( 'customizr-fa',
                 $_path . '/fonts/' . CZR_cl_init::$instance -> tc_maybe_use_min_style( 'font-awesome.css' ),
                 array() , CUSTOMIZR_VER, 'all' );
           }
 
-	      wp_enqueue_style( 'customizr-common', CZR_cl_init::$instance -> czr_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
+	      wp_enqueue_style( 'customizr-common', CZR_cl_init::$instance -> czr_fn_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
           //Customizr active skin
-	      wp_register_style( 'customizr-skin', CZR_cl_init::$instance -> czr_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
+	      wp_register_style( 'customizr-skin', CZR_cl_init::$instance -> czr_fn_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
 	      wp_enqueue_style( 'customizr-skin' );
 	      //Customizr stylesheet (style.css)
 	      wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
@@ -78,7 +78,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function czr_get_script_map( $_handles = array() ) {
+    private function czr_fn_get_script_map( $_handles = array() ) {
       $_map = array(
         'tc-js-params' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
@@ -135,23 +135,23 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
         'tc-main-front' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'main.js' , 'main.min.js' ),
-          'dependencies' => $this -> tc_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
+          'dependencies' => $this -> czr_fn_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
         ),
         //loaded separately => not included in tc-script.js
         'tc-fancybox' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/fancybox/',
           'files' => array( 'jquery.fancybox-1.3.4.min.js' ),
-          'dependencies' => $this -> tc_load_concatenated_front_scripts() ? array( 'jquery' ) : array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap' )
+          'dependencies' => $this -> czr_fn_load_concatenated_front_scripts() ? array( 'jquery' ) : array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap' )
         ),
         //concats all scripts except fancybox
         'tc-scripts' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/',
           'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
-          'dependencies' =>  $this -> tc_is_fancyboxjs_required() ? array( 'jquery', 'tc-fancybox' ) : array( 'jquery' )
+          'dependencies' =>  $this -> czr_fn_is_fancyboxjs_required() ? array( 'jquery', 'tc-fancybox' ) : array( 'jquery' )
         )
       );//end of scripts map
 
-      return apply_filters('czr_get_script_map' , $_map, $_handles );
+      return apply_filters('czr_fn_get_script_map' , $_map, $_handles );
     }
 
 
@@ -165,7 +165,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 		* @package Customizr
 		* @since Customizr 1.0
 		*/
-		function tc_enqueue_front_scripts() {
+		function czr_fn_enqueue_front_scripts() {
 	    //wp scripts
 	  	if ( is_singular() && get_option( 'thread_comments' ) )
 		    wp_enqueue_script( 'comment-reply' );
@@ -184,8 +184,8 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
       );
 
       //customizr scripts and libs
-	   	if ( $this -> tc_load_concatenated_front_scripts() )	{
-        if ( $this -> tc_is_fancyboxjs_required() )
+	   	if ( $this -> czr_fn_load_concatenated_front_scripts() )	{
+        if ( $this -> czr_fn_is_fancyboxjs_required() )
           $this -> tc_enqueue_script( 'tc-fancybox' );
         //!!tc-scripts includes underscore, tc-js-arraymap-proto
         $this -> tc_enqueue_script( 'tc-scripts' );
@@ -195,7 +195,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
         //!!mind the dependencies
         $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-smoothscroll', 'tc-outline' ) );
 
-        if ( $this -> tc_is_fancyboxjs_required() )
+        if ( $this -> czr_fn_is_fancyboxjs_required() )
           $this -> tc_enqueue_script( 'tc-fancybox' );
 
         $this -> tc_enqueue_script( array( 'tc-dropcap' , 'tc-img-smartload', 'tc-ext-links', 'tc-center-images', 'tc-main-front' ) );
@@ -203,16 +203,16 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
       //carousel options
       //gets slider options if any for home/front page or for others posts/pages
-      $js_slidername      = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::tc_id() , $key = 'post_slider_key' , $single = true );
-      $js_sliderdelay     = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::tc_id() , $key = 'slider_delay_key' , $single = true );
+      $js_slidername      = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::tc_id() , $key = 'post_slider_key' , $single = true );
+      $js_sliderdelay     = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::tc_id() , $key = 'slider_delay_key' , $single = true );
 
 			//has the post comments ? adds a boolean parameter in js
 			global $wp_query;
 			$has_post_comments 	= ( 0 != $wp_query -> post_count && comments_open() && get_comments_number() != 0 ) ? true : false;
 
 			//adds the jquery effect library if smooth scroll is enabled => easeOutExpo effect
-			$anchor_smooth_scroll 		  = ( false != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_link_scroll') ) ) ? 'easeOutExpo' : 'linear';
-			if ( false != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_link_scroll') ) )
+			$anchor_smooth_scroll 		  = ( false != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_link_scroll') ) ) ? 'easeOutExpo' : 'linear';
+			if ( false != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_link_scroll') ) )
 				wp_enqueue_script('jquery-effects-core');
             $anchor_smooth_scroll_exclude =  apply_filters( 'tc_anchor_smoothscroll_excl' , array(
                 'simple' => array( '[class*=edd]' , '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]' ),
@@ -222,11 +222,11 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
                 )
             ));
 
-      $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_smoothscroll') ) );
+      $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_smoothscroll') ) );
       $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array( 'touchpadSupport' => false ) );
 
       //smart load
-      $smart_load_enabled   = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_img_smart_load' ) );
+      $smart_load_enabled   = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
       $smart_load_opts      = apply_filters( 'tc_img_smart_load_options' , array(
             'parentSelectors' => array(
                 '.article-container', '.__before_main_wrapper', '.widget-front',
@@ -236,7 +236,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
             )
       ));
 			//gets current screen layout
-    	$screen_layout      = CZR_cl_utils::czr_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
+    	$screen_layout      = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
     	//gets the global layout settings
     	$global_layout      = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
     	$sidebar_layout     = isset($global_layout[$screen_layout]['sidebar']) ? $global_layout[$screen_layout]['sidebar'] : false;
@@ -245,49 +245,49 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 	    $right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
 			wp_localize_script(
-	        $this -> tc_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
+	        $this -> czr_fn_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
 	        'TCParams',
 	        apply_filters( 'tc_customizr_script_params' , array(
 	          	'_disabled'          => apply_filters( 'tc_disabled_front_js_parts', array() ),
-              'FancyBoxState' 		=> $this -> tc_is_fancyboxjs_required(),
-	          	'FancyBoxAutoscale' => ( 1 == CZR_cl_utils::$inst->czr_opt( 'tc_fancybox_autoscale') ) ? true : false,
+              'FancyBoxState' 		=> $this -> czr_fn_is_fancyboxjs_required(),
+	          	'FancyBoxAutoscale' => ( 1 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_fancybox_autoscale') ) ? true : false,
 	          	'SliderName' 			  => $js_slidername,
 	          	'SliderDelay' 			=> $js_sliderdelay,
 	          	'SliderHover'			  => apply_filters( 'tc_stop_slider_hover', true ),
-	          	'centerSliderImg'   => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_center_slider_img') ),
+	          	'centerSliderImg'   => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_center_slider_img') ),
               'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
               'anchorSmoothScroll'			=> $anchor_smooth_scroll,
               'anchorSmoothScrollExclude' => $anchor_smooth_scroll_exclude,
-	          	'ReorderBlocks' 		=> esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_block_reorder') ),
-	          	'centerAllImg' 			=> esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_center_img') ),
+	          	'ReorderBlocks' 		=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_block_reorder') ),
+	          	'centerAllImg' 			=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_center_img') ),
 	          	'HasComments' 			=> $has_post_comments,
 	          	'LeftSidebarClass' 		=> $left_sb_class,
 	          	'RightSidebarClass' 	=> $right_sb_class,
-	          	'LoadModernizr' 		=> apply_filters( 'tc_load_modernizr' , true ),
+	          	'LoadModernizr' 		=> apply_filters( 'czr_fn_load_modernizr' , true ),
 	          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , array( "_initial" => 0, "_scrolling" => 0, "options" => array( "_static" => true, "_element" => "" ) ) ),
-	          	'stickyHeader' 			=> esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_header' ) ),
-	          	'dropdowntoViewport' 	=> esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_resp_dropdown_limit_to_viewport') ),
+	          	'stickyHeader' 			=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) ),
+	          	'dropdowntoViewport' 	=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_resp_dropdown_limit_to_viewport') ),
 	          	'timerOnScrollAllBrowsers' => apply_filters( 'tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
-              'extLinksStyle'       => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_ext_link_style' ) ),
-              'extLinksTargetExt'   => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_ext_link_target' ) ),
+              'extLinksStyle'       => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_ext_link_style' ) ),
+              'extLinksTargetExt'   => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_ext_link_target' ) ),
               'extLinksSkipSelectors'   => apply_filters( 'tc_ext_links_skip_selectors' , array( 'classes' => array('btn', 'button') , 'ids' => array() ) ),
-              'dropcapEnabled'      => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_enable_dropcap' ) ),
-              'dropcapWhere'      => array( 'post' => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_page_dropcap' ) ) ),
-              'dropcapMinWords'     => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_dropcap_minwords' ) ),
+              'dropcapEnabled'      => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_enable_dropcap' ) ),
+              'dropcapWhere'      => array( 'post' => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_page_dropcap' ) ) ),
+              'dropcapMinWords'     => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_dropcap_minwords' ) ),
               'dropcapSkipSelectors'  => apply_filters( 'tc_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'), 'classes' => array('btn') , 'id' => array() ) ),
               'imgSmartLoadEnabled' => $smart_load_enabled,
               'imgSmartLoadOpts'    => $smart_load_opts,
               'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
-              'gridGoldenRatioLimit' => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_grid_thumb_height' ) ),
+              'gridGoldenRatioLimit' => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_thumb_height' ) ),
               'isSecondMenuEnabled'  => CZR_cl_utils::$inst->tc_is_secondary_menu_enabled(),
-              'secondMenuRespSet'   => esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_second_menu_resp_setting' ) )
+              'secondMenuRespSet'   => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_second_menu_resp_setting' ) )
 	        	),
 	        	CZR_cl_utils::tc_id()
 		    )//end of filter
 	     );
 
 	    //fancybox style
-	    if ( $this -> tc_is_fancyboxjs_required() )
+	    if ( $this -> czr_fn_is_fancyboxjs_required() )
 	      wp_enqueue_style( 'fancyboxcss' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/fancybox/jquery.fancybox-1.3.4.min.css' );
 
 	    //holder.js is loaded when featured pages are enabled AND FP are set to show images and at least one holder should be displayed.
@@ -302,11 +302,11 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 	    }
 
 	    //load retina.js in footer if enabled
-	    if ( apply_filters('tc_load_retinajs', 1 == CZR_cl_utils::$inst->czr_opt( 'tc_retina_support' ) ) )
+	    if ( apply_filters('czr_fn_load_retinajs', 1 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) )
 	    	wp_enqueue_script( 'retinajs' ,CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
 	    //Load hammer.js for mobile
-	    if ( apply_filters('tc_load_hammerjs', wp_is_mobile() ) )
+	    if ( apply_filters('czr_fn_load_hammerjs', wp_is_mobile() ) )
 	    	wp_enqueue_script( 'hammer' ,CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/hammer.min.js', array('jquery'), CUSTOMIZR_VER );
 
 		}
@@ -319,10 +319,10 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.2.3
     */
-		function tc_write_inline_font_icons_css( $_css = null ) {
+		function czr_fn_write_inline_font_icons_css( $_css = null ) {
       $_css               = isset($_css) ? $_css : '';
       return apply_filters( 'tc_write_inline_font_icons',
-        $this -> czr_get_inline_font_icons_css() . "\n" . $_css,
+        $this -> czr_fn_get_inline_font_icons_css() . "\n" . $_css,
         $_css
       );
     }//end of function
@@ -335,8 +335,8 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.3.2
     */
-    public function czr_get_inline_font_icons_css() {
-      if ( false == CZR_cl_utils::$inst -> czr_opt( 'tc_font_awesome_icons' ) )
+    public function czr_fn_get_inline_font_icons_css() {
+      if ( false == CZR_cl_utils::$inst -> czr_fn_opt( 'tc_font_awesome_icons' ) )
         return;
 
       $_path = apply_filters( 'tc_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/css' );
@@ -364,16 +364,16 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 2.0.7
     */
-    function tc_write_custom_css( $_css = null ) {
+    function czr_fn_write_custom_css( $_css = null ) {
       $_css               = isset($_css) ? $_css : '';
-      $tc_custom_css      = esc_html( CZR_cl_utils::$inst->czr_opt( 'tc_custom_css') );
+      $tc_custom_css      = esc_html( CZR_cl_utils::$inst->czr_fn_opt( 'tc_custom_css') );
       if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
         return $_css;
 
       return apply_filters( 'tc_write_custom_css',
         $_css . "\n" . html_entity_decode( $tc_custom_css ),
         $_css,
-        CZR_cl_utils::$inst->czr_opt( 'tc_custom_css')
+        CZR_cl_utils::$inst->czr_fn_opt( 'tc_custom_css')
       );
     }//end of function
 
@@ -384,8 +384,8 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 		* Writes the livereload script in dev mode (if Grunt watch livereload is enabled)
 		*@since v3.2.4
 		*/
-		function tc_add_livereload_script() {
-			if ( CZR___::$instance -> tc_is_customizing() )
+		function czr_fn_add_livereload_script() {
+			if ( CZR___::$instance -> czr_fn_is_customizing() )
 				return;
 			?>
 			<script id="tc-dev-live-reload" type="text/javascript">
@@ -406,15 +406,15 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
-    function tc_enqueue_gfonts() {
-      $_font_pair         = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_fonts' ) );
+    function czr_fn_enqueue_gfonts() {
+      $_font_pair         = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fonts' ) );
       $_all_font_pairs    = CZR_cl_init::$instance -> font_pairs;
       if ( ! $this -> tc_is_gfont( $_font_pair , '_g_') )
         return;
 
       wp_enqueue_style(
         'tc-gfonts',
-        sprintf( '//fonts.googleapis.com/css?family=%s', CZR_cl_utils::$inst -> czr_get_font( 'single' , $_font_pair ) ),
+        sprintf( '//fonts.googleapis.com/css?family=%s', CZR_cl_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) ),
         array(),
         null,
         'all'
@@ -430,10 +430,10 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
-    function tc_write_fonts_inline_css( $_css = null , $_context = null ) {
+    function czr_fn_write_fonts_inline_css( $_css = null , $_context = null ) {
       $_css               = isset($_css) ? $_css : '';
-      $_font_pair         = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_fonts' ) );
-      $_body_font_size    = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_body_font_size' ) );
+      $_font_pair         = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fonts' ) );
+      $_body_font_size    = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_body_font_size' ) );
       $_font_selectors    = CZR_cl_init::$instance -> font_selectors;
 
       //create the $body and $titles vars
@@ -452,13 +452,13 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
       $body   = apply_filters('tc_body_fonts_selectors' , $body );
 
       if ( 'helvetica_arial' != $_font_pair ) {//check if not default
-        $_selector_fonts  = explode( '|', CZR_cl_utils::$inst -> czr_get_font( 'single' , $_font_pair ) );
+        $_selector_fonts  = explode( '|', CZR_cl_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) );
         if ( ! is_array($_selector_fonts) )
           return $_css;
 
         foreach ($_selector_fonts as $_key => $_raw_font) {
           //create the $_family and $_weight vars
-          extract( $this -> czr_get_font_css_prop( $_raw_font , $this -> tc_is_gfont( $_font_pair ) ) );
+          extract( $this -> czr_fn_get_font_css_prop( $_raw_font , $this -> tc_is_gfont( $_font_pair ) ) );
 
           switch ($_key) {
             case 0 : //titles font
@@ -500,7 +500,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.3.2
     */
-    private function tc_is_gfont($_font , $_gfont_id = null ) {
+    private function czr_fn_is_gfont($_font , $_gfont_id = null ) {
       $_gfont_id = $_gfont_id ? $_gfont_id : '_g_';
       return false !== strpos( $_font , $_gfont_id );
     }
@@ -513,15 +513,15 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.2.11
     */
-    function tc_write_dropcap_inline_css( $_css = null , $_context = null ) {
+    function czr_fn_write_dropcap_inline_css( $_css = null , $_context = null ) {
       $_css               = isset($_css) ? $_css : '';
-      if ( ! esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_enable_dropcap' ) ) )
+      if ( ! esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_enable_dropcap' ) ) )
         return $_css;
 
-      $_main_color_pair = CZR_cl_utils::$inst -> czr_get_skin_color( 'pair' );
+      $_main_color_pair = CZR_cl_utils::$inst -> czr_fn_get_skin_color( 'pair' );
       $_color           = $_main_color_pair[0];
       $_shad_color      = $_main_color_pair[1];
-      $_pad_right       = false !== strpos( esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;
+      $_pad_right       = false !== strpos( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;
       $_css .= "
         .tc-dropcap {
           color: {$_color};
@@ -550,12 +550,12 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_set_random_skin ( $_skin ) {
-      if ( false == esc_attr( CZR_cl_utils::$inst -> czr_opt( 'tc_skin_random' ) ) )
+    function czr_fn_set_random_skin ( $_skin ) {
+      if ( false == esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( 'tc_skin_random' ) ) )
         return $_skin;
 
       //allow custom skins to be taken in account
-      $_skins = apply_filters( 'czr_get_skin_color', CZR_cl_init::$instance -> skin_color_map, 'all' );
+      $_skins = apply_filters( 'czr_fn_get_skin_color', CZR_cl_init::$instance -> skin_color_map, 'all' );
 
       //allow users to filter the list of skins they want to randomize
       $_skins = apply_filters( 'tc_skins_to_randomize', $_skins );
@@ -578,7 +578,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.3.2
     */
-    private function czr_get_font_css_prop( $_raw_font , $is_gfont = false ) {
+    private function czr_fn_get_font_css_prop( $_raw_font , $is_gfont = false ) {
       $_css_exp = explode(':', $_raw_font);
       $_weight  = isset( $_css_exp[1] ) ? $_css_exp[1] : 'inherit';
       $_family  = '';
@@ -601,7 +601,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_enqueue_script( $_handles = array() ) {
+    function czr_fn_enqueue_script( $_handles = array() ) {
       if ( empty($_handles) )
         return;
 
@@ -635,7 +635,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_normalize_script_args( $_handle, $_params ) {
+    private function czr_fn_normalize_script_args( $_handle, $_params ) {
       //Do we load the minified version if available ?
       if ( count( $_params['files'] ) > 1 )
         $_filename = ( defined('WP_DEBUG') && true === WP_DEBUG ) ? $_params['files'][0] : $_params['files'][1];
@@ -647,7 +647,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
         sprintf( '%1$s%2$s%3$s',CZR_BASE_URL , $_params['path'], $_filename ),
         $_params['dependencies'],
         CUSTOMIZR_VER,
-        apply_filters( "tc_load_{$_handle}_in_footer", false )
+        apply_filters( "czr_fn_load_{$_handle}_in_footer", false )
       );
     }
 
@@ -658,8 +658,8 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since v3.3+
     */
-    function tc_load_concatenated_front_scripts() {
-      return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
+    function czr_fn_load_concatenated_front_scripts() {
+      return apply_filters( 'czr_fn_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
     }
 
     /**
@@ -669,8 +669,8 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @package Customizr
     * @since v3.3+
     */
-    private function tc_is_fancyboxjs_required() {
-      return CZR_cl_utils::$inst -> czr_opt( 'tc_fancybox' ) || CZR_cl_utils::$inst -> czr_opt( 'tc_gallery_fancybox');
+    private function czr_fn_is_fancyboxjs_required() {
+      return CZR_cl_utils::$inst -> czr_fn_opt( 'tc_fancybox' ) || CZR_cl_utils::$inst -> czr_fn_opt( 'tc_gallery_fancybox');
     }
 
   }//end of CZR_cl_resources

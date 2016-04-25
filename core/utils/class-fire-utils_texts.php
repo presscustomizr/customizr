@@ -20,7 +20,7 @@ if ( ! class_exists( 'CZR_cl_utils_texts' ) ) :
       self::$instance =& $this;
     }
 
-    function tc_post_has_headings() {
+    function czr_fn_post_has_headings() {
       return ! ( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', self::$post_formats_with_no_heading ) ) );
     }
   }
@@ -28,7 +28,7 @@ endif;
 
 /* Exposed methods */
 if ( ! function_exists( 'tc_post_has_title' ) ):
-  function tc_post_has_title() {
+  function czr_fn_post_has_title() {
     return CZR_cl_utils_texts::$instance -> tc_post_has_headings();      
   }
 endif;

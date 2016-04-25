@@ -34,18 +34,18 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    public function czr_get_customizer_map( $get_default = null ) {
+    public function czr_fn_get_customizer_map( $get_default = null ) {
       if ( ! empty( $this -> customizer_map ) )
         return $this -> customizer_map;
 
       //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
-      add_filter( 'tc_add_panel_map'        , array( $this, 'tc_popul_panels_map'));
-      add_filter( 'tc_remove_section_map'   , array( $this, 'tc_popul_remove_section_map'));
+      add_filter( 'tc_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
+      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
       //theme switcher's enabled when user opened the customizer from the theme's page
-      add_filter( 'tc_remove_section_map'   , array( $this, 'tc_set_theme_switcher_visibility'));
-      add_filter( 'tc_add_section_map'      , array( $this, 'tc_popul_section_map' ));
+      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
+      add_filter( 'tc_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
       //add controls to the map
-      add_filter( 'tc_add_setting_control_map' , array( $this , 'tc_popul_setting_control_map' ), 10, 2 );
+      add_filter( 'tc_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
       //$this -> tc_populate_setting_control_map();
 
       //FILTER SPECIFIC SETTING-CONTROL MAPS
@@ -74,7 +74,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_popul_setting_control_map( $_map, $get_default = null ) {
+    function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
       $_new_map = array();
       $_settings_sections = array(
         //GLOBAL SETTINGS
@@ -141,7 +141,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    LOGO & FAVICON SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_logo_favicon_option_map( $get_default = null ) {
+    function czr_fn_logo_favicon_option_map( $get_default = null ) {
       global $wp_version;
       return array(
               'tc_logo_upload'  => array(
@@ -199,7 +199,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                       SKIN SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_skin_option_map( $get_default = null ) {
+    function czr_fn_skin_option_map( $get_default = null ) {
       return array(
               //skin select
               'tc_skin'     => array(
@@ -228,7 +228,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                      FONT SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_fonts_option_map( $get_default = null ) {
+    function czr_fn_fonts_option_map( $get_default = null ) {
       return array(
               'tc_fonts'      => array(
                                 'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
@@ -236,7 +236,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'control'       =>  'CZR_cl_controls',
                                 'section'       => 'fonts_sec',
                                 'type'          => 'select' ,
-                                'choices'       => CZR_cl_utils::$inst -> czr_get_font( 'list' , 'name' ),
+                                'choices'       => CZR_cl_utils::$inst -> czr_fn_get_font( 'list' , 'name' ),
                                 'priority'      => 10,
                                 'transport'     => 'postMessage',
                                 'notice'        => __( "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs." , 'customizr' )
@@ -261,7 +261,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                              SOCIAL NETWORKS + POSITION SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_social_option_map( $get_default = null ) {
+    function czr_fn_social_option_map( $get_default = null ) {
       return array();//end of social layout map
     }
 
@@ -269,7 +269,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    LINKS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_links_option_map( $get_default = null ) {
+    function czr_fn_links_option_map( $get_default = null ) {
       return array(
               'tc_link_scroll'  =>  array(
                                 'default'       => 0,
@@ -318,7 +318,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    ICONS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_icons_option_map( $get_default = null ) {
+    function czr_fn_icons_option_map( $get_default = null ) {
       return array(
               'tc_show_title_icon'  =>  array(
                                 'default'       => 1,
@@ -393,7 +393,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    IMAGE SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_images_option_map( $get_default = null ) {
+    function czr_fn_images_option_map( $get_default = null ) {
       global $wp_version;
 
       $_image_options =  array(
@@ -487,7 +487,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   RESPONSIVE SETTINGS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_responsive_option_map( $get_default = null ) {
+    function czr_fn_responsive_option_map( $get_default = null ) {
       return array(
               'tc_block_reorder'  =>  array(
                                 'default'       => 1,
@@ -505,7 +505,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   AUTHORS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_authors_option_map( $get_default = null ) {
+    function czr_fn_authors_option_map( $get_default = null ) {
       return array(
               'tc_show_author_info'  =>  array(
                                 'default'       => 1,
@@ -524,7 +524,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   SMOOTH SCROLL SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_smoothscroll_option_map( $get_default = null ) {
+    function czr_fn_smoothscroll_option_map( $get_default = null ) {
       return array(
               'tc_smoothscroll'  =>  array(
                                 'default'       => 1,
@@ -549,7 +549,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    HEADER DESIGN AND LAYOUT
     ------------------------------------------------------------------------------------------------------*/
-    function tc_header_design_option_map( $get_default = null ) {
+    function czr_fn_header_design_option_map( $get_default = null ) {
       return array(
               'tc_header_layout'  =>  array(
                               'default'       => 'left',
@@ -709,7 +709,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                         NAVIGATION SECTION
     ------------------------------------------------------------------------------------------------------*/
     //NOTE : priorities 10 and 20 are "used" bu menus main and secondary
-    function tc_navigation_option_map( $get_default = null ) {
+    function czr_fn_navigation_option_map( $get_default = null ) {
       return array(
               'tc_display_second_menu'  =>  array(
                                 'default'       => 0,
@@ -862,7 +862,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    FRONT PAGE SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_front_page_option_map( $get_default = null ) {
+    function czr_fn_front_page_option_map( $get_default = null ) {
       //prepare the cat picker notice
       global $wp_version;
       $_cat_picker_notice = sprintf( '%1$s <a href="%2$s" target="_blank">%3$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' ,
@@ -1136,7 +1136,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    PAGES AND POST LAYOUT SETTINGS
     ------------------------------------------------------------------------------------------------------*/
-    function tc_layout_option_map( $get_default = null ) {
+    function czr_fn_layout_option_map( $get_default = null ) {
       return array(
               //Global sidebar layout
               'tc_sidebar_global_layout' => array(
@@ -1222,7 +1222,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   POST LISTS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_post_list_option_map( $get_default = null ) {
+    function czr_fn_post_list_option_map( $get_default = null ) {
       global $wp_version;
       return array(
               'tc_post_list_excerpt_length'  =>  array(
@@ -1486,7 +1486,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    SINGLE POSTS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_single_post_option_map( $get_default = null ) {
+    function czr_fn_single_post_option_map( $get_default = null ) {
       return array(
           'tc_single_post_thumb_location'  =>  array(
                             'default'       => 'hide',
@@ -1533,7 +1533,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    BREADCRUMB SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_breadcrumb_option_map( $get_default = null ) {
+    function czr_fn_breadcrumb_option_map( $get_default = null ) {
         return array(
               'tc_breadcrumb' => array(
                               'default'       => 1,//Breadcrumb is checked by default
@@ -1586,7 +1586,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                   POST METAS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_post_metas_option_map( $get_default = null ){
+    function czr_fn_post_metas_option_map( $get_default = null ){
       return array(
               'tc_show_post_metas'  =>  array(
                                 'default'       => 1,
@@ -1753,7 +1753,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    GALLERY SECTION
     -----------------------------------------------------------------------------------------------------*/
-    function tc_gallery_option_map( $get_default = null ){
+    function czr_fn_gallery_option_map( $get_default = null ){
       return array(
               'tc_enable_gallery'  =>  array(
                                 'default'       => 1,
@@ -1791,7 +1791,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    PARAGRAPHS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_paragraph_option_map( $get_default = null ){
+    function czr_fn_paragraph_option_map( $get_default = null ){
       return array(
               'tc_enable_dropcap'  =>  array(
                                 'default'       => 0,
@@ -1853,7 +1853,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    COMMENTS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_comment_option_map( $get_default = null ) {
+    function czr_fn_comment_option_map( $get_default = null ) {
       return array(
               'tc_comment_show_bubble'  =>  array(
                                 'default'       => 1,
@@ -1891,7 +1891,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'priority'    => 20,
               ),
               'tc_comment_bubble_color' => array(
-                                'default'     => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> czr_get_skin_color(),
+                                'default'     => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> czr_fn_get_skin_color(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',
@@ -1949,7 +1949,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    POST NAVIGATION SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_post_navigation_option_map( $get_default = null ) {
+    function czr_fn_post_navigation_option_map( $get_default = null ) {
       return array(
               'tc_show_post_navigation'  =>  array(
                                 'default'       => 1,
@@ -2002,7 +2002,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    SIDEBAR SOCIAL LINKS SETTINGS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_sidebars_option_map( $get_default = null ) {
+    function czr_fn_sidebars_option_map( $get_default = null ) {
       return array(
               'tc_social_in_left-sidebar' =>  array(
                                 'default'       => 0,
@@ -2046,7 +2046,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    FOOTER GLOBAL SETTINGS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_footer_global_settings_option_map( $get_default = null ) {
+    function czr_fn_footer_global_settings_option_map( $get_default = null ) {
       return array(
               'tc_social_in_footer' =>  array(
                                 'default'       => 1,
@@ -2088,7 +2088,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                                    CUSTOM CSS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_custom_css_option_map( $get_default = null ) {
+    function czr_fn_custom_css_option_map( $get_default = null ) {
       return array(
               'tc_custom_css' =>  array(
                                 'sanitize_callback' => 'wp_filter_nohtml_kses',
@@ -2112,7 +2112,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                               WEBSITE PERFORMANCES SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_performance_option_map( $get_default = null ) {
+    function czr_fn_performance_option_map( $get_default = null ) {
       return array(
               'tc_minified_skin'  =>  array(
                                 'default'       => 1,
@@ -2137,7 +2137,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                               FRONT END NOTICES AND PLACEHOLDERS SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_placeholders_notice_map( $get_default = null ) {
+    function czr_fn_placeholders_notice_map( $get_default = null ) {
       return array(
               'tc_display_front_help'  =>  array(
                                 'default'       => 1,
@@ -2153,7 +2153,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                               FRONT END EXTERNAL RESOURCES SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function tc_external_resources_option_map( $get_default = null ) {
+    function czr_fn_external_resources_option_map( $get_default = null ) {
       return array(
               'tc_font_awesome_icons'  =>  array(
                                 'default'       => 1,
@@ -2190,7 +2190,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * hook : tc_add_panel_map
     * @return  associative array of customizer panels
     */
-    function tc_popul_panels_map( $panel_map ) {
+    function czr_fn_popul_panels_map( $panel_map ) {
       $_new_panels = array(
         'tc-global-panel' => array(
                   'priority'       => 10,
@@ -2242,7 +2242,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /**
      * hook : tc_remove_section_map
      */
-    function tc_popul_remove_section_map( $_sections ) {
+    function czr_fn_popul_remove_section_map( $_sections ) {
       //customizer option array
       $remove_section = array(
         'static_front_page' ,
@@ -2261,12 +2261,12 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * Print the themes section (themes switcher) when previewing the themes from wp-admin/themes.php
     * hook : tc_remove_section_map
     */
-    function tc_set_theme_switcher_visibility( $_sections) {
+    function czr_fn_set_theme_switcher_visibility( $_sections) {
       //Don't do anything is in preview frame
       //=> because once the preview is ready, a postMessage is sent to the panel frame to refresh the sections and panels
       //Do nothing if WP version under 4.2
       global $wp_version;
-      if ( CZR___::$instance -> tc_is_customize_preview_frame() || ! version_compare( $wp_version, '4.2', '>=') )
+      if ( CZR___::$instance -> czr_fn_is_customize_preview_frame() || ! version_compare( $wp_version, '4.2', '>=') )
         return $_sections;
 
       //when user access the theme switcher from the admin bar
@@ -2294,7 +2294,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     /**
     * hook : tc_add_section_map
     */
-    function tc_popul_section_map( $_sections ) {
+    function czr_fn_popul_section_map( $_sections ) {
       //For nav menus option
       $locations      = get_registered_nav_menus();
       $menus          = wp_get_nav_menus();
@@ -2551,7 +2551,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @since Customizr 3.0.15
     *
     */
-    function tc_generates_featured_pages( $_original_map ) {
+    function czr_fn_generates_featured_pages( $_original_map ) {
       $default = array(
         'dropdown'  =>  array(
               'one'   => __( 'Home featured page one' , 'customizr' ),
@@ -2616,7 +2616,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @since Customizr 3.0.15
     *
     */
-    function tc_generates_socials( $_original_map ) {
+    function czr_fn_generates_socials( $_original_map ) {
       //gets the social network array
       $socials      = apply_filters( 'tc_default_socials' , CZR_cl_init::$instance -> socials );
 
@@ -2654,7 +2654,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @since Customizr 3.0.15
     *
     */
-    private function czr_get_skins($path) {
+    private function czr_fn_get_skins($path) {
       //checks if path exists
       if ( !file_exists($path) )
         return;
@@ -2702,7 +2702,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.1.0
     */
-    private function tc_layout_choices() {
+    private function czr_fn_layout_choices() {
         $global_layout  = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
         $layout_choices = array();
         foreach ($global_layout as $key => $value) {
@@ -2717,7 +2717,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.0.1
     */
-    private function tc_slider_choices() {
+    private function czr_fn_slider_choices() {
       $__options    =   get_option('tc_theme_options');
       $slider_names   =   isset($__options['tc_sliders']) ? $__options['tc_sliders'] : array();
 
@@ -2742,14 +2742,14 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @since Customizr 3.0.11
     * @updated Customizr 3.0.15
     */
-    private function tc_build_skin_list() {
-      $parent_skins   = $this -> czr_get_skins( CZR_BASE . CZR_ASSETS_PREFIX . 'front/css' );
+    private function czr_fn_build_skin_list() {
+      $parent_skins   = $this -> czr_fn_get_skins( CZR_BASE . CZR_ASSETS_PREFIX . 'front/css' );
       $child_skins    = array();
 
       if ( CZR___::$instance -> tc_is_child() ){
-        $child_skins    = file_exists(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') ? $this -> czr_get_skins(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') : $child_skins;
+        $child_skins    = file_exists(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') ? $this -> czr_fn_get_skins(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') : $child_skins;
         //backward compatibilty (the assets had a different relative path before 3.5)
-        $child_skins    = empty( $child_skins ) && file_exists(CZR_BASE_CHILD . 'inc/assets/css') ?  $this -> czr_get_skins(CZR_BASE_CHILD . 'inc/assets/css') : $child_skins;
+        $child_skins    = empty( $child_skins ) && file_exists(CZR_BASE_CHILD . 'inc/assets/css') ?  $this -> czr_fn_get_skins(CZR_BASE_CHILD . 'inc/assets/css') : $child_skins;
       }
 
       $skin_list      = array_merge( $parent_skins , $child_skins );
@@ -2767,7 +2767,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
      * @package Customizr
      * @since Customizr 1.1.4
      */
-    function tc_sanitize_textarea( $value) {
+    function czr_fn_sanitize_textarea( $value) {
       $value = esc_html( $value);
       return $value;
     }
@@ -2779,7 +2779,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
      * @package Customizr
      * @since Customizr 1.1.4
      */
-    function tc_sanitize_number( $value) {
+    function czr_fn_sanitize_number( $value) {
       if ( ! $value || is_null($value) )
         return $value;
       $value = esc_attr( $value); // clean input
@@ -2792,7 +2792,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
      * @package Customizr
      * @since Customizr 1.1.4
      */
-    function tc_sanitize_url( $value) {
+    function czr_fn_sanitize_url( $value) {
       $value = esc_url( $value);
       return $value;
     }
@@ -2802,7 +2802,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
      * @package Customizr
      * @since Customizr 3.4.11
      */
-    function tc_sanitize_email( $value) {
+    function czr_fn_sanitize_email( $value) {
       return sanitize_email( $value );
     }
 
@@ -2811,7 +2811,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
      * @package Customizr
      * @since Customizr 1.1.4
      */
-    function tc_sanitize_hex_color( $color ) {
+    function czr_fn_sanitize_hex_color( $color ) {
       if ( $unhashed = sanitize_hex_color_no_hash( $color ) )
         return '#' . $unhashed;
 
@@ -2824,7 +2824,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.1.11
     */
-    function tc_sanitize_uploads( $url ) {
+    function czr_fn_sanitize_uploads( $url ) {
       $upload_dir = wp_upload_dir();
       return str_replace($upload_dir['baseurl'], '', $url);
     }

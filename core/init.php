@@ -16,7 +16,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
   final class CZR___ {
     public static $instance;//@todo make private in the future
-    public $tc_core;
+    public $czr_core;
     public $is_customizing;
     public static $theme_name;
     public static $czr_option_group;
@@ -27,26 +27,26 @@ if ( ! class_exists( 'CZR___' ) ) :
     //stack
     public $current_model = array();
 
-    public static function tc_instance() {
+    public static function czr_fn_instance() {
       if ( ! isset( self::$instance ) && ! ( self::$instance instanceof CZR___ ) ) {
         self::$instance = new CZR___();
-        self::$instance -> tc_setup_constants();
-        self::$instance -> tc_setup_loading();
-        self::$instance -> tc_load();
+        self::$instance -> czr_fn_setup_constants();
+        self::$instance -> czr_fn_setup_loading();
+        self::$instance -> czr_fn_load();
         self::$instance -> collection = new CZR_cl_Collection();
         self::$instance -> controllers = new CZR_cl_Controllers();
         self::$instance -> helpers = new CZR_cl_Helpers();
 
         //register the model's map in front
         if ( ! is_admin() )
-          add_action('wp'         , array(self::$instance, 'tc_register_model_map') );
+          add_action('wp'         , array(self::$instance, 'czr_fn_register_model_map') );
       }
       return self::$instance;
     }
 
 
 
-    private function tc_setup_constants() {
+    private function czr_fn_setup_constants() {
       /* GETS INFORMATIONS FROM STYLE.CSS */
       // get themedata version wp 3.4+
       if( function_exists( 'wp_get_theme' ) ) {
@@ -92,9 +92,9 @@ if ( ! class_exists( 'CZR___' ) ) :
 
     }//setup_contants()
 
-    private function tc_setup_loading() {
+    private function czr_fn_setup_loading() {
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
-      $this -> tc_core = apply_filters( 'tc_core',
+      $this -> czr_core = apply_filters( 'czr_core',
         array(
             'fire'      =>   array(
               array('core'       , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
@@ -123,13 +123,13 @@ if ( ! class_exists( 'CZR___' ) ) :
         )
       );
       //check the context
-      if ( $this -> tc_is_pro() )
+      if ( $this -> czr_fn_is_pro() )
         require_once( sprintf( '%score/init-pro.php' , CZR_BASE ) );
 
       self::$czr_option_group = 'tc_theme_options';
 
       //set files to load according to the context : admin / front / customize
-      add_filter( 'czr_get_files_to_load' , array( $this , 'tc_set_files_to_load' ) );
+      add_filter( 'czr_fn_get_files_to_load' , array( $this , 'czr_fn_set_files_to_load' ) );
     }
 
 
@@ -143,15 +143,15 @@ if ( ! class_exists( 'CZR___' ) ) :
     *
     * @since Customizr 3.0
     */
-    function tc_load( $_to_load = array(), $_no_filter = false ) {
+    function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
       //do we apply a filter ? optional boolean can force no filter
-      $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
+      $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_fn_get_files_to_load' , $_to_load );
       if ( empty($_to_load) )
         return;
 
       foreach ( $_to_load as $group => $files )
         foreach ($files as $path_suffix ) {
-          $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
+          $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
           $classname = 'CZR_cl_' . $path_suffix[1];
           if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'CZR_cl_nav_walker') ) ) )
             continue;
@@ -160,28 +160,28 @@ if ( ! class_exists( 'CZR___' ) ) :
         }
 
       //load the new framework classes
-      $this -> tc_fw_require_once( 'class-model.php' );
-      $this -> tc_fw_require_once( 'class-collection.php' );
-      $this -> tc_fw_require_once( 'class-view.php' );
-      $this -> tc_fw_require_once( 'class-controllers.php' );
-      $this -> tc_fw_require_once( 'class-helpers.php' );
+      $this -> czr_fn_fw_require_once( 'class-model.php' );
+      $this -> czr_fn_fw_require_once( 'class-collection.php' );
+      $this -> czr_fn_fw_require_once( 'class-view.php' );
+      $this -> czr_fn_fw_require_once( 'class-controllers.php' );
+      $this -> czr_fn_fw_require_once( 'class-helpers.php' );
     }
 
 
 
     //hook : wp
-    function tc_register_model_map( $_map = array() ) {
-      $_to_register =  ( empty( $_map ) || ! is_array($_map) ) ? $this -> czr_get_model_map() : $_map;
+    function czr_fn_register_model_map( $_map = array() ) {
+      $_to_register =  ( empty( $_map ) || ! is_array($_map) ) ? $this -> czr_fn_get_model_map() : $_map;
 
       foreach ( $_to_register as $model ) {
-        CZR() -> collection -> tc_register( $model);
+        CZR() -> collection -> czr_fn_register( $model);
       }
 
     }
 
 
     //returns an array of models describing the theme's views
-    private function czr_get_model_map() {
+    private function czr_fn_get_model_map() {
       return apply_filters(
         'tc_model_map',
         array(
@@ -255,41 +255,41 @@ if ( ! class_exists( 'CZR___' ) ) :
     ****************************/
     /**
     * Check the context and return the modified array of class files to load and instantiate
-    * hook : czr_get_files_to_load
+    * hook : czr_fn_get_files_to_load
     * @return boolean
     *
     * @since  Customizr 3.3+
     */
-    function tc_set_files_to_load( $_to_load ) {
-      $_to_load = empty($_to_load) ? $this -> tc_core : $_to_load;
+    function czr_fn_set_files_to_load( $_to_load ) {
+      $_to_load = empty($_to_load) ? $this -> czr_core : $_to_load;
       //Not customizing
-      //1) IS NOT CUSTOMIZING : tc_is_customize_left_panel() || tc_is_customize_preview_frame() || tc_doing_customizer_ajax()
+      //1) IS NOT CUSTOMIZING : czr_fn_is_customize_left_panel() || czr_fn_is_customize_preview_frame() || czr_fn_doing_customizer_ajax()
       //---1.1) IS ADMIN
       //---1.2) IS NOT ADMIN
       //2) IS CUSTOMIZING
       //---2.1) IS LEFT PANEL => customizer controls
       //---2.2) IS RIGHT PANEL => preview
-      if ( ! $this -> tc_is_customizing() )
+      if ( ! $this -> czr_fn_is_customizing() )
         {
           if ( is_admin() )
-            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
+            $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
           else
             //Skips all admin classes
-            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/back|admin_init', 'fire|core/back|admin_page') );
+            $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/back|admin_init', 'fire|core/back|admin_page') );
         }
       //Customizing
       else
         {
           //left panel => skip all front end classes
-          if ( $this -> tc_is_customize_left_panel() ) {
-            $_to_load = $this -> tc_unset_core_classes(
+          if ( $this -> czr_fn_is_customize_left_panel() ) {
+            $_to_load = $this -> czr_fn_unset_core_classes(
               $_to_load,
               array( 'header' , 'content' , 'footer' ),
               array( 'fire|core|resources' , 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
             );
           }
-          if ( $this -> tc_is_customize_preview_frame() ) {
-            $_to_load = $this -> tc_unset_core_classes(
+          if ( $this -> czr_fn_is_customize_preview_frame() ) {
+            $_to_load = $this -> czr_fn_unset_core_classes(
               $_to_load,
               array(),
               array( 'fire|core/back|admin_init', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
@@ -314,7 +314,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     *
     * @since  Customizr 3.0.11
     */
-    public function tc_unset_core_classes( $_tree, $_groups = array(), $_files = array() ) {
+    public function czr_fn_unset_core_classes( $_tree, $_groups = array(), $_files = array() ) {
       if ( empty($_tree) )
         return array();
       if ( ! empty($_groups) ) {
@@ -346,7 +346,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
     //called when requiring a file will - always give the precedence to the child-theme file if it exists
     //then to the theme root
-    function czr_get_theme_file( $path_suffix ) {
+    function czr_fn_get_theme_file( $path_suffix ) {
       $path_prefixes = array_unique( apply_filters( 'tc_include_paths'     , array( '' ) ) );
       $roots         = array_unique( apply_filters( 'tc_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
 
@@ -360,7 +360,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
     //called when requiring a file url - will always give the precedence to the child-theme file if it exists
     //then to the theme root
-    function czr_get_theme_file_url( $url_suffix ) {
+    function czr_fn_get_theme_file_url( $url_suffix ) {
       $url_prefixes   = array_unique( apply_filters( 'tc_include_paths'     , array( '' ) ) );
       $roots          = array_unique( apply_filters( 'tc_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
       $roots_urls     = array_unique( apply_filters( 'tc_include_roots_url' , array( CZR_BASE_URL_CHILD, CZR_BASE_URL ) ) );
@@ -376,8 +376,8 @@ if ( ! class_exists( 'CZR___' ) ) :
     }
 
     //requires a file only if exists
-    function tc_require_once( $path_suffix ) {
-      if ( false !== $filename = $this -> czr_get_theme_file( $path_suffix ) ) {
+    function czr_fn_require_once( $path_suffix ) {
+      if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) ) {
         require_once( $filename );
         return true;
       }
@@ -385,13 +385,13 @@ if ( ! class_exists( 'CZR___' ) ) :
     }
 
     //requires a framework file only if exists
-    function tc_fw_require_once( $path_suffix ) {
-      return $this -> tc_require_once( CZR_FRAMEWORK_PREFIX . $path_suffix );
+    function czr_fn_fw_require_once( $path_suffix ) {
+      return $this -> czr_fn_require_once( CZR_FRAMEWORK_PREFIX . $path_suffix );
     }
 
     //requires a framework front (models/controllers) file only if exists
-    function tc_fw_front_require_once( $path_suffix ) {
-      return $this -> tc_require_once( CZR_FRAMEWORK_FRONT_PREFIX . $path_suffix );
+    function czr_fn_fw_front_require_once( $path_suffix ) {
+      return $this -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PREFIX . $path_suffix );
     }
 
     /*
@@ -399,7 +399,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     * called by the View class before requiring the view template
     * @param $model
     */
-    function tc_set_current_model( $model ) {
+    function czr_fn_set_current_model( $model ) {
       $this -> current_model[ $model -> id ] = &$model;
     }
 
@@ -408,7 +408,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     * Pops the current model from the current_model stack
     * called by the View class after the view template has been required/rendered
     */
-    function tc_reset_current_model() {
+    function czr_fn_reset_current_model() {
       array_pop( $this -> current_model );
     }
 
@@ -418,39 +418,39 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @param $property (string), the property to get
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
-    function czr_get( $property, $model_id = null, $args = array() ) {
+    function czr_fn_get( $property, $model_id = null, $args = array() ) {
       $current_model = false;
       if ( ! is_null($model_id) ) {
-        if ( tc_is_registered($model_id) )
-          $current_model = czr_get_model_instance( $model_id );
+        if ( czr_fn_is_registered($model_id) )
+          $current_model = czr_fn_get_model_instance( $model_id );
       } else {
         $current_model = end( $this -> current_model );
       }
-      return is_object($current_model) ? $current_model -> czr_get_property( $property, $args ) : false;
+      return is_object($current_model) ? $current_model -> czr_fn_get_property( $property, $args ) : false;
     }
 
     /*
-    * An handly function to print a current model property (wrapper for czr_get)
+    * An handly function to print a current model property (wrapper for czr_fn_get)
     * @param $property (string), the property to get
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
-    function czr_echo( $property, $model_id = null, $args = array() ) {
-      $prop_value = czr_get( $property, $model_id, $args );
+    function czr_fn_echo( $property, $model_id = null, $args = array() ) {
+      $prop_value = czr_fn_get( $property, $model_id, $args );
       echo $prop_value && is_array( $prop_value ) ? CZR() -> helpers -> tc_stringify_array( $prop_value ) : $prop_value;
     }
 
     /*
     * An handly function to print the content wrapper class
     */
-    function tc_column_content_wrapper_class() {
-      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::czr_get_column_content_wrapper_class() );
+    function czr_fn_column_content_wrapper_class() {
+      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::czr_fn_get_column_content_wrapper_class() );
     }
 
     /*
     * An handly function to print the article containerr class
     */
-    function tc_article_container_class() {
-      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::czr_get_article_container_class() );
+    function czr_fn_article_container_class() {
+      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::czr_fn_get_article_container_class() );
     }
 
     /**
@@ -461,13 +461,13 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @return  bool
     * @since  3.2.9
     */
-    function tc_is_customizing() {
+    function czr_fn_is_customizing() {
       if ( ! isset( $this -> is_customizing ) )
         //checks if is customizing : two contexts, admin and front (preview frame)
         $this -> is_customizing = in_array( 1, array(
-          $this -> tc_is_customize_left_panel(),
-          $this -> tc_is_customize_preview_frame(),
-         $this -> tc_doing_customizer_ajax()
+          $this -> czr_fn_is_customize_left_panel(),
+          $this -> czr_fn_is_customize_preview_frame(),
+         $this -> czr_fn_doing_customizer_ajax()
         ) );
       return $this -> is_customizing;
     }
@@ -478,7 +478,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @return  boolean
     * @since  3.3+
     */
-    function tc_is_customize_left_panel() {
+    function czr_fn_is_customize_left_panel() {
       global $pagenow;
       return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
     }
@@ -489,7 +489,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @return  boolean
     * @since  3.3+
     */
-    function tc_is_customize_preview_frame() {
+    function czr_fn_is_customize_preview_frame() {
       return ! is_admin() && isset($_REQUEST['wp_customize']);
     }
 
@@ -502,7 +502,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @return boolean
     * @since  3.3.2
     */
-    function tc_doing_customizer_ajax() {
+    function czr_fn_doing_customizer_ajax() {
       $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
       return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
     }
@@ -514,7 +514,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     *
     * @since  Customizr 3.0.11
     */
-    function tc_is_child() {
+    function czr_fn_is_child() {
       // get themedata version wp 3.4+
       if ( function_exists( 'wp_get_theme' ) ) {
         //get WP_Theme object of customizr
@@ -532,7 +532,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @return  boolean
     * @since  3.4+
     */
-    static function tc_is_pro() {
+    static function czr_fn_is_pro() {
       return file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == self::$theme_name;
     }
 

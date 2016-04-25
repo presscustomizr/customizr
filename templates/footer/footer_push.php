@@ -10,4 +10,4 @@
  * @since Customizr 3.5.0
  */
 ?>
-<div id="tc-push-footer" <?php czr_echo('element_attributes') ?>></div>
+<div id="tc-push-footer" <?php czr_fn_echo('element_attributes') ?>></div>

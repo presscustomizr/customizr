@@ -9,8 +9,8 @@ class CZR_cl_favicon_model_class extends CZR_cl_Model {
   *
   * return model params array()
   */
-  function tc_extend_params( $model = array() ) {
-    $_fav_option  = CZR_cl_utils::$inst->czr_opt( 'tc_fav_upload');
+  function czr_fn_extend_params( $model = array() ) {
+    $_fav_option  = CZR_cl_utils::$inst->czr_fn_opt( 'tc_fav_upload');
     $_fav_src     = '';
 
     //check if option is an attachement id or a path (for backward compatibility)

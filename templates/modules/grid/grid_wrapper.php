@@ -9,10 +9,10 @@
  */
 
 /* Are we at the start of the loop? in this case print a section wrapper element */
-if ( czr_get( 'is_loop_start' ) ) :
+if ( czr_fn_get( 'is_loop_start' ) ) :
 
 ?>
-<section class="tc-post-list-grid <?php czr_echo( 'element_class' ) ?>" <?php czr_echo('element_attributes') ?>>
+<section class="tc-post-list-grid <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
 <?php
 
 endif;
@@ -21,23 +21,23 @@ endif;
   <?php
 
   /* Is the item we're about to display the first of it's row? In this case print a row wrapper */
-  if ( czr_get( 'is_first_of_row' ) ) :
+  if ( czr_fn_get( 'is_first_of_row' ) ) :
 
   ?>
-  <section class="row-fluid grid-cols-<?php czr_echo( 'section_cols' ) ?>">
+  <section class="row-fluid grid-cols-<?php czr_fn_echo( 'section_cols' ) ?>">
   <?php
 
   endif
 
    ?>
-    <article <?php czr_echo( 'article_selectors' ) ?> >
-      <?php if ( czr_has( 'grid_item' ) ) czr_render_template( 'modules/grid/grid_item', 'grid_item' ); ?>
+    <article <?php czr_fn_echo( 'article_selectors' ) ?> >
+      <?php if ( czr_fn_has( 'grid_item' ) ) czr_fn_render_template( 'modules/grid/grid_item', 'grid_item' ); ?>
     </article>
     <hr class="featurette-divider __after_article">
   <?php
 
   /* close the row if the displayed item is the last of row */
-  if ( czr_get( 'is_last_of_row' ) ) :
+  if ( czr_fn_get( 'is_last_of_row' ) ) :
 
   ?>
   </section>
@@ -47,7 +47,7 @@ endif;
   endif;
 
 /* Close se section at the end of the loop */
-if ( czr_get( 'is_loop_end' ) ) : ?>
+if ( czr_fn_get( 'is_loop_end' ) ) : ?>
 </section>
 <?php
 

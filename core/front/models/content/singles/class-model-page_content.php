@@ -1,7 +1,7 @@
 <?php
 class CZR_cl_page_content_model_class extends CZR_cl_Model {
 
-  function tc_setup_children() {
+  function czr_fn_setup_children() {
     $children = array(
       //singular smartload help block
       array(
@@ -15,7 +15,7 @@ class CZR_cl_page_content_model_class extends CZR_cl_Model {
     return $children;
   }
 
-  function czr_get_article_selectors( $model = array() ) {
-    return CZR_cl_utils_query::$instance -> czr_get_the_singular_article_selectors( 'row-fluid' );
+  function czr_fn_get_article_selectors( $model = array() ) {
+    return CZR_cl_utils_query::$instance -> czr_fn_get_the_singular_article_selectors( 'row-fluid' );
   }
 }

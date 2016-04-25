@@ -21,11 +21,11 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //listens to filter 'tc_prepare_model', takes 1 param : raw model array()
       //makes sure the model has a unique $id set and a proper priority for its rendereing hook
       //model as param
-      add_filter( 'tc_prepare_model'            , array( $this, 'tc_set_model_base_properties'), 10, 1 );
+      add_filter( 'tc_prepare_model'            , array( $this, 'czr_fn_set_model_base_properties'), 10, 1 );
 
       //May be apply registered changes
       //model as param
-      add_filter( 'tc_prepare_model'            , array( $this, 'tc_apply_registered_changes'), 20, 1 );
+      add_filter( 'tc_prepare_model'            , array( $this, 'czr_fn_apply_registered_changes'), 20, 1 );
 
 
       //if 'wp' has not been fired yet, we will pre-register this model for later instantiation
@@ -39,10 +39,10 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //Takes 2 params
       //1) model id
       //2) model instance
-      add_action( 'model_alive'                 , array( $this, 'tc_update_collection' ), 10, 2 );
+      add_action( 'model_alive'                 , array( $this, 'czr_fn_update_collection' ), 10, 2 );
 
       //on 'wp', the pre_registered (if any) are registered
-      add_action( 'wp'                          , array($this, 'tc_register_pre_registered') );
+      add_action( 'wp'                          , array($this, 'czr_fn_register_pre_registered') );
 
       //Reacts on 'tc_delete' event
       //1 param = model id
@@ -52,7 +52,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //model_property_changed takes two params :
       //model id
       //model params
-      add_action( 'model_property_changed'      , array( $this, 'tc_update_collection' ), 10, 2 );
+      add_action( 'model_property_changed'      , array( $this, 'czr_fn_update_collection' ), 10, 2 );
 
       //listens to a registered change applied to a model => remove it from the register changes list
       //takes one param : model id
@@ -70,12 +70,12 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     /**********************************************************************************
     * REGISTER A MODEL TO THE COLLECTION
     ***********************************************************************************/
-    public function tc_register( $model = array() ) {
+    public function czr_fn_register( $model = array() ) {
       $_model_params_array = $model;
 
       //the first check on the raw model provided
       //=> if the model has been pre-registered and has an id, we also have to check here if it's registered for deletion
-      if ( ! $this -> tc_is_model_eligible( $model ) )
+      if ( ! $this -> czr_fn_is_model_eligible( $model ) )
         return;
 
       //this pre-setup will ensure :
@@ -94,7 +94,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //1) register it,
       //2) pre-register it,
       //3) or simply abort registration
-      if ( ! $this -> tc_can_register_model( $model ) )
+      if ( ! $this -> czr_fn_can_register_model( $model ) )
         return;
 
 
@@ -107,10 +107,10 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //=> let's instantiate
       $_model_id = isset( $model['id'] ) ? $model['id'] : 'undefined';
 
-      $model = $this -> tc_instantiate_model($model);
+      $model = $this -> czr_fn_instantiate_model($model);
 
       //Silent aborting for those models which "decided" in their constructor they're not allowed to be registered
-      if ( $this -> czr_has_registered_deletion( $model -> id ) )
+      if ( $this -> czr_fn_has_registered_deletion( $model -> id ) )
         return;
 
       //abort if the model has not been instantiated
@@ -129,7 +129,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       do_action( "{$_model_id}_model_alive", $_model_id, $model );
 
 
-      if ( $this -> tc_is_registered( $model -> id ) ) {
+      if ( $this -> czr_fn_is_registered( $model -> id ) ) {
         //emit an event on model registered
         //can be used with did_action() afterwards
         do_action( "model_registered_{$model -> id}" );
@@ -153,11 +153,11 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //hook : 'tc_can_use_model'
     //Check if the model is registered for deletion first
     //the model must be an array of params
-    //the hook is the only mandatory param => not anymore since czr_render_template
+    //the hook is the only mandatory param => not anymore since czr_fn_render_template
     //the id is optional => will be set unique on model instantiation
-    public function tc_is_model_eligible( $model = array() ) {
+    public function czr_fn_is_model_eligible( $model = array() ) {
       //is model registered for deletion ?
-      if ( isset( $model['id'] ) && $this -> czr_has_registered_deletion( $model['id'] ) )
+      if ( isset( $model['id'] ) && $this -> czr_fn_has_registered_deletion( $model['id'] ) )
         return;
 
       if ( ! is_array($model) || empty($model) ) {
@@ -171,23 +171,23 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
     //at this stage, the model has a hook but the id unicity, and the priority have not been checked yet
     //=> we need to make sure the model has a unique $id and a proper priority for its rendering hook
-    //hook filter 'tc_prepare_model' in tc_register
+    //hook filter 'tc_prepare_model' in czr_fn_register
     //@param model array
     //@return model array() updated
-    public function tc_set_model_base_properties( $model = array() ) {
+    public function czr_fn_set_model_base_properties( $model = array() ) {
       $id       = isset($model['id']) ? $model['id'] : "";
       $priority = isset($model['priority']) ? $model['priority'] : "";
       $template = isset($model['template']) ? $model['template']  : "";//the template name can be used to define the id
 
       if ( isset($model['hook']) && ! empty($model['hook']) && false != $model['hook'] ) {
         //makes sure we assign a unique ascending priority if not set
-        $model['priority']  = $this -> tc_set_priority( $model['hook'] , $priority );
+        $model['priority']  = $this -> czr_fn_set_priority( $model['hook'] , $priority );
       } else {
         $model['priority'] = 10;
         $model['hook'] = "";
       }
       //check or set the name unicity
-      $model['id']        = $this -> tc_set_unique_id( $id , $model['hook'], $model['priority'], $template );
+      $model['id']        = $this -> czr_fn_set_unique_id( $id , $model['hook'], $model['priority'], $template );
 
       //don't go further if we still have no id set
       if ( ! $model['id'] ) {
@@ -198,7 +198,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //at this stage the priority is set and the id is unique
       //a model with a unique id can be registered only once
       //a model with a promise registered deletion won't be registered
-      if ( $this -> tc_is_registered( $model['id'] ) ) {
+      if ( $this -> czr_fn_is_registered( $model['id'] ) ) {
         do_action('tc_dev_notice', "CZR_cl_Collection. Model : ". $model['id'] ." . The id is still not unique. Not registered." );
         return;
       }
@@ -209,7 +209,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //at this point, the raw model has had a first setup to ensure id
     //@return boolean
     //@param array() raw model
-    private function tc_can_register_model( $model = array() ) {
+    private function czr_fn_can_register_model( $model = array() ) {
       $bool = false;
       //the first check is on the visibility
       //Typically : Has the user allowed this model's view in options ?
@@ -229,7 +229,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       }
       //if 'wp' has been fired (or is currently being fired) 1) check the controller if set
       else {
-        $bool = CZR() -> controllers -> tc_is_possible( $model );
+        $bool = CZR() -> controllers -> czr_fn_is_possible( $model );
       }
       return apply_filters('tc_can_register_model', $bool, $model );
     }
@@ -244,7 +244,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //@return void()
     //@param id string
     //@param model array
-    function tc_pre_register_model( $id, $model = array() ) {
+    function czr_fn_pre_register_model( $id, $model = array() ) {
       $pre_registered = self::$pre_registered;
       //is this model already pre_registered ?
       //=> if yes, it can't be registered again. However it should be accessible with a change action.
@@ -260,7 +260,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
     //@return void()
     //=> removes a pre_register model from the pre_registered list
-    function tc_remove_pre_registered($id) {
+    function czr_fn_remove_pre_registered($id) {
       $pre_registered = self::$pre_registered;
       if ( isset($pre_registered[$id]) )
         unset($pre_registered[$id]);
@@ -271,12 +271,12 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //registers the pre-registered model when query is ready
     //hook : wp
     //@return void()
-    function tc_register_pre_registered() {
+    function czr_fn_register_pre_registered() {
       foreach ( self::$pre_registered as $id => $model ) {
         //removes from the pre_registered list
         $this -> tc_remove_pre_registered($id);
         //registers
-        $this -> tc_register($model);
+        $this -> czr_fn_register($model);
       }
       //say it to the api
       do_action( 'pre_registered_registered', self::$pre_registered );
@@ -289,11 +289,11 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //@return the args array()
     //hook : tc_prepare_model
     //@return updated model
-    public function tc_apply_registered_changes( $model ) {
+    public function czr_fn_apply_registered_changes( $model ) {
       if ( ! isset($model['id']) )
         return $model;
 
-      if ( ! $this -> czr_has_registered_change( $model['id']) )
+      if ( ! $this -> czr_fn_has_registered_change( $model['id']) )
         return $model;
 
       $id = $model['id'];
@@ -319,7 +319,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //hook : 'wp'
     //this method load the relevant model class file and return the instance
     //@return instance object
-    public function tc_instantiate_model($model) {
+    public function czr_fn_instantiate_model($model) {
       $instance = null;
 
       //try to instantiate the model specified in the model_class param
@@ -365,11 +365,11 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     }
 
 
-    private function tc_require_model_class( $_model_class ) {
+    private function czr_fn_require_model_class( $_model_class ) {
       $model_class_basename = basename( $_model_class );
       $model_class_dirname  = dirname( $_model_class );
 
-      tc_fw_front_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+      czr_fn_fw_front_require_once( sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
 
       return $model_class_basename;
     }
@@ -392,15 +392,15 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //=> always update the model list before rendering something
     //=> a model might have been registered in the delete / change candidates
     //=> this is fired on model_property_changed event
-    //=> when a single model property has been changed in CZR_cl_Model::tc_set_property()
+    //=> when a single model property has been changed in CZR_cl_Model::czr_fn_set_property()
     //@param id string
     //@param $model instance object
-    public function tc_update_collection( $id = false, $model ) {
+    public function czr_fn_update_collection( $id = false, $model ) {
       if ( ! $id || ! is_object($model) )
         return;
 
       //Check if we have to run a registered deletion here
-      if ( $this -> tc_is_registered( $id ) && $this -> czr_has_registered_deletion( $id ) ) {
+      if ( $this -> czr_fn_is_registered( $id ) && $this -> czr_fn_has_registered_deletion( $id ) ) {
         do_action( 'tc_delete' , $id );
         return;
       }
@@ -423,7 +423,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //keep in mind that the instance of the previous model with initial argument will still exists...
     //so will the additional class instance if any
     //@todo shall we store all models instances and delete them when requested ?
-    public function tc_deregister( $id, $model ) {
+    public function czr_fn_deregister( $id, $model ) {
       if ( ! is_array($model) )
         return;
 
@@ -431,7 +431,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       if ( ! is_object($model['view_instance']) )
         do_action('tc_dev_notice', 'Attempt to de-register, but no model instance for id : '. $id );
       else if ( ! empty( $model['hook'] ) )
-        remove_action( $model['hook'], array( $model['view_instance'], 'tc_maybe_render'), $model['priority'] );
+        remove_action( $model['hook'], array( $model['view_instance'], 'czr_fn_maybe_render'), $model['priority'] );
 
       //Emit an event on model deregistered
       //=> will trigger the model delete action from collection
@@ -449,7 +449,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //=> register a promise deletion in this case
     //IMPORTANT : always use the CZR_cl_Collection::$instance -> _models property to access the model list here
     //=> because it can be accessed from a child class
-    public function tc_delete( $id = null ) {
+    public function czr_fn_delete( $id = null ) {
       if ( is_null($id) )
         return;
 
@@ -463,23 +463,23 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
         do_action( 'model_deleted' , $id );
       }
       else
-        $this -> tc_register_deletion( $id );
+        $this -> czr_fn_register_deletion( $id );
       return;
     }
 
 
-    private function tc_deregister_deletion($id) {
+    private function czr_fn_deregister_deletion($id) {
       $to_delete = self::$_delete_candidates;
-      if ( $this -> czr_has_registered_deletion($id) )
+      if ( $this -> czr_fn_has_registered_deletion($id) )
         unset($to_delete[$id]);
       self::$_delete_candidates = $to_delete;
     }
 
 
-    private function tc_register_deletion($id) {
+    private function czr_fn_register_deletion($id) {
       $to_delete = self::$_delete_candidates;
       //avoid if already registered for deletion
-      if ( $this -> czr_has_registered_deletion($id) )
+      if ( $this -> czr_fn_has_registered_deletion($id) )
         return;
 
       $to_delete[$id] = $id;
@@ -487,7 +487,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     }
 
 
-    private function czr_has_registered_deletion($id) {
+    private function czr_fn_has_registered_deletion($id) {
       return array_key_exists( $id, self::$_delete_candidates );
     }
 
@@ -502,21 +502,21 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //if the model is not-registered in the collection, register a promise for change
     //@return void()
     //@todo : allow several changes for a model ?
-    public function tc_change( $id = null, $new_model = array() ) {
+    public function czr_fn_change( $id = null, $new_model = array() ) {
       if ( is_null($id) || ! is_array($new_model) )
         return;
 
-      $current_model  = $this -> czr_get_model($id);//gets the model as an array of parameters
-      $model_instance = $this -> czr_get_model_instance($id);
+      $current_model  = $this -> czr_fn_get_model($id);//gets the model as an array of parameters
+      $model_instance = $this -> czr_fn_get_model_instance($id);
 
       if ( ! $model_instance )
-        $this -> tc_register_change( $id, $new_model );
+        $this -> czr_fn_register_change( $id, $new_model );
       else {
         //if the view has already been instantiated
         //- the previously hooked actions have to be unhooked
         //- the model is destroyed
         //- the model is registered again with the new params
-        if ( $model_instance -> czr_has_instantiated_view() ) {
+        if ( $model_instance -> czr_fn_has_instantiated_view() ) {
           $model_instance -> tc_unhook_view();
         }
         //delete the current version of the model
@@ -525,7 +525,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
         $new_model = wp_parse_args( $new_model, $current_model );
 
         //register the new version of the model
-        $this -> tc_register( $new_model );
+        $this -> czr_fn_register( $new_model );
       }
     }
 
@@ -534,7 +534,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //@id = id of the model
     //@args = model params to change
     //@return void()
-    private function tc_register_change( $id, $new_model ) {
+    private function czr_fn_register_change( $id, $new_model ) {
       $collection = self::$collection;
       $to_change = self::$_change_candidates;
       //avoid if already registered
@@ -548,7 +548,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
     //removes a change in the promise change list.
     //Fired after a changed has been actually done.
-    public function tc_deregister_change($id) {
+    public function czr_fn_deregister_change($id) {
       $to_change = self::$_change_candidates;
       if ( isset($to_change[$id]) )
         unset($to_change[$id]);
@@ -556,12 +556,12 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     }
 
     //@return registered updated model given its id
-    public function czr_get_registered_changes($id) {
+    public function czr_fn_get_registered_changes($id) {
       $to_change = self::$_change_candidates;
-      return $this -> czr_has_registered_change($id) ? $to_change[$id] : array();
+      return $this -> czr_fn_has_registered_change($id) ? $to_change[$id] : array();
     }
 
-    public function czr_has_registered_change($id) {
+    public function czr_fn_has_registered_change($id) {
       return array_key_exists( $id, self::$_change_candidates );
     }
 
@@ -572,7 +572,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     * GETTERS / SETTERS
     ***********************************************************************************/
     //@return a single model set of params array
-    public function czr_get_model( $id = null ) {
+    public function czr_fn_get_model( $id = null ) {
       $collection = self::$collection;
       if ( ! is_null($id) && isset($collection[$id]) )
         return (array)$collection[$id];
@@ -581,7 +581,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
     //@return model instance or false
     //@param model id string
-    public function czr_get_model_instance( $id = null ) {
+    public function czr_fn_get_model_instance( $id = null ) {
       if ( is_null($id) )
         return;
 
@@ -593,7 +593,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
 
     //@return the collection of models
-    public function czr_get() {
+    public function czr_fn_get() {
       //uses self::$instance instead of this to always use the parent instance
       return self::$collection;
     }
@@ -603,7 +603,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     * HELPERS
     ***********************************************************************************/
     //@return bool
-    private function tc_is_pre_registered($id) {
+    private function czr_fn_is_pre_registered($id) {
       return array_key_exists($id, self::$pre_registered);
     }
 
@@ -611,11 +611,11 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //this function recursively :
     //1) checks if the requested priority is available on the specified hook
     //2) set a new priority until until it's available
-    private function tc_set_priority( $hook, $priority ) {
+    private function czr_fn_set_priority( $hook, $priority ) {
       $priority = empty($priority) ? 10 : (int)$priority;
       $available = true;
       //loop on the existing model object in the collection
-      foreach ( $this -> czr_get() as $id => $model) {
+      foreach ( $this -> czr_fn_get() as $id => $model) {
         if ( ! isset($model -> hook) )
           continue;
         if ( $hook != $model -> hook )
@@ -624,13 +624,13 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
           continue;
         $available = false;
       }
-      return $available ? $priority : $this -> tc_set_priority( $hook, $priority + 1 );
+      return $available ? $priority : $this -> czr_fn_set_priority( $hook, $priority + 1 );
     }
 
 
     //Recursively create a unique id when needed
     //@return string id
-    private function tc_set_unique_id( $id, $hook, $priority, $template ) {
+    private function czr_fn_set_unique_id( $id, $hook, $priority, $template ) {
       //if id not set, then :
       //1) try to create a unique id from the template name if specified
       //2) otherwise create a unique id from hook_priority
@@ -643,8 +643,8 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
 
       //return it now if available
-      if ( ! $this -> tc_is_registered($id) && ! $this -> tc_is_pre_registered($id) )
-        return apply_filters('tc_set_model_unique_id' , $id, $hook, $priority );
+      if ( ! $this -> czr_fn_is_registered($id) && ! $this -> czr_fn_is_pre_registered($id) )
+        return apply_filters('czr_fn_set_model_unique_id' , $id, $hook, $priority );
 
       //add hyphen add the end if not there
       $id                 = ! is_numeric(substr($id, -1)) ? $id . '_0' : $id;
@@ -656,18 +656,18 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       $id                 = implode( "_" , $id_exploded );
 
       //recursive check
-      return $this -> tc_set_unique_id( $id, $hook, $priority, $template );
+      return $this -> czr_fn_set_unique_id( $id, $hook, $priority, $template );
     }
 
 
 
     //@return array of child models
     //@return false if has no children
-    private function czr_get_children($id) {
-      if ( ! $this -> czr_has_children($id) )
+    private function czr_fn_get_children($id) {
+      if ( ! $this -> czr_fn_has_children($id) )
         return;
 
-      $model = $this -> czr_get_model($id);
+      $model = $this -> czr_fn_get_model($id);
       return ! empty( $model['children'] ) ? $model['children'] : false;
     }
 
@@ -675,7 +675,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //checks if a model exists in the collection
     //@param string id
     //@return bool
-    public function tc_is_registered( $id ) {
+    public function czr_fn_is_registered( $id ) {
       return array_key_exists( $id, self::$collection );
     }
 

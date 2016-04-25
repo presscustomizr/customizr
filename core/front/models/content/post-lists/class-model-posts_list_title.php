@@ -5,24 +5,24 @@ class CZR_cl_posts_list_title_model_class extends CZR_cl_Model {
 
   public $context;
 
-  function tc_extend_params( $model = array() ) {
+  function czr_fn_extend_params( $model = array() ) {
     //the controlleer will check if we're in (not singular) context
     //context
-    $this -> context  = $this -> czr_get_the_posts_list_context();
+    $this -> context  = $this -> czr_fn_get_the_posts_list_context();
 
     if ( ! $this -> context )
       return;
 
-    $model['element_class']     = apply_filters( 'tc_archive_icon', $this -> czr_get_archive_title_class() );
-    $model['pre_title']         = apply_filters( "tc_{$this -> context}_archive_title" , $this -> czr_get_posts_list_pre_title() );
-    $model['title']             = apply_filters( "tc_{$this -> context}_title", $this -> czr_get_posts_list_title_content() );
+    $model['element_class']     = apply_filters( 'tc_archive_icon', $this -> czr_fn_get_archive_title_class() );
+    $model['pre_title']         = apply_filters( "tc_{$this -> context}_archive_title" , $this -> czr_fn_get_posts_list_pre_title() );
+    $model['title']             = apply_filters( "tc_{$this -> context}_title", $this -> czr_fn_get_posts_list_title_content() );
     /*we are getting rid of
     "tc_{context}_header_content" filter
     */
     return $model;
   }
 
-  function czr_get_the_posts_list_context() {
+  function czr_fn_get_the_posts_list_context() {
     global $wp_query;
     if ( $wp_query -> is_posts_page && ! is_front_page() )
       return 'page_for_posts';
@@ -46,12 +46,12 @@ class CZR_cl_posts_list_title_model_class extends CZR_cl_Model {
     return false;
   }
 
-  function czr_get_archive_title_class() {
-      return ( esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_archive_title_icon' ) )
-          && esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
+  function czr_fn_get_archive_title_class() {
+      return ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_archive_title_icon' ) )
+          && esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
   }
 
-  function czr_get_posts_list_pre_title( $context = null ) {
+  function czr_fn_get_posts_list_pre_title( $context = null ) {
     $context = $context ? $context : $this -> context;
     $context = 'category' == $context ? 'cat' : $context;
 
@@ -62,10 +62,10 @@ class CZR_cl_posts_list_title_model_class extends CZR_cl_Model {
         case 'year'           : return __( 'Yearly Archives:', 'customizr' );
       }
     }
-    return esc_attr( CZR_cl_utils::$inst->czr_opt( "tc_{$context}_title" ) );
+    return esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_{$context}_title" ) );
   }
 
-  function czr_get_posts_list_title_content( $context = null ) {
+  function czr_fn_get_posts_list_title_content( $context = null ) {
     $context = $context ? $context : $this -> context;
 
     switch ( $context ) {

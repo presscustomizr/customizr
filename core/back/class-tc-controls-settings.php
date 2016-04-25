@@ -244,16 +244,16 @@ if ( ! class_exists( 'CZR_cl_controls' ) ) :
 
 
 
-    private function tc_print_select_control($class) {
+    private function czr_fn_print_select_control($class) {
       printf('<select %1$s class="%2$s">%3$s</select>',
         call_user_func( array( $this, 'get'.'_'.'link' ) ),
         $class,
-        $this -> czr_get_select_options()
+        $this -> czr_fn_get_select_options()
       );
     }
 
 
-    private function czr_get_select_options() {
+    private function czr_fn_get_select_options() {
       $_options_html = '';
       switch ( $this -> id ) {
         case 'tc_theme_options[tc_fonts]':
@@ -275,7 +275,7 @@ if ( ! class_exists( 'CZR_cl_controls' ) ) :
 
         case 'tc_theme_options[tc_skin]':
           $_data_hex  = '';
-          $_color_map = CZR_cl_utils::$inst -> czr_get_skin_color( 'all' );
+          $_color_map = CZR_cl_utils::$inst -> czr_fn_get_skin_color( 'all' );
           //Get the color map array structured as follow
           // array(
           //       'blue.css'        =>  array( '#08c', '#005580' ),
@@ -400,7 +400,7 @@ if ( ! class_exists( 'CZR_cl_Customize_Multipicker_Control' ) ) :
       if ( ! $this -> type ) return;
       do_action( '__before_setting_control' , $this -> id );
 
-      $dropdown = $this -> czr_get_dropdown_multipicker();
+      $dropdown = $this -> czr_fn_get_dropdown_multipicker();
 
       if ( empty( $dropdown ) ) return;
 
@@ -423,14 +423,14 @@ if ( ! class_exists( 'CZR_cl_Customize_Multipicker_Control' ) ) :
     }
 
     //to define in the extended classes
-    abstract public function czr_get_dropdown_multipicker();
+    abstract public function czr_fn_get_dropdown_multipicker();
   }//end class
 endif;
 
 if ( ! class_exists( 'CZR_cl_Customize_Multipicker_Categories_Control' ) ) :
   class CZR_cl_Customize_Multipicker_Categories_Control extends CZR_cl_Customize_Multipicker_Control {
 
-    public function czr_get_dropdown_multipicker() {
+    public function czr_fn_get_dropdown_multipicker() {
       $cats_dropdown = wp_dropdown_categories(
           array(
               'name'               => '_customize-'.$this->type,

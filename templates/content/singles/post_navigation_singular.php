@@ -32,7 +32,7 @@ $next_link  = get_next_post_link(
 if ( null != $prev_link || null != $next_link ) :
 
 ?>
-<nav id="nav-below" class="<?php czr_echo( 'element_class' ) ?>" <?php czr_echo('element_attributes') ?>>
+<nav id="nav-below" class="<?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <hr class="featurette-divider">
   <h3 class="assistive-text">
     <?php  _e( 'Post navigation' , 'customizr' ) ?>

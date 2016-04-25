@@ -1,7 +1,7 @@
 <?php
 class CZR_cl_content_model_class extends CZR_cl_Model {
 
-  function tc_setup_children() {
+  function czr_fn_setup_children() {
     $children = array(
 
       /********************************************************************
@@ -133,7 +133,7 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
   * @override
   * parse this model properties for rendering
   */
-  function tc_sanitize_model_properties( $model ) {
+  function czr_fn_sanitize_model_properties( $model ) {
     parent::tc_sanitize_model_properties( $model );
     foreach ( array( 'column_content', 'article_wrapper' ) as $property )
       $model -> {"{$property}_class"} = $this -> tc_stringify_model_property( "{$property}_class" );
@@ -147,9 +147,9 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_body_class($_classes) {
+  function czr_fn_body_class($_classes) {
     //SKIN CLASS
-    $_skin = sprintf( 'skin-%s' , basename( CZR_cl_init::$instance -> czr_get_style_src() ) );
+    $_skin = sprintf( 'skin-%s' , basename( CZR_cl_init::$instance -> czr_fn_get_style_src() ) );
     array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
 
     return $_classes;

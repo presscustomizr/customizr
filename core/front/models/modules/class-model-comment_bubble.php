@@ -11,13 +11,13 @@ class CZR_cl_comment_bubble_model_class extends CZR_cl_Model {
   /*
   * @override
   */
-  function tc_maybe_render_this_model_view () {
+  function czr_fn_maybe_render_this_model_view () {
     $_bool = $this -> visibility;
 
     if ( ! $_bool )
       return;
 
-    if ( in_the_loop() && CZR() -> controllers -> tc_is_possible( 'comment_list' ) ) {
+    if ( in_the_loop() && CZR() -> controllers -> czr_fn_is_possible( 'comment_list' ) ) {
       global $post;
       return $post -> comment_count > 0;
     }
@@ -32,8 +32,8 @@ class CZR_cl_comment_bubble_model_class extends CZR_cl_Model {
   *
   * return model params array()
   */
-  function tc_extend_params( $model = array() ) {
-    $model[ 'type' ]            =  esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_comment_bubble_shape' ) );
+  function czr_fn_extend_params( $model = array() ) {
+    $model[ 'type' ]            =  esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) );
     return $model;
   }
 
@@ -43,7 +43,7 @@ class CZR_cl_comment_bubble_model_class extends CZR_cl_Model {
   * @param link (stirng url) the link
   * @param add_anchor (bool) whether or not add an anchor to the link, default true
   */
-  function czr_get_comment_bubble_link( $link, $add_anchor = true ) {
+  function czr_fn_get_comment_bubble_link( $link, $add_anchor = true ) {
     $link = sprintf( "%s%s",
         is_singular() ? '' : esc_url( $link ),
         $add_anchor ? apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title') : ''
@@ -60,7 +60,7 @@ class CZR_cl_comment_bubble_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.3.2
   */
-  function tc_user_options_style_cb( $_css ) {
+  function czr_fn_user_options_style_cb( $_css ) {
     //fire once;
     static $_fired = false;
 
@@ -71,8 +71,8 @@ class CZR_cl_comment_bubble_model_class extends CZR_cl_Model {
 
     //apply custom color only if type custom
     //if color type is skin => bubble color is defined in the skin stylesheet
-    if ( 'skin' != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_comment_bubble_color_type' ) ) ) {
-      $_custom_bubble_color = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_comment_bubble_color' ) );
+    if ( 'skin' != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color_type' ) ) ) {
+      $_custom_bubble_color = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color' ) );
       $_comment_bubble_before_border_color = 'default' == $this -> type ?
             $_custom_bubble_color :
             "$_custom_bubble_color transparent";

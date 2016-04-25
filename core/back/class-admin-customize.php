@@ -61,7 +61,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * hook : tc_customize_register:30
     * @return void()
     */
-    function tc_alter_wp_customizer_settings( $wp_customize ) {
+    function czr_fn_alter_wp_customizer_settings( $wp_customize ) {
       //CHANGE BLOGNAME AND BLOGDESCRIPTION TRANSPORT
       $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
       $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
@@ -148,7 +148,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * hook : '__after_setting_control' (declared in class-tc-controls-settings.php)
     * Display a title for the favicon control, after the logo
     */
-    function tc_add_favicon_title($set_id) {
+    function czr_fn_add_favicon_title($set_id) {
       if ( false !== strpos( $set_id, 'tc_sticky_logo_upload' ) )
         printf( '<h3 class="tc-customizr-title">%s</h3>', __( 'SITE ICON' , 'customizr') );
     }
@@ -158,7 +158,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		* @package Customizr
 		* @since Customizr 1.0
 		*/
-		function tc_augment_customizer( $manager ) {
+		function czr_fn_augment_customizer( $manager ) {
       //loads custom settings and controls classes for the Customizr theme
       //- CZR_cl_Customize_Setting extends WP_Customize_Setting => to override the value() method
       //- CZR_cl_controls extends WP_Customize_Control => overrides the render() method
@@ -181,11 +181,11 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		* @package Customizr
 		* @since Customizr 3.0
 		*/
-		function tc_customize_register( $wp_customize) {
+		function czr_fn_customize_register( $wp_customize) {
 			return $this -> tc_customize_factory (
         $wp_customize,
         $this -> tc_customize_arguments(),
-        CZR_cl_utils_settings_map::$instance -> czr_get_customizer_map()
+        CZR_cl_utils_settings_map::$instance -> czr_fn_get_customizer_map()
       );
 		}
 
@@ -197,7 +197,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		 * @package Customizr
 		 * @since Customizr 3.0
 		 */
-		function tc_customize_arguments() {
+		function czr_fn_customize_arguments() {
 			$args = array(
 					'panels' => array(
 								'title' ,
@@ -264,7 +264,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		 * @package Customizr
 		 * @since Customizr 3.0
 		 */
-		function tc_customize_factory ( $wp_customize , $args, $setup ) {
+		function czr_fn_customize_factory ( $wp_customize , $args, $setup ) {
 			global $wp_version;
 			//add panels if current WP version >= 4.0
 			if ( isset( $setup['add_panel']) && version_compare( $wp_version, '4.0', '>=' ) ) {
@@ -361,7 +361,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * hook __before_setting_control (declared in class-tc-controls-settings.php)
     * @echo clickable text
     */
-    function tc_render_grid_control_link( $set_id ) {
+    function czr_fn_render_grid_control_link( $set_id ) {
       if ( false !== strpos( $set_id, 'tc_post_list_show_thumb' ) )
         printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
     }
@@ -373,7 +373,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		 * @since Customizr 1.0
 		 */
 
-		function tc_customize_preview_js() {
+		function czr_fn_customize_preview_js() {
 			global $wp_version;
 
 			wp_enqueue_script(
@@ -394,7 +394,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
                 //can be hacked to override the preview params when a custom skin is used
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
-                'fontPairs'       => CZR_cl_utils::$inst -> czr_get_font( 'list' ),
+                'fontPairs'       => CZR_cl_utils::$inst -> czr_fn_get_font( 'list' ),
                 'fontSelectors'   => CZR_cl_init::$instance -> font_selectors,
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' )
@@ -412,7 +412,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		 * @package Customizr
 		 * @since Customizr 3.1.0
 		 */
-		function tc_customize_controls_js_css() {
+		function czr_fn_customize_controls_js_css() {
 
 			wp_enqueue_style(
 				'tc-customizer-controls-style',
@@ -467,8 +467,8 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 	        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 	        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
             'themeName'     => CZR___::$theme_name,
-            'HideDonate'    => $this -> czr_get_hide_donate_status(),
-            'ShowCTA'       => ( true == CZR_cl_utils::$inst->czr_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
+            'HideDonate'    => $this -> czr_fn_get_hide_donate_status(),
+            'ShowCTA'       => ( true == CZR_cl_utils::$inst->czr_fn_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'    => array(
               'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
@@ -487,7 +487,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * @package Customizr
     * @since Customizr 3.1.14
     */
-    function czr_get_hide_donate_status() {
+    function czr_fn_get_hide_donate_status() {
       //is customizr the current active theme?
       //=> check the existence of is_theme_active for backward compatibility (may be useless because introduced in 3.4... )
       $_is_customizr_active = method_exists( $GLOBALS['wp_customize'], 'is_theme_active' ) && $GLOBALS['wp_customize'] -> is_theme_active();
@@ -495,7 +495,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       $_user_started_customize = false !== $_options || ! empty( $_options );
 
       //shall we hide donate ?
-      return ! $_user_started_customize || ! $_is_customizr_active || CZR_cl_utils::$inst->czr_opt('tc_hide_donate');
+      return ! $_user_started_customize || ! $_is_customizr_active || CZR_cl_utils::$inst->czr_fn_opt('tc_hide_donate');
     }
 
 
@@ -506,7 +506,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		* @package Customizr
 		* @since Customizr 3.1.14
 		*/
-    function tc_hide_donate() {
+    function czr_fn_hide_donate() {
     	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
     	$options = get_option('tc_theme_options');
     	$options['tc_hide_donate'] = true;
@@ -521,7 +521,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		* Writes the livereload script in dev mode (Grunt watch livereload enabled)
 		*@since v3.2.4
 		*/
-		function tc_add_livereload_script() {
+		function czr_fn_add_livereload_script() {
 			?>
 			<script id="tc-dev-live-reload" type="text/javascript">
 			    document.write('<script src="http://'
@@ -539,7 +539,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * callback of 'customize_controls_print_footer_scripts'
     *@since v3.2.9
     */
-    function tc_print_js_templates() {
+    function czr_fn_print_js_templates() {
       ?>
       <script type="text/template" id="donate_template">
         <div id="tc-donate-customizer">
@@ -662,7 +662,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * @package Customizr
     * @since Customizr 1.1
     */
-    function tc_add_fallback_page() {
+    function czr_fn_add_fallback_page() {
         $theme_page = add_theme_page(
             __( 'Upgrade WP' , 'customizr' ),   // Name of page
             __( 'Upgrade WP' , 'customizr' ),   // Label in menu
@@ -680,7 +680,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * @package Customizr
     * @since Customizr 1.1
     */
-    function tc_fallback_admin_page() {
+    function czr_fn_fallback_admin_page() {
       ?>
         <div class="wrap upgrade_wordpress">
           <div id="icon-options-general" class="icon32"><br></div>

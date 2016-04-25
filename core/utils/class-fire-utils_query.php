@@ -19,7 +19,7 @@ class CZR_cl_utils_query {
 
     //modify the query with pre_get_posts
     //! wp_loaded is fired after WordPress is fully loaded but before the query is set
-    add_action( 'wp_loaded'               , array( $this, 'tc_set_early_hooks') );
+    add_action( 'wp_loaded'               , array( $this, 'czr_fn_set_early_hooks') );
   }
 
   /**
@@ -28,16 +28,16 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function tc_set_early_hooks() {
+  function czr_fn_set_early_hooks() {
     //Filter home/blog postsa (priority 9 is to make it act before the grid hook for expanded post)
-    add_action ( 'pre_get_posts'         , array( $this , 'tc_filter_home_blog_posts_by_tax' ), 9);
+    add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_filter_home_blog_posts_by_tax' ), 9);
     //Include attachments in search results
     add_action ( 'pre_get_posts'         , array( $this , 'tc_include_attachments_in_search' ));
     //Include all post types in archive pages
     add_action ( 'pre_get_posts'         , array( $this , 'tc_include_cpt_in_lists' ));
 
     //Add the context
-    add_filter ( 'tc_body_class'         , array( $this,  'tc_set_post_list_context_class') );
+    add_filter ( 'tc_body_class'         , array( $this,  'czr_fn_set_post_list_context_class') );
   }
 
 
@@ -50,7 +50,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since Customizr 3.1.20
   */
-  function tc_include_cpt_in_lists( $query ) {
+  function czr_fn_include_cpt_in_lists( $query ) {
     if (
       is_admin()
       || ! $query->is_main_query()
@@ -84,7 +84,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since Customizr 3.0.10
   */
-  function tc_include_attachments_in_search( $query ) {
+  function czr_fn_include_attachments_in_search( $query ) {
       if (! is_search() || ! apply_filters( 'tc_include_attachments_in_search_results' , false ) )
         return;
       // add post status 'inherit'
@@ -104,7 +104,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since Customizr 3.4.10
   */
-  function tc_filter_home_blog_posts_by_tax( $query ) {
+  function czr_fn_filter_home_blog_posts_by_tax( $query ) {
       // when we have to filter?
       // in home and blog page
       if (
@@ -115,7 +115,7 @@ class CZR_cl_utils_query {
      // categories
      // we have to ignore sticky posts (do not prepend them)
      // disable grid sticky post expansion
-     $cats = CZR_cl_utils::$inst -> czr_opt('tc_blog_restrict_by_cat');
+     $cats = CZR_cl_utils::$inst -> czr_fn_opt('tc_blog_restrict_by_cat');
      $cats = array_filter( $cats, array( CZR_cl_utils::$inst , 'tc_category_id_exists' ) );
 
      if ( is_array( $cats ) && ! empty( $cats ) ){
@@ -133,7 +133,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since Customizr 3.3.2
   */
-  function tc_set_post_list_context_class( $_class ) {
+  function czr_fn_set_post_list_context_class( $_class ) {
     if ( $this ->  tc_is_list_of_posts() )
       array_push( $_class , 'tc-post-list-context');
     return $_class;
@@ -150,7 +150,7 @@ class CZR_cl_utils_query {
   * @since Customizr 3.0.10
   *
   */
-  function czr_get_post_type() {
+  function czr_fn_get_post_type() {
     global $post;
 
     if ( ! isset($post) )
@@ -160,7 +160,7 @@ class CZR_cl_utils_query {
   }
 
 
-  public function tc_is_list_of_posts() {
+  public function czr_fn_is_list_of_posts() {
     //must be archive or search result. Returns false if home is empty in options.
     return apply_filters( 'tc_is_list_of_posts',
       ! is_singular()
@@ -171,7 +171,7 @@ class CZR_cl_utils_query {
   }
 
 
-  public function tc_is_single_post() {
+  public function czr_fn_is_single_post() {
     global $post;
     return apply_filters( 'tc_is_single_post', isset($post)
         && is_singular()
@@ -181,15 +181,15 @@ class CZR_cl_utils_query {
   }
 
 
-  public function tc_is_single_attachment() {
+  public function czr_fn_is_single_attachment() {
     global $post;
     return apply_filters( 'tc_is_single_attacment',
         ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() ) );
   }
 
-  public function tc_is_single_page() {
+  public function czr_fn_is_single_page() {
     return apply_filters( 'tc_is_single_page',
-        'page' == CZR_cl_utils_query::$instance -> czr_get_post_type()
+        'page' == CZR_cl_utils_query::$instance -> czr_fn_get_post_type()
         && is_singular()
         && ! CZR_cl_utils_query::$instance -> tc_is_home_empty()
     );
@@ -201,7 +201,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since 3.0.10
   */
-  function tc_is_no_results() {
+  function czr_fn_is_no_results() {
     global $wp_query;
     return ( is_search() && 0 == $wp_query -> post_count ) ? true : false;
   }
@@ -212,7 +212,7 @@ class CZR_cl_utils_query {
   * @since Customizr 3.0.6
   *
   */
-  function tc_is_home_empty() {
+  function czr_fn_is_home_empty() {
     //check if the users has choosen the "no posts or page" option for home page
     return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
   }
@@ -223,10 +223,10 @@ class CZR_cl_utils_query {
   * @return  number
   *
   */
-  function czr_get_real_id() {
+  function czr_fn_get_real_id() {
     global $wp_query;
     $queried_id                   = get_queried_object_id();
-    return apply_filters( 'czr_get_real_id', ( ! CZR_cl_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'czr_fn_get_real_id', ( ! CZR_cl_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
 
 
@@ -237,7 +237,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since 3.1.0
   */
-  function czr_get_the_post_list_article_selectors($post_class = '') {
+  function czr_fn_get_the_post_list_article_selectors($post_class = '') {
     //gets global vars
     global $post;
 
@@ -246,7 +246,7 @@ class CZR_cl_utils_query {
 
     if ( isset($post) && $this -> tc_is_list_of_posts() )
         //!is_singular() && !is_404() && !tc__f( '__is_home_empty') ) || ( is_search() && 0 != $wp_query -> post_count )
-      $selectors                = apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> czr_get_the_post_class( $post_class ) );
+      $selectors                = apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
     return apply_filters( 'tc_article_selectors', $selectors );
   }//end of function
@@ -263,7 +263,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since 3.1.0
   */
-  function czr_get_the_singular_article_selectors( $post_class = '' ) {
+  function czr_fn_get_the_singular_article_selectors( $post_class = '' ) {
     //gets global vars
     global $post;
 
@@ -272,11 +272,11 @@ class CZR_cl_utils_query {
 
     // SINGLE POST/ATTACHMENT
     if ( isset($post) && 'page' != $post -> post_type && is_singular() )
-      $selectors = apply_filters( "tc_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. $this -> czr_get_the_post_class( $post_class ) );
+      $selectors = apply_filters( "tc_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
     // PAGE
     elseif ( isset($post) && 'page' == tc__f('__post_type') && is_singular() && !tc__f( '__is_home_empty') )
-      $selectors = apply_filters( 'tc_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> czr_get_the_post_class( $post_class ) );
+      $selectors = apply_filters( 'tc_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
     $selectors = apply_filters( 'tc_article_selectors', $selectors );
 
@@ -292,7 +292,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since 3.0.10
   */
-  function czr_get_the_post_class( $class = '', $post_id = null ) {
+  function czr_fn_get_the_post_class( $class = '', $post_id = null ) {
     //Separates classes with a single space, collates classes for post DIV
     return 'class="' . join( ' ', get_post_class( $class, $post_id ) ) . '"';
   }

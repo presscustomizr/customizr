@@ -8,7 +8,7 @@
  */
 ?>
 <hr class="featurette-divider">
-<div class="author-info" <?php czr_echo('element_attributes') ?>>
+<div class="author-info" <?php czr_fn_echo('element_attributes') ?>>
   <div class="row-fluid">
     <div class="comment-avatar author-avatar span2">
      <?php echo get_avatar( get_the_author_meta( 'user_email' ), 100 ) ?>

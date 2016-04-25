@@ -8,11 +8,11 @@
  * @since Customizr 3.5
  */
 ?>
-      <?php czr_render_template('footer'); ?>
+      <?php czr_fn_render_template('footer'); ?>
     </div>
 
     <?php do_action('__after_page_wrapper'); ?>
-    <?php if ( czr_has('btt_arrow') ){ czr_render_template('footer/btt_arrow'); }; ?>
+    <?php if ( czr_fn_has('btt_arrow') ){ czr_fn_render_template('footer/btt_arrow'); }; ?>
     <?php wp_footer() ?>
   </body>
 </html>

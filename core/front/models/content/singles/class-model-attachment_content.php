@@ -7,14 +7,14 @@ class CZR_cl_attachment_content_model_class extends CZR_cl_Model {
   public $attachment_class;
 
 
-  function tc_setup_late_properties() {
+  function czr_fn_setup_late_properties() {
     global $post;
 
     $gallery     = '';
     $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
     //did we activate the fancy box in customizer?
-    $tc_fancybox = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_fancybox' ) );
+    $tc_fancybox = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fancybox' ) );
 
     if ( 0 == $tc_fancybox ) { //fancy box not checked!
       /**
@@ -77,8 +77,8 @@ class CZR_cl_attachment_content_model_class extends CZR_cl_Model {
     $this -> tc_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'attachment_class' ) );
   }
 
-  function czr_get_article_selectors() {
+  function czr_fn_get_article_selectors() {
     $post_class = wp_attachment_is_image() ? ' format-image' : '';
-    return CZR_cl_utils_query::$instance -> czr_get_the_singular_article_selectors( "row-fluid $post_class" );
+    return CZR_cl_utils_query::$instance -> czr_fn_get_the_singular_article_selectors( "row-fluid $post_class" );
   }
 }

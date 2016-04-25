@@ -23,7 +23,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
     /**
     * hook : nav_menu_css_class
     */
-    function tc_add_bootstrap_classes($classes, $item, $args, $depth ) {
+    function czr_fn_add_bootstrap_classes($classes, $item, $args, $depth ) {
       //cast $classes into array
       $classes = (array)$classes;
       //check if $item is a dropdown ( a parent )
@@ -53,7 +53,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
       if ( $item->is_dropdown ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, $this -> tc_location );
         $item_html      = str_replace( $search , $replace , $item_html);
@@ -109,7 +109,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
     /**
     * hook : page_css_class
     */
-    function tc_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
+    function czr_fn_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
       if ( is_array($css_class) && in_array('page_item_has_children', $css_class ) ) {
         if ( 0 === $depth) {
           $css_class[] = 'dropdown';
@@ -137,7 +137,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
       if ( $args['has_children'] ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search );
         $item_html      = str_replace( $search , $replace , $item_html);

@@ -7,8 +7,8 @@ class CZR_cl_sidenav_menu_button_model_class extends CZR_cl_menu_button_model_cl
   *
   * return model params array()
   */
-  function tc_extend_params( $model = array() ) {
-    $model = parent::tc_extend_params( $model );
+  function czr_fn_extend_params( $model = array() ) {
+    $model = parent::czr_fn_extend_params( $model );
 
     array_push( $model[ 'element_class' ], 'sn-toggle' );
     //@todo fix this condition

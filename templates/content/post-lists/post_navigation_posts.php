@@ -18,11 +18,11 @@ $next_link  =  get_previous_posts_link(
         );
 /* If no links are present do not display this */
 if ( null != $prev_link || null != $next_link ) : ?>
-<nav id="nav-below" class="<?php czr_echo( 'element_class' ) ?>" <?php czr_echo('element_attributes') ?>>
+<nav id="nav-below" class="<?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <h3 class="assistive-text">
     <?php  _e( 'Post navigation' , 'customizr' ) ?>
   </h3>
-  <ul class="pager" <?php czr_echo('element_attributes') ?>>
+  <ul class="pager" <?php czr_fn_echo('element_attributes') ?>>
   <?php if ( null != $prev_link ) : ?>
     <li class="previous">
       <span class="nav-previous">

@@ -7,7 +7,7 @@ class CZR_cl_sidebar_model_class extends CZR_cl_Model {
       'left'   => 'l'
   );
 
-  function tc_setup_children() {
+  function czr_fn_setup_children() {
 
     $children = array(
       //left/right sidebar social block
@@ -33,9 +33,9 @@ class CZR_cl_sidebar_model_class extends CZR_cl_Model {
   *
   * return model params array()
   */
-  function tc_extend_params( $model = array() ) {
-    $model                = parent::tc_extend_params( $model );
-    $screen_layout        = CZR_cl_utils::czr_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
+  function czr_fn_extend_params( $model = array() ) {
+    $model                = parent::czr_fn_extend_params( $model );
+    $screen_layout        = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
 
     //extract the position
     $this -> position     = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar' ) );

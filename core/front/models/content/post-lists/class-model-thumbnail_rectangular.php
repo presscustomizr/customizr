@@ -6,7 +6,7 @@ class CZR_cl_thumbnail_rectangular_model_class extends CZR_cl_thumbnail_model_cl
   public $type                  = 'rectangular';
 
   /* override */
-  function czr_get_no_effect_class( $thumb_model ) {
+  function czr_fn_get_no_effect_class( $thumb_model ) {
     return array();
   }
 
@@ -16,8 +16,8 @@ class CZR_cl_thumbnail_rectangular_model_class extends CZR_cl_thumbnail_model_cl
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function czr_get_thumb_size( $_default_size = 'tc-thumb' ) {
-    $_position = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_thumb_position' ) );
+  function czr_fn_get_thumb_size( $_default_size = 'tc-thumb' ) {
+    $_position = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
     return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
   }
 
@@ -28,8 +28,8 @@ class CZR_cl_thumbnail_rectangular_model_class extends CZR_cl_thumbnail_model_cl
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  function tc_user_options_style_cb( $_css ) {
-    $_list_thumb_height     = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_thumb_height' ) );
+  function czr_fn_user_options_style_cb( $_css ) {
+    $_list_thumb_height     = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_height' ) );
     $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
     return sprintf("%s\n%s",
       $_css,

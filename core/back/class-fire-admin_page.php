@@ -25,7 +25,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
       //config infos
       add_action( '__after_welcome_panel'  , array( $this , 'tc_config_infos' ), 20 );
       //build the support url
-      $this -> support_url = CZR___::tc_is_pro() ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
+      $this -> support_url = CZR___::czr_fn_is_pro() ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'      , array( $this, 'tc_fix_wp_footer_link_style') );
     }
@@ -37,9 +37,9 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
    * @package Customizr
    * @since Customizr 1.1
    */
-    function tc_add_welcome_page() {
+    function czr_fn_add_welcome_page() {
         $_name = __( 'About Customizr' , 'customizr' );
-        $_name = CZR___::tc_is_pro() ? sprintf( '%s Pro', $_name ) : $_name;
+        $_name = CZR___::czr_fn_is_pro() ? sprintf( '%s Pro', $_name ) : $_name;
 
         $theme_page = add_theme_page(
             $_name,   // Name of page
@@ -57,12 +57,12 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
      * @package Customizr
      * @since Customizr 3.0.4
      */
-      function tc_welcome_panel() {
+      function czr_fn_welcome_panel() {
 
         $is_help        = isset($_GET['help'])  ?  true : false;
         $_faq_url       = esc_url('http://docs.presscustomizr.com/category/90-faq-and-common-issues');
         $_support_url   = $this -> support_url;
-        $_theme_name    = CZR___::tc_is_pro() ? 'Customizr Pro' : 'Customizr';
+        $_theme_name    = CZR___::czr_fn_is_pro() ? 'Customizr Pro' : 'Customizr';
 
         do_action('__before_welcome_panel');
 
@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
                 );
                 printf( '<p>%1$s</p><p><strong>%2$s</strong></p>',
                   __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" ),
-                  CZR___::tc_is_pro() ? '' : sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
+                  CZR___::czr_fn_is_pro() ? '' : sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
                     sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('presscustomizr.com'), __("home page" , "customizr") )
                   )
                 );
@@ -117,7 +117,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
                 </div>
                  <div class="last-feature col">
                      <a class="button-secondary customizr-help" title="help" href="<?php echo $_support_url; ?>" target="_blank">
-                       <?php CZR___::tc_is_pro() ? _e( 'Get support','customizr' ) : _e( 'Get help in the free support forum','customizr' ); ?>
+                       <?php CZR___::czr_fn_is_pro() ? _e( 'Get support','customizr' ) : _e( 'Get help in the free support forum','customizr' ); ?>
                      </a>
                  </div>
               </div><!-- .two-col -->
@@ -162,7 +162,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
 
           <div class="changelog point-releases"></div>
 
-          <?php if ( ! CZR___::tc_is_pro() ) : ?>
+          <?php if ( ! CZR___::czr_fn_is_pro() ) : ?>
             <div class="changelog">
 
                 <div class="feature-section col three-col">
@@ -243,7 +243,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
    * @package Customizr
    * @since Customizr 3.0.5
    */
-    function tc_extract_changelog() {
+    function czr_fn_extract_changelog() {
       if( ! file_exists(CZR_BASE."readme.txt") ) {
         return;
       }
@@ -297,7 +297,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
     * Inspired by Easy Digital Download plugin by Pippin Williamson
     * @since 3.2.1
     */
-    function tc_config_infos() {
+    function czr_fn_config_infos() {
       global $wpdb;
 
       ?>
@@ -387,7 +387,7 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
        *
        * @since 3.2.2
        */
-      function tc_let_to_num( $v ) {
+      function czr_fn_let_to_num( $v ) {
         $l   = substr( $v, -1 );
         $ret = substr( $v, 0, -1 );
 
@@ -411,7 +411,7 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
     * fix the absolute positioning of the wp footer admin link in the welcome pages
     * @return void
     */
-    function tc_fix_wp_footer_link_style() {
+    function czr_fn_fix_wp_footer_link_style() {
       /* if ( is_array(get_current_screen()) )
         array_walk_recursive(get_current_screen(), function(&$v) { $v = htmlspecialchars($v); }); */
       $screen = get_current_screen();

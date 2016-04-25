@@ -9,7 +9,7 @@ class CZR_cl_second_menu_model_class extends CZR_cl_menu_model_class {
   function pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model ) {
     parent::pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model );
 
-    array_push( $navbar_wrapper_model -> element_class, esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_second_menu_position') ) );
+    array_push( $navbar_wrapper_model -> element_class, esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_second_menu_position') ) );
   }
 
 
@@ -28,7 +28,7 @@ class CZR_cl_second_menu_model_class extends CZR_cl_menu_model_class {
     //header class for the secondary menu
     array_push( $header_model -> element_class,
           'tc-second-menu-on',
-          'tc-second-menu-' . esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
+          'tc-second-menu-' . esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
     );
   }
 
@@ -37,7 +37,7 @@ class CZR_cl_second_menu_model_class extends CZR_cl_menu_model_class {
   * Second menu
   * This actually "restores" regular menu style (user options in particular) by overriding the max-width: 979px media query
   */
-  function tc_user_options_style_cb( $_css ) {
+  function czr_fn_user_options_style_cb( $_css ) {
     return sprintf("%s\n%s",
       $_css,
       "@media (max-width: 979px) {

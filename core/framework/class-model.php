@@ -47,14 +47,14 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
 
       //this is where extension classes can modify the model params before they're parsed
       //becoming model properties
-      $model = $this -> tc_extend_params( $model );
+      $model = $this -> czr_fn_extend_params( $model );
 
 
       if ( empty( $model ) ) {
         do_action('tc_dev_notice', 'in CZR_cl_MODEL construct : a model has no id ');
         return;
       }elseif ( FALSE == $model['id'] ) {
-        //if model ID has been set to false => silent exit. Useful in cases when in tc_extend_params the model
+        //if model ID has been set to false => silent exit. Useful in cases when in czr_fn_extend_params the model
         //itself understands that it has to exit its instantiation
         CZR() -> collection -> tc_delete( $this -> id );
         return;
@@ -65,7 +65,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       //at this stage the mode must at least have :
       //1) a unique id
       //2) a priority set
-      //3) a hook => not anymore since czr_render_template()
+      //3) a hook => not anymore since czr_fn_render_template()
       if ( ! $this -> tc_can_model_be_instantiated() ) {
         CZR() -> collection -> tc_delete( $this -> id );
         return;
@@ -87,7 +87,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       $this -> tc_maybe_filter_views_model();
 
       //Allow models to filter their view visibility
-      add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'tc_maybe_render_this_model_view' ), 0 );
+      add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'czr_fn_maybe_render_this_model_view' ), 0 );
 
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
@@ -109,8 +109,8 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //add this instance to the view description in the collection
     //=> can be used later for deregistration
     //hook : view_instantiated
-    function tc_add_view_to_model( $view_instance ) {
-       $this -> tc_set_property( 'view_instance', $view_instance );
+    function czr_fn_add_view_to_model( $view_instance ) {
+       $this -> czr_fn_set_property( 'view_instance', $view_instance );
     }
 
 
@@ -121,12 +121,12 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     ***********************************************************************************/
     //default hook : wp | 1000
     //@return void()
-    public function tc_maybe_instantiate_view() {
+    public function czr_fn_maybe_instantiate_view() {
       do_action( "pre_instantiate_view" );
 
       //this check has already been done before instantiating the model.
       //Do we really need this again here ?
-      if ( ! CZR() -> controllers -> tc_is_possible($this -> czr_get())  )
+      if ( ! CZR() -> controllers -> czr_fn_is_possible($this -> czr_fn_get())  )
         return;
 
       //instantiate the view with the current model object as param
@@ -138,7 +138,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     /**********************************************************************************
     * ACTIONS ON MODEL INSTANCIATION : MAYBE ADD SPECIFIC MODEL STYLE
     ***********************************************************************************/
-    public function tc_maybe_add_style() {
+    public function czr_fn_maybe_add_style() {
       //for now just add filter to tc_user_options_style
       if ( method_exists( $this, 'tc_user_options_style_cb' ) )
         add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' ) );
@@ -148,14 +148,14 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     /**********************************************************************************
     * ACTIONS ON MODEL INSTANCIATION : MAYBE SETUP CHILDREN FOR SUCCESSIVE REGISTRATION
     ***********************************************************************************/
-    public function tc_maybe_setup_children() {
+    public function czr_fn_maybe_setup_children() {
       //set-up the children
-      if ( ! method_exists( $this, 'tc_setup_children') )
+      if ( ! method_exists( $this, 'czr_fn_setup_children') )
         return;
 
-      $children = apply_filters( "tc_{$this -> id}_children_list", $this -> tc_setup_children() );
-      $this -> tc_set_property( 'children', $children );
-      $this -> tc_set_property( 'parent', $this -> id );
+      $children = apply_filters( "tc_{$this -> id}_children_list", $this -> czr_fn_setup_children() );
+      $this -> czr_fn_set_property( 'children', $children );
+      $this -> czr_fn_set_property( 'parent', $this -> id );
     }//fn
 
 
@@ -167,24 +167,24 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //@param $instance is the view instance object, can be CZR_cl_View or a child of CZR_cl_View
     //hook the rendering method to the hook
     //$this -> view_instance can be used. It can be a child of this class.
-    public function tc_maybe_hook_or_render_view($instance) {
+    public function czr_fn_maybe_hook_or_render_view($instance) {
       if ( empty($this -> id) ) {
         do_action('tc_dev_notice', 'In CZR_cl_Model, a model is missing its id.' );
         return;
       }
 
-      //Are we in czr_render_template case
+      //Are we in czr_fn_render_template case
       //=> Typically yes if did_action('template_redirect'), since every model are registered on 'wp'
       //AND if the render property is forced to true
       //if not check if template_redirect has already been fired, to see if we are in a tc_render case
       if ( did_action('template_redirect') && $this -> render ) {
-        $instance -> tc_maybe_render();
+        $instance -> czr_fn_maybe_render();
         return;//this is the end, beautiful friend.
       }
 
       //What are the requested hook and priority ?
       //=> this can be overriden in an extended model for example
-      //? using the tc_set_property ( 'hook' , 'value' ) could also be an option in an extended model ?
+      //? using the czr_fn_set_property ( 'hook' , 'value' ) could also be an option in an extended model ?
       $_da_hook     = apply_filters("_da_hook_{$this -> id}" , $this -> hook );
       $_da_priority = apply_filters("_da_priority_{$this -> id}" , $this -> priority );
 
@@ -194,7 +194,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       if ( false == $_da_hook )
         return;
 
-      add_action( $_da_hook, array( $instance , 'tc_maybe_render' ), $_da_priority );
+      add_action( $_da_hook, array( $instance , 'czr_fn_maybe_render' ), $_da_priority );
       //emit an event each time a view is hooked
       do_action( 'view_hooked' , $this -> id );
     }
@@ -202,10 +202,10 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
 
     //@param instance view
     //@return void()
-    public function tc_unhook_view() {
+    public function czr_fn_unhook_view() {
       if ( false == $this -> hook || ! is_object( $this -> view_instance) )
         return;
-      remove_action( $this -> hook, array( $instance , 'tc_maybe_render' ), $this -> priority );
+      remove_action( $this -> hook, array( $instance , 'czr_fn_maybe_render' ), $this -> priority );
       //say it
       do_action( 'view_unhooked' , $this -> id );
     }
@@ -217,21 +217,21 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     ***********************************************************************************/
     //hook : view ready
     //=> the collection here can be the full collection or a partial set of views (children for example)
-    public function tc_maybe_register_children() {
-      if ( ! $this -> czr_has_children() )
+    public function czr_fn_maybe_register_children() {
+      if ( ! $this -> czr_fn_has_children() )
         return;
 
       $children_collection = array();
       foreach ( $this -> children as $id => $model ) {
         //re-inject the id into the view_params
  //       $model['id'] = $id;
-        $id = CZR() -> collection -> tc_register( $model );
+        $id = CZR() -> collection -> czr_fn_register( $model );
         if ( $id )
           $children_collection[$id] = $model;
       }//foreach
 
       //update the children property, at this stage will contain a list of the model ids of the registered children
-      $this -> tc_set_property( 'children', array_keys( $children_collection ) );
+      $this -> czr_fn_set_property( 'children', array_keys( $children_collection ) );
       //emit an event if a children collection has been registered
       //=> will fire the instantiation of the children collection with tc_maybe_instantiate_collection
       do_action( 'children_registered', $children_collection );
@@ -243,7 +243,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     ***********************************************************************************/
     //Checks if a registered view has child views
     //@return boolean
-    public function czr_has_children() {
+    public function czr_fn_has_children() {
       return ! empty($this -> children);
     }
 
@@ -251,7 +251,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //normalizes the way we can access and change a single model property
     //=> emit an event to update the collection
     //@return void()
-    public function tc_set_property( $property, $value ){
+    public function czr_fn_set_property( $property, $value ){
       $this -> $property = $value;
 
       //will trigger a collection update
@@ -261,14 +261,14 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
 
     //normalizes the way we can access and change a single model property
     //@return the property
-    public function czr_get_property( $property, $args = array() ) {
-      if ( method_exists( $this, "czr_get_{$property}" ) )
-        return call_user_func_array( array($this, "czr_get_{$property}"), $args );
+    public function czr_fn_get_property( $property, $args = array() ) {
+      if ( method_exists( $this, "czr_fn_get_{$property}" ) )
+        return call_user_func_array( array($this, "czr_fn_get_{$property}"), $args );
       return isset ( $this -> $property ) ? $this -> $property : '';
     }
 
     //@returns the model property as an array of params
-    public function czr_get() {
+    public function czr_fn_get() {
       $model = array();
       foreach ( array_keys( get_object_vars( $this ) ) as $key ) {
         $model[ $key ] = $this->$key;
@@ -280,7 +280,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //Extension models can use this to update the model params with a set of new ones
     //is fired on instantiation
     //@param = array()
-    protected function tc_extend_params( $model = array() ) {
+    protected function czr_fn_extend_params( $model = array() ) {
       return $model;
     }
 
@@ -288,7 +288,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //update the model properties with a set of new ones
     //is fired on instantiation
     //@param = array()
-    public function tc_update( $model = array() ) {
+    public function czr_fn_update( $model = array() ) {
       $keys = array_keys( get_object_vars( $this ) );
       foreach ( $keys as $key ) {
         if ( isset( $model[ $key ] ) ) {
@@ -308,7 +308,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //@hook tc_do_render_view_{$this -> id}
     //@return bool
     // Controls the rendering of the model's view
-    public function tc_maybe_render_this_model_view() {
+    public function czr_fn_maybe_render_this_model_view() {
       return $this -> visibility;
     }
 
@@ -319,7 +319,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     // The class parameter will be stored in the model as an array to allow a better way to filter it ( e.g. avoid duplications), but to make it suitable for the rendering, it must be transformed in a string
     // Maybe we can think about make the model attributes, when needed, a set of
     // value, "sanitize" callback and let the view class do this..
-    protected function tc_maybe_filter_views_model() {
+    protected function czr_fn_maybe_filter_views_model() {
       if ( method_exists( $this, 'pre_rendering_view_cb' ) )
         add_action( 'pre_rendering_view', array( $this, 'pre_rendering_view_cb' ) );
 
@@ -333,14 +333,14 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     * Always sanitize those properties for being printed ( e.g. array to string )
     */
     public function pre_rendering_my_view_cb( $model ) {
-      if ( method_exists( $this, 'tc_setup_late_properties' ) )
-        $this -> tc_setup_late_properties();
+      if ( method_exists( $this, 'czr_fn_setup_late_properties' ) )
+        $this -> czr_fn_setup_late_properties();
 
       $this -> tc_sanitize_model_properties( $model );
     }
 
 
-    protected function tc_sanitize_model_properties( $model ) {
+    protected function czr_fn_sanitize_model_properties( $model ) {
       $this -> element_class  = $this -> tc_stringify_model_property( 'element_class' );
     }
 
@@ -348,7 +348,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     /**********************************************************************************
     * HELPERS
     ***********************************************************************************/
-    protected function tc_stringify_model_property( $property ) {
+    protected function czr_fn_stringify_model_property( $property ) {
       if ( isset( $this -> $property ) )
        return CZR() -> helpers -> tc_stringify_array( $this -> $property );
       return '';
@@ -359,9 +359,9 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //at this stage the mode must at least have :
     //1) a unique id
     //2) a priority set
-    private function tc_can_model_be_instantiated() {
+    private function czr_fn_can_model_be_instantiated() {
       //the model must be an array of params
-      //the hook is the only mandatory param => not anymore since czr_render_template()
+      //the hook is the only mandatory param => not anymore since czr_fn_render_template()
       if ( ! is_numeric( $this -> priority ) || empty($this -> id) ) {
         do_action('tc_dev_notice', "In CZR_cl_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
         return;
@@ -371,7 +371,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
 
     //checks if the model exists and is an instance
     //@return bool
-    public function czr_has_instantiated_view() {
+    public function czr_fn_has_instantiated_view() {
       return is_object( $this -> view_instance );
     }
 
@@ -387,7 +387,7 @@ endif;
 //  * adds the priority_to_check param
 //  */
 // //NOT USED!!!!
-// private function czr_has_filter( $tag, $function_to_check = false, $priority_to_check = 10 ) {
+// private function czr_fn_has_filter( $tag, $function_to_check = false, $priority_to_check = 10 ) {
 //   // Don't reset the internal array pointer
 //   $wp_filter = $GLOBALS['wp_filter'];
 //   $has = ! empty( $wp_filter[ $tag ] );
