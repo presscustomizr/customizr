@@ -1,5 +1,4 @@
 <?php
-//if ( tc_fw_require_once('models/header/class-model-logo.php') ) :
 class TC_logo_sticky_model_class extends TC_logo_model_class{
   public $logo_type   = 'sticky';
 
@@ -40,4 +39,3 @@ class TC_logo_sticky_model_class extends TC_logo_model_class{
     return $_css;
   }//end sticky-logo css
 }//end class
-//endif;

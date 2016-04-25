@@ -1,7 +1,7 @@
 <?php
 /**
  * The template for displaying the blog
- * (either your home displaying latest posts or your blog page)
+ * (either your home displaying latest posts or your blog page or your empty front)
  *
  * @package Customizr
  * @since Twenty Customizr 3.5

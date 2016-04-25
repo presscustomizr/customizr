@@ -73,8 +73,10 @@ if ( ! class_exists( 'TC___' ) ) :
       if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
       //TC_BASE is the root server path of the parent theme
       if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
-      //TC_FRAMEWORK_PREFIX is the relative path where the framerk is located
-      if( ! defined( 'TC_FRAMEWORK_PREFIX' ) ) define( 'TC_FRAMEWORK_PREFIX' , 'core/front/' );
+      //TC_FRAMEWORK_PREFIX is the relative path where the framework is located
+      if( ! defined( 'TC_FRAMEWORK_PREFIX' ) ) define( 'TC_FRAMEWORK_PREFIX' , 'core/framework/' );
+      //TC_FRAMEWORK_FRONT_PREFIX is the relative path where the framework fornt files are located
+      if( ! defined( 'TC_FRAMEWORK_FRONT_PREFIX' ) ) define( 'TC_FRAMEWORK_FRONT_PREFIX' , 'core/front/' );
       //TC_ASSETS_PREFIX is the relative path where the assets are located
       if( ! defined( 'TC_ASSETS_PREFIX' ) )   define( 'TC_ASSETS_PREFIX' , 'assets/' );
       //TC_BASE_CHILD is the root server path of the child theme
@@ -387,6 +389,10 @@ if ( ! class_exists( 'TC___' ) ) :
       return $this -> tc_require_once( TC_FRAMEWORK_PREFIX . $path_suffix );
     }
 
+    //requires a framework front (models/controllers) file only if exists
+    function tc_fw_front_require_once( $path_suffix ) {
+      return $this -> tc_require_once( TC_FRAMEWORK_FRONT_PREFIX . $path_suffix );
+    }
 
     /*
     * Stores the current model in the class current_model stack
