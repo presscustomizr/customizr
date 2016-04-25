@@ -51,16 +51,16 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   //inside the loop but before rendering set some properties
   function tc_setup_late_properties() {
     //parent::tc_setup_late_properties();
-    $post_class = $this -> tc_get_the_grid_post_class();
-    $this -> tc_set_property( 'article_selectors', CZR_cl_utils_query::$instance -> tc_get_the_post_list_article_selectors( $post_class ) );
+    $post_class = $this -> czr_get_the_grid_post_class();
+    $this -> tc_set_property( 'article_selectors', CZR_cl_utils_query::$instance -> czr_get_the_post_list_article_selectors( $post_class ) );
 
-    $element_wrapper        = $this -> tc_get_element_wrapper_properties();
+    $element_wrapper        = $this -> czr_get_element_wrapper_properties();
 
     //check if the current post is the expanded one
     $is_expanded            = $this -> tc_force_current_post_expansion();
 
     //section properties which refers to the section row wrapper
-    $section_row_wrapper    = $this -> tc_get_section_row_wrapper_properties();
+    $section_row_wrapper    = $this -> czr_get_section_row_wrapper_properties();
 
     $grid_item              = array(
         'section_cols' => $section_row_wrapper['section_cols'],
@@ -75,7 +75,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   /*
   * post list wrapper
   */
-  function tc_get_element_wrapper_properties() {
+  function czr_get_element_wrapper_properties() {
     global $wp_query;
     $is_loop_start = 0 == $wp_query -> current_post;
     $is_loop_end   = $wp_query -> current_post == $wp_query -> post_count -1 ;
@@ -87,12 +87,12 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   /*
   * Wrap articles in a grid section
   */
-  function tc_get_section_row_wrapper_properties() {
+  function czr_get_section_row_wrapper_properties() {
     global $wp_query;
 
     $current_post      = $wp_query -> current_post;
     $start_post        = ! empty( $this -> expanded_sticky ) ? 1 : 0;
-    $section_cols      = $this     -> tc_get_grid_section_cols();
+    $section_cols      = $this     -> czr_get_grid_section_cols();
 
     $is_first_of_row   = false;
     $is_last_of_row    = false;
@@ -110,21 +110,21 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
 
 
   /* retrieves number of cols option, and wrap it into a filter */
-  private function tc_get_grid_cols() {
+  private function czr_get_grid_cols() {
     if ( ! isset( $this -> grid_cols ) )
-      $grid_cols = $this -> tc_set_grid_cols( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_columns') ), CZR_cl_utils::tc_get_layout( $this -> post_id , 'class' ) );
+      $grid_cols = $this -> tc_set_grid_cols( esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_grid_columns') ), CZR_cl_utils::czr_get_layout( $this -> post_id , 'class' ) );
     else
       $grid_cols = $this -> grid_cols;
 
-    return apply_filters( 'tc_get_grid_cols', $grid_cols );
+    return apply_filters( 'czr_get_grid_cols', $grid_cols );
   }
 
 
 
   /* returns articles wrapper section columns */
-  private function tc_get_grid_section_cols() {
+  private function czr_get_grid_section_cols() {
     return apply_filters( 'tc_grid_section_cols',
-      $this -> tc_force_current_post_expansion() ? '1' : $this -> tc_get_grid_cols()
+      $this -> tc_force_current_post_expansion() ? '1' : $this -> czr_get_grid_cols()
     );
   }
 
@@ -151,10 +151,10 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since 3.0.10
   */
-  function tc_get_the_grid_post_class() {
+  function czr_get_the_grid_post_class() {
     return sprintf( '%1$s tc-grid span%2$s',
       apply_filters( 'tc_grid_add_expanded_class', $this -> tc_force_current_post_expansion() ) ? 'expanded' : '',
-      is_numeric( $this -> tc_get_grid_section_cols() ) ? 12 / $this -> tc_get_grid_section_cols() : 6
+      is_numeric( $this -> czr_get_grid_section_cols() ) ? 12 / $this -> czr_get_grid_section_cols() : 6
     );
   }
 
@@ -176,7 +176,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
         $wp_query -> is_posts_page ) )
       return false;
 
-    return apply_filters( 'tc_grid_expand_featured', esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
+    return apply_filters( 'tc_grid_expand_featured', esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_grid_expand_featured') ) );
   }
 
 
@@ -186,9 +186,9 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   */
   function tc_grid_container_set_classes( $_classes ) {
     array_push( $_classes, 'tc-post-list-grid' );
-    if ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
+    if ( esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_grid_shadow') ) )
       array_push( $_classes, 'tc-grid-shadow' );
-    if ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_bottom_border') ) )
+    if ( esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_grid_bottom_border') ) )
       array_push( $_classes, 'tc-grid-border' );
     return $_classes;
   }
@@ -235,9 +235,9 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @return string
   *
   */
-  private function tc_get_grid_column_height( $_cols_nb = '3' ) {
+  private function czr_get_grid_column_height( $_cols_nb = '3' ) {
     $_h               = $this -> tc_grid_get_thumb_height();
-    $_current_layout  = CZR_cl_utils::tc_get_layout( $this -> post_id , 'sidebar' );
+    $_current_layout  = CZR_cl_utils::czr_get_layout( $this -> post_id , 'sidebar' );
     $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
     $_key             = 3;//default value == full
     if ( in_array( $_current_layout, $_layouts ) )
@@ -260,7 +260,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
       $_grid_col_height_map[$_c] = $this -> tc_set_max_col_height ( $_heights ,$_h );
     }
     $_h = isset( $_grid_col_height_map[$_cols_nb][$_key] ) ? $_grid_col_height_map[$_cols_nb][$_key] : $_h;
-    return apply_filters( 'tc_get_grid_column_height' , $_h, $_cols_nb, $_current_layout );
+    return apply_filters( 'czr_get_grid_column_height' , $_h, $_cols_nb, $_current_layout );
   }
 
 
@@ -290,9 +290,9 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @return css media query string
   * Returns the paragraph and title media queries for a given layout
   */
-  private function tc_get_grid_font_css( $_col_nb = '3' ) {
-    $_media_queries     = $this -> tc_get_grid_media_queries();//returns the simple array of media queries
-    $_grid_font_sizes = $this -> tc_get_grid_font_sizes( $_col_nb );//return the array of sizes (ordered by @media queries) for a given column layout
+  private function czr_get_grid_font_css( $_col_nb = '3' ) {
+    $_media_queries     = $this -> czr_get_grid_media_queries();//returns the simple array of media queries
+    $_grid_font_sizes = $this -> czr_get_grid_font_sizes( $_col_nb );//return the array of sizes (ordered by @media queries) for a given column layout
     $_col_rules         = array();
     $_media_queries_css = '';
     //flatten the matrix
@@ -315,7 +315,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   /**
   * @return simple array of media queries
   */
-  private function tc_get_grid_media_queries() {
+  private function czr_get_grid_media_queries() {
     return apply_filters( 'tc_grid_media_queries' ,  array(
              '(min-width: 1200px)', '(max-width: 1199px) and (min-width: 980px)', '(max-width: 979px) and (min-width: 768px)', '(max-width: 767px)', '(max-width: 480px)'
            ));
@@ -330,7 +330,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * Note : When all sizes are requested (default case), the returned array can be filtered with the current layout param
   * Size array must have the same length of the media query array
   */
-  private function tc_get_grid_font_sizes( $_col_nb = '3', $_requested_media_size = null ) {
+  private function czr_get_grid_font_sizes( $_col_nb = '3', $_requested_media_size = null ) {
     $_col_media_matrix = apply_filters( 'tc_grid_font_matrix' , array(
       //=> matrix col nb / media queries
       //            1200 | 1199-980 | 979-768 | 767   | 480
@@ -342,25 +342,25 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
 
     //if a specific media query is requested, return a string
     if ( ! is_null($_requested_media_size) ) {
-      $_media_queries = $this -> tc_get_grid_media_queries();
+      $_media_queries = $this -> czr_get_grid_media_queries();
       //get the key = position of requested size in the current layout
       $_key = array_search( $_requested_media_size, $_media_queries);
       return apply_filters(
-        'tc_get_layout_single_font_size',
+        'czr_get_layout_single_font_size',
         isset($_col_media_matrix[$_col_nb][$_key]) ? $_col_media_matrix[$_col_nb][$_key] : 'xl'
       );
     }
     return apply_filters(
-      'tc_get_grid_font_sizes',
+      'czr_get_grid_font_sizes',
       isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
       $_col_nb,
       $_col_media_matrix,
-      CZR_cl_utils::tc_get_layout( $this -> post_id , 'class' )
+      CZR_cl_utils::czr_get_layout( $this -> post_id , 'class' )
     );
   }
 
   /**
-  * hook : 'tc_get_grid_font_sizes'
+  * hook : 'czr_get_grid_font_sizes'
   * Updates the array of sizes for a given sidebar layout
   * @param  $_sizes array. ex : array( 'xl' , 'l' , 'm', 'l', 'm' )
   * @param  $_col_nb string. Ex: '2'
@@ -403,8 +403,8 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @param selector type string
   * returns ratio of size / body size for a given selector type ( headings or paragraphs )
   */
-  private function tc_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
-    $_ratios =  apply_filters( 'tc_get_grid_font_ratios' , array(
+  private function czr_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
+    $_ratios =  apply_filters( 'czr_get_grid_font_ratios' , array(
         'xxxl' => array( 'h' => 2.10, 'p' => 1 ),
         'xxl' => array( 'h' => 1.86, 'p' => 1 ),
         'xl' => array( 'h' => 1.60, 'p' => 0.93 ),
@@ -434,7 +434,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
     $_css = '';
     //Add one column font rules if there's a sticky post
     if ( $this -> tc_maybe_has_sticky_expanded() || '1' == $_col_nb ) {
-      $_size      = $this -> tc_get_grid_font_sizes( $_col_nb = '1', $_media_query );//size like xxl
+      $_size      = $this -> czr_get_grid_font_sizes( $_col_nb = '1', $_media_query );//size like xxl
       $_h_one_col = $this -> tc_grid_build_css_rules( $_size , 'h' );
       $_p_one_col = $this -> tc_grid_build_css_rules( $_size , 'p' );
       $_css .= "
@@ -459,12 +459,12 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * 2) user layout is one column
   */
   private function tc_grid_get_figure_css( $_col_nb = '3' ) {
-    $_height = $this -> tc_get_grid_column_height( $_col_nb );
+    $_height = $this -> czr_get_grid_column_height( $_col_nb );
     $_cols_class      = sprintf( 'grid-cols-%s' , $_col_nb );
     $_css = '';
     //Add one column height if there's a sticky post
     if ( $this -> tc_maybe_has_sticky_expanded() && '1' != $_col_nb ) {
-      $_height_col_one = $this -> tc_get_grid_column_height( '1' );
+      $_height_col_one = $this -> czr_get_grid_column_height( '1' );
       $_css .= ".grid-cols-1 figure {
             height:{$_height_col_one}px;
             max-height:{$_height_col_one}px;
@@ -488,9 +488,9 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   */
   private function tc_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
     $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.28 ); //line-height / font-size
-    $_ratio = $this -> tc_get_grid_font_ratios( $_size , $_wot );
+    $_ratio = $this -> czr_get_grid_font_ratios( $_size , $_wot );
     //body font size
-    $_bs = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_body_font_size') );
+    $_bs = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_body_font_size') );
     $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
     return sprintf( 'font-size:%spx;line-height:%spx;' ,
       ceil( $_bs * $_ratio ),
@@ -502,7 +502,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @return (number) customizer user defined height for the grid thumbnails
   */
   private function tc_grid_get_thumb_height() {
-    $_opt = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_thumb_height') );
+    $_opt = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_grid_thumb_height') );
     return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
   }
 
@@ -513,11 +513,11 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @since Customizr 3.2.18
   */
   function tc_user_options_style_cb( $_css ){
-    $_col_nb  = $this -> tc_get_grid_cols();
+    $_col_nb  = $this -> czr_get_grid_cols();
     //GENERATE THE FIGURE HEIGHT CSS
     $_current_col_figure_css  = $this -> tc_grid_get_figure_css( $_col_nb );
     //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
-    $_current_col_media_css   = $this -> tc_get_grid_font_css( $_col_nb );
+    $_current_col_media_css   = $this -> czr_get_grid_font_css( $_col_nb );
     $_css = sprintf("%s\n%s\n%s\n",
         $_css,
         $_current_col_media_css,

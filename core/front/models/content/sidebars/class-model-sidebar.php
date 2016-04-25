@@ -35,7 +35,7 @@ class CZR_cl_sidebar_model_class extends CZR_cl_Model {
   */
   function tc_extend_params( $model = array() ) {
     $model                = parent::tc_extend_params( $model );
-    $screen_layout        = CZR_cl_utils::tc_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
+    $screen_layout        = CZR_cl_utils::czr_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
 
     //extract the position
     $this -> position     = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar' ) );

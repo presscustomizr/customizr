@@ -190,7 +190,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       //disable title icons
-      add_filter( 'tc_opt_tc_show_title_icon', 'tc_bbpress_disable_title_icon' );
+      add_filter( 'czr_opt_tc_show_title_icon', 'tc_bbpress_disable_title_icon' );
       function tc_bbpress_disable_title_icon($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
@@ -205,7 +205,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     */
     private function tc_set_buddypress_compat() {
       //disable title icons
-      add_filter( 'tc_opt_tc_show_title_icon', 'tc_buddypress_disable_title_icon' );
+      add_filter( 'czr_opt_tc_show_title_icon', 'tc_buddypress_disable_title_icon' );
       function tc_buddypress_disable_title_icon($bool) {
          return ( function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
       }
@@ -226,7 +226,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //if we can call it that way.
       add_action( 'xprofile_screen_change_avatar', 'tc_buddypress_maybe_disable_img_smartload' );
       function tc_buddypress_maybe_disable_img_smartload() {
-        add_filter( 'tc_opt_tc_img_smart_load', '__return_false' );
+        add_filter( 'czr_opt_tc_img_smart_load', '__return_false' );
       }
 
     }
@@ -298,7 +298,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
           add_filter( $filter, 'tc_apply_qtranslate' );
 
         //translate button text
-        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? CZR_cl_slider_of_posts_model_class::$instance -> tc_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
+        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? CZR_cl_slider_of_posts_model_class::$instance -> czr_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
 
         //translate title and excerpt if needed
         $_posts = &$pre_slides['posts'];
@@ -308,8 +308,8 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
           $_p = get_post( $ID );
           if ( ! $_p ) continue;
 
-          $_post['title'] = $_post['title'] ? CZR_cl_slider_of_posts_model_class::$instance -> tc_get_post_slide_title($_p, $ID) : '';
-          $_post['text']  = $_post['text'] ? CZR_cl_slider_of_posts_model_class::$instance -> tc_get_post_slide_excerpt($_p, $ID) : '';
+          $_post['title'] = $_post['title'] ? CZR_cl_slider_of_posts_model_class::$instance -> czr_get_post_slide_title($_p, $ID) : '';
+          $_post['text']  = $_post['text'] ? CZR_cl_slider_of_posts_model_class::$instance -> czr_get_post_slide_excerpt($_p, $ID) : '';
         }
         return $pre_slides;
       }
@@ -332,20 +332,20 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
       function tc_pll_strings_setup() {
         // grab theme options
-        $tc_options = tc__f('__options');
+        $czr_options = tc__f('__options');
         // grab settings map, useful for some options labels
-        $tc_settings_map = CZR_cl_utils_settings_map::$instance -> tc_get_customizer_map( $get_default = true );
+        $tc_settings_map = CZR_cl_utils_settings_map::$instance -> czr_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
         $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';
 
         //get options to translate
-        $tc_translatable_raw_options = CZR_cl_plugins_compat::$instance -> tc_get_string_options_to_translate();
+        $tc_translatable_raw_options = CZR_cl_plugins_compat::$instance -> czr_get_string_options_to_translate();
         $tc_pll_options              = array();
 
         //build array if option => array( label (gettext-ed), option )
         foreach ( $tc_translatable_raw_options as $tc_translatable_option )
-          if ( isset( $tc_options[$tc_translatable_option] ) ) {
+          if ( isset( $czr_options[$tc_translatable_option] ) ) {
             switch ( $tc_translatable_option ) {
               case 'tc_front_slider'             : $label = __( 'Front page slider name', 'customizr' );
                                                    break;
@@ -356,7 +356,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
             }//endswitch
             $tc_pll_options[$tc_translatable_option]= array(
                 'label'  => $label,
-                'value'  => $tc_options[$tc_translatable_option]
+                'value'  => $czr_options[$tc_translatable_option]
             );
           }
 
@@ -370,10 +370,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
         //strings translation
         //get the options to translate
-        $tc_translatable_options = CZR_cl_plugins_compat::$instance -> tc_get_string_options_to_translate();
+        $tc_translatable_options = CZR_cl_plugins_compat::$instance -> czr_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
-          add_filter("tc_opt_$tc_translatable_option", 'pll__');
+          add_filter("czr_opt_$tc_translatable_option", 'pll__');
 
         /**
         * Tax filtering (home/blog posts filtered by cat)
@@ -392,7 +392,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         }
 
         //Translate category ids for the filtered posts in home/blog
-        add_filter('tc_opt_tc_blog_restrict_by_cat', 'tc_pll_translate_tax');
+        add_filter('czr_opt_tc_blog_restrict_by_cat', 'tc_pll_translate_tax');
         /*end tax filtering*/
 
         /* Slider of posts */
@@ -457,7 +457,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         $option_name_assoc = wp_cache_get( $_wp_cache_key );
 
         if ( false === $option_name_assoc ) {
-          $options_to_translate = CZR_cl_plugins_compat::$instance -> tc_get_string_options_to_translate();
+          $options_to_translate = CZR_cl_plugins_compat::$instance -> czr_get_string_options_to_translate();
 
           $option_name_assoc = apply_filters( 'tc_wpml_options_names_config', array(
  //           'tc_front_slider'              => 'Front page slider name', //Handled in a different way by Srdjan
@@ -569,14 +569,14 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
           $tc_wpml_options     = array_keys($tc_wpml_option_name);
 
           // grab theme options
-          $tc_options = tc__f('__options');
+          $czr_options = tc__f('__options');
 
           // build array of options to translate
           foreach ( $tc_wpml_options as $tc_wpml_option )
-            if ( isset( $tc_options[$tc_wpml_option] ) )
+            if ( isset( $czr_options[$tc_wpml_option] ) )
               icl_register_string( CZR_WPML_CONTEXT,
                 $tc_wpml_option_name[$tc_wpml_option],
-                esc_attr($tc_options[$tc_wpml_option]) //value
+                esc_attr($czr_options[$tc_wpml_option]) //value
             );
         }//end of string based admin translation
         //Taxonomies/Pages "transposing" in the Customizer
@@ -618,10 +618,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         // String transaltion binders : requires wpml icl_t function
         if ( function_exists( 'icl_t') ) {
           /*** TC - WPML bind, wrap WPML string translator function into convenient tc functions ***/
-          //define our icl_t wrapper for options filtered with tc_opt_{$option}
+          //define our icl_t wrapper for options filtered with czr_opt_{$option}
           if ( ! function_exists( 'tc_wpml_t_opt' ) ) {
             function tc_wpml_t_opt( $string ) {
-              return tc_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );
+              return tc_wpml_t( $string, str_replace('czr_opt_', '', current_filter() ) );
             }
           }
           //special function for the post slider button text pre trim filter
@@ -644,10 +644,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
           //strings translation
           foreach ( $tc_wpml_options as $tc_wpml_option )
-            add_filter("tc_opt_$tc_wpml_option", 'tc_wpml_t_opt', 20 );
+            add_filter("czr_opt_$tc_wpml_option", 'tc_wpml_t_opt', 20 );
 
           //translates sliders? credits @Srdjan
-          add_filter( 'tc_opt_tc_sliders', 'sliders_filter', 99 );
+          add_filter( 'czr_opt_tc_sliders', 'sliders_filter', 99 );
 
         }
         /*A) FP*/
@@ -670,7 +670,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
           return array_unique( tc_wpml_object_id( $cat_ids, 'category' ) );
         }
         //Translate category ids for the filtered posts in home/blog
-        add_filter('tc_opt_tc_blog_restrict_by_cat', 'tc_wpml_translate_cat');
+        add_filter('czr_opt_tc_blog_restrict_by_cat', 'tc_wpml_translate_cat');
         /*end tax filtering*/
 
         /* Slider of posts */
@@ -868,11 +868,11 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       function tc_woocommerce_wc_cart_enabled() {
-        return 1 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) );
+        return 1 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_woocommerce_header_cart' ) );
       }
 
       //disable title icons
-      add_filter( 'tc_opt_tc_show_title_icon', 'tc_woocommerce_disable_title_icon' );
+      add_filter( 'czr_opt_tc_show_title_icon', 'tc_woocommerce_disable_title_icon' );
       function tc_woocommerce_disable_title_icon($bool) {
         return ( function_exists('tc_wc_is_checkout_cart') && tc_wc_is_checkout_cart() ) ? false : $bool;
       }
@@ -924,7 +924,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
       function tc_woocommerce_disable_link_scroll( $excl ){
-        if ( false == esc_attr( CZR_cl_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( CZR_cl_utils::$inst->czr_opt('tc_link_scroll') ) ) return $excl;
 
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
@@ -975,7 +975,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_vc_disable_link_scroll' );
       function tc_vc_disable_link_scroll( $excl ){
-        if ( false == esc_attr( CZR_cl_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( CZR_cl_utils::$inst->czr_opt('tc_link_scroll') ) ) return $excl;
 
         if ( ! is_array( $excl ) )
           $excl = array();
@@ -1060,26 +1060,26 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     */
     function tc_mainwrapper_start() {
       /* SLIDERS : standard or slider of posts */
-      if ( tc_has('main_slider') ) {
-        tc_render_template('modules/slider/slider', 'main_slider');
+      if ( czr_has('main_slider') ) {
+        czr_render_template('modules/slider/slider', 'main_slider');
       }
-      if( tc_has( 'main_posts_slider' ) ) {
-        tc_render_template('modules/slider/slider', 'main_posts_slider');
+      if( czr_has( 'main_posts_slider' ) ) {
+        czr_render_template('modules/slider/slider', 'main_posts_slider');
       }
 
     ?>
     <?php do_action('__before_main_wrapper'); ?>
 
-      <div id="main-wrapper" class="container" <?php tc_echo('element_attributes') ?>>
+      <div id="main-wrapper" class="container" <?php czr_echo('element_attributes') ?>>
 
-        <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
+        <?php if ( czr_has('breadcrumb') ) { czr_render_template('modules/breadcrumb'); } ?>
 
         <?php do_action('__before_main_container'); ?>
 
         <div class="container" role="main">
           <div class="<?php tc_column_content_wrapper_class() ?>">
             <?php
-              if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
+              if ( czr_has('left_sidebar') ) { czr_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
             ?>
 
                 <?php do_action('__before_content'); ?>
@@ -1095,13 +1095,13 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
             <?php do_action('__after_content'); ?>
 
             <?php
-            if ( tc_has('right_sidebar') ) { tc_render_template('content/sidebars/right_sidebar', 'right_sidebar'); }
+            if ( czr_has('right_sidebar') ) { czr_render_template('content/sidebars/right_sidebar', 'right_sidebar'); }
             ?>
           </div>
         </div><!-- .container -->
 
         <?php do_action('__after_main_container'); ?>
-        <?php if ( tc_has('footer_push') ) { tc_render_template('footer/footer_push', 'footer_push'); } ?>
+        <?php if ( czr_has('footer_push') ) { czr_render_template('footer/footer_push', 'footer_push'); } ?>
 
       </div><!-- #main-wrapper -->
 
@@ -1146,7 +1146,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       return false;
     }
 
-    public function tc_get_string_options_to_translate() {
+    public function czr_get_string_options_to_translate() {
       $string_options = array(
         'tc_front_slider',
         'tc_posts_slider_button_text',
@@ -1163,7 +1163,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
         $string_options[] = 'tc_featured_page_button_text';
       }
-      return apply_filters( 'tc_get_string_options_to_translate', $string_options );
+      return apply_filters( 'czr_get_string_options_to_translate', $string_options );
     }
   }//end of class
 endif;

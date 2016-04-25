@@ -12,22 +12,22 @@ class CZR_cl_social_block_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'social_block' ]        = CZR_cl_utils::$inst -> tc_get_social_networks();
+    $model[ 'social_block' ]        = CZR_cl_utils::$inst -> czr_get_social_networks();
     $model[ 'element_class' ]       = $this -> tc_social_block_get_class( $model );
-    $model[ 'where' ]               = $this -> tc_get_socials_where( $model );
+    $model[ 'where' ]               = $this -> czr_get_socials_where( $model );
     $model[ 'element_attributes' ]  = $this -> tc_social_block_get_attributes( $model );
-    $model[ 'social_block' ]        = $this -> tc_get_before_socials() . $model[ 'social_block' ] . $this -> tc_get_after_socials();
+    $model[ 'social_block' ]        = $this -> czr_get_before_socials() . $model[ 'social_block' ] . $this -> czr_get_after_socials();
     return $model;
   }
 
-  protected function tc_get_socials_where( $model ) {
+  protected function czr_get_socials_where( $model ) {
     return ! is_null( $this -> where ) ? $this-> where : '';
   }
-  protected function tc_get_before_socials() {
+  protected function czr_get_before_socials() {
     return '';
   }
 
-  protected function tc_get_after_socials() {
+  protected function czr_get_after_socials() {
     return '';
   }
 
@@ -43,7 +43,7 @@ class CZR_cl_social_block_model_class extends CZR_cl_Model {
     //1b) there are no social icons set
     //and
     //2) customizing
-    $_hidden = ( ( $where && 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && CZR___::$instance -> tc_is_customizing();
+    $_hidden = ( ( $where && 0 == esc_attr( CZR_cl_utils::$inst->czr_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && CZR___::$instance -> tc_is_customizing();
     return $_hidden ? 'style="display:none;"' : '';
   }
 

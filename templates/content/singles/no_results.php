@@ -6,7 +6,7 @@
  * @since Customizr 3.5.0
  */
 ?>
-<header class="search-header" <?php tc_echo('element_attributes') ?>>
+<header class="search-header" <?php czr_echo('element_attributes') ?>>
   <h1 class="entry-title format-icon"><?php _e('No Search Results for :', 'customizr') ?> <span><?php echo get_search_query() ?></span></h1>
   <hr class="featurette-divider headings after-noresults-title">
 </header>

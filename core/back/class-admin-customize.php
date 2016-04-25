@@ -72,8 +72,8 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       //=> CHANGE SITE ICON DEFAULT WP SECTION TO CUSTOMIZR LOGO SECTION
       global $wp_version;
       if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
-        $tc_option_group = CZR___::$tc_option_group;
-        $wp_customize -> remove_control( "{$tc_option_group}[tc_fav_upload]" );
+        $czr_option_group = CZR___::$czr_option_group;
+        $wp_customize -> remove_control( "{$czr_option_group}[tc_fav_upload]" );
         //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
         $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
 
@@ -185,7 +185,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 			return $this -> tc_customize_factory (
         $wp_customize,
         $this -> tc_customize_arguments(),
-        CZR_cl_utils_settings_map::$instance -> tc_get_customizer_map()
+        CZR_cl_utils_settings_map::$instance -> czr_get_customizer_map()
       );
 		}
 
@@ -309,7 +309,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 					$f_option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
 		      $f_option_name = isset( $match[1][0] )  ? $match[1][0] : 'setting';
 
-          $tc_option_group = CZR___::$tc_option_group;
+          $czr_option_group = CZR___::$czr_option_group;
           //build option name
           //When do we add a prefix ?
           //all customizr theme options start by "tc_" by convention
@@ -319,7 +319,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
           $add_prefix = false;
           if ( CZR_cl_utils::$inst -> tc_is_customizr_option( $key ) )
             $add_prefix = true;
-          $_opt_name = $add_prefix ? "{$tc_option_group}[{$key}]" : $key;
+          $_opt_name = $add_prefix ? "{$czr_option_group}[{$key}]" : $key;
 
 					//declares settings array
 					$option_settings = array();
@@ -394,7 +394,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
                 //can be hacked to override the preview params when a custom skin is used
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
-                'fontPairs'       => CZR_cl_utils::$inst -> tc_get_font( 'list' ),
+                'fontPairs'       => CZR_cl_utils::$inst -> czr_get_font( 'list' ),
                 'fontSelectors'   => CZR_cl_init::$instance -> font_selectors,
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' )
@@ -467,8 +467,8 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 	        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 	        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
             'themeName'     => CZR___::$theme_name,
-            'HideDonate'    => $this -> tc_get_hide_donate_status(),
-            'ShowCTA'       => ( true == CZR_cl_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
+            'HideDonate'    => $this -> czr_get_hide_donate_status(),
+            'ShowCTA'       => ( true == CZR_cl_utils::$inst->czr_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'    => array(
               'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
@@ -487,7 +487,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
     * @package Customizr
     * @since Customizr 3.1.14
     */
-    function tc_get_hide_donate_status() {
+    function czr_get_hide_donate_status() {
       //is customizr the current active theme?
       //=> check the existence of is_theme_active for backward compatibility (may be useless because introduced in 3.4... )
       $_is_customizr_active = method_exists( $GLOBALS['wp_customize'], 'is_theme_active' ) && $GLOBALS['wp_customize'] -> is_theme_active();
@@ -495,7 +495,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       $_user_started_customize = false !== $_options || ! empty( $_options );
 
       //shall we hide donate ?
-      return ! $_user_started_customize || ! $_is_customizr_active || CZR_cl_utils::$inst->tc_opt('tc_hide_donate');
+      return ! $_user_started_customize || ! $_is_customizr_active || CZR_cl_utils::$inst->czr_opt('tc_hide_donate');
     }
 
 

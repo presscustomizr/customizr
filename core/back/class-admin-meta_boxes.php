@@ -17,11 +17,11 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
       function __construct () {
           self::$instance =& $this;
           add_action( 'add_meta_boxes'                       , array( $this , 'tc_post_meta_boxes' ));
-          add_action( '__post_slider_infos'                  , array( $this , 'tc_get_post_slider_infos' ));
+          add_action( '__post_slider_infos'                  , array( $this , 'czr_get_post_slider_infos' ));
           add_action( 'save_post'                            , array( $this , 'tc_post_fields_save' ));
 
           add_action( 'add_meta_boxes'                       , array( $this , 'tc_attachment_meta_box' ));
-          add_action( '__attachment_slider_infos'            , array( $this , 'tc_get_attachment_slider_infos' ));
+          add_action( '__attachment_slider_infos'            , array( $this , 'czr_get_attachment_slider_infos' ));
           add_action( 'edit_attachment'                      , array( $this , 'tc_slide_save' ));
 
           add_action( '__show_slides'                        , array( $this , 'tc_show_slides' ), 10, 2);
@@ -131,7 +131,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
             }
 
             //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_sidebar_global_layout') );
+            $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->czr_opt('tc_sidebar_global_layout') );
 
             //get the lists of eligible post types + normal posts (not pages!)
             $args                 = array(
@@ -146,16 +146,16 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
 
             //eligible posts (and custom posts types) default layout
             if ( in_array($post->post_type , $eligible_posts ) ) {
-              $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_sidebar_post_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->czr_opt('tc_sidebar_post_layout') );
             }
 
             //page default layout
             if ( $post->post_type == 'page' ) {
-              $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_sidebar_page_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->czr_opt('tc_sidebar_page_layout') );
             }
 
             //check if the 'force default layout' option is checked
-            $force_layout                 = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_sidebar_force_layout') );
+            $force_layout                 = esc_attr( CZR_cl_utils::$inst->czr_opt('tc_sidebar_force_layout') );
 
 
             ?>
@@ -252,7 +252,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
      * @package Customizr
      * @since Customizr 2.0
      */
-      function tc_get_post_slider_infos( $postid ) {
+      function czr_get_post_slider_infos( $postid ) {
           //check value is ajax saved ?
           $post_slider_check_value   = esc_attr(get_post_meta( $postid, $key = 'post_slider_check_key' , $single = true ));
 
@@ -550,7 +550,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-        function tc_get_attachment_slider_infos( $postid ) {
+        function czr_get_attachment_slider_infos( $postid ) {
           //check value is ajax saved ?
           $slider_check_value     = esc_attr(get_post_meta( $postid, $key = 'slider_check_key' , $single = true ));
 
@@ -1047,7 +1047,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
 
             //OPTION FIELDS
             //get options and some useful $_POST vars
-            $tc_options                 = get_option( 'tc_theme_options' );
+            $czr_options                 = get_option( 'tc_theme_options' );
 
             if (isset( $_POST['tc_post_type']))
               $tc_post_type             = esc_attr( $_POST['tc_post_type']);
@@ -1084,9 +1084,9 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                     }
 
                     //in all cases, delete DB option
-                    unset( $tc_options['tc_sliders'][$current_post_slider]);
+                    unset( $czr_options['tc_sliders'][$current_post_slider]);
                     //update DB with new slider array
-                    update_option( 'tc_theme_options' , $tc_options );
+                    update_option( 'tc_theme_options' , $czr_options );
                   break;
 
 
@@ -1101,13 +1101,13 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                       $newslider = array();
 
                       foreach ( $neworder as $new_key => $new_index) {
-                          $newslider[$new_index] =  $tc_options['tc_sliders'][$current_post_slider][$new_index];
+                          $newslider[$new_index] =  $czr_options['tc_sliders'][$current_post_slider][$new_index];
                       }
 
-                      $tc_options['tc_sliders'][$current_post_slider] = $newslider;
+                      $czr_options['tc_sliders'][$current_post_slider] = $newslider;
 
                        //update DB with new slider array
-                      update_option( 'tc_theme_options' , $tc_options );
+                      update_option( 'tc_theme_options' , $czr_options );
                     break;
 
 
@@ -1127,31 +1127,31 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                           //remove spaces and special char
                           $new_slider_name                              = strtolower(preg_replace("![^a-z0-9]+!i", "-", $new_slider_name));
 
-                          $tc_options['tc_sliders'][$new_slider_name]      = array( $post_ID);
+                          $czr_options['tc_sliders'][$new_slider_name]      = array( $post_ID);
                           //adds the new slider name in DB options
-                          update_option( 'tc_theme_options' , $tc_options );
+                          update_option( 'tc_theme_options' , $czr_options );
                         //associate the current post with the new saved slider
 
                         //looks for a previous slider entry and delete it
-                        foreach ( $tc_options['tc_sliders'] as $slider_name => $slider) {
+                        foreach ( $czr_options['tc_sliders'] as $slider_name => $slider) {
 
                           foreach ( $slider as $key => $tc_post) {
                              //clean empty values if necessary
-                             if ( is_null( $tc_options['tc_sliders'][$slider_name][$key]))
-                                unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                             if ( is_null( $czr_options['tc_sliders'][$slider_name][$key]))
+                                unset( $czr_options['tc_sliders'][$slider_name][$key]);
 
                              //delete previous slider entries for this post
                              if ( $tc_post == $post_ID )
-                                unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                unset( $czr_options['tc_sliders'][$slider_name][$key]);
                             }
                           }
 
                           //update DB with clean option table
-                          update_option( 'tc_theme_options' , $tc_options );
+                          update_option( 'tc_theme_options' , $czr_options );
 
                           //push new post value for the new slider and write in DB
-                          array_push( $tc_options['tc_sliders'][$new_slider_name], $post_ID);
-                          update_option( 'tc_theme_options' , $tc_options );
+                          array_push( $czr_options['tc_sliders'][$new_slider_name], $post_ID);
+                          update_option( 'tc_theme_options' , $czr_options );
 
                         }
 
@@ -1181,55 +1181,55 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                            $post_slider_name                = wp_filter_nohtml_kses( $post_slider_name );
                             //looks for a previous slider entry and delete it.
                            //Important : we check if the slider has slides first!
-                              foreach ( $tc_options['tc_sliders'] as $slider_name => $slider) {
+                              foreach ( $czr_options['tc_sliders'] as $slider_name => $slider) {
                                 foreach ( $slider as $key => $tc_post) {
 
                                   //clean empty values if necessary
-                                  if ( is_null( $tc_options['tc_sliders'][$slider_name][$key])) {
-                                      unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                  if ( is_null( $czr_options['tc_sliders'][$slider_name][$key])) {
+                                      unset( $czr_options['tc_sliders'][$slider_name][$key]);
                                   }
 
                                   //clean slides with no images
-                                  $slide_img = wp_get_attachment_image( $tc_options['tc_sliders'][$slider_name][$key]);
+                                  $slide_img = wp_get_attachment_image( $czr_options['tc_sliders'][$slider_name][$key]);
                                   if (isset($slide_img) && empty($slide_img)) {
-                                      unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                      unset( $czr_options['tc_sliders'][$slider_name][$key]);
                                   }
 
                                  //delete previous slider entries for this post
                                  if ( $tc_post == $post_ID ) {
-                                    unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                    unset( $czr_options['tc_sliders'][$slider_name][$key]);
                                   }
 
                                 }//end for each
                               }
                               //update DB with clean option table
-                              update_option( 'tc_theme_options' , $tc_options );
+                              update_option( 'tc_theme_options' , $czr_options );
 
                             //check if the selected slider is empty and set it as array
-                            if( empty( $tc_options['tc_sliders'][$post_slider_name]) ) {
-                              $tc_options['tc_sliders'][$post_slider_name] = array();
+                            if( empty( $czr_options['tc_sliders'][$post_slider_name]) ) {
+                              $czr_options['tc_sliders'][$post_slider_name] = array();
                             }
 
                             //push new post value for the slider and write in DB
-                              array_push( $tc_options['tc_sliders'][$post_slider_name], $post_ID);
-                              update_option( 'tc_theme_options' , $tc_options );
+                              array_push( $czr_options['tc_sliders'][$post_slider_name], $post_ID);
+                              update_option( 'tc_theme_options' , $czr_options );
                         }//end if !empty( $post_slider_name)
 
                         //No slider selected
                         else {
                           //looks for a previous slider entry and delete it
-                            foreach ( $tc_options['tc_sliders'] as $slider_name => $slider) {
+                            foreach ( $czr_options['tc_sliders'] as $slider_name => $slider) {
                               foreach ( $slider as $key => $tc_post) {
                                  //clean empty values if necessary
-                                 if ( is_null( $tc_options['tc_sliders'][$slider_name][$key]))
-                                    unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                 if ( is_null( $czr_options['tc_sliders'][$slider_name][$key]))
+                                    unset( $czr_options['tc_sliders'][$slider_name][$key]);
                                  //delete previous slider entries for this post
                                  if ( $tc_post == $post_ID )
-                                    unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                    unset( $czr_options['tc_sliders'][$slider_name][$key]);
                               }
                             }
                             //update DB with clean option table
-                            update_option( 'tc_theme_options' , $tc_options );
+                            update_option( 'tc_theme_options' , $czr_options );
                         }
                       break;
                   }//end switch
@@ -1255,7 +1255,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                           case 'post_slider_key' :
                              $mydata = esc_attr( $_POST[$tcid] );
                              //Does the selected slider still exists in options? (we first check if the selected slider is not empty)
-                             if(!empty( $mydata) && !isset( $tc_options['tc_sliders'][$mydata]))
+                             if(!empty( $mydata) && !isset( $czr_options['tc_sliders'][$mydata]))
                                 break;
 
                              //write in DB
@@ -1277,20 +1277,20 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
 
                                   //if we uncheck the attachement slider, looks for a previous entry and delete it.
                                   //Important : we check if the slider has slides first!
-                                  if ( isset( $tc_options['tc_sliders'])) {
-                                    foreach ( $tc_options['tc_sliders'] as $slider_name => $slider) {
+                                  if ( isset( $czr_options['tc_sliders'])) {
+                                    foreach ( $czr_options['tc_sliders'] as $slider_name => $slider) {
                                       foreach ( $slider as $key => $tc_post) {
                                          //clean empty values if necessary
-                                         if ( is_null( $tc_options['tc_sliders'][$slider_name][$key]))
-                                            unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                         if ( is_null( $czr_options['tc_sliders'][$slider_name][$key]))
+                                            unset( $czr_options['tc_sliders'][$slider_name][$key]);
                                          //delete previous slider entries for this post
                                          if ( $tc_post == $post_ID )
-                                            unset( $tc_options['tc_sliders'][$slider_name][$key]);
+                                            unset( $czr_options['tc_sliders'][$slider_name][$key]);
                                       }
                                     }
                                   }
                                   //update DB with clean option table
-                                  update_option( 'tc_theme_options' , $tc_options );
+                                  update_option( 'tc_theme_options' , $czr_options );
 
                               }//endif;
 
@@ -1342,10 +1342,10 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
         //we use the post_slider var defined in tc_ajax_slider.js
         if ( isset( $_POST['tc_post_type'])) {
           if( $_POST['tc_post_type'] == 'post' ) {
-            $this -> tc_get_post_slider_infos( $tc_post_id );
+            $this -> czr_get_post_slider_infos( $tc_post_id );
           }
           else {
-            $this -> tc_get_attachment_slider_infos( $tc_post_id );
+            $this -> czr_get_attachment_slider_infos( $tc_post_id );
           }
         }
         //echo $_POST['slider_id'];

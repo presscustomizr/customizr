@@ -11,7 +11,7 @@ class CZR_cl_tagline_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'element_attributes' ] = ( CZR___::$instance -> tc_is_customizing() && 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
+    $model[ 'element_attributes' ] = ( CZR___::$instance -> tc_is_customizing() && 0 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
 
     $model[ 'element_class' ]      = apply_filters( 'tc_tagline_class', $this -> element_class, $model );
     return $model;
@@ -38,8 +38,8 @@ class CZR_cl_tagline_model_class extends CZR_cl_Model {
     if ( $_fired ) return;
     $_fired        = true;
 
-    if ( esc_attr( CZR_cl_utils::$inst->tc_opt( "tc_sticky_header") || CZR___::$instance -> tc_is_customizing() ) ) {
-      $_class =        0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_sticky_show_tagline') ) ? 'tc-tagline-on' : 'tc-tagline-off';
+    if ( esc_attr( CZR_cl_utils::$inst->czr_opt( "tc_sticky_header") || CZR___::$instance -> tc_is_customizing() ) ) {
+      $_class =        0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_sticky_show_tagline') ) ? 'tc-tagline-on' : 'tc-tagline-off';
       if ( ! is_array( $header_model -> element_class ) )
         $header_model -> element_class = explode( ' ', $header_model -> element_class );
       array_push( $header_model -> element_class, $_class );

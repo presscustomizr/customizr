@@ -17,13 +17,13 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html <?php language_attributes(); ?> >
 <!--<![endif]-->
-  <?php tc_render_template('header/head'); ?>
+  <?php czr_render_template('header/head'); ?>
 
   <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
-    <?php if ( tc_has('sidenav') && tc_has('header') ){ tc_render_template('header/sidenav'); }; ?>
+    <?php if ( czr_has('sidenav') && czr_has('header') ){ czr_render_template('header/sidenav'); }; ?>
 
     <?php do_action('__before_page_wrapper'); ?>
 
     <div id="tc-page-wrap">
 
-      <?php tc_render_template('header'); ?>
+      <?php czr_render_template('header'); ?>

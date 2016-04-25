@@ -51,9 +51,9 @@ class CZR_cl_comment_list_model_class extends CZR_cl_Model {
     $args['max_depth']  = isset( $max_comments_depth ) ? $max_comments_depth : 5;
 
     apply_filters_ref_array( 'tc_comment_callback_params', array( $comment, $args, $depth ) );
-    if ( tc_has( 'comment' ) )
-      tc_render_template( 'content/comments/comment', 'comment' );
-    if ( tc_has( 'trackback' ) )
-      tc_render_template( 'content/comments/comment', 'trackback' );
+    if ( czr_has( 'comment' ) )
+      czr_render_template( 'content/comments/comment', 'comment' );
+    if ( czr_has( 'trackback' ) )
+      czr_render_template( 'content/comments/comment', 'trackback' );
   }
 }

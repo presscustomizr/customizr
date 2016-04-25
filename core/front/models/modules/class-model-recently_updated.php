@@ -15,7 +15,7 @@ class CZR_cl_recently_updated_model_class extends CZR_cl_Model {
       return;
 
     //Is the notice option enabled (checked by the controller) AND this post type eligible for updated notice ? (default is post)
-    if ( /* 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_notice_in_title' ) ) || */! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
+    if ( /* 0 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_metas_update_notice_in_title' ) ) || */! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
       return;
 
     //php version check for DateTime
@@ -24,7 +24,7 @@ class CZR_cl_recently_updated_model_class extends CZR_cl_Model {
       return;
 
     //get the user defined interval in days
-    $_interval = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_notice_interval' ) );
+    $_interval = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_metas_update_notice_interval' ) );
 
     $_interval = ( 0 != $_interval ) ? $_interval : 30;
 
@@ -46,8 +46,8 @@ class CZR_cl_recently_updated_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $recently_updated_text =  esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_notice_text' ) );
-    $element_class         = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_notice_format' ) );
+    $recently_updated_text =  esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_metas_update_notice_text' ) );
+    $element_class         = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_metas_update_notice_format' ) );
 
     return array_merge( $model, compact( 'element_class', 'recently_updated_text' ) );
   }

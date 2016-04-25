@@ -10,9 +10,9 @@
 
 /* Case we're displaying the headings of the contents such as posts/pages/attachments both as singular and as elements of lists of posts */
 ?>
-<header class="entry-header" <?php tc_echo('element_attributes') ?>>
+<header class="entry-header" <?php czr_echo('element_attributes') ?>>
   <?php
-    if ( tc_has('post_page_title') ) { tc_render_template('content/singles/singular_title', 'post_page_title'); }
+    if ( czr_has('post_page_title') ) { czr_render_template('content/singles/singular_title', 'post_page_title'); }
   ?>
   <hr class="featurette-divider headings singular-content">
 </header>

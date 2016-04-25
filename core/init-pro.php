@@ -29,7 +29,7 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
           'CZR_cl_pro_bundle'                  => array('/addons/bundle/pc-pro-bundle.php')
         );
         //set files to load according to the context : admin / front / customize
-        add_filter( 'tc_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
+        add_filter( 'czr_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
         //END TEST PURPOSES
         //load
         $this -> tc_pro_load();
@@ -42,7 +42,7 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
     *
     */
     private function tc_pro_load() {
-      $_classes = apply_filters( 'tc_get_files_to_load_pro' , $this -> _pro_classes );
+      $_classes = apply_filters( 'czr_get_files_to_load_pro' , $this -> _pro_classes );
 
       //loads and instantiates the activation / updates classes
       foreach ( $_classes as $name => $params ) {
@@ -66,7 +66,7 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
     /**
     * Helper : returns the modified array of class files to load and instantiate
     * Check the context
-    * hook : tc_get_files_to_load_pro
+    * hook : czr_get_files_to_load_pro
     *
     * @return boolean
     * @since  Customizr 3.3+

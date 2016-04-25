@@ -19,7 +19,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     public $tc_core;
     public $is_customizing;
     public static $theme_name;
-    public static $tc_option_group;
+    public static $czr_option_group;
 
     public $views;//object, stores the views
     public $controllers;//object, stores the controllers
@@ -126,10 +126,10 @@ if ( ! class_exists( 'CZR___' ) ) :
       if ( $this -> tc_is_pro() )
         require_once( sprintf( '%score/init-pro.php' , CZR_BASE ) );
 
-      self::$tc_option_group = 'tc_theme_options';
+      self::$czr_option_group = 'tc_theme_options';
 
       //set files to load according to the context : admin / front / customize
-      add_filter( 'tc_get_files_to_load' , array( $this , 'tc_set_files_to_load' ) );
+      add_filter( 'czr_get_files_to_load' , array( $this , 'tc_set_files_to_load' ) );
     }
 
 
@@ -145,7 +145,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     */
     function tc_load( $_to_load = array(), $_no_filter = false ) {
       //do we apply a filter ? optional boolean can force no filter
-      $_to_load = $_no_filter ? $_to_load : apply_filters( 'tc_get_files_to_load' , $_to_load );
+      $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
       if ( empty($_to_load) )
         return;
 
@@ -171,7 +171,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
     //hook : wp
     function tc_register_model_map( $_map = array() ) {
-      $_to_register =  ( empty( $_map ) || ! is_array($_map) ) ? $this -> tc_get_model_map() : $_map;
+      $_to_register =  ( empty( $_map ) || ! is_array($_map) ) ? $this -> czr_get_model_map() : $_map;
 
       foreach ( $_to_register as $model ) {
         CZR() -> collection -> tc_register( $model);
@@ -181,7 +181,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
     //returns an array of models describing the theme's views
-    private function tc_get_model_map() {
+    private function czr_get_model_map() {
       return apply_filters(
         'tc_model_map',
         array(
@@ -255,7 +255,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     ****************************/
     /**
     * Check the context and return the modified array of class files to load and instantiate
-    * hook : tc_get_files_to_load
+    * hook : czr_get_files_to_load
     * @return boolean
     *
     * @since  Customizr 3.3+
@@ -346,7 +346,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
     //called when requiring a file will - always give the precedence to the child-theme file if it exists
     //then to the theme root
-    function tc_get_theme_file( $path_suffix ) {
+    function czr_get_theme_file( $path_suffix ) {
       $path_prefixes = array_unique( apply_filters( 'tc_include_paths'     , array( '' ) ) );
       $roots         = array_unique( apply_filters( 'tc_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
 
@@ -360,7 +360,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
     //called when requiring a file url - will always give the precedence to the child-theme file if it exists
     //then to the theme root
-    function tc_get_theme_file_url( $url_suffix ) {
+    function czr_get_theme_file_url( $url_suffix ) {
       $url_prefixes   = array_unique( apply_filters( 'tc_include_paths'     , array( '' ) ) );
       $roots          = array_unique( apply_filters( 'tc_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
       $roots_urls     = array_unique( apply_filters( 'tc_include_roots_url' , array( CZR_BASE_URL_CHILD, CZR_BASE_URL ) ) );
@@ -377,7 +377,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
     //requires a file only if exists
     function tc_require_once( $path_suffix ) {
-      if ( false !== $filename = $this -> tc_get_theme_file( $path_suffix ) ) {
+      if ( false !== $filename = $this -> czr_get_theme_file( $path_suffix ) ) {
         require_once( $filename );
         return true;
       }
@@ -418,24 +418,24 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @param $property (string), the property to get
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
-    function tc_get( $property, $model_id = null, $args = array() ) {
+    function czr_get( $property, $model_id = null, $args = array() ) {
       $current_model = false;
       if ( ! is_null($model_id) ) {
         if ( tc_is_registered($model_id) )
-          $current_model = tc_get_model_instance( $model_id );
+          $current_model = czr_get_model_instance( $model_id );
       } else {
         $current_model = end( $this -> current_model );
       }
-      return is_object($current_model) ? $current_model -> tc_get_property( $property, $args ) : false;
+      return is_object($current_model) ? $current_model -> czr_get_property( $property, $args ) : false;
     }
 
     /*
-    * An handly function to print a current model property (wrapper for tc_get)
+    * An handly function to print a current model property (wrapper for czr_get)
     * @param $property (string), the property to get
     * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
     */
-    function tc_echo( $property, $model_id = null, $args = array() ) {
-      $prop_value = tc_get( $property, $model_id, $args );
+    function czr_echo( $property, $model_id = null, $args = array() ) {
+      $prop_value = czr_get( $property, $model_id, $args );
       echo $prop_value && is_array( $prop_value ) ? CZR() -> helpers -> tc_stringify_array( $prop_value ) : $prop_value;
     }
 
@@ -443,14 +443,14 @@ if ( ! class_exists( 'CZR___' ) ) :
     * An handly function to print the content wrapper class
     */
     function tc_column_content_wrapper_class() {
-      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::tc_get_column_content_wrapper_class() );
+      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::czr_get_column_content_wrapper_class() );
     }
 
     /*
     * An handly function to print the article containerr class
     */
     function tc_article_container_class() {
-      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::tc_get_article_container_class() );
+      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::czr_get_article_container_class() );
     }
 
     /**
