@@ -192,7 +192,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
       $_class = "TC_controller_{$group}";
       $_instance = false;
 
-      tc_fw_require_once( $_path );
+      tc_fw_front_require_once( $_path );
 
       if ( class_exists($_class) ) {
         $_instance = new $_class;

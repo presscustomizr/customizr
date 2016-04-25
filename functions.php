@@ -35,10 +35,20 @@ if ( ! function_exists('tc_require_once') ) {
 /*
  * @since 3.5.0
  */
-//shortcut function to require a theme file
+//shortcut function to require a framework file
 if ( ! function_exists('tc_fw_require_once') ) {
   function tc_fw_require_once( $path_suffix ) {
     return TC___::$instance -> tc_fw_require_once( $path_suffix );
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
+//shortcut function to require a front framework file
+if ( ! function_exists('tc_fw_front_require_once') ) {
+  function tc_fw_front_require_once( $path_suffix ) {
+    return TC___::$instance -> tc_fw_front_require_once( $path_suffix );
   }
 }
 
