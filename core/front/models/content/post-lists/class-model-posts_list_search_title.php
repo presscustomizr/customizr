@@ -1,5 +1,5 @@
 <?php
-class TC_posts_list_search_title_model_class extends TC_posts_list_title_model_class {
+class CZR_cl_posts_list_search_title_model_class extends CZR_cl_posts_list_title_model_class {
   public $title_class;
   public $title_wrapper_class;
   public $search_form_wrapper_class;

@@ -1,5 +1,5 @@
 <?php
-class TC_recently_updated_model_class extends TC_Model {
+class CZR_cl_recently_updated_model_class extends CZR_cl_Model {
   public $recently_updated_text;
 
 
@@ -15,7 +15,7 @@ class TC_recently_updated_model_class extends TC_Model {
       return;
 
     //Is the notice option enabled (checked by the controller) AND this post type eligible for updated notice ? (default is post)
-    if ( /* 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_in_title' ) ) || */! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
+    if ( /* 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_notice_in_title' ) ) || */! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
       return;
 
     //php version check for DateTime
@@ -24,12 +24,12 @@ class TC_recently_updated_model_class extends TC_Model {
       return;
 
     //get the user defined interval in days
-    $_interval = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_interval' ) );
+    $_interval = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_notice_interval' ) );
 
     $_interval = ( 0 != $_interval ) ? $_interval : 30;
 
     //Check if the last update is less than n days old. (replace n by your own value)
-    $has_recent_update = ( TC_utils::$inst -> tc_post_has_update( true ) && TC_utils::$inst -> tc_post_has_update( 'in_days') < $_interval ) ? true : false;
+    $has_recent_update = ( CZR_cl_utils::$inst -> tc_post_has_update( true ) && CZR_cl_utils::$inst -> tc_post_has_update( 'in_days') < $_interval ) ? true : false;
 
     if ( ! $has_recent_update )
       return;
@@ -46,8 +46,8 @@ class TC_recently_updated_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $recently_updated_text =  esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_text' ) );
-    $element_class         = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_format' ) );
+    $recently_updated_text =  esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_notice_text' ) );
+    $element_class         = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_notice_format' ) );
 
     return array_merge( $model, compact( 'element_class', 'recently_updated_text' ) );
   }

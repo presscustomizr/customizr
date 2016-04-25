@@ -1,5 +1,5 @@
 <?php
-class TC_post_metas_model_class extends TC_Model {
+class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   protected $_cache = array();
 
   public    $type   = 'post_metas';
@@ -34,24 +34,24 @@ class TC_post_metas_model_class extends TC_Model {
 
   /* PUBLIC GETTERS */
   public function tc_get_cat_list( $sep = '' ) {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_categories' ) ) ? $this -> tc_get_meta( 'tax', true, $sep ) : '';
+    return 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_categories' ) ) ? $this -> tc_get_meta( 'tax', true, $sep ) : '';
   }
 
   public function tc_get_tag_list( $sep = '' ) {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_tags' ) ) ? $this -> tc_get_meta( 'tax', false, $sep ) : '';
+    return 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_tags' ) ) ? $this -> tc_get_meta( 'tax', false, $sep ) : '';
   }
 
   public function tc_get_author() {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_author' ) ) ? $this -> tc_get_meta( 'author' ) : '';
+    return 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_author' ) ) ? $this -> tc_get_meta( 'author' ) : '';
   }
 
   public function tc_get_publication_date() {
-    return 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> tc_get_meta( 'pub_date' ) : '';
+    return 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> tc_get_meta( 'pub_date' ) : '';
   }
 
   public function tc_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
-    if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = TC_utils::$inst -> tc_post_has_update() ) {
-      if ( 'days' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
+    if ( 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = CZR_cl_utils::$inst -> tc_post_has_update() ) {
+      if ( 'days' == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
         $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
         $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
       }
@@ -195,7 +195,7 @@ class TC_post_metas_model_class extends TC_Model {
   */
   private function tc_get_term_of_tax_type( $hierarchical = true ) {
     //var declaration
-    $post_type              = get_post_type( TC_utils::tc_id() );
+    $post_type              = get_post_type( CZR_cl_utils::tc_id() );
     $tax_list               = get_object_taxonomies( $post_type, 'object' );
     $_tax_type_list         = array();
     $_tax_type_terms_list   = array();
@@ -228,7 +228,7 @@ class TC_post_metas_model_class extends TC_Model {
 
     //fill the post terms array
     foreach ($_tax_type_list as $tax_name => $data ) {
-      $_current_tax_terms = get_the_terms( TC_utils::tc_id() , $tax_name );
+      $_current_tax_terms = get_the_terms( CZR_cl_utils::tc_id() , $tax_name );
       //If current post support this tax but no terms has been assigned yet = continue
       if ( ! $_current_tax_terms )
         continue;
@@ -255,9 +255,9 @@ class TC_post_metas_model_class extends TC_Model {
   private function tc_is_tax_authorized( $_tax_object , $post_type ) {
     $_in_exclude_list = in_array(
       $_tax_object['name'],
-      apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , TC_utils::tc_id() ) )
+      apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , CZR_cl_utils::tc_id() ) )
     );
-    $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], TC_utils::tc_id() ) );
+    $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], CZR_cl_utils::tc_id() ) );
     return ! $_in_exclude_list && ! $_is_private;
   }
 
@@ -267,13 +267,13 @@ class TC_post_metas_model_class extends TC_Model {
     if ( ! CZR___::$instance -> tc_is_customizing() )
       return $_classes;
 
-    if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
+    if ( 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
        array_push( $_classes, 'hide-all-post-metas' );
 
     if (
-        ( is_singular() && ! is_page() && ! tc__f('__is_home') && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ) ||
-        ( ! is_singular() && ! tc__f('__is_home') && ! is_page() && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
-        ( tc__f('__is_home') ) && 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) )
+        ( is_singular() && ! is_page() && ! tc__f('__is_home') && 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ) ||
+        ( ! is_singular() && ! tc__f('__is_home') && ! is_page() && 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
+        ( tc__f('__is_home') ) && 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) )
     )
       array_push( $_classes, 'hide-post-metas' );
 

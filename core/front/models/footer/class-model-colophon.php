@@ -1,5 +1,5 @@
 <?php
-class TC_colophon_model_class extends TC_Model {
+class CZR_cl_colophon_model_class extends CZR_cl_Model {
   function tc_setup_children() {
     $children = array(
       //footer social

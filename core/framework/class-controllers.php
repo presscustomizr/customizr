@@ -5,8 +5,8 @@
 //If the model is used as a method parameter, it shall be an array()
 //=> because a controller can be checked and fired before the model has been instantiated
 //=> always check the existence of the id
-if ( ! class_exists( 'TC_controllers' ) ) :
-  class TC_controllers {
+if ( ! class_exists( 'CZR_cl_controllers' ) ) :
+  class CZR_cl_controllers {
     static $instance;
     private $controllers;
     static $controllers_instances = array();
@@ -187,7 +187,7 @@ if ( ! class_exists( 'TC_controllers' ) ) :
     //@return the $instance
     private function tc_instantiate_group_controller( $group ) {
       $_path  = "controllers/class-controller-{$group}.php";
-      $_class = "TC_controller_{$group}";
+      $_class = "CZR_cl_controller_{$group}";
       $_instance = false;
 
       tc_fw_front_require_once( $_path );

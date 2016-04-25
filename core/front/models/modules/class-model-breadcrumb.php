@@ -14,7 +14,7 @@
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-class TC_breadcrumb_model_class extends TC_Model {
+class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
   public $breadcrumb;
   private $args;
 

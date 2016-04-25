@@ -1,5 +1,5 @@
 <?php
-class TC_featured_pages_model_class extends TC_Model {
+class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
   public $fp_ids;
   public $fp_nb;
@@ -20,7 +20,7 @@ class TC_featured_pages_model_class extends TC_Model {
 
     $tc_show_featured_pages_img     = $this -> tc_show_featured_pages_img();
 
-    $_skin_color                    = TC_utils::$inst -> tc_get_skin_color();
+    $_skin_color                    = CZR_cl_utils::$inst -> tc_get_skin_color();
     $fp_holder_img                  = apply_filters (
           'tc_fp_holder_img' ,
           sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" style="width:270px;height:250px;"/>',
@@ -29,7 +29,7 @@ class TC_featured_pages_model_class extends TC_Model {
           )
     );
     //gets the featured pages array and sets the fp layout
-    $fp_ids                         = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids );
+    $fp_ids                         = apply_filters( 'tc_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids );
 
     $fp_nb                          = count($fp_ids);
     $fp_per_row                     = apply_filters( 'tc_fp_per_line', 3 );
@@ -85,7 +85,7 @@ class TC_featured_pages_model_class extends TC_Model {
     $fp_img = '';
 
     //if fps are not set
-    if ( null == TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
+    if ( null == CZR_cl_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! CZR_cl_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
 
 	  //admin link if user logged in
       $featured_page_link             = '';
@@ -93,11 +93,11 @@ class TC_featured_pages_model_class extends TC_Model {
 
 	  if ( ! CZR___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
         $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-            TC_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
+            CZR_cl_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
             __( 'Customizer screen' , 'customizr' ),
             __( 'Edit now.' , 'customizr' )
         );
-        $featured_page_link          = apply_filters( 'tc_fp_link_url', TC_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
+        $featured_page_link          = apply_filters( 'tc_fp_link_url', CZR_cl_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
       }
 
 	  //rendering
@@ -115,7 +115,7 @@ class TC_featured_pages_model_class extends TC_Model {
       $fp_img                       =  $tc_show_featured_pages_img ? apply_filters ('fp_img_src' , $fp_holder_img, $fp_single_id , $featured_page_id ) : '';
     }
     else {
-      $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
+      $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
       $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
       $featured_page_title            = apply_filters( 'tc_fp_title', get_the_title( $featured_page_id ), $fp_single_id, $featured_page_id );
       $edit_enabled                   = false;
@@ -128,7 +128,7 @@ class TC_featured_pages_model_class extends TC_Model {
       }
 
       $edit_enabled                   = apply_filters( 'tc_edit_in_fp_title', $edit_enabled );
-      $featured_text                  = apply_filters( 'tc_fp_text', TC_utils::$inst->tc_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
+      $featured_text                  = apply_filters( 'tc_fp_text', CZR_cl_utils::$inst->tc_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
       $featured_text                  = apply_filters( 'tc_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
 
 	  //get the page/post object
@@ -184,7 +184,7 @@ class TC_featured_pages_model_class extends TC_Model {
   function tc_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
     //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
     //tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
-    $_fp_img_model = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
+    $_fp_img_model = CZR_cl_utils_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
 
 	//finally we define a default holder if no thumbnail found or page is protected
     if ( isset( $_fp_img_model["tc_thumb"]) && ! empty( $_fp_img_model["tc_thumb"] ) && ! post_password_required( $featured_page_id ) )
@@ -196,7 +196,7 @@ class TC_featured_pages_model_class extends TC_Model {
 
   function tc_show_featured_pages_img() {
     //gets  display img option
-    return apply_filters( 'tc_show_featured_pages_img', esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) );
+    return apply_filters( 'tc_show_featured_pages_img', esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) );
   }
 
 }

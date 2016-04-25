@@ -33,9 +33,9 @@ if ( ! class_exists( 'CZR___' ) ) :
         self::$instance -> tc_setup_constants();
         self::$instance -> tc_setup_loading();
         self::$instance -> tc_load();
-        self::$instance -> collection = new TC_Collection();
-        self::$instance -> controllers = new TC_Controllers();
-        self::$instance -> helpers = new TC_Helpers();
+        self::$instance -> collection = new CZR_cl_Collection();
+        self::$instance -> controllers = new CZR_cl_Controllers();
+        self::$instance -> helpers = new CZR_cl_Helpers();
 
         //register the model's map in front
         if ( ! is_admin() )
@@ -71,24 +71,24 @@ if ( ! class_exists( 'CZR___' ) ) :
 
       //CUSTOMIZR_VER is the Version
       if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
-      //TC_BASE is the root server path of the parent theme
-      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
-      //TC_FRAMEWORK_PREFIX is the relative path where the framework is located
-      if( ! defined( 'TC_FRAMEWORK_PREFIX' ) ) define( 'TC_FRAMEWORK_PREFIX' , 'core/framework/' );
-      //TC_FRAMEWORK_FRONT_PREFIX is the relative path where the framework fornt files are located
-      if( ! defined( 'TC_FRAMEWORK_FRONT_PREFIX' ) ) define( 'TC_FRAMEWORK_FRONT_PREFIX' , 'core/front/' );
-      //TC_ASSETS_PREFIX is the relative path where the assets are located
-      if( ! defined( 'TC_ASSETS_PREFIX' ) )   define( 'TC_ASSETS_PREFIX' , 'assets/' );
-      //TC_BASE_CHILD is the root server path of the child theme
-      if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , get_stylesheet_directory().'/' );
-      //TC_BASE_URL http url of the loaded parent theme
-      if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , get_template_directory_uri() . '/' );
-      //TC_BASE_URL_CHILD http url of the loaded child theme
-      if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
+      //CZR_BASE is the root server path of the parent theme
+      if( ! defined( 'CZR_BASE' ) )            define( 'CZR_BASE' , get_template_directory().'/' );
+      //CZR_FRAMEWORK_PREFIX is the relative path where the framework is located
+      if( ! defined( 'CZR_FRAMEWORK_PREFIX' ) ) define( 'CZR_FRAMEWORK_PREFIX' , 'core/framework/' );
+      //CZR_FRAMEWORK_FRONT_PREFIX is the relative path where the framework fornt files are located
+      if( ! defined( 'CZR_FRAMEWORK_FRONT_PREFIX' ) ) define( 'CZR_FRAMEWORK_FRONT_PREFIX' , 'core/front/' );
+      //CZR_ASSETS_PREFIX is the relative path where the assets are located
+      if( ! defined( 'CZR_ASSETS_PREFIX' ) )   define( 'CZR_ASSETS_PREFIX' , 'assets/' );
+      //CZR_BASE_CHILD is the root server path of the child theme
+      if( ! defined( 'CZR_BASE_CHILD' ) )      define( 'CZR_BASE_CHILD' , get_stylesheet_directory().'/' );
+      //CZR_BASE_URL http url of the loaded parent theme
+      if( ! defined( 'CZR_BASE_URL' ) )        define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
+      //CZR_BASE_URL_CHILD http url of the loaded child theme
+      if( ! defined( 'CZR_BASE_URL_CHILD' ) )  define( 'CZR_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
       //THEMENAME contains the Name of the currently loaded theme
       if( ! defined( 'THEMENAME' ) )          define( 'THEMENAME' , $tc_base_data['title'] );
-      //TC_WEBSITE is the home website of Customizr
-      if( ! defined( 'TC_WEBSITE' ) )         define( 'TC_WEBSITE' , $tc_base_data['authoruri'] );
+      //CZR_WEBSITE is the home website of Customizr
+      if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
 
     }//setup_contants()
 
@@ -124,7 +124,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       );
       //check the context
       if ( $this -> tc_is_pro() )
-        require_once( sprintf( '%score/init-pro.php' , TC_BASE ) );
+        require_once( sprintf( '%score/init-pro.php' , CZR_BASE ) );
 
       self::$tc_option_group = 'tc_theme_options';
 
@@ -152,8 +152,8 @@ if ( ! class_exists( 'CZR___' ) ) :
       foreach ( $_to_load as $group => $files )
         foreach ($files as $path_suffix ) {
           $this -> tc_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
-          $classname = 'TC_' . $path_suffix[1];
-          if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'TC_nav_walker') ) ) )
+          $classname = 'CZR_cl_' . $path_suffix[1];
+          if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'CZR_cl_nav_walker') ) ) )
             continue;
           //instantiates
           $instances = class_exists($classname)  ? new $classname : '';
@@ -348,7 +348,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     //then to the theme root
     function tc_get_theme_file( $path_suffix ) {
       $path_prefixes = array_unique( apply_filters( 'tc_include_paths'     , array( '' ) ) );
-      $roots         = array_unique( apply_filters( 'tc_include_roots_path', array( TC_BASE_CHILD, TC_BASE ) ) );
+      $roots         = array_unique( apply_filters( 'tc_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
 
       foreach ( $roots as $root )
         foreach ( $path_prefixes as $path_prefix )
@@ -362,8 +362,8 @@ if ( ! class_exists( 'CZR___' ) ) :
     //then to the theme root
     function tc_get_theme_file_url( $url_suffix ) {
       $url_prefixes   = array_unique( apply_filters( 'tc_include_paths'     , array( '' ) ) );
-      $roots          = array_unique( apply_filters( 'tc_include_roots_path', array( TC_BASE_CHILD, TC_BASE ) ) );
-      $roots_urls     = array_unique( apply_filters( 'tc_include_roots_url' , array( TC_BASE_URL_CHILD, TC_BASE_URL ) ) );
+      $roots          = array_unique( apply_filters( 'tc_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
+      $roots_urls     = array_unique( apply_filters( 'tc_include_roots_url' , array( CZR_BASE_URL_CHILD, CZR_BASE_URL ) ) );
 
       $combined_roots = array_combine( $roots, $roots_urls );
 
@@ -386,12 +386,12 @@ if ( ! class_exists( 'CZR___' ) ) :
 
     //requires a framework file only if exists
     function tc_fw_require_once( $path_suffix ) {
-      return $this -> tc_require_once( TC_FRAMEWORK_PREFIX . $path_suffix );
+      return $this -> tc_require_once( CZR_FRAMEWORK_PREFIX . $path_suffix );
     }
 
     //requires a framework front (models/controllers) file only if exists
     function tc_fw_front_require_once( $path_suffix ) {
-      return $this -> tc_require_once( TC_FRAMEWORK_FRONT_PREFIX . $path_suffix );
+      return $this -> tc_require_once( CZR_FRAMEWORK_FRONT_PREFIX . $path_suffix );
     }
 
     /*
@@ -443,14 +443,14 @@ if ( ! class_exists( 'CZR___' ) ) :
     * An handly function to print the content wrapper class
     */
     function tc_column_content_wrapper_class() {
-      echo CZR() -> helpers -> tc_stringify_array( TC_utils::tc_get_column_content_wrapper_class() );
+      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::tc_get_column_content_wrapper_class() );
     }
 
     /*
     * An handly function to print the article containerr class
     */
     function tc_article_container_class() {
-      echo CZR() -> helpers -> tc_stringify_array( TC_utils::tc_get_article_container_class() );
+      echo CZR() -> helpers -> tc_stringify_array( CZR_cl_utils::tc_get_article_container_class() );
     }
 
     /**
@@ -533,7 +533,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @since  3.4+
     */
     static function tc_is_pro() {
-      return file_exists( sprintf( '%score/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
+      return file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == self::$theme_name;
     }
 
   }//end of class

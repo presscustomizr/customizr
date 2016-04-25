@@ -1,5 +1,5 @@
 <?php
-class TC_edit_button_model_class extends TC_Model {
+class CZR_cl_edit_button_model_class extends CZR_cl_Model {
   public $context = 'post';
 
   /*

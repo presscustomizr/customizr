@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_utils' ) ) :
-  class TC_utils {
+if ( ! class_exists( 'CZR_cl_utils' ) ) :
+  class CZR_cl_utils {
 
       //Access any method or var of the class with classname::$instance -> var or method():
       static $inst;
@@ -60,7 +60,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * EARLY HOOKS
       ****************************/
       /**
-      * Init TC_utils class properties after_setup_theme
+      * Init CZR_cl_utils class properties after_setup_theme
       * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
       * tc_get_default_options uses is_user_logged_in() => was causing the bug
       * hook : after_setup_theme
@@ -97,7 +97,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_wp_filters() {
         add_filter( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ) );
-        if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ) ) {
+        if ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_img_smart_load' ) ) ) {
           add_filter( 'the_content'                       , array( $this , 'tc_parse_imgs' ), PHP_INT_MAX );
           add_filter( 'tc_thumb_html'                     , array( $this , 'tc_parse_imgs' ) );
         }
@@ -158,10 +158,10 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.1.23
       */
       function tc_get_skin_color( $_what = null ) {
-        $_color_map    = TC_init::$instance -> skin_color_map;
+        $_color_map    = CZR_cl_init::$instance -> skin_color_map;
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 
-        $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_get_style_src() ) );
+        $_active_skin =  str_replace('.min.', '.', basename( CZR_cl_init::$instance -> tc_get_style_src() ) );
         //falls back to blue3 ( default #27CDA5 ) if not defined
         $_to_return = array( '#27CDA5', '#1b8d71' );
 
@@ -222,7 +222,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         // 3) theme version not defined
         // 4) versions are different
         if ( is_user_logged_in() || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
-          $def_options          = $this -> tc_generate_default_options( TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
+          $def_options          = $this -> tc_generate_default_options( CZR_cl_utils_settings_map::$instance -> tc_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
           //Adds the version in default
           $def_options['ver']   =  CUSTOMIZR_VER;
 
@@ -315,7 +315,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         //ctx retro compat => falls back to default val if ctx like option detected
         //important note : some options like tc_slider are not concerned by ctx
         if ( ! $this -> tc_is_option_excluded_from_ctx( $option_name ) ) {
-          if ( is_array( $_single_opt ) && ! class_exists( 'TC_contx' ) )
+          if ( is_array( $_single_opt ) && ! class_exists( 'CZR_cl_contx' ) )
             $_single_opt = $_default_val;
         }
 
@@ -413,7 +413,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
           $__options                    = tc__f ( '__options' );
           global $post;
           //Article wrapper class definition
-          $global_layout                = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
+          $global_layout                = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
 
           /* DEFAULT LAYOUTS */
           //what is the default layout we want to apply? By default we apply the global default layout
@@ -491,7 +491,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.5
       */
       public static function tc_get_article_container_class() {
-        return apply_filters( 'tc_article_container_class' , array( self::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) );
+        return apply_filters( 'tc_article_container_class' , array( self::tc_get_layout( CZR_cl_utils::tc_id() , 'class' ) , 'article-container' ) );
       }
 
 
@@ -504,7 +504,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
        * @since Customizr 2.0.7
        */
       function tc_fancybox_content_filter( $content) {
-        $tc_fancybox = esc_attr( TC_utils::$inst->tc_opt( 'tc_fancybox' ) );
+        $tc_fancybox = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_fancybox' ) );
 
         if ( 1 != $tc_fancybox )
           return $content;
@@ -630,7 +630,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
         $__options    = tc__f( '__options' );
 
         //gets the social network array
-        $socials      = apply_filters( 'tc_default_socials' , TC_init::$instance -> socials );
+        $socials      = apply_filters( 'tc_default_socials' , CZR_cl_init::$instance -> socials );
 
         //declares some vars
         $html         = '';
@@ -642,7 +642,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
               if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
               $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
               $link = 'email' == $type ? 'mailto:' : '';
-              $link .=  call_user_func( array( TC_utils_settings_map::$instance, 'tc_sanitize_'.$type ), $__options[$key] );
+              $link .=  call_user_func( array( CZR_cl_utils_settings_map::$instance, 'tc_sanitize_'.$type ), $__options[$key] );
               //there is one exception : rss feed has no target _blank and special icon title
               $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
                   apply_filters( 'tc_social_link_class',
@@ -732,7 +732,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       } else {
         $_date_one_timestamp   = $_date_one->format("U");
         $_date_two_timestamp   = $_date_two->format("U");
-        return new TC_DateInterval( $_date_two_timestamp - $_date_one_timestamp );
+        return new CZR_cl_DateInterval( $_date_two_timestamp - $_date_one_timestamp );
       }
     }
 
@@ -812,7 +812,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       $_to_return = ( 'list' == $_what ) ? array() : false;
       $_font_groups = apply_filters(
         'tc_font_pairs',
-        TC_init::$instance -> font_pairs
+        CZR_cl_init::$instance -> font_pairs
       );
       foreach ( $_font_groups as $_group_slug => $_font_list ) {
         if ( 'list' == $_what ) {
@@ -897,7 +897,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * since v3.4+
     */
     function tc_is_secondary_menu_enabled() {
-      return (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) && 'aside' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_style' ) );
+      return (bool) esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_display_second_menu' ) ) && 'aside' == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_menu_style' ) );
     }
 
 
@@ -987,8 +987,8 @@ endif;
 //Helper class to build a simple date diff object
 //Alternative to date_diff for php version < 5.3.0
 //http://stackoverflow.com/questions/9373718/php-5-3-date-diff-equivalent-for-php-5-2-on-own-function
-if ( ! class_exists( 'TC_DateInterval' ) ) :
-Class TC_DateInterval {
+if ( ! class_exists( 'CZR_cl_DateInterval' ) ) :
+Class CZR_cl_DateInterval {
     /* Properties */
     public $y = 0;
     public $m = 0;

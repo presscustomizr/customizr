@@ -1,5 +1,5 @@
 <?php
-class TC_content_model_class extends TC_Model {
+class CZR_cl_content_model_class extends CZR_cl_Model {
 
   function tc_setup_children() {
     $children = array(
@@ -149,7 +149,7 @@ class TC_content_model_class extends TC_Model {
   */
   function tc_body_class($_classes) {
     //SKIN CLASS
-    $_skin = sprintf( 'skin-%s' , basename( TC_init::$instance -> tc_get_style_src() ) );
+    $_skin = sprintf( 'skin-%s' , basename( CZR_cl_init::$instance -> tc_get_style_src() ) );
     array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
 
     return $_classes;

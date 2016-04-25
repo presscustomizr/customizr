@@ -1,5 +1,5 @@
 <?php
-class TC_logo_wrapper_model_class extends TC_Model {
+class CZR_cl_logo_wrapper_model_class extends CZR_cl_Model {
   public $link_title;
   public $link_url;
 
@@ -26,7 +26,7 @@ class TC_logo_wrapper_model_class extends TC_Model {
   /* the same in the title wrapper class, some kind of unification will be needed IMHO */
   function get_logo_wrapper_class() {
     $_class     = array( 'brand', 'span3' );
-    $_layout    = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
+    $_layout    = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_header_layout') );
     $_class[]   = 'right' == $_layout ? 'pull-right' : 'pull-left';
     return $_class;
   }
@@ -46,10 +46,10 @@ class TC_logo_wrapper_model_class extends TC_Model {
   * and shrinking classes
   */
   function pre_rendering_view_header_cb( $header_model ) {
-    if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || CZR___::$instance -> tc_is_customizing() ) )
+    if ( esc_attr( CZR_cl_utils::$inst->tc_opt( "tc_sticky_header") || CZR___::$instance -> tc_is_customizing() ) )
       array_push( $header_model -> element_class,
-          0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
-          0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
+          0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
+          0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
 
       );
   }

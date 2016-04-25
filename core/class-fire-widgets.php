@@ -1,9 +1,9 @@
 <?php
 /**
 * Widgets factory : registered the different widgetized areas
-* The default widget areas are defined as properties of the TC_utils class in class-fire-utils.php
-* TC_utils::$inst -> sidebar_widgets for left and right sidebars
-* TC_utils::$inst -> footer_widgets for the footer
+* The default widget areas are defined as properties of the CZR_cl_utils class in class-fire-utils.php
+* CZR_cl_utils::$inst -> sidebar_widgets for left and right sidebars
+* CZR_cl_utils::$inst -> footer_widgets for the footer
 * The widget area are then fired in the class below
 *
 * @package      Customizr
@@ -14,8 +14,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_widgets' ) ) :
-  class TC_widgets {
+if ( ! class_exists( 'CZR_cl_widgets' ) ) :
+  class CZR_cl_widgets {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     function __construct () {
@@ -50,8 +50,8 @@ if ( ! class_exists( 'TC_widgets' ) ) :
       );
 
       //gets the filtered default values
-      $footer_widgets           = apply_filters( 'tc_footer_widgets'  , TC_init::$instance -> footer_widgets );
-      $sidebar_widgets          = apply_filters( 'tc_sidebar_widgets' , TC_init::$instance -> sidebar_widgets );
+      $footer_widgets           = apply_filters( 'tc_footer_widgets'  , CZR_cl_init::$instance -> footer_widgets );
+      $sidebar_widgets          = apply_filters( 'tc_sidebar_widgets' , CZR_cl_init::$instance -> sidebar_widgets );
       $widgets                  = apply_filters( 'tc_default_widgets' , array_merge( $sidebar_widgets , $footer_widgets ) );
 
       //declares the arguments array

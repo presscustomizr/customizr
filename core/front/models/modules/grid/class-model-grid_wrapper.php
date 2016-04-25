@@ -1,5 +1,5 @@
 <?php
-class TC_grid_wrapper_model_class extends TC_Model {
+class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   public $is_first_of_row;
   public $is_last_of_row;
 
@@ -22,7 +22,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $this -> post_id              = TC_utils::tc_id();
+    $this -> post_id              = CZR_cl_utils::tc_id();
 
     //wrapper classes based on the user options
     $model[ 'element_class' ]     = $this -> tc_grid_container_set_classes( array() );
@@ -52,7 +52,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
   function tc_setup_late_properties() {
     //parent::tc_setup_late_properties();
     $post_class = $this -> tc_get_the_grid_post_class();
-    $this -> tc_set_property( 'article_selectors', TC_utils_query::$instance -> tc_get_the_post_list_article_selectors( $post_class ) );
+    $this -> tc_set_property( 'article_selectors', CZR_cl_utils_query::$instance -> tc_get_the_post_list_article_selectors( $post_class ) );
 
     $element_wrapper        = $this -> tc_get_element_wrapper_properties();
 
@@ -112,7 +112,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
   /* retrieves number of cols option, and wrap it into a filter */
   private function tc_get_grid_cols() {
     if ( ! isset( $this -> grid_cols ) )
-      $grid_cols = $this -> tc_set_grid_cols( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_columns') ), TC_utils::tc_get_layout( $this -> post_id , 'class' ) );
+      $grid_cols = $this -> tc_set_grid_cols( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_columns') ), CZR_cl_utils::tc_get_layout( $this -> post_id , 'class' ) );
     else
       $grid_cols = $this -> grid_cols;
 
@@ -176,7 +176,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
         $wp_query -> is_posts_page ) )
       return false;
 
-    return apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
+    return apply_filters( 'tc_grid_expand_featured', esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
   }
 
 
@@ -186,9 +186,9 @@ class TC_grid_wrapper_model_class extends TC_Model {
   */
   function tc_grid_container_set_classes( $_classes ) {
     array_push( $_classes, 'tc-post-list-grid' );
-    if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
+    if ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
       array_push( $_classes, 'tc-grid-shadow' );
-    if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_bottom_border') ) )
+    if ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_bottom_border') ) )
       array_push( $_classes, 'tc-grid-border' );
     return $_classes;
   }
@@ -237,7 +237,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
   */
   private function tc_get_grid_column_height( $_cols_nb = '3' ) {
     $_h               = $this -> tc_grid_get_thumb_height();
-    $_current_layout  = TC_utils::tc_get_layout( $this -> post_id , 'sidebar' );
+    $_current_layout  = CZR_cl_utils::tc_get_layout( $this -> post_id , 'sidebar' );
     $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
     $_key             = 3;//default value == full
     if ( in_array( $_current_layout, $_layouts ) )
@@ -355,7 +355,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
       isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
       $_col_nb,
       $_col_media_matrix,
-      TC_utils::tc_get_layout( $this -> post_id , 'class' )
+      CZR_cl_utils::tc_get_layout( $this -> post_id , 'class' )
     );
   }
 
@@ -490,7 +490,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
     $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.28 ); //line-height / font-size
     $_ratio = $this -> tc_get_grid_font_ratios( $_size , $_wot );
     //body font size
-    $_bs = esc_attr( TC_utils::$inst->tc_opt( 'tc_body_font_size') );
+    $_bs = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_body_font_size') );
     $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
     return sprintf( 'font-size:%spx;line-height:%spx;' ,
       ceil( $_bs * $_ratio ),
@@ -502,7 +502,7 @@ class TC_grid_wrapper_model_class extends TC_Model {
   * @return (number) customizer user defined height for the grid thumbnails
   */
   private function tc_grid_get_thumb_height() {
-    $_opt = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height') );
+    $_opt = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_thumb_height') );
     return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
   }
 

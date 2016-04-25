@@ -1,5 +1,5 @@
 <?php
-class TC_thumbnail_model_class extends TC_Model {
+class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
   public $thumb_wrapper_class   = 'thumb-wrapper';
   public $link_class            = 'round-div';
 
@@ -27,13 +27,13 @@ class TC_thumbnail_model_class extends TC_Model {
 
 
   function tc_setup_late_properties() {
-    $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
+    $thumb_model            = CZR_cl_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
 
     if ( ! isset( $tc_thumb ) || is_null( $tc_thumb ) )
       return;
 
-    $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, TC_utils::tc_id() );
+    $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, CZR_cl_utils::tc_id() );
     if ( ! $thumb_img )
       return;
 
@@ -52,9 +52,9 @@ class TC_thumbnail_model_class extends TC_Model {
   function tc_get_no_effect_class( $thumb_model ) {
     extract( $thumb_model );
     //handles the case when the image dimensions are too small
-    $thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size , TC_utils::tc_id() );
+    $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size , CZR_cl_utils::tc_id() );
     $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
-    $no_effect_class  = ( esc_attr( TC_utils::$inst->tc_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
+    $no_effect_class  = ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
     return array( $no_effect_class );
   }

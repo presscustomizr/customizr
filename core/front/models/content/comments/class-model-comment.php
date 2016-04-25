@@ -1,5 +1,5 @@
 <?php
-class TC_comment_model_class extends TC_Model {
+class CZR_cl_comment_model_class extends CZR_cl_Model {
   public $comment_text;
 
   public $comment_reply_link_args;

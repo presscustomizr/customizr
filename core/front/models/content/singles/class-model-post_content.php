@@ -1,5 +1,5 @@
 <?php
-class TC_post_content_model_class extends TC_Model {
+class CZR_cl_post_content_model_class extends CZR_cl_Model {
   public $thumbnail_position;
 
   /**
@@ -12,7 +12,7 @@ class TC_post_content_model_class extends TC_Model {
     $icon_class             = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'tc_post_format_icon', 'format-icon' ) :'' ;
 
     $model['element_class'] = array( $icon_class );
-    $model[ 'thumbnail_position' ] = '__before_content' == TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'before_title' : '';
+    $model[ 'thumbnail_position' ] = '__before_content' == CZR_cl_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'before_title' : '';
 
     return $model;
   }
@@ -40,7 +40,7 @@ class TC_post_content_model_class extends TC_Model {
   }
 
   function tc_get_article_selectors( $model = array() ) {
-    return TC_utils_query::$instance -> tc_get_the_singular_article_selectors( 'row-fluid' );
+    return CZR_cl_utils_query::$instance -> tc_get_the_singular_article_selectors( 'row-fluid' );
   }
 
 }

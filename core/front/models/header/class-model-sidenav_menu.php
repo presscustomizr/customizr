@@ -1,5 +1,5 @@
 <?php
-class TC_sidenav_menu_model_class extends TC_menu_model_class {
+class CZR_cl_sidenav_menu_model_class extends CZR_cl_menu_model_class {
   /**
   * @override
   */

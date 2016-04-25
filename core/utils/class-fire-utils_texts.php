@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_utils_texts' ) ) :
-  class TC_utils_texts {
+if ( ! class_exists( 'CZR_cl_utils_texts' ) ) :
+  class CZR_cl_utils_texts {
     static $instance;
     static $post_formats_with_no_heading = array( 'aside' , 'status' , 'link' , 'quote' );
         
@@ -29,6 +29,6 @@ endif;
 /* Exposed methods */
 if ( ! function_exists( 'tc_post_has_title' ) ):
   function tc_post_has_title() {
-    return TC_utils_texts::$instance -> tc_post_has_headings();      
+    return CZR_cl_utils_texts::$instance -> tc_post_has_headings();      
   }
 endif;

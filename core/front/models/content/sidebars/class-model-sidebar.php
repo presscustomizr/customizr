@@ -1,5 +1,5 @@
 <?php
-class TC_sidebar_model_class extends TC_Model {
+class CZR_cl_sidebar_model_class extends CZR_cl_Model {
   public $position;
   private static $sidebar_map = array(
       //id => allowed layout (- b both )
@@ -35,7 +35,7 @@ class TC_sidebar_model_class extends TC_Model {
   */
   function tc_extend_params( $model = array() ) {
     $model                = parent::tc_extend_params( $model );
-    $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
+    $screen_layout        = CZR_cl_utils::tc_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
 
     //extract the position
     $this -> position     = substr( $model['id'], 0 ,strpos( $model['id'], '_sidebar' ) );
@@ -43,7 +43,7 @@ class TC_sidebar_model_class extends TC_Model {
     if ( ! in_array( $this -> position, array('right', 'left' ) ) )
       return array();
 
-    $global_layout        = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
+    $global_layout        = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
     $sidebar_layout       = $global_layout[$screen_layout];
 
     //defines the sidebar wrapper class

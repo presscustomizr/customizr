@@ -13,8 +13,8 @@
 //- register its child models if any
 
 
-if ( ! class_exists( 'TC_Model' ) ) :
-  class TC_Model {
+if ( ! class_exists( 'CZR_cl_Model' ) ) :
+  class CZR_cl_Model {
     static $instance;
 
     //the model properties
@@ -51,7 +51,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
 
 
       if ( empty( $model ) ) {
-        do_action('tc_dev_notice', 'in TC_MODEL construct : a model has no id ');
+        do_action('tc_dev_notice', 'in CZR_cl_MODEL construct : a model has no id ');
         return;
       }elseif ( FALSE == $model['id'] ) {
         //if model ID has been set to false => silent exit. Useful in cases when in tc_extend_params the model
@@ -130,7 +130,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
         return;
 
       //instantiate the view with the current model object as param
-      $view_instance = new TC_View( $this );
+      $view_instance = new CZR_cl_View( $this );
     }//fn
 
 
@@ -164,12 +164,12 @@ if ( ! class_exists( 'TC_Model' ) ) :
     * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
     ***********************************************************************************/
     //hook : 'view_instantiated'
-    //@param $instance is the view instance object, can be TC_View or a child of TC_View
+    //@param $instance is the view instance object, can be CZR_cl_View or a child of CZR_cl_View
     //hook the rendering method to the hook
     //$this -> view_instance can be used. It can be a child of this class.
     public function tc_maybe_hook_or_render_view($instance) {
       if ( empty($this -> id) ) {
-        do_action('tc_dev_notice', 'In TC_Model, a model is missing its id.' );
+        do_action('tc_dev_notice', 'In CZR_cl_Model, a model is missing its id.' );
         return;
       }
 
@@ -363,7 +363,7 @@ if ( ! class_exists( 'TC_Model' ) ) :
       //the model must be an array of params
       //the hook is the only mandatory param => not anymore since tc_render_template()
       if ( ! is_numeric( $this -> priority ) || empty($this -> id) ) {
-        do_action('tc_dev_notice', "In TC_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
+        do_action('tc_dev_notice', "In CZR_cl_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
         return;
       }
       return true;

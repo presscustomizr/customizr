@@ -1,5 +1,5 @@
 <?php
-class TC_page_content_model_class extends TC_Model {
+class CZR_cl_page_content_model_class extends CZR_cl_Model {
 
   function tc_setup_children() {
     $children = array(
@@ -16,6 +16,6 @@ class TC_page_content_model_class extends TC_Model {
   }
 
   function tc_get_article_selectors( $model = array() ) {
-    return TC_utils_query::$instance -> tc_get_the_singular_article_selectors( 'row-fluid' );
+    return CZR_cl_utils_query::$instance -> tc_get_the_singular_article_selectors( 'row-fluid' );
   }
 }

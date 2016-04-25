@@ -1,5 +1,5 @@
 <?php
-class TC_trackpingback_model_class extends TC_comment_model_class {
+class CZR_cl_trackpingback_model_class extends CZR_cl_comment_model_class {
   public $type = 'trackpingback';
 
   /*

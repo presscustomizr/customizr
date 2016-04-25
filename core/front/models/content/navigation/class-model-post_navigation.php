@@ -1,5 +1,5 @@
 <?php
-abstract class TC_post_navigation_model_class extends TC_Model {
+abstract class CZR_cl_post_navigation_model_class extends CZR_cl_Model {
   /**
   * @override
   * fired before the model properties are parsed
@@ -35,13 +35,13 @@ abstract class TC_post_navigation_model_class extends TC_Model {
   * @return bool
   */
   function tc_is_post_navigation_context_enabled( $_context ) {
-    return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
+    return $_context && 1 == esc_attr( CZR_cl_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
   }
 
   /*
   * @return bool
   */
   function tc_is_post_navigation_enabled(){
-    return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
+    return 1 == esc_attr( CZR_cl_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
   }
 }

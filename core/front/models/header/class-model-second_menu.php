@@ -1,5 +1,5 @@
 <?php
-class TC_second_menu_model_class extends TC_menu_model_class {
+class CZR_cl_second_menu_model_class extends CZR_cl_menu_model_class {
   public $theme_location = 'secondary';
 
   /**
@@ -9,7 +9,7 @@ class TC_second_menu_model_class extends TC_menu_model_class {
   function pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model ) {
     parent::pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model );
 
-    array_push( $navbar_wrapper_model -> element_class, esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
+    array_push( $navbar_wrapper_model -> element_class, esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_second_menu_position') ) );
   }
 
 
@@ -28,7 +28,7 @@ class TC_second_menu_model_class extends TC_menu_model_class {
     //header class for the secondary menu
     array_push( $header_model -> element_class,
           'tc-second-menu-on',
-          'tc-second-menu-' . esc_attr( TC_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
+          'tc-second-menu-' . esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
     );
   }
 

@@ -9,8 +9,8 @@
 //- when renders on a template, the view must pass its model to the WordPress template through the $wp_query global
 
 
-if ( ! class_exists( 'TC_View' ) ) :
-  class TC_View {
+if ( ! class_exists( 'CZR_cl_View' ) ) :
+  class CZR_cl_View {
     public $model;
     function __construct( $model ) {
       // $keys = array_keys( get_object_vars( $this ) );
