@@ -161,12 +161,10 @@ class TC_utils_query {
 
 
   public function tc_is_list_of_posts() {
-    global $wp_query;
     //must be archive or search result. Returns false if home is empty in options.
     return apply_filters( 'tc_is_list_of_posts',
       ! is_singular()
       && ! is_404()
-      && 0 != $wp_query -> post_count
       && ! $this -> tc_is_home_empty()
       && ! is_admin()
     );
