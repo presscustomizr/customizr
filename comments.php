@@ -9,8 +9,8 @@
  * @package Customizr
  * @since Customizr 1.0
  */
-if ( comments_open() || tc_has( 'comment_list' )  ) : ?>
+if ( comments_open() || czr_has( 'comment_list' )  ) : ?>
   <hr class="featurette-divider">
 <?php endif;
 comment_form();
-if ( tc_has('comment_list') ) { tc_render_template('content/comments/comment_list', 'comment_list'); }
+if ( czr_has('comment_list') ) { czr_render_template('content/comments/comment_list', 'comment_list'); }

@@ -25,7 +25,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
         'left'   => 'l'
       );
 
-      $screen_layout        = CZR_cl_utils::tc_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
+      $screen_layout        = CZR_cl_utils::czr_get_layout( CZR_cl_utils::tc_id() , 'sidebar'  );
       if ( ! in_array( $screen_layout, array( $sidebar_map[$position], 'b' ) ) )
         return false;
       return true;
@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
         return;
 
       //@todo check if some conditions below not redundant?
-      if ( ! apply_filters( 'tc_show_author_metas_in_post', esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_author_info' ) ) ) )
+      if ( ! apply_filters( 'tc_show_author_metas_in_post', esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_author_info' ) ) ) )
         return;
 
       return true;
@@ -110,17 +110,17 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       elseif ( CZR___::$instance -> tc_is_customizing() )
         $post_metas = true;
 
-      elseif ( 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
+      elseif ( 0 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas' ) ) )
         $post_metas = false;
 
       elseif ( is_singular() && ! is_page() && ! CZR_cl_utils::$inst -> tc_is_home() )
-        $post_metas = ( 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) );
+        $post_metas = ( 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_single_post' ) ) );
 
       elseif ( ! is_singular() && ! CZR_cl_utils::$inst -> tc_is_home() && ! is_page() )
-        $post_metas = ( 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) );
+        $post_metas = ( 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_post_lists' ) ) );
 
       elseif ( CZR_cl_utils::$inst -> tc_is_home() )
-        $post_metas = ( 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) ) );
+        $post_metas = ( 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_home' ) ) );
       else
         $post_metas = false;
 
@@ -129,11 +129,11 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
 
 
     function tc_display_view_post_metas_text() {
-      return $this -> tc_display_view_post_metas() && 'buttons' != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_design' ) );
+      return $this -> tc_display_view_post_metas() && 'buttons' != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_metas_design' ) );
     }
 
     function tc_display_view_post_metas_button() {
-      return $this -> tc_display_view_post_metas() && 'buttons' == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_design' ) );
+      return $this -> tc_display_view_post_metas() && 'buttons' == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_metas_design' ) );
     }
 
     //when to display attachment post metas?
@@ -147,25 +147,25 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     /* Thumbnails in post lists */
     function tc_display_view_post_list_rectangular_thumb() {
       return $this -> tc_display_view_post_list_thumbnail() &&
-            FALSE !== strpos( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_thumb_shape'), 'rectangular' ), 'rectangular' );
+            FALSE !== strpos( esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_thumb_shape'), 'rectangular' ), 'rectangular' );
     }
 
     function tc_display_view_post_list_standard_thumb() {
       return $this -> tc_display_view_post_list_thumbnail() &&
-            FALSE === strpos( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') ), 'rectangular' );
+            FALSE === strpos( esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_thumb_shape') ), 'rectangular' );
     }
 
     /* Helper */
     function tc_display_view_post_list_thumbnail() {
-      $display_post_list_thumbnail = $this -> tc_display_view_post_list() && 'full' != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+      $display_post_list_thumbnail = $this -> tc_display_view_post_list() && 'full' != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_show_thumb' ) );
       return $display_post_list_thumbnail;
     }
     /* end  Thumbnails in post lists*/
 
     /* Single post thumbnail */
     function tc_display_view_post_thumbnail() {
-      return $this -> tc_display_view_post() && 'hide' != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'tc_show_single_post_thumbnail' , CZR_cl_utils_thumbnails::$instance -> tc_has_thumb() );
+      return $this -> tc_display_view_post() && 'hide' != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_single_post_thumb_location' ) )
+        && apply_filters( 'tc_show_single_post_thumbnail' , CZR_cl_utils_thumbnails::$instance -> czr_has_thumb() );
     }
 
 
@@ -175,7 +175,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
 
       $post_navigation_singular = false;
 
-      $_context = $this -> tc_get_post_navigation_context();
+      $_context = $this -> czr_get_post_navigation_context();
       if ( CZR___::$instance -> tc_is_customizing() && in_array( $_context, array('page', 'single') ) )
         $post_navigation_singular = true;
       elseif ( $this -> tc_is_post_navigation_enabled() )
@@ -191,7 +191,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
 
       $post_navigation_posts = false;
 
-      $_context = $this -> tc_get_post_navigation_context();
+      $_context = $this -> czr_get_post_navigation_context();
       if ( CZR___::$instance -> tc_is_customizing() && in_array( $_context, array('home', 'archive') ) )
         $post_navigation_posts = true;
       elseif ( $this -> tc_is_post_navigation_enabled() )
@@ -223,7 +223,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function tc_display_view_comment_list() {
-      return apply_filters( 'tc_display_comment_list', (bool) esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_comment_list' ) ) && $this -> tc_display_view_comments() );
+      return apply_filters( 'tc_display_comment_list', (bool) esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_comment_list' ) ) && $this -> tc_display_view_comments() );
     }
 
     function tc_display_view_comment() {
@@ -266,9 +266,9 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
 
         //3) check global user options for pages and posts
         if ( 'page' == get_post_type() )
-          $_bool = 1 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_page_comments' )) && $_bool;
         else
-          $_bool = 1 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_comments' )) && $_bool;
       } else
         $_bool = false;
 
@@ -280,7 +280,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     * @return string or bool
     *
     */
-    function tc_get_post_navigation_context(){
+    function czr_get_post_navigation_context(){
       if ( is_page() )
         return 'page';
       if ( is_single() && ! is_attachment() )
@@ -298,14 +298,14 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     * @return bool
     */
     function tc_is_post_navigation_context_enabled( $_context ) {
-      return $_context && 1 == esc_attr( CZR_cl_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
+      return $_context && 1 == esc_attr( CZR_cl_utils::$inst -> czr_opt( "tc_show_post_navigation_{$_context}" ) );
     }
 
     /*
     * @return bool
     */
     function tc_is_post_navigation_enabled(){
-      return apply_filters( 'tc_show_post_navigation', 1 == esc_attr( CZR_cl_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) );
+      return apply_filters( 'tc_show_post_navigation', 1 == esc_attr( CZR_cl_utils::$inst -> czr_opt( 'tc_show_post_navigation' ) ) );
     }
 
   }//end of class

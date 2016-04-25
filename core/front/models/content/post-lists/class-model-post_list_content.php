@@ -20,7 +20,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     remove_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
   }
 
-  function tc_get_post_list_content( $more  = null ) {
+  function czr_get_post_list_content( $more  = null ) {
     if ( $this -> content )
       return $this -> content;
     elseif ( 'get_the_excerpt' == $this -> content_cb )
@@ -39,7 +39,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   * @since Customizr 3.2.0
   */
   function tc_set_excerpt_length( $length ) {
-    $_custom = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_list_excerpt_length' ) );
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
@@ -58,11 +58,11 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
 
   function tc_setup_late_properties() {
-    $show_excerpt        = tc_get( 'tc_show_excerpt' );
+    $show_excerpt        = czr_get( 'tc_show_excerpt' );
     $content_width_class = array( 'entry-summary' );
     $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
     $content             = '';
-    $element_class       = tc_get( 'tc_content_width' );
+    $element_class       = czr_get( 'tc_content_width' );
 
     if ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) )
     {

@@ -149,7 +149,7 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
   */
   function tc_body_class($_classes) {
     //SKIN CLASS
-    $_skin = sprintf( 'skin-%s' , basename( CZR_cl_init::$instance -> tc_get_style_src() ) );
+    $_skin = sprintf( 'skin-%s' , basename( CZR_cl_init::$instance -> czr_get_style_src() ) );
     array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
 
     return $_classes;

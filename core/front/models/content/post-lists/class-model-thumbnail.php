@@ -16,18 +16,18 @@ class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'thumb_size' ]     = $this -> tc_get_thumb_size();
+    $model[ 'thumb_size' ]     = $this -> czr_get_thumb_size();
     return $model;
   }
 
 
   function tc_maybe_render_this_model_view() {
-    return $this -> visibility && (bool) tc_get( 'tc_has_post_thumbnail' );
+    return $this -> visibility && (bool) czr_get( 'czr_has_post_thumbnail' );
   }
 
 
   function tc_setup_late_properties() {
-    $thumb_model            = CZR_cl_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
+    $thumb_model            = CZR_cl_utils_thumbnails::$instance -> czr_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
 
     if ( ! isset( $tc_thumb ) || is_null( $tc_thumb ) )
@@ -37,9 +37,9 @@ class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
     if ( ! $thumb_img )
       return;
 
-    $element_class          = $this -> tc_get_the_wrapper_class();
+    $element_class          = $this -> czr_get_the_wrapper_class();
 
-    $no_effect_class = $this -> tc_get_no_effect_class( $thumb_model );
+    $no_effect_class = $this -> czr_get_no_effect_class( $thumb_model );
 
     //add the effect
     $link_class             =  apply_filters( 'tc_thumbnail_link_class', array_merge( array( $this -> link_class ), $no_effect_class ) );
@@ -49,12 +49,12 @@ class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
     $this -> tc_update( compact( 'thumb_wrapper', 'element_class', 'link_class', 'thumb_img') );
   }
 
-  function tc_get_no_effect_class( $thumb_model ) {
+  function czr_get_no_effect_class( $thumb_model ) {
     extract( $thumb_model );
     //handles the case when the image dimensions are too small
     $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size , CZR_cl_utils::tc_id() );
     $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
-    $no_effect_class  = ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
+    $no_effect_class  = ( esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
     return array( $no_effect_class );
   }
@@ -65,14 +65,14 @@ class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  protected function tc_get_thumb_size( $_default_size = 'tc-thumb' ) {
+  protected function czr_get_thumb_size( $_default_size = 'tc-thumb' ) {
     return $_default_size;
   }
 
 
   /* The template wrapper class */
-  function tc_get_the_wrapper_class() {
-    return array( tc_get('tc_thumbnail_width') ); /*retrieved from the post_list layout */
+  function czr_get_the_wrapper_class() {
+    return array( czr_get('tc_thumbnail_width') ); /*retrieved from the post_list layout */
   }
 
   /**

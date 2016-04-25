@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    public function tc_get_customizer_map( $get_default = null ) {
+    public function czr_get_customizer_map( $get_default = null ) {
       if ( ! empty( $this -> customizer_map ) )
         return $this -> customizer_map;
 
@@ -236,7 +236,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'control'       =>  'CZR_cl_controls',
                                 'section'       => 'fonts_sec',
                                 'type'          => 'select' ,
-                                'choices'       => CZR_cl_utils::$inst -> tc_get_font( 'list' , 'name' ),
+                                'choices'       => CZR_cl_utils::$inst -> czr_get_font( 'list' , 'name' ),
                                 'priority'      => 10,
                                 'transport'     => 'postMessage',
                                 'notice'        => __( "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs." , 'customizr' )
@@ -1891,7 +1891,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'priority'    => 20,
               ),
               'tc_comment_bubble_color' => array(
-                                'default'     => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> tc_get_skin_color(),
+                                'default'     => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> czr_get_skin_color(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',
@@ -2654,7 +2654,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @since Customizr 3.0.15
     *
     */
-    private function tc_get_skins($path) {
+    private function czr_get_skins($path) {
       //checks if path exists
       if ( !file_exists($path) )
         return;
@@ -2743,13 +2743,13 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @updated Customizr 3.0.15
     */
     private function tc_build_skin_list() {
-      $parent_skins   = $this -> tc_get_skins( CZR_BASE . CZR_ASSETS_PREFIX . 'front/css' );
+      $parent_skins   = $this -> czr_get_skins( CZR_BASE . CZR_ASSETS_PREFIX . 'front/css' );
       $child_skins    = array();
 
       if ( CZR___::$instance -> tc_is_child() ){
-        $child_skins    = file_exists(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') ? $this -> tc_get_skins(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') : $child_skins;
+        $child_skins    = file_exists(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') ? $this -> czr_get_skins(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') : $child_skins;
         //backward compatibilty (the assets had a different relative path before 3.5)
-        $child_skins    = empty( $child_skins ) && file_exists(CZR_BASE_CHILD . 'inc/assets/css') ?  $this -> tc_get_skins(CZR_BASE_CHILD . 'inc/assets/css') : $child_skins;
+        $child_skins    = empty( $child_skins ) && file_exists(CZR_BASE_CHILD . 'inc/assets/css') ?  $this -> czr_get_skins(CZR_BASE_CHILD . 'inc/assets/css') : $child_skins;
       }
 
       $skin_list      = array_merge( $parent_skins , $child_skins );

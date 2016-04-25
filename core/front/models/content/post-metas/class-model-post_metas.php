@@ -21,11 +21,11 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     if ( is_attachment() )
         return;
 
-    return $this -> tc_get_cat_list() ||
-          $this -> tc_get_tag_list() ||
-          $this -> tc_get_author() ||
-          $this -> tc_get_publication_date() ||
-          $this -> tc_get_update_date();
+    return $this -> czr_get_cat_list() ||
+          $this -> czr_get_tag_list() ||
+          $this -> czr_get_author() ||
+          $this -> czr_get_publication_date() ||
+          $this -> czr_get_update_date();
   }
 
   public function tc_reset_cache() {
@@ -33,36 +33,36 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   }
 
   /* PUBLIC GETTERS */
-  public function tc_get_cat_list( $sep = '' ) {
-    return 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_categories' ) ) ? $this -> tc_get_meta( 'tax', true, $sep ) : '';
+  public function czr_get_cat_list( $sep = '' ) {
+    return 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_get_meta( 'tax', true, $sep ) : '';
   }
 
-  public function tc_get_tag_list( $sep = '' ) {
-    return 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_tags' ) ) ? $this -> tc_get_meta( 'tax', false, $sep ) : '';
+  public function czr_get_tag_list( $sep = '' ) {
+    return 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_get_meta( 'tax', false, $sep ) : '';
   }
 
-  public function tc_get_author() {
-    return 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_author' ) ) ? $this -> tc_get_meta( 'author' ) : '';
+  public function czr_get_author() {
+    return 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_get_meta( 'author' ) : '';
   }
 
-  public function tc_get_publication_date() {
-    return 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> tc_get_meta( 'pub_date' ) : '';
+  public function czr_get_publication_date() {
+    return 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_get_meta( 'pub_date' ) : '';
   }
 
-  public function tc_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
-    if ( 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = CZR_cl_utils::$inst -> tc_post_has_update() ) {
-      if ( 'days' == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
+  public function czr_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
+    if ( 0 != esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = CZR_cl_utils::$inst -> tc_post_has_update() ) {
+      if ( 'days' == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
         $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
         $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
       }
-      return isset( $_update ) ? $_update : $this -> tc_get_meta( 'up_date' );
+      return isset( $_update ) ? $_update : $this -> czr_get_meta( 'up_date' );
     }
     return false;
   }
   /* END PUBLIC GETTERS */
 
   /* HELPERS */
-  protected function tc_get_meta( $meta, $param = array(), $separator = '' ) {
+  protected function czr_get_meta( $meta, $param = array(), $separator = '' ) {
     if ( ! isset( $_cache[ $meta ] ) ) {
       $param = is_array( $param ) ? $param : array( $param );
       $_cache[ $meta ] = CZR() -> helpers -> tc_stringify_array( call_user_func_array( array( $this, "tc_meta_generate_{$meta}" ), $param ), $separator );
@@ -75,19 +75,19 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   }
 
   private function tc_meta_generate_author() {
-    return $this -> tc_get_meta_author();
+    return $this -> czr_get_meta_author();
   }
 
   private function tc_meta_generate_pub_date( $format = '' ) {
-    return $this -> tc_get_meta_date( 'publication', $format );
+    return $this -> czr_get_meta_date( 'publication', $format );
   }
 
   private function tc_meta_generate_up_date( $format = '' ) {
-    return $this -> tc_get_meta_date( 'update', $format );
+    return $this -> czr_get_meta_date( 'update', $format );
   }
 
   /* @override */
-  protected function tc_get_term_css_class( $_is_hierarchical ) {
+  protected function czr_get_term_css_class( $_is_hierarchical ) {
     $_classes         =  array( 'btn' , 'btn-mini' );
     if ( $_is_hierarchical )
       array_push( $_classes , 'btn-tag' );
@@ -101,7 +101,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  protected function tc_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
+  protected function czr_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
     if ( 'short' == $_format )
       $_format = 'j M, Y';
     $_format = apply_filters( 'tc_meta_date_format' , $_format );
@@ -126,7 +126,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  private function tc_get_meta_author() {
+  private function czr_get_meta_author() {
     return apply_filters(
         'tc_author_meta',
         sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
@@ -147,7 +147,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   * @since Customizr 3.0
   */
   private function tc_meta_generate_tax_list( $hierarchical ) {
-    $post_terms = $this -> tc_get_term_of_tax_type( $hierarchical );
+    $post_terms = $this -> czr_get_term_of_tax_type( $hierarchical );
     if ( ! $post_terms )
       return;
     $_terms_html_array  = array_map( array( $this , 'tc_meta_term_view' ), $post_terms );
@@ -167,7 +167,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   private function tc_meta_term_view( $term ) {
     $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
 
-    $_classes      = CZR() -> helpers -> tc_stringify_array( apply_filters( 'tc_meta_tax_class', $this -> tc_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
+    $_classes      = CZR() -> helpers -> tc_stringify_array( apply_filters( 'tc_meta_tax_class', $this -> czr_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
     // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
     // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
     // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.
@@ -193,7 +193,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   * @since Customizr 3.1.20
   *
   */
-  private function tc_get_term_of_tax_type( $hierarchical = true ) {
+  private function czr_get_term_of_tax_type( $hierarchical = true ) {
     //var declaration
     $post_type              = get_post_type( CZR_cl_utils::tc_id() );
     $tax_list               = get_object_taxonomies( $post_type, 'object' );
@@ -267,13 +267,13 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     if ( ! CZR___::$instance -> tc_is_customizing() )
       return $_classes;
 
-    if ( 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
+    if ( 0 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas' ) ) )
        array_push( $_classes, 'hide-all-post-metas' );
 
     if (
-        ( is_singular() && ! is_page() && ! tc__f('__is_home') && 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_single_post' ) ) ) ||
-        ( ! is_singular() && ! tc__f('__is_home') && ! is_page() && 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
-        ( tc__f('__is_home') ) && 0 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_post_metas_home' ) )
+        ( is_singular() && ! is_page() && ! tc__f('__is_home') && 0 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_single_post' ) ) ) ||
+        ( ! is_singular() && ! tc__f('__is_home') && ! is_page() && 0 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
+        ( tc__f('__is_home') ) && 0 == esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_show_post_metas_home' ) )
     )
       array_push( $_classes, 'hide-post-metas' );
 

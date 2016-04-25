@@ -29,7 +29,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
 
   function tc_setup_late_properties() {
     //get the current slide;
-    $current_slide        = tc_get( 'current_slide' );
+    $current_slide        = czr_get( 'current_slide' );
 
     if ( empty ( $current_slide ) )
       return;
@@ -37,8 +37,8 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
     //array( $slide, $slide_id );
     extract( $current_slide );
 
-    $slider_name_id = tc_get( 'slider_name_id' );
-    $img_size       = tc_get( 'img_size');
+    $slider_name_id = czr_get( 'slider_name_id' );
+    $img_size       = czr_get( 'img_size');
 
     //demo data
     if ( 'demo' == $slider_name_id && is_user_logged_in() )
@@ -50,7 +50,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
     $element_class = array_filter( array( 'slide-'. $slide_id, $active ) );
 
     //caption elements
-    $caption           = $this -> tc_get_slide_caption_model( $slide, $slider_name_id, $slide_id );
+    $caption           = $this -> czr_get_slide_caption_model( $slide, $slider_name_id, $slide_id );
     $has_caption       = ! empty( $caption );
 
     $link_whole_slide  = isset($link_whole_slide) && $link_whole_slide && $link_url;
@@ -73,7 +73,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
   *
   * return array( 'button' => array(), $text,
   */
-  function tc_get_slide_caption_model( $slide, $slider_name_id, $id ) {
+  function czr_get_slide_caption_model( $slide, $slider_name_id, $id ) {
     extract( $slide );
 
     //filters the data before (=> used for demo for example )

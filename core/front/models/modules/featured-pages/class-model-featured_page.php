@@ -26,7 +26,7 @@ class CZR_cl_featured_page_model_class extends CZR_cl_Model {
 
   function tc_setup_late_properties() {
     //get the current fp
-    $current_fp        = tc_get( 'current_fp' );
+    $current_fp        = czr_get( 'current_fp' );
 
     if ( empty ( $current_fp ) )
       return;
@@ -35,15 +35,15 @@ class CZR_cl_featured_page_model_class extends CZR_cl_Model {
     extract( $current_fp );
 
     /* first and last of row */
-    $j = ( tc_get( 'fp_per_row' ) > 1 ) ? $fp_index % tc_get( 'fp_per_row' ) : $fp_index;
+    $j = ( czr_get( 'fp_per_row' ) > 1 ) ? $fp_index % czr_get( 'fp_per_row' ) : $fp_index;
 
     $is_first_of_row = $j == 1;
-    $is_last_of_row  = ( $j == 0 || $fp_index == tc_get( 'fp_nb' ) );
+    $is_last_of_row  = ( $j == 0 || $fp_index == czr_get( 'fp_nb' ) );
 
-    $fp_ids      = tc_get( 'fp_ids' );
+    $fp_ids      = czr_get( 'fp_ids' );
     $fp_id       = $fp_ids[ $fp_index - 1 ];
 
-    $span_value  = tc_get( 'span_value' );
+    $span_value  = czr_get( 'span_value' );
 
     //array( $fp_img', $has_holder, $featured_page_id, $featured_page_title', $featured_page_link', $edit_enabled, $text )
     extract( $fp );
@@ -60,7 +60,7 @@ class CZR_cl_featured_page_model_class extends CZR_cl_Model {
 
   function tc_setup_button_block( $fp_data, $fp_single_id ) {
     //button block
-    $fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
+    $fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
     if ( $fp_button_text || CZR___::$instance -> tc_is_customizing() ){
       $fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
       $fp_button_class = $fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';

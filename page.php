@@ -17,11 +17,11 @@
   <?php
 
     /* SLIDERS : standard or slider of posts */
-    if ( tc_has('main_slider') ) {
-      tc_render_template('modules/slider/slider', 'main_slider');
+    if ( czr_has('main_slider') ) {
+      czr_render_template('modules/slider/slider', 'main_slider');
     }
-    if( tc_has( 'main_posts_slider' ) ) {
-      tc_render_template('modules/slider/slider', 'main_posts_slider');
+    if( czr_has( 'main_posts_slider' ) ) {
+      czr_render_template('modules/slider/slider', 'main_posts_slider');
     }
 
   ?>
@@ -30,18 +30,18 @@
 
     <div id="main-wrapper" class="container">
 
-      <?php if ( tc_has('breadcrumb') ) { tc_render_template('modules/breadcrumb'); } ?>
+      <?php if ( czr_has('breadcrumb') ) { czr_render_template('modules/breadcrumb'); } ?>
 
       <?php do_action('__before_main_container'); ?>
       <?php
       /* FEATURED PAGES */
-      if ( tc_has( 'featured_pages' ) )
-        tc_render_template('modules/featured-pages/featured_pages', 'featured_pages');
+      if ( czr_has( 'featured_pages' ) )
+        czr_render_template('modules/featured-pages/featured_pages', 'featured_pages');
       ?>
       <div class="container" role="main">
         <div class="<?php tc_column_content_wrapper_class() ?>">
           <?php
-            if ( tc_has('left_sidebar') ) { tc_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
+            if ( czr_has('left_sidebar') ) { czr_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
           ?>
 
               <?php do_action('__before_content'); ?>
@@ -51,26 +51,26 @@
                   if ( have_posts() ) {
                     while ( have_posts() ) {
                       the_post();
-                      tc_render_template('content/singles/page_content');
+                      czr_render_template('content/singles/page_content');
                     }//endwhile;
                   }//endif;
                 ?>
                 <?php
-                  if ( tc_has('comments') ) tc_render_template('content/comments/comments');
-                  if ( tc_has('post_navigation_singular') ) tc_render_template('content/singles/post_navigation_singular', 'post_navigation_singular');
+                  if ( czr_has('comments') ) czr_render_template('content/comments/comments');
+                  if ( czr_has('post_navigation_singular') ) czr_render_template('content/singles/post_navigation_singular', 'post_navigation_singular');
                 ?>
               </div>
 
               <?php do_action('__after_content'); ?>
 
             <?php
-            if ( tc_has('right_sidebar') ) { tc_render_template('content/sidebars/right_sidebar', 'right_sidebar'); }
+            if ( czr_has('right_sidebar') ) { czr_render_template('content/sidebars/right_sidebar', 'right_sidebar'); }
           ?>
         </div>
       </div><!-- .container -->
 
       <?php do_action('__after_main_container'); ?>
-      <?php if ( tc_has('footer_push') ) { tc_render_template('footer/footer_push', 'footer_push'); } ?>
+      <?php if ( czr_has('footer_push') ) { czr_render_template('footer/footer_push', 'footer_push'); } ?>
 
     </div><!-- #main-wrapper -->
 

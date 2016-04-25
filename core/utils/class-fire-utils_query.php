@@ -115,7 +115,7 @@ class CZR_cl_utils_query {
      // categories
      // we have to ignore sticky posts (do not prepend them)
      // disable grid sticky post expansion
-     $cats = CZR_cl_utils::$inst -> tc_opt('tc_blog_restrict_by_cat');
+     $cats = CZR_cl_utils::$inst -> czr_opt('tc_blog_restrict_by_cat');
      $cats = array_filter( $cats, array( CZR_cl_utils::$inst , 'tc_category_id_exists' ) );
 
      if ( is_array( $cats ) && ! empty( $cats ) ){
@@ -150,7 +150,7 @@ class CZR_cl_utils_query {
   * @since Customizr 3.0.10
   *
   */
-  function tc_get_post_type() {
+  function czr_get_post_type() {
     global $post;
 
     if ( ! isset($post) )
@@ -189,7 +189,7 @@ class CZR_cl_utils_query {
 
   public function tc_is_single_page() {
     return apply_filters( 'tc_is_single_page',
-        'page' == CZR_cl_utils_query::$instance -> tc_get_post_type()
+        'page' == CZR_cl_utils_query::$instance -> czr_get_post_type()
         && is_singular()
         && ! CZR_cl_utils_query::$instance -> tc_is_home_empty()
     );
@@ -223,10 +223,10 @@ class CZR_cl_utils_query {
   * @return  number
   *
   */
-  function tc_get_real_id() {
+  function czr_get_real_id() {
     global $wp_query;
     $queried_id                   = get_queried_object_id();
-    return apply_filters( 'tc_get_real_id', ( ! CZR_cl_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'czr_get_real_id', ( ! CZR_cl_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
 
 
@@ -237,7 +237,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since 3.1.0
   */
-  function tc_get_the_post_list_article_selectors($post_class = '') {
+  function czr_get_the_post_list_article_selectors($post_class = '') {
     //gets global vars
     global $post;
 
@@ -246,7 +246,7 @@ class CZR_cl_utils_query {
 
     if ( isset($post) && $this -> tc_is_list_of_posts() )
         //!is_singular() && !is_404() && !tc__f( '__is_home_empty') ) || ( is_search() && 0 != $wp_query -> post_count )
-      $selectors                = apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
+      $selectors                = apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> czr_get_the_post_class( $post_class ) );
 
     return apply_filters( 'tc_article_selectors', $selectors );
   }//end of function
@@ -263,7 +263,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since 3.1.0
   */
-  function tc_get_the_singular_article_selectors( $post_class = '' ) {
+  function czr_get_the_singular_article_selectors( $post_class = '' ) {
     //gets global vars
     global $post;
 
@@ -272,11 +272,11 @@ class CZR_cl_utils_query {
 
     // SINGLE POST/ATTACHMENT
     if ( isset($post) && 'page' != $post -> post_type && is_singular() )
-      $selectors = apply_filters( "tc_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
+      $selectors = apply_filters( "tc_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. $this -> czr_get_the_post_class( $post_class ) );
 
     // PAGE
     elseif ( isset($post) && 'page' == tc__f('__post_type') && is_singular() && !tc__f( '__is_home_empty') )
-      $selectors = apply_filters( 'tc_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> tc_get_the_post_class( $post_class ) );
+      $selectors = apply_filters( 'tc_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> czr_get_the_post_class( $post_class ) );
 
     $selectors = apply_filters( 'tc_article_selectors', $selectors );
 
@@ -292,7 +292,7 @@ class CZR_cl_utils_query {
   * @package Customizr
   * @since 3.0.10
   */
-  function tc_get_the_post_class( $class = '', $post_id = null ) {
+  function czr_get_the_post_class( $class = '', $post_id = null ) {
     //Separates classes with a single space, collates classes for post DIV
     return 'class="' . join( ' ', get_post_class( $class, $post_id ) ) . '"';
   }

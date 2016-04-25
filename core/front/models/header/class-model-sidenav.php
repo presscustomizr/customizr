@@ -48,7 +48,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
     array_push( $_classes, 'tc-side-menu' );
 
     //sidenav where
-    $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_menu_position') ) );
+    $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_position') ) );
     array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
 
     return $_classes;

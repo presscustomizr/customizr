@@ -8,14 +8,14 @@
  * @since Customizr 3.5.0
  */
 ?>
-<header class="<?php tc_echo( 'element_class' ) ?>" <?php tc_echo('element_attributes') ?>>
+<header class="<?php czr_echo( 'element_class' ) ?>" <?php czr_echo('element_attributes') ?>>
   <?php
     //do_action( '__headings_posts_list__' )
-    if ( tc_has('posts_list_title') ) { tc_render_template('content/post-lists/posts_list_title'); }
-    elseif ( tc_has('posts_list_search_title') ) { tc_render_template('content/post-lists/posts_list_title', 'posts_list_search_title' ); }
+    if ( czr_has('posts_list_title') ) { czr_render_template('content/post-lists/posts_list_title'); }
+    elseif ( czr_has('posts_list_search_title') ) { czr_render_template('content/post-lists/posts_list_title', 'posts_list_search_title' ); }
 
-    if ( tc_has('posts_list_description') ) { tc_render_template('content/post-lists/posts_list_description'); }
-    if ( tc_has('author_description') ) { tc_render_template('content/authors/author_info', 'author_description'); }
+    if ( czr_has('posts_list_description') ) { czr_render_template('content/post-lists/posts_list_description'); }
+    if ( czr_has('author_description') ) { czr_render_template('content/authors/author_info', 'author_description'); }
   ?>
   <hr class="featurette-divider headings post-lists">
 </header>

@@ -65,7 +65,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       //at this stage the mode must at least have :
       //1) a unique id
       //2) a priority set
-      //3) a hook => not anymore since tc_render_template()
+      //3) a hook => not anymore since czr_render_template()
       if ( ! $this -> tc_can_model_be_instantiated() ) {
         CZR() -> collection -> tc_delete( $this -> id );
         return;
@@ -126,7 +126,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
 
       //this check has already been done before instantiating the model.
       //Do we really need this again here ?
-      if ( ! CZR() -> controllers -> tc_is_possible($this -> tc_get())  )
+      if ( ! CZR() -> controllers -> tc_is_possible($this -> czr_get())  )
         return;
 
       //instantiate the view with the current model object as param
@@ -173,7 +173,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
         return;
       }
 
-      //Are we in tc_render_template case
+      //Are we in czr_render_template case
       //=> Typically yes if did_action('template_redirect'), since every model are registered on 'wp'
       //AND if the render property is forced to true
       //if not check if template_redirect has already been fired, to see if we are in a tc_render case
@@ -218,7 +218,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //hook : view ready
     //=> the collection here can be the full collection or a partial set of views (children for example)
     public function tc_maybe_register_children() {
-      if ( ! $this -> tc_has_children() )
+      if ( ! $this -> czr_has_children() )
         return;
 
       $children_collection = array();
@@ -243,7 +243,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     ***********************************************************************************/
     //Checks if a registered view has child views
     //@return boolean
-    public function tc_has_children() {
+    public function czr_has_children() {
       return ! empty($this -> children);
     }
 
@@ -261,14 +261,14 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
 
     //normalizes the way we can access and change a single model property
     //@return the property
-    public function tc_get_property( $property, $args = array() ) {
-      if ( method_exists( $this, "tc_get_{$property}" ) )
-        return call_user_func_array( array($this, "tc_get_{$property}"), $args );
+    public function czr_get_property( $property, $args = array() ) {
+      if ( method_exists( $this, "czr_get_{$property}" ) )
+        return call_user_func_array( array($this, "czr_get_{$property}"), $args );
       return isset ( $this -> $property ) ? $this -> $property : '';
     }
 
     //@returns the model property as an array of params
-    public function tc_get() {
+    public function czr_get() {
       $model = array();
       foreach ( array_keys( get_object_vars( $this ) ) as $key ) {
         $model[ $key ] = $this->$key;
@@ -361,7 +361,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //2) a priority set
     private function tc_can_model_be_instantiated() {
       //the model must be an array of params
-      //the hook is the only mandatory param => not anymore since tc_render_template()
+      //the hook is the only mandatory param => not anymore since czr_render_template()
       if ( ! is_numeric( $this -> priority ) || empty($this -> id) ) {
         do_action('tc_dev_notice', "In CZR_cl_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
         return;
@@ -371,7 +371,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
 
     //checks if the model exists and is an instance
     //@return bool
-    public function tc_has_instantiated_view() {
+    public function czr_has_instantiated_view() {
       return is_object( $this -> view_instance );
     }
 
@@ -387,7 +387,7 @@ endif;
 //  * adds the priority_to_check param
 //  */
 // //NOT USED!!!!
-// private function tc_has_filter( $tag, $function_to_check = false, $priority_to_check = 10 ) {
+// private function czr_has_filter( $tag, $function_to_check = false, $priority_to_check = 10 ) {
 //   // Don't reset the internal array pointer
 //   $wp_filter = $GLOBALS['wp_filter'];
 //   $has = ! empty( $wp_filter[ $tag ] );

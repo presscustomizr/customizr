@@ -10,7 +10,7 @@
  * @since Customizr 3.5.0
  */
 ?>
-<div class="container footer-widgets <?php tc_echo('element_class') ?>" <?php tc_echo('element_attributes') ?>>
+<div class="container footer-widgets <?php czr_echo('element_class') ?>" <?php czr_echo('element_attributes') ?>>
   <div class="row widget-area" role="complementary">
     <?php do_action("__before_footer_widgets") ?>
     <div id="footer_one" class="span4">

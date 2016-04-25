@@ -22,7 +22,7 @@ class CZR_cl_regular_menu_model_class extends CZR_cl_menu_model_class {
   function pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model ) {
     parent::pre_rendering_view_navbar_wrapper_cb( $navbar_wrapper_model );
 
-    array_push( $navbar_wrapper_model -> element_class, esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_menu_position') ) );
+    array_push( $navbar_wrapper_model -> element_class, esc_attr( CZR_cl_utils::$inst->czr_opt( 'tc_menu_position') ) );
   }
 
 }//end class

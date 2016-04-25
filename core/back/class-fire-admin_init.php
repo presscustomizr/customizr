@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     function tc_refresh_posts_slider( $post_id, $post = array() ) {
       // no need to build up/refresh the transient it we don't use the posts slider
       // since we always delete the transient when entering the preview.
-      if ( 'tc_posts_slider' != CZR_cl_utils::$inst->tc_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
+      if ( 'tc_posts_slider' != CZR_cl_utils::$inst->czr_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
         return;
 
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
@@ -102,7 +102,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
           return;
         $slider_of_posts = CZR() -> collection -> tc_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => 'modules/slider/slider_of_posts' ) );
       } else
-        $slider_of_posts = CZR() -> collection -> tc_get_model_instance( 'slider_of_posts' );
+        $slider_of_posts = CZR() -> collection -> czr_get_model_instance( 'slider_of_posts' );
 
       return $slider_of_posts;
     }
@@ -127,7 +127,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
 
     function tc_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
        //home/blog posts category picker
-       $_option = CZR_cl_utils::$inst -> tc_opt( $option_name, $option_group, $use_default = false );
+       $_option = CZR_cl_utils::$inst -> czr_opt( $option_name, $option_group, $use_default = false );
        if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
          //update the option
          CZR_cl_utils::$inst -> tc_set_option( $option_name, array_diff( $_option, (array)$term ) );
@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     * @since Customizr 3.2.10
     */
     function tc_maybe_add_gfonts_to_editor() {
-      $_font_pair         = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_fonts') );
+      $_font_pair         = esc_attr( CZR_cl_utils::$inst->czr_opt('tc_fonts') );
       $_all_font_pairs    = CZR_cl_init::$instance -> font_pairs;
       if ( false === strpos($_font_pair,'_g_') )
         return;
@@ -156,7 +156,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         str_replace(
           ',',
           '%2C',
-          sprintf( '//fonts.googleapis.com/css?family=%s', CZR_cl_utils::$inst -> tc_get_font( 'single' , $_font_pair ) )
+          sprintf( '//fonts.googleapis.com/css?family=%s', CZR_cl_utils::$inst -> czr_get_font( 'single' , $_font_pair ) )
         )
       );
     }
@@ -234,7 +234,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     function tc_add_editor_style() {
       $_stylesheets = array(
           CZR_BASE_URL . CZR_ASSETS_PREFIX . 'back/css/editor-style.css',
-          CZR_cl_init::$instance -> tc_get_style_src() , get_stylesheet_uri()
+          CZR_cl_init::$instance -> czr_get_style_src() , get_stylesheet_uri()
       );
 
       if ( apply_filters( 'tc_add_custom_fonts_to_editor' , false != $this -> tc_maybe_add_gfonts_to_editor() ) )
@@ -265,7 +265,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       //fonts
       $_css = CZR_cl_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
       //icons
-      $_css .= CZR_cl_resources::$instance -> tc_get_inline_font_icons_css();
+      $_css .= CZR_cl_resources::$instance -> czr_get_inline_font_icons_css();
      ?>
 
         <script type="text/javascript">
@@ -299,7 +299,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     */
     function tc_may_be_display_update_notice() {
       $opt_name                   = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
-      $last_update_notice_values  = CZR_cl_utils::$inst -> tc_opt($opt_name);
+      $last_update_notice_values  = CZR_cl_utils::$inst -> czr_opt($opt_name);
       $show_new_notice = false;
 
       if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {
@@ -451,7 +451,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     * @since v3.4+
     */
     function tc_placeholders_ajax_setup() {
-      if ( CZR_cl_utils::$inst->tc_opt('tc_display_front_help') )
+      if ( CZR_cl_utils::$inst->czr_opt('tc_display_front_help') )
         add_action( 'wp_ajax_tc_notice_actions'         , array( $this, 'tc_notice_ajax_actions' ) );
     }
 

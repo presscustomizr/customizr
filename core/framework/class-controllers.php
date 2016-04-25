@@ -64,7 +64,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
         return true;
 
       //the returned value can be a string or an array( instance, method)
-      $controller_cb = $this -> tc_get_controller( $model );
+      $controller_cb = $this -> czr_get_controller( $model );
       //FOR TEST ONLY
       //return true;
 
@@ -78,7 +78,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
 
     //@return bool
     //@param array() or object() model
-    public function tc_has_controller( $model = array() ) {
+    public function czr_has_controller( $model = array() ) {
       return ! empty( $this -> tc_build_controller( $model ) );
     }
 
@@ -86,7 +86,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
 
     //@return a function string or an array( instance, method )
     //@param array() or object() model
-    private function tc_get_controller( $model = array() ) {
+    private function czr_get_controller( $model = array() ) {
       $model = is_object($model) ? (array)$model : $model;
       $controller_cb = "";
 
@@ -106,8 +106,8 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
             ! empty( $model['controller'] ) ? $model['controller'] : '',
           )
         );
-        if ( $this -> tc_has_default_controller( $controller_ids ) ) {
-          $controller_cb = $this -> tc_get_default_controller( $controller_ids );
+        if ( $this -> czr_has_default_controller( $controller_ids ) ) {
+          $controller_cb = $this -> czr_get_default_controller( $controller_ids );
           //make sure the default controller is well formed
           //the default controller should look like array( instance, method )
           if ( empty($controller_cb) ) {
@@ -123,7 +123,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
 
     //@return boolean
     //@walks the controllers setup array until a match is found
-    private function tc_has_default_controller( $controller_ids ) {
+    private function czr_has_default_controller( $controller_ids ) {
       foreach ( $this -> controllers as $group => $views_id )
         foreach( $controller_ids as $id )
           if ( in_array($id, $views_id) )
@@ -136,7 +136,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
 
     //tries to find a default controller group for this method
     //@return array(instance, method) or array() if nothind found
-    private function tc_get_default_controller( $controller_ids ) {
+    private function czr_get_default_controller( $controller_ids ) {
       $controller_cb = false;
       foreach ( $this -> controllers as $group => $views_id )
         foreach( $controller_ids as $id )
@@ -159,7 +159,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
         //this will actually load the class file and instantiate it
         $_instance = $this -> tc_instantiate_group_controller($controller_group);
       } else {
-        $_instance = $this -> tc_get_controller_instance($controller_group);
+        $_instance = $this -> czr_get_controller_instance($controller_group);
       }
 
       //stop here if still nothing is instantiated
@@ -214,7 +214,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
 
 
     //get an already instantiated controller group instance
-    public function tc_get_controller_instance( $group ) {
+    public function czr_get_controller_instance( $group ) {
       $controller_instances = self::$controllers_instances;
       if ( ! array_key_exists($group, $controller_instances) )
         return;
