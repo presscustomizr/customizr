@@ -50,7 +50,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   }
 
   public function czr_fn_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
-    if ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = CZR_cl_utils::$inst -> tc_post_has_update() ) {
+    if ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = CZR_cl_utils::$inst -> czr_fn_post_has_update() ) {
       if ( 'days' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
         $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
         $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
@@ -65,13 +65,13 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   protected function czr_fn_get_meta( $meta, $param = array(), $separator = '' ) {
     if ( ! isset( $_cache[ $meta ] ) ) {
       $param = is_array( $param ) ? $param : array( $param );
-      $_cache[ $meta ] = CZR() -> helpers -> czr_fn_stringify_array( call_user_func_array( array( $this, "tc_meta_generate_{$meta}" ), $param ), $separator );
+      $_cache[ $meta ] = CZR() -> helpers -> czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $param ), $separator );
     }
     return $_cache[ $meta ];
   }
 
   private function czr_fn_meta_generate_tax( $hierarchical ) {
-    return $this -> tc_meta_generate_tax_list( $hierarchical );
+    return $this -> czr_fn_meta_generate_tax_list( $hierarchical );
   }
 
   private function czr_fn_meta_generate_author() {
@@ -150,9 +150,9 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     $post_terms = $this -> czr_fn_get_term_of_tax_type( $hierarchical );
     if ( ! $post_terms )
       return;
-    $_terms_html_array  = array_map( array( $this , 'tc_meta_term_view' ), $post_terms );
+    $_terms_html_array  = array_map( array( $this , 'czr_fn_meta_term_view' ), $post_terms );
     return $_terms_html_array;
-              //apply_filters( 'tc_meta_generate_tax_list', implode( apply_filters( 'tc_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
+              //apply_filters( 'czr_fn_meta_generate_tax_list', implode( apply_filters( 'tc_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
   }
 
 

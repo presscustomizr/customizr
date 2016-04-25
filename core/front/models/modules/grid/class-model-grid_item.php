@@ -89,7 +89,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   * thumb properties
   */
   function czr_fn_get_thumb_properties( $section_cols ) {
-    $has_thumb           = $this -> tc_grid_show_thumb();
+    $has_thumb           = $this -> czr_fn_grid_show_thumb();
     $thumb_img           = '';
 
     if ( $has_thumb ) {

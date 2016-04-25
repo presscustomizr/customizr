@@ -6,7 +6,7 @@ class CZR_cl_post_page_title_model_class extends CZR_cl_Model {
   * @override
   */
   function czr_fn_maybe_render_this_model_view() {
-    return $this -> visibility && tc_post_has_title();
+    return $this -> visibility && czr_fn_post_has_title();
   }
 
   /**

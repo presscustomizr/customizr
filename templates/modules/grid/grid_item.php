@@ -75,7 +75,7 @@
   <header class="entry-header">
   <?php
 
-   if ( ! czr_fn_get( 'has_title_in_caption' ) && tc_post_has_title() ) :
+   if ( ! czr_fn_get( 'has_title_in_caption' ) && czr_fn_post_has_title() ) :
 
   ?>
     <h2 class="entry-title">
