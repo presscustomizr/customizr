@@ -1,5 +1,5 @@
 <?php
-class TC_attachment_content_model_class extends TC_Model {
+class CZR_cl_attachment_content_model_class extends CZR_cl_Model {
   public $gallery;
   public $link_url;
   public $link_rel;
@@ -14,7 +14,7 @@ class TC_attachment_content_model_class extends TC_Model {
     $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
     //did we activate the fancy box in customizer?
-    $tc_fancybox = esc_attr( TC_utils::$inst->tc_opt( 'tc_fancybox' ) );
+    $tc_fancybox = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_fancybox' ) );
 
     if ( 0 == $tc_fancybox ) { //fancy box not checked!
       /**
@@ -79,6 +79,6 @@ class TC_attachment_content_model_class extends TC_Model {
 
   function tc_get_article_selectors() {
     $post_class = wp_attachment_is_image() ? ' format-image' : '';
-    return TC_utils_query::$instance -> tc_get_the_singular_article_selectors( "row-fluid $post_class" );
+    return CZR_cl_utils_query::$instance -> tc_get_the_singular_article_selectors( "row-fluid $post_class" );
   }
 }

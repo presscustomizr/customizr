@@ -1,6 +1,6 @@
 <?php
-if ( ! class_exists( 'TC_Helpers' ) ) :
-  class TC_Helpers {
+if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
+  class CZR_cl_Helpers {
     static $instance;
 
     function __construct( $args = array() ) {

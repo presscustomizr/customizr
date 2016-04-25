@@ -1,5 +1,5 @@
 <?php
-class TC_woocommerce_cart_model_class extends TC_Model {
+class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
   public $is_checkout_cart;
   public $current_menu_item_class;
 
@@ -21,7 +21,7 @@ class TC_woocommerce_cart_model_class extends TC_Model {
 
   // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
   function tc_woocommerce_add_to_cart_fragment( $fragments ) {
-    if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ) {
+    if ( 1 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ) {
       $_cart_count = WC()->cart->get_cart_contents_count();
       $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
     }
@@ -35,7 +35,7 @@ class TC_woocommerce_cart_model_class extends TC_Model {
     if ( ! is_array( $header_model -> element_class ) )
       $header_model -> element_class = explode( ' ', $header_model -> element_class );
 
-    $_class = ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
+    $_class = ( 1 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
     array_push( $header_model -> element_class, $_class );
   }
 
@@ -56,7 +56,7 @@ class TC_woocommerce_cart_model_class extends TC_Model {
     * so that as it grows it won't break on a new line. This is quite an hack to
     * keep the cart space as small as possible (span1) and do not hurt the tagline too much (from span7 to span6). Also nobody will, allegedly, have more than 10^3 products in its cart
     */
-    $_header_layout      = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
+    $_header_layout      = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_header_layout') );
     $_resp_pos_css       = 'right' == $_header_layout ? 'float: left;' : '';
     $_wc_t_align         = 'left';
 

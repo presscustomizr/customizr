@@ -1,5 +1,5 @@
 <?php
-class TC_comment_bubble_model_class extends TC_Model {
+class CZR_cl_comment_bubble_model_class extends CZR_cl_Model {
   public $type;
 
   /* DO WE WANT TO SPLIT THIS IN TWO? USING TWO DIFFERENT TEMPLATES TOO???
@@ -33,7 +33,7 @@ class TC_comment_bubble_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'type' ]            =  esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) );
+    $model[ 'type' ]            =  esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) );
     return $model;
   }
 
@@ -71,8 +71,8 @@ class TC_comment_bubble_model_class extends TC_Model {
 
     //apply custom color only if type custom
     //if color type is skin => bubble color is defined in the skin stylesheet
-    if ( 'skin' != esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color_type' ) ) ) {
-      $_custom_bubble_color = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color' ) );
+    if ( 'skin' != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_comment_bubble_color_type' ) ) ) {
+      $_custom_bubble_color = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_comment_bubble_color' ) );
       $_comment_bubble_before_border_color = 'default' == $this -> type ?
             $_custom_bubble_color :
             "$_custom_bubble_color transparent";

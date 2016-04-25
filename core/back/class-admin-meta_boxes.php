@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_meta_boxes' ) ) :
-  class TC_meta_boxes {
+if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
+  class CZR_cl_meta_boxes {
       static $instance;
       function __construct () {
           self::$instance =& $this;
@@ -125,13 +125,13 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //Generates layouts select list array
             $layouts              = array();
-            $global_layout        = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
+            $global_layout        = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
             foreach ( $global_layout as $key => $value ) {
               $layouts[$key]      = call_user_func( '__' , $value['metabox'] , 'customizr' );
             }
 
             //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_global_layout') );
+            $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_sidebar_global_layout') );
 
             //get the lists of eligible post types + normal posts (not pages!)
             $args                 = array(
@@ -146,16 +146,16 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //eligible posts (and custom posts types) default layout
             if ( in_array($post->post_type , $eligible_posts ) ) {
-              $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_post_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_sidebar_post_layout') );
             }
 
             //page default layout
             if ( $post->post_type == 'page' ) {
-              $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_page_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_sidebar_page_layout') );
             }
 
             //check if the 'force default layout' option is checked
-            $force_layout                 = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_force_layout') );
+            $force_layout                 = esc_attr( CZR_cl_utils::$inst->tc_opt('tc_sidebar_force_layout') );
 
 
             ?>
@@ -1376,7 +1376,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
         if( ( 'post-new.php' == $hook || 'post.php' == $hook || 'media.php' == $hook) )  {
             //ajax refresh for slider options
             wp_enqueue_script( 'tc_ajax_slider' ,
-                sprintf('%1$sback/js/tc_ajax_slider%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version ),
+                sprintf('%1$sback/js/tc_ajax_slider%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
                 array( 'jquery' ),
                 true
             );
@@ -1396,11 +1396,11 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //iphone like button style and script
             wp_enqueue_style( 'iphonecheckcss' ,
-                sprintf('%1$sback/css/iphonecheck%2$s.css' , TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version )
+                sprintf('%1$sback/css/iphonecheck%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version )
             );
             wp_enqueue_script( 'iphonecheck' ,
 
-                sprintf('%1$sback/js/jqueryIphonecheck%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version ),
+                sprintf('%1$sback/js/jqueryIphonecheck%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
                 array('jquery'),
                 true
             );
@@ -1411,7 +1411,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //sortable stuffs
             wp_enqueue_style( 'sortablecss' ,
-                sprintf('%1$sback/css/tc_sortable%2$s.css' , TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version )
+                sprintf('%1$sback/css/tc_sortable%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version )
             );
 
             //wp built-in color picker style and script
@@ -1425,7 +1425,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 wp_enqueue_script( 'wp-color-picker' );
                  // load the minified version of custom script
                 wp_enqueue_script( 'cp_demo-custom' ,
-                    sprintf('%1$sback/js/color-picker%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX , $_min_version ),
+                    sprintf('%1$sback/js/color-picker%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX , $_min_version ),
                     array( 'jquery' , 'wp-color-picker' ),
                     true
                 );
@@ -1437,7 +1437,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 wp_enqueue_script( 'farbtastic' );
                 // load the minified version of custom script
                 wp_enqueue_script( 'cp_demo-custom' ,
-                    sprintf('%1$sback/js/color-picker%2$s.js' ,  TC_BASE_URL . TC_ASSETS_PREFIX, $_min_version ),
+                    sprintf('%1$sback/js/color-picker%2$s.js' ,  CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
                     array( 'jquery' , 'farbtastic' ),
                     true
                 );

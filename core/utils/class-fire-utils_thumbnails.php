@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_utils_thumbnails' ) ) :
-class TC_utils_thumbnails {
+if ( ! class_exists( 'CZR_cl_utils_thumbnails' ) ) :
+class CZR_cl_utils_thumbnails {
     static $instance;
     function __construct () {
       self::$instance =& $this;
@@ -41,7 +41,7 @@ class TC_utils_thumbnails {
       $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
 
       $_filtered_thumb_size_name  = $_filtered_thumb_size_name ? $_filtered_thumb_size_name : 'tc_thumb_size';
-      $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, TC_init::$instance -> $_filtered_thumb_size_name );
+      $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, CZR_cl_init::$instance -> $_filtered_thumb_size_name );
       $_model                     = array();
       $_img_attr                  = array();
       $tc_thumb_height            = '';
@@ -51,7 +51,7 @@ class TC_utils_thumbnails {
       //because this method is also called from the slider of posts which refers to the slider responsive image setting
       //limit this just for wp version >= 4.4
       if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-        $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == TC_utils::$inst->tc_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
+        $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == CZR_cl_utils::$inst->tc_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
 
       //try to extract $_thumb_id and $_thumb_type
       extract( $this -> tc_get_thumb_info( $_post_id, $_custom_thumb_id ) );
@@ -147,7 +147,7 @@ class TC_utils_thumbnails {
     * @return string
     */
     public function tc_get_single_thumbnail_position() {
-      $_exploded_location     = explode( '|', esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) ) );
+      $_exploded_location     = explode( '|', esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_single_post_thumb_location' ) ) );
       $_hook                  = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
       return $_hook;
     }
@@ -190,7 +190,7 @@ class TC_utils_thumbnails {
           $_thumb_type  = false !== $_thumb_id ? 'attachment' : $_thumb_type;
         }
         if ( ! $_thumb_id || empty( $_thumb_id ) ) {
-          $_thumb_id    = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_default_thumb' ) );
+          $_thumb_id    = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_default_thumb' ) );
           $_thumb_type  = ( false !== $_thumb_id && ! empty($_thumb_id) ) ? 'default' : $_thumb_type;
         }
       }
@@ -207,10 +207,10 @@ class TC_utils_thumbnails {
       //define a filtrable boolean to set if attached images can be used as thumbnails
       //1) must be a non single post context
       //2) user option should be checked in customizer
-      $_bool = 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_use_attachment_as_thumb' ) );
+      $_bool = 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_use_attachment_as_thumb' ) );
 
       if ( ! is_admin() )
-        $_bool = ! TC_utils_query::$instance -> tc_is_single_post() && $_bool;
+        $_bool = ! CZR_cl_utils_query::$instance -> tc_is_single_post() && $_bool;
 
       if ( ! apply_filters( 'tc_use_attachment_as_thumb' , $_bool ) )
         return;
@@ -258,14 +258,14 @@ class TC_utils_thumbnails {
       //extract "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       extract( $_thumb_model );
       $thumb_img        = ! isset( $_thumb_model) ? false : $tc_thumb;
-      $thumb_img        = apply_filters( 'tc_post_thumb_img', $thumb_img, TC_utils::tc_id() );
+      $thumb_img        = apply_filters( 'tc_post_thumb_img', $thumb_img, CZR_cl_utils::tc_id() );
       if ( ! $thumb_img )
         return;
 
       //handles the case when the image dimensions are too small
-      $thumb_size       = apply_filters( 'tc_thumb_size' , TC_init::$instance -> tc_thumb_size, TC_utils::tc_id()  );
+      $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size, CZR_cl_utils::tc_id()  );
       $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
-      $no_effect_class  = ( esc_attr( TC_utils::$inst->tc_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
+      $no_effect_class  = ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
       //default hover effect
       $thumb_wrapper    = sprintf('<div class="%5$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s" title="%3$s"></a>%4$s</div>',
@@ -276,7 +276,7 @@ class TC_utils_thumbnails {
                                     implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('thumb-wrapper') ) )
       );
 
-      $thumb_wrapper    = apply_filters_ref_array( 'tc_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, TC_utils::tc_id() ) );
+      $thumb_wrapper    = apply_filters_ref_array( 'tc_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, CZR_cl_utils::tc_id() ) );
 
       //cache the thumbnail view
       $html             = sprintf('<section class="tc-thumbnail %1$s">%2$s</section>',
@@ -328,7 +328,7 @@ class TC_utils_thumbnails {
       //note : handled with javascript if tc_center_img option enabled
       $_bool = array_product(
         array(
-          ! esc_attr( TC_utils::$inst->tc_opt( 'tc_center_img') ),
+          ! esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_center_img') ),
           false != $image,
           ! empty($image),
           isset($_filtered_thumb_size['width']),

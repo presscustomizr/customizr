@@ -1,5 +1,5 @@
 <?php
-class TC_slide_model_class extends TC_Model {
+class CZR_cl_slide_model_class extends CZR_cl_Model {
   public $img_wrapper_class;
   public $caption_class;
 

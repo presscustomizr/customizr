@@ -10,8 +10,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_plugins_compat' ) ) :
-  class TC_plugins_compat {
+if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
+  class CZR_cl_plugins_compat {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     //credits @Srdjan
@@ -298,7 +298,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           add_filter( $filter, 'tc_apply_qtranslate' );
 
         //translate button text
-        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? TC_slider::$instance -> tc_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
+        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? CZR_cl_slider_of_posts_model_class::$instance -> tc_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
 
         //translate title and excerpt if needed
         $_posts = &$pre_slides['posts'];
@@ -308,8 +308,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           $_p = get_post( $ID );
           if ( ! $_p ) continue;
 
-          $_post['title'] = $_post['title'] ? TC_slider::$instance -> tc_get_post_slide_title($_p, $ID) : '';
-          $_post['text']  = $_post['text'] ? TC_slider::$instance -> tc_get_post_slide_excerpt($_p, $ID) : '';
+          $_post['title'] = $_post['title'] ? CZR_cl_slider_of_posts_model_class::$instance -> tc_get_post_slide_title($_p, $ID) : '';
+          $_post['text']  = $_post['text'] ? CZR_cl_slider_of_posts_model_class::$instance -> tc_get_post_slide_excerpt($_p, $ID) : '';
         }
         return $pre_slides;
       }
@@ -334,13 +334,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         // grab theme options
         $tc_options = tc__f('__options');
         // grab settings map, useful for some options labels
-        $tc_settings_map = TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default = true );
+        $tc_settings_map = CZR_cl_utils_settings_map::$instance -> tc_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
         $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';
 
         //get options to translate
-        $tc_translatable_raw_options = TC_plugins_compat::$instance -> tc_get_string_options_to_translate();
+        $tc_translatable_raw_options = CZR_cl_plugins_compat::$instance -> tc_get_string_options_to_translate();
         $tc_pll_options              = array();
 
         //build array if option => array( label (gettext-ed), option )
@@ -370,7 +370,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
         //strings translation
         //get the options to translate
-        $tc_translatable_options = TC_plugins_compat::$instance -> tc_get_string_options_to_translate();
+        $tc_translatable_options = CZR_cl_plugins_compat::$instance -> tc_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
           add_filter("tc_opt_$tc_translatable_option", 'pll__');
@@ -443,7 +443,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //define the CONSTANT wpml context. This means that user have to set the translations again when switching from Customizr, to Customizr-Pro.
       //If we don't want to do this, let's go with 'Customizr-option' in any case.
       //Also I choose to use "-option" suffix to avoid confusions as with WPML you can also translate theme's strings ( gettexted -> __() ) and WPML by default assigns to theme the context 'customizr' (textdomain)
-      define( 'TC_WPML_CONTEXT' ,  'customizr-option' );
+      define( 'CZR_WPML_CONTEXT' ,  'customizr-option' );
 
       // We cannot use wpml-config.xml to translate theme options because we use to update the option even in front page after retrieved, so we have to act on
       // a different filter.
@@ -457,7 +457,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         $option_name_assoc = wp_cache_get( $_wp_cache_key );
 
         if ( false === $option_name_assoc ) {
-          $options_to_translate = TC_plugins_compat::$instance -> tc_get_string_options_to_translate();
+          $options_to_translate = CZR_cl_plugins_compat::$instance -> tc_get_string_options_to_translate();
 
           $option_name_assoc = apply_filters( 'tc_wpml_options_names_config', array(
  //           'tc_front_slider'              => 'Front page slider name', //Handled in a different way by Srdjan
@@ -508,7 +508,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
               $slide_language = apply_filters( 'wpml_element_language_code',
                             null, array('element_id' => $attachment_id,
                                 'element_type' => 'attachment') );
-              if ( TC_plugins_compat::$instance->current_language != $slide_language ) {
+              if ( CZR_cl_plugins_compat::$instance->current_language != $slide_language ) {
                 // Replace with translated slide
                 $translated_slide_id = apply_filters( 'wpml_object_id',
                                 $attachment_id, 'attachment', false );
@@ -552,10 +552,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function pre_update_option_filter( $options ) {
         if ( isset( $options['tc_sliders'] ) ) {
             // Force default language
-            $current_language = TC_plugins_compat::$instance->current_language;
-            TC_plugins_compat::$instance->current_language = TC_plugins_compat::$instance->default_language;
+            $current_language = CZR_cl_plugins_compat::$instance->current_language;
+            CZR_cl_plugins_compat::$instance->current_language = CZR_cl_plugins_compat::$instance->default_language;
             $options['tc_sliders'] = sliders_filter( $options['tc_sliders'] );
-            TC_plugins_compat::$instance->current_language = $current_language;
+            CZR_cl_plugins_compat::$instance->current_language = $current_language;
         }
         return $options;
       }
@@ -574,7 +574,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           // build array of options to translate
           foreach ( $tc_wpml_options as $tc_wpml_option )
             if ( isset( $tc_options[$tc_wpml_option] ) )
-              icl_register_string( TC_WPML_CONTEXT,
+              icl_register_string( CZR_WPML_CONTEXT,
                 $tc_wpml_option_name[$tc_wpml_option],
                 esc_attr($tc_options[$tc_wpml_option]) //value
             );
@@ -634,7 +634,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           if ( ! function_exists( 'tc_wpml_t' ) ) {
             function tc_wpml_t( $string, $opt ) {
               $tc_wpml_options_names = tc_wpml_get_options_names_config();
-              return icl_t( TC_WPML_CONTEXT, $tc_wpml_options_names[$opt], $string );
+              return icl_t( CZR_WPML_CONTEXT, $tc_wpml_options_names[$opt], $string );
             }
           }
           /*** End TC - WPML bind ***/
@@ -805,10 +805,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
       function tc_sensei_wrappers() {
         switch ( current_filter() ) {
-          case 'sensei_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
+          case 'sensei_before_main_content': CZR_cl_plugins_compat::$instance -> tc_mainwrapper_start();
                                              break;
 
-          case 'sensei_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
+          case 'sensei_after_main_content' : CZR_cl_plugins_compat::$instance -> tc_mainwrapper_end();
                                              break;
         }//end of switch on hook
       }//end of nested function
@@ -854,10 +854,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
       function tc_woocommerce_wrappers() {
         switch ( current_filter() ) {
-          case 'woocommerce_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
+          case 'woocommerce_before_main_content': CZR_cl_plugins_compat::$instance -> tc_mainwrapper_start();
                                                   break;
 
-          case 'woocommerce_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
+          case 'woocommerce_after_main_content' : CZR_cl_plugins_compat::$instance -> tc_mainwrapper_end();
                                                   break;
         }//end of switch on hook
       }//end of nested function
@@ -868,7 +868,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       }
 
       function tc_woocommerce_wc_cart_enabled() {
-        return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) );
+        return 1 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) );
       }
 
       //disable title icons
@@ -924,7 +924,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
       function tc_woocommerce_disable_link_scroll( $excl ){
-        if ( false == esc_attr( TC_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( CZR_cl_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
 
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
@@ -975,7 +975,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_vc_disable_link_scroll' );
       function tc_vc_disable_link_scroll( $excl ){
-        if ( false == esc_attr( TC_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( CZR_cl_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
 
         if ( ! is_array( $excl ) )
           $excl = array();
@@ -1157,7 +1157,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         'tc_social_in_sidebar_title',
       );
       if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
-        $fp_areas = TC_init::$instance -> fp_ids;
+        $fp_areas = CZR_cl_init::$instance -> fp_ids;
         foreach ( $fp_areas as $fp_area )
           $string_options[] = 'tc_featured_text_' . $fp_area;
 

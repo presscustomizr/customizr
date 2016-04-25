@@ -1,5 +1,5 @@
 <?php
-class TC_thumbnail_single_model_class extends TC_Model{
+class CZR_cl_thumbnail_single_model_class extends CZR_cl_Model{
   public $thumb_position;
   public $thumb_size;
   public $thumb_img;
@@ -11,20 +11,20 @@ class TC_thumbnail_single_model_class extends TC_Model{
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $thumb_position     = TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position();
-    $thumb_size         = '__before_main_wrapper' == TC_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'slider-full' : 'slider';
+    $thumb_position     = CZR_cl_utils_thumbnails::$instance -> tc_get_single_thumbnail_position();
+    $thumb_size         = '__before_main_wrapper' == CZR_cl_utils_thumbnails::$instance -> tc_get_single_thumbnail_position() ? 'slider-full' : 'slider';
 
     return array_merge( $model, compact( 'thumb_position', 'thumb_size' ) );
   }
 
   function tc_setup_late_properties() {
-    $thumb_model            = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
+    $thumb_model            = CZR_cl_utils_thumbnails::$instance -> tc_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
 
     if ( ! isset( $tc_thumb ) || is_null( $tc_thumb ) )
       return;
 
-    $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, TC_utils::tc_id() );
+    $thumb_img              = apply_filters( 'tc_post_thumb_img', $tc_thumb, CZR_cl_utils::tc_id() );
     if ( ! $thumb_img )
       return;
 
@@ -38,7 +38,7 @@ class TC_thumbnail_single_model_class extends TC_Model{
   * @since Customizr 3.2.6
   */
   function tc_user_options_style_cb( $_css ) {
-    $_single_thumb_height   = esc_attr( TC_utils::$inst->tc_opt( 'tc_single_post_thumb_height' ) );
+    $_single_thumb_height   = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_single_post_thumb_height' ) );
     $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
     return sprintf("%s\n%s",
       $_css,

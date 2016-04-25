@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_admin_page' ) ) :
-  class TC_admin_page {
+if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
+  class CZR_cl_admin_page {
     static $instance;
     public $support_url;
 
@@ -25,7 +25,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
       //config infos
       add_action( '__after_welcome_panel'  , array( $this , 'tc_config_infos' ), 20 );
       //build the support url
-      $this -> support_url = CZR___::tc_is_pro() ? esc_url( sprintf('%ssupport' , TC_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
+      $this -> support_url = CZR___::tc_is_pro() ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'      , array( $this, 'tc_fix_wp_footer_link_style') );
     }
@@ -113,7 +113,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
               </div><!-- .two-col -->
               <div class="feature-section col two-col">
                  <div class="col">
-                    <a class="button-secondary customizr-help" title="code snippets" href="<?php echo TC_WEBSITE ?>code-snippets/" target="_blank"><?php _e( 'Code snippets for developers','customizr' ); ?></a>
+                    <a class="button-secondary customizr-help" title="code snippets" href="<?php echo CZR_WEBSITE ?>code-snippets/" target="_blank"><?php _e( 'Code snippets for developers','customizr' ); ?></a>
                 </div>
                  <div class="last-feature col">
                      <a class="button-secondary customizr-help" title="help" href="<?php echo $_support_url; ?>" target="_blank">
@@ -183,7 +183,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
                   <div class="last-feature col">
                     <h3><?php _e( 'Follow us','customizr' ); ?></h3>
-                    <p class="tc-follow"><a href="<?php echo TC_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL. TC_ASSETS_PREFIX . 'back/img/pc.png' ?>" alt="Press Customizr" /></a></p>
+                    <p class="tc-follow"><a href="<?php echo CZR_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo CZR_BASE_URL. CZR_ASSETS_PREFIX . 'back/img/pc.png' ?>" alt="Press Customizr" /></a></p>
                     <!-- Place this tag where you want the widget to render. -->
 
                   </div><!-- .feature-section -->
@@ -195,13 +195,13 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
               <h3 style="text-align:left"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
 
               <div class="feature-section images-stagger-right">
-                <a class="" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr-pro/" target="_blank"><img alt="Customizr'extensions" src="<?php echo TC_BASE_URL. TC_ASSETS_PREFIX . 'back/img/customizr-pro.png' ?>" class=""></a>
+                <a class="" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo CZR_WEBSITE ?>customizr-pro/" target="_blank"><img alt="Customizr'extensions" src="<?php echo CZR_BASE_URL. CZR_ASSETS_PREFIX . 'back/img/customizr-pro.png' ?>" class=""></a>
                 <h4 style="text-align: left"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
 
                 <p style="text-align: left"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you'll get all the features of the free version plus some really cool and even revolutionary ones." , 'customizr') ?>
                 </p>
                 <p style="text-align:left">
-                    <a class="button-primary review-customizr" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr-pro/" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
+                    <a class="button-primary review-customizr" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo CZR_WEBSITE ?>customizr-pro/" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
                 </p>
               </div>
             </div>
@@ -211,14 +211,14 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
           <h3 style="text-align:right"><?php _e('Customizr Showcase' ,'customizr') ?></h3>
 
           <div class="feature-section images-stagger-left">
-             <a class="" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><img alt="Customizr Showcase" src="<?php echo TC_BASE_URL. TC_ASSETS_PREFIX . 'back/img/mu2.png' ?>" class=""></a>
+             <a class="" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo CZR_WEBSITE ?>customizr/showcase/" target="_blank"><img alt="Customizr Showcase" src="<?php echo CZR_BASE_URL. CZR_ASSETS_PREFIX . 'back/img/mu2.png' ?>" class=""></a>
             <h4 style="text-align: right"><?php _e('Find inspiration for your next Customizr based website!' ,'customizr') ?></h4>
             <p style="text-align: right"><?php _e('This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their web design.' , 'customizr') ?>
             </p>
             <p style="text-align: right"><?php _e('Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do.' , 'customizr') ?></br>
             </p>
             <p style="text-align:right">
-                <a class="button-primary review-customizr" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo TC_WEBSITE ?>customizr/showcase/" target="_blank"><?php _e('Visit the showcase','customizr') ?> &raquo;</a>
+                <a class="button-primary review-customizr" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo CZR_WEBSITE ?>customizr/showcase/" target="_blank"><?php _e('Visit the showcase','customizr') ?> &raquo;</a>
             </p>
           </div>
         </div>
@@ -244,16 +244,16 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
    * @since Customizr 3.0.5
    */
     function tc_extract_changelog() {
-      if( ! file_exists(TC_BASE."readme.txt") ) {
+      if( ! file_exists(CZR_BASE."readme.txt") ) {
         return;
       }
-      if( ! is_readable(TC_BASE."readme.txt") ) {
+      if( ! is_readable(CZR_BASE."readme.txt") ) {
         echo '<p>The changelog in readme.txt is not readable.</p>';
         return;
       }
 
       ob_start();
-      $stylelines = explode("\n", implode('', file(TC_BASE."readme.txt")));
+      $stylelines = explode("\n", implode('', file(CZR_BASE."readme.txt")));
       $read = false;
       $i = 0;
 

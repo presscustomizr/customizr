@@ -1,5 +1,5 @@
 <?php
-class TC_sidebar_social_block_model_class extends TC_social_block_model_class {
+class CZR_cl_sidebar_social_block_model_class extends CZR_cl_social_block_model_class {
   public $element_tag        = 'aside';
   /*
   * @override
@@ -13,7 +13,7 @@ class TC_sidebar_social_block_model_class extends TC_social_block_model_class {
   * @override
   */
   function tc_get_before_socials() {
-    $_title = esc_attr( TC_utils::$inst->tc_opt( 'tc_social_in_sidebar_title') );
+    $_title = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_social_in_sidebar_title') );
     return ! $_title ? '' : apply_filters( 'tc_sidebar_socials_title' , sprintf( '<h3 class="widget-title">%1$s</h3>', $_title ) );
   }
 

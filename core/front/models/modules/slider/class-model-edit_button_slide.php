@@ -1,5 +1,5 @@
 <?php
-class TC_edit_button_slide_model_class extends TC_edit_button_model_class {
+class CZR_cl_edit_button_slide_model_class extends CZR_cl_edit_button_model_class {
   public $context = 'slide';
   public $edit_post_id;
   public $edit_link_suffix;

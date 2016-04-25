@@ -1,5 +1,5 @@
 <?php
-class TC_posts_list_title_model_class extends TC_Model {
+class CZR_cl_posts_list_title_model_class extends CZR_cl_Model {
   public $pre_title;
   public $title;
 
@@ -47,8 +47,8 @@ class TC_posts_list_title_model_class extends TC_Model {
   }
 
   function tc_get_archive_title_class() {
-      return ( esc_attr( TC_utils::$inst->tc_opt( 'tc_show_archive_title_icon' ) )
-          && esc_attr( TC_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
+      return ( esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_archive_title_icon' ) )
+          && esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
   }
 
   function tc_get_posts_list_pre_title( $context = null ) {
@@ -62,7 +62,7 @@ class TC_posts_list_title_model_class extends TC_Model {
         case 'year'           : return __( 'Yearly Archives:', 'customizr' );
       }
     }
-    return esc_attr( TC_utils::$inst->tc_opt( "tc_{$context}_title" ) );
+    return esc_attr( CZR_cl_utils::$inst->tc_opt( "tc_{$context}_title" ) );
   }
 
   function tc_get_posts_list_title_content( $context = null ) {

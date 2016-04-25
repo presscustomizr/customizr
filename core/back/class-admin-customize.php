@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_customize' ) ) :
-	class TC_customize {
+if ( ! class_exists( 'CZR_cl_customize' ) ) :
+	class CZR_cl_customize {
     static $instance;
     public $control_translations;
 
@@ -41,12 +41,12 @@ if ( ! class_exists( 'TC_customize' ) ) :
       add_action ( 'customize_register'                       , array( $this , 'tc_alter_wp_customizer_settings' ), 30, 1 );
 
       //preview scripts
-      //set with priority 20 to be fired after tc_customize_store_db_opt in TC_utils
+      //set with priority 20 to be fired after tc_customize_store_db_opt in CZR_cl_utils
   		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ), 20 );
   		//Hide donate button
   		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
-  		//Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
-      if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
+  		//Grunt Live reload script on DEV mode (CZR_DEV constant has to be defined. In wp_config for example)
+      if ( defined('CZR_DEV') && true === CZR_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
       	add_action( 'customize_controls_print_scripts'        , array( $this , 'tc_add_livereload_script') );
 
       add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'tc_print_js_templates' ) );
@@ -137,7 +137,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           );
         }
 
-        $wp_customize -> add_control( new TC_controls( $wp_customize, $menu_setting_id, $_control_properties ) );
+        $wp_customize -> add_control( new CZR_cl_controls( $wp_customize, $menu_setting_id, $_control_properties ) );
 
         $_priority = $_priority + 10;
       }//foreach
@@ -160,18 +160,18 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		*/
 		function tc_augment_customizer( $manager ) {
       //loads custom settings and controls classes for the Customizr theme
-      //- TC_Customize_Setting extends WP_Customize_Setting => to override the value() method
-      //- TC_controls extends WP_Customize_Control => overrides the render() method
-      //- TC_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control => introduced in v3.4.19, uses a js template to render the control
-      //- TC_Customize_Upload_Control extends WP_Customize_Control => old upload control used until v3.4.18, still used if current version of WP is < 4.3
-      //- TC_Customize_Multipicker_Control extends TC_controls => used for multiple cat picker for example
-      //- TC_Customize_Multipicker_Categories_Control extends TC_Customize_Multipicker_Control => extends the multipicker
-      //- TC_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown => needed for the multipicker to allow more than one "selected" attribute
+      //- CZR_cl_Customize_Setting extends WP_Customize_Setting => to override the value() method
+      //- CZR_cl_controls extends WP_Customize_Control => overrides the render() method
+      //- CZR_cl_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control => introduced in v3.4.19, uses a js template to render the control
+      //- CZR_cl_Customize_Upload_Control extends WP_Customize_Control => old upload control used until v3.4.18, still used if current version of WP is < 4.3
+      //- CZR_cl_Customize_Multipicker_Control extends CZR_cl_controls => used for multiple cat picker for example
+      //- CZR_cl_Customize_Multipicker_Categories_Control extends CZR_cl_Customize_Multipicker_Control => extends the multipicker
+      //- CZR_cl_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown => needed for the multipicker to allow more than one "selected" attribute
       locate_template( 'core/back/class-tc-controls-settings.php' , $load = true, $require_once = true );
 
       //Registered types are eligible to be rendered via JS and created dynamically.
-      if ( class_exists('TC_Customize_Cropped_Image_Control') )
-        $manager -> register_control_type( 'TC_Customize_Cropped_Image_Control' );
+      if ( class_exists('CZR_cl_Customize_Cropped_Image_Control') )
+        $manager -> register_control_type( 'CZR_cl_Customize_Cropped_Image_Control' );
 		}
 
 
@@ -185,7 +185,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			return $this -> tc_customize_factory (
         $wp_customize,
         $this -> tc_customize_arguments(),
-        TC_utils_settings_map::$instance -> tc_get_customizer_map()
+        CZR_cl_utils_settings_map::$instance -> tc_get_customizer_map()
       );
 		}
 
@@ -317,7 +317,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           //=> grid customizer addon starts by gc_
           //When do we add a prefix ?
           $add_prefix = false;
-          if ( TC_utils::$inst -> tc_is_customizr_option( $key ) )
+          if ( CZR_cl_utils::$inst -> tc_is_customizr_option( $key ) )
             $add_prefix = true;
           $_opt_name = $add_prefix ? "{$tc_option_group}[{$key}]" : $key;
 
@@ -335,8 +335,8 @@ if ( ! class_exists( 'TC_customize' ) ) :
 					}
 
           //add setting
-          if ( class_exists('TC_Customize_Setting') )
-            $wp_customize -> add_setting( new TC_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );
+          if ( class_exists('CZR_cl_Customize_Setting') )
+            $wp_customize -> add_setting( new CZR_cl_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );
           else
             $wp_customize -> add_setting( $_opt_name, $option_settings );
 
@@ -378,7 +378,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 			wp_enqueue_script(
 				'tc-customizer-preview' ,
-				sprintf('%1$sback/js/theme-customizer-preview%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+				sprintf('%1$sback/js/theme-customizer-preview%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-preview', 'underscore'),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				true
@@ -390,12 +390,12 @@ if ( ! class_exists( 'TC_customize' ) ) :
 		        'TCPreviewParams',
 		        apply_filters('tc_js_customizer_preview_params' ,
 			        array(
-			        	'skinFolder' 		=> TC_BASE_URL . TC_ASSETS_PREFIX,
+			        	'skinFolder' 		=> CZR_BASE_URL . CZR_ASSETS_PREFIX,
                 //can be hacked to override the preview params when a custom skin is used
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
-                'fontPairs'       => TC_utils::$inst -> tc_get_font( 'list' ),
-                'fontSelectors'   => TC_init::$instance -> font_selectors,
+                'fontPairs'       => CZR_cl_utils::$inst -> tc_get_font( 'list' ),
+                'fontSelectors'   => CZR_cl_init::$instance -> font_selectors,
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' )
 			        )
@@ -416,14 +416,14 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 			wp_enqueue_style(
 				'tc-customizer-controls-style',
-				sprintf('%1$sback/css/theme-customizer-control%2$s.css' , TC_BASE_URL . TC_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+				sprintf('%1$sback/css/theme-customizer-control%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				$media = 'all'
 			);
 			wp_enqueue_script(
 				'tc-customizer-controls',
-				sprintf('%1$sback/js/theme-customizer-control%2$s.js' , TC_BASE_URL . TC_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+				sprintf('%1$sback/js/theme-customizer-control%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' , 'underscore'),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				true
@@ -433,7 +433,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			//overriden by some specific style in theme-customzer-control.css
 			wp_enqueue_style(
 				'tc-select2-css',
-				sprintf('%1$sback/js/lib/select2.min.css', TC_BASE_URL . TC_ASSETS_PREFIX ),
+				sprintf('%1$sback/js/lib/select2.min.css', CZR_BASE_URL . CZR_ASSETS_PREFIX ),
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER,
 				$media = 'all'
@@ -441,7 +441,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 
 			//gets the featured pages id from init
-			$fp_ids				= apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+			$fp_ids				= apply_filters( 'tc_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
 
 			//declares the common fp control fields and the dynamic arrays
 			$fp_controls 			= array(
@@ -468,7 +468,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 	        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
             'themeName'     => CZR___::$theme_name,
             'HideDonate'    => $this -> tc_get_hide_donate_status(),
-            'ShowCTA'       => ( true == TC_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
+            'ShowCTA'       => ( true == CZR_cl_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'    => array(
               'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
@@ -495,7 +495,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
       $_user_started_customize = false !== $_options || ! empty( $_options );
 
       //shall we hide donate ?
-      return ! $_user_started_customize || ! $_is_customizr_active || TC_utils::$inst->tc_opt('tc_hide_donate');
+      return ! $_user_started_customize || ! $_is_customizr_active || CZR_cl_utils::$inst->tc_opt('tc_hide_donate');
     }
 
 
@@ -570,7 +570,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
         <div class="tc-cta tc-cta-wrap">
           <?php
             printf('<a class="tc-cta-btn" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a>',
-              sprintf('%scustomizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -581,7 +581,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with Customizr Pro." , 'customizr' ),
-              sprintf('%scustomizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -592,7 +592,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Add unlimited featured pages with Customizr Pro." , 'customizr' ),
-              sprintf('%scustomizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -606,7 +606,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
               __( "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer." , 'customizr' ),
                sprintf('<a href="%1$s" class="tc-notice-inline-link" title="%2$s" target="_blank">%2$s<span class="tc-notice-ext-icon dashicons dashicons-external"></span></a>' , esc_url('demo.presscustomizr.com/?design=demo_grid_customizer'), __("Try it in the demo" , "customizr" )
               ),
-              sprintf('%scustomizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -620,7 +620,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
               __( "Add creative and engaging reveal animations to your side menu." , 'customizr' ),
               sprintf('<a href="%1$s" class="tc-notice-inline-link" title="%2$s" target="_blank">%2$s<span class="tc-notice-ext-icon dashicons dashicons-external"></span></a>' , esc_url('demo.presscustomizr.com/?design=nav'), __("Side menu animation demo" , "customizr" )
               ),
-              sprintf('%scustomizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -632,7 +632,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
           <?php
             printf('<span class="tc-notice">%1$s</span><a class="tc-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Customize your footer credits with Customizr Pro." , 'customizr' ),
-              sprintf('%scustomizr-pro/', TC_WEBSITE ),
+              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
           ?>
@@ -645,7 +645,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
             __( 'If you like' , 'customizr' ),
             ! $_is_pro ? __( 'the Customizr theme' , 'customizr') : __( 'the Customizr pro theme' , 'customizr'),
             __( 'we would love to receive a' , 'customizr' ),
-            ! $_is_pro ? 'https://' . 'wordpress.org/support/view/theme-reviews/customizr?filter=5' : sprintf('%scustomizr-pro/#comments', TC_WEBSITE ),
+            ! $_is_pro ? 'https://' . 'wordpress.org/support/view/theme-reviews/customizr?filter=5' : sprintf('%scustomizr-pro/#comments', CZR_WEBSITE ),
             __( 'Review the Customizr theme' , 'customizr' ),
             '&#9733;&#9733;&#9733;&#9733;&#9733;',
             __( 'rating. Thanks :) !' , 'customizr')
@@ -690,7 +690,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
             <a style="padding: 8px" class="button-primary" href="<?php echo admin_url().'update-core.php' ?>" title="<?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?>">
             <?php _e( 'Upgrade Wordpress Now' , 'customizr' ) ?></a>
             <br /><br />
-          <img src="<?php echo TC_BASE_URL . 'screenshot.png' ?>" alt="Customizr" />
+          <img src="<?php echo CZR_BASE_URL . 'screenshot.png' ?>" alt="Customizr" />
           </p>
         </div>
       <?php

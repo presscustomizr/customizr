@@ -1,5 +1,5 @@
 <?php
-class TC_grid_item_model_class extends TC_model {
+class CZR_cl_grid_item_model_class extends CZR_cl_model {
   public  $thumb_img;
   public  $figure_class;
 
@@ -68,7 +68,7 @@ class TC_grid_item_model_class extends TC_model {
   * @return string
   */
   function tc_set_grid_title_length( $_title, $is_expanded ) {
-    $_max = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_num_words') );
+    $_max = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_num_words') );
     $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
     $_max = $_max <= 0 ? 1 : $_max;
 
@@ -93,7 +93,7 @@ class TC_grid_item_model_class extends TC_model {
     $thumb_img           = '';
 
     if ( $has_thumb ) {
-      $thumb_model                   = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model(
+      $thumb_model                   = CZR_cl_utils_thumbnails::$instance -> tc_get_thumbnail_model(
           $thumb_size                = $this -> tc_get_thumb_size_name( $section_cols ),
           null, null, null,
           $_filtered_thumb_size_name = $this -> tc_get_filtered_thumb_size_name( $section_cols )
@@ -103,7 +103,7 @@ class TC_grid_item_model_class extends TC_model {
       if ( ! isset( $tc_thumb ) )
         return;
 
-      $thumb_img              = apply_filters( 'tc-grid-thumb-img', $tc_thumb, TC_utils::tc_id() );
+      $thumb_img              = apply_filters( 'tc-grid-thumb-img', $tc_thumb, CZR_cl_utils::tc_id() );
     }
 
     return compact( 'has_thumb', 'thumb_img' );
@@ -130,7 +130,7 @@ class TC_grid_item_model_class extends TC_model {
   * grid icon visibility
   */
   function tc_set_grid_icon_visibility() {
-    $icon_enabled        = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_icons') );
+    $icon_enabled        = (bool) esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_grid_icons') );
     $icon_attributes     = '';
     if ( CZR___::$instance -> tc_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',
@@ -157,7 +157,7 @@ class TC_grid_item_model_class extends TC_model {
 
 
   /*
-  * get the thumb size name used in the TC_utils_thumbnails to set the proper inline style
+  * get the thumb size name used in the CZR_cl_utils_thumbnails to set the proper inline style
   * if needed, accordint to the grid element width
   */
   function tc_get_filtered_thumb_size_name( $section_cols ){
@@ -165,7 +165,7 @@ class TC_grid_item_model_class extends TC_model {
   }
 
   private function tc_grid_show_thumb() {
-    return TC_utils_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+    return CZR_cl_utils_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
   }
 
 

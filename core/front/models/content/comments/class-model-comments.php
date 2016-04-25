@@ -1,5 +1,5 @@
 <?php
-class TC_comments_model_class extends TC_Model {
+class CZR_cl_comments_model_class extends CZR_cl_Model {
 
   /*
   * @override

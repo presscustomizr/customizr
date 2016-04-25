@@ -1,5 +1,5 @@
 <?php
-class TC_posts_list_description_model_class extends TC_Model {
+class CZR_cl_posts_list_description_model_class extends CZR_cl_Model {
   public $description;
   private $context;
 

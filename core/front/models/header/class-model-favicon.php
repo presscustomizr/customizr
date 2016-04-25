@@ -1,5 +1,5 @@
 <?php
-class TC_favicon_model_class extends TC_Model {
+class CZR_cl_favicon_model_class extends CZR_cl_Model {
   public $src;
   public $type;
 
@@ -10,7 +10,7 @@ class TC_favicon_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $_fav_option  = TC_utils::$inst->tc_opt( 'tc_fav_upload');
+    $_fav_option  = CZR_cl_utils::$inst->tc_opt( 'tc_fav_upload');
     $_fav_src     = '';
 
     //check if option is an attachement id or a path (for backward compatibility)

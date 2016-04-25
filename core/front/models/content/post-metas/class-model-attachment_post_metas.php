@@ -1,5 +1,5 @@
 <?php
-class TC_attachment_post_metas_model_class extends TC_post_metas_model_class {
+class CZR_cl_attachment_post_metas_model_class extends CZR_cl_post_metas_model_class {
 
   //override
   function tc_maybe_render_this_model_view() {

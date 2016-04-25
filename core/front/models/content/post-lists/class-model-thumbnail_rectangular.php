@@ -1,5 +1,5 @@
 <?php
-class TC_thumbnail_rectangular_model_class extends TC_thumbnail_model_class {
+class CZR_cl_thumbnail_rectangular_model_class extends CZR_cl_thumbnail_model_class {
   public $thumb_wrapper_class   = '';
   public $link_class            = 'tc-rectangular-thumb';
 
@@ -17,7 +17,7 @@ class TC_thumbnail_rectangular_model_class extends TC_thumbnail_model_class {
   * @since Customizr 3.2.0
   */
   function tc_get_thumb_size( $_default_size = 'tc-thumb' ) {
-    $_position = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
+    $_position = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
     return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
   }
 
@@ -29,7 +29,7 @@ class TC_thumbnail_rectangular_model_class extends TC_thumbnail_model_class {
   * @since Customizr 3.2.6
   */
   function tc_user_options_style_cb( $_css ) {
-    $_list_thumb_height     = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_height' ) );
+    $_list_thumb_height     = esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_post_list_thumb_height' ) );
     $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
     return sprintf("%s\n%s",
       $_css,

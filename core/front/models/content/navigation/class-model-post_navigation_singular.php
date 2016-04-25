@@ -1,5 +1,5 @@
 <?php
-class TC_post_navigation_singular_model_class extends TC_post_navigation_model_class {
+class CZR_cl_post_navigation_singular_model_class extends CZR_cl_post_navigation_model_class {
   /*
   * @override
   */

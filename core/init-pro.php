@@ -12,8 +12,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_init_pro' ) ) :
-  class TC_init_pro {
+if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
+  class CZR_cl_init_pro {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     public $_pro_classes;
@@ -21,12 +21,12 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
     function __construct () {
         self::$instance =& $this;
         $this -> _pro_classes = array(
-          'TC_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array(  THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
-          'TC_theme_updater'           => array('/addons/activation-key/updates/class_theme_updater.php'),
-          'TC_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
-          'TC_wfc'                     => array('/addons/wfc/wordpress-font-customizer.php'),
-          'TC_fpu'                     => array('/addons/fpu/tc_unlimited_featured_pages.php'),
-          'PC_pro_bundle'              => array('/addons/bundle/pc-pro-bundle.php')
+          'CZR_cl_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array(  THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
+          'CZR_cl_theme_updater'           => array('/addons/activation-key/updates/class_theme_updater.php'),
+          'CZR_cl_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
+          'CZR_cl_wfc'                     => array('/addons/wfc/wordpress-font-customizer.php'),
+          'CZR_cl_fpu'                     => array('/addons/fpu/tc_unlimited_featured_pages.php'),
+          'CZR_cl_pro_bundle'                  => array('/addons/bundle/pc-pro-bundle.php')
         );
         //set files to load according to the context : admin / front / customize
         add_filter( 'tc_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
@@ -57,7 +57,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
 
         $_args = isset( $params[1] ) ? $params[1] : null;
         //instantiates only for the following classes, the other are instantiated in their respective files.
-        if ( 'TC_activation_key' == $name || 'TC_theme_check_updates' == $name )
+        if ( 'CZR_cl_activation_key' == $name || 'CZR_cl_theme_check_updates' == $name )
             new $name( $_args );
       }
     }
@@ -73,9 +73,9 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
     */
     function tc_set_files_to_load_pro($_to_load) {
       if ( ! is_admin() || ( is_admin() && CZR___::$instance -> tc_is_customizing() ) ) {
-          unset($_to_load['TC_activation_key']);
-          unset($_to_load['TC_theme_updater']);
-          unset($_to_load['TC_theme_check_updates']);
+          unset($_to_load['CZR_cl_activation_key']);
+          unset($_to_load['CZR_cl_theme_updater']);
+          unset($_to_load['CZR_cl_theme_check_updates']);
       }
       return $_to_load;
     }//end of fn
@@ -86,4 +86,4 @@ endif;
 
 //may be load pro
 if ( CZR___::tc_is_pro() )
-  new TC_init_pro(CZR___::$theme_name );
+  new CZR_cl_init_pro(CZR___::$theme_name );

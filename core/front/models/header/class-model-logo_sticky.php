@@ -1,5 +1,5 @@
 <?php
-class TC_logo_sticky_model_class extends TC_logo_model_class{
+class CZR_cl_logo_sticky_model_class extends CZR_cl_logo_model_class{
   public $logo_type   = 'sticky';
 
   /**

@@ -1,5 +1,5 @@
 <?php
-class TC_navbar_wrapper_model_class extends TC_Model {
+class CZR_cl_navbar_wrapper_model_class extends CZR_cl_Model {
 
   /**
   * @override
@@ -24,7 +24,7 @@ class TC_navbar_wrapper_model_class extends TC_Model {
   */
   function tc_body_class( $_classes ) {
     //No navbar box
-    if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
+    if ( 1 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
       $_classes = array_merge( $_classes , array('no-navbar' ) );
     return $_classes;
   }

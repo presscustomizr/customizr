@@ -1,5 +1,5 @@
 <?php
-class TC_slider_of_posts_model_class extends TC_slider_model_class {
+class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   public $slider_type = 'slider_of_posts';
 
   /**
@@ -108,12 +108,12 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
       'store_transient'     => true,
       'transient_name'      => 'tc_posts_slides',
       //options
-      'stickies_only'       => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_stickies' ) ),
-      'show_title'          => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_title' ) ),
-      'show_excerpt'        => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_text' ) ),
-      'button_text'         => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_button_text' ) ),
-      'limit'               => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_number' ) ),
-      'link_type'           => esc_attr( TC_utils::$inst->tc_opt( 'tc_posts_slider_link') ),
+      'stickies_only'       => esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_posts_slider_stickies' ) ),
+      'show_title'          => esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_posts_slider_title' ) ),
+      'show_excerpt'        => esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_posts_slider_text' ) ),
+      'button_text'         => esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_posts_slider_button_text' ) ),
+      'limit'               => esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_posts_slider_number' ) ),
+      'link_type'           => esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_posts_slider_link') ),
     );
     $args         = apply_filters( 'tc_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
@@ -133,15 +133,15 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
       return array();
     /*** tc_thumb setup filters ***/
     // remove smart load img parsing if any
-    $smart_load_enabled = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) );
+    $smart_load_enabled = 1 == esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter( 'tc_thumb_html', array( TC_utils::$instance, 'tc_parse_imgs') );
+      remove_filter( 'tc_thumb_html', array( CZR_cl_utils::$instance, 'tc_parse_imgs') );
     // prevent adding thumb inline style when no center img is added
     add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
     /*** end tc_thumb setup ***/
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      $args['slider_responsive_images'] = 0 == esc_attr( TC_utils::$inst->tc_opt('tc_resp_slider_img') ) ? false : true ;
+      $args['slider_responsive_images'] = 0 == esc_attr( CZR_cl_utils::$inst->tc_opt('tc_resp_slider_img') ) ? false : true ;
     /* Get the pre_model */
     $pre_slides = $pre_slides_posts = array();
     foreach ( $queried_posts as $_post ) {
@@ -153,7 +153,7 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
     /* tc_thumb reset filters */
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
-      add_filter('tc_thumb_html', array(TC_utils::$instance, 'tc_parse_imgs') );
+      add_filter('tc_thumb_html', array(CZR_cl_utils::$instance, 'tc_parse_imgs') );
     // remove thumb style reset
     remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
     /* end tc_thumb reset filters */
@@ -311,7 +311,7 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
   function tc_get_single_post_slide_pre_model( $_post , $img_size, $args ){
     $ID                     = $_post->ID;
     //attachment image
-    $thumb                  = TC_utils_thumbnails::$instance -> tc_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
+    $thumb                  = CZR_cl_utils_thumbnails::$instance -> tc_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
     // we don't want to show slides with no image
     if ( ! $slide_background )
@@ -377,7 +377,7 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
   function tc_cache_posts_slider( $args = array() ) {
     $defaults = array (
       //use the home slider_width
-      'img_size'        => 1 == TC_utils::$inst->tc_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
+      'img_size'        => 1 == CZR_cl_utils::$inst->tc_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
       'load_transient'  => false,
       'store_transient' => true,
       'transient_name'  => 'tc_posts_slides'
@@ -447,7 +447,7 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
   * @since Customizr 3.4.9
   *
   */
-  // move this into TC_utils?
+  // move this into CZR_cl_utils?
   function tc_get_post_title( $_post, $default_title_length, $more ) {
     $title = $_post->post_title;
     if ( ! empty( $_post->post_password ) ) {
@@ -471,7 +471,7 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
   * @since Customizr 3.4.9
   *
   */
-  // move this into TC_utils?
+  // move this into CZR_cl_utils?
   function tc_get_post_excerpt( $_post, $default_text_length, $more ) {
     if ( ! empty( $_post->post_password) )
       return __( 'There is no excerpt because this is a protected post.', 'customizr' );

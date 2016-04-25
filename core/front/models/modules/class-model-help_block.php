@@ -1,5 +1,5 @@
 <?php
-class TC_help_block_model_class extends TC_Model {
+class CZR_cl_help_block_model_class extends CZR_cl_Model {
   public $element_tag = 'div';
   public $help_message;
   public $help_secondary_message;
@@ -15,11 +15,11 @@ class TC_help_block_model_class extends TC_Model {
   */
   function __construct( $model ) {
     /*
-     * this notice is on when TC_DEV or
+     * this notice is on when CZR_cl_DEV or
      * when the specific notice is enabled
      * tc_is_notice_on is stronger than tc_is_notice_enabled.
      * The latter generally checks whether or not the transient is disabled
-     * the earlier puts the above in OR with TC_DEV, as we always want to display help blocks for testing purposes.
+     * the earlier puts the above in OR with CZR_cl_DEV, as we always want to display help blocks for testing purposes.
      * So when extending this class, to actually *contextually* forbid an help block be sure you override
      * tc_is_notice_on!
      */
@@ -54,13 +54,13 @@ class TC_help_block_model_class extends TC_Model {
   }
 
   /*
-  * The notice is on when the notice is enabled or TC_DEV
+  * The notice is on when the notice is enabled or CZR_cl_DEV
   * The main difference between this method and tc_is_notice_enabled consists on the fact
   * that some notices should be displayed only under some contextual conditions which are
   * stronger than the DEV mode and/or the notice enabled (e.g. smartload helps in single or post list)
   */
   function tc_is_notice_on() {
-    return ( defined('TC_DEV') && true === TC_DEV ) || $this -> tc_is_notice_enabled();
+    return ( defined('CZR_cl_DEV') && true === CZR_cl_DEV ) || $this -> tc_is_notice_enabled();
   }
 
 
@@ -163,7 +163,7 @@ class TC_help_block_model_class extends TC_Model {
 /**************************
 *** Sidebars help block ***
 **************************/
-abstract class TC_sidebar_help_block_model_class extends TC_help_block_model_class {
+abstract class CZR_cl_sidebar_help_block_model_class extends CZR_cl_help_block_model_class {
   public $data_notice_id  = 'widget_placehold_sidebar';
   public $position;
   public $element_class   = 'tc-widget-placeholder';
@@ -173,7 +173,7 @@ abstract class TC_sidebar_help_block_model_class extends TC_help_block_model_cla
   * @override
   */
   function tc_get_the_help_message() {
-    $_customizer_lnk =  TC_utils::tc_get_customizer_url( array( 'panel' => 'widgets', 'section' => 'sidebar-widgets-' . $this -> position ) );
+    $_customizer_lnk =  CZR_cl_utils::tc_get_customizer_url( array( 'panel' => 'widgets', 'section' => 'sidebar-widgets-' . $this -> position ) );
     return sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
                 sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', $_customizer_lnk, __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" href="#" title="%1$s">%1$s</a>',
@@ -204,7 +204,7 @@ abstract class TC_sidebar_help_block_model_class extends TC_help_block_model_cla
   }
 }
 
-class TC_right_sidebar_help_block_model_class extends TC_sidebar_help_block_model_class {
+class CZR_cl_right_sidebar_help_block_model_class extends CZR_cl_sidebar_help_block_model_class {
   public $position = 'right';
 
   /*
@@ -215,7 +215,7 @@ class TC_right_sidebar_help_block_model_class extends TC_sidebar_help_block_mode
     return __( 'The right sidebar has no widgets', 'customizr');
   }
 }
-class TC_left_sidebar_help_block_model_class extends TC_sidebar_help_block_model_class {
+class CZR_cl_left_sidebar_help_block_model_class extends CZR_cl_sidebar_help_block_model_class {
   public $position = 'left';
 
   /*
@@ -230,7 +230,7 @@ class TC_left_sidebar_help_block_model_class extends TC_sidebar_help_block_model
 /**************************
 **** Footer help block ****
 **************************/
-class TC_footer_widgets_help_block_model_class extends TC_sidebar_help_block_model_class {
+class CZR_cl_footer_widgets_help_block_model_class extends CZR_cl_sidebar_help_block_model_class {
   public $position        = 'footer';
   public $data_notice_id  = 'widget_placehold_footer';
   public $element_class   = 'tc-widget-placeholder';
@@ -241,7 +241,7 @@ class TC_footer_widgets_help_block_model_class extends TC_sidebar_help_block_mod
   */
   function tc_get_the_help_message() {
     return sprintf( __("Add widgets to the footer %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', TC_utils::tc_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_cl_utils::tc_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" href="#" title="%1$s">%1$s</a>',
                   __( 'dismiss this notice', 'customizr')
                 )
@@ -268,7 +268,7 @@ class TC_footer_widgets_help_block_model_class extends TC_sidebar_help_block_mod
   */
   function tc_is_notice_enabled() {
     $bool = true;
-    foreach ( apply_filters( 'tc_footer_widgets', TC_init::$instance -> footer_widgets ) as $key => $area )
+    foreach ( apply_filters( 'tc_footer_widgets', CZR_cl_init::$instance -> footer_widgets ) as $key => $area )
       if ( is_active_sidebar( $key ) ) {
         $bool = false;
         break;
@@ -281,7 +281,7 @@ class TC_footer_widgets_help_block_model_class extends TC_sidebar_help_block_mod
 /*********************************
 *** Featured Pages help block  ***
 *********************************/
-class TC_featured_pages_help_block_model_class extends TC_help_block_model_class {
+class CZR_cl_featured_pages_help_block_model_class extends CZR_cl_help_block_model_class {
   public $element_class    = 'tc-fp-notice';
   public $data_notice_id   = 'fp_notice';
   public $data_user_option = 'tc_show_featured_pages';
@@ -290,7 +290,7 @@ class TC_featured_pages_help_block_model_class extends TC_help_block_model_class
   * @override
   */
   function tc_get_the_help_message() {
-    $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', TC_utils::tc_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
+    $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', CZR_cl_utils::tc_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
     return sprintf( __("Edit those featured pages %s, or %s (you'll be able to add yours later)." , "customizr"),
               sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Edit those featured pages", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
               sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the featured pages", "customizr" ), __( "remove them", "customizr" ) )
@@ -305,8 +305,8 @@ class TC_featured_pages_help_block_model_class extends TC_help_block_model_class
   */
   function tc_is_notice_on() {
     return ! CZR___::tc_is_pro()
-        && (bool)TC_utils::$inst->tc_opt('tc_show_featured_pages')
-        && TC_utils::$inst -> tc_is_home()
+        && (bool)CZR_cl_utils::$inst->tc_opt('tc_show_featured_pages')
+        && CZR_cl_utils::$inst -> tc_is_home()
         && parent::tc_is_notice_on();
   }
 
@@ -325,11 +325,11 @@ class TC_featured_pages_help_block_model_class extends TC_help_block_model_class
   */
   function tc_is_one_fp_set() {
     $_fp_sets = array();
-    $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+    $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
     if ( ! is_array($fp_ids) )
       return;
     foreach ($fp_ids as $fp_single_id ) {
-      $_fp_sets[] = (bool)TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id );
+      $_fp_sets[] = (bool)CZR_cl_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id );
     }
     //returns true if at least one fp has been set.
     return (bool)array_sum($_fp_sets);
@@ -339,7 +339,7 @@ class TC_featured_pages_help_block_model_class extends TC_help_block_model_class
 /*********************************
 ******* Slider help block  *******
 *********************************/
-class TC_slider_help_block_model_class extends TC_help_block_model_class {
+class CZR_cl_slider_help_block_model_class extends CZR_cl_help_block_model_class {
   public $element_class    = 'tc-slider-notice';
   public $data_notice_id   = 'slider_notice';
   public $data_user_option = 'tc_front_slider';
@@ -348,7 +348,7 @@ class TC_slider_help_block_model_class extends TC_help_block_model_class {
   * @override
   */
   function tc_get_the_help_message() {
-    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+    $_customizer_lnk = CZR_cl_utils::tc_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     return sprintf( __("Select your own slider %s, or %s (you'll be able to add one back later)." , "customizr"),
         sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Select your own slider", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
         sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the home page slider", "customizr" ), __( "remove this demo slider", "customizr" ) )
@@ -360,7 +360,7 @@ class TC_slider_help_block_model_class extends TC_help_block_model_class {
   * we do not complete the slider notice instanciation if we're not displaying the demo slider (and we're in the front page)
   */
   function tc_is_notice_on() {
-    return TC_utils::$inst-> tc_is_home()
+    return CZR_cl_utils::$inst-> tc_is_home()
         && parent::tc_is_notice_on();
   }
 }
@@ -368,7 +368,7 @@ class TC_slider_help_block_model_class extends TC_help_block_model_class {
 /********************************************
 ******* Thumbnail (single) help block  *******
 ********************************************/
-class TC_thumbnail_help_block_model_class extends TC_help_block_model_class {
+class CZR_cl_thumbnail_help_block_model_class extends CZR_cl_help_block_model_class {
   public $element_class    = 'tc-thumbnail-help';
   public $data_notice_id   = 'thumbnail_help';
 
@@ -383,7 +383,7 @@ class TC_thumbnail_help_block_model_class extends TC_help_block_model_class {
   * @override
   */
   function tc_get_the_help_secondary_message() {
-    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( "section" => "single_posts_sec") );
+    $_customizer_lnk = CZR_cl_utils::tc_get_customizer_url( array( "section" => "single_posts_sec") );
     return sprintf('<p>%1$s</p><p>%2$s</p>',
               sprintf( __("%s to display a featured image here.", "customizr"),
                 sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', $_customizer_lnk , __( "Jump to the customizer now", "customizr") )
@@ -399,7 +399,7 @@ class TC_thumbnail_help_block_model_class extends TC_help_block_model_class {
   * The notice is also disabled when the user chose to display a thumb in single posts
   */
   function tc_is_notice_enabled() {
-    return 'hide' == TC_utils::$inst->tc_opt('tc_single_post_thumb_location') && parent::tc_is_notice_enabled();
+    return 'hide' == CZR_cl_utils::$inst->tc_opt('tc_single_post_thumb_location') && parent::tc_is_notice_enabled();
   }
 
   /*
@@ -407,7 +407,7 @@ class TC_thumbnail_help_block_model_class extends TC_help_block_model_class {
   * we do not complete the single thumb notice instanciation if we're not in single contexts
   */
   function tc_is_notice_on() {
-    return TC_utils_query::$instance -> tc_is_single_post()
+    return CZR_cl_utils_query::$instance -> tc_is_single_post()
         && parent::tc_is_notice_on();
   }
 }
@@ -415,7 +415,7 @@ class TC_thumbnail_help_block_model_class extends TC_help_block_model_class {
 /*********************************************
 ******* Smartload help block  *******
 *********************************************/
-class TC_smartload_help_block_model_class extends TC_help_block_model_class {
+class CZR_cl_smartload_help_block_model_class extends CZR_cl_help_block_model_class {
   public $element_class   = 'tc-img-smartload-help';
   public $data_notice_id  = 'img_smartload_help';
 
@@ -430,7 +430,7 @@ class TC_smartload_help_block_model_class extends TC_help_block_model_class {
   * @override
   */
   function tc_get_the_help_secondary_message() {
-    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) );
+    $_customizer_lnk = CZR_cl_utils::tc_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) );
     return sprintf("<p>%s</p>",
             sprintf( __("%s and check the option 'Load images on scroll' under 'Website Performances' section.", "customizr"),
                 sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', $_customizer_lnk, __( "Jump to the customizer now", "customizr") )
@@ -443,14 +443,14 @@ class TC_smartload_help_block_model_class extends TC_help_block_model_class {
   * The notice is also disabled when the user checked the smartload option
   */
   function tc_is_notice_enabled() {
-    return parent::tc_is_notice_enabled() &&  1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) );
+    return parent::tc_is_notice_enabled() &&  1 != esc_attr( CZR_cl_utils::$inst->tc_opt( 'tc_img_smart_load' ) );
   }
 
 }
 /*********************************************
 ******* Smartload (singular) help block  *******
 *********************************************/
-class TC_singular_smartload_help_block_model_class extends TC_smartload_help_block_model_class {
+class CZR_cl_singular_smartload_help_block_model_class extends CZR_cl_smartload_help_block_model_class {
 
   /*
   * @override
@@ -480,7 +480,7 @@ class TC_singular_smartload_help_block_model_class extends TC_smartload_help_blo
 /*********************************************
 ******* Smartload (post list) help block  *******
 *********************************************/
-class TC_post_list_smartload_help_block_model_class extends TC_smartload_help_block_model_class {
+class CZR_cl_post_list_smartload_help_block_model_class extends CZR_cl_smartload_help_block_model_class {
 
   /*
   * @override
@@ -489,13 +489,13 @@ class TC_post_list_smartload_help_block_model_class extends TC_smartload_help_bl
   function tc_is_notice_on() {
     global $post;
 
-    return parent::tc_is_notice_on() && TC_utils_query::$instance -> tc_is_list_of_posts();
+    return parent::tc_is_notice_on() && CZR_cl_utils_query::$instance -> tc_is_list_of_posts();
   }
 }
 /*********************************************
 ******* Sidenav help block  *******
 *********************************************/
-class TC_sidenav_help_block_model_class extends TC_help_block_model_class {
+class CZR_cl_sidenav_help_block_model_class extends CZR_cl_help_block_model_class {
   public $element_class   = 'tc-sidenav-help';
   public $data_notice_id  = 'sidenav_help';
 
@@ -511,7 +511,7 @@ class TC_sidenav_help_block_model_class extends TC_help_block_model_class {
   * @override
   */
   function tc_get_the_help_secondary_message() {
-    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( "section" => "nav") );
+    $_customizer_lnk = CZR_cl_utils::tc_get_customizer_url( array( "section" => "nav") );
     return sprintf('<p>%1$s</p><p>%2$s</p>',
               __( "( If you don't have any pages in your website, then this side menu is empty for the moment. )" , "customizr"),
               sprintf( __("If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s.", "customizr"),
@@ -526,7 +526,7 @@ class TC_sidenav_help_block_model_class extends TC_help_block_model_class {
   * we do not complete the sidenav menu notice instanciation if we're not displaying the sidenav menu
   */
   function tc_is_notice_on() {
-    return 'navbar' != TC_utils::$inst->tc_opt('tc_menu_style') && parent::tc_is_notice_on();
+    return 'navbar' != CZR_cl_utils::$inst->tc_opt('tc_menu_style') && parent::tc_is_notice_on();
   }
 
   /*
@@ -534,14 +534,14 @@ class TC_sidenav_help_block_model_class extends TC_help_block_model_class {
   * the notice isn't enabled also if the main location has a menu assigned
   */
   function tc_is_notice_enabled() {
-    return ! TC_utils::$inst->tc_has_location_menu('main') && parent::tc_is_notice_enabled();
+    return ! CZR_cl_utils::$inst->tc_has_location_menu('main') && parent::tc_is_notice_enabled();
   }
 }
 
 /*********************************************
 ****** Primary regular menu help block  ******
 *********************************************/
-class TC_main_menu_help_block_model_class extends TC_help_block_model_class {
+class CZR_cl_main_menu_help_block_model_class extends CZR_cl_help_block_model_class {
   public $element_class   = 'tc-main-menu-notice';
   public $data_notice_id  = 'main_menu_notice';
 
@@ -549,7 +549,7 @@ class TC_main_menu_help_block_model_class extends TC_help_block_model_class {
   * @override
   */
   function tc_get_the_help_message() {
-    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( "section" => "nav") );
+    $_customizer_lnk = CZR_cl_utils::tc_get_customizer_url( array( "section" => "nav") );
     return sprintf('%1$s<br/>%2$s',
               __( "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed.", "customizr" ),
               sprintf( __("%s or %s.", "customizr"),
@@ -564,7 +564,7 @@ class TC_main_menu_help_block_model_class extends TC_help_block_model_class {
   * we do not complete the main menu notice instanciation if we're displaying the sidenav menu
   */
   function tc_is_notice_on() {
-    return 'navbar' == TC_utils::$inst->tc_opt('tc_menu_style') && parent::tc_is_notice_on();
+    return 'navbar' == CZR_cl_utils::$inst->tc_opt('tc_menu_style') && parent::tc_is_notice_on();
   }
 
   /*
@@ -572,13 +572,13 @@ class TC_main_menu_help_block_model_class extends TC_help_block_model_class {
   * the notice isn't enabled also when the second menu is on
   */
   function tc_is_notice_enabled() {
-    return (bool)TC_utils::$inst->tc_opt('tc_display_second_menu') && parent::tc_is_notice_enabled();
+    return (bool)CZR_cl_utils::$inst->tc_opt('tc_display_second_menu') && parent::tc_is_notice_enabled();
   }
 }
 /*********************************************
 ****** Secondary regular menu help block  ******
 *********************************************/
-class TC_second_menu_help_block_model_class extends TC_help_block_model_class {
+class CZR_cl_second_menu_help_block_model_class extends CZR_cl_help_block_model_class {
   public $element_class   = 'nav-collapse collapse tc-menu-placeholder';
   public $data_notice_id  = 'second_menu_placehold';
 
@@ -586,7 +586,7 @@ class TC_second_menu_help_block_model_class extends TC_help_block_model_class {
   * @override
   */
   function tc_get_the_help_message() {
-    $_customizer_lnk = TC_utils::tc_get_customizer_url( array( "section" => "nav") );
+    $_customizer_lnk = CZR_cl_utils::tc_get_customizer_url( array( "section" => "nav") );
     return sprintf('%1$s<br/>%2$s',
               __( "You can display your main menu or a second menu here horizontally.", "customizr" ),
               sprintf( __("%s or read the %s.", "customizr"),
@@ -601,7 +601,7 @@ class TC_second_menu_help_block_model_class extends TC_help_block_model_class {
   * we do not complete the second menu notice instanciation if we're not displaying the sidenav menu
   */
   function tc_is_notice_on() {
-    return 'navbar' != TC_utils::$inst->tc_opt('tc_menu_style') && parent::tc_is_notice_on();
+    return 'navbar' != CZR_cl_utils::$inst->tc_opt('tc_menu_style') && parent::tc_is_notice_on();
   }
 
   /*
@@ -609,7 +609,7 @@ class TC_second_menu_help_block_model_class extends TC_help_block_model_class {
   * the notice isn't enabled also if the second menu option is checked
   */
   function tc_is_notice_enabled() {
-    return ! (bool)TC_utils::$inst->tc_opt('tc_display_second_menu') && parent::tc_is_notice_enabled();
+    return ! (bool)CZR_cl_utils::$inst->tc_opt('tc_display_second_menu') && parent::tc_is_notice_enabled();
   }
 
 }//end class

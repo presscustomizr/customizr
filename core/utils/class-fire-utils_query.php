@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_utils_query' ) ) :
-class TC_utils_query {
+if ( ! class_exists( 'CZR_cl_utils_query' ) ) :
+class CZR_cl_utils_query {
   static $instance;
   function __construct () {
     self::$instance =& $this;
@@ -115,8 +115,8 @@ class TC_utils_query {
      // categories
      // we have to ignore sticky posts (do not prepend them)
      // disable grid sticky post expansion
-     $cats = TC_utils::$inst -> tc_opt('tc_blog_restrict_by_cat');
-     $cats = array_filter( $cats, array( TC_utils::$inst , 'tc_category_id_exists' ) );
+     $cats = CZR_cl_utils::$inst -> tc_opt('tc_blog_restrict_by_cat');
+     $cats = array_filter( $cats, array( CZR_cl_utils::$inst , 'tc_category_id_exists' ) );
 
      if ( is_array( $cats ) && ! empty( $cats ) ){
          $query->set('category__in', $cats );
@@ -177,7 +177,7 @@ class TC_utils_query {
         && is_singular()
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
-        && ! TC_utils_query::$instance -> tc_is_home_empty() );
+        && ! CZR_cl_utils_query::$instance -> tc_is_home_empty() );
   }
 
 
@@ -189,9 +189,9 @@ class TC_utils_query {
 
   public function tc_is_single_page() {
     return apply_filters( 'tc_is_single_page',
-        'page' == TC_utils_query::$instance -> tc_get_post_type()
+        'page' == CZR_cl_utils_query::$instance -> tc_get_post_type()
         && is_singular()
-        && ! TC_utils_query::$instance -> tc_is_home_empty()
+        && ! CZR_cl_utils_query::$instance -> tc_is_home_empty()
     );
   }
 
@@ -226,7 +226,7 @@ class TC_utils_query {
   function tc_get_real_id() {
     global $wp_query;
     $queried_id                   = get_queried_object_id();
-    return apply_filters( 'tc_get_real_id', ( ! TC_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'tc_get_real_id', ( ! CZR_cl_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
 
 
