@@ -10,7 +10,7 @@
 ?>
 <article <?php tc_echo( 'article_selectors' ) ?> <?php tc_echo( 'element_attributes' ) ?> >
   <?php do_action( '__before_inner_page_article' ) ?>
-  <?php if ( tc_has('singular_headings') ) tc_render_template('content/singles/singular_headings', 'singular_headings'); ?>
+  <?php if ( tc_has('singular_headings') ) tc_render_template('content/singles/page_headings', 'singular_headings'); ?>
   <?php do_action( '__before_page_entry_content' ) ?>
   <div class ="entry-content">
     <?php do_action( '__before_inner_page_content' ) ?>
