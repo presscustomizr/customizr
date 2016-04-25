@@ -264,7 +264,7 @@ class TC_post_metas_model_class extends TC_Model {
 
   /* Customizer: allow dynamic visibility in the preview */
   function tc_body_class( $_classes/*array*/ ) {
-    if ( ! TC___::$instance -> tc_is_customizing() )
+    if ( ! CZR___::$instance -> tc_is_customizing() )
       return $_classes;
 
     if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )

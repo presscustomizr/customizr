@@ -72,7 +72,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
     * @since  Customizr 3.3+
     */
     function tc_set_files_to_load_pro($_to_load) {
-      if ( ! is_admin() || ( is_admin() && TC___::$instance -> tc_is_customizing() ) ) {
+      if ( ! is_admin() || ( is_admin() && CZR___::$instance -> tc_is_customizing() ) ) {
           unset($_to_load['TC_activation_key']);
           unset($_to_load['TC_theme_updater']);
           unset($_to_load['TC_theme_check_updates']);
@@ -85,5 +85,5 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
 endif;
 
 //may be load pro
-if ( TC___::tc_is_pro() )
-  new TC_init_pro(TC___::$theme_name );
+if ( CZR___::tc_is_pro() )
+  new TC_init_pro(CZR___::$theme_name );

@@ -491,11 +491,11 @@ class TC_slider_model_class extends TC_Model {
       return $_h;
     //2) height option has not been changed by user yet
     //the possible customization context must be taken into account here
-    if ( TC___::$instance -> tc_is_customizing() ) {
+    if ( CZR___::$instance -> tc_is_customizing() ) {
       if ( 500 != esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height') ) )
         return $_h;
     } else {
-      if ( false !== (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height', TC___::$tc_option_group, $use_default = false ) ) )
+      if ( false !== (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_default_height', CZR___::$tc_option_group, $use_default = false ) ) )
         return $_h;
     }
     return apply_filters( 'tc_set_demo_slider_height' , 750 );

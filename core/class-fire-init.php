@@ -499,7 +499,7 @@ if ( ! class_exists( 'TC_init' ) ) :
         //Defines the active skin and fallback to blue.css if needed
         if ( 'skin' == $_wot ) {
           //custom skin old tree compatibility for customizr-pro children only
-          $remote_path       = ( TC___::tc_is_pro() && TC___::$instance -> tc_is_child() && ! $remote_path ) ? tc_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
+          $remote_path       = ( CZR___::tc_is_pro() && CZR___::$instance -> tc_is_child() && ! $remote_path ) ? tc_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
           $tc_get_style_src  = $remote_path ? $remote_path : TC_BASE_URL . TC_ASSETS_PREFIX . 'front/css/blue3.css';
         } else
           $tc_get_style_src  = $remote_path ? $remote_path : TC_BASE_URL . TC_ASSETS_PREFIX . 'front/css/tc_common.css';
@@ -677,7 +677,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       function tc_set_body_classes( $_classes ) {
         if ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_link_hover_effect' ) ) )
           array_push( $_classes, 'tc-fade-hover-links' );
-        if ( TC___::$instance -> tc_is_customizing() )
+        if ( CZR___::$instance -> tc_is_customizing() )
           array_push( $_classes, 'is-customizing' );
         if ( wp_is_mobile() )
           array_push( $_classes, 'tc-is-mobile' );

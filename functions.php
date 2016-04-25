@@ -10,7 +10,7 @@ require_once( get_template_directory() . '/core/init.php' );
 //shortcut function to echo the column content wrapper class
 if ( ! function_exists('tc_column_content_wrapper_class') ) {
   function tc_column_content_wrapper_class() {
-    return TC___::$instance -> tc_column_content_wrapper_class();
+    return CZR___::$instance -> tc_column_content_wrapper_class();
   }
 }
 
@@ -20,7 +20,7 @@ if ( ! function_exists('tc_column_content_wrapper_class') ) {
 //shortcut function to echo the article container class
 if ( ! function_exists('tc_article_container_class') ) {
   function tc_article_container_class() {
-    return TC___::$instance -> tc_article_container_class();
+    return CZR___::$instance -> tc_article_container_class();
   }
 }
 
@@ -30,7 +30,7 @@ if ( ! function_exists('tc_article_container_class') ) {
 //shortcut function to get a theme file
 if ( ! function_exists('tc_get_theme_file') ) {
   function tc_get_theme_file( $path_suffix ) {
-    return TC___::$instance -> tc_get_theme_file( $path_suffix );
+    return CZR___::$instance -> tc_get_theme_file( $path_suffix );
   }
 }
 /*
@@ -39,7 +39,7 @@ if ( ! function_exists('tc_get_theme_file') ) {
 //shortcut function to get a theme file
 if ( ! function_exists('tc_get_theme_file_url') ) {
   function tc_get_theme_file_url( $url_suffix ) {
-    return TC___::$instance -> tc_get_theme_file_url( $url_suffix );
+    return CZR___::$instance -> tc_get_theme_file_url( $url_suffix );
   }
 }
 /*
@@ -48,7 +48,7 @@ if ( ! function_exists('tc_get_theme_file_url') ) {
 //shortcut function to require a theme file
 if ( ! function_exists('tc_require_once') ) {
   function tc_require_once( $path_suffix ) {
-    return TC___::$instance -> tc_require_once( $path_suffix );
+    return CZR___::$instance -> tc_require_once( $path_suffix );
   }
 }
 
@@ -58,7 +58,7 @@ if ( ! function_exists('tc_require_once') ) {
 //shortcut function to require a framework file
 if ( ! function_exists('tc_fw_require_once') ) {
   function tc_fw_require_once( $path_suffix ) {
-    return TC___::$instance -> tc_fw_require_once( $path_suffix );
+    return CZR___::$instance -> tc_fw_require_once( $path_suffix );
   }
 }
 
@@ -68,7 +68,7 @@ if ( ! function_exists('tc_fw_require_once') ) {
 //shortcut function to require a front framework file
 if ( ! function_exists('tc_fw_front_require_once') ) {
   function tc_fw_front_require_once( $path_suffix ) {
-    return TC___::$instance -> tc_fw_front_require_once( $path_suffix );
+    return CZR___::$instance -> tc_fw_front_require_once( $path_suffix );
   }
 }
 
@@ -78,7 +78,7 @@ if ( ! function_exists('tc_fw_front_require_once') ) {
 //shortcut function to set the current model which will be accessible by the tc_get
 if ( ! function_exists('tc_set_current_model') ) {
   function tc_set_current_model( $model ) {
-    return TC___::$instance -> tc_set_current_model( $model );
+    return CZR___::$instance -> tc_set_current_model( $model );
   }
 }
 
@@ -88,7 +88,7 @@ if ( ! function_exists('tc_set_current_model') ) {
 //shortcut function to reset the current model
 if ( ! function_exists('tc_reset_current_model') ) {
   function tc_reset_current_model() {
-    return TC___::$instance -> tc_reset_current_model();
+    return CZR___::$instance -> tc_reset_current_model();
   }
 }
 
@@ -98,7 +98,7 @@ if ( ! function_exists('tc_reset_current_model') ) {
 //shortcut function to get a current model property
 if ( ! function_exists('tc_get') ) {
   function tc_get( $property, $model_id = null, $args = array() ) {
-    return TC___::$instance -> tc_get( $property, $model_id, $args );
+    return CZR___::$instance -> tc_get( $property, $model_id, $args );
   }
 }
 
@@ -108,7 +108,7 @@ if ( ! function_exists('tc_get') ) {
 //shortcut function to echo a current model property
 if ( ! function_exists('tc_echo') ) {
   function tc_echo( $property, $model_id = null, $args = array() ) {
-    return TC___::$instance -> tc_echo( $property, $model_id, $args );
+    return CZR___::$instance -> tc_echo( $property, $model_id, $args );
   }
 }
 
@@ -118,7 +118,7 @@ if ( ! function_exists('tc_echo') ) {
 //shortcut function to instantiate easier
 if ( ! function_exists('tc_new') ) {
   function tc_new( $_to_load, $_args = array() ) {
-    TC___::$instance -> tc__( $_to_load , $_args );
+    CZR___::$instance -> tc__( $_to_load , $_args );
     return;
   }
 }
@@ -219,7 +219,7 @@ endif;
  * @return object CZR Instance
  */
 function CZR() {
-  return TC___::tc_instance();
+  return CZR___::tc_instance();
 }
 
 // Fire Customizr

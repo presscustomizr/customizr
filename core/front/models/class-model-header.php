@@ -26,7 +26,7 @@ class TC_header_model_class extends TC_Model {
     //e.g. not having it in a particular page so to allow the header to overlap
     //a slider/image, hence the reason of this method existence
     return esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header' ) )
-              || TC___::$instance -> tc_is_customizing();
+              || CZR___::$instance -> tc_is_customizing();
   }
 
   function tc_setup_children() {

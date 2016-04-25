@@ -107,7 +107,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
         $post_metas = false;
 
       //post metas are always insanciated in customizing context
-      elseif ( TC___::$instance -> tc_is_customizing() )
+      elseif ( CZR___::$instance -> tc_is_customizing() )
         $post_metas = true;
 
       elseif ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) )
@@ -176,7 +176,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       $post_navigation_singular = false;
 
       $_context = $this -> tc_get_post_navigation_context();
-      if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('page', 'single') ) )
+      if ( CZR___::$instance -> tc_is_customizing() && in_array( $_context, array('page', 'single') ) )
         $post_navigation_singular = true;
       elseif ( $this -> tc_is_post_navigation_enabled() )
         $post_navigation_singular = in_array( $_context, array('page', 'single') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;
@@ -192,7 +192,7 @@ if ( ! class_exists( 'TC_controller_content' ) ) :
       $post_navigation_posts = false;
 
       $_context = $this -> tc_get_post_navigation_context();
-      if ( TC___::$instance -> tc_is_customizing() && in_array( $_context, array('home', 'archive') ) )
+      if ( CZR___::$instance -> tc_is_customizing() && in_array( $_context, array('home', 'archive') ) )
         $post_navigation_posts = true;
       elseif ( $this -> tc_is_post_navigation_enabled() )
         $post_navigation_posts = in_array( $_context, array('home', 'archive') ) ? $this -> tc_is_post_navigation_context_enabled( $_context ) : false;

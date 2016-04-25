@@ -21,7 +21,7 @@ class TC_slider_of_posts_model_class extends TC_slider_model_class {
     if ( 'tc_posts_slider' != $slider_name_id )
       return array();
 
-    $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! TC___::$instance -> tc_is_customizing() );
+    $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! CZR___::$instance -> tc_is_customizing() );
     //Do not use transient when in the customizer preview (this class is not called in the customize left panel)
     $store_transient = $load_transient = $use_transient;
 

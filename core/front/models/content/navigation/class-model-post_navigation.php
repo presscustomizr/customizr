@@ -14,7 +14,7 @@ abstract class TC_post_navigation_model_class extends TC_Model {
 
   /* visibility in the customizer */
   function tc_get_pn_element_class( $_nav_classes ) {
-    if ( ! TC___::$instance -> tc_is_customizing() )
+    if ( ! CZR___::$instance -> tc_is_customizing() )
       return $_nav_classes;
 
     $_context                  = $this -> tc_get_context();

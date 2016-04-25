@@ -45,7 +45,7 @@ class TC_title_model_class extends TC_Model {
   * and shrinking classes
   */
   function pre_rendering_view_header_cb( $header_model ) {
-    if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) )
+    if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || CZR___::$instance -> tc_is_customizing() ) )
       array_push( $header_model -> element_class,
           0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
           0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
@@ -60,7 +60,7 @@ class TC_title_model_class extends TC_Model {
   */
   function tc_user_options_style_cb( $_css ) {
     //title shrink
-    if ( ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header') ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ) || TC___::$instance -> tc_is_customizing() ) {
+    if ( ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header') ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ) || CZR___::$instance -> tc_is_customizing() ) {
       $_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
 
       $_css = sprintf("%s%s",
