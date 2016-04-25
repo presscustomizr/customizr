@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         //content
         //thumbnails => parses image if smartload enabled
         //title
-        add_action( 'wp_head'                 , array( $this , 'tc_wp_filters') );
+        add_action( 'wp_head'                 , array( $this , 'czr_fn_wp_filters') );
 
         //get all options
         add_filter( '__options'               , array( $this , 'czr_fn_get_theme_options' ), 10, 1);
@@ -44,8 +44,8 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         //some useful filters
         add_filter( '__ID'                    , array( $this , 'tc_id' ));//deprecated
         add_filter( '__screen_layout'         , array( $this , 'czr_fn_get_layout' ) , 10 , 2 );//deprecated
-        add_filter( '__is_home'               , array( $this , 'tc_is_home' ) );
-        add_filter( '__is_home_empty'         , array( $this , 'tc_is_home_empty' ) );
+        add_filter( '__is_home'               , array( $this , 'czr_fn_is_home' ) );
+        add_filter( '__is_home_empty'         , array( $this , 'czr_fn_is_home_empty' ) );
         add_filter( '__post_type'             , array( $this , 'czr_fn_get_post_type' ) );
         add_filter( '__is_no_results'         , array( $this , 'tc_is_no_results') );
 
@@ -53,7 +53,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ) );
 
         //refresh the theme options right after the _preview_filter when previewing
-        add_action( 'customize_preview_init'  , array( $this , 'tc_customize_refresh_db_opt' ) );
+        add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
       }
 
       /***************************
@@ -96,10 +96,10 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @since Customizr 3.3.0
       */
       function czr_fn_wp_filters() {
-        add_filter( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ) );
+        add_filter( 'the_content'                         , array( $this , 'czr_fn_fancybox_content_filter' ) );
         if ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) ) ) {
-          add_filter( 'the_content'                       , array( $this , 'tc_parse_imgs' ), PHP_INT_MAX );
-          add_filter( 'tc_thumb_html'                     , array( $this , 'tc_parse_imgs' ) );
+          add_filter( 'the_content'                       , array( $this , 'czr_fn_parse_imgs' ), PHP_INT_MAX );
+          add_filter( 'tc_thumb_html'                     , array( $this , 'czr_fn_parse_imgs' ) );
         }
         add_filter( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
       }
@@ -117,12 +117,12 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         if( is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('tc_disable_img_smart_load_mobiles', false ) ) )
           return $_html;
 
-        return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'tc_regex_callback' ) , $_html);
+        return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'czr_fn_regex_callback' ) , $_html);
       }
 
 
       /**
-      * callback of preg_replace_callback in tc_parse_imgs
+      * callback of preg_replace_callback in czr_fn_parse_imgs
       * Inspired from Unveil Lazy Load plugin : https://wordpress.org/plugins/unveil-lazy-load/ by @marubon
       *
       * @return string
@@ -251,7 +251,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
 
         foreach ($map['add_setting_control'] as $key => $options) {
           //check it is a customizr option
-          if(  ! $this -> tc_is_customizr_option( $key ) )
+          if(  ! $this -> czr_fn_is_customizr_option( $key ) )
             continue;
 
           $option_name = $key;
@@ -491,7 +491,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @since Customizr 3.5
       */
       public static function czr_fn_get_article_container_class() {
-        return apply_filters( 'czr_fn_article_container_class' , array( self::czr_fn_get_layout( CZR_cl_utils::tc_id() , 'class' ) , 'article-container' ) );
+        return apply_filters( 'czr_fn_article_container_class' , array( self::czr_fn_get_layout( CZR_cl_utils::czr_fn_id() , 'class' ) , 'article-container' ) );
       }
 
 
@@ -517,7 +517,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$6>';
         $r_content = preg_replace( $pattern, $replacement, $content);
         $content = $r_content ? $r_content : $content;
-        return apply_filters( 'tc_fancybox_content_filter', $content );
+        return apply_filters( 'czr_fn_fancybox_content_filter', $content );
       }
 
 
@@ -642,7 +642,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
               if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
               $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
               $link = 'email' == $type ? 'mailto:' : '';
-              $link .=  call_user_func( array( CZR_cl_utils_settings_map::$instance, 'tc_sanitize_'.$type ), $__options[$key] );
+              $link .=  call_user_func( array( CZR_cl_utils_settings_map::$instance, 'czr_fn_sanitize_'.$type ), $__options[$key] );
               //there is one exception : rss feed has no target _blank and special icon title
               $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
                   apply_filters( 'tc_social_link_class',

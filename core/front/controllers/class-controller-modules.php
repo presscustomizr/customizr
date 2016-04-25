@@ -51,7 +51,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       //gets the front slider if any
       $tc_front_slider              = esc_attr(CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) );
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
-      $_show_slider = CZR_cl_utils::$inst -> tc_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
+      $_show_slider = CZR_cl_utils::$inst -> czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
 
       return apply_filters( 'tc_show_slider' , $_show_slider );
 
@@ -62,7 +62,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_breadcrumb') ) ) )
         return false;
 
-      if ( CZR_cl_utils::$inst -> tc_is_home() )
+      if ( CZR_cl_utils::$inst -> czr_fn_is_home() )
         return 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
       if ( is_page() && 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_pages' ) ) )
         return false;
@@ -89,14 +89,14 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
                   in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
       }
       //when in a list of posts demand the control to the model
-      return self::$_cache['comment_bubble'] && CZR_cl_utils_query::$instance -> tc_is_list_of_posts() ;
+      return self::$_cache['comment_bubble'] && CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() ;
     }
 
 
     function czr_fn_display_view_featured_pages() {
       //gets display fp option
       $tc_show_featured_pages 	      = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_featured_pages' ) );
-      return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && CZR_cl_utils::$inst -> tc_is_home() );
+      return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && CZR_cl_utils::$inst -> czr_fn_is_home() );
     }
 
 
@@ -127,7 +127,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       if ( CZR___::$instance -> czr_fn_is_customizing() || is_admin() )
         return;
       //always display in DEV mode
-      if ( defined('CZR_cl_DEV') && true === CZR_cl_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
       /*
       * Display help blocks if the option is enabled and current user is "admin"
@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
     VARIOUS HELPERS
     *******************************/
     function czr_fn_display_view_post_list_grid() {
-      return apply_filters( 'tc_is_grid_enabled', CZR_cl_utils_query::$instance -> tc_is_list_of_posts() && 'grid' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
+      return apply_filters( 'tc_is_grid_enabled', CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() && 'grid' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
     }
 
 

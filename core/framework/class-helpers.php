@@ -54,7 +54,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
 
 
     public function czr_fn_return_cb_result( $cb, $params = array() ) {
-      return $this -> tc_fire_cb( $cb, $params, $return = true );
+      return $this -> czr_fn_fire_cb( $cb, $params, $return = true );
     }
 
 
@@ -89,7 +89,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
     }
 
     public function czr_fn_return_cb_result_array( $cb, $params = array() ) {
-      return $this -> tc_fire_cb_array( $cb, $params, $return = true );
+      return $this -> czr_fn_fire_cb_array( $cb, $params, $return = true );
     }
   }//end of class
 

@@ -27,7 +27,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
       return apply_filters( 'the_excerpt', get_the_excerpt() );
     else
       //filter the content
-      return $this -> tc_add_support_for_shortcode_special_chars( get_the_content( $more ) );
+      return $this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) );
   }
 
 
@@ -73,14 +73,14 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
       $content_width_class = array( 'entry-content', apply_filters( 'tc_post_list_content_icon', 'format-icon' ) );
       $content_cb          = 'get_the_content';
     }
-    $this -> tc_update( compact( 'element_class', 'content_witdh_class', 'content_cb', 'content' ) );
+    $this -> czr_fn_update( compact( 'element_class', 'content_witdh_class', 'content_cb', 'content' ) );
   }
 
   /**
   * parse this model properties for rendering
   */
   function czr_fn_sanitize_model_properties( $model ) {
-    parent::tc_sanitize_model_properties( $model );
-    $model -> content_width_class = $this -> tc_stringify_model_property( 'content_width_class' );
+    parent::czr_fn_sanitize_model_properties( $model );
+    $model -> content_width_class = $this -> czr_fn_stringify_model_property( 'content_width_class' );
   }
 }

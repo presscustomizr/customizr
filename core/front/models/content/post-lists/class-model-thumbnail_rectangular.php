@@ -22,7 +22,7 @@ class CZR_cl_thumbnail_rectangular_model_class extends CZR_cl_thumbnail_model_cl
   }
 
   /**
-  * hook : tc_user_options_style
+  * hook : czr_fn_user_options_style
   * @return css string
   *
   * @package Customizr

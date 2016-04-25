@@ -74,7 +74,7 @@ class CZR_cl_attachment_content_model_class extends CZR_cl_Model {
     $attachment_size = apply_filters( 'tc_customizr_attachment_size' , array( 960, 960 ) );
 
     //update the model
-    $this -> tc_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'attachment_class' ) );
+    $this -> czr_fn_update( compact( 'gallery', 'attachment_size', 'link_url', 'link_rel', 'attachment_class' ) );
   }
 
   function czr_fn_get_article_selectors() {

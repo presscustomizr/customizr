@@ -65,7 +65,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   protected function czr_fn_get_meta( $meta, $param = array(), $separator = '' ) {
     if ( ! isset( $_cache[ $meta ] ) ) {
       $param = is_array( $param ) ? $param : array( $param );
-      $_cache[ $meta ] = CZR() -> helpers -> tc_stringify_array( call_user_func_array( array( $this, "tc_meta_generate_{$meta}" ), $param ), $separator );
+      $_cache[ $meta ] = CZR() -> helpers -> czr_fn_stringify_array( call_user_func_array( array( $this, "tc_meta_generate_{$meta}" ), $param ), $separator );
     }
     return $_cache[ $meta ];
   }
@@ -167,7 +167,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   private function czr_fn_meta_term_view( $term ) {
     $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
 
-    $_classes      = CZR() -> helpers -> tc_stringify_array( apply_filters( 'tc_meta_tax_class', $this -> czr_fn_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
+    $_classes      = CZR() -> helpers -> czr_fn_stringify_array( apply_filters( 'tc_meta_tax_class', $this -> czr_fn_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
     // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
     // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
     // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.
@@ -195,7 +195,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   */
   private function czr_fn_get_term_of_tax_type( $hierarchical = true ) {
     //var declaration
-    $post_type              = get_post_type( CZR_cl_utils::tc_id() );
+    $post_type              = get_post_type( CZR_cl_utils::czr_fn_id() );
     $tax_list               = get_object_taxonomies( $post_type, 'object' );
     $_tax_type_list         = array();
     $_tax_type_terms_list   = array();
@@ -214,7 +214,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
       }
       $_tax_name = $_tax_object['name'];
       //skip the post format taxinomy
-      if ( ! $this -> tc_is_tax_authorized( $_tax_object, $post_type ) ) {
+      if ( ! $this -> czr_fn_is_tax_authorized( $_tax_object, $post_type ) ) {
         next($tax_list);
         continue;
       }
@@ -228,7 +228,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
 
     //fill the post terms array
     foreach ($_tax_type_list as $tax_name => $data ) {
-      $_current_tax_terms = get_the_terms( CZR_cl_utils::tc_id() , $tax_name );
+      $_current_tax_terms = get_the_terms( CZR_cl_utils::czr_fn_id() , $tax_name );
       //If current post support this tax but no terms has been assigned yet = continue
       if ( ! $_current_tax_terms )
         continue;
@@ -255,9 +255,9 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   private function czr_fn_is_tax_authorized( $_tax_object , $post_type ) {
     $_in_exclude_list = in_array(
       $_tax_object['name'],
-      apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , CZR_cl_utils::tc_id() ) )
+      apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , CZR_cl_utils::czr_fn_id() ) )
     );
-    $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], CZR_cl_utils::tc_id() ) );
+    $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], CZR_cl_utils::czr_fn_id() ) );
     return ! $_in_exclude_list && ! $_is_private;
   }
 

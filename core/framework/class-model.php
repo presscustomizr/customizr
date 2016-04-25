@@ -56,52 +56,52 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       }elseif ( FALSE == $model['id'] ) {
         //if model ID has been set to false => silent exit. Useful in cases when in czr_fn_extend_params the model
         //itself understands that it has to exit its instantiation
-        CZR() -> collection -> tc_delete( $this -> id );
+        CZR() -> collection -> czr_fn_delete( $this -> id );
         return;
       }
       //equivalent of wp_parse_args() with default model property values
-      $this -> tc_update( $model );
+      $this -> czr_fn_update( $model );
 
       //at this stage the mode must at least have :
       //1) a unique id
       //2) a priority set
       //3) a hook => not anymore since czr_fn_render_template()
-      if ( ! $this -> tc_can_model_be_instantiated() ) {
-        CZR() -> collection -> tc_delete( $this -> id );
+      if ( ! $this -> czr_fn_can_model_be_instantiated() ) {
+        CZR() -> collection -> czr_fn_delete( $this -> id );
         return;
       }
       //set-up the children
-      $this -> tc_maybe_setup_children();
+      $this -> czr_fn_maybe_setup_children();
 
       //Registers its children if any
-      $this -> tc_maybe_register_children();
+      $this -> czr_fn_maybe_register_children();
 
       //maybe alter body class
-      if ( method_exists( $this, 'tc_body_class' ) )
-        add_filter( 'body_class', array( $this, 'tc_body_class' ) );
+      if ( method_exists( $this, 'czr_fn_body_class' ) )
+        add_filter( 'body_class', array( $this, 'czr_fn_body_class' ) );
 
       //maybe add style (have to see if we have to put this just before the view is rendered)
-      $this -> tc_maybe_add_style();
+      $this -> czr_fn_maybe_add_style();
 
       //Allow models to filter other view's model before rendering
-      $this -> tc_maybe_filter_views_model();
+      $this -> czr_fn_maybe_filter_views_model();
 
       //Allow models to filter their view visibility
       add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'czr_fn_maybe_render_this_model_view' ), 0 );
 
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
-      add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_add_view_to_model'), 10, 1 );
+      add_action( "view_instantiated_{$this -> id}"   , array( $this, 'czr_fn_add_view_to_model'), 10, 1 );
 
       //takes the view instance as param
-      add_action( "view_instantiated_{$this -> id}"   , array( $this, 'tc_maybe_hook_or_render_view'), 20, 1 );
+      add_action( "view_instantiated_{$this -> id}"   , array( $this, 'czr_fn_maybe_hook_or_render_view'), 20, 1 );
 
       //Maybe instantiate the model's view
       //listens to 'wp' if not fired yet, or fire the instantiation
       if ( ! did_action('wp') )
-        add_action( 'wp'                                , array( $this, 'tc_maybe_instantiate_view' ), 999 );
+        add_action( 'wp'                                , array( $this, 'czr_fn_maybe_instantiate_view' ), 999 );
       else
-        $this -> tc_maybe_instantiate_view();
+        $this -> czr_fn_maybe_instantiate_view();
 
     }//construct
 
@@ -139,9 +139,9 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     * ACTIONS ON MODEL INSTANCIATION : MAYBE ADD SPECIFIC MODEL STYLE
     ***********************************************************************************/
     public function czr_fn_maybe_add_style() {
-      //for now just add filter to tc_user_options_style
-      if ( method_exists( $this, 'tc_user_options_style_cb' ) )
-        add_filter( 'tc_user_options_style', array( $this, 'tc_user_options_style_cb' ) );
+      //for now just add filter to czr_fn_user_options_style
+      if ( method_exists( $this, 'czr_fn_user_options_style_cb' ) )
+        add_filter( 'czr_fn_user_options_style', array( $this, 'czr_fn_user_options_style_cb' ) );
     }//fn
 
 
@@ -176,7 +176,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       //Are we in czr_fn_render_template case
       //=> Typically yes if did_action('template_redirect'), since every model are registered on 'wp'
       //AND if the render property is forced to true
-      //if not check if template_redirect has already been fired, to see if we are in a tc_render case
+      //if not check if template_redirect has already been fired, to see if we are in a czr_fn_render case
       if ( did_action('template_redirect') && $this -> render ) {
         $instance -> czr_fn_maybe_render();
         return;//this is the end, beautiful friend.
@@ -233,7 +233,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       //update the children property, at this stage will contain a list of the model ids of the registered children
       $this -> czr_fn_set_property( 'children', array_keys( $children_collection ) );
       //emit an event if a children collection has been registered
-      //=> will fire the instantiation of the children collection with tc_maybe_instantiate_collection
+      //=> will fire the instantiation of the children collection with czr_fn_maybe_instantiate_collection
       do_action( 'children_registered', $children_collection );
     }
 
@@ -336,12 +336,12 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       if ( method_exists( $this, 'czr_fn_setup_late_properties' ) )
         $this -> czr_fn_setup_late_properties();
 
-      $this -> tc_sanitize_model_properties( $model );
+      $this -> czr_fn_sanitize_model_properties( $model );
     }
 
 
     protected function czr_fn_sanitize_model_properties( $model ) {
-      $this -> element_class  = $this -> tc_stringify_model_property( 'element_class' );
+      $this -> element_class  = $this -> czr_fn_stringify_model_property( 'element_class' );
     }
 
 
@@ -350,7 +350,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     ***********************************************************************************/
     protected function czr_fn_stringify_model_property( $property ) {
       if ( isset( $this -> $property ) )
-       return CZR() -> helpers -> tc_stringify_array( $this -> $property );
+       return CZR() -> helpers -> czr_fn_stringify_array( $this -> $property );
       return '';
     }
 

@@ -39,26 +39,26 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
         return $this -> customizer_map;
 
       //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
-      add_filter( 'tc_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
-      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
+      add_filter( 'czr_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
+      add_filter( 'czr_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
       //theme switcher's enabled when user opened the customizer from the theme's page
-      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
-      add_filter( 'tc_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
+      add_filter( 'czr_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
+      add_filter( 'czr_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
       //add controls to the map
-      add_filter( 'tc_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
+      add_filter( 'czr_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
       //$this -> tc_populate_setting_control_map();
 
       //FILTER SPECIFIC SETTING-CONTROL MAPS
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      add_filter( 'tc_social_option_map'     , array( $this, 'tc_generates_socials' ));
-      add_filter( 'tc_front_page_option_map' , array( $this, 'tc_generates_featured_pages' ));
+      add_filter( 'tc_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
+      add_filter( 'tc_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
       //CACHE THE GLOBAL CUSTOMIZER MAP
       $this -> customizer_map = array_merge(
-        array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
-        array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
-        array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
-        array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
+        array( 'add_panel'           => apply_filters( 'czr_add_panel_map', array() ) ),
+        array( 'remove_section'      => apply_filters( 'czr_remove_section_map', array() ) ),
+        array( 'add_section'         => apply_filters( 'czr_add_section_map', array() ) ),
+        array( 'add_setting_control' => apply_filters( 'czr_add_setting_control_map', array(), $get_default ) )
       );
       return apply_filters( 'tc_customizer_map', $this -> customizer_map );
     }
@@ -67,7 +67,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
 
     /**
     * Populate the control map
-    * hook : 'tc_add_setting_control_map'
+    * hook : 'czr_fn_add_setting_control_map'
     * => loops on a callback list, each callback is a section setting group
     * @return array()
     *
@@ -78,39 +78,39 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
       $_new_map = array();
       $_settings_sections = array(
         //GLOBAL SETTINGS
-        'tc_logo_favicon_option_map',
-        'tc_skin_option_map',
-        'tc_fonts_option_map',
-        'tc_social_option_map',
-        'tc_icons_option_map',
-        'tc_links_option_map',
-        'tc_images_option_map',
-        'tc_responsive_option_map',
-        'tc_authors_option_map',
-        'tc_smoothscroll_option_map',
+        'czr_fn_logo_favicon_option_map',
+        'czr_fn_skin_option_map',
+        'czr_fn_fonts_option_map',
+        'czr_fn_social_option_map',
+        'czr_fn_icons_option_map',
+        'czr_fn_links_option_map',
+        'czr_fn_images_option_map',
+        'czr_fn_responsive_option_map',
+        'czr_fn_authors_option_map',
+        'czr_fn_smoothscroll_option_map',
         //HEADER
-        'tc_header_design_option_map',
-        'tc_navigation_option_map',
+        'czr_fn_header_design_option_map',
+        'czr_fn_navigation_option_map',
         //CONTENT
-        'tc_front_page_option_map',
-        'tc_layout_option_map',
-        'tc_comment_option_map',
-        'tc_breadcrumb_option_map',
-        'tc_post_metas_option_map',
-        'tc_post_list_option_map',
-        'tc_single_post_option_map',
-        'tc_gallery_option_map',
-        'tc_paragraph_option_map',
-        'tc_post_navigation_option_map',
+        'czr_fn_front_page_option_map',
+        'czr_fn_layout_option_map',
+        'czr_fn_comment_option_map',
+        'czr_fn_breadcrumb_option_map',
+        'czr_fn_post_metas_option_map',
+        'czr_fn_post_list_option_map',
+        'czr_fn_single_post_option_map',
+        'czr_fn_gallery_option_map',
+        'czr_fn_paragraph_option_map',
+        'czr_fn_post_navigation_option_map',
         //SIDEBARS
-        'tc_sidebars_option_map',
+        'czr_fn_sidebars_option_map',
         //FOOTER
-        'tc_footer_global_settings_option_map',
+        'czr_fn_footer_global_settings_option_map',
         //ADVANCED OPTIONS
-        'tc_custom_css_option_map',
-        'tc_performance_option_map',
-        'tc_placeholders_notice_map',
-        'tc_external_resources_option_map'
+        'czr_fn_custom_css_option_map',
+        'czr_fn_performance_option_map',
+        'czr_fn_placeholders_notice_map',
+        'czr_fn_external_resources_option_map'
       );
 
       foreach ( $_settings_sections as $_section_cb ) {
@@ -149,7 +149,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'title'     => __( 'LOGO' , 'customizr'),
                                 'section'   => 'logo_sec',
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                         //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                                 'width'     => 250,
                                 'height'    => 100,
@@ -172,7 +172,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_cl_Customize_Cropped_Image_Control' : 'CZR_cl_Customize_Upload_Control',
                                 'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                                 'section'   =>  'logo_sec' ,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                         //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                                 'width'     => 75,
                                 'height'    => 30,
@@ -191,7 +191,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'title'     => __( 'FAVICON' , 'customizr'),
                                 'section'   =>  'logo_sec' ,
                                 'type'      => 'tc_upload',
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number'),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number'),
               )
       );
     }
@@ -208,7 +208,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                                 'section'   =>  'skins_sec' ,
                                 'type'      =>  'select' ,
-                                'choices'    =>  $this -> tc_build_skin_list(),
+                                'choices'    =>  $this -> czr_fn_build_skin_list(),
                                 'transport'   =>  'postMessage',
                                 'notice'    => __( 'Disabled if the random option is on.' , 'customizr' )
               ),
@@ -231,7 +231,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     function czr_fn_fonts_option_map( $get_default = null ) {
       return array(
               'tc_fonts'      => array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
                                 'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                                 'control'       =>  'CZR_cl_controls',
                                 'section'       => 'fonts_sec',
@@ -242,8 +242,8 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'notice'        => __( "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs." , 'customizr' )
               ),
               'tc_body_font_size'      => array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.2.9', '1.0.1' ) ? 14 : 15,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.2.9', '1.0.1' ) ? 14 : 15,
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'label'         => __( 'Set your website default font size in pixels.' , 'customizr' ),
                                 'control'       =>  'CZR_cl_controls',
                                 'section'       => 'fonts_sec',
@@ -331,7 +331,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_show_page_title_icon'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                 'control'       => 'CZR_cl_controls' ,
                                 'label'         => __( "Display a page icon next to the page title" , "customizr" ),
                                 'section'       => 'titles_icons_sec' ,
@@ -340,7 +340,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_show_post_title_icon'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                 'control'     => 'CZR_cl_controls' ,
                                 'label'         => __( "Display a post icon next to the single post title" , "customizr" ),
                                 'section'       => 'titles_icons_sec' ,
@@ -359,7 +359,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_show_post_list_title_icon'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.0' , '1.0.11' ) ? 1 : 0,
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.0' , '1.0.11' ) ? 1 : 0,
                                 'control'     => 'CZR_cl_controls' ,
                                 'label'         => __( "Display an icon next to each post title in an archive page" , "customizr" ),
                                 'section'       => 'titles_icons_sec' ,
@@ -585,7 +585,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'priority'      => 15,
                                 'transport'     => 'postMessage'
               ),
-              'tc_woocommerce_header_cart' => array(
+              'czr_fn_woocommerce_header_cart' => array(
                                 'default'   => 1,
                                 'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( 'Display the shopping cart in the header' , 'customizr' ) ),
                                 'control'   => 'CZR_cl_controls' ,
@@ -593,7 +593,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
                                 'type'      => 'checkbox' ,
                                 'priority'  => 18,
-                                'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
+                                'active_callback' => apply_filters( 'czr_fn_woocommerce_options_enabled', '__return_false' )
               ),
               'tc_social_in_header' =>  array(
                                 'default'       => 1,
@@ -605,7 +605,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_display_boxed_navbar'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                 'control'       => 'CZR_cl_controls' ,
                                 'label'         => __( "Display menu in a box" , "customizr" ),
                                 'section'       => 'header_layout_sec' ,
@@ -634,7 +634,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'priority'      => 40,
                                 'transport'     => 'postMessage',
               ),
-              'tc_woocommerce_header_cart_sticky' => array(
+              'czr_fn_woocommerce_header_cart_sticky' => array(
                                 'default'   => 1,
                                 'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( 'Sticky header: display the shopping cart' , 'customizr' ) ),
                                 'control'   => 'CZR_cl_controls' ,
@@ -642,7 +642,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'type'      => 'checkbox' ,
                                 'priority'  => 45,
                                 'transport' => 'postMessage',
-                                'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
+                                'active_callback' => apply_filters( 'czr_fn_woocommerce_options_enabled', '__return_false' ),
                                 'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
                ),
                'tc_sticky_show_title_logo'  =>  array(
@@ -685,7 +685,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               'tc_sticky_z_index'  =>  array(
                                 'default'       => 100,
                                 'control'       => 'CZR_cl_controls' ,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'label'         => __( "Set the header z-index" , "customizr" ),
                                 'section'       => 'header_layout_sec' ,
                                 'type'          => 'number' ,
@@ -721,7 +721,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'notice'        => __( "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header." , 'customizr' ),
               ),
               'tc_menu_style'  =>  array(
-                              'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
+                              'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
                               'control'       => 'CZR_cl_controls' ,
                               'title'         => __( 'Main menu design' , 'customizr'),
                               'label'         => __( 'Select a design : side menu (vertical) or regular (horizontal)' , 'customizr' ),
@@ -752,7 +752,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               ),
               'tc_menu_position'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
                                 'control'       => 'CZR_cl_controls' ,
                                 'label'         => __( 'Menu position (for "main" menu)' , "customizr" ),
                                 'section'       => 'nav' ,
@@ -792,7 +792,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
               'tc_menu_type'  => array(
-                                'default'   =>  CZR_cl_utils::$inst -> tc_user_started_before_version( '3.1.0' , '1.0.0' ) ? 'click' : 'hover',
+                                'default'   =>  CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.1.0' , '1.0.0' ) ? 'click' : 'hover',
                                 'control'   =>  'CZR_cl_controls' ,
                                 'label'     =>  __( 'Select a submenu expansion option' , 'customizr' ),
                                 'section'   =>  'nav' ,
@@ -953,7 +953,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'section'     => 'frontpage_sec' ,
                                 'control'     => 'CZR_cl_controls' ,
                                 'type'        => 'select' ,
-                                'choices'     => $this -> tc_layout_choices(),
+                                'choices'     => $this -> czr_fn_layout_choices(),
                                 'priority'    => 2,
               ),
 
@@ -966,7 +966,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'section'     => 'frontpage_sec' ,
                                 'type'        => 'select' ,
                                 //!important
-                                'choices'     => ( true == $get_default ) ? null : $this -> tc_slider_choices(),
+                                'choices'     => ( true == $get_default ) ? null : $this -> czr_fn_slider_choices(),
                                 'priority'    => 20
               ),
               //posts slider
@@ -1046,7 +1046,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               //Delay between each slides
               'tc_slider_delay' => array(
                                 'default'       => 5000,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'control'   => 'CZR_cl_controls' ,
                                 'label'       => __( 'Delay between each slides' , 'customizr' ),
                                 'section'     => 'frontpage_sec' ,
@@ -1058,7 +1058,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
               'tc_slider_default_height' => array(
                                 'default'       => 500,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'control'   => 'CZR_cl_controls' ,
                                 'label'       => __( "Set slider's height in pixels" , 'customizr' ),
                                 'section'     => 'frontpage_sec' ,
@@ -1105,7 +1105,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
 
               //display featured page images
-              'tc_show_featured_pages_img' => array(
+              'czr_fn_show_featured_pages_img' => array(
                                 'default'       => 1,
                                 'control'   => 'CZR_cl_controls' ,
                                 'label'       => __( 'Show images' , 'customizr' ),
@@ -1144,7 +1144,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                               'label'         => __( 'Choose the global default layout' , 'customizr' ),
                               'section'     => 'post_layout_sec' ,
                               'type'          => 'select' ,
-                              'choices'     => $this -> tc_layout_choices(),
+                              'choices'     => $this -> czr_fn_layout_choices(),
                               'notice'      => __( 'Note : the home page layout has to be set in the home page section' , 'customizr' ),
                               'priority'      => 10
                ),
@@ -1166,14 +1166,14 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                               'label'       => __( 'Choose the posts default layout' , 'customizr' ),
                               'section'     => 'post_layout_sec' ,
                               'type'        => 'select' ,
-                              'choices'   => $this -> tc_layout_choices(),
+                              'choices'   => $this -> czr_fn_layout_choices(),
                               'priority'      => 30
               ),
 
               //Post per page
               'posts_per_page'  =>  array(
                               'default'     => get_option( 'posts_per_page' ),
-                              'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                              'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                               'control'     => 'CZR_cl_controls' ,
                               'title'         => __( 'Global Post Lists Settings' , 'customizr' ),
                               'label'         => __( 'Maximum number of posts per page' , 'customizr' ),
@@ -1203,7 +1203,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'label'       => __( 'Choose the pages default layout' , 'customizr' ),
                                 'section'     => 'post_layout_sec' ,
                                 'type'        => 'select' ,
-                                'choices'   => $this -> tc_layout_choices(),
+                                'choices'   => $this -> czr_fn_layout_choices(),
                                 'priority'       => 40,
                                 'notice'    => sprintf('<br/> %s<br/>%s',
                                     sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s.", "customizr"),
@@ -1227,7 +1227,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
       return array(
               'tc_post_list_excerpt_length'  =>  array(
                                 'default'       => 50,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'control'       => 'CZR_cl_controls' ,
                                 'label'         => __( "Set the excerpt length (in number of words) " , "customizr" ),
                                 'section'       => 'post_lists_sec' ,
@@ -1259,7 +1259,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_cl_Customize_Cropped_Image_Control' : 'CZR_cl_Customize_Upload_Control',
                                 'label'         => __( 'Upload a default thumbnail' , 'customizr' ),
                                 'section'   =>  'post_lists_sec' ,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                         //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                                 'width'         => 570,
                                 'height'        => 350,
@@ -1292,7 +1292,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
               'tc_post_list_thumb_height' => array(
                                 'default'       => 250,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'control'   => 'CZR_cl_controls' ,
                                 'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
                                 'section'     => 'post_lists_sec' ,
@@ -1366,7 +1366,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
 
               'tc_post_list_grid'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.2.18', '1.0.13' ) ? 'alternate' : 'grid',
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.2.18', '1.0.13' ) ? 'alternate' : 'grid',
                                 'control'       => 'CZR_cl_controls' ,
                                 'title'         => __( 'Post List Design' , 'customizr' ),
                                 'label'         => __( 'Select a Layout' , "customizr" ),
@@ -1456,7 +1456,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                ),
               'tc_grid_num_words'  =>  array(
                                 'default'       => 10,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'control'       => 'CZR_cl_controls' ,
                                 'label'         => __( 'Max. length for post titles (in words)' , "customizr" ),
                                 'section'       => 'post_lists_sec' ,
@@ -1467,7 +1467,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
               'tc_grid_thumb_height' => array(
                                 'default'       => 350,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'control'       => 'CZR_cl_controls' ,
                                 'title'         => __( 'Thumbnails max height for the grid layout' , 'customizr' ),
                                 'label'         => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
@@ -1510,7 +1510,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
           ),
           'tc_single_post_thumb_height' => array(
                             'default'       => 250,
-                            'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                            'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                             'control'   => 'CZR_cl_controls' ,
                             'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
                             'section'     => 'single_posts_sec' ,
@@ -1599,7 +1599,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_post_metas_design'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'buttons' : 'no-buttons',
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'buttons' : 'no-buttons',
                                 'control'     => 'CZR_cl_controls' ,
                                 'title'         => __( 'Metas Design' , 'customizr' ),
                                 'label'         => __( "Select a design for the post metas" , "customizr" ),
@@ -1699,7 +1699,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
 
               'tc_post_metas_update_notice_in_title'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
                                 'control'       => 'CZR_cl_controls',
                                 'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
@@ -1711,7 +1711,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               'tc_post_metas_update_notice_interval'  =>  array(
                                 'default'       => 10,
                                 'control'       => 'CZR_cl_controls',
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , "customizr" ),
                                 'section'       => 'post_metas_sec',
                                 'type'          => 'number' ,
@@ -1805,7 +1805,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
               'tc_dropcap_minwords'  =>  array(
                                 'default'       => 50,
-                                'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
+                                'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
                                 'control'       => 'CZR_cl_controls' ,
                                 'label'         => __( "Apply a drop cap when the paragraph includes at least the following number of words :" , "customizr" ),
                                 'notice'         => __( "(number of words)" , "customizr" ),
@@ -1879,7 +1879,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
 
               'tc_comment_bubble_color_type' => array(
-                                'default'     => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'custom' : 'skin',
+                                'default'     => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'custom' : 'skin',
                                 'control'     => 'CZR_cl_controls',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',
@@ -1891,13 +1891,13 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'priority'    => 20,
               ),
               'tc_comment_bubble_color' => array(
-                                'default'     => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> czr_fn_get_skin_color(),
+                                'default'     => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> czr_fn_get_skin_color(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',
                                 'type'        =>  'color' ,
                                 'priority'    => 30,
-                                'sanitize_callback'    => array( $this, 'tc_sanitize_hex_color' ),
+                                'sanitize_callback'    => array( $this, 'czr_fn_sanitize_hex_color' ),
                                 'sanitize_js_callback' => 'maybe_hash_hex_color',
                                 'transport'   => 'postMessage'
               ),
@@ -2058,7 +2058,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_sticky_footer'  =>  array(
-                                'default'       => CZR_cl_utils::$inst -> tc_user_started_before_version( '3.4.0' , '1.1.14' ) ? 0 : 1,
+                                'default'       => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.4.0' , '1.1.14' ) ? 0 : 1,
                                 'control'       => 'CZR_cl_controls' ,
                                 'label'         => __( "Stick the footer to the bottom of the page", "customizr" ),
                                 'section'       => 'footer_global_sec' ,
@@ -2187,7 +2187,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * POPULATE PANELS
     ***************************************************************/
     /**
-    * hook : tc_add_panel_map
+    * hook : czr_fn_add_panel_map
     * @return  associative array of customizer panels
     */
     function czr_fn_popul_panels_map( $panel_map ) {
@@ -2240,7 +2240,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * POPULATE REMOVE SECTIONS
     ***************************************************************/
     /**
-     * hook : tc_remove_section_map
+     * hook : czr_fn_remove_section_map
      */
     function czr_fn_popul_remove_section_map( $_sections ) {
       //customizer option array
@@ -2259,7 +2259,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     ***************************************************************/
     /**
     * Print the themes section (themes switcher) when previewing the themes from wp-admin/themes.php
-    * hook : tc_remove_section_map
+    * hook : czr_fn_remove_section_map
     */
     function czr_fn_set_theme_switcher_visibility( $_sections) {
       //Don't do anything is in preview frame
@@ -2292,7 +2292,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * POPULATE SECTIONS
     ***************************************************************/
     /**
-    * hook : tc_add_section_map
+    * hook : czr_fn_add_section_map
     */
     function czr_fn_popul_section_map( $_sections ) {
       //For nav menus option
@@ -2590,7 +2590,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
       foreach ( $fp_ids as $id ) {
         $priority = $priority + $incr;
         $fp_setting_control['tc_featured_text_' . $id]   = array(
-                      'sanitize_callback' => array( $this , 'tc_sanitize_textarea' ),
+                      'sanitize_callback' => array( $this , 'czr_fn_sanitize_textarea' ),
                       'transport'   => 'postMessage',
                       'control'   => 'CZR_cl_controls' ,
                       'label'       => isset($default['text'][$id]) ? $default['text'][$id] : sprintf( __('Featured text %1$s (200 char. max)' , 'customizr' ) , $id ),
@@ -2631,7 +2631,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
 
         $_new_map[$key]  = array(
                       'default'       => ( isset($data['default']) && !is_null($data['default']) ) ? $data['default'] : null,
-                      'sanitize_callback' => array( $this , 'tc_sanitize_' . $type ),
+                      'sanitize_callback' => array( $this , 'czr_fn_sanitize_' . $type ),
                       'control'       => 'CZR_cl_controls' ,
                       'label'         => ( isset($data['option_label']) ) ? call_user_func( '__' , $data['option_label'] , 'customizr' ) : $key,
                       'section'       => 'socials_sec' ,
@@ -2746,7 +2746,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
       $parent_skins   = $this -> czr_fn_get_skins( CZR_BASE . CZR_ASSETS_PREFIX . 'front/css' );
       $child_skins    = array();
 
-      if ( CZR___::$instance -> tc_is_child() ){
+      if ( CZR___::$instance -> czr_fn_is_child() ){
         $child_skins    = file_exists(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') ? $this -> czr_fn_get_skins(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') : $child_skins;
         //backward compatibilty (the assets had a different relative path before 3.5)
         $child_skins    = empty( $child_skins ) && file_exists(CZR_BASE_CHILD . 'inc/assets/css') ?  $this -> czr_fn_get_skins(CZR_BASE_CHILD . 'inc/assets/css') : $child_skins;

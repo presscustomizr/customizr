@@ -122,7 +122,7 @@ if ( ! class_exists( 'CZR_cl_controls' ) ) :
     					<?php endif; ?>
     					<label>
     						<span class="customize-control-title"><?php echo $this->label; ?></span>
-    						<?php $this -> tc_print_select_control( in_array( $this->id, array( 'tc_theme_options[tc_fonts]', 'tc_theme_options[tc_skin]' ) ) ? 'select2' : '' ) ?>
+    						<?php $this -> czr_fn_print_select_control( in_array( $this->id, array( 'tc_theme_options[tc_fonts]', 'tc_theme_options[tc_skin]' ) ) ? 'select2' : '' ) ?>
                 <?php if(!empty( $this -> notice)) : ?>
                   <span class="tc-notice"><?php echo $this -> notice ?></span>
                 <?php endif; ?>
@@ -208,7 +208,7 @@ if ( ! class_exists( 'CZR_cl_controls' ) ) :
 	        		printf('<label><span class="customize-control-title %1$s">%2$s</span><input type="text" value="%3$s" %4$s /></label>',
 	        			! empty( $this -> icon) ? $this -> icon : '',
 	        			$this->label,
-	        			call_user_func( array( CZR_cl_utils_settings_map::$instance, 'tc_sanitize_' . $this -> type), $this->value() ),
+	        			call_user_func( array( CZR_cl_utils_settings_map::$instance, 'czr_fn_sanitize_' . $this -> type), $this->value() ),
 	        			call_user_func( array( $this, 'get'.'_'.'link' ) )
 	        		);
 		        	break;

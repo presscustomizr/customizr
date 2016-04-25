@@ -28,7 +28,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
 
           add_action( 'wp_ajax_slider_action'                , array( $this , 'tc_slider_cb' ));
 
-          add_action( 'admin_enqueue_scripts'                , array( $this , 'tc_slider_admin_scripts' ));
+          add_action( 'admin_enqueue_scripts'                , array( $this , 'czr_fn_slider_admin_scripts' ));
 
 
 

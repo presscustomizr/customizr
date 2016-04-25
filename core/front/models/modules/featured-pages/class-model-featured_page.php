@@ -54,7 +54,7 @@ class CZR_cl_featured_page_model_class extends CZR_cl_Model {
 
     //button block
     $button_block = $this -> czr_fn_setup_button_block( $fp, $fp_id );
-    $this -> tc_update( array_merge( $fp, $button_block, compact( 'thumb_wrapper_class', 'span_value', 'fp_id', 'is_first_of_row', 'is_last_of_row' ) ) );
+    $this -> czr_fn_update( array_merge( $fp, $button_block, compact( 'thumb_wrapper_class', 'span_value', 'fp_id', 'is_first_of_row', 'is_last_of_row' ) ) );
   }
 
 

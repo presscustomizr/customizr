@@ -13,9 +13,9 @@ class CZR_cl_social_block_model_class extends CZR_cl_Model {
   */
   function czr_fn_extend_params( $model = array() ) {
     $model[ 'social_block' ]        = CZR_cl_utils::$inst -> czr_fn_get_social_networks();
-    $model[ 'element_class' ]       = $this -> tc_social_block_get_class( $model );
+    $model[ 'element_class' ]       = $this -> czr_fn_social_block_get_class( $model );
     $model[ 'where' ]               = $this -> czr_fn_get_socials_where( $model );
-    $model[ 'element_attributes' ]  = $this -> tc_social_block_get_attributes( $model );
+    $model[ 'element_attributes' ]  = $this -> czr_fn_social_block_get_attributes( $model );
     $model[ 'social_block' ]        = $this -> czr_fn_get_before_socials() . $model[ 'social_block' ] . $this -> czr_fn_get_after_socials();
     return $model;
   }

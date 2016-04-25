@@ -11,7 +11,7 @@ class CZR_cl_footer_push_model_class extends CZR_cl_Model {
   }
 
   /*
-  * Callback of tc_user_options_style hook
+  * Callback of czr_fn_user_options_style hook
   * @return css string
   *
   * @package Customizr

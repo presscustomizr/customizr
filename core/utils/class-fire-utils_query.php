@@ -32,9 +32,9 @@ class CZR_cl_utils_query {
     //Filter home/blog postsa (priority 9 is to make it act before the grid hook for expanded post)
     add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_filter_home_blog_posts_by_tax' ), 9);
     //Include attachments in search results
-    add_action ( 'pre_get_posts'         , array( $this , 'tc_include_attachments_in_search' ));
+    add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_include_attachments_in_search' ));
     //Include all post types in archive pages
-    add_action ( 'pre_get_posts'         , array( $this , 'tc_include_cpt_in_lists' ));
+    add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_include_cpt_in_lists' ));
 
     //Add the context
     add_filter ( 'tc_body_class'         , array( $this,  'czr_fn_set_post_list_context_class') );
@@ -67,8 +67,8 @@ class CZR_cl_utils_query {
     if ( $query -> is_search ){
       // add standard pages in search results => new wp behavior
       $post_types['page'] = 'page';
-      // allow attachments to be included in search results by tc_include_attachments_in_search method
-      if ( apply_filters( 'tc_include_attachments_in_search_results' , false ) )
+      // allow attachments to be included in search results by czr_fn_include_attachments_in_search method
+      if ( apply_filters( 'czr_fn_include_attachments_in_search_results' , false ) )
         $post_types['attachment'] = 'attachment';
     }
 
@@ -85,7 +85,7 @@ class CZR_cl_utils_query {
   * @since Customizr 3.0.10
   */
   function czr_fn_include_attachments_in_search( $query ) {
-      if (! is_search() || ! apply_filters( 'tc_include_attachments_in_search_results' , false ) )
+      if (! is_search() || ! apply_filters( 'czr_fn_include_attachments_in_search_results' , false ) )
         return;
       // add post status 'inherit'
       $post_status = $query->get( 'post_status' );
@@ -134,7 +134,7 @@ class CZR_cl_utils_query {
   * @since Customizr 3.3.2
   */
   function czr_fn_set_post_list_context_class( $_class ) {
-    if ( $this ->  tc_is_list_of_posts() )
+    if ( $this -> czr_fn_is_list_of_posts() )
       array_push( $_class , 'tc-post-list-context');
     return $_class;
   }
@@ -165,7 +165,7 @@ class CZR_cl_utils_query {
     return apply_filters( 'tc_is_list_of_posts',
       ! is_singular()
       && ! is_404()
-      && ! $this -> tc_is_home_empty()
+      && ! $this -> czr_fn_is_home_empty()
       && ! is_admin()
     );
   }
@@ -177,7 +177,7 @@ class CZR_cl_utils_query {
         && is_singular()
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
-        && ! CZR_cl_utils_query::$instance -> tc_is_home_empty() );
+        && ! CZR_cl_utils_query::$instance -> czr_fn_is_home_empty() );
   }
 
 
@@ -191,7 +191,7 @@ class CZR_cl_utils_query {
     return apply_filters( 'tc_is_single_page',
         'page' == CZR_cl_utils_query::$instance -> czr_fn_get_post_type()
         && is_singular()
-        && ! CZR_cl_utils_query::$instance -> tc_is_home_empty()
+        && ! CZR_cl_utils_query::$instance -> czr_fn_is_home_empty()
     );
   }
 
@@ -226,7 +226,7 @@ class CZR_cl_utils_query {
   function czr_fn_get_real_id() {
     global $wp_query;
     $queried_id                   = get_queried_object_id();
-    return apply_filters( 'czr_fn_get_real_id', ( ! CZR_cl_utils::$inst -> tc_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'czr_fn_get_real_id', ( ! CZR_cl_utils::$inst -> czr_fn_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
 
 
@@ -244,7 +244,7 @@ class CZR_cl_utils_query {
     //declares selector var
     $selectors                  = '';
 
-    if ( isset($post) && $this -> tc_is_list_of_posts() )
+    if ( isset($post) && $this -> czr_fn_is_list_of_posts() )
         //!is_singular() && !is_404() && !tc__f( '__is_home_empty') ) || ( is_search() && 0 != $wp_query -> post_count )
       $selectors                = apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 

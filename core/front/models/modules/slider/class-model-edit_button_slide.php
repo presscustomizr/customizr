@@ -30,6 +30,6 @@ class CZR_cl_edit_button_slide_model_class extends CZR_cl_edit_button_model_clas
   function czr_fn_setup_late_properties() {
     $edit_post_id          =  czr_fn_get( 'slide_id' );
     $edit_link_suffix      =  'tc_posts_slider' == czr_fn_get( 'slider_name_id') ? '' : '#slider_sectionid';
-    $this -> tc_update( compact( 'edit_post_id', 'edit_link_suffix' ) );
+    $this -> czr_fn_update( compact( 'edit_post_id', 'edit_link_suffix' ) );
   }
 }

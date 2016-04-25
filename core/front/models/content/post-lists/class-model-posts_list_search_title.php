@@ -31,6 +31,6 @@ class CZR_cl_posts_list_search_title_model_class extends CZR_cl_posts_list_title
   function pre_rendering_my_view_cb( $model ) {
     parent::pre_rendering_my_view_cb( $model );
     foreach ( array('title', 'title_wrapper', 'search_form_wrapper') as $prop )
-      $model -> {"{$prop}_class"} = $this -> tc_stringify_model_property( "{$prop}_class" );
+      $model -> {"{$prop}_class"} = $this -> czr_fn_stringify_model_property( "{$prop}_class" );
   }
 }

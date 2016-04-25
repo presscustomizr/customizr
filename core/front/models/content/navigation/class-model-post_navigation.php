@@ -19,9 +19,9 @@ abstract class CZR_cl_post_navigation_model_class extends CZR_cl_Model {
 
     $_context                  = $this -> czr_fn_get_context();
 
-    if ( ! $this -> tc_is_post_navigation_enabled() )
+    if ( ! $this -> czr_fn_is_post_navigation_enabled() )
       array_push( $_nav_classes, 'hide-all-post-navigation' );
-    if ( !  $this -> tc_is_post_navigation_context_enabled( $_context ) )
+    if ( !  $this -> czr_fn_is_post_navigation_context_enabled( $_context ) )
       array_push( $_nav_classes, 'hide-post-navigation' );
 
     return $_nav_classes;

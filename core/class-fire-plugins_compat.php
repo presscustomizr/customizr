@@ -217,7 +217,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //to avoid the img tag (in a template loaded with backbone) being parsed on server side but
       //not correctly processed by the front js.
       //the action hook "xprofile_screen_change_avatar" is a buddypress specific hook
-      //fired before wp_head where we hook tc_parse_imgs
+      //fired before wp_head where we hook czr_fn_parse_imgs
       //side-effect: all the images in this pages will not be smartloaded, this isn't a big deal
       //as there should be at maximum 2 images there:
       //1) the avatar, if already set
@@ -260,7 +260,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         add_filter( $filter, 'tc_apply_qtranslate' );
       //sets no character limit for slider (title, lead text and button title) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
       foreach ( array( 'tc_slide_title_length', 'tc_slide_text_length', 'tc_slide_button_length' ) as $filter )
-        add_filter( $filter  , 'tc_remove_char_limit');
+        add_filter( $filter  , 'czr_fn_remove_char_limit');
 
       //outputs the qtranslate translation for archive titles;
       $tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results_archive');
@@ -277,10 +277,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
         /* The following is pretty useless at the momment since we should inhibit preview js code */
         //modify the customizer transport from post message to null for some options
-        add_filter( 'tc_featured_page_button_text_customizer_set' , 'tc_change_transport', 20, 2);
-        add_filter( 'tc_featured_text_one_customizer_set' , 'tc_change_transport', 20, 2);
-        add_filter( 'tc_featured_text_two_customizer_set' , 'tc_change_transport', 20, 2);
-        add_filter( 'tc_featured_text_three_customizer_set', 'tc_change_transport', 20, 2);
+        add_filter( 'tc_featured_page_button_text_customizer_set' , 'czr_fn_change_transport', 20, 2);
+        add_filter( 'tc_featured_text_one_customizer_set' , 'czr_fn_change_transport', 20, 2);
+        add_filter( 'tc_featured_text_two_customizer_set' , 'czr_fn_change_transport', 20, 2);
+        add_filter( 'tc_featured_text_three_customizer_set', 'czr_fn_change_transport', 20, 2);
       }
 
       //posts slider (this filter is not fired in admin )
@@ -844,8 +844,8 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //unkooks the default woocommerce wrappersv and add customizr's content wrapper and action hooks
       remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
       remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
-      add_action('woocommerce_before_main_content', 'tc_woocommerce_wrappers', 10);
-      add_action('woocommerce_after_main_content', 'tc_woocommerce_wrappers', 10);
+      add_action('woocommerce_before_main_content', 'czr_fn_woocommerce_wrappers', 10);
+      add_action('woocommerce_after_main_content', 'czr_fn_woocommerce_wrappers', 10);
 
 
       //disable WooCommerce default breadcrumb
@@ -868,17 +868,17 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       function czr_fn_woocommerce_wc_cart_enabled() {
-        return 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) );
+        return 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) );
       }
 
       //disable title icons
-      add_filter( 'czr_opt_tc_show_title_icon', 'tc_woocommerce_disable_title_icon' );
+      add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_woocommerce_disable_title_icon' );
       function czr_fn_woocommerce_disable_title_icon($bool) {
         return ( function_exists('tc_wc_is_checkout_cart') && tc_wc_is_checkout_cart() ) ? false : $bool;
       }
       // use Customizr title
       // initially used to display the edit button
-    //  add_filter( 'the_title', 'tc_woocommerce_the_title' );
+    //  add_filter( 'the_title', 'czr_fn_woocommerce_the_title' );
       function czr_fn_woocommerce_the_title( $_title ){
         if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
           return apply_filters( 'tc_title_text', $_title );
@@ -886,19 +886,19 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'tc_woocommerce_disable_tax_archive_title');
+      add_filter( 'tc_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title');
       function czr_fn_woocommerce_disable_tax_archive_title( $bool ){
         return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
       //allow slider in the woocommerce shop page
-      add_filter('tc_show_slider', 'tc_woocommerce_enable_shop_slider');
+      add_filter('tc_show_slider', 'czr_fn_woocommerce_enable_shop_slider');
       function czr_fn_woocommerce_enable_shop_slider( $bool ){
         return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
       }
 
       //to allow the slider in the woocommerce shop page we need the shop page id
-      add_filter('tc_slider_get_real_id', 'tc_woocommerce_shop_page_id');
+      add_filter('tc_slider_get_real_id', 'czr_fn_woocommerce_shop_page_id');
       function czr_fn_woocommerce_shop_page_id( $id ){
         return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id('shop') : $id;
       }
@@ -909,20 +909,20 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       //disables post navigation
-      add_filter( 'tc_show_post_navigation', 'tc_woocommerce_disable_post_navigation' );
+      add_filter( 'tc_show_post_navigation', 'czr_fn_woocommerce_disable_post_navigation' );
       function czr_fn_woocommerce_disable_post_navigation($bool) {
          return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
 
       //removes post comment action on after_loop hook
-      add_filter( 'tc_are_comments_enabled', 'tc_woocommerce_disable_comments' );
+      add_filter( 'tc_are_comments_enabled', 'czr_fn_woocommerce_disable_comments' );
       function czr_fn_woocommerce_disable_comments($bool) {
          return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
       //link smooth scroll: exclude woocommerce tabs
-      add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
+      add_filter( 'tc_anchor_smoothscroll_excl', 'czr_fn_woocommerce_disable_link_scroll' );
       function czr_fn_woocommerce_disable_link_scroll( $excl ){
         if ( false == esc_attr( CZR_cl_utils::$inst->czr_fn_opt('tc_link_scroll') ) ) return $excl;
 
@@ -943,24 +943,24 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
 
       //changes customizr meta boxes priority (slider and layout not on top) if displaying woocommerce products in admin
-      add_filter( 'tc_post_meta_boxes_priority', 'tc_woocommerce_change_meta_boxes_priority' , 2 , 10 );
+      add_filter( 'tc_post_meta_boxes_priority', 'czr_fn_woocommerce_change_meta_boxes_priority' , 2 , 10 );
       function czr_fn_woocommerce_change_meta_boxes_priority($priority , $screen) {
          return ( 'product' == $screen ) ? 'default' : $priority ;
       }
 
       // Allow HEADER CART OPTIONS in the customizer
       // Returns a callback function needed by 'active_callback' to enable the options in the customizer
-      add_filter( 'tc_woocommerce_options_enabled', 'tc_woocommerce_options_enabled_cb' );
+      add_filter( 'czr_fn_woocommerce_options_enabled', 'czr_fn_woocommerce_options_enabled_cb' );
       function czr_fn_woocommerce_options_enabled_cb() {
         return '__return_true';
       }
 
       if ( ! is_admin() )
         //register wc cart in front
-        add_action( 'wp', 'tc_woocommerce_register_wc_cart' );
+        add_action( 'wp', 'czr_fn_woocommerce_register_wc_cart' );
 
       function czr_fn_woocommerce_register_wc_cart() {
-        czr_fn_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'wc_cart', 'controller' => 'tc_woocommerce_wc_cart_enabled' ) );
+        czr_fn_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'wc_cart', 'controller' => 'czr_fn_woocommerce_wc_cart_enabled' ) );
       }
     }//end woocommerce compat
 

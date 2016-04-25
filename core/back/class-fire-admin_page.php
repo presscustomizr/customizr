@@ -19,7 +19,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
     function __construct () {
       self::$instance =& $this;
       //add welcome page in menu
-      add_action( 'admin_menu'             , array( $this , 'tc_add_welcome_page' ));
+      add_action( 'admin_menu'             , array( $this , 'czr_fn_add_welcome_page' ));
       //changelog
       add_action( '__after_welcome_panel'  , array( $this , 'tc_extract_changelog' ));
       //config infos
@@ -27,7 +27,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
       //build the support url
       $this -> support_url = CZR___::czr_fn_is_pro() ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
-      add_action( 'admin_print_styles'      , array( $this, 'tc_fix_wp_footer_link_style') );
+      add_action( 'admin_print_styles'      , array( $this, 'czr_fn_fix_wp_footer_link_style') );
     }
 
 
@@ -145,7 +145,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
 
           <?php endif; ?>
 
-          <?php if ( CZR___::$instance -> tc_is_child() ) : ?>
+          <?php if ( CZR___::$instance -> czr_fn_is_child() ) : ?>
             <div class="changelog point-releases"></div>
 
             <div class="tc-upgrade-notice">
