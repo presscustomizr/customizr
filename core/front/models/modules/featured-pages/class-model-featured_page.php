@@ -61,7 +61,7 @@ class TC_featured_page_model_class extends TC_Model {
   function tc_setup_button_block( $fp_data, $fp_single_id ) {
     //button block
     $fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
-    if ( $fp_button_text || TC___::$instance -> tc_is_customizing() ){
+    if ( $fp_button_text || CZR___::$instance -> tc_is_customizing() ){
       $fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
       $fp_button_class = $fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';
     }

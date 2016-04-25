@@ -132,7 +132,7 @@ class TC_grid_item_model_class extends TC_model {
   function tc_set_grid_icon_visibility() {
     $icon_enabled        = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_icons') );
     $icon_attributes     = '';
-    if ( TC___::$instance -> tc_is_customizing() )
+    if ( CZR___::$instance -> tc_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',
           $icon_enabled ? 'inline-block' : 'none'
       );

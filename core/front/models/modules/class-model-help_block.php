@@ -304,7 +304,7 @@ class TC_featured_pages_help_block_model_class extends TC_help_block_model_class
   * or in Customizr Pro
   */
   function tc_is_notice_on() {
-    return ! TC___::tc_is_pro()
+    return ! CZR___::tc_is_pro()
         && (bool)TC_utils::$inst->tc_opt('tc_show_featured_pages')
         && TC_utils::$inst -> tc_is_home()
         && parent::tc_is_notice_on();

@@ -53,7 +53,7 @@ class TC_menu_model_class extends TC_Model {
     if ( $_fired ) return $header_model;
     $_fired        = true;
 
-    if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || TC___::$instance -> tc_is_customizing() ) ) {
+    if ( esc_attr( TC_utils::$inst->tc_opt( "tc_sticky_header") || CZR___::$instance -> tc_is_customizing() ) ) {
       if ( ! is_array( $header_model -> element_class ) )
         $header_model -> element_class = explode( ' ', $header_model -> element_class );
       array_push( $header_model -> element_class,

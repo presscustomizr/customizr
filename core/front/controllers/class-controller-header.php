@@ -55,7 +55,7 @@ if ( ! class_exists( 'TC_controller_header' ) ) :
     //2) the user choose to not display it
     function tc_display_view_tagline() {
       if ( ! isset( $this -> _cache[ 'view_tagline' ] ) )
-        $this -> _cache[ 'view_tagline' ] = TC___::$instance -> tc_is_customizing() || ! ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) );
+        $this -> _cache[ 'view_tagline' ] = CZR___::$instance -> tc_is_customizing() || ! ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_tagline') ) );
       return $this -> _cache[ 'view_tagline' ];
     }
 

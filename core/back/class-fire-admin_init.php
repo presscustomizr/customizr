@@ -62,7 +62,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         return;
 
       if ( ! class_exists( 'TC_utils_thumbnails' ) )
-        TC___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
+        CZR___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
       if ( class_exists( 'TC_utils_thumbnails' ) )
         TC_utils_thumbnails::$instance -> tc_set_thumb_info( $post_id );
     }
@@ -94,7 +94,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       $slider_of_posts = null;
 
       if ( ! class_exists( 'TC_utils_thumbnails' ) )
-        TC___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
+        CZR___::$instance -> tc_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
       /* Instantiate slider of posts */
        if ( ! class_exists( 'TC_slider_of_posts_model_class' ) ) {
         $slider          = CZR() -> collection -> tc_instantiate_model( array( 'id' => 'slider', 'model_class' => 'modules/slider/slider') );
@@ -260,7 +260,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       //some plugins fire tiny mce editor in the customizer
       //in this case, the TC_resource class has to be loaded
       if ( ! class_exists('TC_resources') )
-        TC___::$instance -> tc_load( array('fire' => array( array('inc' , 'resources') ) ), true );
+        CZR___::$instance -> tc_load( array('fire' => array( array('inc' , 'resources') ) ), true );
 
       //fonts
       $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
@@ -298,7 +298,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     * hook : admin_notices
     */
     function tc_may_be_display_update_notice() {
-      $opt_name                   = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
+      $opt_name                   = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = TC_utils::$inst -> tc_opt($opt_name);
       $show_new_notice = false;
 
@@ -347,7 +347,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
               'tc_update_notice',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
                 __( "Good, you've just upgraded to", "customizr"),
-                "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
+                "customizr-pro" == CZR___::$theme_name ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER
               )
@@ -386,7 +386,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     */
     function tc_dismiss_update_notice_action() {
       check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
-      $opt_name = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
+      $opt_name = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
       //reset option value with new version and counter to 0
       $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
       TC_utils::$inst->tc_set_option( $opt_name, $new_val );

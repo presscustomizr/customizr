@@ -31,7 +31,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
       //3b) There are social icons set
 
       //(1)
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return true;
 
       $_socials = TC_utils::$inst -> tc_get_social_networks();
@@ -115,7 +115,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
     function tc_display_view_edit_button() {
       return apply_filters( 'tc_edit_in_title',
           is_user_logged_in()
-       && ! TC___::$instance -> tc_is_customizing()
+       && ! CZR___::$instance -> tc_is_customizing()
        && current_user_can( 'edit_posts' )
       );
     }
@@ -124,7 +124,7 @@ if ( ! class_exists( 'TC_controller_modules' ) ) :
     /* Help blocks generic controller */
     function tc_display_view_help_block() {
       //never display when customizing or admin
-      if ( TC___::$instance -> tc_is_customizing() || is_admin() )
+      if ( CZR___::$instance -> tc_is_customizing() || is_admin() )
         return;
       //always display in DEV mode
       if ( defined('TC_DEV') && true === TC_DEV )

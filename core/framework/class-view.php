@@ -55,7 +55,7 @@ if ( ! class_exists( 'TC_View' ) ) :
 
       do_action( "__before_{$this -> model -> id}" );
 
-      $tc_print_debug =  ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
+      $tc_print_debug =  ! CZR___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
 
       ?>
       <?php

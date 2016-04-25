@@ -72,7 +72,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
       //=> CHANGE SITE ICON DEFAULT WP SECTION TO CUSTOMIZR LOGO SECTION
       global $wp_version;
       if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
-        $tc_option_group = TC___::$tc_option_group;
+        $tc_option_group = CZR___::$tc_option_group;
         $wp_customize -> remove_control( "{$tc_option_group}[tc_fav_upload]" );
         //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
         $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
@@ -309,7 +309,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 					$f_option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
 		      $f_option_name = isset( $match[1][0] )  ? $match[1][0] : 'setting';
 
-          $tc_option_group = TC___::$tc_option_group;
+          $tc_option_group = CZR___::$tc_option_group;
           //build option name
           //When do we add a prefix ?
           //all customizr theme options start by "tc_" by convention
@@ -466,7 +466,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 	        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
 	        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 	        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
-            'themeName'     => TC___::$theme_name,
+            'themeName'     => CZR___::$theme_name,
             'HideDonate'    => $this -> tc_get_hide_donate_status(),
             'ShowCTA'       => ( true == TC_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
@@ -640,7 +640,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
       </script>
       <script type="text/template" id="rate-czr">
         <?php
-        $_is_pro = 'customizr-pro' == TC___::$theme_name;
+        $_is_pro = 'customizr-pro' == CZR___::$theme_name;
           printf( '<span class="tc-rate-link">%1$s %2$s, <br/>%3$s <a href="%4$s" title="%5$s" class="tc-stars" target="_blank">%6$s</a> %7$s</span>',
             __( 'If you like' , 'customizr' ),
             ! $_is_pro ? __( 'the Customizr theme' , 'customizr') : __( 'the Customizr pro theme' , 'customizr'),

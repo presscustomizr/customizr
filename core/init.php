@@ -12,9 +12,9 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC___' ) ) :
+if ( ! class_exists( 'CZR___' ) ) :
 
-  final class TC___ {
+  final class CZR___ {
     public static $instance;//@todo make private in the future
     public $tc_core;
     public $is_customizing;
@@ -28,8 +28,8 @@ if ( ! class_exists( 'TC___' ) ) :
     public $current_model = array();
 
     public static function tc_instance() {
-      if ( ! isset( self::$instance ) && ! ( self::$instance instanceof TC___ ) ) {
-        self::$instance = new TC___();
+      if ( ! isset( self::$instance ) && ! ( self::$instance instanceof CZR___ ) ) {
+        self::$instance = new CZR___();
         self::$instance -> tc_setup_constants();
         self::$instance -> tc_setup_loading();
         self::$instance -> tc_load();

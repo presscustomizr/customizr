@@ -337,7 +337,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         $tc_settings_map = TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
-        $polylang_group = 'customizr-pro' == TC___::$theme_name ? 'Customizr-Pro' : 'Customizr';
+        $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';
 
         //get options to translate
         $tc_translatable_raw_options = TC_plugins_compat::$instance -> tc_get_string_options_to_translate();
@@ -586,7 +586,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         //In English we have set to filter blog posts for cat A,B and C.
         //In Italian we do not have cat C so there will be displayed transposed cats A and B
         //if we change this option in the Customizer with lang IT removing B, e.g., when we switch to EN we'll have that the array of cats contains just A, as it as been overwritten with the new setting
-        if ( TC___::$instance -> tc_is_customize_left_panel() )
+        if ( CZR___::$instance -> tc_is_customize_left_panel() )
           add_filter( 'option_tc_theme_options', 'tc_wpml_customizer_options_transpose' );
         function tc_wpml_customizer_options_transpose( $options ) {
           $options_to_transpose = apply_filters ( 'tc_wpml_customizer_translate_options', array(

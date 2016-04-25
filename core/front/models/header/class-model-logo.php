@@ -89,7 +89,7 @@ class TC_logo_model_class extends TC_Model {
     //2) The sticky header is enabled
     //and
     //2.1) the shrink title_logo option is enabled
-    if ( TC___::$instance -> tc_is_customizing() ||
+    if ( CZR___::$instance -> tc_is_customizing() ||
         ( 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_header') ) && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
         $_logo_shrink  = implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
         $_css = sprintf("%s%s",

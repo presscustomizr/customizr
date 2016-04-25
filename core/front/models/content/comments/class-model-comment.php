@@ -24,7 +24,7 @@ class TC_comment_model_class extends TC_Model {
   * return model params array()
   */
   function tc_extend_params( $model = array() ) {
-    $model[ 'has_edit_button' ]         = ! TC___::$instance -> tc_is_customizing();
+    $model[ 'has_edit_button' ]         = ! CZR___::$instance -> tc_is_customizing();
     return $model;
   }
 

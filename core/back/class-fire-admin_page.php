@@ -25,7 +25,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
       //config infos
       add_action( '__after_welcome_panel'  , array( $this , 'tc_config_infos' ), 20 );
       //build the support url
-      $this -> support_url = TC___::tc_is_pro() ? esc_url( sprintf('%ssupport' , TC_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
+      $this -> support_url = CZR___::tc_is_pro() ? esc_url( sprintf('%ssupport' , TC_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'      , array( $this, 'tc_fix_wp_footer_link_style') );
     }
@@ -39,7 +39,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
    */
     function tc_add_welcome_page() {
         $_name = __( 'About Customizr' , 'customizr' );
-        $_name = TC___::tc_is_pro() ? sprintf( '%s Pro', $_name ) : $_name;
+        $_name = CZR___::tc_is_pro() ? sprintf( '%s Pro', $_name ) : $_name;
 
         $theme_page = add_theme_page(
             $_name,   // Name of page
@@ -62,7 +62,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
         $is_help        = isset($_GET['help'])  ?  true : false;
         $_faq_url       = esc_url('http://docs.presscustomizr.com/category/90-faq-and-common-issues');
         $_support_url   = $this -> support_url;
-        $_theme_name    = TC___::tc_is_pro() ? 'Customizr Pro' : 'Customizr';
+        $_theme_name    = CZR___::tc_is_pro() ? 'Customizr Pro' : 'Customizr';
 
         do_action('__before_welcome_panel');
 
@@ -95,7 +95,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                 );
                 printf( '<p>%1$s</p><p><strong>%2$s</strong></p>',
                   __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" ),
-                  TC___::tc_is_pro() ? '' : sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
+                  CZR___::tc_is_pro() ? '' : sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
                     sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('presscustomizr.com'), __("home page" , "customizr") )
                   )
                 );
@@ -117,7 +117,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
                 </div>
                  <div class="last-feature col">
                      <a class="button-secondary customizr-help" title="help" href="<?php echo $_support_url; ?>" target="_blank">
-                       <?php TC___::tc_is_pro() ? _e( 'Get support','customizr' ) : _e( 'Get help in the free support forum','customizr' ); ?>
+                       <?php CZR___::tc_is_pro() ? _e( 'Get support','customizr' ) : _e( 'Get help in the free support forum','customizr' ); ?>
                      </a>
                  </div>
               </div><!-- .two-col -->
@@ -145,7 +145,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
           <?php endif; ?>
 
-          <?php if ( TC___::$instance -> tc_is_child() ) : ?>
+          <?php if ( CZR___::$instance -> tc_is_child() ) : ?>
             <div class="changelog point-releases"></div>
 
             <div class="tc-upgrade-notice">
@@ -162,7 +162,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 
           <div class="changelog point-releases"></div>
 
-          <?php if ( ! TC___::tc_is_pro() ) : ?>
+          <?php if ( ! CZR___::tc_is_pro() ) : ?>
             <div class="changelog">
 
                 <div class="feature-section col three-col">
@@ -310,7 +310,7 @@ if ( ! class_exists( 'TC_admin_page' ) ) :
 # HOME_URL:                 <?php echo home_url() . "\n"; ?>
 # IS MULTISITE :            <?php echo is_multisite() ? 'Yes' . "\n" : 'No' . "\n" ?>
 
-# THEME | VERSION :         <?php printf( '%1$s | v%2$s', TC___::$theme_name , CUSTOMIZR_VER ) . "\n"; ?>
+# THEME | VERSION :         <?php printf( '%1$s | v%2$s', CZR___::$theme_name , CUSTOMIZR_VER ) . "\n"; ?>
 # WP VERSION :              <?php echo get_bloginfo( 'version' ) . "\n"; ?>
 # PERMALINK STRUCTURE :     <?php echo get_option( 'permalink_structure' ) . "\n"; ?>
 

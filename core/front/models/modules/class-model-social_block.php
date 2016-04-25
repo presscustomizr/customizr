@@ -43,7 +43,7 @@ class TC_social_block_model_class extends TC_Model {
     //1b) there are no social icons set
     //and
     //2) customizing
-    $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && TC___::$instance -> tc_is_customizing();
+    $_hidden = ( ( $where && 0 == esc_attr( TC_utils::$inst->tc_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && CZR___::$instance -> tc_is_customizing();
     return $_hidden ? 'style="display:none;"' : '';
   }
 

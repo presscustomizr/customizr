@@ -71,10 +71,10 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_init_properties() {
         //all customizr theme options start by "tc_" by convention
         $this -> tc_options_prefixes = apply_filters('tc_options_prefixes', array('tc_') );
-        $this -> is_customizing   = TC___::$instance -> tc_is_customizing();
-        $this -> db_options       = false === get_option( TC___::$tc_option_group ) ? array() : (array)get_option( TC___::$tc_option_group );
+        $this -> is_customizing   = CZR___::$instance -> tc_is_customizing();
+        $this -> db_options       = false === get_option( CZR___::$tc_option_group ) ? array() : (array)get_option( CZR___::$tc_option_group );
         $this -> default_options  = $this -> tc_get_default_options();
-        $_trans                   = TC___::tc_is_pro() ? 'started_using_customizr_pro' : 'started_using_customizr';
+        $_trans                   = CZR___::tc_is_pro() ? 'started_using_customizr_pro' : 'started_using_customizr';
 
         //What was the theme version when the user started to use Customizr?
         //new install = no options yet
@@ -276,7 +276,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_get_theme_options ( $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
-          $option_group       = is_null($option_group) ? TC___::$tc_option_group : $option_group;
+          $option_group       = is_null($option_group) ? CZR___::$tc_option_group : $option_group;
           $saved              = empty($this -> db_options) ? $this -> tc_cache_db_options() : $this -> db_options;
           $defaults           = $this -> default_options;
           $__options          = wp_parse_args( $saved, $defaults );
@@ -295,7 +295,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       */
       function tc_opt( $option_name , $option_group = null, $use_default = true ) {
         //do we have to look for a specific group of option (plugin?)
-        $option_group = is_null($option_group) ? TC___::$tc_option_group : $option_group;
+        $option_group = is_null($option_group) ? CZR___::$tc_option_group : $option_group;
         //when customizing, the db_options property is refreshed each time the preview is refreshed in 'customize_preview_init'
         $_db_options  = empty($this -> db_options) ? $this -> tc_cache_db_options() : $this -> db_options;
 
@@ -341,7 +341,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since  v3.4+
       */
       function tc_customize_refresh_db_opt(){
-        $this -> db_options = false === get_option( TC___::$tc_option_group ) ? array() : (array)get_option( TC___::$tc_option_group );
+        $this -> db_options = false === get_option( CZR___::$tc_option_group ) ? array() : (array)get_option( CZR___::$tc_option_group );
       }
 
 
@@ -357,7 +357,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.4+
       */
       function tc_set_option( $option_name , $option_value, $option_group = null ) {
-        $option_group           = is_null($option_group) ? TC___::$tc_option_group : $option_group;
+        $option_group           = is_null($option_group) ? CZR___::$tc_option_group : $option_group;
         $_options               = $this -> tc_get_theme_options( $option_group );
         $_options[$option_name] = $option_value;
 
@@ -373,7 +373,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.2.0
       */
       function tc_cache_db_options($opt_group = null) {
-        $opts_group = is_null($opt_group) ? TC___::$tc_option_group : $opt_group;
+        $opts_group = is_null($opt_group) ? CZR___::$tc_option_group : $opt_group;
         $this -> db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
         return $this -> db_options;
       }
@@ -856,7 +856,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
     * @since Customizr 3.2.9
     */
     function tc_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
-      $_ispro = TC___::tc_is_pro();
+      $_ispro = CZR___::tc_is_pro();
 
       if ( $_ispro && ! get_transient( 'started_using_customizr_pro' ) )
         return false;
