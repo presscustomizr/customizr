@@ -157,7 +157,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @package Customizr
       * @since Customizr 3.1.23
       */
-      function czr_fn_get_skin_color( $_what = null ) {
+      function tc_get_skincolor( $_what = null ) {
         $_color_map    = CZR_cl_init::$instance -> skin_color_map;
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 
@@ -178,7 +178,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
             $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
           break;
         }
-        return apply_filters( 'czr_fn_get_skin_color' , $_to_return , $_what );
+        return apply_filters( 'tc_get_skincolor' , $_to_return , $_what );
       }
 
 

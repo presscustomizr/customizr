@@ -37,7 +37,7 @@ var czrapp = czrapp || {};
             this.increment++;
             clearTimeout(self.timer);
           }
-          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+          if ( 1 == CZRParams.timerOnScrollAllBrowsers ) {
             this.timer = setTimeout( function() {
               self.bttArrowVisibility();
             }, self.increment > 5 ? 50 : 0 );
@@ -58,23 +58,23 @@ var czrapp = czrapp || {};
 
     //SMOOTH SCROLL
     smoothScroll: function() {
-      if ( TCParams.SmoothScroll && TCParams.SmoothScroll.Enabled )
-        smoothScroll( TCParams.SmoothScroll.Options );
+      if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled )
+        smoothScroll( CZRParams.SmoothScroll.Options );
     },
 
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
-      if ( ! TCParams.anchorSmoothScroll || 'easeOutExpo' != TCParams.anchorSmoothScroll )
+      if ( ! CZRParams.anchorSmoothScroll || 'easeOutExpo' != CZRParams.anchorSmoothScroll )
             return;
 
-      var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude.simple ) ) ? TCParams.anchorSmoothScrollExclude.simple.join(',') : '',
+      var _excl_sels = ( CZRParams.anchorSmoothScrollExclude && _.isArray( CZRParams.anchorSmoothScrollExclude.simple ) ) ? CZRParams.anchorSmoothScrollExclude.simple.join(',') : '',
           self = this,
           $_links = $('a[href^="#"]', '#content').not(_excl_sels);
 
       //Deep exclusion
       //are ids and classes selectors allowed ?
       //all type of selectors (in the array) must pass the filter test
-      _deep_excl = _.isObject( TCParams.anchorSmoothScrollExclude.deep ) ? TCParams.anchorSmoothScrollExclude.deep : null ;
+      _deep_excl = _.isObject( CZRParams.anchorSmoothScrollExclude.deep ) ? CZRParams.anchorSmoothScrollExclude.deep : null ;
       if ( _deep_excl )
         _links = _.toArray($_links).filter( function ( _el ) {
           return ( 2 == ( ['ids', 'classes'].filter( 
@@ -93,7 +93,7 @@ var czrapp = czrapp || {};
         if ('#' != anchor_id) {
             $('html, body').animate({
                 scrollTop: $(anchor_id).offset().top
-            }, 700, TCParams.anchorSmoothScroll);
+            }, 700, CZRParams.anchorSmoothScroll);
         }
         return false;
       });//click
@@ -159,7 +159,7 @@ var czrapp = czrapp || {};
     //COMMENTS
     //Change classes of the comment reply and edit to make the whole button clickable (no filters offered in WP to do that)
     clickableCommentButton : function() {
-      if ( ! TCParams.HasComments )
+      if ( ! CZRParams.HasComments )
         return;
 
       //edit
@@ -184,7 +184,7 @@ var czrapp = czrapp || {};
     //Detect layout and reorder content divs
     dynSidebarReorder : function() {
       //Enable reordering if option is checked in the customizer.
-      if ( 1 != TCParams.ReorderBlocks )
+      if ( 1 != CZRParams.ReorderBlocks )
         return;
 
       //fire on DOM READY and only for responsive devices
@@ -208,8 +208,8 @@ var czrapp = czrapp || {};
     _reorderSidebars : function( _sidebarLayout ) {
       _sidebarLayout = _sidebarLayout || 'normal';
       var that = this,
-          LeftSidebarClass    = TCParams.LeftSidebarClass || '.span3.left.tc-sidebar',
-          RightSidebarClass   = TCParams.RightSidebarClass || '.span3.right.tc-sidebar',
+          LeftSidebarClass    = CZRParams.LeftSidebarClass || '.span3.left.tc-sidebar',
+          RightSidebarClass   = CZRParams.RightSidebarClass || '.span3.right.tc-sidebar',
           $_WindowWidth       = czrapp.$_window.width();
 
       //cache some $
@@ -290,10 +290,10 @@ var czrapp = czrapp || {};
 
     //Mobile behaviour for the secondary menu
     secondMenuRespActions : function() {
-      if ( ! TCParams.isSecondMenuEnabled )
+      if ( ! CZRParams.isSecondMenuEnabled )
         return;
       //Enable reordering if option is checked in the customizer.
-      var userOption = TCParams.secondMenuRespSet || false,
+      var userOption = CZRParams.secondMenuRespSet || false,
           that = this;
       //if not a relevant option, abort
       if ( ! userOption || -1 == userOption.indexOf('in-sn') )

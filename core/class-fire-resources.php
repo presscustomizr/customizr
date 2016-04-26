@@ -80,74 +80,74 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     */
     private function czr_fn_get_script_map( $_handles = array() ) {
       $_map = array(
-        'tc-js-params' => array(
+        'czr-js-params' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
-          'files' => array( 'tc-js-params.js' ),
+          'files' => array( 'czr-js-params.js' ),
           'dependencies' => array( 'jquery' )
         ),
         //adds support for map method in array prototype for old ie browsers <ie9
-        'tc-js-arraymap-proto' => array(
+        'czr-js-arraymap-proto' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'oldBrowserCompat.min.js' ),
           'dependencies' => array()
         ),
-        'tc-bootstrap' => array(
+        'czr-bootstrap' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'bootstrap.js' , 'bootstrap.min.js' ),
-          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery', 'tc-js-params' )
+          'dependencies' => array( 'czr-js-arraymap-proto', 'jquery', 'czr-js-params' )
         ),
-        'tc-img-original-sizes' => array(
+        'czr-img-original-sizes' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'jqueryimgOriginalSizes.js' ),
           'dependencies' => array('jquery')
         ),
-        'tc-smoothscroll' => array(
+        'czr-smoothscroll' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'smoothScroll.js' ),
-          'dependencies' => array( 'tc-js-arraymap-proto', 'underscore' )
+          'dependencies' => array( 'czr-js-arraymap-proto', 'underscore' )
         ),
-        'tc-outline' => array(
+        'czr-outline' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'outline.js' ),
           'dependencies' => array()
         ),
-        'tc-dropcap' => array(
+        'czr-dropcap' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'jqueryaddDropCap.js' ),
-          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+          'dependencies' => array( 'czr-js-arraymap-proto', 'jquery' , 'czr-js-params', 'czr-bootstrap', 'underscore' )
         ),
-        'tc-img-smartload' => array(
+        'czr-img-smartload' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'jqueryimgSmartLoad.js' ),
-          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+          'dependencies' => array( 'czr-js-arraymap-proto', 'jquery' , 'czr-js-params', 'czr-bootstrap', 'underscore' )
         ),
-        'tc-ext-links' => array(
+        'czr-ext-links' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'jqueryextLinks.js' ),
-          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+          'dependencies' => array( 'czr-js-arraymap-proto', 'jquery' , 'czr-js-params', 'czr-bootstrap', 'underscore' )
         ),
-        'tc-center-images' => array(
+        'czr-center-images' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'jqueryCenterImages.js' ),
-          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
+          'dependencies' => array( 'czr-js-arraymap-proto', 'jquery' , 'czr-js-params', 'czr-img-original-sizes', 'czr-bootstrap', 'underscore' )
         ),
         //!!no fancybox dependency if fancybox not required!
-        'tc-main-front' => array(
+        'czr-main-front' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
           'files' => array( 'main.js' , 'main.min.js' ),
-          'dependencies' => $this -> czr_fn_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
+          'dependencies' => $this -> czr_fn_is_fancyboxjs_required() ? array( 'czr-js-arraymap-proto', 'jquery' , 'czr-js-params', 'czr-img-original-sizes', 'czr-bootstrap', 'czr-fancybox' , 'underscore' ) : array( 'jquery' , 'czr-js-params', 'czr-img-original-sizes', 'czr-bootstrap' , 'underscore' )
         ),
         //loaded separately => not included in tc-script.js
-        'tc-fancybox' => array(
+        'czr-fancybox' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/fancybox/',
           'files' => array( 'jquery.fancybox-1.3.4.min.js' ),
-          'dependencies' => $this -> czr_fn_load_concatenated_front_scripts() ? array( 'jquery' ) : array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap' )
+          'dependencies' => $this -> czr_fn_load_concatenated_front_scripts() ? array( 'jquery' ) : array( 'czr-js-arraymap-proto', 'jquery' , 'czr-js-params', 'czr-bootstrap' )
         ),
         //concats all scripts except fancybox
-        'tc-scripts' => array(
+        'czr-scripts' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/',
-          'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
-          'dependencies' =>  $this -> czr_fn_is_fancyboxjs_required() ? array( 'jquery', 'tc-fancybox' ) : array( 'jquery' )
+          'files' => array( 'czr-scripts.js' , 'czr-scripts.min.js' ),
+          'dependencies' =>  $this -> czr_fn_is_fancyboxjs_required() ? array( 'jquery', 'czr-fancybox' ) : array( 'jquery' )
         )
       );//end of scripts map
 
@@ -186,19 +186,19 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
       //customizr scripts and libs
 	   	if ( $this -> czr_fn_load_concatenated_front_scripts() )	{
         if ( $this -> czr_fn_is_fancyboxjs_required() )
-          $this -> czr_fn_enqueue_script( 'tc-fancybox' );
+          $this -> czr_fn_enqueue_script( 'czr-fancybox' );
         //!!tc-scripts includes underscore, tc-js-arraymap-proto
-        $this -> czr_fn_enqueue_script( 'tc-scripts' );
+        $this -> czr_fn_enqueue_script( 'czr-scripts' );
 			}
 			else {
         wp_enqueue_script( 'underscore' );
         //!!mind the dependencies
-        $this -> czr_fn_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-smoothscroll', 'tc-outline' ) );
+        $this -> czr_fn_enqueue_script( array( 'czr-js-params', 'czr-js-arraymap-proto', 'czr-img-original-sizes', 'czr-bootstrap', 'czr-smoothscroll', 'czr-outline' ) );
 
         if ( $this -> czr_fn_is_fancyboxjs_required() )
-          $this -> czr_fn_enqueue_script( 'tc-fancybox' );
+          $this -> czr_fn_enqueue_script( 'czr-fancybox' );
 
-        $this -> czr_fn_enqueue_script( array( 'tc-dropcap' , 'tc-img-smartload', 'tc-ext-links', 'tc-center-images', 'tc-main-front' ) );
+        $this -> czr_fn_enqueue_script( array( 'czr-dropcap' , 'czr-img-smartload', 'czr-ext-links', 'czr-center-images', 'czr-main-front' ) );
 			}//end of load concatenate script if
 
       //carousel options
@@ -245,8 +245,8 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 	    $right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
 			wp_localize_script(
-	        $this -> czr_fn_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
-	        'TCParams',
+	        $this -> czr_fn_load_concatenated_front_scripts() ? 'czr-scripts' : 'czr-js-params',
+	        'CZRParams',
 	        apply_filters( 'tc_customizr_script_params' , array(
 	          	'_disabled'          => apply_filters( 'tc_disabled_front_js_parts', array() ),
               'FancyBoxState' 		=> $this -> czr_fn_is_fancyboxjs_required(),
@@ -413,7 +413,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
         return;
 
       wp_enqueue_style(
-        'tc-gfonts',
+        'czr-gfonts',
         sprintf( '//fonts.googleapis.com/css?family=%s', CZR_cl_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) ),
         array(),
         null,
@@ -518,7 +518,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
       if ( ! esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_enable_dropcap' ) ) )
         return $_css;
 
-      $_main_color_pair = CZR_cl_utils::$inst -> czr_fn_get_skin_color( 'pair' );
+      $_main_color_pair = CZR_cl_utils::$inst -> tc_get_skincolor( 'pair' );
       $_color           = $_main_color_pair[0];
       $_shad_color      = $_main_color_pair[1];
       $_pad_right       = false !== strpos( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;
@@ -555,7 +555,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
         return $_skin;
 
       //allow custom skins to be taken in account
-      $_skins = apply_filters( 'czr_fn_get_skin_color', CZR_cl_init::$instance -> skin_color_map, 'all' );
+      $_skins = apply_filters( 'tc_get_skincolor', CZR_cl_init::$instance -> skin_color_map, 'all' );
 
       //allow users to filter the list of skins they want to randomize
       $_skins = apply_filters( 'tc_skins_to_randomize', $_skins );

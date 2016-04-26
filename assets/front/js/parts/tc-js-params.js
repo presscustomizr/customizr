@@ -1,5 +1,5 @@
 //Falls back to default params
-var TCParams = TCParams || {
+var CZRParams = CZRParams || {
 	DisabledFeatures : {},
   centerAllImg: 1,
 	FancyBoxAutoscale: 1,

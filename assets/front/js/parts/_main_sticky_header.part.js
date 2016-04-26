@@ -10,13 +10,13 @@ var czrapp = czrapp || {};
       this.$_resetMarginTop = $('#tc-reset-margin-top');
       //subclass properties
       this.elToHide         = []; //[ '.social-block' , '.site-description' ],
-      this.customOffset     = TCParams.stickyCustomOffset || {};// defaults : { _initial : 0, _scrolling : 0 }
+      this.customOffset     = CZRParams.stickyCustomOffset || {};// defaults : { _initial : 0, _scrolling : 0 }
       this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
       this.timer            = 0;
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
 
-      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 5;
+      this.scrollingDelay   = 1 != CZRParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 5;
     },//init()
 
 

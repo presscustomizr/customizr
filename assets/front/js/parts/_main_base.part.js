@@ -1,4 +1,4 @@
-//@global TCParams
+//@global CZRParams
 var czrapp = czrapp || {};
 
 (function($, czrapp) {
@@ -79,7 +79,7 @@ var czrapp = czrapp || {};
         $_wpadminbar     : $('#wpadminbar'),
 
         //various properties definition
-        localized        : TCParams || {},
+        localized        : CZRParams || {},
         is_responsive    : this.isResponsive(),//store the initial responsive state of the window
         current_device   : this.getDevice()//store the initial device
       });
@@ -189,7 +189,7 @@ var czrapp = czrapp || {};
     /**
      * Load the various { constructor [methods] }
      *
-     * Constructors and methods can be disabled by passing a localized var TCParams._disabled (with the hook 'tc_disabled_front_js_parts' )
+     * Constructors and methods can be disabled by passing a localized var CZRParams._disabled (with the hook 'tc_disabled_front_js_parts' )
      * Ex : add_filter('tc_disabled_front_js_parts', function() {
      *   return array('Czr_Plugins' => array() , 'Czr_Slider' => array('addSwipeSupport') );
      * });
