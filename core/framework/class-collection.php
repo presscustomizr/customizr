@@ -44,9 +44,9 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //on 'wp', the pre_registered (if any) are registered
       add_action( 'wp'                          , array($this, 'czr_fn_register_pre_registered') );
 
-      //Reacts on 'czr_fn_delete' event
+      //Reacts on 'czr_delete' event
       //1 param = model id
-      add_action( 'czr_fn_delete'                   , array( $this, 'czr_fn_delete' ), 10, 1 );
+      add_action( 'czr_delete'                   , array( $this, 'czr_fn_delete' ), 10, 1 );
 
       //listens to a model changed => update the model collection
       //model_property_changed takes two params :
@@ -401,7 +401,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
       //Check if we have to run a registered deletion here
       if ( $this -> czr_fn_is_registered( $id ) && $this -> czr_fn_has_registered_deletion( $id ) ) {
-        do_action( 'czr_fn_delete' , $id );
+        do_action( 'czr_delete' , $id );
         return;
       }
 
@@ -644,7 +644,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
       //return it now if available
       if ( ! $this -> czr_fn_is_registered($id) && ! $this -> czr_fn_is_pre_registered($id) )
-        return apply_filters('czr_fn_set_model_unique_id' , $id, $hook, $priority );
+        return apply_filters('czr_set_model_unique_id' , $id, $hook, $priority );
 
       //add hyphen add the end if not there
       $id                 = ! is_numeric(substr($id, -1)) ? $id . '_0' : $id;

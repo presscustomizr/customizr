@@ -25,11 +25,11 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
             add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_scripts' ) );
           //Custom Stylesheets
           //Write font icon
-          add_filter('czr_fn_user_options_style'          , array( $this , 'czr_fn_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
+          add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
 	        //Custom CSS
-          add_filter('czr_fn_user_options_style'          , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
-          add_filter('czr_fn_user_options_style'          , array( $this , 'czr_fn_write_fonts_inline_css') );
-          add_filter('czr_fn_user_options_style'          , array( $this , 'czr_fn_write_dropcap_inline_css') );
+          add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
+          add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_fonts_inline_css') );
+          add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_dropcap_inline_css') );
 
           //set random skin
           add_filter ('czr_opt_tc_skin'                , array( $this, 'czr_fn_set_random_skin' ) );
@@ -66,7 +66,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 	      wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
 
 	      //Customizer user defined style options : the custom CSS is written with a high priority here
-	      wp_add_inline_style( 'customizr-skin', apply_filters( 'czr_fn_user_options_style' , '' ) );
+	      wp_add_inline_style( 'customizr-skin', apply_filters( 'czr_user_options_style' , '' ) );
 		}
 
 
@@ -82,7 +82,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
       $_map = array(
         'czr-js-params' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/parts/',
-          'files' => array( 'czr-js-params.js' ),
+          'files' => array( 'tc-js-params.js' ),
           'dependencies' => array( 'jquery' )
         ),
         //adds support for map method in array prototype for old ie browsers <ie9
@@ -146,12 +146,12 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
         //concats all scripts except fancybox
         'czr-scripts' => array(
           'path' => CZR_ASSETS_PREFIX . 'front/js/',
-          'files' => array( 'czr-scripts.js' , 'czr-scripts.min.js' ),
+          'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
           'dependencies' =>  $this -> czr_fn_is_fancyboxjs_required() ? array( 'jquery', 'czr-fancybox' ) : array( 'jquery' )
         )
       );//end of scripts map
 
-      return apply_filters('czr_fn_get_script_map' , $_map, $_handles );
+      return apply_filters('czr_get_script_map' , $_map, $_handles );
     }
 
 
@@ -263,7 +263,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 	          	'HasComments' 			=> $has_post_comments,
 	          	'LeftSidebarClass' 		=> $left_sb_class,
 	          	'RightSidebarClass' 	=> $right_sb_class,
-	          	'LoadModernizr' 		=> apply_filters( 'czr_fn_load_modernizr' , true ),
+	          	'LoadModernizr' 		=> apply_filters( 'czr_load_modernizr' , true ),
 	          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , array( "_initial" => 0, "_scrolling" => 0, "options" => array( "_static" => true, "_element" => "" ) ) ),
 	          	'stickyHeader' 			=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) ),
 	          	'dropdowntoViewport' 	=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_resp_dropdown_limit_to_viewport') ),
@@ -302,11 +302,11 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 	    }
 
 	    //load retina.js in footer if enabled
-	    if ( apply_filters('czr_fn_load_retinajs', 1 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) )
+	    if ( apply_filters('czr_load_retinajs', 1 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) )
 	    	wp_enqueue_script( 'retinajs' ,CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
 	    //Load hammer.js for mobile
-	    if ( apply_filters('czr_fn_load_hammerjs', wp_is_mobile() ) )
+	    if ( apply_filters('czr_load_hammerjs', wp_is_mobile() ) )
 	    	wp_enqueue_script( 'hammer' ,CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/hammer.min.js', array('jquery'), CUSTOMIZR_VER );
 
 		}
@@ -315,13 +315,13 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
 		/**
     * Write the font icon in the custom stylesheet at the very beginning
-    * hook : czr_fn_user_options_style
+    * hook : czr_user_options_style
     * @package Customizr
     * @since Customizr 3.2.3
     */
 		function czr_fn_write_inline_font_icons_css( $_css = null ) {
       $_css               = isset($_css) ? $_css : '';
-      return apply_filters( 'czr_fn_write_inline_font_icons',
+      return apply_filters( 'czr_write_inline_font_icons',
         $this -> czr_fn_get_inline_font_icons_css() . "\n" . $_css,
         $_css
       );
@@ -360,7 +360,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
     /**
     * Writes the sanitized custom CSS from options array into the custom user stylesheet, at the very end (priority 9999)
-    * hook : czr_fn_user_options_style
+    * hook : czr_user_options_style
     * @package Customizr
     * @since Customizr 2.0.7
     */
@@ -370,7 +370,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
       if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
         return $_css;
 
-      return apply_filters( 'czr_fn_write_custom_css',
+      return apply_filters( 'czr_write_custom_css',
         $_css . "\n" . html_entity_decode( $tc_custom_css ),
         $_css,
         CZR_cl_utils::$inst->czr_fn_opt( 'tc_custom_css')
@@ -424,7 +424,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
 
     /**
-    * Callback of czr_fn_user_options_style hook
+    * Callback of czr_user_options_style hook
     * @return css string
     *
     * @package Customizr
@@ -507,7 +507,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
 
     /**
-    * Callback of czr_fn_user_options_style hook
+    * Callback of czr_user_options_style hook
     * @return css string
     *
     * @package Customizr
@@ -647,7 +647,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
         sprintf( '%1$s%2$s%3$s',CZR_BASE_URL , $_params['path'], $_filename ),
         $_params['dependencies'],
         CUSTOMIZR_VER,
-        apply_filters( "czr_fn_load_{$_handle}_in_footer", false )
+        apply_filters( "czr_load_{$_handle}_in_footer", false )
       );
     }
 
@@ -659,7 +659,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
     * @since v3.3+
     */
     function czr_fn_load_concatenated_front_scripts() {
-      return apply_filters( 'czr_fn_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
+      return apply_filters( 'czr_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
     }
 
     /**

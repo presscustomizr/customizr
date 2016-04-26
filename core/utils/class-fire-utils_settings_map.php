@@ -642,7 +642,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'type'      => 'checkbox' ,
                                 'priority'  => 45,
                                 'transport' => 'postMessage',
-                                'active_callback' => apply_filters( 'czr_fn_woocommerce_options_enabled', '__return_false' ),
+                                'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
                                 'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
                ),
                'tc_sticky_show_title_logo'  =>  array(

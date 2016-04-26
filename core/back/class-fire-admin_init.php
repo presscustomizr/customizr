@@ -42,7 +42,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       add_action( 'admin_footer'                  , array( $this , 'czr_fn_write_ajax_dismis_script' ) );
       /* beautify admin notice text using some defaults the_content filter callbacks */
       foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
-        add_filter( 'czr_fn_update_notice', $callback );
+        add_filter( 'czr_update_notice', $callback );
 
       //PLACEHOLDERS AJAX SETUP HOOKS
       add_action( 'init'                 , array( $this, 'czr_fn_placeholders_ajax_setup') );
@@ -135,7 +135,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
        //alternative, cycle throughout the cats and keep just the existent ones
        /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
          //update the option
-         CZR_cl_utils::$inst -> czr_fn_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(CZR_cl_utils::$inst, 'tc_category_id_exists' ) ) );
+         CZR_cl_utils::$inst -> czr_fn_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(CZR_cl_utils::$inst, 'czr_fn_category_id_exists' ) ) );
        }*/
     }
 
@@ -237,7 +237,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
           CZR_cl_init::$instance -> czr_fn_get_style_src() , get_stylesheet_uri()
       );
 
-      if ( apply_filters( 'czr_fn_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
+      if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
         $_stylesheets = array_merge( $_stylesheets , $this -> czr_fn_maybe_add_gfonts_to_editor() );
 
       add_editor_style( $_stylesheets );
@@ -255,7 +255,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     *
     */
     function czr_fn_user_defined_tinymce_css( $init ) {
-      if ( ! apply_filters( 'czr_fn_add_custom_fonts_to_editor' , true ) )
+      if ( ! apply_filters( 'czr_add_custom_fonts_to_editor' , true ) )
         return $init;
       //some plugins fire tiny mce editor in the customizer
       //in this case, the CZR_cl_resource class has to be loaded

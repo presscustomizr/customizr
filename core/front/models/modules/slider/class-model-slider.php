@@ -498,7 +498,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
       if ( false !== (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_default_height', CZR___::$czr_option_group, $use_default = false ) ) )
         return $_h;
     }
-    return apply_filters( 'czr_fn_set_demo_slider_height' , 750 );
+    return apply_filters( 'czr_set_demo_slider_height' , 750 );
   }
 
   /*
@@ -550,7 +550,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     //When shall we append custom slider style to the global custom inline stylesheet?
     $_bool = 500 != $_custom_height;
     $_bool = $_bool && ( CZR_cl_utils::$inst -> czr_fn_is_home() || 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
-    if ( ! apply_filters( 'czr_fn_print_slider_inline_css' , $_bool ) )
+    if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
       return $_css;
     $_resp_shrink_ratios = apply_filters( 'tc_slider_resp_shrink_ratios',
       array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )

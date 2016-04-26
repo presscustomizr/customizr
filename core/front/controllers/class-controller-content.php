@@ -40,7 +40,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_post_list() {
-      return apply_filters( 'czr_fn_display_view_post_list', CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() );
+      return apply_filters( 'czr_display_view_post_list', CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() );
     }
 
 
@@ -141,7 +141,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     //b) eventually, in the search list when attachments are allowed
     function czr_fn_display_view_post_metas_attachment() {
       return is_attachment() ||
-        ( is_search() && apply_filters( 'czr_fn_include_attachments_in_search_results' , false ) );
+        ( is_search() && apply_filters( 'czr_include_attachments_in_search_results' , false ) );
     }
 
     /* Thumbnails in post lists */

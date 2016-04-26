@@ -1163,7 +1163,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
         $string_options[] = 'tc_featured_page_button_text';
       }
-      return apply_filters( 'czr_fn_get_string_options_to_translate', $string_options );
+      return apply_filters( 'czr_get_string_options_to_translate', $string_options );
     }
   }//end of class
 endif;

@@ -116,7 +116,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
     else
       $grid_cols = $this -> grid_cols;
 
-    return apply_filters( 'czr_fn_get_grid_cols', $grid_cols );
+    return apply_filters( 'czr_get_grid_cols', $grid_cols );
   }
 
 
@@ -260,7 +260,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
       $_grid_col_height_map[$_c] = $this -> czr_fn_set_max_col_height ( $_heights ,$_h );
     }
     $_h = isset( $_grid_col_height_map[$_cols_nb][$_key] ) ? $_grid_col_height_map[$_cols_nb][$_key] : $_h;
-    return apply_filters( 'czr_fn_get_grid_column_height' , $_h, $_cols_nb, $_current_layout );
+    return apply_filters( 'czr_get_grid_column_height' , $_h, $_cols_nb, $_current_layout );
   }
 
 
@@ -351,7 +351,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
       );
     }
     return apply_filters(
-      'czr_fn_get_grid_font_sizes',
+      'czr_get_grid_font_sizes',
       isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
       $_col_nb,
       $_col_media_matrix,
@@ -360,7 +360,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   }
 
   /**
-  * hook : 'czr_fn_get_grid_font_sizes'
+  * hook : 'czr_get_grid_font_sizes'
   * Updates the array of sizes for a given sidebar layout
   * @param  $_sizes array. ex : array( 'xl' , 'l' , 'm', 'l', 'm' )
   * @param  $_col_nb string. Ex: '2'
@@ -404,7 +404,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * returns ratio of size / body size for a given selector type ( headings or paragraphs )
   */
   private function czr_fn_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
-    $_ratios =  apply_filters( 'czr_fn_get_grid_font_ratios' , array(
+    $_ratios =  apply_filters( 'czr_get_grid_font_ratios' , array(
         'xxxl' => array( 'h' => 2.10, 'p' => 1 ),
         'xxl' => array( 'h' => 1.86, 'p' => 1 ),
         'xl' => array( 'h' => 1.60, 'p' => 0.93 ),
