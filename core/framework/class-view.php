@@ -115,7 +115,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
     //@return void()
     //called directly sometimes
     //fired on 'pre_render_view'
-    //fired on tc_change if view is instantiated
+    //fired on czr_fn_change if view is instantiated
     public function czr_fn_apply_registered_changes_to_instance( $id, $new_params = array() ) {
       if ( ! CZR() -> collection -> czr_fn_has_registered_change( $id ) )
         return;
@@ -125,7 +125,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
       $this -> czr_fn_update_model_instance( $id, $new_params );
 
       //This event will trigger a removal of the change from the change list
-      //=> tc_deregister_change
+      //=> czr_deregister_change
       do_action('registered_changed_applied' , $id);
     }
 

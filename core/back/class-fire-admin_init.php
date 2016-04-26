@@ -452,7 +452,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     */
     function czr_fn_placeholders_ajax_setup() {
       if ( CZR_cl_utils::$inst->czr_fn_opt('tc_display_front_help') )
-        add_action( 'wp_ajax_tc_notice_actions'         , array( $this, 'czr_fn_notice_ajax_actions' ) );
+        add_action( 'wp_ajax_czr_notice_actions'         , array( $this, 'czr_fn_notice_ajax_actions' ) );
     }
 
 
@@ -473,7 +473,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         $_remove_action = esc_attr( $_POST['remove_action'] );
       else
         wp_die(0);
-      check_ajax_referer( 'tc-notice-nonce', 'TCNoticeNonce' );
+      check_ajax_referer( 'czr-notice-nonce', 'CZRNoticeNonce' );
       switch ($_remove_action) {
         case 'remove_block':
           if ( isset( $_POST[ 'user_option' ] ) )

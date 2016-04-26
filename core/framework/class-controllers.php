@@ -79,7 +79,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
     //@return bool
     //@param array() or object() model
     public function czr_fn_has_controller( $model = array() ) {
-      return ! empty( $this -> tc_build_controller( $model ) );
+      return ! empty( $this -> czr_fn_build_controller( $model ) );
     }
 
 

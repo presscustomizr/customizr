@@ -10,7 +10,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
     }
 
 
-    //hook : tc_dev_notice
+    //hook : czr_dev_notice
     function czr_fn_print_r($message) {
       if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) || is_feed() )
         return;

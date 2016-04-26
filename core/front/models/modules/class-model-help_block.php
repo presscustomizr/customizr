@@ -30,7 +30,7 @@ class CZR_cl_help_block_model_class extends CZR_cl_Model {
 
     //emulate an "enqueue once"
     if ( ! self::$js_enqueued ) {
-      add_action( 'wp_footer'   , array( $this, 'czr_fn_write_tc_notice_js'),  100 );
+      add_action( 'wp_footer'   , array( $this, 'czr_fn_write_czr_notice_js'),  100 );
       self::$js_enqueued = true;
     }
   }
@@ -107,18 +107,18 @@ class CZR_cl_help_block_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.4+
   */
-  function czr_fn_write_tc_notice_js() {
+  function czr_fn_write_czr_notice_js() {
     ?>
-    <script type="text/javascript" id="tc-notice-actions">
+    <script type="text/javascript" id="czr-notice-actions">
       ( function( $ ) {
-        var tc_ajax_request = function( remove_action, $_el ) {
+        var czr_ajax_request = function( remove_action, $_el ) {
           var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
               _query = {
-                  action        : 'tc_notice_actions',
+                  action        : 'czr_notice_actions',
                   remove_action : remove_action,
                   notice_id     : $_el.data( 'notice_id' ),
                   user_option   : $_el.data( 'user_option' ),
-                  TCNoticeNonce :  "<?php echo wp_create_nonce( 'tc-notice-nonce' ); ?>"
+                  CZRNoticeNonce :  "<?php echo wp_create_nonce( 'czr-notice-nonce' ); ?>"
               },
               $ = jQuery,
               request = $.post( AjaxUrl, _query );
@@ -146,11 +146,11 @@ class CZR_cl_help_block_model_class extends CZR_cl_Model {
         $( function($) {
           $('.tc-dismiss-notice, .tc-inline-dismiss-notice').click( function( e ) {
             e.preventDefault();
-            tc_ajax_request( 'remove_notice', $(this).closest( '.tc-placeholder-wrap' ) );
+            czr_ajax_request( 'remove_notice', $(this).closest( '.tc-placeholder-wrap' ) );
           } );
           $('.tc-inline-remove').click( function( e ) {
             e.preventDefault();
-            tc_ajax_request( 'remove_block', $(this).closest( '.tc-placeholder-wrap' ) );
+            czr_ajax_request( 'remove_block', $(this).closest( '.tc-placeholder-wrap' ) );
           } );
         } );
 
