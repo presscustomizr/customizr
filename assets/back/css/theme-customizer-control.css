@@ -1212,34 +1212,34 @@ body .select2-results {
 }
 /* Cropped Image style */
 /* Unified with the default cropped_image CSS */
-.customize-control-tc_cropped_image .upload-button {
+.customize-control-czr_cropped_image .upload-button {
   float: right;    
 }
-.customize-control-tc_cropped_image .remove-button {
+.customize-control-czr_cropped_image .remove-button {
   float: left;
   margin-right: 3px;
 }
-.customize-control-tc_cropped_image .actions {
+.customize-control-czr_cropped_image .actions {
   margin-bottom: 32px;
 }
-.customize-control-tc_cropped_image .current {
+.customize-control-czr_cropped_image .current {
   margin-bottom: 8px;
 }
-.customize-control-tc_cropped_image .upload-button,
-.customize-control-tc_cropped_image .remove-button {
+.customize-control-czr_cropped_image .upload-button,
+.customize-control-czr_cropped_image .remove-button {
   white-space: normal;
   width: 48%;
   height: auto;
 }
 
-.customize-control-tc_cropped_image .current .container {
+.customize-control-czr_cropped_image .current .container {
   min-height: 40px;
   overflow: hidden;
   border: 1px solid #eee;
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
-.customize-control-tc_cropped_image .placeholder {
+.customize-control-czr_cropped_image .placeholder {
   width: 100%;
   position: relative;
   text-align: center;
@@ -1250,12 +1250,12 @@ body .select2-results {
   box-sizing: border-box;
   min-height: 40px;
 }
-.customize-control-tc_cropped_image img {
+.customize-control-czr_cropped_image img {
   width: 100%;
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
-.customize-control-tc_cropped_image .inner {
+.customize-control-czr_cropped_image .inner {
   line-height: 20px;
   top: 8px;
   min-height: 40px;
@@ -1269,10 +1269,10 @@ body .select2-results {
 }
 /* rtl */
 /* end tc cropped image */
-.rtl .customize-control-tc_cropped_image .upload-button {
+.rtl .customize-control-czr_cropped_image .upload-button {
   float: left;    
 }
-.rtl .customize-control-tc_cropped_image .remove-button {
+.rtl .customize-control-czr_cropped_image .remove-button {
   float: right;
   margin-left: 3px;
 }

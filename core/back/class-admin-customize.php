@@ -377,7 +377,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 			global $wp_version;
 
 			wp_enqueue_script(
-				'tc-customizer-preview' ,
+				'czr-customizer-preview' ,
 				sprintf('%1$sback/js/theme-customizer-preview%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-preview', 'underscore'),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
@@ -388,8 +388,8 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
             $custom_skin = apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) );
 			//localizes
 			wp_localize_script(
-		        'tc-customizer-preview',
-		        'TCPreviewParams',
+		        'czr-customizer-preview',
+		        'CZRPreviewParams',
 		        apply_filters('czr_js_customizer_preview_params' ,
 			        array(
 			        	'skinFolder' 		=> CZR_BASE_URL . CZR_ASSETS_PREFIX,
@@ -417,14 +417,14 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		function czr_fn_customize_controls_js_css() {
 
 			wp_enqueue_style(
-				'tc-customizer-controls-style',
+				'czr-customizer-controls-style',
 				sprintf('%1$sback/css/theme-customizer-control%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				$media = 'all'
 			);
 			wp_enqueue_script(
-				'tc-customizer-controls',
+				'czr-customizer-controls',
 				sprintf('%1$sback/js/theme-customizer-control%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' , 'underscore'),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
@@ -434,7 +434,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 			//select2 stylesheet
 			//overriden by some specific style in theme-customzer-control.css
 			wp_enqueue_style(
-				'tc-select2-css',
+				'czr-select2-css',
 				sprintf('%1$sback/js/lib/select2.min.css', CZR_BASE_URL . CZR_ASSETS_PREFIX ),
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER,
@@ -447,7 +447,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 
 			//declares the common fp control fields and the dynamic arrays
 			$fp_controls 			= array(
-				'tc_theme_options[czr_fn_show_featured_pages_img]',
+				'tc_theme_options[tc_show_featured_pages_img]',
 				'tc_theme_options[tc_featured_page_button_text]'
 			);
 			$page_dropdowns 		= array();
@@ -461,13 +461,13 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 
 			//localizes
 			wp_localize_script(
-        'tc-customizer-controls',
-        'TCControlParams',
+        'czr-customizer-controls',
+        'CZRControlParams',
         apply_filters('czr_js_customizer_control_params' ,
 	        array(
 	        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
 	        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
-	        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
+	        	'CZRnonce' 			=> wp_create_nonce( 'czr-customizer-nonce' ),
             'themeName'     => CZR___::$theme_name,
             'HideDonate'    => $this -> czr_fn_get_hide_donate_status(),
             'ShowCTA'       => ( true == CZR_cl_utils::$inst->czr_fn_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
@@ -509,7 +509,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		* @since Customizr 3.1.14
 		*/
     function czr_fn_hide_donate() {
-    	check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
+    	check_ajax_referer( 'czr-customizer-nonce', 'CZRnonce' );
     	$options = get_option('tc_theme_options');
     	$options['tc_hide_donate'] = true;
     	update_option( 'tc_theme_options', $options );

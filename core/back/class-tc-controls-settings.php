@@ -318,7 +318,7 @@ endif;
 */
 if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'CZR_cl_Customize_Cropped_Image_Control' ) ) :
   class CZR_cl_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control {
-    public $type = 'tc_cropped_image';
+    public $type = 'czr_cropped_image';
     public $title;
     public $notice;
     public $dst_width;
@@ -525,7 +525,7 @@ if ( ! class_exists( 'CZR_cl_Customize_Upload_Control' ) ) :
    * @since 3.4.0
    */
   class CZR_cl_Customize_Upload_Control extends WP_Customize_Control {
-    public $type    = 'tc_upload';
+    public $type    = 'czr_upload';
     public $removed = '';
     public $context;
     public $extensions = array();
@@ -578,7 +578,7 @@ if ( ! class_exists( 'CZR_cl_Customize_Upload_Control' ) ) :
           <span class="description customize-control-description"><?php echo $this->description; ?></span>
         <?php endif; ?>
         <div>
-          <a href="#" class="button-secondary tc-upload"><?php _e( 'Upload' , 'customizr'  ); ?></a>
+          <a href="#" class="button-secondary czr-upload"><?php _e( 'Upload' , 'customizr'  ); ?></a>
           <a href="#" class="remove"><?php _e( 'Remove' , 'customizr'  ); ?></a>
         </div>
         <?php if(!empty( $this -> notice)) : ?>

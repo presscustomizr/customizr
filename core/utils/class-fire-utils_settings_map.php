@@ -190,7 +190,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'label'       => __( 'Favicon Upload (supported formats : .ico, .png, .gif)' , 'customizr' ),
                                 'title'     => __( 'FAVICON' , 'customizr'),
                                 'section'   =>  'logo_sec' ,
-                                'type'      => 'tc_upload',
+                                'type'      => 'czr_upload',
                                 'sanitize_callback' => array( $this , 'czr_fn_sanitize_number'),
               )
       );
