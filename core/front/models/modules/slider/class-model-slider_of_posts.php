@@ -58,7 +58,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     $store_transient = apply_filters( 'tc_posts_slider_store_transient', $store_transient );
     $pre_slides      = $this -> czr_fn_get_pre_posts_slides( compact( 'img_size', 'load_transient', 'store_transient' ) );
     //filter the pre_model
-    $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides );
+    $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides, $this );
     //if the slider not longer exists or exists but is empty, return false
     if ( ! $this -> czr_fn_slider_exists( $pre_slides ) )
       return false;

@@ -155,7 +155,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //Anyway to avoid the 1x1 issue we alter the img attribute (data-recalc-dims) which photon adds to the img tag(php) so
       //the width/height will not be erronously recalculated
       if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) )
-        add_filter( 'tc_img_smartloaded', 'tc_jp_smartload_img');
+        add_filter( 'tc_img_smartloaded', 'czr_fn_jp_smartload_img');
       function czr_fn_jp_smartload_img( $img ) {
         return str_replace( 'data-recalc-dims', 'data-tcjp-recalc-dims', $img );
       }
@@ -172,25 +172,25 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     */
     private function czr_fn_set_bbpress_compat() {
       //disables post navigation
-      add_filter( 'tc_show_post_navigation', 'tc_bbpress_disable_post_navigation' );
+      add_filter( 'tc_show_post_navigation', 'czr_fn_bbpress_disable_post_navigation' );
       function czr_fn_bbpress_disable_post_navigation($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
 
       //disables post metas
-      add_filter( 'tc_show_post_metas', 'tc_bbpress_disable_post_metas', 100);
+      add_filter( 'tc_show_post_metas', 'czr_fn_bbpress_disable_post_metas', 100);
       function czr_fn_bbpress_disable_post_metas($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
 
       //disables comments
-      add_filter( 'tc_are_comments_enabled', 'tc_bbpress_disable_comments', 100);
+      add_filter( 'tc_are_comments_enabled', 'czr_fn_bbpress_disable_comments', 100);
       function czr_fn_bbpress_disable_comments($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
 
       //disable title icons
-      add_filter( 'czr_opt_tc_show_title_icon', 'tc_bbpress_disable_title_icon' );
+      add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_bbpress_disable_title_icon' );
       function czr_fn_bbpress_disable_title_icon($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
@@ -205,11 +205,11 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     */
     private function czr_fn_set_buddypress_compat() {
       //disable title icons
-      add_filter( 'czr_opt_tc_show_title_icon', 'tc_buddypress_disable_title_icon' );
+      add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_buddypress_disable_title_icon' );
       function czr_fn_buddypress_disable_title_icon($bool) {
          return ( function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
       }
-      add_filter( 'tc_are_comments_enabled', 'tc_buddypress_disable_comments' );
+      add_filter( 'tc_are_comments_enabled', 'czr_fn_buddypress_disable_comments' );
       function czr_fn_buddypress_disable_comments($bool){
         return ( is_page() && function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
       }
@@ -224,7 +224,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //2) a cover image, if already set
       //anyways this page is not a regular "front" page as it pertains more to a "backend" side
       //if we can call it that way.
-      add_action( 'xprofile_screen_change_avatar', 'tc_buddypress_maybe_disable_img_smartload' );
+      add_action( 'xprofile_screen_change_avatar', 'czr_fn_buddypress_maybe_disable_img_smartload' );
       function czr_fn_buddypress_maybe_disable_img_smartload() {
         add_filter( 'czr_opt_tc_img_smart_load', '__return_false' );
       }
@@ -253,11 +253,11 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
       //outputs correct urls for current language : in logo, slider
       foreach ( array( 'tc_slide_link_url', 'tc_logo_link_url') as $filter )
-        add_filter( $filter, 'tc_url_lang' );
+        add_filter( $filter, 'czr_fn_url_lang' );
 
       //outputs the qtranslate translation for slider
       foreach ( array( 'tc_slide_title', 'tc_slide_text', 'tc_slide_button_text', 'tc_slide_background_alt' ) as $filter )
-        add_filter( $filter, 'tc_apply_qtranslate' );
+        add_filter( $filter, 'czr_fn_apply_qtranslate' );
       //sets no character limit for slider (title, lead text and button title) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
       foreach ( array( 'tc_slide_title_length', 'tc_slide_text_length', 'tc_slide_button_length' ) as $filter )
         add_filter( $filter  , 'czr_fn_remove_char_limit');
@@ -265,15 +265,15 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //outputs the qtranslate translation for archive titles;
       $tc_archive_titles = array( 'tag_archive', 'category_archive', 'author_archive', 'search_results_archive');
       foreach ( $tc_archive_titles as $title )
-        add_filter("tc_{$title}_title", 'tc_apply_qtranslate' , 20);
+        add_filter("tc_{$title}_title", 'czr_fn_apply_qtranslate' , 20);
 
       // QtranslateX for FP when no FPC or FPU running
       if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
         //outputs correct urls for current language : fp
-        add_filter( 'tc_fp_link_url' , 'tc_url_lang');
+        add_filter( 'tc_fp_link_url' , 'czr_fn_url_lang');
         //outputs the qtranslate translation for featured pages
-        add_filter( 'tc_fp_text', 'tc_apply_qtranslate' );
-        add_filter( 'tc_fp_button_text', 'tc_apply_qtranslate' );
+        add_filter( 'tc_fp_text', 'czr_fn_apply_qtranslate' );
+        add_filter( 'tc_fp_button_text', 'czr_fn_apply_qtranslate' );
 
         /* The following is pretty useless at the momment since we should inhibit preview js code */
         //modify the customizer transport from post message to null for some options
@@ -284,21 +284,21 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       //posts slider (this filter is not fired in admin )
-      add_filter('tc_posts_slider_pre_model', 'tc_posts_slider_qtranslate');
-      function czr_fn_posts_slider_qtranslate( $pre_slides ){
+      add_filter('tc_posts_slider_pre_model', 'czr_fn_posts_slider_qtranslate', 10, 2);
+      function czr_fn_posts_slider_qtranslate( $pre_slides, $posts_slider_instance ){
         if ( empty($pre_slides) )
           return $pre_slides;
 
         // remove useles q-translation of the slider view
         foreach ( array( 'tc_slide_title', 'tc_slide_text', 'tc_slide_button_text', 'tc_slide_background_alt' ) as $filter )
-          remove_filter( $filter, 'tc_apply_qtranslate' );
+          remove_filter( $filter, 'czr_fn_apply_qtranslate' );
 
         // allow q-translation pre trim/sanitize
         foreach ( array( 'tc_posts_slider_button_text_pre_trim', 'tc_post_title_pre_trim', 'tc_post_excerpt_pre_sanitize', 'tc_posts_slide_background' ) as $filter )
-          add_filter( $filter, 'tc_apply_qtranslate' );
+          add_filter( $filter, 'czr_fn_apply_qtranslate' );
 
         //translate button text
-        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? CZR_cl_slider_of_posts_model_class::$instance -> czr_fn_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
+        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? $posts_slider_instance -> czr_fn_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
 
         //translate title and excerpt if needed
         $_posts = &$pre_slides['posts'];
@@ -308,8 +308,8 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
           $_p = get_post( $ID );
           if ( ! $_p ) continue;
 
-          $_post['title'] = $_post['title'] ? CZR_cl_slider_of_posts_model_class::$instance -> czr_fn_get_post_slide_title($_p, $ID) : '';
-          $_post['text']  = $_post['text'] ? CZR_cl_slider_of_posts_model_class::$instance -> czr_fn_get_post_slide_excerpt($_p, $ID) : '';
+          $_post['title'] = $_post['title'] ? $posts_slider_instance -> czr_fn_get_post_slide_title($_p, $ID) : '';
+          $_post['text']  = $_post['text'] ? $posts_slider_instance -> czr_fn_get_post_slide_excerpt($_p, $ID) : '';
         }
         return $pre_slides;
       }
@@ -328,7 +328,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
       // If Polylang is active, hook function on the admin pages
       if ( function_exists( 'pll_register_string' ) )
-        add_action( 'admin_init', 'tc_pll_strings_setup' );
+        add_action( 'admin_init', 'czr_fn_pll_strings_setup' );
 
       function czr_fn_pll_strings_setup() {
         // grab theme options
@@ -392,7 +392,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         }
 
         //Translate category ids for the filtered posts in home/blog
-        add_filter('czr_opt_tc_blog_restrict_by_cat', 'tc_pll_translate_tax');
+        add_filter('czr_opt_tc_blog_restrict_by_cat', 'czr_fn_pll_translate_tax');
         /*end tax filtering*/
 
         /* Slider of posts */
@@ -419,7 +419,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
         //Featured pages ids "translation"
         // Substitute any page id with the equivalent page in current language (if found)
-        add_filter( 'tc_fp_id', 'tc_pll_page_id', 20 );
+        add_filter( 'tc_fp_id', 'czr_fn_pll_page_id', 20 );
         function czr_fn_pll_page_id( $fp_page_id ) {
           return is_int( pll_get_post( $fp_page_id ) ) ? pll_get_post( $fp_page_id ) : $fp_page_id;
         }
@@ -453,7 +453,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       // 1) We cannot use translated string for the "name" param (which actually they say should be in a readable format ..)
       // 2) We need a way to use the same "name" both when registering the string to translate and retrieving its translations
       function czr_fn_wpml_get_options_names_config() {
-        $_wp_cache_key     = 'tc_wpml_get_options_names_config';
+        $_wp_cache_key     = 'czr_wpml_get_options_names_config';
         $option_name_assoc = wp_cache_get( $_wp_cache_key );
 
         if ( false === $option_name_assoc ) {
@@ -495,7 +495,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         if ( empty( $object_id ) )
           return $object_id;
         if ( is_array( $object_id ) )
-          return array_map( 'tc_wpml_object_id', $object_id, array_fill( 0, sizeof( $object_id ), $type ) );
+          return array_map( 'czr_fn_wpml_object_id', $object_id, array_fill( 0, sizeof( $object_id ), $type ) );
         return apply_filters( 'wpml_object_id', $object_id, $type, true );
       }
 
@@ -560,12 +560,12 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         return $options;
       }
 
-      add_action( 'admin_init', 'tc_wpml_admin_setup' );
+      add_action( 'admin_init', 'czr_fn_wpml_admin_setup' );
 
       function czr_fn_wpml_admin_setup() {
         // If wpml-string-translation is active perform admin pages translation
         if ( function_exists( 'icl_register_string' ) ) {
-          $tc_wpml_option_name = tc_wpml_get_options_names_config();
+          $tc_wpml_option_name = czr_fn_wpml_get_options_names_config();
           $tc_wpml_options     = array_keys($tc_wpml_option_name);
 
           // grab theme options
@@ -587,7 +587,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         //In Italian we do not have cat C so there will be displayed transposed cats A and B
         //if we change this option in the Customizer with lang IT removing B, e.g., when we switch to EN we'll have that the array of cats contains just A, as it as been overwritten with the new setting
         if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
-          add_filter( 'option_tc_theme_options', 'tc_wpml_customizer_options_transpose' );
+          add_filter( 'option_tc_theme_options', 'czr_fn_wpml_customizer_options_transpose' );
         function czr_fn_wpml_customizer_options_transpose( $options ) {
           $options_to_transpose = apply_filters ( 'tc_wpml_customizer_translate_options', array(
             'page'     => ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) ? array( 'tc_featured_page_one', 'tc_featured_page_two', 'tc_featured_page_three' ) : array(),
@@ -597,7 +597,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
           foreach ( $options_to_transpose as $type => $option_to_transpose )
             foreach ( $option_to_transpose as $option )
               if ( isset( $options[$option] ) )
-                $options[$option] = tc_wpml_object_id( $options[$option], $type);
+                $options[$option] = czr_fn_wpml_object_id( $options[$option], $type);
           return $options;
         }
 
@@ -619,32 +619,32 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         if ( function_exists( 'icl_t') ) {
           /*** TC - WPML bind, wrap WPML string translator function into convenient tc functions ***/
           //define our icl_t wrapper for options filtered with czr_opt_{$option}
-          if ( ! function_exists( 'tc_wpml_t_opt' ) ) {
+          if ( ! function_exists( 'czr_fn_wpml_t_opt' ) ) {
             function czr_fn_wpml_t_opt( $string ) {
-              return tc_wpml_t( $string, str_replace('czr_opt_', '', current_filter() ) );
+              return czr_fn_wpml_t( $string, str_replace('czr_opt_', '', current_filter() ) );
             }
           }
           //special function for the post slider button text pre trim filter
-          if ( ! function_exists( 'tc_wpml_t_ps_button_text' ) ) {
+          if ( ! function_exists( 'czr_fn_wpml_t_ps_button_text' ) ) {
             function czr_fn_wpml_t_ps_button_text( $string ) {
-              return tc_wpml_t( $string, 'tc_posts_slider_button_text' );
+              return czr_fn_wpml_t( $string, 'czr_fn_posts_slider_button_text' );
             }
           }
           //define our icl_t wrapper
-          if ( ! function_exists( 'tc_wpml_t' ) ) {
+          if ( ! function_exists( 'czr_fn_wpml_t' ) ) {
             function czr_fn_wpml_t( $string, $opt ) {
-              $tc_wpml_options_names = tc_wpml_get_options_names_config();
-              return icl_t( CZR_WPML_CONTEXT, $tc_wpml_options_names[$opt], $string );
+              $tc_wpml_options_names = czr_fn_wpml_get_options_names_config();
+              return icl_t( CZR_WPML_CONTEXT, $czr_fn_wpml_options_names[$opt], $string );
             }
           }
           /*** End TC - WPML bind ***/
 
           //get the options to translate
-          $tc_wpml_options = array_keys( tc_wpml_get_options_names_config() );
+          $tc_wpml_options = array_keys( czr_fn_wpml_get_options_names_config() );
 
           //strings translation
           foreach ( $tc_wpml_options as $tc_wpml_option )
-            add_filter("czr_opt_$tc_wpml_option", 'tc_wpml_t_opt', 20 );
+            add_filter("czr_opt_$tc_wpml_option", 'czr_fn_wpml_t_opt', 20 );
 
           //translates sliders? credits @Srdjan
           add_filter( 'czr_opt_tc_sliders', 'sliders_filter', 99 );
@@ -652,9 +652,9 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         }
         /*A) FP*/
         // Featured pages ids "translation"
-        add_filter( 'tc_fp_id', 'tc_wpml_page_id', 20 );
+        add_filter( 'tc_fp_id', 'czr_fn_wpml_page_id', 20 );
         function czr_fn_wpml_page_id( $fp_page_id ) {
-          return tc_wpml_object_id( $fp_page_id, 'page');
+          return czr_fn_wpml_object_id( $fp_page_id, 'page');
         }
 
         /*B) Tax */
@@ -667,10 +667,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         function czr_fn_wpml_translate_cat( $cat_ids ){
           if ( ! ( is_array( $cat_ids ) && ! empty( $cat_ids ) ) )
             return $cat_ids;
-          return array_unique( tc_wpml_object_id( $cat_ids, 'category' ) );
+          return array_unique( czr_fn_wpml_object_id( $cat_ids, 'category' ) );
         }
         //Translate category ids for the filtered posts in home/blog
-        add_filter('czr_opt_tc_blog_restrict_by_cat', 'tc_wpml_translate_cat');
+        add_filter('czr_opt_tc_blog_restrict_by_cat', 'czr_fn_wpml_translate_cat');
         /*end tax filtering*/
 
         /* Slider of posts */
@@ -712,14 +712,14 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       /*
       * Are we in the Events list context?
       */
-      if ( ! ( function_exists( 'tc_is_tec_events_list' ) ) ) {
+      if ( ! ( function_exists( 'czr_fn_is_tec_events_list' ) ) ) {
         function czr_fn_is_tec_events_list() {
           return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_post_type_archive();
         }
       }
 
       //disables post navigation
-      add_filter( 'tc_show_post_navigation', 'tc_tec_disable_post_navigation' );
+      add_filter( 'tc_show_post_navigation', 'czr_fn_tec_disable_post_navigation' );
       function czr_fn_tec_disable_post_navigation($bool) {
         return ( function_exists('tribe_is_event_query') && tribe_is_event_query() ) ? false : $bool;
       }
@@ -728,17 +728,17 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       // The Events Calendar adds a filter on post_type_archive_title with __return_false callback
       // for their own reasons. This impacts on our breadcrumb 'cause we use the function post_type_archive_title() to build up the trail arg in posty_type_archives contexts.
       // What we do here is unhooking their callback before the breadcrumb is built and re-hook it after it has been displayed
-      add_action( 'wp_head', 'tc_tec_allow_display_breadcrumb_in_month_view');
+      add_action( 'wp_head', 'czr_fn_tec_allow_display_breadcrumb_in_month_view');
       function czr_fn_tec_allow_display_breadcrumb_in_month_view() {
-        if ( ! ( tc_is_tec_events_list() && function_exists( 'tribe_is_month' ) && tribe_is_month() ) )
+        if ( ! ( czr_fn_is_tec_events_list() && function_exists( 'tribe_is_month' ) && tribe_is_month() ) )
           return;
 
-        add_filter( 'tc_breadcrumb_trail_args', 'tc_tec_unhook_empty_post_type_archive_title');
+        add_filter( 'tc_breadcrumb_trail_args', 'czr_fn_tec_unhook_empty_post_type_archive_title');
         function czr_fn_tec_unhook_empty_post_type_archive_title( $args = null ) {
           remove_filter( 'post_type_archive_title', '__return_false', 10 );
           return $args;
         }
-        add_filter( 'tc_breadcrumb_trail_display', 'tc_tec_rehook_empty_post_type_archive_title', PHP_INT_MAX );
+        add_filter( 'tc_breadcrumb_trail_display', 'czr_fn_tec_rehook_empty_post_type_archive_title', PHP_INT_MAX );
         function czr_fn_tec_rehook_empty_post_type_archive_title( $breadcrumb = null ) {
           add_filter( 'post_type_archive_title', '__return_false', 10 );
           return $breadcrumb;
@@ -756,7 +756,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function czr_fn_set_optimizepress_compat() {
-      add_action('wp_print_scripts', 'tc_op_dequeue_fancybox_js');
+      add_action('wp_print_scripts', 'czr_fn_op_dequeue_fancybox_js');
       function czr_fn_op_dequeue_fancybox_js(){
         if ( function_exists('is_le_page') ){
           /* Op Back End: Dequeue tc-scripts */
@@ -773,7 +773,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       /* Remove fancybox loading icon*/
-      add_action('wp_footer','tc_op_remove_fancyboxloading');
+      add_action('wp_footer','czr_fn_op_remove_fancyboxloading');
       function czr_fn_op_remove_fancyboxloading(){
         echo "<script>
                 if (typeof(opjq) !== 'undefined') {
@@ -799,33 +799,33 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       remove_action( 'sensei_before_main_content', array( $woothemes_sensei->frontend, 'sensei_output_content_wrapper' ), 10 );
       remove_action( 'sensei_after_main_content', array( $woothemes_sensei->frontend, 'sensei_output_content_wrapper_end' ), 10 );
 
-      add_action('sensei_before_main_content', 'tc_sensei_wrappers', 10);
-      add_action('sensei_after_main_content', 'tc_sensei_wrappers', 10);
+      add_action('sensei_before_main_content', 'czr_fn_sensei_wrappers', 10);
+      add_action('sensei_after_main_content', 'czr_fn_sensei_wrappers', 10);
 
 
       function czr_fn_sensei_wrappers() {
         switch ( current_filter() ) {
-          case 'sensei_before_main_content': CZR_cl_plugins_compat::$instance -> tc_mainwrapper_start();
+          case 'sensei_before_main_content': CZR_cl_plugins_compat::$instance -> czr_fn_mainwrapper_start();
                                              break;
 
-          case 'sensei_after_main_content' : CZR_cl_plugins_compat::$instance -> tc_mainwrapper_end();
+          case 'sensei_after_main_content' : CZR_cl_plugins_compat::$instance -> czr_fn_mainwrapper_end();
                                              break;
         }//end of switch on hook
       }//end of nested function
 
       // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'tc_sensei_disable_tax_archive_title');
+      add_filter( 'tc_show_tax_archive_title', 'czr_fn_sensei_disable_tax_archive_title');
       function czr_fn_sensei_disable_tax_archive_title( $bool ){
         return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
       }
 
       //disables post navigation
-      add_filter( 'tc_show_post_navigation', 'tc_sensei_disable_post_navigation' );
+      add_filter( 'tc_show_post_navigation', 'czr_fn_sensei_disable_post_navigation' );
       function czr_fn_sensei_disable_post_navigation($bool) {
         return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
       }
       //removes post comment action on after_loop hook
-      add_filter( 'tc_are_comments_enabled', 'tc_sensei_disable_comments' );
+      add_filter( 'tc_are_comments_enabled', 'czr_fn_sensei_disable_comments' );
       function czr_fn_sensei_disable_comments($bool) {
         return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
       }
@@ -854,10 +854,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
       function czr_fn_woocommerce_wrappers() {
         switch ( current_filter() ) {
-          case 'woocommerce_before_main_content': CZR_cl_plugins_compat::$instance -> tc_mainwrapper_start();
+          case 'woocommerce_before_main_content': CZR_cl_plugins_compat::$instance -> czr_fn_mainwrapper_start();
                                                   break;
 
-          case 'woocommerce_after_main_content' : CZR_cl_plugins_compat::$instance -> tc_mainwrapper_end();
+          case 'woocommerce_after_main_content' : CZR_cl_plugins_compat::$instance -> czr_fn_mainwrapper_end();
                                                   break;
         }//end of switch on hook
       }//end of nested function
@@ -874,7 +874,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //disable title icons
       add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_woocommerce_disable_title_icon' );
       function czr_fn_woocommerce_disable_title_icon($bool) {
-        return ( function_exists('tc_wc_is_checkout_cart') && tc_wc_is_checkout_cart() ) ? false : $bool;
+        return ( function_exists('czr_fn_wc_is_checkout_cart') && czr_fn_wc_is_checkout_cart() ) ? false : $bool;
       }
       // use Customizr title
       // initially used to display the edit button
@@ -950,7 +950,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
       // Allow HEADER CART OPTIONS in the customizer
       // Returns a callback function needed by 'active_callback' to enable the options in the customizer
-      add_filter( 'czr_fn_woocommerce_options_enabled', 'czr_fn_woocommerce_options_enabled_cb' );
+      add_filter( 'tc_woocommerce_options_enabled', 'czr_fn_woocommerce_options_enabled_cb' );
       function czr_fn_woocommerce_options_enabled_cb() {
         return '__return_true';
       }
@@ -973,7 +973,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     */
     private function czr_fn_set_vc_compat() {
       //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
-      add_filter( 'tc_anchor_smoothscroll_excl', 'tc_vc_disable_link_scroll' );
+      add_filter( 'tc_anchor_smoothscroll_excl', 'czr_fn_vc_disable_link_scroll' );
       function czr_fn_vc_disable_link_scroll( $excl ){
         if ( false == esc_attr( CZR_cl_utils::$inst->czr_fn_opt('tc_link_scroll') ) ) return $excl;
 
@@ -1000,7 +1000,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     * @since Customizr 3.4+
     */
     private function czr_fn_set_disqus_compat() {
-      if ( ! function_exists( 'tc_disqus_comments_enabled' ) ) {
+      if ( ! function_exists( 'czr_fn_disqus_comments_enabled' ) ) {
         function czr_fn_disqus_comments_enabled() {
           return function_exists( 'dsq_is_installed' ) && function_exists( 'dsq_can_replace' )
                  && dsq_is_installed() && dsq_can_replace();
@@ -1009,9 +1009,9 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       /* Since 3.5.0 the comments_template is wrapped it the "comments" id
       so we don't need the disqus wrapper anymore */
       //replace the default comment link anchor with a more descriptive disqus anchor
-      add_filter( 'tc_bubble_comment_anchor', 'tc_disqus_bubble_comment_anchor' );
+      add_filter( 'tc_bubble_comment_anchor', 'czr_fn_disqus_bubble_comment_anchor' );
       function czr_fn_disqus_bubble_comment_anchor( $anchor ) {
-        return tc_disqus_comments_enabled() ? '#disqus_thread' : $anchor;
+        return czr_fn_disqus_comments_enabled() ? '#disqus_thread' : $anchor;
       }
     }//end disqus compat
 
@@ -1023,7 +1023,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     * @since Customizr 3.4+
     */
     private function czr_fn_set_uris_compat() {
-      add_filter ( 'tc_img_smart_load_options', 'tc_uris_disable_img_smartload' ) ;
+      add_filter ( 'tc_img_smart_load_options', 'czr_fn_uris_disable_img_smartload' ) ;
       function czr_fn_uris_disable_img_smartload( $options ){
         if ( ! is_array( $options ) )
           $options = array();
@@ -1040,7 +1040,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
       //exclude uris cpt among those post types to which add customizer
       //meta boxes (layout/slider)
-      add_filter( 'tc_post_metaboxes_cpt', 'tc_uris_exclude_uris_cpt' );
+      add_filter( 'tc_post_metaboxes_cpt', 'czr_fn_uris_exclude_uris_cpt' );
       function czr_fn_uris_exclude_uris_cpt( $cpt = array() ) {
         if ( ! empty( $cpt ) && array_key_exists( 'ris_gallery', $cpt ) )
           unset( $cpt[ 'ris_gallery' ] );
