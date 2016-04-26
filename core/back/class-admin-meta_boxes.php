@@ -16,17 +16,17 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
       static $instance;
       function __construct () {
           self::$instance =& $this;
-          add_action( 'add_meta_boxes'                       , array( $this , 'tc_post_meta_boxes' ));
+          add_action( 'add_meta_boxes'                       , array( $this , 'czr_fn_post_meta_boxes' ));
           add_action( '__post_slider_infos'                  , array( $this , 'czr_fn_get_post_slider_infos' ));
-          add_action( 'save_post'                            , array( $this , 'tc_post_fields_save' ));
+          add_action( 'save_post'                            , array( $this , 'czr_fn_post_fields_save' ));
 
-          add_action( 'add_meta_boxes'                       , array( $this , 'tc_attachment_meta_box' ));
+          add_action( 'add_meta_boxes'                       , array( $this , 'czr_fn_attachment_meta_box' ));
           add_action( '__attachment_slider_infos'            , array( $this , 'czr_fn_get_attachment_slider_infos' ));
-          add_action( 'edit_attachment'                      , array( $this , 'tc_slide_save' ));
+          add_action( 'edit_attachment'                      , array( $this , 'czr_fn_slide_save' ));
 
-          add_action( '__show_slides'                        , array( $this , 'tc_show_slides' ), 10, 2);
+          add_action( '__show_slides'                        , array( $this , 'czr_fn_show_slides' ), 10, 2);
 
-          add_action( 'wp_ajax_slider_action'                , array( $this , 'tc_slider_cb' ));
+          add_action( 'wp_ajax_slider_action'                , array( $this , 'czr_fn_slider_cb' ));
 
           add_action( 'admin_enqueue_scripts'                , array( $this , 'czr_fn_slider_admin_scripts' ));
 
@@ -40,8 +40,8 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
          */
         global $wp_version;
         if (version_compare( $wp_version, '3.5' , '<' ) ) {
-            add_filter( 'attachment_fields_to_edit'           , array( $this , 'tc_attachment_filter' ), 11, 2 );
-            add_filter( 'attachment_fields_to_save'           , array( $this , 'tc_attachment_save_filter' ), 11, 2 );
+            add_filter( 'attachment_fields_to_edit'           , array( $this , 'czr_fn_attachment_filter' ), 11, 2 );
+            add_filter( 'attachment_fields_to_save'           , array( $this , 'czr_fn_attachment_save_filter' ), 11, 2 );
           }
 
       }//end of __construct
@@ -85,7 +85,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
               add_meta_box(
                   'layout_sectionid' ,
                   __( 'Layout Options' , 'customizr' ),
-                  array( $this , 'tc_post_layout_box' ),
+                  array( $this , 'czr_fn_post_layout_box' ),
                   $screen,
                   ( 'page' == $screen | 'post' == $screen ) ? 'side' : 'normal',//displays meta box below editor for custom post types
                   apply_filters('tc_post_meta_boxes_priority' , 'high', $screen )
@@ -93,7 +93,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
               add_meta_box(
                   'slider_sectionid' ,
                   __( 'Slider Options' , 'customizr' ),
-                  array( $this , 'tc_post_slider_box' ),
+                  array( $this , 'czr_fn_post_slider_box' ),
                   $screen,
                   'normal' ,
                   apply_filters('tc_post_meta_boxes_priority' , 'high', $screen)
@@ -489,7 +489,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
               add_meta_box(
                   'slider_sectionid' ,
                   __( 'Slider Options' , 'customizr' ),
-                  array( $this , 'tc_attachment_slider_box' ),
+                  array( $this , 'czr_fn_attachment_slider_box' ),
                   $screen/*,
                   'side' ,
                   'high'*/
@@ -1300,7 +1300,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                 }//end foreach
                 //attachments
                 if( $tc_post_type == 'attachment' )
-                  $this -> tc_slide_save( $post_ID );
+                  $this -> czr_fn_slide_save( $post_ID );
 
                 do_action( "__after_ajax_save_slider_{$tc_post_type}", $_POST, $tc_slider_fields );
             }//function
@@ -1336,7 +1336,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
         $tc_post_id         = $_POST['tc_post_id'];
 
         //save $_POST var in DB
-        $this -> tc_slider_ajax_save( $tc_post_id);
+        $this -> czr_fn_slider_ajax_save( $tc_post_id);
 
         //check if we are in the post or attachment screen and select the appropriate rendering
         //we use the post_slider var defined in tc_ajax_slider.js
@@ -1375,14 +1375,14 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
         }
         if( ( 'post-new.php' == $hook || 'post.php' == $hook || 'media.php' == $hook) )  {
             //ajax refresh for slider options
-            wp_enqueue_script( 'tc_ajax_slider' ,
+            wp_enqueue_script( 'czr_ajax_slider' ,
                 sprintf('%1$sback/js/tc_ajax_slider%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
                 array( 'jquery' ),
                 true
             );
 
             // Tips to declare javascript variables http://www.garyc40.com/2010/03/5-tips-for-using-ajax-in-wordpress/#bad-ways
-            wp_localize_script( 'tc_ajax_slider' , 'SliderAjax' , array(
+            wp_localize_script( 'czr_ajax_slider' , 'SliderAjax' , array(
             // URL to wp-admin/admin-ajax.php to process the request
             //'ajaxurl'          => admin_url( 'admin-ajax.php' ),
             // generate a nonce with a unique ID "myajax-post-comment-nonce"
@@ -1454,7 +1454,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
   ----------------------------------------------------------------
   */
       function czr_fn_attachment_filter( $form_fields, $post = null) {
-          $this -> tc_attachment_slider_box ( $post);
+          $this -> czr_fn_attachment_slider_box ( $post);
            return $form_fields;
       }
 
@@ -1463,7 +1463,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
           if ( isset( $_POST['tc_post_id']))
            $postid = $_POST['tc_post_id'];
 
-          $this -> tc_slide_save( $postid );
+          $this -> czr_fn_slide_save( $postid );
 
           return $post;
       }

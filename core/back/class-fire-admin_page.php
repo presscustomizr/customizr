@@ -21,9 +21,9 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
       //add welcome page in menu
       add_action( 'admin_menu'             , array( $this , 'czr_fn_add_welcome_page' ));
       //changelog
-      add_action( '__after_welcome_panel'  , array( $this , 'tc_extract_changelog' ));
+      add_action( '__after_welcome_panel'  , array( $this , 'czr_fn_extract_changelog' ));
       //config infos
-      add_action( '__after_welcome_panel'  , array( $this , 'tc_config_infos' ), 20 );
+      add_action( '__after_welcome_panel'  , array( $this , 'czr_fn_config_infos' ), 20 );
       //build the support url
       $this -> support_url = CZR___::czr_fn_is_pro() ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
@@ -46,7 +46,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
             $_name,   // Label in menu
             'edit_theme_options' ,          // Capability required
             'welcome.php' ,             // Menu slug, used to uniquely identify the page
-            array( $this , 'tc_welcome_panel' )         //function to be called to output the content of this page
+            array( $this , 'czr_fn_welcome_panel' )         //function to be called to output the content of this page
         );
     }
 
@@ -355,7 +355,7 @@ PHP Version:              <?php echo PHP_VERSION . "\n"; ?>
 MySQL Version:            <?php echo $mysql_ver . "\n"; ?>
 Web Server Info:          <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
 
-WordPress Memory Limit:   <?php echo ( $this -> tc_let_to_num( WP_MEMORY_LIMIT )/( 1024 ) )."MB"; ?><?php echo "\n"; ?>
+WordPress Memory Limit:   <?php echo ( $this -> czr_fn_let_to_num( WP_MEMORY_LIMIT )/( 1024 ) )."MB"; ?><?php echo "\n"; ?>
 PHP Safe Mode:            <?php echo ini_get( 'safe_mode' ) ? "Yes" : "No\n"; ?>
 PHP Memory Limit:         <?php echo ini_get( 'memory_limit' ) . "\n"; ?>
 PHP Upload Max Size:      <?php echo ini_get( 'upload_max_filesize' ) . "\n"; ?>
