@@ -266,7 +266,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 							$trail = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_parents( '' , $path ) );
 
 						/* Map the post (parent) permalink structure tags to actual links. */
-						$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_map_rewrite_tags( $post->post_parent, get_option( 'permalink_structure' ), $args ) );
+						$trail = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_map_rewrite_tags( $post->post_parent, get_option( 'permalink_structure' ), $args ) );
 					}
 
 					/* Custom post types. */
@@ -405,7 +405,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 
 				/* If the taxonomy is hierarchical, list its parent terms. */
 				if ( is_taxonomy_hierarchical( $term->taxonomy ) && $term->parent )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_term_parents( $term->parent, $term->taxonomy ) );
+					$trail = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_term_parents( $term->parent, $term->taxonomy ) );
 
 				/* Add the term name to the trail end. */
 				if ( is_paged() )
@@ -937,7 +937,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 
 		// If the taxonomy term has a parent, add the hierarchy to the trail.
 		if ( 0 !== $first_term -> parent )
-			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_term_parents( $first_term -> parent , $first_hierarchical_tax -> name ) );
+			$trail = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_term_parents( $first_term -> parent , $first_hierarchical_tax -> name ) );
 
 		//Add the taxonomy term archive link to the trail.
 		$trail[] = '<a href="' . get_term_link( $first_term,  $first_hierarchical_tax -> name ) . '" title="' . esc_attr( $first_term->name ) . '">' . $first_term->name . '</a>';
