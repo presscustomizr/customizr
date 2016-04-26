@@ -12,10 +12,10 @@
 if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
   class CZR_cl_nav_walker extends Walker_Nav_Menu {
     static $instance;
-    public $tc_location;
+    public $czr_location;
     function __construct($_location) {
       self::$instance =& $this;
-      $this -> tc_location = $_location;
+      $this -> czr_location = $_location;
       add_filter( 'czr_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
     }
 
@@ -55,7 +55,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
         $search         = '<a';
         $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        $replace        = apply_filters( 'czr_menu_open_on_click', $replace , $search, $this -> tc_location );
+        $replace        = apply_filters( 'czr_menu_open_on_click', $replace , $search, $this -> czr_location );
         $item_html      = str_replace( $search , $replace , $item_html);
 
         //adds arrows down
@@ -88,7 +88,7 @@ endif;
 
 
 /**
-* Replace the walker for tc_page_menu()
+* Replace the walker for czr_fn_page_menu()
 * Used for the specific default page menu only
 *
 * Walker_Page is located in wp-includes/post-template.php

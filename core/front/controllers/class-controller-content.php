@@ -58,8 +58,8 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
 
     function czr_fn_display_view_author_description() {
       return ( ( $this -> czr_fn_display_view_posts_list_headings() && is_author() ) &&
-             apply_filters ( 'tc_show_author_meta', get_the_author_meta('description') ) )
-      || ( is_single() && apply_filters ( 'tc_show_author_meta', get_the_author_meta('description') ) );
+             apply_filters ( 'czr_show_author_meta', get_the_author_meta('description') ) )
+      || ( is_single() && apply_filters ( 'czr_show_author_meta', get_the_author_meta('description') ) );
     }
 
     function czr_fn_display_view_page() {

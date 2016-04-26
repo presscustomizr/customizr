@@ -175,8 +175,8 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           );//end of font pairs
 
           $this -> font_selectors     = array(
-            'titles' => implode(',' , apply_filters( 'tc-titles-font-selectors' , array('.site-title' , '.site-description', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
-            'body'   => implode(',' , apply_filters( 'tc-body-font-selectors' , array('body' , '.navbar .nav>li>a') ) )
+            'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.site-title' , '.site-description', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
+            'body'   => implode(',' , apply_filters( 'czr-body-font-selectors' , array('body' , '.navbar .nav>li>a') ) )
           );
 
 

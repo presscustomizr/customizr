@@ -103,7 +103,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
       if ( ! isset( $tc_thumb ) )
         return;
 
-      $thumb_img              = apply_filters( 'tc-grid-thumb-img', $tc_thumb, CZR_cl_utils::czr_fn_id() );
+      $thumb_img              = apply_filters( 'czr-grid-thumb-img', $tc_thumb, CZR_cl_utils::czr_fn_id() );
     }
 
     return compact( 'has_thumb', 'thumb_img' );

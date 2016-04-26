@@ -305,7 +305,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     * ACTIONS ON VIEW READY
     * => THE POSSIBLE VIEW CLASS IS NOW INSTANCIATED
     ***********************************************************************************/
-    //@hook tc_do_render_view_{$this -> id}
+    //@hook czr_do_render_view_{$this -> id}
     //@return bool
     // Controls the rendering of the model's view
     public function czr_fn_maybe_render_this_model_view() {

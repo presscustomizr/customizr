@@ -19,7 +19,7 @@ if ( ! class_exists( 'CZR_cl_gallery' ) ) :
 
         add_filter ( 'czr_fn_article_container_class' , array( $this, 'czr_fn_add_gallery_class' ), 20 );
         //adds a filter for link markup (allow lightbox)
-        add_filter ( 'wp_get_attachment_link'     , array( $this, 'tc_modify_attachment_link') , 20, 6 );
+        add_filter ( 'wp_get_attachment_link'     , array( $this, 'czr_fn_modify_attachment_link') , 20, 6 );
       }
 
       /**
