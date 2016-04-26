@@ -585,7 +585,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'priority'      => 15,
                                 'transport'     => 'postMessage'
               ),
-              'czr_fn_woocommerce_header_cart' => array(
+              'tc_woocommerce_header_cart' => array(
                                 'default'   => 1,
                                 'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( 'Display the shopping cart in the header' , 'customizr' ) ),
                                 'control'   => 'CZR_cl_controls' ,
@@ -634,7 +634,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'priority'      => 40,
                                 'transport'     => 'postMessage',
               ),
-              'czr_fn_woocommerce_header_cart_sticky' => array(
+              'tc_woocommerce_header_cart_sticky' => array(
                                 'default'   => 1,
                                 'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( 'Sticky header: display the shopping cart' , 'customizr' ) ),
                                 'control'   => 'CZR_cl_controls' ,
