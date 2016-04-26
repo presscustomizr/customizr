@@ -23,22 +23,22 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       //add user defined fonts in the editor style (@see the query args add_editor_style below)
       add_action( 'after_setup_theme'     , array( $this, 'czr_fn_add_editor_style') );
 
-      add_filter( 'tiny_mce_before_init'  , array( $this, 'tc_user_defined_tinymce_css') );
+      add_filter( 'tiny_mce_before_init'  , array( $this, 'czr_fn_user_defined_tinymce_css') );
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
-      add_action ( 'save_post'            , array( $this , 'tc_refresh_thumbnail') , 10, 2);
+      add_action ( 'save_post'            , array( $this , 'czr_fn_refresh_thumbnail') , 10, 2);
 
       //refresh the posts slider transient on save_post. Since v3.4.9.
-      add_action ( 'save_post'            , array( $this , 'tc_refresh_posts_slider'), 20, 2 );
+      add_action ( 'save_post'            , array( $this , 'czr_fn_refresh_posts_slider'), 20, 2 );
       //refresh the posts slider transient on permanent post/attachment deletion. Since v3.4.9.
-      add_action ( 'deleted_post'         , array( $this , 'tc_refresh_posts_slider') );
+      add_action ( 'deleted_post'         , array( $this , 'czr_fn_refresh_posts_slider') );
 
       //refresh the terms array (categories/tags pickers options) on term deletion
-      add_action ( 'delete_term'          , array( $this, 'tc_refresh_terms_pickers_options_cb'), 10, 3 );
+      add_action ( 'delete_term'          , array( $this, 'czr_fn_refresh_terms_pickers_options_cb'), 10, 3 );
 
       //UPDATE NOTICE
       add_action( 'admin_notices'         , array( $this, 'czr_fn_may_be_display_update_notice') );
       //always add the ajax action
-      add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'tc_dismiss_update_notice_action' ) );
+      add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'czr_fn_dismiss_update_notice_action' ) );
       add_action( 'admin_footer'                  , array( $this , 'czr_fn_write_ajax_dismis_script' ) );
       /* beautify admin notice text using some defaults the_content filter callbacks */
       foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
@@ -86,7 +86,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
 
       //Cache posts slider
       if ( $slider_of_posts )
-        $slider_of_posts -> tc_cache_posts_slider();
+        $slider_of_posts -> czr_fn_cache_posts_slider();
     }
 
 
@@ -119,7 +119,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
 
         //delete categories based options
         case 'category':
-          $this -> tc_refresh_term_picker_options( $term, $option_name = 'tc_blog_restrict_by_cat' );
+          $this -> czr_fn_refresh_term_picker_options( $term, $option_name = 'tc_blog_restrict_by_cat' );
           break;
       }
     }
@@ -469,7 +469,6 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     * @since Customizr 3.4+
     */
     function czr_fn_notice_ajax_actions() {
-      error_log( print_r( $_POST , 'minchia' ) );
       if ( isset( $_POST['remove_action'] ) )
         $_remove_action = esc_attr( $_POST['remove_action'] );
       else

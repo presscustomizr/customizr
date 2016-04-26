@@ -593,7 +593,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
                                 'type'      => 'checkbox' ,
                                 'priority'  => 18,
-                                'active_callback' => apply_filters( 'czr_fn_woocommerce_options_enabled', '__return_false' )
+                                'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
               ),
               'tc_social_in_header' =>  array(
                                 'default'       => 1,
