@@ -44,7 +44,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       //set with priority 20 to be fired after czr_fn_customize_store_db_opt in CZR_cl_utils
   		add_action ( 'customize_preview_init'			              , array( $this , 'czr_fn_customize_preview_js' ), 20 );
   		//Hide donate button
-  		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
+  		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'czr_fn_hide_donate' ) );
   		//Grunt Live reload script on DEV mode (CZR_DEV constant has to be defined. In wp_config for example)
       if ( defined('CZR_DEV') && true === CZR_DEV && apply_filters('czr_live_reload_in_dev_mode' , true ) )
       	add_action( 'customize_controls_print_scripts'        , array( $this , 'czr_fn_add_livereload_script') );
