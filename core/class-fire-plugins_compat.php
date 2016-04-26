@@ -868,7 +868,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       function czr_fn_woocommerce_wc_cart_enabled() {
-        return 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) );
+        return 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) );
       }
 
       //disable title icons

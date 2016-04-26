@@ -12,7 +12,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
 
 
   function czr_fn_extend_params( $model = array() ) {
-    $is_checkout_cart        = function_exists( 'tc_wc_is_checkout_cart' ) ? tc_wc_is_checkout_cart() : false;
+    $is_checkout_cart        = function_exists( 'czr_fn_wc_is_checkout_cart' ) ? czr_fn_wc_is_checkout_cart() : false;
     $current_menu_item_class = $is_checkout_cart ? 'current-menu-item' : '';
 
     return array_merge( $model, compact( 'is_checkout_cart', 'current_menu_item_class' ) );
@@ -21,7 +21,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
 
   // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
   function czr_fn_woocommerce_add_to_cart_fragment( $fragments ) {
-    if ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) ) ) {
+    if ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ) {
       $_cart_count = WC()->cart->get_cart_contents_count();
       $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
     }
@@ -35,7 +35,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
     if ( ! is_array( $header_model -> element_class ) )
       $header_model -> element_class = explode( ' ', $header_model -> element_class );
 
-    $_class = ( 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
+    $_class = ( 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
     array_push( $header_model -> element_class, $_class );
   }
 
