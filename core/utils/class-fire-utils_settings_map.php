@@ -942,7 +942,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'label'       =>  __( 'Apply a category filter to your home / blog posts' , 'customizr'  ),
                                 'section'     => 'frontpage_sec',
                                 'control'     => 'CZR_cl_Customize_Multipicker_Categories_Control',
-                                'type'        => 'tc_multiple_picker',
+                                'type'        => 'czr_multiple_picker',
                                 'priority'    => 1,
                                 'notice'      => $_cat_picker_notice
               ),

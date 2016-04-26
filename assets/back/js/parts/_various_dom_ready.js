@@ -87,7 +87,7 @@
 
     //Multipicker
     //http://ivaynberg.github.io/select2/#documentation
-    $('select.tc_multiple_picker').select2({
+    $('select.czr_multiple_picker').select2({
       closeOnSelect: false,
       formatSelection: tcEscapeMarkup
     });
