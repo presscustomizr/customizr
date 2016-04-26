@@ -252,14 +252,14 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       //outputs correct urls for current language : in logo, slider
-      foreach ( array( 'tc_slide_link_url', 'tc_logo_link_url') as $filter )
+      foreach ( array( 'czr_slide_link_url', 'czr_logo_link_url') as $filter )
         add_filter( $filter, 'czr_fn_url_lang' );
 
       //outputs the qtranslate translation for slider
-      foreach ( array( 'tc_slide_title', 'tc_slide_text', 'tc_slide_button_text', 'tc_slide_background_alt' ) as $filter )
+      foreach ( array( 'czr_slide_title', 'czr_slide_text', 'czr_slide_button_text', 'czr_slide_background_alt' ) as $filter )
         add_filter( $filter, 'czr_fn_apply_qtranslate' );
       //sets no character limit for slider (title, lead text and button title) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
-      foreach ( array( 'tc_slide_title_length', 'tc_slide_text_length', 'tc_slide_button_length' ) as $filter )
+      foreach ( array( 'czr_slide_title_length', 'czr_slide_text_length', 'czr_slide_button_length' ) as $filter )
         add_filter( $filter  , 'czr_fn_remove_char_limit');
 
       //outputs the qtranslate translation for archive titles;
@@ -290,11 +290,11 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
           return $pre_slides;
 
         // remove useles q-translation of the slider view
-        foreach ( array( 'tc_slide_title', 'tc_slide_text', 'tc_slide_button_text', 'tc_slide_background_alt' ) as $filter )
+        foreach ( array( 'czr_slide_title', 'czr_slide_text', 'czr_slide_button_text', 'czr_slide_background_alt' ) as $filter )
           remove_filter( $filter, 'czr_fn_apply_qtranslate' );
 
         // allow q-translation pre trim/sanitize
-        foreach ( array( 'tc_posts_slider_button_text_pre_trim', 'tc_post_title_pre_trim', 'tc_post_excerpt_pre_sanitize', 'tc_posts_slide_background' ) as $filter )
+        foreach ( array( 'czr_posts_slider_button_text_pre_trim', 'czr_post_title_pre_trim', 'czr_post_excerpt_pre_sanitize', 'czr_posts_slide_background' ) as $filter )
           add_filter( $filter, 'czr_fn_apply_qtranslate' );
 
         //translate button text
@@ -404,9 +404,9 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         function pll_posts_slider_join( $join ) {
           global $wpdb;
           switch ( current_filter() ){
-            case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN $wpdb->term_relationships AS pll_tr";
+            case 'czr_query_posts_slider_join'        : $join .= " INNER JOIN $wpdb->term_relationships AS pll_tr";
                                                        break;
-            case 'tc_query_posts_slider_join_where'  : $_join = $wpdb->prepare("pll_tr.object_id = posts.ID AND pll_tr.term_taxonomy_id=%d ",
+            case 'czr_query_posts_slider_join_where'  : $_join = $wpdb->prepare("pll_tr.object_id = posts.ID AND pll_tr.term_taxonomy_id=%d ",
                                                                                 pll_current_language( 'term_taxonomy_id' )
                                                        );
                                                        $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
@@ -589,7 +589,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
           add_filter( 'option_tc_theme_options', 'czr_fn_wpml_customizer_options_transpose' );
         function czr_fn_wpml_customizer_options_transpose( $options ) {
-          $options_to_transpose = apply_filters ( 'tc_wpml_customizer_translate_options', array(
+          $options_to_transpose = apply_filters ( 'czr_wpml_customizer_translate_options', array(
             'page'     => ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) ? array( 'tc_featured_page_one', 'tc_featured_page_two', 'tc_featured_page_three' ) : array(),
             'category' => array( 'tc_blog_restrict_by_cat' )
             )
@@ -682,9 +682,9 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         function wpml_posts_slider_join( $join ) {
           global $wpdb;
           switch ( current_filter() ){
-            case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr";
+            case 'czr_query_posts_slider_join'        : $join .= " INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr";
                                                        break;
-            case 'tc_query_posts_slider_join_where'  : $_join = $wpdb->prepare("wpml_tr.element_id = posts.ID AND wpml_tr.language_code=%s AND wpml_tr.element_type=%s",
+            case 'czr_query_posts_slider_join_where'  : $_join = $wpdb->prepare("wpml_tr.element_id = posts.ID AND wpml_tr.language_code=%s AND wpml_tr.element_type=%s",
                                                                     ICL_LANGUAGE_CODE,
                                                                     'post_post'
                                                        );
@@ -761,12 +761,12 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         if ( function_exists('is_le_page') ){
           /* Op Back End: Dequeue tc-scripts */
           if ( is_le_page() || defined('OP_LIVEEDITOR') ) {
-            wp_dequeue_script('tc-scripts');
-            wp_dequeue_script('tc-fancybox');
+            wp_dequeue_script('czr-scripts');
+            wp_dequeue_script('czr-fancybox');
           }
           else {
             /* Front End: Dequeue Fancybox maybe already embedded in Customizr */
-            wp_dequeue_script('tc-fancybox');
+            wp_dequeue_script('czr-fancybox');
             //wp_dequeue_script(OP_SN.'-fancybox');
           }
         }
@@ -1023,7 +1023,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
     * @since Customizr 3.4+
     */
     private function czr_fn_set_uris_compat() {
-      add_filter ( 'tc_img_smart_load_options', 'czr_fn_uris_disable_img_smartload' ) ;
+      add_filter ( 'czr_img_smart_load_options', 'czr_fn_uris_disable_img_smartload' ) ;
       function czr_fn_uris_disable_img_smartload( $options ){
         if ( ! is_array( $options ) )
           $options = array();
