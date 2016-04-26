@@ -6,7 +6,7 @@
 (function (wp, $, _) {
   var api = wp.customize,
       $_nav_section_container,
-      translatedStrings = TCControlParams.translatedStrings || {};
+      translatedStrings = CZRControlParams.translatedStrings || {};
 
   api.bind( 'ready' , function() {
     _setControlVisibilities();
@@ -71,7 +71,7 @@
    * @augments wp.customize.Control
    * @augments wp.customize.Class
    */
-  api.TCMultiplePickerControl = api.Control.extend({
+  api.CZRMultiplePickerControl = api.Control.extend({
     ready: function() {
       var control  = this,
           _select  = this.container.find('select');
@@ -84,7 +84,7 @@
     }
   });
   $.extend( api.controlConstructor, {
-    tc_multiple_picker : api.TCMultiplePickerControl
+    czr_multiple_picker : api.CZRMultiplePickerControl
   });
 
 
@@ -106,7 +106,7 @@
     * @augments wp.media.controller.State
     * @augments Backbone.Model
     */
-    wp.media.controller.TCCustomizeImageCropper = wp.media.controller.Cropper.extend({
+    wp.media.controller.CZRCustomizeImageCropper = wp.media.controller.Cropper.extend({
       doCrop: function( attachment ) {
         var cropDetails = attachment.get( 'cropDetails' ),
             control = this.get( 'control' );
@@ -130,7 +130,7 @@
     * @augments wp.customize.CroppedImageControl
     * @augments wp.customize.Class
     */
-    api.TCCroppedImageControl = api.CroppedImageControl.extend({
+    api.CZRCroppedImageControl = api.CroppedImageControl.extend({
       /**
       * Create a media modal select frame, and store it so the instance can be reused when needed.
       * TC: We don't want to crop svg (cropping fails), gif (animated gifs become static )
@@ -158,7 +158,7 @@
                     suggestedWidth: this.params.width,
                     suggestedHeight: this.params.height
                 }),
-                new wp.media.controller.TCCustomizeImageCropper({
+                new wp.media.controller.CZRCustomizeImageCropper({
                     imgSelectOptions: this.calculateImageSelectOptions,
                     control: this
                 })
@@ -196,7 +196,7 @@
     });//end Controller
 
     $.extend( api.controlConstructor, {
-      tc_cropped_image : api.TCCroppedImageControl
+      czr_cropped_image : api.CZRCroppedImageControl
     });
   }//endif
 
@@ -208,7 +208,7 @@
    * @augments wp.customize.Control
    * @augments wp.customize.Class
    */
-  api.TCUploadControl = api.Control.extend({
+  api.CZRUploadControl = api.Control.extend({
     ready: function() {
       var control = this;
 
@@ -218,7 +218,7 @@
 
       this.uploader = $.extend({
         container: this.container,
-        browser:   this.container.find('.tc-upload'),
+        browser:   this.container.find('.czr-upload'),
         //dropzone:  this.container.find('.upload-dropzone'),
         success:   this.success,
         plupload:  {},
@@ -262,7 +262,7 @@
 
 
   $.extend( api.controlConstructor, {
-    tc_upload : api.TCUploadControl
+    czr_upload : api.CZRUploadControl
   });
 
 
@@ -347,7 +347,7 @@
       }
     },
     'tc_show_featured_pages': {
-      controls: TCControlParams.FPControls,
+      controls: CZRControlParams.FPControls,
       callback: function (to) {
         return '1' == to;
       }
@@ -404,7 +404,7 @@
       ],
       callback: function (to, targetSetId) {
         //slider height options must be hidden is height = default height (500px), unchanged by user
-        var _defaultHeight = TCControlParams.defaultSliderHeight || 500;
+        var _defaultHeight = CZRControlParams.defaultSliderHeight || 500;
         return _defaultHeight != to;
       }
     },

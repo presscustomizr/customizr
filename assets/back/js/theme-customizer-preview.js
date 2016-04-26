@@ -24,7 +24,7 @@
       };
 
   //Patch for wp versions before 4.1 => preview-ready signal isn't triggered
-  if ( TCPreviewParams && ! TCPreviewParams.preview_ready_event_exists )
+  if ( CZRPreviewParams && ! CZRPreviewParams.preview_ready_event_exists )
     $(document).ready(fireCzrPrev);
   else
     api.bind( 'preview-ready', fireCzrPrev );
@@ -48,15 +48,15 @@
         $_body.removeClass( 'custom-background-empty custom-background-white' );
     },
     tc_skin : function( to ) {
-      if ( TCPreviewParams && TCPreviewParams.skinFolder ) {
+      if ( CZRPreviewParams && CZRPreviewParams.skinFolder ) {
         //add a new link to the live stylesheet instead of replacing the actual skin link => avoid the flash of unstyle content during the skin load
         var $skin_style_element = ( 0 === $('#live-skin-css').length ) ? $('<link>' , { id : 'live-skin-css' , rel : 'stylesheet'}) : $('#live-skin-css'),
             skinName = to.replace('.css' , '.min.css'),
-            skinURL = [ TCPreviewParams.skinFolder , 'front/css/' , skinName ].join('');
+            skinURL = [ CZRPreviewParams.skinFolder , 'front/css/' , skinName ].join('');
 
         //check if the customSkin param is filtered
-        if ( TCPreviewParams.customSkin && TCPreviewParams.customSkin.skinName && TCPreviewParams.customSkin.fullPath )
-          skinURL = to == TCPreviewParams.customSkin.skinName ? TCPreviewParams.customSkin.fullPath : skinURL;
+        if ( CZRPreviewParams.customSkin && CZRPreviewParams.customSkin.skinName && CZRPreviewParams.customSkin.fullPath )
+          skinURL = to == CZRPreviewParams.customSkin.skinName ? CZRPreviewParams.customSkin.fullPath : skinURL;
 
         $skin_style_element.attr('href' , skinURL );
         if (  0 === $('#live-skin-css').length )
@@ -64,7 +64,7 @@
       }
     },
     tc_fonts : function( to ) {
-      var font_groups = TCPreviewParams.fontPairs;
+      var font_groups = CZRPreviewParams.fontPairs;
       $.each( font_groups , function( key, group ) {
         if ( group.list[to]) {
           if ( -1 != to.indexOf('_g_') )
@@ -74,7 +74,7 @@
       });
     },
     tc_body_font_size : function( to ) {
-      var fontSelectors  = TCPreviewParams.fontSelectors;
+      var fontSelectors  = CZRPreviewParams.fontSelectors;
       $( fontSelectors.body ).not('.social-icon').css( {
         'font-size' : to + 'px',
         'line-height' : Number((to * 19 / 14).toFixed()) + 'px'
@@ -706,7 +706,7 @@
       var split         = single_font.split(':'),
           css_properties = {},
           font_family, font_weight = '',
-          fontSelectors  = TCPreviewParams.fontSelectors;
+          fontSelectors  = CZRPreviewParams.fontSelectors;
 
       css_properties = {
         'font-family' : (split[0]).replace(/[\+|:]/g, ' '),
