@@ -196,7 +196,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
   function czr_fn_show_featured_pages_img() {
     //gets  display img option
-    return apply_filters( 'czr_fn_show_featured_pages_img', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
+    return apply_filters( 'czr_show_featured_pages_img', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
   }
 
 }

@@ -68,7 +68,7 @@ class CZR_cl_utils_query {
       // add standard pages in search results => new wp behavior
       $post_types['page'] = 'page';
       // allow attachments to be included in search results by czr_fn_include_attachments_in_search method
-      if ( apply_filters( 'czr_fn_include_attachments_in_search_results' , false ) )
+      if ( apply_filters( 'czr_include_attachments_in_search_results' , false ) )
         $post_types['attachment'] = 'attachment';
     }
 
@@ -85,7 +85,7 @@ class CZR_cl_utils_query {
   * @since Customizr 3.0.10
   */
   function czr_fn_include_attachments_in_search( $query ) {
-      if (! is_search() || ! apply_filters( 'czr_fn_include_attachments_in_search_results' , false ) )
+      if (! is_search() || ! apply_filters( 'czr_include_attachments_in_search_results' , false ) )
         return;
       // add post status 'inherit'
       $post_status = $query->get( 'post_status' );
@@ -226,7 +226,7 @@ class CZR_cl_utils_query {
   function czr_fn_get_real_id() {
     global $wp_query;
     $queried_id                   = get_queried_object_id();
-    return apply_filters( 'czr_fn_get_real_id', ( ! CZR_cl_utils::$inst -> czr_fn_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'czr_get_real_id', ( ! CZR_cl_utils::$inst -> czr_fn_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
 
 

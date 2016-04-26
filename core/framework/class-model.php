@@ -141,7 +141,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     public function czr_fn_maybe_add_style() {
       //for now just add filter to czr_fn_user_options_style
       if ( method_exists( $this, 'czr_fn_user_options_style_cb' ) )
-        add_filter( 'czr_fn_user_options_style', array( $this, 'czr_fn_user_options_style_cb' ) );
+        add_filter( 'czr_user_options_style', array( $this, 'czr_fn_user_options_style_cb' ) );
     }//fn
 
 

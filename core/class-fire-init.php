@@ -500,11 +500,11 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
         if ( 'skin' == $_wot ) {
           //custom skin old tree compatibility for customizr-pro children only
           $remote_path       = ( CZR___::czr_fn_is_pro() && CZR___::$instance -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
-          $czr_fn_get_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/blue3.css';
+          $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/blue3.css';
         } else
-          $czr_fn_get_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/tc_common.css';
+          $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/tc_common.css';
 
-        return apply_filters ( 'czr_fn_get_style_src' , $czr_fn_get_style_src , $_wot );
+        return apply_filters ( 'czr_get_style_src' , $czr_style_src , $_wot );
       }
 
 
@@ -537,7 +537,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * @since Customizr 3.1.19
       */
       function czr_fn_custom_mtypes( $mimes ) {
-        if (! apply_filters( 'czr_fn_add_svg_mime_type' , true ) )
+        if (! apply_filters( 'czr_add_svg_mime_type' , true ) )
           return $mimes;
 
         $mimes['svg']   = 'image/svg+xml';

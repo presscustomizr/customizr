@@ -129,7 +129,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       self::$czr_option_group = 'tc_theme_options';
 
       //set files to load according to the context : admin / front / customize
-      add_filter( 'czr_fn_get_files_to_load' , array( $this , 'czr_fn_set_files_to_load' ) );
+      add_filter( 'czr_get_files_to_load' , array( $this , 'czr_fn_set_files_to_load' ) );
     }
 
 
@@ -145,7 +145,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     */
     function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
       //do we apply a filter ? optional boolean can force no filter
-      $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_fn_get_files_to_load' , $_to_load );
+      $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
       if ( empty($_to_load) )
         return;
 

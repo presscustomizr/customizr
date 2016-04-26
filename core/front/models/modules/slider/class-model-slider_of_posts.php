@@ -115,7 +115,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       'limit'               => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_posts_slider_number' ) ),
       'link_type'           => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_posts_slider_link') ),
     );
-    $args         = apply_filters( 'czr_fn_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
+    $args         = apply_filters( 'czr_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
     if ( $load_transient )
       // the transient stores the pre_model
@@ -255,7 +255,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   *
   */
   private function czr_fn_get_posts_have_tc_thumb_sql( $_columns, $_pt_where = '', $_pa_where = '' ) {
-    return apply_filters( 'czr_fn_get_posts_have_tc_thumb_sql', sprintf( '%1$s UNION %2$s',
+    return apply_filters( 'czr_get_posts_have_tc_thumb_sql', sprintf( '%1$s UNION %2$s',
         $this -> czr_fn_get_posts_have_thumbnail_sql( $_columns, $_pt_where ),
         $this -> czr_fn_get_posts_have_attachment_sql( $_columns, $_pa_where )
     ));
@@ -272,7 +272,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   */
   private function czr_fn_get_posts_have_thumbnail_sql( $_columns, $_where = '' ) {
     global $wpdb;
-    return apply_filters( 'czr_fn_get_posts_have_thumbnail_sql', "
+    return apply_filters( 'czr_get_posts_have_thumbnail_sql', "
         SELECT $_columns
         FROM $wpdb->posts AS posts INNER JOIN $wpdb->postmeta AS metas
         ON posts.ID=metas.post_id
@@ -291,7 +291,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   */
   private function czr_fn_get_posts_have_attachment_sql( $_columns, $_where = '' ) {
     global $wpdb;
-    return apply_filters( 'czr_fn_get_posts_have_attachment_sql', "
+    return apply_filters( 'czr_get_posts_have_attachment_sql', "
         SELECT $_columns FROM $wpdb->posts attachments, $wpdb->posts posts
         WHERE $_where
     ");

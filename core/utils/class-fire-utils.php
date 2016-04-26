@@ -481,7 +481,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @since Customizr 3.5
       */
       public static function czr_fn_get_column_content_wrapper_class() {
-        return apply_filters( 'czr_fn_column_content_wrapper_classes' , array('row', 'column-content-wrapper') );
+        return apply_filters( 'czr_column_content_wrapper_classes' , array('row', 'column-content-wrapper') );
       }
 
       /**
@@ -491,7 +491,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @since Customizr 3.5
       */
       public static function czr_fn_get_article_container_class() {
-        return apply_filters( 'czr_fn_article_container_class' , array( self::czr_fn_get_layout( CZR_cl_utils::czr_fn_id() , 'class' ) , 'article-container' ) );
+        return apply_filters( 'czr_article_container_class' , array( self::czr_fn_get_layout( CZR_cl_utils::czr_fn_id() , 'class' ) , 'article-container' ) );
       }
 
 
@@ -517,7 +517,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$6>';
         $r_content = preg_replace( $pattern, $replacement, $content);
         $content = $r_content ? $r_content : $content;
-        return apply_filters( 'czr_fn_fancybox_content_filter', $content );
+        return apply_filters( 'czr_fancybox_content_filter', $content );
       }
 
 
