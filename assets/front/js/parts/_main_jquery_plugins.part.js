@@ -16,16 +16,16 @@ var czrapp = czrapp || {};
     //__before_main_wrapper covers the single post thumbnail case
     //.widget-front handles the featured pages
     imgSmartLoad : function() {
-      var smartLoadEnabled = 1 == TCParams.imgSmartLoadEnabled,
+      var smartLoadEnabled = 1 == CZRParams.imgSmartLoadEnabled,
           //Default selectors for where are : $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
-          _where           = TCParams.imgSmartLoadOpts.parentSelectors.join();
+          _where           = CZRParams.imgSmartLoadOpts.parentSelectors.join();
 
       //Smart-Load images
       //imgSmartLoad plugin will trigger the smartload event when the img will be loaded
       //the centerImages plugin will react to this event centering them
       if (  smartLoadEnabled )
         $( _where ).imgSmartLoad(
-          _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {}
+          _.size( CZRParams.imgSmartLoadOpts.opts ) > 0 ? CZRParams.imgSmartLoadOpts.opts : {}
         );
     
       //If the centerAllImg is on we have to ensure imgs will be centered when simple loaded,
@@ -33,11 +33,11 @@ var czrapp = czrapp || {};
       //1) imgs which have been excluded from the smartloading if enabled
       //2) all the images in the default 'where' if the smartloading isn't enaled
       //simple-load event on holders needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
-      if ( 1 == TCParams.centerAllImg ) {
+      if ( 1 == CZRParams.centerAllImg ) {
         var self                   = this,
             $_to_center            = smartLoadEnabled ? 
                $( _.filter( $( _where ).find('img'), function( img ) {
-                  return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
+                  return $(img).is(CZRParams.imgSmartLoadOpts.opts.excludeImg.join());
                 }) ): //filter 
                 $( _where ).find('img');
             $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
@@ -56,14 +56,14 @@ var czrapp = czrapp || {};
 
     //FIRE DROP CAP PLUGIN
     dropCaps : function() {
-      if ( ! TCParams.dropcapEnabled || ! _.isObject( TCParams.dropcapWhere ) )
+      if ( ! CZRParams.dropcapEnabled || ! _.isObject( CZRParams.dropcapWhere ) )
         return;
 
-      $.each( TCParams.dropcapWhere , function( ind, val ) {
+      $.each( CZRParams.dropcapWhere , function( ind, val ) {
         if ( 1 == val ) {
           $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).children().first().addDropCap( {
-            minwords : TCParams.dropcapMinWords,//@todo check if number
-            skipSelectors : _.isObject(TCParams.dropcapSkipSelectors) ? TCParams.dropcapSkipSelectors : {}
+            minwords : CZRParams.dropcapMinWords,//@todo check if number
+            skipSelectors : _.isObject(CZRParams.dropcapSkipSelectors) ? CZRParams.dropcapSkipSelectors : {}
           });
         }
       });//each
@@ -75,19 +75,19 @@ var czrapp = czrapp || {};
     //images are excluded by default
     //links inside post/page content
     extLinks : function() {
-      if ( ! TCParams.extLinksStyle && ! TCParams.extLinksTargetExt )
+      if ( ! CZRParams.extLinksStyle && ! CZRParams.extLinksTargetExt )
         return;
       $('a' , '.entry-content').extLinks({
-        addIcon : TCParams.extLinksStyle,
-        newTab : TCParams.extLinksTargetExt,
-        skipSelectors : _.isObject(TCParams.extLinksSkipSelectors) ? TCParams.extLinksSkipSelectors : {}
+        addIcon : CZRParams.extLinksStyle,
+        newTab : CZRParams.extLinksTargetExt,
+        skipSelectors : _.isObject(CZRParams.extLinksSkipSelectors) ? CZRParams.extLinksSkipSelectors : {}
       });
     },
 
     //FIRE FANCYBOX PLUGIN
     //Fancybox with localized script variables
     fancyBox : function() {
-      if ( 1 != TCParams.FancyBoxState || 'function' != typeof($.fn.fancybox) )
+      if ( 1 != CZRParams.FancyBoxState || 'function' != typeof($.fn.fancybox) )
         return;
 
       $("a.grouped_elements").fancybox({
@@ -96,7 +96,7 @@ var czrapp = czrapp || {};
         speedIn: 200,
         speedOut: 200,
         overlayShow: !1,
-        autoScale: 1 == TCParams.FancyBoxAutoscale ? "true" : "false",
+        autoScale: 1 == CZRParams.FancyBoxAutoscale ? "true" : "false",
         changeFade: "fast",
         enableEscapeButton: !0
       });
@@ -123,7 +123,7 @@ var czrapp = czrapp || {};
         //centering per slider
         $.each( $( '.carousel .carousel-inner') , function() {  
           $( this ).centerImages( {
-            enableCentering : 1 == TCParams.centerSliderImg,
+            enableCentering : 1 == CZRParams.centerSliderImg,
             imgSel : '.item .carousel-image img',
             oncustom : ['slid', 'simple_load'],
             defaultCSSVal : { width : '100%' , height : 'auto' },
@@ -141,7 +141,7 @@ var czrapp = czrapp || {};
 
       //Featured Pages
       $('.widget-front .thumb-wrapper').centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         zeroTopAdjust : 1,
@@ -151,7 +151,7 @@ var czrapp = czrapp || {};
       //POST LIST THUMBNAILS + FEATURED PAGES
       //Squared, rounded
       $('.thumb-wrapper', '.hentry' ).centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         oncustom : ['smartload', 'simple_load']
@@ -159,16 +159,16 @@ var czrapp = czrapp || {};
 
       //rectangulars
       $('.tc-rectangular-thumb').centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         enableGoldenRatio : true,
-        goldenRatioVal : TCParams.goldenRatio || 1.618,
+        goldenRatioVal : CZRParams.goldenRatio || 1.618,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
       //SINGLE POST THUMBNAILS
       $('.tc-rectangular-thumb' , '.single').centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
@@ -176,11 +176,11 @@ var czrapp = czrapp || {};
 
       //POST GRID IMAGES
       $('.tc-grid-figure').centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : true,
-        goldenRatioVal : TCParams.goldenRatio || 1.618,
-        goldenRatioLimitHeightTo : TCParams.gridGoldenRatioLimit || 350
+        goldenRatioVal : CZRParams.goldenRatio || 1.618,
+        goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
       } );
     },//center_images
 

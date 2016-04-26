@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================================================== */
 //@tc addon
-var TCParams = TCParams || {};
+var CZRParams = CZRParams || {};
 
 !function ($) {
 
@@ -1654,12 +1654,12 @@ var TCParams = TCParams || {};
       if ( ! this.$element.hasClass('nav-collapse') )
           return;
 
-      if ( TCParams && 1 == TCParams.dropdowntoViewport )
+      if ( CZRParams && 1 == CZRParams.dropdowntoViewport )
       {
         var tcVisible = czrapp.$_window.height() - this.$element.offset().top + czrapp.$_window.scrollTop();
         this.$element.css('max-height' , tcVisible + 'px');
       }
-      else if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader )
+      else if ( CZRParams && 1 != CZRParams.dropdowntoViewport && 1 == CZRParams.stickyHeader )
       {
         //trigger click on back to top if sticky enabled
         if ( 0 != $('.back-to-top').length ) {
@@ -1684,7 +1684,7 @@ var TCParams = TCParams || {};
       this.$element[dimension](0)
 
       //@tc adddon
-      if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader ) {
+      if ( CZRParams && 1 != CZRParams.dropdowntoViewport && 1 == CZRParams.stickyHeader ) {
         $('body').addClass('tc-sticky-header');
       }
     }

@@ -24,9 +24,9 @@ var czrapp = czrapp || {};
 
     fireSliders : function(name, delay, hover) {
       //Slider with localized script variables
-      var _name   = name || TCParams.SliderName,
-          _delay  = delay || TCParams.SliderDelay;
-          _hover  = hover || TCParams.SliderHover;
+      var _name   = name || CZRParams.SliderName,
+          _delay  = delay || CZRParams.SliderDelay;
+          _hover  = hover || CZRParams.SliderHover;
 
       if ( 0 === _name.length )
         return;
