@@ -207,7 +207,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
 (function (wp, $, _) {
   var api = wp.customize,
       $_nav_section_container,
-      translatedStrings = TCControlParams.translatedStrings || {};
+      translatedStrings = CZRControlParams.translatedStrings || {};
 
   api.bind( 'ready' , function() {
     _setControlVisibilities();
@@ -272,7 +272,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
    * @augments wp.customize.Control
    * @augments wp.customize.Class
    */
-  api.TCMultiplePickerControl = api.Control.extend({
+  api.CZRMultiplePickerControl = api.Control.extend({
     ready: function() {
       var control  = this,
           _select  = this.container.find('select');
@@ -285,7 +285,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     }
   });
   $.extend( api.controlConstructor, {
-    tc_multiple_picker : api.TCMultiplePickerControl
+    czr_multiple_picker : api.CZRMultiplePickerControl
   });
 
 
@@ -307,7 +307,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     * @augments wp.media.controller.State
     * @augments Backbone.Model
     */
-    wp.media.controller.TCCustomizeImageCropper = wp.media.controller.Cropper.extend({
+    wp.media.controller.CZRCustomizeImageCropper = wp.media.controller.Cropper.extend({
       doCrop: function( attachment ) {
         var cropDetails = attachment.get( 'cropDetails' ),
             control = this.get( 'control' );
@@ -331,7 +331,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     * @augments wp.customize.CroppedImageControl
     * @augments wp.customize.Class
     */
-    api.TCCroppedImageControl = api.CroppedImageControl.extend({
+    api.CZRCroppedImageControl = api.CroppedImageControl.extend({
       /**
       * Create a media modal select frame, and store it so the instance can be reused when needed.
       * TC: We don't want to crop svg (cropping fails), gif (animated gifs become static )
@@ -359,7 +359,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
                     suggestedWidth: this.params.width,
                     suggestedHeight: this.params.height
                 }),
-                new wp.media.controller.TCCustomizeImageCropper({
+                new wp.media.controller.CZRCustomizeImageCropper({
                     imgSelectOptions: this.calculateImageSelectOptions,
                     control: this
                 })
@@ -397,7 +397,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
     });//end Controller
 
     $.extend( api.controlConstructor, {
-      tc_cropped_image : api.TCCroppedImageControl
+      czr_cropped_image : api.CZRCroppedImageControl
     });
   }//endif
 
@@ -409,7 +409,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
    * @augments wp.customize.Control
    * @augments wp.customize.Class
    */
-  api.TCUploadControl = api.Control.extend({
+  api.CZRUploadControl = api.Control.extend({
     ready: function() {
       var control = this;
 
@@ -419,7 +419,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
 
       this.uploader = $.extend({
         container: this.container,
-        browser:   this.container.find('.tc-upload'),
+        browser:   this.container.find('.czr-upload'),
         //dropzone:  this.container.find('.upload-dropzone'),
         success:   this.success,
         plupload:  {},
@@ -463,7 +463,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
 
 
   $.extend( api.controlConstructor, {
-    tc_upload : api.TCUploadControl
+    czr_upload : api.CZRUploadControl
   });
 
 
@@ -548,7 +548,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       }
     },
     'tc_show_featured_pages': {
-      controls: TCControlParams.FPControls,
+      controls: CZRControlParams.FPControls,
       callback: function (to) {
         return '1' == to;
       }
@@ -605,7 +605,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       ],
       callback: function (to, targetSetId) {
         //slider height options must be hidden is height = default height (500px), unchanged by user
-        var _defaultHeight = TCControlParams.defaultSliderHeight || 500;
+        var _defaultHeight = CZRControlParams.defaultSliderHeight || 500;
         return _defaultHeight != to;
       }
     },
@@ -1158,14 +1158,14 @@ jQuery(function ($) {
 
   /* CONTRIBUTION TO CUSTOMIZR */
   var donate_displayed  = false,
-      is_pro            = 'customizr-pro' == TCControlParams.themeName;
-  if (  ! TCControlParams.HideDonate && ! is_pro ) {
+      is_pro            = 'customizr-pro' == CZRControlParams.themeName;
+  if (  ! CZRControlParams.HideDonate && ! is_pro ) {
     _render_donate_block();
     donate_displayed = true;
   }
 
   //Main call to action
-  if ( TCControlParams.ShowCTA && ! donate_displayed && ! is_pro ) {
+  if ( CZRControlParams.ShowCTA && ! donate_displayed && ! is_pro ) {
    _render_main_cta();
   }
 
@@ -1266,10 +1266,10 @@ jQuery(function ($) {
   }
 
   function _ajax_save() {
-      var AjaxUrl         = TCControlParams.AjaxUrl,
+      var AjaxUrl         = CZRControlParams.AjaxUrl,
       query = {
           action  : 'hide_donate',
-          TCnonce :  TCControlParams.TCNonce,
+          CZRnonce :  CZRControlParams.CZRnonce,
           wp_customize : 'on'
       },
       request = $.post( AjaxUrl, query );
