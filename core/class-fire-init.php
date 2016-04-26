@@ -314,7 +314,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
 
           //add retina support for high resolution devices
           add_filter( 'wp_generate_attachment_metadata'        , array( $this , 'czr_fn_add_retina_support') , 10 , 2 );
-          add_filter( 'delete_attachment'                      , array( $this , 'tc_clean_retina_images') );
+          add_filter( 'delete_attachment'                      , array( $this , 'czr_fn_clean_retina_images') );
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
           add_filter('body_class'                              , array( $this , 'czr_fn_set_body_classes') );
@@ -565,7 +565,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
 
         //Create the retina image for the main file
         if ( is_array($metadata) && isset($metadata['width']) && isset($metadata['height']) )
-          $this -> tc_create_retina_images( get_attached_file( $attachment_id ), $metadata['width'], $metadata['height'] , false, $_is_intermediate = false );
+          $this -> czr_fn_create_retina_images( get_attached_file( $attachment_id ), $metadata['width'], $metadata['height'] , false, $_is_intermediate = false );
 
         //Create the retina images for each WP sizes
         foreach ( $metadata as $key => $data ) {
@@ -573,11 +573,11 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
               continue;
             foreach ( $data as $_size_name => $_attr ) {
                 if ( is_array( $_attr ) && isset($_attr['width']) && isset($_attr['height']) )
-                    $this -> tc_create_retina_images( get_attached_file( $attachment_id ), $_attr['width'], $_attr['height'], true, $_is_intermediate = true );
+                    $this -> czr_fn_create_retina_images( get_attached_file( $attachment_id ), $_attr['width'], $_attr['height'], true, $_is_intermediate = true );
             }
         }
         return $metadata;
-      }//end of tc_retina_support
+      }//end of czr_retina_support
 
 
 
