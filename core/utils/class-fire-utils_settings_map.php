@@ -119,7 +119,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
         //applies a filter to each section settings map => allows plugins (featured pages for ex.) to add/remove settings
         //each section map takes one boolean param : $get_default
         $_section_map = apply_filters(
-          $_section_cb,
+          str_replace( '_fn_', '_', $_section_cb ),
           call_user_func_array( array( $this, $_section_cb ), array( $get_default ) )
         );
 
@@ -1105,7 +1105,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
               ),
 
               //display featured page images
-              'czr_fn_show_featured_pages_img' => array(
+              'tc_show_featured_pages_img' => array(
                                 'default'       => 1,
                                 'control'   => 'CZR_cl_controls' ,
                                 'label'       => __( 'Show images' , 'customizr' ),
