@@ -17,6 +17,7 @@ class CZR_cl_posts_list_description_model_class extends CZR_cl_Model {
 
   //you can find the same in the posts_list_title model
   function czr_fn_get_the_posts_list_context() {
+
     global $wp_query;
     if ( $wp_query -> is_posts_page && ! is_front_page() )
       return 'page_for_posts';
@@ -42,10 +43,11 @@ class CZR_cl_posts_list_description_model_class extends CZR_cl_Model {
 
   function czr_fn_get_posts_list_description( $context = null ) {
     $context = $context ? $context : $this -> context;
-   //we should have some filter here, to allow the processing of the description
+
+    //we should have some filter here, to allow the processing of the description
     //for example to allow shortcodes in it.... (requested at least twice from users, in my memories)
     switch ( $context ) {
-      case 'page_for_posts' : return get_the_content(); //use the content as description in blog page?
+      case 'page_for_posts' : return get_the_excerpt( CZR_cl_utils_query::$instance -> czr_fn_get_real_id() ); //use the excerpt as description in blog page?
       case 'category'       : return category_description();
       case 'tag'            : return tag_description();
       case 'tax'            : return get_the_archive_description();
