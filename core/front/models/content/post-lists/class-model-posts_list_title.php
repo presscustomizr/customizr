@@ -13,9 +13,9 @@ class CZR_cl_posts_list_title_model_class extends CZR_cl_Model {
     if ( ! $this -> context )
       return;
 
-    $model['element_class']     = apply_filters( 'tc_archive_icon', $this -> czr_fn_get_archive_title_class() );
-    $model['pre_title']         = apply_filters( "tc_{$this -> context}_archive_title" , $this -> czr_fn_get_posts_list_pre_title() );
-    $model['title']             = apply_filters( "tc_{$this -> context}_title", $this -> czr_fn_get_posts_list_title_content() );
+    $model['element_class']     = apply_filters( 'czr_archive_icon', $this -> czr_fn_get_archive_title_class() );
+    $model['pre_title']         = apply_filters( "czr_{$this -> context}_archive_title" , $this -> czr_fn_get_posts_list_pre_title() );
+    $model['title']             = apply_filters( "czr_{$this -> context}_title", $this -> czr_fn_get_posts_list_title_content() );
     /*we are getting rid of
     "tc_{context}_header_content" filter
     */
@@ -40,7 +40,7 @@ class CZR_cl_posts_list_title_model_class extends CZR_cl_Model {
         return 'year';
       if ( is_tag() )
         return 'tag';
-      if ( apply_filters('tc_show_tax_archive_title', true ) )
+      if ( apply_filters('czr_show_tax_archive_title', true ) )
         return 'tax';
     }
     return false;

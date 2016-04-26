@@ -23,7 +23,7 @@ class CZR_cl_help_block_model_class extends CZR_cl_Model {
      * So when extending this class, to actually *contextually* forbid an help block be sure you override
      * czr_fn_is_notice_on!
      */
-    if ( ! apply_filters( "tc_is_{$this -> czr_fn_get_the_data_notice_id()}_on", $this -> czr_fn_is_notice_on() ) ) {
+    if ( ! apply_filters( "czr_is_{$this -> czr_fn_get_the_data_notice_id()}_on", $this -> czr_fn_is_notice_on() ) ) {
       $model['id'] = '';
     }
     parent::__construct( $model );
@@ -268,7 +268,7 @@ class CZR_cl_footer_widgets_help_block_model_class extends CZR_cl_sidebar_help_b
   */
   function czr_fn_is_notice_enabled() {
     $bool = true;
-    foreach ( apply_filters( 'tc_footer_widgets', CZR_cl_init::$instance -> footer_widgets ) as $key => $area )
+    foreach ( apply_filters( 'czr_footer_widgets', CZR_cl_init::$instance -> footer_widgets ) as $key => $area )
       if ( is_active_sidebar( $key ) ) {
         $bool = false;
         break;
@@ -290,7 +290,7 @@ class CZR_cl_featured_pages_help_block_model_class extends CZR_cl_help_block_mod
   * @override
   */
   function czr_fn_get_the_help_message() {
-    $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', CZR_cl_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
+    $_customizer_lnk = apply_filters( 'czr_fp_notice_customizer_url', CZR_cl_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
     return sprintf( __("Edit those featured pages %s, or %s (you'll be able to add yours later)." , "customizr"),
               sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Edit those featured pages", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
               sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the featured pages", "customizr" ), __( "remove them", "customizr" ) )
@@ -325,7 +325,7 @@ class CZR_cl_featured_pages_help_block_model_class extends CZR_cl_help_block_mod
   */
   function czr_fn_is_one_fp_set() {
     $_fp_sets = array();
-    $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
+    $fp_ids = apply_filters( 'czr_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
     if ( ! is_array($fp_ids) )
       return;
     foreach ($fp_ids as $fp_single_id ) {
@@ -463,7 +463,7 @@ class CZR_cl_singular_smartload_help_block_model_class extends CZR_cl_smartload_
      * but I think it's too much expensive for just having an help block
      */
     return parent::czr_fn_is_notice_enabled() &&
-      apply_filters('tc_img_smartload_help_n_images', 2 ) <= preg_match_all( '/(<img[^>]+>)/i', $post->post_content, $matches );
+      apply_filters('czr_img_smartload_help_n_images', 2 ) <= preg_match_all( '/(<img[^>]+>)/i', $post->post_content, $matches );
 
   }
 

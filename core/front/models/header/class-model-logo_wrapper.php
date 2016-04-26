@@ -11,14 +11,14 @@ class CZR_cl_logo_wrapper_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $model[ 'element_class' ]      = apply_filters( 'tc_logo_class', $this -> get_logo_wrapper_class(), $model );
-    $model[ 'link_title' ]         = apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' ,
+    $model[ 'element_class' ]      = apply_filters( 'czr_logo_class', $this -> get_logo_wrapper_class(), $model );
+    $model[ 'link_title' ]         = apply_filters( 'czr_site_title_link_title', sprintf( '%1$s | %2$s' ,
                                              __( esc_attr( get_bloginfo( 'name' ) ) ),
                                              __( esc_attr( get_bloginfo( 'description' ) ) )
                                          ),
                                          $model
                                      );
-    $model[ 'link_url'   ]         = apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ), $model );
+    $model[ 'link_url'   ]         = apply_filters( 'czr_logo_link_url', esc_url( home_url( '/' ) ), $model );
 
     return $model;
   }

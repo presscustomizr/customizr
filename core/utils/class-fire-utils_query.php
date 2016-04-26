@@ -54,7 +54,7 @@ class CZR_cl_utils_query {
     if (
       is_admin()
       || ! $query->is_main_query()
-      || ! apply_filters('tc_include_cpt_in_archives' , false)
+      || ! apply_filters('czr_include_cpt_in_archives' , false)
       || ! ( $query->is_search || $query->is_archive )
       )
       return;
@@ -121,7 +121,7 @@ class CZR_cl_utils_query {
      if ( is_array( $cats ) && ! empty( $cats ) ){
          $query->set('category__in', $cats );
          $query->set('ignore_sticky_posts', 1 );
-         add_filter('tc_grid_expand_featured', '__return_false');
+         add_filter('czr_grid_expand_featured', '__return_false');
      }
   }
 
@@ -162,7 +162,7 @@ class CZR_cl_utils_query {
 
   public function czr_fn_is_list_of_posts() {
     //must be archive or search result. Returns false if home is empty in options.
-    return apply_filters( 'tc_is_list_of_posts',
+    return apply_filters( 'czr_is_list_of_posts',
       ! is_singular()
       && ! is_404()
       && ! $this -> czr_fn_is_home_empty()
@@ -173,7 +173,7 @@ class CZR_cl_utils_query {
 
   public function czr_fn_is_single_post() {
     global $post;
-    return apply_filters( 'tc_is_single_post', isset($post)
+    return apply_filters( 'czr_is_single_post', isset($post)
         && is_singular()
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
@@ -183,12 +183,12 @@ class CZR_cl_utils_query {
 
   public function czr_fn_is_single_attachment() {
     global $post;
-    return apply_filters( 'tc_is_single_attacment',
+    return apply_filters( 'czr_is_single_attacment',
         ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() ) );
   }
 
   public function czr_fn_is_single_page() {
-    return apply_filters( 'tc_is_single_page',
+    return apply_filters( 'czr_is_single_page',
         'page' == CZR_cl_utils_query::$instance -> czr_fn_get_post_type()
         && is_singular()
         && ! CZR_cl_utils_query::$instance -> czr_fn_is_home_empty()
@@ -246,9 +246,9 @@ class CZR_cl_utils_query {
 
     if ( isset($post) && $this -> czr_fn_is_list_of_posts() )
         //!is_singular() && !is_404() && !tc__f( '__is_home_empty') ) || ( is_search() && 0 != $wp_query -> post_count )
-      $selectors                = apply_filters( 'tc_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
+      $selectors                = apply_filters( 'czr_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
-    return apply_filters( 'tc_article_selectors', $selectors );
+    return apply_filters( 'czr_article_selectors', $selectors );
   }//end of function
 
 
@@ -272,13 +272,13 @@ class CZR_cl_utils_query {
 
     // SINGLE POST/ATTACHMENT
     if ( isset($post) && 'page' != $post -> post_type && is_singular() )
-      $selectors = apply_filters( "tc_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
+      $selectors = apply_filters( "czr_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
     // PAGE
     elseif ( isset($post) && 'page' == tc__f('__post_type') && is_singular() && !tc__f( '__is_home_empty') )
-      $selectors = apply_filters( 'tc_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
+      $selectors = apply_filters( 'czr_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
-    $selectors = apply_filters( 'tc_article_selectors', $selectors );
+    $selectors = apply_filters( 'czr_article_selectors', $selectors );
 
     return $selectors;
   }//end of function

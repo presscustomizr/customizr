@@ -99,7 +99,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         add_filter( 'the_content'                         , array( $this , 'czr_fn_fancybox_content_filter' ) );
         if ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) ) ) {
           add_filter( 'the_content'                       , array( $this , 'czr_fn_parse_imgs' ), PHP_INT_MAX );
-          add_filter( 'tc_thumb_html'                     , array( $this , 'czr_fn_parse_imgs' ) );
+          add_filter( 'czr_thumb_html'                     , array( $this , 'czr_fn_parse_imgs' ) );
         }
         add_filter( 'wp_title'                            , array( $this , 'czr_fn_wp_title' ), 10, 2 );
       }
@@ -114,7 +114,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @since Customizr 3.3.0
       */
       function czr_fn_parse_imgs( $_html ) {
-        if( is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('tc_disable_img_smart_load_mobiles', false ) ) )
+        if( is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('czr_disable_img_smart_load_mobiles', false ) ) )
           return $_html;
 
         return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'czr_fn_regex_callback' ) , $_html);
@@ -136,7 +136,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
             preg_match('/ data-smartload *= *"false" */', $matches[0]) )
           return $matches[0];
         else
-          return apply_filters( 'tc_img_smartloaded',
+          return apply_filters( 'czr_img_smartloaded',
             str_replace( 'srcset=', 'data-srcset=',
                 sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s>',
                     $matches[1],
@@ -157,7 +157,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @package Customizr
       * @since Customizr 3.1.23
       */
-      function tc_get_skincolor( $_what = null ) {
+      function czr_fn_get_skincolor( $_what = null ) {
         $_color_map    = CZR_cl_init::$instance -> skin_color_map;
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 
@@ -178,7 +178,9 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
             $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
           break;
         }
-        return apply_filters( 'tc_get_skincolor' , $_to_return , $_what );
+        //Custom skin backward compatibility : different filter prefix
+        $_to_return = apply_filters( 'tc_get_skincolor' , $_to_return , $_what );
+        return apply_filters( 'czr_get_skincolor' , $_to_return , $_what );
       }
 
 
@@ -195,7 +197,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       */
       function czr_fn_is_customizr_option( $option_key ) {
         $_is_czr_option = in_array( substr( $option_key, 0, 3 ), $this -> czr_options_prefixes );
-        return apply_filters( 'tc_is_customizr_option', $_is_czr_option , $option_key );
+        return apply_filters( 'czr_is_customizr_option', $_is_czr_option , $option_key );
       }
 
 
@@ -214,7 +216,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         //customizing out ? => we can assume that the user has at least refresh the default once (because logged in, see conditions below) before accessing the customizer
         //customzing => takes into account if user has set a filter or added a new customizer setting
         if ( ! empty($def_options) && $this -> is_customizing )
-          return apply_filters( 'tc_default_options', $def_options );
+          return apply_filters( 'czr_default_options', $def_options );
 
         //Always update/generate the default option when (OR) :
         // 1) user is logged in
@@ -230,7 +232,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
           //writes the new value in db
           update_option( "tc_theme_options" , $_db_opts );
         }
-        return apply_filters( 'tc_default_options', $def_options );
+        return apply_filters( 'czr_default_options', $def_options );
       }
 
 
@@ -413,7 +415,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
           $__options                    = tc__f ( '__options' );
           global $post;
           //Article wrapper class definition
-          $global_layout                = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
+          $global_layout                = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
 
           /* DEFAULT LAYOUTS */
           //what is the default layout we want to apply? By default we apply the global default layout
@@ -470,7 +472,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
             );
           }
 
-        return apply_filters( 'tc_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+        return apply_filters( 'czr_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
 
 
@@ -630,7 +632,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         $__options    = tc__f( '__options' );
 
         //gets the social network array
-        $socials      = apply_filters( 'tc_default_socials' , CZR_cl_init::$instance -> socials );
+        $socials      = apply_filters( 'czr_default_socials' , CZR_cl_init::$instance -> socials );
 
         //declares some vars
         $html         = '';
@@ -645,7 +647,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
               $link .=  call_user_func( array( CZR_cl_utils_settings_map::$instance, 'czr_fn_sanitize_'.$type ), $__options[$key] );
               //there is one exception : rss feed has no target _blank and special icon title
               $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
-                  apply_filters( 'tc_social_link_class',
+                  apply_filters( 'czr_social_link_class',
                                 sprintf('social-icon icon-%1$s' ,
                                   ( $key == 'tc_rss' ) ? 'feed' : str_replace('tc_', '', $key)
                                 ),
@@ -653,8 +655,8 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
                   ),
                   $link,
                   isset($data['link_title']) ?  call_user_func( '__' , $data['link_title'] , 'customizr' ) : '' ,
-                  ( in_array( $key, array('tc_rss', 'tc_email') ) ) ? '' : apply_filters( 'tc_socials_target', 'target=_blank', $key ),
-                  apply_filters( 'tc_additional_social_attributes', '' , $key),
+                  ( in_array( $key, array('tc_rss', 'tc_email') ) ) ? '' : apply_filters( 'czr_socials_target', 'target=_blank', $key ),
+                  apply_filters( 'czr_additional_social_attributes', '' , $key),
                   ( isset($data['custom_icon_url']) && !empty($data['custom_icon_url']) ) ? sprintf('<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s"/>',
                                                           $data['custom_icon_url'],
                                                           $width,

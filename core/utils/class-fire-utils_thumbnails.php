@@ -17,7 +17,7 @@ class CZR_cl_utils_thumbnails {
     function __construct () {
       self::$instance =& $this;
       //may be filter the thumbnail inline style
-      add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'czr_fn_change_thumb_inline_css' ), 10, 3 );
+      add_filter( 'czr_post_thumb_inline_style'  , array( $this , 'czr_fn_change_thumb_inline_css' ), 10, 3 );
     }
 
 
@@ -37,7 +37,7 @@ class CZR_cl_utils_thumbnails {
       if ( ! $this -> czr_fn_has_thumb( $_post_id, $_custom_thumb_id ) )
         return array();
 
-      $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'tc_thumb_size_name' , 'tc-thumb' ) : $requested_size;
+      $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'czr_thumb_size_name' , 'tc-thumb' ) : $requested_size;
       $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
 
       $_filtered_thumb_size_name  = $_filtered_thumb_size_name ? $_filtered_thumb_size_name : 'tc_thumb_size';
@@ -71,10 +71,10 @@ class CZR_cl_utils_thumbnails {
 
       $_img_attr['class']     = sprintf( 'attachment-%1$s tc-thumb-type-%2$s wp-post-image' , $tc_thumb_size , $_thumb_type );
       //Add the style value
-      $_style                 = apply_filters( 'tc_post_thumb_inline_style' , '', $image, $_filtered_thumb_size );
+      $_style                 = apply_filters( 'czr_post_thumb_inline_style' , '', $image, $_filtered_thumb_size );
       if ( $_style )
         $_img_attr['style']   = $_style;
-      $_img_attr              = apply_filters( 'tc_post_thumbnail_img_attributes' , $_img_attr );
+      $_img_attr              = apply_filters( 'czr_post_thumbnail_img_attributes' , $_img_attr );
 
       //we might not want responsive images
       if ( false === $_enable_wp_responsive_imgs ) {
@@ -104,7 +104,7 @@ class CZR_cl_utils_thumbnails {
         $tc_thumb_width         = $image[1];
       }
       //used for smart load when enabled
-      $tc_thumb = apply_filters( 'tc_thumb_html', $tc_thumb, $requested_size, $_post_id, $_custom_thumb_id );
+      $tc_thumb = apply_filters( 'czr_thumb_html', $tc_thumb, $requested_size, $_post_id, $_custom_thumb_id );
 
       return apply_filters( 'czr_get_thumbnail_model',
         isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" ) : array(),
@@ -212,13 +212,13 @@ class CZR_cl_utils_thumbnails {
       if ( ! is_admin() )
         $_bool = ! CZR_cl_utils_query::$instance -> czr_fn_is_single_post() && $_bool;
 
-      if ( ! apply_filters( 'tc_use_attachment_as_thumb' , $_bool ) )
+      if ( ! apply_filters( 'czr_use_attachment_as_thumb' , $_bool ) )
         return;
 
       //Case if we display a post or a page
       if ( 'attachment' != get_post_type( $post_id ) ) {
         //look for the last attached image in a post or page
-        $tc_args = apply_filters('tc_attachment_as_thumb_query_args' , array(
+        $tc_args = apply_filters('czr_attachment_as_thumb_query_args' , array(
             'numberposts'             =>  1,
             'post_type'               =>  'attachment',
             'post_status'             =>  null,
@@ -258,29 +258,29 @@ class CZR_cl_utils_thumbnails {
       //extract "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       extract( $_thumb_model );
       $thumb_img        = ! isset( $_thumb_model) ? false : $tc_thumb;
-      $thumb_img        = apply_filters( 'tc_post_thumb_img', $thumb_img, CZR_cl_utils::czr_fn_id() );
+      $thumb_img        = apply_filters( 'czr_post_thumb_img', $thumb_img, CZR_cl_utils::czr_fn_id() );
       if ( ! $thumb_img )
         return;
 
       //handles the case when the image dimensions are too small
-      $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size, CZR_cl_utils::czr_fn_id()  );
+      $thumb_size       = apply_filters( 'czr_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size, CZR_cl_utils::czr_fn_id()  );
       $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
       $no_effect_class  = ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
       //default hover effect
       $thumb_wrapper    = sprintf('<div class="%5$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s" title="%3$s"></a>%4$s</div>',
-                                    implode( " ", apply_filters( 'tc_thumbnail_link_class', array( $no_effect_class ) ) ),
+                                    implode( " ", apply_filters( 'czr_thumbnail_link_class', array( $no_effect_class ) ) ),
                                     get_permalink( get_the_ID() ),
                                     esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
                                     $thumb_img,
-                                    implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('thumb-wrapper') ) )
+                                    implode( " ", apply_filters( 'czr_thumb_wrapper_class', array('thumb-wrapper') ) )
       );
 
-      $thumb_wrapper    = apply_filters_ref_array( 'tc_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, CZR_cl_utils::czr_fn_id() ) );
+      $thumb_wrapper    = apply_filters_ref_array( 'czr_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, CZR_cl_utils::czr_fn_id() ) );
 
       //cache the thumbnail view
       $html             = sprintf('<section class="tc-thumbnail %1$s">%2$s</section>',
-        apply_filters( 'tc_post_thumb_class', $layout ),
+        apply_filters( 'czr_post_thumb_class', $layout ),
         $thumb_wrapper
       );
       $html = apply_filters_ref_array( 'czr_render_thumb_view', array( $html, $_thumb_model, $layout ) );
@@ -315,7 +315,7 @@ class CZR_cl_utils_thumbnails {
     * SETTER CALLBACK
     **********************/
     /**
-    * hook tc_post_thumb_inline_style
+    * hook czr_post_thumb_inline_style
     * Replace default widht:auto by width:100%
     * @param array of args passed by apply_filters_ref_array method
     * @return  string

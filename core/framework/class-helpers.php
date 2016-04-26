@@ -6,7 +6,7 @@ if ( ! class_exists( 'CZR_cl_Helpers' ) ) :
     function __construct( $args = array() ) {
       self::$instance =& $this;
 
-      add_action( 'tc_dev_notice', array( $this, 'czr_fn_print_r') );
+      add_action( 'czr_dev_notice', array( $this, 'czr_fn_print_r') );
     }
 
 

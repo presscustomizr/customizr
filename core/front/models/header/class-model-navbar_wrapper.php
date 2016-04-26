@@ -9,7 +9,7 @@ class CZR_cl_navbar_wrapper_model_class extends CZR_cl_Model {
   */
   function czr_fn_extend_params( $model = array() ) {
 
-    $model[ 'element_class' ] = apply_filters( 'tc_navbar_wrapper_class', array('span9') );
+    $model[ 'element_class' ] = apply_filters( 'czr_navbar_wrapper_class', array('span9') );
 
     return $model;
   }

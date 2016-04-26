@@ -28,7 +28,7 @@ class CZR_cl_edit_button_slider_model_class extends CZR_cl_edit_button_model_cla
     else if ( is_singular() ) // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
       $show_slider_edit_link = ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ? true : false;
 
-    $show_slider_edit_link = apply_filters( 'tc_show_slider_edit_link' , $show_slider_edit_link, $slider_name_id );
+    $show_slider_edit_link = apply_filters( 'czr_show_slider_edit_link' , $show_slider_edit_link, $slider_name_id );
 
     return $show_slider_edit_link;
   }

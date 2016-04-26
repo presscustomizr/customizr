@@ -3,7 +3,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
 
   function __construct( $model = array() ) {
     parent::__construct( $model );
-    add_filter( 'tc_menu_open_on_click', array( $this, 'czr_fn_disable_dropdown_on_click' ), 10, 3 );
+    add_filter( 'czr_menu_open_on_click', array( $this, 'czr_fn_disable_dropdown_on_click' ), 10, 3 );
   }
 
 
@@ -49,7 +49,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
 
     //sidenav where
     $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_position') ) );
-    array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
+    array_push( $_classes, apply_filters( 'czr_sidenav_body_class', "sn-$_where" ) );
 
     return $_classes;
   }
@@ -73,7 +73,7 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
   * @since Customizr 3.2.11
   */
   function czr_fn_user_options_style_cb( $_css ) {
-    $sidenav_width = apply_filters( 'tc_sidenav_width', 330 );
+    $sidenav_width = apply_filters( 'czr_sidenav_width', 330 );
 
     $_sidenav_mobile_css = '
         #tc-sn { width: %1$spx;}
@@ -119,8 +119,8 @@ class CZR_cl_sidenav_model_class extends CZR_cl_Model {
     return sprintf("%s\n%s",
       $_css,
       sprintf(
-          apply_filters('tc_sidenav_inline_css',
-            apply_filters( 'tc_sidenav_slide_mobile', wp_is_mobile() ) ? $_sidenav_mobile_css : $_sidenav_desktop_css
+          apply_filters('czr_sidenav_inline_css',
+            apply_filters( 'czr_sidenav_slide_mobile', wp_is_mobile() ) ? $_sidenav_mobile_css : $_sidenav_desktop_css
           ),
           $sidenav_width
       )

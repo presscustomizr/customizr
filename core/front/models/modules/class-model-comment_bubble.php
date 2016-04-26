@@ -46,7 +46,7 @@ class CZR_cl_comment_bubble_model_class extends CZR_cl_Model {
   function czr_fn_get_comment_bubble_link( $link, $add_anchor = true ) {
     $link = sprintf( "%s%s",
         is_singular() ? '' : esc_url( $link ),
-        $add_anchor ? apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title') : ''
+        $add_anchor ? apply_filters( 'czr_bubble_comment_anchor', '#tc-comment-title') : ''
     );
     return $link;
   }

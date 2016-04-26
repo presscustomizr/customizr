@@ -16,7 +16,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
     function __construct($_location) {
       self::$instance =& $this;
       $this -> tc_location = $_location;
-      add_filter( 'tc_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
+      add_filter( 'czr_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
     }
 
 
@@ -55,7 +55,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
         $search         = '<a';
         $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, $this -> tc_location );
+        $replace        = apply_filters( 'czr_menu_open_on_click', $replace , $search, $this -> tc_location );
         $item_html      = str_replace( $search , $replace , $item_html);
 
         //adds arrows down
@@ -78,7 +78,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
       //will be used in override start_el() and class filter
       $element->is_dropdown = ! empty( $children_elements[$element->ID]);
 
-      $element->classes = apply_filters( 'tc_nav_menu_css_class', array_filter( empty( $element->classes) ? array() : (array)$element->classes ), $element, $args, $depth );
+      $element->classes = apply_filters( 'czr_nav_menu_css_class', array_filter( empty( $element->classes) ? array() : (array)$element->classes ), $element, $args, $depth );
 
       //let the parent do the rest of the job !
       parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output);
@@ -139,7 +139,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
         $search         = '<a';
         $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search );
+        $replace        = apply_filters( 'czr_menu_open_on_click', $replace , $search );
         $item_html      = str_replace( $search , $replace , $item_html);
 
         //adds arrows down

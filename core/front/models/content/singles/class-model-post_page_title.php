@@ -17,7 +17,7 @@ class CZR_cl_post_page_title_model_class extends CZR_cl_Model {
   */
   function czr_fn_extend_params( $model = array() ) {
     $this -> context            = $this -> czr_fn_get_the_post_page_context();
-    $model['element_class']     = apply_filters( 'tc_content_title_icon', $this -> czr_fn_get_post_page_title_class( 'entry-title' ) );
+    $model['element_class']     = apply_filters( 'czr_content_title_icon', $this -> czr_fn_get_post_page_title_class( 'entry-title' ) );
     return $model;
   }
 

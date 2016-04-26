@@ -15,7 +15,7 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
     parent::__construct( $model );
 
     //parse the comment callback params so to set this propertied
-    add_filter( 'tc_comment_callback_params', array( $this, 'czr_fn_set_comment_loop_properties'), 10, 3 );
+    add_filter( 'czr_comment_callback_params', array( $this, 'czr_fn_set_comment_loop_properties'), 10, 3 );
   }
   /**
   * @override
@@ -54,7 +54,7 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
           'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>',
           'depth'      => $depth,
           'max_depth'  => $args['max_depth'] ,
-          'add_below'  => apply_filters( 'tc_comment_reply_below' , 'comment' )
+          'add_below'  => apply_filters( 'czr_comment_reply_below' , 'comment' )
         )
       ),
      'is_current_post_author'   => ( $comment->user_id === $post->post_author ),

@@ -66,7 +66,7 @@ class CZR_cl_attachment_post_metas_model_class extends CZR_cl_post_metas_model_c
   */
   protected function czr_fn_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
     return sprintf( '<time class="entry-date updated" datetime="%1$s">%2$s</time>',
-        apply_filters('tc_use_the_post_modified_date' , false ) ? esc_attr( get_the_date( 'c' ) ) : esc_attr( get_the_modified_date('c') ),
+        apply_filters('czr_use_the_post_modified_date' , false ) ? esc_attr( get_the_date( 'c' ) ) : esc_attr( get_the_modified_date('c') ),
         esc_html( get_the_date() )
     );
   }

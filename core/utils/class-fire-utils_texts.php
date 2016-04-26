@@ -21,7 +21,7 @@ if ( ! class_exists( 'CZR_cl_utils_texts' ) ) :
     }
 
     function czr_fn_post_has_headings() {
-      return ! ( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', self::$post_formats_with_no_heading ) ) );
+      return ! ( in_array( get_post_format(), apply_filters( 'czr_post_formats_with_no_heading', self::$post_formats_with_no_heading ) ) );
     }
   }
 endif;

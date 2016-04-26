@@ -29,7 +29,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
      	//check if option is an attachement id or a path (for backward compatibility)
      	if ( is_numeric($_fav_option) ) {
      		$_attachement_id 	= $_fav_option;
-     		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'full' ) );
+     		$_attachment_data 	= apply_filters( 'czr_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'full' ) );
      		$_fav_src 			= $_attachment_data[0];
      	} else { //old treatment
      		$_saved_path 		= esc_url ( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fav_upload') );
@@ -38,7 +38,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
        	$_fav_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
      	}
      	//makes ssl compliant url
-     	$_fav_src 				= apply_filters( 'tc_fav_src' , is_ssl() ? str_replace('http://', 'https://', $_fav_src) : $_fav_src );
+     	$_fav_src 				= apply_filters( 'czr_fav_src' , is_ssl() ? str_replace('http://', 'https://', $_fav_src) : $_fav_src );
       if( null == $_fav_src || !$_fav_src )
         return;
       return true;
@@ -79,11 +79,11 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
       $logo_option          = CZR_cl_utils::$inst->czr_fn_opt( "tc_logo_upload");
       if ( $logo_option ) {
         //check if the attachment exists and the filetype is allowed
-        $accepted_formats	= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
+        $accepted_formats	= apply_filters( 'czr_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
 
-        $_attachment_data   = apply_filters( "tc_logo_attachment_img" , wp_get_attachment_image_src( $logo_option , 'full' ) );
+        $_attachment_data   = apply_filters( "czr_logo_attachment_img" , wp_get_attachment_image_src( $logo_option , 'full' ) );
 
-        $_logo_src          = apply_filters( "tc_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
+        $_logo_src          = apply_filters( "czr_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
         $filetype           = CZR_cl_utils::$inst -> czr_fn_check_filetype ($_logo_src);
 
         if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
@@ -109,11 +109,11 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
         $to_return = false;
         //The sticky logo option, when exists, is numeric
         //check if the attachment exists and the filetype is allowed
-        $accepted_formats	  = apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
+        $accepted_formats	  = apply_filters( 'czr_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
 
-        $_attachment_data     = apply_filters( "tc_sticky_logo_attachment_img" , wp_get_attachment_image_src( $sticky_logo_option , 'full' ) );
+        $_attachment_data     = apply_filters( "czr_sticky_logo_attachment_img" , wp_get_attachment_image_src( $sticky_logo_option , 'full' ) );
 
-        $_logo_src            = apply_filters( "tc_sticky_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
+        $_logo_src            = apply_filters( "czr_sticky_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
         $filetype             = CZR_cl_utils::$inst -> czr_fn_check_filetype ($_logo_src);
 
         if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )

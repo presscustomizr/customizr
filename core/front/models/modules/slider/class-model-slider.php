@@ -79,7 +79,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $slider_name_id     = $this -> czr_fn_get_current_slider( $queried_id );
     $layout             = 0 == $this -> czr_fn_get_slider_layout( $queried_id, $slider_name_id ) ? 'boxed' : 'full';
 
-    $img_size           = apply_filters( 'tc_slider_img_size' , ( 'boxed' == $layout ) ? 'slider' : 'slider-full');
+    $img_size           = apply_filters( 'czr_slider_img_size' , ( 'boxed' == $layout ) ? 'slider' : 'slider-full');
 
     $slides             = $this -> czr_fn_get_the_slides( $slider_name_id, $img_size );
 
@@ -95,7 +95,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
 
 
     //set-up controls
-    if ( apply_filters('tc_show_slider_controls' , ! wp_is_mobile() && count( $slides ) > 1) ) {
+    if ( apply_filters('czr_show_slider_controls' , ! wp_is_mobile() && count( $slides ) > 1) ) {
       $left_control_class  = ! is_rtl() ? 'left' : 'right';
       $right_control_class = ! is_rtl() ? 'right' : 'left';
       $has_controls        = true;
@@ -105,10 +105,10 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     if ( $this -> czr_fn_is_slider_loader_active( $slider_name_id ) ) {
       $has_loader       = true;
 
-      if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) )
+      if ( ! apply_filters( 'czr_slider_loader_gif_only', false ) )
         $pure_css_loader = sprintf( '<div class="tc-css-loader %1$s">%2$s</div>',
-            implode( ' ', apply_filters( 'tc_pure_css_loader_add_classes', array( 'tc-mr-loader') ) ),
-            apply_filters( 'tc_pure_css_loader_inner', '<div></div><div></div><div></div>')
+            implode( ' ', apply_filters( 'czr_pure_css_loader_add_classes', array( 'tc-mr-loader') ) ),
+            apply_filters( 'czr_pure_css_loader_inner', '<div></div><div></div><div></div>')
         );
     }
 
@@ -139,7 +139,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   protected function czr_fn_get_the_slides( $slider_name_id, $img_size ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
-      return apply_filters( 'tc_default_slides', $this -> czr_fn_get_default_slides() );
+      return apply_filters( 'czr_default_slides', $this -> czr_fn_get_default_slides() );
     else if ( 'tc_posts_slider' == $slider_name_id ) {
       return array();
     }
@@ -170,7 +170,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     }//end of slides loop
 
     //returns the slides or false if nothing
-    return apply_filters('tc_the_slides', ! empty($slides) ? $slides : false );
+    return apply_filters('czr_the_slides', ! empty($slides) ? $slides : false );
   }
 
 
@@ -189,33 +189,33 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
       return;
     //title
     $title                  = esc_attr(get_post_meta( $id, $key = 'slide_title_key' , $single = true ));
-    $default_title_length   = apply_filters( 'tc_slide_title_length', 80 );
+    $default_title_length   = apply_filters( 'czr_slide_title_length', 80 );
     $title                  = $this -> czr_fn_trim_text( $title, $default_title_length, '...' );
     //lead text
     $text                   = get_post_meta( $id, $key = 'slide_text_key' , $single = true );
-    $default_text_length    = apply_filters( 'tc_slide_text_length', 250 );
+    $default_text_length    = apply_filters( 'czr_slide_text_length', 250 );
     $text                   = $this -> czr_fn_trim_text( $text, $default_text_length, '...' );
     //button text
     $button_text            = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
-    $default_button_length  = apply_filters( 'tc_slide_button_length', 80 );
+    $default_button_length  = apply_filters( 'czr_slide_button_length', 80 );
     $button_text            = $this -> czr_fn_trim_text( $button_text, $default_button_length, '...' );
     //link post id
-    $link_id                = apply_filters( 'tc_slide_link_id', esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true )), $id, $slider_name_id );
+    $link_id                = apply_filters( 'czr_slide_link_id', esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true )), $id, $slider_name_id );
     //link
     $link_url               = esc_url( get_post_meta( $id, $key = 'slide_custom_link_key', $single = true ) );
     if ( ! $link_url )
       $link_url = $link_id ? get_permalink( $link_id ) : $link_url;
-    $link_url               = apply_filters( 'tc_slide_link_url', $link_url, $id, $slider_name_id );
+    $link_url               = apply_filters( 'czr_slide_link_url', $link_url, $id, $slider_name_id );
     //link target
     $link_target_bool       = esc_attr(get_post_meta( $id, $key= 'slide_link_target_key', $single = true ));
-    $link_target            = apply_filters( 'tc_slide_link_target', $link_target_bool ? '_blank' : '_self', $id, $slider_name_id );
+    $link_target            = apply_filters( 'czr_slide_link_target', $link_target_bool ? '_blank' : '_self', $id, $slider_name_id );
     //link the whole slide?
-    $link_whole_slide       = apply_filters( 'tc_slide_link_whole_slide', esc_attr(get_post_meta( $id, $key= 'slide_link_whole_slide_key', $single = true )), $id, $slider_name_id );
+    $link_whole_slide       = apply_filters( 'czr_slide_link_whole_slide', esc_attr(get_post_meta( $id, $key= 'slide_link_whole_slide_key', $single = true )), $id, $slider_name_id );
     //checks if $text_color is set and create an html style attribute
     $text_color             = esc_attr(get_post_meta( $id, $key = 'slide_color_key' , $single = true ));
     $color_style            = ( $text_color != null) ? 'style="color:'.$text_color.'"' : '';
     //attachment image
-    $alt                    = apply_filters( 'tc_slide_background_alt' , trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true))) );
+    $alt                    = apply_filters( 'czr_slide_background_alt' , trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true))) );
     $slide_background_attr  = array_filter( array_merge( array( 'class' => 'slide' , 'alt' => $alt ), $this -> czr_fn_set_wp_responsive_slide_img_attr() ) );
 
     $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
@@ -339,7 +339,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     if( (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_center_slider_img') ) )
       array_push( $class, 'center-slides-enabled' );
 
-    return apply_filters( 'tc_carousel_inner_classes', $class );
+    return apply_filters( 'czr_carousel_inner_classes', $class );
   }
 
 
@@ -355,7 +355,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $class        = array( 'carousel', 'customizr-slide', $slider_name_id );
 
     //layout
-    $layout_class = apply_filters( 'tc_slider_layout_class', 'boxed' == $layout ? 'container' : '' );
+    $layout_class = apply_filters( 'czr_slider_layout_class', 'boxed' == $layout ? 'container' : '' );
 
     array_push( $class, $layout_class );
 
@@ -377,7 +377,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   protected function czr_fn_get_slider_layout( $queried_id, $slider_name_id ) {
     //gets slider options if any
     $layout_value                 = CZR_cl_utils::$inst -> czr_fn_is_home() ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
-    return apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
+    return apply_filters( 'czr_slider_layout', $layout_value, $queried_id );
   }
 
   /**
@@ -387,7 +387,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   *
   */
   protected function czr_fn_get_real_id() {
-    return apply_filters( 'tc_slider_get_real_id', CZR_cl_utils_query::$instance -> czr_fn_get_real_id(), $this );
+    return apply_filters( 'czr_slider_get_real_id', CZR_cl_utils_query::$instance -> czr_fn_get_real_id(), $this );
   }
 
 
@@ -400,11 +400,11 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   protected function czr_fn_is_slider_active( $queried_id ) {
     //is the slider set to on for the queried id?
     if ( CZR_cl_utils::$inst -> czr_fn_is_home() && CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) )
-      return apply_filters( 'tc_slider_active_status', true , $queried_id );
+      return apply_filters( 'czr_slider_active_status', true , $queried_id );
     $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
     if ( ! empty( $_slider_on ) && $_slider_on )
-      return apply_filters( 'tc_slider_active_status', true , $queried_id );
-    return apply_filters( 'tc_slider_active_status', false , $queried_id );
+      return apply_filters( 'czr_slider_active_status', true , $queried_id );
+    return apply_filters( 'czr_slider_active_status', false , $queried_id );
   }
 
 
@@ -430,7 +430,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     //gets the current slider id
     $_home_slider     = CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' );
     $slider_name_id   = ( CZR_cl_utils::$inst -> czr_fn_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
-    return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id, $this -> id );
+    return apply_filters( 'czr_slider_name_id', $slider_name_id , $queried_id, $this -> id );
   }
 
 
@@ -445,7 +445,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     //a) we have to render the demo slider
     //b) display slider loading option is enabled (can be filtered)
     return ( 'demo' == $slider_name_id
-        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_display_slide_loader') ), $slider_name_id, $this -> id )
+        || apply_filters( 'czr_display_slider_loader', 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_display_slide_loader') ), $slider_name_id, $this -> id )
     );
   }
 
@@ -513,18 +513,18 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     //custom css for the slider loader
     if ( $this -> czr_fn_is_slider_loader_active( $slider_name_id ) ) {
 
-      $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s/%2$s' , CZR_BASE_URL . CZR_ASSETS_PREFIX, 'img/slider-loader.gif') );
+      $_slider_loader_src = apply_filters( 'czr_slider_loader_src' , sprintf( '%1$s/%2$s' , CZR_BASE_URL . CZR_ASSETS_PREFIX, 'img/slider-loader.gif') );
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
-      if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) ) {
+      if ( ! apply_filters( 'czr_slider_loader_gif_only', false ) ) {
         $_slider_loader_gif_class  = '.no-csstransforms3d';
         // The pure css loader color depends on the skin. Why can we do this here without caring of the live preview?
         // Basically 'cause the loader is something we see when the page "loads" then it disappears so a live change of the skin
         // will still have no visive impact on it. This will avoid us to rebuild the custom skins.
-        $_current_skin_colors      = CZR_cl_utils::$inst -> tc_get_skincolor( 'pair' );
-        $_pure_css_loader_css      = apply_filters( 'tc_slider_loader_css', sprintf(
+        $_current_skin_colors      = CZR_cl_utils::$inst -> czr_fn_get_skincolor( 'pair' );
+        $_pure_css_loader_css      = apply_filters( 'czr_slider_loader_css', sprintf(
             '.tc-slider-loader-wrapper .tc-css-loader > div { border-color:%s; }',
             //we can use the primary or the secondary skin color
-            'primary' == apply_filters( 'tc_slider_loader_color', 'primary') ? $_current_skin_colors[0] : $_current_skin_colors[1]
+            'primary' == apply_filters( 'czr_slider_loader_color', 'primary') ? $_current_skin_colors[0] : $_current_skin_colors[1]
         ));
       }else {
         $_slider_loader_gif_class = '';
@@ -544,7 +544,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
     $_custom_height     = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_default_height') );
-    $_custom_height     = apply_filters( 'tc_slider_height' , 'demo' != $slider_name_id ? $_custom_height : $this -> czr_fn_set_demo_slider_height( $_custom_height ) );
+    $_custom_height     = apply_filters( 'czr_slider_height' , 'demo' != $slider_name_id ? $_custom_height : $this -> czr_fn_set_demo_slider_height( $_custom_height ) );
 
     $_slider_inline_css = "";
     //When shall we append custom slider style to the global custom inline stylesheet?
@@ -552,7 +552,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $_bool = $_bool && ( CZR_cl_utils::$inst -> czr_fn_is_home() || 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
     if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
       return $_css;
-    $_resp_shrink_ratios = apply_filters( 'tc_slider_resp_shrink_ratios',
+    $_resp_shrink_ratios = apply_filters( 'czr_slider_resp_shrink_ratios',
       array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )
     );
     $_slider_inline_css = "

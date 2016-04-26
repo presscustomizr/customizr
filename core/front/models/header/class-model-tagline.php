@@ -13,7 +13,7 @@ class CZR_cl_tagline_model_class extends CZR_cl_Model {
   function czr_fn_extend_params( $model = array() ) {
     $model[ 'element_attributes' ] = ( CZR___::$instance -> czr_fn_is_customizing() && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
 
-    $model[ 'element_class' ]      = apply_filters( 'tc_tagline_class', $this -> element_class, $model );
+    $model[ 'element_class' ]      = apply_filters( 'czr_tagline_class', $this -> element_class, $model );
     return $model;
   }
 

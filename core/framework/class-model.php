@@ -51,7 +51,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
 
 
       if ( empty( $model ) ) {
-        do_action('tc_dev_notice', 'in CZR_cl_MODEL construct : a model has no id ');
+        do_action('czr_dev_notice', 'in CZR_cl_MODEL construct : a model has no id ');
         return;
       }elseif ( FALSE == $model['id'] ) {
         //if model ID has been set to false => silent exit. Useful in cases when in czr_fn_extend_params the model
@@ -87,7 +87,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       $this -> czr_fn_maybe_filter_views_model();
 
       //Allow models to filter their view visibility
-      add_filter( "tc_do_render_view_{$this -> id}", array( $this, 'czr_fn_maybe_render_this_model_view' ), 0 );
+      add_filter( "czr_do_render_view_{$this -> id}", array( $this, 'czr_fn_maybe_render_this_model_view' ), 0 );
 
       //adds the view instance to the model : DO WE REALLY NEED TO DO THAT ?
       //view instance as param
@@ -153,7 +153,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       if ( ! method_exists( $this, 'czr_fn_setup_children') )
         return;
 
-      $children = apply_filters( "tc_{$this -> id}_children_list", $this -> czr_fn_setup_children() );
+      $children = apply_filters( "czr_{$this -> id}_children_list", $this -> czr_fn_setup_children() );
       $this -> czr_fn_set_property( 'children', $children );
       $this -> czr_fn_set_property( 'parent', $this -> id );
     }//fn
@@ -169,7 +169,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //$this -> view_instance can be used. It can be a child of this class.
     public function czr_fn_maybe_hook_or_render_view($instance) {
       if ( empty($this -> id) ) {
-        do_action('tc_dev_notice', 'In CZR_cl_Model, a model is missing its id.' );
+        do_action('czr_dev_notice', 'In CZR_cl_Model, a model is missing its id.' );
         return;
       }
 
@@ -363,7 +363,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
       //the model must be an array of params
       //the hook is the only mandatory param => not anymore since czr_fn_render_template()
       if ( ! is_numeric( $this -> priority ) || empty($this -> id) ) {
-        do_action('tc_dev_notice', "In CZR_cl_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
+        do_action('czr_dev_notice', "In CZR_cl_Model class, a model instantiation aborted. Model is not ready for the collection, it won't be registered. at this stage, the model must have an id, a hook and a numeric priority." );
         return;
       }
       return true;

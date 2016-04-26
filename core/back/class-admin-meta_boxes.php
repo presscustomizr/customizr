@@ -68,7 +68,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
           //'public'   => true,
           '_builtin' => false
           );
-          $custom_post_types    = apply_filters( 'tc_post_metaboxes_cpt', get_post_types($args) );
+          $custom_post_types    = apply_filters( 'czr_post_metaboxes_cpt', get_post_types($args) );
 
           //2 - Merging with the builtin post types, pages and posts
           $builtin_post_types   = array(
@@ -88,7 +88,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                   array( $this , 'czr_fn_post_layout_box' ),
                   $screen,
                   ( 'page' == $screen | 'post' == $screen ) ? 'side' : 'normal',//displays meta box below editor for custom post types
-                  apply_filters('tc_post_meta_boxes_priority' , 'high', $screen )
+                  apply_filters('czr_post_meta_boxes_priority' , 'high', $screen )
               );
               add_meta_box(
                   'slider_sectionid' ,
@@ -96,7 +96,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                   array( $this , 'czr_fn_post_slider_box' ),
                   $screen,
                   'normal' ,
-                  apply_filters('tc_post_meta_boxes_priority' , 'high', $screen)
+                  apply_filters('czr_post_meta_boxes_priority' , 'high', $screen)
               );
           }//end foreach
       }
@@ -125,7 +125,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
 
             //Generates layouts select list array
             $layouts              = array();
-            $global_layout        = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
+            $global_layout        = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
             foreach ( $global_layout as $key => $value ) {
               $layouts[$key]      = call_user_func( '__' , $value['metabox'] , 'customizr' );
             }
@@ -284,7 +284,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
           $slider_id                 = 'slider_field';
 
           if( $post_slider_check_value == true ):
-              $selectable_sliders    = apply_filters( 'tc_post_selectable_sliders', $sliders );
+              $selectable_sliders    = apply_filters( 'czr_post_selectable_sliders', $sliders );
               if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ):
 
           ?>
@@ -576,7 +576,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
           $title_id               = 'slide_title_field';
           $title_value            = esc_attr(get_post_meta( $postid, $key = 'slide_title_key' , $single = true ));
           //we define a filter for the slide_text_length
-          $default_title_length   = apply_filters( 'tc_slide_title_length', 80 );
+          $default_title_length   = apply_filters( 'czr_slide_title_length', 80 );
 
           //check if we already have a custom key created for this field, if not apply default value
           if(!in_array( 'slide_title_key' ,get_post_custom_keys( $postid))) {
@@ -595,7 +595,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
           $text_id        = 'slide_text_field';
           $text_value     = esc_html(get_post_meta( $postid, $key = 'slide_text_key' , $single = true ));
            //we define a filter for the slide_title_length
-          $default_text_length   = apply_filters( 'tc_slide_text_length', 250 );
+          $default_text_length   = apply_filters( 'czr_slide_text_length', 250 );
 
            //check if we already have a custom key created for this field, if not apply default value
           if(!in_array( 'slide_text_key' ,get_post_custom_keys( $postid)))
@@ -617,7 +617,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
           $button_id      = 'slide_button_field';
           $button_value   = esc_attr(get_post_meta( $postid, $key = 'slide_button_key' , $single = true ));
           //we define a filter for the slide text_button length
-          $default_button_length   = apply_filters( 'tc_slide_button_length', 80 );
+          $default_button_length   = apply_filters( 'czr_slide_button_length', 80 );
 
           if (strlen( $button_value) > $default_button_length) {
             $button_value = substr( $button_value,0,strpos( $button_value, ' ' ,$default_button_length));
@@ -846,7 +846,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                     switch ( $tckey) {
                       //different sanitizations
                       case 'slide_text_key':
-                          $default_text_length = apply_filters( 'tc_slide_text_length', 250 );
+                          $default_text_length = apply_filters( 'czr_slide_text_length', 250 );
                           if (strlen( $mydata) > $default_text_length) {
                             $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,$default_text_length));
                             $mydata = esc_html( $mydata) . ' ...';
@@ -866,7 +866,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
                       break;
 
                       default://for button, color, title and post link field (actually not a link but an id)
-                          $default_title_length = apply_filters( 'tc_slide_title_length', 80 );
+                          $default_title_length = apply_filters( 'czr_slide_title_length', 80 );
                          if (strlen( $mydata) > $default_title_length) {
                           $mydata = substr( $mydata,0,strpos( $mydata, ' ' , $default_title_length));
                           $mydata = esc_attr( $mydata) . ' ...';

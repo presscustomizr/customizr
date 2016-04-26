@@ -10,14 +10,14 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $model[ 'element_class' ]       = apply_filters( 'tc_logo_class', $this -> get_title_wrapper_class(), $model );
-    $model[ 'link_title' ]          = apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' ,
+    $model[ 'element_class' ]       = apply_filters( 'czr_logo_class', $this -> get_title_wrapper_class(), $model );
+    $model[ 'link_title' ]          = apply_filters( 'czr_site_title_link_title', sprintf( '%1$s | %2$s' ,
                                              __( esc_attr( get_bloginfo( 'name' ) ) ),
                                              __( esc_attr( get_bloginfo( 'description' ) ) )
                                          ),
                                          $model
                                      );
-    $model[ 'link_url'   ]          = apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ), $model );
+    $model[ 'link_url'   ]          = apply_filters( 'czr_logo_link_url', esc_url( home_url( '/' ) ), $model );
 
     return $model;
   }
@@ -61,7 +61,7 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   function czr_fn_user_options_style_cb( $_css ) {
     //title shrink
     if ( ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header') ) && 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ) || CZR___::$instance -> czr_fn_is_customizing() ) {
-      $_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
+      $_title_font 	= implode (';' , apply_filters('czr_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
 
       $_css = sprintf("%s%s",
           $_css,

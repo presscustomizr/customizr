@@ -15,7 +15,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     extract( $this -> czr_fn_get_logo_src_args( $this -> logo_type ) );
 
     $model[ 'src' ]   = $logo_src;
-    $model[ 'alt' ]   = apply_filters( 'tc_logo_alt', __( 'Back Home', 'customizr' ) ) ;
+    $model[ 'alt' ]   = apply_filters( 'czr_logo_alt', __( 'Back Home', 'customizr' ) ) ;
     $model[ 'element_class' ] = array( $this -> logo_type );
 
     //build other attrs
@@ -23,10 +23,10 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
         $logo_width ? sprintf( 'width="%1$s"', $logo_width ) : '',
         $logo_height ? sprintf( 'height="%1$s"', $logo_height ) : '',
         ( 1 == $logo_resize) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
-                                apply_filters( 'tc_logo_max_width', 250 ),
-                                apply_filters( 'tc_logo_max_height', 100 )
+                                apply_filters( 'czr_logo_max_width', 250 ),
+                                apply_filters( 'czr_logo_max_height', 100 )
                                 ) : '',
-        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
+        implode(' ' , apply_filters('czr_logo_other_attributes' , ( 0 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
     ));
 
     return $model;
@@ -34,7 +34,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
 
   function czr_fn_get_logo_src_args( $logo_type ) {
     $logo_type_sep          = $logo_type ? '_sticky_' : '_';
-    $accepted_formats		= apply_filters( 'tc_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
+    $accepted_formats		= apply_filters( 'czr_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
     $args                   = array();
     //check if the logo is a path or is numeric
     //get src for both cases
@@ -91,7 +91,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     //2.1) the shrink title_logo option is enabled
     if ( CZR___::$instance -> czr_fn_is_customizing() ||
         ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header') ) && 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
-        $_logo_shrink  = implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
+        $_logo_shrink  = implode (';' , apply_filters('czr_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
         $_css = sprintf("%s%s",
             $_css,
             "
