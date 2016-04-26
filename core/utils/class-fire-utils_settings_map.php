@@ -50,8 +50,8 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
 
       //FILTER SPECIFIC SETTING-CONTROL MAPS
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      add_filter( 'tc_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
-      add_filter( 'tc_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
+      add_filter( 'czr_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
+      add_filter( 'czr_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
       //CACHE THE GLOBAL CUSTOMIZER MAP
       $this -> customizer_map = array_merge(
@@ -60,7 +60,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
         array( 'add_section'         => apply_filters( 'czr_add_section_map', array() ) ),
         array( 'add_setting_control' => apply_filters( 'czr_add_setting_control_map', array(), $get_default ) )
       );
-      return apply_filters( 'tc_customizer_map', $this -> customizer_map );
+      return apply_filters( 'czr_customizer_map', $this -> customizer_map );
     }
 
 
@@ -593,7 +593,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
                                 'type'      => 'checkbox' ,
                                 'priority'  => 18,
-                                'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
+                                'active_callback' => apply_filters( 'czr_woocommerce_options_enabled', '__return_false' )
               ),
               'tc_social_in_header' =>  array(
                                 'default'       => 1,
@@ -642,7 +642,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'type'      => 'checkbox' ,
                                 'priority'  => 45,
                                 'transport' => 'postMessage',
-                                'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
+                                'active_callback' => apply_filters( 'czr_woocommerce_options_enabled', '__return_false' ),
                                 'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
                ),
                'tc_sticky_show_title_logo'  =>  array(
@@ -1891,7 +1891,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
                                 'priority'    => 20,
               ),
               'tc_comment_bubble_color' => array(
-                                'default'     => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> tc_get_skincolor(),
+                                'default'     => CZR_cl_utils::$inst -> czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> czr_fn_getskincolor(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',
@@ -2571,7 +2571,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
       $fp_setting_control = array();
 
       //gets the featured pages id from init
-      $fp_ids       = apply_filters( 'tc_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
+      $fp_ids       = apply_filters( 'czr_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
 
       //dropdown field generator
       foreach ( $fp_ids as $id ) {
@@ -2618,7 +2618,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     */
     function czr_fn_generates_socials( $_original_map ) {
       //gets the social network array
-      $socials      = apply_filters( 'tc_default_socials' , CZR_cl_init::$instance -> socials );
+      $socials      = apply_filters( 'czr_default_socials' , CZR_cl_init::$instance -> socials );
 
       //declares some loop's vars and the settings array
       $priority     = 50;//start priority
@@ -2703,7 +2703,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
     * @since Customizr 3.1.0
     */
     private function czr_fn_layout_choices() {
-        $global_layout  = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
+        $global_layout  = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
         $layout_choices = array();
         foreach ($global_layout as $key => $value) {
           $layout_choices[$key]   = ( $value['customizer'] ) ? call_user_func(  '__' , $value['customizer'] , 'customizr' ) : null ;
@@ -2754,7 +2754,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
 
       $skin_list      = array_merge( $parent_skins , $child_skins );
 
-      return apply_filters( 'tc_skin_list', $skin_list );
+      return apply_filters( 'czr_skin_list', $skin_list );
     }
 
 

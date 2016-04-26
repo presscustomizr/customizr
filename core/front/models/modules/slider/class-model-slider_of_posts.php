@@ -21,7 +21,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     if ( 'tc_posts_slider' != $slider_name_id )
       return array();
 
-    $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! CZR___::$instance -> czr_fn_is_customizing() );
+    $use_transient = apply_filters( 'czr_posts_slider_use_transient', ! CZR___::$instance -> czr_fn_is_customizing() );
     //Do not use transient when in the customizer preview (this class is not called in the customize left panel)
     $store_transient = $load_transient = $use_transient;
 
@@ -29,7 +29,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     if ( ! $use_transient )
       delete_transient( 'tc_posts_slides' );
 
-    return apply_filters( 'tc_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );
+    return apply_filters( 'czr_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );
   }
 
   /**
@@ -54,11 +54,11 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   * other suitable solution, to not use the transient).
   */
   private function czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient = true, $store_transient = true ) {
-    $load_transient  = apply_filters( 'tc_posts_slider_load_transient'  , $load_transient );
-    $store_transient = apply_filters( 'tc_posts_slider_store_transient', $store_transient );
+    $load_transient  = apply_filters( 'czr_posts_slider_load_transient'  , $load_transient );
+    $store_transient = apply_filters( 'czr_posts_slider_store_transient', $store_transient );
     $pre_slides      = $this -> czr_fn_get_pre_posts_slides( compact( 'img_size', 'load_transient', 'store_transient' ) );
     //filter the pre_model
-    $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides, $this );
+    $pre_slides      = apply_filters( 'czr_posts_slider_pre_model', $pre_slides, $this );
     //if the slider not longer exists or exists but is empty, return false
     if ( ! $this -> czr_fn_slider_exists( $pre_slides ) )
       return false;
@@ -76,7 +76,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       $_loop_index++;
     }//end of slides loop
     //returns the slides or false if nothing
-    return apply_filters('tc_the_posts_slides', ! empty($slides) ? $slides : false );
+    return apply_filters('czr_the_posts_slides', ! empty($slides) ? $slides : false );
   }
 
 
@@ -135,9 +135,9 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     // remove smart load img parsing if any
     $smart_load_enabled = 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter( 'tc_thumb_html', array( CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
+      remove_filter( 'czr_thumb_html', array( CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
     // prevent adding thumb inline style when no center img is added
-    add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
+    add_filter( 'czr_post_thumb_inline_style', '__return_empty_string', 100 );
     /*** end tc_thumb setup ***/
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
@@ -153,9 +153,9 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     /* tc_thumb reset filters */
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
-      add_filter('tc_thumb_html', array(CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
+      add_filter('czr_thumb_html', array(CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
     // remove thumb style reset
-    remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
+    remove_filter( 'czr_post_thumb_inline_style', '__return_empty_string', 100 );
     /* end tc_thumb reset filters */
     if ( ! empty( $pre_slides_posts ) ) {
       /*** Setup shared properties ***/
@@ -203,7 +203,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       'limit'          => 5,
       'offset'         => 0,
     );
-    $args           = apply_filters( 'tc_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
+    $args           = apply_filters( 'czr_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
     /* Set up */
     $columns        = 'posts.ID, posts.post_date';
@@ -228,21 +228,21 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       }
     }
     $sql = sprintf( 'SELECT DISTINCT %1$s FROM ( %2$s ) as posts %3$s %4$s ORDER BY %5$s LIMIT %6$s OFFSET %7$s',
-             apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
+             apply_filters( 'czr_query_posts_slider_columns', $columns, $args ),
              $this -> czr_fn_get_posts_have_tc_thumb_sql(
-               apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
-               apply_filters( 'tc_query_posts_slide_thumbnail_where', $pt_where, $args ),
-               apply_filters( 'tc_query_posts_slider_attachment_where', $pa_where, $args )
+               apply_filters( 'czr_query_posts_slider_columns', $columns, $args ),
+               apply_filters( 'czr_query_posts_slide_thumbnail_where', $pt_where, $args ),
+               apply_filters( 'czr_query_posts_slider_attachment_where', $pa_where, $args )
              ),
-             apply_filters( 'tc_query_posts_slider_join', $join, $args ),
-             apply_filters( 'tc_query_posts_slider_join_where', $join_where, $args ),
-             apply_filters( 'tc_query_posts_slider_orderby', $order_by, $args ),
+             apply_filters( 'czr_query_posts_slider_join', $join, $args ),
+             apply_filters( 'czr_query_posts_slider_join_where', $join_where, $args ),
+             apply_filters( 'czr_query_posts_slider_orderby', $order_by, $args ),
              $limit,
              $offset
     );
-    $sql = apply_filters( 'tc_query_posts_slider_sql', $sql, $args );
+    $sql = apply_filters( 'czr_query_posts_slider_sql', $sql, $args );
     $_posts = $wpdb->get_results( $sql );
-    return apply_filters( 'tc_query_posts_slider', $_posts, $args );
+    return apply_filters( 'czr_query_posts_slider', $_posts, $args );
   }
 
 
@@ -334,23 +334,23 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     extract( $_post_slide );
     extract( $common );
     //background image
-    $slide_background       = apply_filters( 'tc_posts_slide_background', $slide_background, $ID );
+    $slide_background       = apply_filters( 'czr_posts_slide_background', $slide_background, $ID );
     // we don't want to show slides with no image
     if ( ! $slide_background )
       return false;
-    $title                  = apply_filters('tc_posts_slider_title', $title, $ID );
+    $title                  = apply_filters('czr_posts_slider_title', $title, $ID );
     //lead text
-    $text                   = apply_filters('tc_posts_slider_text', $text, $ID );
+    $text                   = apply_filters('czr_posts_slider_text', $text, $ID );
     //button
-    $button_text            = apply_filters('tc_posts_slider_button_text', $button_text, $ID );
+    $button_text            = apply_filters('czr_posts_slider_button_text', $button_text, $ID );
     //link
-    $link_id                = apply_filters( 'tc_posts_slide_link_id', $ID );
-    $link_url               = apply_filters( 'tc_posts_slide_link_url', $link_id ? get_permalink( $link_id ) : '', $ID );
-    $link_target            = apply_filters( 'tc_posts_slide_link_target', '_self', $ID );
-    $link_whole_slide       = apply_filters( 'tc_posts_slide_link_whole_slide', $link_whole_slide, $ID );
+    $link_id                = apply_filters( 'czr_posts_slide_link_id', $ID );
+    $link_url               = apply_filters( 'czr_posts_slide_link_url', $link_id ? get_permalink( $link_id ) : '', $ID );
+    $link_target            = apply_filters( 'czr_posts_slide_link_target', '_self', $ID );
+    $link_whole_slide       = apply_filters( 'czr_posts_slide_link_whole_slide', $link_whole_slide, $ID );
     $active                 = ( 0 == $_loop_index ) ? 'active' : '';
-    $color_style            = apply_filters( 'tc_posts_slide_color_style', '', $ID );
-    return apply_filters( 'tc_single_post_slide_model', compact(
+    $color_style            = apply_filters( 'czr_posts_slide_color_style', '', $ID );
+    return apply_filters( 'czr_single_post_slide_model', compact(
         'title',
         'text',
         'button_text',
@@ -396,8 +396,8 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   *
   */
   function czr_fn_get_post_slide_title( $_post, $ID ) {
-    $title_length   = apply_filters('tc_post_slide_title_length', 80, $ID );
-    $more           = apply_filters('tc_post_slide_more', '...', $ID );
+    $title_length   = apply_filters('czr_post_slide_title_length', 80, $ID );
+    $more           = apply_filters('czr_post_slide_more', '...', $ID );
     return $this -> czr_fn_get_post_title( $_post, $title_length, $more );
   }
 
@@ -412,8 +412,8 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   *
   */
   function czr_fn_get_post_slide_excerpt( $_post, $ID ) {
-    $excerpt_length  = apply_filters( 'tc_post_slide_text_length', 80, $ID );
-    $more            = apply_filters( 'tc_post_slide_more', '...', $ID );
+    $excerpt_length  = apply_filters( 'czr_post_slide_text_length', 80, $ID );
+    $more            = apply_filters( 'czr_post_slide_more', '...', $ID );
     return $this -> czr_fn_get_post_excerpt( $_post, $excerpt_length, $more );
   }
 
@@ -428,9 +428,9 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   *
   */
   function czr_fn_get_post_slide_button_text( $button_text ) {
-    $button_text_length  = apply_filters( 'tc_posts_slider_button_text_length', 80 );
-    $more                = apply_filters( 'tc_post_slide_more', '...');
-    $button_text         = apply_filters( 'tc_posts_slider_button_text_pre_trim' , $button_text );
+    $button_text_length  = apply_filters( 'czr_posts_slider_button_text_length', 80 );
+    $more                = apply_filters( 'czr_post_slide_more', '...');
+    $button_text         = apply_filters( 'czr_posts_slider_button_text_pre_trim' , $button_text );
     return $this -> czr_fn_trim_text( $button_text, $button_text_length, $more );
   }
 
@@ -454,7 +454,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       $protected_title_format = apply_filters( 'protected_title_format', __( 'Protected: %s', 'customizr' ), $_post);
       $title = sprintf( $protected_title_format, $title );
     }
-    $title = apply_filters( 'tc_post_title_pre_trim' , $title );
+    $title = apply_filters( 'czr_post_title_pre_trim' , $title );
     return $this -> czr_fn_trim_text( $title, $default_title_length, $more);
   }
 
@@ -476,7 +476,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     if ( ! empty( $_post->post_password) )
       return __( 'There is no excerpt because this is a protected post.', 'customizr' );
     $excerpt = '' != $_post->post_excerpt ? $_post->post_excerpt : $_post->post_content;
-    $excerpt = apply_filters( 'tc_post_excerpt_pre_sanitize' , $excerpt );
+    $excerpt = apply_filters( 'czr_post_excerpt_pre_sanitize' , $excerpt );
     // below some function applied to the_content & the_excerpt filters
     // we cannot use those filters 'cause some plugins, e.g. qtranslate
     // filter those as well invalidating our transient
@@ -486,7 +486,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     $excerpt = wpautop( $excerpt );
     $excerpt = shortcode_unautop( $excerpt );
     $excerpt = str_replace(']]>', ']]&gt;', $excerpt );
-    $excerpt = apply_filters( 'tc_post_excerpt_pre_trim' , $excerpt );
+    $excerpt = apply_filters( 'czr_post_excerpt_pre_trim' , $excerpt );
     return $this -> czr_fn_trim_text( $excerpt, $default_text_length, $more);
   }
 }

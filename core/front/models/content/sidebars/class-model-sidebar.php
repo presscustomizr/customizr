@@ -43,11 +43,11 @@ class CZR_cl_sidebar_model_class extends CZR_cl_Model {
     if ( ! in_array( $this -> position, array('right', 'left' ) ) )
       return array();
 
-    $global_layout        = apply_filters( 'tc_global_layout' , CZR_cl_init::$instance -> global_layout );
+    $global_layout        = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
     $sidebar_layout       = $global_layout[$screen_layout];
 
     //defines the sidebar wrapper class
-    $model['element_class']           = apply_filters( "tc_{$this -> position }_sidebar_class", array( $sidebar_layout['sidebar'], $this -> position, 'tc-sidebar') );
+    $model['element_class']           = apply_filters( "czr_{$this -> position }_sidebar_class", array( $sidebar_layout['sidebar'], $this -> position, 'tc-sidebar') );
 
     $model['inner_class']             = array('widget-area');
     $model['action_hook_suffix']      = '_'. $this -> position;

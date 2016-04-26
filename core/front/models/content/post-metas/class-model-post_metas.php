@@ -104,8 +104,8 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   protected function czr_fn_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
     if ( 'short' == $_format )
       $_format = 'j M, Y';
-    $_format = apply_filters( 'tc_meta_date_format' , $_format );
-    $_use_post_mod_date = apply_filters( 'tc_use_the_post_modified_date' , 'publication' != $pub_or_update );
+    $_format = apply_filters( 'czr_meta_date_format' , $_format );
+    $_use_post_mod_date = apply_filters( 'czr_use_the_post_modified_date' , 'publication' != $pub_or_update );
     return apply_filters(
       'tc_date_meta',
         sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
@@ -152,7 +152,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
       return;
     $_terms_html_array  = array_map( array( $this , 'czr_fn_meta_term_view' ), $post_terms );
     return $_terms_html_array;
-              //apply_filters( 'czr_fn_meta_generate_tax_list', implode( apply_filters( 'tc_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
+              //apply_filters( 'czr_fn_meta_generate_tax_list', implode( apply_filters( 'czr_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
   }
 
 
@@ -167,14 +167,14 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   private function czr_fn_meta_term_view( $term ) {
     $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
 
-    $_classes      = CZR() -> helpers -> czr_fn_stringify_array( apply_filters( 'tc_meta_tax_class', $this -> czr_fn_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
+    $_classes      = CZR() -> helpers -> czr_fn_stringify_array( apply_filters( 'czr_meta_tax_class', $this -> czr_fn_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
     // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
     // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
     // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.
     // Just this change avoids the issue with 3.6.1, but I thought should be better make a check anyway on the return type of that function.
     $_term_link    = is_wp_error( get_term_link( $term ) ) ? '' : get_term_link( $term );
     $_to_return    = $_term_link ? '<a %1$s href="%2$s" title="%3$s"> %4$s </a>' :  '<span class="%1$s"> %4$s </a>';
-    return apply_filters( 'tc_meta_term_view' , sprintf($_to_return,
+    return apply_filters( 'czr_meta_term_view' , sprintf($_to_return,
         $_classes ? 'class="'. $_classes .'"' : '',
         $_term_link,
         esc_attr( sprintf( __( "View all posts in %s", 'customizr' ), $term -> name ) ),
@@ -237,7 +237,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
         next($_current_tax_terms);
       }
     }
-    return empty($_tax_type_terms_list) ? false : apply_filters( "tc_tax_meta_list" , $_tax_type_terms_list , $hierarchical );
+    return empty($_tax_type_terms_list) ? false : apply_filters( "czr_tax_meta_list" , $_tax_type_terms_list , $hierarchical );
   }
 
   /**
@@ -255,9 +255,9 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   private function czr_fn_is_tax_authorized( $_tax_object , $post_type ) {
     $_in_exclude_list = in_array(
       $_tax_object['name'],
-      apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , CZR_cl_utils::czr_fn_id() ) )
+      apply_filters_ref_array ( 'czr_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , CZR_cl_utils::czr_fn_id() ) )
     );
-    $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], CZR_cl_utils::czr_fn_id() ) );
+    $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'czr_exclude_private_taxonomies', array( true, $_tax_object['public'], CZR_cl_utils::czr_fn_id() ) );
     return ! $_in_exclude_list && ! $_is_private;
   }
 

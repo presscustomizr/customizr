@@ -63,7 +63,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
 
     global $wp_query;
 
-    extract( apply_filters( 'tc_post_list_layout', $this -> post_list_layout ) );
+    extract( apply_filters( 'czr_post_list_layout', $this -> post_list_layout ) );
 
 
     $czr_fn_has_post_thumbnail   = false;
@@ -160,7 +160,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     //2) the excerpt option is not set to full
     //3) user settings in customizer
     //4) filter's conditions
-    return apply_filters( 'tc_show_thumb', array_product(
+    return apply_filters( 'czr_show_thumb', array_product(
         array(
           $this -> czr_fn_show_excerpt(),
           CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb(),
@@ -179,6 +179,6 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     //When do we show the post excerpt?
     //1) when set in options
     //2) + other filters conditions
-    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_length' ) ) );
+    return (bool) apply_filters( 'czr_show_excerpt', 'full' != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_length' ) ) );
   }
 }

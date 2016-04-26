@@ -36,7 +36,7 @@ if ( ! class_exists( 'CZR_cl_widgets' ) ) :
     */
     function czr_fn_widgets_factory() {
       //default Customizr filtered args
-      $default                  = apply_filters( 'tc_default_widget_args' ,
+      $default                  = apply_filters( 'czr_default_widget_args' ,
                                 array(
                                   'name'                    => '',
                                   'id'                      => '',
@@ -50,9 +50,9 @@ if ( ! class_exists( 'CZR_cl_widgets' ) ) :
       );
 
       //gets the filtered default values
-      $footer_widgets           = apply_filters( 'tc_footer_widgets'  , CZR_cl_init::$instance -> footer_widgets );
-      $sidebar_widgets          = apply_filters( 'tc_sidebar_widgets' , CZR_cl_init::$instance -> sidebar_widgets );
-      $widgets                  = apply_filters( 'tc_default_widgets' , array_merge( $sidebar_widgets , $footer_widgets ) );
+      $footer_widgets           = apply_filters( 'czr_footer_widgets'  , CZR_cl_init::$instance -> footer_widgets );
+      $sidebar_widgets          = apply_filters( 'czr_sidebar_widgets' , CZR_cl_init::$instance -> sidebar_widgets );
+      $widgets                  = apply_filters( 'czr_default_widgets' , array_merge( $sidebar_widgets , $footer_widgets ) );
 
       //declares the arguments array
       $args                     = array();

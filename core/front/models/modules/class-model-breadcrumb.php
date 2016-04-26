@@ -53,11 +53,11 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
     /* Allow singular post views to have a taxonomy's terms prefixing the trail. */
     if ( is_singular() ) {
       $post = get_queried_object();
-      $defaults["singular_breadcrumb_taxonomy"] = apply_filters( 'tc_display_taxonomies_in_breadcrumb' , true , $post->post_type );
+      $defaults["singular_breadcrumb_taxonomy"] = apply_filters( 'czr_display_taxonomies_in_breadcrumb' , true , $post->post_type );
     }
 
     /* Parse the arguments and extract them for easy variable naming. */
-    return  apply_filters( 'tc_breadcrumb_trail_args' , wp_parse_args( $args, $defaults) , $args , $defaults );
+    return  apply_filters( 'czr_breadcrumb_trail_args' , wp_parse_args( $args, $defaults) , $args , $defaults );
   }//end of function
 
 
@@ -100,7 +100,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 		$breadcrumb = '';
 
 		/* Get the trail items. */
-		$trail = apply_filters( 'tc_breadcrumb_trail' , $this -> czr_fn_breadcrumb_trail_get_items( $args ) );
+		$trail = apply_filters( 'czr_breadcrumb_trail' , $this -> czr_fn_breadcrumb_trail_get_items( $args ) );
 
 		/* Connect the breadcrumb trail if there are items in the trail. */
 		if ( !empty( $trail ) && is_array( $trail ) ) {
@@ -556,7 +556,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
 			$trail[] = sprintf( __( 'Page %d' , 'customizr' ), absint( get_query_var( 'page' ) ) );
 
 		/* Allow devs to step in and filter the $trail array. */
-		return apply_filters( 'tc_breadcrumb_trail_items' , $trail, $args );
+		return apply_filters( 'czr_breadcrumb_trail_items' , $trail, $args );
 	}
 
 	/**

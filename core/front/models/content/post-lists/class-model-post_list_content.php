@@ -70,7 +70,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
       $content             = '<p class="format-icon"></p>';
     }
     elseif ( in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside', 'video' ) ) ) {
-      $content_width_class = array( 'entry-content', apply_filters( 'tc_post_list_content_icon', 'format-icon' ) );
+      $content_width_class = array( 'entry-content', apply_filters( 'czr_post_list_content_icon', 'format-icon' ) );
       $content_cb          = 'get_the_content';
     }
     $this -> czr_fn_update( compact( 'element_class', 'content_witdh_class', 'content_cb', 'content' ) );

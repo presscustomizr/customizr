@@ -32,7 +32,7 @@ class CZR_cl_social_block_model_class extends CZR_cl_Model {
   }
 
   protected function czr_fn_social_block_get_class( $model ) {
-    return apply_filters( "tc_{$this -> where}_block_social_class", $this -> element_class, $model );
+    return apply_filters( "czr_{$this -> where}_block_social_class", $this -> element_class, $model );
   }
 
   protected function czr_fn_social_block_get_attributes( $model ) {

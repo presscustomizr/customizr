@@ -123,7 +123,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
 
   /* returns articles wrapper section columns */
   private function czr_fn_get_grid_section_cols() {
-    return apply_filters( 'tc_grid_section_cols',
+    return apply_filters( 'czr_grid_section_cols',
       $this -> czr_fn_force_current_post_expansion() ? '1' : $this -> czr_fn_get_grid_cols()
     );
   }
@@ -153,7 +153,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   */
   function czr_fn_get_the_grid_post_class() {
     return sprintf( '%1$s tc-grid span%2$s',
-      apply_filters( 'tc_grid_add_expanded_class', $this -> czr_fn_force_current_post_expansion() ) ? 'expanded' : '',
+      apply_filters( 'czr_grid_add_expanded_class', $this -> czr_fn_force_current_post_expansion() ) ? 'expanded' : '',
       is_numeric( $this -> czr_fn_get_grid_section_cols() ) ? 12 / $this -> czr_fn_get_grid_section_cols() : 6
     );
   }
@@ -176,7 +176,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
         $wp_query -> is_posts_page ) )
       return false;
 
-    return apply_filters( 'tc_grid_expand_featured', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_expand_featured') ) );
+    return apply_filters( 'czr_grid_expand_featured', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_expand_featured') ) );
   }
 
 
@@ -316,7 +316,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @return simple array of media queries
   */
   private function czr_fn_get_grid_media_queries() {
-    return apply_filters( 'tc_grid_media_queries' ,  array(
+    return apply_filters( 'czr_grid_media_queries' ,  array(
              '(min-width: 1200px)', '(max-width: 1199px) and (min-width: 980px)', '(max-width: 979px) and (min-width: 768px)', '(max-width: 767px)', '(max-width: 480px)'
            ));
   }
@@ -331,7 +331,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * Size array must have the same length of the media query array
   */
   private function czr_fn_get_grid_font_sizes( $_col_nb = '3', $_requested_media_size = null ) {
-    $_col_media_matrix = apply_filters( 'tc_grid_font_matrix' , array(
+    $_col_media_matrix = apply_filters( 'czr_grid_font_matrix' , array(
       //=> matrix col nb / media queries
       //            1200 | 1199-980 | 979-768 | 767   | 480
      '1' => array( 'xxxl', 'xxl'   , 'xl'    , 'xl'  , 'l' ),
@@ -487,7 +487,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * returns the font-size and line-height css rules
   */
   private function czr_fn_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
-    $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.28 ); //line-height / font-size
+    $_lh_ratio = apply_filters( 'czr_grid_line_height_ratio' , 1.28 ); //line-height / font-size
     $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
     //body font size
     $_bs = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_body_font_size') );

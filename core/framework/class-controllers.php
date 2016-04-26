@@ -111,7 +111,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
           //make sure the default controller is well formed
           //the default controller should look like array( instance, method )
           if ( empty($controller_cb) ) {
-            do_action( 'tc_dev_notice', 'View : '.$model['id'].'. The default group controller has not been instantiated');
+            do_action( 'czr_dev_notice', 'View : '.$model['id'].'. The default group controller has not been instantiated');
             return "";
           }//if
         }//if has default controller
@@ -149,7 +149,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
       //foreach
       //return here is no match found
       if ( ! $controller_cb ) {
-        do_action( 'tc_dev_notice', 'View : '.$id.'. No control method found.');
+        do_action( 'czr_dev_notice', 'View : '.$id.'. No control method found.');
         return array();
       }
 
@@ -164,7 +164,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
 
       //stop here if still nothing is instantiated
       if ( ! isset( $_instance) || ! is_object( $_instance ) ) {
-        do_action( 'tc_dev_notice', 'View : '.$id.'. The control class for : ' . $controller_group . ' has not been instantiated.' );
+        do_action( 'czr_dev_notice', 'View : '.$id.'. The control class for : ' . $controller_group . ' has not been instantiated.' );
         return array();
       }
 
@@ -176,7 +176,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
       if ( method_exists( $_instance , $method_name ) )
         return array( $_instance, $method_name );
 
-      do_action( 'tc_dev_notice', 'model : '.$id.'. The method : ' . $method_name . ' has not been found in group controller : '.$controller_group );
+      do_action( 'czr_dev_notice', 'model : '.$id.'. The method : ' . $method_name . ' has not been found in group controller : '.$controller_group );
       return array();
     }
 

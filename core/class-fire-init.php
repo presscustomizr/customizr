@@ -96,7 +96,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           );
 
           //Main skin color array : array( link color, link hover color )
-          $this -> skin_color_map     = apply_filters( 'tc_skin_color_map' , array(
+          $this -> skin_color_map     = apply_filters( 'czr_skin_color_map' , array(
                 'blue.css'        =>  array( '#08c', '#005580' ),
                 'blue2.css'       =>  array( '#27CBCD', '#1b8b8d' ),
                 'blue3.css'       =>  array( '#27CDA5', '#1b8d71' ),
@@ -120,7 +120,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           $this -> font_pairs             = array(
             'gfont' => array(
               'name'  => __('Google fonts pairs' , 'customizr'),
-              'list'  => apply_filters( 'tc_gfont_pairs' , array(
+              'list'  => apply_filters( 'czr_gfont_pairs' , array(
                 '_g_fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
                 '_g_lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
                 '_g_alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
@@ -140,7 +140,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
             ),
             'wsfont' => array(
               'name'  => __('Web safe fonts pairs' , 'customizr'),
-              'list'  => apply_filters( 'tc_wsfont_pairs' , array(
+              'list'  => apply_filters( 'czr_wsfont_pairs' , array(
                 'impact_palatino'               => array( 'Impact &amp; Palatino' , 'Impact,Charcoal,sans-serif|Palatino Linotype,Book Antiqua,Palatino,serif'),
                 'georgia_verdana'               => array( 'Georgia &amp; Verdana' , 'Georgia,Georgia,serif|Verdana,Geneva,sans-serif' ),
                 'tahoma_times'                  => array( 'Tahoma &amp; Times' , 'Tahoma,Geneva,sans-serif|Times New Roman,Times,serif'),
@@ -149,7 +149,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
             ),
            'default' => array(
             'name'  => __('Single fonts' , 'customizr'),
-            'list'  => apply_filters( 'tc_single_fonts' , array(
+            'list'  => apply_filters( 'czr_single_fonts' , array(
                   '_g_cantarell'                  => array( 'Cantarell' , 'Cantarell:400|Cantarell:400' ),
                   '_g_raleway'                    => array( 'Raleway' , 'Raleway|Raleway' ),
                   '_g_roboto'                     => array( 'Roboto' , 'Roboto|Roboto' ),
@@ -338,13 +338,13 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
         if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
           $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
           $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
-          $_rectangular_size = apply_filters( 'tc_rectangular_size' , array_merge( $this -> tc_rectangular_size, array( 'height' => $_user_height ) ) );
+          $_rectangular_size = apply_filters( 'czr_rectangular_size' , array_merge( $this -> tc_rectangular_size, array( 'height' => $_user_height ) ) );
           add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
         }
 
         if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) && isset ( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
-            add_filter( 'tc_slider_full_size'    , array($this,  'czr_fn_set_slider_img_height') );
-            add_filter( 'tc_slider_size'         , array($this,  'czr_fn_set_slider_img_height') );
+            add_filter( 'czr_slider_full_size'    , array($this,  'czr_fn_set_slider_img_height') );
+            add_filter( 'czr_slider_size'         , array($this,  'czr_fn_set_slider_img_height') );
         }
 
 
@@ -363,9 +363,9 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
         add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
 
         if ( $_user_grid_height != $tc_grid_full_size['height'] )
-          add_filter( 'tc_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
+          add_filter( 'czr_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
         if ( $_user_grid_height != $tc_grid_size['height'] )
-          add_filter( 'tc_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
+          add_filter( 'czr_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
 
       }
 
@@ -416,7 +416,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
         /* Set default content width for post images and media. */
         global $content_width;
         if (! isset( $content_width ) )
-          $content_width = apply_filters( 'tc_content_width' , 1170 );
+          $content_width = apply_filters( 'czr_content_width' , 1170 );
 
         /*
          * Makes Customizr available for translation.
@@ -428,7 +428,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
         add_theme_support( 'automatic-feed-links' );
 
         /*  This theme supports nine post formats. */
-        $post_formats   = apply_filters( 'tc_post_formats', array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
+        $post_formats   = apply_filters( 'czr_post_formats', array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
         add_theme_support( 'post-formats' , $post_formats );
 
         /* support for page excerpt (added in v3.0.15) */
@@ -445,15 +445,15 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           remove_theme_support( 'custom-header' );*/
 
         //post thumbnails for featured pages and post lists (archive, search, ...)
-        $tc_thumb_size    = apply_filters( 'tc_thumb_size' , $this -> tc_thumb_size );
+        $tc_thumb_size    = apply_filters( 'czr_thumb_size' , $this -> tc_thumb_size );
         add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
 
         //slider full width
-        $slider_full_size = apply_filters( 'tc_slider_full_size' , $this -> tc_slider_full_size );
+        $slider_full_size = apply_filters( 'czr_slider_full_size' , $this -> tc_slider_full_size );
         add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
 
         //slider boxed
-        $slider_size      = apply_filters( 'tc_slider_size' , $this -> tc_slider_size );
+        $slider_size      = apply_filters( 'czr_slider_size' , $this -> tc_slider_size );
         add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
 
         //add support for svg and svgz format in media upload

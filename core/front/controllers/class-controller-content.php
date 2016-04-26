@@ -63,12 +63,12 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_page() {
-      return apply_filters( 'tc_show_single_page_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_page() );
+      return apply_filters( 'czr_show_single_page_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_page() );
     }
 
     function czr_fn_display_view_post() {
       //check conditional tags : we want to show single post or single custom post types
-      return apply_filters( 'tc_show_single_post_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_post() );
+      return apply_filters( 'czr_show_single_post_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_post() );
     }
 
     function czr_fn_display_view_single_author_info() {
@@ -76,14 +76,14 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
         return;
 
       //@todo check if some conditions below not redundant?
-      if ( ! apply_filters( 'tc_show_author_metas_in_post', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_author_info' ) ) ) )
+      if ( ! apply_filters( 'czr_show_author_metas_in_post', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_author_info' ) ) ) )
         return;
 
       return true;
     }
 
     function czr_fn_display_view_attachment() {
-      return apply_filters( 'tc_show_attachment_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_attachment() );
+      return apply_filters( 'czr_show_attachment_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_attachment() );
     }
 
 
@@ -92,12 +92,12 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_post_list_title() {
-      return apply_filters('tc_display_customizr_headings', $this -> czr_fn_display_view_posts_list_headings() || is_front_page() );
+      return apply_filters('czr_display_customizr_headings', $this -> czr_fn_display_view_posts_list_headings() || is_front_page() );
     }
 
     function czr_fn_display_view_singular_title() {
-      $display_singular_title = apply_filters( 'tc_display_singular_title', is_singular() && ! ( is_front_page() && 'page' == get_option( 'show_on_front' ) ));
-      return apply_filters('tc_display_customizr_headings', $display_singular_title )  && ! is_feed();
+      $display_singular_title = apply_filters( 'czr_display_singular_title', is_singular() && ! ( is_front_page() && 'page' == get_option( 'show_on_front' ) ));
+      return apply_filters('czr_display_customizr_headings', $display_singular_title )  && ! is_feed();
     }
 
 
@@ -124,7 +124,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       else
         $post_metas = false;
 
-      return apply_filters( 'tc_show_post_metas', $post_metas );
+      return apply_filters( 'czr_show_post_metas', $post_metas );
     }
 
 
@@ -165,7 +165,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     /* Single post thumbnail */
     function czr_fn_display_view_post_thumbnail() {
       return $this -> czr_fn_display_view_post() && 'hide' != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'tc_show_single_post_thumbnail' , CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb() );
+        && apply_filters( 'czr_show_single_post_thumbnail' , CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb() );
     }
 
 
@@ -223,7 +223,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_comment_list() {
-      return apply_filters( 'tc_display_comment_list', (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_comment_list' ) ) && $this -> czr_fn_display_view_comments() );
+      return apply_filters( 'czr_display_comment_list', (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_comment_list' ) ) && $this -> czr_fn_display_view_comments() );
     }
 
     function czr_fn_display_view_comment() {
@@ -272,7 +272,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       } else
         $_bool = false;
 
-      return apply_filters( 'tc_are_comments_enabled', $_bool );
+      return apply_filters( 'czr_are_comments_enabled', $_bool );
     }
 
     /**
@@ -305,7 +305,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     * @return bool
     */
     function czr_fn_is_post_navigation_enabled(){
-      return apply_filters( 'tc_show_post_navigation', 1 == esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( 'tc_show_post_navigation' ) ) );
+      return apply_filters( 'czr_show_post_navigation', 1 == esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( 'tc_show_post_navigation' ) ) );
     }
 
   }//end of class

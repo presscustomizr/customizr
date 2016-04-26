@@ -46,7 +46,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
   		//Hide donate button
   		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
   		//Grunt Live reload script on DEV mode (CZR_DEV constant has to be defined. In wp_config for example)
-      if ( defined('CZR_DEV') && true === CZR_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
+      if ( defined('CZR_DEV') && true === CZR_DEV && apply_filters('czr_live_reload_in_dev_mode' , true ) )
       	add_action( 'customize_controls_print_scripts'        , array( $this , 'czr_fn_add_livereload_script') );
 
       add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'czr_fn_print_js_templates' ) );
@@ -252,7 +252,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
                                 'dst_height'
 					)
 			);
-			return apply_filters( 'tc_customizer_arguments', $args );
+			return apply_filters( 'czr_customizer_arguments', $args );
 		}
 
 
@@ -384,16 +384,18 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 				true
 			);
 
+            //Custom skin backward compatibility : different filter prefix
+            $custom_skin = apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) );
 			//localizes
 			wp_localize_script(
 		        'tc-customizer-preview',
 		        'TCPreviewParams',
-		        apply_filters('tc_js_customizer_preview_params' ,
+		        apply_filters('czr_js_customizer_preview_params' ,
 			        array(
 			        	'skinFolder' 		=> CZR_BASE_URL . CZR_ASSETS_PREFIX,
                 //can be hacked to override the preview params when a custom skin is used
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
-                'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
+                'customSkin'      => apply_filters( 'czr_custom_skin_preview_params' , $custom_skin ),
                 'fontPairs'       => CZR_cl_utils::$inst -> czr_fn_get_font( 'list' ),
                 'fontSelectors'   => CZR_cl_init::$instance -> font_selectors,
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
@@ -441,7 +443,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 
 
 			//gets the featured pages id from init
-			$fp_ids				= apply_filters( 'tc_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
+			$fp_ids				= apply_filters( 'czr_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
 
 			//declares the common fp control fields and the dynamic arrays
 			$fp_controls 			= array(
@@ -461,7 +463,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 			wp_localize_script(
         'tc-customizer-controls',
         'TCControlParams',
-        apply_filters('tc_js_customizer_control_params' ,
+        apply_filters('czr_js_customizer_control_params' ,
 	        array(
 	        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
 	        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
@@ -527,7 +529,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 			    document.write('<script src="http://'
 			        + ('localhost').split(':')[0]
 			        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')
-			    console.log('When WP_DEBUG mode is enabled, activate the watch Grunt task to enable live reloading. This script can be disabled with the following code to paste in your functions.php file : add_filter("tc_live_reload_in_dev_mode" , "__return_false")');
+			    console.log('When WP_DEBUG mode is enabled, activate the watch Grunt task to enable live reloading. This script can be disabled with the following code to paste in your functions.php file : add_filter("czr_live_reload_in_dev_mode" , "__return_false")');
 			</script>
 			<?php
 		}

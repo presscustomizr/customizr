@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     function czr_fn_refresh_posts_slider( $post_id, $post = array() ) {
       // no need to build up/refresh the transient it we don't use the posts slider
       // since we always delete the transient when entering the preview.
-      if ( 'tc_posts_slider' != CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
+      if ( 'tc_posts_slider' != CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) || ! apply_filters('czr_posts_slider_use_transient' , true ) )
         return;
 
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )

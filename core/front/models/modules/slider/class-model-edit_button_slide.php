@@ -21,7 +21,7 @@ class CZR_cl_edit_button_slide_model_class extends CZR_cl_edit_button_model_clas
 
     $show_slide_edit_link  = current_user_can( 'edit_post', $id ) ? true : false;
 
-    $show_slide_edit_link  = apply_filters('tc_show_slide_edit_link' , $show_slide_edit_link && ! is_null( $link_id), $id  );
+    $show_slide_edit_link  = apply_filters('czr_show_slide_edit_link' , $show_slide_edit_link && ! is_null( $link_id), $id  );
 
     return $show_slide_edit_link;
   }

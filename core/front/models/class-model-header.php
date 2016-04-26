@@ -10,12 +10,12 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $element_class = apply_filters('tc_header_classes', array(
+    $element_class = apply_filters('czr_header_classes', array(
         'tc-header' ,'clearfix', 'row-fluid',
         'logo-' . esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_header_layout' ) )
     ));
     if ( true == $has_sticky_pusher = $this -> czr_fn_has_pusher_margin_top() )
-      $pusher_margin_top = apply_filters( 'tc_default_sticky_header_height', 103 );
+      $pusher_margin_top = apply_filters( 'czr_default_sticky_header_height', 103 );
 
     return array_merge( $model, compact( 'element_class', 'has_sticky_pusher', 'pusher_margin_top') );
   }

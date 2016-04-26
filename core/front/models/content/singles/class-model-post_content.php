@@ -9,7 +9,7 @@ class CZR_cl_post_content_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $icon_class             = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'tc_post_format_icon', 'format-icon' ) :'' ;
+    $icon_class             = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'czr_post_format_icon', 'format-icon' ) :'' ;
 
     $model['element_class'] = array( $icon_class );
     $model[ 'thumbnail_position' ] = '__before_content' == CZR_cl_utils_thumbnails::$instance -> czr_fn_get_single_thumbnail_position() ? 'before_title' : '';

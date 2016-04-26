@@ -119,7 +119,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             'content'   =>   array(
               array('core/front/utils', 'gallery')
             ),
-            'addons'    => apply_filters( 'tc_addons_classes' , array() )
+            'addons'    => apply_filters( 'czr_addons_classes' , array() )
         )
       );
       //check the context
@@ -153,7 +153,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         foreach ($files as $path_suffix ) {
           $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
           $classname = 'CZR_cl_' . $path_suffix[1];
-          if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'CZR_cl_nav_walker') ) ) )
+          if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_cl_nav_walker') ) ) )
             continue;
           //instantiates
           $instances = class_exists($classname)  ? new $classname : '';
@@ -347,8 +347,8 @@ if ( ! class_exists( 'CZR___' ) ) :
     //called when requiring a file will - always give the precedence to the child-theme file if it exists
     //then to the theme root
     function czr_fn_get_theme_file( $path_suffix ) {
-      $path_prefixes = array_unique( apply_filters( 'tc_include_paths'     , array( '' ) ) );
-      $roots         = array_unique( apply_filters( 'tc_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
+      $path_prefixes = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
+      $roots         = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
 
       foreach ( $roots as $root )
         foreach ( $path_prefixes as $path_prefix )
@@ -361,9 +361,9 @@ if ( ! class_exists( 'CZR___' ) ) :
     //called when requiring a file url - will always give the precedence to the child-theme file if it exists
     //then to the theme root
     function czr_fn_get_theme_file_url( $url_suffix ) {
-      $url_prefixes   = array_unique( apply_filters( 'tc_include_paths'     , array( '' ) ) );
-      $roots          = array_unique( apply_filters( 'tc_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
-      $roots_urls     = array_unique( apply_filters( 'tc_include_roots_url' , array( CZR_BASE_URL_CHILD, CZR_BASE_URL ) ) );
+      $url_prefixes   = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
+      $roots          = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
+      $roots_urls     = array_unique( apply_filters( 'czr_include_roots_url' , array( CZR_BASE_URL_CHILD, CZR_BASE_URL ) ) );
 
       $combined_roots = array_combine( $roots, $roots_urls );
 

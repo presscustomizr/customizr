@@ -10,7 +10,7 @@ class CZR_cl_posts_list_description_model_class extends CZR_cl_Model {
     if ( ! $this -> context )
       return;
 
-    $model['description']   = apply_filters( "tc_{$this -> context}_description", $this -> czr_fn_get_posts_list_description() );
+    $model['description']   = apply_filters( "czr_{$this -> context}_description", $this -> czr_fn_get_posts_list_description() );
 
     return $model;
   }
@@ -35,7 +35,7 @@ class CZR_cl_posts_list_description_model_class extends CZR_cl_Model {
         return 'year';
       if ( is_tag() )
         return 'tag';
-      if ( apply_filters('tc_show_tax_archive_title', true ) )
+      if ( apply_filters('czr_show_tax_archive_title', true ) )
         return 'tax';
     }
     return false;
