@@ -1,5 +1,5 @@
 //Falls back to default params
-var TCParams = TCParams || {
+var CZRParams = CZRParams || {
 	DisabledFeatures : {},
   centerAllImg: 1,
 	FancyBoxAutoscale: 1,
@@ -224,7 +224,7 @@ if (!Array.prototype.map) {
  * limitations under the License.
  * ========================================================== */
 //@tc addon
-var TCParams = TCParams || {};
+var CZRParams = CZRParams || {};
 
 !function ($) {
 
@@ -1861,12 +1861,12 @@ var TCParams = TCParams || {};
       if ( ! this.$element.hasClass('nav-collapse') )
           return;
 
-      if ( TCParams && 1 == TCParams.dropdowntoViewport )
+      if ( CZRParams && 1 == CZRParams.dropdowntoViewport )
       {
         var tcVisible = czrapp.$_window.height() - this.$element.offset().top + czrapp.$_window.scrollTop();
         this.$element.css('max-height' , tcVisible + 'px');
       }
-      else if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader )
+      else if ( CZRParams && 1 != CZRParams.dropdowntoViewport && 1 == CZRParams.stickyHeader )
       {
         //trigger click on back to top if sticky enabled
         if ( 0 != $('.back-to-top').length ) {
@@ -1891,7 +1891,7 @@ var TCParams = TCParams || {};
       this.$element[dimension](0)
 
       //@tc adddon
-      if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader ) {
+      if ( CZRParams && 1 != CZRParams.dropdowntoViewport && 1 == CZRParams.stickyHeader ) {
         $('body').addClass('tc-sticky-header');
       }
     }
@@ -4164,7 +4164,7 @@ var tcOutline;
 	});
   }
 })(document);
-//@global TCParams
+//@global CZRParams
 var czrapp = czrapp || {};
 
 (function($, czrapp) {
@@ -4245,7 +4245,7 @@ var czrapp = czrapp || {};
         $_wpadminbar     : $('#wpadminbar'),
 
         //various properties definition
-        localized        : TCParams || {},
+        localized        : CZRParams || {},
         is_responsive    : this.isResponsive(),//store the initial responsive state of the window
         current_device   : this.getDevice()//store the initial device
       });
@@ -4355,7 +4355,7 @@ var czrapp = czrapp || {};
     /**
      * Load the various { constructor [methods] }
      *
-     * Constructors and methods can be disabled by passing a localized var TCParams._disabled (with the hook 'tc_disabled_front_js_parts' )
+     * Constructors and methods can be disabled by passing a localized var CZRParams._disabled (with the hook 'tc_disabled_front_js_parts' )
      * Ex : add_filter('tc_disabled_front_js_parts', function() {
      *   return array('Czr_Plugins' => array() , 'Czr_Slider' => array('addSwipeSupport') );
      * });
@@ -4490,16 +4490,16 @@ var czrapp = czrapp || {};
     //__before_main_wrapper covers the single post thumbnail case
     //.widget-front handles the featured pages
     imgSmartLoad : function() {
-      var smartLoadEnabled = 1 == TCParams.imgSmartLoadEnabled,
+      var smartLoadEnabled = 1 == CZRParams.imgSmartLoadEnabled,
           //Default selectors for where are : $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
-          _where           = TCParams.imgSmartLoadOpts.parentSelectors.join();
+          _where           = CZRParams.imgSmartLoadOpts.parentSelectors.join();
 
       //Smart-Load images
       //imgSmartLoad plugin will trigger the smartload event when the img will be loaded
       //the centerImages plugin will react to this event centering them
       if (  smartLoadEnabled )
         $( _where ).imgSmartLoad(
-          _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {}
+          _.size( CZRParams.imgSmartLoadOpts.opts ) > 0 ? CZRParams.imgSmartLoadOpts.opts : {}
         );
     
       //If the centerAllImg is on we have to ensure imgs will be centered when simple loaded,
@@ -4507,11 +4507,11 @@ var czrapp = czrapp || {};
       //1) imgs which have been excluded from the smartloading if enabled
       //2) all the images in the default 'where' if the smartloading isn't enaled
       //simple-load event on holders needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
-      if ( 1 == TCParams.centerAllImg ) {
+      if ( 1 == CZRParams.centerAllImg ) {
         var self                   = this,
             $_to_center            = smartLoadEnabled ? 
                $( _.filter( $( _where ).find('img'), function( img ) {
-                  return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
+                  return $(img).is(CZRParams.imgSmartLoadOpts.opts.excludeImg.join());
                 }) ): //filter 
                 $( _where ).find('img');
             $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
@@ -4530,14 +4530,14 @@ var czrapp = czrapp || {};
 
     //FIRE DROP CAP PLUGIN
     dropCaps : function() {
-      if ( ! TCParams.dropcapEnabled || ! _.isObject( TCParams.dropcapWhere ) )
+      if ( ! CZRParams.dropcapEnabled || ! _.isObject( CZRParams.dropcapWhere ) )
         return;
 
-      $.each( TCParams.dropcapWhere , function( ind, val ) {
+      $.each( CZRParams.dropcapWhere , function( ind, val ) {
         if ( 1 == val ) {
           $( '.entry-content' , 'body.' + ( 'page' == ind ? 'page' : 'single-post' ) ).children().first().addDropCap( {
-            minwords : TCParams.dropcapMinWords,//@todo check if number
-            skipSelectors : _.isObject(TCParams.dropcapSkipSelectors) ? TCParams.dropcapSkipSelectors : {}
+            minwords : CZRParams.dropcapMinWords,//@todo check if number
+            skipSelectors : _.isObject(CZRParams.dropcapSkipSelectors) ? CZRParams.dropcapSkipSelectors : {}
           });
         }
       });//each
@@ -4549,19 +4549,19 @@ var czrapp = czrapp || {};
     //images are excluded by default
     //links inside post/page content
     extLinks : function() {
-      if ( ! TCParams.extLinksStyle && ! TCParams.extLinksTargetExt )
+      if ( ! CZRParams.extLinksStyle && ! CZRParams.extLinksTargetExt )
         return;
       $('a' , '.entry-content').extLinks({
-        addIcon : TCParams.extLinksStyle,
-        newTab : TCParams.extLinksTargetExt,
-        skipSelectors : _.isObject(TCParams.extLinksSkipSelectors) ? TCParams.extLinksSkipSelectors : {}
+        addIcon : CZRParams.extLinksStyle,
+        newTab : CZRParams.extLinksTargetExt,
+        skipSelectors : _.isObject(CZRParams.extLinksSkipSelectors) ? CZRParams.extLinksSkipSelectors : {}
       });
     },
 
     //FIRE FANCYBOX PLUGIN
     //Fancybox with localized script variables
     fancyBox : function() {
-      if ( 1 != TCParams.FancyBoxState || 'function' != typeof($.fn.fancybox) )
+      if ( 1 != CZRParams.FancyBoxState || 'function' != typeof($.fn.fancybox) )
         return;
 
       $("a.grouped_elements").fancybox({
@@ -4570,7 +4570,7 @@ var czrapp = czrapp || {};
         speedIn: 200,
         speedOut: 200,
         overlayShow: !1,
-        autoScale: 1 == TCParams.FancyBoxAutoscale ? "true" : "false",
+        autoScale: 1 == CZRParams.FancyBoxAutoscale ? "true" : "false",
         changeFade: "fast",
         enableEscapeButton: !0
       });
@@ -4597,7 +4597,7 @@ var czrapp = czrapp || {};
         //centering per slider
         $.each( $( '.carousel .carousel-inner') , function() {  
           $( this ).centerImages( {
-            enableCentering : 1 == TCParams.centerSliderImg,
+            enableCentering : 1 == CZRParams.centerSliderImg,
             imgSel : '.item .carousel-image img',
             oncustom : ['slid', 'simple_load'],
             defaultCSSVal : { width : '100%' , height : 'auto' },
@@ -4615,7 +4615,7 @@ var czrapp = czrapp || {};
 
       //Featured Pages
       $('.widget-front .thumb-wrapper').centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         zeroTopAdjust : 1,
@@ -4625,7 +4625,7 @@ var czrapp = czrapp || {};
       //POST LIST THUMBNAILS + FEATURED PAGES
       //Squared, rounded
       $('.thumb-wrapper', '.hentry' ).centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         oncustom : ['smartload', 'simple_load']
@@ -4633,16 +4633,16 @@ var czrapp = czrapp || {};
 
       //rectangulars
       $('.tc-rectangular-thumb').centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         enableGoldenRatio : true,
-        goldenRatioVal : TCParams.goldenRatio || 1.618,
+        goldenRatioVal : CZRParams.goldenRatio || 1.618,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
       //SINGLE POST THUMBNAILS
       $('.tc-rectangular-thumb' , '.single').centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
         oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
@@ -4650,11 +4650,11 @@ var czrapp = czrapp || {};
 
       //POST GRID IMAGES
       $('.tc-grid-figure').centerImages( {
-        enableCentering : 1 == TCParams.centerAllImg,
+        enableCentering : 1 == CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : true,
-        goldenRatioVal : TCParams.goldenRatio || 1.618,
-        goldenRatioLimitHeightTo : TCParams.gridGoldenRatioLimit || 350
+        goldenRatioVal : CZRParams.goldenRatio || 1.618,
+        goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
       } );
     },//center_images
 
@@ -4689,9 +4689,9 @@ var czrapp = czrapp || {};
 
     fireSliders : function(name, delay, hover) {
       //Slider with localized script variables
-      var _name   = name || TCParams.SliderName,
-          _delay  = delay || TCParams.SliderDelay;
-          _hover  = hover || TCParams.SliderHover;
+      var _name   = name || CZRParams.SliderName,
+          _delay  = delay || CZRParams.SliderDelay;
+          _hover  = hover || CZRParams.SliderHover;
 
       if ( 0 === _name.length )
         return;
@@ -4802,7 +4802,7 @@ var czrapp = czrapp || {};
             this.increment++;
             clearTimeout(self.timer);
           }
-          if ( 1 == TCParams.timerOnScrollAllBrowsers ) {
+          if ( 1 == CZRParams.timerOnScrollAllBrowsers ) {
             this.timer = setTimeout( function() {
               self.bttArrowVisibility();
             }, self.increment > 5 ? 50 : 0 );
@@ -4823,23 +4823,23 @@ var czrapp = czrapp || {};
 
     //SMOOTH SCROLL
     smoothScroll: function() {
-      if ( TCParams.SmoothScroll && TCParams.SmoothScroll.Enabled )
-        smoothScroll( TCParams.SmoothScroll.Options );
+      if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled )
+        smoothScroll( CZRParams.SmoothScroll.Options );
     },
 
     //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
     anchorSmoothScroll : function() {
-      if ( ! TCParams.anchorSmoothScroll || 'easeOutExpo' != TCParams.anchorSmoothScroll )
+      if ( ! CZRParams.anchorSmoothScroll || 'easeOutExpo' != CZRParams.anchorSmoothScroll )
             return;
 
-      var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude.simple ) ) ? TCParams.anchorSmoothScrollExclude.simple.join(',') : '',
+      var _excl_sels = ( CZRParams.anchorSmoothScrollExclude && _.isArray( CZRParams.anchorSmoothScrollExclude.simple ) ) ? CZRParams.anchorSmoothScrollExclude.simple.join(',') : '',
           self = this,
           $_links = $('a[href^="#"]', '#content').not(_excl_sels);
 
       //Deep exclusion
       //are ids and classes selectors allowed ?
       //all type of selectors (in the array) must pass the filter test
-      _deep_excl = _.isObject( TCParams.anchorSmoothScrollExclude.deep ) ? TCParams.anchorSmoothScrollExclude.deep : null ;
+      _deep_excl = _.isObject( CZRParams.anchorSmoothScrollExclude.deep ) ? CZRParams.anchorSmoothScrollExclude.deep : null ;
       if ( _deep_excl )
         _links = _.toArray($_links).filter( function ( _el ) {
           return ( 2 == ( ['ids', 'classes'].filter( 
@@ -4858,7 +4858,7 @@ var czrapp = czrapp || {};
         if ('#' != anchor_id) {
             $('html, body').animate({
                 scrollTop: $(anchor_id).offset().top
-            }, 700, TCParams.anchorSmoothScroll);
+            }, 700, CZRParams.anchorSmoothScroll);
         }
         return false;
       });//click
@@ -4924,7 +4924,7 @@ var czrapp = czrapp || {};
     //COMMENTS
     //Change classes of the comment reply and edit to make the whole button clickable (no filters offered in WP to do that)
     clickableCommentButton : function() {
-      if ( ! TCParams.HasComments )
+      if ( ! CZRParams.HasComments )
         return;
 
       //edit
@@ -4949,7 +4949,7 @@ var czrapp = czrapp || {};
     //Detect layout and reorder content divs
     dynSidebarReorder : function() {
       //Enable reordering if option is checked in the customizer.
-      if ( 1 != TCParams.ReorderBlocks )
+      if ( 1 != CZRParams.ReorderBlocks )
         return;
 
       //fire on DOM READY and only for responsive devices
@@ -4973,8 +4973,8 @@ var czrapp = czrapp || {};
     _reorderSidebars : function( _sidebarLayout ) {
       _sidebarLayout = _sidebarLayout || 'normal';
       var that = this,
-          LeftSidebarClass    = TCParams.LeftSidebarClass || '.span3.left.tc-sidebar',
-          RightSidebarClass   = TCParams.RightSidebarClass || '.span3.right.tc-sidebar',
+          LeftSidebarClass    = CZRParams.LeftSidebarClass || '.span3.left.tc-sidebar',
+          RightSidebarClass   = CZRParams.RightSidebarClass || '.span3.right.tc-sidebar',
           $_WindowWidth       = czrapp.$_window.width();
 
       //cache some $
@@ -5055,10 +5055,10 @@ var czrapp = czrapp || {};
 
     //Mobile behaviour for the secondary menu
     secondMenuRespActions : function() {
-      if ( ! TCParams.isSecondMenuEnabled )
+      if ( ! CZRParams.isSecondMenuEnabled )
         return;
       //Enable reordering if option is checked in the customizer.
-      var userOption = TCParams.secondMenuRespSet || false,
+      var userOption = CZRParams.secondMenuRespSet || false,
           that = this;
       //if not a relevant option, abort
       if ( ! userOption || -1 == userOption.indexOf('in-sn') )
@@ -5162,13 +5162,13 @@ var czrapp = czrapp || {};
       this.$_resetMarginTop = $('#tc-reset-margin-top');
       //subclass properties
       this.elToHide         = []; //[ '.social-block' , '.site-description' ],
-      this.customOffset     = TCParams.stickyCustomOffset || {};// defaults : { _initial : 0, _scrolling : 0 }
+      this.customOffset     = CZRParams.stickyCustomOffset || {};// defaults : { _initial : 0, _scrolling : 0 }
       this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
       this.timer            = 0;
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
 
-      this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 5;
+      this.scrollingDelay   = 1 != CZRParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 5;
     },//init()
 
 
@@ -5424,7 +5424,7 @@ var czrapp = czrapp || {};
       this._class   = 'sticky-footer-enabled';
       this.$_page   = $('#tc-page-wrap');
       
-      if ( 1 != TCParams.stickyHeader ) {//sticky header fires a resize
+      if ( 1 != CZRParams.stickyHeader ) {//sticky header fires a resize
         var self = this;
         setTimeout( function() {
                 self._apply_sticky_footer(); }, 50 
