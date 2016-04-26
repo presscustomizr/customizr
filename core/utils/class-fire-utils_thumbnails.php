@@ -40,8 +40,9 @@ class CZR_cl_utils_thumbnails {
       $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'czr_thumb_size_name' , 'tc-thumb' ) : $requested_size;
       $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
 
-      $_filtered_thumb_size_name  = $_filtered_thumb_size_name ? $_filtered_thumb_size_name : 'tc_thumb_size';
-      $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, CZR_cl_init::$instance -> $_filtered_thumb_size_name );
+      $_filtered_thumb_size_name  = ! is_null( $_filtered_thumb_size_name ) ? $_filtered_thumb_size_name : 'tc_thumb_size';
+      $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, $_filtered_thumb_size_name ? CZR_cl_init::$instance -> $_filtered_thumb_size_name : null );
+
       $_model                     = array();
       $_img_attr                  = array();
       $tc_thumb_height            = '';
