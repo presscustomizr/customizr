@@ -136,8 +136,6 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     $smart_load_enabled = 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
       remove_filter( 'czr_thumb_html', array( CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
-    // prevent adding thumb inline style when no center img is added
-    add_filter( 'czr_post_thumb_inline_style', '__return_empty_string', 100 );
     /*** end tc_thumb setup ***/
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
@@ -154,8 +152,6 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
       add_filter('czr_thumb_html', array(CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
-    // remove thumb style reset
-    remove_filter( 'czr_post_thumb_inline_style', '__return_empty_string', 100 );
     /* end tc_thumb reset filters */
     if ( ! empty( $pre_slides_posts ) ) {
       /*** Setup shared properties ***/
@@ -311,7 +307,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   function czr_fn_get_single_post_slide_pre_model( $_post , $img_size, $args ){
     $ID                     = $_post->ID;
     //attachment image
-    $thumb                  = CZR_cl_utils_thumbnails::$instance -> czr_fn_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
+    $thumb                  = CZR_cl_utils_thumbnails::$instance -> czr_fn_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null, '' );
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
     // we don't want to show slides with no image
     if ( ! $slide_background )
