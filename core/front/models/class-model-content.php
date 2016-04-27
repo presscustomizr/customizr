@@ -34,7 +34,7 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
 
       //smartload help block
       array(
-        'hook'        => '__before_main_loop',
+        'hook'        => 'loop_start',
         'template'    => 'modules/help_block',
         'id'          => 'post_list_smartload_help_block',
         'model_class' => array( 'parent' => 'modules/help_block',
