@@ -164,8 +164,10 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
 
     /* Single post thumbnail */
     function czr_fn_display_view_post_thumbnail() {
+      $display_attachment_as_thumb = apply_filters( 'czr_use_attachment_as_thumb', false ) && CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb();
+
       return $this -> czr_fn_display_view_post() && 'hide' != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'czr_show_single_post_thumbnail' , CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb() );
+        && apply_filters( 'czr_show_single_post_thumbnail' , $display_attachment_as_thumb || has_post_thumbnail() );
     }
 
 
