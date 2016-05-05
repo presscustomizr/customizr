@@ -31,6 +31,9 @@ if ( ! class_exists( 'TC_resources' ) ) :
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_fonts_inline_css') );
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_dropcap_inline_css') );
 
+          /* See: https://github.com/presscustomizr/customizr/issues/605 */
+          add_filter('tc_user_options_style'          , array( $this , 'tc_apply_media_upload_front_patch' ) );
+
           //set random skin
           add_filter ('tc_opt_tc_skin'                , array( $this, 'tc_set_random_skin' ) );
 
@@ -53,7 +56,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
           //Enqueue FontAwesome CSS
           if ( true == TC_utils::$inst -> tc_opt( 'tc_font_awesome_css' ) ) {
             $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
-            wp_enqueue_style( 'customizr-fa', 
+            wp_enqueue_style( 'customizr-fa',
                 $_path . '/fonts/' . TC_init::$instance -> tc_maybe_use_min_style( 'font-awesome.css' ),
                 array() , CUSTOMIZR_VER, 'all' );
           }
@@ -351,7 +354,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
               url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff') format('woff'),
               url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
               url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
-        }        
+        }
         <?php
       $_font_css = ob_get_contents();
       if ($_font_css) ob_end_clean();
@@ -379,6 +382,17 @@ if ( ! class_exists( 'TC_resources' ) ) :
     }//end of function
 
 
+    /* See: https://github.com/presscustomizr/customizr/issues/605 */
+    function tc_apply_media_upload_front_patch( $_css ) {
+      global $wp_version;
+      if ( version_compare( '4.5', $wp_version, '<=' ) )
+        $_css = sprintf("%s%s",
+  		            	$_css,
+                        'table { border-collapse: separate; }
+                         body table { border-collapse: collapse; }
+                        ');
+      return $_css;
+    }
 
 
 		/*
