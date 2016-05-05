@@ -18,6 +18,7 @@
  => POST GRID
  => PLACEHOLDERS / DISMISS NOTICES
  => WP SPECIFICS
+ => WOOCOMMERCE SPECIFICS
  => FOOTER
  => ADMIN BAR
  => MEDIA PRINT
@@ -1828,10 +1829,7 @@ article.hover .tc-thumbnail .round-div {
 h1.entry-title, h2.entry-title {
   width: 100%;
 }
-/* woocommerce product titles */
-.woocommerce div.product .product_title {
-  text-align: @textAlign;
-}
+
 h1 a:hover, h2 a:hover {
   text-decoration: none;
 }
@@ -2585,10 +2583,7 @@ article .no-thumb figcaption {
   background: none;
   background: none;
 }
-/* Woocommerce thumbnails */
-.woocommerce .thumbnails {
-  margin-left: 0;
-}
+
 
 
 /*
@@ -2896,6 +2891,30 @@ tr td:first-child {
 }
 ul {
   /*list-style: none outside;*/
+}
+
+/* WOOCOMMERCE SPECIFICS
+    -------------------------------------------------- */
+
+/* woocommerce product titles */
+.woocommerce div.product .product_title {
+  text-align: @textAlign;
+}
+/* Woocommerce thumbnails */
+.woocommerce .thumbnails {
+  margin-left: 0;
+}
+/* woocommerce variation fix */
+.woocommerce .variations .label {
+  color: inherit;
+}
+.woocommerce div.product form.cart .variations td,
+.woocommerce div.product form.cart .variations th {
+  background: none;
+  vertical-align: text-top;
+}
+.woocommerce div.product form.cart .variations select {
+  margin-bottom: 0;  
 }
 
 /* FOOTER
