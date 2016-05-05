@@ -3,6 +3,7 @@
 //@todo add customizr.pot in replace version file list
 module.exports = function(grunt) {
 	var path = require('path');
+  var _ = require('lodash');
 	var global_config = {
 		// path to task.js files, defaults to grunt dir
         configPath: path.join(process.cwd(), 'grunt-tasks-config/'),
@@ -63,9 +64,9 @@ module.exports = function(grunt) {
 	//http://gruntjs.com/api/grunt.task#grunt.task.loadtasks
 	//grunt.loadTasks('grunt-tasks');
 	// REGISTER TASKS
-	grunt.util._(grunt.config('customizr_tasks')).map(function(task, name) {
-		grunt.registerTask(name, task);
-	});
+  _.map( grunt.config('customizr_tasks'), function(task, name) {
+    grunt.registerTask(name, task);
+  });
 
 	//DEV WATCH EVENT
 	//watch is enabled only in dev mode

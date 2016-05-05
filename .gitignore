@@ -19,6 +19,7 @@ node_modules/
 .ftpauth
 #grunt-tasks-config/
 # gruntfile.js
+npm-debug.log
 
 # PHP_CodeSniffer
 PHP_CodeSniffer/

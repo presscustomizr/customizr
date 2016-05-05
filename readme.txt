@@ -40,6 +40,16 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.21 May 5th 2016 =
+* Fix: remove grunt live reload script fixes #611
+* Fix: border-collapse specify 'separate' instead of 'initial': Opera fix should work with IE too, needs further tests
+* Fix: fix wp media insert in front fixes #605
+* Fix: fix woocommerce variation not visible on a product page fixes #601
+* Fix : rename Finnish translations to match Wordpress core
+* Fix: fix potential issue with the dropdown limit to viewport and some plugins (maybe) fixes #593
+* Imp: be sure drodpown are displayed when overflowing the header/navbar fixes #608
+* Imp: allow wc-cart in the header ajax update
+
 = 3.4.20 March 14th 2016 =
 * Update: translations ru_RU and id_ID
 * Fix: calendar widget style in footer with multiple widget instances
