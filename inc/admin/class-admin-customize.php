@@ -45,9 +45,6 @@ if ( ! class_exists( 'TC_customize' ) ) :
   		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ), 20 );
   		//Hide donate button
   		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
-  		//Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
-      if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
-      	add_action( 'customize_controls_print_scripts'        , array( $this , 'tc_add_livereload_script') );
 
       add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'tc_print_js_templates' ) );
     }
@@ -516,21 +513,6 @@ if ( ! class_exists( 'TC_customize' ) ) :
     }
 
 
-
-	  /*
-		* Writes the livereload script in dev mode (Grunt watch livereload enabled)
-		*@since v3.2.4
-		*/
-		function tc_add_livereload_script() {
-			?>
-			<script id="tc-dev-live-reload" type="text/javascript">
-			    document.write('<script src="http://'
-			        + ('localhost').split(':')[0]
-			        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')
-			    console.log('When WP_DEBUG mode is enabled, activate the watch Grunt task to enable live reloading. This script can be disabled with the following code to paste in your functions.php file : add_filter("tc_live_reload_in_dev_mode" , "__return_false")');
-			</script>
-			<?php
-		}
 
 
 
