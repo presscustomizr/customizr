@@ -37,10 +37,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
           //set random skin
           add_filter ('tc_opt_tc_skin'                , array( $this, 'tc_set_random_skin' ) );
 
-          //Grunt Live reload script on DEV mode (TC_DEV constant has to be defined. In wp_config for example)
-	        if ( defined('TC_DEV') && true === TC_DEV && apply_filters('tc_live_reload_in_dev_mode' , true ) )
-	        	add_action( 'wp_head' , array( $this , 'tc_add_livereload_script' ) );
-
           //stores the front scripts map in a property
           $this -> tc_script_map = $this -> tc_get_script_map();
 	    }
@@ -393,24 +389,6 @@ if ( ! class_exists( 'TC_resources' ) ) :
                         ');
       return $_css;
     }
-
-
-		/*
-		* Writes the livereload script in dev mode (if Grunt watch livereload is enabled)
-		*@since v3.2.4
-		*/
-		function tc_add_livereload_script() {
-			if ( TC___::$instance -> tc_is_customizing() )
-				return;
-			?>
-			<script id="tc-dev-live-reload" type="text/javascript">
-			    document.write('<script src="http://'
-			        + ('localhost').split(':')[0]
-			        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')
-			    console.log('When WP_DEBUG mode is enabled, activate the watch Grunt task to enable live reloading. This script can be disabled with the following code to paste in your functions.php file : add_filter("tc_live_reload_in_dev_mode" , "__return_false")');
-			</script>
-			<?php
-		}
 
 
 
