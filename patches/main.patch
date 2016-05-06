@@ -1,11 +1,11 @@
---- inc/assets/js/main.js	2014-11-24 18:29:14.758984428 +0100
-+++ inc/assets/js/main.js	2014-11-24 18:32:55.583977904 +0100
+--- assets/front/js/main.js	2014-11-24 18:29:14.758984428 +0100
++++ assets/front/js/main.js	2014-11-24 18:32:55.583977904 +0100
 @@ -165,10 +165,12 @@
          left                = $("#main-wrapper .container " + LeftSidebarClass),
          right               = $("#main-wrapper .container " + RightSidebarClass);
- 
+
 +    var reordered = false;
-+    
++
      function BlockPositions() {
          //15 pixels adjustement to avoid replacement before real responsive width
          WindowWidth = $(window).width();
@@ -31,7 +31,7 @@
 +            reordered = true; //this could stay in both if blocks instead
          }
      }//end function*/
- 
+
 @@ -196,7 +200,7 @@
      if ( 1 == TCParams.ReorderBlocks ) {
          //trigger the block positioning only when responsive
@@ -40,4 +40,4 @@
 +        if ( WindowWidth <= 767 - 15 && ! reordered ) {
              BlockPositions();
          }
- 
+

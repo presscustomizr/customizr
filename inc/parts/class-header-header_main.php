@@ -17,7 +17,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
     function __construct () {
       self::$instance =& $this;
       //Set header hooks
-      //we have to use 'wp' action hook to show header in multisite wp-signup/wp-activate.php which don't fire template_redirect hook 
+      //we have to use 'wp' action hook to show header in multisite wp-signup/wp-activate.php which don't fire template_redirect hook
       //(see https://github.com/presscustomizr/customizr/issues/395)
       add_action ( 'wp'                    , array( $this , 'tc_set_header_hooks' ) );
 
@@ -127,7 +127,7 @@ if ( ! class_exists( 'TC_header_main' ) ) :
 
 				   <!-- html5shiv for IE8 and less  -->
 				    <!--[if lt IE 9]>
-				      <script src="<?php echo TC_BASE_URL ?>inc/assets/js/html5.js"></script>
+				      <script src="<?php echo TC_BASE_URL ?>assets/front/js/html5.js"></script>
 				    <![endif]-->
 				    <?php wp_head(); ?>
 				</head>

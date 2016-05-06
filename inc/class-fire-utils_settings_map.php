@@ -190,7 +190,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( 'Favicon Upload (supported formats : .ico, .png, .gif)' , 'customizr' ),
                                 'title'     => __( 'FAVICON' , 'customizr'),
                                 'section'   =>  'logo_sec' ,
-                                'type'      => 'tc_upload',
+                                'type'      => 'czr_upload',
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number'),
               )
       );
@@ -942,7 +942,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       =>  __( 'Apply a category filter to your home / blog posts' , 'customizr'  ),
                                 'section'     => 'frontpage_sec',
                                 'control'     => 'TC_Customize_Multipicker_Categories_Control',
-                                'type'        => 'tc_multiple_picker',
+                                'type'        => 'czr_multiple_picker',
                                 'priority'    => 1,
                                 'notice'      => $_cat_picker_notice
               ),
@@ -2744,8 +2744,8 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
     * @updated Customizr 3.0.15
     */
     private function tc_build_skin_list() {
-        $parent_skins   = $this -> tc_get_skins(TC_BASE .'inc/assets/css');
-        $child_skins    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css') ) ? $this -> tc_get_skins(TC_BASE_CHILD .'inc/assets/css') : array();
+        $parent_skins   = $this -> tc_get_skins(TC_BASE .'assets/front/css');
+        $child_skins    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'assets/front/css') ) ? $this -> tc_get_skins(TC_BASE_CHILD .'assets/front/css') : array();
         $skin_list      = array_merge( $parent_skins , $child_skins );
 
       return apply_filters( 'tc_skin_list', $skin_list );

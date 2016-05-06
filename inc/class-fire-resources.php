@@ -22,7 +22,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	        self::$instance =& $this;
           add_action( 'wp_enqueue_scripts'            , array( $this , 'tc_enqueue_gfonts' ) , 0 );
 	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_styles' ) );
-            add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_scripts' ) );
+          add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_scripts' ) );
           //Custom Stylesheets
           //Write font icon
           add_filter('tc_user_options_style'          , array( $this , 'tc_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
@@ -51,7 +51,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
         function tc_enqueue_front_styles() {
           //Enqueue FontAwesome CSS
           if ( true == TC_utils::$inst -> tc_opt( 'tc_font_awesome_css' ) ) {
-            $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+            $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'assets/front/css/' );
             wp_enqueue_style( 'customizr-fa',
                 $_path . '/fonts/' . TC_init::$instance -> tc_maybe_use_min_style( 'font-awesome.css' ),
                 array() , CUSTOMIZR_VER, 'all' );
@@ -80,71 +80,71 @@ if ( ! class_exists( 'TC_resources' ) ) :
     private function tc_get_script_map( $_handles = array() ) {
       $_map = array(
         'tc-js-params' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'tc-js-params.js' ),
           'dependencies' => array( 'jquery' )
         ),
         //adds support for map method in array prototype for old ie browsers <ie9
         'tc-js-arraymap-proto' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'oldBrowserCompat.min.js' ),
           'dependencies' => array()
         ),
         'tc-bootstrap' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'bootstrap.js' , 'bootstrap.min.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery', 'tc-js-params' )
         ),
         'tc-img-original-sizes' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'jqueryimgOriginalSizes.js' ),
           'dependencies' => array('jquery')
         ),
         'tc-smoothscroll' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'smoothScroll.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'underscore' )
         ),
         'tc-outline' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'outline.js' ),
           'dependencies' => array()
         ),
         'tc-dropcap' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'jqueryaddDropCap.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
         'tc-img-smartload' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'jqueryimgSmartLoad.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
         'tc-ext-links' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'jqueryextLinks.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
         'tc-center-images' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'jqueryCenterImages.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
         ),
         //!!no fancybox dependency if fancybox not required!
         'tc-main-front' => array(
-          'path' => 'inc/assets/js/parts/',
+          'path' => 'assets/front/js/parts/',
           'files' => array( 'main.js' , 'main.min.js' ),
           'dependencies' => $this -> tc_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
         ),
         //loaded separately => not included in tc-script.js
         'tc-fancybox' => array(
-          'path' => 'inc/assets/js/fancybox/',
+          'path' => 'assets/front/js/fancybox/',
           'files' => array( 'jquery.fancybox-1.3.4.min.js' ),
           'dependencies' => $this -> tc_load_concatenated_front_scripts() ? array( 'jquery' ) : array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap' )
         ),
         //concats all scripts except fancybox
         'tc-scripts' => array(
-          'path' => 'inc/assets/js/',
+          'path' => 'assets/front/js/',
           'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
           'dependencies' =>  $this -> tc_is_fancyboxjs_required() ? array( 'jquery', 'tc-fancybox' ) : array( 'jquery' )
         )
@@ -175,7 +175,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 	    wp_enqueue_script(
         'modernizr'
         ,
-        TC_BASE_URL . 'inc/assets/js/modernizr.min.js',
+        TC_BASE_URL . 'assets/front/js/modernizr.min.js',
         array(),
         CUSTOMIZR_VER,
         //load in head if browser is chrome => fix the issue of 3Dtransform not detected in some cases
@@ -287,14 +287,14 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 	    //fancybox style
 	    if ( $this -> tc_is_fancyboxjs_required() )
-	      wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'inc/assets/js/fancybox/jquery.fancybox-1.3.4.min.css' );
+	      wp_enqueue_style( 'fancyboxcss' , TC_BASE_URL . 'assets/front/js/fancybox/jquery.fancybox-1.3.4.min.css' );
 
 	    //holder.js is loaded when featured pages are enabled AND FP are set to show images and at least one holder should be displayed.
       $tc_show_featured_pages 	         = class_exists('TC_featured_pages') && TC_featured_pages::$instance -> tc_show_featured_pages();
     	if ( 0 != $tc_show_featured_pages && $this -> tc_maybe_is_holder_js_required() ) {
 	    	wp_enqueue_script(
 	    		'holder',
-	    		sprintf( '%1$sinc/assets/js/holder.min.js' , TC_BASE_URL ),
+	    		sprintf( '%1$sassets/front/js/holder.min.js' , TC_BASE_URL ),
 	    		array(),
 	    		CUSTOMIZR_VER,
 	    		$in_footer = true
@@ -303,11 +303,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
 	    //load retina.js in footer if enabled
 	    if ( apply_filters('tc_load_retinajs', 1 == TC_utils::$inst->tc_opt( 'tc_retina_support' ) ) )
-	    	wp_enqueue_script( 'retinajs' ,TC_BASE_URL . 'inc/assets/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+	    	wp_enqueue_script( 'retinajs' ,TC_BASE_URL . 'assets/front/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
 	    //Load hammer.js for mobile
 	    if ( apply_filters('tc_load_hammerjs', wp_is_mobile() ) )
-	    	wp_enqueue_script( 'hammer' ,TC_BASE_URL . 'inc/assets/js/hammer.min.js', array('jquery'), CUSTOMIZR_VER );
+	    	wp_enqueue_script( 'hammer' ,TC_BASE_URL . 'assets/front/js/hammer.min.js', array('jquery'), CUSTOMIZR_VER );
 
 		}
 
@@ -339,7 +339,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
       if ( false == TC_utils::$inst -> tc_opt( 'tc_font_awesome_icons' ) )
         return;
 
-      $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+      $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'assets/front/css/' );
       ob_start();
         ?>
         @font-face {

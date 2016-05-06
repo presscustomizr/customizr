@@ -771,10 +771,10 @@ class TC_slider {
     if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) )
       $_pure_css_loader = sprintf( '<div class="tc-css-loader %1$s">%2$s</div>',
             implode( ' ', apply_filters( 'tc_pure_css_loader_add_classes', array( 'tc-mr-loader') ) ),
-            apply_filters( 'tc_pure_css_loader_inner', '<div></div><div></div><div></div>') 
+            apply_filters( 'tc_pure_css_loader_inner', '<div></div><div></div><div></div>')
       );
     else
-      $_pure_css_loader = '';     
+      $_pure_css_loader = '';
     ?>
       <div id="tc-slider-loader-wrapper-<?php echo self::$rendered_sliders ?>" class="tc-slider-loader-wrapper" style="display:none;">
         <div class="tc-img-gif-loader"></div>
@@ -901,9 +901,9 @@ class TC_slider {
   *
   */
   function tc_render_slide_edit_link_view( $_view_model ) {
-    //never display when customizing  
+    //never display when customizing
     if ( TC___::$instance -> tc_is_customizing() )
-      return;   
+      return;
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
 
@@ -936,9 +936,9 @@ class TC_slider {
   */
 
   function tc_render_slider_edit_link_view( $slides, $slider_name_id ) {
-    //never display when customizing  
+    //never display when customizing
     if ( TC___::$instance -> tc_is_customizing() )
-      return;   
+      return;
     if ( 'demo' == $slider_name_id )
       return;
 
@@ -1200,8 +1200,8 @@ class TC_slider {
   function tc_write_slider_inline_css( $_css ) {
     //custom css for the slider loader
     if ( $this -> tc_is_slider_loader_active( $this -> tc_get_current_slider( $this -> tc_get_real_id() ) ) ) {
-        
-      $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') );
+
+      $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'assets/front/img/slider-loader.gif') );
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
       if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) ) {
         $_slider_loader_gif_class  = '.no-csstransforms3d';
@@ -1209,22 +1209,22 @@ class TC_slider {
         // Basically 'cause the loader is something we see when the page "loads" then it disappears so a live change of the skin
         // will still have no visive impact on it. This will avoid us to rebuild the custom skins.
         $_current_skin_colors      = TC_utils::$inst -> tc_get_skin_color( 'pair' );
-        $_pure_css_loader_css      = apply_filters( 'tc_slider_loader_css', sprintf( 
+        $_pure_css_loader_css      = apply_filters( 'tc_slider_loader_css', sprintf(
             '.tc-slider-loader-wrapper .tc-css-loader > div { border-color:%s; }',
             //we can use the primary or the secondary skin color
             'primary' == apply_filters( 'tc_slider_loader_color', 'primary') ? $_current_skin_colors[0] : $_current_skin_colors[1]
-        )); 
+        ));
       }else {
         $_slider_loader_gif_class = '';
         $_pure_css_loader_css     = '';
       }
-      
-      $_slider_loader_gif_css     = $_slider_loader_src ? sprintf( 
+
+      $_slider_loader_gif_css     = $_slider_loader_src ? sprintf(
                                         '%1$s .tc-slider-loader-wrapper .tc-img-gif-loader {
                                                 background: url(\'%2$s\') no-repeat center center;
                                          }',
                                          $_slider_loader_gif_class,
-                                         $_slider_loader_src 
+                                         $_slider_loader_src
                                      ) : '';
       $_css = sprintf( "$_css\n%s%s",
                           $_slider_loader_gif_css,

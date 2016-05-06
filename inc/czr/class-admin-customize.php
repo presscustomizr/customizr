@@ -47,6 +47,49 @@ if ( ! class_exists( 'TC_customize' ) ) :
   		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
 
       add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'tc_print_js_templates' ) );
+
+
+      //exports some wp_query informations. Updated on each preview refresh.
+      add_action ( 'customize_preview_init'                   , array( $this , 'tc_add_preview_footer_action' ), 20 );
+      //Various DOM ready actions + print rate link + template
+      add_action( 'customize_controls_print_footer_scripts'   , array( $this, 'tc_various_dom_ready' ) );
+      //Add the visibilities
+      add_action( 'customize_controls_print_footer_scripts'   , array( $this, 'tc_extend_visibilities' ), 10 );
+
+
+      //Partial refreshs
+      add_action( 'customize_register'                        , array( $this,  'tc_register_partials' ) );
+    }
+
+
+    /**
+    * Augments wp customize controls and settings classes
+    * @package Customizr
+    * @since Customizr 1.0
+    */
+    function tc_augment_customizer( $manager ) {
+      $_classes = array(
+        'controls/class-base-advanced-control.php',
+        'controls/class-base-control.php',
+        'controls/class-cropped-image-control.php',
+        'controls/class-dynamic-control.php',
+        'controls/class-layout-control.php',
+        'controls/class-multipicker-control.php',
+        'controls/class-socials-control.php',
+        'controls/class-upload-control.php',
+        'controls/class-widget-areas-control.php',
+
+        'sections/class-widgets-section.php',
+
+        'settings/class-settings.php'
+      );
+      foreach ($_classes as $_path) {
+        locate_template( 'inc/czr/' . $_path , $load = true, $require_once = true );
+      }
+
+      //Registered types are eligible to be rendered via JS and created dynamically.
+      if ( class_exists('TC_Customize_Cropped_Image_Control') )
+        $manager -> register_control_type( 'TC_Customize_Cropped_Image_Control' );
     }
 
 
@@ -150,26 +193,6 @@ if ( ! class_exists( 'TC_customize' ) ) :
         printf( '<h3 class="tc-customizr-title">%s</h3>', __( 'SITE ICON' , 'customizr') );
     }
 
-		/**
-		* Augments wp customize controls and settings classes
-		* @package Customizr
-		* @since Customizr 1.0
-		*/
-		function tc_augment_customizer( $manager ) {
-      //loads custom settings and controls classes for the Customizr theme
-      //- TC_Customize_Setting extends WP_Customize_Setting => to override the value() method
-      //- TC_controls extends WP_Customize_Control => overrides the render() method
-      //- TC_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control => introduced in v3.4.19, uses a js template to render the control
-      //- TC_Customize_Upload_Control extends WP_Customize_Control => old upload control used until v3.4.18, still used if current version of WP is < 4.3
-      //- TC_Customize_Multipicker_Control extends TC_controls => used for multiple cat picker for example
-      //- TC_Customize_Multipicker_Categories_Control extends TC_Customize_Multipicker_Control => extends the multipicker
-      //- TC_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown => needed for the multipicker to allow more than one "selected" attribute
-      locate_template( 'inc/admin/class-tc-controls-settings.php' , $load = true, $require_once = true );
-
-      //Registered types are eligible to be rendered via JS and created dynamically.
-      if ( class_exists('TC_Customize_Cropped_Image_Control') )
-        $manager -> register_control_type( 'TC_Customize_Cropped_Image_Control' );
-		}
 
 
 
@@ -375,7 +398,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 			wp_enqueue_script(
 				'tc-customizer-preview' ,
-				sprintf('%1$s/inc/admin/js/theme-customizer-preview%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+				sprintf('%1$s/assets/czr/js/czr-preview%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-preview', 'underscore'),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				true
@@ -413,14 +436,14 @@ if ( ! class_exists( 'TC_customize' ) ) :
 
 			wp_enqueue_style(
 				'tc-customizer-controls-style',
-				sprintf('%1$s/inc/admin/css/theme-customizer-control%2$s.css' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+				sprintf('%1$s/assets/czr/css/czr-control%2$s.css' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' ),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				$media = 'all'
 			);
 			wp_enqueue_script(
 				'tc-customizer-controls',
-				sprintf('%1$s/inc/admin/js/theme-customizer-control%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+				sprintf('%1$s/assets/czr/js/czr-control%2$s.js' , get_template_directory_uri(), ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
 				array( 'customize-controls' , 'underscore'),
 				( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
 				true
@@ -430,7 +453,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			//overriden by some specific style in theme-customzer-control.css
 			wp_enqueue_style(
 				'tc-select2-css',
-				sprintf('%1$s/inc/admin/js/lib/select2.min.css', get_template_directory_uri() ),
+				sprintf('%1$s/assets/czr/js/lib/select2.min.css', get_template_directory_uri() ),
 				array( 'customize-controls' ),
 				CUSTOMIZR_VER,
 				$media = 'all'
@@ -457,7 +480,7 @@ if ( ! class_exists( 'TC_customize' ) ) :
 			//localizes
 			wp_localize_script(
         'tc-customizer-controls',
-        'TCControlParams',
+        'serverControlParams',
         apply_filters('tc_js_customizer_control_params' ,
 	        array(
 	        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),

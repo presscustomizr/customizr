@@ -5,14 +5,14 @@ jQuery(function ($) {
 
   /* CONTRIBUTION TO CUSTOMIZR */
   var donate_displayed  = false,
-      is_pro            = 'customizr-pro' == TCControlParams.themeName;
-  if (  ! TCControlParams.HideDonate && ! is_pro ) {
+      is_pro            = 'customizr-pro' == serverControlParams.themeName;
+  if (  ! serverControlParams.HideDonate && ! is_pro ) {
     _render_donate_block();
     donate_displayed = true;
   }
 
   //Main call to action
-  if ( TCControlParams.ShowCTA && ! donate_displayed && ! is_pro ) {
+  if ( serverControlParams.ShowCTA && ! donate_displayed && ! is_pro ) {
    _render_main_cta();
   }
 
@@ -113,10 +113,10 @@ jQuery(function ($) {
   }
 
   function _ajax_save() {
-      var AjaxUrl         = TCControlParams.AjaxUrl,
+      var AjaxUrl         = serverControlParams.AjaxUrl,
       query = {
           action  : 'hide_donate',
-          TCnonce :  TCControlParams.TCNonce,
+          TCnonce :  serverControlParams.TCNonce,
           wp_customize : 'on'
       },
       request = $.post( AjaxUrl, query );

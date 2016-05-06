@@ -42,7 +42,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.admin_js %>theme-customizer-control.js']
+				src: ['<%= paths.admin_js %>czr-control.js']
 			}
 		]
 	},

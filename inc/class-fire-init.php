@@ -343,7 +343,7 @@ if ( ! class_exists( 'TC_init' ) ) :
               'active'        =>  'active',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'inc/assets/img/customizr-theme-responsive.png',
+                                          TC_BASE_URL.'assets/front/img/customizr-theme-responsive.png',
                                           __( 'Customizr is a clean responsive theme' , 'customizr' )
                                   )
             ),
@@ -357,7 +357,7 @@ if ( ! class_exists( 'TC_init' ) ) :
               'active'        =>  '',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'inc/assets/img/customizr-theme-customizer.png',
+                                          TC_BASE_URL.'assets/front/img/customizr-theme-customizer.png',
                                           __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                                   )
             )
@@ -548,23 +548,23 @@ if ( ! class_exists( 'TC_init' ) ) :
       */
       function tc_get_style_src( $_wot = 'skin' ) {
         $_sheet    = ( 'skin' == $_wot ) ? esc_attr( TC_utils::$inst->tc_opt( 'tc_skin' ) ) : 'tc_common.css';
-        $_sheet    = $this -> tc_maybe_use_min_style( $_sheet ); 
+        $_sheet    = $this -> tc_maybe_use_min_style( $_sheet );
 
         //Finds the good path : are we in a child theme and is there a skin to override?
-        $remote_path    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css/' . $_sheet) ) ? TC_BASE_URL_CHILD .'inc/assets/css/' : false ;
-        $remote_path    = ( ! $remote_path && file_exists(TC_BASE .'inc/assets/css/' . $_sheet) ) ? TC_BASE_URL .'inc/assets/css/' : $remote_path ;
+        $remote_path    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'assets/front/css/' . $_sheet) ) ? TC_BASE_URL_CHILD .'assets/front/css/' : false ;
+        $remote_path    = ( ! $remote_path && file_exists(TC_BASE .'assets/front/css/' . $_sheet) ) ? TC_BASE_URL .'assets/front/css/' : $remote_path ;
         //Checks if there is a rtl version of common if needed
         if ( 'skin' != $_wot && ( is_rtl() || ( defined( 'WPLANG' ) && ( 'ar' == WPLANG || 'he_IL' == WPLANG ) ) ) ){
-          $remote_rtl_path   = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css/rtl/' . $_sheet) ) ? TC_BASE_URL_CHILD .'inc/assets/css/rtl/' : false ;
-          $remote_rtl_path   = ( ! $remote_rtl_path && file_exists(TC_BASE .'inc/assets/css/rtl/' . $_sheet) ) ? TC_BASE_URL .'inc/assets/css/rtl/' : $remote_rtl_path;
+          $remote_rtl_path   = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'assets/front/css/rtl/' . $_sheet) ) ? TC_BASE_URL_CHILD .'assets/front/css/rtl/' : false ;
+          $remote_rtl_path   = ( ! $remote_rtl_path && file_exists(TC_BASE .'assets/front/css/rtl/' . $_sheet) ) ? TC_BASE_URL .'assets/front/css/rtl/' : $remote_rtl_path;
           $remote_path       = $remote_rtl_path ? $remote_rtl_path : $remote_path;
         }
 
         //Defines the active skin and fallback to blue.css if needed
         if ( 'skin' == $_wot )
-          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/blue3.css';
+          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'assets/front/css/blue3.css';
         else
-          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/tc_common.css';
+          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'assets/front/css/tc_common.css';
 
         return apply_filters ( 'tc_get_style_src' , $tc_get_style_src , $_wot );
       }
@@ -576,7 +576,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       *
       * Returns the min or normal version of the passed css filename (basename.type)
       * depending on whether or not the minified version should be used
-      *  
+      *
       * @param $_sheet string
       *
       * @return string

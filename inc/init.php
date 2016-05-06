@@ -97,7 +97,7 @@ if ( ! class_exists( 'TC___' ) ) :
               array('inc/admin' , 'admin_page')//creates the welcome/help panel including changelog and system config
             ),
             'admin'     => array(
-              array('inc/admin' , 'customize'),//loads customizer actions and resources
+              array('inc/czr' , 'customize'),//loads customizer actions and resources
               array('inc/admin' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
             ),
             //the following files/classes define the action hooks for front end rendering : header, main content, footer

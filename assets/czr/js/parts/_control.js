@@ -6,7 +6,7 @@
 (function (wp, $, _) {
   var api = wp.customize,
       $_nav_section_container,
-      translatedStrings = TCControlParams.translatedStrings || {};
+      translatedStrings = serverControlParams.translatedStrings || {};
 
   api.bind( 'ready' , function() {
     _setControlVisibilities();
@@ -347,7 +347,7 @@
       }
     },
     'tc_show_featured_pages': {
-      controls: TCControlParams.FPControls,
+      controls: serverControlParams.FPControls,
       callback: function (to) {
         return '1' == to;
       }
@@ -404,7 +404,7 @@
       ],
       callback: function (to, targetSetId) {
         //slider height options must be hidden is height = default height (500px), unchanged by user
-        var _defaultHeight = TCControlParams.defaultSliderHeight || 500;
+        var _defaultHeight = serverControlParams.defaultSliderHeight || 500;
         return _defaultHeight != to;
       }
     },
@@ -565,7 +565,7 @@
         return '1' == to;
       },
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) { 
+        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) {
           return to &&  //api.control.active is available since wp 4.0 as the php active_callback
             //so let's skip this for older wp versions
             ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
@@ -728,8 +728,8 @@
       },
       //display dependant if master setting value == value
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) { 
-            return to; 
+        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) {
+            return to;
         } },
       }
     }

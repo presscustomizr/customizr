@@ -52,7 +52,7 @@
         //add a new link to the live stylesheet instead of replacing the actual skin link => avoid the flash of unstyle content during the skin load
         var $skin_style_element = ( 0 === $('#live-skin-css').length ) ? $('<link>' , { id : 'live-skin-css' , rel : 'stylesheet'}) : $('#live-skin-css'),
             skinName = to.replace('.css' , '.min.css'),
-            skinURL = [ TCPreviewParams.themeFolder , '/inc/assets/css/' , skinName ].join('');
+            skinURL = [ TCPreviewParams.themeFolder , '/assets/front/css/' , skinName ].join('');
 
         //check if the customSkin param is filtered
         if ( TCPreviewParams.customSkin && TCPreviewParams.customSkin.skinName && TCPreviewParams.customSkin.fullPath )
@@ -445,7 +445,7 @@
   ******************************************/
   $.extend( _preview_cbs, {
     tc_show_post_navigation : function( to ) {
-      var $_post_nav = $( '#nav-below' );  
+      var $_post_nav = $( '#nav-below' );
       if ( false === to )
         $_post_nav.hide('slow');
             else if ( ! $_post_nav.hasClass('hide-post-navigation') )

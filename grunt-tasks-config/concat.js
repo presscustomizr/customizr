@@ -12,6 +12,6 @@ module.exports = {
 	},
 	admin_control_js:{
 		src: ['<%= paths.front_js %>parts/oldBrowserCompat.js', '<%= paths.admin_js %>lib/icheck.min.js', '<%= paths.admin_js %>lib/selecter.min.js', '<%= paths.admin_js %>lib/stepper.min.js', '<%= paths.admin_js %>lib/select2.min.js', '<%= paths.admin_js %>parts/_control.js', '<%= paths.admin_js %>parts/_call_to_actions.js' , '<%= paths.admin_js %>parts/_various_dom_ready.js'],
-		dest: '<%= paths.admin_js %>theme-customizer-control.js',
+		dest: '<%= paths.admin_js %>czr-control.js',
 	}
 };
