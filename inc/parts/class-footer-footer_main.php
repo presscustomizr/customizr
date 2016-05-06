@@ -354,8 +354,10 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 		*/
 		function tc_render_back_to_top() {
 			if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_back_to_top' ) ) )
-				return;
-			echo '<div class="tc-btt-wrapper"><i class="btt-arrow"></i></div>';
+                return;
+            printf('<div id="tc-footer-btt-wrapper" class="tc-btt-wrapper %1$s"><i class="btt-arrow"></i></div>',
+                esc_attr( TC_utils::$inst -> tc_opt( 'tc_back_to_top_position' ) )
+            );
 		}
 
 

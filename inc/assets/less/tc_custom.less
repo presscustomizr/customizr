@@ -3021,6 +3021,17 @@ footer ul, footer ol {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
+.tc-btt-wrapper.left {
+  & when (@is_rtl = true) {
+    right: 30px;
+    left: auto;
+  }
+  & when (@is_rtl = false) {
+    left: 30px;
+    right: auto;
+  }
+}
+
 .tc-btt-wrapper i.btt-arrow {
   line-height: inherit;
 }

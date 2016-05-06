@@ -732,6 +732,14 @@
             return to; 
         } },
       }
+    },
+    'tc_show_back_to_top' : {
+      controls: [ 
+        'tc_back_to_top_position'    
+      ],
+      callback : function ( to ) {
+        return 1 == to;
+      }
     }
   };
 

@@ -613,6 +613,10 @@
         $_body.addClass('tc-sticky-footer').trigger('refresh-sticky-footer');
       else
         $_body.removeClass('tc-sticky-footer');
+    },
+    tc_back_to_top_position : function( to ) {
+      $_el = $( '#tc-footer-btt-wrapper' );  
+      $_el.removeClass( "left right" ).addClass( to );
     }
   } );//$.extend()
 
