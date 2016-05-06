@@ -40,7 +40,7 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
-= 3.4.21 May 5th 2016 =
+= 3.4.21 May 6th 2016 =
 * Fix: remove grunt live reload script fixes #611
 * Fix: border-collapse specify 'separate' instead of 'initial': Opera fix should work with IE too, needs further tests
 * Fix: fix wp media insert in front fixes #605
