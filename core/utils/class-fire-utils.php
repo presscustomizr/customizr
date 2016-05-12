@@ -157,7 +157,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @package Customizr
       * @since Customizr 3.1.23
       */
-      function czr_fn_get_skincolor( $_what = null ) {
+      function czr_fn_getskincolor( $_what = null ) {
         $_color_map    = CZR_cl_init::$instance -> skin_color_map;
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 
