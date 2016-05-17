@@ -223,7 +223,10 @@ class TC_breadcrumb {
 		if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
 			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_bbpress_items() );
 		}
-
+		/* If WooCommerce is installed and we're on a WooCommerce page. */
+        elseif ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
+			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_woocommerce_items() );
+		}
 		/* If viewing the front page of the site. */
 		elseif ( is_front_page() ) {
 
@@ -727,6 +730,45 @@ class TC_breadcrumb {
 		/* Return the bbPress breadcrumb trail items. */
 		return apply_filters( 'breadcrumb_trail_get_bbpress_items' , $trail, $args );
 	}
+
+
+
+    /**
+    * Gets the items for the breadcrumb trail in WooCoomerce contexts
+	*
+	* @since 3.5.0
+	* @access public
+	* @param array $args Mixed arguments for the menu.
+	* @return array List of items to be shown in the trail.
+	*/
+    function tc_breadcrumb_trail_get_woocommerce_items( $args = array() ) {
+      $breadcrumbs = new WC_Breadcrumb();
+      $wc_trails = $breadcrumbs -> generate();
+
+      $trail = array();
+
+      $wc_trails_length = count( $wc_trails );
+      if ( ! $wc_trails_length )
+        return $trail;
+
+      //Build woocommerce breadcrumb trails
+      //$breadcrumbx -> genenerate() returns a structure like:
+      //array( array( Name, link) , array( Name, link)... array( Name, ) )
+
+      $_i = 1;
+      foreach ( $wc_trails as $wc_trail ) {
+        if ( is_array( $wc_trail ) && ! empty ( $wc_trail[1] ) && $_i < $wc_trails_length )
+         $trail[] = '<a href="' . $wc_trail[1] . '" title="'. $wc_trail[0] . '">'. $wc_trail[0] .'</a>';
+        else
+          $trail[] = $wc_trail[0];
+        $_i++;
+      }
+
+      /* Return the WooCommerce breadcrumb trail items. */
+      return apply_filters( 'breadcrumb_trail_get_woocommerce_tems' , $trail, $args );
+    }
+
+
 
 	/**
 	 * Turns %tag% from permalink structures into usable links for the breadcrumb trail.  This feels kind of
