@@ -742,12 +742,15 @@ class TC_breadcrumb {
 	* @return array List of items to be shown in the trail.
 	*/
     function tc_breadcrumb_trail_get_woocommerce_items( $args = array() ) {
-      $breadcrumbs = new WC_Breadcrumb();
-      $wc_trails = $breadcrumbs -> generate();
-
       $trail = array();
 
+      if ( ! method_exists( 'WC_Breadcrumb', 'generate' ) )
+        return $trail;
+
+      $breadcrumbs = new WC_Breadcrumb();
+      $wc_trails = $breadcrumbs -> generate();
       $wc_trails_length = count( $wc_trails );
+
       if ( ! $wc_trails_length )
         return $trail;
 
@@ -757,10 +760,12 @@ class TC_breadcrumb {
 
       $_i = 1;
       foreach ( $wc_trails as $wc_trail ) {
-        if ( is_array( $wc_trail ) && ! empty ( $wc_trail[1] ) && $_i < $wc_trails_length )
-         $trail[] = '<a href="' . $wc_trail[1] . '" title="'. $wc_trail[0] . '">'. $wc_trail[0] .'</a>';
-        else
-          $trail[] = $wc_trail[0];
+        if ( is_array( $wc_trail ) ) {
+         if ( ! empty ( $wc_trail[1] ) && $_i < $wc_trails_length )
+           $trail[] = '<a href="' . $wc_trail[1] . '" title="'. $wc_trail[0] . '">'. $wc_trail[0] .'</a>';
+         elseif ( isset( $wc_trail[0] ) )
+           $trail[] = $wc_trail[0];
+        }
         $_i++;
       }
 
