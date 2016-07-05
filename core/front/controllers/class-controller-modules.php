@@ -43,7 +43,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       //(3b)
       $_id = $model['id'];
       $_opt_name = $socials_map[ $_id ];
-      return ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_social_in_{$_opt_name}" ) ) && tc__f('__get_socials') );
+      return ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_social_in_{$_opt_name}" ) ) && CZR_cl_utils::$inst -> czr_fn_get_social_networks() );
     }
 
 
