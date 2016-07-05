@@ -85,7 +85,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
     $fp_img = '';
 
     //if fps are not set
-    if ( null == CZR_cl_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) || ! CZR_cl_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) ) {
+    if ( null == czr_fn_get_opt( 'tc_featured_page_'.$fp_single_id ) || ! czr_fn_get_opt( 'tc_featured_page_'.$fp_single_id ) ) {
 
 	  //admin link if user logged in
       $featured_page_link             = '';
@@ -115,7 +115,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
       $fp_img                       =  $czr_fn_show_featured_pages_img ? apply_filters ('fp_img_src' , $fp_holder_img, $fp_single_id , $featured_page_id ) : '';
     }
     else {
-      $featured_page_id               = apply_filters( 'czr_fp_id', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
+      $featured_page_id               = apply_filters( 'czr_fp_id', esc_attr( czr_fn_get_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
       $featured_page_link             = apply_filters( 'czr_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
       $featured_page_title            = apply_filters( 'czr_fp_title', get_the_title( $featured_page_id ), $fp_single_id, $featured_page_id );
       $edit_enabled                   = false;
@@ -128,7 +128,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
       }
 
       $edit_enabled                   = apply_filters( 'czr_edit_in_fp_title', $edit_enabled );
-      $featured_text                  = apply_filters( 'czr_fp_text', CZR_cl_utils::$inst->czr_fn_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
+      $featured_text                  = apply_filters( 'czr_fp_text', czr_fn_get_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
       $featured_text                  = apply_filters( 'czr_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
 
 	  //get the page/post object
@@ -196,7 +196,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
   function czr_fn_show_featured_pages_img() {
     //gets  display img option
-    return apply_filters( 'czr_show_featured_pages_img', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
+    return apply_filters( 'czr_show_featured_pages_img', esc_attr( czr_fn_get_opt( 'tc_show_featured_pages_img' ) ) );
   }
 
 }

@@ -43,7 +43,7 @@ class CZR_cl_social_block_model_class extends CZR_cl_Model {
     //1b) there are no social icons set
     //and
     //2) customizing
-    $_hidden = ( ( $where && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && CZR() -> czr_fn_is_customizing();
+    $_hidden = ( ( $where && 0 == esc_attr( czr_fn_get_opt( "tc_social_in_{$where}" ) ) ) || ! $model['social_block']  ) && CZR() -> czr_fn_is_customizing();
     return $_hidden ? 'style="display:none;"' : '';
   }
 

@@ -54,7 +54,7 @@ class CZR_cl_thumbnail_model_class extends CZR_cl_Model {
     //handles the case when the image dimensions are too small
     $thumb_size       = apply_filters( 'czr_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size , CZR_cl_utils::czr_fn_id() );
     $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
-    $no_effect_class  = ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
+    $no_effect_class  = ( esc_attr( czr_fn_get_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
     return array( $no_effect_class );
   }

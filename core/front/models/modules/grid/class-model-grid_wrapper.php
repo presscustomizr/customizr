@@ -112,7 +112,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   /* retrieves number of cols option, and wrap it into a filter */
   private function czr_fn_get_grid_cols() {
     if ( ! isset( $this -> grid_cols ) )
-      $grid_cols = $this -> czr_fn_set_grid_cols( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_columns') ), CZR_cl_utils::czr_fn_get_layout( $this -> post_id , 'class' ) );
+      $grid_cols = $this -> czr_fn_set_grid_cols( esc_attr( czr_fn_get_opt( 'tc_grid_columns') ), CZR_cl_utils::czr_fn_get_layout( $this -> post_id , 'class' ) );
     else
       $grid_cols = $this -> grid_cols;
 
@@ -176,7 +176,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
         $wp_query -> is_posts_page ) )
       return false;
 
-    return apply_filters( 'czr_grid_expand_featured', esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_expand_featured') ) );
+    return apply_filters( 'czr_grid_expand_featured', esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ) );
   }
 
 
@@ -186,9 +186,9 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   */
   function czr_fn_grid_container_set_classes( $_classes ) {
     array_push( $_classes, 'tc-post-list-grid' );
-    if ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_shadow') ) )
+    if ( esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ) )
       array_push( $_classes, 'tc-grid-shadow' );
-    if ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_bottom_border') ) )
+    if ( esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ) )
       array_push( $_classes, 'tc-grid-border' );
     return $_classes;
   }
@@ -490,7 +490,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
     $_lh_ratio = apply_filters( 'czr_grid_line_height_ratio' , 1.28 ); //line-height / font-size
     $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
     //body font size
-    $_bs = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_body_font_size') );
+    $_bs = esc_attr( czr_fn_get_opt( 'tc_body_font_size') );
     $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
     return sprintf( 'font-size:%spx;line-height:%spx;' ,
       ceil( $_bs * $_ratio ),
@@ -502,7 +502,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @return (number) customizer user defined height for the grid thumbnails
   */
   private function czr_fn_grid_get_thumb_height() {
-    $_opt = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_thumb_height') );
+    $_opt = esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') );
     return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
   }
 

@@ -60,7 +60,7 @@ class CZR_cl_featured_page_model_class extends CZR_cl_Model {
 
   function czr_fn_setup_button_block( $fp_data, $fp_single_id ) {
     //button block
-    $fp_button_text = apply_filters( 'czr_fp_button_text' , esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
+    $fp_button_text = apply_filters( 'czr_fp_button_text' , esc_attr( czr_fn_get_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
     if ( $fp_button_text || CZR() -> czr_fn_is_customizing() ){
       $fp_button_class = apply_filters( 'czr_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
       $fp_button_class = $fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';

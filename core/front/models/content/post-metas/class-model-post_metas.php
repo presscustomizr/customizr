@@ -34,24 +34,24 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
 
   /* PUBLIC GETTERS */
   public function czr_fn_get_cat_list( $sep = '' ) {
-    return 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'tax', true, $sep ) : '';
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'tax', true, $sep ) : '';
   }
 
   public function czr_fn_get_tag_list( $sep = '' ) {
-    return 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tax', false, $sep ) : '';
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tax', false, $sep ) : '';
   }
 
   public function czr_fn_get_author() {
-    return 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author' ) : '';
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author' ) : '';
   }
 
   public function czr_fn_get_publication_date() {
-    return 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date' ) : '';
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date' ) : '';
   }
 
   public function czr_fn_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
-    if ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = CZR_cl_utils::$inst -> czr_fn_post_has_update() ) {
-      if ( 'days' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
+    if ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = CZR_cl_utils::$inst -> czr_fn_post_has_update() ) {
+      if ( 'days' == esc_attr( czr_fn_get_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
         $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
         $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
       }
@@ -267,13 +267,13 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     if ( ! CZR() -> czr_fn_is_customizing() )
       return $_classes;
 
-    if ( 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas' ) ) )
+    if ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
        array_push( $_classes, 'hide-all-post-metas' );
 
     if (
-        ( is_singular() && ! is_page() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) ||
-        ( ! is_singular() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && ! is_page() && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
-        ( CZR_cl_utils::$inst -> czr_fn_is_home() ) && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_home' ) )
+        ( is_singular() && ! is_page() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_single_post' ) ) ) ||
+        ( ! is_singular() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && ! is_page() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
+        ( CZR_cl_utils::$inst -> czr_fn_is_home() ) && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_home' ) )
     )
       array_push( $_classes, 'hide-post-metas' );
 

@@ -38,7 +38,7 @@ if ( ! class_exists( 'CZR_cl_resources_styles' ) ) :
     */
     function czr_fn_enqueue_front_styles() {
           //Enqueue FontAwesome CSS
-          if ( true == CZR_cl_utils::$inst -> czr_fn_opt( 'tc_font_awesome_css' ) ) {
+          if ( true == czr_fn_get_opt( 'tc_font_awesome_css' ) ) {
             $_path = apply_filters( 'czr_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css' );
             wp_enqueue_style( 'customizr-fa',
                 $_path . '/fonts/' . CZR_cl_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
@@ -65,14 +65,14 @@ if ( ! class_exists( 'CZR_cl_resources_styles' ) ) :
     */
     function czr_fn_write_custom_css( $_css = null ) {
       $_css               = isset($_css) ? $_css : '';
-      $tc_custom_css      = esc_html( CZR_cl_utils::$inst->czr_fn_opt( 'tc_custom_css') );
+      $tc_custom_css      = esc_html( czr_fn_get_opt( 'tc_custom_css') );
       if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
         return $_css;
 
       return apply_filters( 'czr_write_custom_css',
         $_css . "\n" . html_entity_decode( $tc_custom_css ),
         $_css,
-        CZR_cl_utils::$inst->czr_fn_opt( 'tc_custom_css')
+        czr_fn_get_opt( 'tc_custom_css')
       );
     }//end of function
 
@@ -88,7 +88,7 @@ if ( ! class_exists( 'CZR_cl_resources_styles' ) ) :
     * @since Customizr 3.3+
     */
     function czr_fn_set_random_skin ( $_skin ) {
-      if ( false == esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( 'tc_skin_random' ) ) )
+      if ( false == esc_attr( czr_fn_get_opt( 'tc_skin_random' ) ) )
         return $_skin;
 
       //allow custom skins to be taken in account

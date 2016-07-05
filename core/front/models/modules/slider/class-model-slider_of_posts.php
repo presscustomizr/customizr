@@ -108,12 +108,12 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       'store_transient'     => true,
       'transient_name'      => 'tc_posts_slides',
       //options
-      'stickies_only'       => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_posts_slider_stickies' ) ),
-      'show_title'          => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_posts_slider_title' ) ),
-      'show_excerpt'        => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_posts_slider_text' ) ),
-      'button_text'         => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_posts_slider_button_text' ) ),
-      'limit'               => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_posts_slider_number' ) ),
-      'link_type'           => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_posts_slider_link') ),
+      'stickies_only'       => esc_attr( czr_fn_get_opt( 'tc_posts_slider_stickies' ) ),
+      'show_title'          => esc_attr( czr_fn_get_opt( 'tc_posts_slider_title' ) ),
+      'show_excerpt'        => esc_attr( czr_fn_get_opt( 'tc_posts_slider_text' ) ),
+      'button_text'         => esc_attr( czr_fn_get_opt( 'tc_posts_slider_button_text' ) ),
+      'limit'               => esc_attr( czr_fn_get_opt( 'tc_posts_slider_number' ) ),
+      'link_type'           => esc_attr( czr_fn_get_opt( 'tc_posts_slider_link') ),
     );
     $args         = apply_filters( 'czr_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
@@ -133,13 +133,13 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       return array();
     /*** tc_thumb setup filters ***/
     // remove smart load img parsing if any
-    $smart_load_enabled = 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
+    $smart_load_enabled = 1 == esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
       remove_filter( 'czr_thumb_html', array( CZR_cl_utils::$instance, 'czr_fn_parse_imgs') );
     /*** end tc_thumb setup ***/
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      $args['slider_responsive_images'] = 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt('tc_resp_slider_img') ) ? false : true ;
+      $args['slider_responsive_images'] = 0 == esc_attr( czr_fn_get_opt('tc_resp_slider_img') ) ? false : true ;
     /* Get the pre_model */
     $pre_slides = $pre_slides_posts = array();
     foreach ( $queried_posts as $_post ) {
@@ -373,7 +373,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   function czr_fn_cache_posts_slider( $args = array() ) {
     $defaults = array (
       //use the home slider_width
-      'img_size'        => 1 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
+      'img_size'        => 1 == czr_fn_get_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
       'load_transient'  => false,
       'store_transient' => true,
       'transient_name'  => 'tc_posts_slides'

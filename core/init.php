@@ -106,6 +106,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                       array('core'       , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
                       array('core/utils' , 'utils_settings_map'),//customizer setting map
                       array('core/utils' , 'utils'),//helpers used everywhere
+                      array('core/utils' , 'utils_options'),
                       array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
                       array('core/utils' , 'utils_query'),//query helpers used almost everywhere
                       array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
