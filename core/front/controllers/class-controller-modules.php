@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       //3b) There are social icons set
 
       //(1)
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
+      if ( CZR() -> czr_fn_is_customizing() )
         return true;
 
       $_socials = CZR_cl_utils::$inst -> czr_fn_get_social_networks();
@@ -115,7 +115,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
     function czr_fn_display_view_edit_button() {
       return apply_filters( 'czr_edit_in_title',
           is_user_logged_in()
-       && ! CZR___::$instance -> czr_fn_is_customizing()
+       && ! CZR() -> czr_fn_is_customizing()
        && current_user_can( 'edit_posts' )
       );
     }
@@ -124,7 +124,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
     /* Help blocks generic controller */
     function czr_fn_display_view_help_block() {
       //never display when customizing or admin
-      if ( CZR___::$instance -> czr_fn_is_customizing() || is_admin() )
+      if ( CZR() -> czr_fn_is_customizing() || is_admin() )
         return;
       //always display in DEV mode
       if ( defined('CZR_DEV') && true === CZR_DEV )

@@ -132,7 +132,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   function czr_fn_set_grid_icon_visibility() {
     $icon_enabled        = (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_icons') );
     $icon_attributes     = '';
-    if ( CZR___::$instance -> czr_fn_is_customizing() )
+    if ( CZR() -> czr_fn_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',
           $icon_enabled ? 'inline-block' : 'none'
       );

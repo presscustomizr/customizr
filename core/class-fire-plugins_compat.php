@@ -586,7 +586,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         //In English we have set to filter blog posts for cat A,B and C.
         //In Italian we do not have cat C so there will be displayed transposed cats A and B
         //if we change this option in the Customizer with lang IT removing B, e.g., when we switch to EN we'll have that the array of cats contains just A, as it as been overwritten with the new setting
-        if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
+        if ( CZR() -> czr_fn_is_customize_left_panel() )
           add_filter( 'option_tc_theme_options', 'czr_fn_wpml_customizer_options_transpose' );
         function czr_fn_wpml_customizer_options_transpose( $options ) {
           $options_to_transpose = apply_filters ( 'czr_wpml_customizer_translate_options', array(

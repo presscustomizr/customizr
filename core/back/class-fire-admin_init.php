@@ -62,7 +62,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         return;
 
       if ( ! class_exists( 'CZR_cl_utils_thumbnails' ) )
-        CZR___::$instance -> czr_fn_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
+        CZR() -> czr_fn_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
       if ( class_exists( 'CZR_cl_utils_thumbnails' ) )
         CZR_cl_utils_thumbnails::$instance -> czr_fn_set_thumb_info( $post_id );
     }
@@ -94,7 +94,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       $slider_of_posts = null;
 
       if ( ! class_exists( 'CZR_cl_utils_thumbnails' ) )
-        CZR___::$instance -> czr_fn_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
+        CZR() -> czr_fn_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
       /* Instantiate slider of posts */
        if ( ! class_exists( 'CZR_cl_slider_of_posts_model_class' ) ) {
         $slider          = CZR() -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider', 'model_class' => 'modules/slider/slider') );
@@ -260,7 +260,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       //some plugins fire tiny mce editor in the customizer
       //in this case, the CZR_cl_resource class has to be loaded
       if ( ! class_exists('CZR_cl_resources') )
-        CZR___::$instance -> czr_fn_load( array('fire' => array( array('inc' , 'resources') ) ), true );
+        CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources') ) ), true );
 
       //fonts
       $_css = CZR_cl_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');

@@ -26,7 +26,7 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
     //e.g. not having it in a particular page so to allow the header to overlap
     //a slider/image, hence the reason of this method existence
     return esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) )
-              || CZR___::$instance -> czr_fn_is_customizing();
+              || CZR() -> czr_fn_is_customizing();
   }
 
   function czr_fn_setup_children() {

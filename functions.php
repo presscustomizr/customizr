@@ -10,7 +10,7 @@ require_once( get_template_directory() . '/core/init.php' );
 //shortcut function to echo the column content wrapper class
 if ( ! function_exists('czr_fn_column_content_wrapper_class') ) {
   function czr_fn_column_content_wrapper_class() {
-    return CZR___::$instance -> czr_fn_column_content_wrapper_class();
+    return CZR() -> czr_fn_column_content_wrapper_class();
   }
 }
 
@@ -20,7 +20,7 @@ if ( ! function_exists('czr_fn_column_content_wrapper_class') ) {
 //shortcut function to echo the article container class
 if ( ! function_exists('czr_fn_article_container_class') ) {
   function czr_fn_article_container_class() {
-    return CZR___::$instance -> czr_fn_article_container_class();
+    return CZR() -> czr_fn_article_container_class();
   }
 }
 
@@ -30,7 +30,7 @@ if ( ! function_exists('czr_fn_article_container_class') ) {
 //shortcut function to get a theme file
 if ( ! function_exists('czr_fn_get_theme_file') ) {
   function czr_fn_get_theme_file( $path_suffix ) {
-    return CZR___::$instance -> czr_fn_get_theme_file( $path_suffix );
+    return CZR() -> czr_fn_get_theme_file( $path_suffix );
   }
 }
 /*
@@ -39,7 +39,7 @@ if ( ! function_exists('czr_fn_get_theme_file') ) {
 //shortcut function to get a theme file
 if ( ! function_exists('czr_fn_get_theme_file_url') ) {
   function czr_fn_get_theme_file_url( $url_suffix ) {
-    return CZR___::$instance -> czr_fn_get_theme_file_url( $url_suffix );
+    return CZR() -> czr_fn_get_theme_file_url( $url_suffix );
   }
 }
 /*
@@ -48,7 +48,7 @@ if ( ! function_exists('czr_fn_get_theme_file_url') ) {
 //shortcut function to require a theme file
 if ( ! function_exists('czr_fn_require_once') ) {
   function czr_fn_require_once( $path_suffix ) {
-    return CZR___::$instance -> czr_fn_require_once( $path_suffix );
+    return CZR() -> czr_fn_require_once( $path_suffix );
   }
 }
 
@@ -58,7 +58,7 @@ if ( ! function_exists('czr_fn_require_once') ) {
 //shortcut function to require a framework file
 if ( ! function_exists('czr_fn_fw_require_once') ) {
   function czr_fn_fw_require_once( $path_suffix ) {
-    return CZR___::$instance -> czr_fn_fw_require_once( $path_suffix );
+    return CZR() -> czr_fn_fw_require_once( $path_suffix );
   }
 }
 
@@ -68,7 +68,7 @@ if ( ! function_exists('czr_fn_fw_require_once') ) {
 //shortcut function to require a front framework file
 if ( ! function_exists('czr_fn_fw_front_require_once') ) {
   function czr_fn_fw_front_require_once( $path_suffix ) {
-    return CZR___::$instance -> czr_fn_fw_front_require_once( $path_suffix );
+    return CZR() -> czr_fn_fw_front_require_once( $path_suffix );
   }
 }
 
@@ -78,7 +78,7 @@ if ( ! function_exists('czr_fn_fw_front_require_once') ) {
 //shortcut function to set the current model which will be accessible by the czr_fn_get
 if ( ! function_exists('czr_fn_set_current_model') ) {
   function czr_fn_set_current_model( $model ) {
-    return CZR___::$instance -> czr_fn_set_current_model( $model );
+    return CZR() -> czr_fn_set_current_model( $model );
   }
 }
 
@@ -88,7 +88,7 @@ if ( ! function_exists('czr_fn_set_current_model') ) {
 //shortcut function to reset the current model
 if ( ! function_exists('czr_fn_reset_current_model') ) {
   function czr_fn_reset_current_model() {
-    return CZR___::$instance -> czr_fn_reset_current_model();
+    return CZR() -> czr_fn_reset_current_model();
   }
 }
 
@@ -98,7 +98,7 @@ if ( ! function_exists('czr_fn_reset_current_model') ) {
 //shortcut function to get a current model property
 if ( ! function_exists('czr_fn_get') ) {
   function czr_fn_get( $property, $model_id = null, $args = array() ) {
-    return CZR___::$instance -> czr_fn_get( $property, $model_id, $args );
+    return CZR() -> czr_fn_get( $property, $model_id, $args );
   }
 }
 
@@ -108,7 +108,7 @@ if ( ! function_exists('czr_fn_get') ) {
 //shortcut function to echo a current model property
 if ( ! function_exists('czr_fn_echo') ) {
   function czr_fn_echo( $property, $model_id = null, $args = array() ) {
-    return CZR___::$instance -> czr_fn_echo( $property, $model_id, $args );
+    return CZR() -> czr_fn_echo( $property, $model_id, $args );
   }
 }
 
@@ -118,7 +118,7 @@ if ( ! function_exists('czr_fn_echo') ) {
 //shortcut function to instantiate easier
 if ( ! function_exists('czr_fn_new') ) {
   function czr_fn_new( $_to_load, $_args = array() ) {
-    CZR___::$instance -> czr__fn_( $_to_load , $_args );
+    CZR() -> czr__fn_( $_to_load , $_args );
     return;
   }
 }

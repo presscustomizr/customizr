@@ -91,7 +91,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
       $featured_page_link             = '';
       $customizr_link                 = '';
 
-	  if ( ! CZR___::$instance -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
+	  if ( ! CZR() -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
         $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
             CZR_cl_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
             __( 'Customizer screen' , 'customizr' ),
@@ -122,7 +122,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
 	  //when are we displaying the edit link?
       //never display when customizing
-      if ( ! CZR___::$instance -> czr_fn_is_customizing() ) {
+      if ( ! CZR() -> czr_fn_is_customizing() ) {
         $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
         $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
       }

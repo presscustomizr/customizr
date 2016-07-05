@@ -145,7 +145,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
 
           <?php endif; ?>
 
-          <?php if ( CZR___::$instance -> czr_fn_is_child() ) : ?>
+          <?php if ( CZR() -> czr_fn_is_child() ) : ?>
             <div class="changelog point-releases"></div>
 
             <div class="tc-upgrade-notice">

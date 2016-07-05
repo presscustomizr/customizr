@@ -14,7 +14,7 @@ abstract class CZR_cl_post_navigation_model_class extends CZR_cl_Model {
 
   /* visibility in the customizer */
   function czr_fn_get_pn_element_class( $_nav_classes ) {
-    if ( ! CZR___::$instance -> czr_fn_is_customizing() )
+    if ( ! CZR() -> czr_fn_is_customizing() )
       return $_nav_classes;
 
     $_context                  = $this -> czr_fn_get_context();

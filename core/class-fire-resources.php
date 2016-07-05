@@ -385,7 +385,7 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 		*@since v3.2.4
 		*/
 		function czr_fn_add_livereload_script() {
-			if ( CZR___::$instance -> czr_fn_is_customizing() )
+			if ( CZR() -> czr_fn_is_customizing() )
 				return;
 			?>
 			<script id="tc-dev-live-reload" type="text/javascript">
