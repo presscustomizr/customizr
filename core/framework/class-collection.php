@@ -14,7 +14,6 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     public static $pre_registered = array();//will store the models before they are actually checked, instantiated and registered => before 'wp'
     public static $collection = array();//will store all registered model instances
     public static $_delete_candidates = array();//will store deletion of models not added yet
-    public static $_change_candidates = array();//will store change of models not added yet
 
     function __construct( $args = array() ) {
       self::$instance =& $this;
@@ -22,11 +21,6 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //makes sure the model has a unique $id set and a proper priority for its rendereing hook
       //model as param
       add_filter( 'czr_prepare_model'            , array( $this, 'czr_fn_set_model_base_properties'), 10, 1 );
-
-      //May be apply registered changes
-      //model as param
-      add_filter( 'czr_prepare_model'            , array( $this, 'czr_fn_apply_registered_changes'), 20, 1 );
-
 
       //if 'wp' has not been fired yet, we will pre-register this model for later instantiation
       //2 params :
@@ -284,32 +278,6 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
 
 
-    //at this stage, the model has a unique id.
-    //implement the registered changes before adding model to collection
-    //@return the args array()
-    //hook : czr_prepare_model
-    //@return updated model
-    public function czr_fn_apply_registered_changes( $model ) {
-      if ( ! isset($model['id']) )
-        return $model;
-
-      if ( ! $this -> czr_fn_has_registered_change( $model['id']) )
-        return $model;
-
-      $id = $model['id'];
-
-      //IS THERE A REGISTERED REQUEST FOR CHANGE ?
-      $to_change  = self::$_change_candidates;
-      //=> overwrite the modified args with the new ones
-      $model = wp_parse_args( $to_change[$id], $model );
-      //This event will trigger a removal of the change from the change list
-      //=> czr_deregister_change
-      do_action('registered_changed_applied' , $id, $model );
-
-      return $model;
-    }
-
-
 
 
     /**********************************************************************************
@@ -489,80 +457,6 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
 
     private function czr_fn_has_registered_deletion($id) {
       return array_key_exists( $id, self::$_delete_candidates );
-    }
-
-
-
-
-    /**********************************************************************************
-    * CHANGE A REGISTERED MODEL
-    ***********************************************************************************/
-    //if the model is registered and already instantiated => de-register it, register it again with the new params and update the promise change array
-    //if the model is registered in the collection but not instantiated yet => simply update the collection
-    //if the model is not-registered in the collection, register a promise for change
-    //@return void()
-    //@todo : allow several changes for a model ?
-    public function czr_fn_change( $id = null, $new_model = array() ) {
-      if ( is_null($id) || ! is_array($new_model) )
-        return;
-
-      $current_model  = $this -> czr_fn_get_model($id);//gets the model as an array of parameters
-      $model_instance = $this -> czr_fn_get_model_instance($id);
-
-      if ( ! $model_instance )
-        $this -> czr_fn_register_change( $id, $new_model );
-      else {
-        //if the view has already been instantiated
-        //- the previously hooked actions have to be unhooked
-        //- the model is destroyed
-        //- the model is registered again with the new params
-        if ( $model_instance -> czr_fn_has_instantiated_view() ) {
-          $model_instance -> czr_fn_unhook_view();
-        }
-        //delete the current version of the model
-        $this -> czr_fn_delete( $id );
-        //reset the new_model with existing properties
-        $new_model = wp_parse_args( $new_model, $current_model );
-
-        //register the new version of the model
-        $this -> czr_fn_register( $new_model );
-      }
-    }
-
-
-    //stores a requested change for a model not yet registered
-    //@id = id of the model
-    //@args = model params to change
-    //@return void()
-    private function czr_fn_register_change( $id, $new_model ) {
-      $collection = self::$collection;
-      $to_change = self::$_change_candidates;
-      //avoid if already registered
-      if ( array_key_exists($id, $to_change) )
-        return;
-
-      $to_change[$id] = $new_model;
-      self::$_change_candidates = $to_change;
-    }
-
-
-    //removes a change in the promise change list.
-    //Fired after a changed has been actually done.
-    public function czr_fn_deregister_change($id) {
-      $to_change = self::$_change_candidates;
-      if ( isset($to_change[$id]) )
-        unset($to_change[$id]);
-      self::$_change_candidates = $to_change;
-    }
-
-    //@return registered updated model given its id
-    public function czr_fn_get_registered_changes($id) {
-      $to_change = self::$_change_candidates;
-      return $this -> czr_fn_has_registered_change($id) ? $to_change[$id] : array();
-    }
-
-    public function czr_fn_has_registered_change($id) {
-      return array_key_exists( $id, self::$_change_candidates );
     }
 
 
