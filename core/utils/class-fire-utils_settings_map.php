@@ -2266,7 +2266,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
       //=> because once the preview is ready, a postMessage is sent to the panel frame to refresh the sections and panels
       //Do nothing if WP version under 4.2
       global $wp_version;
-      if ( CZR___::$instance -> czr_fn_is_customize_preview_frame() || ! version_compare( $wp_version, '4.2', '>=') )
+      if ( CZR() -> czr_fn_is_customize_preview_frame() || ! version_compare( $wp_version, '4.2', '>=') )
         return $_sections;
 
       //when user access the theme switcher from the admin bar
@@ -2746,7 +2746,7 @@ if ( ! class_exists( 'CZR_cl_utils_settings_map' ) ) :
       $parent_skins   = $this -> czr_fn_get_skins( CZR_BASE . CZR_ASSETS_PREFIX . 'front/css' );
       $child_skins    = array();
 
-      if ( CZR___::$instance -> czr_fn_is_child() ){
+      if ( CZR() -> czr_fn_is_child() ){
         $child_skins    = file_exists(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') ? $this -> czr_fn_get_skins(CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/css') : $child_skins;
         //backward compatibilty (the assets had a different relative path before 3.5)
         $child_skins    = empty( $child_skins ) && file_exists(CZR_BASE_CHILD . 'inc/assets/css') ?  $this -> czr_fn_get_skins(CZR_BASE_CHILD . 'inc/assets/css') : $child_skins;

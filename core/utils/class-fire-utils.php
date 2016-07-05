@@ -71,7 +71,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       function czr_fn_init_properties() {
         //all customizr theme options start by "tc_" by convention
         $this -> czr_options_prefixes = apply_filters('czr_options_prefixes', array('tc_') );
-        $this -> is_customizing   = CZR___::$instance -> czr_fn_is_customizing();
+        $this -> is_customizing   = CZR() -> czr_fn_is_customizing();
         $this -> db_options       = false === get_option( CZR___::$czr_option_group ) ? array() : (array)get_option( CZR___::$czr_option_group );
         $this -> default_options  = $this -> czr_fn_get_default_options();
         $_trans                   = CZR___::czr_fn_is_pro() ? 'started_using_customizr_pro' : 'started_using_customizr';

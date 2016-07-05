@@ -46,7 +46,7 @@ class CZR_cl_logo_wrapper_model_class extends CZR_cl_Model {
   * and shrinking classes
   */
   function pre_rendering_view_header_cb( $header_model ) {
-    if ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_sticky_header") || CZR___::$instance -> czr_fn_is_customizing() ) )
+    if ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_sticky_header") || CZR() -> czr_fn_is_customizing() ) )
       array_push( $header_model -> element_class,
           0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
           0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'

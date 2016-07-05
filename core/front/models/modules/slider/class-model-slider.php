@@ -491,7 +491,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
       return $_h;
     //2) height option has not been changed by user yet
     //the possible customization context must be taken into account here
-    if ( CZR___::$instance -> czr_fn_is_customizing() ) {
+    if ( CZR() -> czr_fn_is_customizing() ) {
       if ( 500 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_default_height') ) )
         return $_h;
     } else {

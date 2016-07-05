@@ -72,7 +72,7 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
     * @since  Customizr 3.3+
     */
     function czr_fn_set_files_to_load_pro($_to_load) {
-      if ( ! is_admin() || ( is_admin() && CZR___::$instance -> czr_fn_is_customizing() ) ) {
+      if ( ! is_admin() || ( is_admin() && CZR() -> czr_fn_is_customizing() ) ) {
           unset($_to_load['CZR_cl_activation_key']);
           unset($_to_load['CZR_cl_theme_updater']);
           unset($_to_load['CZR_cl_theme_check_updates']);

@@ -24,7 +24,7 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $model[ 'has_edit_button' ]         = ! CZR___::$instance -> czr_fn_is_customizing();
+    $model[ 'has_edit_button' ]         = ! CZR() -> czr_fn_is_customizing();
     return $model;
   }
 

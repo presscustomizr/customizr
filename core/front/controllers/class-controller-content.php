@@ -107,7 +107,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
         $post_metas = false;
 
       //post metas are always insanciated in customizing context
-      elseif ( CZR___::$instance -> czr_fn_is_customizing() )
+      elseif ( CZR() -> czr_fn_is_customizing() )
         $post_metas = true;
 
       elseif ( 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas' ) ) )
@@ -178,7 +178,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       $post_navigation_singular = false;
 
       $_context = $this -> czr_fn_get_post_navigation_context();
-      if ( CZR___::$instance -> czr_fn_is_customizing() && in_array( $_context, array('page', 'single') ) )
+      if ( CZR() -> czr_fn_is_customizing() && in_array( $_context, array('page', 'single') ) )
         $post_navigation_singular = true;
       elseif ( $this -> czr_fn_is_post_navigation_enabled() )
         $post_navigation_singular = in_array( $_context, array('page', 'single') ) ? $this -> czr_fn_is_post_navigation_context_enabled( $_context ) : false;
@@ -194,7 +194,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       $post_navigation_posts = false;
 
       $_context = $this -> czr_fn_get_post_navigation_context();
-      if ( CZR___::$instance -> czr_fn_is_customizing() && in_array( $_context, array('home', 'archive') ) )
+      if ( CZR() -> czr_fn_is_customizing() && in_array( $_context, array('home', 'archive') ) )
         $post_navigation_posts = true;
       elseif ( $this -> czr_fn_is_post_navigation_enabled() )
         $post_navigation_posts = in_array( $_context, array('home', 'archive') ) ? $this -> czr_fn_is_post_navigation_context_enabled( $_context ) : false;
