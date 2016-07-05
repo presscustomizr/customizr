@@ -109,7 +109,9 @@ if ( ! class_exists( 'CZR___' ) ) :
                       array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
                       array('core/utils' , 'utils_query'),//query helpers used almost everywhere
                       array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
-                      array('core'       , 'resources'),//loads front stylesheets (skins) and javascripts
+                      array('core'       , 'resources_styles'),
+                      array('core'       , 'resources_fonts'),
+                      array('core'       , 'resources_scripts'),
                       array('core'       , 'widgets'),//widget factory
                       array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
                       array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
@@ -290,7 +292,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                 $_to_load = $this -> czr_fn_unset_core_classes(
                   $_to_load,
                   array( 'header' , 'content' , 'footer' ),
-                  array( 'fire|core|resources' , 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
+                  array( 'fire|core|resources_styles' , 'fire|core|resources_fonts', 'fire|core|resources_scripts', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
                 );
               }
               if ( $this -> czr_fn_is_customize_preview_frame() ) {
