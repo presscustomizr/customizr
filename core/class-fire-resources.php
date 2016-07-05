@@ -203,8 +203,8 @@ if ( ! class_exists( 'CZR_cl_resources' ) ) :
 
       //carousel options
       //gets slider options if any for home/front page or for others posts/pages
-      $js_slidername      = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'post_slider_key' , $single = true );
-      $js_sliderdelay     = tc__f('__is_home') ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'slider_delay_key' , $single = true );
+      $js_slidername      = CZR_cl_utils::$inst -> czr_fn_is_home() ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'post_slider_key' , $single = true );
+      $js_sliderdelay     = CZR_cl_utils::$inst -> czr_fn_is_home() ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'slider_delay_key' , $single = true );
 
 			//has the post comments ? adds a boolean parameter in js
 			global $wp_query;

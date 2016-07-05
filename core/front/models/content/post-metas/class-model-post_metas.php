@@ -271,9 +271,9 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
        array_push( $_classes, 'hide-all-post-metas' );
 
     if (
-        ( is_singular() && ! is_page() && ! tc__f('__is_home') && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) ||
-        ( ! is_singular() && ! tc__f('__is_home') && ! is_page() && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
-        ( tc__f('__is_home') ) && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_home' ) )
+        ( is_singular() && ! is_page() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) ||
+        ( ! is_singular() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && ! is_page() && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
+        ( CZR_cl_utils::$inst -> czr_fn_is_home() ) && 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_post_metas_home' ) )
     )
       array_push( $_classes, 'hide-post-metas' );
 

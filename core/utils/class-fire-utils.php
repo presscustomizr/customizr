@@ -36,21 +36,6 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
         //title
         add_action( 'wp_head'                 , array( $this , 'czr_fn_wp_filters') );
 
-        //get all options
-        add_filter( '__options'               , array( $this , 'czr_fn_get_theme_options' ), 10, 1);
-        //get single option
-        add_filter( '__get_option'            , array( $this , 'czr_opt' ), 10, 2 );//deprecated
-
-        //some useful filters
-        add_filter( '__ID'                    , array( $this , 'czr_fn_id' ));//deprecated
-        add_filter( '__screen_layout'         , array( $this , 'czr_fn_get_layout' ) , 10 , 2 );//deprecated
-        add_filter( '__is_home'               , array( $this , 'czr_fn_is_home' ) );
-        add_filter( '__is_home_empty'         , array( $this , 'czr_fn_is_home_empty' ) );
-        add_filter( '__post_type'             , array( $this , 'czr_fn_get_post_type' ) );
-        add_filter( '__is_no_results'         , array( $this , 'czr_fn_is_no_results') );
-
-        //social networks
-        add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ) );
 
         //refresh the theme options right after the _preview_filter when previewing
         add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
@@ -412,7 +397,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @since Customizr 1.0
       */
       public static function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
-          $__options                    = tc__f ( '__options' );
+          $__options                    = CZR_cl_utils::$inst -> czr_fn_get_theme_options();
           global $post;
           //Article wrapper class definition
           $global_layout                = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
@@ -545,7 +530,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
 
         // Add the site description for the home/front page.
         $site_description = get_bloginfo( 'description' , 'display' );
-        if ( $site_description && tc__f('__is_home') )
+        if ( $site_description && CZR_cl_utils::$inst -> czr_fn_is_home() )
           $title = "$title $sep $site_description";
 
         // Add a page number if necessary.
@@ -629,7 +614,7 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
       * @since Customizr 3.0.10
       */
       function czr_fn_get_social_networks() {
-        $__options    = tc__f( '__options' );
+        $__options    = CZR_cl_utils::$inst -> czr_fn_get_theme_options();
 
         //gets the social network array
         $socials      = apply_filters( 'czr_default_socials' , CZR_cl_init::$instance -> socials );
