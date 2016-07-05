@@ -259,8 +259,12 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         return $init;
       //some plugins fire tiny mce editor in the customizer
       //in this case, the CZR_cl_resource class has to be loaded
-      if ( ! class_exists('CZR_cl_resources') )
-        CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources') ) ), true );
+      if ( ! class_exists('CZR_cl_resources_styles') )
+        CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_styles') ) ), true );
+      if ( ! class_exists('CZR_cl_resources_fonts') )
+        CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_fonts') ) ), true );
+      if ( ! class_exists('CZR_cl_resources_scripts') )
+        CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_scripts') ) ), true );
 
       //fonts
       $_css = CZR_cl_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
