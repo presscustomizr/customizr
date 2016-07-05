@@ -305,7 +305,7 @@ class CZR_cl_featured_pages_help_block_model_class extends CZR_cl_help_block_mod
   */
   function czr_fn_is_notice_on() {
     return ! CZR___::czr_fn_is_pro()
-        && (bool)CZR_cl_utils::$inst->czr_fn_opt('tc_show_featured_pages')
+        && (bool)czr_fn_get_opt('tc_show_featured_pages')
         && CZR_cl_utils::$inst -> czr_fn_is_home()
         && parent::czr_fn_is_notice_on();
   }
@@ -329,7 +329,7 @@ class CZR_cl_featured_pages_help_block_model_class extends CZR_cl_help_block_mod
     if ( ! is_array($fp_ids) )
       return;
     foreach ($fp_ids as $fp_single_id ) {
-      $_fp_sets[] = (bool)CZR_cl_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id );
+      $_fp_sets[] = (bool)czr_fn_get_opt( 'tc_featured_page_'.$fp_single_id );
     }
     //returns true if at least one fp has been set.
     return (bool)array_sum($_fp_sets);
@@ -399,7 +399,7 @@ class CZR_cl_thumbnail_help_block_model_class extends CZR_cl_help_block_model_cl
   * The notice is also disabled when the user chose to display a thumb in single posts
   */
   function czr_fn_is_notice_enabled() {
-    return 'hide' == CZR_cl_utils::$inst->czr_fn_opt('tc_single_post_thumb_location') && parent::czr_fn_is_notice_enabled();
+    return 'hide' == czr_fn_get_opt('tc_single_post_thumb_location') && parent::czr_fn_is_notice_enabled();
   }
 
   /*
@@ -443,7 +443,7 @@ class CZR_cl_smartload_help_block_model_class extends CZR_cl_help_block_model_cl
   * The notice is also disabled when the user checked the smartload option
   */
   function czr_fn_is_notice_enabled() {
-    return parent::czr_fn_is_notice_enabled() &&  1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
+    return parent::czr_fn_is_notice_enabled() &&  1 != esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) );
   }
 
 }
@@ -526,7 +526,7 @@ class CZR_cl_sidenav_help_block_model_class extends CZR_cl_help_block_model_clas
   * we do not complete the sidenav menu notice instanciation if we're not displaying the sidenav menu
   */
   function czr_fn_is_notice_on() {
-    return 'navbar' != CZR_cl_utils::$inst->czr_fn_opt('tc_menu_style') && parent::czr_fn_is_notice_on();
+    return 'navbar' != czr_fn_get_opt('tc_menu_style') && parent::czr_fn_is_notice_on();
   }
 
   /*
@@ -564,7 +564,7 @@ class CZR_cl_main_menu_help_block_model_class extends CZR_cl_help_block_model_cl
   * we do not complete the main menu notice instanciation if we're displaying the sidenav menu
   */
   function czr_fn_is_notice_on() {
-    return 'navbar' == CZR_cl_utils::$inst->czr_fn_opt('tc_menu_style') && parent::czr_fn_is_notice_on();
+    return 'navbar' == czr_fn_get_opt('tc_menu_style') && parent::czr_fn_is_notice_on();
   }
 
   /*
@@ -572,7 +572,7 @@ class CZR_cl_main_menu_help_block_model_class extends CZR_cl_help_block_model_cl
   * the notice isn't enabled also when the second menu is on
   */
   function czr_fn_is_notice_enabled() {
-    return (bool)CZR_cl_utils::$inst->czr_fn_opt('tc_display_second_menu') && parent::czr_fn_is_notice_enabled();
+    return (bool)czr_fn_get_opt('tc_display_second_menu') && parent::czr_fn_is_notice_enabled();
   }
 }
 /*********************************************
@@ -601,7 +601,7 @@ class CZR_cl_second_menu_help_block_model_class extends CZR_cl_help_block_model_
   * we do not complete the second menu notice instanciation if we're not displaying the sidenav menu
   */
   function czr_fn_is_notice_on() {
-    return 'navbar' != CZR_cl_utils::$inst->czr_fn_opt('tc_menu_style') && parent::czr_fn_is_notice_on();
+    return 'navbar' != czr_fn_get_opt('tc_menu_style') && parent::czr_fn_is_notice_on();
   }
 
   /*
@@ -609,7 +609,7 @@ class CZR_cl_second_menu_help_block_model_class extends CZR_cl_help_block_model_
   * the notice isn't enabled also if the second menu option is checked
   */
   function czr_fn_is_notice_enabled() {
-    return ! (bool)CZR_cl_utils::$inst->czr_fn_opt('tc_display_second_menu') && parent::czr_fn_is_notice_enabled();
+    return ! (bool)czr_fn_get_opt('tc_display_second_menu') && parent::czr_fn_is_notice_enabled();
   }
 
 }//end class

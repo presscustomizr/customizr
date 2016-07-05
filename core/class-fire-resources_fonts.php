@@ -50,7 +50,7 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
     * @since Customizr 3.3.2
     */
     public function czr_fn_get_inline_font_icons_css() {
-      if ( false == CZR_cl_utils::$inst -> czr_fn_opt( 'tc_font_awesome_icons' ) )
+      if ( false == czr_fn_get_opt( 'tc_font_awesome_icons' ) )
         return;
 
       $_path = apply_filters( 'czr_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/css' );
@@ -80,7 +80,7 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
     * @since Customizr 3.2.9
     */
     function czr_fn_enqueue_gfonts() {
-      $_font_pair         = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fonts' ) );
+      $_font_pair         = esc_attr( czr_fn_get_opt( 'tc_fonts' ) );
       $_all_font_pairs    = CZR_cl_init::$instance -> font_pairs;
       if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
         return;
@@ -105,8 +105,8 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
     */
     function czr_fn_write_fonts_inline_css( $_css = null , $_context = null ) {
       $_css               = isset($_css) ? $_css : '';
-      $_font_pair         = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fonts' ) );
-      $_body_font_size    = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_body_font_size' ) );
+      $_font_pair         = esc_attr( czr_fn_get_opt( 'tc_fonts' ) );
+      $_body_font_size    = esc_attr( czr_fn_get_opt( 'tc_body_font_size' ) );
       $_font_selectors    = CZR_cl_init::$instance -> font_selectors;
 
       //create the $body and $titles vars
@@ -188,13 +188,13 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
     */
     function czr_fn_write_dropcap_inline_css( $_css = null , $_context = null ) {
       $_css               = isset($_css) ? $_css : '';
-      if ( ! esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_enable_dropcap' ) ) )
+      if ( ! esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
         return $_css;
 
       $_main_color_pair = CZR_cl_utils::$inst -> czr_fn_get_skincolor( 'pair' );
       $_color           = $_main_color_pair[0];
       $_shad_color      = $_main_color_pair[1];
-      $_pad_right       = false !== strpos( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;
+      $_pad_right       = false !== strpos( esc_attr( czr_fn_get_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;
       $_css .= "
         .tc-dropcap {
           color: {$_color};

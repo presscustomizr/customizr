@@ -150,16 +150,16 @@ if ( ! class_exists( 'CZR_cl_resources_scripts' ) ) :
 
       //carousel options
       //gets slider options if any for home/front page or for others posts/pages
-      $js_slidername      = CZR_cl_utils::$inst -> czr_fn_is_home() ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'post_slider_key' , $single = true );
-      $js_sliderdelay     = CZR_cl_utils::$inst -> czr_fn_is_home() ? CZR_cl_utils::$inst->czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'slider_delay_key' , $single = true );
+      $js_slidername      = CZR_cl_utils::$inst -> czr_fn_is_home() ? czr_fn_get_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'post_slider_key' , $single = true );
+      $js_sliderdelay     = CZR_cl_utils::$inst -> czr_fn_is_home() ? czr_fn_get_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'slider_delay_key' , $single = true );
 
 			//has the post comments ? adds a boolean parameter in js
 			global $wp_query;
 			$has_post_comments 	= ( 0 != $wp_query -> post_count && comments_open() && get_comments_number() != 0 ) ? true : false;
 
 			//adds the jquery effect library if smooth scroll is enabled => easeOutExpo effect
-			$anchor_smooth_scroll 		  = ( false != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_link_scroll') ) ) ? 'easeOutExpo' : 'linear';
-			if ( false != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_link_scroll') ) )
+			$anchor_smooth_scroll 		  = ( false != esc_attr( czr_fn_get_opt( 'tc_link_scroll') ) ) ? 'easeOutExpo' : 'linear';
+			if ( false != esc_attr( czr_fn_get_opt( 'tc_link_scroll') ) )
 				wp_enqueue_script('jquery-effects-core');
             $anchor_smooth_scroll_exclude =  apply_filters( 'czr_anchor_smoothscroll_excl' , array(
                 'simple' => array( '[class*=edd]' , '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]' ),
@@ -169,11 +169,11 @@ if ( ! class_exists( 'CZR_cl_resources_scripts' ) ) :
                 )
             ));
 
-      $smooth_scroll_enabled = apply_filters('czr_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_smoothscroll') ) );
+      $smooth_scroll_enabled = apply_filters('czr_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( czr_fn_get_opt( 'tc_smoothscroll') ) );
       $smooth_scroll_options = apply_filters('czr_smoothscroll_options', array( 'touchpadSupport' => false ) );
 
       //smart load
-      $smart_load_enabled   = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
+      $smart_load_enabled   = esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) );
       $smart_load_opts      = apply_filters( 'czr_img_smart_load_options' , array(
             'parentSelectors' => array(
                 '.article-container', '.__before_main_wrapper', '.widget-front',
@@ -197,37 +197,37 @@ if ( ! class_exists( 'CZR_cl_resources_scripts' ) ) :
 	        apply_filters( 'czr_customizr_script_params' , array(
 	          	'_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
               'FancyBoxState' 		=> $this -> czr_fn_is_fancyboxjs_required(),
-	          	'FancyBoxAutoscale' => ( 1 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_fancybox_autoscale') ) ? true : false,
+	          	'FancyBoxAutoscale' => ( 1 == czr_fn_get_opt( 'tc_fancybox_autoscale') ) ? true : false,
 	          	'SliderName' 			  => $js_slidername,
 	          	'SliderDelay' 			=> $js_sliderdelay,
 	          	'SliderHover'			  => apply_filters( 'czr_stop_slider_hover', true ),
-	          	'centerSliderImg'   => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_center_slider_img') ),
+	          	'centerSliderImg'   => esc_attr( czr_fn_get_opt( 'tc_center_slider_img') ),
               'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
               'anchorSmoothScroll'			=> $anchor_smooth_scroll,
               'anchorSmoothScrollExclude' => $anchor_smooth_scroll_exclude,
-	          	'ReorderBlocks' 		=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_block_reorder') ),
-	          	'centerAllImg' 			=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_center_img') ),
+	          	'ReorderBlocks' 		=> esc_attr( czr_fn_get_opt( 'tc_block_reorder') ),
+	          	'centerAllImg' 			=> esc_attr( czr_fn_get_opt( 'tc_center_img') ),
 	          	'HasComments' 			=> $has_post_comments,
 	          	'LeftSidebarClass' 		=> $left_sb_class,
 	          	'RightSidebarClass' 	=> $right_sb_class,
 	          	'LoadModernizr' 		=> apply_filters( 'czr_load_modernizr' , true ),
 	          	'stickyCustomOffset' 	=> apply_filters( 'czr_sticky_custom_offset' , array( "_initial" => 0, "_scrolling" => 0, "options" => array( "_static" => true, "_element" => "" ) ) ),
-	          	'stickyHeader' 			=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) ),
-	          	'dropdowntoViewport' 	=> esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_menu_resp_dropdown_limit_to_viewport') ),
+	          	'stickyHeader' 			=> esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ),
+	          	'dropdowntoViewport' 	=> esc_attr( czr_fn_get_opt( 'tc_menu_resp_dropdown_limit_to_viewport') ),
 	          	'timerOnScrollAllBrowsers' => apply_filters( 'czr_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
-              'extLinksStyle'       => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_ext_link_style' ) ),
-              'extLinksTargetExt'   => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_ext_link_target' ) ),
+              'extLinksStyle'       => esc_attr( czr_fn_get_opt( 'tc_ext_link_style' ) ),
+              'extLinksTargetExt'   => esc_attr( czr_fn_get_opt( 'tc_ext_link_target' ) ),
               'extLinksSkipSelectors'   => apply_filters( 'czr_ext_links_skip_selectors' , array( 'classes' => array('btn', 'button') , 'ids' => array() ) ),
-              'dropcapEnabled'      => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_enable_dropcap' ) ),
-              'dropcapWhere'      => array( 'post' => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_page_dropcap' ) ) ),
-              'dropcapMinWords'     => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_dropcap_minwords' ) ),
+              'dropcapEnabled'      => esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ),
+              'dropcapWhere'      => array( 'post' => esc_attr( czr_fn_get_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( czr_fn_get_opt( 'tc_page_dropcap' ) ) ),
+              'dropcapMinWords'     => esc_attr( czr_fn_get_opt( 'tc_dropcap_minwords' ) ),
               'dropcapSkipSelectors'  => apply_filters( 'czr_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'), 'classes' => array('btn') , 'id' => array() ) ),
               'imgSmartLoadEnabled' => $smart_load_enabled,
               'imgSmartLoadOpts'    => $smart_load_opts,
               'goldenRatio'         => apply_filters( 'czr_grid_golden_ratio' , 1.618 ),
-              'gridGoldenRatioLimit' => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_thumb_height' ) ),
+              'gridGoldenRatioLimit' => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height' ) ),
               'isSecondMenuEnabled'  => CZR_cl_utils::$inst-> czr_fn_is_secondary_menu_enabled(),
-              'secondMenuRespSet'   => esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_second_menu_resp_setting' ) )
+              'secondMenuRespSet'   => esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) )
 	        	),
 	        	CZR_cl_utils::czr_fn_id()
 		    )//end of filter
@@ -249,7 +249,7 @@ if ( ! class_exists( 'CZR_cl_resources_scripts' ) ) :
 	    }
 
 	    //load retina.js in footer if enabled
-	    if ( apply_filters('czr_load_retinajs', 1 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) )
+	    if ( apply_filters('czr_load_retinajs', 1 == czr_fn_get_opt( 'tc_retina_support' ) ) )
 	    	wp_enqueue_script( 'retinajs' ,CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
 	    //Load hammer.js for mobile
@@ -341,7 +341,7 @@ if ( ! class_exists( 'CZR_cl_resources_scripts' ) ) :
     * @since v3.3+
     */
     private function czr_fn_is_fancyboxjs_required() {
-      return CZR_cl_utils::$inst -> czr_fn_opt( 'tc_fancybox' ) || CZR_cl_utils::$inst -> czr_fn_opt( 'tc_gallery_fancybox');
+      return czr_fn_get_opt( 'tc_fancybox' ) || czr_fn_get_opt( 'tc_gallery_fancybox');
     }
 
   }//end of CZR_cl_resources

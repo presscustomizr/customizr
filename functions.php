@@ -4,6 +4,13 @@
 //Fire
 require_once( get_template_directory() . '/core/init.php' );
 
+//shortcut function to get a Customizr option
+if ( ! function_exists('czr_fn_get_opt') ) {
+  function czr_fn_get_opt( $option_name , $option_group = null, $use_default = true ) {
+    return CZR_cl_utils_options::$inst -> czr_fn_opt( $option_name , $option_group, $use_default ) ;
+  }
+}
+
 /*
  * @since 3.5.0
  */

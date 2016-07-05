@@ -38,7 +38,7 @@ class CZR_cl_thumbnail_single_model_class extends CZR_cl_Model{
   * @since Customizr 3.2.6
   */
   function czr_fn_user_options_style_cb( $_css ) {
-    $_single_thumb_height   = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_height' ) );
+    $_single_thumb_height   = esc_attr( czr_fn_get_opt( 'tc_single_post_thumb_height' ) );
     $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
     return sprintf("%s\n%s",
       $_css,

@@ -35,13 +35,13 @@ abstract class CZR_cl_post_navigation_model_class extends CZR_cl_Model {
   * @return bool
   */
   function czr_fn_is_post_navigation_context_enabled( $_context ) {
-    return $_context && 1 == esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( "tc_show_post_navigation_{$_context}" ) );
+    return $_context && 1 == esc_attr( czr_fn_get_opt( "tc_show_post_navigation_{$_context}" ) );
   }
 
   /*
   * @return bool
   */
   function czr_fn_is_post_navigation_enabled(){
-    return 1 == esc_attr( CZR_cl_utils::$inst -> czr_fn_opt( 'tc_show_post_navigation' ) ) ;
+    return 1 == esc_attr( czr_fn_get_opt( 'tc_show_post_navigation' ) ) ;
   }
 }

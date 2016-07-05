@@ -39,7 +39,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

@@ -12,7 +12,7 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
   function czr_fn_extend_params( $model = array() ) {
     $element_class = apply_filters('czr_header_classes', array(
         'tc-header' ,'clearfix', 'row-fluid',
-        'logo-' . esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_header_layout' ) )
+        'logo-' . esc_attr( czr_fn_get_opt( 'tc_header_layout' ) )
     ));
     if ( true == $has_sticky_pusher = $this -> czr_fn_has_pusher_margin_top() )
       $pusher_margin_top = apply_filters( 'czr_default_sticky_header_height', 103 );
@@ -25,7 +25,7 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
     //with the contx in the future the existing of the push might be an option
     //e.g. not having it in a particular page so to allow the header to overlap
     //a slider/image, hence the reason of this method existence
-    return esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) )
+    return esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) )
               || CZR() -> czr_fn_is_customizing();
   }
 
@@ -103,7 +103,7 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
   */
   function czr_fn_user_options_style_cb( $_css ) {
     //TOP BORDER
-    if ( 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_top_border') ) ) {
+    if ( 1 != esc_attr( czr_fn_get_opt( 'tc_top_border') ) ) {
       $_css = sprintf("%s%s",
         $_css,
         "
@@ -112,8 +112,8 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
       );
     }
     //HEADER Z-INDEX
-    if ( 100 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_z_index') ) ) {
-      $_custom_z_index = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_z_index') );
+    if ( 100 != esc_attr( czr_fn_get_opt( 'tc_sticky_z_index') ) ) {
+      $_custom_z_index = esc_attr( czr_fn_get_opt( 'tc_sticky_z_index') );
       $_css = sprintf("%s%s",
         $_css,
         "
@@ -128,11 +128,11 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
 
   function czr_fn_body_class( $_classes/*array*/ ) {
     //STICKY HEADER
-    if ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) ) ) {
+    if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ) ) {
       array_push( $_classes, 'tc-sticky-header', 'sticky-disabled' );
 
       //STICKY TRANSPARENT ON SCROLL
-      if ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_transparent_on_scroll' ) ) )
+      if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_transparent_on_scroll' ) ) )
         array_push( $_classes, 'tc-transparent-on-scroll' );
       else
         array_push( $_classes, 'tc-solid-color-on-scroll' );

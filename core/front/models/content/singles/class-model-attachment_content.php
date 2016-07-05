@@ -14,7 +14,7 @@ class CZR_cl_attachment_content_model_class extends CZR_cl_Model {
     $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
     //did we activate the fancy box in customizer?
-    $tc_fancybox = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_fancybox' ) );
+    $tc_fancybox = esc_attr( czr_fn_get_opt( 'tc_fancybox' ) );
 
     if ( 0 == $tc_fancybox ) { //fancy box not checked!
       /**

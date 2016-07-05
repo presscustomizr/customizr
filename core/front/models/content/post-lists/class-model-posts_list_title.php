@@ -47,8 +47,8 @@ class CZR_cl_posts_list_title_model_class extends CZR_cl_Model {
   }
 
   function czr_fn_get_archive_title_class() {
-      return ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_archive_title_icon' ) )
-          && esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
+      return ( esc_attr( czr_fn_get_opt( 'tc_show_archive_title_icon' ) )
+          && esc_attr( czr_fn_get_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
   }
 
   function czr_fn_get_posts_list_pre_title( $context = null ) {
@@ -62,7 +62,7 @@ class CZR_cl_posts_list_title_model_class extends CZR_cl_Model {
         case 'year'           : return __( 'Yearly Archives:', 'customizr' );
       }
     }
-    return esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_{$context}_title" ) );
+    return esc_attr( czr_fn_get_opt( "tc_{$context}_title" ) );
   }
 
   function czr_fn_get_posts_list_title_content( $context = null ) {

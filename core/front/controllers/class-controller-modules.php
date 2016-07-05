@@ -43,13 +43,13 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       //(3b)
       $_id = $model['id'];
       $_opt_name = $socials_map[ $_id ];
-      return ( 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_social_in_{$_opt_name}" ) ) && CZR_cl_utils::$inst -> czr_fn_get_social_networks() );
+      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_{$_opt_name}" ) ) && CZR_cl_utils::$inst -> czr_fn_get_social_networks() );
     }
 
 
     function czr_fn_display_view_main_slider() {
       //gets the front slider if any
-      $tc_front_slider              = esc_attr(CZR_cl_utils::$inst->czr_fn_opt( 'tc_front_slider' ) );
+      $tc_front_slider              = esc_attr(czr_fn_get_opt( 'tc_front_slider' ) );
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
       $_show_slider = CZR_cl_utils::$inst -> czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
 
@@ -59,18 +59,18 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
 
     /* BREADCRUMB */
     function czr_fn_display_view_breadcrumb() {
-      if ( ! apply_filters( 'czr_show_breadcrumb' , 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_breadcrumb') ) ) )
+      if ( ! apply_filters( 'czr_show_breadcrumb' , 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) )
         return false;
 
       if ( CZR_cl_utils::$inst -> czr_fn_is_home() )
-        return 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
-      if ( is_page() && 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_pages' ) ) )
+        return 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
+      if ( is_page() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_pages' ) ) )
         return false;
 
-      if ( is_single() && 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
+      if ( is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
         return false;
 
-      if ( ! is_page() && ! is_single() && 1 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
+      if ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
         return false;
 
       return true;
@@ -79,8 +79,8 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
 
     function czr_fn_display_view_comment_bubble() {
       if ( ! isset( self::$_cache['comment_bubble'] ) ) {
-        self::$_cache[ 'comment_bubble' ] = (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_comment_show_bubble' ) )
-          && (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_comment_list' ) )
+        self::$_cache[ 'comment_bubble' ] = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) )
+          && (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) )
           && (bool) apply_filters( 'czr_comments_in_title', true );
       }
 
@@ -95,13 +95,13 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
 
     function czr_fn_display_view_featured_pages() {
       //gets display fp option
-      $tc_show_featured_pages 	      = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_featured_pages' ) );
+      $tc_show_featured_pages 	      = esc_attr( czr_fn_get_opt( 'tc_show_featured_pages' ) );
       return apply_filters( 'czr_show_fp', 0 != $tc_show_featured_pages && CZR_cl_utils::$inst -> czr_fn_is_home() );
     }
 
 
     function czr_fn_display_view_recently_updated() {
-      return 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) );
+      return 0 != esc_attr( czr_fn_get_opt( 'tc_post_metas_update_notice_in_title' ) );
     }
 
     /*
@@ -136,7 +136,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       * User option to enabe/disable all notices
       */
       return apply_filters( 'czr_is_front_help_enabled' ,
-          CZR_cl_utils::$inst->czr_fn_opt('tc_display_front_help')
+          czr_fn_get_opt('tc_display_front_help')
           && is_user_logged_in()
           && current_user_can('edit_theme_options')
       );
@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
     VARIOUS HELPERS
     *******************************/
     function czr_fn_display_view_post_list_grid() {
-      return apply_filters( 'czr_is_grid_enabled', CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() && 'grid' == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+      return apply_filters( 'czr_is_grid_enabled', CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
     }
 
 
@@ -169,7 +169,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
      * and the post list we're in */
     private function czr_fn_is_grid_context_matching() {
       $_type = $this -> czr_fn_get_grid_context();
-      $_apply_grid_to_post_type = apply_filters( 'czr_grid_in_' . $_type, esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_in_' . $_type ) ) );
+      $_apply_grid_to_post_type = apply_filters( 'czr_grid_in_' . $_type, esc_attr( czr_fn_get_opt( 'tc_grid_in_' . $_type ) ) );
       return apply_filters('czr_grid_do',  $_type && $_apply_grid_to_post_type );
     }
 

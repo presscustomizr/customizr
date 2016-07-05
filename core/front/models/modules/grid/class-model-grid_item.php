@@ -68,7 +68,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   * @return string
   */
   function czr_fn_set_grid_title_length( $_title, $is_expanded ) {
-    $_max = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_num_words') );
+    $_max = esc_attr( czr_fn_get_opt( 'tc_grid_num_words') );
     $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
     $_max = $_max <= 0 ? 1 : $_max;
 
@@ -130,7 +130,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   * grid icon visibility
   */
   function czr_fn_set_grid_icon_visibility() {
-    $icon_enabled        = (bool) esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_grid_icons') );
+    $icon_enabled        = (bool) esc_attr( czr_fn_get_opt( 'tc_grid_icons') );
     $icon_attributes     = '';
     if ( CZR() -> czr_fn_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',
@@ -165,7 +165,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   }
 
   private function czr_fn_grid_show_thumb() {
-    return CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_show_thumb' ) );
+    return CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
   }
 
 

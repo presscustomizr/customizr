@@ -314,7 +314,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
           //=> grid customizer addon starts by gc_
           //When do we add a prefix ?
           $add_prefix = false;
-          if ( CZR_cl_utils::$inst -> czr_fn_is_customizr_option( $key ) )
+          if ( CZR_cl_utils_options::$inst -> czr_fn_is_customizr_option( $key ) )
             $add_prefix = true;
           $_opt_name = $add_prefix ? "{$czr_option_group}[{$key}]" : $key;
 
@@ -467,7 +467,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 	        	'CZRnonce' 			=> wp_create_nonce( 'czr-customizer-nonce' ),
             'themeName'     => CZR___::$theme_name,
             'HideDonate'    => $this -> czr_fn_get_hide_donate_status(),
-            'ShowCTA'       => ( true == CZR_cl_utils::$inst->czr_fn_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
+            'ShowCTA'       => ( true == czr_fn_get_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'    => array(
               'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
@@ -494,7 +494,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       $_user_started_customize = false !== $_options || ! empty( $_options );
 
       //shall we hide donate ?
-      return ! $_user_started_customize || ! $_is_customizr_active || CZR_cl_utils::$inst->czr_fn_opt('tc_hide_donate');
+      return ! $_user_started_customize || ! $_is_customizr_active || czr_fn_get_opt('tc_hide_donate');
     }
 
 

@@ -31,8 +31,8 @@ class CZR_cl_post_page_title_model_class extends CZR_cl_Model {
   }
 
   function czr_fn_get_post_page_title_class( $class ) {
-    $new_class = ( esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc_show_{$this -> context}_title_icon" ) )
-          && esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
+    $new_class = ( esc_attr( czr_fn_get_opt( "tc_show_{$this -> context}_title_icon" ) )
+          && esc_attr( czr_fn_get_opt( 'tc_show_title_icon' ) ) ) ? array( 'format-icon' ) : array();
     array_push( $new_class, $class );
     return $new_class;
   }

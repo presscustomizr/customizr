@@ -26,7 +26,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
                                 apply_filters( 'czr_logo_max_width', 250 ),
                                 apply_filters( 'czr_logo_max_height', 100 )
                                 ) : '',
-        implode(' ' , apply_filters('czr_logo_other_attributes' , ( 0 == CZR_cl_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
+        implode(' ' , apply_filters('czr_logo_other_attributes' , ( 0 == czr_fn_get_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
     ));
 
     return $model;
@@ -42,7 +42,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     $_width 				= false;
     $_height 				= false;
     $_attachement_id 		= false;
-    $_logo_option  			= esc_attr( CZR_cl_utils::$inst->czr_fn_opt( "tc{$logo_type_sep}logo_upload") );
+    $_logo_option  			= esc_attr( czr_fn_get_opt( "tc{$logo_type_sep}logo_upload") );
     //check if option is an attachement id or a path (for backward compatibility)
     if ( is_numeric($_logo_option) ) {
       $_attachement_id 	    = $_logo_option;
@@ -53,12 +53,12 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     } else { //old treatment
       //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
       $upload_dir 			= wp_upload_dir();
-      $_saved_path 			= esc_url ( CZR_cl_utils::$inst->czr_fn_opt( "tc{$logo_type_sep}logo_upload") );
+      $_saved_path 			= esc_url ( czr_fn_get_opt( "tc{$logo_type_sep}logo_upload") );
       $_logo_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
     }
     //hook + makes ssl compliant
     $_logo_src    			= apply_filters( "tc{$logo_type_sep}logo_src" , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
-    $logo_resize 			= ( $logo_type_sep == '_' ) ? esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_logo_resize') ) : '';
+    $logo_resize 			= ( $logo_type_sep == '_' ) ? esc_attr( czr_fn_get_opt( 'tc_logo_resize') ) : '';
     $filetype 				= CZR_cl_utils::$inst -> czr_fn_check_filetype ($_logo_src);
     if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
       $args 		= array(
@@ -90,7 +90,7 @@ class CZR_cl_logo_model_class extends CZR_cl_Model {
     //and
     //2.1) the shrink title_logo option is enabled
     if ( CZR() -> czr_fn_is_customizing() ||
-        ( 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_header') ) && 0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
+        ( 0 != esc_attr( czr_fn_get_opt( 'tc_sticky_header') ) && 0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
         $_logo_shrink  = implode (';' , apply_filters('czr_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
         $_css = sprintf("%s%s",
             $_css,

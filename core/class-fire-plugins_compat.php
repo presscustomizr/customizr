@@ -332,7 +332,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
       function czr_fn_pll_strings_setup() {
         // grab theme options
-        $czr_options = CZR_cl_utils::$inst -> czr_fn_get_theme_options();
+        $czr_options = CZR_cl_utils_options::$inst -> czr_fn_get_theme_options();
         // grab settings map, useful for some options labels
         $czr_fn_settings_map = CZR_cl_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default = true );
         $tc_controls_map = $czr_fn_settings_map['add_setting_control'];
@@ -569,7 +569,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
           $tc_wpml_options     = array_keys($tc_wpml_option_name);
 
           // grab theme options
-          $czr_options = CZR_cl_utils::$inst -> czr_fn_get_theme_options();
+          $czr_options = CZR_cl_utils_options::$inst -> czr_fn_get_theme_options();
 
           // build array of options to translate
           foreach ( $tc_wpml_options as $tc_wpml_option )
@@ -868,7 +868,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       }
 
       function czr_fn_woocommerce_wc_cart_enabled() {
-        return 1 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) );
+        return 1 == esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart' ) );
       }
 
       //disable title icons
@@ -924,7 +924,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'czr_anchor_smoothscroll_excl', 'czr_fn_woocommerce_disable_link_scroll' );
       function czr_fn_woocommerce_disable_link_scroll( $excl ){
-        if ( false == esc_attr( CZR_cl_utils::$inst->czr_fn_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( czr_fn_get_opt('tc_link_scroll') ) ) return $excl;
 
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
@@ -975,7 +975,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
       add_filter( 'czr_anchor_smoothscroll_excl', 'czr_fn_vc_disable_link_scroll' );
       function czr_fn_vc_disable_link_scroll( $excl ){
-        if ( false == esc_attr( CZR_cl_utils::$inst->czr_fn_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( czr_fn_get_opt('tc_link_scroll') ) ) return $excl;
 
         if ( ! is_array( $excl ) )
           $excl = array();

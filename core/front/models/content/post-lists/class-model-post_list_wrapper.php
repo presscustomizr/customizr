@@ -104,9 +104,9 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   */
   function czr_fn_get_the_post_list_layout() {
     $_layout                     = self::$default_post_list_layout;
-    $_position                   = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position                   = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
     //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ( 0 == esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_alternate' ) )
+    $_layout['alternate']        = ( 0 == esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) )
                                    || in_array( $_position, array( 'top', 'bottom') ) ) ? false : true;
     $_layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
     $_layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
@@ -122,8 +122,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_get_thumb_shape_name() {
-    $position                    = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
-    $thumb_shape                 = esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') );
+    $position                    = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
+    $thumb_shape                 = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_shape') );
 
     $_class                      = array( "thumb-position-{$position}", $thumb_shape);
     return $_class;
@@ -164,7 +164,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
         array(
           $this -> czr_fn_show_excerpt(),
           CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb(),
-          0 != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_show_thumb' ) )
+          0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) )
         )
       )
     );
@@ -179,6 +179,6 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     //When do we show the post excerpt?
     //1) when set in options
     //2) + other filters conditions
-    return (bool) apply_filters( 'czr_show_excerpt', 'full' != esc_attr( CZR_cl_utils::$inst->czr_fn_opt( 'tc_post_list_length' ) ) );
+    return (bool) apply_filters( 'czr_show_excerpt', 'full' != esc_attr( czr_fn_get_opt( 'tc_post_list_length' ) ) );
   }
 }
