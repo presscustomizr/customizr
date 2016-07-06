@@ -212,7 +212,7 @@
                                 'control'       =>  'CZR_cl_controls',
                                 'section'       => 'fonts_sec',
                                 'type'          => 'select' ,
-                                'choices'       => CZR_cl_utils::$inst -> czr_fn_get_font( 'list' , 'name' ),
+                                'choices'       => czr_fn_get_font( 'list' , 'name' ),
                                 'priority'      => 10,
                                 'transport'     => 'postMessage',
                                 'notice'        => __( "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs." , 'customizr' )
@@ -1867,7 +1867,7 @@
                                 'priority'    => 20,
               ),
               'tc_comment_bubble_color' => array(
-                                'default'     => CZR_cl_utils_options::$inst -> czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_cl_utils::$inst -> czr_fn_getskincolor(),
+                                'default'     => CZR_cl_utils_options::$inst -> czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : czr_fn_getskincolor(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',

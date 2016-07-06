@@ -2,8 +2,8 @@
 /**
 * Widgets factory : registered the different widgetized areas
 * The default widget areas are defined as properties of the CZR_cl_utils class in class-fire-utils.php
-* CZR_cl_utils::$inst -> sidebar_widgets for left and right sidebars
-* CZR_cl_utils::$inst -> footer_widgets for the footer
+* sidebar_widgets for left and right sidebars
+* footer_widgets for the footer
 * The widget area are then fired in the class below
 *
 * @package      Customizr

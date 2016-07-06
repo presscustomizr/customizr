@@ -685,7 +685,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
 
         //adds the layout
-        $_layout = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::czr_fn_id() , 'sidebar' );
+        $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
         if ( in_array( $_layout, array('b', 'l', 'r' , 'f') ) ) {
           array_push( $_classes, sprintf( 'tc-%s-sidebar',
             'f' == $_layout ? 'no' : $_layout

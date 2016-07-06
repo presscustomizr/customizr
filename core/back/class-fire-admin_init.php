@@ -135,7 +135,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
        //alternative, cycle throughout the cats and keep just the existent ones
        /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
          //update the option
-         CZR_cl_utils_options::$inst -> czr_fn_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(CZR_cl_utils_options::$inst, 'czr_fn_category_id_exists' ) ) );
+         CZR_cl_utils_options::$inst -> czr_fn_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, 'czr_fn_category_id_exists' ) );
        }*/
     }
 
@@ -156,7 +156,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         str_replace(
           ',',
           '%2C',
-          sprintf( '//fonts.googleapis.com/css?family=%s', CZR_cl_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) )
+          sprintf( '//fonts.googleapis.com/css?family=%s', czr_fn_get_font( 'single' , $_font_pair ) )
         )
       );
     }
@@ -302,7 +302,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     * hook : admin_notices
     */
     function czr_fn_may_be_display_update_notice() {
-      $opt_name                   = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
+      $opt_name                   = "customizr-pro" == CZR_THEMENAME ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = czr_fn_get_opt($opt_name);
       $show_new_notice = false;
 
@@ -351,7 +351,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
               'czr_fn_update_notice',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
                 __( "Good, you've just upgraded to", "customizr"),
-                "customizr-pro" == CZR___::$theme_name ? 'Customizr Pro' : 'Customizr',
+                "customizr-pro" == CZR_THEMENAME ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER
               )
@@ -390,7 +390,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     */
     function czr_fn_dismiss_update_notice_action() {
       check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
-      $opt_name = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
+      $opt_name = "customizr-pro" == CZR_THEMENAME ? 'last_update_notice_pro' : 'last_update_notice';
       //reset option value with new version and counter to 0
       $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
       CZR_cl_utils_options::$inst->czr_fn_set_option( $opt_name, $new_val );

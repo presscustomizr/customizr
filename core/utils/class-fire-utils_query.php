@@ -116,7 +116,7 @@ class CZR_cl_utils_query {
      // we have to ignore sticky posts (do not prepend them)
      // disable grid sticky post expansion
      $cats = czr_fn_get_opt('tc_blog_restrict_by_cat');
-     $cats = array_filter( $cats, array( CZR_cl_utils::$inst , 'czr_fn_category_id_exists' ) );
+     $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
      if ( is_array( $cats ) && ! empty( $cats ) ){
          $query->set('category__in', $cats );
@@ -226,7 +226,7 @@ class CZR_cl_utils_query {
   function czr_fn_get_real_id() {
     global $wp_query;
     $queried_id                   = get_queried_object_id();
-    return apply_filters( 'czr_get_real_id', ( ! CZR_cl_utils::$inst -> czr_fn_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
 
 
@@ -245,7 +245,7 @@ class CZR_cl_utils_query {
     $selectors                  = '';
 
     if ( isset($post) && $this -> czr_fn_is_list_of_posts() )
-        //!is_singular() && !is_404() && !CZR_cl_utils::$inst -> czr_fn_is_home_empty() ) || ( is_search() && 0 != $wp_query -> post_count )
+        //!is_singular() && !is_404() && !czr_fn_is_home_empty() ) || ( is_search() && 0 != $wp_query -> post_count )
       $selectors                = apply_filters( 'czr_post_list_selectors' , 'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
     return apply_filters( 'czr_article_selectors', $selectors );
@@ -275,7 +275,7 @@ class CZR_cl_utils_query {
       $selectors = apply_filters( "czr_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
     // PAGE
-    elseif ( isset($post) && 'page' == CZR_cl_utils::$inst -> czr_fn_get_post_type() && is_singular() && !CZR_cl_utils::$inst -> czr_fn_is_home_empty() )
+    elseif ( isset($post) && 'page' == czr_fn_get_post_type() && is_singular() && ! czr_fn_is_home_empty() )
       $selectors = apply_filters( 'czr_page_selectors' , 'id="page-'.get_the_ID().'" '. $this -> czr_fn_get_the_post_class( $post_class ) );
 
     $selectors = apply_filters( 'czr_article_selectors', $selectors );

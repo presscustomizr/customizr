@@ -135,7 +135,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     // remove smart load img parsing if any
     $smart_load_enabled = 1 == esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter( 'czr_thumb_html', array( CZR_cl_utils::$inst, 'czr_fn_parse_imgs') );
+      remove_filter( 'czr_thumb_html', 'czr_fn_parse_imgs' );
     /*** end tc_thumb setup ***/
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
@@ -151,7 +151,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     /* tc_thumb reset filters */
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
-      add_filter('czr_thumb_html', array(CZR_cl_utils::$inst, 'czr_fn_parse_imgs') );
+      add_filter('czr_thumb_html', 'czr_fn_parse_imgs' );
     /* end tc_thumb reset filters */
     if ( ! empty( $pre_slides_posts ) ) {
       /*** Setup shared properties ***/

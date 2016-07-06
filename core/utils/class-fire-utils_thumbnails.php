@@ -259,12 +259,12 @@ class CZR_cl_utils_thumbnails {
       //extract "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       extract( $_thumb_model );
       $thumb_img        = ! isset( $_thumb_model) ? false : $tc_thumb;
-      $thumb_img        = apply_filters( 'czr_post_thumb_img', $thumb_img, CZR_cl_utils::czr_fn_id() );
+      $thumb_img        = apply_filters( 'czr_post_thumb_img', $thumb_img, czr_fn_get_id() );
       if ( ! $thumb_img )
         return;
 
       //handles the case when the image dimensions are too small
-      $thumb_size       = apply_filters( 'czr_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size, CZR_cl_utils::czr_fn_id()  );
+      $thumb_size       = apply_filters( 'czr_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size, czr_fn_get_id()  );
       $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
       $no_effect_class  = ( esc_attr( czr_fn_get_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
@@ -277,7 +277,7 @@ class CZR_cl_utils_thumbnails {
                                     implode( " ", apply_filters( 'czr_thumb_wrapper_class', array('thumb-wrapper') ) )
       );
 
-      $thumb_wrapper    = apply_filters_ref_array( 'czr_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, CZR_cl_utils::czr_fn_id() ) );
+      $thumb_wrapper    = apply_filters_ref_array( 'czr_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, czr_fn_get_id() ) );
 
       //cache the thumbnail view
       $html             = sprintf('<section class="tc-thumbnail %1$s">%2$s</section>',

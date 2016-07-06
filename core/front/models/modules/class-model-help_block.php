@@ -173,7 +173,7 @@ abstract class CZR_cl_sidebar_help_block_model_class extends CZR_cl_help_block_m
   * @override
   */
   function czr_fn_get_the_help_message() {
-    $_customizer_lnk =  CZR_cl_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets', 'section' => 'sidebar-widgets-' . $this -> position ) );
+    $_customizer_lnk =  czr_fn_get_customizer_url( array( 'panel' => 'widgets', 'section' => 'sidebar-widgets-' . $this -> position ) );
     return sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
                 sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', $_customizer_lnk, __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" href="#" title="%1$s">%1$s</a>',
@@ -241,7 +241,7 @@ class CZR_cl_footer_widgets_help_block_model_class extends CZR_cl_sidebar_help_b
   */
   function czr_fn_get_the_help_message() {
     return sprintf( __("Add widgets to the footer %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_cl_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" href="#" title="%1$s">%1$s</a>',
                   __( 'dismiss this notice', 'customizr')
                 )
@@ -290,7 +290,7 @@ class CZR_cl_featured_pages_help_block_model_class extends CZR_cl_help_block_mod
   * @override
   */
   function czr_fn_get_the_help_message() {
-    $_customizer_lnk = apply_filters( 'czr_fp_notice_customizer_url', CZR_cl_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
+    $_customizer_lnk = apply_filters( 'czr_fp_notice_customizer_url', czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
     return sprintf( __("Edit those featured pages %s, or %s (you'll be able to add yours later)." , "customizr"),
               sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Edit those featured pages", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
               sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the featured pages", "customizr" ), __( "remove them", "customizr" ) )
@@ -306,7 +306,7 @@ class CZR_cl_featured_pages_help_block_model_class extends CZR_cl_help_block_mod
   function czr_fn_is_notice_on() {
     return ! CZR___::czr_fn_is_pro()
         && (bool)czr_fn_get_opt('tc_show_featured_pages')
-        && CZR_cl_utils::$inst -> czr_fn_is_home()
+        && czr_fn_is_home()
         && parent::czr_fn_is_notice_on();
   }
 
@@ -348,7 +348,7 @@ class CZR_cl_slider_help_block_model_class extends CZR_cl_help_block_model_class
   * @override
   */
   function czr_fn_get_the_help_message() {
-    $_customizer_lnk = CZR_cl_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+    $_customizer_lnk = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     return sprintf( __("Select your own slider %s, or %s (you'll be able to add one back later)." , "customizr"),
         sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Select your own slider", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
         sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the home page slider", "customizr" ), __( "remove this demo slider", "customizr" ) )
@@ -360,7 +360,7 @@ class CZR_cl_slider_help_block_model_class extends CZR_cl_help_block_model_class
   * we do not complete the slider notice instanciation if we're not displaying the demo slider (and we're in the front page)
   */
   function czr_fn_is_notice_on() {
-    return CZR_cl_utils::$inst-> czr_fn_is_home()
+    return czr_fn_is_home()
         && parent::czr_fn_is_notice_on();
   }
 }
@@ -383,7 +383,7 @@ class CZR_cl_thumbnail_help_block_model_class extends CZR_cl_help_block_model_cl
   * @override
   */
   function czr_fn_get_the_help_secondary_message() {
-    $_customizer_lnk = CZR_cl_utils::czr_fn_get_customizer_url( array( "section" => "single_posts_sec") );
+    $_customizer_lnk = czr_fn_get_customizer_url( array( "section" => "single_posts_sec") );
     return sprintf('<p>%1$s</p><p>%2$s</p>',
               sprintf( __("%s to display a featured image here.", "customizr"),
                 sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', $_customizer_lnk , __( "Jump to the customizer now", "customizr") )
@@ -430,7 +430,7 @@ class CZR_cl_smartload_help_block_model_class extends CZR_cl_help_block_model_cl
   * @override
   */
   function czr_fn_get_the_help_secondary_message() {
-    $_customizer_lnk = CZR_cl_utils::czr_fn_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) );
+    $_customizer_lnk = czr_fn_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) );
     return sprintf("<p>%s</p>",
             sprintf( __("%s and check the option 'Load images on scroll' under 'Website Performances' section.", "customizr"),
                 sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', $_customizer_lnk, __( "Jump to the customizer now", "customizr") )
@@ -511,7 +511,7 @@ class CZR_cl_sidenav_help_block_model_class extends CZR_cl_help_block_model_clas
   * @override
   */
   function czr_fn_get_the_help_secondary_message() {
-    $_customizer_lnk = CZR_cl_utils::czr_fn_get_customizer_url( array( "section" => "nav") );
+    $_customizer_lnk = czr_fn_get_customizer_url( array( "section" => "nav") );
     return sprintf('<p>%1$s</p><p>%2$s</p>',
               __( "( If you don't have any pages in your website, then this side menu is empty for the moment. )" , "customizr"),
               sprintf( __("If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s.", "customizr"),
@@ -534,7 +534,7 @@ class CZR_cl_sidenav_help_block_model_class extends CZR_cl_help_block_model_clas
   * the notice isn't enabled also if the main location has a menu assigned
   */
   function czr_fn_is_notice_enabled() {
-    return ! CZR_cl_utils::$inst->czr_fn_has_location_menu('main') && parent::czr_fn_is_notice_enabled();
+    return ! czr_fn_has_location_menu('main') && parent::czr_fn_is_notice_enabled();
   }
 }
 
@@ -549,7 +549,7 @@ class CZR_cl_main_menu_help_block_model_class extends CZR_cl_help_block_model_cl
   * @override
   */
   function czr_fn_get_the_help_message() {
-    $_customizer_lnk = CZR_cl_utils::czr_fn_get_customizer_url( array( "section" => "nav") );
+    $_customizer_lnk = czr_fn_get_customizer_url( array( "section" => "nav") );
     return sprintf('%1$s<br/>%2$s',
               __( "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed.", "customizr" ),
               sprintf( __("%s or %s.", "customizr"),
@@ -586,7 +586,7 @@ class CZR_cl_second_menu_help_block_model_class extends CZR_cl_help_block_model_
   * @override
   */
   function czr_fn_get_the_help_message() {
-    $_customizer_lnk = CZR_cl_utils::czr_fn_get_customizer_url( array( "section" => "nav") );
+    $_customizer_lnk = czr_fn_get_customizer_url( array( "section" => "nav") );
     return sprintf('%1$s<br/>%2$s',
               __( "You can display your main menu or a second menu here horizontally.", "customizr" ),
               sprintf( __("%s or read the %s.", "customizr"),

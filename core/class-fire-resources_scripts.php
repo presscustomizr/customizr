@@ -150,8 +150,8 @@ if ( ! class_exists( 'CZR_cl_resources_scripts' ) ) :
 
       //carousel options
       //gets slider options if any for home/front page or for others posts/pages
-      $js_slidername      = CZR_cl_utils::$inst -> czr_fn_is_home() ? czr_fn_get_opt( 'tc_front_slider' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'post_slider_key' , $single = true );
-      $js_sliderdelay     = CZR_cl_utils::$inst -> czr_fn_is_home() ? czr_fn_get_opt( 'tc_slider_delay' ) : get_post_meta( CZR_cl_utils::czr_fn_id() , $key = 'slider_delay_key' , $single = true );
+      $js_slidername      = czr_fn_is_home() ? czr_fn_get_opt( 'tc_front_slider' ) : get_post_meta( czr_fn_get_id() , $key = 'post_slider_key' , $single = true );
+      $js_sliderdelay     = czr_fn_is_home() ? czr_fn_get_opt( 'tc_slider_delay' ) : get_post_meta( czr_fn_get_id() , $key = 'slider_delay_key' , $single = true );
 
 			//has the post comments ? adds a boolean parameter in js
 			global $wp_query;
@@ -183,7 +183,7 @@ if ( ! class_exists( 'CZR_cl_resources_scripts' ) ) :
             )
       ));
 			//gets current screen layout
-    	$screen_layout      = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::czr_fn_id() , 'sidebar'  );
+    	$screen_layout      = czr_fn_get_layout( czr_fn_get_id() , 'sidebar'  );
     	//gets the global layout settings
     	$global_layout      = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
     	$sidebar_layout     = isset($global_layout[$screen_layout]['sidebar']) ? $global_layout[$screen_layout]['sidebar'] : false;
@@ -226,10 +226,10 @@ if ( ! class_exists( 'CZR_cl_resources_scripts' ) ) :
               'imgSmartLoadOpts'    => $smart_load_opts,
               'goldenRatio'         => apply_filters( 'czr_grid_golden_ratio' , 1.618 ),
               'gridGoldenRatioLimit' => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height' ) ),
-              'isSecondMenuEnabled'  => CZR_cl_utils::$inst-> czr_fn_is_secondary_menu_enabled(),
+              'isSecondMenuEnabled'  => czr_fn_is_secondary_menu_enabled(),
               'secondMenuRespSet'   => esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) )
 	        	),
-	        	CZR_cl_utils::czr_fn_id()
+	        	czr_fn_get_id()
 		    )//end of filter
 	     );
 

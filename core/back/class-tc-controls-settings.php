@@ -275,7 +275,7 @@ if ( ! class_exists( 'CZR_cl_controls' ) ) :
 
         case 'tc_theme_options[tc_skin]':
           $_data_hex  = '';
-          $_color_map = CZR_cl_utils::$inst -> czr_fn_getskincolor( 'all' );
+          $_color_map = czr_fn_getskincolor( 'all' );
           //Get the color map array structured as follow
           // array(
           //       'blue.css'        =>  array( '#08c', '#005580' ),

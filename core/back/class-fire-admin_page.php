@@ -310,7 +310,7 @@ if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
 # HOME_URL:                 <?php echo home_url() . "\n"; ?>
 # IS MULTISITE :            <?php echo is_multisite() ? 'Yes' . "\n" : 'No' . "\n" ?>
 
-# THEME | VERSION :         <?php printf( '%1$s | v%2$s', CZR___::$theme_name , CUSTOMIZR_VER ) . "\n"; ?>
+# THEME | VERSION :         <?php printf( '%1$s | v%2$s', CZR_THEMENAME , CUSTOMIZR_VER ) . "\n"; ?>
 # WP VERSION :              <?php echo get_bloginfo( 'version' ) . "\n"; ?>
 # PERMALINK STRUCTURE :     <?php echo get_option( 'permalink_structure' ) . "\n"; ?>
 

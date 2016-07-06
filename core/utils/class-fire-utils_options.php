@@ -8,54 +8,16 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
       //Access any method or var of the class with classname::$instance -> var or method():
       static $inst;
       static $instance;
-      public $default_options;
-      public $db_options;
-      public $options;//not used in customizer context only
-      public $is_customizing;
-      public $czr_options_prefixes;
 
       function __construct () {
         self::$inst =& $this;
         self::$instance =& $this;
-
-        //init properties
-        add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
-
-        //refresh the theme options right after the _preview_filter when previewing
-        add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
       }
 
       /***************************
       * EARLY HOOKS
       ****************************/
-      /**
-      * Init CZR_cl_utils class properties after_setup_theme
-      * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
-      * czr_fn_get_default_options uses is_user_logged_in() => was causing the bug
-      * hook : after_setup_theme
-      *
-      * @package Customizr
-      * @since Customizr 3.2.3
-      */
-      function czr_fn_init_properties() {
-        //all customizr theme options start by "tc_" by convention
-        $this -> czr_options_prefixes = apply_filters('czr_options_prefixes', array('tc_') );
-        $this -> is_customizing   = CZR() -> czr_fn_is_customizing();
-        $this -> db_options       = false === get_option( CZR___::$czr_option_group ) ? array() : (array)get_option( CZR___::$czr_option_group );
-        $this -> default_options  = $this -> czr_fn_get_default_options();
-        $_trans                   = CZR___::czr_fn_is_pro() ? 'started_using_customizr_pro' : 'started_using_customizr';
 
-        //What was the theme version when the user started to use Customizr?
-        //new install = no options yet
-        //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-        if ( 1 >= count( $this -> db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
-          set_transient(
-            $_trans,
-            sprintf('%s|%s' , 1 >= count( $this -> db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
-            60*60*24*9999
-          );
-        }
-      }
 
 
       /**
@@ -68,7 +30,7 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
       * @since Customizr 3.4.9
       */
       function czr_fn_is_customizr_option( $option_key ) {
-        $_is_czr_option = in_array( substr( $option_key, 0, 3 ), $this -> czr_options_prefixes );
+        $_is_czr_option = in_array( substr( $option_key, 0, 3 ), array( CZR_OPT_PREFIX ) );
         return apply_filters( 'czr_is_customizr_option', $_is_czr_option , $option_key );
       }
 
@@ -81,13 +43,13 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
       * @since Customizr 3.1.11
       */
       function czr_fn_get_default_options() {
-        $_db_opts     = empty($this -> db_options) ? $this -> czr_fn_cache_db_options() : $this -> db_options;
+        $_db_opts     = empty(CZR___::$db_options) ? $this -> czr_fn_cache_db_options() : CZR___::$db_options;
         $def_options  = isset($_db_opts['defaults']) ? $_db_opts['defaults'] : array();
 
         //Don't update if default options are not empty + customizing context
         //customizing out ? => we can assume that the user has at least refresh the default once (because logged in, see conditions below) before accessing the customizer
         //customzing => takes into account if user has set a filter or added a new customizer setting
-        if ( ! empty($def_options) && $this -> is_customizing )
+        if ( ! empty($def_options) && CZR() -> czr_fn_is_customizing() )
           return apply_filters( 'czr_default_options', $def_options );
 
         //Always update/generate the default option when (OR) :
@@ -150,9 +112,9 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
       */
       function czr_fn_get_theme_options ( $option_group = null ) {
           //do we have to look in a specific group of option (plugin?)
-          $option_group       = is_null($option_group) ? CZR___::$czr_option_group : $option_group;
-          $saved              = empty($this -> db_options) ? $this -> czr_fn_cache_db_options() : $this -> db_options;
-          $defaults           = $this -> default_options;
+          $option_group       = is_null($option_group) ? CZR_OPT_NAME : $option_group;
+          $saved              = empty(CZR___::$db_options) ? $this -> czr_fn_cache_db_options() : CZR___::$db_options;
+          $defaults           = CZR___::$default_options;
           $__options          = wp_parse_args( $saved, $defaults );
           //$__options        = array_intersect_key( $__options, $defaults );
         return $__options;
@@ -169,15 +131,15 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
       */
       function czr_fn_opt( $option_name , $option_group = null, $use_default = true ) {
         //do we have to look for a specific group of option (plugin?)
-        $option_group = is_null($option_group) ? CZR___::$czr_option_group : $option_group;
+        $option_group = is_null($option_group) ? CZR_OPT_NAME : $option_group;
         //when customizing, the db_options property is refreshed each time the preview is refreshed in 'customize_preview_init'
-        $_db_options  = empty($this -> db_options) ? $this -> czr_fn_cache_db_options() : $this -> db_options;
+        $_db_options  = empty(CZR___::$db_options) ? $this -> czr_fn_cache_db_options() : CZR___::$db_options;
 
         //do we have to use the default ?
         $__options    = $_db_options;
         $_default_val = false;
         if ( $use_default ) {
-          $_defaults      = $this -> default_options;
+          $_defaults      = CZR___::$default_options;
           if ( isset($_defaults[$option_name]) )
             $_default_val = $_defaults[$option_name];
           $__options      = wp_parse_args( $_db_options, $_defaults );
@@ -202,21 +164,7 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
 
 
 
-      /**
-      * The purpose of this callback is to refresh and store the theme options in a property on each customize preview refresh
-      * => preview performance improvement
-      * 'customize_preview_init' is fired on wp_loaded, once WordPress is fully loaded ( after 'init', before 'wp') and right after the call to 'customize_register'
-      * This method is fired just after the theme option has been filtered for each settings by the WP_Customize_Setting::_preview_filter() callback
-      * => if this method is fired before this hook when customizing, the user changes won't be taken into account on preview refresh
-      *
-      * hook : customize_preview_init
-      * @return  void
-      *
-      * @since  v3.4+
-      */
-      function czr_fn_customize_refresh_db_opt(){
-        $this -> db_options = false === get_option( CZR___::$czr_option_group ) ? array() : (array)get_option( CZR___::$czr_option_group );
-      }
+
 
 
 
@@ -231,7 +179,7 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
       * @since Customizr 3.4+
       */
       function czr_fn_set_option( $option_name , $option_value, $option_group = null ) {
-        $option_group           = is_null($option_group) ? CZR___::$czr_option_group : $option_group;
+        $option_group           = is_null($option_group) ? CZR_OPT_NAME : $option_group;
         $_options               = $this -> czr_fn_get_theme_options( $option_group );
         $_options[$option_name] = $option_value;
 
@@ -247,9 +195,9 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_cache_db_options($opt_group = null) {
-        $opts_group = is_null($opt_group) ? CZR___::$czr_option_group : $opt_group;
-        $this -> db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
-        return $this -> db_options;
+        $opts_group = is_null($opt_group) ? CZR_OPT_NAME : $opt_group;
+        CZR___::$db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
+        return CZR___::$db_options;
       }
 
 

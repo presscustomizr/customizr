@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       if ( CZR() -> czr_fn_is_customizing() )
         return true;
 
-      $_socials = CZR_cl_utils::$inst -> czr_fn_get_social_networks();
+      $_socials = czr_fn_get_social_networks();
 
       //(2a)
       if ( ! array_key_exists( $model['id'], $socials_map ) )
@@ -43,7 +43,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       //(3b)
       $_id = $model['id'];
       $_opt_name = $socials_map[ $_id ];
-      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_{$_opt_name}" ) ) && CZR_cl_utils::$inst -> czr_fn_get_social_networks() );
+      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_{$_opt_name}" ) ) && czr_fn_get_social_networks() );
     }
 
 
@@ -51,7 +51,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       //gets the front slider if any
       $tc_front_slider              = esc_attr(czr_fn_get_opt( 'tc_front_slider' ) );
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
-      $_show_slider = CZR_cl_utils::$inst -> czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
+      $_show_slider = czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
 
       return apply_filters( 'czr_show_slider' , $_show_slider );
 
@@ -62,7 +62,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       if ( ! apply_filters( 'czr_show_breadcrumb' , 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) )
         return false;
 
-      if ( CZR_cl_utils::$inst -> czr_fn_is_home() )
+      if ( czr_fn_is_home() )
         return 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
       if ( is_page() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_pages' ) ) )
         return false;
@@ -96,7 +96,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
     function czr_fn_display_view_featured_pages() {
       //gets display fp option
       $tc_show_featured_pages 	      = esc_attr( czr_fn_get_opt( 'tc_show_featured_pages' ) );
-      return apply_filters( 'czr_show_fp', 0 != $tc_show_featured_pages && CZR_cl_utils::$inst -> czr_fn_is_home() );
+      return apply_filters( 'czr_show_fp', 0 != $tc_show_featured_pages && czr_fn_is_home() );
     }
 
 

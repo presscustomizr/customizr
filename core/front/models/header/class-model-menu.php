@@ -16,7 +16,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
     $model[ 'menu_class' ]     = $this -> get_menu_class();
     $model[ 'element_class' ]  = $this -> get_element_class();
     $model[ 'theme_location' ] = $this -> theme_location;
-    $model[ 'walker' ]         = ! CZR_cl_utils::$inst -> czr_fn_has_location_menu( $model['theme_location'] ) ? '' : new CZR_cl_nav_walker( $model['theme_location'] );
+    $model[ 'walker' ]         = ! czr_fn_has_location_menu( $model['theme_location'] ) ? '' : new CZR_cl_nav_walker( $model['theme_location'] );
     $model[ 'fallback_cb' ]    = array( $this, 'czr_fn_page_menu' );
 
     return $model;

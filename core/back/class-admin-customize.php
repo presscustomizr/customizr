@@ -69,7 +69,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       //=> CHANGE SITE ICON DEFAULT WP SECTION TO CUSTOMIZR LOGO SECTION
       global $wp_version;
       if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
-        $czr_option_group = CZR___::$czr_option_group;
+        $czr_option_group = CZR_OPT_NAME;
         $wp_customize -> remove_control( "{$czr_option_group}[tc_fav_upload]" );
         //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
         $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
@@ -306,7 +306,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 					$f_option = preg_match_all( '/\[(.*?)\]/' , $key , $match );
 		      $f_option_name = isset( $match[1][0] )  ? $match[1][0] : 'setting';
 
-          $czr_option_group = CZR___::$czr_option_group;
+          $czr_option_group = CZR_OPT_NAME;
           //build option name
           //When do we add a prefix ?
           //all customizr theme options start by "tc_" by convention
@@ -393,7 +393,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
                 //can be hacked to override the preview params when a custom skin is used
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
                 'customSkin'      => apply_filters( 'czr_custom_skin_preview_params' , $custom_skin ),
-                'fontPairs'       => CZR_cl_utils::$inst -> czr_fn_get_font( 'list' ),
+                'fontPairs'       => czr_fn_get_font( 'list' ),
                 'fontSelectors'   => CZR_cl_init::$instance -> font_selectors,
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' )
@@ -465,7 +465,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 	        	'FPControls' => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
 	        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 	        	'CZRnonce' 			=> wp_create_nonce( 'czr-customizer-nonce' ),
-            'themeName'     => CZR___::$theme_name,
+            'themeName'     => CZR_THEMENAME,
             'HideDonate'    => $this -> czr_fn_get_hide_donate_status(),
             'ShowCTA'       => ( true == czr_fn_get_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
@@ -623,7 +623,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       </script>
       <script type="text/template" id="rate-czr">
         <?php
-        $_is_pro = 'customizr-pro' == CZR___::$theme_name;
+        $_is_pro = 'customizr-pro' == CZR_THEMENAME;
           printf( '<span class="tc-rate-link">%1$s %2$s, <br/>%3$s <a href="%4$s" title="%5$s" class="tc-stars" target="_blank">%6$s</a> %7$s</span>',
             __( 'If you like' , 'customizr' ),
             ! $_is_pro ? __( 'the Customizr theme' , 'customizr') : __( 'the Customizr pro theme' , 'customizr'),
