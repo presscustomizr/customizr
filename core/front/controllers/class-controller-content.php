@@ -16,7 +16,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     private function czr_fn_display_view_sidebar( $position ) {
-      if ( CZR_cl_utils::$inst -> czr_fn_is_home_empty() )
+      if ( czr_fn_is_home_empty() )
         return false;
 
       static $sidebar_map = array(
@@ -25,7 +25,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
         'left'   => 'l'
       );
 
-      $screen_layout        = CZR_cl_utils::czr_fn_get_layout( CZR_cl_utils::czr_fn_id() , 'sidebar'  );
+      $screen_layout        = czr_fn_get_layout( czr_fn_get_id() , 'sidebar'  );
       if ( ! in_array( $screen_layout, array( $sidebar_map[$position], 'b' ) ) )
         return false;
       return true;
@@ -36,7 +36,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_posts_list_headings() {
-      return ! CZR_cl_utils::$inst -> czr_fn_is_home() && CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts();
+      return ! czr_fn_is_home() && CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts();
     }
 
     function czr_fn_display_view_post_list() {
@@ -113,13 +113,13 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       elseif ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
         $post_metas = false;
 
-      elseif ( is_singular() && ! is_page() && ! CZR_cl_utils::$inst -> czr_fn_is_home() )
+      elseif ( is_singular() && ! is_page() && ! czr_fn_is_home() )
         $post_metas = ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_single_post' ) ) );
 
-      elseif ( ! is_singular() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && ! is_page() )
+      elseif ( ! is_singular() && ! czr_fn_is_home() && ! is_page() )
         $post_metas = ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_post_lists' ) ) );
 
-      elseif ( CZR_cl_utils::$inst -> czr_fn_is_home() )
+      elseif ( czr_fn_is_home() )
         $post_metas = ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_home' ) ) );
       else
         $post_metas = false;
@@ -260,7 +260,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       if ( isset( $post ) ) {
         $_bool = post_password_required() ? false : true;
 
-        $_bool = in_the_loop() ? $_bool && ( CZR_cl_utils::$inst -> czr_fn_is_home() || ! is_singular() ) : $_bool;
+        $_bool = in_the_loop() ? $_bool && ( czr_fn_is_home() || ! is_singular() ) : $_bool;
 
         //2) if user has enabled comment for this specific post / page => true
         //@todo contx : update default value user's value)

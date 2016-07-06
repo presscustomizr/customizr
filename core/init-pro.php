@@ -21,9 +21,9 @@ if ( ! class_exists( 'CZR_cl_init_pro' ) ) :
     function __construct () {
         self::$instance =& $this;
         $this -> _pro_classes = array(
-          'CZR_cl_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array(  THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
+          'CZR_cl_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array( CZR_THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
           'CZR_cl_theme_updater'           => array('/addons/activation-key/updates/class_theme_updater.php'),
-          'CZR_cl_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
+          'CZR_cl_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array( CZR_THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
           'CZR_cl_wfc'                     => array('/addons/wfc/wordpress-font-customizer.php'),
           'CZR_cl_fpu'                     => array('/addons/fpu/tc_unlimited_featured_pages.php'),
           'CZR_cl_pro_bundle'                  => array('/addons/bundle/pc-pro-bundle.php')
@@ -86,4 +86,4 @@ endif;
 
 //may be load pro
 if ( CZR___::czr_fn_is_pro() )
-  new CZR_cl_init_pro(CZR___::$theme_name );
+  new CZR_cl_init_pro(CZR_THEMENAME );

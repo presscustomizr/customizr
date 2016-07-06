@@ -12,7 +12,7 @@ class CZR_cl_social_block_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-        $model[ 'social_block' ]        = CZR_cl_utils::$inst -> czr_fn_get_social_networks();
+        $model[ 'social_block' ]        = czr_fn_get_social_networks();
         $model[ 'element_class' ]       = $this -> czr_fn_social_block_get_class( $model );
         $model[ 'where' ]               = $this -> czr_fn_get_socials_where( $model );
         $model[ 'element_attributes' ]  = $this -> czr_fn_social_block_get_attributes( $model );

@@ -87,7 +87,7 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
 
       wp_enqueue_style(
         'czr-gfonts',
-        sprintf( '//fonts.googleapis.com/css?family=%s', CZR_cl_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) ),
+        sprintf( '//fonts.googleapis.com/css?family=%s', czr_fn_get_font( 'single' , $_font_pair ) ),
         array(),
         null,
         'all'
@@ -125,7 +125,7 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
       $body   = apply_filters('czr_body_fonts_selectors' , $body );
 
       if ( 'helvetica_arial' != $_font_pair ) {//check if not default
-        $_selector_fonts  = explode( '|', CZR_cl_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) );
+        $_selector_fonts  = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
         if ( ! is_array($_selector_fonts) )
           return $_css;
 
@@ -191,7 +191,7 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
       if ( ! esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
         return $_css;
 
-      $_main_color_pair = CZR_cl_utils::$inst -> czr_fn_getskincolor( 'pair' );
+      $_main_color_pair = czr_fn_getskincolor( 'pair' );
       $_color           = $_main_color_pair[0];
       $_shad_color      = $_main_color_pair[1];
       $_pad_right       = false !== strpos( esc_attr( czr_fn_get_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;

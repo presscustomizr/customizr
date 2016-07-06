@@ -18,14 +18,57 @@ if ( ! class_exists( 'CZR___' ) ) :
         public static $instance;//@todo make private in the future
         public $czr_core;
         public $is_customizing;
-        public static $theme_name;
-        public static $czr_option_group;
+
+        static $default_options;
+        static $db_options;
+        static $options;//not used in customizer context only
 
         public $views;//object, stores the views
         public $controllers;//object, stores the controllers
 
         //stack
         public $current_model = array();
+
+
+        function __construct( $_args = array()) {
+            //init properties
+            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
+            //refresh the theme options right after the _preview_filter when previewing
+            add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
+        }
+
+
+        /**
+      * Init CZR_cl_utils class properties after_setup_theme
+      * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
+      * czr_fn_get_default_options uses is_user_logged_in() => was causing the bug
+      * hook : after_setup_theme
+      *
+      * @package Customizr
+      * @since Customizr 3.2.3
+      */
+      function czr_fn_init_properties() {
+            self::$db_options       = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
+            self::$default_options  = CZR_cl_utils_options::$inst -> czr_fn_get_default_options();
+            $_trans                   = CZR___::czr_fn_is_pro() ? 'started_using_customizr_pro' : 'started_using_customizr';
+
+            //What was the theme version when the user started to use Customizr?
+            //new install = no options yet
+            //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
+            if ( 1 >= count( self::$db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
+              set_transient(
+                $_trans,
+                sprintf('%s|%s' , 1 >= count( self::$db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
+                60*60*24*9999
+              );
+            }
+      }
+
+
+
+
+
+
 
 
 
@@ -45,6 +88,34 @@ if ( ! class_exists( 'CZR___' ) ) :
               }
               return self::$instance;
         }
+
+
+         /**
+        * The purpose of this callback is to refresh and store the theme options in a property on each customize preview refresh
+        * => preview performance improvement
+        * 'customize_preview_init' is fired on wp_loaded, once WordPress is fully loaded ( after 'init', before 'wp') and right after the call to 'customize_register'
+        * This method is fired just after the theme option has been filtered for each settings by the WP_Customize_Setting::_preview_filter() callback
+        * => if this method is fired before this hook when customizing, the user changes won't be taken into account on preview refresh
+        *
+        * hook : customize_preview_init
+        * @return  void
+        *
+        * @since  v3.4+
+        */
+        function czr_fn_customize_refresh_db_opt(){
+          CZR___::$db_options = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -69,8 +140,6 @@ if ( ! class_exists( 'CZR___' ) ) :
                    $tc_base_data['prefix']      = $tc_base_data['title'];
               }
 
-              self::$theme_name                 = sanitize_file_name( strtolower($tc_base_data['title']) );
-
               //CUSTOMIZR_VER is the Version
               if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
               //CZR_BASE is the root server path of the parent theme
@@ -91,10 +160,15 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CZR_BASE_URL' ) )        define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
               //CZR_BASE_URL_CHILD http url of the loaded child theme
               if( ! defined( 'CZR_BASE_URL_CHILD' ) )  define( 'CZR_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
-              //THEMENAME contains the Name of the currently loaded theme
-              if( ! defined( 'THEMENAME' ) )          define( 'THEMENAME' , $tc_base_data['title'] );
+              //CZR_THEMENAME contains the Name of the currently loaded theme
+              if( ! defined( 'CZR_THEMENAME' ) )          define( 'CZR_THEMENAME' , $tc_base_data['title'] );
               //CZR_WEBSITE is the home website of Customizr
               if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
+              //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
+              if( ! defined( 'CZR_OPT_PREFIX' ) )      define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
+              //MAIN OPTIONS NAME
+              if( ! defined( 'CZR_OPT_NAME' ) )      define( 'CZR_OPT_NAME' , apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+
 
         }//setup_contants()
 
@@ -141,8 +215,6 @@ if ( ! class_exists( 'CZR___' ) ) :
               if ( $this -> czr_fn_is_pro() )
                 require_once( sprintf( '%score/init-pro.php' , CZR_BASE ) );
 
-              self::$czr_option_group = 'tc_theme_options';
-
               //set files to load according to the context : admin / front / customize
               add_filter( 'czr_get_files_to_load' , array( $this , 'czr_fn_set_files_to_load' ) );
         }
@@ -159,48 +231,48 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.0
         */
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
-          //loads init
-          $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
-          new CZR_cl_init();
+            //loads init
+            $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
+            new CZR_cl_init();
 
-          //loads the plugin compatibility
-          $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-plugins_compat.php' );
-          new CZR_cl_plugins_compat();
+            //loads the plugin compatibility
+            $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-plugins_compat.php' );
+            new CZR_cl_plugins_compat();
 
-          //loads utils
-          $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_settings_map.php' );
-
-          $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils.php' );
-          new CZR_cl_utils();
-          // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options.php' );
-          // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
-
-          // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_texts.php' );
-          // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
-
-          //do we apply a filter ? optional boolean can force no filter
-          $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
-          if ( empty($_to_load) )
-            return;
-
-          foreach ( $_to_load as $group => $files )
-            foreach ($files as $path_suffix ) {
-              $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
-              $classname = 'CZR_cl_' . $path_suffix[1];
-              if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_cl_nav_walker') ) ) )
-                continue;
-              //instantiates
-              $instances = class_exists($classname)  ? new $classname : '';
-            }
+            //loads utils
+            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_settings_map.php' );
+            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils.php' );
 
 
-          //load the new framework classes
-          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
-          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
-          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
-          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
-          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
-          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-helpers.php' );
+            // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options.php' );
+            // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
+
+            // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_texts.php' );
+            // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
+
+            //do we apply a filter ? optional boolean can force no filter
+            $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
+            if ( empty($_to_load) )
+              return;
+
+            foreach ( $_to_load as $group => $files )
+              foreach ($files as $path_suffix ) {
+                $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
+                $classname = 'CZR_cl_' . $path_suffix[1];
+                if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_cl_nav_walker') ) ) )
+                  continue;
+                //instantiates
+                $instances = class_exists($classname)  ? new $classname : '';
+              }
+
+
+            //load the new framework classes
+            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
+            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
+            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
+            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
+            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
+            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-helpers.php' );
         }
 
 
@@ -471,14 +543,14 @@ if ( ! class_exists( 'CZR___' ) ) :
         * An handly function to print the content wrapper class
         */
         function czr_fn_column_content_wrapper_class() {
-          echo CZR() -> helpers -> czr_fn_stringify_array( CZR_cl_utils::czr_fn_get_column_content_wrapper_class() );
+          echo CZR() -> helpers -> czr_fn_stringify_array( czr_fn_get_column_content_wrapper_class() );
         }
 
         /*
         * An handly function to print the article containerr class
         */
         function czr_fn_article_container_class() {
-          echo CZR() -> helpers -> czr_fn_stringify_array( CZR_cl_utils::czr_fn_get_article_container_class() );
+          echo CZR() -> helpers -> czr_fn_stringify_array( czr_fn_get_article_container_class() );
         }
 
         /**
@@ -490,14 +562,14 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since  3.2.9
         */
         function czr_fn_is_customizing() {
-          if ( ! isset( $this -> is_customizing ) )
-            //checks if is customizing : two contexts, admin and front (preview frame)
-            $this -> is_customizing = in_array( 1, array(
-              $this -> czr_fn_is_customize_left_panel(),
-              $this -> czr_fn_is_customize_preview_frame(),
-             $this -> czr_fn_doing_customizer_ajax()
-            ) );
-          return $this -> is_customizing;
+            if ( ! isset( $this -> is_customizing ) )
+              //checks if is customizing : two contexts, admin and front (preview frame)
+              $this -> is_customizing = in_array( 1, array(
+                $this -> czr_fn_is_customize_left_panel(),
+                $this -> czr_fn_is_customize_preview_frame(),
+               $this -> czr_fn_doing_customizer_ajax()
+              ) );
+            return $this -> is_customizing;
         }
 
 
@@ -561,7 +633,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since  3.4+
         */
         static function czr_fn_is_pro() {
-          return file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == self::$theme_name;
+          return file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME;
         }
 
   }//end of class

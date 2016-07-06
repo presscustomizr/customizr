@@ -84,7 +84,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
         $_attachment_data   = apply_filters( "czr_logo_attachment_img" , wp_get_attachment_image_src( $logo_option , 'full' ) );
 
         $_logo_src          = apply_filters( "czr_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
-        $filetype           = CZR_cl_utils::$inst -> czr_fn_check_filetype ($_logo_src);
+        $filetype           = czr_fn_check_filetype ($_logo_src);
 
         if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
           $to_return = true;
@@ -114,7 +114,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
         $_attachment_data     = apply_filters( "czr_sticky_logo_attachment_img" , wp_get_attachment_image_src( $sticky_logo_option , 'full' ) );
 
         $_logo_src            = apply_filters( "czr_sticky_logo_src" , is_ssl() ? str_replace('http://', 'https://', $_attachment_data[0] ) : $_attachment_data[0] ) ;
-        $filetype             = CZR_cl_utils::$inst -> czr_fn_check_filetype ($_logo_src);
+        $filetype             = czr_fn_check_filetype ($_logo_src);
 
         if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
           $to_return = true;
@@ -141,7 +141,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
     //2) menu type is sidenav but a secondary menu is chosen
     function czr_fn_display_view_navbar_secondary_menu() {
       if ( ! isset( $this -> _cache[ 'view_navbar_secondary_menu' ] ) )
-        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> czr_fn_display_view_menu() &&  ( $this -> czr_fn_display_view_sidenav() && CZR_cl_Utils::$inst -> czr_fn_is_secondary_menu_enabled() ) ;
+        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> czr_fn_display_view_menu() &&  ( $this -> czr_fn_display_view_sidenav() && czr_fn_is_secondary_menu_enabled() ) ;
       return $this -> _cache[ 'view_navbar_secondary_menu' ];
     }
 

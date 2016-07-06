@@ -24,7 +24,7 @@ class CZR_cl_thumbnail_single_model_class extends CZR_cl_Model{
     if ( ! isset( $tc_thumb ) || is_null( $tc_thumb ) )
       return;
 
-    $thumb_img              = apply_filters( 'czr_post_thumb_img', $tc_thumb, CZR_cl_utils::czr_fn_id() );
+    $thumb_img              = apply_filters( 'czr_post_thumb_img', $tc_thumb, czr_fn_get_id() );
     if ( ! $thumb_img )
       return;
 

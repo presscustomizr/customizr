@@ -50,7 +50,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   }
 
   public function czr_fn_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
-    if ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = CZR_cl_utils::$inst -> czr_fn_post_has_update() ) {
+    if ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = czr_fn_post_has_update() ) {
       if ( 'days' == esc_attr( czr_fn_get_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
         $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
         $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
@@ -195,7 +195,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   */
   private function czr_fn_get_term_of_tax_type( $hierarchical = true ) {
     //var declaration
-    $post_type              = get_post_type( CZR_cl_utils::czr_fn_id() );
+    $post_type              = get_post_type( czr_fn_get_id() );
     $tax_list               = get_object_taxonomies( $post_type, 'object' );
     $_tax_type_list         = array();
     $_tax_type_terms_list   = array();
@@ -228,7 +228,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
 
     //fill the post terms array
     foreach ($_tax_type_list as $tax_name => $data ) {
-      $_current_tax_terms = get_the_terms( CZR_cl_utils::czr_fn_id() , $tax_name );
+      $_current_tax_terms = get_the_terms( czr_fn_get_id() , $tax_name );
       //If current post support this tax but no terms has been assigned yet = continue
       if ( ! $_current_tax_terms )
         continue;
@@ -255,9 +255,9 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   private function czr_fn_is_tax_authorized( $_tax_object , $post_type ) {
     $_in_exclude_list = in_array(
       $_tax_object['name'],
-      apply_filters_ref_array ( 'czr_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , CZR_cl_utils::czr_fn_id() ) )
+      apply_filters_ref_array ( 'czr_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , czr_fn_get_id() ) )
     );
-    $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'czr_exclude_private_taxonomies', array( true, $_tax_object['public'], CZR_cl_utils::czr_fn_id() ) );
+    $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'czr_exclude_private_taxonomies', array( true, $_tax_object['public'], czr_fn_get_id() ) );
     return ! $_in_exclude_list && ! $_is_private;
   }
 
@@ -271,9 +271,9 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
        array_push( $_classes, 'hide-all-post-metas' );
 
     if (
-        ( is_singular() && ! is_page() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_single_post' ) ) ) ||
-        ( ! is_singular() && ! CZR_cl_utils::$inst -> czr_fn_is_home() && ! is_page() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
-        ( CZR_cl_utils::$inst -> czr_fn_is_home() ) && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_home' ) )
+        ( is_singular() && ! is_page() && ! czr_fn_is_home() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_single_post' ) ) ) ||
+        ( ! is_singular() && ! czr_fn_is_home() && ! is_page() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
+        ( czr_fn_is_home() ) && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_home' ) )
     )
       array_push( $_classes, 'hide-post-metas' );
 

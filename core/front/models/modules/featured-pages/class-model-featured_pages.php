@@ -20,7 +20,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
         $czr_fn_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
-        $_skin_color                    = CZR_cl_utils::$inst -> czr_fn_getskincolor();
+        $_skin_color                    = czr_fn_getskincolor();
         $fp_holder_img                  = apply_filters (
               'tc_fp_holder_img' ,
               sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" style="width:270px;height:250px;"/>',
@@ -93,11 +93,11 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
     	  if ( ! CZR() -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
             $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-                CZR_cl_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
+                czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Edit now.' , 'customizr' )
             );
-            $featured_page_link          = apply_filters( 'czr_fp_link_url', CZR_cl_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
+            $featured_page_link          = apply_filters( 'czr_fp_link_url', czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
           }
 
     	  //rendering

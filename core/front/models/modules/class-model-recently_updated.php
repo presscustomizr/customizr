@@ -29,7 +29,7 @@ class CZR_cl_recently_updated_model_class extends CZR_cl_Model {
         $_interval = ( 0 != $_interval ) ? $_interval : 30;
 
         //Check if the last update is less than n days old. (replace n by your own value)
-        $has_recent_update = ( CZR_cl_utils::$inst -> czr_fn_post_has_update( true ) && CZR_cl_utils::$inst -> czr_fn_post_has_update( 'in_days') < $_interval ) ? true : false;
+        $has_recent_update = ( czr_fn_post_has_update( true ) && czr_fn_post_has_update( 'in_days') < $_interval ) ? true : false;
 
         if ( ! $has_recent_update )
           return;

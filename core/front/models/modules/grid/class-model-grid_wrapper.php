@@ -22,7 +22,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $this -> post_id              = CZR_cl_utils::czr_fn_id();
+    $this -> post_id              = czr_fn_get_id();
 
     //wrapper classes based on the user options
     $model[ 'element_class' ]     = $this -> czr_fn_grid_container_set_classes( array() );
@@ -112,7 +112,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   /* retrieves number of cols option, and wrap it into a filter */
   private function czr_fn_get_grid_cols() {
     if ( ! isset( $this -> grid_cols ) )
-      $grid_cols = $this -> czr_fn_set_grid_cols( esc_attr( czr_fn_get_opt( 'tc_grid_columns') ), CZR_cl_utils::czr_fn_get_layout( $this -> post_id , 'class' ) );
+      $grid_cols = $this -> czr_fn_set_grid_cols( esc_attr( czr_fn_get_opt( 'tc_grid_columns') ), czr_fn_get_layout( $this -> post_id , 'class' ) );
     else
       $grid_cols = $this -> grid_cols;
 
@@ -237,7 +237,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   */
   private function czr_fn_get_grid_column_height( $_cols_nb = '3' ) {
     $_h               = $this -> czr_fn_grid_get_thumb_height();
-    $_current_layout  = CZR_cl_utils::czr_fn_get_layout( $this -> post_id , 'sidebar' );
+    $_current_layout  = czr_fn_get_layout( $this -> post_id , 'sidebar' );
     $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
     $_key             = 3;//default value == full
     if ( in_array( $_current_layout, $_layouts ) )
@@ -355,7 +355,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
       isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
       $_col_nb,
       $_col_media_matrix,
-      CZR_cl_utils::czr_fn_get_layout( $this -> post_id , 'class' )
+      czr_fn_get_layout( $this -> post_id , 'class' )
     );
   }
 
