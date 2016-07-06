@@ -33,7 +33,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       add_action ( 'deleted_post'         , array( $this , 'tc_refresh_posts_slider') );
 
       //refresh the terms array (categories/tags pickers options) on term deletion
-      add_action ( 'delete_term'          , array( $this, 'tc_refresh_terms_pickers_options_cb'), 10, 3 );
+      add_action ( 'delete_term'          , array( $this, 'tc_refresh_terms_picker_options_cb'), 10, 3 );
 
       //UPDATE NOTICE
       add_action( 'admin_notices'         , array( $this, 'tc_may_be_display_update_notice') );
