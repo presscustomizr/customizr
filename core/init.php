@@ -75,10 +75,14 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
               //CZR_BASE is the root server path of the parent theme
               if( ! defined( 'CZR_BASE' ) )            define( 'CZR_BASE' , get_template_directory().'/' );
-              //CZR_FRAMEWORK_PREFIX is the relative path where the framework is located
-              if( ! defined( 'CZR_FRAMEWORK_PREFIX' ) ) define( 'CZR_FRAMEWORK_PREFIX' , 'core/framework/' );
-              //CZR_FRAMEWORK_FRONT_PREFIX is the relative path where the framework fornt files are located
-              if( ! defined( 'CZR_FRAMEWORK_FRONT_PREFIX' ) ) define( 'CZR_FRAMEWORK_FRONT_PREFIX' , 'core/front/' );
+              //CZR_UTILS_PREFIX is the relative path where the utils classes are located
+              if( ! defined( 'CZR_CORE_PATH' ) ) define( 'CZR_CORE_PATH' , 'core/' );
+              //CZR_UTILS_PREFIX is the relative path where the utils classes are located
+              if( ! defined( 'CZR_UTILS_PATH' ) ) define( 'CZR_UTILS_PATH' , 'core/utils/' );
+              //CZR_FRAMEWORK_PATH is the relative path where the framework is located
+              if( ! defined( 'CZR_FRAMEWORK_PATH' ) ) define( 'CZR_FRAMEWORK_PATH' , 'core/framework/' );
+              //CZR_FRAMEWORK_FRONT_PATH is the relative path where the framework fornt files are located
+              if( ! defined( 'CZR_FRAMEWORK_FRONT_PATH' ) ) define( 'CZR_FRAMEWORK_FRONT_PATH' , 'core/front/' );
               //CZR_ASSETS_PREFIX is the relative path where the assets are located
               if( ! defined( 'CZR_ASSETS_PREFIX' ) )   define( 'CZR_ASSETS_PREFIX' , 'assets/' );
               //CZR_BASE_CHILD is the root server path of the child theme
@@ -102,30 +106,33 @@ if ( ! class_exists( 'CZR___' ) ) :
               $this -> czr_core = apply_filters( 'czr_core',
                 array(
                     'fire'      =>   array(
-                      array('core'       , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
-                      array('core'       , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
-                      array('core/utils' , 'utils_settings_map'),//customizer setting map
-                      array('core/utils' , 'utils'),//helpers used everywhere
-                      array('core/utils' , 'utils_options'),
-                      array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
-                      array('core/utils' , 'utils_query'),//query helpers used almost everywhere
-                      array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
-                      array('core'       , 'resources_styles'),
-                      array('core'       , 'resources_fonts'),
-                      array('core'       , 'resources_scripts'),
-                      array('core'       , 'widgets'),//widget factory
-                      array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
-                      array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
+                        //array('core'       , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
+
+                        //array('core'       , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
+
+                        //array('core/utils' , 'utils_settings_map'),//customizer setting map
+                        //array('core/utils' , 'utils'),//helpers used everywhere
+                        array('core/utils' , 'utils_options'),
+                        array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
+                        array('core/utils' , 'utils_query'),//query helpers used almost everywhere
+                        array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
+
+                        array('core'       , 'resources_styles'),
+                        array('core'       , 'resources_fonts'),
+                        array('core'       , 'resources_scripts'),
+                        array('core'       , 'widgets'),//widget factory
+                        array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
+                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
                     ),
                     'admin'     => array(
-                      array('core/back' , 'customize'),//loads customizer actions and resources
-                      array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
+                        array('core/back' , 'customize'),//loads customizer actions and resources
+                        array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
                     ),
                     'header'    =>   array(
-                      array('core/front/utils', 'nav_walker')
+                        array('core/front/utils', 'nav_walker')
                     ),
                     'content'   =>   array(
-                      array('core/front/utils', 'gallery')
+                        array('core/front/utils', 'gallery')
                     ),
                     'addons'    => apply_filters( 'czr_addons_classes' , array() )
                 )
@@ -152,6 +159,25 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.0
         */
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
+          //loads init
+          $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
+          new CZR_cl_init();
+
+          //loads the plugin compatibility
+          $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-plugins_compat.php' );
+          new CZR_cl_plugins_compat();
+
+          //loads utils
+          $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_settings_map.php' );
+
+          $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils.php' );
+          new CZR_cl_utils();
+          // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options.php' );
+          // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
+
+          // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_texts.php' );
+          // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
+
           //do we apply a filter ? optional boolean can force no filter
           $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
           if ( empty($_to_load) )
@@ -167,12 +193,14 @@ if ( ! class_exists( 'CZR___' ) ) :
               $instances = class_exists($classname)  ? new $classname : '';
             }
 
+
           //load the new framework classes
-          $this -> czr_fn_fw_require_once( 'class-model.php' );
-          $this -> czr_fn_fw_require_once( 'class-collection.php' );
-          $this -> czr_fn_fw_require_once( 'class-view.php' );
-          $this -> czr_fn_fw_require_once( 'class-controllers.php' );
-          $this -> czr_fn_fw_require_once( 'class-helpers.php' );
+          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
+          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
+          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
+          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
+          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
+          $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-helpers.php' );
         }
 
 
@@ -383,6 +411,7 @@ if ( ! class_exists( 'CZR___' ) ) :
           return false;
         }
 
+
         //requires a file only if exists
         function czr_fn_require_once( $path_suffix ) {
           if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) ) {
@@ -392,15 +421,6 @@ if ( ! class_exists( 'CZR___' ) ) :
           return false;
         }
 
-        //requires a framework file only if exists
-        function czr_fn_fw_require_once( $path_suffix ) {
-          return $this -> czr_fn_require_once( CZR_FRAMEWORK_PREFIX . $path_suffix );
-        }
-
-        //requires a framework front (models/controllers) file only if exists
-        function czr_fn_fw_front_require_once( $path_suffix ) {
-          return $this -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PREFIX . $path_suffix );
-        }
 
         /*
         * Stores the current model in the class current_model stack

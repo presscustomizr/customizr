@@ -16,16 +16,9 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
 
       //Access any method or var of the class with classname::$instance -> var or method():
       static $inst;
-      static $instance;
-      public $default_options;
-      public $db_options;
-      public $options;//not used in customizer context only
-      public $is_customizing;
-      public $czr_options_prefixes;
 
       function __construct () {
         self::$inst =& $this;
-        self::$instance =& $this;
 
         //Various WP filters for
         //content
@@ -395,7 +388,9 @@ if ( ! class_exists( 'CZR_cl_utils' ) ) :
               if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
               $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
               $link = 'email' == $type ? 'mailto:' : '';
-              $link .=  call_user_func( array( CZR_cl_utils_settings_map::$instance, 'czr_fn_sanitize_'.$type ), $__options[$key] );
+              if ( function_exists( 'czr_fn_sanitize_'. $type ) ) {
+                $link .=  call_user_func( 'czr_fn_sanitize_'. $type , $__options[$key] );
+              }
               //there is one exception : rss feed has no target _blank and special icon title
               $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
                   apply_filters( 'czr_social_link_class',

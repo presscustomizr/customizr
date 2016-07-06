@@ -182,7 +182,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 			return $this -> czr_fn_customize_factory (
         $wp_customize,
         $this -> czr_fn_customize_arguments(),
-        CZR_cl_utils_settings_map::$instance -> czr_fn_get_customizer_map()
+        czr_fn_get_customizer_map()
       );
 		}
 

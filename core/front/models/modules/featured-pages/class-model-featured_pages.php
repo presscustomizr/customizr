@@ -20,7 +20,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
         $czr_fn_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
-        $_skin_color                    = CZR_cl_utils::$inst -> czr_fn_get_skincolor();
+        $_skin_color                    = CZR_cl_utils::$inst -> czr_fn_getskincolor();
         $fp_holder_img                  = apply_filters (
               'tc_fp_holder_img' ,
               sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" style="width:270px;height:250px;"/>',

@@ -520,7 +520,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
         // The pure css loader color depends on the skin. Why can we do this here without caring of the live preview?
         // Basically 'cause the loader is something we see when the page "loads" then it disappears so a live change of the skin
         // will still have no visive impact on it. This will avoid us to rebuild the custom skins.
-        $_current_skin_colors      = CZR_cl_utils::$inst -> czr_fn_get_skincolor( 'pair' );
+        $_current_skin_colors      = CZR_cl_utils::$inst -> czr_fn_getskincolor( 'pair' );
         $_pure_css_loader_css      = apply_filters( 'czr_slider_loader_css', sprintf(
             '.tc-slider-loader-wrapper .tc-css-loader > div { border-color:%s; }',
             //we can use the primary or the secondary skin color
