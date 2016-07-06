@@ -5,12 +5,12 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
     private $_cache;
 
     function __construct( $_args = array()) {
-      self::$instance =& $this;
-      //why we don't call CZR_cl_controllers constructor?
-      //why this class extends CZR_cl_controllers?
+          self::$instance =& $this;
+          //why we don't call CZR_cl_controllers constructor?
+          //why this class extends CZR_cl_controllers?
 
-      //init the cache
-      $this -> _cache = array();
+          //init the cache
+          $this -> _cache = array();
     }
 
     function czr_fn_display_view_head() {
