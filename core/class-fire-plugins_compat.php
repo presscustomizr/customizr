@@ -334,7 +334,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         // grab theme options
         $czr_options = CZR_cl_utils_options::$inst -> czr_fn_get_theme_options();
         // grab settings map, useful for some options labels
-        $czr_fn_settings_map = CZR_cl_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default = true );
+        $czr_fn_settings_map = czr_fn_get_customizer_map( $get_default = true );
         $tc_controls_map = $czr_fn_settings_map['add_setting_control'];
         // set $polylang_group;
         $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';

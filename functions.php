@@ -59,25 +59,6 @@ if ( ! function_exists('czr_fn_require_once') ) {
   }
 }
 
-/*
- * @since 3.5.0
- */
-//shortcut function to require a framework file
-if ( ! function_exists('czr_fn_fw_require_once') ) {
-  function czr_fn_fw_require_once( $path_suffix ) {
-    return CZR() -> czr_fn_fw_require_once( $path_suffix );
-  }
-}
-
-/*
- * @since 3.5.0
- */
-//shortcut function to require a front framework file
-if ( ! function_exists('czr_fn_fw_front_require_once') ) {
-  function czr_fn_fw_front_require_once( $path_suffix ) {
-    return CZR() -> czr_fn_fw_front_require_once( $path_suffix );
-  }
-}
 
 /*
  * @since 3.5.0

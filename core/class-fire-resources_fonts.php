@@ -191,7 +191,7 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
       if ( ! esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
         return $_css;
 
-      $_main_color_pair = CZR_cl_utils::$inst -> czr_fn_get_skincolor( 'pair' );
+      $_main_color_pair = CZR_cl_utils::$inst -> czr_fn_getskincolor( 'pair' );
       $_color           = $_main_color_pair[0];
       $_shad_color      = $_main_color_pair[1];
       $_pad_right       = false !== strpos( esc_attr( czr_fn_get_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;

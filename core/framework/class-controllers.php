@@ -190,7 +190,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
           $_class = "CZR_cl_controller_{$group}";
           $_instance = false;
 
-          czr_fn_fw_front_require_once( $_path );
+          CZR() -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );
 
           if ( class_exists($_class) ) {
             $_instance = new $_class;

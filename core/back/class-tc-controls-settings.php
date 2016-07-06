@@ -208,7 +208,7 @@ if ( ! class_exists( 'CZR_cl_controls' ) ) :
 	        		printf('<label><span class="customize-control-title %1$s">%2$s</span><input type="text" value="%3$s" %4$s /></label>',
 	        			! empty( $this -> icon) ? $this -> icon : '',
 	        			$this->label,
-	        			call_user_func( array( CZR_cl_utils_settings_map::$instance, 'czr_fn_sanitize_' . $this -> type), $this->value() ),
+	        			call_user_func( 'czr_fn_sanitize_' . $this -> type , $this->value() ),
 	        			call_user_func( array( $this, 'get'.'_'.'link' ) )
 	        		);
 		        	break;
@@ -275,7 +275,7 @@ if ( ! class_exists( 'CZR_cl_controls' ) ) :
 
         case 'tc_theme_options[tc_skin]':
           $_data_hex  = '';
-          $_color_map = CZR_cl_utils::$inst -> czr_fn_get_skincolor( 'all' );
+          $_color_map = CZR_cl_utils::$inst -> czr_fn_getskincolor( 'all' );
           //Get the color map array structured as follow
           // array(
           //       'blue.css'        =>  array( '#08c', '#005580' ),

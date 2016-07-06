@@ -96,7 +96,7 @@ if ( ! class_exists( 'CZR_cl_utils_options' ) ) :
         // 3) theme version not defined
         // 4) versions are different
         if ( is_user_logged_in() || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
-          $def_options          = $this -> czr_fn_generate_default_options( CZR_cl_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
+          $def_options          = $this -> czr_fn_generate_default_options( czr_fn_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
           //Adds the version in default
           $def_options['ver']   =  CUSTOMIZR_VER;
 
