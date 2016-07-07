@@ -93,7 +93,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
     $thumb_img           = '';
 
     if ( $has_thumb ) {
-      $thumb_model                   = CZR_cl_utils_thumbnails::$instance -> czr_fn_get_thumbnail_model(
+      $thumb_model                   = czr_fn_get_thumbnail_model(
           $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
           null, null, null,
           $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols )
@@ -157,7 +157,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
 
 
   /*
-  * get the thumb size name used in the CZR_cl_utils_thumbnails to set the proper inline style
+  * get the thumb size name to set the proper inline style
   * if needed, accordint to the grid element width
   */
   function czr_fn_get_filtered_thumb_size_name( $section_cols ){
@@ -165,7 +165,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   }
 
   private function czr_fn_grid_show_thumb() {
-    return CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
+    return czr_fn_has_thumb() && 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
   }
 
 

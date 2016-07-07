@@ -36,11 +36,11 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_posts_list_headings() {
-      return ! czr_fn_is_home() && CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts();
+      return ! czr_fn_is_home() && czr_fn_is_list_of_posts();
     }
 
     function czr_fn_display_view_post_list() {
-      return apply_filters( 'czr_display_view_post_list', CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() );
+      return apply_filters( 'czr_display_view_post_list', czr_fn_is_list_of_posts() );
     }
 
 
@@ -63,12 +63,12 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_page() {
-      return apply_filters( 'czr_show_single_page_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_page() );
+      return apply_filters( 'czr_show_single_page_content', czr_fn_is_single_page() );
     }
 
     function czr_fn_display_view_post() {
       //check conditional tags : we want to show single post or single custom post types
-      return apply_filters( 'czr_show_single_post_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_post() );
+      return apply_filters( 'czr_show_single_post_content', czr_fn_is_single_post() );
     }
 
     function czr_fn_display_view_single_author_info() {
@@ -83,7 +83,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_attachment() {
-      return apply_filters( 'czr_show_attachment_content', CZR_cl_utils_query::$instance -> czr_fn_is_single_attachment() );
+      return apply_filters( 'czr_show_attachment_content', czr_fn_is_single_attachment() );
     }
 
 
@@ -164,7 +164,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
 
     /* Single post thumbnail */
     function czr_fn_display_view_post_thumbnail() {
-      $display_attachment_as_thumb = apply_filters( 'czr_use_attachment_as_thumb', false ) && CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb();
+      $display_attachment_as_thumb = apply_filters( 'czr_use_attachment_as_thumb', false ) && czr_fn_has_thumb();
 
       return $this -> czr_fn_display_view_post() && 'hide' != esc_attr( czr_fn_get_opt( 'tc_single_post_thumb_location' ) )
         && apply_filters( 'czr_show_single_post_thumbnail' , $display_attachment_as_thumb || has_post_thumbnail() );
@@ -213,7 +213,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_no_results() {
-      return CZR_cl_utils_query::$instance -> czr_fn_is_no_results();
+      return czr_fn_is_no_results();
     }
 
     function czr_fn_display_view_headings() {
@@ -289,7 +289,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
         return 'single'; // exclude attachments
       if ( is_home() && 'posts' == get_option('show_on_front') )
         return 'home';
-      if ( !is_404() && ! CZR_cl_utils_query::$instance -> czr_fn_is_home_empty() )
+      if ( !is_404() && ! czr_fn_is_home_empty() )
         return 'archive';
 
       return false;

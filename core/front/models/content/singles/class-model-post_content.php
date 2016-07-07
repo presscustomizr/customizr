@@ -12,7 +12,7 @@ class CZR_cl_post_content_model_class extends CZR_cl_Model {
     $icon_class             = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'czr_post_format_icon', 'format-icon' ) :'' ;
 
     $model['element_class'] = array( $icon_class );
-    $model[ 'thumbnail_position' ] = '__before_content' == CZR_cl_utils_thumbnails::$instance -> czr_fn_get_single_thumbnail_position() ? 'before_title' : '';
+    $model[ 'thumbnail_position' ] = '__before_content' == czr_fn_get_single_thumbnail_position() ? 'before_title' : '';
 
     return $model;
   }
@@ -40,7 +40,7 @@ class CZR_cl_post_content_model_class extends CZR_cl_Model {
   }
 
   function czr_fn_get_article_selectors( $model = array() ) {
-    return CZR_cl_utils_query::$instance -> czr_fn_get_the_singular_article_selectors( 'row-fluid' );
+    return czr_fn_get_the_singular_article_selectors( 'row-fluid' );
   }
 
 }

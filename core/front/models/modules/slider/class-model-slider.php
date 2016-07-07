@@ -254,7 +254,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
         //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html
         //to avoid this we filter the attributes getting rid of the srcset if any.
         //Basically this trick, even if ugly, will avoid the srcset attr computation
-        add_filter( 'wp_get_attachment_image_attributes', array( CZR_cl_utils_thumbnails::$instance, 'czr_fn_remove_srcset_attr' ) );
+        add_filter( 'wp_get_attachment_image_attributes', 'czr_fn_remove_srcset_attr' );
         return array( 'srcset' => ' ');
       }
     return array();
@@ -387,7 +387,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   *
   */
   protected function czr_fn_get_real_id() {
-    return apply_filters( 'czr_slider_get_real_id', CZR_cl_utils_query::$instance -> czr_fn_get_real_id(), $this );
+    return apply_filters( 'czr_slider_get_real_id', czr_fn_get_real_id(), $this );
   }
 
 

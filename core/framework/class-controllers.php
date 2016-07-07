@@ -69,7 +69,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
           //return true;
 
           if ( ! empty( $controller_cb ) ) {
-            return apply_filters( 'czr_fn_set_control' , (bool) CZR() -> helpers -> czr_fn_return_cb_result( $controller_cb, $model ) );
+            return apply_filters( 'czr_fn_set_control' , (bool) czr_fn_return_cb_result( $controller_cb, $model ) );
           }
           return true;
     }

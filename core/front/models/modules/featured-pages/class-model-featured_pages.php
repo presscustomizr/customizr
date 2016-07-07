@@ -188,7 +188,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
   function czr_fn_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
         //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
         //czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
-        $_fp_img_model = CZR_cl_utils_thumbnails::$instance -> czr_fn_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
+        $_fp_img_model = czr_fn_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
 
     	//finally we define a default holder if no thumbnail found or page is protected
         if ( isset( $_fp_img_model["tc_thumb"]) && ! empty( $_fp_img_model["tc_thumb"] ) && ! post_password_required( $featured_page_id ) )

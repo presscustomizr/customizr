@@ -61,10 +61,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'CZR_cl_utils_thumbnails' ) )
-        CZR() -> czr_fn_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
-      if ( class_exists( 'CZR_cl_utils_thumbnails' ) )
-        CZR_cl_utils_thumbnails::$instance -> czr_fn_set_thumb_info( $post_id );
+        czr_fn_set_thumb_info( $post_id );
     }
 
     /*
@@ -93,8 +90,6 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     public function czr_fn_maybe_get_slider_of_posts_instance() {
       $slider_of_posts = null;
 
-      if ( ! class_exists( 'CZR_cl_utils_thumbnails' ) )
-        CZR() -> czr_fn_load( array('content' => array( array('core/utils', 'utils_thumbnails') ) ), true );
       /* Instantiate slider of posts */
        if ( ! class_exists( 'CZR_cl_slider_of_posts_model_class' ) ) {
         $slider          = CZR() -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider', 'model_class' => 'modules/slider/slider') );
@@ -130,12 +125,12 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
        $_option = czr_fn_get_opt( $option_name, $option_group, $use_default = false );
        if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
          //update the option
-         CZR_cl_utils_options::$inst -> czr_fn_set_option( $option_name, array_diff( $_option, (array)$term ) );
+         czr_fn_set_option( $option_name, array_diff( $_option, (array)$term ) );
 
        //alternative, cycle throughout the cats and keep just the existent ones
        /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
          //update the option
-         CZR_cl_utils_options::$inst -> czr_fn_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, 'czr_fn_category_id_exists' ) );
+         czr_fn_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, 'czr_fn_category_id_exists' ) );
        }*/
     }
 
@@ -311,9 +306,9 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
         // 1) initialize it => set it to the current Customizr version, displayed 0 times.
         // 2) update in db
         $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-        CZR_cl_utils_options::$inst->czr_fn_set_option( $opt_name, $last_update_notice_values );
+        czr_fn_set_option( $opt_name, $last_update_notice_values );
         //already user of the theme ?
-        if ( CZR_cl_utils_options::$inst->czr_fn_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
+        if ( czr_fn_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
           $show_new_notice = true;
       }
 
@@ -330,13 +325,13 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
           (int) $_db_displayed_count++;
           $last_update_notice_values["display_count"] = $_db_displayed_count;
           //updates the option val with the new count
-          CZR_cl_utils_options::$inst->czr_fn_set_option( $opt_name, $last_update_notice_values );
+          czr_fn_set_option( $opt_name, $last_update_notice_values );
         }
         //CASE 2 : displayed 5 times => automatic dismiss
         else {
           //reset option value with new version and counter to 0
           $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-          CZR_cl_utils_options::$inst->czr_fn_set_option( $opt_name, $new_val );
+          czr_fn_set_option( $opt_name, $new_val );
         }//end else
       }//end if
 
@@ -393,7 +388,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       $opt_name = "customizr-pro" == CZR_THEMENAME ? 'last_update_notice_pro' : 'last_update_notice';
       //reset option value with new version and counter to 0
       $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-      CZR_cl_utils_options::$inst->czr_fn_set_option( $opt_name, $new_val );
+      czr_fn_set_option( $opt_name, $new_val );
       wp_die();
     }
 
@@ -481,7 +476,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       switch ($_remove_action) {
         case 'remove_block':
           if ( isset( $_POST[ 'user_option' ] ) )
-            CZR_cl_utils_options::$inst -> czr_fn_set_option( esc_attr( $_POST['user_option'] ) , 0 );
+            czr_fn_set_option( esc_attr( $_POST['user_option'] ) , 0 );
         break;
         case 'remove_notice':
           if ( isset( $_POST[ 'notice_id' ] ) )

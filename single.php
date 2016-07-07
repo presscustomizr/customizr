@@ -23,7 +23,7 @@
 
   <?php do_action('__before_main_wrapper'); ?>
     <?php /* thumbnail in single post */
-      if ( czr_fn_has('post_thumbnail') && '__before_main_wrapper' == CZR_cl_utils_thumbnails::$instance -> czr_fn_get_single_thumbnail_position() ) { czr_fn_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
+      if ( czr_fn_has('post_thumbnail') && '__before_main_wrapper' == czr_fn_get_single_thumbnail_position() ) { czr_fn_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
     ?>
     <div id="main-wrapper" class="container">
 

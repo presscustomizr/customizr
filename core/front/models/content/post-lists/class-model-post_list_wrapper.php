@@ -92,7 +92,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $tc_thumbnail_width   = $thumb;
 
     $post_class           = $czr_fn_has_post_thumbnail ? array_merge( array($this -> post_class), $this -> czr_fn_get_thumb_shape_name() ) : $this -> post_class;
-    $article_selectors    = CZR_cl_utils_query::$instance -> czr_fn_get_the_post_list_article_selectors( $post_class );
+    $article_selectors    = czr_fn_get_the_post_list_article_selectors( $post_class );
 
     $this -> czr_fn_update( compact( 'tc_content_width', 'tc_show_excerpt', 'tc_thumbnail_width', 'czr_fn_has_post_thumbnail', 'article_selectors' ) );
   }
@@ -163,7 +163,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     return apply_filters( 'czr_show_thumb', array_product(
         array(
           $this -> czr_fn_show_excerpt(),
-          CZR_cl_utils_thumbnails::$instance -> czr_fn_has_thumb(),
+          czr_fn_has_thumb(),
           0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) )
         )
       )

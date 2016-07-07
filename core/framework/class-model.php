@@ -350,7 +350,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     ***********************************************************************************/
     protected function czr_fn_stringify_model_property( $property ) {
           if ( isset( $this -> $property ) )
-           return CZR() -> helpers -> czr_fn_stringify_array( $this -> $property );
+           return czr_fn_stringify_array( $this -> $property );
           return '';
     }
 

@@ -79,6 +79,6 @@ class CZR_cl_attachment_content_model_class extends CZR_cl_Model {
 
   function czr_fn_get_article_selectors() {
     $post_class = wp_attachment_is_image() ? ' format-image' : '';
-    return CZR_cl_utils_query::$instance -> czr_fn_get_the_singular_article_selectors( "row-fluid $post_class" );
+    return czr_fn_get_the_singular_article_selectors( "row-fluid $post_class" );
   }
 }

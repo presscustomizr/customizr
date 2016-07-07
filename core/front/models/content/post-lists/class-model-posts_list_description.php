@@ -47,7 +47,7 @@ class CZR_cl_posts_list_description_model_class extends CZR_cl_Model {
     //we should have some filter here, to allow the processing of the description
     //for example to allow shortcodes in it.... (requested at least twice from users, in my memories)
     switch ( $context ) {
-      case 'page_for_posts' : return get_the_excerpt( CZR_cl_utils_query::$instance -> czr_fn_get_real_id() ); //use the excerpt as description in blog page?
+      case 'page_for_posts' : return get_the_excerpt( czr_fn_get_real_id() ); //use the excerpt as description in blog page?
       case 'category'       : return category_description();
       case 'tag'            : return tag_description();
       case 'tax'            : return get_the_archive_description();

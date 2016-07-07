@@ -304,7 +304,7 @@ class CZR_cl_featured_pages_help_block_model_class extends CZR_cl_help_block_mod
   * or in Customizr Pro
   */
   function czr_fn_is_notice_on() {
-    return ! CZR___::czr_fn_is_pro()
+    return ! CZR_IS_PRO
         && (bool)czr_fn_get_opt('tc_show_featured_pages')
         && czr_fn_is_home()
         && parent::czr_fn_is_notice_on();
@@ -407,7 +407,7 @@ class CZR_cl_thumbnail_help_block_model_class extends CZR_cl_help_block_model_cl
   * we do not complete the single thumb notice instanciation if we're not in single contexts
   */
   function czr_fn_is_notice_on() {
-    return CZR_cl_utils_query::$instance -> czr_fn_is_single_post()
+    return czr_fn_is_single_post()
         && parent::czr_fn_is_notice_on();
   }
 }
@@ -489,7 +489,7 @@ class CZR_cl_post_list_smartload_help_block_model_class extends CZR_cl_smartload
   function czr_fn_is_notice_on() {
     global $post;
 
-    return parent::czr_fn_is_notice_on() && CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts();
+    return parent::czr_fn_is_notice_on() && czr_fn_is_list_of_posts();
   }
 }
 /*********************************************

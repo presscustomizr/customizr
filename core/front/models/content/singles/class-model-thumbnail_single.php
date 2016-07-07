@@ -11,14 +11,14 @@ class CZR_cl_thumbnail_single_model_class extends CZR_cl_Model{
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $thumb_position     = CZR_cl_utils_thumbnails::$instance -> czr_fn_get_single_thumbnail_position();
-    $thumb_size         = '__before_main_wrapper' == CZR_cl_utils_thumbnails::$instance -> czr_fn_get_single_thumbnail_position() ? 'slider-full' : 'slider';
+    $thumb_position     = czr_fn_get_single_thumbnail_position();
+    $thumb_size         = '__before_main_wrapper' == czr_fn_get_single_thumbnail_position() ? 'slider-full' : 'slider';
 
     return array_merge( $model, compact( 'thumb_position', 'thumb_size' ) );
   }
 
   function czr_fn_setup_late_properties() {
-    $thumb_model            = CZR_cl_utils_thumbnails::$instance -> czr_fn_get_thumbnail_model( $this -> thumb_size );
+    $thumb_model            = czr_fn_get_thumbnail_model( $this -> thumb_size );
     extract( $thumb_model );
 
     if ( ! isset( $tc_thumb ) || is_null( $tc_thumb ) )
