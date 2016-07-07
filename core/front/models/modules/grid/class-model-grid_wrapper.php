@@ -52,7 +52,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   function czr_fn_setup_late_properties() {
     //parent::czr_fn_setup_late_properties();
     $post_class = $this -> czr_fn_get_the_grid_post_class();
-    $this -> czr_fn_set_property( 'article_selectors', CZR_cl_utils_query::$instance -> czr_fn_get_the_post_list_article_selectors( $post_class ) );
+    $this -> czr_fn_set_property( 'article_selectors', czr_fn_get_the_post_list_article_selectors( $post_class ) );
 
     $element_wrapper        = $this -> czr_fn_get_element_wrapper_properties();
 

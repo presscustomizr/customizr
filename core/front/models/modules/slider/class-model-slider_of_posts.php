@@ -307,7 +307,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   function czr_fn_get_single_post_slide_pre_model( $_post , $img_size, $args ){
     $ID                     = $_post->ID;
     //attachment image
-    $thumb                  = CZR_cl_utils_thumbnails::$instance -> czr_fn_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null, '' );
+    $thumb                  = czr_fn_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null, '' );
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
     // we don't want to show slides with no image
     if ( ! $slide_background )

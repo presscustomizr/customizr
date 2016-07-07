@@ -65,7 +65,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   protected function czr_fn_get_meta( $meta, $param = array(), $separator = '' ) {
     if ( ! isset( $_cache[ $meta ] ) ) {
       $param = is_array( $param ) ? $param : array( $param );
-      $_cache[ $meta ] = CZR() -> helpers -> czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $param ), $separator );
+      $_cache[ $meta ] = czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $param ), $separator );
     }
     return $_cache[ $meta ];
   }
@@ -167,7 +167,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   private function czr_fn_meta_term_view( $term ) {
     $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
 
-    $_classes      = CZR() -> helpers -> czr_fn_stringify_array( apply_filters( 'czr_meta_tax_class', $this -> czr_fn_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
+    $_classes      = czr_fn_stringify_array( apply_filters( 'czr_meta_tax_class', $this -> czr_fn_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
     // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
     // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
     // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.

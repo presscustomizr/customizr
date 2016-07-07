@@ -89,7 +89,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
                   in_array( get_post_type(), apply_filters('czr_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
       }
       //when in a list of posts demand the control to the model
-      return self::$_cache['comment_bubble'] && CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() ;
+      return self::$_cache['comment_bubble'] && czr_fn_is_list_of_posts() ;
     }
 
 
@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
     VARIOUS HELPERS
     *******************************/
     function czr_fn_display_view_post_list_grid() {
-      return apply_filters( 'czr_is_grid_enabled', CZR_cl_utils_query::$instance -> czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+      return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
     }
 
 

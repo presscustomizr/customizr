@@ -16,6 +16,6 @@ class CZR_cl_page_content_model_class extends CZR_cl_Model {
   }
 
   function czr_fn_get_article_selectors( $model = array() ) {
-    return CZR_cl_utils_query::$instance -> czr_fn_get_the_singular_article_selectors( 'row-fluid' );
+    return czr_fn_get_the_singular_article_selectors( 'row-fluid' );
   }
 }

@@ -3,11 +3,6 @@
 * Defines filters and actions used in several templates/classes
 *
 */
-
-
-
-
-add_action( 'wp_head' , 'czr_fn_wp_filters' );
 /**
 * hook : after_setup_theme
 * @package Customizr
@@ -133,7 +128,7 @@ function czr_fn_get_id()  {
 * @since Customizr 1.0
 */
 function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
-      $__options                    = CZR_cl_utils_options::$inst -> czr_fn_get_theme_options();
+      $__options                    = czr_fn_get_theme_options();
       global $post;
       //Article wrapper class definition
       $global_layout                = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
@@ -279,65 +274,6 @@ function czr_fn_wp_title( $title, $sep ) {
 
 
 
-/**
-* Check if we are displaying posts lists or front page
-*
-* @since Customizr 3.0.6
-*
-*/
-function czr_fn_is_home() {
-  //get info whether the front page is a list of last posts or a page
-  return ( is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) ) || is_front_page();
-}
-
-
-
-
-
-/**
-* Check if we show posts or page content on home page
-*
-* @since Customizr 3.0.6
-*
-*/
-function czr_fn_is_home_empty() {
-  //check if the users has choosen the "no posts or page" option for home page
-  return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
-}
-
-
-
-
-/**
-* Return object post type
-*
-* @since Customizr 3.0.10
-*
-*/
-function czr_fn_get_post_type() {
-  global $post;
-
-  if ( ! isset($post) )
-    return;
-
-  return $post -> post_type;
-}
-
-
-
-
-
-
-/**
-* Boolean : check if we are in the no search results case
-*
-* @package Customizr
-* @since 3.0.10
-*/
-function czr_fn_is_no_results() {
-  global $wp_query;
-  return ( is_search() && 0 == $wp_query -> post_count ) ? true : false;
-}
 
 
 
@@ -350,7 +286,7 @@ function czr_fn_is_no_results() {
 * @since Customizr 3.0.10
 */
 function czr_fn_get_social_networks() {
-  $__options    = CZR_cl_utils_options::$inst -> czr_fn_get_theme_options();
+  $__options    = czr_fn_get_theme_options();
 
   //gets the social network array
   $socials      = apply_filters( 'czr_default_socials' , CZR_cl_init::$instance -> socials );
@@ -581,7 +517,7 @@ function czr_fn_get_font( $_what = 'list' , $_requested = null ) {
 * @since Customizr 3.2.9
 */
 function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
-    $_ispro = CZR___::czr_fn_is_pro();
+    $_ispro = CZR_IS_PRO;
 
     if ( $_ispro && ! get_transient( 'started_using_customizr_pro' ) )
       return false;
@@ -677,69 +613,100 @@ function czr_fn_has_location_menu( $_location ) {
 }
 
 
-//Helper class to build a simple date diff object
-//Alternative to date_diff for php version < 5.3.0
-//http://stackoverflow.com/questions/9373718/php-5-3-date-diff-equivalent-for-php-5-2-on-own-function
-if ( ! class_exists( 'CZR_cl_DateInterval' ) ) :
-Class CZR_cl_DateInterval {
-    /* Properties */
-    public $y = 0;
-    public $m = 0;
-    public $d = 0;
-    public $h = 0;
-    public $i = 0;
-    public $s = 0;
-
-    /* Methods */
-    public function __construct ( $time_to_convert ) {
-      $FULL_YEAR = 60*60*24*365.25;
-      $FULL_MONTH = 60*60*24*(365.25/12);
-      $FULL_DAY = 60*60*24;
-      $FULL_HOUR = 60*60;
-      $FULL_MINUTE = 60;
-      $FULL_SECOND = 1;
-
-      //$time_to_convert = 176559;
-      $seconds = 0;
-      $minutes = 0;
-      $hours = 0;
-      $days = 0;
-      $months = 0;
-      $years = 0;
-
-      while($time_to_convert >= $FULL_YEAR) {
-          $years ++;
-          $time_to_convert = $time_to_convert - $FULL_YEAR;
-      }
-
-      while($time_to_convert >= $FULL_MONTH) {
-          $months ++;
-          $time_to_convert = $time_to_convert - $FULL_MONTH;
-      }
-
-      while($time_to_convert >= $FULL_DAY) {
-          $days ++;
-          $time_to_convert = $time_to_convert - $FULL_DAY;
-      }
-
-      while($time_to_convert >= $FULL_HOUR) {
-          $hours++;
-          $time_to_convert = $time_to_convert - $FULL_HOUR;
-      }
-
-      while($time_to_convert >= $FULL_MINUTE) {
-          $minutes++;
-          $time_to_convert = $time_to_convert - $FULL_MINUTE;
-      }
-
-      $seconds = $time_to_convert; // remaining seconds
-      $this->y = $years;
-      $this->m = $months;
-      $this->d = $days;
-      $this->h = $hours;
-      $this->i = $minutes;
-      $this->s = $seconds;
-      $this->days = ( 0 == $years ) ? $days : ( $years * 365 + $months * 30 + $days );
-    }
+//hook : czr_dev_notice
+function czr_fn_print_r($message) {
+    if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) || is_feed() )
+      return;
+    ?>
+      <pre><h6 style="color:red"><?php echo $message ?></h6></pre>
+    <?php
 }
-endif;
+
+
+
+
+/* FMK MODEL / VIEW / COLLECTION HELPERS */
+function czr_fn_stringify_array( $array, $sep = ' ' ) {
+    if ( is_array( $array ) )
+      $array = join( $sep, array_unique( array_filter( $array ) ) );
+    return $array;
+}
+
+
+//A callback helper
+//a callback can be function or a method of a class
+//the class can be an instance!
+function czr_fn_fire_cb( $cb, $params = array(), $return = false ) {
+    $to_return = false;
+    //method of a class => look for an array( 'class_name', 'method_name')
+    if ( is_array($cb) && 2 == count($cb) ) {
+      if ( is_object($cb[0]) ) {
+        $to_return = call_user_func( array( $cb[0] ,  $cb[1] ), $params );
+      }
+      //instantiated with an instance property holding the object ?
+      else if ( class_exists($cb[0]) && isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
+        $to_return = call_user_func( array( $cb[0]::$instance ,  $cb[1] ), $params );
+      }
+      else {
+        $_class_obj = new $cb[0]();
+        if ( method_exists($_class_obj, $cb[1]) )
+          $to_return = call_user_func( array( $_class_obj, $cb[1] ), $params );
+      }
+    } else if ( is_string($cb) && function_exists($cb) ) {
+      $to_return = call_user_func($cb, $params);
+    }
+
+    if ( $return )
+      return $to_return;
+}
+
+
+function czr_fn_return_cb_result( $cb, $params = array() ) {
+    return czr_fn_fire_cb( $cb, $params, $return = true );
+}
+
+
+
+
+/* Same as helpers above but passing the param argument as an exploded array of params*/
+//A callback helper
+//a callback can be function or a method of a class
+//the class can be an instance!
+function czr_fn_fire_cb_array( $cb, $params = array(), $return = false ) {
+    $to_return = false;
+    //method of a class => look for an array( 'class_name', 'method_name')
+    if ( is_array($cb) && 2 == count($cb) ) {
+      if ( is_object($cb[0]) ) {
+        $to_return = call_user_func_array( array( $cb[0] ,  $cb[1] ), $params );
+      }
+      //instantiated with an instance property holding the object ?
+      else if ( class_exists($cb[0]) && isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
+        $to_return = call_user_func_array( array( $cb[0]::$instance ,  $cb[1] ), $params );
+      }
+      else {
+        $_class_obj = new $cb[0]();
+        if ( method_exists($_class_obj, $cb[1]) )
+          $to_return = call_user_func_array( array( $_class_obj, $cb[1] ), $params );
+      }
+    } else if ( is_string($cb) && function_exists($cb) ) {
+      $to_return = call_user_func_array($cb, $params);
+    }
+
+    if ( $return )
+      return $to_return;
+}
+
+function czr_fn_return_cb_result_array( $cb, $params = array() ) {
+    return czr_fn_fire_cb_array( $cb, $params, $return = true );
+}
+
+
+
+
+
+function czr_fn_post_has_title() {
+    return ! in_array(
+      get_post_format(),
+      apply_filters( 'czr_post_formats_with_no_heading', array( 'aside' , 'status' , 'link' , 'quote' ) )
+    );
+}

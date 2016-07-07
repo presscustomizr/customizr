@@ -23,6 +23,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         static $db_options;
         static $options;//not used in customizer context only
 
+        public $collection;
         public $views;//object, stores the views
         public $controllers;//object, stores the controllers
 
@@ -35,7 +36,32 @@ if ( ! class_exists( 'CZR___' ) ) :
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
             //refresh the theme options right after the _preview_filter when previewing
             add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
+            //filters to 'the_content', 'wp_title' => in utils
+            add_action( 'wp_head' , 'czr_fn_wp_filters' );
+            //a custom print_r
+            add_action( 'czr_dev_notice', array( $this, 'czr_fn_print_r') );
         }
+
+
+
+        public static function czr_fn_instance() {
+              if ( ! isset( self::$instance ) && ! ( self::$instance instanceof CZR___ ) ) {
+                self::$instance = new CZR___();
+                self::$instance -> czr_fn_setup_constants();
+                self::$instance -> czr_fn_setup_loading();
+                self::$instance -> czr_fn_load();
+
+                //FMK
+                self::$instance -> collection = new CZR_cl_Collection();
+                self::$instance -> controllers = new CZR_cl_Controllers();
+
+                //register the model's map in front
+                if ( ! is_admin() )
+                  add_action('wp'         , array(self::$instance, 'czr_fn_register_model_map') );
+              }
+              return self::$instance;
+        }
+
 
 
         /**
@@ -49,8 +75,8 @@ if ( ! class_exists( 'CZR___' ) ) :
       */
       function czr_fn_init_properties() {
             self::$db_options       = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
-            self::$default_options  = CZR_cl_utils_options::$inst -> czr_fn_get_default_options();
-            $_trans                   = CZR___::czr_fn_is_pro() ? 'started_using_customizr_pro' : 'started_using_customizr';
+            self::$default_options  = czr_fn_get_default_options();
+            $_trans                   = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
 
             //What was the theme version when the user started to use Customizr?
             //new install = no options yet
@@ -66,28 +92,6 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
 
-
-
-
-
-
-
-        public static function czr_fn_instance() {
-              if ( ! isset( self::$instance ) && ! ( self::$instance instanceof CZR___ ) ) {
-                self::$instance = new CZR___();
-                self::$instance -> czr_fn_setup_constants();
-                self::$instance -> czr_fn_setup_loading();
-                self::$instance -> czr_fn_load();
-                self::$instance -> collection = new CZR_cl_Collection();
-                self::$instance -> controllers = new CZR_cl_Controllers();
-                self::$instance -> helpers = new CZR_cl_Helpers();
-
-                //register the model's map in front
-                if ( ! is_admin() )
-                  add_action('wp'         , array(self::$instance, 'czr_fn_register_model_map') );
-              }
-              return self::$instance;
-        }
 
 
          /**
@@ -168,6 +172,8 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CZR_OPT_PREFIX' ) )      define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
               //MAIN OPTIONS NAME
               if( ! defined( 'CZR_OPT_NAME' ) )      define( 'CZR_OPT_NAME' , apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+              //IS PRO
+              if( ! defined( 'CZR_IS_PRO' ) )      define( 'CZR_IS_PRO' , file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME );
 
 
         }//setup_contants()
@@ -180,17 +186,6 @@ if ( ! class_exists( 'CZR___' ) ) :
               $this -> czr_core = apply_filters( 'czr_core',
                 array(
                     'fire'      =>   array(
-                        //array('core'       , 'init'),//defines default values (layout, socials, default slider...) and theme supports (after_setup_theme)
-
-                        //array('core'       , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
-
-                        //array('core/utils' , 'utils_settings_map'),//customizer setting map
-                        //array('core/utils' , 'utils'),//helpers used everywhere
-                        array('core/utils' , 'utils_options'),
-                        array('core/utils' , 'utils_thumbnails'),//thumbnails helpers used almost everywhere
-                        array('core/utils' , 'utils_query'),//query helpers used almost everywhere
-                        array('core/utils' , 'utils_texts'),//texts (titles, text trimimng) helpers used almost everywhere
-
                         array('core'       , 'resources_styles'),
                         array('core'       , 'resources_fonts'),
                         array('core'       , 'resources_scripts'),
@@ -212,7 +207,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                 )
               );
               //check the context
-              if ( $this -> czr_fn_is_pro() )
+              if ( CZR_IS_PRO )
                 require_once( sprintf( '%score/init-pro.php' , CZR_BASE ) );
 
               //set files to load according to the context : admin / front / customize
@@ -242,13 +237,13 @@ if ( ! class_exists( 'CZR___' ) ) :
             //loads utils
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_settings_map.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils.php' );
+            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options.php' );
+            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
+            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
 
-
-            // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options.php' );
-            // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
-
-            // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_texts.php' );
-            // $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
+            //Helper class to build a simple date diff object
+            //Alternative to date_diff for php version < 5.3.0
+            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_date.php' );
 
             //do we apply a filter ? optional boolean can force no filter
             $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
@@ -268,11 +263,9 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             //load the new framework classes
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
-            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
-            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-helpers.php' );
         }
 
 
@@ -452,45 +445,46 @@ if ( ! class_exists( 'CZR___' ) ) :
           return $_tree;
         }//end of fn
 
+
         //called when requiring a file will - always give the precedence to the child-theme file if it exists
         //then to the theme root
         function czr_fn_get_theme_file( $path_suffix ) {
-          $path_prefixes = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
-          $roots         = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
+            $path_prefixes = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
+            $roots         = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
 
-          foreach ( $roots as $root )
-            foreach ( $path_prefixes as $path_prefix )
-              if ( file_exists( $filename = $root . $path_prefix . $path_suffix ) )
-                return $filename;
+            foreach ( $roots as $root )
+              foreach ( $path_prefixes as $path_prefix )
+                if ( file_exists( $filename = $root . $path_prefix . $path_suffix ) )
+                  return $filename;
 
-          return false;
+            return false;
         }
 
         //called when requiring a file url - will always give the precedence to the child-theme file if it exists
         //then to the theme root
         function czr_fn_get_theme_file_url( $url_suffix ) {
-          $url_prefixes   = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
-          $roots          = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
-          $roots_urls     = array_unique( apply_filters( 'czr_include_roots_url' , array( CZR_BASE_URL_CHILD, CZR_BASE_URL ) ) );
+            $url_prefixes   = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
+            $roots          = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
+            $roots_urls     = array_unique( apply_filters( 'czr_include_roots_url' , array( CZR_BASE_URL_CHILD, CZR_BASE_URL ) ) );
 
-          $combined_roots = array_combine( $roots, $roots_urls );
+            $combined_roots = array_combine( $roots, $roots_urls );
 
-          foreach ( $roots as $root )
-            foreach ( $url_prefixes as $url_prefix ) {
-              if ( file_exists( $filename = $root . $url_prefix . $url_suffix ) )
-                return array_key_exists( $root, $combined_roots) ? $combined_roots[ $root ] . $url_prefix . $url_suffix : false;
-            }
-          return false;
+            foreach ( $roots as $root )
+              foreach ( $url_prefixes as $url_prefix ) {
+                if ( file_exists( $filename = $root . $url_prefix . $url_suffix ) )
+                  return array_key_exists( $root, $combined_roots) ? $combined_roots[ $root ] . $url_prefix . $url_suffix : false;
+              }
+            return false;
         }
 
 
         //requires a file only if exists
         function czr_fn_require_once( $path_suffix ) {
-          if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) ) {
-            require_once( $filename );
-            return true;
-          }
-          return false;
+            if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) ) {
+              require_once( $filename );
+              return true;
+            }
+            return false;
         }
 
 
@@ -500,7 +494,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @param $model
         */
         function czr_fn_set_current_model( $model ) {
-          $this -> current_model[ $model -> id ] = &$model;
+            $this -> current_model[ $model -> id ] = &$model;
         }
 
 
@@ -509,7 +503,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * called by the View class after the view template has been required/rendered
         */
         function czr_fn_reset_current_model() {
-          array_pop( $this -> current_model );
+            array_pop( $this -> current_model );
         }
 
 
@@ -519,14 +513,14 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
         */
         function czr_fn_get( $property, $model_id = null, $args = array() ) {
-          $current_model = false;
-          if ( ! is_null($model_id) ) {
-            if ( czr_fn_is_registered($model_id) )
-              $current_model = czr_fn_get_model_instance( $model_id );
-          } else {
-            $current_model = end( $this -> current_model );
-          }
-          return is_object($current_model) ? $current_model -> czr_fn_get_property( $property, $args ) : false;
+            $current_model = false;
+            if ( ! is_null($model_id) ) {
+              if ( czr_fn_is_registered($model_id) )
+                $current_model = czr_fn_get_model_instance( $model_id );
+            } else {
+              $current_model = end( $this -> current_model );
+            }
+            return is_object($current_model) ? $current_model -> czr_fn_get_property( $property, $args ) : false;
         }
 
         /*
@@ -535,22 +529,22 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
         */
         function czr_fn_echo( $property, $model_id = null, $args = array() ) {
-          $prop_value = czr_fn_get( $property, $model_id, $args );
-          echo $prop_value && is_array( $prop_value ) ? CZR() -> helpers -> czr_fn_stringify_array( $prop_value ) : $prop_value;
+            $prop_value = czr_fn_get( $property, $model_id, $args );
+            echo $prop_value && is_array( $prop_value ) ? czr_fn_stringify_array( $prop_value ) : $prop_value;
         }
 
         /*
         * An handly function to print the content wrapper class
         */
         function czr_fn_column_content_wrapper_class() {
-          echo CZR() -> helpers -> czr_fn_stringify_array( czr_fn_get_column_content_wrapper_class() );
+            echo czr_fn_stringify_array( czr_fn_get_column_content_wrapper_class() );
         }
 
         /*
         * An handly function to print the article containerr class
         */
         function czr_fn_article_container_class() {
-          echo CZR() -> helpers -> czr_fn_stringify_array( czr_fn_get_article_container_class() );
+            echo czr_fn_stringify_array( czr_fn_get_article_container_class() );
         }
 
         /**
@@ -579,8 +573,8 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since  3.3+
         */
         function czr_fn_is_customize_left_panel() {
-          global $pagenow;
-          return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
+            global $pagenow;
+            return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
         }
 
 
@@ -590,7 +584,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since  3.3+
         */
         function czr_fn_is_customize_preview_frame() {
-          return ! is_admin() && isset($_REQUEST['wp_customize']);
+            return ! is_admin() && isset($_REQUEST['wp_customize']);
         }
 
 
@@ -603,8 +597,8 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since  3.3.2
         */
         function czr_fn_doing_customizer_ajax() {
-          $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
-          return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
+            $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
+            return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
         }
 
 
@@ -615,25 +609,17 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since  Customizr 3.0.11
         */
         function czr_fn_is_child() {
-          // get themedata version wp 3.4+
-          if ( function_exists( 'wp_get_theme' ) ) {
-            //get WP_Theme object of customizr
-            $tc_theme       = wp_get_theme();
-            //define a boolean if using a child theme
-            return $tc_theme -> parent() ? true : false;
-          }
-          else {
-            $tc_theme       = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
-            return ! empty($tc_theme['Template']) ? true : false;
-          }
-        }
-
-        /**
-        * @return  boolean
-        * @since  3.4+
-        */
-        static function czr_fn_is_pro() {
-          return file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME;
+            // get themedata version wp 3.4+
+            if ( function_exists( 'wp_get_theme' ) ) {
+              //get WP_Theme object of customizr
+              $tc_theme       = wp_get_theme();
+              //define a boolean if using a child theme
+              return $tc_theme -> parent() ? true : false;
+            }
+            else {
+              $tc_theme       = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
+              return ! empty($tc_theme['Template']) ? true : false;
+            }
         }
 
   }//end of class

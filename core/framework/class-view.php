@@ -100,7 +100,7 @@ if ( ! class_exists( 'CZR_cl_View' ) ) :
           }
 
           if ( ! empty( $this -> model -> callback ) )
-            CZR() -> helpers -> czr_fn_fire_cb( $this -> model -> callback, $this -> model -> cb_params );
+            czr_fn_fire_cb( $this -> model -> callback, $this -> model -> cb_params );
     }
 
 

@@ -37,6 +37,31 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
 
       function __construct () {
           self::$instance =& $this;
+
+          //modify the query with pre_get_posts
+          //! wp_loaded is fired after WordPress is fully loaded but before the query is set
+          add_action( 'wp_loaded'                              , array( $this, 'czr_fn_set_early_hooks') );
+
+          //Set image options set by user @since v3.2.0
+          //! must be included in utils to be available in admin for plugins like regenerate thumbnails
+          add_action( 'after_setup_theme'                      , array( $this, 'czr_fn_set_user_defined_settings'));
+
+          //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, post-thumbnails
+          add_action( 'after_setup_theme'                      , array( $this , 'czr_fn_customizr_setup' ));
+          //registers the menu
+          add_action( 'after_setup_theme'                       , array( $this, 'czr_fn_register_menus'));
+
+          //add retina support for high resolution devices
+          add_filter( 'wp_generate_attachment_metadata'        , array( $this , 'czr_fn_add_retina_support') , 10 , 2 );
+          add_filter( 'delete_attachment'                      , array( $this , 'czr_fn_clean_retina_images') );
+
+          //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
+          add_filter('body_class'                              , array( $this , 'czr_fn_set_body_classes') );
+
+          //may be filter the thumbnail inline style
+          add_filter( 'czr_post_thumb_inline_style'            , array( $this , 'czr_fn_change_thumb_inline_css' ), 10, 3 );
+
+
           //Default layout settings
           $this -> global_layout      = array(
                                         'r' => array(
@@ -301,25 +326,116 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
                             'description'          => __( 'Just use it as you want !' , 'customizr' )
             )
           );//end of array
-
-
-          //Set image options set by user @since v3.2.0
-          //! must be included in utils to be available in admin for plugins like regenerate thumbnails
-          add_action( 'after_setup_theme'                      , array( $this, 'czr_fn_set_user_defined_settings'));
-
-          //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, post-thumbnails
-          add_action( 'after_setup_theme'                      , array( $this , 'czr_fn_customizr_setup' ));
-          //registers the menu
-          add_action( 'after_setup_theme'                       , array( $this, 'czr_fn_register_menus'));
-
-          //add retina support for high resolution devices
-          add_filter( 'wp_generate_attachment_metadata'        , array( $this , 'czr_fn_add_retina_support') , 10 , 2 );
-          add_filter( 'delete_attachment'                      , array( $this , 'czr_fn_clean_retina_images') );
-
-          //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
-          add_filter('body_class'                              , array( $this , 'czr_fn_set_body_classes') );
-
       }//end of constructor
+
+
+
+      /**
+      * hook : wp_loaded
+      *
+      * @package Customizr
+      * @since Customizr 3.2.0
+      */
+      function czr_fn_set_early_hooks() {
+          //Filter home/blog postsa (priority 9 is to make it act before the grid hook for expanded post)
+          add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_filter_home_blog_posts_by_tax' ), 9);
+          //Include attachments in search results
+          add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_include_attachments_in_search' ));
+          //Include all post types in archive pages
+          add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_include_cpt_in_lists' ));
+
+          //Add the context
+          add_filter ( 'tc_body_class'         , array( $this,  'czr_fn_set_post_list_context_class') );
+      }
+
+
+
+      /**
+      * hook : pre_get_posts
+      * Includes Custom Posts Types (set to public and excluded_from_search_result = false) in archives and search results
+      * In archives, it handles the case where a CPT has been registered and associated with an existing built-in taxonomy like category or post_tag
+      * @return modified query object
+      * @package Customizr
+      * @since Customizr 3.1.20
+      */
+      function czr_fn_include_cpt_in_lists( $query ) {
+          if (
+            is_admin()
+            || ! $query->is_main_query()
+            || ! apply_filters('czr_include_cpt_in_archives' , false)
+            || ! ( $query->is_search || $query->is_archive )
+            )
+            return;
+          //filter the post types to include, they must be public and not excluded from search
+          //we also exclude the built-in types, to exclude pages and attachments, we'll add standard posts later
+          $post_types         = get_post_types( array( 'public' => true, 'exclude_from_search' => false, '_builtin' => false) );
+
+          //add standard posts
+          $post_types['post'] = 'post';
+          if ( $query -> is_search ){
+            // add standard pages in search results => new wp behavior
+            $post_types['page'] = 'page';
+            // allow attachments to be included in search results by czr_fn_include_attachments_in_search method
+            if ( apply_filters( 'czr_include_attachments_in_search_results' , false ) )
+              $post_types['attachment'] = 'attachment';
+          }
+
+          // add standard pages in search results
+          $query->set('post_type', $post_types );
+      }
+
+
+      /**
+      * hook : pre_get_posts
+      * Includes attachments in search results
+      * @return modified query object
+      * @package Customizr
+      * @since Customizr 3.0.10
+      */
+      function czr_fn_include_attachments_in_search( $query ) {
+          if (! is_search() || ! apply_filters( 'czr_include_attachments_in_search_results' , false ) )
+            return;
+          // add post status 'inherit'
+          $post_status = $query->get( 'post_status' );
+          if ( ! $post_status || 'publish' == $post_status )
+            $post_status = array( 'publish', 'inherit' );
+          if ( is_array( $post_status ) )
+            $post_status[] = 'inherit';
+          $query->set( 'post_status', $post_status );
+      }
+
+
+      /**
+      * hook : pre_get_posts
+      * Filter home/blog posts by tax: cat
+      * @return modified query object
+      * @package Customizr
+      * @since Customizr 3.4.10
+      */
+      function czr_fn_filter_home_blog_posts_by_tax( $query ) {
+          // when we have to filter?
+          // in home and blog page
+          if (
+            ! $query->is_main_query()
+            || ! ( ( is_home() && 'posts' == get_option('show_on_front') ) || $query->is_posts_page )
+          )
+            return;
+         // categories
+         // we have to ignore sticky posts (do not prepend them)
+         // disable grid sticky post expansion
+         $cats = czr_fn_get_opt('tc_blog_restrict_by_cat');
+         $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
+
+         if ( is_array( $cats ) && ! empty( $cats ) ){
+             $query->set('category__in', $cats );
+             $query->set('ignore_sticky_posts', 1 );
+             add_filter('czr_grid_expand_featured', '__return_false');
+         }
+      }
+
+
+
+
 
 
 
@@ -333,40 +449,39 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * @since Customizr 3.1.23
       */
       function czr_fn_set_user_defined_settings() {
-        $_options = get_option('tc_theme_options');
-        //add "rectangular" image size
-        if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
-          $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
-          $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
-          $_rectangular_size = apply_filters( 'czr_rectangular_size' , array_merge( $this -> tc_rectangular_size, array( 'height' => $_user_height ) ) );
-          add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
-        }
+          $_options = get_option('tc_theme_options');
+          //add "rectangular" image size
+          if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
+            $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
+            $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
+            $_rectangular_size = apply_filters( 'czr_rectangular_size' , array_merge( $this -> tc_rectangular_size, array( 'height' => $_user_height ) ) );
+            add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
+          }
 
-        if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) && isset ( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
-            add_filter( 'czr_slider_full_size'    , array($this,  'czr_fn_set_slider_img_height') );
-            add_filter( 'czr_slider_size'         , array($this,  'czr_fn_set_slider_img_height') );
-        }
+          if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) && isset ( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
+              add_filter( 'czr_slider_full_size'    , array($this,  'czr_fn_set_slider_img_height') );
+              add_filter( 'czr_slider_size'         , array($this,  'czr_fn_set_slider_img_height') );
+          }
 
 
-        /***********
-        *** GRID ***
-        ***********/
-        if ( isset( $_options['tc_grid_thumb_height'] ) ) {
-            $_user_height  = esc_attr( $_options['tc_grid_thumb_height'] );
+          /***********
+          *** GRID ***
+          ***********/
+          if ( isset( $_options['tc_grid_thumb_height'] ) ) {
+              $_user_height  = esc_attr( $_options['tc_grid_thumb_height'] );
 
-        }
-        $tc_grid_full_size     = $this -> tc_grid_full_size;
-        $tc_grid_size          = $this -> tc_grid_size;
-        $_user_grid_height     = isset( $_options['tc_grid_thumb_height'] ) && is_numeric( $_options['tc_grid_thumb_height'] ) ? esc_attr( $_options['tc_grid_thumb_height'] ) : $tc_grid_full_size['height'];
+          }
+          $tc_grid_full_size     = $this -> tc_grid_full_size;
+          $tc_grid_size          = $this -> tc_grid_size;
+          $_user_grid_height     = isset( $_options['tc_grid_thumb_height'] ) && is_numeric( $_options['tc_grid_thumb_height'] ) ? esc_attr( $_options['tc_grid_thumb_height'] ) : $tc_grid_full_size['height'];
 
-        add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $_user_grid_height, $tc_grid_full_size['crop'] );
-        add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
+          add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $_user_grid_height, $tc_grid_full_size['crop'] );
+          add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
 
-        if ( $_user_grid_height != $tc_grid_full_size['height'] )
-          add_filter( 'czr_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
-        if ( $_user_grid_height != $tc_grid_size['height'] )
-          add_filter( 'czr_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
-
+          if ( $_user_grid_height != $tc_grid_full_size['height'] )
+            add_filter( 'czr_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
+          if ( $_user_grid_height != $tc_grid_size['height'] )
+            add_filter( 'czr_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
       }
 
 
@@ -380,10 +495,10 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       *
       */
       function czr_fn_set_slider_img_height( $_default_size ) {
-        $_options = get_option('tc_theme_options');
+          $_options = get_option('tc_theme_options');
 
-        $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
-        return $_default_size;
+          $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
+          return $_default_size;
       }
 
 
@@ -396,10 +511,10 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       *
       */
       function czr_fn_set_grid_img_height( $_default_size ) {
-        $_options = get_option('tc_theme_options');
+          $_options = get_option('tc_theme_options');
 
-        $_default_size['height'] =  esc_attr( $_options['tc_grid_thumb_height'] ) ;
-        return $_default_size;
+          $_default_size['height'] =  esc_attr( $_options['tc_grid_thumb_height'] ) ;
+          return $_default_size;
       }
 
 
@@ -413,54 +528,54 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
        */
 
       function czr_fn_customizr_setup() {
-        /* Set default content width for post images and media. */
-        global $content_width;
-        if (! isset( $content_width ) )
-          $content_width = apply_filters( 'czr_content_width' , 1170 );
+          /* Set default content width for post images and media. */
+          global $content_width;
+          if (! isset( $content_width ) )
+            $content_width = apply_filters( 'czr_content_width' , 1170 );
 
-        /*
-         * Makes Customizr available for translation.
-         * Translations can be added to the lang/ directory.
-         */
-        load_theme_textdomain( 'customizr' , CZR_BASE . 'lang' );
+          /*
+           * Makes Customizr available for translation.
+           * Translations can be added to the lang/ directory.
+           */
+          load_theme_textdomain( 'customizr' , CZR_BASE . 'lang' );
 
-        /* Adds RSS feed links to <head> for posts and comments. */
-        add_theme_support( 'automatic-feed-links' );
+          /* Adds RSS feed links to <head> for posts and comments. */
+          add_theme_support( 'automatic-feed-links' );
 
-        /*  This theme supports nine post formats. */
-        $post_formats   = apply_filters( 'czr_post_formats', array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
-        add_theme_support( 'post-formats' , $post_formats );
+          /*  This theme supports nine post formats. */
+          $post_formats   = apply_filters( 'czr_post_formats', array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
+          add_theme_support( 'post-formats' , $post_formats );
 
-        /* support for page excerpt (added in v3.0.15) */
-        add_post_type_support( 'page', 'excerpt' );
+          /* support for page excerpt (added in v3.0.15) */
+          add_post_type_support( 'page', 'excerpt' );
 
-        /* This theme uses a custom image size for featured images, displayed on "standard" posts. */
-        add_theme_support( 'post-thumbnails' );
-          //set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+          /* This theme uses a custom image size for featured images, displayed on "standard" posts. */
+          add_theme_support( 'post-thumbnails' );
+            //set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 
-        /* @since v3.2.3 see : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/ */
-        add_theme_support( 'title-tag' );
-        //remove theme support => generates notice in admin @todo fix-it!
-         /* remove_theme_support( 'custom-background' );
-          remove_theme_support( 'custom-header' );*/
+          /* @since v3.2.3 see : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/ */
+          add_theme_support( 'title-tag' );
+          //remove theme support => generates notice in admin @todo fix-it!
+           /* remove_theme_support( 'custom-background' );
+            remove_theme_support( 'custom-header' );*/
 
-        //post thumbnails for featured pages and post lists (archive, search, ...)
-        $tc_thumb_size    = apply_filters( 'czr_thumb_size' , $this -> tc_thumb_size );
-        add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
+          //post thumbnails for featured pages and post lists (archive, search, ...)
+          $tc_thumb_size    = apply_filters( 'czr_thumb_size' , $this -> tc_thumb_size );
+          add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
 
-        //slider full width
-        $slider_full_size = apply_filters( 'czr_slider_full_size' , $this -> tc_slider_full_size );
-        add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
+          //slider full width
+          $slider_full_size = apply_filters( 'czr_slider_full_size' , $this -> tc_slider_full_size );
+          add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
 
-        //slider boxed
-        $slider_size      = apply_filters( 'czr_slider_size' , $this -> tc_slider_size );
-        add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
+          //slider boxed
+          $slider_size      = apply_filters( 'czr_slider_size' , $this -> tc_slider_size );
+          add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
 
-        //add support for svg and svgz format in media upload
-        add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
+          //add support for svg and svgz format in media upload
+          add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
 
-        //add help button to admin bar
-        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'czr_fn_add_help_button' ));
+          //add help button to admin bar
+          add_action ( 'wp_before_admin_bar_render'          , array( $this , 'czr_fn_add_help_button' ));
       }
 
 
@@ -469,9 +584,9 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * hook : after_setup_theme
       */
       function czr_fn_register_menus() {
-        /* This theme uses wp_nav_menu() in one location. */
-        register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
-        register_nav_menu( 'secondary' , __( 'Secondary (horizontal) Menu' , 'customizr' ) );
+          /* This theme uses wp_nav_menu() in one location. */
+          register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
+          register_nav_menu( 'secondary' , __( 'Secondary (horizontal) Menu' , 'customizr' ) );
       }
 
 
@@ -484,27 +599,27 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * @since Customizr 3.0.15
       */
       function czr_fn_get_style_src( $_wot = 'skin' ) {
-        $_sheet    = ( 'skin' == $_wot ) ? esc_attr( czr_fn_get_opt( 'tc_skin' ) ) : 'tc_common.css';
-        $_sheet    = $this -> czr_fn_maybe_use_min_style( $_sheet );
+          $_sheet    = ( 'skin' == $_wot ) ? esc_attr( czr_fn_get_opt( 'tc_skin' ) ) : 'tc_common.css';
+          $_sheet    = $this -> czr_fn_maybe_use_min_style( $_sheet );
 
-        //Finds the good path : are we in a child theme and is there a skin to override?
-        $remote_path    = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' . $_sheet );
+          //Finds the good path : are we in a child theme and is there a skin to override?
+          $remote_path    = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' . $_sheet );
 
-        //Checks if there is a rtl version of common if needed
-        if ( 'skin' != $_wot && ( is_rtl() || ( defined( 'WPLANG' ) && ( 'ar' == WPLANG || 'he_IL' == WPLANG ) ) ) ){
-          $remote_rtl_path   = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' . $_sheet );
-          $remote_path       = $remote_rtl_path ? $remote_rtl_path : $remote_path;
-        }
+          //Checks if there is a rtl version of common if needed
+          if ( 'skin' != $_wot && ( is_rtl() || ( defined( 'WPLANG' ) && ( 'ar' == WPLANG || 'he_IL' == WPLANG ) ) ) ){
+            $remote_rtl_path   = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' . $_sheet );
+            $remote_path       = $remote_rtl_path ? $remote_rtl_path : $remote_path;
+          }
 
-        //Defines the active skin and fallback to blue.css if needed
-        if ( 'skin' == $_wot ) {
-          //custom skin old tree compatibility for customizr-pro children only
-          $remote_path       = ( CZR___::czr_fn_is_pro() && CZR() -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
-          $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/blue3.css';
-        } else
-          $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/tc_common.css';
+          //Defines the active skin and fallback to blue.css if needed
+          if ( 'skin' == $_wot ) {
+            //custom skin old tree compatibility for customizr-pro children only
+            $remote_path       = ( CZR_IS_PRO && CZR() -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
+            $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/blue3.css';
+          } else
+            $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/tc_common.css';
 
-        return apply_filters ( 'czr_get_style_src' , $czr_style_src , $_wot );
+          return apply_filters ( 'czr_get_style_src' , $czr_style_src , $_wot );
       }
 
 
@@ -523,9 +638,9 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * @since Customizr 3.4.19
       */
       function czr_fn_maybe_use_min_style( $_sheet ) {
-        if ( esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) )
-          $_sheet = ( defined('CZR_NOT_MINIFIED_CSS') && true === CZR_NOT_MINIFIED_CSS ) ? $_sheet : str_replace('.css', '.min.css', $_sheet);
-        return $_sheet;
+          if ( esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) )
+            $_sheet = ( defined('CZR_NOT_MINIFIED_CSS') && true === CZR_NOT_MINIFIED_CSS ) ? $_sheet : str_replace('.css', '.min.css', $_sheet);
+          return $_sheet;
       }
 
 
@@ -537,12 +652,12 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * @since Customizr 3.1.19
       */
       function czr_fn_custom_mtypes( $mimes ) {
-        if (! apply_filters( 'czr_add_svg_mime_type' , true ) )
-          return $mimes;
+          if (! apply_filters( 'czr_add_svg_mime_type' , true ) )
+            return $mimes;
 
-        $mimes['svg']   = 'image/svg+xml';
-        $mimes['svgz']  = 'image/svg+xml';
-        return $mimes;
+          $mimes['svg']   = 'image/svg+xml';
+          $mimes['svgz']  = 'image/svg+xml';
+          return $mimes;
       }
 
 
@@ -556,27 +671,27 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
      * @credits http://wp.tutsplus.com/author/chrisbavota/
      */
       function czr_fn_add_retina_support( $metadata, $attachment_id ) {
-        //checks if retina is enabled in options
-        if ( 0 == czr_fn_get_opt( 'tc_retina_support' ) )
+          //checks if retina is enabled in options
+          if ( 0 == czr_fn_get_opt( 'tc_retina_support' ) )
+            return $metadata;
+
+          if ( ! is_array($metadata) )
+            return $metadata;
+
+          //Create the retina image for the main file
+          if ( is_array($metadata) && isset($metadata['width']) && isset($metadata['height']) )
+            $this -> czr_fn_create_retina_images( get_attached_file( $attachment_id ), $metadata['width'], $metadata['height'] , false, $_is_intermediate = false );
+
+          //Create the retina images for each WP sizes
+          foreach ( $metadata as $key => $data ) {
+              if ( 'sizes' != $key )
+                continue;
+              foreach ( $data as $_size_name => $_attr ) {
+                  if ( is_array( $_attr ) && isset($_attr['width']) && isset($_attr['height']) )
+                      $this -> czr_fn_create_retina_images( get_attached_file( $attachment_id ), $_attr['width'], $_attr['height'], true, $_is_intermediate = true );
+              }
+          }
           return $metadata;
-
-        if ( ! is_array($metadata) )
-          return $metadata;
-
-        //Create the retina image for the main file
-        if ( is_array($metadata) && isset($metadata['width']) && isset($metadata['height']) )
-          $this -> czr_fn_create_retina_images( get_attached_file( $attachment_id ), $metadata['width'], $metadata['height'] , false, $_is_intermediate = false );
-
-        //Create the retina images for each WP sizes
-        foreach ( $metadata as $key => $data ) {
-            if ( 'sizes' != $key )
-              continue;
-            foreach ( $data as $_size_name => $_attr ) {
-                if ( is_array( $_attr ) && isset($_attr['width']) && isset($_attr['height']) )
-                    $this -> czr_fn_create_retina_images( get_attached_file( $attachment_id ), $_attr['width'], $_attr['height'], true, $_is_intermediate = true );
-            }
-        }
-        return $metadata;
       }//end of czr_retina_support
 
 
@@ -625,23 +740,23 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
      * @credits http://wp.tutsplus.com/author/chrisbavota/
      */
       function czr_fn_clean_retina_images( $attachment_id ) {
-        $meta = wp_get_attachment_metadata( $attachment_id );
-        if ( !isset( $meta['file']) )
-          return;
+          $meta = wp_get_attachment_metadata( $attachment_id );
+          if ( !isset( $meta['file']) )
+            return;
 
-        $upload_dir = wp_upload_dir();
-        $path = pathinfo( $meta['file'] );
-        $sizes = $meta['sizes'];
-        // append to the sizes the original file
-        $sizes['original'] = array( 'file' => $path['basename'] );
+          $upload_dir = wp_upload_dir();
+          $path = pathinfo( $meta['file'] );
+          $sizes = $meta['sizes'];
+          // append to the sizes the original file
+          $sizes['original'] = array( 'file' => $path['basename'] );
 
-        foreach ( $sizes as $size ) {
-          $original_filename = $upload_dir['basedir'] . '/' . $path['dirname'] . '/' . $size['file'];
-          $retina_filename = substr_replace( $original_filename, '@2x.', strrpos( $original_filename, '.' ), strlen( '.' ) );
+          foreach ( $sizes as $size ) {
+            $original_filename = $upload_dir['basedir'] . '/' . $path['dirname'] . '/' . $size['file'];
+            $retina_filename = substr_replace( $original_filename, '@2x.', strrpos( $original_filename, '.' ), strlen( '.' ) );
 
-          if ( file_exists( $retina_filename ) )
-            unlink( $retina_filename );
-        }
+            if ( file_exists( $retina_filename ) )
+              unlink( $retina_filename );
+          }
       }//end of function
 
 
@@ -651,18 +766,18 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * @since Customizr 1.0
       */
       function czr_fn_add_help_button() {
-         if ( current_user_can( 'edit_theme_options' ) ) {
-           global $wp_admin_bar;
-           $wp_admin_bar->add_menu( array(
-             'parent' => 'top-secondary', // Off on the right side
-             'id' => 'tc-customizr-help' ,
-             'title' =>  __( 'Help' , 'customizr' ),
-             'href' => admin_url( 'themes.php?page=welcome.php&help=true' ),
-             'meta'   => array(
-                'title'  => __( 'Need help with Customizr? Click here!', 'customizr' ),
-              ),
-           ));
-         }
+          if ( current_user_can( 'edit_theme_options' ) ) {
+             global $wp_admin_bar;
+             $wp_admin_bar->add_menu( array(
+               'parent' => 'top-secondary', // Off on the right side
+               'id' => 'tc-customizr-help' ,
+               'title' =>  __( 'Help' , 'customizr' ),
+               'href' => admin_url( 'themes.php?page=welcome.php&help=true' ),
+               'meta'   => array(
+                  'title'  => __( 'Need help with Customizr? Click here!', 'customizr' ),
+                ),
+             ));
+          }
       }
 
 
@@ -675,23 +790,65 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_body_classes( $_classes ) {
-        if ( 0 != esc_attr( czr_fn_get_opt( 'tc_link_hover_effect' ) ) )
-          array_push( $_classes, 'tc-fade-hover-links' );
-        if ( CZR() -> czr_fn_is_customizing() )
-          array_push( $_classes, 'is-customizing' );
-        if ( wp_is_mobile() )
-          array_push( $_classes, 'tc-is-mobile' );
-        if ( 0 != esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
-          array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
+          if ( 0 != esc_attr( czr_fn_get_opt( 'tc_link_hover_effect' ) ) )
+            array_push( $_classes, 'tc-fade-hover-links' );
+          if ( CZR() -> czr_fn_is_customizing() )
+            array_push( $_classes, 'is-customizing' );
+          if ( wp_is_mobile() )
+            array_push( $_classes, 'tc-is-mobile' );
+          if ( 0 != esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
+            array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
 
-        //adds the layout
-        $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
-        if ( in_array( $_layout, array('b', 'l', 'r' , 'f') ) ) {
-          array_push( $_classes, sprintf( 'tc-%s-sidebar',
-            'f' == $_layout ? 'no' : $_layout
-          ) );
-        }
-        return $_classes;
+          //adds the layout
+          $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
+          if ( in_array( $_layout, array('b', 'l', 'r' , 'f') ) ) {
+            array_push( $_classes, sprintf( 'tc-%s-sidebar',
+              'f' == $_layout ? 'no' : $_layout
+            ) );
+          }
+          return $_classes;
+      }
+
+
+
+
+      /**
+      * hook czr_post_thumb_inline_style
+      * Replace default widht:auto by width:100%
+      * @param array of args passed by apply_filters_ref_array method
+      * @return  string
+      *
+      * @package Customizr
+      * @since Customizr 3.2.6
+      */
+      function czr_fn_change_thumb_inline_css( $_style, $image, $_filtered_thumb_size) {
+          //conditions :
+          //note : handled with javascript if tc_center_img option enabled
+          $_bool = array_product(
+            array(
+              ! esc_attr( czr_fn_get_opt( 'tc_center_img') ),
+              false != $image,
+              ! empty($image),
+              isset($_filtered_thumb_size['width']),
+              isset($_filtered_thumb_size['height'])
+            )
+          );
+          if ( ! $_bool )
+            return $_style;
+
+          $_width     = $_filtered_thumb_size['width'];
+          $_height    = $_filtered_thumb_size['height'];
+          $_new_style = '';
+          //if we have a width and a height and at least on dimension is < to default thumb
+          if ( ! empty($image[1])
+            && ! empty($image[2])
+            && ( $image[1] < $_width || $image[2] < $_height )
+            ) {
+              $_new_style           = sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width: auto;max-height: none;', $_width, $_height );
+          }
+          if ( empty($image[1]) || empty($image[2]) )
+            $_new_style             = sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width: auto;max-height: none;', $_width, $_height );
+          return $_new_style;
       }
 
   }//end of class

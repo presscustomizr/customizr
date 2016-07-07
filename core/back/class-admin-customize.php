@@ -314,7 +314,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
           //=> grid customizer addon starts by gc_
           //When do we add a prefix ?
           $add_prefix = false;
-          if ( CZR_cl_utils_options::$inst -> czr_fn_is_customizr_option( $key ) )
+          if ( czr_fn_is_customizr_option( $key ) )
             $add_prefix = true;
           $_opt_name = $add_prefix ? "{$czr_option_group}[{$key}]" : $key;
 
