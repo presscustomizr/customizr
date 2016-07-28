@@ -1,7 +1,9 @@
 <?php
 class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
+
   public $is_checkout_cart;
   public $current_menu_item_class;
+  
   public function __construct( $model ) {
     parent::__construct( $model);
     add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'czr_fn_woocommerce_add_to_cart_fragment' ) );

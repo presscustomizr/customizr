@@ -15,6 +15,14 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
         return array_merge( $model, compact( 'element_class') );
   }
 
+  function czr_fn_setup_children() {
+    $children = array(
+      //here because it acts on the header class
+      array( 'id' => 'tagline', 'model_class' => 'header/tagline' ),
+    );
+
+    return $children;
+  }
 
   /**
   * Adds a specific style to handle the header top border and z-index

@@ -5,8 +5,11 @@
 ?>
   <div class="col-lg-0 col-md-12 branding__container">
     <div class="branding">
-      <?php czr_fn_render_template('header/title', 'new_title'); ?>
-      <?php czr_fn_render_template('header/tagline', 'new_tagline'); ?>
+      <?php czr_fn_render_template('header/title'); ?>
+      <?php 
+        if ( czr_fn_has( 'tagline' ) )
+          czr_fn_render_template('header/tagline'); 
+      ?>
     </div>
     <div class="mobile-utils__wrapper">
       <?php if ( czr_fn_has('wc_cart', null, $only_registered = true ) ) : ?>

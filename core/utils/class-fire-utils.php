@@ -558,7 +558,7 @@ function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
 * since v3.4+
 */
 function czr_fn_is_secondary_menu_enabled() {
-    return (bool) esc_attr( czr_fn_get_opt( 'tc_display_second_menu' ) ) && 'aside' == esc_attr( czr_fn_get_opt( 'tc_menu_style' ) );
+    return (bool) esc_attr( czr_fn_get_opt( 'tc_display_second_menu' ) ) /* && 'aside' == esc_attr( czr_fn_get_opt( 'tc_menu_style' ) )*/;
 }
 
 
