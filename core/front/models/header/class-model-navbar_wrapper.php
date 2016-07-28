@@ -23,8 +23,7 @@ class CZR_cl_navbar_wrapper_model_class extends CZR_cl_Model {
           //socialblock in navbar
           // array( 'model_class' => array( 'parent' => 'modules/social_block', 'name' => 'header/header_social_block' ), 'id' => 'header_social_block', 'controller' => 'social_block' ),
           //tagline in navbar
-          //here because it acts on the header class
-      //    array( 'id' => 'tagline', 'model_class' => 'header/tagline' ),
+
           //menu in navbar
           // array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
           // //secondary

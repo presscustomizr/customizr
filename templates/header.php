@@ -9,7 +9,9 @@
 <header class="tpnav-header__header tc-header" role="banner">
   <div class="topnav_navbars__wrapper <?php czr_fn_echo('element_class') ?>">
     <div class ="container-fluid">
-      <?php czr_fn_render_template('header/topnav'); ?>
+      <?php if ( czr_fn_has('navbar_secondary_menu') )
+        czr_fn_render_template('header/topnav'); 
+      ?>
       <?php czr_fn_render_template('header/navbar_wrapper'); ?>
     </div>
   </div>

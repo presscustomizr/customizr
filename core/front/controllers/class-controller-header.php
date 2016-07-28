@@ -141,7 +141,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
     //2) menu type is sidenav but a secondary menu is chosen
     function czr_fn_display_view_navbar_secondary_menu() {
       if ( ! isset( $this -> _cache[ 'view_navbar_secondary_menu' ] ) )
-        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> czr_fn_display_view_menu() &&  ( $this -> czr_fn_display_view_sidenav() && czr_fn_is_secondary_menu_enabled() ) ;
+        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> czr_fn_display_view_menu() &&  ( /*$this -> czr_fn_display_view_sidenav() && */czr_fn_is_secondary_menu_enabled() ) ;
       return $this -> _cache[ 'view_navbar_secondary_menu' ];
     }
 

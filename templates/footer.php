@@ -10,8 +10,9 @@
   <?php
   do_action( '__before_inner_footer' );
 
-  czr_fn_render_template( 'footer/footer_widgets');
-  czr_fn_render_template( 'footer/colophon' );
+    czr_fn_render_template( 'footer/footer_widgets');
+    czr_fn_render_template( 'footer/colophon' );
+    
   do_action( '__after_inner_footer' );
   ?>
 </footer>
