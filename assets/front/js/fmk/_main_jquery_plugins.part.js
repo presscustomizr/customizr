@@ -35,6 +35,22 @@ var czrapp = czrapp || {};
         setTimeout( function(){
         Waypoint.refreshAll(); }, 400 ); } 
       );
+    },
+
+    lightbox : function() {
+      /* The magnificPopup delegation is very good
+      * not even works when clicking on a dynamically added a.expand-img
+      * but clicking on an another a.expand-img the image speficied in the 
+      * dynamically added a.expang-img href is added to the gallery
+      */
+      $( '[class*="grid-container__"]' ).magnificPopup({
+        delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
+        gallery: {
+          enabled: true
+        },
+        type: 'image'
+        // other options
+      });
     }
   };//_methods{}
 

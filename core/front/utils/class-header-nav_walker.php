@@ -16,25 +16,65 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
     function __construct($_location) {
       self::$instance =& $this;
       $this -> czr_location = $_location;
+
       add_filter( 'czr_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
+      add_filter( 'nav_menu_link_attributes', array($this, 'czr_fn_process_menu_links'), 10, 4 );
     }
 
 
     /**
-    * hook : nav_menu_css_class
+    * hook : nav_menu_link_attributed
+    */
+    function czr_fn_process_menu_links( $atts, $item, $args, $depth ) {
+      if ( ! (' CZR_cl_nav_walker' == get_class( $args->walker) ) )
+        return $atts;
+
+      $atts[ 'class' ] = 'nav-link';
+      if ( $item->is_dropdown ) {
+        if ( apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
+          $atts[ 'href' ]   = '';
+        } else {
+          if (  ! $atts[ 'href' ] || '#' == $atts['href'] ) {
+            $atts[ 'href' ] = '#';
+            $atts[ 'data-toggle' ] = "dropdown";
+            $atts[ 'role' ] = "button";
+            $atts[ 'aria-haspopup' ] = "true";
+            $atts[ 'aria-expanded' ] ="false";
+          }
+        }
+      }    
+      return $atts;
+    }
+
+    /**
+    * hook : czr_nav_menu_css_class
     */
     function czr_fn_add_bootstrap_classes($classes, $item, $args, $depth ) {
       //cast $classes into array
       $classes = (array)$classes;
+
       //check if $item is a dropdown ( a parent )
       //this is_dropdown property has been added in the the display_element() override method
       if ( $item -> is_dropdown ) {
-        if ( $depth === 0 && ! in_array( 'dropdown', $classes ) ) {
-          $classes[] = 'dropdown';
-        } elseif ( $depth > 0 && ! in_array( 'dropdown-submenu', $classes ) ) {
-          $classes[] = 'dropdown-submenu';
+        if ( $depth === 0 ) {
+          if ( ! in_array( 'dropdown', $classes ) )
+            $classes[] = 'dropdown';
+        } elseif ( $depth > 0 ) {
+          if ( ! in_array( 'dropdown-submenu', $classes ) )
+            $classes[] = 'dropdown-submenu';
         }
+        if ( ! in_array( 'btn-group', $classes ) )
+          $classes[] = 'btn-group';
       }
+
+      if ( $depth > 0 ) {
+        if ( ! in_array( 'dropdown-item', $classes ) )
+          $classes[] = 'dropdown-item';
+      } else {
+        if ( ! in_array( 'nav-item', $classes ) )
+          $classes[] = 'nav-item';
+      }
+
       return $classes;
     }
 
@@ -48,25 +88,26 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
       $item_html = '';
       //ask the parent to do the hard work
       parent::start_el( $item_html, $item, $depth, $args, $id);
-
-      //this is_dropdown property has been added in the the display_element() override method
       if ( $item->is_dropdown ) {
-        //makes top menu not clickable (default bootstrap behaviour)
-        $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
-        $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        $replace        = apply_filters( 'czr_menu_open_on_click', $replace , $search, $this -> czr_location );
-        $item_html      = str_replace( $search , $replace , $item_html);
-
-        //adds arrows down
-        if ( $depth === 0 )
-            $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);
-      }
-      elseif (stristr( $item_html, 'li class="divider' )) {
-        $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);
-      }
-      elseif (stristr( $item_html, 'li class="nav-header' )) {
-        $item_html = preg_replace( '/<a[^>]*>(.*)<\/a>/iU' , '$1' , $item_html);
+        strpos($item_html, 'href=') ? '' : ' href="#"' ;
+        if ( $item->is_dropdown ) {
+          if ( apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
+            $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><span class="caret__dropdown-toggler__span"></span></span></a>', $item_html );
+          } else{
+            if ( strpos($item_html, 'href="#"') > 0) {
+              $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><span class="caret__dropdown-toggler__span"></span></span></a>', $item_html );
+            }else {
+              $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret__dropdown-toggler__span"></span></span>', $item_html );
+            }
+          }     
+        }
+      }else {
+        if (stristr( $item_html, 'li class="divider' )) {
+          $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);
+        }
+        if (stristr( $item_html, 'li class="nav-header' )) {
+          $item_html = preg_replace( '/<a[^>]*>(.*)<\/a>/iU' , '$1' , $item_html);
+        }
       }
 
       $output .= $item_html;
