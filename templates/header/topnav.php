@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-6">
         <div class="secondary-nav__socials">
-          <?php czr_fn_render_template('header/topnav_socials') ?>
+          <?php czr_fn_render_template('header/header_socials') ?>
         </div>
       </div>
     </div>

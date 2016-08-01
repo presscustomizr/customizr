@@ -10,7 +10,7 @@ jQuery(function ($) {
     Czr_MasonryGrid : ['masonryGridEventListener'],
     Czr_StickyHeader : [ 'stickyHeaderMaybeToggling', 'stickyHeaderEventListener', 'triggerStickyHeaderLoad'],
     Czr_UserExperience : [ 'variousHoverActions', 'smoothScroll' ],
-    Czr_Plugins : ['centerImagesWithDelay', 'parallax' ]
+    Czr_Plugins : ['centerImagesWithDelay', 'parallax', 'lightbox' ]
 //    Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
 //    Czr_Slider : ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport', 'sliderTriggerSimpleLoad'],
     //DropdownPlace is here to ensure is loaded before UserExperience's secondMenuRespActions

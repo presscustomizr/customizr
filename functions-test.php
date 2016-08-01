@@ -7,9 +7,8 @@ $_options = array(
     'tc_sticky_header_type' => 'push',
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
-    'tc_display_second_menu' => true,
-    'tc_menu_style' => 'regular'
-
+    'tc_display_second_menu' => false,
+    'tc_menu_style' => 'regular',
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
   global $_options;
@@ -33,20 +32,23 @@ function czr_fn_enqueue_front_styles() {
         array() , CUSTOMIZR_VER, 'all' );
     }
 
-    $_path = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' );
+  $_path = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' );
 
-    wp_enqueue_style( 'customizr-bs', $_path . 'custom-bs/custom-bootstrap.css' , array() , CUSTOMIZR_VER, 'all' );
+  wp_enqueue_style( 'customizr-bs', $_path . 'custom-bs/custom-bootstrap.css' , array() , CUSTOMIZR_VER, 'all' );
 
-    wp_enqueue_style( 'customizr-pre-common', $_path . 'customizr.css' , array() , CUSTOMIZR_VER, 'all' );
+  wp_enqueue_style( 'customizr-flickity', $_path . 'flickity.css' , array() , CUSTOMIZR_VER, 'all' );
 
+  wp_enqueue_style( 'customizr-magnific', $_path . 'magnific-popup.css' , array() , CUSTOMIZR_VER, 'all' );
 
-    wp_enqueue_style( 'customizr-common', $_path . 'czr/style.css', array() , CUSTOMIZR_VER, 'all' );
+  wp_enqueue_style( 'customizr-pre-common', $_path . 'customizr.css' , array() , CUSTOMIZR_VER, 'all' );
 
-    //Customizr stylesheet (style.css)
-   wp_enqueue_style( 'customizr-style', $_path . 'style.css', array(), CUSTOMIZR_VER , 'all' );
+  wp_enqueue_style( 'customizr-common', $_path . 'czr/style.css', array() , CUSTOMIZR_VER, 'all' );
 
-   //Customizer user defined style options : the custom CSS is written with a high priority here
-   wp_add_inline_style( 'customizr-style', apply_filters( 'czr_user_options_style' , '' ) );
+  //Customizr stylesheet (style.css)
+  wp_enqueue_style( 'customizr-style', $_path . 'style.css', array(), CUSTOMIZR_VER , 'all' );
+
+  //Customizer user defined style options : the custom CSS is written with a high priority here
+  wp_add_inline_style( 'customizr-style', apply_filters( 'czr_user_options_style' , '' ) );
 }
 
 add_filter('body_class', function( $classes ){
@@ -62,7 +64,7 @@ function czr_fn_enqueue_front_scripts(){
   wp_enqueue_script( 'jquery-masonry' );
   $_scripts =  array(
      'vendors/bootstrap.js',
-     'vendors/parallax.js',
+     'vendors/jquery.magnific-popup.js',
      'vendors/jquery.waypoints.js',
   //will be concatenated with GRUNT
       'fmk/tc-js-params.js',
@@ -167,6 +169,5 @@ function parallax(){
                   </div>  
                 </div>
           </div>
-        </div>
 <?php
 };

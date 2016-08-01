@@ -25,7 +25,7 @@ class CZR_cl_navbar_wrapper_model_class extends CZR_cl_Model {
           //tagline in navbar
 
           //menu in navbar
-          // array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
+          array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
           // //secondary
           // array( 'id' => 'navbar_secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
          

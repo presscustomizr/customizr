@@ -101,7 +101,12 @@
 
 
   Plugin.prototype.parallaxMe = function() {
-
+      //parallax only the current slide if in slider context?
+      /*
+      if ( ! ( this.element.hasClass( 'is-selected' ) || this.element.parent( '.is-selected' ).length ) )
+        return;
+      */
+      
       var ratio = this.options.parallaxRatio,
           parallaxDirection = this.options.parallaxDirection,
           
