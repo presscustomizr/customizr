@@ -35,9 +35,9 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
           $atts[ 'href' ]   = '';
         } else {
           if (  ! $atts[ 'href' ] || '#' == $atts['href'] ) {
-            $atts[ 'href' ] = '#';
-            $atts[ 'data-toggle' ] = "dropdown";
-            $atts[ 'role' ] = "button";
+            $atts[ 'href' ]          = '#';
+            $atts[ 'data-toggle' ]   = "dropdown";
+            $atts[ 'role' ]          = "button";
             $atts[ 'aria-haspopup' ] = "true";
             $atts[ 'aria-expanded' ] ="false";
           }
@@ -88,26 +88,26 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
       $item_html = '';
       //ask the parent to do the hard work
       parent::start_el( $item_html, $item, $depth, $args, $id);
+
       if ( $item->is_dropdown ) {
-        strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        if ( $item->is_dropdown ) {
-          if ( apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
-            $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><span class="caret__dropdown-toggler__span"></span></span></a>', $item_html );
-          } else{
-            if ( strpos($item_html, 'href="#"') > 0) {
-              $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><span class="caret__dropdown-toggler__span"></span></span></a>', $item_html );
-            }else {
-              $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret__dropdown-toggler__span"></span></span>', $item_html );
-            }
-          }     
-        }
+
+        $_dropdown_on_hover = apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location );
+        $_is_link           = FALSE === strpos( $item_html, 'href="#"');
+
+        if ( $_dropdown_on_hover ||  ( ! ( $_dropdown_on_hover || $_is_link ) ) )
+          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><span class="caret__dropdown-toggler__span"></span></span></a>', $item_html );
+        elseif ( ! $_dropdown_on_hover && $_is_link )
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret__dropdown-toggler__span"></span></span>', $item_html );
+
       }else {
+
         if (stristr( $item_html, 'li class="divider' )) {
           $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);
         }
         if (stristr( $item_html, 'li class="nav-header' )) {
           $item_html = preg_replace( '/<a[^>]*>(.*)<\/a>/iU' , '$1' , $item_html);
         }
+
       }
 
       $output .= $item_html;

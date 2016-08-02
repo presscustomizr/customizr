@@ -9,6 +9,8 @@ $_options = array(
     'tc_show_tagline' => true,
     'tc_display_second_menu' => false,
     'tc_menu_style' => 'regular',
+    'tc_menu_type' => 'hover'
+
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
   global $_options;
