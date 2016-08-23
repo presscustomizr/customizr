@@ -6415,7 +6415,7 @@ article.format-link .entry-content a:after {
   content: "\00bb";
   top: 6px;
 }
-/* reset the previous rule for the more-link in format-link articles 
+/* reset the previous rule for the more-link in format-link articles
 *  the more-link has it's own "arrow"
 */
 article.format-link .entry-content a.more-link:after {
@@ -7396,6 +7396,10 @@ footer ol {
   -ms-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+}
+.tc-btt-wrapper.left {
+  left: 30px;
+  right: auto;
 }
 .tc-btt-wrapper i.btt-arrow {
   line-height: inherit;

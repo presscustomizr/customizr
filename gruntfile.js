@@ -82,8 +82,8 @@ module.exports = function(grunt) {
     grunt.log.writeln( 'WATCH EVENT INFOS : ', grunt.task.current.name , action, filepath, target);
 
     if ( 'admin_customizer_control_js' == target || 'admin_js' == target ) {
-      //if some js admin scripts have been changed in dev mode, jshint them dynamically
-      grunt.config('jshint.those', [filepath]);
+        //if some js admin scripts have been changed in dev mode, jshint them dynamically
+        grunt.config('jshint.those', [filepath]);
     }
   });
 };

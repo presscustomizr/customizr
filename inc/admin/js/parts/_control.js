@@ -565,7 +565,7 @@
         return '1' == to;
       },
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) { 
+        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) {
           return to &&  //api.control.active is available since wp 4.0 as the php active_callback
             //so let's skip this for older wp versions
             ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
@@ -728,9 +728,17 @@
       },
       //display dependant if master setting value == value
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) { 
-            return to; 
+        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) {
+            return to;
         } },
+      }
+    },
+    'tc_show_back_to_top' : {
+      controls: [
+        'tc_back_to_top_position'
+      ],
+      callback : function ( to ) {
+        return 1 == to;
       }
     }
   };

@@ -2073,7 +2073,21 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'section'       => 'footer_global_sec' ,
                                 'type'          => 'checkbox',
                                 'priority'      => 5
-              )
+                            ),
+              'tc_back_to_top_position'  =>  array(
+                                'default'       => 'right',
+                                'control'       => 'TC_controls' ,
+                                'label'         => __( "Display a back to top arrow on scroll" , "customizr" ),
+                                'section'       => 'footer_global_sec' ,
+                                'type'          => 'select',
+                                'choices'       => array(
+                                      'left'      => __( 'Left' , 'customizr' ),
+                                      'centered'  => __( 'Right' , 'customizr'),
+                                ),
+                                'priority'      => 5,
+                                'transport'     => 'postMessage'
+              ),
+
       );
     }
 
