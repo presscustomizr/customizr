@@ -46,6 +46,8 @@ The exceptions to this license are as follows:
 * Fix: tinymce custom style conflicts (detected with the ACF WP plugin ) with tinymce 4.x api. Fixes #626
 * Fix : customizer terms array (categories/tags pickers options) not being updated on term delettion. fixes #620
 * Improved : use WooCommerce breadcrumb code in wc contexts
+* Improved : remove it lang files - will use the ones available on wp.org
+* Added : new option - customize back to top - arrow position left or right
 
 = 3.4.21 May 6th 2016 =
 * Fix: remove grunt live reload script fixes #611
