@@ -94,7 +94,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     * @package Customizr
     * @since Customizr 3.4.10
     */
-    function tc_refresh_terms_picker_options_cb( $term, $tt_id, $taxonomy ) {
+    function tc_refresh_terms_pickers_options_cb( $term, $tt_id, $taxonomy ) {
       switch ( $taxonomy ) {
 
         //delete categories based options
