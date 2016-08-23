@@ -437,7 +437,7 @@ if ( ! class_exists( 'TC_resources' ) ) :
 
       //adapt the selectors in edit context => add specificity for the mce-editor
       if ( ! is_null( $_context ) ) {
-        $titles = ".{$_context} .h1, .{$_context} h2, .{$_context} h3";
+        $titles = ".{$_context} h1, .{$_context} h2, .{$_context} h3";
         $body   = "body.{$_context}";
       }
 
