@@ -109,7 +109,7 @@ jQuery(function ($) {
     var _cta = _.template(
         $( "script#footer_cta" ).html()
     );
-    $('li[id*="tc_show_back_to_top"]').append( _cta() );
+    $('li[id*="tc_show_back_to_top"]').closest('ul').append( _cta() );
   }
 
   function _ajax_save() {

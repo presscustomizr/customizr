@@ -28,7 +28,7 @@ module.exports = {
 	},
 	//Other admin js assets are jshinted on change
 	admin_js : {
-		files : ['<%= paths.admin_js %>theme-customizer-preview.js', '<%= paths.admin_js %>theme-customizer-control.js', '<%= paths.admin_js %>tc_ajax_slider.js'],
+		files : ['<%= paths.admin_js %>theme-customizer-preview.js','<%= paths.admin_js %>tc_ajax_slider.js'],
 		tasks : ['gitinfo' , 'replace:readme', 'jshint:those', 'uglify:prod_admin_js'],
 	},
 	admin_css : {
