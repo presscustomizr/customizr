@@ -237,6 +237,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     function tc_user_defined_tinymce_css( $init ) {
       if ( ! apply_filters( 'tc_add_custom_fonts_to_editor' , true ) )
         return $init;
+
+      if ( 'tinymce' != wp_default_editor() )
+        return $init;
+      
       //some plugins fire tiny mce editor in the customizer
       //in this case, the TC_resource class has to be loaded
       if ( ! class_exists('TC_resources') )
@@ -246,22 +250,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
       //icons
       $_css .= TC_resources::$instance -> tc_get_inline_font_icons_css();
-     ?>
+      $init['content_style'] =  trim(preg_replace('/\s+/', ' ', $_css ) );
 
-        <script type="text/javascript">
-          function add_user_defined_CSS( ed ) {
-            //http://www.tinymce.com/wiki.php/Tutorial:Migration_guide_from_3.x
-              ed.on('init', function() {
-                  tinyMCE.activeEditor.dom.addStyle(<?php echo json_encode($_css) ?>);
-              } );
-          };
-        </script>
-
-        <?php
-        if (wp_default_editor() == 'tinymce')
-            $init['setup'] = 'add_user_defined_CSS';
-
-        return $init;
+      return $init;
     }
 
 
