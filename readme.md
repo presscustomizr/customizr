@@ -44,6 +44,8 @@ The exceptions to this license are as follows:
 ## Changelog
 = 3.4.22 August 23rd 2016 =
 * Fix: tinymce custom style conflicts (detected with the ACF WP plugin ) with tinymce 4.x api. Fixes #626
+* Fix : customizer terms array (categories/tags pickers options) not being updated on term delettion. fixes #620
+* Improved : use WooCommerce breadcrumb code in wc contexts
 
 = 3.4.21 May 6th 2016 =
 * Fix: remove grunt live reload script fixes #611
