@@ -3,7 +3,9 @@
  * The template for displaying the Woocommerce Cart in the header
  */
 ?>
-<li class="primary-nav__woocart hidden-tablet">
-  <a href="#" class="woocart"><i class="icn-icn-shoppingcart"></i><sup>0</sup></a>
-</li>
+
+<a href="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" title="<?php _e( 'View your shopping cart', 'customizr' ); ?>" class="woocart cart-contents" <?php czr_fn_echo('element_attributes') ?>>
+  <i class="icn-shoppingcart"></i><?php czr_fn_echo( 'wc_cart_count' ) ?>
+</a>
+
 

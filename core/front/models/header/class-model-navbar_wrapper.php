@@ -26,8 +26,8 @@ class CZR_cl_navbar_wrapper_model_class extends CZR_cl_Model {
 
           //menu in navbar
           array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
-          // //secondary
-          // array( 'id' => 'navbar_secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+          //secondary
+          //array( 'id' => 'navbar_secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
          
           //sidenav navbar menu button
       //    array( 'id' => 'sidenav_navbar_menu_button', 'model_class' => array( 'parent' => 'header/menu_button', 'name' => 'header/sidenav_menu_button' ) ),

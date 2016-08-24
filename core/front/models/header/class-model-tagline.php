@@ -9,7 +9,6 @@ class CZR_cl_tagline_model_class extends CZR_cl_Model {
   */
   function czr_fn_extend_params( $model = array() ) {
     $model[ 'element_attributes' ] = ( CZR() -> czr_fn_is_customizing() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
-    $model[ 'element_class' ]      = apply_filters( 'czr_tagline_class', $this -> element_class, $model );
     return $model;
   }
   /**
