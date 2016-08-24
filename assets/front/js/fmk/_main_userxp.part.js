@@ -9,17 +9,16 @@ var czrapp = czrapp || {};
     //VARIOUS HOVER ACTION
     variousHoverActions : function() {
       /* Temporary */
-      $('.entry-image__container').hover(function () {
-          $(this).closest('article').addClass("hover");
-      }, function () {
-          $(this).closest('article').removeClass("hover");
-      });
+      $( '.grid-container__alternate' ).on( 'mouseenter mouseleave', '.entry-image__container', _toggleParentHover );
+      $( '.grid-container__masonry, grid-container__classic').on( 'mouseenter mouseleave', '.grid-item', _toggleThisHover );
+        
+      function _toggleParentHover() {
+        $(this).closest('article').toggleClass("hover");
+      };
 
-      $('article.grid-item').hover(function () {
-          $(this).addClass("hover");
-      }, function () {
-          $(this).removeClass("hover");
-      });
+      function _toggleThisHover() {
+        $(this).toggleClass("hover");
+      }
 
       $(".widget li").hover(function () {
           $(this).addClass("on");
