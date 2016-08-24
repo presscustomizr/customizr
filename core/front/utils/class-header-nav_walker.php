@@ -18,6 +18,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
       $this -> czr_location = $_location;
 
       add_filter( 'czr_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
+      /* Since WP 3.6.0 */
       add_filter( 'nav_menu_link_attributes', array($this, 'czr_fn_process_menu_links'), 10, 4 );
     }
 
@@ -29,7 +30,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
       if ( ! (' CZR_cl_nav_walker' == get_class( $args->walker) ) )
         return $atts;
 
-      $atts[ 'class' ] = 'nav-link';
+      //$atts[ 'class' ] = 'nav-link';
       if ( $item->is_dropdown ) {
         if ( apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
           $atts[ 'href' ]   = '';
@@ -39,7 +40,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
             $atts[ 'data-toggle' ]   = "dropdown";
             $atts[ 'role' ]          = "button";
             $atts[ 'aria-haspopup' ] = "true";
-            $atts[ 'aria-expanded' ] ="false";
+            $atts[ 'aria-expanded' ] = "false";
           }
         }
       }    
@@ -75,6 +76,10 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
           $classes[] = 'nav-item';
       }
 
+      if ( ! empty( array_intersect( $classes, array( 'current-menu-ancestor', 'current-menu-item', 'current-menu-parent' ) ) )
+          && ! in_array( 'active' , $classes ) )
+        $classes[] = 'active';
+
       return $classes;
     }
 
@@ -90,14 +95,13 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
       parent::start_el( $item_html, $item, $depth, $args, $id);
 
       if ( $item->is_dropdown ) {
-
         $_dropdown_on_hover = apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location );
         $_is_link           = FALSE === strpos( $item_html, 'href="#"');
 
         if ( $_dropdown_on_hover ||  ( ! ( $_dropdown_on_hover || $_is_link ) ) )
-          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><span class="caret__dropdown-toggler__span"></span></span></a>', $item_html );
+          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>', $item_html );
         elseif ( ! $_dropdown_on_hover && $_is_link )
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret__dropdown-toggler__span"></span></span>', $item_html );
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
 
       }else {
 
@@ -142,25 +146,53 @@ endif;
 */
 if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
   class CZR_cl_nav_walker_page extends Walker_Page {
+    public $czr_location;
+
     function __construct() {
-      add_filter('page_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 5 );
+      add_filter( 'page_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
     }
 
 
     /**
     * hook : page_css_class
     */
-    function czr_fn_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
-      if ( is_array($css_class) && in_array('page_item_has_children', $css_class ) ) {
-        if ( 0 === $depth) {
-          $css_class[] = 'dropdown';
-        } elseif ( $depth > 0) {
-          $css_class[] = 'dropdown-submenu';
+    function czr_fn_add_bootstrap_classes($classes, $page = null, $depth = 0, $args = array() ) {
+      if ( ! is_array($classes) )
+        return $classes;
+
+      //check if $item is a dropdown ( a parent )
+      //this is_dropdown property has been added in the the display_element() override method
+      if ( in_array('page_item_has_children', $classes ) ) {
+        if ( $depth === 0 ) {
+          if ( ! in_array( 'dropdown', $classes ) )
+            $classes[] = 'dropdown';
+        } elseif ( $depth > 0 ) {
+          if ( ! in_array( 'dropdown-submenu', $classes ) )
+            $classes[] = 'dropdown-submenu';
         }
+        if ( ! in_array( 'btn-group', $classes ) )
+          $classes[] = 'btn-group';
+
+        if ( ! in_array( 'menu-item-has-children' , $classes ) )
+          $classes[] = 'menu-item-has-children';
       }
-      if ( ! in_array( 'menu-item' , $css_class ) )
-        $css_class[] = 'menu-item';
-      return $css_class;
+
+      if ( $depth > 0 ) {
+        if ( ! in_array( 'dropdown-item', $classes ) )
+          $classes[] = 'dropdown-item';
+      } else {
+        if ( ! in_array( 'nav-item', $classes ) )
+          $classes[] = 'nav-item';
+      }
+
+      if ( ! in_array( 'menu-item' , $classes ) )
+        $classes[] = 'menu-item';
+      
+      if ( ! empty( array_intersect( $classes, array( 'current_page_ancestor', 'current_page_item', 'current_page_parent' ) ) )
+          && ! in_array( 'active' , $classes ) )
+        $classes[] = 'active';
+
+       return $classes;
     }
 
 
@@ -176,27 +208,29 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
       parent::start_el( $item_html, $page, $depth, $args, $current_page );
 
       if ( $args['has_children'] ) {
-        //makes top menu not clickable (default bootstrap behaviour)
-        $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
-        $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        $replace        = apply_filters( 'czr_menu_open_on_click', $replace , $search );
-        $item_html      = str_replace( $search , $replace , $item_html);
 
-        //adds arrows down
-        if ( $depth === 0 )
-          $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);
-      }
+        $_dropdown_on_hover = apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location );
+        $_is_link           = FALSE === strpos( $item_html, 'href="#"');
 
-      elseif (stristr( $item_html, 'li class="divider' )) {
-        $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);
-      }
+        if ( $_dropdown_on_hover ||  ( ! ( $_dropdown_on_hover || $_is_link ) ) )
+          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>', $item_html );
+        elseif ( ! $_dropdown_on_hover && $_is_link )
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
 
-      elseif (stristr( $item_html, 'li class="nav-header' )) {
-        $item_html = preg_replace( '/<a[^>]*>(.*)<\/a>/iU' , '$1' , $item_html);
+      }else {
+
+        if (stristr( $item_html, 'li class="divider' )) {
+          $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);
+        }
+        if (stristr( $item_html, 'li class="nav-header' )) {
+          $item_html = preg_replace( '/<a[^>]*>(.*)<\/a>/iU' , '$1' , $item_html);
+        }
+
       }
 
       $output .= $item_html;
+
     }
+
  }//end of class
 endif;

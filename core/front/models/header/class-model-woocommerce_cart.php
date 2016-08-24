@@ -19,10 +19,16 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
   function czr_fn_woocommerce_add_to_cart_fragment( $fragments ) {
     if ( 1 == esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart' ) ) ) {
       $_cart_count = WC()->cart->get_cart_contents_count();
-      $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
+      $fragments['sup.tc-wc-count'] = $this -> czr_fn_get_wc_cart_count();
     }
     return $fragments;
   }
+
+  function czr_fn_get_wc_cart_count() {
+    $_cart_count = WC()->cart->get_cart_contents_count();
+    return sprintf( '<sup class="count tc-wc-count">%1$s</sup>', $_cart_count ? $_cart_count : '' );
+  }
+
   /*
   * parse header model before rendering to add 'sticky' wccart visibility class
   */

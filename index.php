@@ -22,13 +22,8 @@
               <?php do_action('__before_content'); ?>
 
               <div id="content" class="col-md-12 <?php czr_fn_article_container_class() ?>">
-                <?php
-                   $page = get_post(1);
-                   $content = $page->post_content;
-                   $content = apply_filters('the_content', $content);
-                   $content = str_replace(']]>', ']]>', $content);
-                   echo $content;
-                ?>
+                <?php while ( have_posts() ) { the_post(); the_content(); } ?>
+                   
               </div>
 
               <?php do_action('__after_content'); ?>

@@ -44,6 +44,7 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
         }
         return $_css;
   }
+  
   function czr_fn_body_class( $_classes/*array*/ ) {
         //STICKY HEADER
         if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ) ) {
