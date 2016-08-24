@@ -66,7 +66,7 @@
 /* ADMIN BAR
     -------------------------------------------------- */
 h1.need-help-title:before,
-#wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
+#wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
   font-family: 'FontAwesome';
   speak: none;
   font-weight: normal;
@@ -80,7 +80,7 @@ h1.need-help-title:before,
   content: "\f1cd";
 }
 
-#wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
+#wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
   padding-right: 0px;
   top: 2px;
   color: #FFF;
@@ -103,7 +103,7 @@ li#wp-admin-bar-tc-customizr-help a {
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 
-#wpadminbar .ab-top-menu>li#wp-admin-bar-tc-customizr-help:hover>.ab-item {
+.ab-top-menu>li#wp-admin-bar-tc-customizr-help:hover>.ab-item {
   color: #FFF;
   background: #1B8D71; /* Old browsers */
 background: -moz-linear-gradient(top,  #1B8D71 1%, #27CDA5 100%, #27CDA5 100%); /* FF3.6+ */

@@ -4750,7 +4750,7 @@ section {
 /* ICONS
   -------------------------------------------------- */
 .tc-wc-menu .nav > li > a:before,
-#wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before,
+#wp-admin-bar-tc-customizr-help .ab-item:before,
 li#wp-admin-bar-tc-customizr-help a:before,
 a + span.tc-external:after,
 .tc-placeholder-wrap:before,
@@ -6424,7 +6424,7 @@ article.format-link .entry-content a:after {
   content: "\00bb";
   top: 6px;
 }
-/* reset the previous rule for the more-link in format-link articles 
+/* reset the previous rule for the more-link in format-link articles
 *  the more-link has it's own "arrow"
 */
 article.format-link .entry-content a.more-link:after {
@@ -7407,6 +7407,10 @@ footer ol {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
+.tc-btt-wrapper.left {
+  right: 30px;
+  left: auto;
+}
 .tc-btt-wrapper i.btt-arrow {
   line-height: inherit;
 }
@@ -7420,7 +7424,7 @@ footer ol {
 }
 /* ADMIN BAR
     -------------------------------------------------- */
-#wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before,
+#wp-admin-bar-tc-customizr-help .ab-item:before,
 li#wp-admin-bar-tc-customizr-help a:before {
   content: "\f1cd";
   color: #FFF;
@@ -7444,7 +7448,7 @@ li#wp-admin-bar-tc-customizr-help a {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-#wpadminbar .ab-top-menu > li#wp-admin-bar-tc-customizr-help:hover > .ab-item {
+.ab-top-menu > li#wp-admin-bar-tc-customizr-help:hover > .ab-item {
   color: #FFF;
   background: #1B8D71;
   /* Old browsers */
