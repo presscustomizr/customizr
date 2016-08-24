@@ -52,8 +52,6 @@ img.v-centered {
 .navbar-sticky-overlap #sticky-placeholder{
   position: absolute; top: 0;
 }
-.admin-bar.sticky-enabled .navbar-fixed-top { top: 30px;}
-
 /* TO DECIDE */
 body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 .navbar-sticky-overlap .navbar-fixed-top { position: absolute;}

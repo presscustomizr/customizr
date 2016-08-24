@@ -56,21 +56,16 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
   
-.icn-post:before { content: '\e800'; } /* '' */
-.icn-link:before { content: '\e801'; } /* '' */
-.icn-emo-displeased:before { content: '\e802'; } /* '' */
-.icn-icn-img:before { content: '\e803'; } /* '' */
-.icn-icn-search:before { content: '\e804'; } /* '' */
-.icn-icn-shoppingcart:before { content: '\e805'; } /* '' */
-.icn-plus:before { content: '\e806'; } /* '' */
-.icn-close:before { content: '\e807'; } /* '' */
+.icn-shoppingcart:before { content: '\e800'; } /* '' */
+.icn-plus:before { content: '\e801'; } /* '' */
+.icn-search:before { content: '\e802'; } /* '' */
+.icn-plus-1:before { content: '\e806'; } /* '' */
 .icn-quotes:before { content: '\e808'; } /* '' */
 .icn-expand:before { content: '\e809'; } /* '' */
 .icn-image-link:before { content: '\e80a'; } /* '' */
-.icn-text-thin:before { content: '\e80b'; } /* '' */
-.icn-arrow-left-thin:before { content: '\e80c'; } /* '' */
 .icn-arrow-left:before { content: '\e80d'; } /* '' */
 .icn-arrow-right:before { content: '\e80e'; } /* '' */
 .icn-down-small:before { content: '\e80f'; } /* '' */
 .icn-up-small:before { content: '\e810'; } /* '' */
 .icn-text:before { content: '\e811'; } /* '' */
+.icn-link:before { content: '\e812'; } /* '' */
