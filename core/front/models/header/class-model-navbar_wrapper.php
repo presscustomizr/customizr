@@ -3,16 +3,7 @@ class CZR_cl_navbar_wrapper_model_class extends CZR_cl_Model {
 
   function czr_fn_setup_children() {
         $children = array(
-          //LOGO
-          /* Registered as child here as it needs to filter the header class and add custom style css */
- //         array( 'model_class' => 'header/logo_wrapper', 'logo_wrapper' ),
-//          array( 'model_class' => 'header/logo', 'id' => 'logo' ),
 
-          //array( 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky'), 'id' => 'sticky_logo' ),
-
-          //TITLE
-          /* Registered as child here as it needs to filter the header class and add custom style css */
-//          array( 'model_class' => 'header/title', 'id' => 'title'  ),
           //MOBILE TAGLINE
           //array(  'id' => 'mobile_tagline',  'model_class' => array( 'parent' => 'header/tagline', 'name' => 'header/tagline_mobile') ),
           //NAVBAR

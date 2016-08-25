@@ -9,7 +9,10 @@ $_options = array(
     'tc_show_tagline' => true,
     'tc_display_second_menu' => true,
     'tc_menu_style' => 'regular',
-    'tc_menu_type' => 'hover'
+    'tc_menu_type' => 'hover',
+    'tc_logo_upload' => '611',
+    'tc_sticky_logo_upload' => '611',
+    'tc_sticky_shrink_title_logo' => true
 
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
