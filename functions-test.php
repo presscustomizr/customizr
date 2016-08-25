@@ -4,7 +4,7 @@ $_options = array(
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
     'tc_sticky_header' => true,
-    'tc_sticky_header_type' => 'push',
+    'tc_sticky_header_type' => 'overlap',
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
     'tc_display_second_menu' => true,
@@ -71,20 +71,21 @@ function czr_fn_enqueue_front_scripts(){
      'vendors/bootstrap.js',
      'vendors/jquery.magnific-popup.js',
      'vendors/jquery.waypoints.js',
+     'vendors/flickity.pkgd.js',
   //will be concatenated with GRUNT
-      'fmk/tc-js-params.js',
-      'fmk/smoothScroll.js',
-      'fmk/jqueryimgOriginalSizes.js',
-      'fmk/jqueryCenterImages.js',
-      'fmk/jqueryParallax.js',
-      'fmk/_main_base.part.js',
-      'fmk/_main_browser_detect.part.js',
-      'fmk/_main_dropdowns.part.js',
-      'fmk/_main_sticky_header.part.js',
-      'fmk/_main_masonry.part.js',
-      'fmk/_main_userxp.part.js',
-      'fmk/_main_jquery_plugins.part.js',
-      'fmk/_main_xfire.part.js',
+     'fmk/tc-js-params.js',
+     'fmk/smoothScroll.js',
+     'fmk/jqueryimgOriginalSizes.js',
+     'fmk/jqueryCenterImages.js',
+     'fmk/jqueryParallax.js',
+     'fmk/_main_base.part.js',
+     'fmk/_main_browser_detect.part.js',
+     'fmk/_main_dropdowns.part.js',
+     'fmk/_main_sticky_header.part.js',
+     'fmk/_main_masonry.part.js',
+     'fmk/_main_userxp.part.js',
+     'fmk/_main_jquery_plugins.part.js',
+     'fmk/_main_xfire.part.js',
   );
 
   $i = 0;
@@ -97,7 +98,14 @@ function czr_fn_enqueue_front_scripts(){
         CUSTOMIZR_VER,
         false
     );
-  }
+  };
+  
+  wp_localize_script( $i,
+    'CZRParams' , array(
+       '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
+        'stickyHeader'        => esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) )
+  ) );
+
 }
 foreach ( array('one', 'two', 'three') as $footer_widget_area )
   add_filter( "czr_default_widget_args_footer_{$footer_widget_area}", 'footer_widget_area_defaults' );
@@ -111,6 +119,8 @@ function footer_widget_area_defaults( $defaults ){
 
 add_action('__before_main_container', 'parallax');
 function parallax(){
+  if ( ! is_home() )
+    return;
 ?>
           <div class="container-fluid section">
              <div class="section-slider parallax-wrapper">

@@ -49,10 +49,19 @@ img.v-centered {
 }
 
 /* STICKY */
+.header-skin-dark #sticky-placeholder{
+  background: #202020 ;
+}
+.header-skin-light #sticky-placeholder{
+  background: white ;
+}
 .navbar-sticky-overlap #sticky-placeholder{
   position: absolute; top: 0;
 }
-.admin-bar.sticky-enabled .navbar-fixed-top { top: 30px;}
+.tc-header.header-transparent #sticky-placeholder{
+  background: transparent;
+}
+.admin-bar.sticky-enabled .navbar-fixed-top { top: 30px; }
 
 /* TO DECIDE */
 body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}

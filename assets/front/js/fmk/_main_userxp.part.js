@@ -57,8 +57,8 @@ var czrapp = czrapp || {};
    },    
     //SMOOTH SCROLL
     smoothScroll: function() {
-      if ( TCParams.SmoothScroll && TCParams.SmoothScroll.Enabled )
-        smoothScroll( TCParams.SmoothScroll.Options );
+      if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled )
+        smoothScroll( CZRParams.SmoothScroll.Options );
     }
   };//_methods{}
 
