@@ -7,7 +7,7 @@ $_options = array(
     'tc_sticky_header_type' => 'push',
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
-    'tc_display_second_menu' => false,
+    'tc_display_second_menu' => true,
     'tc_menu_style' => 'regular',
     'tc_menu_type' => 'hover'
 

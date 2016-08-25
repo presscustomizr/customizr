@@ -12,7 +12,7 @@ var czrapp = czrapp || {};
     
     //Handle dropdown on hover via js
     dropdownMenuOnHover : function() {
-      var _dropdown_selector = '.tc-open-on-hover .menu-item-has-children';
+      var _dropdown_selector = '.tc-open-on-hover .menu-item-has-children, .primary-nav__woocart';
       function _addOpenClass (){ 
         if ( ! $(this).hasClass('open') )
           $(this).addClass('open');

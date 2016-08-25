@@ -15,9 +15,9 @@
     ?>
     </div>
     <div class="mobile-utils__wrapper">
-      <?php if ( czr_fn_has('wc_cart', null, $only_registered = true ) ) : ?>
+      <?php if ( czr_fn_has('woocommerce_cart', null, $only_registered = true ) ) : ?>
         <div class="mobile-woocart__container">
-          <?php czr_fn_render_template('header/woocommerce_cart'); ?>
+          <?php czr_fn_render_template( 'header/woocommerce_cart' ); ?>
         </div>
       <?php endif ?>
       <?php czr_fn_render_template('header/menu_button'); ?>

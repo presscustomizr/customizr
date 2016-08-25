@@ -9,7 +9,7 @@ jQuery(function ($) {
     Czr_Dropdowns : [],
     Czr_MasonryGrid : ['masonryGridEventListener'],
     Czr_StickyHeader : [ 'stickyHeaderMaybeToggling', 'stickyHeaderEventListener', 'triggerStickyHeaderLoad'],
-    Czr_UserExperience : [ 'variousHoverActions', 'smoothScroll' ],
+    Czr_UserExperience : [ 'variousHoverActions', 'smoothScroll', 'formFocusAction', 'commentReplyTest' ],
     Czr_Plugins : ['centerImagesWithDelay', 'parallax', 'lightbox' ]
 //    Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
 //    Czr_Slider : ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport', 'sliderTriggerSimpleLoad'],
