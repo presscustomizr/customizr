@@ -960,7 +960,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         add_action( 'wp', 'czr_fn_woocommerce_register_wc_cart' );
 
       function czr_fn_woocommerce_register_wc_cart() {
-        czr_fn_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'wc_cart', 'controller' => 'czr_fn_woocommerce_wc_cart_enabled' ) );
+        czr_fn_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'woocommerce_cart', 'controller' => 'czr_fn_woocommerce_wc_cart_enabled' ) );
       }
     }//end woocommerce compat
 

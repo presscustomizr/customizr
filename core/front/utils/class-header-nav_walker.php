@@ -160,8 +160,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
       if ( ! is_array($classes) )
         return $classes;
 
-      //check if $item is a dropdown ( a parent )
-      //this is_dropdown property has been added in the the display_element() override method
+      //check if the current menu item is a dropdown (has children)
       if ( in_array('page_item_has_children', $classes ) ) {
         if ( $depth === 0 ) {
           if ( ! in_array( 'dropdown', $classes ) )
@@ -210,11 +209,10 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
       if ( $args['has_children'] ) {
 
         $_dropdown_on_hover = apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location );
-        $_is_link           = FALSE === strpos( $item_html, 'href="#"');
 
-        if ( $_dropdown_on_hover ||  ( ! ( $_dropdown_on_hover || $_is_link ) ) )
+        if ( $_dropdown_on_hover )
           $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>', $item_html );
-        elseif ( ! $_dropdown_on_hover && $_is_link )
+        else
           $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
 
       }else {
