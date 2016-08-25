@@ -710,3 +710,45 @@ function czr_fn_post_has_title() {
       apply_filters( 'czr_post_formats_with_no_heading', array( 'aside' , 'status' , 'link' , 'quote' ) )
     );
 }
+
+/* TODO: caching system */
+function czr_fn_get_logo_atts( $logo_type, $backward_compatibility = true ) {
+    $logo_type_sep      = $logo_type ? '_sticky_' : '_';
+    $accepted_formats   = apply_filters( 'czr_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
+
+    //check if the logo is a path or is numeric
+    //get src for both cases
+    $_logo_src          = '';
+    $_width             = false;
+    $_height            = false;
+    $_attachment_id     = false;
+    $_logo_option       = esc_attr( czr_fn_get_opt( "tc{$logo_type_sep}logo_upload") );
+    //check if option is an attachement id or a path (for backward compatibility)
+    if ( is_numeric($_logo_option) ) {
+      $_attachment_id   = $_logo_option;
+      $_attachment_data = apply_filters( "tc{$logo_type_sep}logo_attachment_img" , wp_get_attachment_image_src( $_logo_option , 'full' ) );
+      $_logo_src        = $_attachment_data[0];
+      $_width           = ( isset($_attachment_data[1]) && $_attachment_data[1] > 1 ) ? $_attachment_data[1] : $_width;
+      $_height          = ( isset($_attachment_data[2]) && $_attachment_data[2] > 1 ) ? $_attachment_data[2] : $_height;
+    } elseif ( $backward_compatibility ) { //old treatment
+      //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
+      $upload_dir       = wp_upload_dir();
+      $_saved_path      = esc_url ( czr_fn_get_opt( "tc{$logo_type_sep}logo_upload") );
+      $_logo_src        = ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
+    }
+    //hook + makes ssl compliant
+    $_logo_src          = apply_filters( "tc{$logo_type_sep}logo_src" , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
+    $filetype           = czr_fn_check_filetype ($_logo_src);
+
+    if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
+      return array(
+                'logo_src'           => $_logo_src,
+                'logo_resize'        => $logo_resize,
+                'logo_attachment_id' => $_attachement_id,
+                'logo_width'         => $_width,
+                'logo_height'        => $_height,
+                'logo_type'          => trim($logo_type_sep,'_')
+      );
+
+    return array();  
+}

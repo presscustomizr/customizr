@@ -13,6 +13,6 @@ class CZR_cl_title_model_class extends CZR_cl_Model {
   }
 
   function get_title_wrapper_class() {
-    return czr_fn_has('tagline') ? 'has_tagline' : '';
+    return czr_fn_has( 'tagline' ) ? 'has_tagline' : '';
   }
 }
