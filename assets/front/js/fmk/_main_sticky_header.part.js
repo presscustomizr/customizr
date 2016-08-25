@@ -44,7 +44,7 @@ var czrapp = czrapp || {};
     },
 
     triggerStickyHeaderLoad : function() {
-      //this should actually check the header sticky in the TCParams only
+      //this should actually check the header sticky in the CZRParams only
       if ( ! this._is_sticky_enabled() )
         return;
 
@@ -85,7 +85,6 @@ var czrapp = czrapp || {};
         if ( this._is_sticky_enabled() )
           czrapp.$_body.trigger( 'sticky-disable' )
                        .removeClass( 'tc-sticky-header' );
-
       } else {
         /* the viewport is at least 993 pixels wide */
         if ( ! this._is_sticky_enabled() ) {
@@ -93,7 +92,6 @@ var czrapp = czrapp || {};
           this.stickyHeaderEventHandler('scroll');
         }
       }
-
     },
 
     stickyHeaderEventHandler : function( evt ) {
@@ -105,13 +103,13 @@ var czrapp = czrapp || {};
 
       switch ( evt ) {
         case 'on-load' :
-          this._sticky_header_scrolling_actions();
+          this.stickyHeaderMaybeToggling();
         break;
 
         case 'scroll' :
           if( ! this._didScroll ) {
             this._didScroll = true;
-            setTimeout( function(){
+            setTimeout( function() {
               self._sticky_header_scrolling_actions();
             }, 250 );
           }
@@ -184,14 +182,14 @@ var czrapp = czrapp || {};
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
-    _on_sticky_disable : function(){
+    _on_sticky_disable : function() {
       this._reset_sticky_placeholder();
       this.$_sticky_candidate.removeClass( this._fixed_classes );
       czrapp.$_body.removeClass( 'sticky-enabled' ).trigger('sticky-disabled');
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
-    _set_sticky_placeholder : function() { 
+    _set_sticky_placeholder : function() {
       if ( ! this.$_sticky_placeholder ) {
         this.$_sticky_candidate.after('<div id="sticky-placeholder"></div>');
         this.$_sticky_placeholder = $('#sticky-placeholder');

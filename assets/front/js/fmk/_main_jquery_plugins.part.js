@@ -18,11 +18,11 @@ var czrapp = czrapp || {};
     centerImages : function() {
       //POST GRID IMAGES
       $('.tc-grid-figure').centerImages( {
-        enableCentering : TCParams.centerAllImg,
+        enableCentering : CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : false, //true
-        goldenRatioVal : TCParams.goldenRatio || 1.618,
-        goldenRatioLimitHeightTo : TCParams.gridGoldenRatioLimit || 350
+        goldenRatioVal : CZRParams.goldenRatio || 1.618,
+        goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
       } );
     },//center_images
 

@@ -6,7 +6,7 @@
   <div class="branding__container" <?php czr_fn_echo('element_attributes') ?>>
     <div class="branding">
     <?php
-      if ( czr_fn_has('logo') || czr_fn_has('sticky_logo') ){
+      if ( czr_fn_has('logo_wrapper') ){
         czr_fn_render_template('header/logo_wrapper', 'logo_wrapper');
         if ( czr_fn_has( 'tagline' ) )
           czr_fn_render_template('header/tagline');       

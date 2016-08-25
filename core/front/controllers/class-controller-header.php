@@ -77,7 +77,7 @@ if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
 
     function czr_fn_display_view_sticky_logo() {
       if ( ! isset( $this -> _cache[ 'view_sticky_logo' ] ) )
-        $this -> _cache[ 'view_sticky_logo' ] = ! empty( czr_fn_get_logo_atts( 'sticky', $backward_compat = false ) );
+        $this -> _cache[ 'view_sticky_logo' ] = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) && ! empty( czr_fn_get_logo_atts( 'sticky', $backward_compat = false ) );
 
       return $this -> _cache[ 'view_sticky_logo' ];
     }
