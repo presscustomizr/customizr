@@ -112,9 +112,9 @@ if ( ! class_exists( 'TC_footer_main' ) ) :
 							</div><!-- .{$key}_widget_class -->
 
 						<?php endforeach; ?>
-						<?php do_action("__after_footer_widgets") ?>
 					</div><!-- .row.widget-area -->
 				</div><!--.footer-widgets -->
+				<?php do_action("__after_footer_widgets") ?>
 			<?php
 			$html = ob_get_contents();
 	        if ($html) ob_end_clean();
