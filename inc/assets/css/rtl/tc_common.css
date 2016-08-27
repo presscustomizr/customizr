@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.20
+ * Customizr v3.4.22
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4675,6 +4675,7 @@ a.badge:focus {
  => POST GRID
  => PLACEHOLDERS / DISMISS NOTICES
  => WP SPECIFICS
+ => WOOCOMMERCE SPECIFICS
  => FOOTER
  => ADMIN BAR
  => MEDIA PRINT
@@ -4749,7 +4750,7 @@ section {
 /* ICONS
   -------------------------------------------------- */
 .tc-wc-menu .nav > li > a:before,
-#wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before,
+#wp-admin-bar-tc-customizr-help .ab-item:before,
 li#wp-admin-bar-tc-customizr-help a:before,
 a + span.tc-external:after,
 .tc-placeholder-wrap:before,
@@ -5025,6 +5026,10 @@ a + span.tc-external:after {
   background-image: none;
   border-bottom: 10px solid #e9eaee;
   z-index: 200;
+}
+header.tc-header,
+.navbar-wrapper.clearfix {
+  overflow: visible;
 }
 /* STICKY HEADER */
 #tc-reset-margin-top {
@@ -6322,10 +6327,6 @@ h1.entry-title,
 h2.entry-title {
   width: 100%;
 }
-/* woocommerce product titles */
-.woocommerce div.product .product_title {
-  text-align: right;
-}
 h1 a:hover,
 h2 a:hover {
   text-decoration: none;
@@ -6422,6 +6423,12 @@ article.format-link .entry-content a:after {
   position: relative;
   content: "\00bb";
   top: 6px;
+}
+/* reset the previous rule for the more-link in format-link articles
+*  the more-link has it's own "arrow"
+*/
+article.format-link .entry-content a.more-link:after {
+  content: '';
 }
 article.format-status .entry-content {
   padding: 24px 24px 0;
@@ -7022,10 +7029,6 @@ article .no-thumb figcaption {
 .hover .tc-grid-fade_expt {
   background: none;
 }
-/* Woocommerce thumbnails */
-.woocommerce .thumbnails {
-  margin-left: 0;
-}
 /*
 PLACEHOLDERS / DISMISS NOTICES
     -------------------------------------------------- */
@@ -7295,6 +7298,28 @@ tr td:first-child {
 ul {
   /*list-style: none outside;*/
 }
+/* WOOCOMMERCE SPECIFICS
+    -------------------------------------------------- */
+/* woocommerce product titles */
+.woocommerce div.product .product_title {
+  text-align: right;
+}
+/* Woocommerce thumbnails */
+.woocommerce .thumbnails {
+  margin-left: 0;
+}
+/* woocommerce variation fix */
+.woocommerce .variations .label {
+  color: inherit;
+}
+.woocommerce div.product form.cart .variations td,
+.woocommerce div.product form.cart .variations th {
+  background: none;
+  vertical-align: text-top;
+}
+.woocommerce div.product form.cart .variations select {
+  margin-bottom: 0;
+}
 /* FOOTER
     -------------------------------------------------- */
 footer#footer {
@@ -7382,6 +7407,10 @@ footer ol {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
+.tc-btt-wrapper.left {
+  right: 30px;
+  left: auto;
+}
 .tc-btt-wrapper i.btt-arrow {
   line-height: inherit;
 }
@@ -7395,7 +7424,7 @@ footer ol {
 }
 /* ADMIN BAR
     -------------------------------------------------- */
-#wpadminbar #wp-admin-bar-tc-customizr-help .ab-item:before,
+#wp-admin-bar-tc-customizr-help .ab-item:before,
 li#wp-admin-bar-tc-customizr-help a:before {
   content: "\f1cd";
   color: #FFF;
@@ -7419,7 +7448,7 @@ li#wp-admin-bar-tc-customizr-help a {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-#wpadminbar .ab-top-menu > li#wp-admin-bar-tc-customizr-help:hover > .ab-item {
+.ab-top-menu > li#wp-admin-bar-tc-customizr-help:hover > .ab-item {
   color: #FFF;
   background: #1B8D71;
   /* Old browsers */
@@ -8716,6 +8745,7 @@ li#wp-admin-bar-tc-customizr-help a {
 }
 @media (min-width: 980px) {
   /* ROUND DIV FOR 3 columns Top or bottom thumb position SINCE V3.2.0*/
+  .span6 .thumb-position-bottom .round-div,
   .span6 .thumb-position-top .round-div {
     width: 125px;
     height: 125px;
@@ -9211,12 +9241,14 @@ li#wp-admin-bar-tc-customizr-help a {
     text-align: center;
   }
   /* SINCE V3.2.0 */
+  .span6 .thumb-position-bottom .round-div,
   .span6 .thumb-position-top .round-div {
     width: 125px;
     height: 125px;
     top: -59px;
     left: -63px;
   }
+  .span6 .thumb-position-bottom .thumb-wrapper,
   .span6 .thumb-position-top .thumb-wrapper {
     max-width: none;
   }

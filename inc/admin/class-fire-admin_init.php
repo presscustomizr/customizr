@@ -26,7 +26,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       add_filter( 'tiny_mce_before_init'  , array( $this, 'tc_user_defined_tinymce_css') );
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
       add_action ( 'save_post'            , array( $this , 'tc_refresh_thumbnail') , 10, 2);
-      
+
       //refresh the posts slider transient on save_post. Since v3.4.9.
       add_action ( 'save_post'            , array( $this , 'tc_refresh_posts_slider'), 20, 2 );
       //refresh the posts slider transient on permanent post/attachment deletion. Since v3.4.9.
@@ -75,10 +75,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       // since we always delete the transient when entering the preview.
       if ( 'tc_posts_slider' != TC_utils::$inst->tc_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
         return;
-      
+
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
- 
+
       if ( ! class_exists( 'TC_post_thumbnails' ) )
         TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
       if ( ! class_exists( 'TC_slider' ) )
@@ -86,7 +86,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
 
       TC_slider::$instance -> tc_cache_posts_slider();
     }
- 
+
 
     /*
     * @return void
@@ -94,12 +94,12 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     * @package Customizr
     * @since Customizr 3.4.10
     */
-    function tc_refresh_terms_picker_options_cb( $term, $tt_id, $taxonomy ) {
+    function tc_refresh_terms_pickers_options_cb( $term, $tt_id, $taxonomy ) {
       switch ( $taxonomy ) {
 
         //delete categories based options
         case 'category':
-          $this -> tc_refresh_term_picker_options( $term, $option_name = 'tc_blog_restrict_by_cat' );  
+          $this -> tc_refresh_term_picker_options( $term, $option_name = 'tc_blog_restrict_by_cat' );
           break;
       }
     }
@@ -111,7 +111,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
        if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
          //update the option
          TC_utils::$inst -> tc_set_option( $option_name, array_diff( $_option, (array)$term ) );
-       
+
        //alternative, cycle throughout the cats and keep just the existent ones
        /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
          //update the option
@@ -237,6 +237,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     function tc_user_defined_tinymce_css( $init ) {
       if ( ! apply_filters( 'tc_add_custom_fonts_to_editor' , true ) )
         return $init;
+
+      if ( 'tinymce' != wp_default_editor() )
+        return $init;
+      
       //some plugins fire tiny mce editor in the customizer
       //in this case, the TC_resource class has to be loaded
       if ( ! class_exists('TC_resources') )
@@ -246,22 +250,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
       //icons
       $_css .= TC_resources::$instance -> tc_get_inline_font_icons_css();
-     ?>
+      $init['content_style'] =  trim(preg_replace('/\s+/', ' ', $_css ) );
 
-        <script type="text/javascript">
-          function add_user_defined_CSS( ed ) {
-            //http://www.tinymce.com/wiki.php/Tutorial:Migration_guide_from_3.x
-              ed.on('init', function() {
-                  tinyMCE.activeEditor.dom.addStyle(<?php echo json_encode($_css) ?>);
-              } );
-          };
-        </script>
-
-        <?php
-        if (wp_default_editor() == 'tinymce')
-            $init['setup'] = 'add_user_defined_CSS';
-
-        return $init;
+      return $init;
     }
 
 

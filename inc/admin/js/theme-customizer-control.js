@@ -766,7 +766,7 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
         return '1' == to;
       },
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) { 
+        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) {
           return to &&  //api.control.active is available since wp 4.0 as the php active_callback
             //so let's skip this for older wp versions
             ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
@@ -929,9 +929,17 @@ if(this.context=f.context===b?null:f.context,this.opts.createSearchChoice&&""!==
       },
       //display dependant if master setting value == value
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) { 
-            return to; 
+        tc_woocommerce_header_cart_sticky : { master : 'tc_sticky_header' , callback : function (to) {
+            return to;
         } },
+      }
+    },
+    'tc_show_back_to_top' : {
+      controls: [
+        'tc_back_to_top_position'
+      ],
+      callback : function ( to ) {
+        return 1 == to;
       }
     }
   };
@@ -1263,7 +1271,7 @@ jQuery(function ($) {
     var _cta = _.template(
         $( "script#footer_cta" ).html()
     );
-    $('li[id*="tc_show_back_to_top"]').append( _cta() );
+    $('li[id*="tc_show_back_to_top"]').closest('ul').append( _cta() );
   }
 
   function _ajax_save() {
