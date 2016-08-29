@@ -4,6 +4,7 @@
     var pluginName = 'extLinks',
         defaults = {
           addIcon : true,
+          iconClassName : 'tc-external',
           newTab: true,
           skipSelectors : { //defines the selector to skip when parsing the wrapper
             classes : [],
@@ -14,15 +15,16 @@
 
 
     function Plugin( element, options ) {
-      this.$_el     = $(element);
-      this.options  = $.extend( {}, defaults, options) ;
-      this._href    = $.trim( this.$_el.attr( 'href' ) );
-      this.init();
+        this.$_el     = $(element);
+        this.options  = $.extend( {}, defaults, options) ;
+        this._href    = $.trim( this.$_el.attr( 'href' ) );
+        this.init();
     }
 
 
     Plugin.prototype.init = function() {
-      var $_external_icon = this.$_el.next('.tc-external');
+      var self = this,
+          $_external_icon = this.$_el.next( '.' + self.options.iconClassName );
       //if not eligible, then remove any remaining icon element and return
       //important => the element to remove is right after the current link element ( => use of '+' CSS operator )
       if ( ! this._is_eligible() ) {
@@ -30,10 +32,9 @@
           $_external_icon.remove();
         return;
       }
-
       //add the icon link, if not already there
       if ( this.options.addIcon && 0 === $_external_icon.length ) {
-        this.$_el.after('<span class="tc-external">');
+        this.$_el.after('<span class="' + self.options.iconClassName + '">');
       }
 
       //add the target _blank, if not already there
@@ -65,10 +66,10 @@
       $.each( this.$_el.parents(), function() {
         if ( 'underline' == $(this).css('textDecoration') ){
           _is_eligible = false;
-          return false;    
+          return false;
         }
       });
-      
+
       return true && _is_eligible;
     };
 
