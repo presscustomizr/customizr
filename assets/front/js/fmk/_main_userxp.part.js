@@ -8,23 +8,33 @@ var czrapp = czrapp || {};
     },
     //VARIOUS HOVERACTION
     variousHoverActions : function() {
-      /* Temporary */
+      /* Grid */
       $( '.grid-container__alternate' ).on( 'mouseenter mouseleave', '.entry-image__container', _toggleParentHover );
-      $( '.grid-container__masonry, grid-container__classic').on( 'mouseenter mouseleave', '.grid-item', _toggleThisHover );
-        
-      function _toggleParentHover() {
-        $(this).closest('article').toggleClass("hover");
+      $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid-item', _toggleThisHover );
+      /* end Grid */
+
+      /* Widget li */
+      czrapp.$_body.on( 'mouseenter mouseleave', '.widget li', _toggleThisOn );
+
+      function _toggleParentHover( evt ) {
+        _toggleElementClassOnHover( $(this).closest('article'), 'hover', evt );
       };
 
-      function _toggleThisHover() {
-        $(this).toggleClass("hover");
+      function _toggleThisHover( evt ) {
+        _toggleElementClassOnHover( $(this), 'hover', evt );
       }
 
-      $(".widget li").hover(function () {
-          $(this).addClass("on");
-      }, function () {
-          $(this).removeClass("on");
-      });
+      function _toggleThisOn( evt ) {
+        _toggleElementClassOnHover( $(this), 'on', evt );
+      }
+
+      function _toggleElementClassOnHover( $_el, _class, _evt ) {
+        if ( 'mouseenter' == _evt.type && ! $_el.hasClass( _class ) )
+          $_el.addClass( _class );
+        else if ( 'mouseleave' == _evt.type && $_el.hasClass( _class ) )
+          $_el.removeClass( _class );
+      }
+
     },
     //FORM FOCUS ACTION
     formFocusAction : function() {
