@@ -12,7 +12,8 @@ $_options = array(
     'tc_menu_type' => 'hover',
     'tc_logo_upload' => '611',
     'tc_sticky_logo_upload' => '611',
-    'tc_sticky_shrink_title_logo' => true
+    'tc_sticky_shrink_title_logo' => true,
+    'tc_post_list_grid' => 'alternate'
 
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {

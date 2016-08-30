@@ -712,7 +712,7 @@ function czr_fn_post_has_title() {
 }
 
 /* TODO: caching system */
-function czr_fn_get_logo_atts( $logo_type, $backward_compatibility = true ) {
+function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true ) {
     $logo_type_sep      = $logo_type ? '_sticky_' : '_';
     $accepted_formats   = apply_filters( 'czr_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
 
@@ -743,8 +743,7 @@ function czr_fn_get_logo_atts( $logo_type, $backward_compatibility = true ) {
     if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
       return array(
                 'logo_src'           => $_logo_src,
-                'logo_resize'        => $logo_resize,
-                'logo_attachment_id' => $_attachement_id,
+                'logo_attachment_id' => $_attachment_id,
                 'logo_width'         => $_width,
                 'logo_height'        => $_height,
                 'logo_type'          => trim($logo_type_sep,'_')
