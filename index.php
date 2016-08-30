@@ -18,17 +18,37 @@
     <?php do_action('__before_main_container'); ?>
       <div class="container" role="main">
         <div class="<?php czr_fn_column_content_wrapper_class() ?>">
-          <!-- left sidebar -->
-              <?php do_action('__before_content'); ?>
+          <?php
+            if ( czr_fn_has('left_sidebar') ) { czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar'); }
+          ?>
 
-              <div id="content" class="col-md-12 <?php czr_fn_article_container_class() ?>">
-                <?php while ( have_posts() ) { the_post(); the_content(); } ?>
-                   
-              </div>
+          <?php do_action('__before_content'); ?>
 
-              <?php do_action('__after_content'); ?>
+          <div id="content" class="<?php czr_fn_article_container_class() ?>">
+            <?php
+              if ( is_home() && ! is_front_page() )//blog page title
+                if ( czr_fn_has('posts_list_headings') ) { czr_fn_render_template('content/post-lists/posts_list_headings', 'posts_list_headings'); }
+              if ( have_posts() ) {
+                while ( have_posts() ) {
+                  the_post();
+                  if ( czr_fn_has('post_list_grid') ) {
+                    czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
+                  }
+                  elseif ( czr_fn_has('post_list') ){
+                    czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list');
+                  }else {
+                    czr_fn_render_template('content/singles/page_content', 'page');
+                  }
+                }//endwhile;
+              }
+            ?>               
+          </div>
 
-          <!-- right sidebar -->
+          <?php do_action('__after_content'); ?>
+
+          <?php
+            if ( czr_fn_has('right_sidebar') ) { czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar'); }
+          ?>
         </div>
       </div><!-- .container -->
     </div><!-- #main-wrapper -->

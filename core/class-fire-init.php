@@ -65,25 +65,25 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           //Default layout settings
           $this -> global_layout      = array(
                                         'r' => array(
-                                            'content'       => 'span9',
-                                            'sidebar'       => 'span3',
+                                            'content'       => 'col-xs-12 col-md-9',
+                                            'sidebar'       => 'col-xs-12 col-md-3',
                                             'customizer'    => __( 'Right sidebar' , 'customizr' ),
                                             'metabox'       => __( 'Right sidebar' , 'customizr' ),
                                         ),
                                         'l' => array(
-                                            'content'       => 'span9',
-                                            'sidebar'       => 'span3',
+                                            'content'       => 'col-xs-12 col-md-9',
+                                            'sidebar'       => 'col-xs-12 col-md-3',
                                             'customizer'    => __( 'Left sidebar' , 'customizr' ),
                                             'metabox'       => __( 'Left sidebar' , 'customizr' ),
                                         ),
                                         'b' => array(
-                                            'content'       => 'span6',
-                                            'sidebar'       => 'span3',
+                                            'content'       => 'col-xs-12 col-md-6',
+                                            'sidebar'       => 'col-xs-12 col-md-3',
                                             'customizer'    => __( '2 sidebars : Right and Left' , 'customizr' ),
                                             'metabox'       => __( '2 sidebars : Right and Left' , 'customizr' ),
                                         ),
                                         'f' => array(
-                                            'content'       => 'span12',
+                                            'content'       => 'col-xs-12',
                                             'sidebar'       => false,
                                             'customizer'    => __( 'No sidebars : full width layout', 'customizr' ),
                                             'metabox'       => __( 'No sidebars : full width layout' , 'customizr' ),
