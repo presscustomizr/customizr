@@ -92,7 +92,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
 
       /**
-      * hook : after_setup_theme
+      * hook : wp_head
       * @package Customizr
       * @since Customizr 3.3.0
       */
@@ -135,7 +135,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
 
         if ( false !== strpos( $matches[0], 'data-src' ) ||
             preg_match('/ data-smartload *= *"false" */', $matches[0]) )
-          return $matches[0];    
+          return $matches[0];
         else
           return apply_filters( 'tc_img_smartloaded',
             str_replace( 'srcset=', 'data-srcset=',
@@ -161,7 +161,7 @@ if ( ! class_exists( 'TC_utils' ) ) :
       function tc_get_skin_color( $_what = null ) {
         $_color_map    = TC_init::$instance -> skin_color_map;
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
-          
+
         $_active_skin =  str_replace('.min.', '.', basename( TC_init::$instance -> tc_get_style_src() ) );
         //falls back to blue3 ( default #27CDA5 ) if not defined
         $_to_return = array( '#27CDA5', '#1b8d71' );

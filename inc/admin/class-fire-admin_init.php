@@ -240,7 +240,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
 
       if ( 'tinymce' != wp_default_editor() )
         return $init;
-      
+
       //some plugins fire tiny mce editor in the customizer
       //in this case, the TC_resource class has to be loaded
       if ( ! class_exists('TC_resources') )
