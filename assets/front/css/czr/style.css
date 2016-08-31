@@ -41,11 +41,13 @@ img.post-thumbnail {
 img.h-centered {
   width: auto!important;
   max-width: none!important;
+  position: relative;
 }
 img.v-centered {
   height: auto!important;
   max-height: none!important;
   vertical-align: top;
+  position: relative;
 }
 
 /* STICKY */
