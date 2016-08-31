@@ -16,6 +16,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $is_loop_start;
   public $is_loop_end;
 
+  public $sections_wrapper_class;
+
   //Default post list layout
   private static $default_post_list_layout   = array(
             'content'           => array('col-md-7', 'col-xs-12'),
@@ -69,7 +71,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     global $wp_query;
 
     $_layout = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
-
+    $_current_post_format = get_post_format( $wp_query -> current_post );
+    $_section_wrapper_class = '';
 
     $czr_has_post_media   = false;
     $this -> place_1      = 'content';
@@ -79,7 +82,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       $czr_has_post_media = true;
 
       /* In the new alternate layout video takes more space when global layout has less than 2 sidebars */
-      if ( in_array( get_post_format( $wp_query -> current_post ), apply_filters( 'czr_alternate_media_post_formats', array( 'video' ) ) ) ) {
+      if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_media_post_formats', array( 'video' ) ) ) ) {
         $_t_l                    = $_layout[ 'media' ];
         $_layout[ 'media' ]      = $_layout[ 'content' ];
         $_layout[ 'content' ]    = $_t_l;
@@ -103,17 +106,23 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     if ( ! in_array ( $_layout['position'], array( 'top', 'bottom') ) )
       array_push( $_layout[ $this -> place_2 ], 'offset-md-1' );
 
-    $post_class           = $czr_has_post_media ? array_merge( array($this -> post_class), $this -> czr_fn_get_thumb_shape_name() ) : $this -> post_class;
-    $article_selectors    = czr_fn_get_the_post_list_article_selectors( $post_class );
+    //$post_class           = $czr_has_post_media ? array_merge( array($this -> post_class), $this -> czr_fn_get_thumb_shape_name() ) : $this -> post_class;
+    $article_selectors    = czr_fn_get_the_post_list_article_selectors( $this -> post_class );
+
+    if (  ! in_array( $_current_post_format , array( 'image', 'gallery' ) ) ) {
+      $_to_center = ( 'image' == $_current_post_format && is_null( get_the_content() ) ) || 'gallery' == $_current_post_format ? false :  true ;
+      $_sections_wrapper_class = apply_filters( 'czr_alternate_sections_centering', $_to_center) ? 'czr-center-sections' : '';
+    }
 
     $this -> czr_fn_update( array(
-      'czr_media_col'      => $_layout[ 'media' ],
-      'czr_content_col'    => $_layout[ 'content' ],
-      'czr_show_excerpt'   => $this -> czr_fn_show_excerpt(),
-      'czr_has_post_media' => $czr_has_post_media,
-      'article_selectors'  => $article_selectors,
-      'is_loop_start'      => 0 == $wp_query -> current_post,
-      'is_loop_end'        => $wp_query -> current_post == $wp_query -> post_count -1
+      'czr_media_col'          => $_layout[ 'media' ],
+      'czr_content_col'        => $_layout[ 'content' ],
+      'czr_show_excerpt'       => $this -> czr_fn_show_excerpt(),
+      'czr_has_post_media'     => $czr_has_post_media,
+      'article_selectors'      => $article_selectors,
+      'is_loop_start'          => 0 == $wp_query -> current_post,
+      'is_loop_end'            => $wp_query -> current_post == $wp_query -> post_count -1,
+      'sections_wrapper_class' => $_sections_wrapper_class
     ) );
 
   }

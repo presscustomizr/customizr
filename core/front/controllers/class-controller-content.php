@@ -127,7 +127,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       return apply_filters( 'czr_show_post_metas', $post_metas );
     }
 
-
+/*
     function czr_fn_display_view_post_metas_text() {
       return $this -> czr_fn_display_view_post_metas() && 'buttons' != esc_attr( czr_fn_get_opt( 'tc_post_metas_design' ) );
     }
@@ -135,7 +135,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     function czr_fn_display_view_post_metas_button() {
       return $this -> czr_fn_display_view_post_metas() && 'buttons' == esc_attr( czr_fn_get_opt( 'tc_post_metas_design' ) );
     }
-
+*/
     //when to display attachment post metas?
     //a) in single attachment page
     //b) eventually, in the search list when attachments are allowed

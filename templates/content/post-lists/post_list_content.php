@@ -9,11 +9,10 @@
  */
 ?>
 <section class="tc-content entry-content__holder <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?> >
-
+  
   <?php do_action( 'before_post_list_entry_content' ) ?>
 
-  <?php if ( czr_fn_has('headings') ) { czr_fn_render_template('content/post-lists/post_page_headings'); } ?>
-    <a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+  <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/post_list_header') ?>
 
     <?php
       czr_fn_echo( 'post_list_content', null, array(
@@ -26,7 +25,7 @@
       ) );
     ?>
 
-  <?php if ( czr_fn_has('post_list_footer') ) { czr_fn_render_template('content/post-lists/post_list_footer'); } ?>
+  <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/post_list_footer') ?>
     
   <?php do_action( 'after_post_list_entry_content' ) ?>
 

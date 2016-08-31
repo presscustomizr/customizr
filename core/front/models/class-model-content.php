@@ -3,6 +3,11 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
 
   function czr_fn_setup_children() {
     $children = array(
+      //the default class/template is for the buttons type
+      array(
+        'model_class' => 'content/post-metas/post_metas',
+        'id' => 'post_metas',
+      ),      
     );
 
     return $children;

@@ -24,10 +24,10 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     if ( $this -> content )
       return $this -> content;
     elseif ( 'get_the_excerpt' == $this -> content_cb )
-      return apply_filters( 'the_excerpt', get_the_excerpt() );
+      return '<div class="entry-summary">'. apply_filters( 'the_excerpt', get_the_excerpt() ) . '</div>';
     else
       //filter the content
-      return $this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) ) . $link_pages;
+      return '<div class="entry-summary">'.$this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) ) . $link_pages . '</div>';
   }
 
 
