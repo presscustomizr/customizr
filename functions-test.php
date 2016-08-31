@@ -13,7 +13,9 @@ $_options = array(
     'tc_logo_upload' => '611',
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
-    'tc_post_list_grid' => 'alternate'
+    'tc_post_list_grid' => 'alternate',
+
+    'tc_show_post_metas_home' => true
 
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
