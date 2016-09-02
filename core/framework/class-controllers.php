@@ -25,7 +25,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
           //    'widgets', 'colophon', 'back_to_top'
             ),
             'modules' => array(
-              'social_block', 'breadcrumb', 'comment_bubble', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
+              'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
             //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
             ),
           );

@@ -7,7 +7,7 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
       array(
         'model_class' => 'content/post-metas/post_metas',
         'id' => 'post_metas',
-      ),      
+      )  
     );
 
     return $children;

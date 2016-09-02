@@ -85,11 +85,11 @@
         element: self.element,
         handler: function() {
           if ( ! self.element.hasClass('parallaxing') ){
-            czrapp.$_window.on('scroll', self.parallaxMe );
+            self.$_window.on('scroll', self.parallaxMe );
             self.element.addClass('parallaxing');
           }else {
             self.element.removeClass('parallaxing');
-            czrapp.$_window.off('scroll', self.parallaxMe );
+            self.$_window.off('scroll', self.parallaxMe );
           }
         },
         offset: function(){

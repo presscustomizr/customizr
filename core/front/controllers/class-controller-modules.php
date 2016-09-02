@@ -77,19 +77,22 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
     }
 
 
-    function czr_fn_display_view_comment_bubble() {
-      if ( ! isset( self::$_cache['comment_bubble'] ) ) {
-        self::$_cache[ 'comment_bubble' ] = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) )
+    function czr_fn_display_view_comment_info() {
+      $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_info' ) )
           && (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) )
           && (bool) apply_filters( 'czr_comments_in_title', true );
-      }
 
-      if ( is_singular() ) {
-        return self::$_cache['comment_bubble'] && CZR() -> controllers -> czr_fn_is_possible( 'comment_list' ) &&
-                  in_array( get_post_type(), apply_filters('czr_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) );
-      }
-      //when in a list of posts demand the control to the model
-      return self::$_cache['comment_bubble'] && czr_fn_is_list_of_posts() ;
+      if ( ! $_allow_comment_info )
+        return false;
+
+      if ( czr_fn_is_list_of_posts() && in_the_loop() ) {
+        global $post;
+        return $post -> comment_count > 0;
+      }elseif ( is_singular() )
+        return  CZR() -> controllers -> czr_fn_is_possible( 'comment_list' ) && in_array( get_post_type(), apply_filters('czr_show_comment_infos_for_post_types' , array( 'post' , 'page') ) );
+      
+
+      return false;
     }
 
 
