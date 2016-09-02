@@ -39,11 +39,11 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
 
   /* PUBLIC GETTERS */
   public function czr_fn_get_cat_list( $sep = '' ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'tax', true, $sep ) : '';
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'categories', array(), $sep ) : '';
   }
 
   public function czr_fn_get_tag_list( $sep = '' ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tax', false, $sep ) : '';
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tags', array(), $sep ) : '';
   }
 
   public function czr_fn_get_author() {
@@ -75,8 +75,13 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     return $this -> _cache[ $meta ];
   }
 
-  private function czr_fn_meta_generate_tax( $hierarchical ) {
-    return $this -> czr_fn_meta_generate_tax_list( $hierarchical );
+
+  private function czr_fn_meta_generate_categories() {
+    return $this -> czr_fn_meta_generate_tax_list( $hierarchical = true );
+  }
+
+  private function czr_fn_meta_generate_tags() {
+    return $this -> czr_fn_meta_generate_tax_list( $hierarchical = false );
   }
 
   private function czr_fn_meta_generate_author() {
@@ -181,7 +186,8 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.
     // Just this change avoids the issue with 3.6.1, but I thought should be better make a check anyway on the return type of that function.
     $_term_link    = is_wp_error( get_term_link( $term ) ) ? '' : get_term_link( $term );
-    $_to_return    = $_term_link ? '<a %1$s href="%2$s" title="%3$s"> %4$s </a>' :  '<span class="%1$s"> %4$s </a>';
+    $_to_return    = $_term_link ? '<a %1$s href="%2$s" title="%3$s"> %4$s </a>' :  '<span %1$s> %4$s </span>';
+    $_to_return    = $_is_hierarchical ? $_to_return : '<li>' . $_to_return . '</li>';
     return apply_filters( 'czr_meta_term_view' , sprintf($_to_return,
         $_classes ? 'class="'. $_classes .'"' : '',
         $_term_link,

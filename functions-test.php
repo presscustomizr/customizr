@@ -15,7 +15,9 @@ $_options = array(
     'tc_sticky_shrink_title_logo' => true,
     'tc_post_list_grid' => 'alternate',
 
-    'tc_show_post_metas_home' => true
+    'tc_show_post_metas_home' => true,
+    'tc_show_post_metas_tags' => true,
+    'tc_comment_show_info' => true
 
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {

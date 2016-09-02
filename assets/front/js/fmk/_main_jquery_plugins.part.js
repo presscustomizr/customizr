@@ -43,7 +43,7 @@ var czrapp = czrapp || {};
       * but clicking on an another a.expand-img the image speficied in the 
       * dynamically added a.expang-img href is added to the gallery
       */
-      $( '[class*="grid-container__"]' ).magnificPopup({
+      $( '[class*="grid-container__"], .post-gallery' ).magnificPopup({
         delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
         gallery: {
           enabled: true

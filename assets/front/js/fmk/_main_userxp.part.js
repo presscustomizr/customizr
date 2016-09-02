@@ -9,14 +9,16 @@ var czrapp = czrapp || {};
     //VARIOUS HOVERACTION
     variousHoverActions : function() {
       /* Grid */
-      $( '.grid-container__alternate' ).on( 'mouseenter mouseleave', '.entry-image__container', _toggleParentHover );
+      $( '.grid-container__alternate' ).on( 'mouseenter mouseleave', '.entry-image__container, article.format-image .tc-content, article.format-gallery .tc-content', _toggleArticleParentHover )
       $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid-item', _toggleThisHover );
+      czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item', _toggleThisHover );
+
       /* end Grid */
 
       /* Widget li */
       czrapp.$_body.on( 'mouseenter mouseleave', '.widget li', _toggleThisOn );
 
-      function _toggleParentHover( evt ) {
+      function _toggleArticleParentHover( evt ) {
         _toggleElementClassOnHover( $(this).closest('article'), 'hover', evt );
       };
 
@@ -29,27 +31,31 @@ var czrapp = czrapp || {};
       }
 
       function _toggleElementClassOnHover( $_el, _class, _evt ) {
-        if ( 'mouseenter' == _evt.type && ! $_el.hasClass( _class ) )
+        if ( 'mouseenter' == _evt.type )
           $_el.addClass( _class );
-        else if ( 'mouseleave' == _evt.type && $_el.hasClass( _class ) )
+        else if ( 'mouseleave' == _evt.type )
           $_el.removeClass( _class );
       }
 
     },
     //FORM FOCUS ACTION
     formFocusAction : function() {
-      var _inputs    = ['input', 'textarea'],
-        _focus_class = 'in-focus';
+      var _input_types    = ['input', 'textarea'],
+        _parent_selector  = '.form-group'      
+        _focus_class      = 'in-focus',
+        _inputs           = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join();
 
-      czrapp.$_body.on( 'focusin focusout', '.form-group input, .form-group textarea', _toggleThisFocusClass );
+      czrapp.$_body.on( 'focusin focusout', _inputs, _toggleThisFocusClass );
       
       function _toggleThisFocusClass( evt ) {
         var $_el     = $(this),
-            $_parent = $_el.closest( '.form-group' );
-        if ( $_el.val() || ( evt && 'focusin' == evt.type ) )
+            $_parent = $_el.closest( _parent_selector );
+
+        if ( $_el.val() || ( evt && 'focusin' == evt.type ) ) {
           $_parent.addClass( _focus_class );
-        else
+        } else {
           $_parent.removeClass( _focus_class );
+        }
       };
 
     },
@@ -64,7 +70,26 @@ var czrapp = czrapp || {};
          });
         $_this_parent.toggleClass('open');
     });
-   },    
+   },
+   variousHeaderActions : function() {
+      /* ham navbar */
+      czrapp.$_body.on( 'click', '.ham__navbar-toggler', function() {
+        $(this).toggleClass('collapsed');
+        czrapp.$_body.toggleClass('opened'); 
+      });
+      
+      $(".nav__content").mCustomScrollbar({
+        theme:"minimal"
+      });  
+
+      /* header search button */
+      czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function()  {
+        czrapp.$_body.toggleClass('full-search-opened');
+      });
+      czrapp.$_body.on( 'click', '.search-close_btn', function()  {
+        czrapp.$_body.removeClass('full-search-opened');
+      });
+   },
     //SMOOTH SCROLL
     smoothScroll: function() {
       if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled )
