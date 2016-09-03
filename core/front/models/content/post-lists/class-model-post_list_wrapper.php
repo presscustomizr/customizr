@@ -1,4 +1,8 @@
 <?php
+/*
+*
+* TODO: treat case post format image with no text and post format gallery
+*/
 class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $place_1 ;
   public $place_2 ;
@@ -18,6 +22,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
 
   public $sections_wrapper_class;
 
+  public $has_narrow_layout;
+
   //Default post list layout
   private static $default_post_list_layout   = array(
             'content'           => array('col-md-7', 'col-xs-12'),
@@ -36,7 +42,20 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $model[ 'post_list_layout' ]  = $this -> czr_fn_get_the_post_list_layout();
+    $global_sidebar_layout                 = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
+
+    switch ( $global_sidebar_layout ) {
+      case 'b': $_class = 'narrow';
+                break;
+      case 'f': $_class = '';
+                break;
+      default : $_class = 'semi-narrow';                
+    }
+    
+    $model[ 'element_class']       = $_class;
+    $model[ 'has_narrow_layout' ]  = 'b' == $global_sidebar_layout;
+    $model[ 'post_list_layout'  ]  = $this -> czr_fn_get_the_post_list_layout( $model[ 'has_narrow_layout' ] );
+
     return $model;
   }
 
@@ -71,7 +90,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     global $wp_query;
 
     $_layout = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
-    $_current_post_format = get_post_format( $wp_query -> current_post );
+    $_current_post_format = get_post_format();
     $_section_wrapper_class = '';
 
     $czr_has_post_media   = false;
@@ -82,14 +101,15 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       $czr_has_post_media = true;
 
       /* In the new alternate layout video takes more space when global layout has less than 2 sidebars */
-      if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_media_post_formats', array( 'video' ) ) ) ) {
+      if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats', array( 'video' ) ) ) 
+          && ! $this->has_narrow_layout ) {
         $_t_l                    = $_layout[ 'media' ];
         $_layout[ 'media' ]      = $_layout[ 'content' ];
         $_layout[ 'content' ]    = $_t_l;
       }
     }
 
-     // conditions to show the thumb first are:
+    // conditions to show the thumb first are:
     // a) alternate on
     //   a.1) position is left/top ( show_thumb_first true == 1 ) and current post number is odd (1,3,..)
     //       current_post starts by 0, hence current_post + show_thumb_first = 1..2..3.. -> so mod % 2 == 1, 0, 1 ...
@@ -106,13 +126,16 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     if ( ! in_array ( $_layout['position'], array( 'top', 'bottom') ) )
       array_push( $_layout[ $this -> place_2 ], 'offset-md-1' );
 
-    //$post_class           = $czr_has_post_media ? array_merge( array($this -> post_class), $this -> czr_fn_get_thumb_shape_name() ) : $this -> post_class;
-    $article_selectors    = czr_fn_get_the_post_list_article_selectors( $this -> post_class );
-
-    if (  ! in_array( $_current_post_format , array( 'image', 'gallery' ) ) ) {
+    if ( ! $this->has_narrow_layout && ! in_array( $_current_post_format , array( 'image', 'gallery' ) ) ) {
       $_to_center = ( 'image' == $_current_post_format && is_null( get_the_content() ) ) || 'gallery' == $_current_post_format ? false :  true ;
       $_sections_wrapper_class = apply_filters( 'czr_alternate_sections_centering', $_to_center) ? 'czr-center-sections' : '';
     }
+
+    /*
+    * Find a way to avoid the no-thumb here
+    */
+    $post_class           = ! $czr_has_post_media ? array_merge( array($this -> post_class), array('no-thumb') ) : $this -> post_class;
+    $article_selectors    = czr_fn_get_the_post_list_article_selectors( $post_class );
 
     $this -> czr_fn_update( array(
       'czr_media_col'          => $_layout[ 'media' ],
@@ -132,33 +155,30 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function czr_fn_get_the_post_list_layout() {
+  function czr_fn_get_the_post_list_layout( $narrow_layout = false ) {
+    
     $_layout                     = self::$default_post_list_layout;
 
-    $_layout['position']         = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
+    $_layout[ 'position' ]       = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
+    $_layout['show_thumb_first'] = in_array( $_layout['position'] , array( 'top', 'left') );
+
+    //since 4.5 top/bottom positions will not be optional but will be forced in narrow layouts
+    if ( $narrow_layout )
+      $_layout['position']       = $_layout[ 'show_thumb_first' ] ? 'top' : 'bottom';
+    else {      
+      if ( 'top' == $_layout[ 'position' ] )
+        $_layout[ 'position' ] = 'left';
+      elseif ( 'bottom' == $_layout[ 'position' ] )
+        $_layout[ 'position' ] = 'right';
+    } 
+
     //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ( 0 == esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) )
-                                   || in_array( $_layout['position'] , array( 'top', 'bottom') ) ) ? false : true;
-    $_layout['show_thumb_first'] = in_array( $_layout['position'] , array( 'top', 'left') ) ? true : false;
-    $_layout['content']          = ! in_array( $_layout['position'] , array( 'top', 'bottom') ) ? $_layout['content'] : array( 'col-xs-12' );
-    $_layout['media']            = in_array( $_layout['position'] , array( 'top', 'bottom') ) ? array( 'col-xs-12' ) : $_layout['media'];
+    $_layout['alternate']        = ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) ) || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
+
+    if ( in_array( $_layout['position'] , array( 'top', 'bottom') ) )
+      $_layout['content'] = $_layout['media'] = array( 'col-xs-12', 'col-md-10' );
 
     return $_layout;
-  }
-
-
-  /**
-  *
-  * @return  array() of classes
-  * @package Customizr
-  * @since Customizr 3.2.0
-  */
-  function czr_fn_get_thumb_shape_name() {
-    $position                    = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
-    $thumb_shape                 = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_shape') );
-
-    $_class                      = array( "thumb-position-{$position}", $thumb_shape);
-    return $_class;
   }
 
 
@@ -173,6 +193,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     array_push( $_class , 'czr-post-list-context');
     return $_class;
   }
+
 
   /* Following are here to allow to apply a filter on each loop ..
   *  but we can think about move them in another place if we decide
@@ -195,7 +216,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     return apply_filters( 'czr_show_media', array_product(
         array(
           $this -> czr_fn_show_excerpt(),
-          czr_fn_has_thumb(), /* CHANGE TO HAS MEDIA */
+          ! in_array( get_post_format() , apply_filters( 'czr_post_formats_with_no_media', array( 'quote', 'link', 'status', 'aside' ) ) ),
+          czr_fn_has_thumb(),
           0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) )
         )
       )

@@ -10,7 +10,7 @@
 ?>
 <section class="tc-thumbnail entry-image__holder <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
 <?php if ( czr_fn_get('czr_has_media') ): ?>
-  <a href="<?php the_permalink() ?>"><?php /*test*/ the_post_thumbnail('normal', array( 'class' => 'post-thumbnail' )) ?></a>
+  <?php czr_fn_echo('media_content') ?>
 <?php else: ?>
   <div class="post-type__icon">
     <icon class="icn-<?php czr_fn_echo('icon_type') ?>"></i>

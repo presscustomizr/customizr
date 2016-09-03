@@ -2,7 +2,7 @@
 class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   public  $content_cb;
   private $content;
-  public  $content_width_class;
+  public  $content_class;
 
   function __construct( $model = array() ) {
     //Fires the parent constructor
@@ -24,10 +24,12 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     if ( $this -> content )
       return $this -> content;
     elseif ( 'get_the_excerpt' == $this -> content_cb )
-      return '<div class="entry-summary">'. apply_filters( 'the_excerpt', get_the_excerpt() ) . '</div>';
-    else
+      return apply_filters( 'the_excerpt', get_the_excerpt() );
+    elseif ( 'get_the_content' == $this -> content_cb )
       //filter the content
-      return '<div class="entry-summary">'.$this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) ) . $link_pages . '</div>';
+      return '<p>'.$this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) ) . $link_pages . '</p>';
+    else
+      return call_user_func( $this -> content_cb );
   }
 
 
@@ -59,27 +61,47 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
   function czr_fn_setup_late_properties() {
     $show_excerpt        = czr_fn_get( 'czr_show_excerpt' );
-    $content_width_class = array( 'entry-summary' );
-    $content_cb          = $show_excerpt ? 'get_the_excerpt' : 'get_the_content' ;
     $content             = '';
     $element_class       = czr_fn_get( 'czr_content_col' );
+    
+    /* The full content should become a total different model */
+    $content_cb          = $this -> get_content_cb( $show_excerpt ? 'get_the_excerpt' : 'get_the_content' );
+    $content_class       = 'get_the_excerpt' == $content_cb ? array( 'entry-summary' ) : array( 'entry-summary' );
 
-    if ( in_array( get_post_format(), array( 'image' , 'gallery' ) ) )
-    {
-      $content_width_class = array( 'entry-content' );
-      $content             = '<p class="format-icon"></p>';
-    }
-    elseif ( in_array( get_post_format(), array( 'quote', 'status', 'link', 'aside', 'video' ) ) ) {
-      $content_cb          = 'get_the_content';
-    }
-    $this -> czr_fn_update( compact( 'element_class', 'content_witdh_class', 'content_cb', 'content' ) );
+    $this -> czr_fn_update( compact( 'element_class', 'content_class', 'content_cb', 'content' ) );
   }
 
+  function get_content_cb( $default ) {
+    $post_format         = get_post_format();
+
+    switch( $post_format ) {
+      case 'status' :
+      case 'aside'  : return 'get_the_content';
+
+      case 'link'   : return array( $this, 'get_the_post_link' );
+      case 'quote'  : return array( $this, 'get_the_post_quote' );
+      default       : return $default;
+    }
+  }
   /**
   * parse this model properties for rendering
   */
   function czr_fn_sanitize_model_properties( $model ) {
     parent::czr_fn_sanitize_model_properties( $model );
-    $model -> content_width_class = $this -> czr_fn_stringify_model_property( 'content_width_class' );
+    $model -> content_class = $this -> czr_fn_stringify_model_property( 'content_class' );
+  }
+
+
+  /* Testing purpose */
+  function get_the_post_link() {
+    return '<p><a class="external" target="_blank" href="http://www.google.it">www.google.it</a></p>';
+  }
+
+
+  function get_the_post_quote() {
+    return '<blockquote class="blockquote entry-quote">
+              <p class="m-b-0"> Kogi Cosby sweater ethical squid irony disrupt, organic tote bag gluten-free XOXO wolf typewriter mixtape small batch.</p>
+              <footer class="blockquote-footer"><cite title="Source Title">Some Crazy Idiot</cite></footer>
+            </blockquote>';
   }
 }
