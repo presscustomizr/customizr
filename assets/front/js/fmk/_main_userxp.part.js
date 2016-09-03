@@ -78,10 +78,12 @@ var czrapp = czrapp || {};
         czrapp.$_body.toggleClass('opened'); 
       });
       
-      $(".nav__content").mCustomScrollbar({
-        theme:"minimal"
-      });  
-
+      if( $( '.hamburger-menu' ).length ){
+        $(".nav__content").mCustomScrollbar({
+          theme:"minimal"
+        });  
+      }
+      
       /* header search button */
       czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function()  {
         czrapp.$_body.toggleClass('full-search-opened');
