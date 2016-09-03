@@ -17,7 +17,9 @@ $_options = array(
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
-    'tc_comment_show_info' => true
+    'tc_comment_show_info' => true,
+
+    'tc_sidebar_global_layout' => 'b',
 
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
@@ -191,3 +193,9 @@ function parallax(){
           </div>
 <?php
 };
+
+add_filter( 'czr_show_media', function( $bool){
+  /* Test */
+  return $bool 
+    || in_array( get_post_format() , apply_filters( 'czr_alternate_media_post_formats', array( 'video', 'audio' ) ) );    
+});
