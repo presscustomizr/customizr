@@ -5,6 +5,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   public  $content_class;
   public  $is_loop_start;
   public  $is_loop_end;
+  public  $is_full_image;
 
   function __construct( $model = array() ) {
     //Fires the parent constructor
@@ -76,13 +77,20 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     $element_class       = czr_fn_get( 'czr_content_col' );
     $is_loop_start       = czr_fn_get( 'is_loop_start' );
     $is_loop_end         = czr_fn_get( 'is_loop_end' );
+    $is_full_image       = czr_fn_get( 'is_full_image' );
 
     /* The full content should become a total different model */
     $content_cb          = $this -> get_content_cb( $show_excerpt ? 'get_the_excerpt' : 'get_the_content' );
     $content_class       = 'get_the_excerpt' == $content_cb ? array( 'entry-summary' ) : array( 'entry-summary' );
 
     $this -> czr_fn_update( compact( 
-      'element_class', 'content_class', 'content_cb', 'content', 'is_loop_start', 'is_loop_end'
+      'element_class', 
+      'content_class', 
+      'content_cb', 
+      'content', 
+      'is_loop_start', 
+      'is_loop_end', 
+      'is_full_image'
     ) );
   }
 

@@ -4,6 +4,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   public $icon_type;
   public $media_content;
   public $original_thumb_url;
+  public $is_full_image;
 
   function czr_fn_setup_late_properties() {
     $post_format = get_post_format();
@@ -15,7 +16,8 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
       'element_class' =>   czr_fn_get( 'czr_media_col' ),
       'czr_has_media' =>   czr_fn_get( 'czr_has_post_media' ),
       'icon_type'     =>   $icon_type,
-      'original_thumb_url' => false
+      'original_thumb_url' => false,
+      'is_full_image'   => czr_fn_get( 'is_full_image' )
     ));
   }
 
@@ -35,12 +37,19 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
       }
       
       return '<div class="video-container">'. apply_filters( 'the_content', $content ) . '</div>';      
-    }
-    else {
-      $_the_thumb = get_the_post_thumbnail( null, 'normal', array( 'class' => 'post-thumbnail' ) );
+    } else {
+      $_the_thumb = czr_fn_get_thumbnail_model( 'normal' );
+
+      if ( empty ( $_the_thumb['tc_thumb']) )
+        return;
+      
+      //get_the_post_thumbnail( null, 'normal', array( 'class' => 'post-thumbnail' ) );
       /* use utils tc thumb to retrieve the original image size */
-      $this -> czr_fn_set_property( 'original_thumb_url', wp_get_attachment_image_src( get_post_thumbnail_id(), 'large')[0] );
-      return '<a href="'. get_the_permalink() .'">'.  $_the_thumb . '</a>';
+      $this -> czr_fn_set_property( 'original_thumb_url', wp_get_attachment_image_src( $_the_thumb[ '_thumb_id' ], 'large')[0] );
+
+      if ( $this -> is_full_image )
+        return $_the_thumb[ 'tc_thumb' ] ;
+      return '<a href="'. get_the_permalink() .'">'.  $_the_thumb[ 'tc_thumb' ] . '</a>';
     }
   }
 

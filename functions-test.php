@@ -21,6 +21,8 @@ $_options = array(
 
     'tc_sidebar_global_layout' => 'b',
 
+    'tc_img_smart_load' => false
+
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
   global $_options;

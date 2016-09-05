@@ -24,6 +24,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
 
   public $has_narrow_layout;
 
+  public $is_full_image;
+
   //Default post list layout
   private static $default_post_list_layout   = array(
             'content'           => array('col-md-7', 'col-xs-12'),
@@ -91,11 +93,14 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
 
     $_layout = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
     $_current_post_format = get_post_format();
-    $_section_wrapper_class = '';
+    $_sections_wrapper_class = '';
 
     $czr_has_post_media   = false;
+    $is_full_image        = false;
+    
     $this -> place_1      = 'content';
     $this -> place_2      = 'media';
+
 
     if ( $this -> czr_fn_show_media() ) {
       $czr_has_post_media = true;
@@ -126,13 +131,38 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     if ( ! in_array ( $_layout['position'], array( 'top', 'bottom') ) )
       array_push( $_layout[ $this -> place_2 ], 'offset-md-1' );
 
-    if ( ! $this->has_narrow_layout && ! in_array( $_current_post_format , array( 'image', 'gallery' ) ) ) {
-      $_to_center = ( 'image' == $_current_post_format && is_null( get_the_content() ) ) || 'gallery' == $_current_post_format ? false :  true ;
-      $_sections_wrapper_class = apply_filters( 'czr_alternate_sections_centering', $_to_center) ? 'czr-center-sections' : '';
-    }
+
+    /* 
+    * Gallery and images (with no text) should
+    * - not be vertically centered
+    * - displayed in full-width
+    * - avoid the media-content alternation
+    */
+    if ( in_array( $_current_post_format , array( 'gallery', 'image' ) ) ) {
+
+      if ( 'image' != $_current_post_format ||
+            ( 'image' == $_current_post_format && ! apply_filters( 'the_excerpt', get_the_excerpt() ) ) ) {
+        $_sections_wrapper_class = apply_filters( 'czr_alternate_sections_centering', true) ? 'czr-no-text' : '';
+
+        array_push( $this->post_class, 'czr-no-text' );
+
+        $is_full_image         = true;
+      
+        if ( ! $this->has_narrow_layout ) {
+          $_layout[ 'content' ]  = $_layout[ 'media' ]    = array( 'col-xs-12' );
+        }
+
+        $this -> place_1 = 'media';
+        $this -> place_2 = 'content';
+      } elseif ( ! $this->has_narrow_layout && 'image' == $_current_post_format )
+        $_sections_wrapper_class = apply_filters( 'czr_alternate_sections_centering', true) ? 'czr-center-sections' : '';
+    
+    }elseif ( ! $this->has_narrow_layout )
+      $_sections_wrapper_class = apply_filters( 'czr_alternate_sections_centering', true) ? 'czr-center-sections' : '';
+    
 
     /*
-    * Find a way to avoid the no-thumb here
+    * Find a way to avoid the no-thumb here and delegate to the thumb wrapper?
     */
     $post_class           = ! $czr_has_post_media ? array_merge( array($this -> post_class), array('no-thumb') ) : $this -> post_class;
     $article_selectors    = czr_fn_get_the_post_list_article_selectors( $post_class );
@@ -145,7 +175,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       'article_selectors'      => $article_selectors,
       'is_loop_start'          => 0 == $wp_query -> current_post,
       'is_loop_end'            => $wp_query -> current_post == $wp_query -> post_count -1,
-      'sections_wrapper_class' => $_sections_wrapper_class
+      'sections_wrapper_class' => $_sections_wrapper_class,
+      'is_full_image'          => $is_full_image
     ) );
 
   }
