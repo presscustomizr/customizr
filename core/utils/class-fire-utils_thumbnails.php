@@ -88,7 +88,7 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
     $tc_thumb = apply_filters( 'czr_thumb_html', $tc_thumb, $requested_size, $_post_id, $_custom_thumb_id );
 
     return apply_filters( 'czr_get_thumbnail_model',
-      isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" ) : array(),
+      isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width", "_thumb_id" ) : array(),
       $_post_id,
       $_thumb_id,
       $_enable_wp_responsive_imgs
