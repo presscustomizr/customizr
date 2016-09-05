@@ -3,33 +3,44 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   public  $content_cb;
   private $content;
   public  $content_class;
+  public  $is_loop_start;
+  public  $is_loop_end;
 
   function __construct( $model = array() ) {
     //Fires the parent constructor
     parent::__construct( $model );
-    add_action( "__before_{$this -> id }", array( $this, 'setup_text_hooks') );
-    add_action( "__after_{$this -> id }", array( $this, 'reset_text_hooks') );
+    add_action( "__before_{$this -> id }_content_retrieve", array( $this, 'setup_text_hooks') );
+    add_action( "__after_{$this -> id }_content_retrieve", array( $this, 'reset_text_hooks') );
   }
 
   function setup_text_hooks() {
-    //filter the excerpt length
-    add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+    if ( czr_fn_get( 'is_loop_start' ) )
+      //filter the excerpt length
+      add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
   function reset_text_hooks() {
-    remove_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+    if ( czr_fn_get( 'is_loop_end' ) )
+      remove_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
   function czr_fn_get_post_list_content( $more  = null, $link_pages = null ) {
+
+    do_action( "__before_{$this -> id }_content_retrieve" );
+
     if ( $this -> content )
-      return $this -> content;
+      $to_return = $this -> content;
     elseif ( 'get_the_excerpt' == $this -> content_cb )
-      return apply_filters( 'the_excerpt', get_the_excerpt() );
+      $to_return = apply_filters( 'the_excerpt', get_the_excerpt() );
     elseif ( 'get_the_content' == $this -> content_cb )
       //filter the content
-      return '<p>'.$this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) ) . $link_pages . '</p>';
+      $to_return = '<p>'.$this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) ) . $link_pages . '</p>';
     else
-      return call_user_func( $this -> content_cb );
+      $to_return = call_user_func( $this -> content_cb );
+
+    do_action( "__after_{$this -> id }_content_retrieve" );
+
+    return $to_return;
   }
 
 
@@ -63,12 +74,16 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     $show_excerpt        = czr_fn_get( 'czr_show_excerpt' );
     $content             = '';
     $element_class       = czr_fn_get( 'czr_content_col' );
-    
+    $is_loop_start       = czr_fn_get( 'is_loop_start' );
+    $is_loop_end         = czr_fn_get( 'is_loop_end' );
+
     /* The full content should become a total different model */
     $content_cb          = $this -> get_content_cb( $show_excerpt ? 'get_the_excerpt' : 'get_the_content' );
     $content_class       = 'get_the_excerpt' == $content_cb ? array( 'entry-summary' ) : array( 'entry-summary' );
 
-    $this -> czr_fn_update( compact( 'element_class', 'content_class', 'content_cb', 'content' ) );
+    $this -> czr_fn_update( compact( 
+      'element_class', 'content_class', 'content_cb', 'content', 'is_loop_start', 'is_loop_end'
+    ) );
   }
 
   function get_content_cb( $default ) {
