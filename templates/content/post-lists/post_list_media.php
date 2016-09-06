@@ -9,7 +9,7 @@
  */
 ?>
 <section class="tc-thumbnail entry-image__container <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
-<?php if ( czr_fn_get('czr_has_media') ): ?>
+<?php if ( czr_fn_get('czr_has_post_media') ): ?>
   <?php czr_fn_echo('media_content') ?>
   <?php if ( (bool) ( $original_thumb_url = czr_fn_get( 'original_thumb_url' ) ) ): ?>
     <div class="post-action">

@@ -1,23 +1,26 @@
 <?php
 class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
-  public $czr_has_media;
+  public $czr_has_post_media;
   public $icon_type;
   public $media_content;
   public $original_thumb_url;
   public $is_full_image;
 
   function czr_fn_setup_late_properties() {
-    $post_format = get_post_format();
-
-    $icon_type = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'text';
-    $icon_type = 'quote' == $post_format ? 'quotes' : $icon_type;
+    $post_format           = get_post_format();
+    $czr_has_post_media    = czr_fn_get( 'czr_has_post_media' );
+    
+    if ( ! $czr_has_post_media ) {
+      $icon_type           = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'text';
+      $icon_type           = 'quote' == $post_format ? 'quotes' : $icon_type;
+    }
 
     $this -> czr_fn_update( array(
-      'element_class' =>   czr_fn_get( 'czr_media_col' ),
-      'czr_has_media' =>   czr_fn_get( 'czr_has_post_media' ),
-      'icon_type'     =>   $icon_type,
-      'original_thumb_url' => false,
-      'is_full_image'   => czr_fn_get( 'is_full_image' )
+      'element_class'      =>  czr_fn_get( 'czr_media_col' ),
+      'czr_has_post_media' =>  $czr_has_post_media,
+      'icon_type'          =>  isset( $icon_type ) ? $icon_type : false,
+      'original_thumb_url' =>  false,
+      'is_full_image'      =>  czr_fn_get( 'is_full_image' )
     ));
   }
 
