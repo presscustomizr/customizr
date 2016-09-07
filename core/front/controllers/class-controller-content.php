@@ -40,9 +40,12 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_post_list() {
-      return apply_filters( 'czr_display_view_post_list', czr_fn_is_list_of_posts() );
+      return apply_filters( 'czr_display_view_post_list', czr_fn_is_list_of_posts() && 'alternate' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
     }
 
+    function czr_fn_display_view_post_list_masonry() {
+      return apply_filters( 'czr_display_view_post_list_masonry', czr_fn_is_list_of_posts() && 'masonry' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+    }
 
     function czr_fn_display_view_posts_list_title() {
       return $this -> czr_fn_display_view_posts_list_headings() && ! is_search();
