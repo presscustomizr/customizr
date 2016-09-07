@@ -6,6 +6,8 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   public  $is_loop_start;
   public  $is_loop_end;
   public  $is_full_image;
+  public  $has_header_format_icon;
+
 
   function __construct( $model = array() ) {
     //Fires the parent constructor
@@ -22,7 +24,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
   function reset_text_hooks() {
     if ( czr_fn_get( 'is_loop_end' ) )
-      remove_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+      remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
   function czr_fn_get_post_list_content( $more  = null, $link_pages = null ) {
@@ -72,16 +74,18 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
 
   function czr_fn_setup_late_properties() {
-    $show_excerpt        = czr_fn_get( 'czr_show_excerpt' );
-    $content             = '';
-    $element_class       = czr_fn_get( 'czr_content_col' );
-    $is_loop_start       = czr_fn_get( 'is_loop_start' );
-    $is_loop_end         = czr_fn_get( 'is_loop_end' );
-    $is_full_image       = czr_fn_get( 'is_full_image' );
+    $show_excerpt           = czr_fn_get( 'czr_show_excerpt' );
+    $content                = '';
+    $element_class          = czr_fn_get( 'czr_content_col' );
+    $is_loop_start          = czr_fn_get( 'is_loop_start' );
+    $is_loop_end            = czr_fn_get( 'is_loop_end' );
+    $is_full_image          = czr_fn_get( 'is_full_image' );
+    $has_header_format_icon = czr_fn_get( 'has_header_format_icon' );
 
     /* The full content should become a total different model */
     $content_cb          = $this -> get_content_cb( $show_excerpt ? 'get_the_excerpt' : 'get_the_content' );
     $content_class       = 'get_the_excerpt' == $content_cb ? array( 'entry-summary' ) : array( 'entry-summary' );
+
 
     $this -> czr_fn_update( compact( 
       'element_class', 
@@ -90,7 +94,8 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
       'content', 
       'is_loop_start', 
       'is_loop_end', 
-      'is_full_image'
+      'is_full_image',
+      'has_header_format_icon'
     ) );
   }
 

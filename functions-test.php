@@ -13,12 +13,13 @@ $_options = array(
     'tc_logo_upload' => '611',
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
-    'tc_post_list_grid' => 'alternate',
+    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
     'tc_comment_show_info' => true,
 
+    /* this doesn't work */
     'tc_sidebar_global_layout' => 'b',
 
     'tc_img_smart_load' => false
@@ -112,7 +113,7 @@ function czr_fn_enqueue_front_scripts(){
   wp_localize_script( $i,
     'CZRParams' , array(
        '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
-        'stickyHeader'        => esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) )
+        'stickyHeader'      => esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) )
   ) );
 
 }

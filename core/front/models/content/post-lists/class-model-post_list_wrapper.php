@@ -4,18 +4,21 @@
 * TODO: treat case post format image with no text and post format gallery
 */
 class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
+  public $element_class         = array( 'grid-container__alternate' );
+  public $post_class            = 'row';
+  public $has_format_icon_media = true;
   public $place_1 ;
   public $place_2 ;
   public $article_selectors;
 
-  public $czr_has_post_media;
+  public $has_post_media;
 
   public $czr_media_col;
   public $czr_content_col;
 
   public $czr_show_excerpt;
 
-  public $post_class = 'row';
+
 
   public $is_loop_start;
   public $is_loop_end;
@@ -25,7 +28,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $has_narrow_layout;
 
   public $is_full_image;
-
+  
   //Default post list layout
   private static $default_post_list_layout   = array(
             'content'           => array('col-md-7', 'col-xs-12'),
@@ -54,7 +57,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       default : $_class = 'semi-narrow';                
     }
     
-    $model[ 'element_class']       = $_class;
+    $model[ 'element_class']       = array_merge( $this -> element_class, array($_class) );
     $model[ 'has_narrow_layout' ]  = 'b' == $global_sidebar_layout;
     $model[ 'post_list_layout'  ]  = $this -> czr_fn_get_the_post_list_layout( $model[ 'has_narrow_layout' ] );
 
@@ -94,7 +97,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $_layout                 = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
     $maybe_center_sections   = apply_filters( 'czr_alternate_sections_centering', true );
     $_sections_wrapper_class = '';
-    $czr_has_post_media      = $this -> czr_fn_show_media() ;
+    $has_post_media      = $this -> czr_fn_show_media() ;
     $is_full_image           = false; /* gallery and image (with no text) post formats */
 
     $_current_post_format    = get_post_format();
@@ -105,7 +108,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $this -> place_2         = 'media';
 
 
-    if ( $czr_has_post_media ) {
+    if ( $has_post_media ) {
       /* In the new alternate layout video takes more space when global layout has less than 2 sidebars */
       if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats', array( 'video' ) ) ) 
           && ! $this->has_narrow_layout ) {
@@ -166,14 +169,14 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     /*
     * Find a way to avoid the no-thumb here and delegate to the thumb wrapper?
     */
-    $post_class           = ! $czr_has_post_media ? array_merge( array($this -> post_class), array('no-thumb') ) : $this -> post_class;
+    $post_class           = ! $has_post_media ? array_merge( array($this -> post_class), array('no-thumb') ) : $this -> post_class;
     $article_selectors    = czr_fn_get_the_post_list_article_selectors( $post_class );
 
     $this -> czr_fn_update( array(
       'czr_media_col'          => $_layout[ 'media' ],
       'czr_content_col'        => $_layout[ 'content' ],
       'czr_show_excerpt'       => $this -> czr_fn_show_excerpt(),
-      'czr_has_post_media'     => $czr_has_post_media,
+      'has_post_media'         => $has_post_media,
       'article_selectors'      => $article_selectors,
       'is_loop_start'          => 0 == $wp_query -> current_post,
       'is_loop_end'            => $wp_query -> current_post == $wp_query -> post_count -1,

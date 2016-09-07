@@ -31,12 +31,16 @@
               if ( have_posts() ) {
                 while ( have_posts() ) {
                   the_post();
+                  
                   if ( czr_fn_has('post_list_grid') ) {
                     czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
                   }
                   elseif ( czr_fn_has('post_list') ){
                     czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list');
-                  }else {
+                  }elseif ( czr_fn_has('post_list_masonry') ) {
+                    czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list_masonry');
+                  }
+                  else {
                     czr_fn_render_template('content/singles/page_content', 'page');
                   }
                 }//endwhile;

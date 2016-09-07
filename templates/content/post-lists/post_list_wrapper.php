@@ -9,7 +9,7 @@
  */
 ?>
 <?php if ( czr_fn_get( 'is_loop_start' ) ) : ?>
-<div class="row grid-container__alternate <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
+<div class="row <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
 <?php endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
     <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">

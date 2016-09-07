@@ -103,3 +103,9 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 .article-container .grid-container__alternate .tc-gallery-nav a{ z-index: 2;}
 .article-container .grid-container__alternate .entry-header,
 .article-container .grid-container__alternate .entry-footer { z-index: 2; position: relative;}
+
+/* TO BE MERGED */
+.grid-container__masonry .post-info .v-separator { display: none; }
+.grid .grid-post .entry-footer .post-info a:first-of-type { float: none; }
+/* think about this */
+.entry-header .entry-title { word-wrap: break-word;}
