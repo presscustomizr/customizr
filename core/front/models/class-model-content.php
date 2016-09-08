@@ -15,7 +15,23 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
       array(
         'model_class' => 'content/post-lists/post_list_masonry_wrapper',
         'id' => 'post_list_masonry',
-      ),    
+      ),
+
+      //sidebars need to be registered because they use the same model which does not match the model id nor the template
+       /********************************************************************
+      * Left sidebar
+      ********************************************************************/
+       array(
+        'id'          => 'left_sidebar',
+        'model_class' => 'content/sidebars/sidebar',
+      ),
+      /********************************************************************
+      * Right sidebar
+      ********************************************************************/
+      array(
+        'id'          => 'right_sidebar',
+        'model_class' => 'content/sidebars/sidebar'
+      ) 
     );
 
     return $children;
