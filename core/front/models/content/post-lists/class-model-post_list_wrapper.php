@@ -6,29 +6,25 @@
 class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $element_class         = array( 'grid-container__alternate' );
   public $post_class            = 'row';
+  public $article_selectors;
+  public $sections_wrapper_class;
+
   public $has_format_icon_media = true;
+  public $has_post_media;
+  public $has_narrow_layout;
+  public $is_full_image;
+
   public $place_1 ;
   public $place_2 ;
-  public $article_selectors;
-
-  public $has_post_media;
 
   public $czr_media_col;
   public $czr_content_col;
 
   public $czr_show_excerpt;
 
-
-
   public $is_loop_start;
   public $is_loop_end;
 
-  public $sections_wrapper_class;
-
-  public $has_narrow_layout;
-
-  public $is_full_image;
-  
   //Default post list layout
   private static $default_post_list_layout   = array(
             'content'           => array('col-md-7', 'col-xs-12'),
@@ -97,7 +93,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $_layout                 = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
     $maybe_center_sections   = apply_filters( 'czr_alternate_sections_centering', true );
     $_sections_wrapper_class = '';
-    $has_post_media      = $this -> czr_fn_show_media() ;
+    $has_post_media          = $this -> czr_fn_show_media() ;
     $is_full_image           = false; /* gallery and image (with no text) post formats */
 
     $_current_post_format    = get_post_format();
@@ -260,7 +256,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   /**
   * @return boolean whether excerpt instead of full content
   * @package Customizr
-  * @since Customizr 3.3.2
+  * @since Customizr 3.3.2 
   */
   private function czr_fn_show_excerpt() {
     //When do we show the post excerpt?
