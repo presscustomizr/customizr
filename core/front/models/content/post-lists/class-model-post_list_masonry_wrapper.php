@@ -82,13 +82,13 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
   function czr_fn_setup_late_properties() {
 
     global $wp_query;
-    $has_post_media      = $this -> czr_fn_show_media() ;
-
+    $has_post_media            = $this -> czr_fn_show_media() ;
+    $_current_post_format      = get_post_format();
     /*
     * Find a way to avoid the no-thumb here and delegate to the thumb wrapper?
     */
-    $post_class           = ! $has_post_media ? array_merge( $this -> post_class, array('no-thumb') ) : $this -> post_class;
-    $article_selectors    = czr_fn_get_the_post_list_article_selectors( $post_class );
+    $post_class                = ! $has_post_media ? array_merge( $this -> post_class, array('no-thumb') ) : $this -> post_class;
+    $article_selectors         = czr_fn_get_the_post_list_article_selectors( $post_class );
 
     $this -> czr_fn_update( array(
       'czr_show_excerpt'       => $this -> czr_fn_show_excerpt(),
@@ -96,7 +96,8 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
       'article_selectors'      => $article_selectors,
       'is_loop_start'          => 0 == $wp_query -> current_post,
       'is_loop_end'            => $wp_query -> current_post == $wp_query -> post_count -1,
-      'has_header_format_icon' => in_array( get_post_format() , apply_filters( 'czr_post_formats_with_no_media', array( 'quote', 'link', 'status', 'aside', 'chat' ) ) )
+      'has_header_format_icon' => in_array( $_current_post_format , apply_filters( 'czr_post_formats_with_no_media', array( 'quote', 'link', 'status', 'aside', 'chat' ) ) ),
+      'is_full_image'          => in_array( $_current_post_format , array( 'gallery', 'image' ) )
     ));
 
   }

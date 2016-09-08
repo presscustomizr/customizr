@@ -7,7 +7,7 @@
  * @since Customizr 3.5.0
  */
 ?>
-<header class="entry-header" <?php czr_fn_echo('element_attributes') ?>> 
+<header class="entry-header <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>> 
 <?php /* Mayabe treat this case with CSS only */
   if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
   <div class="tc-grid-icon"><i class="format-icon"></i></div>

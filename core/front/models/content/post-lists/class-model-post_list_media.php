@@ -9,8 +9,9 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   function czr_fn_setup_late_properties() {
     $post_format           = get_post_format();
     $has_post_media        = czr_fn_get( 'has_post_media' );
+    $is_full_image         = czr_fn_get( 'is_full_image' );
     
-    if ( ! $has_post_media && czr_fn_get( 'has_format_icon_media' ) ) {
+    if ( ! $has_post_media && czr_fn_get( 'has_format_icon_media' ) && ! $is_full_image ) {
       $icon_type           = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'text';
       $icon_type           = 'quote' == $post_format ? 'quotes' : $icon_type;
     }
@@ -20,7 +21,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
       'has_post_media'     =>  $has_post_media,
       'icon_type'          =>  isset( $icon_type ) ? $icon_type : false,
       'original_thumb_url' =>  false,
-      'is_full_image'      =>  czr_fn_get( 'is_full_image' )
+      'is_full_image'      =>  $is_full_image
     ));
   }
 
