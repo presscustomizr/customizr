@@ -9,7 +9,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $article_selectors;
   public $sections_wrapper_class;
 
-  public $has_format_icon_media = true;
+  public $has_format_icon_media;
   public $has_post_media;
   public $has_narrow_layout;
   public $is_full_image;
@@ -53,9 +53,10 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       default : $_class = 'semi-narrow';                
     }
     
-    $model[ 'element_class']       = array_merge( $this -> element_class, array($_class) );
-    $model[ 'has_narrow_layout' ]  = 'b' == $global_sidebar_layout;
-    $model[ 'post_list_layout'  ]  = $this -> czr_fn_get_the_post_list_layout( $model[ 'has_narrow_layout' ] );
+    $model[ 'element_class']          = array_merge( $this -> element_class, array($_class) );
+    $model[ 'has_narrow_layout' ]     = 'b' == $global_sidebar_layout;
+    $model[ 'post_list_layout' ]      = $this -> czr_fn_get_the_post_list_layout( $model[ 'has_narrow_layout' ] );
+    $model[ 'has_format_icon_media' ] = ! $model[ 'has_narrow_layout' ];
 
     return $model;
   }
@@ -98,10 +99,14 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
 
     $_current_post_format    = get_post_format();
 
-
+    /* In the new theme the places are defined just by the option show_thumb_first, 
+    * we handle the alternate with bootstrap classes
+    *
+    */
+    $this -> place_1          = 'show_thumb_first' == $_layout['show_thumb_first'] ? 'media' : 'content';
+    $this -> place_2          = 'show_thumb_first' == $_layout['show_thumb_first'] ? 'content' : 'media';
     
-    $this -> place_1         = 'content';
-    $this -> place_2         = 'media';
+    $place_2                  = $this -> place_2;
 
 
     if ( $has_post_media ) {
@@ -122,14 +127,24 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     //   a.2) position is right/bottom ( show_thumb_first false == 0 ) and current post number is even (2,4,...)
     //       current_post starts by 0, hence current_post + show_thumb_first = 0..1..2.. -> so mod % 2 == 0, 1, 0...
     //  b) alternate off & position is left/top ( show_thumb_first == true == 1)
-    if (  $_layout[ 'alternate' ] && ( ( $wp_query -> current_post + (int) $_layout[ 'show_thumb_first' ] ) % 2 ) ||
-          $_layout[ 'show_thumb_first' ] && ! $_layout[ 'alternate' ] ) {
-      $this -> place_1 = 'media';
-      $this -> place_2 = 'content';
+    
+    /*
+    * With the new system, change the alternate condition (added a not for the moment, the condition explained above was valid with the previous system)
+    */
+    if ( ! (  $_layout[ 'alternate' ] && ( ( $wp_query -> current_post + (int) $_layout[ 'show_thumb_first' ] ) % 2 ) ||
+          $_layout[ 'show_thumb_first' ] && ! $_layout[ 'alternate' ] ) ) {
+
+      //make it dynamic!! what if col-md- changes???
+      $place_2  = $this -> place_1;
+      $_layout[ $place_2 ] = array_merge( $_layout[ $place_2 ], str_replace( 'col-md-', 'push-md-', $_layout[ $this -> place_2 ] ) );
+
+      $cols = ( substr(implode($_layout[$place_2]), strpos( implode($_layout[$place_2]), 'push-md-' ) + strlen('push-md-') , 1) );
+      $cols = 12 - $cols; /* offset */
+      array_push( $_layout[ $this -> place_2 ], 'pull-md-'.$cols );      
     }
  
     if ( ! in_array ( $_layout['position'], array( 'top', 'bottom') ) )
-      array_push( $_layout[ $this -> place_2 ], 'offset-md-1' );
+      array_push( $_layout[ $place_2 ], 'offset-md-1' );
 
 
     /* 
@@ -253,6 +268,10 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     );
   }
 
+  /*
+  * Todo: treat in a different model(/template ?!)
+  *
+  */
   /**
   * @return boolean whether excerpt instead of full content
   * @package Customizr

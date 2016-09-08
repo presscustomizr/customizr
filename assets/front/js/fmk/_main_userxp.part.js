@@ -10,7 +10,7 @@ var czrapp = czrapp || {};
     variousHoverActions : function() {
       /* Grid */
       $( '.grid-container__alternate' ).on( 'mouseenter mouseleave', '.entry-image__container, article.format-image .tc-content, article.format-gallery .tc-content', _toggleArticleParentHover )
-      $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid-post', _toggleArticleParentHover );
+      $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid-post, .tc-grid-post', _toggleArticleParentHover );
       czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item', _toggleThisHover );
 
       /* end Grid */
