@@ -119,6 +119,15 @@ function czr_fn_get_id()  {
 }
 
 
+/**
+* This function returns the filtered global layout defined in CZR_cl_init
+*
+* @package Customizr
+* @since Customizr 4.0
+*/
+function czr_fn_get_global_layout() {
+  return apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
+}
 
 
 /**
@@ -128,67 +137,67 @@ function czr_fn_get_id()  {
 * @since Customizr 1.0
 */
 function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
-      $__options                    = czr_fn_get_theme_options();
       global $post;
       //Article wrapper class definition
-      $global_layout                = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
+      $global_layout                 = czr_fn_get_global_layout();
 
       /* DEFAULT LAYOUTS */
       //what is the default layout we want to apply? By default we apply the global default layout
-      $tc_sidebar_default_layout    = esc_attr( $__options['tc_sidebar_global_layout'] );
+      $czr_sidebar_default_layout    = esc_attr( czr_fn_get_opt('tc_sidebar_global_layout') );
+      $czr_sidebar_force_layout      = esc_attr( czr_fn_get_opt('tc_sidebar_force_layout') );
 
       //checks if the 'force default layout' option is checked and return the default layout before any specific layout
-      if( isset($__options['tc_sidebar_force_layout']) && 1 == $__options['tc_sidebar_force_layout'] ) {
-        $class_tab  = $global_layout[$tc_sidebar_default_layout];
+      if( $czr_sidebar_force_layout ) {
+        $class_tab  = $global_layout[$czr_sidebar_default_layout];
         $class_tab  = $class_tab['content'];
-        $tc_screen_layout = array(
-          'sidebar' => $tc_sidebar_default_layout,
+        $czr_screen_layout = array(
+          'sidebar' => $czr_sidebar_default_layout,
           'class'   => $class_tab
         );
-        return $tc_screen_layout[$sidebar_or_class];
+        return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
 
 
       if ( is_single() )
-        $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_post_layout'] );
+        $czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
       if ( is_page() )
-        $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_page_layout'] );
+        $czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
 
       //builds the default layout option array including layout and article class
-      $class_tab  = $global_layout[$tc_sidebar_default_layout];
+      $class_tab  = $global_layout[$czr_sidebar_default_layout];
       $class_tab  = $class_tab['content'];
-      $tc_screen_layout             = array(
-                  'sidebar' => $tc_sidebar_default_layout,
+      $czr_screen_layout             = array(
+                  'sidebar' => $czr_sidebar_default_layout,
                   'class'   => $class_tab
       );
 
       //The following lines set the post specific layout if any, and if not keeps the default layout previously defined
-      $tc_specific_post_layout    = false;
+      $czr_specific_post_layout    = false;
       global $wp_query;
       //if we are displaying an attachement, we use the parent post/page layout
       if ( $post && 'attachment' == $post -> post_type ) {
-        $tc_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
+        $czr_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
       }
       //for a singular post or page OR for the posts page
       elseif ( is_singular() || $wp_query -> is_posts_page ) {
-        $tc_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
+        $czr_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
       }
 
       //checks if we display home page, either posts or static page and apply the customizer option
       if( (is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page()) {
-         $tc_specific_post_layout = $__options['tc_front_layout'];
+         $czr_specific_post_layout = tc_get_opt('tc_front_layout');
       }
 
-      if( $tc_specific_post_layout ) {
-          $class_tab  = $global_layout[$tc_specific_post_layout];
+      if( $czr_specific_post_layout ) {
+          $class_tab  = $global_layout[$czr_specific_post_layout];
           $class_tab  = $class_tab['content'];
-          $tc_screen_layout = array(
-          'sidebar' => $tc_specific_post_layout,
-          'class'   => $class_tab
+          $czr_screen_layout = array(
+            'sidebar' => $czr_specific_post_layout,
+            'class'   => $class_tab
         );
       }
 
-    return apply_filters( 'czr_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+      return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
 }
 
 
