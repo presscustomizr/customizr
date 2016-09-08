@@ -109,3 +109,7 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 .grid .grid-post .entry-footer .post-info a:first-of-type { float: none; }
 /* think about this */
 .entry-header .entry-title { word-wrap: break-word;}
+
+.entry-image__container .post-type__icon icon {
+    position: relative;
+}
