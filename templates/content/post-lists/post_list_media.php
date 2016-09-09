@@ -18,7 +18,7 @@
   <?php endif ?>
 <?php elseif ( (bool) $icon_type = czr_fn_get('icon_type') ): ?>
   <div class="post-type__icon">
-    <icon class="icn-<?php echo $icon_type ?>"><a class="bg-link" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a></icon>
+    <i class="icn-<?php echo $icon_type ?>"><a class="bg-link" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a></i>
   <div>      
 <?php endif ?>
 </section>

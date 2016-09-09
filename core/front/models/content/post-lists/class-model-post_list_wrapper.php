@@ -5,7 +5,7 @@
 */
 class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $element_class         = array( 'grid-container__alternate' );
-  public $post_class            = 'row';
+
   public $article_selectors;
   public $sections_wrapper_class;
 
@@ -14,8 +14,11 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $has_narrow_layout;
   public $is_full_image;
 
-  public $place_1 ;
-  public $place_2 ;
+  public $place_1;
+  public $place_2;
+
+  public $def_place_1;
+  public $def_place_2;
 
   public $czr_media_col;
   public $czr_content_col;
@@ -26,13 +29,19 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $is_loop_end;
 
   //Default post list layout
-  private static $default_post_list_layout   = array(
-            'content'           => array('col-md-7', 'col-xs-12'),
-            'media'             => array('col-md-4', 'col-xs-12'),
+  private static $default_post_list_layout   = array (
+                                // array( xl, lg, md, sm, xs )          
+            'content'           => array( '', '', '7', '', '12'),
+            'media'             => array( '', '', '4', '', '12'),
+            'offset'            => array( '', '' , '1', '', '' ),
+            'narrow_both'       => array( '', '', '10', '', '12'),
             'show_thumb_first'  => false,
-            'alternate'         => true
+            'alternate'         => true,
           );
-
+  private static $post_class    = array( 'row' );
+  private static $_col_bp = array(
+      'xl', 'lg', 'md', 'sm', 'xs'
+    );
   public $post_list_layout;
 
 
@@ -57,7 +66,14 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $model[ 'has_narrow_layout' ]     = 'b' == $global_sidebar_layout;
     $model[ 'post_list_layout' ]      = $this -> czr_fn_get_the_post_list_layout( $model[ 'has_narrow_layout' ] );
     $model[ 'has_format_icon_media' ] = ! $model[ 'has_narrow_layout' ];
-
+    
+    /* 
+    * In the new theme the places are defined just by the option show_thumb_first, 
+    * we handle the alternate with bootstrap classes
+    */    
+    $model[ 'def_place_1' ]           = 'show_thumb_first' == $model[ 'post_list_layout' ]['show_thumb_first'] ? 'media' : 'content';
+    $model[ 'def_place_2' ]           = 'show_thumb_first' == $model[ 'post_list_layout' ]['show_thumb_first'] ? 'content' : 'media';
+    
     return $model;
   }
 
@@ -88,114 +104,153 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
 
 
   function czr_fn_setup_late_properties() {
-
     global $wp_query;
-
+    /* Define variables */
     $_layout                 = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
     $maybe_center_sections   = apply_filters( 'czr_alternate_sections_centering', true );
-    $_sections_wrapper_class = '';
+
     $has_post_media          = $this -> czr_fn_show_media() ;
-    $is_full_image           = false; /* gallery and image (with no text) post formats */
+
+    $post_class              = ! $has_post_media ? array_merge( self::$post_class, array('no-thumb') ) : self::$post_class;
+
+    $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
 
     $_current_post_format    = get_post_format();
-
-    /* In the new theme the places are defined just by the option show_thumb_first, 
-    * we handle the alternate with bootstrap classes
-    *
-    */
-    $this -> place_1          = 'show_thumb_first' == $_layout['show_thumb_first'] ? 'media' : 'content';
-    $this -> place_2          = 'show_thumb_first' == $_layout['show_thumb_first'] ? 'content' : 'media';
     
-    $place_2                  = $this -> place_2;
+    /* gallery and image (with no text) post formats */
+    $is_full_image           = in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
+            ( 'image' == $_current_post_format && ! $_has_excerpt  ) );
 
+    $_sections_wrapper_class = array();
 
-    if ( $has_post_media ) {
-      /* In the new alternate layout video takes more space when global layout has less than 2 sidebars */
-      if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats', array( 'video' ) ) ) 
-          && ! $this->has_narrow_layout ) {
-        $_t_l                    = $_layout[ 'media' ];
-        $_layout[ 'media' ]      = $_layout[ 'content' ];
-        $_layout[ 'content' ]    = $_t_l;
-      }
-    }
+    /* Structural */
+    $place_1                 = $this -> def_place_1;    
+    $place_2                 = $this -> def_place_2;
 
-    // conditions to show the thumb first are:
-    // a) alternate on
-    //   a.1) position is left/top ( show_thumb_first true == 1 ) and current post number is odd (1,3,..)
-    //       current_post starts by 0, hence current_post + show_thumb_first = 1..2..3.. -> so mod % 2 == 1, 0, 1 ...
-    //    or
-    //   a.2) position is right/bottom ( show_thumb_first false == 0 ) and current post number is even (2,4,...)
-    //       current_post starts by 0, hence current_post + show_thumb_first = 0..1..2.. -> so mod % 2 == 0, 1, 0...
-    //  b) alternate off & position is left/top ( show_thumb_first == true == 1)
+    /* places for css classes for alternation / offset */
+    $_offset                 = array(
+      $place_1 => array(),
+      $place_2 => $_layout['offset']
+    );
+
+    $_push                   = array(
+      $place_1 => array(),
+      $place_2 => array()
+    );
+
+    $_pull                   = array(
+      $place_1 => array(),
+      $place_2 => array()
+    );
+    /* End define variables */
     
-    /*
-    * With the new system, change the alternate condition (added a not for the moment, the condition explained above was valid with the previous system)
-    */
-    if ( ! (  $_layout[ 'alternate' ] && ( ( $wp_query -> current_post + (int) $_layout[ 'show_thumb_first' ] ) % 2 ) ||
-          $_layout[ 'show_thumb_first' ] && ! $_layout[ 'alternate' ] ) ) {
-
-      //make it dynamic!! what if col-md- changes???
-      $place_2  = $this -> place_1;
-      $_layout[ $place_2 ] = array_merge( $_layout[ $place_2 ], str_replace( 'col-md-', 'push-md-', $_layout[ $this -> place_2 ] ) );
-
-      $cols = ( substr(implode($_layout[$place_2]), strpos( implode($_layout[$place_2]), 'push-md-' ) + strlen('push-md-') , 1) );
-      $cols = 12 - $cols; /* offset */
-      array_push( $_layout[ $this -> place_2 ], 'pull-md-'.$cols );      
-    }
- 
-    if ( ! in_array ( $_layout['position'], array( 'top', 'bottom') ) )
-      array_push( $_layout[ $place_2 ], 'offset-md-1' );
-
-
+    /* Process different cases */
     /* 
-    * Gallery and images (with no text) should
+    * $is_full_image: Gallery and images (with no text) should
     * - not be vertically centered
-    * - be displayed in full-width
-    * - prevent the media-content alternation
+    * - avoid the media-content alternation
     */
-    if ( in_array( $_current_post_format , array( 'gallery', 'image' ) ) ) {
-
-      if ( 'image' != $_current_post_format ||
-            ( 'image' == $_current_post_format && ! apply_filters( 'the_excerpt', get_the_excerpt() ) ) ) {
-        $_sections_wrapper_class = apply_filters( 'czr_alternate_sections_centering', true) ? 'czr-no-text' : '';
-
-        array_push( $this->post_class, 'czr-no-text' );
-
-        $is_full_image         = true;
-      
-        if ( ! $this->has_narrow_layout ) {
-          $_layout[ 'content' ]  = $_layout[ 'media' ]    = array( 'col-xs-12' );
+    if ( ! $is_full_image ) {
+      if ( $has_post_media ) {
+        /* 
+        * Video post formats
+        * In the new alternate layout video takes more space when global layout has less than 2 sidebars 
+        *
+        */
+        if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats', array( 'video' ) ) ) 
+            && ! $this->has_narrow_layout ) {
+          /* Swap the layouts */
+          $_t_l                    = $_layout[ 'media' ];
+          $_layout[ 'media' ]      = $_layout[ 'content' ];
+          $_layout[ 'content' ]    = $_t_l;
         }
+      }
 
-        $this -> place_1 = 'media';
-        $this -> place_2 = 'content';
-      } elseif ( ! $this->has_narrow_layout && 'image' == $_current_post_format )
-        $_sections_wrapper_class = $maybe_center_sections ? 'czr-center-sections' : '';
-        
-    
-    }elseif ( ! $this->has_narrow_layout )
-      $_sections_wrapper_class = $maybe_center_sections ? 'czr-center-sections' : '';
-    
+      // conditions to swap place_1 with place_2 are:
+      // alternate on and current post number is odd (1,3,..). (First post is 0 )
+      if (  $_layout[ 'alternate' ] &&  ( 0 == ( $wp_query -> current_post + 1 ) % 2 ) ) {
+        /* the slice is to avoid push/pull in xs */
+        $_push[ $place_1 ]        = array_slice( $_layout[ $place_2 ], 0, count($_layout[ $place_2 ]) - 1);
+        $_pull[ $place_2 ]        = array_slice( $_layout[ $place_1 ], 0, count($_layout[ $place_1 ]) - 1);
+        $_offset[ $place_1]       = $_offset[ $place_2 ];
+      }
+      
+      if ( ! $this->has_narrow_layout )
+        //allow centering sections
+        array_push( $_sections_wrapper_class, apply_filters( 'czr_alternate_sections_centering', true) ? 'czr-center-sections' : '');
+    } 
+    else {
+      /* 
+      * $is_full_image: Gallery and images (with no text) should
+      * - be displayed in full-width
+      * - media comes first, content will overlap
+      */
+      $_layout[ 'content' ]  = $_layout[ 'media' ]    = array( '', '', '', '', '12');
+      
+      $place_1 = 'media';
+      $place_2 = 'content';
 
-    /*
-    * Find a way to avoid the no-thumb here and delegate to the thumb wrapper?
-    */
-    $post_class           = ! $has_post_media ? array_merge( array($this -> post_class), array('no-thumb') ) : $this -> post_class;
-    $article_selectors    = czr_fn_get_the_post_list_article_selectors( $post_class );
+      $_offset                 = array(
+        $place_1 => array(),
+        $place_2 => array()
+      );
+    }
+
+    /* Extend article selectors with info about the presence of an excerpt and/or thumb */
+    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $_has_media ? 'no-thumb' : '' );  
+    $article_selectors    = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
 
     $this -> czr_fn_update( array(
-      'czr_media_col'          => $_layout[ 'media' ],
-      'czr_content_col'        => $_layout[ 'content' ],
+      'czr_media_col'          => $this -> czr_fn_build_cols( $_layout[ 'media' ], $_offset[ 'media' ], $_push['media'], $_pull['media'] ),
+      'czr_content_col'        => $this -> czr_fn_build_cols( $_layout[ 'content'], $_offset[ 'content' ], $_push['content'], $_pull['content'] ),
       'czr_show_excerpt'       => $this -> czr_fn_show_excerpt(),
       'has_post_media'         => $has_post_media,
       'article_selectors'      => $article_selectors,
       'is_loop_start'          => 0 == $wp_query -> current_post,
       'is_loop_end'            => $wp_query -> current_post == $wp_query -> post_count -1,
       'sections_wrapper_class' => $_sections_wrapper_class,
-      'is_full_image'          => $is_full_image
+      'is_full_image'          => $is_full_image,
+      'place_1'                => $place_1,
+      'place_2'                => $place_2
     ) );
 
   }
+
+
+  /**
+  * @return array() of bootstrap classed defining the responsive widths
+  *
+  */
+  function czr_fn_build_cols( $_widths, $_offset = array(), $_push = array(), $_pull = array() ) {
+    $_col_bp = self::$_col_bp;
+
+    $_widths = array_filter( $_widths );
+    $_offset = array_filter( $_offset );
+    $_push   = array_filter( $_push );
+    $_pull   = array_filter( $_pull );
+
+    $_cols   = array();
+
+    $_push_class = $_pull_class = $_offset_class = '';
+
+    foreach ( $_widths as $i => $val ) {
+      if ( isset($_offset[$i]) && ! isset($_pull[$i]) )
+        $_offset_class = "offset-{$_col_bp[$i]}-{$_offset[$i]}";
+
+      if ( isset($_push[$i]) )
+        $_push_class    = "push-{$_col_bp[$i]}-{$_push[$i]}";
+
+      if ( isset($_pull[$i]) ) {        
+        $_pull_col      = isset($_offset[$i]) ? $_pull[$i] + $_offset[$i] : $_pull[$i];
+        $_pull_class    = "pull-{$_col_bp[$i]}-{$_pull_col}";
+      }
+
+      $_width_class  = "col-{$_col_bp[$i]}-$val";
+      array_push( $_cols, $_width_class, $_offset_class, $_push_class, $_pull_class );
+    }
+    return $_cols;
+  }
+
 
   /**
   * @return array() of layout data
@@ -204,10 +259,10 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   */
   function czr_fn_get_the_post_list_layout( $narrow_layout = false ) {
     
-    $_layout                     = self::$default_post_list_layout;
+    $_layout                       = self::$default_post_list_layout;
 
-    $_layout[ 'position' ]       = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
-    $_layout['show_thumb_first'] = in_array( $_layout['position'] , array( 'top', 'left') );
+    $_layout[ 'position' ]         = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
+    $_layout[ 'show_thumb_first' ] = in_array( $_layout['position'] , array( 'top', 'left') );
 
     //since 4.5 top/bottom positions will not be optional but will be forced in narrow layouts
     if ( $narrow_layout )
@@ -223,7 +278,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $_layout['alternate']        = ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) ) || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
 
     if ( in_array( $_layout['position'] , array( 'top', 'bottom') ) )
-      $_layout['content'] = $_layout['media'] = array( 'col-xs-12', 'col-md-10' );
+      $_layout['content'] = $_layout['media'] = self::$default_post_list_layout['narrow_both'];
 
     return $_layout;
   }
