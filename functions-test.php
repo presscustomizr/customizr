@@ -23,7 +23,8 @@ $_options = array(
     'tc_sidebar_post_layout'   => 'b',
     'tc_front_layout'          => 'f',
 
-    'tc_post_list_thumb_position' => 'left',
+    'tc_post_list_thumb_position' => 'right',
+    'tc_post_list_thumb_alternate' => true,
 
     'tc_img_smart_load' => false
 

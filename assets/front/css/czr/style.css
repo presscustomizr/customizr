@@ -89,7 +89,7 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
   .grid-container__alternate .czr-center-sections .post-type__icon{ padding: 0 }
 }
 
-.article-container .grid-container__alternate .format-image.czr-no-text .tc-content, .article-container .grid-container__alternate .format-gallery .tc-content {
+.article-container .grid-container__alternate .format-image.no-text .tc-content, .article-container .grid-container__alternate .format-gallery .tc-content {
   width: 100%;
   height: calc(100% - 5em);
   top: 2.5em;
@@ -110,6 +110,6 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 /* think about this */
 .entry-header .entry-title { word-wrap: break-word;}
 
-.entry-image__container .post-type__icon icon {
+.entry-image__container .post-type__icon i {
     position: relative;
 }

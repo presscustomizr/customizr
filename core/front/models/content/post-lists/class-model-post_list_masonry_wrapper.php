@@ -5,10 +5,9 @@
 */
 class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
   public $element_class = array( 'grid-container__masonry', 'grid' );
-  public $post_class = 'grid-item';
   public $place_1 = 'media';
   public $place_2 = 'content';
-  public $sections_wrapper_class = 'grid-post';
+  public $sections_wrapper_class = array('grid-post');
 
   public $article_selectors;
 
@@ -29,6 +28,7 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
             'l'         => array('col-xs-12', 'col-md-6'),
             'r'         => array('col-xs-12', 'col-md-6')
           );
+  public $post_class    = array( 'grid-item' );
   /**
   * @override
   * fired before the model properties are parsed
@@ -47,7 +47,7 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
     }
     
     $model[ 'element_class']       = array_merge( $this -> element_class, array($_class) );
-    $model[ 'post_class' ]         = array_merge( self::$default_post_list_layout[$global_sidebar_layout], array($this -> post_class) );
+    $model[ 'post_class' ]         = array_merge( self::$default_post_list_layout[$global_sidebar_layout], $this -> post_class );
     $model[ 'has_narrow_layout' ]  = 'b' == $global_sidebar_layout;
 
     return $model;
@@ -80,16 +80,14 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
 
 
   function czr_fn_setup_late_properties() {
-
     global $wp_query;
     $has_post_media            = $this -> czr_fn_show_media() ;
-    $_current_post_format      = get_post_format();
-    /*
-    * Find a way to avoid the no-thumb here and delegate to the thumb wrapper?
-    */
+
     $post_class                = ! $has_post_media ? array_merge( $this -> post_class, array('no-thumb') ) : $this -> post_class;
+
     $article_selectors         = czr_fn_get_the_post_list_article_selectors( $post_class );
 
+    $_current_post_format      = get_post_format();
     $this -> czr_fn_update( array(
       'czr_show_excerpt'       => $this -> czr_fn_show_excerpt(),
       'has_post_media'         => $has_post_media,
