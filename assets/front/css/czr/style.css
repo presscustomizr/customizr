@@ -113,3 +113,38 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 .entry-image__container .post-type__icon i {
     position: relative;
 }
+
+/* Placeholder temp */
+.tc-placeholder-wrap {
+    padding: 19px;
+    background-color: #F5F5F5;
+    border: 1px solid #E3E3E3;
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.6);
+    -moz-box-shadow: inset 0 0 10px rgba(0,0,0,.6);
+    box-shadow: inset 0 0 10px rgba(0,0,0,.6);
+    position: relative;
+}
+.tc-placeholder-wrap p {
+    font-style: italic;
+    font-size: 80%;
+    color: #5A5A5A!important;
+    text-align: center;
+}
+.tc-placeholder-wrap::before {
+    font-family: FontAwesome;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    font-style: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+      
+    font-size: 1em;
+    content: "\f05a";
+    padding-left: 0;
+    position: absolute;
+    text-decoration: none!important;
+    top: 5px;
+    left: 5px;
+}

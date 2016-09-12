@@ -40,16 +40,24 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
                 $content = 'https://youtu.be/FAECyLvSCHg';
                 $class   = 'youtube';
               break;
-            case 'post-format-video-wordpresstv':
+            case 'post-format-video-wordpresstv' :
                 $content = 'https://vimeo.com/176587685';
                 $class   = 'vimeo';
               break;
-            default: $content = "You need to setup the video post field"; $class = "no-media";
-          }
-          global $wp_embed;
-          $content = $wp_embed -> autoembed( $content );
 
-          return '<div class="video-container '. $class .'">'. $content . '</div>'; 
+            default : 
+              $content = '';
+          }
+
+          global $wp_embed;
+          $content = $content ? $wp_embed -> autoembed( $content ) : '';
+          $content = ! $content && 'alternate' == czr_fn_get_opt('tc_post_list_grid') && current_user_can('manage_options') ?
+            '<div class="tc-placeholder-wrap">
+                <p><strong>You need to setup the video post field</strong></p>
+            </div>' : $content;
+
+          return $content ? '<div class="video-container '. $class .'">'. $content . '</div>' : '';
+
       case 'audio':
           global $post, $wp_embed;
           $slug =  $post->post_name;
@@ -58,16 +66,22 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
               $content = 'https://soundcloud.com/digitalescort/something-in-the-way';
               $class   = 'soundcloud';
               break;
-            case 'another-post-format-audio':
+            case 'another-post-format-audio' :
               $content = 'https://play.spotify.com/track/4rjnWmrSRqXVkFWdKMG3pV';
               $class   = 'spotify';
               break;            
-            default: $content = "You need to setup the audio post field"; $class = "no-media";
+            default : 
+              $content = '';
           }
-          global $wp_embed;
-          $content = $wp_embed -> autoembed( $content );
 
-          return '<div class="audio-container '. $class .'">'. $content . '</div>';
+          global $wp_embed;
+          $content = $content ? $wp_embed -> autoembed( $content ) : '';
+          $content = ! $content && 'alternate' == czr_fn_get_opt('tc_post_list_grid') && current_user_can('manage_options') ?
+            '<div class="tc-placeholder-wrap">
+                <p><strong>You need to setup the audio post field</strong></p>
+            </div>' : $content;
+
+          return $content ? '<div class="audio-container '. $class .'">'. $content . '</div>' : '';
       default:
           $_the_thumb = czr_fn_get_thumbnail_model( 'normal' );
 

@@ -113,6 +113,10 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
 
     $post_class              = ! $has_post_media ? array_merge( self::$post_class, array('no-thumb') ) : self::$post_class;
 
+    /* 
+    * Using the excerpt filter here can cause some compatibility issues 
+    * See: Super Socializer plugin
+    */
     $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
 
     $_current_post_format    = get_post_format();
