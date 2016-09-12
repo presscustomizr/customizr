@@ -181,8 +181,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       
       if ( ! $this->has_narrow_layout )
         //allow centering sections
-        array_push( $_sections_wrapper_class, apply_filters( 'czr_alternate_sections_centering', true) ? 'czr-center-sections' : '');
-    } 
+        array_push( $_sections_wrapper_class, apply_filters( 'czr_alternate_sections_centering', true ) ? 'czr-center-sections' : 'a');
+    }
     else {
       /* 
       * $is_full_image: Gallery and images (with no text) should

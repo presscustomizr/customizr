@@ -528,7 +528,12 @@ if ( ! class_exists( 'CZR___' ) ) :
         */
         function czr_fn_echo( $property, $model_id = null, $args = array() ) {
             $prop_value = czr_fn_get( $property, $model_id, $args );
-            echo $prop_value && is_array( $prop_value ) ? czr_fn_stringify_array( $prop_value ) : $prop_value;
+            /*
+            * is_array returns false if an array is empty:
+            * in that case we have to transform it in false or ''
+            */
+            $prop_value = $prop_value && is_array( $prop_value ) ? czr_fn_stringify_array( $prop_value ) : $prop_value;
+            echo empty($prop_value) ? '' : $prop_value;
         }
 
         /*
