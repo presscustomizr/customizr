@@ -13,7 +13,7 @@ $_options = array(
     'tc_logo_upload' => '611',
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
-    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate
+    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
