@@ -74,7 +74,8 @@ var czrapp = czrapp || {};
    variousHeaderActions : function() {
       /* ham navbar */
       czrapp.$_body.on( 'click', '.ham__navbar-toggler', function() {
-        $(this).toggleClass('collapsed');
+        if ( ! $(this).parent( '.mobile-utils__wrapper' ) )
+          $(this).toggleClass('collapsed');
         czrapp.$_body.toggleClass('opened'); 
       });
       
@@ -91,11 +92,26 @@ var czrapp = czrapp || {};
       czrapp.$_body.on( 'click', '.search-close_btn', function()  {
         czrapp.$_body.removeClass('full-search-opened');
       });
+
    },
     //SMOOTH SCROLL
     smoothScroll: function() {
       if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled )
         smoothScroll( CZRParams.SmoothScroll.Options );
+    },
+    pluginsCompatibility: function() {
+      /*
+      * Super socializer
+      * it prints the socializer vertical bar filtering the excerpt
+      * so as child of .entry-content__holder.
+      * In alternate layouts, when centering sections, the use of the translate property
+      * changed the fixed behavior (of the aforementioned bar) to an absoluted behavior
+      * with the following core we move the bar outside the section 
+      * ( different but still problems occurr with the masonry )
+      */
+      var $_ssbar = $( '.the_champ_vertical_sharing, .the_champ_vertical_counter', '.article-container' );
+      if ( $_ssbar.length )
+        $_ssbar.detach().prependTo('.article-container');
     }
   };//_methods{}
 
