@@ -32,7 +32,7 @@
         parallaxDirection : 1,
         parallaxOverflowHidden : true,
         oncustom : [],//list of event here
-        backgroundClass : 'image',
+        backgroundClass : 'image'
       };
 
 
