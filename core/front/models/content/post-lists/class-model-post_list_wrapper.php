@@ -23,8 +23,6 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   public $czr_media_col;
   public $czr_content_col;
 
-  public $czr_show_excerpt;
-
   public $is_loop_start;
   public $is_loop_end;
 
@@ -207,7 +205,6 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $this -> czr_fn_update( array(
       'czr_media_col'          => $this -> czr_fn_build_cols( $_layout[ 'media' ], $_offset[ 'media' ], $_push['media'], $_pull['media'] ),
       'czr_content_col'        => $this -> czr_fn_build_cols( $_layout[ 'content'], $_offset[ 'content' ], $_push['content'], $_pull['content'] ),
-      'czr_show_excerpt'       => $this -> czr_fn_show_excerpt(),
       'has_post_media'         => $has_post_media,
       'article_selectors'      => $article_selectors,
       'is_loop_start'          => 0 == $wp_query -> current_post,
@@ -319,27 +316,11 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     //2) the excerpt option is not set to full
     //3) user settings in customizer
     //4) filter's conditions
-    return apply_filters( 'czr_show_media', 
-          $this -> czr_fn_show_excerpt() &&
+    return apply_filters( 'czr_show_media',
           ! in_array( get_post_format() , apply_filters( 'czr_post_formats_with_no_media', array( 'quote', 'link', 'status', 'aside' ) ) ) &&
           czr_fn_has_thumb() &&
           0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) )
     );
   }
 
-  /*
-  * Todo: treat in a different model(/template ?!)
-  *
-  */
-  /**
-  * @return boolean whether excerpt instead of full content
-  * @package Customizr
-  * @since Customizr 3.3.2 
-  */
-  private function czr_fn_show_excerpt() {
-    //When do we show the post excerpt?
-    //1) when set in options
-    //2) + other filters conditions
-    return (bool) apply_filters( 'czr_show_excerpt', 'full' != esc_attr( czr_fn_get_opt( 'tc_post_list_length' ) ) );
-  }
 }
