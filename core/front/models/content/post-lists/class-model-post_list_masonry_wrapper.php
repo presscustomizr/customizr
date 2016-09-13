@@ -87,7 +87,6 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
 
     $_current_post_format      = get_post_format();
     $this -> czr_fn_update( array(
-      'czr_show_excerpt'       => $this -> czr_fn_show_excerpt(),
       'has_post_media'         => $has_post_media,
       'article_selectors'      => $article_selectors,
       'is_loop_start'          => 0 == $wp_query -> current_post,

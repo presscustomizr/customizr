@@ -31,7 +31,19 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
       array(
         'id'          => 'right_sidebar',
         'model_class' => 'content/sidebars/sidebar'
-      ) 
+      ),
+
+      /* Needs to access the czr_user_options_style */
+      /*********************************************
+      * GRID (POST LIST)
+      *********************************************/
+      array(
+        'id'          => 'post_list_grid',
+        'model_class' => 'modules/grid/grid_wrapper',
+      ),
+      /* END GRID */      
+
+
     );
 
     return $children;
