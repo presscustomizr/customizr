@@ -74,17 +74,17 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
 
   function czr_fn_setup_late_properties() {
-    $show_excerpt           = czr_fn_get( 'czr_show_excerpt' );
     $content                = '';
     $element_class          = czr_fn_get( 'czr_content_col' );
     $is_loop_start          = czr_fn_get( 'is_loop_start' );
     $is_loop_end            = czr_fn_get( 'is_loop_end' );
     $is_full_image          = czr_fn_get( 'is_full_image' );
     $has_header_format_icon = czr_fn_get( 'has_header_format_icon' );
+    $show_full_content      = czr_fn_get( 'show_full_content' );
 
-    /* The full content should become a total different model */
-    $content_cb          = $this -> get_content_cb( $show_excerpt ? 'get_the_excerpt' : 'get_the_content' );
-    $content_class       = 'get_the_excerpt' == $content_cb ? array( 'entry-summary' ) : array( 'entry-summary' );
+    /* The full content should become a total different model ? */
+    $content_cb             = $this -> get_content_cb( $show_full_content ? 'get_the_content' : 'get_the_excerpt' );
+    $content_class          = 'get_the_content' == $content_cb ? array( 'entry-content' ) : array( 'entry-summary' );
 
 
     $this -> czr_fn_update( compact( 

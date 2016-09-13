@@ -14,8 +14,6 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
   public $has_post_media;
   public $has_header_format_icon;
 
-  public $czr_show_excerpt;
-
   public $is_loop_start;
   public $is_loop_end;
 
@@ -133,23 +131,11 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
     //2) the excerpt option is not set to full
     //3) user settings in customizer
     //4) filter's conditions
-    return apply_filters( 'czr_show_media', 
-          $this -> czr_fn_show_excerpt() &&
+    return apply_filters( 'czr_show_media',
           ! in_array( get_post_format() , apply_filters( 'czr_post_formats_with_no_media', array( 'quote', 'link', 'status', 'aside', 'chat' ) ) ) &&
           czr_fn_has_thumb() &&
           0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) )
     );
   }
-
-  /**
-  * @return boolean whether excerpt instead of full content
-  * @package Customizr
-  * @since Customizr 3.3.2
-  */
-  private function czr_fn_show_excerpt() {
-    //When do we show the post excerpt?
-    //1) when set in options
-    //2) + other filters conditions
-    return (bool) apply_filters( 'czr_show_excerpt', 'full' != esc_attr( czr_fn_get_opt( 'tc_post_list_length' ) ) );
-  }
+  
 }
