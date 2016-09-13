@@ -533,7 +533,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             * in that case we have to transform it in false or ''
             */
             $prop_value = $prop_value && is_array( $prop_value ) ? czr_fn_stringify_array( $prop_value ) : $prop_value;
-            echo empty($prop_value) ? '' : $prop_value;
+            echo empty( $prop_value ) ? '' : $prop_value;
         }
 
         /*
