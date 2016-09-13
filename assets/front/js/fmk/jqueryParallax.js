@@ -10,6 +10,21 @@
  *
  * =================================================== */
 ;(function ( $, window, document, undefined ) {
+  /*
+  * In order to handle a smooth scroll
+  * ( inspired by jquery.waypoints and smoothScroll.js )
+  * Maybe use this -> https://gist.github.com/paulirish/1579671
+  */
+  czrParallaxRequestAnimationFrame = function(callback) {
+    var requestFn = ( czrapp && czrapp.requestAnimationFrame) ||
+      window.requestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      function( callback ) { window.setTimeout(callback, 1000 / 60); }
+
+    requestFn.call(window, callback)
+  }
+
   //defaults
   var pluginName = 'czrParallax',
       defaults = {
@@ -17,8 +32,9 @@
         parallaxDirection : 1,
         parallaxOverflowHidden : true,
         oncustom : [],//list of event here
-        backgroundClass : 'image'
+        backgroundClass : 'image',
       };
+
 
   function Plugin( element, options ) {
     this.element = $(element);
@@ -38,10 +54,12 @@
     //cache some element
     this.$_document   = $(document);
     this.$_window     = czrapp ? czrapp.$_window : $(window);
+    this.windowIsBusy       = false;
 
     this.initWaypoints();
     this.stageParallaxElements();
     this._bind_evt();
+    //this.maybeParallaxMe();
   };
 
   //@return void
@@ -50,8 +68,7 @@
     var self = this,
         _customEvt = $.isArray(this.options.oncustom) ? this.options.oncustom : this.options.oncustom.split(' ');
     
-    _.bindAll( this, 'parallaxMe' );
-    /* TODO: custom events? */
+    _.bindAll( this, 'maybeParallaxMe', 'parallaxMe' );
   }
 
   Plugin.prototype.stageParallaxElements = function() {
@@ -70,12 +87,14 @@
       this.way_start = new Waypoint({
         element: self.element,
         handler: function() {
+          self.maybeParallaxMe();          
           if ( ! self.element.hasClass('parallaxing') ){
-            self.$_window.on('scroll', self.parallaxMe );
+            self.$_window.on('scroll', self.maybeParallaxMe );
             self.element.addClass('parallaxing');
           }else{
             self.element.removeClass('parallaxing');
-            self.$_window.off('scroll', self.parallaxMe );
+            self.$_window.off('scroll', self.maybeParallaxMe );
+            self.windowIsBusy = false;
             self.element.css('top', 0 );
           }
         }
@@ -84,21 +103,38 @@
       this.way_stop = new Waypoint({
         element: self.element,
         handler: function() {
-          if ( ! self.element.hasClass('parallaxing') ){
-            self.$_window.on('scroll', self.parallaxMe );
+          self.maybeParallaxMe();
+          if ( ! self.element.hasClass('parallaxing') ) {
+            self.$_window.on('scroll', self.maybeParallaxMe );
             self.element.addClass('parallaxing');
           }else {
             self.element.removeClass('parallaxing');
-            self.$_window.off('scroll', self.parallaxMe );
+            self.$_window.off('scroll', self.maybeParallaxMe );
+            self.windowIsBusy = false;
           }
         },
         offset: function(){
-          offset = this.context.innerHeight() - this.adapter.outerHeight();
-          return - (  offset > 20 /* possible wrong h scrollbar */ ? offset : this.context.innerHeight() );
+          //offset = this.context.innerHeight() - this.adapter.outerHeight();
+          //return - (  offset > 20 /* possible wrong h scrollbar */ ? offset : this.context.innerHeight() );
+          return - this.adapter.outerHeight();
         }
       });
   };
 
+  /*
+  * To handle a smooth scroll
+  */
+  Plugin.prototype.maybeParallaxMe = function() {
+      var self = this;
+
+      if ( !this.windowIsBusy ) {
+        this.windowIsBusy = true;
+        czrParallaxRequestAnimationFrame(function() {
+          self.parallaxMe();
+          self.windowIsBusy = false;
+        });
+      }
+  };
 
   Plugin.prototype.parallaxMe = function() {
       //parallax only the current slide if in slider context?
@@ -106,7 +142,6 @@
       if ( ! ( this.element.hasClass( 'is-selected' ) || this.element.parent( '.is-selected' ).length ) )
         return;
       */
-      
       var ratio = this.options.parallaxRatio,
           parallaxDirection = this.options.parallaxDirection,
           

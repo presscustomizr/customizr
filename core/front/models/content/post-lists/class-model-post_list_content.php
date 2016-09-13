@@ -111,13 +111,6 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
       default       : return $default;
     }
   }
-  /**
-  * parse this model properties for rendering
-  */
-  function czr_fn_sanitize_model_properties( $model ) {
-    parent::czr_fn_sanitize_model_properties( $model );
-    $model -> content_class = $this -> czr_fn_stringify_model_property( 'content_class' );
-  }
 
 
   /* Testing purpose */
