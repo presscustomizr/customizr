@@ -5,7 +5,6 @@
  * In WP loop
  *
  * @package Customizr
- * @since Customizr 3.5.0
  */
 ?>
 <section class="tc-thumbnail entry-image__container <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
