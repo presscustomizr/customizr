@@ -4,7 +4,6 @@
  * In WP loop
  *
  * @package Customizr
- * @since Customizr 3.5.0
  */
 ?>
 <footer class="entry-footer" <?php czr_fn_echo('element_attributes') ?>>    

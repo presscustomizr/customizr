@@ -5,7 +5,6 @@
  * In WP loop
  *
  * @package Customizr
- * @since Customizr 3.5.0
  */
 ?>
 <?php if ( czr_fn_get( 'is_loop_start' ) ) : ?>
