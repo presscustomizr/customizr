@@ -94,7 +94,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
 
           if ( $this -> is_full_image )
             return $_the_thumb[ 'tc_thumb' ] ;
-          return '<a href="'. get_the_permalink() .'">'.  $_the_thumb[ 'tc_thumb' ] . '</a>';
+          return '<a href="'. esc_url( apply_filters( 'the_permalink', get_the_permalink() ) ) .'">'.  $_the_thumb[ 'tc_thumb' ] . '</a>';
     }
   }
 
