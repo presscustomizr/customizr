@@ -12,7 +12,7 @@
   <?php do_action( 'before_post_list_entry_content' ) ?>
 
   <?php if ( czr_fn_get( 'is_full_image' ) ) : ?>
-    <a class="bg-link" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a>
+    <a class="bg-link" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a>
   <?php endif ?>
 
   <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/post_list_header') ?>

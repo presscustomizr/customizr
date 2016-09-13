@@ -129,7 +129,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   function get_the_post_quote() {
     $_content =  "Kogi Cosby sweater ethical squid irony disrupt, organic tote bag gluten-free XOXO wolf typewriter mixtape small batch.";
     if ( empty( get_the_title() ) )
-      $_content = '<a title="'. the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) ).'" href="'. get_the_permalink() .'">' . $_content . '</a>';
+      $_content = '<a title="'. the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) ).'" href="'. esc_url( apply_filters( 'the_permalink', get_the_permalink() ) ) .'">' . $_content . '</a>';
 
     return '<blockquote class="blockquote entry-quote">
               <p class="m-b-0">'. $_content .'</p>
