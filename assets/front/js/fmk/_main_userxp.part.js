@@ -39,7 +39,7 @@ var czrapp = czrapp || {};
 
     },
     //FORM FOCUS ACTION
-    formFocusAction : function() {
+    formActions : function() {
       var _input_types    = ['input', 'textarea'],
         _parent_selector  = '.form-group'      
         _focus_class      = 'in-focus',
@@ -58,6 +58,8 @@ var czrapp = czrapp || {};
         }
       };
 
+      //on ready:
+      $( _inputs ).each( _toggleThisFocusClass );
     },
     //test comment reply
    commentReplyTest : function() {
@@ -79,11 +81,11 @@ var czrapp = czrapp || {};
         czrapp.$_body.toggleClass('opened'); 
       });
       
-      if( $( '.hamburger-menu' ).length ){
-        $(".nav__content").mCustomScrollbar({
-          theme:"minimal"
-        });  
-      }
+      /* TO FIX: doesn't work */
+    /*  $( '.hamburger-menu .nav__container > nav' ).mCustomScrollbar({
+        theme:"minimal"
+      });
+    */ 
       
       /* header search button */
       czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function()  {
