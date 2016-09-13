@@ -199,7 +199,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     }
 
     /* Extend article selectors with info about the presence of an excerpt and/or thumb */
-    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $_has_media ? 'no-thumb' : '' );  
+    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $has_post_media ? 'no-thumb' : '' );  
     $article_selectors    = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
 
     $this -> czr_fn_update( array(

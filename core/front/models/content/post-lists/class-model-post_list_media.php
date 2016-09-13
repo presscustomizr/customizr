@@ -47,6 +47,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
 
             default : 
               $content = '';
+              $class   = '';
           }
 
           global $wp_embed;
@@ -72,6 +73,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
               break;            
             default : 
               $content = '';
+              $class   = '';
           }
 
           global $wp_embed;
