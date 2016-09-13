@@ -110,6 +110,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
           'files' => array( 'outline.js' ),
           'dependencies' => array()
         ),
+        'tc-waypoints' => array(
+          'path' => 'inc/assets/js/parts/',
+          'files' => array( 'waypoints.js' ),
+          'dependencies' => array('jquery')
+        ),
         'tc-dropcap' => array(
           'path' => 'inc/assets/js/jquery-plugins/',
           'files' => array( 'jqueryaddDropCap.js' ),
@@ -123,6 +128,11 @@ if ( ! class_exists( 'TC_resources' ) ) :
         'tc-ext-links' => array(
           'path' => 'inc/assets/js/jquery-plugins/',
           'files' => array( 'jqueryextLinks.js' ),
+          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+        ),
+        'tc-parallax' => array(
+          'path' => 'inc/assets/js/jquery-plugins/',
+          'files' => array( 'jqueryParallax.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
         'tc-center-images' => array(
@@ -192,12 +202,12 @@ if ( ! class_exists( 'TC_resources' ) ) :
 			else {
         wp_enqueue_script( 'underscore' );
         //!!mind the dependencies
-        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-smoothscroll', 'tc-outline' ) );
+        $this -> tc_enqueue_script( array( 'tc-js-params', 'tc-js-arraymap-proto', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-smoothscroll', 'tc-outline', 'tc-waypoints' ) );
 
         if ( $this -> tc_is_fancyboxjs_required() )
           $this -> tc_enqueue_script( 'tc-fancybox' );
 
-        $this -> tc_enqueue_script( array( 'tc-dropcap' , 'tc-img-smartload', 'tc-ext-links', 'tc-center-images', 'tc-main-front' ) );
+        $this -> tc_enqueue_script( array( 'tc-dropcap' , 'tc-img-smartload', 'tc-ext-links', 'tc-center-images', 'tc-parallax', 'tc-main-front' ) );
 			}//end of load concatenate script if
 
       //carousel options

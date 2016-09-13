@@ -429,7 +429,15 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                     __( "Open the description page of the Regenerate thumbnails plugin" , 'customizr')
                                 )
               ),
-               'tc_display_slide_loader'  =>  array(
+              'tc_slider_parallax'  =>  array(
+                                'default'       => TC_utils::$inst -> tc_user_started_before_version( '3.4.22' , '1.2.27' ) ? 0 : 1,
+                                'control'   => 'TC_controls' ,
+                                'label'       => __( "Sliders : use parallax scrolling" , "customizr" ),
+                                'section'     => 'images_sec' ,
+                                'type'        => 'checkbox' ,
+                                'notice'    => __( 'When enabled, your slides scroll slower than the page.' , 'customizr' ),
+              ),
+              'tc_display_slide_loader'  =>  array(
                                 'default'       => 0,
                                 'control'   => 'TC_controls' ,
                                 'label'       => __( "Sliders : display on loading icon before rendering the slides" , "customizr" ),
@@ -437,6 +445,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'type'        => 'checkbox' ,
                                 'notice'    => __( 'When checked, this option displays a loading icon when the slides are being setup.' , 'customizr' ),
               ),
+
                'tc_center_slider_img'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'TC_controls' ,

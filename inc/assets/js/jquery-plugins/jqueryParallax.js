@@ -93,8 +93,10 @@
           }
         },
         offset: function(){
-          offset = this.context.innerHeight() - this.adapter.outerHeight();
-          return - (  offset > 20 /* possible wrong h scrollbar */ ? offset : this.context.innerHeight() );
+          return - this.adapter.outerHeight();
+          // offset = this.context.innerHeight() - this.adapter.outerHeight();
+          // console.log('ALORS ?', this.context,  this.adapter,this.context.innerHeight(), this.adapter.outerHeight(), offset );
+          // return - (  offset > 20 /* possible wrong h scrollbar */ ? offset : this.context.innerHeight() );
         }
       });
   };

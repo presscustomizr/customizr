@@ -56,3 +56,27 @@ require_once( get_template_directory() . '/inc/init.php' );
 * More informations about how to create a child theme with Customizr : http://docs.presscustomizr.com/article/24-creating-a-child-theme-for-customizr/
 * A good starting point to customize the Customizr theme : http://docs.presscustomizr.com/article/35-how-to-customize-the-customizr-wordpress-theme/
 */
+add_action( 'wp', function() {
+  if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_slider_parallax') ) ) {
+    add_filter('tc_carousel_inner_classes', function( $classes) {
+      array_push($classes, 'parallax-wrapper' );
+      return $classes;
+    });
+
+    add_filter('tc_single_slide_item_classes', function( $classes) {
+      array_push($classes, 'czr-parallax-slider' );
+      return $classes;
+    });
+
+    add_action('wp_head', function() {
+      $parallax_speed = apply_filters('tc_parallax_speed', 0.55 );
+      ?>
+      <script type="text/javascript">
+        jQuery( function($){
+          $( '.czr-parallax-slider' ).czrParallax( { parallaxRatio : <?php echo $parallax_speed; ?> } );
+        });
+      </script>
+      <?php
+    });
+  }
+});
