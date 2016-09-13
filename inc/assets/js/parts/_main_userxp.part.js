@@ -49,11 +49,11 @@ var czrapp = czrapp || {};
         break;
       }
     },//eventHandler
- 
+
     //outline firefox fix, see https://github.com/presscustomizr/customizr/issues/538
     outline: function() {
-      if ( czrapp.$_body.hasClass( 'mozilla' ) )
-        tcOutline();
+      if ( czrapp.$_body.hasClass( 'mozilla' ) && 'function' == typeof( tcOutline ) )
+          tcOutline();
     },
 
     //SMOOTH SCROLL
@@ -77,10 +77,10 @@ var czrapp = czrapp || {};
       _deep_excl = _.isObject( TCParams.anchorSmoothScrollExclude.deep ) ? TCParams.anchorSmoothScrollExclude.deep : null ;
       if ( _deep_excl )
         _links = _.toArray($_links).filter( function ( _el ) {
-          return ( 2 == ( ['ids', 'classes'].filter( 
-                        function( sel_type) { 
-                            return self.isSelectorAllowed( $(_el), _deep_excl, sel_type); 
-                        } ) ).length 
+          return ( 2 == ( ['ids', 'classes'].filter(
+                        function( sel_type) {
+                            return self.isSelectorAllowed( $(_el), _deep_excl, sel_type);
+                        } ) ).length
                 );
         });
       $(_links).click( function () {
@@ -225,14 +225,14 @@ var czrapp = czrapp || {};
 
       //both conain iframes => do nothing
       if ( leftIframe && contentIframe )
-        return;    
+        return;
 
       if ( that.$_left.length ) {
         if ( leftIframe )
           that.$_content[ _sidebarLayout === 'normal' ?  'insertAfter' : 'insertBefore']( that.$_left );
         else
           that.$_left[ _sidebarLayout === 'normal' ?  'insertBefore' : 'insertAfter']( that.$_content );
-      } 
+      }
     },
 
     //Handle dropdown on click for multi-tier menus
@@ -365,7 +365,7 @@ var czrapp = czrapp || {};
     },
 
     //Helpers
-    
+
     //Check if the passed element(s) contains an iframe
     //@return list of containers
     //@param $_elements = mixed

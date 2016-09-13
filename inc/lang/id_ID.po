@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v3.4.22\n"
-"POT-Creation-Date: 2015-08-22 15:54+0200\n"
-"PO-Revision-Date: 2016-03-02 12:00-0800\n"
+"POT-Creation-Date: 2016-08-30 14:41+0200\n"
+"PO-Revision-Date: 2016-08-30 14:42+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
 "com>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -18,15 +18,15 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 
-#: admin/class-admin-customize.php:89
+#: admin/class-admin-customize.php:85
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; Pilih &mdash;"
 
-#: admin/class-admin-customize.php:125
+#: admin/class-admin-customize.php:121
 msgid "Assign menus to locations"
 msgstr "Terapkan menu ke lokasi"
 
-#: admin/class-admin-customize.php:133
+#: admin/class-admin-customize.php:131
 #, php-format
 msgid ""
 "You haven't created any menu yet. %s or check the %s to learn more about "
@@ -35,28 +35,30 @@ msgstr ""
 "Anda belum membuat menu apapun. %s atau cek %s untuk mempelajari lebih "
 "lanjut tentang menu"
 
-#: admin/class-admin-customize.php:134
+#: admin/class-admin-customize.php:132
 msgid "Create a new menu now"
 msgstr "Buat menu baru sekarang"
 
-#: admin/class-admin-customize.php:135 class-fire-utils_settings_map.php:1330
-#: parts/class-content-post.php:206
+#: admin/class-admin-customize.php:133 class-fire-utils_settings_map.php:1507
+#: parts/class-content-post.php:209
 msgid "WordPress documentation"
 msgstr "Dokumentasi Wordpress"
 
-#: admin/class-admin-customize.php:152
+#: admin/class-admin-customize.php:150
 msgid "SITE ICON"
 msgstr "IKON SITUS"
 
-#: admin/class-admin-customize.php:348
+#: admin/class-admin-customize.php:363
 msgid "More grid design options"
 msgstr "Lebih banyak pilihan grid"
 
-#: admin/class-admin-customize.php:358
-msgid "Jump to the blog design options"
-msgstr "Lompat ke opsi blog desain"
+#: admin/class-admin-customize.php:471
+msgid ""
+"This option generates a home page slider based on your last posts, starting "
+"from the most recent or the featured (sticky) post(s) if any."
+msgstr ""
 
-#: admin/class-admin-customize.php:463
+#: admin/class-admin-customize.php:472
 msgid ""
 "Your favicon is currently handled with an old method and will not be "
 "properly displayed on all devices. You might consider to re-upload your "
@@ -66,19 +68,19 @@ msgstr ""
 "sempurna di semua perangkat. Anda harus mengunggah ulang favicon lewat "
 "kontrol dibawah."
 
-#: admin/class-admin-customize.php:534
+#: admin/class-admin-customize.php:528
 msgid "dismiss"
 msgstr "abaikan"
 
-#: admin/class-admin-customize.php:537
+#: admin/class-admin-customize.php:531
 msgid "Hi! This is"
 msgstr "Hai! Ini"
 
-#: admin/class-admin-customize.php:539
+#: admin/class-admin-customize.php:533
 msgid ", developer of the Customizr theme"
 msgstr ", Pengembang Customizr Theme"
 
-#: admin/class-admin-customize.php:542
+#: admin/class-admin-customize.php:536
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
 "think it helped you in any way to build a better web presence, please "
@@ -88,11 +90,11 @@ msgstr ""
 "sempurna untuk Anda. Jika ini membantu Anda menjadikan website Anda "
 "sempurna, silahkan support dengan donasi sebesar $20, $50, ..."
 
-#: admin/class-admin-customize.php:547
+#: admin/class-admin-customize.php:541
 msgid "Make a donation for Customizr"
 msgstr "Donasi untuk Customizr"
 
-#: admin/class-admin-customize.php:550
+#: admin/class-admin-customize.php:544
 msgid ""
 "Once clicked the 'Hide forever' button, this donation block will not be "
 "displayed anymore.<br/>Either you are using Customizr for personal or "
@@ -106,25 +108,21 @@ msgstr ""
 "><strong>Sudah donasi? Terimakasih, keren!<br/><br/> Semoga awet langgeng "
 "bersama Customizr!</strong>"
 
-#: admin/class-admin-customize.php:551
+#: admin/class-admin-customize.php:545
 msgid "Hide forever"
 msgstr "Sembunyikan selamanya"
 
-#: admin/class-admin-customize.php:552
+#: admin/class-admin-customize.php:546
 msgid "Let me think twice"
 msgstr "Biarkan saya berpikir lagi"
 
-#: admin/class-admin-customize.php:561
-msgid "Need more customizations options and premium support ?"
-msgstr "Butuh penyesuaian lebih dan support lebih ?"
+#: admin/class-admin-customize.php:556 admin/class-admin-customize.php:567
+#: admin/class-admin-customize.php:578 admin/class-admin-customize.php:592
+#: admin/class-admin-customize.php:606 admin/class-admin-customize.php:618
+msgid "Upgrade to Customizr Pro"
+msgstr ""
 
-#: admin/class-admin-customize.php:563 admin/class-admin-customize.php:574
-#: admin/class-admin-customize.php:585 admin/class-admin-customize.php:599
-#: admin/class-admin-customize.php:613 admin/class-admin-customize.php:625
-msgid "Get Customizr Pro"
-msgstr "Dapatkan Customizr Pro"
-
-#: admin/class-admin-customize.php:572
+#: admin/class-admin-customize.php:565
 msgid ""
 "Need more control on your fonts ? Style any text in live preview ( size, "
 "color, font family, effect, ...) with Customizr Pro."
@@ -132,11 +130,11 @@ msgstr ""
 "Butuh kontrol lebih untuk font ? Hias teks apapun di pratinjau instan "
 "( ukuran, warna, font family, efek, ...) dengan Customizr Pro"
 
-#: admin/class-admin-customize.php:583
+#: admin/class-admin-customize.php:576
 msgid "Add unlimited featured pages with Customizr Pro."
 msgstr "Tambahkan laman fitur tidak terbatas dengan Customizr Pro"
 
-#: admin/class-admin-customize.php:595
+#: admin/class-admin-customize.php:588
 msgid ""
 "Rediscover the beauty of your blog posts and increase your visitors "
 "engagement with the Grid Customizer."
@@ -144,55 +142,55 @@ msgstr ""
 "Temukan lagi post blog yang menarik dan tingkatkan pengunjung dengan Grid "
 "Customizer."
 
-#: admin/class-admin-customize.php:596
+#: admin/class-admin-customize.php:589
 msgid "Try it in the demo"
 msgstr "Cobain di demo"
 
-#: admin/class-admin-customize.php:609
+#: admin/class-admin-customize.php:602
 msgid "Add creative and engaging reveal animations to your side menu."
 msgstr "Tambahkan kreasi dan animasi ke menu samping."
 
-#: admin/class-admin-customize.php:610
+#: admin/class-admin-customize.php:603
 msgid "Side menu animation demo"
 msgstr "Demo menu samping animasi"
 
-#: admin/class-admin-customize.php:623
+#: admin/class-admin-customize.php:616
 msgid "Customize your footer credits with Customizr Pro."
 msgstr "Sesuaikan footer kredit dengan Customizr Pro"
 
-#: admin/class-admin-customize.php:634
+#: admin/class-admin-customize.php:627
 msgid "If you like"
 msgstr "Jika Anda suka"
 
-#: admin/class-admin-customize.php:635
+#: admin/class-admin-customize.php:628
 msgid "the Customizr theme"
 msgstr "Tema Customizr"
 
-#: admin/class-admin-customize.php:635
+#: admin/class-admin-customize.php:628
 msgid "the Customizr pro theme"
 msgstr "Customizr pro theme dengan bahasa Indonesia"
 
-#: admin/class-admin-customize.php:636
+#: admin/class-admin-customize.php:629
 msgid "we would love to receive a"
 msgstr "Kita akan senang menerima"
 
-#: admin/class-admin-customize.php:638
+#: admin/class-admin-customize.php:631
 msgid "Review the Customizr theme"
 msgstr "Tinjauan untuk Customizr bahasa Indonesia oleh Rio Bermano"
 
-#: admin/class-admin-customize.php:640
+#: admin/class-admin-customize.php:633
 msgid "rating. Thanks :) !"
 msgstr "nilai. Terimakasih :) !"
 
-#: admin/class-admin-customize.php:656 admin/class-admin-customize.php:657
+#: admin/class-admin-customize.php:649 admin/class-admin-customize.php:650
 msgid "Upgrade WP"
 msgstr "Upgrade WP"
 
-#: admin/class-admin-customize.php:676
+#: admin/class-admin-customize.php:669
 msgid "This theme requires WordPress 3.4+"
 msgstr "Tema ini mewajibkan Wordpress 3.4+"
 
-#: admin/class-admin-customize.php:679 admin/class-admin-customize.php:680
+#: admin/class-admin-customize.php:672 admin/class-admin-customize.php:673
 msgid "Upgrade Wordpress Now"
 msgstr "Upgrade Wordpress Sekarang"
 
@@ -200,7 +198,7 @@ msgstr "Upgrade Wordpress Sekarang"
 msgid "Layout Options"
 msgstr "Opsi Layout"
 
-#: admin/class-admin-meta_boxes.php:95 admin/class-admin-meta_boxes.php:466
+#: admin/class-admin-meta_boxes.php:95 admin/class-admin-meta_boxes.php:491
 msgid "Slider Options"
 msgstr "Opsi Slider"
 
@@ -250,7 +248,8 @@ msgstr "laman ini"
 msgid "this post"
 msgstr "post ini"
 
-#: admin/class-admin-meta_boxes.php:176
+#: admin/class-admin-meta_boxes.php:176 class-fire-utils_settings_map.php:880
+#: class-fire-utils_settings_map.php:885 class-fire-utils_settings_map.php:2194
 msgid "here"
 msgstr "disini"
 
@@ -264,19 +263,19 @@ msgstr "Pilih spesifikasi layout untuk %1$s"
 msgid "Default layout %1s"
 msgstr "Default layout %1s"
 
-#: admin/class-admin-meta_boxes.php:225
+#: admin/class-admin-meta_boxes.php:226
 msgid "Add a slider to this post/page"
 msgstr "Tambahkan slider ke post/laman ini"
 
-#: admin/class-admin-meta_boxes.php:289 admin/class-admin-meta_boxes.php:706
+#: admin/class-admin-meta_boxes.php:292 admin/class-admin-meta_boxes.php:731
 msgid "Choose a slider"
 msgstr "Pilih slider"
 
-#: admin/class-admin-meta_boxes.php:296 admin/class-admin-meta_boxes.php:721
+#: admin/class-admin-meta_boxes.php:298 admin/class-admin-meta_boxes.php:746
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; Pilih slider &mdash;"
 
-#: admin/class-admin-meta_boxes.php:301
+#: admin/class-admin-meta_boxes.php:321
 msgid ""
 "To create a new slider : open the media library, edit your images and add "
 "them to your new slider."
@@ -284,31 +283,31 @@ msgstr ""
 "Untuk membuat slider baru : buka pustaka media, edit gambar dan tambahkan ke "
 "slider."
 
-#: admin/class-admin-meta_boxes.php:305
+#: admin/class-admin-meta_boxes.php:325
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
 msgstr "Delay antara slider dengan millisecond (default : 5000 ms)"
 
-#: admin/class-admin-meta_boxes.php:312
+#: admin/class-admin-meta_boxes.php:332
 msgid "Slider Layout : set the slider in full width"
 msgstr "Slider layout : set slider dengan lebar full"
 
-#: admin/class-admin-meta_boxes.php:329 admin/class-admin-meta_boxes.php:730
+#: admin/class-admin-meta_boxes.php:349 admin/class-admin-meta_boxes.php:755
 msgid "Delete this slider"
 msgstr "Hapus slider ini"
 
-#: admin/class-admin-meta_boxes.php:334 admin/class-admin-meta_boxes.php:734
+#: admin/class-admin-meta_boxes.php:354 admin/class-admin-meta_boxes.php:759
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
 msgstr ""
 "Slider ini akan dihapus secara permanen (gambar, tombol dan link tetap ada)."
 
-#: admin/class-admin-meta_boxes.php:337 admin/class-admin-meta_boxes.php:737
+#: admin/class-admin-meta_boxes.php:357 admin/class-admin-meta_boxes.php:762
 msgid "Delete slider"
 msgstr "Hapus slider"
 
-#: admin/class-admin-meta_boxes.php:345
-#: admin/class-tc-controls-settings.php:141
+#: admin/class-admin-meta_boxes.php:368
+#: admin/class-tc-controls-settings.php:140
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -316,39 +315,39 @@ msgstr ""
 "Anda belum mebuat satu slider pun. Pindah ke pustaka media, edit gambar dan "
 "tambahkan ke slider."
 
-#: admin/class-admin-meta_boxes.php:495
+#: admin/class-admin-meta_boxes.php:520
 msgid "Add to a slider"
 msgstr "Tambahkan ke slider"
 
-#: admin/class-admin-meta_boxes.php:497
+#: admin/class-admin-meta_boxes.php:522
 msgid "Add to a slider (create one if needed)"
 msgstr "Tambahkan ke slider (buat jika dibutuhkan)"
 
-#: admin/class-admin-meta_boxes.php:643
-msgid "Title text (80 car. max length)"
-msgstr "Teks judul (panjang maks 80 kar)"
+#: admin/class-admin-meta_boxes.php:668
+msgid "Title text (80 char. max length)"
+msgstr ""
 
-#: admin/class-admin-meta_boxes.php:650
-msgid "Description text (below the title, 250 car. max length)"
-msgstr "Teks deskripsi (dibawah judul, panjang maks 250 kar)"
+#: admin/class-admin-meta_boxes.php:675
+msgid "Description text (below the title, 250 char. max length)"
+msgstr ""
 
-#: admin/class-admin-meta_boxes.php:657
+#: admin/class-admin-meta_boxes.php:682
 msgid "Title and text color"
 msgstr "Warna judul dan teks"
 
-#: admin/class-admin-meta_boxes.php:665
-msgid "Button text (80 car. max length)"
-msgstr "Teks tombol (panjang maks 80 kar)"
+#: admin/class-admin-meta_boxes.php:690
+msgid "Button text (80 char. max length)"
+msgstr ""
 
-#: admin/class-admin-meta_boxes.php:672
+#: admin/class-admin-meta_boxes.php:697
 msgid "Choose a linked page or post (among the last 100)."
 msgstr "Pilih laman atau post yang ada (100 terbaru)."
 
-#: admin/class-admin-meta_boxes.php:677
+#: admin/class-admin-meta_boxes.php:702
 msgid "No link"
 msgstr "Tidak ada link"
 
-#: admin/class-admin-meta_boxes.php:686
+#: admin/class-admin-meta_boxes.php:711
 msgid ""
 "or a custom link (leave this empty if you already selected a page or post "
 "above)"
@@ -356,19 +355,19 @@ msgstr ""
 "atau buat link (biarkan kosong jika Anda sudah memilih laman atau post "
 "diatas)"
 
-#: admin/class-admin-meta_boxes.php:692
+#: admin/class-admin-meta_boxes.php:717
 msgid "Open link in a new page/tab"
 msgstr "Buka link di laman/tab baru"
 
-#: admin/class-admin-meta_boxes.php:699
+#: admin/class-admin-meta_boxes.php:724
 msgid "Link the whole slide"
 msgstr "Link di seluruh slide"
 
-#: admin/class-admin-meta_boxes.php:727 admin/class-admin-meta_boxes.php:756
+#: admin/class-admin-meta_boxes.php:752 admin/class-admin-meta_boxes.php:781
 msgid "Add a slider"
 msgstr "Tambahkan slider"
 
-#: admin/class-admin-meta_boxes.php:754
+#: admin/class-admin-meta_boxes.php:779
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
@@ -376,7 +375,7 @@ msgstr ""
 "Anda belum membuat slider apapun. Tulis nama slider dan klik pada tombol "
 "untuk menambahkan slider pertama."
 
-#: admin/class-admin-meta_boxes.php:882
+#: admin/class-admin-meta_boxes.php:907
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
@@ -384,72 +383,87 @@ msgstr ""
 "Slider ini tidak muncul. Pergi ke pustaka media dan mulai menambahkan gambar "
 "kesini."
 
-#: admin/class-admin-meta_boxes.php:892
+#: admin/class-admin-meta_boxes.php:917
 msgid "Slide Image"
 msgstr "Gambar slide"
 
-#: admin/class-admin-meta_boxes.php:893
+#: admin/class-admin-meta_boxes.php:918
 msgid "Title"
 msgstr "Judul"
 
-#: admin/class-admin-meta_boxes.php:894
+#: admin/class-admin-meta_boxes.php:919
 msgid "Slide Text"
 msgstr "Teks slide"
 
-#: admin/class-admin-meta_boxes.php:895
+#: admin/class-admin-meta_boxes.php:920
 msgid "Button Text"
 msgstr "Teks tombol"
 
-#: admin/class-admin-meta_boxes.php:896
+#: admin/class-admin-meta_boxes.php:921
 msgid "Link"
 msgstr "Link"
 
-#: admin/class-admin-meta_boxes.php:897 parts/class-content-breadcrumb.php:645
-#: parts/class-content-breadcrumb.php:678
-#: parts/class-content-breadcrumb.php:693
-#: parts/class-content-breadcrumb.php:721 parts/class-content-comments.php:195
-#: parts/class-content-featured_pages.php:250
-#: parts/class-content-headings.php:238 parts/class-content-slider.php:470
+#: admin/class-admin-meta_boxes.php:922 parts/class-content-breadcrumb.php:648
+#: parts/class-content-breadcrumb.php:681
+#: parts/class-content-breadcrumb.php:696
+#: parts/class-content-breadcrumb.php:724 parts/class-content-comments.php:198
+#: parts/class-content-featured_pages.php:258
+#: parts/class-content-headings.php:241 parts/class-content-slider.php:925
 msgid "Edit"
 msgstr "Ubah"
 
-#: admin/class-admin-meta_boxes.php:939
+#: admin/class-admin-meta_boxes.php:964
 msgid "No Image Selected"
 msgstr "Tidak Ada Gambar Dipilih"
 
-#: admin/class-admin-meta_boxes.php:965
+#: admin/class-admin-meta_boxes.php:990
 msgid "Edit this slide"
 msgstr "Ubah slide"
 
-#: admin/class-admin-meta_boxes.php:967
+#: admin/class-admin-meta_boxes.php:992
 msgid "Current slide"
 msgstr "Slide baru"
 
-#: admin/class-fire-admin_init.php:263
+#: admin/class-admin-meta_boxes.php:1003
+msgid ""
+"To add another slide : navigate to your media library (click on Media), open "
+"the edit screen of an image ( or add a new image ), and add it to your "
+"desired slider by using the dedicated option block at the bottom of the page."
+msgstr ""
+
+#: admin/class-admin-meta_boxes.php:1004
+msgid "For more informations about sliders, check the documentation page :"
+msgstr ""
+
+#: admin/class-admin-meta_boxes.php:1006
+msgid "Slider documentation"
+msgstr ""
+
+#: admin/class-fire-admin_init.php:320
 msgid "Good, you've just upgraded to"
 msgstr "Bagus, Anda sudah upgrade ke"
 
-#: admin/class-fire-admin_init.php:265
+#: admin/class-fire-admin_init.php:322
 msgid "version"
 msgstr "versi"
 
-#: admin/class-fire-admin_init.php:274
+#: admin/class-fire-admin_init.php:331
 msgid "We'd like to introduce the new features we've been working on."
 msgstr "Kami ingin memperkenalkan fitur baru yang sudah kami kerjakan."
 
-#: admin/class-fire-admin_init.php:276
+#: admin/class-fire-admin_init.php:333
 msgid "Read the latest release notes"
 msgstr "Baca nota rilis terbaru"
 
-#: admin/class-fire-admin_init.php:278
+#: admin/class-fire-admin_init.php:335
 msgid "Visit the demo"
 msgstr "Kunjungi demo"
 
-#: admin/class-fire-admin_init.php:284
+#: admin/class-fire-admin_init.php:341
 msgid "I already know what's new thanks !"
 msgstr "Saya sudah tahu apa yang baru itu terimakasih !"
 
-#: admin/class-fire-admin_init.php:285
+#: admin/class-fire-admin_init.php:342
 msgid "close"
 msgstr "tutup"
 
@@ -470,7 +484,7 @@ msgstr "Selamat datang di"
 msgid "The best way to start is to read the %s."
 msgstr "Jalan terbaik untuk memulai dengan membaca %s."
 
-#: admin/class-fire-admin_page.php:93 admin/class-fire-admin_page.php:137
+#: admin/class-fire-admin_page.php:93 admin/class-fire-admin_page.php:139
 #: parts/class-header-menu.php:393
 msgid "documentation"
 msgstr "dokumentasi"
@@ -510,19 +524,23 @@ msgid "Check the FAQ"
 msgstr "Cek FAQ"
 
 #: admin/class-fire-admin_page.php:116
-msgid "Code snippets"
-msgstr "Potongan kode"
+msgid "Code snippets for developers"
+msgstr ""
 
-#: admin/class-fire-admin_page.php:119
-msgid "Get support in the forum"
-msgstr "Dapatkan support di forum"
+#: admin/class-fire-admin_page.php:120
+msgid "Get support"
+msgstr ""
 
-#: admin/class-fire-admin_page.php:129
+#: admin/class-fire-admin_page.php:120
+msgid "Get help in the free support forum"
+msgstr ""
+
+#: admin/class-fire-admin_page.php:131
 #, php-format
 msgid "Thank you for using %s!"
 msgstr "Terimakasih sudah menggunakan %s!"
 
-#: admin/class-fire-admin_page.php:130
+#: admin/class-fire-admin_page.php:132
 #, php-format
 msgid ""
 "%s %s has more features, is safer and more stable than ever to help you "
@@ -531,20 +549,20 @@ msgstr ""
 "%s %s memiliki banyak fitur, lebih aman dan lebih stabil untuk membantu Anda "
 "mendesain web yang luar biasa."
 
-#: admin/class-fire-admin_page.php:131
+#: admin/class-fire-admin_page.php:133
 msgid "check the changelog"
 msgstr "Cek changelog"
 
-#: admin/class-fire-admin_page.php:135
+#: admin/class-fire-admin_page.php:137
 #, php-format
 msgid "The best way to start with %s is to read the %s and visit the %s."
 msgstr "Cara tepat untuk memulai dengan %s adalah membaca %s dan kunjungi %s."
 
-#: admin/class-fire-admin_page.php:138
+#: admin/class-fire-admin_page.php:140
 msgid "demo website"
 msgstr "demo website"
 
-#: admin/class-fire-admin_page.php:152
+#: admin/class-fire-admin_page.php:154
 #, php-format
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
@@ -553,11 +571,11 @@ msgstr ""
 "Anda menggunakan anak tema dari Customizr %1$s : selalu cek %2$s setelah "
 "upgrade untuk memastikan bahwa function atau template sudah usang."
 
-#: admin/class-fire-admin_page.php:169
+#: admin/class-fire-admin_page.php:171
 msgid "We need sponsors!"
 msgstr "Kita butuh beberapa sponsor!"
 
-#: admin/class-fire-admin_page.php:170
+#: admin/class-fire-admin_page.php:172
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
 "strong><br/> Please help support it's continued development with a donation "
@@ -567,11 +585,11 @@ msgstr ""
 "sempurna yang gratis untuk Anda!</strong><br/> Silahkan bantu para "
 "pengembang dengan donasi $20, $50 atau bahkan $100."
 
-#: admin/class-fire-admin_page.php:177
+#: admin/class-fire-admin_page.php:179
 msgid "Happy user of Customizr?"
 msgstr "Pengguna setia dari Customizr?"
 
-#: admin/class-fire-admin_page.php:178
+#: admin/class-fire-admin_page.php:180
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
@@ -580,23 +598,23 @@ msgstr ""
 "Customizr tinjauan yang baik!<br/>(Kami kecanduan dengan timbal balik "
 "Anda...)"
 
-#: admin/class-fire-admin_page.php:183
+#: admin/class-fire-admin_page.php:185
 msgid "Follow us"
 msgstr "Ikuti kami"
 
-#: admin/class-fire-admin_page.php:193
+#: admin/class-fire-admin_page.php:195
 msgid "Go Customizr Pro"
 msgstr "Dapatkan Customizr Pro"
 
-#: admin/class-fire-admin_page.php:196
+#: admin/class-fire-admin_page.php:198
 msgid "Visit the extension's page"
 msgstr "Kunjungi laman ekstensi"
 
-#: admin/class-fire-admin_page.php:197
+#: admin/class-fire-admin_page.php:199
 msgid "Easily take your web design one step further"
 msgstr "Dengan mudah membawa website Anda selangkah lebih maju"
 
-#: admin/class-fire-admin_page.php:199
+#: admin/class-fire-admin_page.php:201
 msgid ""
 "The Customizr Pro WordPress theme allows anyone to create a beautiful, "
 "professional and fully responsive website in a few seconds. In the Pro "
@@ -608,23 +626,23 @@ msgstr ""
 "Pro, Anda akan mendapatkan semua fitur yang ada di versi gratis ditambah "
 "beberapa fitur yang dapat lebih menyempurnakan web Anda."
 
-#: admin/class-fire-admin_page.php:202
+#: admin/class-fire-admin_page.php:204
 msgid "Discover Customizr Pro"
 msgstr "Temukan Customizr Pro"
 
-#: admin/class-fire-admin_page.php:209
+#: admin/class-fire-admin_page.php:211
 msgid "Customizr Showcase"
 msgstr "Pameran Customizr"
 
-#: admin/class-fire-admin_page.php:212 admin/class-fire-admin_page.php:219
+#: admin/class-fire-admin_page.php:214 admin/class-fire-admin_page.php:221
 msgid "Visit the showcase"
 msgstr "Kunjungi pameran"
 
-#: admin/class-fire-admin_page.php:213
+#: admin/class-fire-admin_page.php:215
 msgid "Find inspiration for your next Customizr based website!"
 msgstr "Temukan inspirasi untuk Customizr Anda selanjutnya!"
 
-#: admin/class-fire-admin_page.php:214
+#: admin/class-fire-admin_page.php:216
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
@@ -633,7 +651,7 @@ msgstr ""
 "Customizr dan membantu pengguna lain untuk menemukan inspirasi untuk desain "
 "web mereka."
 
-#: admin/class-fire-admin_page.php:216
+#: admin/class-fire-admin_page.php:218
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
@@ -641,28 +659,28 @@ msgstr ""
 "Apakah Anda kira Anda membuat website yang luar biasa dapat menginspirasi "
 "oranglain? Berikan web review adalah langkah cepat dan mudah untuk dilakukan."
 
-#: admin/class-fire-admin_page.php:228
+#: admin/class-fire-admin_page.php:230
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Pergi ke dasbor &rarr; Beranda"
 
-#: admin/class-fire-admin_page.php:228
+#: admin/class-fire-admin_page.php:230
 msgid "Go to Dashboard"
 msgstr "Pergi ke Dasbor"
 
-#: admin/class-fire-admin_page.php:286
+#: admin/class-fire-admin_page.php:288
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Changelog pada versi %1$s"
 
-#: admin/class-fire-admin_page.php:303
+#: admin/class-fire-admin_page.php:305
 msgid "System Informations"
 msgstr "Sistem Informasi"
 
-#: admin/class-fire-admin_page.php:304
+#: admin/class-fire-admin_page.php:306
 msgid "Please include the following informations when posting support requests"
 msgstr "Silahkan masukkan informasi tersebut ketika post support dibutuhkan"
 
-#: admin/class-fire-admin_page.php:305
+#: admin/class-fire-admin_page.php:307
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
@@ -670,23 +688,23 @@ msgstr ""
 "Untuk menyalin info sistem, klik dibawah kemudian tekan CTRL + C (PC) atau "
 "Cmd + C (Mac)."
 
-#: admin/class-tc-controls-settings.php:143
+#: admin/class-tc-controls-settings.php:142
 msgid "Create a slider"
 msgstr "Buat slider"
 
-#: admin/class-tc-controls-settings.php:144
+#: admin/class-tc-controls-settings.php:143
 msgid "Need help to create a slider ?"
 msgstr "Butuh bantuan untuk membuat slider ?"
 
-#: admin/class-tc-controls-settings.php:146
+#: admin/class-tc-controls-settings.php:145
 msgid "Check the documentation"
 msgstr "Cek dokumentasinya"
 
-#: admin/class-tc-controls-settings.php:376
+#: admin/class-tc-controls-settings.php:581
 msgid "Upload"
 msgstr "Unggah"
 
-#: admin/class-tc-controls-settings.php:377
+#: admin/class-tc-controls-settings.php:582
 msgid "Remove"
 msgstr "Singkirkan"
 
@@ -795,153 +813,185 @@ msgid "RSS feed (default is the wordpress feed)"
 msgstr "RSS feed (defaultnya adalah wordpress feed)"
 
 #: class-fire-init.php:199
+msgid "E-mail"
+msgstr ""
+
+#: class-fire-init.php:200
+msgid "Contact E-mail address"
+msgstr ""
+
+#: class-fire-init.php:205
 msgid "Follow me on Twitter"
 msgstr "Ikuti saya di Twitter"
 
-#: class-fire-init.php:200
+#: class-fire-init.php:206
 msgid "Twitter profile url"
 msgstr "Url profil Twitter"
 
-#: class-fire-init.php:204
+#: class-fire-init.php:210
 msgid "Follow me on Facebook"
 msgstr "Ikuti saya di Facebook"
 
-#: class-fire-init.php:205
+#: class-fire-init.php:211
 msgid "Facebook profile url"
 msgstr "Url profil Facebook"
 
-#: class-fire-init.php:209
+#: class-fire-init.php:215
 msgid "Follow me on Google+"
 msgstr "Ikuti saya di Google+"
 
-#: class-fire-init.php:210
+#: class-fire-init.php:216
 msgid "Google+ profile url"
 msgstr "Url profil Google+"
 
-#: class-fire-init.php:214
+#: class-fire-init.php:220
 msgid "Follow me on Instagram"
 msgstr "Ikuti saya di Instagram"
 
-#: class-fire-init.php:215
+#: class-fire-init.php:221
 msgid "Instagram profile url"
 msgstr "Url profil Instagram"
 
-#: class-fire-init.php:219
+#: class-fire-init.php:225
 msgid "Follow me on Tumblr"
 msgstr "Ikuti saya di Tumblr"
 
-#: class-fire-init.php:220
+#: class-fire-init.php:226
 msgid "Tumblr url"
 msgstr "Url Tumblr"
 
-#: class-fire-init.php:224
+#: class-fire-init.php:230
 msgid "Follow me on Flickr"
 msgstr "Ikuti saya di Flickr"
 
-#: class-fire-init.php:225
+#: class-fire-init.php:231
 msgid "Flickr url"
 msgstr "Url Flickr"
 
-#: class-fire-init.php:229
+#: class-fire-init.php:235
 msgid "Follow me on WordPress"
 msgstr "Ikut saya di Wordpress"
 
-#: class-fire-init.php:230
+#: class-fire-init.php:236
 msgid "WordPress profile url"
 msgstr "Url profil Wordpress"
 
-#: class-fire-init.php:234
+#: class-fire-init.php:240
 msgid "Follow me on Youtube"
 msgstr "Ikuti saya di Youtube"
 
-#: class-fire-init.php:235
+#: class-fire-init.php:241
 msgid "Youtube profile url"
 msgstr "Url channel Youtube"
 
-#: class-fire-init.php:239
+#: class-fire-init.php:245
 msgid "Pin me on Pinterest"
 msgstr "Pin saya du Pinterest"
 
-#: class-fire-init.php:240
+#: class-fire-init.php:246
 msgid "Pinterest profile url"
 msgstr "Url profil Pinterest"
 
-#: class-fire-init.php:244
+#: class-fire-init.php:250
 msgid "Follow me on Github"
 msgstr "Ikuti saya di Github"
 
-#: class-fire-init.php:245
+#: class-fire-init.php:251
 msgid "Github profile url"
 msgstr "Url profil Github"
 
-#: class-fire-init.php:249
+#: class-fire-init.php:255
 msgid "Follow me on Dribbble"
 msgstr "Iktui saya di Dibbble"
 
-#: class-fire-init.php:250
+#: class-fire-init.php:256
 msgid "Dribbble profile url"
 msgstr "Url profil Dribbble"
 
-#: class-fire-init.php:254
+#: class-fire-init.php:260
 msgid "Follow me on LinkedIn"
 msgstr "Ikuti saya di LinkedIn"
 
-#: class-fire-init.php:255
+#: class-fire-init.php:261
 msgid "LinkedIn profile url"
 msgstr "Url profil LinkedIn"
 
-#: class-fire-init.php:264
+#: class-fire-init.php:265
+msgid "Follow me on VKontakte"
+msgstr ""
+
+#: class-fire-init.php:266
+msgid "VKontakte profile url"
+msgstr ""
+
+#: class-fire-init.php:270
+msgid "Follow me on Yelp"
+msgstr ""
+
+#: class-fire-init.php:271
+msgid "Yelp profile url"
+msgstr ""
+
+#: class-fire-init.php:275
+msgid "Follow me on Xing"
+msgstr ""
+
+#: class-fire-init.php:276
+msgid "Xing profile url"
+msgstr ""
+
+#: class-fire-init.php:285
 msgid "Left Sidebar"
 msgstr "Sidebar Kiri"
 
-#: class-fire-init.php:265 class-fire-init.php:269
+#: class-fire-init.php:286 class-fire-init.php:290
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "Muncul di post, laman statis, arsip dan laman pencarian"
 
-#: class-fire-init.php:268
+#: class-fire-init.php:289
 msgid "Right Sidebar"
 msgstr "Sidebar Kanan"
 
-#: class-fire-init.php:276
+#: class-fire-init.php:297
 msgid "Footer Widget Area One"
 msgstr "Area Footer Widget Satu"
 
-#: class-fire-init.php:277 class-fire-init.php:281 class-fire-init.php:285
+#: class-fire-init.php:298 class-fire-init.php:302 class-fire-init.php:306
 msgid "Just use it as you want !"
 msgstr "Gunakan semaumu !"
 
-#: class-fire-init.php:280
+#: class-fire-init.php:301
 msgid "Footer Widget Area Two"
 msgstr "Area Footer Widget Dua"
 
-#: class-fire-init.php:284
+#: class-fire-init.php:305
 msgid "Footer Widget Area Three"
 msgstr "Area Footer Widget Tiga"
 
-#: class-fire-init.php:302
+#: class-fire-init.php:323
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr "Kenapa Anda dilahirkan? Karena Dunia membutuhkan Anda !"
 
-#: class-fire-init.php:303
+#: class-fire-init.php:324
 msgid "George Orwell"
 msgstr "Rio Bermano"
 
-#: class-fire-init.php:304
+#: class-fire-init.php:325
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr "Maaf, laman yang diminta tidak ditemukan. Mungkin Anda mau coba cari."
 
-#: class-fire-init.php:309
+#: class-fire-init.php:330
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
 msgstr "Bicara & Mendengarkan, adlaah 2 hal penting yang harus seimbang..."
 
-#: class-fire-init.php:310
+#: class-fire-init.php:331
 msgid "Sir Winston Churchill"
 msgstr "Rio Bermano"
 
-#: class-fire-init.php:311
+#: class-fire-init.php:332
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
@@ -949,11 +999,11 @@ msgstr ""
 "Maaf, tidak ada yang cocok dengan pencarian Anda. Silahkan coba lagi dengan "
 "kata kunci lain."
 
-#: class-fire-init.php:326
+#: class-fire-init.php:347
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr adalah tema yang benar-benar responsiv"
 
-#: class-fire-init.php:340
+#: class-fire-init.php:361
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -961,79 +1011,116 @@ msgstr ""
 "Banyak pilihan layout dan desain yang disediakan dari layar Wordpress : "
 "lihat perubahan secara langsung !"
 
-#: class-fire-init.php:515
+#: class-fire-init.php:536
 msgid "Main Menu"
 msgstr "Menu Utama"
 
-#: class-fire-init.php:516
+#: class-fire-init.php:537
 msgid "Secondary (horizontal) Menu"
 msgstr "Menu (horizontal) Kedua"
 
-#: class-fire-init.php:680
+#: class-fire-init.php:721
 msgid "Help"
 msgstr "Bantu"
 
-#: class-fire-init.php:683
+#: class-fire-init.php:724
 msgid "Need help with Customizr? Click here!"
 msgstr "Butuh bantuan untuk Customizr? Klik disini!"
 
-#: class-fire-utils.php:511
+#: class-fire-placeholders.php:209
+msgid ""
+"Did you know you can easily speed up your page load by deferring the loading "
+"of the non visible images?"
+msgstr ""
+
+#: class-fire-placeholders.php:210
+#, php-format
+msgid ""
+"%s and check the option 'Load images on scroll' under 'Website Performances' "
+"section."
+msgstr ""
+
+#: class-fire-placeholders.php:211 parts/class-content-post.php:206
+msgid "Jump to the customizer now"
+msgstr "Langsung ke Customizer sekarang"
+
+#: class-fire-placeholders.php:215 parts/class-content-featured_pages.php:48
+#: parts/class-content-post.php:213 parts/class-content-sidebar.php:155
+#: parts/class-content-slider.php:1028 parts/class-footer-footer_main.php:159
+#: parts/class-header-menu.php:115 parts/class-header-menu.php:370
+#: parts/class-header-menu.php:397
+msgid "dismiss notice"
+msgstr "Tutup pemberitahuan"
+
+#: class-fire-plugins_compat.php:359
+msgid "Front page slider name"
+msgstr ""
+
+#: class-fire-plugins_compat.php:361
+msgid "Posts slider button text"
+msgstr ""
+
+#: class-fire-plugins_compat.php:1021
+msgid "View your shopping cart"
+msgstr ""
+
+#: class-fire-utils.php:534
 #, php-format
 msgid "Page %s"
 msgstr "Laman %s"
 
-#: class-fire-utils_settings_map.php:147
+#: class-fire-utils_settings_map.php:149
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Unggah Logo (format didukung : .jpg, .png, .gif, svg, svgz)"
 
-#: class-fire-utils_settings_map.php:148
+#: class-fire-utils_settings_map.php:150
 msgid "LOGO"
 msgstr "LOGO"
 
-#: class-fire-utils_settings_map.php:157
+#: class-fire-utils_settings_map.php:165
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Paksa logo dimensi ke maks-lebar:250px dan maks-tinggi:100px"
 
-#: class-fire-utils_settings_map.php:161
+#: class-fire-utils_settings_map.php:169
 msgid "Uncheck this option to keep your original logo dimensions."
 msgstr "Hapus centang opsi ini untuk menetapkan dimensi logo original"
 
-#: class-fire-utils_settings_map.php:165
+#: class-fire-utils_settings_map.php:173
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Unggah Logo Sticky (format didukung : .jpg, .png, .gif, svg, svgz)"
 
-#: class-fire-utils_settings_map.php:169
+#: class-fire-utils_settings_map.php:184
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
 "Gunakan kontrol pengunggahan ini untuk menentukan logo berbeda pada mode "
 "sticky"
 
-#: class-fire-utils_settings_map.php:175
+#: class-fire-utils_settings_map.php:190
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Unggah Favicon (format didukung L .ico, .png, .gif)"
 
-#: class-fire-utils_settings_map.php:176
+#: class-fire-utils_settings_map.php:191
 msgid "FAVICON"
 msgstr "FAVICON"
 
-#: class-fire-utils_settings_map.php:193
+#: class-fire-utils_settings_map.php:208
 msgid "Choose a predefined skin"
 msgstr "Pilih kulit yang sudah ditetapkan"
 
-#: class-fire-utils_settings_map.php:198
+#: class-fire-utils_settings_map.php:213
 msgid "Disabled if the random option is on."
 msgstr "Tiadakan jika opsi pengacakan dinyalakan."
 
-#: class-fire-utils_settings_map.php:203
+#: class-fire-utils_settings_map.php:218
 msgid "Randomize the skin"
 msgstr "Acak kulit"
 
-#: class-fire-utils_settings_map.php:206
+#: class-fire-utils_settings_map.php:221
 msgid "Apply a random color skin on each page load."
 msgstr "Berlakukan pengacakan warna kulit setiap laman reload."
 
-#: class-fire-utils_settings_map.php:220
+#: class-fire-utils_settings_map.php:235
 msgid ""
 "Select a beautiful font pair (headings &amp; default fonts) or single font "
 "for your website."
@@ -1041,7 +1128,7 @@ msgstr ""
 "Pilih pasangan font yang menarik (heading &amp; default font) atau font "
 "tunggal untuk website Anda."
 
-#: class-fire-utils_settings_map.php:227
+#: class-fire-utils_settings_map.php:242
 msgid ""
 "This font picker allows you to preview and select among a handy selection of "
 "font pairs and single fonts. If you choose a pair, the first font will be "
@@ -1055,11 +1142,11 @@ msgstr ""
 "judul, h1, h2, h3, sedangkan yang kedua akan diterapkan sebagai default font "
 "untuk semua teks atau paragraf."
 
-#: class-fire-utils_settings_map.php:232
+#: class-fire-utils_settings_map.php:247
 msgid "Set your website default font size in pixels."
 msgstr "Set ukuran default font website Anda dengan pixel."
 
-#: class-fire-utils_settings_map.php:240
+#: class-fire-utils_settings_map.php:255
 msgid ""
 "This option sets the default font size applied to any text element of your "
 "website, when no font size is already applied."
@@ -1067,11 +1154,11 @@ msgstr ""
 "Opsi ini menentukan ukuran default font untuk semua teks website Anda, "
 "ketika tidak ada ukuran font tidak ditetapkan."
 
-#: class-fire-utils_settings_map.php:262
+#: class-fire-utils_settings_map.php:277
 msgid "Smooth scroll on click"
 msgstr "Gulir halus ketika di klik"
 
-#: class-fire-utils_settings_map.php:265
+#: class-fire-utils_settings_map.php:280
 msgid ""
 "If enabled, this option activates a smooth page scroll when clicking on a "
 "link to an anchor of the same page."
@@ -1079,11 +1166,11 @@ msgstr ""
 "Jika diadakan, opsi ini mengaktifkan gulir halus laman ketika di klik pada "
 "link di laman yang sama."
 
-#: class-fire-utils_settings_map.php:265
+#: class-fire-utils_settings_map.php:280
 msgid "Important note"
 msgstr "Nota penting"
 
-#: class-fire-utils_settings_map.php:265
+#: class-fire-utils_settings_map.php:280
 msgid ""
 "this option can create conflicts with some plugins, make sure that your "
 "plugins features (if any) are working fine after enabling this option."
@@ -1091,29 +1178,29 @@ msgstr ""
 "Opsi ini dapat menciptakan konflik dengan plugin yang sama, pastikan fitur "
 "plugin Anda (jika ada) bekerja dengan baik setelah menyalakan opsi ini."
 
-#: class-fire-utils_settings_map.php:270
+#: class-fire-utils_settings_map.php:285
 msgid "Fade effect on link hover"
 msgstr "Efek memudar ketika menyentuh link"
 
-#: class-fire-utils_settings_map.php:280
+#: class-fire-utils_settings_map.php:295
 msgid "Display an icon next to external links"
 msgstr "Tampilkan ikon disamping link eksternal"
 
-#: class-fire-utils_settings_map.php:284 class-fire-utils_settings_map.php:295
+#: class-fire-utils_settings_map.php:299 class-fire-utils_settings_map.php:310
 msgid ""
 "This will be applied to the links included in post or page content only."
 msgstr ""
 "Ini akan diterapkan pada link yang termasuk di dalam post atau laman saja."
 
-#: class-fire-utils_settings_map.php:291
+#: class-fire-utils_settings_map.php:306
 msgid "Open external links in a new tab"
 msgstr "Buka link eksternal di tab baru"
 
-#: class-fire-utils_settings_map.php:311
+#: class-fire-utils_settings_map.php:326
 msgid "Display icons next to titles"
 msgstr "Tampilkan ikon disamping judul"
 
-#: class-fire-utils_settings_map.php:315
+#: class-fire-utils_settings_map.php:330
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
@@ -1121,19 +1208,19 @@ msgstr ""
 "Ketika opsi ini dicentang, ikon kontekstual ditampilkan disamping judul dari "
 "laman, post, arsip, dan WP built-in widget."
 
-#: class-fire-utils_settings_map.php:321
+#: class-fire-utils_settings_map.php:336
 msgid "Display a page icon next to the page title"
 msgstr "Tampilkan ikon laman selanjutnya mengarah ke judul laman"
 
-#: class-fire-utils_settings_map.php:330
+#: class-fire-utils_settings_map.php:345
 msgid "Display a post icon next to the single post title"
 msgstr "Tampilkan ikon post selanjutnya mengarah ke judul post"
 
-#: class-fire-utils_settings_map.php:339
+#: class-fire-utils_settings_map.php:354
 msgid "Display an icon next to the archive title"
 msgstr "Tampilkan ikon selanjutnya mengarah ke judul arsip"
 
-#: class-fire-utils_settings_map.php:342
+#: class-fire-utils_settings_map.php:357
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -1144,11 +1231,11 @@ msgstr ""
 "setiap tipe arsip, disebelah kiri dari judul. Arsip itu bisa merupakan : "
 "kategori, tag, author, tanggal arsip, taxonomies buatan, hasil pencarian."
 
-#: class-fire-utils_settings_map.php:349
+#: class-fire-utils_settings_map.php:364
 msgid "Display an icon next to each post title in an archive page"
 msgstr "Tampilkan ikon selanjutnya yang mengarah ke judul post di laman arsip"
 
-#: class-fire-utils_settings_map.php:352
+#: class-fire-utils_settings_map.php:367
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -1158,19 +1245,19 @@ msgstr ""
 "judul post pada laman arsip. Tipe laman arsip mencakup : kategori, tag, "
 "tanggal arsip, taksonomi buatan, hasil pencarian."
 
-#: class-fire-utils_settings_map.php:359
+#: class-fire-utils_settings_map.php:374
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "WP sidebar widget : tampilkan ikon selanjutnya setelah judul"
 
-#: class-fire-utils_settings_map.php:368
+#: class-fire-utils_settings_map.php:383
 msgid "WP footer widgets : display icons next to titles"
 msgstr "WP footer widget : tampilkan ikon setelah judul"
 
-#: class-fire-utils_settings_map.php:386
+#: class-fire-utils_settings_map.php:403
 msgid "Lightbox effect on images"
 msgstr "Efek lightbox pada gambar"
 
-#: class-fire-utils_settings_map.php:389
+#: class-fire-utils_settings_map.php:406
 msgid ""
 "If enabled, this option activates a popin window whith a zoom effect when an "
 "image is clicked. Note : to enable this effect on the images of your pages "
@@ -1180,28 +1267,28 @@ msgstr ""
 "gambar di klik. Catatan : untuk menerapkan efek ini pada gambar dari post "
 "atau laman Anda, gambar harus ditautkan ke Berkas Media."
 
-#: class-fire-utils_settings_map.php:395
+#: class-fire-utils_settings_map.php:412
 msgid "Autoscale images on zoom"
 msgstr "Skala otomatis saat zoom"
 
-#: class-fire-utils_settings_map.php:398
+#: class-fire-utils_settings_map.php:415
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "Jika diadakan, opsi ini akan memaksa gambar untuk sesuai pada layar saat "
 "lightbox zoom."
 
-#: class-fire-utils_settings_map.php:404
+#: class-fire-utils_settings_map.php:421
 msgid "High resolution (Retina) support"
 msgstr "Resolusi tinggi (Retina) support"
 
-#: class-fire-utils_settings_map.php:408
+#: class-fire-utils_settings_map.php:425
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr ""
 "Jika diadakan, website Anda akan support untuk perangkat beresolusi tinggi."
 
-#: class-fire-utils_settings_map.php:409
+#: class-fire-utils_settings_map.php:426
 msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
@@ -1209,19 +1296,19 @@ msgstr ""
 "Ini sangat disarankan untuk menghasilkan pustaka media Anda dengan definisi "
 "tinggi menggunakan plugin gratis ini"
 
-#: class-fire-utils_settings_map.php:410
+#: class-fire-utils_settings_map.php:427
 msgid "regenerate thumbnails"
 msgstr "hasilkan ulang thumbnail"
 
-#: class-fire-utils_settings_map.php:412
+#: class-fire-utils_settings_map.php:429
 msgid "Open the description page of the Regenerate thumbnails plugin"
 msgstr "Buka laman deskripsi pada Penghasilan thumbnail plugin"
 
-#: class-fire-utils_settings_map.php:418
+#: class-fire-utils_settings_map.php:435
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "Slider : tampilkan ikon loading sebelum merender slide"
 
-#: class-fire-utils_settings_map.php:421
+#: class-fire-utils_settings_map.php:438
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
 "setup."
@@ -1229,15 +1316,15 @@ msgstr ""
 "Ketika dicentang, opsi ini menampilkan ikon loading ketika slide sedang di "
 "tata."
 
-#: class-fire-utils_settings_map.php:426
+#: class-fire-utils_settings_map.php:443
 msgid "Dynamic slider images centering on any devices"
 msgstr "Gambar slider dinamik menengah pada setiap perangkat"
 
-#: class-fire-utils_settings_map.php:434
+#: class-fire-utils_settings_map.php:451
 msgid "Dynamic thumbnails centering on any devices"
 msgstr "Thumbnail dinamik menengah pada perangkat apapun"
 
-#: class-fire-utils_settings_map.php:437
+#: class-fire-utils_settings_map.php:454
 msgid ""
 "This option dynamically centers your images on any devices, vertically or "
 "horizontally according to their initial aspect ratio."
@@ -1245,11 +1332,31 @@ msgstr ""
 "Opsi ini secara dinamis menengahkan gambar Anda pada perangkat apapun, "
 "secara vertikal atau horizontal tergantung pada aspek rasio mereka."
 
-#: class-fire-utils_settings_map.php:455
+#: class-fire-utils_settings_map.php:463 class-fire-utils_settings_map.php:2506
+msgid "Responsive settings"
+msgstr "Pengaturan responsif"
+
+#: class-fire-utils_settings_map.php:464
+msgid "Enable the WordPress responsive image feature for the slider"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:471
+msgid ""
+"Enable the WordPress responsive image feature for the theme's thumbnails"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:473
+msgid ""
+"This feature has been introduced in WordPress v4.4+ (dec-2015), and might "
+"have minor side effects on some of your existing images. Check / uncheck "
+"this option to safely verify that your images are displayed nicely."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:495
 msgid "Dynamic sidebar reordering on small devices"
 msgstr "Sidebar dinamik mengorder ulang pada perangkat kecil"
 
-#: class-fire-utils_settings_map.php:458
+#: class-fire-utils_settings_map.php:498
 msgid ""
 "Activate this option to move the sidebars (if any) after the main content "
 "block, for smartphones or tablets viewport."
@@ -1257,11 +1364,11 @@ msgstr ""
 "Aktifkan opsi ini untuk menyingkirkan sidebar (jika ada), untuk tampilan "
 "smartphone atau tablet."
 
-#: class-fire-utils_settings_map.php:473
+#: class-fire-utils_settings_map.php:513
 msgid "Display an author box after each single post content"
 msgstr "Tampilkan kotak penulis setiap setelah post tunggal"
 
-#: class-fire-utils_settings_map.php:477
+#: class-fire-utils_settings_map.php:517
 msgid ""
 "Check this option to display an author info block after each single post "
 "content. Note : the Biographical info field must be filled out in the user "
@@ -1270,59 +1377,69 @@ msgstr ""
 "Centang opsi ini untuk menampilkan kotak tentang penulis di setiap post "
 "tunggal. Catatan : Biografi info harus diisi pada profil pengguna."
 
-#: class-fire-utils_settings_map.php:492
+#: class-fire-utils_settings_map.php:532
 msgid "Enable Smooth Scroll"
 msgstr "Adakan gulir halus"
 
-#: class-fire-utils_settings_map.php:496
+#: class-fire-utils_settings_map.php:536
 msgid "This option enables a smoother page scroll."
 msgstr "Opsi ini mengadakan gulir laman secara halus"
 
-#: class-fire-utils_settings_map.php:516 class-fire-utils_settings_map.php:2184
+#: class-fire-utils_settings_map.php:556 class-fire-utils_settings_map.php:2408
 msgid "Header design and layout"
 msgstr "Desain header dan layout"
 
-#: class-fire-utils_settings_map.php:518
+#: class-fire-utils_settings_map.php:558
 msgid "Choose a layout for the header"
 msgstr "Tentukan layout untuk header"
 
-#: class-fire-utils_settings_map.php:522
+#: class-fire-utils_settings_map.php:562
 msgid "Logo / title on the left"
 msgstr "Logo / judul di kiri"
 
-#: class-fire-utils_settings_map.php:523
+#: class-fire-utils_settings_map.php:563
 msgid "Logo / title centered"
 msgstr "Logo / judul di tengah"
 
-#: class-fire-utils_settings_map.php:524
+#: class-fire-utils_settings_map.php:564
 msgid "Logo / title on the right"
 msgstr "Logo / judul di kanan"
 
-#: class-fire-utils_settings_map.php:527
+#: class-fire-utils_settings_map.php:567
 msgid "This setting might impact the side on which the menu is revealed."
 msgstr "Pengaturan ini mungkin berdampak pada menu yang ditampilkan."
 
-#: class-fire-utils_settings_map.php:532
+#: class-fire-utils_settings_map.php:572
 msgid "Display top border"
 msgstr "Tampilkan garis atas"
 
-#: class-fire-utils_settings_map.php:536
+#: class-fire-utils_settings_map.php:576
 msgid "Uncheck this option to remove the colored top border."
 msgstr "Jangan centang opsi ini untuk menyingkirkan garis berwarna diatas."
 
-#: class-fire-utils_settings_map.php:542
+#: class-fire-utils_settings_map.php:582
 msgid "Display the tagline"
 msgstr "Tampilkan slogan"
 
-#: class-fire-utils_settings_map.php:550
+#: class-fire-utils_settings_map.php:590
+msgid "Display the shopping cart in the header"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:593
+msgid ""
+"WooCommerce: check to display a cart icon showing the number of items in "
+"your cart next to your header's tagline."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:600
 msgid "Social links in header"
 msgstr "Link sosial pada header"
 
-#: class-fire-utils_settings_map.php:560
+#: class-fire-utils_settings_map.php:610
 msgid "Display menu in a box"
 msgstr "Tampilkan menu didalam kotak"
 
-#: class-fire-utils_settings_map.php:565
+#: class-fire-utils_settings_map.php:615
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
@@ -1330,15 +1447,15 @@ msgstr ""
 "Jika dicentang, opsi ini membungkus menu header/tagline/sosial didalam kotak "
 "abu-abu terang."
 
-#: class-fire-utils_settings_map.php:570
+#: class-fire-utils_settings_map.php:620
 msgid "Sticky header settings"
 msgstr "Pengaturan sticky header"
 
-#: class-fire-utils_settings_map.php:571
+#: class-fire-utils_settings_map.php:621
 msgid "Sticky on scroll"
 msgstr "Sticky ketika di scroll"
 
-#: class-fire-utils_settings_map.php:576
+#: class-fire-utils_settings_map.php:626
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
@@ -1346,47 +1463,57 @@ msgstr ""
 "Jika di centang, opsi ini membuat header menempel pada bagian atas layar "
 "ketika laman di scroll kebawah."
 
-#: class-fire-utils_settings_map.php:581
+#: class-fire-utils_settings_map.php:631
 msgid "Sticky header : display the tagline"
 msgstr "Sticky header : tampilkan slogan"
 
-#: class-fire-utils_settings_map.php:590
+#: class-fire-utils_settings_map.php:639
+msgid "Sticky header: display the shopping cart"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:646
+msgid ""
+"WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
+"scrolling."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:651
 msgid "Sticky header : display the title / logo"
 msgstr "Sticky header : tampilkan judul / logo"
 
-#: class-fire-utils_settings_map.php:599
+#: class-fire-utils_settings_map.php:660
 msgid "Sticky header : shrink title / logo"
 msgstr "Sticky header : sesuaikan judul / logo"
 
-#: class-fire-utils_settings_map.php:608
+#: class-fire-utils_settings_map.php:669
 msgid "Sticky header : display the menu"
 msgstr "Sticky header : tampilkan menu"
 
-#: class-fire-utils_settings_map.php:613
+#: class-fire-utils_settings_map.php:674
 msgid "Also applied to the secondary menu if any."
 msgstr "Juga diterapkan pada menu kedua jika ada."
 
-#: class-fire-utils_settings_map.php:618
+#: class-fire-utils_settings_map.php:679
 msgid "Sticky header : semi-transparent on scroll"
 msgstr "Sticky header : semi-transparan ketika scroll"
 
-#: class-fire-utils_settings_map.php:628
+#: class-fire-utils_settings_map.php:689
 msgid "Set the header z-index"
 msgstr "Atur header z-index"
 
-#: class-fire-utils_settings_map.php:636
+#: class-fire-utils_settings_map.php:697
 msgid "What is"
 msgstr "Apa itu"
 
-#: class-fire-utils_settings_map.php:637
+#: class-fire-utils_settings_map.php:698
 msgid "the z-index"
 msgstr "z-index"
 
-#: class-fire-utils_settings_map.php:656
+#: class-fire-utils_settings_map.php:717
 msgid "Display a secondary (horizontal) menu in the header."
 msgstr "Tampilkan menu kedua (horizontal) pada header."
 
-#: class-fire-utils_settings_map.php:660
+#: class-fire-utils_settings_map.php:721
 msgid ""
 "When you've set your main menu as a vertical side navigation, you can check "
 "this option to display a complementary horizontal menu in the header."
@@ -1395,23 +1522,23 @@ msgstr ""
 "dapat centang opsi ini untuk menampilkan komplementer horizontal menu pada "
 "header."
 
-#: class-fire-utils_settings_map.php:665
+#: class-fire-utils_settings_map.php:726
 msgid "Main menu design"
 msgstr "Desain menu utama"
 
-#: class-fire-utils_settings_map.php:666
+#: class-fire-utils_settings_map.php:727
 msgid "Select a design : side menu (vertical) or regular (horizontal)"
 msgstr "Pilih desain : menu samping (vertical) atau regular (horizontal)"
 
-#: class-fire-utils_settings_map.php:670
+#: class-fire-utils_settings_map.php:731
 msgid "Regular (horizontal)"
 msgstr "Regular (horizontal)"
 
-#: class-fire-utils_settings_map.php:671
+#: class-fire-utils_settings_map.php:732
 msgid "Side Menu (vertical)"
 msgstr "Menu samping (vertical)"
 
-#: class-fire-utils_settings_map.php:678
+#: class-fire-utils_settings_map.php:739
 msgid ""
 "For mobile devices (responsive), limit the height of the dropdown menu block "
 "to the visible viewport."
@@ -1419,27 +1546,27 @@ msgstr ""
 "Untuk perangkat handphone (responsiv), batasi tinggi kotak dropdown menu "
 "jadi lebih ciamik."
 
-#: class-fire-utils_settings_map.php:687
+#: class-fire-utils_settings_map.php:748
 msgid "Display a label next to the menu button."
 msgstr "Tampilkan teks label setelah tombol menu"
 
-#: class-fire-utils_settings_map.php:691
+#: class-fire-utils_settings_map.php:752
 msgid "Note : the label is hidden on mobile devices."
 msgstr "Catatan : label disembunyikan pada perangkat handphone."
 
-#: class-fire-utils_settings_map.php:696
+#: class-fire-utils_settings_map.php:757
 msgid "Menu position (for \"main\" menu)"
 msgstr "Posisi menu (untuk menu \"utama\")"
 
-#: class-fire-utils_settings_map.php:700 class-fire-utils_settings_map.php:725
+#: class-fire-utils_settings_map.php:761 class-fire-utils_settings_map.php:786
 msgid "Menu on the left"
 msgstr "Menu di kiri"
 
-#: class-fire-utils_settings_map.php:701 class-fire-utils_settings_map.php:726
+#: class-fire-utils_settings_map.php:762 class-fire-utils_settings_map.php:787
 msgid "Menu on the right"
 msgstr "Menu di kanan"
 
-#: class-fire-utils_settings_map.php:706
+#: class-fire-utils_settings_map.php:767
 msgid ""
 "When the menu style is set to \"Side Menu\", the menu position is the side "
 "on which the menu will be revealed."
@@ -1447,76 +1574,76 @@ msgstr ""
 "Ketika gaya menu diatur ke \"Slide Menu\", maka posisi menu akan saling "
 "mengisi."
 
-#: class-fire-utils_settings_map.php:707
+#: class-fire-utils_settings_map.php:768
 #, php-format
 msgid "To change the global header layout, %s"
 msgstr "Untuk mengganti global header layout, %s"
 
-#: class-fire-utils_settings_map.php:710
+#: class-fire-utils_settings_map.php:771
 msgid "jump to the Design and Layout section"
 msgstr "lompat ke bagian Desain dan Layout"
 
-#: class-fire-utils_settings_map.php:711
+#: class-fire-utils_settings_map.php:772
 msgid "Change the header layout"
 msgstr "Ubah layout header"
 
-#: class-fire-utils_settings_map.php:720
+#: class-fire-utils_settings_map.php:781
 msgid "Secondary (horizontal) menu design"
 msgstr "Desain menu kedua (horizontal)"
 
-#: class-fire-utils_settings_map.php:721
+#: class-fire-utils_settings_map.php:782
 msgid "Menu position (for the horizontal menu)"
 msgstr "Posisi menu (untuk menu horizontal)"
 
-#: class-fire-utils_settings_map.php:736
+#: class-fire-utils_settings_map.php:797
 msgid "Select a submenu expansion option"
 msgstr "Pilih opsi pembukaan submenu"
 
-#: class-fire-utils_settings_map.php:740
+#: class-fire-utils_settings_map.php:801
 msgid "Expand submenus on click"
 msgstr "Buka submenu saat di klik"
 
-#: class-fire-utils_settings_map.php:741
+#: class-fire-utils_settings_map.php:802
 msgid "Expand submenus on hover"
 msgstr "Buka submenu saat disentuh"
 
-#: class-fire-utils_settings_map.php:748
+#: class-fire-utils_settings_map.php:809
 msgid "Reveal the sub-menus blocks with a fade effect"
 msgstr "Usahakan kotak submenu dengan efek memudar"
 
-#: class-fire-utils_settings_map.php:757
+#: class-fire-utils_settings_map.php:818
 msgid "Hover move effect for the sub menu items"
 msgstr "Goyang submenu ketika disentuh"
 
-#: class-fire-utils_settings_map.php:766
+#: class-fire-utils_settings_map.php:827
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
 msgstr "Pilih (responsif) perangkat ponsel untuk menu kedua."
 
-#: class-fire-utils_settings_map.php:770
+#: class-fire-utils_settings_map.php:831
 msgid "Move before inside the side menu "
 msgstr "Pindahkan ke sebelum menu samping"
 
-#: class-fire-utils_settings_map.php:771
+#: class-fire-utils_settings_map.php:832
 msgid "Move after inside the side menu "
 msgstr "Pindahkan ke setelah menu samping"
 
-#: class-fire-utils_settings_map.php:772
+#: class-fire-utils_settings_map.php:833
 msgid "Display in the header"
 msgstr "Tampilkan di header"
 
-#: class-fire-utils_settings_map.php:773
+#: class-fire-utils_settings_map.php:834
 msgid "Hide"
 msgstr "Sembunyikan"
 
-#: class-fire-utils_settings_map.php:781
+#: class-fire-utils_settings_map.php:842
 msgid "Remove all the menus."
 msgstr "Singkirkan semua menu"
 
-#: class-fire-utils_settings_map.php:782
+#: class-fire-utils_settings_map.php:843
 msgid "Don't display any menus in the header of your website"
 msgstr "Jangan tampilkan menu apapun di header website Anda"
 
-#: class-fire-utils_settings_map.php:786
+#: class-fire-utils_settings_map.php:847
 msgid ""
 "Use with caution : provide an alternative way to navigate in your website "
 "for your users."
@@ -1524,71 +1651,175 @@ msgstr ""
 "Gunakan dengan hati-hati : untuk menuntun pengunjung ke setiap penjuru "
 "website Anda."
 
-#: class-fire-utils_settings_map.php:810
+#: class-fire-utils_settings_map.php:869
+msgid ""
+"Click inside the above field and pick post categories you want to display. "
+"No filter will be applied if empty."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:871
+msgid "Learn more about post categories in WordPress"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:878
+msgid "Set the number of posts to display"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:883
+msgid "Jump to the blog design options"
+msgstr "Lompat ke opsi blog desain"
+
+#: class-fire-utils_settings_map.php:896
 msgid "Choose content and layout"
 msgstr "Pilih konten dan layout"
 
-#: class-fire-utils_settings_map.php:818
+#: class-fire-utils_settings_map.php:904
 msgid "Front page displays"
 msgstr "Tampilan laman utama"
 
-#: class-fire-utils_settings_map.php:823
+#: class-fire-utils_settings_map.php:909
 msgid "Don't show any posts or page"
 msgstr "Jangan tampilkan post atau laman apapun"
 
-#: class-fire-utils_settings_map.php:824
+#: class-fire-utils_settings_map.php:910
 msgid "Your latest posts"
 msgstr "Post terbaru Anda"
 
-#: class-fire-utils_settings_map.php:825
+#: class-fire-utils_settings_map.php:911
 msgid "A static page"
 msgstr "Laman statis"
 
-#: class-fire-utils_settings_map.php:831
+#: class-fire-utils_settings_map.php:917
 msgid "Front page"
 msgstr "Laman depan"
 
-#: class-fire-utils_settings_map.php:839
+#: class-fire-utils_settings_map.php:925
 msgid "Posts page"
 msgstr "Laman post"
 
-#: class-fire-utils_settings_map.php:848
+#: class-fire-utils_settings_map.php:933
+msgid "Display navigation in your home blog"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:942
+msgid "Apply a category filter to your home / blog posts"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:952
 msgid "Set up the front page layout"
 msgstr "Atur layout laman utama"
 
-#: class-fire-utils_settings_map.php:860
+#: class-fire-utils_settings_map.php:964
 msgid "Slider options"
 msgstr "Opsi slider"
 
-#: class-fire-utils_settings_map.php:861
+#: class-fire-utils_settings_map.php:965
 msgid "Select front page slider"
 msgstr "Pilih slider laman utama"
 
-#: class-fire-utils_settings_map.php:873
+#: class-fire-utils_settings_map.php:976
+msgid "Number of posts to display"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:980
+msgid ""
+"Only the posts with a featured image or at least an image inside their "
+"content will qualify for the slider. The number of post slides displayed "
+"won't exceed the number of available posts in your website."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:985
+msgid "Include only sticky posts"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:990
+msgid ""
+"You can choose to display only the sticky posts. If you're not sure how to "
+"set a sticky post, check"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:991
+msgid "the WordPress documentation."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:998
+msgid "Display the title"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1002
+msgid "The title will be limited to 80 chars max"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1007
+#: class-fire-utils_settings_map.php:1194
+msgid "Display the excerpt"
+msgstr "Tampilkan kutipan"
+
+#: class-fire-utils_settings_map.php:1011
+msgid "The excerpt will be limited to 80 chars max"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1016
+msgid "Link post with"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1020
+msgid "Call to action button"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1021
+msgid "Entire slide"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1022
+msgid "Entire slide and call to action button"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1028
+#: class-fire-utils_settings_map.php:1120
+msgid "Read more &raquo;"
+msgstr "Selengkapnya &raquo;"
+
+#: class-fire-utils_settings_map.php:1029
+#: class-fire-utils_settings_map.php:1122
+msgid "Button text"
+msgstr "Teks tombol"
+
+#: class-fire-utils_settings_map.php:1033
+msgid ""
+"The button text will be limited to 80 chars max. Leave this field empty to "
+"hide the button"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1039
 msgid "Full width slider"
 msgstr "Full lebar slider"
 
-#: class-fire-utils_settings_map.php:884
+#: class-fire-utils_settings_map.php:1043
+msgid "When checked, the front page slider occupies the full viewport's width"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:1051
 msgid "Delay between each slides"
 msgstr "Delay antara masing-masing slider"
 
-#: class-fire-utils_settings_map.php:889
+#: class-fire-utils_settings_map.php:1056
 msgid "in ms : 1000ms = 1s"
 msgstr "pada ms : 1000ms = 1detik"
 
-#: class-fire-utils_settings_map.php:896
+#: class-fire-utils_settings_map.php:1063
 msgid "Set slider's height in pixels"
 msgstr "Atur tinggi slider dengan pixel"
 
-#: class-fire-utils_settings_map.php:906
+#: class-fire-utils_settings_map.php:1073
 msgid "Apply this height to all sliders"
 msgstr "Terapkan tinggi ini untuk semua slider"
 
-#: class-fire-utils_settings_map.php:914
+#: class-fire-utils_settings_map.php:1081
 msgid "Replace the default image slider's height"
 msgstr "Tempatkan ulang default tinggi slider"
 
-#: class-fire-utils_settings_map.php:920
+#: class-fire-utils_settings_map.php:1087
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1596,31 +1827,31 @@ msgstr ""
 "Jika opsi ini dicentang, gambar Anda akan di resize dengan tinggi buatan "
 "ketika upload. Opsi ini lebih baik untuk keseluruhan performa loading."
 
-#: class-fire-utils_settings_map.php:921
+#: class-fire-utils_settings_map.php:1088
 msgid "You might want to regenerate your thumbnails."
 msgstr "Mungkin Anda ingin menghasilkan ulang thumbnail Anda."
 
-#: class-fire-utils_settings_map.php:929
+#: class-fire-utils_settings_map.php:1096
 msgid "Featured pages options"
 msgstr "Opsi laman yang diutamakan (featured)"
 
-#: class-fire-utils_settings_map.php:930
+#: class-fire-utils_settings_map.php:1097
 msgid "Display home featured pages area"
 msgstr "Tampilkan area laman yang diutamakan"
 
-#: class-fire-utils_settings_map.php:934
+#: class-fire-utils_settings_map.php:1101
 msgid "Enable"
 msgstr "Adakan"
 
-#: class-fire-utils_settings_map.php:935
+#: class-fire-utils_settings_map.php:1102
 msgid "Disable"
 msgstr "Tiadakan"
 
-#: class-fire-utils_settings_map.php:944
+#: class-fire-utils_settings_map.php:1111
 msgid "Show images"
 msgstr "Munculkan gambar"
 
-#: class-fire-utils_settings_map.php:947
+#: class-fire-utils_settings_map.php:1114
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -1628,27 +1859,19 @@ msgstr ""
 "Gambar diatur dengan \"gambar utama\" setiap laman (pada pengeditan laman). "
 "Jangan dicentang opsi diatas untuk mentiadakan gambar laman yang diutamakan."
 
-#: class-fire-utils_settings_map.php:953
-msgid "Read more &raquo;"
-msgstr "Selengkapnya &raquo;"
-
-#: class-fire-utils_settings_map.php:955
-msgid "Button text"
-msgstr "Teks tombol"
-
-#: class-fire-utils_settings_map.php:977
+#: class-fire-utils_settings_map.php:1144
 msgid "Choose the global default layout"
 msgstr "Pilih default global layout"
 
-#: class-fire-utils_settings_map.php:981
+#: class-fire-utils_settings_map.php:1148
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr "Catatan : layout laman depan harus diatur pada bagian laman depan."
 
-#: class-fire-utils_settings_map.php:989
+#: class-fire-utils_settings_map.php:1156
 msgid "Force default layout everywhere"
 msgstr "Paksa default layout ini dimanapun"
 
-#: class-fire-utils_settings_map.php:992
+#: class-fire-utils_settings_map.php:1159
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -1656,35 +1879,31 @@ msgstr ""
 "Opsi ini akan mengesampingkan spesifik layout pada semua post/laman, "
 "termasuk laman depan."
 
-#: class-fire-utils_settings_map.php:999
+#: class-fire-utils_settings_map.php:1166
 msgid "Choose the posts default layout"
 msgstr "Tentukan layout default untuk post"
 
-#: class-fire-utils_settings_map.php:1011
+#: class-fire-utils_settings_map.php:1178
 msgid "Global Post Lists Settings"
 msgstr "Pengaturan Global Daftar Post"
 
-#: class-fire-utils_settings_map.php:1012
+#: class-fire-utils_settings_map.php:1179
 msgid "Maximum number of posts per page"
 msgstr "Maksimal post per laman"
 
-#: class-fire-utils_settings_map.php:1023
+#: class-fire-utils_settings_map.php:1190
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "Tentukan total post pada daftar (beranda, pencarian, arsip, ...)"
 
-#: class-fire-utils_settings_map.php:1027
-msgid "Display the excerpt"
-msgstr "Tampilkan kutipan"
-
-#: class-fire-utils_settings_map.php:1028
+#: class-fire-utils_settings_map.php:1195
 msgid "Display the full content"
 msgstr "Tampilkan seluruh konten"
 
-#: class-fire-utils_settings_map.php:1036
+#: class-fire-utils_settings_map.php:1203
 msgid "Choose the pages default layout"
 msgstr "Tentukan default layout untuk laman"
 
-#: class-fire-utils_settings_map.php:1042
+#: class-fire-utils_settings_map.php:1209
 #, php-format
 msgid ""
 "The above layout options will set your layout globally for your post and "
@@ -1695,11 +1914,11 @@ msgstr ""
 "Anda. Tapi Anda juga dapat menetapkan layout post atau laman secara "
 "individu. Pelajari di %s."
 
-#: class-fire-utils_settings_map.php:1043
+#: class-fire-utils_settings_map.php:1210
 msgid "Customizr theme documentation"
 msgstr "Dokumentasi Customizr theme"
 
-#: class-fire-utils_settings_map.php:1046
+#: class-fire-utils_settings_map.php:1213
 msgid ""
 "If you need to change the layout design of the front page, then open the "
 "'Front Page' section above this one."
@@ -1707,19 +1926,19 @@ msgstr ""
 "Jika Anda ingin merubah desain layout pada laman utama (depan), maka buka "
 "bagian \"Laman Depan\" diatas sini."
 
-#: class-fire-utils_settings_map.php:1064
+#: class-fire-utils_settings_map.php:1232
 msgid "Set the excerpt length (in number of words) "
 msgstr "Atur panjang kutipan (total huruf)"
 
-#: class-fire-utils_settings_map.php:1074
+#: class-fire-utils_settings_map.php:1242
 msgid "Thumbnails options"
 msgstr "Opsi thumbnail"
 
-#: class-fire-utils_settings_map.php:1075
+#: class-fire-utils_settings_map.php:1243
 msgid "Display the post thumbnails"
 msgstr "Tampilkan thumbnail post"
 
-#: class-fire-utils_settings_map.php:1079
+#: class-fire-utils_settings_map.php:1247
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
@@ -1727,152 +1946,154 @@ msgstr ""
 "Ketika opsi ini dicentang, post thumbnail ditampilkan pada semua daftar "
 "post : blog, arsip, laman author, laman pencarian, ..."
 
-#: class-fire-utils_settings_map.php:1079
+#: class-fire-utils_settings_map.php:1247
 msgid "Note : thumbnails are always displayed when the grid layout is choosen."
 msgstr "Catatan : thumbnail selalu ditampilkan walaupun grid layout dipilih."
 
-#: class-fire-utils_settings_map.php:1084
+#: class-fire-utils_settings_map.php:1252
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
 "Jika tidak ada gambar utama (gambar fitur) / featured image, gunakan gambar "
 "terakhit yang diteraplan pada post."
 
-#: class-fire-utils_settings_map.php:1091
+#: class-fire-utils_settings_map.php:1260
 msgid "Upload a default thumbnail"
 msgstr "Unggah default thumbnail"
 
-#: class-fire-utils_settings_map.php:1101
+#: class-fire-utils_settings_map.php:1278
 msgid "Thumbnails options for the alternate thumbnails layout"
 msgstr "Opsi thumbnail untuk mengganti thumbnail layout"
 
-#: class-fire-utils_settings_map.php:1102
+#: class-fire-utils_settings_map.php:1279
 msgid "Thumbnails shape"
 msgstr "Bentuk thumbnail"
 
-#: class-fire-utils_settings_map.php:1106
+#: class-fire-utils_settings_map.php:1283
 msgid "Rounded, expand on hover"
 msgstr "Bulat, melebar ketika disentuh"
 
-#: class-fire-utils_settings_map.php:1107
+#: class-fire-utils_settings_map.php:1284
 msgid "Rounded, no expansion"
 msgstr "Bulat, tidak melebar"
 
-#: class-fire-utils_settings_map.php:1108
+#: class-fire-utils_settings_map.php:1285
 msgid "Squared, expand on hover"
 msgstr "Kotak, melebar ketika disentuh"
 
-#: class-fire-utils_settings_map.php:1109
+#: class-fire-utils_settings_map.php:1286
 msgid "Squared, no expansion"
 msgstr "Kotak, tidak melebar"
 
-#: class-fire-utils_settings_map.php:1110
+#: class-fire-utils_settings_map.php:1287
 msgid "Rectangular with no effect"
 msgstr "Persegi panjang tanpa efek"
 
-#: class-fire-utils_settings_map.php:1111
+#: class-fire-utils_settings_map.php:1288
 msgid "Rectangular with blur effect on hover"
 msgstr "Persegi panjang dengan efek blur ketika disentuh"
 
-#: class-fire-utils_settings_map.php:1112
+#: class-fire-utils_settings_map.php:1289
 msgid "Rectangular with unblur effect on hover"
 msgstr "Persegi panjang tidak ngeblur ketika disentuh"
 
-#: class-fire-utils_settings_map.php:1120
-#: class-fire-utils_settings_map.php:1338
+#: class-fire-utils_settings_map.php:1297
+#: class-fire-utils_settings_map.php:1515
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Atur maks tinggi thumbail dengan pixel"
 
-#: class-fire-utils_settings_map.php:1132
+#: class-fire-utils_settings_map.php:1309
 msgid "Thumbnails position"
 msgstr "Posisi thumbnail"
 
-#: class-fire-utils_settings_map.php:1136
+#: class-fire-utils_settings_map.php:1313
 msgid "Top"
 msgstr "Atas"
 
-#: class-fire-utils_settings_map.php:1137
+#: class-fire-utils_settings_map.php:1314
+#: class-fire-utils_settings_map.php:2085
 msgid "Right"
 msgstr "Kanan"
 
-#: class-fire-utils_settings_map.php:1138
+#: class-fire-utils_settings_map.php:1315
 msgid "Bottom"
 msgstr "Bawah"
 
-#: class-fire-utils_settings_map.php:1139
+#: class-fire-utils_settings_map.php:1316
+#: class-fire-utils_settings_map.php:2084
 msgid "Left"
 msgstr "Kiri"
 
-#: class-fire-utils_settings_map.php:1146
+#: class-fire-utils_settings_map.php:1323
 msgid "Alternate thumbnail/content"
 msgstr "Thumbnail bergantian per konten"
 
-#: class-fire-utils_settings_map.php:1155
+#: class-fire-utils_settings_map.php:1332
 msgid "Archive titles"
 msgstr "Judul arsip"
 
-#: class-fire-utils_settings_map.php:1156
+#: class-fire-utils_settings_map.php:1333
 msgid "Category pages titles"
 msgstr "Judul laman kategori"
 
-#: class-fire-utils_settings_map.php:1165
+#: class-fire-utils_settings_map.php:1342
 msgid "Tag pages titles"
 msgstr "Judul laman tag"
 
-#: class-fire-utils_settings_map.php:1174
+#: class-fire-utils_settings_map.php:1351
 msgid "Author pages titles"
 msgstr "Judul laman author"
 
-#: class-fire-utils_settings_map.php:1182 parts/class-content-headings.php:336
+#: class-fire-utils_settings_map.php:1359 parts/class-content-headings.php:339
 msgid "Search Results for :"
 msgstr "HAsil pencarian untuk :"
 
-#: class-fire-utils_settings_map.php:1183
+#: class-fire-utils_settings_map.php:1360
 msgid "Search results page titles"
 msgstr "Judul laman hasil pencarian"
 
-#: class-fire-utils_settings_map.php:1194
+#: class-fire-utils_settings_map.php:1371
 msgid "Post List Design"
 msgstr "Desain daftar post"
 
-#: class-fire-utils_settings_map.php:1195
+#: class-fire-utils_settings_map.php:1372
 msgid "Select a Layout"
 msgstr "Pilih layout"
 
-#: class-fire-utils_settings_map.php:1199
+#: class-fire-utils_settings_map.php:1376
 msgid "Alternate thumbnails layout"
 msgstr "Layout thumbnail bergantian"
 
-#: class-fire-utils_settings_map.php:1200
+#: class-fire-utils_settings_map.php:1377
 msgid "Grid layout"
 msgstr "Grid layout"
 
-#: class-fire-utils_settings_map.php:1203
+#: class-fire-utils_settings_map.php:1380
 msgid ""
 "When you select the grid Layout, the post content is limited to the excerpt."
 msgstr ""
 "Ketika Anda memilih grid Layout, post konten akan dibatasi untuk kutipannya."
 
-#: class-fire-utils_settings_map.php:1208
+#: class-fire-utils_settings_map.php:1385
 msgid "Number of columns per row"
 msgstr "Jumlah kolom per baris"
 
-#: class-fire-utils_settings_map.php:1212
+#: class-fire-utils_settings_map.php:1389
 msgid "1"
 msgstr "1"
 
-#: class-fire-utils_settings_map.php:1213
+#: class-fire-utils_settings_map.php:1390
 msgid "2"
 msgstr "2"
 
-#: class-fire-utils_settings_map.php:1214
+#: class-fire-utils_settings_map.php:1391
 msgid "3"
 msgstr "3"
 
-#: class-fire-utils_settings_map.php:1215
+#: class-fire-utils_settings_map.php:1392
 msgid "4"
 msgstr "4"
 
-#: class-fire-utils_settings_map.php:1218
+#: class-fire-utils_settings_map.php:1395
 msgid ""
 "Note : columns are limited to 3 for single sidebar layouts and to 2 for "
 "double sidebar layouts."
@@ -1880,71 +2101,71 @@ msgstr ""
 "Catatan : kolom dibatasi sampai 3 untuk sidebar tunggal dan 2 untuk kanan "
 "kiri sidebar layout."
 
-#: class-fire-utils_settings_map.php:1223
+#: class-fire-utils_settings_map.php:1400
 msgid "Expand the last sticky post (for home and blog page only)"
 msgstr "Buka sticky post terakhir (untuk beranda dan laman blog saja)"
 
-#: class-fire-utils_settings_map.php:1231
+#: class-fire-utils_settings_map.php:1408
 msgid "Apply the grid layout to Home/Blog"
 msgstr "Terapkan grid layout untuk Beranda/Blog"
 
-#: class-fire-utils_settings_map.php:1239
+#: class-fire-utils_settings_map.php:1416
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr "Menerapkan layout grid untuk Arsip (arsip, kategori, tulisan penulis)"
 
-#: class-fire-utils_settings_map.php:1247
+#: class-fire-utils_settings_map.php:1424
 msgid "Apply the grid layout to Search results"
 msgstr "Terapkan grid layout pada Hasil pencarian"
 
-#: class-fire-utils_settings_map.php:1251
+#: class-fire-utils_settings_map.php:1428
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr "Konteks yang tidak dicentang ditampilkan dengan alternatif layout."
 
-#: class-fire-utils_settings_map.php:1256
+#: class-fire-utils_settings_map.php:1433
 msgid "Apply a shadow to each grid items"
 msgstr "Terapkan bayangan untuk setiap item grid"
 
-#: class-fire-utils_settings_map.php:1265
+#: class-fire-utils_settings_map.php:1442
 msgid "Apply a colored bottom border to each grid items"
 msgstr "Terapkan garis bawah berwarna pada setiap item grid"
 
-#: class-fire-utils_settings_map.php:1274
+#: class-fire-utils_settings_map.php:1451
 msgid "Display post format icons in the background"
 msgstr "Tampilkan ikon format post pada background"
 
-#: class-fire-utils_settings_map.php:1284
+#: class-fire-utils_settings_map.php:1461
 msgid "Max. length for post titles (in words)"
 msgstr "Maks panjang untuk judul post (huruf)"
 
-#: class-fire-utils_settings_map.php:1295
+#: class-fire-utils_settings_map.php:1472
 msgid "Thumbnails max height for the grid layout"
 msgstr "Maks tinggi thumbnail untuk grid layout"
 
-#: class-fire-utils_settings_map.php:1296
+#: class-fire-utils_settings_map.php:1473
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr "Atur maks ketinggian post grid layout dengan pixel"
 
-#: class-fire-utils_settings_map.php:1317
+#: class-fire-utils_settings_map.php:1494
 msgid "Post thumbnail position"
 msgstr "Posisi thumbnail post"
 
-#: class-fire-utils_settings_map.php:1321
+#: class-fire-utils_settings_map.php:1498
 msgid "Don't display"
 msgstr "Jangan tampilkan"
 
-#: class-fire-utils_settings_map.php:1322
+#: class-fire-utils_settings_map.php:1499
 msgid "Before the title in full width"
 msgstr "Sebelum judul dengan full lebar"
 
-#: class-fire-utils_settings_map.php:1323
+#: class-fire-utils_settings_map.php:1500
 msgid "Before the title boxed"
 msgstr "Sebelum judul didalam kotak"
 
-#: class-fire-utils_settings_map.php:1324
+#: class-fire-utils_settings_map.php:1501
 msgid "After the title"
 msgstr "Setelah judul"
 
-#: class-fire-utils_settings_map.php:1328
+#: class-fire-utils_settings_map.php:1505
 msgid ""
 "You can display the featured image (also called the post thumbnail) of your "
 "posts before their content, when they are displayed individually."
@@ -1952,39 +2173,39 @@ msgstr ""
 "Anda dapat menampilkan gambar fitur (juga disebut post thumbnail) sebelum "
 "konten, ketika ditampilkan secara individu."
 
-#: class-fire-utils_settings_map.php:1329 parts/class-content-post.php:205
+#: class-fire-utils_settings_map.php:1506 parts/class-content-post.php:208
 #, php-format
 msgid "Don't know how to set a featured image to a post? Learn how in the %s."
 msgstr "Tidak tahu cara mengatur gambar fitur kedalam post? Pelajari di %s."
 
-#: class-fire-utils_settings_map.php:1363
+#: class-fire-utils_settings_map.php:1540
 msgid "Display Breadcrumb"
 msgstr "Tampilkan Breadcrumb"
 
-#: class-fire-utils_settings_map.php:1372
+#: class-fire-utils_settings_map.php:1549
 msgid "Display the breadcrumb on home page"
 msgstr "Tampilkan breadcrumb pada beranda"
 
-#: class-fire-utils_settings_map.php:1380
+#: class-fire-utils_settings_map.php:1557
 msgid "Display the breadcrumb in pages"
 msgstr "Tampilkan breadcrumb pada laman"
 
-#: class-fire-utils_settings_map.php:1389
+#: class-fire-utils_settings_map.php:1566
 msgid "Display the breadcrumb in single posts"
 msgstr "Tampilkan bradcrumb pada post tunggal"
 
-#: class-fire-utils_settings_map.php:1398
+#: class-fire-utils_settings_map.php:1575
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
 msgstr ""
 "Tampilkan bradcrumb pada daftar post : laman blog, arsip, hasil pencarian..."
 
-#: class-fire-utils_settings_map.php:1417
+#: class-fire-utils_settings_map.php:1594
 msgid "Display posts metas"
 msgstr "Tampilkan meta post"
 
-#: class-fire-utils_settings_map.php:1420
+#: class-fire-utils_settings_map.php:1597
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
@@ -1992,64 +2213,64 @@ msgstr ""
 "Ketika opsi ini dicentang, post meta (seperti taksonomi, tanggal dan "
 "penulis) akan ditampilkan dibawah judul post."
 
-#: class-fire-utils_settings_map.php:1427
+#: class-fire-utils_settings_map.php:1604
 msgid "Metas Design"
 msgstr "Desain Meta"
 
-#: class-fire-utils_settings_map.php:1428
+#: class-fire-utils_settings_map.php:1605
 msgid "Select a design for the post metas"
 msgstr "Pilih desain untuk post meta"
 
-#: class-fire-utils_settings_map.php:1432
+#: class-fire-utils_settings_map.php:1609
 msgid "Buttons and text"
 msgstr "Tombol dan teks"
 
-#: class-fire-utils_settings_map.php:1433
+#: class-fire-utils_settings_map.php:1610
 msgid "Text only"
 msgstr "Teks saja"
 
-#: class-fire-utils_settings_map.php:1440
-#: class-fire-utils_settings_map.php:1790
+#: class-fire-utils_settings_map.php:1617
+#: class-fire-utils_settings_map.php:1968
 msgid "Select the contexts"
 msgstr "Pilih koteks"
 
-#: class-fire-utils_settings_map.php:1441
+#: class-fire-utils_settings_map.php:1618
 msgid "Display posts metas on home"
 msgstr "Tampilkan post meta pada beranda"
 
-#: class-fire-utils_settings_map.php:1450
+#: class-fire-utils_settings_map.php:1627
 msgid "Display posts metas for single posts"
 msgstr "Tampilkan post meta untuk post tunggal"
 
-#: class-fire-utils_settings_map.php:1459
+#: class-fire-utils_settings_map.php:1636
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr "Tampilkan post meta pada daftar post (arsip, laman blog)"
 
-#: class-fire-utils_settings_map.php:1469
+#: class-fire-utils_settings_map.php:1646
 msgid "Select the metas to display"
 msgstr "Pilih meta untuk menampilkan"
 
-#: class-fire-utils_settings_map.php:1470
+#: class-fire-utils_settings_map.php:1647
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr "Tampilkan hirarki taksonomi (seperti kategori)"
 
-#: class-fire-utils_settings_map.php:1479
+#: class-fire-utils_settings_map.php:1656
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr "Tampilkan non-hirarki taksonomi (seperti tag)"
 
-#: class-fire-utils_settings_map.php:1488
+#: class-fire-utils_settings_map.php:1665
 msgid "Display the publication date"
 msgstr "Tampilkan tanggal publikasi"
 
-#: class-fire-utils_settings_map.php:1496
+#: class-fire-utils_settings_map.php:1673
 msgid "Display the author"
 msgstr "Tampilkan penulis"
 
-#: class-fire-utils_settings_map.php:1504
+#: class-fire-utils_settings_map.php:1681
 msgid "Display the update date"
 msgstr "Tampilkan tanggal revisi"
 
-#: class-fire-utils_settings_map.php:1508
+#: class-fire-utils_settings_map.php:1685
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
@@ -2059,27 +2280,27 @@ msgstr ""
 "akan ditampilkan (tidak akan muncul apa-apa jika post tidak pernah di "
 "update / revisi)."
 
-#: class-fire-utils_settings_map.php:1514
+#: class-fire-utils_settings_map.php:1691
 msgid "Select the last update format"
 msgstr "Pilih format terakhir di revisi"
 
-#: class-fire-utils_settings_map.php:1518
+#: class-fire-utils_settings_map.php:1695
 msgid "Nb of days since last update"
 msgstr "Hari sejak di terakhir revisi"
 
-#: class-fire-utils_settings_map.php:1519
+#: class-fire-utils_settings_map.php:1696
 msgid "Date of the last update"
 msgstr "Tanggal revisi"
 
-#: class-fire-utils_settings_map.php:1527
+#: class-fire-utils_settings_map.php:1704
 msgid "Recent update notice after post titles"
 msgstr "Pemberitahuan revisi setelah judul post"
 
-#: class-fire-utils_settings_map.php:1528
+#: class-fire-utils_settings_map.php:1705
 msgid "Display a recent update notice"
 msgstr "Tampilkan pemberitahuan revisi terbaru"
 
-#: class-fire-utils_settings_map.php:1532
+#: class-fire-utils_settings_map.php:1709
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
@@ -2087,13 +2308,13 @@ msgstr ""
 "Jika opsi ini dicentang, penyesuaian pemberitahuan revisi akan ditampilkan "
 "setelah judul post."
 
-#: class-fire-utils_settings_map.php:1538
+#: class-fire-utils_settings_map.php:1715
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 "Tampilkan pemberitahuan jika revisi kurang dari (dekat) daripada hari ini"
 
-#: class-fire-utils_settings_map.php:1544
+#: class-fire-utils_settings_map.php:1721
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
@@ -2101,154 +2322,154 @@ msgstr ""
 "Mengatur interval maksimum (dalam hari) selama pemberitahuan revisi terakhir "
 "akan ditampilkan."
 
-#: class-fire-utils_settings_map.php:1547
+#: class-fire-utils_settings_map.php:1724
 msgid "Recently updated !"
 msgstr "Baru-baru ini diperbarui!"
 
-#: class-fire-utils_settings_map.php:1549
+#: class-fire-utils_settings_map.php:1726
 msgid "Update notice text"
 msgstr "Teks pemberitahuan revisi"
 
-#: class-fire-utils_settings_map.php:1558
+#: class-fire-utils_settings_map.php:1735
 msgid "Update notice style"
 msgstr "Perbarui gaya pemberitahuan"
 
-#: class-fire-utils_settings_map.php:1562
+#: class-fire-utils_settings_map.php:1739
 msgid "Default (grey)"
 msgstr "Default (abu-abu)"
 
-#: class-fire-utils_settings_map.php:1563
+#: class-fire-utils_settings_map.php:1740
 msgid "Success (green)"
 msgstr "Sukses (hijau)"
 
-#: class-fire-utils_settings_map.php:1564
+#: class-fire-utils_settings_map.php:1741
 msgid "Alert (orange)"
 msgstr "Alert (oren)"
 
-#: class-fire-utils_settings_map.php:1565
+#: class-fire-utils_settings_map.php:1742
 msgid "Important (red)"
 msgstr "Penting (merah)"
 
-#: class-fire-utils_settings_map.php:1566
+#: class-fire-utils_settings_map.php:1743
 msgid "Info (blue)"
 msgstr "Info (biru)"
 
-#: class-fire-utils_settings_map.php:1583
+#: class-fire-utils_settings_map.php:1760
 msgid "Enable Customizr galleries"
 msgstr "Aktifkan galeri Customizr"
 
-#: class-fire-utils_settings_map.php:1585
+#: class-fire-utils_settings_map.php:1762
 msgid "Apply Customizr effects to galleries images"
 msgstr "Terapkan efek Customizr ke galeri gambar"
 
-#: class-fire-utils_settings_map.php:1592
+#: class-fire-utils_settings_map.php:1769
 msgid "Enable Lightbox effect in galleries"
 msgstr "Aktifkan efek Lightbox di galeri"
 
-#: class-fire-utils_settings_map.php:1594
+#: class-fire-utils_settings_map.php:1771
 msgid "Apply lightbox effects to galleries images"
 msgstr "Terapkan efek lightbox ke galeri gambar"
 
-#: class-fire-utils_settings_map.php:1601
+#: class-fire-utils_settings_map.php:1778
 msgid "Enable Customizr effects on hover"
 msgstr "Aktifkan efek Customizr ketika disentuh"
 
-#: class-fire-utils_settings_map.php:1603
+#: class-fire-utils_settings_map.php:1780
 msgid "Apply nice on hover expansion effect to the galleries images"
 msgstr "Terapkan melebar dengan baik ketika disentuh pada galeri gambar"
 
-#: class-fire-utils_settings_map.php:1621
+#: class-fire-utils_settings_map.php:1798
 msgid "Drop caps"
 msgstr "Hurup besar"
 
-#: class-fire-utils_settings_map.php:1622
+#: class-fire-utils_settings_map.php:1799
 msgid "Enable drop caps"
 msgstr "Aktifkan huruf besar"
 
-#: class-fire-utils_settings_map.php:1624
+#: class-fire-utils_settings_map.php:1801
 msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr "Terapkan huruf besar pada paragraf pertama didalam post atau laman"
 
-#: class-fire-utils_settings_map.php:1633
+#: class-fire-utils_settings_map.php:1810
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr "Terapkan huruf besar ketika paragraf sekurang-kurangnya sekian huruf :"
 
-#: class-fire-utils_settings_map.php:1634
+#: class-fire-utils_settings_map.php:1811
 msgid "(number of words)"
 msgstr "(jumlah huruf)"
 
-#: class-fire-utils_settings_map.php:1644
+#: class-fire-utils_settings_map.php:1821
 msgid "Drop cap style"
 msgstr "Gaya huruf besar"
 
-#: class-fire-utils_settings_map.php:1648
+#: class-fire-utils_settings_map.php:1825
 msgid "Skin color with shadow"
 msgstr "Warna kulit dengan bayangan"
 
-#: class-fire-utils_settings_map.php:1649
+#: class-fire-utils_settings_map.php:1826
 msgid "Simple black"
 msgstr "Hitam sederhana"
 
-#: class-fire-utils_settings_map.php:1655
+#: class-fire-utils_settings_map.php:1832
 msgid "Enable drop caps in posts"
 msgstr "Bolehkan huruf besar pada post"
 
-#: class-fire-utils_settings_map.php:1657
+#: class-fire-utils_settings_map.php:1834
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr "Terapkan huruf besar di paragraf pertama pada post tunggal"
 
-#: class-fire-utils_settings_map.php:1664
+#: class-fire-utils_settings_map.php:1841
 msgid "Enable drop caps in pages"
 msgstr "Bolehkan huruf besar pada laman"
 
-#: class-fire-utils_settings_map.php:1666
+#: class-fire-utils_settings_map.php:1843
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr "Terapkan huruf besar di paragraf pertama pada laman"
 
-#: class-fire-utils_settings_map.php:1683
+#: class-fire-utils_settings_map.php:1860
 msgid "Comments bubbles"
 msgstr "Gelembung komentar"
 
-#: class-fire-utils_settings_map.php:1685
+#: class-fire-utils_settings_map.php:1862
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr "Tampilkan jumlah komentar didalam gelembung setelah judul post"
 
-#: class-fire-utils_settings_map.php:1694
+#: class-fire-utils_settings_map.php:1871
 msgid "Comments bubble shape"
 msgstr "Bentuk gelembung komentar"
 
-#: class-fire-utils_settings_map.php:1698
+#: class-fire-utils_settings_map.php:1875
 msgid "Small bubbles"
 msgstr "Gelembung kecil"
 
-#: class-fire-utils_settings_map.php:1699
+#: class-fire-utils_settings_map.php:1876
 msgid "Large bubbles"
 msgstr "Gelembung besar"
 
-#: class-fire-utils_settings_map.php:1707
-#: class-fire-utils_settings_map.php:1719
+#: class-fire-utils_settings_map.php:1884
+#: class-fire-utils_settings_map.php:1896
 msgid "Comments bubble color"
 msgstr "Warna gelembung komentar"
 
-#: class-fire-utils_settings_map.php:1711
+#: class-fire-utils_settings_map.php:1888
 msgid "Skin color"
 msgstr "Warna kulit"
 
-#: class-fire-utils_settings_map.php:1712
+#: class-fire-utils_settings_map.php:1889
 msgid "Custom"
 msgstr "Kustom"
 
-#: class-fire-utils_settings_map.php:1730
+#: class-fire-utils_settings_map.php:1907
 msgid "Other comments settings"
 msgstr "Pengaturan komentar lainnya"
 
-#: class-fire-utils_settings_map.php:1731
+#: class-fire-utils_settings_map.php:1908
 msgid "Enable comments on pages"
 msgstr "Aktifkan komentar pada halaman"
 
-#: class-fire-utils_settings_map.php:1736
+#: class-fire-utils_settings_map.php:1913
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
@@ -2257,19 +2478,19 @@ msgstr ""
 "menonaktifkan komentar untuk satu halaman di layar mode edit cepat daftar "
 "halaman."
 
-#: class-fire-utils_settings_map.php:1737
+#: class-fire-utils_settings_map.php:1914
 msgid "You can also change other comments settings in :"
 msgstr "Anda juga dapat mengubah pengaturan komentar lainnya di:"
 
-#: class-fire-utils_settings_map.php:1739
+#: class-fire-utils_settings_map.php:1916
 msgid "the discussion settings page."
 msgstr "pengaturan laman diskusi"
 
-#: class-fire-utils_settings_map.php:1745
+#: class-fire-utils_settings_map.php:1922
 msgid "Enable comments on posts"
 msgstr "Aktifkan komentar pada posting"
 
-#: class-fire-utils_settings_map.php:1750
+#: class-fire-utils_settings_map.php:1927
 msgid ""
 "If checked, this option enables comments on all types of single posts. You "
 "can disable comments for a single post in quick edit mode from the"
@@ -2278,23 +2499,23 @@ msgstr ""
 "tunggal. Anda dapat menonaktifkan komentar untuk posting tunggal dalam mode "
 "edit cepat dari"
 
-#: class-fire-utils_settings_map.php:1752
+#: class-fire-utils_settings_map.php:1929
 msgid "post screen"
 msgstr "Layar posting"
 
-#: class-fire-utils_settings_map.php:1753
+#: class-fire-utils_settings_map.php:1930
 msgid "You can also change other comments settings in the"
 msgstr "Anda juga dapat mengubah pengaturan komentar lain dalam"
 
-#: class-fire-utils_settings_map.php:1755
+#: class-fire-utils_settings_map.php:1932
 msgid "discussion settings page."
 msgstr "pengaturan laman diskusi"
 
-#: class-fire-utils_settings_map.php:1761
+#: class-fire-utils_settings_map.php:1938
 msgid "Display the comment list"
 msgstr "Menampilkan daftar komentar"
 
-#: class-fire-utils_settings_map.php:1765
+#: class-fire-utils_settings_map.php:1942
 msgid ""
 "By default, WordPress displays the past comments, even if comments are "
 "disabled in posts or pages. Unchecking this option allows you to not display "
@@ -2304,25 +2525,25 @@ msgstr ""
 "komentar yang dinonaktifkan dalam posting atau halaman. Centang pilihan ini "
 "memungkinkan Anda untuk tidak menampilkan sejarah komentar."
 
-#: class-fire-utils_settings_map.php:1780
+#: class-fire-utils_settings_map.php:1957
 msgid "Display posts navigation"
 msgstr "Tampilkan post navigasi"
 
-#: class-fire-utils_settings_map.php:1783
+#: class-fire-utils_settings_map.php:1960
 msgid ""
 "When this option is checked, the posts navigation is displayed below the "
 "posts"
 msgstr "Bila opsi ini dicentang, tulisan navigasi ditampilkan di bawah posting"
 
-#: class-fire-utils_settings_map.php:1791
+#: class-fire-utils_settings_map.php:1969
 msgid "Display navigation in pages"
 msgstr "Tampilan navigasi di halaman"
 
-#: class-fire-utils_settings_map.php:1800
+#: class-fire-utils_settings_map.php:1978
 msgid "Display posts navigation in single posts"
 msgstr "Tampilkan post navigasi pada post tunggal"
 
-#: class-fire-utils_settings_map.php:1809
+#: class-fire-utils_settings_map.php:1987
 msgid ""
 "Display posts navigation in post lists (archives, blog page, categories, "
 "search results ..)"
@@ -2330,46 +2551,47 @@ msgstr ""
 "Tampilkan post navigasi pada daftar post (arsip, laman blog, kategori, hasil "
 "pencarian ..)"
 
-#: class-fire-utils_settings_map.php:1831
+#: class-fire-utils_settings_map.php:2009
 msgid "Social links in left sidebar"
 msgstr "Link sosial di sidebar kiri"
 
-#: class-fire-utils_settings_map.php:1841
+#: class-fire-utils_settings_map.php:2019
 msgid "Social links in right sidebar"
 msgstr "Link sosial di sidebar kanan"
 
-#: class-fire-utils_settings_map.php:1849
-#: class-fire-utils_settings_map.php:2144
+#: class-fire-utils_settings_map.php:2027
+#: class-fire-utils_settings_map.php:2368
 msgid "Social links"
 msgstr "Link Media Sosial"
 
-#: class-fire-utils_settings_map.php:1850
+#: class-fire-utils_settings_map.php:2028
 msgid "Social link title in sidebars"
 msgstr "Judul link sosial di sidebar"
 
-#: class-fire-utils_settings_map.php:1856
+#: class-fire-utils_settings_map.php:2034
 msgid "Will be hidden if empty"
 msgstr "Akan disembunyikan jika kosong"
 
-#: class-fire-utils_settings_map.php:1875
+#: class-fire-utils_settings_map.php:2053
 msgid "Social links in footer"
 msgstr "Link sosial di footer"
 
-#: class-fire-utils_settings_map.php:1885
+#: class-fire-utils_settings_map.php:2063
 msgid "Stick the footer to the bottom of the page"
 msgstr "Terapkan footer dibawah laman"
 
-#: class-fire-utils_settings_map.php:1894
+#: class-fire-utils_settings_map.php:2072
+#: class-fire-utils_settings_map.php:2080
 msgid "Display a back to top arrow on scroll"
 msgstr "Tampilkan ikon kembali ke atas ketika scroll"
 
-#: class-fire-utils_settings_map.php:1917
+#: class-fire-utils_settings_map.php:2112
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Tambahkan css buatan Anda disini dan desain sesukamu! (untuk pengguna "
 "tingkat lanjut)"
 
-#: class-fire-utils_settings_map.php:1921
+#: class-fire-utils_settings_map.php:2116
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -2377,31 +2599,29 @@ msgstr ""
 "Gunakan bidang ini untuk menguji potongan kecil kode CSS. Untuk kustomisasi "
 "CSS penting, Anda akan ingin memodifikasi file style.css dari"
 
-#: class-fire-utils_settings_map.php:1922
+#: class-fire-utils_settings_map.php:2117
 msgid "child theme."
 msgstr "tema anak."
 
-#: class-fire-utils_settings_map.php:1923
+#: class-fire-utils_settings_map.php:2118
 msgid "How to create and use a child theme ?"
 msgstr "Bagaiman acara membuat dan menggunakan child theme (anak tema) ?"
 
-#: class-fire-utils_settings_map.php:1940
-msgid "Performance : use the minified CSS stylesheet"
-msgstr "Performa : gunakan minified CSS stylesheet"
+#: class-fire-utils_settings_map.php:2135
+msgid "Performance : use the minified CSS stylesheets"
+msgstr ""
 
-#: class-fire-utils_settings_map.php:1943
+#: class-fire-utils_settings_map.php:2138
 msgid ""
-"Using the minified version of the skin stylesheet will speed up your webpage "
+"Using the minified version of the stylesheets will speed up your webpage "
 "load time."
 msgstr ""
-"Menggunakan kulit stylesheet versi minified akan meningkatkan loading "
-"website."
 
-#: class-fire-utils_settings_map.php:1947
+#: class-fire-utils_settings_map.php:2142
 msgid "Load images on scroll"
 msgstr "Loading gambar ketika scroll"
 
-#: class-fire-utils_settings_map.php:1952
+#: class-fire-utils_settings_map.php:2147
 msgid ""
 "Check this option to delay the loading of non visible images. Images below "
 "the viewport will be loaded dynamically on scroll. This can boost "
@@ -2411,12 +2631,12 @@ msgstr ""
 "Gambar dibawah layar akan loading secara dinamis ketika scroll. Ini dapat "
 "meningkatkan performa dan mengurangi beban halaman oleh gambar."
 
-#: class-fire-utils_settings_map.php:1965
+#: class-fire-utils_settings_map.php:2160
 msgid "Display help notices on front-end for logged in users."
 msgstr ""
 "Tampilkan pemberitahuan bantuan di laman front-end untuk pengguna yang login"
 
-#: class-fire-utils_settings_map.php:1968
+#: class-fire-utils_settings_map.php:2163
 msgid ""
 "When this options is enabled, various help notices and some placeholder "
 "blocks are displayed on the front-end of your website. They are only visible "
@@ -2426,55 +2646,85 @@ msgstr ""
 "placeholder ditampilkan pada front-end dari situs Anda. Mereka hanya "
 "terlihat oleh login pengguna dengan status admin."
 
-#: class-fire-utils_settings_map.php:1987
+#: class-fire-utils_settings_map.php:2176
+msgid "Load Font Awesome set of icons"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2180
+msgid "Use with caution"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2181
+msgid ""
+"When checked, the Font Awesome icons will be loaded on front end. You might "
+"want to load the Font Awesome icons with a custom code, or let a plugin do "
+"it for you."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2187
+msgid "Load Font Awesome CSS"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2191
+msgid ""
+"When checked, the additional Font Awesome CSS stylesheet will be loaded. "
+"This stylesheet is not loaded by default to save bandwidth but you might "
+"need it if you want to use the whole Font Awesome CSS."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2192
+msgid "Check out some example of uses"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2213
 msgid "Global settings"
 msgstr "Pengaturan Global"
 
-#: class-fire-utils_settings_map.php:1988
+#: class-fire-utils_settings_map.php:2214
 msgid "Global settings for the Customizr theme :skin, socials, links..."
 msgstr "Pengaturan global untuk tema Customizr: kulit, sosial, link ..."
 
-#: class-fire-utils_settings_map.php:1993
+#: class-fire-utils_settings_map.php:2219
 msgid "Header"
 msgstr "Header"
 
-#: class-fire-utils_settings_map.php:1994
+#: class-fire-utils_settings_map.php:2220
 msgid "Header settings for the Customizr theme."
 msgstr "Pengaturan header untuk tema Customizr."
 
-#: class-fire-utils_settings_map.php:1999
+#: class-fire-utils_settings_map.php:2225
 msgid "Content : home, posts, ..."
 msgstr "Konten : beranda, post, ..."
 
-#: class-fire-utils_settings_map.php:2000
+#: class-fire-utils_settings_map.php:2226
 msgid "Content settings for the Customizr theme."
 msgstr "Pengaturan konten untuk tema Customizr."
 
-#: class-fire-utils_settings_map.php:2005
+#: class-fire-utils_settings_map.php:2231
 msgid "Sidebars"
 msgstr "Sidebar"
 
-#: class-fire-utils_settings_map.php:2006
+#: class-fire-utils_settings_map.php:2232
 msgid "Sidebars settings for the Customizr theme."
 msgstr "Pengaturan sidebar untuk tema Customizr."
 
-#: class-fire-utils_settings_map.php:2011
+#: class-fire-utils_settings_map.php:2237
 msgid "Footer"
 msgstr "Footer"
 
-#: class-fire-utils_settings_map.php:2012
+#: class-fire-utils_settings_map.php:2238
 msgid "Footer settings for the Customizr theme."
 msgstr "Pengaturan footer untuk tema Customizr."
 
-#: class-fire-utils_settings_map.php:2017
+#: class-fire-utils_settings_map.php:2243
 msgid "Advanced options"
 msgstr "Opsi  lanjutan"
 
-#: class-fire-utils_settings_map.php:2018
+#: class-fire-utils_settings_map.php:2244
 msgid "Advanced settings for the Customizr theme."
 msgstr "Pengaturan lanjutan untuk tema Customizr."
 
-#: class-fire-utils_settings_map.php:2094
+#: class-fire-utils_settings_map.php:2318
 #, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural ""
@@ -2483,26 +2733,26 @@ msgstr[0] "Tema Anda support %s menu. Pilih menu mana yang ingin Anda gunakan."
 msgstr[1] ""
 "Tema Anda support %s menu. Pilih menu yang ditampilkan pada setiap lokasi."
 
-#: class-fire-utils_settings_map.php:2097
-#: class-fire-utils_settings_map.php:2105
+#: class-fire-utils_settings_map.php:2321
+#: class-fire-utils_settings_map.php:2329
 #, php-format
 msgid "You can create new menu and edit your menu's content %s."
 msgstr "Anda dapat membuat menu baru dan ubah konten menu %s."
 
-#: class-fire-utils_settings_map.php:2100
+#: class-fire-utils_settings_map.php:2324
 msgid "on the Menus screen in the Appearance section"
 msgstr "pada layar Menu di bagian Appearance (tampilan)"
 
-#: class-fire-utils_settings_map.php:2101
-#: class-fire-utils_settings_map.php:2109
+#: class-fire-utils_settings_map.php:2325
+#: class-fire-utils_settings_map.php:2333
 msgid "create/edit menus"
 msgstr "membuat / mengedit menu"
 
-#: class-fire-utils_settings_map.php:2108
+#: class-fire-utils_settings_map.php:2332
 msgid "in the menu panel"
 msgstr "di panel menu"
 
-#: class-fire-utils_settings_map.php:2114
+#: class-fire-utils_settings_map.php:2338
 msgid ""
 "If a menu location has no menu assigned to it, a default page menu will be "
 "used."
@@ -2510,199 +2760,195 @@ msgstr ""
 "Jika lokasi menu tidak memiliki menu yang ditugaskan untuk itu, menu halaman "
 "default akan digunakan."
 
-#: class-fire-utils_settings_map.php:2121
+#: class-fire-utils_settings_map.php:2345
 msgid "Site Title & Tagline"
 msgstr "Judul Situs & Slogan"
 
-#: class-fire-utils_settings_map.php:2126
+#: class-fire-utils_settings_map.php:2350
 msgid "Logo &amp; Favicon"
 msgstr "Logo &amp; Favicon"
 
-#: class-fire-utils_settings_map.php:2128
+#: class-fire-utils_settings_map.php:2352
 msgid "Set up logo and favicon options"
 msgstr "Mengatur logo dan favicon pilihan"
 
-#: class-fire-utils_settings_map.php:2132
+#: class-fire-utils_settings_map.php:2356
 msgid "Skin"
 msgstr "Kulit"
 
-#: class-fire-utils_settings_map.php:2134
+#: class-fire-utils_settings_map.php:2358
 msgid "Select a skin for Customizr"
 msgstr "Pilih kulit untuk Customizr"
 
-#: class-fire-utils_settings_map.php:2138
+#: class-fire-utils_settings_map.php:2362
 msgid "Fonts"
 msgstr "Font"
 
-#: class-fire-utils_settings_map.php:2140
+#: class-fire-utils_settings_map.php:2364
 msgid "Set up the font global settings"
 msgstr "Mengatur pengaturan huruf global"
 
-#: class-fire-utils_settings_map.php:2146
+#: class-fire-utils_settings_map.php:2370
 msgid "Set up your social links"
 msgstr "Atur link sosial Anda"
 
-#: class-fire-utils_settings_map.php:2150
+#: class-fire-utils_settings_map.php:2374
 msgid "Links style and effects"
 msgstr "Gaya link dan efek"
 
-#: class-fire-utils_settings_map.php:2152
+#: class-fire-utils_settings_map.php:2376
 msgid "Various links settings"
 msgstr "Pengaturan berbagai link"
 
-#: class-fire-utils_settings_map.php:2156
+#: class-fire-utils_settings_map.php:2380
 msgid "Titles icons settings"
 msgstr "Pengaturan ikon judul"
 
-#: class-fire-utils_settings_map.php:2158
+#: class-fire-utils_settings_map.php:2382
 msgid "Set up the titles icons options"
 msgstr "Mengatur opsi ikon judul"
 
-#: class-fire-utils_settings_map.php:2162
+#: class-fire-utils_settings_map.php:2386
 msgid "Image settings"
 msgstr "Pengaturan gambar"
 
-#: class-fire-utils_settings_map.php:2164
+#: class-fire-utils_settings_map.php:2388
 msgid "Various images settings"
 msgstr "Pengaturan berbagai gambar"
 
-#: class-fire-utils_settings_map.php:2168
+#: class-fire-utils_settings_map.php:2392
 msgid "Authors"
 msgstr "Penulis"
 
-#: class-fire-utils_settings_map.php:2170
+#: class-fire-utils_settings_map.php:2394
 msgid "Post authors settings"
 msgstr "Pengaturan penulis post"
 
-#: class-fire-utils_settings_map.php:2174
+#: class-fire-utils_settings_map.php:2398
 msgid "Smooth Scroll"
 msgstr "Gulir halus"
 
-#: class-fire-utils_settings_map.php:2176
+#: class-fire-utils_settings_map.php:2400
 msgid "Smooth Scroll settings"
 msgstr "Pengaturan Gulir halus"
 
-#: class-fire-utils_settings_map.php:2184
+#: class-fire-utils_settings_map.php:2408
 msgid "Design and layout"
 msgstr "Desain dan tata letak (layout)"
 
-#: class-fire-utils_settings_map.php:2189
+#: class-fire-utils_settings_map.php:2413
 msgid "Navigation Menus"
 msgstr "Menu Navigasi"
 
-#: class-fire-utils_settings_map.php:2201
+#: class-fire-utils_settings_map.php:2425
 msgid "Front Page"
 msgstr "Laman depan"
 
-#: class-fire-utils_settings_map.php:2203
+#: class-fire-utils_settings_map.php:2427
 msgid "Set up front page options"
 msgstr "Mengatur pilihan halaman depan"
 
-#: class-fire-utils_settings_map.php:2208
+#: class-fire-utils_settings_map.php:2432
 msgid "Pages &amp; Posts Layout"
 msgstr "Layout Laman &amp; Post"
 
-#: class-fire-utils_settings_map.php:2210
+#: class-fire-utils_settings_map.php:2434
 msgid "Set up layout options"
 msgstr "Mengatur pilihan tata letak (layout)"
 
-#: class-fire-utils_settings_map.php:2215
+#: class-fire-utils_settings_map.php:2439
 msgid "Post lists : blog, archives, ..."
 msgstr "Daftar posting: blog, arsip, ..."
 
-#: class-fire-utils_settings_map.php:2217
+#: class-fire-utils_settings_map.php:2441
 msgid "Set up post lists options"
 msgstr "Atur pilihan daftar post"
 
-#: class-fire-utils_settings_map.php:2221
+#: class-fire-utils_settings_map.php:2445
 msgid "Single posts"
 msgstr "Posting Tunggal"
 
-#: class-fire-utils_settings_map.php:2223
+#: class-fire-utils_settings_map.php:2447
 msgid "Set up single posts options"
 msgstr "Atur pilihan post tunggal"
 
-#: class-fire-utils_settings_map.php:2227
+#: class-fire-utils_settings_map.php:2451
 msgid "Breadcrumb"
 msgstr "Breadcrumb"
 
-#: class-fire-utils_settings_map.php:2229
+#: class-fire-utils_settings_map.php:2453
 msgid "Set up breadcrumb options"
 msgstr "Mengatur opsi breadcrumb"
 
-#: class-fire-utils_settings_map.php:2241
+#: class-fire-utils_settings_map.php:2465
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr "Post meta (kategori, tag, taksonomi kustom)"
 
-#: class-fire-utils_settings_map.php:2243
+#: class-fire-utils_settings_map.php:2467
 msgid "Set up post metas options"
 msgstr "Atur opsi post meta"
 
-#: class-fire-utils_settings_map.php:2247
+#: class-fire-utils_settings_map.php:2471
 msgid "Galleries"
 msgstr "Galeri"
 
-#: class-fire-utils_settings_map.php:2249
+#: class-fire-utils_settings_map.php:2473
 msgid "Set up gallery options"
 msgstr "Mengatur opsi galeri"
 
-#: class-fire-utils_settings_map.php:2253
+#: class-fire-utils_settings_map.php:2477
 msgid "Paragraphs"
 msgstr "Paragraf"
 
-#: class-fire-utils_settings_map.php:2255
+#: class-fire-utils_settings_map.php:2479
 msgid "Set up paragraphs options"
 msgstr "Mengatur opsi paragraf"
 
-#: class-fire-utils_settings_map.php:2259
+#: class-fire-utils_settings_map.php:2483
 msgid "Comments"
 msgstr "Komentar"
 
-#: class-fire-utils_settings_map.php:2261
+#: class-fire-utils_settings_map.php:2485
 msgid "Set up comments options"
 msgstr "Atur opsi komentar"
 
-#: class-fire-utils_settings_map.php:2265
+#: class-fire-utils_settings_map.php:2489
 msgid "Post/Page Navigation"
 msgstr "Post / Halaman Navigasi"
 
-#: class-fire-utils_settings_map.php:2267
+#: class-fire-utils_settings_map.php:2491
 msgid "Set up post/page navigation options"
 msgstr "Mengatur pilihan navigasi posting / halaman"
 
-#: class-fire-utils_settings_map.php:2276
+#: class-fire-utils_settings_map.php:2500
 msgid "Socials in Sidebars"
 msgstr "Sosial di sidebar"
 
-#: class-fire-utils_settings_map.php:2278
+#: class-fire-utils_settings_map.php:2502
 msgid "Set up your social profiles links in the sidebar(s)."
 msgstr "Atur profil media sosial Anda di sidebar."
 
-#: class-fire-utils_settings_map.php:2282
-msgid "Responsive settings"
-msgstr "Pengaturan responsif"
-
-#: class-fire-utils_settings_map.php:2284
+#: class-fire-utils_settings_map.php:2508
 msgid "Various settings for responsive display"
 msgstr "Berbagai pengaturan untuk tampilan responsif"
 
-#: class-fire-utils_settings_map.php:2293
+#: class-fire-utils_settings_map.php:2517
 msgid "Footer global settings"
 msgstr "Footer pengaturan global"
 
-#: class-fire-utils_settings_map.php:2295
+#: class-fire-utils_settings_map.php:2519
 msgid "Set up footer global options"
 msgstr "Mengatur footer opsi global"
 
-#: class-fire-utils_settings_map.php:2304
+#: class-fire-utils_settings_map.php:2528
 msgid "Custom CSS"
 msgstr "CSS kustom"
 
-#: class-fire-utils_settings_map.php:2309
+#: class-fire-utils_settings_map.php:2533
 msgid "Website Performances"
 msgstr "Performa Website"
 
-#: class-fire-utils_settings_map.php:2311
+#: class-fire-utils_settings_map.php:2535
 msgid ""
 "On the web, speed is key ! Improve the load time of your pages with those "
 "options."
@@ -2710,45 +2956,49 @@ msgstr ""
 "Di web, kecepatan adalah kunci! Meningkatkan waktu buka halaman Anda dengan "
 "orang-orang pilihan."
 
-#: class-fire-utils_settings_map.php:2315
+#: class-fire-utils_settings_map.php:2539
 msgid "Front-end placeholders and help blocks"
 msgstr "Front-end placeholder dan kotak bantuan"
 
-#: class-fire-utils_settings_map.php:2343
+#: class-fire-utils_settings_map.php:2544
+msgid "Front-end Icons (Font Awesome)"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2572
 msgid "Home featured page one"
 msgstr "Laman fitur beranda satu"
 
-#: class-fire-utils_settings_map.php:2344
+#: class-fire-utils_settings_map.php:2573
 msgid "Home featured page two"
 msgstr "Laman fitur beranda dua"
 
-#: class-fire-utils_settings_map.php:2345
+#: class-fire-utils_settings_map.php:2574
 msgid "Home featured page three"
 msgstr "Laman fitur beranda tiga"
 
-#: class-fire-utils_settings_map.php:2348
-msgid "Featured text one (200 car. max)"
-msgstr "Teks fitur satu (maks 200 kar.)"
+#: class-fire-utils_settings_map.php:2577
+msgid "Featured text one (200 char. max)"
+msgstr ""
 
-#: class-fire-utils_settings_map.php:2349
-msgid "Featured text two (200 car. max)"
-msgstr "Teks fitur dua (maks 200 kar.)"
+#: class-fire-utils_settings_map.php:2578
+msgid "Featured text two (200 char. max)"
+msgstr ""
 
-#: class-fire-utils_settings_map.php:2350
-msgid "Featured text three (200 car. max)"
-msgstr "Teks fitur tiga (maks 200 kar)"
+#: class-fire-utils_settings_map.php:2579
+msgid "Featured text three (200 char. max)"
+msgstr ""
 
-#: class-fire-utils_settings_map.php:2366
+#: class-fire-utils_settings_map.php:2595
 #, php-format
 msgid "Custom featured page %1$s"
 msgstr "Halaman kustom unggulan (featured) %1$s"
 
-#: class-fire-utils_settings_map.php:2382
+#: class-fire-utils_settings_map.php:2611
 #, php-format
-msgid "Featured text %1$s (200 car. max)"
-msgstr "Teks unggulan (featured) %1$s (maks 200 kar)"
+msgid "Featured text %1$s (200 char. max)"
+msgstr ""
 
-#: class-fire-utils_settings_map.php:2385
+#: class-fire-utils_settings_map.php:2614
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
@@ -2756,13 +3006,17 @@ msgstr ""
 "Anda harus memilih laman terlebih dahulu. Biarkan bidang ini kosong jika "
 "Anda ingin menggunakan kutipan laman."
 
-#: class-fire-utils_settings_map.php:2510
+#: class-fire-utils_settings_map.php:2740
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Tidak ada slider &mdash;"
 
-#: class-fire-utils_settings_map.php:2511
+#: class-fire-utils_settings_map.php:2741
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Demo Slider &mdash;"
+
+#: class-fire-utils_settings_map.php:2742
+msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
+msgstr ""
 
 #: parts/class-content-attachment.php:41
 msgid "&larr; Previous"
@@ -2773,7 +3027,7 @@ msgid "Next &rarr;"
 msgstr "Selanjutnya &rarr;"
 
 #: parts/class-content-breadcrumb.php:38 parts/class-content-breadcrumb.php:50
-#: parts/class-header-menu.php:771
+#: parts/class-header-menu.php:764
 msgid "Home"
 msgstr "Beranda"
 
@@ -2781,139 +3035,139 @@ msgstr "Beranda"
 msgid "Browse:"
 msgstr "Cari:"
 
-#: parts/class-content-breadcrumb.php:524
+#: parts/class-content-breadcrumb.php:527
 msgid "g:i a"
 msgstr "g:i a"
 
-#: parts/class-content-breadcrumb.php:527
+#: parts/class-content-breadcrumb.php:530
 #, php-format
 msgid "Minute %1$s"
 msgstr "Menit %1$s"
 
-#: parts/class-content-breadcrumb.php:527
+#: parts/class-content-breadcrumb.php:530
 msgid "i"
 msgstr "i"
 
-#: parts/class-content-breadcrumb.php:530
+#: parts/class-content-breadcrumb.php:533
 msgid "g a"
 msgstr "g a"
 
-#: parts/class-content-breadcrumb.php:546
-#: parts/class-content-breadcrumb.php:556
-#: parts/class-content-breadcrumb.php:565
-#: parts/class-content-breadcrumb.php:576
-#: parts/class-content-breadcrumb.php:578
-#: parts/class-content-breadcrumb.php:777
+#: parts/class-content-breadcrumb.php:549
+#: parts/class-content-breadcrumb.php:559
+#: parts/class-content-breadcrumb.php:568
+#: parts/class-content-breadcrumb.php:579
+#: parts/class-content-breadcrumb.php:581
+#: parts/class-content-breadcrumb.php:824
 msgid "Y"
 msgstr "Y"
 
-#: parts/class-content-breadcrumb.php:547
-#: parts/class-content-breadcrumb.php:568
-#: parts/class-content-breadcrumb.php:570
-#: parts/class-content-breadcrumb.php:781
+#: parts/class-content-breadcrumb.php:550
+#: parts/class-content-breadcrumb.php:571
+#: parts/class-content-breadcrumb.php:573
+#: parts/class-content-breadcrumb.php:828
 msgid "F"
 msgstr "F"
 
-#: parts/class-content-breadcrumb.php:550
-#: parts/class-content-breadcrumb.php:552
-#: parts/class-content-breadcrumb.php:785
+#: parts/class-content-breadcrumb.php:553
+#: parts/class-content-breadcrumb.php:555
+#: parts/class-content-breadcrumb.php:832
 msgid "d"
 msgstr "d"
 
-#: parts/class-content-breadcrumb.php:559
-#: parts/class-content-breadcrumb.php:561
+#: parts/class-content-breadcrumb.php:562
+#: parts/class-content-breadcrumb.php:564
 #, php-format
 msgid "Week %1$s"
 msgstr "Minggu %1$s"
 
-#: parts/class-content-breadcrumb.php:587
-#: parts/class-content-breadcrumb.php:589
+#: parts/class-content-breadcrumb.php:590
+#: parts/class-content-breadcrumb.php:592
 #, php-format
 msgid "Search results for &quot;%1$s&quot;"
 msgstr "Hasil pencarian untuk &quot;%1$s&quot;"
 
-#: parts/class-content-breadcrumb.php:594
+#: parts/class-content-breadcrumb.php:597
 msgid "404 Not Found"
 msgstr "404 Tidak Ditemukan"
 
-#: parts/class-content-breadcrumb.php:599
-#: parts/class-content-breadcrumb.php:601
+#: parts/class-content-breadcrumb.php:602
+#: parts/class-content-breadcrumb.php:604
 #, php-format
 msgid "Page %d"
 msgstr "Halaman %d"
 
-#: parts/class-content-breadcrumb.php:670
+#: parts/class-content-breadcrumb.php:673
 msgid "Split"
 msgstr "Pecah"
 
-#: parts/class-content-breadcrumb.php:674
+#: parts/class-content-breadcrumb.php:677
 msgid "Merge"
 msgstr "Gabung"
 
-#: parts/class-content-comments.php:92
+#: parts/class-content-comments.php:93
 msgid "One thought on"
 msgstr "Satu tanggapan pada"
 
-#: parts/class-content-comments.php:94
+#: parts/class-content-comments.php:95
 msgid "thoughts on"
 msgstr "tanggapan pada"
 
-#: parts/class-content-comments.php:154
+#: parts/class-content-comments.php:155
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: parts/class-content-comments.php:154
+#: parts/class-content-comments.php:156
 msgid "(Edit)"
 msgstr "(Ubah)"
 
-#: parts/class-content-comments.php:181
+#: parts/class-content-comments.php:184
 msgid "Reply"
 msgstr "Balas"
 
-#: parts/class-content-comments.php:194
+#: parts/class-content-comments.php:197
 msgid "Post author"
 msgstr "Post author"
 
-#: parts/class-content-comments.php:201
+#: parts/class-content-comments.php:204
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s pada %2$s"
 
-#: parts/class-content-comments.php:206
+#: parts/class-content-comments.php:209
 msgid "Your comment is awaiting moderation."
 msgstr "Komentar anda sedang menunggu moderasi."
 
-#: parts/class-content-comments.php:241
+#: parts/class-content-comments.php:244
 msgid "Comment navigation"
 msgstr "Navigasi Komentar"
 
-#: parts/class-content-comments.php:247
+#: parts/class-content-comments.php:250
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Komentar Jadul"
 
-#: parts/class-content-comments.php:255
+#: parts/class-content-comments.php:258
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Komentar Baru <span class=\"meta-nav\">&rarr;</span>"
 
-#: parts/class-content-comments.php:287
+#: parts/class-content-comments.php:290
 msgid "Comments are closed."
 msgstr "Komentar ditutup."
 
-#: parts/class-content-comments.php:322
+#: parts/class-content-comments.php:325
 msgid "Leave a comment"
 msgstr "Tinggalkan komentar"
 
-#: parts/class-content-comments.php:344
+#: parts/class-content-comments.php:348
 msgid "Comment(s) on"
 msgstr "Komentar pada"
 
-#: parts/class-content-comments.php:363
+#: parts/class-content-comments.php:367
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "komentar"
 msgstr[1] "komentar"
 
-#: parts/class-content-featured_pages.php:41
+#: parts/class-content-featured_pages.php:42
 #, php-format
 msgid ""
 "Edit those featured pages %s, or %s (you'll be able to add yours later)."
@@ -2921,44 +3175,37 @@ msgstr ""
 "Ubah laman fitur tersebut %s, atau %s (Anda dapat menambahkan milik Anda "
 "nanti)."
 
-#: parts/class-content-featured_pages.php:42
+#: parts/class-content-featured_pages.php:43
 msgid "Edit those featured pages"
 msgstr "Ubah laman fitur"
 
-#: parts/class-content-featured_pages.php:42
-#: parts/class-content-sidebar.php:140 parts/class-content-slider.php:525
-#: parts/class-footer-footer_main.php:154
+#: parts/class-content-featured_pages.php:43
+#: parts/class-content-sidebar.php:140 parts/class-content-slider.php:1023
+#: parts/class-footer-footer_main.php:151
 msgid "now"
 msgstr "sekarang"
 
-#: parts/class-content-featured_pages.php:43
+#: parts/class-content-featured_pages.php:44
 msgid "Remove the featured pages"
 msgstr "Singkirkan laman fitur"
 
-#: parts/class-content-featured_pages.php:43
+#: parts/class-content-featured_pages.php:44
 msgid "remove them"
 msgstr "Singkirkan"
 
-#: parts/class-content-featured_pages.php:47 parts/class-content-post.php:210
-#: parts/class-content-sidebar.php:155 parts/class-content-slider.php:530
-#: parts/class-footer-footer_main.php:162 parts/class-header-menu.php:115
-#: parts/class-header-menu.php:370 parts/class-header-menu.php:397
-msgid "dismiss notice"
-msgstr "Tutup pemberitahuan"
-
-#: parts/class-content-featured_pages.php:166
+#: parts/class-content-featured_pages.php:167
 msgid "Customizer screen"
 msgstr "Layar Customizer"
 
-#: parts/class-content-featured_pages.php:167
+#: parts/class-content-featured_pages.php:168
 msgid "Edit now."
 msgstr "Edit sekarang."
 
-#: parts/class-content-featured_pages.php:173
+#: parts/class-content-featured_pages.php:175
 msgid "Featured page"
 msgstr "Halaman Pilihan (fitur)"
 
-#: parts/class-content-featured_pages.php:177
+#: parts/class-content-featured_pages.php:179
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the Customizr screen."
@@ -2979,67 +3226,63 @@ msgstr "{no title} Baca post &raquo;"
 msgid "Permalink to %s"
 msgstr "Tautkan ke %s"
 
-#: parts/class-content-headings.php:321
+#: parts/class-content-headings.php:324
 msgid "Ooops, page not found"
 msgstr "Ooops, halaman tidak ditemukan"
 
-#: parts/class-content-headings.php:335
+#: parts/class-content-headings.php:338
 msgid "No"
 msgstr "Tidak"
 
-#: parts/class-content-headings.php:369 parts/class-content-post.php:135
+#: parts/class-content-headings.php:372 parts/class-content-post.php:138
 #, php-format
 msgid "About %s"
 msgstr "Tentang %s"
 
-#: parts/class-content-headings.php:409
+#: parts/class-content-headings.php:412
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Arsip Harian: %s"
 
-#: parts/class-content-headings.php:409
+#: parts/class-content-headings.php:412
 msgid "Archives"
 msgstr "Arsip"
 
-#: parts/class-content-headings.php:410
+#: parts/class-content-headings.php:413
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Arsip Bulanan: %s"
 
-#: parts/class-content-headings.php:411
+#: parts/class-content-headings.php:414
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Arsip Tahunan: %s"
 
-#: parts/class-content-page.php:42 parts/class-content-post.php:97
-#: parts/class-content-post_list.php:241
+#: parts/class-content-page.php:59 parts/class-content-post.php:100
+#: parts/class-content-post_list.php:246
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Lanjutkan membaca <span class=\"meta-nav\">&rarr;</span>"
 
-#: parts/class-content-page.php:44 parts/class-content-post.php:98
-#: parts/class-content-post_list.php:243
+#: parts/class-content-page.php:61 parts/class-content-post.php:101
+#: parts/class-content-post_list.php:248
 msgid "Pages:"
 msgstr "Laman:"
 
-#: parts/class-content-post.php:139
+#: parts/class-content-post.php:142
 #, php-format
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Lihat semua post dari %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: parts/class-content-post.php:201
+#: parts/class-content-post.php:204
 msgid "You can display your post's featured image here if you have set one."
 msgstr ""
 "Anda dapat menampilkan posting Anda ditampilkan gambar di sini jika Anda "
 "telah menetapkan."
 
-#: parts/class-content-post.php:202
+#: parts/class-content-post.php:205
 #, php-format
 msgid "%s to display a featured image here."
 msgstr "%s untuk menampilkan gambar yang ditampilkan di sini."
-
-#: parts/class-content-post.php:203
-msgid "Jump to the customizer now"
-msgstr "Langsung ke Customizer sekarang"
 
 #: parts/class-content-post_metas.php:182
 #, php-format
@@ -3061,7 +3304,7 @@ msgid "Link to full-size image"
 msgstr "Link ke ukuran penuh gambar"
 
 #: parts/class-content-post_metas.php:205
-#: parts/class-content-post_metas.php:580
+#: parts/class-content-post_metas.php:581
 msgid "in"
 msgstr "di"
 
@@ -3127,25 +3370,25 @@ msgstr "(diperbaharui 1 hari lalu)"
 msgid "(updated on %1$s)"
 msgstr "(diperbaharui pada %1$s)"
 
-#: parts/class-content-post_metas.php:376
+#: parts/class-content-post_metas.php:377
 #, php-format
 msgid "View all posts in %s"
 msgstr "Lihat semua post di %s"
 
-#: parts/class-content-post_metas.php:511
+#: parts/class-content-post_metas.php:512
 #, php-format
 msgid "View all posts by %s"
 msgstr "Lihat semua post oleh %s"
 
-#: parts/class-content-post_metas.php:531
+#: parts/class-content-post_metas.php:532
 msgid "Open"
 msgstr "Buka"
 
-#: parts/class-content-post_metas.php:581
+#: parts/class-content-post_metas.php:582
 msgid "tagged"
 msgstr "Ditag"
 
-#: parts/class-content-post_metas.php:604
+#: parts/class-content-post_metas.php:605
 msgid "by"
 msgstr "oleh"
 
@@ -3162,7 +3405,7 @@ msgstr "<span class=\"meta-nav\">&larr;</span> Post Jadul"
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Post Baru <span class=\"meta-nav\">&rarr;</span>"
 
-#: parts/class-content-sidebar.php:131 parts/class-footer-footer_main.php:145
+#: parts/class-content-sidebar.php:131 parts/class-footer-footer_main.php:142
 msgid "This block is visible for admin users only."
 msgstr "Blok ini terlihat bagi pengguna admin saja."
 
@@ -3176,11 +3419,11 @@ msgstr "%s sidebar tidak memiliki widget."
 msgid "Add widgets to this sidebar %s or %s."
 msgstr "Tambahkan  widget ke sidebar ini %s atau %s."
 
-#: parts/class-content-sidebar.php:140 parts/class-footer-footer_main.php:154
+#: parts/class-content-sidebar.php:140 parts/class-footer-footer_main.php:151
 msgid "Add widgets"
 msgstr "Tambah Widgets"
 
-#: parts/class-content-sidebar.php:142 parts/class-footer-footer_main.php:156
+#: parts/class-content-sidebar.php:142 parts/class-footer-footer_main.php:153
 msgid "dismiss this notice"
 msgstr "Tutup pemberitahuan"
 
@@ -3198,58 +3441,88 @@ msgstr "Mengubah tata letak dalam tema Customizr"
 msgid "See the theme documentation."
 msgstr "Lihat dokumentasi tema."
 
-#: parts/class-content-slider.php:393
+#: parts/class-content-slider.php:832
 msgid "Go to"
 msgstr "Pergi ke"
 
-#: parts/class-content-slider.php:524
+#: parts/class-content-slider.php:964
+#, php-format
+msgid "Customize or remove %s"
+msgstr ""
+
+#: parts/class-content-slider.php:965
+msgid "the posts slider"
+msgstr ""
+
+#: parts/class-content-slider.php:965
+msgid "this slider"
+msgstr ""
+
+#: parts/class-content-slider.php:1022
 #, php-format
 msgid ""
 "Select your own slider %s, or %s (you'll be able to add one back later)."
 msgstr "Pilih slider Anda %s, atau %s (anda dapat menambahkannya nanti)."
 
-#: parts/class-content-slider.php:525
+#: parts/class-content-slider.php:1023
 msgid "Select your own slider"
 msgstr "Pilih slider Anda sendiri"
 
-#: parts/class-content-slider.php:526
+#: parts/class-content-slider.php:1024
 msgid "Remove the home page slider"
 msgstr "Menghapus halaman beranda slider"
 
-#: parts/class-content-slider.php:526
+#: parts/class-content-slider.php:1024
 msgid "remove this demo slider"
 msgstr "hapus demo slider ini"
 
-#: parts/class-content-slider.php:559
+#: parts/class-content-slider.php:1057
 msgid "Discover how to replace or remove this demo slider."
 msgstr "Temukan cara untuk mengganti atau menghapus demo slider ini."
 
-#: parts/class-content-slider.php:561
+#: parts/class-content-slider.php:1059
 msgid "Check the front page slider doc &raquo;"
 msgstr "Cek dokumen slider laman depan &raquo;"
 
-#: parts/class-content-slider.php:565
+#: parts/class-content-slider.php:1063
 msgid "Easily create sliders and add them in any posts or pages."
 msgstr "Mudah membuat slider dan menambahkannya dalam tulisan atau halaman."
 
-#: parts/class-content-slider.php:567
+#: parts/class-content-slider.php:1065
 msgid "Check the slider doc now &raquo;"
 msgstr "Cek dokumen slider sekarang &raquo;"
 
-#: parts/class-footer-footer_main.php:149
+#: parts/class-content-slider.php:1411
+#, php-format
+msgid "Protected: %s"
+msgstr ""
+
+#: parts/class-content-slider.php:1436
+msgid "There is no excerpt because this is a protected post."
+msgstr ""
+
+#: parts/class-footer-footer_main.php:146
 msgid "The footer has no widgets"
 msgstr "Footer tidak memiliki widget"
 
-#: parts/class-footer-footer_main.php:153
+#: parts/class-footer-footer_main.php:150
 #, php-format
 msgid "Add widgets to the footer %s or %s."
 msgstr "Tambahkan widget ke foote r%s atau %s."
 
-#: parts/class-footer-footer_main.php:269
+#: parts/class-footer-footer_main.php:246
+msgid "Powered by"
+msgstr ""
+
+#: parts/class-footer-footer_main.php:247
+msgid "Powered by Wordpress"
+msgstr ""
+
+#: parts/class-footer-footer_main.php:271
 msgid "Back to top"
 msgstr "Kembali ke atas"
 
-#: parts/class-header-header_main.php:315
+#: parts/class-header-header_main.php:309
 msgid "Back Home"
 msgstr "Kembali ke Beranda"
 
@@ -3344,6 +3617,49 @@ msgstr "Mengelola menu di header"
 msgid "Manage your menus in the header now"
 msgstr "Mengelola menu di header sekarang"
 
-#: parts/class-header-menu.php:819
+#: parts/class-header-menu.php:812
 msgid "Pages"
 msgstr "Laman"
+
+#~ msgid "Need more customizations options and premium support ?"
+#~ msgstr "Butuh penyesuaian lebih dan support lebih ?"
+
+#~ msgid "Get Customizr Pro"
+#~ msgstr "Dapatkan Customizr Pro"
+
+#~ msgid "Title text (80 car. max length)"
+#~ msgstr "Teks judul (panjang maks 80 kar)"
+
+#~ msgid "Description text (below the title, 250 car. max length)"
+#~ msgstr "Teks deskripsi (dibawah judul, panjang maks 250 kar)"
+
+#~ msgid "Button text (80 car. max length)"
+#~ msgstr "Teks tombol (panjang maks 80 kar)"
+
+#~ msgid "Code snippets"
+#~ msgstr "Potongan kode"
+
+#~ msgid "Get support in the forum"
+#~ msgstr "Dapatkan support di forum"
+
+#~ msgid "Performance : use the minified CSS stylesheet"
+#~ msgstr "Performa : gunakan minified CSS stylesheet"
+
+#~ msgid ""
+#~ "Using the minified version of the skin stylesheet will speed up your "
+#~ "webpage load time."
+#~ msgstr ""
+#~ "Menggunakan kulit stylesheet versi minified akan meningkatkan loading "
+#~ "website."
+
+#~ msgid "Featured text one (200 car. max)"
+#~ msgstr "Teks fitur satu (maks 200 kar.)"
+
+#~ msgid "Featured text two (200 car. max)"
+#~ msgstr "Teks fitur dua (maks 200 kar.)"
+
+#~ msgid "Featured text three (200 car. max)"
+#~ msgstr "Teks fitur tiga (maks 200 kar)"
+
+#~ msgid "Featured text %1$s (200 car. max)"
+#~ msgstr "Teks unggulan (featured) %1$s (maks 200 kar)"
