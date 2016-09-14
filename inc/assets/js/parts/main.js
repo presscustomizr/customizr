@@ -465,8 +465,8 @@ var czrapp = czrapp || {};
         oncustom : ['smartload', 'simple_load']
       });
 
-      //rectangulars
-      $('.tc-rectangular-thumb').centerImages( {
+      //rectangulars in post lists
+      $('.tc-rectangular-thumb', '.tc-post-list-context' ).centerImages( {
         enableCentering : 1 == TCParams.centerAllImg,
         enableGoldenRatio : true,
         goldenRatioVal : TCParams.goldenRatio || 1.618,

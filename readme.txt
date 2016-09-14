@@ -44,6 +44,7 @@ The exceptions to this license are as follows:
 * added : a parallax scrolling option for sliders. Enabled by default.
 * added : the waypoint js library (v4.0.0)
 * changed : slide loader icon is enabled by default
+* fixed : center the rectangular thumbs with golden ration only in post lists, not in single posts
 
 = 3.4.22 August 23rd 2016 =
 * Fix: tinymce custom style conflicts (detected with the ACF WP plugin ) with tinymce 4.x api. Fixes #626

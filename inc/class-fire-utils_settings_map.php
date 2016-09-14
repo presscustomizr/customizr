@@ -435,7 +435,7 @@ if ( ! class_exists( 'TC_utils_settings_map' ) ) :
                                 'label'       => __( "Sliders : use parallax scrolling" , "customizr" ),
                                 'section'     => 'images_sec' ,
                                 'type'        => 'checkbox' ,
-                                'notice'    => __( 'When enabled, your slides scroll slower than the page.' , 'customizr' ),
+                                'notice'    => __( 'If enabled, your slides scroll slower than the page (parallax effect).' , 'customizr' ),
               ),
               'tc_display_slide_loader'  =>  array(
                                 'default'       => 1,
