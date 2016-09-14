@@ -13,7 +13,7 @@ $_options = array(
     'tc_logo_upload' => '611',
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
-    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate
+    'tc_post_list_grid' => 'grid', //grid - masonry - alternate
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
@@ -27,7 +27,10 @@ $_options = array(
     'tc_post_list_thumb_alternate' => true,
 
     'tc_img_smart_load' => false,
-    'tc_enable_smooth_scroll' => false
+    'tc_enable_smooth_scroll' => false,
+
+    'tc_grid_bottom_border' => true,
+    'tc_grid_shadow'        => true
 );
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
   global $_options;

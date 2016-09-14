@@ -152,7 +152,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @since 3.0.10
   */
   function czr_fn_get_the_grid_post_class() {
-    return sprintf( '%1$s tc-grid span%2$s',
+    return sprintf( '%1$s tc-grid col-xs-12 col-md-%2$s',
       apply_filters( 'czr_grid_add_expanded_class', $this -> czr_fn_force_current_post_expansion() ) ? 'expanded' : '',
       is_numeric( $this -> czr_fn_get_grid_section_cols() ) ? 12 / $this -> czr_fn_get_grid_section_cols() : 6
     );
@@ -203,21 +203,30 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @param $_current_layout string of layout class like span4
   */
   function czr_fn_set_grid_cols( $_col_nb, $_current_layout ) {
+    /* TO FIX and extend considering that we can set different col widths for different
+    * viewports, also we could find a way, I'm pretty sure, to avoid the use of the row wrapper
+    * putting some element (or with :before :after pseudo-elements) which we can control with 
+    * CSS classes, e.g.
+    * <hr class="col-sm-12 md-hidden"> after a certain grid-item given a certain layout
+    */
+    preg_match("/(col-md-[0-9]+)/", $_current_layout, $current_md_layout);
+    $_current_layout = ! empty( $current_md_layout[0] ) ? $current_md_layout[0] : 'col-md-12';
+
     $_map = apply_filters(
         'tc_grid_col_layout_map',
         array(
-          'span12'  => '4',//no sidebars
-          'span11'  => '4',
-          'span10'  => '4',
-          'span9'   => '3',//one sidebar right or left
-          'span8'   => '3',
-          'span7'   => '2',
-          'span6'   => '2',//two sidebars
-          'span5'   => '2',
-          'span4'   => '1',
-          'span3'   => '1',
-          'span2'   => '1',
-          'span1'   => '1',
+          'col-md-12'  => '3',//no sidebars
+          'col-md-11'  => '3',
+          'col-md-10'  => '3',
+          'col-md-9'   => '3',//one sidebar right or left
+          'col-md-8'   => '3',
+          'col-md-7'   => '2',
+          'col-md-6'   => '2',//two sidebars
+          'col-md-5'   => '2',
+          'col-md-4'   => '1',
+          'col-md-3'   => '1',
+          'col-md-2'   => '1',
+          'col-md-1'   => '1',
         )
     );
 
@@ -311,7 +320,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
     return $_media_queries_css;
   }
 
-
+  /* To port in bootstrap 4 */
   /**
   * @return simple array of media queries
   */
@@ -365,7 +374,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * @param  $_sizes array. ex : array( 'xl' , 'l' , 'm', 'l', 'm' )
   * @param  $_col_nb string. Ex: '2'
   * @param  $_col_media_matrix : array() matrix 5 x 4 => media queries / Col_nb
-  * @param  $_current_layout string. Ex : 'span9'
+  * @param  $_current_layout string. Ex : 'col-md-9'
   * @return array()
   */
   function czr_fn_set_layout_font_size( $_sizes, $_col_nb, $_col_media_matrix, $_current_layout ) {
@@ -373,18 +382,18 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
     $_map = apply_filters(
       'tc_layout_font_size_map',
       array(
-        'span12'  => '1',//no sidebars
-        'span11'  => '1',
-        'span10'  => '1',
-        'span9'   => '2',//one sidebar right or left
-        'span8'   => '2',
-        'span7'   => '3',
-        'span6'   => '4',//two sidebars
-        'span5'   => '4',
-        'span4'   => '4',
-        'span3'   => '4',
-        'span2'   => '4',
-        'span1'   => '4',
+        'col-md-12'  => '1',//no sidebars
+        'col-md-11'  => '1',
+        'col-md-10'  => '1',
+        'col-md-9'   => '2',//one sidebar right or left
+        'col-md-8'   => '2',
+        'col-md-7'   => '3',
+        'col-md-6'   => '4',//two sidebars
+        'col-md-5'   => '4',
+        'col-md-4'   => '4',
+        'col-md-3'   => '4',
+        'col-md-2'   => '4',
+        'col-md-1'   => '4',
       )
     );
     if ( ! isset($_map[$_current_layout]) )

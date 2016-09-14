@@ -12,7 +12,7 @@
 if ( czr_fn_get( 'is_loop_start' ) ) :
 
 ?>
-<div class="row grid-container__classic <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
+<div class="row  grid-container__classic" <?php czr_fn_echo('element_attributes') ?>>
 <?php
 
 endif;
@@ -24,7 +24,7 @@ endif;
   if ( czr_fn_get( 'is_first_of_row' ) ) :
 
   ?>
-  <section class="row grid-cols-<?php czr_fn_echo( 'section_cols' ) ?>">
+  <section class="row grid grid-cols-<?php czr_fn_echo( 'section_cols' ) ?> <?php czr_fn_echo( 'element_class' ) ?>">
   <?php
 
   endif
