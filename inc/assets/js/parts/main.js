@@ -335,7 +335,7 @@ var czrapp = czrapp || {};
         $( _where ).imgSmartLoad(
           _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {}
         );
-    
+
       //If the centerAllImg is on we have to ensure imgs will be centered when simple loaded,
       //for this purpose we have to trigger the simple-load on:
       //1) imgs which have been excluded from the smartloading if enabled
@@ -343,15 +343,15 @@ var czrapp = czrapp || {};
       //simple-load event on holders needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
       if ( 1 == TCParams.centerAllImg ) {
         var self                   = this,
-            $_to_center            = smartLoadEnabled ? 
+            $_to_center            = smartLoadEnabled ?
                $( _.filter( $( _where ).find('img'), function( img ) {
                   return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
-                }) ): //filter 
+                }) ): //filter
                 $( _where ).find('img');
             $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
-                return $(img).hasClass('tc-holder-img'); 
+                return $(img).hasClass('tc-holder-img');
             }) );
-        
+
         //imgs to center with delay
         setTimeout( function(){
           self.triggerSimpleLoad( $_to_center_with_delay );
@@ -429,7 +429,7 @@ var czrapp = czrapp || {};
       //SLIDER IMG + VARIOUS
       setTimeout( function() {
         //centering per slider
-        $.each( $( '.carousel .carousel-inner') , function() {  
+        $.each( $( '.carousel .carousel-inner') , function() {
           $( this ).centerImages( {
             enableCentering : 1 == TCParams.centerSliderImg,
             imgSel : '.item .carousel-image img',
@@ -444,7 +444,7 @@ var czrapp = czrapp || {};
           setTimeout( function() {
               $( self ).prevAll('.tc-slider-loader-wrapper').fadeOut();
           }, 500 );
-        });  
+        });
       } , 50);
 
       //Featured Pages
@@ -491,6 +491,18 @@ var czrapp = czrapp || {};
         goldenRatioLimitHeightTo : TCParams.gridGoldenRatioLimit || 350
       } );
     },//center_images
+
+    /**
+    * PARALLAX
+    * @return {void}
+    */
+    parallax : function() {
+      $( '.parallax-item' ).czrParallax(
+      {
+        parallaxRatio : 0.55
+      }
+      );
+    },
 
   };//_methods{}
 
@@ -648,11 +660,11 @@ var czrapp = czrapp || {};
         break;
       }
     },//eventHandler
- 
+
     //outline firefox fix, see https://github.com/presscustomizr/customizr/issues/538
     outline: function() {
-      if ( czrapp.$_body.hasClass( 'mozilla' ) )
-        tcOutline();
+      if ( czrapp.$_body.hasClass( 'mozilla' ) && 'function' == typeof( tcOutline ) )
+          tcOutline();
     },
 
     //SMOOTH SCROLL
@@ -676,10 +688,10 @@ var czrapp = czrapp || {};
       _deep_excl = _.isObject( TCParams.anchorSmoothScrollExclude.deep ) ? TCParams.anchorSmoothScrollExclude.deep : null ;
       if ( _deep_excl )
         _links = _.toArray($_links).filter( function ( _el ) {
-          return ( 2 == ( ['ids', 'classes'].filter( 
-                        function( sel_type) { 
-                            return self.isSelectorAllowed( $(_el), _deep_excl, sel_type); 
-                        } ) ).length 
+          return ( 2 == ( ['ids', 'classes'].filter(
+                        function( sel_type) {
+                            return self.isSelectorAllowed( $(_el), _deep_excl, sel_type);
+                        } ) ).length
                 );
         });
       $(_links).click( function () {
@@ -824,14 +836,14 @@ var czrapp = czrapp || {};
 
       //both conain iframes => do nothing
       if ( leftIframe && contentIframe )
-        return;    
+        return;
 
       if ( that.$_left.length ) {
         if ( leftIframe )
           that.$_content[ _sidebarLayout === 'normal' ?  'insertAfter' : 'insertBefore']( that.$_left );
         else
           that.$_left[ _sidebarLayout === 'normal' ?  'insertBefore' : 'insertAfter']( that.$_content );
-      } 
+      }
     },
 
     //Handle dropdown on click for multi-tier menus
@@ -964,7 +976,7 @@ var czrapp = czrapp || {};
     },
 
     //Helpers
-    
+
     //Check if the passed element(s) contains an iframe
     //@return list of containers
     //@param $_elements = mixed
@@ -1844,7 +1856,7 @@ var czrapp = czrapp || {};
 jQuery(function ($) {
   var toLoad = {
     BrowserDetect : [],
-    Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
+    Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox', 'parallax'],
     Czr_Slider : ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport', 'sliderTriggerSimpleLoad'],
     //DropdownPlace is here to ensure is loaded before UserExperience's secondMenuRespActions
     //this will simplify the checks on whether or not move dropdowns at start

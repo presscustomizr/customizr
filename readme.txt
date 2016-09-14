@@ -40,6 +40,11 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.23 September 14th 2016 =
+* added : a parallax scrolling option for sliders. Enabled by default.
+* added : the waypoint js library (v4.0.0)
+* changed : slide loader icon is enabled by default
+
 = 3.4.22 August 23rd 2016 =
 * Fix: tinymce custom style conflicts (detected with the ACF WP plugin ) with tinymce 4.x api. Fixes #626
 * Fix : customizer terms array (categories/tags pickers options) not being updated on term delettion. fixes #620

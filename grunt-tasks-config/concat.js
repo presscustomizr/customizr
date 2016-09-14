@@ -28,8 +28,10 @@ module.exports = {
       '<%= paths.front_js %>jquery-plugins/jqueryimgSmartLoad.js',
       '<%= paths.front_js %>jquery-plugins/jqueryextLinks.js',
       '<%= paths.front_js %>jquery-plugins/jqueryCenterImages.js',
+      '<%= paths.front_js %>jquery-plugins/jqueryParallax.js',
       '<%= paths.front_js %>parts/smoothScroll.js',
       '<%= paths.front_js %>parts/outline.js',
+      '<%= paths.front_js %>parts/waypoints.js',
       '<%= paths.front_js %>parts/main.js'
     ],
 		dest: '<%= paths.front_js %>tc-scripts.js',
