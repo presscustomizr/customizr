@@ -92,9 +92,9 @@ function czr_fn_enqueue_front_scripts(){
   //will be concatenated with GRUNT
      'fmk/tc-js-params.js',
      'fmk/smoothScroll.js',
-     'fmk/jqueryimgOriginalSizes.js',
-     'fmk/jqueryCenterImages.js',
-     'fmk/jqueryParallax.js',
+     'jquery-plugins/jqueryimgOriginalSizes.js',
+     'jquery-plugins/jqueryCenterImages.js',
+     'jquery-plugins/jqueryParallax.js',
      'fmk/_main_base.part.js',
      'fmk/_main_browser_detect.part.js',
      'fmk/_main_dropdowns.part.js',
