@@ -9,21 +9,22 @@
  */
 ?>
 <section class="tc-grid-post" <?php czr_fn_echo('element_attributes') ?>>
-  <figure class="tc-grid-figure <?php czr_fn_echo( 'figure_class' ) ?>">
+  <div class="tc-grid-figure <?php czr_fn_echo( 'figure_class' ) ?>">
     <?php
 
     if ( czr_fn_get( 'icon_enabled' ) ):
 
     ?>
-      <div class="tc-grid-icon format-icon" <?php czr_fn_echo( 'icon_attributes' ) ?>></div>
+      <div class="tc-grid-icon" <?php czr_fn_echo( 'icon_attributes' ) ?>>
+        <i class="format-icon"></i>
+      </div>
     <?php
 
     endif
 
     ?>
     <?php czr_fn_echo( 'thumb_img' ) ?>
-    <?php if ( czr_fn_has( 'comment_bubble' ) ) czr_fn_render_template( 'modules/comment_bubble', 'comment_bubble' ) ?>
-    <figcaption class="tc-grid-excerpt">
+    <div class="tc-grid-excerpt">
       <div class="entry-summary">
         <div class="tc-g-cont"><?php the_excerpt() ?></div>
         <?php
@@ -58,42 +59,24 @@
       endif
 
       ?>
-    </figcaption>
+    </div>
     <?php
 
     /* Edit link in the figure for the expanded item */
       if( czr_fn_get( 'has_edit_in_caption' ) )
         if ( czr_fn_has( 'edit_button' ) ) czr_fn_render_template( 'modules/edit_button', 'edit_button' );
     ?>
-  </figure>
+  </div>
 <?php
 
   /* Header in the bottom for not expanded */
   if( ! czr_fn_get( 'is_expanded' ) ) :
 
 ?>
-  <header class="entry-header">
-  <?php
-
-   if ( ! czr_fn_get( 'has_title_in_caption' ) && czr_fn_post_has_title() ) :
-
-  ?>
-    <h2 class="entry-title">
-      <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
-  <?php if ( ! czr_fn_get( 'has_edit_in_caption' ) && czr_fn_has( 'edit_button' ) ) czr_fn_render_template( 'modules/edit_button', 'edit_button' ) ?>
-  <?php if ( czr_fn_has( 'recently_updated' ) ) czr_fn_render_template( 'modules/recently_updated', 'recently_updated' ) ?>
-    </h2>
-  <?php
-
-   endif;
-
-   /* Post metas */
-   if ( czr_fn_has('post_metas_button') ) { czr_fn_render_template( 'content/post-metas/post_metas', 'post_metas_button'); }
-   elseif ( czr_fn_has('post_metas_text') ) { czr_fn_render_template('content/post-metas/post_metas_text', 'post_metas_text'); }
-   elseif ( czr_fn_has('post_metas_attachment') ) { czr_fn_render_template('content/post-metas/attachment_post_metas', 'post_metas_attachment'); }
-
-  ?>
-  </header>
+  <div class="tc-content">
+    <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/post_list_header') ?>
+    <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/post_list_footer') ?>
+  </div>
 <?php
 
   endif
