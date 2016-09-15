@@ -156,10 +156,11 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       if ( $has_post_media ) {
         /* 
         * Video post formats
-        * In the new alternate layout video takes more space when global layout has less than 2 sidebars 
+        * In the new alternate layout video takes more space when global layout has less than 2 sidebars
+        * same thing for the image post format with text 
         *
         */
-        if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats', array( 'video' ) ) ) 
+        if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats', array( 'video', 'image' ) ) ) 
             && ! $this->has_narrow_layout ) {
           /* Swap the layouts */
           $_t_l                    = $_layout[ 'media' ];
