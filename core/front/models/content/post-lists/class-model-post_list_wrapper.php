@@ -188,7 +188,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
       * - be displayed in full-width
       * - media comes first, content will overlap
       */
-      $_layout[ 'content' ]  = $_layout[ 'media' ]    = array( '', '', '', '', '12');
+      $_layout[ 'content' ]  = $_layout[ 'media' ]    = array();
       
       $place_1 = 'media';
       $place_2 = 'content';
@@ -204,8 +204,8 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
     $article_selectors    = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
 
     $this -> czr_fn_update( array(
-      'czr_media_col'          => $this -> czr_fn_build_cols( $_layout[ 'media' ], $_offset[ 'media' ], $_push['media'], $_pull['media'] ),
-      'czr_content_col'        => $this -> czr_fn_build_cols( $_layout[ 'content'], $_offset[ 'content' ], $_push['content'], $_pull['content'] ),
+      'czr_media_col'          => array_filter( $this -> czr_fn_build_cols( $_layout[ 'media' ], $_offset[ 'media' ], $_push['media'], $_pull['media'] ) ),
+      'czr_content_col'        => array_filter( $this -> czr_fn_build_cols( $_layout[ 'content'], $_offset[ 'content' ], $_push['content'], $_pull['content'] ) ),
       'has_post_media'         => $has_post_media,
       'article_selectors'      => $article_selectors,
       'is_loop_start'          => 0 == $wp_query -> current_post,

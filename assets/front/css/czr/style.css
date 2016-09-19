@@ -32,7 +32,8 @@
   position: relative;
   z-index: 12;
 }
-img.post-thumbnail, img.wp-post-image {
+img.wp-post-image,
+img.post-thumbnail {
   width: 100%;
   height: auto;
 }
@@ -73,36 +74,65 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 
 
 
-/* FLICKITY */
-.carousel { height: 100vh; }
+/* FLICKITY SLIDER  */
+.carousel { z-index: 4;}
+.carousel-cell { width: 100%;}
+.carousel img { min-width: 100%;}
+
+/* .carousel { height: 100vh; }
+.format-gallery .carousel { height: 100%; }
 
 .carousel-cell { height: 100%; width: 100%; }
-.carousel-cell img { width: 100%; }
+.carousel-cell img { width: 100%; } */
 /* move page dots into carousel */
-.flickity-page-dots { bottom: 10px; }
-.filter .flickity-page-dots, .filter .flickity-prev-button, .filter .flickity-prev-next-button { z-index: 5;}
+.flickity-page-dots { bottom: 10px; } 
+.flickity-page-dots, .flickity-prev-button, .flickity-prev-next-button { z-index: 105; position: relative;}
 
-/* alternate post list sections centering */
+/* Patches */
+
+/* Alternate sections centering */
 @media ( min-width: 768px) {
-  .grid-container__alternate .czr-center-sections { display: inline-block; width: 100%; transform: translateY(50%) }
-  .grid-container__alternate .czr-center-sections section {transform: translateY(-50%) }
-  .grid-container__alternate .czr-center-sections .post-type__icon{ padding: 0 }
+  .czr-center-sections{transform: translateY(50%) }
+  .czr-center-sections section {transform: translateY(-50%) }
+  .no-thumb .czr-center-sections .post-type__icon{ padding: 0 }
+}
+article .sections-wrapper { position: relative; display: inline-block; width: 100%; height: 100%;}
+
+/* Alternate and Masonry special formats patch*/
+.article-container .post-action { left: auto; }
+[class*=grid-container__] .format-gallery .tc-thumbnail, [class*=grid-container__] .format-image .tc-thumbnail { max-height: 600px;}
+
+.bg-link { top: 0; left: 0; width: 100%; height: 100%; position: absolute; z-index: 4;}
+
+.hover .post-action,
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-footer,
+.article-container .grid-container__alternate .format-image.no-text .entry-footer,
+.article-container .grid-container__alternate .format-image.no-text .entry-header,
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,
+.article-container .grid-container__masonry .format-gallery .entry-header,
+.article-container .grid-container__masonry .format-gallery .entry-footer,
+.article-container .grid-container__masonry .format-image .entry-header,
+.article-container .grid-container__masonry .format-image .entry-footer { z-index: 5 }
+
+.article-container .grid-container__alternate .format-image.no-text .entry-header,
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,
+.article-container .grid-container__masonry .format-gallery .entry-header,
+.article-container .grid-container__masonry .format-image .entry-header{ position: relative;}
+
+.article-container .grid-container__alternate .format-image .sections-wrapper .tc-content, 
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content, 
+.article-container .grid-container__masonry .format-image .tc-content, 
+.article-container .grid-container__masonry .format-gallery .tc-content {
+  z-index: initial;
 }
 
-.article-container .grid-container__alternate .format-image.no-text .tc-content, .article-container .grid-container__alternate .format-gallery .tc-content {
-  width: 100%;
-  height: calc(100% - 5em);
-  top: 2.5em;
+/* reset bottom + when format-image apply only to those with no text*/
+.article-container .grid-container__alternate .format-image.no-text  .tc-content .entry-footer, 
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content .entry-footer {
+    position: absolute;
+    width: 90%;
+    bottom: 0;  
 }
-.article-container .grid-container__alternate .format-gallery .tc-content {
-  padding: 1.25em;        
-}
-.article-container .grid-container__alternate .hover .post-action { z-index: 105; }
-.article-container .grid-container__alternate .bg-link { top: 0; left: 0; width: 100%; height: 100%; position: absolute; z-index: 1;}
-
-.article-container .grid-container__alternate .tc-gallery-nav a{ z-index: 2;}
-.article-container .grid-container__alternate .entry-header,
-.article-container .grid-container__alternate .entry-footer { z-index: 2; position: relative;}
 
 /* TO BE MERGED */
 .grid-container__classic .post-info .v-separator,

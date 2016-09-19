@@ -43,13 +43,61 @@ var czrapp = czrapp || {};
       * but clicking on an another a.expand-img the image speficied in the 
       * dynamically added a.expang-img href is added to the gallery
       */
-      $( '[class*="grid-container__"], .post-gallery' ).magnificPopup({
-        delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
-        gallery: {
-          enabled: true
-        },
+
+      $( '[class*="grid-container__"]' ).magnificPopup({
+        delegate: 'a.expand-img:not(.gallery)', // child items selector, by clicking on it popup will open
         type: 'image'
         // other options
+      });
+      /* galleries in singles Create grouped galleries */
+      $( '.post-gallery' ).each(function(){
+        $(this).magnificPopup({
+          delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
+          type: 'image',
+          gallery: {
+           enabled: true
+          }
+          // other options
+        });
+      });
+      //TODO: FIND A BETTER SOLUTION
+      //in post lists galleries post formats
+      czrapp.$_body.on( 'click', '[class*="grid-container__"] .format-gallery .expand-img.gallery', function(e) {
+        e.preventDefault();
+        $(this).closest('article').magnificPopup({
+            delegate: '.gallery-img', // child items selector, by clicking on it popup will open
+            type: 'image',
+            gallery: {
+              enabled: true
+            },
+        }).magnificPopup('open');
+      });  
+    },
+    /*
+    * flickity slider:
+    */
+    czr_slider : function() {
+      /* Test only !!!!!! */
+      var $carousel = _get_carousel();
+      function _get_carousel() {
+        return $('.carousel-wrapper .carousel').length ? $('.carousel-wrapper .carousel').flickity({
+          prevNextButtons: false,
+          pageDots: false,
+          wrapAround: true,
+          imagesLoaded: true,
+          //setGallerySize: false,
+        }) : false;
+      }
+
+      // previous
+      czrapp.$_body.on( 'click', '.slider-prev', function() {
+        //var _flick_instance = $(this).closest('.carousel-wrapper').find('.carousel').data('flickity');
+        $carousel && $carousel.flickity('previous');
+      });
+      // next
+      czrapp.$_body.on( 'click', '.slider-next', function() {
+        //var _flick_instance = $(this).closest('.carousel-wrapper').find('.carousel').data('flickity');
+        $carousel && $carousel.flickity('next');
       });
     }
   };//_methods{}

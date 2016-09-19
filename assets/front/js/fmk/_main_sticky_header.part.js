@@ -80,13 +80,13 @@ var czrapp = czrapp || {};
     stickyHeaderMaybeToggling : function () {
 
       /* We meed an alternative for ie<10*/
-      if ( window.matchMedia("(max-width: 992px)").matches) {
+      if ( window.matchMedia("(max-width: 991px)").matches) {
         /* the viewport is less 992 pixels wide */
         if ( this._is_sticky_enabled() )
           czrapp.$_body.trigger( 'sticky-disable' )
                        .removeClass( 'tc-sticky-header' );
       } else {
-        /* the viewport is at least 993 pixels wide */
+        /* the viewport is at least 992 pixels wide */
         if ( ! this._is_sticky_enabled() ) {
           czrapp.$_body.addClass( 'tc-sticky-header' );
           this.stickyHeaderEventHandler('scroll');
