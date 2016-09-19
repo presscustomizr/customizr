@@ -50,7 +50,7 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
     if ( isset($image[3]) && false == $image[3] && 'tc_rectangular_size' == $tc_thumb_size )
       $tc_thumb_size          = 'slider';
 
-    $_img_attr['class']     = sprintf( 'attachment-%1$s tc-thumb-type-%2$s wp-post-image' , $tc_thumb_size , $_thumb_type );
+    $_img_attr['class']     = sprintf( 'attachment-%1$s tc-thumb-type-%2$s' , $tc_thumb_size , $_thumb_type );
     //Add the style value
     $_style                 = apply_filters( 'czr_post_thumb_inline_style' , '', $image, $_filtered_thumb_size );
     if ( $_style )

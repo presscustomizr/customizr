@@ -37,7 +37,12 @@ var czrapp = czrapp || {};
 
     //Handle dropdown on click for multi-tier menus
     dropdownMenuOnClick : function() {
-      var _dropdown_submenu_toggler_selector = '.tc-open-on-click .dropdown .dropdown-submenu > [data-toggle="dropdown"]';
+      var _dropdown_menu_container_selector  = '.tc-open-on-click',
+          _dropdown_menu_selector            = '.dropdown-menu',
+          _dropdown_submenu_selector         = '.dropdown-submenu',
+          _dropdown_submenu_toggler_selector = '.dropdown .dropdown-submenu > [data-toggle="dropdown"]',
+          _open_class                        = 'open';
+      
           //_dropdown_link_selector            = '.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'
           
       //Not needed anymore!!
@@ -62,20 +67,20 @@ var czrapp = czrapp || {};
       });//.on()*/
 
       // make sub-submenus dropdown on click work
-      czrapp.$_tcHeader.on('tap click', _dropdown_submenu_toggler_selector, function(){
-        var submenu   = $(this).next('.dropdown-menu'),
-            openthis  = false,
-            $parent   =  $(this).closest( '.dropdown-submenu' );
+      $( _dropdown_menu_container_selector ).on('tap click', _dropdown_submenu_toggler_selector, function(){
+        var _openthis          = false,
+            $_parent_submenu   = $(this).closest( _dropdown_submenu_selector );
 
-        if ( ! $parent.hasClass('open') ) {
-          openthis = true;
+        if ( ! $_parent_submenu.hasClass( _open_class ) ) {
+          _openthis = true;
         }
         // close opened submenus
-        $($parent.parent()).children('.dropdown-submenu').each(function(){
-            $(this).removeClass('open');
+        $( $_parent_submenu.closest( _dropdown_menu_selector ) ).children( _dropdown_submenu_selector ).each(function(){
+          $(this).removeClass( _open_class );
         });
-        if ( openthis )
-            $parent.addClass('open');
+
+        if ( _openthis )
+          $_parent_submenu.addClass( _open_class );
 
         return false;
       });//.on()

@@ -10,14 +10,19 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
     $post_format           = get_post_format();
     $has_post_media        = czr_fn_get( 'has_post_media' );
     $is_full_image         = czr_fn_get( 'is_full_image' );
-    
+    $element_class         = czr_fn_get( 'czr_media_col' );
+    $element_class         = $element_class ? $element_class : array();
+
     if ( ! $has_post_media && czr_fn_get( 'has_format_icon_media' ) && ! $is_full_image ) {
-      $icon_type           = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'text';
+      $icon_type           = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'article';
       $icon_type           = 'quote' == $post_format ? 'quotes' : $icon_type;
     }
 
+    if ( $has_post_media && 'gallery' == $post_format && get_post_gallery( get_the_ID(), false ) ) 
+      array_push( $element_class, 'carousel-wrapper');
+
     $this -> czr_fn_update( array(
-      'element_class'      =>  czr_fn_get( 'czr_media_col' ),
+      'element_class'      =>  $element_class,
       'has_post_media'     =>  $has_post_media,
       'icon_type'          =>  isset( $icon_type ) ? $icon_type : false,
       'original_thumb_url' =>  false,
@@ -84,6 +89,32 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
             </div>' : $content;
 
           return $content ? '<div class="audio-container '. $class .'">'. $content . '</div>' : '';
+      case 'gallery':
+          /* Rough */
+          if ( get_post_gallery() ) {
+            $gallery = get_post_gallery( get_the_ID(), false );
+            
+            $_gallery_html = '';
+            /* Loop through all the image and output them one by one */
+            foreach( $gallery['src'] as $src )
+              $_gallery_html .= '<div class="carousel-cell"><img class="gallery-img wp-post-image" src="'.$src.'" data-mfp-src="'.$src.'" alt="Gallery image" /></div>';
+
+            $the_permalink      = esc_url( apply_filters( 'the_permalink', get_the_permalink() ) );
+            $the_title_attribute = the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) );
+            $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
+
+            $_gallery_html   = '<div class="post-action">
+                          <a href="#" class="expand-img gallery"><i class="icn-expand"></i></a>
+                        </div>' . '<div class="tc-gallery-nav"> 
+                          <span href="#" class="slider-prev"><i class="icn-left-open-big"></i></span> 
+                          <span href="#" class="slider-next"><i class="icn-right-open-big"></i></span>
+                        </div><div class="carousel">' . $_gallery_html.'</div>';
+
+            return $_bg_link . $_gallery_html;          
+          }
+          //we need to return a placeholder;
+          return false;
+          
       default:
           $_the_thumb = czr_fn_get_thumbnail_model( 'normal' );
 
@@ -94,9 +125,14 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
           /* use utils tc thumb to retrieve the original image size */
           $this -> czr_fn_set_property( 'original_thumb_url', wp_get_attachment_image_src( $_the_thumb[ '_thumb_id' ], 'large')[0] );
 
-          if ( $this -> is_full_image )
-            return $_the_thumb[ 'tc_thumb' ] ;
-          return '<a href="'. esc_url( apply_filters( 'the_permalink', get_the_permalink() ) ) .'">'.  $_the_thumb[ 'tc_thumb' ] . '</a>';
+          $the_permalink      = esc_url( apply_filters( 'the_permalink', get_the_permalink() ) );
+          $the_title_attribute = the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) );
+
+          if ( $this -> is_full_image ) {
+            $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
+            return $_bg_link . $_the_thumb[ 'tc_thumb' ];
+          }
+          return '<a rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'">'.  $_the_thumb[ 'tc_thumb' ] . '</a>';
     }
   }
 

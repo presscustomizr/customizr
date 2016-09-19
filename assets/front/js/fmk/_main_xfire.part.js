@@ -9,8 +9,8 @@ jQuery(function ($) {
     Czr_Dropdowns : [],
     Czr_MasonryGrid : ['masonryGridEventListener'],
     Czr_StickyHeader : [ 'stickyHeaderEventListener', 'triggerStickyHeaderLoad' ],
-    Czr_UserExperience : [ 'variousHoverActions', 'smoothScroll', 'formActions', 'commentReplyTest', 'variousHeaderActions', 'pluginsCompatibility' ],
-    Czr_Plugins : ['centerImagesWithDelay', 'parallax', 'lightbox' ]
+    Czr_UserExperience : [ 'variousHoverActions', 'smoothScroll', 'formFocusAction', 'commentReplyTest', 'variousHeaderActions', 'pluginsCompatibility' ],
+    Czr_Plugins : ['centerImagesWithDelay', 'parallax', 'lightbox', 'czr_slider' ]
 //    Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
 //    Czr_Slider : ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport', 'sliderTriggerSimpleLoad'],
     //DropdownPlace is here to ensure is loaded before UserExperience's secondMenuRespActions

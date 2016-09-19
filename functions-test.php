@@ -3,7 +3,7 @@ $_options = array(
     'tc_fonts' => '_g_poppins_hind',
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
-    'tc_sticky_header' => false,
+    'tc_sticky_header' => true,
     'tc_sticky_header_type' => 'push',
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
@@ -13,7 +13,7 @@ $_options = array(
     'tc_logo_upload' => '611',
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
-    'tc_post_list_grid' => 'grid', //grid - masonry - alternate
+    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,

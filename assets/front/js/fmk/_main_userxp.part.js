@@ -39,7 +39,7 @@ var czrapp = czrapp || {};
 
     },
     //FORM FOCUS ACTION
-    formActions : function() {
+    formFocusAction : function() {
       var _input_types    = ['input', 'textarea'],
         _parent_selector  = '.form-group'      
         _focus_class      = 'in-focus',
@@ -58,12 +58,10 @@ var czrapp = czrapp || {};
         }
       };
 
-      //on ready:
-      $( _inputs ).each( _toggleThisFocusClass );
     },
     //test comment reply
-   commentReplyTest : function() {
-     czrapp.$_body.on('click', '.comment-reply-link', function( evt ){
+    commentReplyTest : function() {
+      czrapp.$_body.on('click', '.comment-reply-link', function( evt ){
         evt.preventDefault();
         var $_this_parent = $(this).closest('.comment-content');
          $.each( $( '#comments .comment-content.open') , function() {
@@ -71,9 +69,9 @@ var czrapp = czrapp || {};
              $(this).removeClass("open");
          });
         $_this_parent.toggleClass('open');
-    });
-   },
-   variousHeaderActions : function() {
+      });
+    },
+    variousHeaderActions : function() {
       /* ham navbar */
       czrapp.$_body.on( 'click', '.ham__navbar-toggler', function() {
         if ( ! $(this).parent( '.mobile-utils__wrapper' ) )
@@ -81,12 +79,12 @@ var czrapp = czrapp || {};
         czrapp.$_body.toggleClass('opened'); 
       });
       
+      
       /* TO FIX: doesn't work */
     /*  $( '.hamburger-menu .nav__container > nav' ).mCustomScrollbar({
         theme:"minimal"
       });
-    */ 
-      
+    */  
       /* header search button */
       czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function()  {
         czrapp.$_body.toggleClass('full-search-opened');
@@ -94,8 +92,7 @@ var czrapp = czrapp || {};
       czrapp.$_body.on( 'click', '.search-close_btn', function()  {
         czrapp.$_body.removeClass('full-search-opened');
       });
-
-   },
+    },
     //SMOOTH SCROLL
     smoothScroll: function() {
       if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled )
