@@ -1,5 +1,8 @@
 <?php
 $_options = array(
+    //to add
+    'tc_skin_type' => 'light', // (light|dark)
+    
     'tc_fonts' => '_g_poppins_hind',
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
@@ -32,6 +35,7 @@ $_options = array(
     'tc_grid_bottom_border' => true,
     'tc_grid_shadow'        => true
 );
+
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
   global $_options;
   return isset($_options[$_opt_name]) ? $_options[$_opt_name] : czr_fn_opt( $_opt_name , $option_group, $use_default ) ;
@@ -72,10 +76,6 @@ function czr_fn_enqueue_front_styles() {
   //Customizer user defined style options : the custom CSS is written with a high priority here
   wp_add_inline_style( 'customizr-style', apply_filters( 'czr_user_options_style' , '' ) );
 }
-
-add_filter('body_class', function( $classes ){
-  return array_merge( $classes, array( 'header-skin-dark' ) );
-});
 
 add_action( 'wp_enqueue_scripts'						, 'czr_fn_enqueue_front_scripts' );
 function czr_fn_enqueue_front_scripts(){
