@@ -188,12 +188,12 @@ if ( ! class_exists( 'CZR___' ) ) :
                         array('core'       , 'resources_fonts'),
  //                       array('core'       , 'resources_scripts'),
                         array('core'       , 'widgets'),//widget factory
-//                        array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
+                        array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
 //                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
                     ),
                     'admin'     => array(
 //                        array('core/back' , 'customize'),//loads customizer actions and resources
-//                        array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
+                        array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
                     ),
                     'header'    =>   array(
                         array('core/front/utils', 'nav_walker')
