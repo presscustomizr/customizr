@@ -802,9 +802,12 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
             array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
 
+          //skin  
+          array_push( $_classes, 'header-skin-' . ( 'dark' == esc_attr( czr_fn_get_opt( 'tc_skin_type' ) ) ? 'dark' : 'light' ) );
+
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
-          if ( in_array( $_layout, array('b', 'l', 'r' , 'f') ) ) {
+          if ( in_array( $_layout, array('b', 'l', 'r', 'f') ) ) {
             array_push( $_classes, sprintf( 'tc-%s-sidebar',
               'f' == $_layout ? 'no' : $_layout
             ) );
