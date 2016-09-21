@@ -12,6 +12,15 @@
  */
 ?>
 <?php get_header() ?>
+  <?php
+    /* SLIDERS : standard or slider of posts */
+    if ( czr_fn_has('main_slider') ) {
+      czr_fn_render_template('modules/slider/slider', 'main_slider');
+    }/*
+    if( czr_fn_has( 'main_posts_slider' ) ) {
+      czr_fn_render_template('modules/slider/slider', 'main_posts_slider');
+    }*/
+  ?>
   <?php do_action('__before_main_wrapper'); ?>
     <div id="main-wrapper" class="section">
 

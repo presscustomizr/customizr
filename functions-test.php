@@ -7,7 +7,7 @@ $_options = array(
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
     'tc_sticky_header' => true,
-    'tc_sticky_header_type' => 'push',
+    'tc_sticky_header_type' => 'overlap',
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
     'tc_display_second_menu' => true,
@@ -33,7 +33,10 @@ $_options = array(
     'tc_enable_smooth_scroll' => true,
 
     'tc_grid_bottom_border' => true,
-    'tc_grid_shadow'        => true
+    'tc_grid_shadow'        => true,
+
+    'tc_slider_width'       => 'full-page',
+    //'tc_front_slider'       => 'prova'
 );
 
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
@@ -120,7 +123,8 @@ function czr_fn_enqueue_front_scripts(){
   wp_localize_script( $i,
     'CZRParams' , array(
        '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
-        'stickyHeader'      => esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) )
+        'stickyHeader'      => esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ),
+        'centerSliderImg'   => esc_attr( czr_fn_get_opt( 'tc_center_slider_img' ) )
   ) );
 
 }
@@ -134,7 +138,7 @@ function footer_widget_area_defaults( $defaults ){
     ));
 }
 
-add_action('__before_main_container', 'parallax');
+//add_action('__before_main_container', 'parallax');
 function parallax(){
   if ( ! is_home() )
     return;
