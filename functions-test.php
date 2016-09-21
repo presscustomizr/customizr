@@ -30,7 +30,7 @@ $_options = array(
     'tc_post_list_thumb_alternate' => true,
 
     'tc_img_smart_load' => false,
-    'tc_enable_smooth_scroll' => false,
+    'tc_enable_smooth_scroll' => true,
 
     'tc_grid_bottom_border' => true,
     'tc_grid_shadow'        => true

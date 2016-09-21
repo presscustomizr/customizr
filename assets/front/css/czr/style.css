@@ -181,3 +181,21 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
     top: 5px;
     left: 5px;
 }
+
+/* Breadcrumb fixes */
+.tc-hot-crumble.container .page-breadcrumbs .breadcrumb .trail-end,
+.tc-hot-crumble.container .page-breadcrumbs .breadcrumb a {
+  background: #fff;
+  padding: 6px;
+  float: left; 
+  margin-left: 2.5em;
+}
+
+.tc-hot-crumble.container .page-breadcrumbs .breadcrumb .trail-begin {
+  margin-left: 0;
+  padding-left: 0;
+}
+.tc-hot-crumble.container .page-breadcrumbs .breadcrumb .trail-end {
+  font-weight: 400;
+  float: right;
+}

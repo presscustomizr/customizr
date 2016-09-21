@@ -55,10 +55,12 @@ var czrapp = czrapp || {};
     },
 
     _czrMaybeTriggerImagesLoaded : function() {
-
+      var self = this;
       this._loaded_counter++;;
       if ( this._loaded_counter == this._n_images )
-        this.grid.trigger('images_loaded');
+        setTimeout( function(){
+          self.grid.trigger('images_loaded');
+        }, 200);
     }
   };//_methods{}
 
