@@ -16,7 +16,7 @@ var czrapp = czrapp || {};
     * @return {void}
     */
     centerImages : function() {
-      //POST GRID IMAGES
+      //POST CLASSIC GRID IMAGES
       $('.tc-grid-figure').centerImages( {
         enableCentering : CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
@@ -24,6 +24,29 @@ var czrapp = czrapp || {};
         goldenRatioVal : CZRParams.goldenRatio || 1.618,
         goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
       } );
+
+
+      //SLIDER IMG + VARIOUS
+      setTimeout( function() {
+        //centering per slider
+        $.each( $( '.czr-carousel .carousel-inner') , function() {
+          $( this ).centerImages( {
+            enableCentering : 1 == CZRParams.centerSliderImg,
+            imgSel : '.item .carousel-image img',
+            /* To check settle.flickity is working, it should according to the docs */
+            oncustom : ['settle.flickity', 'simple_load'],
+            defaultCSSVal : { width : '100%' , height : 'auto' },
+            useImgAttr : true
+          });
+          //fade out the loading icon per slider with a little delay
+          //mostly for retina devices (the retina image will be downloaded afterwards
+          //and this may cause the re-centering of the image)
+          var self = this;
+          setTimeout( function() {
+              $( self ).prevAll('.tc-slider-loader-wrapper').fadeOut();
+          }, 500 );
+        });
+      } , 50);
     },//center_images
 
     parallax : function() {
