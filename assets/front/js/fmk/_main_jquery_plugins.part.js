@@ -25,14 +25,13 @@ var czrapp = czrapp || {};
         goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
       } );
 
-
       //SLIDER IMG + VARIOUS
       setTimeout( function() {
         //centering per slider
         $.each( $( '.czr-carousel .carousel-inner') , function() {
           $( this ).centerImages( {
             enableCentering : 1 == CZRParams.centerSliderImg,
-            imgSel : '.item .carousel-image img',
+            imgSel : '.carousel-image img',
             /* To check settle.flickity is working, it should according to the docs */
             oncustom : ['settle.flickity', 'simple_load'],
             defaultCSSVal : { width : '100%' , height : 'auto' },
@@ -46,7 +45,7 @@ var czrapp = czrapp || {};
               $( self ).prevAll('.tc-slider-loader-wrapper').fadeOut();
           }, 500 );
         });
-      } , 50);
+      } , 50);      
     },//center_images
 
     parallax : function() {
@@ -101,26 +100,32 @@ var czrapp = czrapp || {};
     */
     czr_slider : function() {
       /* Test only !!!!!! */
-      var $carousel = _get_carousel();
-      function _get_carousel() {
-        return $('.carousel-wrapper .carousel').length ? $('.carousel-wrapper .carousel').flickity({
+      $('[class*="grid-container__"] .format-gallery .carousel-inner').flickity({
           prevNextButtons: false,
           pageDots: false,
           wrapAround: true,
           imagesLoaded: true,
-          //setGallerySize: false,
-        }) : false;
-      }
+      });
 
+      /* Test only !!!!!! */
+      $('.czr-carousel .carousel-inner').flickity({
+          prevNextButtons: false,
+          pageDots: false,
+          wrapAround: true,
+          imagesLoaded: true,
+          setGallerySize: false,
+      });
+
+      /* Handle custom nav */
       // previous
       czrapp.$_body.on( 'click', '.slider-prev', function() {
-        //var _flick_instance = $(this).closest('.carousel-wrapper').find('.carousel').data('flickity');
-        $carousel && $carousel.flickity('previous');
+        var $flickity_instance = $(this).parent().parent().find('.flickity-enabled');
+        $flickity_instance.flickity('previous');
       });
       // next
       czrapp.$_body.on( 'click', '.slider-next', function() {
-        //var _flick_instance = $(this).closest('.carousel-wrapper').find('.carousel').data('flickity');
-        $carousel && $carousel.flickity('next');
+        var $flickity_instance = $(this).parent().parent().find('.flickity-enabled');
+        $flickity_instance.flickity('next');
       });
     }
   };//_methods{}
