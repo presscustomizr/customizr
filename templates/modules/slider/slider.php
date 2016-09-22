@@ -17,7 +17,7 @@
   <?php endif ?>
   <?php do_action( '__before_carousel_inner__' ); ?>
   
-  <div class="<?php czr_fn_echo( 'inner_class' ) ?>" data-flickity='{ "autoPlay": 3000, "cellAlign": "left", "wrapAround": true, "setGallerySize": false }'>
+  <div class="<?php czr_fn_echo( 'inner_class' ) ?>">
       <?php
         while ( czr_fn_get( 'has_slide' ) ) {
           if ( czr_fn_has( 'slide' ) )
@@ -28,11 +28,9 @@
   <?php  do_action( '__after_carousel_inner__' ) ?>
   <?php if ( czr_fn_has( 'slider_edit_button' ) ) czr_fn_render_template( 'modules/edit_button', 'slider_edit_button' )  ?>
   <?php if ( czr_fn_get( 'has_controls' ) ) : ?>
-        <div class="tc-slider-controls <?php czr_fn_echo( 'left_control_class' ) ?>">
-          <a class="tc-carousel-control" href="#customizr-slider-<?php czr_fn_echo( 'id' ) ?>" data-slide="prev">&lsaquo;</a>
-        </div>
-        <div class="tc-slider-controls <?php czr_fn_echo( 'right_control_class' ) ?>">
-          <a class="tc-carousel-control" href="#customizr-slider-<?php czr_fn_echo( 'id' ) ?>" data-slide="next">&rsaquo;</a>
+        <div class="slider-nav"> 
+          <span class="slider-prev <?php czr_fn_echo( 'left_control_class' ) ?>"><i class="icn-left-open-big"></i></span> 
+          <span class="slider-next <?php czr_fn_echo( 'right_control_class' ) ?>"><i class="icn-right-open-big"></i></span>
         </div>
   <?php endif ?>
 </div><!-- /#customizr-slider -->

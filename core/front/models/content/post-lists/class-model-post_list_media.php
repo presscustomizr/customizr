@@ -18,9 +18,6 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
       $icon_type           = 'quote' == $post_format ? 'quotes' : $icon_type;
     }
 
-    if ( $has_post_media && 'gallery' == $post_format && get_post_gallery( get_the_ID(), false ) ) 
-      array_push( $element_class, 'carousel-wrapper');
-
     $this -> czr_fn_update( array(
       'element_class'      =>  $element_class,
       'has_post_media'     =>  $has_post_media,
@@ -106,9 +103,9 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
             $_gallery_html   = '<div class="post-action">
                           <a href="#" class="expand-img gallery"><i class="icn-expand"></i></a>
                         </div>' . '<div class="tc-gallery-nav"> 
-                          <span href="#" class="slider-prev"><i class="icn-left-open-big"></i></span> 
-                          <span href="#" class="slider-next"><i class="icn-right-open-big"></i></span>
-                        </div><div class="carousel">' . $_gallery_html.'</div>';
+                          <span class="slider-prev"><i class="icn-left-open-big"></i></span> 
+                          <span class="slider-next"><i class="icn-right-open-big"></i></span>
+                        </div><div class="carousel carousel-inner">' . $_gallery_html.'</div>';
 
             return $_bg_link . $_gallery_html;          
           }

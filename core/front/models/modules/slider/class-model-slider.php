@@ -110,8 +110,8 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
 
     //set-up controls
     if ( apply_filters('czr_show_slider_controls' , ! wp_is_mobile() && count( $slides ) > 1) ) {
-      $left_control_class  = ! is_rtl() ? 'left' : 'right';
-      $right_control_class = ! is_rtl() ? 'right' : 'left';
+      $left_control_class  = ! is_rtl() ? 'control-left' : 'control-right';
+      $right_control_class = ! is_rtl() ? 'control-right' : 'control-left';
       $has_controls        = true;
     }
 
