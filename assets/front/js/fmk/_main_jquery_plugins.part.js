@@ -49,6 +49,9 @@ var czrapp = czrapp || {};
     },//center_images
 
     parallax : function() {
+      //slider parallax
+      $( '.czr-parallax-slider' ).czrParallax();
+
       $( '.parallax-item' ).czrParallax();
       /* Refresh waypoints when mobile menu button is toggled as 
       *  the static/relative menu will push the content

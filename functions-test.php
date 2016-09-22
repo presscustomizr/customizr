@@ -30,13 +30,18 @@ $_options = array(
     'tc_post_list_thumb_alternate' => true,
 
     'tc_img_smart_load' => false,
-    'tc_enable_smooth_scroll' => true,
+    'tc_smoothscroll' => true,
 
     'tc_grid_bottom_border' => true,
     'tc_grid_shadow'        => true,
 
     'tc_slider_width'       => 'full-page',
-    //'tc_front_slider'       => 'prova'
+    //'tc_front_slider'       => 'prova',
+    'tc_display_slide_loader' => true,
+
+    //test
+    'tc_slider_default_height' => '1000',
+    'tc_slider_parallax'       => true
 );
 
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
@@ -92,6 +97,7 @@ function czr_fn_enqueue_front_scripts(){
      'vendors/jquery.magnific-popup.js',
      'vendors/jquery.waypoints.js',
      'vendors/flickity.pkgd.js',
+     'vendors/modernizr.min.js',
   //will be concatenated with GRUNT
      'fmk/tc-js-params.js',
      'fmk/smoothScroll.js',
@@ -120,11 +126,15 @@ function czr_fn_enqueue_front_scripts(){
     );
   };
   
+  $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( czr_fn_get_opt( 'tc_smoothscroll') ) );
+  $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array( 'touchpadSupport' => false ) );
+
   wp_localize_script( $i,
     'CZRParams' , array(
        '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
         'stickyHeader'      => esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ),
-        'centerSliderImg'   => esc_attr( czr_fn_get_opt( 'tc_center_slider_img' ) )
+        'centerSliderImg'   => esc_attr( czr_fn_get_opt( 'tc_center_slider_img' ) ),
+        'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
   ) );
 
 }

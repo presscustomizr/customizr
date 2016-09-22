@@ -5,6 +5,8 @@
 */
 class CZR_cl_slider_model_class extends CZR_cl_Model {
   public $inner_class;
+  public $inner_attrs;
+
   public $slides = array();
   public $slider_name_id;
   public $layout;
@@ -106,7 +108,8 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $element_class      = $this -> czr_fn_get_slider_element_class( $queried_id, $slider_name_id, $layout );
     $inner_class        = $this -> czr_fn_get_slider_inner_class();
 
-
+    //set-up inner attrs
+    $inner_attrs        = $this -> czr_fn_get_slider_inner_attrs();
 
     //set-up controls
     if ( apply_filters('czr_show_slider_controls' , ! wp_is_mobile() && count( $slides ) > 1) ) {
@@ -131,6 +134,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
         'element_class',
         'slides',
         'inner_class',
+        'inner_attrs',
         //'img_size',
         'has_controls',
         'layout',
@@ -197,7 +201,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   * @since Customizr 3.0.15
   *
   */
-  protected function czr_fn_get_single_slide_model( $slider_name_id, $_loop_index , $id , $img_size ) {
+  protected function czr_fn_get_single_slide_model( $slider_name_id, $_loop_index , $id , $img_size = 'full' ) {
     //check if slider enabled for this attachment and go to next slide if not
     $slider_checked         = esc_attr(get_post_meta( $id, $key = 'slider_check_key' , $single = true ));
     if ( ! isset( $slider_checked) || $slider_checked != 1 )
@@ -233,7 +237,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $alt                    = apply_filters( 'czr_slide_background_alt' , trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true))) );
     $slide_background_attr  = array_filter( array_merge( array( 'class' => 'slide' , 'alt' => $alt ), $this -> czr_fn_set_wp_responsive_slide_img_attr() ) );
 
-    $slide_background       = wp_get_attachment_image( $id, full/*$img_size*/, false, $slide_background_attr );
+    $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
     //adds all values to the slide array only if the content exists (=> handle the case when an attachment has been deleted for example). Otherwise go to next slide.
     if ( !isset($slide_background) || empty($slide_background) )
       return;
@@ -346,11 +350,12 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   * @since Customizr 3.3+
   */
   function czr_fn_get_slider_inner_class() {
-    $class = array('carousel-inner');
+    $class = array( 'carousel-inner' );
 
-    if( (bool) esc_attr( czr_fn_get_opt( 'tc_center_slider_img') ) )
+    if ( (bool) esc_attr( czr_fn_get_opt( 'tc_center_slider_img') ) )
       array_push( $class, 'center-slides-enabled' );
-
+    if ( (bool) esc_attr( czr_fn_get_opt( 'tc_slider_parallax') ) )
+      array_push( $class, 'czr-parallax-slider' );
     return apply_filters( 'czr_carousel_inner_classes', $class );
   }
 
@@ -385,6 +390,19 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
       array_push( $class, 'custom-slider-height' );
 
     return array_filter( $class );
+  }
+
+  /*
+  * getter
+  * Get carousel inner attrs, eg. the parallax speed
+  *
+  * @return string
+  */  
+  protected function czr_fn_get_slider_inner_attrs() {
+    if ( (bool) esc_attr( czr_fn_get_opt( 'tc_slider_parallax') ) )
+      return sprintf( 'data-parallax-ratio="%s"', 
+        apply_filters('tc_parallax_speed', 0.55 )
+      );
   }
 
   /*
@@ -538,16 +556,17 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     }
     return apply_filters( 'czr_set_demo_slider_height' , 750 );
   }
-
-  /*
-  * Custom CSS
-  * @return css string
+  
+  /**
+  * helper
+  * returns the slider icon/pure css loader css
+  * @return string
   *
-  * @package Customizr
-  * @since Customizr 3.2.6
-  */
-  function czr_fn_user_options_style_cb( $_css ) {
-    $slider_name_id =  $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) ;
+  */  
+  function czr_fn_get_slider_loader_css( $slider_name_id ) {
+    $slider_name_id =  $slider_name_id ? $slider_name_id : $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );    
+    $_css           = '';
+
     //custom css for the slider loader
     if ( $this -> czr_fn_is_slider_loader_active( $slider_name_id ) ) {
 
@@ -559,8 +578,8 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
         // Basically 'cause the loader is something we see when the page "loads" then it disappears so a live change of the skin
         // will still have no visive impact on it. This will avoid us to rebuild the custom skins.
         $_current_skin_colors      = czr_fn_getskincolor( 'pair' );
-        $_pure_css_loader_css      = apply_filters( 'czr_slider_loader_css', sprintf(
-            '.tc-slider-loader-wrapper .tc-css-loader > div { border-color:%s; }',
+        $_pure_css_loader_css      = apply_filters( 'czr_slider_loader_css', sprintf('
+            .tc-slider-loader-wrapper .tc-css-loader > div { border-color:%s; }',
             //we can use the primary or the secondary skin color
             'primary' == apply_filters( 'czr_slider_loader_color', 'primary') ? $_current_skin_colors[0] : $_current_skin_colors[1]
         ));
@@ -569,16 +588,31 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
         $_pure_css_loader_css     = '';
       }
 
-      $_slider_loader_gif_css     = $_slider_loader_src ? sprintf(
-                                       '%1$s .tc-slider-loader-wrapper .tc-img-gif-loader {
+      $_slider_loader_gif_css     = $_slider_loader_src ? sprintf('
+                                        %1$s .tc-slider-loader-wrapper .tc-img-gif-loader {
                                                background: url(\'%2$s\') no-repeat center center;
                                         }',
                                         $_slider_loader_gif_class,
                                         $_slider_loader_src
                                     ) : '';
-      $_css = sprintf( "%s\n%s%s", $_css, $_slider_loader_gif_css, $_pure_css_loader_css );
+      $_css = $_slider_loader_gif_css . $_pure_css_loader_css;
     }//end custom css for the slider loader
 
+    return $_css;
+  }
+
+  /**
+  * helper
+  * returns the custom height slider css
+  * @return string
+  *
+  */
+  function czr_fn_get_slider_custom_height_css( $slider_name_id ) {
+    //no custom height for full-page layouts
+    if ( 'full-page' == $this -> layout )
+      return '';
+
+    $slider_name_id     =  $slider_name_id ? $slider_name_id : $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
     $_custom_height     = esc_attr( czr_fn_get_opt( 'tc_slider_default_height') );
@@ -588,25 +622,30 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     //When shall we append custom slider style to the global custom inline stylesheet?
     $_bool = 500 != $_custom_height;
     $_bool = $_bool && ( czr_fn_is_home() || 0 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height_apply_all') ) );
+
     if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
       return $_css;
+
     $_resp_shrink_ratios = apply_filters( 'czr_slider_resp_shrink_ratios',
       array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )
     );
+    //this slider element id;
+    $slider_html_element_id = "#customizr-slider-{$this->id}";
+
     $_slider_inline_css = "
-      .carousel .item {
-        line-height: {$_custom_height}px;
-        min-height:{$_custom_height}px;
-        max-height:{$_custom_height}px;
+      $slider_html_element_id.czr-carousel {
+        /*line-height: {$_custom_height}px;*/
+        height:{$_custom_height}px;
       }
-      .tc-slider-loader-wrapper {
+      $slider_html_element_id .tc-slider-loader-wrapper {
         line-height: {$_custom_height}px;
         height:{$_custom_height}px;
       }
-      .carousel .tc-slider-controls {
+      /*.carousel .tc-slider-controls {
         line-height: {$_custom_height}px;
         max-height:{$_custom_height}px;
-      }\n";
+      }*/";
+
     foreach ( $_resp_shrink_ratios as $_w => $_ratio) {
       if ( ! is_numeric($_ratio) )
         continue;
@@ -614,22 +653,36 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
       $_caption_dyn_height  = $_custom_height * ( $_ratio - 0.1 );
       $_slider_inline_css .= "
         @media (max-width: {$_w}px) {
-          .carousel .item {
-            line-height: {$_item_dyn_height}px;
-            max-height:{$_item_dyn_height}px;
-            min-height:{$_item_dyn_height}px;
-          }
-          .item .carousel-caption {
-            max-height: {$_caption_dyn_height}px;
-            overflow: hidden;
-          }
-          .carousel .tc-slider-loader-wrapper {
-            line-height: {$_item_dyn_height}px;
+          $slider_html_element_id.czr-carousel {
+            /*line-height: {$_item_dyn_height}px;*/
             height:{$_item_dyn_height}px;
           }
-        }\n";
-    }//end foreach
+          $slider_html_element_id.czr-carousel .carousel-caption {
+            max-height: {$_caption_dyn_height}px;
+          }
+          $slider_html_element_id .tc-slider-loader-wrapper {
+            /*line-height: {$_item_dyn_height}px;*/
+            height:{$_item_dyn_height}px;
+          }
+        }";
+    }//end foreach 
 
-    return sprintf("%s\n%s", $_css, $_slider_inline_css);
+    return $_slider_inline_css;
+  } 
+
+  /*
+  * Custom CSS
+  * @return css string
+  *
+  * @package Customizr
+  * @since Customizr 3.2.6
+  */
+  function czr_fn_user_options_style_cb( $_css ) {
+    $slider_name_id     =  $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) ;
+    return sprintf("%s\n%s\n%s",
+              $_css,
+              $this -> czr_fn_get_slider_loader_css( $slider_name_id ),
+              $this -> czr_fn_get_slider_custom_height_css( $slider_name_id )
+    );                     
   }
 }//end class

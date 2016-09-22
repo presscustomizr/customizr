@@ -4,7 +4,7 @@
  *
  */
 ?>
-<div id="customizr-slider-<?php czr_fn_echo( 'id' ) ?>" class="<?php czr_fn_echo( 'element_class' ) ?> " <?php czr_fn_echo('element_attributes') ?>>
+<div id="customizr-slider-<?php czr_fn_echo( 'id' ) ?>" class="section-slider <?php czr_fn_echo( 'element_class' ) ?> " <?php czr_fn_echo('element_attributes') ?>>
 
   <?php if ( czr_fn_get( 'has_loader' ) ) : ?>
         <div id="tc-slider-loader-wrapper-<?php czr_fn_echo( 'id' ) ?>" class="tc-slider-loader-wrapper" style="display:none;">
@@ -17,7 +17,7 @@
   <?php endif ?>
   <?php do_action( '__before_carousel_inner__' ); ?>
   
-  <div class="<?php czr_fn_echo( 'inner_class' ) ?>">
+  <div class="<?php czr_fn_echo( 'inner_class' ) ?>" <?php czr_fn_echo( 'inner_attrs' ) ?>>
       <?php
         while ( czr_fn_get( 'has_slide' ) ) {
           if ( czr_fn_has( 'slide' ) )

@@ -6,7 +6,7 @@
 ?>
 <div class="carousel-cell item <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
 
-  <div class="<?php czr_fn_echo( 'img_wrapper_class' ) ?>">
+  <div class="filter <?php czr_fn_echo( 'img_wrapper_class' ) ?>">
   <?php if ( czr_fn_get( 'link_whole_slide' ) ) : ?>
     <a class="tc-slide-link" href="<?php czr_fn_echo( 'link_url' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>" title=<?php _e( 'Go to', 'customizr' ) ?>>
   <?php endif ?>
@@ -27,18 +27,18 @@
   do_action('__before_all_slides_caption__');
 
   ?>
-  <div class="<?php czr_fn_echo( 'caption_class' ) ?>">
+  <div class="carousel-caption slider-text">
     <?php if ( czr_fn_get( 'title' ) ): ?>
     <!-- TITLE -->
-      <<?php czr_fn_echo( 'title_tag' ) ?> class ="<?php czr_fn_echo( 'title_class' ) ?>" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'title' ) ?></<?php czr_fn_echo( 'title_tag' ) ?>>
+      <h2 class="display thick" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'title' ) ?></h2>
     <?php endif; ?>
-    <?php if ( czr_fn_get( 'text' ) ) : ?>
+    <?php if ( czr_fn_get( 'subtitle' ) ) : ?>
     <!-- TEXT -->
-      <p class ="<?php czr_fn_echo( 'text_class' ) ?>" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'text' ) ?></p>
+      <h3 class="semi-bold" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'subtitle' ) ?></h3>
     <?php endif; ?>
     <!-- BUTTON -->
     <?php if ( czr_fn_get( 'button_text' ) ): ?>
-      <a class="<?php czr_fn_echo( 'button_class' ) ?>" href="<?php czr_fn_echo( 'button_link' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"><?php czr_fn_echo( 'button_text' ) ?></a>
+      <a class="btn btn-fill btn-skin btn-large" href="<?php czr_fn_echo( 'button_link' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"><?php czr_fn_echo( 'button_text' ) ?></a>
     <?php endif; ?>
   </div>
   <?php

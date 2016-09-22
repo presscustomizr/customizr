@@ -304,17 +304,18 @@ if ( ! class_exists( 'CZR___' ) ) :
               /*********************************************
               * SLIDER
               *********************************************/
-            //   array(
-            //     'model_class' => 'modules/slider/slider',
-            //     'id'          => 'main_slider'
-            //   ),
-            //   //slider of posts
-            //   array(
-            //     'id'          => 'main_posts_slider',
-            //     'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
-            //     'controller'  => 'main_slider'
-            //   ),
-            //   /** end slider **/
+              /* Need to be pre-registered because of the custom style*/
+              array(
+                'model_class' => 'modules/slider/slider',
+                'id'          => 'main_slider'
+              ),
+              //slider of posts
+              // array(
+              //   'id'          => 'main_posts_slider',
+              //   'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
+              //   'controller'  => 'main_slider'
+              // ),
+              /** end slider **/
 
 
             //   /*********************************************
