@@ -16,7 +16,8 @@
     /* SLIDERS : standard or slider of posts */
     if ( czr_fn_has('main_slider') ) {
       czr_fn_render_template('modules/slider/slider', 'main_slider');
-    }/*
+    }
+    /*
     if( czr_fn_has( 'main_posts_slider' ) ) {
       czr_fn_render_template('modules/slider/slider', 'main_posts_slider');
     }*/

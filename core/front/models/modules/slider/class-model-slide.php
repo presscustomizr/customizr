@@ -1,19 +1,14 @@
 <?php
 class CZR_cl_slide_model_class extends CZR_cl_Model {
   public $img_wrapper_class;
-  public $caption_class;
 
   public $slide_background;
 
   public $title;
-  public $title_class;
-  public $title_tag;
 
-  public $text;
-  public $text_class;
+  public $subtitle;
 
   public $button_text;
-  public $button_class;
   public $button_link;
 
   public $link_url;
@@ -78,65 +73,49 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
   function czr_fn_get_slide_caption_model( $slide, $slider_name_id, $id ) {
     //filters the data before (=> used for demo for example )
     $data                   = apply_filters( 'czr_slide_caption_data', $slide, $slider_name_id, $id );
+    //defaults => reset caption elements
+    $defaults  = array(
+      'title'        => '',
+      'subtitle'     => '',
+      'button_text'  => '',
+      'button_link'  => 'javascript:void(0)'
+    );
 
     //Extract slide's properties:
-    $title                  = isset( $slide['title'] ) ? $slide['title'] : null;
-    $text                   = isset( $slide['text'] ) ? $slide['text'] : null;
-    $button_text            = isset( $slide['button_text'] ) ? $slide['button_text'] : null;
-    $button_link            = isset( $slide['link_url'] ) ? $slide['link_url'] : 'javascript:void(0)';
+    $title                  = isset( $data['title'] ) ? $data['title'] : null;
+    $subtitle                   = isset( $data['text'] ) ? $data['text'] : null;
+    $button_text            = isset( $data['button_text'] ) ? $data['button_text'] : null;
+    $button_link            = isset( $data['link_url'] ) ? $data['link_url'] : 'javascript:void(0)';
 
     $show_caption           = ! ( $title == null && $text == null && $button_text == null ) ;
     if ( ! apply_filters( 'czr_slide_show_caption', $show_caption , $slider_name_id ) )
       return array();
 
 
-    //apply filters first
-    /* classes and tags can be skipped if we decided that must be changed only in the templates */
-    $caption_class          = apply_filters( 'czr_slide_caption_class', array( 'carousel-caption' ), $show_caption, $slider_name_id );
-
+    //apply filters first (Lang plugins)
     $_title                  = isset($title) ? apply_filters( 'czr_slide_title', $title , $id, $slider_name_id ) : '';
-    $_text                   = isset($text) ? esc_html( apply_filters( 'czr_slide_text', $text, $id, $slider_name_id ) ) : '';
-
+    $_subtitle               = isset($subtitle) ? esc_html( apply_filters( 'czr_slide_text', $subtitle, $id, $slider_name_id ) ) : '';
     $_button_text            = isset($button_text) ? apply_filters( 'czr_slide_button_text', $button_text, $id, $slider_name_id ) : '';
 
-
-    //defaults => reset caption elements
-    $defaults  = array(
-      'title'        => '',
-      'text'         => '',
-      'button_text'  => ''
-    );
-
-
     // title elements
-    if ( apply_filters( 'czr_slide_show_title', $_title != null, $slider_name_id ) ) {
-      $title_tag    = apply_filters( 'czr_slide_title_tag', 'h1', $slider_name_id );
+    if ( apply_filters( 'czr_slide_show_title', $_title != null, $slider_name_id ) )
       $title        = $_title;
-      $title_class  = implode( ' ', apply_filters( 'czr_slide_title_class', array( 'slide-title' ), $title , $slider_name_id ) );
-    }
 
     // text elements
-    if (  apply_filters( 'czr_slide_show_text', $_text != null, $slider_name_id ) ) {
-      $text         = $_text;
-      $text_class   = implode( ' ', apply_filters( 'czr_slide_text_class', array( 'lead' ), $text, $slider_name_id ) );
-    }
+    if (  apply_filters( 'czr_slide_show_text', $_subtitle != null, $slider_name_id ) )
+      $subtitle         = $_subtitle;
 
     // button elements
-    if ( apply_filters( 'czr_slide_show_button', $_button_text != null, $slider_name_id ) ) {
+    if ( apply_filters( 'czr_slide_show_button', $_button_text != null, $slider_name_id ) )
       $button_text  = $_button_text;
-      $button_class = implode( ' ', apply_filters( 'czr_slide_button_class', array( 'btn', 'btn-large', 'btn-primary' ), $slider_name_id ) ) ;
-    }
 
     //re-check the caption elements are set
     if ( ! ( isset($title) || isset($text) || isset($button_text) ) )
       return array();
 
-    $caption_elements = wp_parse_args( compact( 'title', 'button_text', 'text' ), $defaults );
+    $caption_elements = wp_parse_args( compact( 'title', 'button_text', 'subtitle', 'button_link' ), $defaults );
 
-    return array_merge(
-        $caption_elements,
-        compact( 'caption_class', 'title_class', 'title_tag', 'text_class', 'button_link', 'button_class' )
-    );
+    return $caption_elements;        
   }
 
 
@@ -166,18 +145,6 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
       break;
     };
     return $slide;
-  }
-
-
-
-  /**
-  * parse this model properties for rendering
-  */
-  function czr_fn_sanitize_model_properties( $model ) {
-    parent::czr_fn_sanitize_model_properties( $model );
-    foreach ( array( 'caption', 'text', 'title', 'button' ) as $property ) {
-      $model -> {"{$property}_class"} = $this -> czr_fn_stringify_model_property( "{$property}_class" );
-    }
   }
 
 }//end class
