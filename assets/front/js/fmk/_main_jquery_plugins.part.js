@@ -42,7 +42,7 @@ var czrapp = czrapp || {};
           //and this may cause the re-centering of the image)
           var self = this;
           setTimeout( function() {
-              $( self ).prevAll('.tc-slider-loader-wrapper').fadeOut();
+              $( self ).prevAll('.czr-slider-loader-wrapper').fadeOut();
           }, 500 );
         });
       } , 50);
@@ -124,12 +124,12 @@ var czrapp = czrapp || {};
       /* Handle custom nav */
       // previous
       czrapp.$_body.on( 'click', '.slider-prev', function() {
-        var $flickity_instance = $(this).closest('.flickity-enabled');
+        var $flickity_instance = $(this).closest('.czr-carousel').find('.flickity-enabled');
         $flickity_instance.flickity('previous');
       });
       // next
       czrapp.$_body.on( 'click', '.slider-next', function() {
-        var $flickity_instance = $(this).closest('.flickity-enabled');
+        var $flickity_instance = $(this).closest('.czr-carousel').find('.flickity-enabled');
         $flickity_instance.flickity('next');
       });
     }

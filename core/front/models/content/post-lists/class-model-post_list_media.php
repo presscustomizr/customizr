@@ -17,6 +17,8 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
       $icon_type           = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'article';
       $icon_type           = 'quote' == $post_format ? 'quotes' : $icon_type;
     }
+    elseif ( $is_full_image && 'gallery' == $post_format )
+      array_push( $element_class, 'czr-carousel' );
 
     $this -> czr_fn_update( array(
       'element_class'      =>  $element_class,
@@ -108,8 +110,9 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
 
             $_post_action     = '<div class="post-action"><a href="#" class="expand-img gallery"><i class="icn-expand"></i></a></div>';
 
-            $_gallery_html   = sprintf( '<div class="carousel carousel-inner">%1$s%2$s</div>',
-                                      $_gallery_html, $_gallery_nav
+            $_gallery_html   = sprintf( '%1$s<div class="carousel carousel-inner">%2$s</div>',
+                                       $_gallery_nav,
+                                       $_gallery_html
             );
 
             return sprintf( "%s%s%s", $_bg_link, $_post_action, $_gallery_html);

@@ -88,14 +88,14 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $layout             = $this -> czr_fn_get_slider_layout( $queried_id, $slider_name_id );
 
 
-    /* 
+    /*
     * We decided to not have slider image size anymore
-    
+
 
     $layout             = 0 == $this -> czr_fn_get_slider_layout( $queried_id, $slider_name_id ) ? 'boxed' : 'full';
 
     $img_size           = apply_filters( 'czr_slider_img_size' , ( 'boxed' == $layout ) ? 'slider' : 'slider-full');
-    
+
     $slides             = $this -> czr_fn_get_the_slides( $slider_name_id, $img_size );
     */
     $slides             = $this -> czr_fn_get_the_slides( $slider_name_id );
@@ -123,8 +123,8 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
       $has_loader       = true;
 
       if ( ! apply_filters( 'czr_slider_loader_gif_only', false ) )
-        $pure_css_loader = sprintf( '<div class="tc-css-loader %1$s">%2$s</div>',
-            implode( ' ', apply_filters( 'czr_pure_css_loader_add_classes', array( 'tc-mr-loader') ) ),
+        $pure_css_loader = sprintf( '<div class="czr-css-loader %1$s">%2$s</div>',
+            implode( ' ', apply_filters( 'czr_pure_css_loader_add_classes', array( 'czr-mr-loader') ) ),
             apply_filters( 'czr_pure_css_loader_inner', '<div></div><div></div><div></div>')
         );
     }
@@ -283,7 +283,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     $_slide = current( $this -> slides );
     if ( empty( $_slide ) )
       return false;
-    
+
     $slide = & $_slide;
     $slide_id            = key( $this -> slides );
     $this -> czr_fn_set_property( 'current_slide', compact( 'slide', 'slide_id' ) );
@@ -377,7 +377,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
           $layout_class = array( 'container', 'boxed'); break;
       case 'full-width':
           $layout_class = array( 'full-width' ); break;
-    
+
       default:
           $layout_class = array( 'full-page' );
     }
@@ -398,10 +398,10 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   * Get carousel inner attrs, eg. the parallax speed
   *
   * @return string
-  */  
+  */
   protected function czr_fn_get_slider_inner_attrs() {
     if ( (bool) esc_attr( czr_fn_get_opt( 'tc_slider_parallax') ) )
-      return sprintf( 'data-parallax-ratio="%s"', 
+      return sprintf( 'data-parallax-ratio="%s"',
         apply_filters('tc_parallax_speed', 0.55 )
       );
   }
@@ -427,10 +427,10 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     switch ( (string) $layout_value ) {
       case '':
       case 'boxed': $layout = 'boxed'; break;
-    
+
       case '1':
       case 'fw': $layout = 'full-width'; break;
-    
+
       default: $layout = 'full-page';
     }
 
@@ -557,15 +557,15 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
     }
     return apply_filters( 'czr_set_demo_slider_height' , 750 );
   }
-  
+
   /**
   * helper
   * returns the slider icon/pure css loader css
   * @return string
   *
-  */  
+  */
   function czr_fn_get_slider_loader_css( $slider_name_id ) {
-    $slider_name_id =  $slider_name_id ? $slider_name_id : $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );    
+    $slider_name_id =  $slider_name_id ? $slider_name_id : $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );
     $_css           = '';
 
     //custom css for the slider loader
@@ -580,7 +580,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
         // will still have no visive impact on it. This will avoid us to rebuild the custom skins.
         $_current_skin_colors      = czr_fn_getskincolor( 'pair' );
         $_pure_css_loader_css      = apply_filters( 'czr_slider_loader_css', sprintf('
-            .tc-slider-loader-wrapper .tc-css-loader > div { border-color:%s; }',
+            .czr-slider-loader-wrapper .czr-css-loader > div { border-color:%s; }',
             //we can use the primary or the secondary skin color
             'primary' == apply_filters( 'czr_slider_loader_color', 'primary') ? $_current_skin_colors[0] : $_current_skin_colors[1]
         ));
@@ -590,7 +590,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
       }
 
       $_slider_loader_gif_css     = $_slider_loader_src ? sprintf('
-                                        %1$s .tc-slider-loader-wrapper .tc-img-gif-loader {
+                                        %1$s .czr-slider-loader-wrapper .czr-img-gif-loader {
                                                background: url(\'%2$s\') no-repeat center center;
                                         }',
                                         $_slider_loader_gif_class,
@@ -638,7 +638,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
         /*line-height: {$_custom_height}px;*/
         height:{$_custom_height}px;
       }
-      $slider_html_element_id .tc-slider-loader-wrapper {
+      $slider_html_element_id .czr-slider-loader-wrapper {
         line-height: {$_custom_height}px;
         height:{$_custom_height}px;
       }
@@ -661,15 +661,15 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
           $slider_html_element_id.czr-carousel .carousel-caption {
             max-height: {$_caption_dyn_height}px;
           }
-          $slider_html_element_id .tc-slider-loader-wrapper {
+          $slider_html_element_id .czr-slider-loader-wrapper {
             /*line-height: {$_item_dyn_height}px;*/
             height:{$_item_dyn_height}px;
           }
         }";
-    }//end foreach 
+    }//end foreach
 
     return $_slider_inline_css;
-  } 
+  }
 
   /*
   * Custom CSS
@@ -684,6 +684,6 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
               $_css,
               $this -> czr_fn_get_slider_loader_css( $slider_name_id ),
               $this -> czr_fn_get_slider_custom_height_css( $slider_name_id )
-    );                     
+    );
   }
 }//end class
