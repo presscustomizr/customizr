@@ -18,7 +18,13 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
               'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button',
             ),
             'content' => array(
-              'post_list', 'post_list_masonry', 'post_list_full', 'right_sidebar', 'left_sidebar'
+              'post_list',
+              'post_list_masonry',
+              'post_list_full',
+              'right_sidebar',
+              'left_sidebar',
+              'single_author_info',
+              'author_description'
               //'404', 'attachment', 'headings', 'no_results', 'page', 'post', 'single_author_info', 'post_list', 'post_metas','right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'author_description', 'posts_list_title', 'posts_list_search_title', 'singular_article', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment', 'tracepingback', 'author_info', 'singular_headings', 'post_list_standard_thumb', 'post_list_rectangular_thumb', 'post_thumbnail'
             ),
             'footer' => array(
@@ -26,7 +32,8 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
           //    'widgets', 'colophon', 'back_to_top'
             ),
             'modules' => array(
-              'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
+              'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'main_slider'
+              //'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
             //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
             ),
           );

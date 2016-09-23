@@ -7,7 +7,7 @@ $_options = array(
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
     'tc_sticky_header' => true,
-    'tc_sticky_header_type' => 'overlap',
+    'tc_sticky_header_type' => 'overlap',// (overlap||push)
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
     'tc_display_second_menu' => true,
@@ -23,10 +23,10 @@ $_options = array(
     'tc_comment_show_info' => true,
 
     'tc_sidebar_global_layout' => 'l',
-    'tc_sidebar_post_layout'   => 'b',
+    'tc_sidebar_post_layout'   => 'f',
     'tc_front_layout'          => 'f',
 
-    'tc_post_list_thumb_position' => 'right',
+    'tc_post_list_thumb_position' => 'left',
     'tc_post_list_thumb_alternate' => true,
 
     'tc_img_smart_load' => false,
@@ -36,24 +36,32 @@ $_options = array(
     'tc_grid_shadow'        => true,
 
     'tc_slider_width'       => 'full-page',
-    'tc_front_slider'       => 'prova',
+    //'tc_front_slider'       => 'prova',
     'tc_display_slide_loader' => true,
 
     //test
-    'tc_slider_default_height' => '1000',
+    'tc_slider_default_height' => '400',
     'tc_slider_parallax'       => true,
 
-    'tc_posts_slider_number'   => '5'
+    'tc_posts_slider_number'   => '5',
+
+    'tc_show_author_info'      => true
 );
 
 
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
   global $_options;
-  return apply_filters( "czr_opt{$_opt_name}", isset($_options[$_opt_name]) ? $_options[$_opt_name] : czr_fn_opt( $_opt_name , $option_group, $use_default ) );
+  return apply_filters( "czr_opt_{$_opt_name}", isset($_options[$_opt_name]) ? $_options[$_opt_name] : czr_fn_opt( $_opt_name , $option_group, $use_default ) );
 }
 
 //Do not use post slider transient for the moment
 add_filter( 'czr_posts_slider_use_transient', '__return_false' );
+add_filter( 'czr_add_custom_fonts_to_editor' , '__return_false' );
+
+//Test display a header sticky push in single posts
+add_filter( 'czr_opt_tc_sticky_header_type', function( $_what ){
+  return is_single() ? 'push'/*full-width*/ : $_what;
+});
 
 add_filter( 'czr_gfont_pairs', function( $_fonts ) {
   return array_merge( $_fonts, array(
@@ -107,6 +115,7 @@ function czr_fn_enqueue_front_scripts(){
   //will be concatenated with GRUNT
      'fmk/tc-js-params.js',
      'fmk/smoothScroll.js',
+     'fmk/requestAnimationFramePolyfill.js',
      'jquery-plugins/jqueryimgOriginalSizes.js',
      'jquery-plugins/jqueryCenterImages.js',
      'jquery-plugins/jqueryParallax.js',
@@ -227,5 +236,5 @@ function parallax(){
 add_filter( 'czr_show_media', function( $bool){
   /* Test */
   return $bool
-    || in_array( get_post_format() , apply_filters( 'czr_alternate_media_post_formats', array( 'video', 'audio' ) ) );
+    || in_array( get_post_format() , apply_filters( 'czr_alternate_media_post_formats', array( 'video', 'audio', 'gallery' ) ) );
 });

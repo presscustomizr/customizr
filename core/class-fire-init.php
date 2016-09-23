@@ -558,6 +558,8 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
 
           /* @since v3.2.3 see : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/ */
           add_theme_support( 'title-tag' );
+
+          current_theme_supports( 'html5', 'comment-form' );
           //remove theme support => generates notice in admin @todo fix-it!
            /* remove_theme_support( 'custom-background' );
             remove_theme_support( 'custom-header' );*/
@@ -802,7 +804,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
             array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
 
-          //skin  
+          //skin
           array_push( $_classes, 'header-skin-' . ( 'dark' == esc_attr( czr_fn_get_opt( 'tc_skin_type' ) ) ? 'dark' : 'light' ) );
 
           //adds the layout

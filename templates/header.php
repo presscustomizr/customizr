@@ -10,7 +10,7 @@
   <div class="topnav_navbars__wrapper <?php czr_fn_echo('elements_container_class') ?>">
     <div class ="container-fluid">
       <?php if ( czr_fn_has('navbar_secondary_menu') )
-        czr_fn_render_template('header/topnav'); 
+        czr_fn_render_template('header/topnav');
       ?>
       <?php czr_fn_render_template('header/navbar_wrapper'); ?>
     </div>

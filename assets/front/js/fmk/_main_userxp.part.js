@@ -41,12 +41,12 @@ var czrapp = czrapp || {};
     //FORM FOCUS ACTION
     formFocusAction : function() {
       var _input_types    = ['input', 'textarea'],
-        _parent_selector  = '.form-group'      
+        _parent_selector  = '.form-group'
         _focus_class      = 'in-focus',
         _inputs           = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join();
 
       czrapp.$_body.on( 'focusin focusout', _inputs, _toggleThisFocusClass );
-      
+
       function _toggleThisFocusClass( evt ) {
         var $_el     = $(this),
             $_parent = $_el.closest( _parent_selector );
@@ -76,15 +76,15 @@ var czrapp = czrapp || {};
       czrapp.$_body.on( 'click', '.ham__navbar-toggler', function() {
         if ( ! $(this).parent( '.mobile-utils__wrapper' ) )
           $(this).toggleClass('collapsed');
-        czrapp.$_body.toggleClass('opened'); 
+        czrapp.$_body.toggleClass('opened');
       });
-      
-      
+
+
       /* TO FIX: doesn't work */
     /*  $( '.hamburger-menu .nav__container > nav' ).mCustomScrollbar({
         theme:"minimal"
       });
-    */  
+    */
       /* header search button */
       czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function()  {
         czrapp.$_body.toggleClass('full-search-opened');
@@ -105,7 +105,7 @@ var czrapp = czrapp || {};
       * so as child of .entry-content__holder.
       * In alternate layouts, when centering sections, the use of the translate property
       * changed the fixed behavior (of the aforementioned bar) to an absoluted behavior
-      * with the following core we move the bar outside the section 
+      * with the following core we move the bar outside the section
       * ( different but still problems occurr with the masonry )
       */
       var $_ssbar = $( '.the_champ_vertical_sharing, .the_champ_vertical_counter', '.article-container' );
@@ -115,5 +115,5 @@ var czrapp = czrapp || {};
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};
-  $.extend( czrapp.methods.Czr_UserExperience , _methods );  
+  $.extend( czrapp.methods.Czr_UserExperience , _methods );
 })(jQuery, czrapp);

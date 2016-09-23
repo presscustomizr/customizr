@@ -60,7 +60,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
      * @since Customizr 1.0
      */
       function czr_fn_post_meta_boxes() {//id, title, callback, post_type, context, priority, callback_args
-           /***
+          /***
             Determines which screens we display the box
           **/
           //1 - retrieves the custom post types
