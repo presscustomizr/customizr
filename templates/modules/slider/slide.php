@@ -5,19 +5,15 @@
  */
 ?>
 <div class="carousel-cell item <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
-
-  <div class="filter <?php czr_fn_echo( 'img_wrapper_class' ) ?>">
   <?php if ( czr_fn_get( 'link_whole_slide' ) ) : ?>
-    <a class="tc-slide-link" href="<?php czr_fn_echo( 'link_url' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>" title=<?php _e( 'Go to', 'customizr' ) ?>>
+    <a class="tc-slide-link bg-link" href="<?php czr_fn_echo( 'link_url' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>" title="<?php _e( 'Go to', 'customizr' ) ?>"></a>
   <?php endif ?>
+  <div class="filter <?php czr_fn_echo( 'img_wrapper_class' ) ?>">
     <?php
         do_action('__before_all_slides_background__');
           czr_fn_echo( 'slide_background' );
         do_action('__after_all_slides_background__');
     ?>
-  <?php if ( czr_fn_get( 'link_whole_slide' ) ) : ?>
-    </a>
-  <?php endif; ?>
   </div> <!-- .carousel-image -->
 
   <?php

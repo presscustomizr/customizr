@@ -1,5 +1,5 @@
 /* PARALLAX FILTER FIX */
-.filter, .header-skin-dark .section-slider .filter, .header-skin-light .section-slider .filter {
+.carousel.filter {
   height: 100vh !important;
 }
 .section-slider .container { height: 100vh !important;}
@@ -85,9 +85,8 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 .carousel-cell { height: 100%; width: 100%; }
 .carousel-cell img { width: 100%; } */
 /* move page dots into carousel */
-.flickity-page-dots { bottom: 10px; } 
+.flickity-page-dots { bottom: 10px; }
 .flickity-page-dots, .flickity-prev-button, .flickity-prev-next-button { z-index: 105; position: absolute;}
-
 /* Patches */
 
 /* Alternate sections centering */
@@ -99,6 +98,7 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 article .sections-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; vertical-align: middle;}
 
 /* Alternate and Masonry special formats patch*/
+.format-video .sections-wrapper .video-container, .format-audio .sections-wrapper .audio-container { line-height: 0;}
 .article-container .post-action { left: auto; }
 [class*=grid-container__] .format-gallery .tc-thumbnail, [class*=grid-container__] .format-image .tc-thumbnail { max-height: 600px;}
 
@@ -119,19 +119,19 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
 .article-container .grid-container__masonry .format-gallery .entry-header,
 .article-container .grid-container__masonry .format-image .entry-header{ position: relative;}
 
-.article-container .grid-container__alternate .format-image .sections-wrapper .tc-content, 
-.article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content, 
-.article-container .grid-container__masonry .format-image .tc-content, 
+.article-container .grid-container__alternate .format-image .sections-wrapper .tc-content,
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content,
+.article-container .grid-container__masonry .format-image .tc-content,
 .article-container .grid-container__masonry .format-gallery .tc-content {
   z-index: initial;
 }
 
 /* reset bottom + when format-image apply only to those with no text*/
-.article-container .grid-container__alternate .format-image.no-text  .tc-content .entry-footer, 
+.article-container .grid-container__alternate .format-image.no-text  .tc-content .entry-footer,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content .entry-footer {
     position: absolute;
     width: 90%;
-    bottom: 0;  
+    bottom: 0;
 }
 
 /* TO BE MERGED */
@@ -172,7 +172,7 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
     font-style: normal;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-      
+
     font-size: 1em;
     content: "\f05a";
     padding-left: 0;
@@ -187,7 +187,7 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
 .tc-hot-crumble.container .page-breadcrumbs .breadcrumb a {
   background: #fff;
   padding: 6px;
-  float: left; 
+  float: left;
   margin-left: 2.5em;
 }
 
@@ -209,7 +209,7 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
   position: relative;
 }
 /* Gif Loader if center slide option is checked */
-.tc-slider-loader-wrapper {
+.czr-slider-loader-wrapper {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -217,13 +217,13 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
   /*less than the default sticky-header z-index */
   background: #FAFAFA;
 }
-.tc-img-gif-loader {
+.czr-img-gif-loader {
   width: 100%;
   display: inline-block;
   height: 100%;
 }
 /* Pure CSS loader */
-@-webkit-keyframes tc-mr-loader {
+@-webkit-keyframes czr-mr-loader {
   0% {
     -webkit-transform: scale(0.1);
     transform: scale(0.1);
@@ -238,7 +238,7 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
     opacity: 0.0;
   }
 }
-@keyframes tc-mr-loader {
+@keyframes czr-mr-loader {
   0% {
     -webkit-transform: scale(0.1);
     transform: scale(0.1);
@@ -253,7 +253,7 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
     opacity: 0.0;
   }
 }
-.tc-css-loader {
+.czr-css-loader {
   display: none;
   width: 50px;
   height: 50px;
@@ -262,39 +262,41 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
   -ms-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
   top: 50%;
-  left: 50%;  
+  left: 50%;
 }
-.csstransforms3d .tc-css-loader {
+.csstransforms3d .czr-css-loader {
   display: block;
 }
-.tc-mr-loader > div:nth-child(0) {
+.czr-mr-loader > div:nth-child(0) {
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
 }
-.tc-mr-loader > div:nth-child(1) {
+.czr-mr-loader > div:nth-child(1) {
   -webkit-animation-delay: -0.6s;
   animation-delay: -0.6s;
 }
-.tc-mr-loader > div:nth-child(2) {
+.czr-mr-loader > div:nth-child(2) {
   -webkit-animation-delay: -0.4s;
   animation-delay: -0.4s;
 }
-.tc-mr-loader > div:nth-child(3) {
+.czr-mr-loader > div:nth-child(3) {
   -webkit-animation-delay: -0.2s;
   animation-delay: -0.2s;
 }
-.tc-mr-loader > div {
+.czr-mr-loader > div {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   position: absolute;
-  top: -4%;
-  left: -4%;
+  /*top: -4%;
+  left: -4%;*/
+  top: -0%;
+  left: -0%;
   width: 100%;
   height: 100%;
   border-radius: 100%;
   border: 2px solid #777;
-  -webkit-animation: tc-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
-  animation: tc-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
+  -webkit-animation: czr-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
+  animation: czr-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
 }
 /* end took from customizer */
 
@@ -305,7 +307,7 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
   max-height: 80%;
   width: 80%;
   text-align: center;
-  z-index: 4;
+  z-index: 3;
   overflow: hidden;
 
   /* temporary centering */
@@ -335,5 +337,5 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
   width: 100%;
   height: 100vh;
 }
-.czr-carousel .carousel-cell,
-.czr-carousel .carousel-inner { width: 100%; height: 100%; overflow: hidden;}
+[id^=customizr-slider-].czr-carousel .carousel-cell,
+[id^=customizr-slider-].czr-carousel .carousel-inner { width: 100%; height: 100%; overflow: hidden;}
