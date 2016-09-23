@@ -6,10 +6,10 @@ var czrapp = czrapp || {};
   * The script uses a placeholder for the sticky-element:
   * - when the "sticky candidate" overlaps the content (e.g. a slider) at the first first scroll
   * a placeholder will be injected. The placeholder has position absolute and its height is set to the
-  * header height when injected, reset to 0 when the fixed element backs to normal state, set again 
+  * header height when injected, reset to 0 when the fixed element backs to normal state, set again
   * when scrolling down.
   * - when the "sticky candidate" pushes the content the placeholder is relatively positioned,
-  * it's injected when every time the element becomes sticky, its height is set to the header height, 
+  * it's injected when every time the element becomes sticky, its height is set to the header height,
   * and reset when unsticks.
   *
   * In both cases the placeholder will be our reference to switch from sticky to un-sticky mode
@@ -22,7 +22,7 @@ var czrapp = czrapp || {};
   var _methods =  {
     init : function() {
       //cache jQuery el
-      this.$_sticky_candidate       = czrapp.$_tcHeader.find( '.topnav_navbars__wrapper' );
+      this.$_sticky_candidate         = $( '.tc-header .topnav_navbars__wrapper' );
 
       //additional state props
       this._didScroll                 = false;
@@ -38,7 +38,7 @@ var czrapp = czrapp || {};
       //set some props depending on the desired sticky behavior
       if ( this._sticky_candidate_push )
         this._fixed_classes   = 'navbar-fixed-top navbar-sticky'
-      else if ( ! this._sticky_candidate_overlap ) 
+      else if ( ! this._sticky_candidate_overlap )
         this._sticky_trigger  = 300;
 
     },
@@ -51,7 +51,7 @@ var czrapp = czrapp || {};
       //LOADING ACTIONS
       czrapp.$_body.trigger( 'sticky-enabled-on-load' , { on : 'load' } );
     },
-    
+
     stickyHeaderEventListener : function() {
       //LOADING ACTIONS
       var self = this;
@@ -61,10 +61,10 @@ var czrapp = czrapp || {};
       });//.on()
 
       czrapp.$_body.on( 'sticky-enable', function() {
-        self.stickyHeaderEventHandler('on-stick'); 
+        self.stickyHeaderEventHandler('on-stick');
       })
       .on( 'sticky-disable', function() {
-        self.stickyHeaderEventHandler('on-unstick'); 
+        self.stickyHeaderEventHandler('on-unstick');
       })
 
       czrapp.$_window.scroll( function() {
@@ -123,7 +123,7 @@ var czrapp = czrapp || {};
           this._on_sticky_disable();
         break;
       }
-    },    
+    },
 
 
     //STICKY HEADER SUB CLASS HELPER (private like)
@@ -161,13 +161,13 @@ var czrapp = czrapp || {};
 
       if ( this._sticky_candidate_overlap && this._isScrollingDown() && ! this._isStickyOn() )
         this._set_sticky_placeholder();
-    
+
       if ( ! this._isStickyOn() && _scroll >= this._toggleStickyAt() )
         czrapp.$_body.trigger('sticky-enable');
-  
+
       else if ( this._isStickyOn() && _scroll < this._toggleStickyAt() )
         czrapp.$_body.trigger('sticky-disable');
-    
+
       this._didScroll = false;
       this._lastScroll = this._get_scroll();
     },
@@ -176,22 +176,22 @@ var czrapp = czrapp || {};
     _on_sticky_enable : function() {
       if ( this._sticky_candidate_push )
         this._set_sticky_placeholder();
-    
+
       this.$_sticky_candidate.addClass( this._fixed_classes );
-      czrapp.$_body.addClass( 'sticky-enabled' ).trigger('sticky-enabled');
+      czrapp.$_body.addClass( 'sticky-enabled' ).removeClass( 'sticky-disabled' ).trigger('sticky-enabled');
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _on_sticky_disable : function() {
       this._reset_sticky_placeholder();
       this.$_sticky_candidate.removeClass( this._fixed_classes );
-      czrapp.$_body.removeClass( 'sticky-enabled' ).trigger('sticky-disabled');
+      czrapp.$_body.removeClass( 'sticky-enabled' ).addClass( 'sticky-disabled' ).trigger('sticky-disabled');
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _set_sticky_placeholder : function() {
       if ( ! this.$_sticky_placeholder ) {
-        this.$_sticky_candidate.after('<div id="sticky-placeholder"></div>');
+        this.$_sticky_candidate.closest('header').after('<div id="sticky-placeholder"></div>');
         this.$_sticky_placeholder = $('#sticky-placeholder');
       }
       this.$_sticky_placeholder.css('height', this.$_sticky_candidate.outerHeight() );

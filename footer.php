@@ -3,9 +3,6 @@
  * The template for displaying the site footer
  *
  * Contains the closing of the #tc-page-wrap div and all content after
- *
- * @package Customizr
- * @since Customizr 3.5
  */
 ?>
       <?php czr_fn_render_template('footer'); ?>
