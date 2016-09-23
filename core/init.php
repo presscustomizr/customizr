@@ -310,11 +310,11 @@ if ( ! class_exists( 'CZR___' ) ) :
                 'id'          => 'main_slider'
               ),
               //slider of posts
-              // array(
-              //   'id'          => 'main_posts_slider',
-              //   'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
-              //   'controller'  => 'main_slider'
-              // ),
+              array(
+                'id'          => 'main_posts_slider',
+                'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
+                'controller'  => 'main_slider'
+              ),
               /** end slider **/
 
 

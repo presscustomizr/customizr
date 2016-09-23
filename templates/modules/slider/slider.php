@@ -16,7 +16,7 @@
         </script>
   <?php endif ?>
   <?php do_action( '__before_carousel_inner__' ); ?>
-  
+
   <div class="<?php czr_fn_echo( 'inner_class' ) ?>" <?php czr_fn_echo( 'inner_attrs' ) ?>>
       <?php
         while ( czr_fn_get( 'has_slide' ) ) {
@@ -24,13 +24,13 @@
             czr_fn_render_template( 'modules/slider/slide', 'slide');
         }
       ?>
-  </div><!-- /.carousel-inner -->
-  <?php  do_action( '__after_carousel_inner__' ) ?>
-  <?php if ( czr_fn_has( 'slider_edit_button' ) ) czr_fn_render_template( 'modules/edit_button', 'slider_edit_button' )  ?>
   <?php if ( czr_fn_get( 'has_controls' ) ) : ?>
-        <div class="slider-nav"> 
-          <span class="slider-prev <?php czr_fn_echo( 'left_control_class' ) ?>"><i class="icn-left-open-big"></i></span> 
+        <div class="slider-nav">
+          <span class="slider-prev <?php czr_fn_echo( 'left_control_class' ) ?>"><i class="icn-left-open-big"></i></span>
           <span class="slider-next <?php czr_fn_echo( 'right_control_class' ) ?>"><i class="icn-right-open-big"></i></span>
         </div>
   <?php endif ?>
+  </div><!-- /.carousel-inner -->
+  <?php  do_action( '__after_carousel_inner__' ) ?>
+  <?php if ( czr_fn_has( 'slider_edit_button' ) ) czr_fn_render_template( 'modules/edit_button', 'slider_edit_button' )  ?>
 </div><!-- /#customizr-slider -->

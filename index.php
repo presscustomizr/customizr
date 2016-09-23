@@ -17,10 +17,10 @@
     if ( czr_fn_has('main_slider') ) {
       czr_fn_render_template('modules/slider/slider', 'main_slider');
     }
-    /*
+
     if( czr_fn_has( 'main_posts_slider' ) ) {
       czr_fn_render_template('modules/slider/slider', 'main_posts_slider');
-    }*/
+    }
   ?>
   <?php do_action('__before_main_wrapper'); ?>
     <div id="main-wrapper" class="section">
@@ -42,7 +42,7 @@
               if ( have_posts() ) {
                 while ( have_posts() ) {
                   the_post();
-                  
+
                   if ( czr_fn_has('post_list_grid') ) {
                     czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
                   }
@@ -58,18 +58,18 @@
                   }
                 }//endwhile;
               }
-            ?>               
+            ?>
           </div>
 
           <?php do_action('__after_content'); ?>
           <?php
-            if ( czr_fn_has('left_sidebar') ) { 
-              czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar'); 
+            if ( czr_fn_has('left_sidebar') ) {
+              czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar');
             }
           ?>
           <?php
-            if ( czr_fn_has('right_sidebar') ) { 
-              czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar'); 
+            if ( czr_fn_has('right_sidebar') ) {
+              czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar');
             }
           ?>
         </div>

@@ -282,7 +282,8 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   function czr_fn_get_has_slide() {
     $_slide = current( $this -> slides );
     if ( empty( $_slide ) )
-        return false;
+      return false;
+    
     $slide = & $_slide;
     $slide_id            = key( $this -> slides );
     $this -> czr_fn_set_property( 'current_slide', compact( 'slide', 'slide_id' ) );
