@@ -2,7 +2,7 @@
 $_options = array(
     //to add
     'tc_skin_type' => 'light', // (light|dark)
-    
+
     'tc_fonts' => '_g_poppins_hind',
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
@@ -36,18 +36,24 @@ $_options = array(
     'tc_grid_shadow'        => true,
 
     'tc_slider_width'       => 'full-page',
-    //'tc_front_slider'       => 'prova',
+    'tc_front_slider'       => 'tc_posts_slider',
     'tc_display_slide_loader' => true,
 
     //test
     'tc_slider_default_height' => '1000',
-    'tc_slider_parallax'       => true
+    'tc_slider_parallax'       => true,
+
+    'tc_posts_slider_number'   => '5'
 );
+
 
 function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) {
   global $_options;
-  return isset($_options[$_opt_name]) ? $_options[$_opt_name] : czr_fn_opt( $_opt_name , $option_group, $use_default ) ;
+  return apply_filters( "czr_opt{$_opt_name}", isset($_options[$_opt_name]) ? $_options[$_opt_name] : czr_fn_opt( $_opt_name , $option_group, $use_default ) );
 }
+
+//Do not use post slider transient for the moment
+add_filter( 'czr_posts_slider_use_transient', '__return_false' );
 
 add_filter( 'czr_gfont_pairs', function( $_fonts ) {
   return array_merge( $_fonts, array(
@@ -125,7 +131,7 @@ function czr_fn_enqueue_front_scripts(){
         false
     );
   };
-  
+
   $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( czr_fn_get_opt( 'tc_smoothscroll') ) );
   $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array( 'touchpadSupport' => false ) );
 
@@ -159,7 +165,7 @@ function parallax(){
                     <div class="image parallax-item" style="background-image: url('http://new.presscustomizr.com/assets/img/slider/slider_05.jpeg')" >
                       <!--img src="http://new.presscustomizr.com/assets/img/slider/slider_05.jpeg"-->
                     </div>
-                    
+
                     <div class="container">
                         <div class="content">
                             <div class="slider-text">
@@ -173,14 +179,14 @@ function parallax(){
 
                     </div>
                 </div>
-              </div>  
+              </div>
                <div class="section-slider parallax-wrapper">
                 <div class="parallax filter">
                   <div class="parallax-item">
                     <div class="image" style="background-image: url('http://new.presscustomizr.com/assets/img/slider/slider_02.jpg')" >
                       <!--img src="http://new.presscustomizr.com/assets/img/slider/slider_05.jpeg"-->
                     </div>
-                    
+
                     <div class="container">
                         <div class="content">
                             <div class="slider-text">
@@ -192,7 +198,7 @@ function parallax(){
                             </div>
                         </div>
                     </div>
-                  </div>  
+                  </div>
                 </div>
               </div>
               <div class="section-slider parallax-wrapper">
@@ -200,7 +206,7 @@ function parallax(){
                     <div class="image parallax-item" style="background-image: url('http://new.presscustomizr.com/assets/img/slider/slider_02.jpg')" >
                       <!--img src="http://new.presscustomizr.com/assets/img/slider/slider_05.jpeg"-->
                     </div>
-                    
+
                     <div class="container">
                         <div class="content">
                             <div class="slider-text parallax-item" data-parallax-ratio="1">
@@ -212,7 +218,7 @@ function parallax(){
                             </div>
                         </div>
                     </div>
-                  </div>  
+                  </div>
                 </div>
           </div>
 <?php
@@ -220,6 +226,6 @@ function parallax(){
 
 add_filter( 'czr_show_media', function( $bool){
   /* Test */
-  return $bool 
-    || in_array( get_post_format() , apply_filters( 'czr_alternate_media_post_formats', array( 'video', 'audio' ) ) );    
+  return $bool
+    || in_array( get_post_format() , apply_filters( 'czr_alternate_media_post_formats', array( 'video', 'audio' ) ) );
 });

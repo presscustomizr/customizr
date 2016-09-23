@@ -54,8 +54,8 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
     $img_wrapper_class = apply_filters( 'czr_slide_content_class', 'carousel-image', $slide_id );
 
     $this -> czr_fn_update(
-        array_merge( $slide, $caption, 
-          compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide', 'slider_name_id', 'slide_id', 'color_style' ) 
+        array_merge( $slide, $caption,
+          compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide', 'slider_name_id', 'slide_id', 'color_style' )
         )
     );
   }
@@ -83,11 +83,11 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
 
     //Extract slide's properties:
     $title                  = isset( $data['title'] ) ? $data['title'] : null;
-    $subtitle                   = isset( $data['text'] ) ? $data['text'] : null;
+    $subtitle               = isset( $data['text'] ) ? $data['text'] : null;
     $button_text            = isset( $data['button_text'] ) ? $data['button_text'] : null;
     $button_link            = isset( $data['link_url'] ) ? $data['link_url'] : 'javascript:void(0)';
 
-    $show_caption           = ! ( $title == null && $text == null && $button_text == null ) ;
+    $show_caption           = ! ( $title == null && $subtitle == null && $button_text == null ) ;
     if ( ! apply_filters( 'czr_slide_show_caption', $show_caption , $slider_name_id ) )
       return array();
 
@@ -115,7 +115,7 @@ class CZR_cl_slide_model_class extends CZR_cl_Model {
 
     $caption_elements = wp_parse_args( compact( 'title', 'button_text', 'subtitle', 'button_link' ), $defaults );
 
-    return $caption_elements;        
+    return $caption_elements;
   }
 
 

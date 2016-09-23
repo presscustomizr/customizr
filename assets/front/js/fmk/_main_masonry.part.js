@@ -2,7 +2,7 @@ var czrapp = czrapp || {};
 /************************************************
 * MASONRY GRID SUB CLASS
 *************************************************/
-/* 
+/*
 * In this script we fire the grid masonry on the grid only when all the images
 * therein are fully loaded in case we're not using the images on scroll loading
 * Imho would be better use a reliable plugin like imagesLoaded (from the same masonry's author)
@@ -38,11 +38,11 @@ var czrapp = czrapp || {};
       var self = this;
 
       if ( ! this._n_images )
-        return;      
-      
+        return;
+
       this.grid.on( 'images_loaded', function(){ self._czrFireMasonry(); });
       this._images.on( 'simple_load', function(){ self._czrMaybeTriggerImagesLoaded(); });
-      
+
       //Dummy, for testing purpose only
       this.triggerSimpleLoad( this._images );
     },
@@ -65,5 +65,5 @@ var czrapp = czrapp || {};
   };//_methods{}
 
   czrapp.methods.Czr_MasonryGrid = {};
-  $.extend( czrapp.methods.Czr_MasonryGrid , _methods );  
+  $.extend( czrapp.methods.Czr_MasonryGrid , _methods );
 })(jQuery, czrapp);

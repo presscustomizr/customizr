@@ -45,7 +45,7 @@ var czrapp = czrapp || {};
               $( self ).prevAll('.tc-slider-loader-wrapper').fadeOut();
           }, 500 );
         });
-      } , 50);      
+      } , 50);
     },//center_images
 
     parallax : function() {
@@ -53,19 +53,19 @@ var czrapp = czrapp || {};
       $( '.czr-parallax-slider' ).czrParallax();
 
       $( '.parallax-item' ).czrParallax();
-      /* Refresh waypoints when mobile menu button is toggled as 
+      /* Refresh waypoints when mobile menu button is toggled as
       *  the static/relative menu will push the content
-      */      
-      $('.ham__navbar-toggler').on('click', function(){ 
+      */
+      $('.ham__navbar-toggler').on('click', function(){
         setTimeout( function(){
-        Waypoint.refreshAll(); }, 400 ); } 
+        Waypoint.refreshAll(); }, 400 ); }
       );
     },
 
     lightbox : function() {
       /* The magnificPopup delegation is very good
       * not even works when clicking on a dynamically added a.expand-img
-      * but clicking on an another a.expand-img the image speficied in the 
+      * but clicking on an another a.expand-img the image speficied in the
       * dynamically added a.expang-img href is added to the gallery
       */
 
@@ -96,7 +96,7 @@ var czrapp = czrapp || {};
               enabled: true
             },
         }).magnificPopup('open');
-      });  
+      });
     },
     /*
     * flickity slider:
@@ -108,6 +108,7 @@ var czrapp = czrapp || {};
           pageDots: false,
           wrapAround: true,
           imagesLoaded: true,
+          cellSelector: '.carousel-cell'
       });
 
       /* Test only !!!!!! */
@@ -117,17 +118,18 @@ var czrapp = czrapp || {};
           wrapAround: true,
           imagesLoaded: true,
           setGallerySize: false,
+          cellSelector: '.carousel-cell'
       });
 
       /* Handle custom nav */
       // previous
       czrapp.$_body.on( 'click', '.slider-prev', function() {
-        var $flickity_instance = $(this).parent().parent().find('.flickity-enabled');
+        var $flickity_instance = $(this).closest('.flickity-enabled');
         $flickity_instance.flickity('previous');
       });
       // next
       czrapp.$_body.on( 'click', '.slider-next', function() {
-        var $flickity_instance = $(this).parent().parent().find('.flickity-enabled');
+        var $flickity_instance = $(this).closest('.flickity-enabled');
         $flickity_instance.flickity('next');
       });
     }

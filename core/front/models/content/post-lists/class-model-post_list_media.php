@@ -47,7 +47,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
                 $class   = 'vimeo';
               break;
 
-            default : 
+            default :
               $content = '';
               $class   = '';
           }
@@ -65,15 +65,15 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
           global $post, $wp_embed;
           $slug =  $post->post_name;
           switch ( $slug ) {
-            case 'post-format-audio' : 
+            case 'post-format-audio' :
               $content = 'https://soundcloud.com/digitalescort/something-in-the-way';
               $class   = 'soundcloud';
               break;
             case 'another-post-format-audio' :
               $content = 'https://play.spotify.com/track/4rjnWmrSRqXVkFWdKMG3pV';
               $class   = 'spotify';
-              break;            
-            default : 
+              break;
+            default :
               $content = '';
               $class   = '';
           }
@@ -90,7 +90,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
           /* Rough */
           if ( get_post_gallery() ) {
             $gallery = get_post_gallery( get_the_ID(), false );
-            
+
             $_gallery_html = '';
             /* Loop through all the image and output them one by one */
             foreach( $gallery['src'] as $src )
@@ -98,26 +98,31 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
 
             $the_permalink      = esc_url( apply_filters( 'the_permalink', get_the_permalink() ) );
             $the_title_attribute = the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) );
+
             $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
 
-            $_gallery_html   = '<div class="post-action">
-                          <a href="#" class="expand-img gallery"><i class="icn-expand"></i></a>
-                        </div>' . '<div class="tc-gallery-nav"> 
-                          <span class="slider-prev"><i class="icn-left-open-big"></i></span> 
+            $_gallery_nav    = count($gallery['src']) < 2 ? '' : '<div class="tc-gallery-nav">
+                          <span class="slider-prev"><i class="icn-left-open-big"></i></span>
                           <span class="slider-next"><i class="icn-right-open-big"></i></span>
-                        </div><div class="carousel carousel-inner">' . $_gallery_html.'</div>';
+                        </div>';
 
-            return $_bg_link . $_gallery_html;          
+            $_post_action     = '<div class="post-action"><a href="#" class="expand-img gallery"><i class="icn-expand"></i></a></div>';
+
+            $_gallery_html   = sprintf( '<div class="carousel carousel-inner">%1$s%2$s</div>',
+                                      $_gallery_html, $_gallery_nav
+            );
+
+            return sprintf( "%s%s%s", $_bg_link, $_post_action, $_gallery_html);
           }
           //we need to return a placeholder;
           return false;
-          
+
       default:
           $_the_thumb = czr_fn_get_thumbnail_model( 'normal' );
 
           if ( empty ( $_the_thumb['tc_thumb']) )
             return;
-          
+
           //get_the_post_thumbnail( null, 'normal', array( 'class' => 'post-thumbnail' ) );
           /* use utils tc thumb to retrieve the original image size */
           $this -> czr_fn_set_property( 'original_thumb_url', wp_get_attachment_image_src( $_the_thumb[ '_thumb_id' ], 'large')[0] );
