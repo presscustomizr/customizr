@@ -370,3 +370,237 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
 }
 /* Dropdown toggler span test */
 .caret__dropdown-toggler[data-toggle="dropdown"] { position : absolute;}
+
+/*Comments patches */
+/*
+replace:
+.comment-reply {
+    background: #f7f8f9;
+    padding: 2.5em;
+    margin-top: 2.5em;
+}
+*/
+.comment-respond {
+    background: #f7f8f9;
+    padding: 2.5em;
+    margin-top: 2.5em;
+}
+
+/*
+Add to:
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+    font-size: 0.83333em;
+}
+*/
+form label,
+.comment-notes {
+  font-size: 0.83333em;
+}
+
+/*
+Apply this to the form elements
+
+.czr-form .form-control {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #202020;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    color: #202020;
+    z-index: 1;
+    position: relative;
+    background: transparent;
+}
+.czr-form input:not([type="submit"]), .czr-form label, .czr-form textarea {
+    width: 100%;
+}
+*/
+form input:not([type="submit"]), form textarea {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #202020;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  color: #202020;
+  z-index: 1;
+  position: relative;
+  background: transparent;
+  width: 100%;
+}
+form label {
+  width: 100%;
+}
+
+
+/*DO:; style the submit as btn-skin
+.btn-skin {
+    color: #fff;
+    background-color: #284AFF;
+}
+.btn, .btn-skin {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.service-font, .btn, .btn-skin, .entry-header .entry-meta a, .category-info a, .tags li a, .tagcloud li a, .post-tags li a, .sidebar .tagcloud li a, .post-list-plain .post .entry-meta .category__link, .entry-footer, .comment-meta time, .sidebar .widget_calendar thead tr {
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 1px;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: normal;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+}
+*/
+input[type="submit"] {
+  color: #fff;
+  background-color: #284AFF;
+  border-radius: 2px;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1px;
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+/*
+Apply to all form labels
+.czr-form .form-group label {
+    display: block;
+    position: absolute;
+    color: #202020;
+    font-family: "Roboto", sans-serif;
+    -webkit-transition: all 0.2s, 0.3s ease;
+    transition: all 0.2s, 0.3s ease;
+    z-index: 0;
+}
+.letter-spacing-2, .entry-header .entry-meta a, .category-info a, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .post-section-title, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
+    letter-spacing: 2px;
+}
+.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-list-plain .post .entry-meta .category__link, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+    text-transform: uppercase;
+}
+.thick, h1, h2, h3, h4, h5, h6, .czr-form .form-group label, strong {
+    font-weight: 700;
+}
+*/
+form label {
+  display: block;
+  position: absolute;
+  color: #202020;
+  font-family: "Roboto", sans-serif;
+  -webkit-transition: all 0.2s, 0.3s ease;
+  transition: all 0.2s, 0.3s ease;
+  z-index: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+/*
+Required to the left
+.czr-form .form-group label span {
+    float: left;
+}
+*/
+label .required {
+  float: left;
+}
+/* Comment text height */
+.comment-form-comment textarea {
+  height: 116px;
+}
+/*
+Only to comment form elements?
+.czr-form .form-group {
+    position: relative;
+    margin-top: 2.5em;
+}
+*/
+.comment-form-comment, .comment-form-author, .comment-form-email, .comment-form-url {
+  margin-top: 2.5em;
+}
+/* Three columns for the comment form elements in desktops
+@media (min-width: 993px)
+.wide .czr-form .form-group-text {
+    width: calc((100% - 2.5em - 12px)/3);
+    display: inline-block;
+}
+@media (min-width: 993px)
+.czr-form .form-group-text:nth-child(-n+3) {
+    width: calc((100% - 1.25em - 8px)/2);
+    display: inline-block;
+}
+@media (min-width: 993px)
+.wide .czr-form .form-group-text + .form-group-text {
+    margin-left: 1.25em;
+}
+*/
+@media (min-width: 992px) {
+  .comment-form-author, .comment-form-email, .comment-form-url {
+    width: calc((100% - 2.5em - 12px)/3);
+    display: inline-block;
+    margin-left: 1.25em;
+  }
+  .comment-form-author {
+    margin-left: 0;
+  }
+}
+/*
+Transform for form labels on focus
+*/
+form .in-focus > label {
+  -webkit-transform: translateY(-110%);
+     -moz-transform: translateY(-110%);
+      -ms-transform: translateY(-110%);
+          transform: translateY(-110%);
+  color: #B4B4B4;
+}
+/* Patch the search label */
+/*
+.czr-form .form-group.in-focus label span:first-of-type {
+    -webkit-transform: translateY(-110%);
+    -moz-transform: translateY(-110%);
+    -ms-transform: translateY(-110%);
+    transform: translateY(-110%);
+    color: #B4B4B4;
+}
+*/
+.search-form__container .czr-form .form-group.in-focus label span:first-of-type {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+.search-form__container .in-focus .icn-close {
+  -webkit-transform: translateY(110%);
+  -moz-transform: translateY(110%);
+  -ms-transform: translateY(110%);
+  transform: translateY(110%);
+}
