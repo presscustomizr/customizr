@@ -468,6 +468,10 @@ form label {
     border-radius: 0.25rem;
 }
 */
+/* add also woocommerce style */
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
+.woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover,
+.woocommerce #respond input#submit,
 input[type="submit"] {
   color: #fff;
   background-color: #284AFF;
@@ -513,7 +517,7 @@ Apply to all form labels
 */
 form label {
   display: block;
-  position: absolute;
+
   color: #202020;
   font-family: "Roboto", sans-serif;
   -webkit-transition: all 0.2s, 0.3s ease;
@@ -522,6 +526,10 @@ form label {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 700;
+}
+/* Limit this to safe forms like our forms and comments */
+.czr-focus label {
+  position: absolute;
 }
 /*
 Required to the left
@@ -575,7 +583,7 @@ Only to comment form elements?
 /*
 Transform for form labels on focus
 */
-form .in-focus > label {
+form .czr-focus.in-focus > label {
   -webkit-transform: translateY(-110%);
      -moz-transform: translateY(-110%);
       -ms-transform: translateY(-110%);
@@ -597,6 +605,17 @@ form .in-focus > label {
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
   transform: translateY(0);
+}
+.search-form__container i {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+}
+.search-form__container /*.in-focus*/ .icn-close {
+  -webkit-transform: translateY(-110%);
+  -moz-transform: translateY(-110%);
+  -ms-transform: translateY(-110%);
+  transform: translateY(-110%);
 }
 .search-form__container .in-focus .icn-close {
   -webkit-transform: translateY(110%);

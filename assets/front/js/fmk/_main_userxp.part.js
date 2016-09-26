@@ -40,17 +40,29 @@ var czrapp = czrapp || {};
     },
     //FORM FOCUS ACTION
     formFocusAction : function() {
-      var _input_types    = ['input', 'textarea'],
-        _parent_selector  = 'form'
-        _focus_class      = 'in-focus',
-        _inputs           = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join();
+      var _input_types     = ['input[type="text"]', 'textarea'],
+        _focusable_class   = 'czr-focus',
+        _parent_selector   = '.'+_focusable_class,
+        _focus_class       = 'in-focus',
+        _inputs            = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join(),
+        $_focusable_inputs = $( _input_types.join() );
+        _maybe_fire        = $_focusable_inputs.length > 0;
+
+      //This is needed to add a class to the input parent (label parent) so that
+      //we can limiti absolute positioning + translations only to relevant ones (defined in _input_types )
+      //consider the exclude?!
+      if ( _maybe_fire ) {
+        $_focusable_inputs.each( function() {
+          $(this).parent().addClass(_focusable_class);
+        });
+      }else
+        return;
 
       czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, _toggleThisFocusClass );
 
       function _toggleThisFocusClass( evt ) {
         var $_el     = $(this),
-            $_parent = $_el.parent();
-            //closest( _parent_selector );
+            $_parent = $_el.closest(_parent_selector);
 
         if ( $_el.val() || ( evt && 'focusin' == evt.type ) ) {
           $_parent.addClass( _focus_class );
