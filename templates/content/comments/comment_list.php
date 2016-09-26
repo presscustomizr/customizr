@@ -6,19 +6,47 @@
  * comment navigation
  */
 ?>
-<h2 id="tc-comment-title" class="comments-title" <?php czr_fn_echo('element_attributes') ?>><?php /* Comments list title */
-  comments_number( false, __( 'One thought on', 'customizr'), '% ' . __( 'thoughts on', 'customizr' ) )
-?> &ldquo;</span><?php the_title() ?></span>&rdquo;</h2>
-<ul class="commentlist">
-  <?php
+<?php global $wp_query; ?>
 
-  /* Comments list */
-  wp_list_comments( czr_fn_get('args') )
-
-  ?>
+<ul class="nav nav-pills">
+  <?php if ( ! empty ( $wp_query->comments_by_type['comment'] ) ) : ?>
+    <li class="nav-item"><a href="#commentlist-container" class="nav-link active" data-toggle="pill" role="tab"><?php echo count($wp_query->comments_by_type['comment']) ?>&nbsp<?php _e( 'comments', 'customizr' ) ?></a></li>
+  <?php endif ?>
+  <?php if ( ! empty ( $wp_query->comments_by_type['pings'] ) ) : ?>
+    <li class="nav-item"><a href="#pinglist-container" class="nav-link" data-toggle="pill" role="tab"><?php echo count($wp_query->comments_by_type['pings']) ?>&nbsp<?php _e( 'pingbacks', 'customizr' ) ?></a></li>
+  <?php endif ?>
 </ul>
-<?php
+<div id="comments" class="tab-content">
+  <?php if ( ! empty( $wp_query->comments_by_type['comment'] ) ) : ?>
+    <div id="commentlist-container" class="tab-pane comments active" role="tabpanel">
+      <ol class="comment-list">
+        <?php
 
+        /* Comments list */
+        wp_list_comments( array_merge( czr_fn_get('args'), array( 'type' => 'comment' ) ) );
+
+        ?>
+      </ol>
+    </div>
+  <?php
+  endif;
+  if ( ! empty( $wp_query->comments_by_type['pings'] ) ) :
+    $_active = empty( $wp_query->comments_by_type['comment'] ); ?>
+    <div id="pinglist-container" class="<?php echo $_active ?> tab-pane pings" role="tabpanel">
+      <ol class="pingback-list">
+        <?php
+
+        /* Pings list */
+        wp_list_comments( array_merge( czr_fn_get('args'), array( 'type' => 'pings' ) ) );
+
+        ?>
+      </ol>
+    </div>
+  <?php
+  endif;
+  ?>
+</div>
+<?php
 /* Comments Navigation */
 if ( get_option( 'page_comments' ) && get_comment_pages_count() > 1) :
 
