@@ -184,6 +184,10 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
 }
 
 /* Breadcrumb fixes */
+.page-breadcrumbs .breadcrumb {
+  background: transparent;
+}
+
 .tc-hot-crumble.container .page-breadcrumbs .breadcrumb .trail-end,
 .tc-hot-crumble.container .page-breadcrumbs .breadcrumb a {
   background: #fff;
@@ -343,17 +347,18 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
 
 
 /* Test header overflow-x hidden !!! */
-/*@media screen and (min-width: 993px) {
+@media screen and (min-width: 992px) {
   .super-wrapper {
+    overflow-x: hidden;
     position: absolute;
     width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
   }
+  [class*='li-open-'].super-wrapper { height: 100vh; }
+  /*
   .navbar-sticky-overlap #tc-page-wrap {
     overflow-x: initial !important;
-  }
-}*/
+  }*/
+}
 
 /* Post pagination fixes */
 .post-pagination > div > span {
@@ -363,3 +368,5 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
 .post-pagination span + * {
   margin-left: 1.25em;
 }
+/* Dropdown toggler span test */
+.caret__dropdown-toggler[data-toggle="dropdown"] { position : absolute;}
