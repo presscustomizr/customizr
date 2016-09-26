@@ -49,7 +49,7 @@ var czrapp = czrapp || {};
         _maybe_fire        = $_focusable_inputs.length > 0;
 
       //This is needed to add a class to the input parent (label parent) so that
-      //we can limiti absolute positioning + translations only to relevant ones (defined in _input_types )
+      //we can limit absolute positioning + translations only to relevant ones ( defined in _input_types )
       //consider the exclude?!
       if ( _maybe_fire ) {
         $_focusable_inputs.each( function() {
@@ -76,17 +76,17 @@ var czrapp = czrapp || {};
     },
 
     //test comment reply
-    commentReplyTest : function() {
-      czrapp.$_body.on('click', '.comment-reply-link', function( evt ){
-        evt.preventDefault();
-        var $_this_parent = $(this).closest('.comment-content');
-         $.each( $( '#comments .comment-content.open') , function() {
-           if ( ! $(this).is($_this_parent) )
-             $(this).removeClass("open");
-         });
-        $_this_parent.toggleClass('open');
-      });
-    },
+    // commentReplyTest : function() {
+    //   czrapp.$_body.on('click', '.comment-reply-link', function( evt ){
+    //     evt.preventDefault();
+    //     var $_this_parent = $(this).closest('.comment-content');
+    //      $.each( $( '#comments .comment-content.open') , function() {
+    //        if ( ! $(this).is($_this_parent) )
+    //          $(this).removeClass("open");
+    //      });
+    //     $_this_parent.toggleClass('open');
+    //   });
+    // },
     variousHeaderActions : function() {
       /* ham navbar */
       czrapp.$_body.on( 'click', '.ham__navbar-toggler', function() {
@@ -102,10 +102,12 @@ var czrapp = czrapp || {};
       });
     */
       /* header search button */
-      czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function()  {
+      czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function(evt) {
+        evt.preventDefault();
         czrapp.$_body.toggleClass('full-search-opened');
       });
-      czrapp.$_body.on( 'click', '.search-close_btn', function()  {
+      czrapp.$_body.on( 'click', '.search-close_btn', function(evt) {
+        evt.preventDefault();
         czrapp.$_body.removeClass('full-search-opened');
       });
     },
