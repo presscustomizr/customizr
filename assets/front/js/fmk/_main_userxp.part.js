@@ -41,15 +41,16 @@ var czrapp = czrapp || {};
     //FORM FOCUS ACTION
     formFocusAction : function() {
       var _input_types    = ['input', 'textarea'],
-        _parent_selector  = '.form-group'
+        _parent_selector  = 'form'
         _focus_class      = 'in-focus',
         _inputs           = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join();
 
-      czrapp.$_body.on( 'focusin focusout', _inputs, _toggleThisFocusClass );
+      czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, _toggleThisFocusClass );
 
       function _toggleThisFocusClass( evt ) {
         var $_el     = $(this),
-            $_parent = $_el.closest( _parent_selector );
+            $_parent = $_el.parent();
+            //closest( _parent_selector );
 
         if ( $_el.val() || ( evt && 'focusin' == evt.type ) ) {
           $_parent.addClass( _focus_class );
@@ -58,7 +59,10 @@ var czrapp = czrapp || {};
         }
       };
 
+      //on ready :  think about search forms in search pages
+      $(_inputs).trigger( 'in-focus-load.czr-focus' );
     },
+
     //test comment reply
     commentReplyTest : function() {
       czrapp.$_body.on('click', '.comment-reply-link', function( evt ){

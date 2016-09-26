@@ -7,4 +7,8 @@
  * handled by a callback to tc_comment_callback()
  */
 if ( czr_fn_has('comment_list') ) { czr_fn_render_template('content/comments/comment_list', 'comment_list'); }
-comment_form();
+comment_form( array(
+  'title_reply_before' => '<h4 id="reply-title" class="comment-reply-title">',
+  'title_reply_after'  => '</h4>',
+
+));

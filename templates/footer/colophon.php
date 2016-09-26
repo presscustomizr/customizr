@@ -7,10 +7,10 @@
  */
 ?>
 <div id="colophon" class="copyright__container row">
-  <div class="col-md-6 col-xs-6 pull-md-left">
+  <div class="col-sm-6 col-xs-12">
     <?php czr_fn_render_template( 'footer/footer_credits' ); ?>
   </div>
-  <div class="col-md-6 col-xs-6 pull-md-right">
+  <div class="col-sm-6 col-xs-12">
     <?php czr_fn_render_template( 'footer/footer_socials' ); ?>
   </div>
 </div>
