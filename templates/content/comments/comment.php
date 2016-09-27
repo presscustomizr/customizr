@@ -5,8 +5,6 @@
  * @package Customizr
  * @since Customizr 3.5.0
  */
-
-global $post;
 ?>
 <li <?php comment_class() ?> id="comment-<?php comment_ID() ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div id ="div-comment-<?php comment_ID() ?>" class="comment-section clearfix">
@@ -31,7 +29,7 @@ global $post;
           </time>
         </div>
         <?php if ( czr_fn_get( 'has_edit_button' ) ) : ?>
-          <a class="comment-edit-link comment-edit-btn btn btn-edit" href="<?php echo esc_url( get_edit_comment_link( $comment ) ); ?>"><i class="icn-edit"></i><?php _e('Edit comment', 'customizr') ?></a>
+          <a class="comment-edit-link btn btn-edit" href="<?php echo esc_url( get_edit_comment_link( $comment ) ); ?>"><i class="icn-edit"></i><?php _e('Edit comment', 'customizr') ?></a>
         <?php endif; ?>
       </header>
       <div class="comment-content"><?php comment_text() ?></div>

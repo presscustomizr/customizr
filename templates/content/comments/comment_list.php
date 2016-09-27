@@ -23,7 +23,7 @@
         <?php
 
         /* Comments list */
-        wp_list_comments( array_merge( czr_fn_get('args'), array( 'type' => 'comment' ) ) );
+        wp_list_comments( array( 'type' => 'comment', 'callback' => czr_fn_get( 'czr_comments_callback' ) ) );
 
         ?>
       </ol>
@@ -37,7 +37,7 @@
         <?php
 
         /* Pings list */
-        wp_list_comments( array_merge( czr_fn_get('args'), array( 'type' => 'pings' ) ) );
+        wp_list_comments( array( 'type' => 'pings', 'callback' => czr_fn_get( 'czr_comments_callback' ) ) );
 
         ?>
       </ol>
@@ -47,7 +47,10 @@
   ?>
 </div>
 <?php
-/* Comments Navigation */
+/*
+TO STYLE!!!
+
+Comments Navigation */
 if ( get_option( 'page_comments' ) && get_comment_pages_count() > 1) :
 
 ?>
