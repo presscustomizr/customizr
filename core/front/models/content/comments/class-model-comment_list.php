@@ -1,6 +1,8 @@
 <?php
 class CZR_cl_comment_list_model_class extends CZR_cl_Model {
-  public $args;
+  public $czr_cl_args = array();
+  public $czr_cl_depth;
+  public $czr_comments_callback;
 
   /*
   * @override
@@ -16,25 +18,14 @@ class CZR_cl_comment_list_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $model[ 'args' ]          = apply_filters( 'czr_list_comments_args' , array( 'callback' => array ( $this , 'czr_fn_comment_callback' ) ) );
+    $model[ 'czr_comments_callback' ]      = array ( $this , 'czr_fn_comments_callback' );
+
+    //get user defined max comment depth
+    $max_comments_depth = get_option('thread_comments_depth');
+    $model[ 'czr_cl_args' ]['max_depth']   = isset( $max_comments_depth ) ? $max_comments_depth : 5;
     return $model;
   }
 
-
-  function czr_fn_setup_children() {
-    //registered here as they act on czr_comment_callback_params
-    $children = array(
-      array(
-        'model_class' => 'content/comments/comment',
-        'id'          => 'comment'
-      ),
-      array(
-        'id'          => 'trackback',
-        'model_class' => 'content/comments/trackpingback'
-      ),
-    );
-    return $children;
-  }
   /**
    * Template for comments and pingbacks.
    *
@@ -44,16 +35,16 @@ class CZR_cl_comment_list_model_class extends CZR_cl_Model {
    * @package Customizr
    * @since Customizr 1.0
   */
-  function czr_fn_comment_callback( $comment, $args, $depth ) {
-    //get user defined max comment depth
-    $max_comments_depth = get_option('thread_comments_depth');
-    $args['max_depth']  = isset( $max_comments_depth ) ? $max_comments_depth : 5;
+  function czr_fn_comments_callback( $comment, $args, $depth ) {
 
-    apply_filters_ref_array( 'czr_comment_callback_params', array( $comment, $args, $depth ) );
+    $this -> czr_fn_update( array(
+      'czr_cl_args'  => array_merge( $this -> czr_cl_args, $args ),
+      'czr_cl_depth' => $depth
+    ) );
 
     if ( czr_fn_has( 'comment' ) && isset( $args['type'] ) && 'comment' == $args['type'] )
       czr_fn_render_template( 'content/comments/comment', 'comment' );
-    elseif ( czr_fn_has( 'trackback' ) && isset( $args['type'] ) && 'pings' == $args['type'] )
+    elseif ( czr_fn_has( 'trackpingback' ) && isset( $args['type'] ) && 'pings' == $args['type'] )
       czr_fn_render_template( 'content/comments/trackpingback', 'trackpingback' );
   }
 }
