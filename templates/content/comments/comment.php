@@ -19,7 +19,7 @@
           <div class="comment-author vcard">
             <?php comment_author_link() ?>
             <?php if ( czr_fn_get('is_current_post_author') ): ?>
-              <span><?php _e( 'Post author' , 'customizr' ) ?></span>
+              <span class="small"><?php _e( 'Post author' , 'customizr' ) ?></span>
             <?php endif; ?>
           </div>
           <time class="comment-date comment-meta commentmetadata" datetime="<?php comment_time() ?>">
@@ -33,10 +33,11 @@
         <?php endif; ?>
       </header>
       <div class="comment-content"><?php comment_text() ?></div>
-      <?php if ( false != $comment_reply_link = get_comment_reply_link( czr_fn_get( 'comment_reply_link_args' ) ) ) : ?>
-        <div class="reply btn btn-small">
-          <?php echo $comment_reply_link ?>
-        </div>
-      <?php endif ?>
+      <?php if ( czr_fn_get( 'is_awaiting_moderation' ) ): ?>
+        <p class="comment-awaiting-moderation comment-content"><?php _e( 'Your comment is awaiting moderation.' , 'customizr' ) ?></p>
+      <?php endif; ?>
+      <?php if ( false != $comment_reply_link = get_comment_reply_link( czr_fn_get( 'comment_reply_link_args' ) ) ) :
+        echo $comment_reply_link;
+      endif ?>
     </div>
   </div>

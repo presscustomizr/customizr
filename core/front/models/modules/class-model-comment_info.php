@@ -7,7 +7,7 @@ class CZR_cl_comment_info_model_class extends CZR_cl_Model {
   function czr_fn_get_comment_info_link( $link, $add_anchor = true ) {
     $link = sprintf( "%s%s",
         is_singular() ? '' : esc_url( $link ),
-        $add_anchor ? apply_filters( 'czr_info_comment_anchor', '#tc-comment-title') : ''
+        $add_anchor ? apply_filters( 'czr_info_comment_anchor', '#czr-comments-title') : ''
     );
     return $link;
   }

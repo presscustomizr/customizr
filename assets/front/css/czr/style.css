@@ -660,10 +660,48 @@ replace:;
   font-weight: 500;
 }
 */
-.comment-reply-link,
+
 .comment-time {
   color: #202020;
   font-weight: 500;
+}
+
+.action-link .comment-reply-link:hover {
+    color: #B4B4B4;
+}
+/*
+We cannot really act on the comment-reply-link <a> class
+so we need to style it directly as this:
+.action-link {
+    border-bottom-color: #f7f8f9;
+    box-shadow: inset 0 -5px 0 #f7f8f9;
+    font-family: "Roboto", sans-serif;
+    color: #202020;
+}
+.action-link:hover {
+    color: #B4B4B4;
+}
+.letter-spacing-2, .entry-header .entry-meta a, .category-info a, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .post-section-title, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
+    letter-spacing: 2px;
+}
+.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-list-plain .post .entry-meta .category__link, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+    text-transform: uppercase;
+}
+.bold, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .comment-meta .comment-author-link , .action-link, .comment-cancel-link, .pingback-list li sup, .sidebar .widget_recent_comments, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+    font-weight: 600;
+}
+*/
+.comment-reply-link {
+  border-bottom-color: #f7f8f9;
+  box-shadow: inset 0 -5px 0 #f7f8f9;
+  font-family: "Roboto", sans-serif;
+  color: #202020;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.comment-reply-link:hover {
+  color: #B4B4B4;
 }
 /*
 replace

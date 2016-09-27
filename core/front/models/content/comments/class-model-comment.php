@@ -21,15 +21,15 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
   */
   function czr_fn_setup_late_properties() {
     global $post;
+    global $comment;
 
-    $args  = czr_fn_get( 'czr_cl_args' );
-    $depth = czr_fn_get( 'czr_cl_depth' );
+    $args  = czr_fn_get( 'czr_args' );
+    $depth = czr_fn_get( 'czr_depth' );
 
     $props = array(
      'comment_text'            => apply_filters( 'comment_text', get_comment_text( $comment->comment_ID , $args ), $comment, $args ),
      'comment_reply_link_args' => array_merge( $args,
         array(
-          'reply_text' => __( 'Reply' , 'customizr' ).' <span>&darr;</span>',
           'depth'      => $depth,
           'max_depth'  => isset($args['max_depth'] ) ? $args['max_depth'] : '',
           'add_below'  => apply_filters( 'czr_comment_reply_below' , 'div-comment' )
