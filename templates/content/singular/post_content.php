@@ -52,11 +52,6 @@
 
     <?php do_action( '__after_post_entry_content' ) ?>
 
-    <?php
-    if ( czr_fn_has('single_author_info') ) {
-       czr_fn_render_template('content/authors/author_info', 'single_author_info');
-    }
-    ?>
-    </div><!-- .post-entry -->
+  </div><!-- .post-entry -->
   <?php do_action( '__after_inner_post_article' ) ?>
 </article>

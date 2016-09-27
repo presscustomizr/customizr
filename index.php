@@ -29,10 +29,9 @@
 
       <?php do_action('__before_main_container'); ?>
 
-      <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
-
       <div class="container" role="main">
 
+        <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
         <div class="<?php czr_fn_column_content_wrapper_class() ?>">
 
           <?php do_action('__before_content'); ?>

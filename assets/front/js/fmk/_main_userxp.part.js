@@ -73,6 +73,11 @@ var czrapp = czrapp || {};
 
       //on ready :  think about search forms in search pages
       $(_inputs).trigger( 'in-focus-load.czr-focus' );
+
+      //search form clean on .icn-close click
+      czrapp.$_body.on( 'click tap', '.icn-close', function() {
+        $(this).closest('form').find('.czr-search-field').val('').focus();
+      });
     },
 
     //test comment reply
