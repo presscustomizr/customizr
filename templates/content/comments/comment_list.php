@@ -59,7 +59,7 @@
 TO STYLE!!!
 
 Comments Navigation */
-if ( get_option( 'page_comments' ) && get_comment_pages_count() > 1) :
+if ( get_option( 'page_comments' ) && get_comment_pages_count() > 1 ) :
 
 ?>
 <nav id="comment-nav-below" class="navigation" role="navigation">

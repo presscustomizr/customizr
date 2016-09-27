@@ -219,7 +219,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
 
     $_cols   = array();
 
-    $_push_class = $_pull_class;
+    $_push_class = $_pull_class = '';
 
     foreach ( $_widths as $i => $val ) {
 
@@ -230,9 +230,9 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
         $_pull_class    = "pull-{$_col_bp[$i]}-{$_pull[$i]}";
 
       $_width_class  = "col-{$_col_bp[$i]}-$val";
-      array_unique( array_push( $_cols, $_width_class, $_push_class, $_pull_class ) );
+      array_push( $_cols, $_width_class, $_push_class, $_pull_class );
     }
-    return array_filter( $_cols );
+    return array_filter( array_unique( $_cols ) );
   }
 
 
